@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -126,6 +128,7 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 				EV << "DiameterPeer: Received unexpected event\n";
 				if (msg != NULL)
 					delete msg;
+				break;
 		}
 		break;
 	case WAIT_CONN_ACK:
@@ -156,6 +159,7 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 				EV << "DiameterBase: Received unexpected event\n";
 				if (msg != NULL)
 					delete msg;
+				break;
 		}
 		break;
 	case WAIT_I_CEA:
@@ -187,6 +191,7 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 				EV << "DiameterPeer: Received unexpected event\n";
 				if (msg != NULL)
 					delete msg;
+				break;
 		}
 		break;
 	case WAIT_CONN_ACK_ELECT:
@@ -215,6 +220,7 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 				EV << "DiameterPeer: Received unexpected event\n";
 				if (msg != NULL)
 					delete msg;
+				break;
 		}
 		break;
 	case WAIT_RETURNS:
@@ -248,6 +254,7 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 				EV << "DiameterPeer: Received unexpected event\n";
 				if (msg != NULL)
 					delete msg;
+				break;
 		}
 		break;
 	case R_OPEN:
@@ -297,6 +304,7 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 				EV << "DiameterPeer: Received unexpected event\n";
 				if (msg != NULL)
 					delete msg;
+				break;
 		}
 		break;
 	case I_OPEN:
@@ -345,6 +353,7 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 				EV << "DiameterPeer: Received unexpected event\n";
 				if (msg != NULL)
 					delete msg;
+				break;
 		}
 		break;
 	case CLOSING:
@@ -373,12 +382,14 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 				EV << "DiameterPeer: Received unexpected event\n";
 				if (msg != NULL)
 					delete msg;
+				break;
 		}
 		break;
 	default:
 		EV << "DiameterPeer: Unknown state\n";
 		if (msg != NULL)
 			delete msg;
+		break;
 	}
 
     if (oldState != fsm.getState())
@@ -443,6 +454,7 @@ void DiameterPeer::stateEntered() {
 			startTimer(twTimer, "TW-TIMER", TW_TIMER_TIMEOUT + uniform(-2, 2));
 			break;
 		default:;
+		break;
 	}
 }
 

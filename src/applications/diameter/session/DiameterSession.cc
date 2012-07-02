@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -61,12 +63,14 @@ void DiameterSession::performStateTransition(SessionEvent &event, unsigned applI
 					EV << "DiameterSession: Received unexpected event\n";
 					if (msg != NULL)
 						delete msg;
+					break;
 			}
 			break;
 		default:
 			EV << "DiameterSession: Unknown state\n";
 			if (msg != NULL)
 				delete msg;
+			break;
 	}
 
     if (oldState != fsm->getState())
