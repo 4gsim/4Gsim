@@ -1,0 +1,42 @@
+SCTPAssociationSendAll.cc 
+	- line 669:
+		- added 
+			return;
+SCTPSockt.h
+	- line 105:
+		- added
+			SCTPSocket(cMessage *msg);
+SCTPSocket.cc
+	- line 23:
+		- added 
+			SCTPSocket::SCTPSocket(cMessage *msg) {
+			    SCTPCommand *ind = dynamic_cast<SCTPCommand *>(msg->getControlInfo());
+			    if (!ind)
+			        opp_error("SCTPSocket::SCTPSocket(cMessage *): no SCTPCommand control info in message (not from SCTP?)");
+			
+			    assocId = ind->getAssocId();
+			    sockstate = CONNECTED;
+			    oneToOne = true;
+			
+			    localPrt = remotePrt = -1;
+			    cb = NULL;
+			    yourPtr = NULL;
+			
+			    gateToSctp = NULL;
+			
+			    if (msg->getKind()==SCTP_I_ESTABLISHED)
+			    {
+			        // management of stockstate is left to processMessage() so we always
+			        // set it to CONNECTED in the ctor, whatever SCTP_I_xxx arrives.
+			        // However, for convenience we extract SCTPConnectInfo already here, so that
+			        // remote address/port can be read already after the ctor call.
+			
+			        SCTPConnectInfo *connectInfo = dynamic_cast<SCTPConnectInfo *>(msg->getControlInfo());
+			        outboundStreams = connectInfo->getOutboundStreams();
+			        inboundStreams = connectInfo->getInboundStreams();
+			        localAddr = connectInfo->getLocalAddr();
+			        remoteAddr = connectInfo->getRemoteAddr();
+			        localPrt = connectInfo->getLocalPort();
+			        remotePrt = connectInfo->getRemotePort();
+			    }
+			}
