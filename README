@@ -1,0 +1,129 @@
+INET Framework for OMNEST/OMNeT++ 4.0
+=====================================
+
+The INET framework is an open-source communication networks simulation
+package, written for the OMNEST/OMNeT++ simulation system. The INET framework
+contains models for several Internet protocols: beyond TCP and IP there is UDP,
+Ethernet, PPP and MPLS with LDP and RSVP-TE signalling. See the CREDITS file
+for the names of people who have contributed to the INET Framework.
+
+IMPORTANT: The INET Framework is continuously being improved: new parts
+are added, bugs are corrected, and so on. We cannot assert that any protocol
+implemented here will work fully according to the specifications. YOU ARE
+RESPONSIBLE YOURSELF TO MAKE SURE THAT THE MODELS YOU USE IN YOUR SIMULATIONS
+WORK CORRECTLY, AND YOU'RE GETTING VALID RESULTS.
+
+Contributions are highly welcome. You can make a difference!
+
+See the WHATSNEW file for recent changes.
+
+
+GETTING STARTED
+---------------
+You may start by downloading and installing the INET framework. Read the INSTALL
+file for further information.
+
+Then you can gather initial experience by following the INET tutorial. After
+that, you can learn the NED language from the OMNeT++ manual & sample
+simulations.
+
+After that, you may write your own topologies using the NED language. You may
+assign some of the submodule parameters in NED files. You may leave some of
+them unassigned.
+
+Then, you may assign unassigned module parameters in omnetpp.ini of your
+simulation. (You can refer to sample simulations & manual for the content of
+omnetpp.ini)
+
+Finally, you will be ready to run your simulation. As you see, you may use
+the INET framework without writing any C++ code, as long as you use the
+available modules.
+
+To implement new protocols or modify existing ones, you'll need to add your 
+code somewhere under the src directory. If you add new files under the 'src' 
+directory you will need to regenerate the makefiles (using the 'make makefiles' 
+command).
+
+If you want to use external interfaces in INET, please install libpcap-dev (on linux)
+or winpcap (on windows from www.winpcap.org), then re-run the omnetpp configuration
+script (./configure). You should also enable the pcap support by editing the
+src/makefrag and then regenerating the INET makefiles (using the "make makefiles" 
+command).
+
+Directory structure
+-------------------
+Directories of INET framework source are arranged roughly along the OSI layers.
+
+Bottom-up:
+
+ src/
+   networkinterfaces/    L2 (data link layer) protocols
+     contract/           API to common L2 functionality
+     ethernet/           Ethernet model (MAC, LLC, Encap)
+     etherswitch/        Ethernet switch (relay unit) model
+     ppp/                basic PPP model (framing only)
+     mfcore/             Core modules from the Mobility Framework (modified)
+     mf80211/            MF's 802.11b ad-hoc mode model (modified)
+     ext/                External interface
+
+   network/              L3 (network layer) protocols
+     contract/           API to common L3 functionality
+     autorouting/        autoconfiguration of static routes
+     arp/                ARP protocol
+     queue/              router queues (QoS, RED, etc)
+     ipv4/               IPv4 and associated protocols
+     ipv6/               IPv6 implementation (currently in work)
+     icmpv6/             ICMPv6 implementation (currently in work)
+     mpls/               MPLS implementation (will be replaced soon)
+     ldp/                LDP signalling protocol for MPLS
+     rsvp_te/            RSVP-TE signalling protocol for MPLS (will be replaced soon)
+     scenario/           specific for RSVP-TE (will be replaced soon)
+
+   transport/            transport layer protocols
+     contract/           API to transport layer functionality
+     tcp/                TCP protocol (supporting SACK) (default TCP implementation)
+     tcp_nsc/            TCP protocol using Network Simulation Cradle
+     tcp_old/            TCP old (obsolete) TCP implementation (without SACK) for reference only
+     udp/                UDP protocol
+     rtp/                Realtime Transport Protocol (not yet integrated)
+     sctp/               Stream Control Transmission Protocol
+
+   applications/         application layer
+     tcpapp/             TCP application models
+     udpapp/             UDP application models (VideoStream, etc.)
+     generic/            traffic generators (directly for IP)
+     ethernet/           traffic generators (directly for Ethernet)
+     pingapp/            ping application
+
+   world/                scenario manager, MF channel manager
+
+   nodes/                protocol stacks, host and router models
+     inet/               IP-based components
+     ipv6/               IPv6-based components
+     mpls/               router models with MPLS/LDP/RSVP-TE
+
+   base/                 common header files, base classes
+   util/                 utility classes
+
+ examples/               example networks
+   ethernet/             example Ethernet networks
+   inet/                 TCP/IP-based example networks
+   ipv6/                 IPv6-based example networks
+   sctp/                 SCTP examples
+   rtp/                  RTP examples (not yet integrated)
+   emulation/            example networks using external interface to connect with real networks
+   adhoc/                mobile and ad-hoc networks (incomplete)
+   wireless/             IEEE 802.11 examples
+   mpls/                 example networks for MPLS/LDP/RSVP-TE
+   ospfv2/               OSPF examples
+
+ doc/                    documentation
+
+ tests/                  some test
+   ipv4/                 for IPv4 components
+   ipv6/                 for IPv6 components
+   mpls/                 for the MPLS models
+   newtcp/               for the TCP model
+
+ 3rdparty/               optional 3rd party components like (Network Simulation Cradle etc.)
+
