@@ -21,6 +21,10 @@
 #include "INETDefs.h"
 #include "DiameterMessage_m.h"
 
+/*
+ * Class for Diameter message. This class inherits the message
+ * base class from .msg file and adds the vector with the AVPs.
+ */
 class DiameterMessage : public DiameterMessage_Base {
 protected:
 	typedef std::vector<AVPPtr> AVPVector;
@@ -29,17 +33,42 @@ public:
 	DiameterMessage(const char *name=NULL, int kind=0) : DiameterMessage_Base(name,kind) {}
 	DiameterMessage(const DiameterMessage& other) : DiameterMessage_Base(other.getName()) {operator=(other);}
 	virtual ~DiameterMessage();
+
 	DiameterMessage& operator=(const DiameterMessage& other);
 	virtual DiameterMessage *dup() const {return new DiameterMessage(*this);}
 
+	/*
+	 * Methods overridden but not used. You should use instead pushAvp or insertAvp.
+	 */
     virtual void setAvpsArraySize(unsigned int size);
     virtual void setAvps(unsigned int k, const AVPPtr& avps_var);
+
+    /*
+     * Getter methods.
+     */
     virtual unsigned int getAvpsArraySize() const;
     virtual AVPPtr& getAvps(unsigned int k);
 
+    /*
+     * Method for pushing AVP at the end of the vector.
+     */
 	void pushAvp(AVPPtr avp) { avps.push_back(avp); }
+
+	/*
+	 * Method for inserting AVP at a given position in the vector.
+	 */
 	void insertAvp(unsigned pos, AVPPtr avp);
+
+	/*
+	 * Method for printing the message contents. Currently it prints info
+	 * only for the header.
+	 */
 	void print();
+
+	/*
+	 * Method for finding a AVP with a given AVP code within the vector.
+	 * It returns NULL if the AVP is not found.
+	 */
 	AVPPtr findAvp(unsigned avpCode);
 };
 

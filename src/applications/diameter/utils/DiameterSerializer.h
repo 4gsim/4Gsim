@@ -21,17 +21,40 @@
 #include "DiameterMessage.h"
 #include "SCTPMessage_m.h"
 
+/*
+ * Class for serializing and parsing of Diameter messages.
+ * This class will be used to serialize a Diameter message before sending it
+ * to SCTP layer and parsing the message when it comes from SCTP layer.
+ */
 class DiameterSerializer {
 private:
+    /*
+     * Method returns the length of the Diameter message. The length includes
+     * the header, all the AVPs (header + payload) and offset bytes, if it is
+     * needed.
+     */
 	unsigned getMessageLength(DiameterMessage *msg);
+
+	/*
+	 * Methods for serializing and parsing of Diameter header.
+	 */
 	unsigned serializeHeader(DiameterHeader hdr, unsigned len, char *p);
 	unsigned parseHeader(DiameterHeader *hdr, char *p);
 public:
 	DiameterSerializer();
 	virtual ~DiameterSerializer();
 
+	/*
+	 * Methods for serializing and parsing of Diameter AVP.
+	 */
 	unsigned serializeAVP(AVP *avp, char *p);
 	unsigned parseAVP(AVP *avp, char *p);
+
+	/*
+	 * Methods for serializing and parsing of Diameter Message. Serialize method
+	 * will generate directly a SCTP message with the resulted bytes and parse
+	 * method will process a SCTP message and generate the appropriate Diameter message.
+	 */
     SCTPSimpleMessage *serialize(DiameterMessage *msg);
     DiameterMessage *parse(const SCTPSimpleMessage *msg);
 };

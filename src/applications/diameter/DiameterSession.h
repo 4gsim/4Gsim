@@ -41,9 +41,14 @@ enum SessionEvent {
 	RequestReceived,
 };
 
+/*
+ * Class Diameter session. The class implements the session state machine
+ * and processes Diameter application messages which are not meant for
+ * Diameter base protocol.
+ */
 class DiameterSession : public cPolymorphic {
 private:
-	bool state;
+	bool type;  // stateful or stateless
 	std::string id;
 	cFSM *fsm;
 //	cMessage *sTimer;
@@ -60,6 +65,22 @@ public:
 
 	std::string getId() { return id; }
 	void performStateTransition(SessionEvent &event, unsigned applId, DiameterPeer *peer, DiameterMessage *msg);
+};
+
+class DiameterSessionTable {
+private:
+    typedef std::vector<DiameterSession*> SessionTable;
+    SessionTable sessions;
+public:
+    DiameterSessionTable();
+    virtual ~DiameterSessionTable();
+
+    DiameterSession *find(std::string id);
+    DiameterSession *at(unsigned i) { return sessions.at(i); }
+    void push_back(DiameterSession *session) { sessions.push_back(session); }
+    void erase(unsigned start, unsigned end);
+    unsigned size() {return sessions.size();}
+//  void deleteSessions();
 };
 
 #endif /* DIAMETERSESSION_H_ */

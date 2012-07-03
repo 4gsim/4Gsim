@@ -22,25 +22,31 @@
 #include "DiameterMessage_m.h"
 
 #define IPV4_ADDRESS_TYPE	1
-
 #define IPV4_ADDRESS_SIZE	4
 
+/*
+ * Diameter utility class. It is used for creating and processing Diameter header and AVPs.
+ */
 class DiameterUtils {
-private:
-	AVP *createBaseAVP(unsigned avpCode, bool vendFlag, bool manFlag, bool privFlag, unsigned vendorId);
-
 public:
 	DiameterUtils();
 	virtual ~DiameterUtils();
 
+	/*
+	 * Methods for Diameter header and AVP creation.
+	 */
+    DiameterHeader createHeader(unsigned commandCode, bool reqFlag, bool prxyFlag, bool errFlag, bool retrFlag, unsigned applId, unsigned hopByHopId, unsigned endToEndId);
+	AVP *createBaseAVP(unsigned avpCode, bool vendFlag, bool manFlag, bool privFlag, unsigned vendorId);
 	AVP *createOctetStringAVP(unsigned avpCode, bool vendFlag, bool manFlag, bool privFlag, unsigned vendorId, unsigned len, const char *str);
 	AVP *createUTF8StringAVP(unsigned avpCode, bool vendFlag, bool manFlag, bool privFlag, unsigned vendorId, std::string str);
 	AVP *createAddressAVP(unsigned avpCode, bool vendFlag, bool manFlag, bool privFlag, unsigned vendorId, IPvXAddress addr);
 	AVP *createUnsigned32AVP(unsigned avpCode, bool vendFlag, bool manFlag, bool privFlag, unsigned vendorId, unsigned val);
 	AVP *createInteger32AVP(unsigned avpCode, bool vendFlag, bool manFlag, bool privFlag, unsigned vendorId, int val);
 	AVP *createGroupedAVP(unsigned avpCode, bool vendFlag, bool manFlag, bool privFlag, unsigned vendorId, std::vector<AVP*> avps);
-	DiameterHeader createHeader(unsigned commandCode, bool reqFlag, bool prxyFlag, bool errFlag, bool retrFlag, unsigned applId, unsigned hopByHopId, unsigned endToEndId);
 
+	/*
+	 * Methods for Diameter header and AVP processing.
+	 */
 	unsigned processUnsigned32AVP(AVP *unsigned32AVP);
 	int processInteger32AVP(AVP *integer32AVP);
 	char *processOctetStringAVP(AVP *octetStringAVP);
@@ -48,10 +54,20 @@ public:
 	IPvXAddress processAddressAVP(AVP *addressAVP);
 	std::vector<AVP*> processGroupedAVP(AVP *groupedAVP);
 
+	/*
+	 * Methods for finding AVP or arrays of AVPs in grouped AVPs.
+	 */
 	AVP *findAVP(unsigned avpCode, std::vector<AVP*>avps);
 	std::vector<AVP*> findAVPs(unsigned avpCode, std::vector<AVP*>avps);
 
+	/*
+	 * Method for printing the name of a AVP code.
+	 */
 	const char *avpName(unsigned avpCode);
+
+	/*
+	 * Method for cleaning grouped AVPs.
+	 */
 	void deleteGroupedAVP(std::vector<AVP*>avps);
 };
 

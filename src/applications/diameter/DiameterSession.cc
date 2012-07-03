@@ -27,8 +27,8 @@ DiameterSession::DiameterSession(DiameterBase *module, bool state) {
 	char time[10];
 	sprintf(time, "%d", (unsigned)simTime().raw());
 	char id[10];
-	sprintf(id, "%d", module->sessionIds++);
-	this->id = module->fqdn + ";" + time + ";" + id;
+	sprintf(id, "%d", module->genSessionId());
+	this->id = module->getFqdn() + ";" + time + ";" + id;
 
 	fsm = new cFSM();
 	fsm->setName("sessionState");
@@ -119,3 +119,30 @@ const char *DiameterSession::eventName(int event) {
     return s;
 #undef CASE
 }
+
+DiameterSessionTable::DiameterSessionTable() {
+    // TODO Auto-generated constructor stub
+
+}
+
+DiameterSessionTable::~DiameterSessionTable() {
+    // TODO Auto-generated destructor stub
+}
+
+DiameterSession *DiameterSessionTable::find(std::string id) {
+    for (unsigned i = 0; i < sessions.size(); i++) {
+        if (sessions.at(i)->getId() == id)
+            return sessions.at(i);
+    }
+    return NULL;
+}
+
+void DiameterSessionTable::erase(unsigned start, unsigned end) {
+    SessionTable::iterator first = sessions.begin() + start;
+    SessionTable::iterator last = sessions.begin() + end;
+    SessionTable::iterator i = first;
+    for (;i != last; ++i)
+        delete *i;
+    sessions.erase(first, last);
+}
+

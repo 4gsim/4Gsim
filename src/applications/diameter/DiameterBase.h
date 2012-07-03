@@ -22,98 +22,117 @@
 #include <string>
 #include "SCTPSocket.h"
 #include "DiameterConnectionMap.h"
-#include "DiameterSessionTable.h"
+#include "DiameterSession.h"
 #include "DiameterPeerTable.h"
 #include "RoutingTableAccess.h"
 
 /*
- * Implements the SCTP protocol. This section describes the internal
- * architecture of the SCTP model.
+ * Implements the Diameter base protocol. This section describes the internal
+ * architecture of the Diameter model.
  *
- *   You may want to check the SCTPSocket
- * class which makes it easier to use SCTP from applications.
- *
- * The SCTP protocol implementation is composed of several classes (discussion
+ * The Diameter base protocol implementation is composed of several classes (discussion
  * follows below):
- *   - SCTP: the module class
- *   - SCTPAssociation: manages a connection
- *   - SCTPSendQueue, SCTPReceiveQueue: abstract base classes for various types
- *      of send and receive queues
- *   - SCTPAlgorithm: abstract base class for SCTP algorithms
+ *   - DiameterBase: the module class
+ *   - DiameterConnection: manages a connection between two peers
+ *   - DiameterPeer: manages a Diameter peer
+ *   - DiameterSession: manages a session between end to end peers
+ *   - DiameterApplication: manages a Diameter application
  *
- * SCTP subclassed from cSimpleModule. It manages socketpair-to-connection
- * mapping, and dispatches segments and user commands to the appropriate
- * SCTPAssociation object.
+ * Diameter base class holds the server socket from which each Diameter connection is forked.
+ * Also it manages the connection table, peer table and session table.
  *
- * SCTPAssociation manages the connection, with the help of other objects.
- * SCTPAssociation itself implements the basic SCTP "machinery": takes care
- * of the state machine, stores the state variables (TCB), sends/receives
- *   etc.
- *
- * SCTPAssociation internally relies on 3 objects. The first two are subclassed
- * from SCTPSendQueue and SCTPReceiveQueue. They manage the actual data stream,
- * so SCTPAssociation itself only works with sequence number variables.
- * This makes it possible to easily accomodate need for various types of
- * simulated data transfer: real byte stream, "virtual" bytes (byte counts
- * only), and sequence of cMessage objects (where every message object is
- * mapped to a SCTP sequence number range).
- *
- * Currently implemented send queue and receive queue classes are
- * SCTPVirtualDataSendQueue and SCTPVirtualDataRcvQueue which implement
- * queues with "virtual" bytes (byte counts only).
- *
- * The third object is subclassed from SCTPAlgorithm. Control over
- * retransmissions, congestion control and ACK sending are "outsourced"
- * from SCTPAssociation into SCTPAlgorithm: delayed acks, slow start, fast rexmit,
- * etc. are all implemented in SCTPAlgorithm subclasses.
- *
- * The concrete SCTPAlgorithm class to use can be chosen per connection (in OPEN)
- * or in a module parameter.
+ * All Diameter base protocol model is implemented according to RFC 3588.
  */
 class DiameterBase : public cSimpleModule {
-public:
-	std::string fqdn;
-	std::string realm;
-	unsigned vendorId;
-	std::string productName;
-	unsigned sessionIds;
-
 protected:
+    std::string fqdn;
+    std::string realm;
+    unsigned vendorId;
+    std::string productName;
+    unsigned sessionIds;
 	int outboundStreams;
     SCTPSocket serverSocket;
-    DiameterConnectionMap connMap;
+    DiameterConnectionMap conns;
     DiameterSessionTable sessions;
     DiameterPeerTable peers;
     IRoutingTable *rT;
 
+    /*
+     * Methods for loading the configuration from the XML file
+     * ex.
+     *   <DNS>
+     *       <Entry fqdn="mme.lte.test" address="192.168.3.2"/>
+     *   </DNS>
+     *   <Diameter
+     *           fqdn="hss.lte.test"
+     *           realm="lte.test"
+     *           vendor="0"
+     *           product="HSSDiameter">
+     *       <Listeners port="3868">
+     *           <Listener address="192.168.3.1"/>
+     *       </Listeners>
+     *       <Peers>
+     *       </Peers>
+     *   </Diameter>
+     */
     void loadOwnConfigFromXML(const cXMLElement & diameterNode);
     void loadPeersFromXML(const cXMLElement & diameterNode);
     void loadListenersFromXML(const cXMLElement & diameterNode);
     void loadConfigFromXML(const char *filename);
     AddressVector queryDNS(const cXMLElement& diameterNode, const std::string fqdnIn, int port);
     AddressVector findLocalAddresses(AddressVector remoteAddrs);
+
 public:
     DiameterBase();
     virtual ~DiameterBase();
 
     virtual int numInitStages() const  { return 5; }
+
+    /*
+     * Method for reading and processing the configuration file. This includes
+     * loading the Diameter peers, creating for each a initiating or responding
+     * Diameter connection and loading the Diameter application.
+     */
     void initialize(int stage);
+
+    /*
+     * Method for handling incoming messages. If the message is a timer, it sends it
+     * to the appropriate peer. If the message is a SCTP message, it finds the
+     * appropriate socket and sends the message to it. If no socket is available,
+     * it creates a new socket together with a new Diameter connection.
+     */
     void handleMessage(cMessage *msg);
 
     /*
-     *
+     * Method for processing application messages. This method should be overridden
+     * by Diameter application implementations.
      */
     virtual DiameterMessage *processMessage(DiameterMessage *msg) { return NULL; }
 
+    /*
+     * Getter methods.
+     */
     int getOutboundStreams() { return outboundStreams; }
 	SCTPSocket getServerSocket() { return serverSocket; }
+	std::string getFqdn() { return fqdn; }
+	std::string getRealm() { return realm; }
+	unsigned getVendorId() { return vendorId; }
+	std::string getProductName() { return productName; }
 
+	/*
+	 * Utility methods.
+	 */
     DiameterConnection *createConnection(AddressVector addresses, int port);
 	DiameterPeer *createPeer(std::string dFQDN, std::string dRealm, DiameterConnection *conn, DiameterApplication *appl = NULL);
-	DiameterConnection *removeConnection(DiameterConnection *conn) { return connMap.removeConnection(conn); }
-	DiameterPeer *findPeer(std::string dFQDN, std::string dRealm = "") { return peers.findPeer(dFQDN, dRealm); }
-	DiameterPeer *findPeer(unsigned applId) { return peers.findPeer(applId); }
+	DiameterConnection *removeConnection(DiameterConnection *conn) { return conns.removeConnection(conn); }
 	DiameterSession *createSession(bool stType);
+	unsigned genSessionId() { return ++sessionIds; }
+
+	/*
+	 * Wrapper methods.
+	 */
+    DiameterPeer *findPeer(std::string dFQDN, std::string dRealm = "") { return peers.findPeer(dFQDN, dRealm); }
+    DiameterPeer *findPeer(unsigned applId) { return peers.findPeer(applId); }
 };
 
 #endif /* DIAMETERBASE_H_ */

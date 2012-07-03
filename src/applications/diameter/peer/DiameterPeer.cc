@@ -29,8 +29,8 @@ DiameterPeer::DiameterPeer(DiameterBase *module) {
 	this->module = module;
 	this->dFQDN = "";
 	this->dFQDN = "";
-	this->oFQDN = module->fqdn;
-	this->oRealm = module->realm;
+	this->oFQDN = module->getFqdn();
+	this->oRealm = module->getRealm();
 
 	char fsmname[24];
 	sprintf(fsmname, "fsm-%s", oFQDN.data());
@@ -464,8 +464,8 @@ void DiameterPeer::sendCER(DiameterConnection *conn) {
 	cer->setHdr(DiameterUtils().createHeader(CapabilitiesExchange, 1, 0, 0, 0, appl->applId, uniform(0, 10000), uniform(0, 10000)));
 
 	cer->pushAvp(DiameterUtils().createAddressAVP(AVP_HostIPAddress, 0, 1, 0, 0, module->getServerSocket().getLocalAddresses().at(0)));
-	cer->pushAvp(DiameterUtils().createUnsigned32AVP(AVP_VendorId, 0, 1, 0, 0, module->vendorId));
-	cer->pushAvp(DiameterUtils().createUTF8StringAVP(AVP_ProductName, 0, 1, 0, 0, module->productName));
+	cer->pushAvp(DiameterUtils().createUnsigned32AVP(AVP_VendorId, 0, 1, 0, 0, module->getVendorId()));
+	cer->pushAvp(DiameterUtils().createUTF8StringAVP(AVP_ProductName, 0, 1, 0, 0, module->getProductName()));
 
 	if (appl) {
 		AVP *authApplId = DiameterUtils().createUnsigned32AVP(AVP_AuthApplId, 0, 1, 0, 0, appl->applId);
@@ -486,8 +486,8 @@ void DiameterPeer::sendCEA(DiameterConnection *conn, DiameterMessage *cer, unsig
 
 	cea->pushAvp(DiameterUtils().createUnsigned32AVP(AVP_ResultCode, 0, 1, 0, 0, resCode));
 	cea->pushAvp(DiameterUtils().createAddressAVP(AVP_HostIPAddress, 0, 1, 0, 0, module->getServerSocket().getLocalAddresses().at(0)));
-	cea->pushAvp(DiameterUtils().createUnsigned32AVP(AVP_VendorId, 0, 1, 0, 0, module->vendorId));
-	cea->pushAvp(DiameterUtils().createUTF8StringAVP(AVP_ProductName, 0, 1, 0, 0, module->productName));
+	cea->pushAvp(DiameterUtils().createUnsigned32AVP(AVP_VendorId, 0, 1, 0, 0, module->getVendorId()));
+	cea->pushAvp(DiameterUtils().createUTF8StringAVP(AVP_ProductName, 0, 1, 0, 0, module->getProductName()));
 
 	if (appl) {
 		std::vector<AVP*> avps;
