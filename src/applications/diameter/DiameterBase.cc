@@ -165,10 +165,7 @@ void DiameterBase::loadPeersFromXML(const cXMLElement& diameterNode) {
 	        	DiameterConnection *conn = createConnection(addresses, port);
 	        	DiameterPeer *peer = createPeer(fqdn, realm, conn, appl);
 	        	peer->setType(STATIC);
-        		peer->startTimer(peer->tcTimer, "TC-TIMER", TC_TIMER_TIMEOUT);
 	        	conn->setPeer(peer);
-
-
 	        }
 	    }
 	}

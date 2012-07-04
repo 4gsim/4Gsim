@@ -29,10 +29,13 @@
 class DiameterPeer;
 class DiameterBase;
 
+/*
+ * Class for Diameter connection.
+ */
 class DiameterConnection : public SCTPSocket::CallbackInterface {
 private:
 	bool type;	// initiator or responder
-	bool ignore;
+	bool ignore;    // used because socketClosed is called twice
 	DiameterBase *module;
 	DiameterPeer *peer;
 
@@ -69,6 +72,23 @@ public:
 	void send(DiameterMessage *msg, unsigned fqdnPos, unsigned realmPos);	// adds also information about source identity
 
 	int getConnectionId() { return socket->getConnectionId(); }
+};
+
+class DiameterConnectionMap {
+private:
+    typedef std::map<int,DiameterConnection*> ConnMap;
+    ConnMap connMap;
+public:
+    DiameterConnectionMap();
+    virtual ~DiameterConnectionMap();
+
+    DiameterConnection *findConnectionFor(cMessage *msg);
+    void addConnection(DiameterConnection *conn);
+    DiameterConnection *removeConnection(DiameterConnection *conn);
+    unsigned int size() {return connMap.size();}
+//  void deleteConnections();
+
+    void printConnectionMap();
 };
 
 #endif /* DIAMETERCONNECTION_H_ */

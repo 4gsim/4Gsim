@@ -20,10 +20,6 @@
 #include "DiameterUtils.h"
 #include "DiameterSerializer.h"
 
-DiameterPeerStateVariables::DiameterPeerStateVariables() {
-	msg = NULL;
-}
-
 DiameterPeer::DiameterPeer(DiameterBase *module) {
 	// TODO Auto-generated constructor stub
 	this->module = module;
@@ -37,19 +33,21 @@ DiameterPeer::DiameterPeer(DiameterBase *module) {
 	fsm.setName(fsmname);
 	fsm.setState(CLOSED);
 
-	state = new DiameterPeerStateVariables();
 	iConn = NULL;
 	rConn = NULL;
-	tsTimer = NULL;
+	startTimer(tcTimer, "TC-TIMER", TC_TIMER_TIMEOUT);
 	tcTimer = NULL;
 	twTimer = NULL;
 	teTimer = NULL;
 	appl = NULL;
+	msg = NULL;
 }
 
 DiameterPeer::~DiameterPeer() {
 	// TODO Auto-generated destructor stub
-	delete state;
+
+    // msg will be deleted at receiver end
+
 	if (twTimer != NULL) {
 		if (twTimer->getContextPointer() != NULL)
 			module->cancelEvent(twTimer);
@@ -72,6 +70,7 @@ DiameterPeer::~DiameterPeer() {
 	}
 	if (appl != NULL)
 		delete appl;
+
 	// iConn and rConn will be deleted in connection map
 }
 
@@ -147,7 +146,7 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 				if ((resCode / 1000) != 2) {
 					break;
 				}
-				state->msg = msg;
+				this->msg = msg;
 				FSM_Goto(fsm, WAIT_CONN_ACK_ELECT);
 				break;
 			}
@@ -174,7 +173,7 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 				if ((resCode / 1000) != 2) {
 					break;
 				}
-				state->msg = msg;
+				this->msg = msg;
 				FSM_Goto(fsm, WAIT_RETURNS);
 				break;
 			}
@@ -201,7 +200,7 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 				FSM_Goto(fsm, WAIT_RETURNS);
 				break;
 			case I_RCV_CONN_NACK:
-				sendCEA(rConn, state->msg, DIAMETER_SUCCESS);
+				sendCEA(rConn, this->msg, DIAMETER_SUCCESS);
 				FSM_Goto(fsm, R_OPEN);
 				break;
 			case R_PEER_DISC:
@@ -227,7 +226,7 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 		switch(event) {
 			case WIN_ELECTION:
 				iDisconnect();
-				sendCEA(rConn, state->msg, DIAMETER_SUCCESS);
+				sendCEA(rConn, this->msg, DIAMETER_SUCCESS);
 				FSM_Goto(fsm, R_OPEN);
 				break;
 			case I_PEER_DISC:
@@ -261,7 +260,7 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 		switch(event) {
 			case SEND_MESSAGE:
 				sendApplMessage(rConn, msg);
-				//remain in this state
+				//stay in this state
 				break;
 			case R_RCV_MESSAGE:
 				processApplMessage(rConn, msg);
@@ -311,11 +310,11 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 		switch(event) {
 			case SEND_MESSAGE:
 				sendApplMessage(iConn, msg);
-				//remain in this state
+				//stay in this state
 				break;
 			case I_RCV_MESSAGE:
 				processApplMessage(iConn, msg);
-				//remain in this state
+				//stay in this state
 				break;
 			case I_RCV_DWR: {
 				unsigned resCode = processDWR(msg);
@@ -677,11 +676,90 @@ void DiameterPeer::elect() {
 	}
 }
 
-bool DiameterPeer::getConnectionType() {
+const char *DiameterPeer::getTypeName(){
+    if (type == STATIC)
+        return "STATIC";
+    else
+        return "DYNAMIC";
+}
+
+int DiameterPeer::getConnectionId() {
+    if (rConn == NULL)
+        return iConn->getConnectionId();
+    else
+        return rConn->getConnectionId();
+}
+
+int DiameterPeer::getConnectionType() {
 	if (iConn != NULL)
 		return INITIATOR;
 	else if (rConn != NULL)
 		return RESPONDER;
 	else
-		return 0;
+		return -1;
 }
+
+DiameterPeerTable::DiameterPeerTable() {
+    // TODO Auto-generated constructor stub
+
+}
+
+DiameterPeerTable::~DiameterPeerTable() {
+    // TODO Auto-generated destructor stub
+}
+
+DiameterPeer *DiameterPeerTable::findPeer(std::string dFQDN, std::string dRealm) {
+    if (dRealm == "") {
+        for (unsigned i = 0; i < peers.size(); i++) {
+            DiameterPeer *peer = peers[i];
+            if ((peer->dFQDN.find(dFQDN)) != std::string::npos)
+                return peer;
+        }
+    } else {
+        for (unsigned i = 0; i < peers.size(); i++) {
+            DiameterPeer *peer = peers[i];
+            if ((peer->dFQDN == dFQDN) && (peer->dRealm == dRealm))
+                return peer;
+        }
+    }
+    return NULL;
+}
+
+DiameterPeer *DiameterPeerTable::findPeer(unsigned applId) {
+    for (unsigned i = 0; i < peers.size(); i++) {
+        DiameterPeer *peer = peers[i];
+        if (peer->appl->applId == applId)
+            return peer;
+    }
+    return NULL;
+}
+
+void DiameterPeerTable::erase(unsigned start, unsigned end) {
+    PeerTable::iterator first = peers.begin() + start;
+    PeerTable::iterator last = peers.begin() + end;
+    PeerTable::iterator i = first;
+    for (;i != last; ++i)
+        delete *i;
+    peers.erase(first, last);
+}
+
+void DiameterPeerTable::print() {
+    EV << "=====================================================================\n"
+       << "Diameter Peer Table:\n";
+    for (unsigned int i = 0; i < peers.size(); i++) {
+        EV << "DiameterPeer nr. " << i << ":{\n";
+        DiameterPeer *peer = peers.at(i);
+        EV << "\torigFQDN:" << peer->oFQDN << endl;
+        EV << "\tdestFQDN:" << peer->dFQDN << endl;
+        EV << "\tstate:" << peer->stateName(peer->getState()) << endl;
+        if (peer->appl) {
+            EV << "\tappl:{\n";
+            EV << "\t\tapplId:" << peer->appl->applId << endl;
+            EV << "\t\tvendorId:" << peer->appl->vendorId << endl;
+            EV << "}\n";
+        }
+        EV << "}\n";
+    }
+    EV << "=====================================================================\n";
+}
+

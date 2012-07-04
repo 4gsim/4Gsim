@@ -42,9 +42,9 @@ enum SessionEvent {
 };
 
 /*
- * Class Diameter session. The class implements the session state machine
- * and processes Diameter application messages which are not meant for
- * Diameter base protocol.
+ * Class for Diameter session. The class implements the session state
+ * machine and processes Diameter application messages which are not
+ * meant for Diameter base protocol.
  */
 class DiameterSession : public cPolymorphic {
 private:
@@ -54,9 +54,10 @@ private:
 //	cMessage *sTimer;
 	DiameterBase *module;
 
-	const char *stateName(int state);
-	const char *eventName(int event);
-
+	/*
+	 * Methods for sending and processing Diameter messages. Message handling
+	 * will not be done directly, it will be done during a state transition.
+	 */
 	void sendDiameterMessage(unsigned applId, DiameterPeer *peer, DiameterMessage *req);
 	void processDiameterMessage(unsigned applId, DiameterPeer *peer, DiameterMessage *msg);
 public:
@@ -64,13 +65,22 @@ public:
 	virtual ~DiameterSession();
 
 	/*
-	 * Getter methods
+	 * Getter methods.
 	 */
 	std::string getId() { return id; }
 
+	/*
+	 * Methods for managing the session state machine
+	 */
 	void performStateTransition(SessionEvent &event, unsigned applId, DiameterPeer *peer, DiameterMessage *msg);
+    const char *stateName(int state);
+    const char *eventName(int event);
 };
 
+/*
+ * Class for Diameter session table. This table will hold all the sessions
+ * owned by the Diameter base protocol model implementation.
+ */
 class DiameterSessionTable {
 private:
     typedef std::vector<DiameterSession*> SessionTable;
@@ -79,11 +89,25 @@ public:
     DiameterSessionTable();
     virtual ~DiameterSessionTable();
 
+    /*
+     * Method for find a Diameter session with a specific id. The method
+     * returns the session if it is found, or NULL otherwise.
+     */
     DiameterSession *find(std::string id);
+
+    /*
+     * Method for deleting Diameter sessions. The method calls first
+     * the destructor for each session between start and end position
+     * and removes them afterwards.
+     */
+    void erase(unsigned start, unsigned end);
+
+    /*
+     * Wrapper methods.
+     */
+    unsigned size() {return sessions.size();}
     DiameterSession *at(unsigned i) { return sessions.at(i); }
     void push_back(DiameterSession *session) { sessions.push_back(session); }
-    void erase(unsigned start, unsigned end);
-    unsigned size() {return sessions.size();}
 //  void deleteSessions();
 };
 

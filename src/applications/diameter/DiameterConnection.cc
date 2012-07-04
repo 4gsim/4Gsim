@@ -222,3 +222,53 @@ unsigned DiameterConnection::processOrigin(DiameterPeer *&peer, DiameterMessage 
 	}
 	return DIAMETER_SUCCESS;
 }
+
+DiameterConnectionMap::DiameterConnectionMap() {
+    // TODO Auto-generated constructor stub
+
+}
+
+DiameterConnectionMap::~DiameterConnectionMap() {
+    // TODO Auto-generated destructor stub
+}
+
+DiameterConnection *DiameterConnectionMap::findConnectionFor(cMessage *msg) {
+    SCTPCommand *ind = dynamic_cast<SCTPCommand *>(msg->getControlInfo());
+    if (!ind)
+        opp_error("DiameterConnectionMap: findConnectionFor(): no SCTPCommand control info in message (not from SCTP?)");
+    int assocId = ind->getAssocId();
+    ConnMap::iterator i = connMap.find(assocId);
+    ASSERT(i == connMap.end() || i->first == i->second->getConnectionId());
+    return (i == connMap.end()) ? NULL : i->second;
+}
+
+void DiameterConnectionMap::addConnection(DiameterConnection *conn) {
+    ASSERT(connMap.find(conn->getConnectionId()) == connMap.end());
+    connMap[conn->getConnectionId()] = conn;
+}
+
+DiameterConnection *DiameterConnectionMap::removeConnection(DiameterConnection *conn) {
+    ConnMap::iterator i = connMap.find(conn->getConnectionId());
+    if (i != connMap.end())
+        connMap.erase(i);
+    printConnectionMap();
+    return conn;
+}
+/*
+void DiameterConnectionMap::deleteConnections()
+{
+    for (ConnMap::iterator i = connMap.begin(); i != connMap.end(); ++i)
+       delete i->second;
+}
+*/
+void DiameterConnectionMap::printConnectionMap() {
+    EV << "=====================================================================\n"
+       << "Connection Map:\n"
+       << "-------------------------------------------------------------------------------\n"
+       << "Conn Id\t| Local Addr\t| Local Port\t| Remote Addr\t| Remote Port\n"
+       << "---------------------------------------------------------------------\n";
+    for (ConnMap::iterator i = connMap.begin(); i != connMap.end(); ++i)
+        EV << (i->second)->getConnectionId() << endl;// << "\t| " << (i->second)->getLocalAddresses().at(0) << "\t| " << "" << "\t| " << "" << "\t| " << "" << endl;
+    EV << "=====================================================================\n";
+}
+

@@ -15,27 +15,25 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef DIAMETERPEERTABLE_H_
-#define DIAMETERPEERTABLE_H_
+#ifndef DIAMETERAPPLICATION_H_
+#define DIAMETERAPPLICATION_H_
 
-#include "DiameterPeer.h"
+#define TGPP	10415
+#define S6a		16777251
 
-class DiameterPeerTable {
-private:
-    typedef std::vector<DiameterPeer*>PeerTable;
-    PeerTable peers;
+/*
+ * Class for holding info about Diameter application. At the moment
+ * it only holds application id and vendor id for S6a application.
+ * Maybe it should be moved in peer class...
+ */
+class DiameterApplication {
 public:
-	DiameterPeerTable();
-	virtual ~DiameterPeerTable();
+	unsigned applId;
+	unsigned vendorId;
+public:
+	DiameterApplication(unsigned applId, unsigned vendorId);
+	virtual ~DiameterApplication();
 
-    void push_back(DiameterPeer *peer) { peers.push_back(peer); }
-    void erase(unsigned start, unsigned end);
-    void print();
-    DiameterPeer *findPeer(std::string dFQDN, std::string dRealm = "");
-    DiameterPeer *findPeer(unsigned applId);
-    DiameterPeer *at(unsigned i) { return peers[i]; }
-
-    unsigned size() { return peers.size(); }
 };
 
-#endif /* DIAMETERPEERTABLE_H_ */
+#endif /* DIAMETERAPPLICATION_H_ */

@@ -21,7 +21,7 @@
 
 DiameterSession::DiameterSession(DiameterBase *module, bool state) {
 	// TODO Auto-generated constructor stub
-	this->state = state;
+	this->type = type;
 	this->module = module;
 
 	char time[10];
@@ -81,7 +81,7 @@ void DiameterSession::performStateTransition(SessionEvent &event, unsigned applI
 
 void DiameterSession::sendDiameterMessage(unsigned applId, DiameterPeer *peer, DiameterMessage *msg) {
 	msg->insertAvp(0, DiameterUtils().createUTF8StringAVP(AVP_SessionId, 0, 1, 0, 0, id));
-	msg->insertAvp(1, DiameterUtils().createInteger32AVP(AVP_AuthSessionState, 0, 1, 0, 0, state ? NO_STATE_MAINTAINED : STATE_MAINTAINED));
+	msg->insertAvp(1, DiameterUtils().createInteger32AVP(AVP_AuthSessionState, 0, 1, 0, 0, type ? NO_STATE_MAINTAINED : STATE_MAINTAINED));
 	PeerEvent event = SEND_MESSAGE;
 	peer->performStateTransition(event, msg);
 }

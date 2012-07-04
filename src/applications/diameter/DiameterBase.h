@@ -21,9 +21,9 @@
 #include <omnetpp.h>
 #include <string>
 #include "SCTPSocket.h"
-#include "DiameterConnectionMap.h"
+#include "DiameterConnection.h"
 #include "DiameterSession.h"
-#include "DiameterPeerTable.h"
+#include "DiameterPeer.h"
 #include "RoutingTableAccess.h"
 
 /*
@@ -41,7 +41,7 @@
  * Diameter base class holds the server socket from which each Diameter connection is forked.
  * Also it manages the connection table, peer table and session table.
  *
- * All Diameter base protocol model is implemented according to RFC 3588.
+ * Diameter base protocol model is implemented according to RFC 3588.
  */
 class DiameterBase : public cSimpleModule {
 protected:
