@@ -63,7 +63,11 @@ public:
 	DiameterSession(DiameterBase *module, bool state);
 	virtual ~DiameterSession();
 
+	/*
+	 * Getter methods
+	 */
 	std::string getId() { return id; }
+
 	void performStateTransition(SessionEvent &event, unsigned applId, DiameterPeer *peer, DiameterMessage *msg);
 };
 
