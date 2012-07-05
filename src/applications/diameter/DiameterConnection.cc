@@ -51,19 +51,24 @@ void DiameterConnection::socketDataArrived(int32 connId, void *yourPtr, cPacket 
 	unsigned resCode = processOrigin(newPeer, dmsg);
 
 	if (peer == NULL) {
+	    // enters only when the connection has no owner
 		if ((hdr.getCommandCode() == CapabilitiesExchange) && (hdr.getReqFlag() == true)) {
 			PeerEvent event = R_CONN_CER;
 			if (resCode == DIAMETER_MISSING_AVP) {
-
+			    /* TODO */
 			} else {
 				if ((newPeer->getState() == R_OPEN)
 						|| (newPeer->getState() == I_OPEN)
 						|| (newPeer->getState() == WAIT_RETURNS)
 						|| (newPeer->getState() == WAIT_CONN_ACK_ELECT)) {
+				    // if a peer with the same address info was found and it is one
+				    // of this states reject the connection
 					shutdown();
 					newPeer->performStateTransition(event, dmsg);
 					return;
 				}
+				// new peer and if available old peer becomes the owner of this
+				// connection, election process will follow if necessary
 				newPeer->rConn = this;
 				this->setPeer(newPeer);
 				newPeer->performStateTransition(event, dmsg);
@@ -144,6 +149,7 @@ void DiameterConnection::socketPeerClosed(int32 connId, void *yourPtr) {
 	EV << "Peer socket closed (Assoc Id = " << socket->getConnectionId() << ")\n";
 	if (peer != NULL) {
 		PeerEvent event;
+		// removes the connection from the peer
 		if (type == INITIATOR) {
 			event = I_PEER_DISC;
 			peer->iConn = NULL;
@@ -151,27 +157,36 @@ void DiameterConnection::socketPeerClosed(int32 connId, void *yourPtr) {
 			event = R_PEER_DISC;
 			peer->rConn = NULL;
 		}
-		if (peer->getState() != CLOSED)
+		if (peer->getState() != CLOSED) {
+		    // peer will be deleted during the state transition
 			peer->performStateTransition(event, NULL);
+		}
+		// removes the owner
 		peer = NULL;
 	}
+	// removes the connection
 	module->removeConnection(this);
 }
 
 void DiameterConnection::socketClosed(int32 connId, void *yourPtr) {
 	EV << "Socket closed (Assoc Id = " << socket->getConnectionId() << ")\n";
 	if (!ignore) {
+	    // ignore is used because socketClosed is called twice
 		if (peer != NULL) {
 			PeerEvent event;
 			if ((peer->getState() == WAIT_CONN_ACK) || (peer->getState() == WAIT_CONN_ACK_ELECT))
 				event = I_RCV_CONN_NACK;
 			else
 				event = type == INITIATOR ? I_PEER_DISC : R_PEER_DISC;
-			if ((type == peer->getConnectionType()) && (peer->getState() != CLOSED))
+			if ((type == peer->getConnectionType()) && (peer->getState() != CLOSED)) {
+			    // peer will be removed during state transition
 				peer->performStateTransition(event, NULL);
+			}
+			// removes the owner
 			peer = NULL;
 		}
-		module->removeConnection(this); // connection cleanup
+		// connection cleanup
+		module->removeConnection(this);
 	}
 	ignore = false;
 }
@@ -202,6 +217,16 @@ void DiameterConnection::connect() {
    	socket->connectx(addresses, port, 0);
 }
 
+void DiameterConnection::shutdown() {
+    EV << "Shutting down Assoc Id = " << socket->getConnectionId() << endl;
+    socket->shutdown();
+}
+
+void DiameterConnection::close() {
+    EV << "Closing Assoc Id = " << socket->getConnectionId() << endl;
+    socket->close();
+}
+
 unsigned DiameterConnection::processOrigin(DiameterPeer *&peer, DiameterMessage *msg) {
 	AVP *fqdn = msg->findAvp(AVP_OriginHost);
 	AVP *realm = msg->findAvp(AVP_OriginRealm);
@@ -214,9 +239,11 @@ unsigned DiameterConnection::processOrigin(DiameterPeer *&peer, DiameterMessage 
 
 	//module->printPeerList();
 	if ((peer = module->findPeer(dFQDN, dRealm)) != NULL) {
+	    // enters if the peers are already open and the connection has owner
 		return DIAMETER_PEER_FOUND;
 	}
-	if (this->peer == NULL)	{// only add another peer if this connection has no peer
+	if (this->peer == NULL)	{
+	    // only add another peer if this connection has no peer
 		type = RESPONDER;
 		peer = module->createPeer(dFQDN, dRealm, this);
 	}
@@ -232,42 +259,35 @@ DiameterConnectionMap::~DiameterConnectionMap() {
     // TODO Auto-generated destructor stub
 }
 
-DiameterConnection *DiameterConnectionMap::findConnectionFor(cMessage *msg) {
+DiameterConnection *DiameterConnectionMap::findConnection(cMessage *msg) {
     SCTPCommand *ind = dynamic_cast<SCTPCommand *>(msg->getControlInfo());
     if (!ind)
-        opp_error("DiameterConnectionMap: findConnectionFor(): no SCTPCommand control info in message (not from SCTP?)");
+        opp_error("DiameterConnectionMap: findConnection(): no SCTPCommand control info in message (not from SCTP?)");
     int assocId = ind->getAssocId();
-    ConnMap::iterator i = connMap.find(assocId);
-    ASSERT(i == connMap.end() || i->first == i->second->getConnectionId());
-    return (i == connMap.end()) ? NULL : i->second;
+    DiameterConnections::iterator i = conns.find(assocId);
+    ASSERT(i == conns.end() || i->first == i->second->getConnectionId());
+    return (i == conns.end()) ? NULL : i->second;
 }
 
-void DiameterConnectionMap::addConnection(DiameterConnection *conn) {
-    ASSERT(connMap.find(conn->getConnectionId()) == connMap.end());
-    connMap[conn->getConnectionId()] = conn;
+void DiameterConnectionMap::insert(DiameterConnection *conn) {
+    ASSERT(conns.find(conn->getConnectionId()) == conns.end());
+    conns[conn->getConnectionId()] = conn;
 }
 
-DiameterConnection *DiameterConnectionMap::removeConnection(DiameterConnection *conn) {
-    ConnMap::iterator i = connMap.find(conn->getConnectionId());
-    if (i != connMap.end())
-        connMap.erase(i);
-    printConnectionMap();
-    return conn;
+void DiameterConnectionMap::erase(DiameterConnection *conn) {
+    int connId = conn->getConnectionId();
+    ASSERT(conns.find(connId) != conns.end());
+    delete conns[connId];
+    conns.erase(connId);
 }
-/*
-void DiameterConnectionMap::deleteConnections()
-{
-    for (ConnMap::iterator i = connMap.begin(); i != connMap.end(); ++i)
-       delete i->second;
-}
-*/
-void DiameterConnectionMap::printConnectionMap() {
+
+void DiameterConnectionMap::print() {
     EV << "=====================================================================\n"
        << "Connection Map:\n"
        << "-------------------------------------------------------------------------------\n"
        << "Conn Id\t| Local Addr\t| Local Port\t| Remote Addr\t| Remote Port\n"
        << "---------------------------------------------------------------------\n";
-    for (ConnMap::iterator i = connMap.begin(); i != connMap.end(); ++i)
+    for (DiameterConnections::iterator i = conns.begin(); i != conns.end(); ++i)
         EV << (i->second)->getConnectionId() << endl;// << "\t| " << (i->second)->getLocalAddresses().at(0) << "\t| " << "" << "\t| " << "" << "\t| " << "" << endl;
     EV << "=====================================================================\n";
 }

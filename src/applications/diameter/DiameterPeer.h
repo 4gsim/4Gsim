@@ -177,8 +177,8 @@ public:
  */
 class DiameterPeerTable {
 private:
-    typedef std::vector<DiameterPeer*>PeerTable;
-    PeerTable peers;
+    typedef std::vector<DiameterPeer*> DiameterPeers;
+    DiameterPeers peers;
 public:
     DiameterPeerTable();
     virtual ~DiameterPeerTable();

@@ -129,7 +129,7 @@ DiameterSessionTable::~DiameterSessionTable() {
     // TODO Auto-generated destructor stub
 }
 
-DiameterSession *DiameterSessionTable::find(std::string id) {
+DiameterSession *DiameterSessionTable::findSession(std::string id) {
     for (unsigned i = 0; i < sessions.size(); i++) {
         if (sessions.at(i)->getId() == id)
             return sessions.at(i);
@@ -138,9 +138,9 @@ DiameterSession *DiameterSessionTable::find(std::string id) {
 }
 
 void DiameterSessionTable::erase(unsigned start, unsigned end) {
-    SessionTable::iterator first = sessions.begin() + start;
-    SessionTable::iterator last = sessions.begin() + end;
-    SessionTable::iterator i = first;
+    DiameterSessions::iterator first = sessions.begin() + start;
+    DiameterSessions::iterator last = sessions.begin() + end;
+    DiameterSessions::iterator i = first;
     for (;i != last; ++i)
         delete *i;
     sessions.erase(first, last);

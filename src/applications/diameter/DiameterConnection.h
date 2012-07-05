@@ -30,7 +30,8 @@ class DiameterPeer;
 class DiameterBase;
 
 /*
- * Class for Diameter connection.
+ * Class for Diameter connection. The class is basically just a SCTP socket,
+ * that sends and receives messages for a Diameter peer (owner).
  */
 class DiameterConnection : public SCTPSocket::CallbackInterface {
 private:
@@ -43,6 +44,10 @@ private:
 	AddressVector addresses;
 	int port;
 
+	/*
+	 * Callback methods for SCTP socket. Message handling is done in the
+	 * data arrived method.
+	 */
 	void socketEstablished(int32 connId, void *yourPtr, uint64 buffer);
 	void socketDataArrived(int32 connId, void *yourPtr, cPacket *msg, bool urgent);
 	void socketDataNotificationArrived(int32 connId, void *yourPtr, cPacket *msg);
@@ -55,40 +60,85 @@ public:
 	DiameterConnection(DiameterBase *module);
 	virtual ~DiameterConnection();
 
-	void processMessage(cMessage *msg) { socket->processMessage(PK(msg)); }
+	/*
+	 * Getter methods.
+	 */
+	bool getType() { return type; }
+	int getConnectionId() { return socket->getConnectionId(); }
+
+	/*
+	 * Setter methods.
+	 */
+    void setPeer(DiameterPeer *peer) { this->peer = peer; }
+    void setType(bool type) { this->type = type; }
+    void setSocket(SCTPSocket *socket) { this->socket = socket; }
+    void setAddresses(AddressVector addresses) { this->addresses = addresses; }
+    void setPort(int port) { this->port = port; }
+
+    /*
+     * Method for processing the origin of each message.
+     */
 	unsigned processOrigin(DiameterPeer *&peer, DiameterMessage *msg);
 
-	void setPeer(DiameterPeer *peer) { this->peer = peer; }
-	bool getType() { return type; }
-	void setType(bool type) { this->type = type; }
-//	SCTPSocket *getSocket() { return socket; }
-	void setSocket(SCTPSocket *socket) { this->socket = socket; }
-	void setAddresses(AddressVector addresses) { this->addresses = addresses; }
-	void setPort(int port) { this->port = port; }
+	/*
+	 * Utility methods for the socket.
+	 */
+    void shutdown();
+    void close();
+    void connect();
 
-	void shutdown() { EV << "Shutting down Assoc Id = " << socket->getConnectionId() << endl; socket->shutdown(); }
-	void close() { EV << "Closing Assoc Id = " << socket->getConnectionId() << endl; socket->close(); }
-	void connect();
-	void send(DiameterMessage *msg, unsigned fqdnPos, unsigned realmPos);	// adds also information about source identity
+    /*
+     * Method for sending Diameter messages. It will be used for all messages
+     * coming from the peer and it will add information regarding source
+     * identification.
+     */
+	void send(DiameterMessage *msg, unsigned fqdnPos, unsigned realmPos);
 
-	int getConnectionId() { return socket->getConnectionId(); }
+	/*
+	 * Wrapper methods.
+	 */
+	void processMessage(cMessage *msg) { socket->processMessage(PK(msg)); }
 };
 
+/*
+ * Class for Diameter connection map. This class will hold all the
+ * connection for the Diameter base protocol model.
+ */
 class DiameterConnectionMap {
 private:
-    typedef std::map<int,DiameterConnection*> ConnMap;
-    ConnMap connMap;
+    typedef std::map<int,DiameterConnection*> DiameterConnections;
+    DiameterConnections conns;
 public:
     DiameterConnectionMap();
     virtual ~DiameterConnectionMap();
 
-    DiameterConnection *findConnectionFor(cMessage *msg);
-    void addConnection(DiameterConnection *conn);
-    DiameterConnection *removeConnection(DiameterConnection *conn);
-    unsigned int size() {return connMap.size();}
-//  void deleteConnections();
+    /*
+     * Method for finding a Diameter connection with a specific message based
+     * on the association id specified in the control info. The method
+     * returns the session if it is found, or NULL otherwise.
+     */
+    DiameterConnection *findConnection(cMessage *msg);
 
-    void printConnectionMap();
+    /*
+     * Method for inserting a new connection in the map.
+     */
+    void insert(DiameterConnection *conn);
+
+    /*
+     * Method for deleting a Diameter connection. The method calls first
+     * the destructor for the connection and removes it afterwards.
+     */
+    void erase(DiameterConnection *conn);
+
+    /*
+     * Wrapper method.
+     */
+    unsigned int size() {return conns.size();}
+
+    /*
+     * Method for printing the connection map.
+     */
+    void print();
 };
 
 #endif /* DIAMETERCONNECTION_H_ */

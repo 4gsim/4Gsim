@@ -83,17 +83,17 @@ public:
  */
 class DiameterSessionTable {
 private:
-    typedef std::vector<DiameterSession*> SessionTable;
-    SessionTable sessions;
+    typedef std::vector<DiameterSession*> DiameterSessions;
+    DiameterSessions sessions;
 public:
     DiameterSessionTable();
     virtual ~DiameterSessionTable();
 
     /*
-     * Method for find a Diameter session with a specific id. The method
+     * Method for finding a Diameter session with a specific id. The method
      * returns the session if it is found, or NULL otherwise.
      */
-    DiameterSession *find(std::string id);
+    DiameterSession *findSession(std::string id);
 
     /*
      * Method for deleting Diameter sessions. The method calls first

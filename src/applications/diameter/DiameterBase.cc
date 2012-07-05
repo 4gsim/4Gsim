@@ -50,7 +50,7 @@ void DiameterBase::handleMessage(cMessage *msg) {
         DiameterPeer *peer = (DiameterPeer*)msg->getContextPointer();
         peer->processTimer(msg);
     } else {    // handles SCTP messages
-        DiameterConnection *conn = conns.findConnectionFor(msg);
+        DiameterConnection *conn = conns.findConnection(msg);
         if (!conn) {
             // new connection -- create new socket object and server process
         	SCTPSocket *socket = new SCTPSocket(msg);
@@ -58,7 +58,7 @@ void DiameterBase::handleMessage(cMessage *msg) {
             conn = new DiameterConnection(this);
             conn->setType(RESPONDER);
             conn->setSocket(socket);
-            conns.addConnection(conn);
+            conns.insert(conn);
         	socket->setCallbackObject(conn);
         	socket->setOutboundStreams(outboundStreams);
 
@@ -194,7 +194,7 @@ DiameterConnection *DiameterBase::createConnection(AddressVector addresses, int 
    	conn->setAddresses(addresses);
    	conn->setPort(port);
    	conn->setType(INITIATOR);
-   	conns.addConnection(conn);
+   	conns.insert(conn);
 
    	return conn;
 }

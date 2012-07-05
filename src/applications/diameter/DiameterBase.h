@@ -124,7 +124,6 @@ public:
 	 */
     DiameterConnection *createConnection(AddressVector addresses, int port);
 	DiameterPeer *createPeer(std::string dFQDN, std::string dRealm, DiameterConnection *conn, DiameterApplication *appl = NULL);
-	DiameterConnection *removeConnection(DiameterConnection *conn) { return conns.removeConnection(conn); }
 	DiameterSession *createSession(bool stType);
 	unsigned genSessionId() { return ++sessionIds; }
 
@@ -133,6 +132,8 @@ public:
 	 */
     DiameterPeer *findPeer(std::string dFQDN, std::string dRealm = "") { return peers.findPeer(dFQDN, dRealm); }
     DiameterPeer *findPeer(unsigned applId) { return peers.findPeer(applId); }
+    void removeConnection(DiameterConnection *conn) { conns.erase(conn); }
+
 };
 
 #endif /* DIAMETERBASE_H_ */

@@ -735,9 +735,9 @@ DiameterPeer *DiameterPeerTable::findPeer(unsigned applId) {
 }
 
 void DiameterPeerTable::erase(unsigned start, unsigned end) {
-    PeerTable::iterator first = peers.begin() + start;
-    PeerTable::iterator last = peers.begin() + end;
-    PeerTable::iterator i = first;
+    DiameterPeers::iterator first = peers.begin() + start;
+    DiameterPeers::iterator last = peers.begin() + end;
+    DiameterPeers::iterator i = first;
     for (;i != last; ++i)
         delete *i;
     peers.erase(first, last);

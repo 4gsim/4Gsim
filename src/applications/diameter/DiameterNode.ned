@@ -52,11 +52,6 @@ module DiameterNode
         inout pppg[] @labels(PPPFrame-conn);
         inout ethg[] @labels(EtherFrame-conn);
     submodules:
-        namTrace: NAMTraceWriter {
-            parameters:
-                namid = namid;
-                @display("p=57,294");
-        }
         notificationBoard: NotificationBoard {
             parameters:
                 @display("p=57,54");
@@ -73,35 +68,35 @@ module DiameterNode
                 @display("p=57,214");
         }
         sctp: SCTP {
-            @display("p=501,141;i=block/wheelbarrow");
+            @display("p=379,124;i=block/wheelbarrow");
         }
         pingApp: PingApp {
             parameters:
-                @display("p=501,230");
+                @display("p=379,213");
         }
         networkLayer: NetworkLayer {
             parameters:
                 proxyARP = false;
-                @display("p=336,230;q=queue");
+                @display("p=214,213;q=queue");
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
                 ifOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:
-                @display("p=186,390,row,90;q=txQueue");
+                @display("p=64,373,row,90;q=txQueue");
         }
         eth[sizeof(ethg)]: EthernetInterface {
             parameters:
-                @display("p=336,390,row,90;q=txQueue");
+                @display("p=214,373,row,90;q=txQueue");
         }
         ext[numExtInterfaces]: ExtInterface {
             parameters:
-                @display("p=501,390,row,90;q=txQueue;i=block/ifcard");
+                @display("p=379,373,row,90;q=txQueue;i=block/ifcard");
         }
         tcpdump: TCPDump {
             parameters:
-                @display("p=336,302;i=abstract/cache_s");
+                @display("p=214,285;i=abstract/cache_s");
                 dumpFile = dumpFile;
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
@@ -112,12 +107,12 @@ module DiameterNode
         diameter: <diameterAppType> like DiameterBase {
             parameters:
                 configFile = configFile;
-                @display("p=501,71");
+                @display("p=379,54");
         }
     connections allowunconnected:
         sctp.to_appl++ --> diameter.sctpIn;
         diameter.sctpOut --> sctp.from_appl++;
-        
+
         sctp.to_ip --> networkLayer.sctpIn;
         networkLayer.sctpOut --> sctp.from_ip;
 
