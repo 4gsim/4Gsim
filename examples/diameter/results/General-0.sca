@@ -1,0 +1,141 @@
+version 2
+run General-0-20120705-17:30:56-1596
+attr configname General
+attr datetime 20120705-17:30:56
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvars2 $repetition=0
+attr measurement ""
+attr network Test
+attr processid 1596
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+
+scalar Test.HSS.sctp 	"Number of Fast Retransmissions 10:192.168.1.2" 	0
+scalar Test.HSS.sctp 	"Number of Timer-Based Retransmissions 10:192.168.1.2" 	0
+scalar Test.HSS.sctp 	"Number of Heartbeats Sent 10:192.168.1.2" 	1
+scalar Test.HSS.sctp 	"Number of Heartbeats Received 10:192.168.1.2" 	1
+scalar Test.HSS.sctp 	"Number of Heartbeat ACKs Sent 10:192.168.1.2" 	1
+scalar Test.HSS.sctp 	"Number of Heartbeat ACKs Received 10:192.168.1.2" 	1
+scalar Test.MME.sctp 	"Number of Fast Retransmissions 5:192.168.1.1" 	0
+scalar Test.MME.sctp 	"Number of Timer-Based Retransmissions 5:192.168.1.1" 	0
+scalar Test.MME.sctp 	"Number of Heartbeats Sent 5:192.168.1.1" 	1
+scalar Test.MME.sctp 	"Number of Heartbeats Received 5:192.168.1.1" 	1
+scalar Test.MME.sctp 	"Number of Heartbeat ACKs Sent 5:192.168.1.1" 	1
+scalar Test.MME.sctp 	"Number of Heartbeat ACKs Received 5:192.168.1.1" 	1
+scalar Test.MME.sctp 	"Number of Fast Retransmissions 9:192.168.1.1" 	0
+scalar Test.MME.sctp 	"Number of Timer-Based Retransmissions 9:192.168.1.1" 	0
+scalar Test.MME.sctp 	"Number of Heartbeats Sent 9:192.168.1.1" 	1
+scalar Test.MME.sctp 	"Number of Heartbeats Received 9:192.168.1.1" 	1
+scalar Test.MME.sctp 	"Number of Heartbeat ACKs Sent 9:192.168.1.1" 	1
+scalar Test.MME.sctp 	"Number of Heartbeat ACKs Received 9:192.168.1.1" 	1
+scalar Test.MME.sctp 	"Association Lifetime" 	9.487999e-005
+scalar Test.MME.sctp 	"Acked Bytes" 	160
+scalar Test.MME.sctp 	"Throughput [bit/s]" 	13490726.548348
+scalar Test.MME.sctp 	"Transmitted Bytes" 	160
+scalar Test.MME.sctp 	"Fast RTX" 	0
+scalar Test.MME.sctp 	"Timer-Based RTX" 	0
+scalar Test.MME.sctp 	"Duplicate Acks" 	0
+scalar Test.MME.sctp 	"Packets Received" 	20
+scalar Test.MME.sctp 	"Packets Dropped" 	0
+scalar Test.MME.sctp 	"Association Lifetime" 	33
+scalar Test.MME.sctp 	"Acked Bytes" 	352
+scalar Test.MME.sctp 	"Throughput [bit/s]" 	85.333333333333
+scalar Test.MME.sctp 	"Transmitted Bytes" 	352
+scalar Test.MME.sctp 	"Fast RTX" 	0
+scalar Test.MME.sctp 	"Timer-Based RTX" 	0
+scalar Test.MME.sctp 	"Duplicate Acks" 	0
+scalar Test.MME.sctp 	"Packets Received" 	20
+scalar Test.MME.sctp 	"Packets Dropped" 	0
+scalar Test.MME.pingApp 	"Pings sent" 	0
+scalar Test.MME.networkLayer.arp 	"ARP requests sent" 	1
+scalar Test.MME.networkLayer.arp 	"ARP replies sent" 	1
+scalar Test.MME.networkLayer.arp 	"ARP resolutions" 	1
+scalar Test.MME.networkLayer.arp 	"failed ARP resolutions" 	0
+scalar Test.MME.eth[0].queue 	"packets received by queue" 	22
+scalar Test.MME.eth[0].queue 	"packets dropped by queue" 	0
+scalar Test.MME.eth[0].mac 	"simulated time" 	34.000047199995
+scalar Test.MME.eth[0].mac 	"txrate (Mb)" 	100
+scalar Test.MME.eth[0].mac 	"full duplex" 	1
+scalar Test.MME.eth[0].mac 	"frames sent" 	22
+scalar Test.MME.eth[0].mac 	"frames rcvd" 	22
+scalar Test.MME.eth[0].mac 	"bytes sent" 	2116
+scalar Test.MME.eth[0].mac 	"bytes rcvd" 	1956
+scalar Test.MME.eth[0].mac 	"frames from higher layer" 	22
+scalar Test.MME.eth[0].mac 	"frames from higher layer dropped (iface down)" 	0
+scalar Test.MME.eth[0].mac 	"frames dropped (bit error)" 	0
+scalar Test.MME.eth[0].mac 	"frames dropped (not for us)" 	0
+scalar Test.MME.eth[0].mac 	"frames passed up to HL" 	22
+scalar Test.MME.eth[0].mac 	"PAUSE frames sent" 	0
+scalar Test.MME.eth[0].mac 	"PAUSE frames rcvd" 	0
+scalar Test.MME.eth[0].mac 	"frames/sec sent" 	0.64705792526086
+scalar Test.MME.eth[0].mac 	"frames/sec rcvd" 	0.64705792526086
+scalar Test.MME.eth[0].mac 	"bits/sec sent" 	497.88166176435
+scalar Test.MME.eth[0].mac 	"bits/sec rcvd" 	460.23465520372
+scalar Test.MME.eth[0].mac 	"rx channel idle (%)" 	99.999498353638
+scalar Test.MME.eth[0].mac 	"rx channel utilization (%)" 	0.00050164636242042
+scalar Test.MME.eth[0].mac 	"rx channel collision (%)" 	0
+scalar Test.MME.eth[0].mac 	collisions 	0
+scalar Test.MME.eth[0].mac 	backoffs 	0
+scalar Test.MME.eth[0].encap 	"packets from higher layer" 	22
+scalar Test.MME.eth[0].encap 	"frames from MAC" 	22
+scalar Test.HSS.sctp 	"Number of Fast Retransmissions 8:192.168.1.2" 	0
+scalar Test.HSS.sctp 	"Number of Timer-Based Retransmissions 8:192.168.1.2" 	0
+scalar Test.HSS.sctp 	"Number of Heartbeats Sent 8:192.168.1.2" 	1
+scalar Test.HSS.sctp 	"Number of Heartbeats Received 8:192.168.1.2" 	1
+scalar Test.HSS.sctp 	"Number of Heartbeat ACKs Sent 8:192.168.1.2" 	1
+scalar Test.HSS.sctp 	"Number of Heartbeat ACKs Received 8:192.168.1.2" 	1
+scalar Test.HSS.sctp 	"Association Lifetime" 	32.999986400002
+scalar Test.HSS.sctp 	"Acked Bytes" 	352
+scalar Test.HSS.sctp 	"Throughput [bit/s]" 	85.333368501019
+scalar Test.HSS.sctp 	"Transmitted Bytes" 	352
+scalar Test.HSS.sctp 	"Fast RTX" 	0
+scalar Test.HSS.sctp 	"Timer-Based RTX" 	0
+scalar Test.HSS.sctp 	"Duplicate Acks" 	0
+scalar Test.HSS.sctp 	"Packets Received" 	20
+scalar Test.HSS.sctp 	"Packets Dropped" 	0
+scalar Test.HSS.sctp 	"Association Lifetime" 	0.000108479988
+scalar Test.HSS.sctp 	"Acked Bytes" 	0
+scalar Test.HSS.sctp 	"Throughput [bit/s]" 	0
+scalar Test.HSS.sctp 	"Transmitted Bytes" 	0
+scalar Test.HSS.sctp 	"Fast RTX" 	0
+scalar Test.HSS.sctp 	"Timer-Based RTX" 	0
+scalar Test.HSS.sctp 	"Duplicate Acks" 	0
+scalar Test.HSS.sctp 	"Packets Received" 	20
+scalar Test.HSS.sctp 	"Packets Dropped" 	0
+scalar Test.HSS.pingApp 	"Pings sent" 	0
+scalar Test.HSS.networkLayer.arp 	"ARP requests sent" 	1
+scalar Test.HSS.networkLayer.arp 	"ARP replies sent" 	1
+scalar Test.HSS.networkLayer.arp 	"ARP resolutions" 	1
+scalar Test.HSS.networkLayer.arp 	"failed ARP resolutions" 	0
+scalar Test.HSS.eth[0].queue 	"packets received by queue" 	22
+scalar Test.HSS.eth[0].queue 	"packets dropped by queue" 	0
+scalar Test.HSS.eth[0].mac 	"simulated time" 	34.000047199995
+scalar Test.HSS.eth[0].mac 	"txrate (Mb)" 	100
+scalar Test.HSS.eth[0].mac 	"full duplex" 	1
+scalar Test.HSS.eth[0].mac 	"frames sent" 	22
+scalar Test.HSS.eth[0].mac 	"frames rcvd" 	22
+scalar Test.HSS.eth[0].mac 	"bytes sent" 	1956
+scalar Test.HSS.eth[0].mac 	"bytes rcvd" 	2116
+scalar Test.HSS.eth[0].mac 	"frames from higher layer" 	22
+scalar Test.HSS.eth[0].mac 	"frames from higher layer dropped (iface down)" 	0
+scalar Test.HSS.eth[0].mac 	"frames dropped (bit error)" 	0
+scalar Test.HSS.eth[0].mac 	"frames dropped (not for us)" 	0
+scalar Test.HSS.eth[0].mac 	"frames passed up to HL" 	22
+scalar Test.HSS.eth[0].mac 	"PAUSE frames sent" 	0
+scalar Test.HSS.eth[0].mac 	"PAUSE frames rcvd" 	0
+scalar Test.HSS.eth[0].mac 	"frames/sec sent" 	0.64705792526086
+scalar Test.HSS.eth[0].mac 	"frames/sec rcvd" 	0.64705792526086
+scalar Test.HSS.eth[0].mac 	"bits/sec sent" 	460.23465520372
+scalar Test.HSS.eth[0].mac 	"bits/sec rcvd" 	497.88166176435
+scalar Test.HSS.eth[0].mac 	"rx channel idle (%)" 	99.999460706631
+scalar Test.HSS.eth[0].mac 	"rx channel utilization (%)" 	0.00053929336898105
+scalar Test.HSS.eth[0].mac 	"rx channel collision (%)" 	0
+scalar Test.HSS.eth[0].mac 	collisions 	0
+scalar Test.HSS.eth[0].mac 	backoffs 	0
+scalar Test.HSS.eth[0].encap 	"packets from higher layer" 	22
+scalar Test.HSS.eth[0].encap 	"frames from MAC" 	22

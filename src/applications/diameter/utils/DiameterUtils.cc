@@ -136,7 +136,7 @@ int DiameterUtils::processInteger32AVP(AVP *integer32AVP) {
 }
 
 char *DiameterUtils::processOctetStringAVP(AVP *octetStringAVP) {
-	char *buf = (char*)calloc(octetStringAVP->getValueArraySize(), sizeof(char));
+	char *buf = (char*)calloc(octetStringAVP->getValueArraySize() + 1, sizeof(char));
 	for (unsigned i = 0; i < octetStringAVP->getValueArraySize(); i++)
 		buf[i] = octetStringAVP->getValue(i);
 	return buf;

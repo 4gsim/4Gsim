@@ -23,9 +23,9 @@
 #include "DiameterApplication.h"
 
 #define TC_TIMER_TIMEOUT	1
-#define TW_TIMER_TIMEOUT	30
+#define TW_TIMER_TIMEOUT	10
 #define TS_TIMER_TIMEOUT	10
-#define TE_TIMER_TIMEOUT	30
+#define TE_TIMER_TIMEOUT	3
 
 #define EPHEMERAL_PORT_MIN	32768
 #define EPHEMERAL_PORT_MAX	61000

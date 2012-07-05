@@ -207,7 +207,7 @@ void DiameterConnection::send(DiameterMessage *msg, unsigned fqdnPos, unsigned r
     cmsg->encapsulate(smsg);
     cmsg->setKind(SCTP_C_SEND);
 
-    //EV << "Diameter-" << moduleName << ": Sending Diameter Packet '" << cmsg->getName() << "' to lower layer\n";
+    EV << "Sending message "<< msg->getName() << " on Assoc with Id = " << socket->getConnectionId() << endl;
     delete msg;		// all its content is in SCTPSimpleMessage
     socket->send(cmsg, true, true);
 
@@ -240,10 +240,12 @@ unsigned DiameterConnection::processOrigin(DiameterPeer *&peer, DiameterMessage 
 	//module->printPeerList();
 	if ((peer = module->findPeer(dFQDN, dRealm)) != NULL) {
 	    // enters if the peers are already open and the connection has owner
+	    EV << "DiameterPeer with fqdn: " << dFQDN << " realm: " << dRealm << " found.\n";
 		return DIAMETER_PEER_FOUND;
 	}
 	if (this->peer == NULL)	{
 	    // only add another peer if this connection has no peer
+        EV << "DiameterPeer with fqdn: " << dFQDN << " realm: " << dRealm << " not found. Creating peer.\n";
 		type = RESPONDER;
 		peer = module->createPeer(dFQDN, dRealm, this);
 	}

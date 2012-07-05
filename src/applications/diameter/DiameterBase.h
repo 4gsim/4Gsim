@@ -93,7 +93,7 @@ public:
      * loading the Diameter peers, creating for each a initiating or responding
      * Diameter connection and loading the Diameter application.
      */
-    void initialize(int stage);
+    virtual void initialize(int stage);
 
     /*
      * Method for handling incoming messages. If the message is a timer, it sends it
@@ -101,7 +101,7 @@ public:
      * appropriate socket and sends the message to it. If no socket is available,
      * it creates a new socket together with a new Diameter connection.
      */
-    void handleMessage(cMessage *msg);
+    virtual void handleMessage(cMessage *msg);
 
     /*
      * Method for processing application messages. This method should be overridden

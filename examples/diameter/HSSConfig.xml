@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<HSSConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="HSS.xsd">
+    <DNS>
+    	<Entry fqdn="mme.lte.test" address="192.168.1.2"/>
+    </DNS>
+	<Diameter
+				fqdn="hss.lte.test"
+				realm="lte.test"
+				vendor="0"
+				product="HSSDiameter">	
+		<Listeners port="3868">
+			<Listener address="192.168.1.1"/>
+		</Listeners>
+		<Peers>		
+			<Peer fqdn="mme.lte.test" realm="lte.test" port="3868">
+				<Appl id="16777251" vendor="10415"/> <!-- 16777251 = S6a, 10415 = 3GPP -->
+			</Peer>
+		</Peers>
+    </Diameter>            
+</HSSConfig>

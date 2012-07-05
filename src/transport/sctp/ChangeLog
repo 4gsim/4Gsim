@@ -1,0 +1,9 @@
+2012-07-05  Calin Cerchez
+
+    * modified and implemented the method to create a SCTP socket 
+      from a message (SCTPSocket(cMessage *msg)). The method is similar 
+      with the one from TCP model.
+      
+    * corrected a bug in send on path method of SCTP association 
+      (SCTPAssociationSendAll.cc line 663). The method should
+      return if there is no data to be sent.

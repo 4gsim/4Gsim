@@ -1,6 +1,10 @@
 Recent changes in the LTE Simulator
 ====================================
 
+- Diameter base module (almost full implementation)
+	- peer state machine working
+	- sessions with no state maintained configuration
+	- application id and vendor id
 
 
 

@@ -660,6 +660,7 @@ void SCTPAssociation::sendOnPath(SCTPPathVariables* pathId, bool firstPass)
                     // ????? Robin: Kann dieser Fall wirklich eintreten?
                     if (chunksAdded == 0) {   // Nothing to do -> return
                         packetFull = true;  // chunksAdded==0, packetFull==true => leave inner while loop
+                        return;
                     }
                     else {
                         packetFull = true;

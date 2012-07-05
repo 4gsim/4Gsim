@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<MMEConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="MME.xsd">
+    <DNS>
+    	<Entry fqdn="hss.lte.test" address="192.168.1.1"/>
+    </DNS>
+	<Diameter
+				fqdn="mme.lte.test"
+				realm="lte.test"
+				vendor="0"
+				product="MMEDiameter">	
+		<Listeners port="3868">
+			<Listener address="192.168.1.2"/>
+		</Listeners>
+		<Peers>
+			<Peer fqdn="hss.lte.test" realm="lte.test" port="3868">
+				<Appl id="16777251" vendor="10415"/>
+			</Peer>
+		</Peers>
+    </Diameter>
+</MMEConfig>

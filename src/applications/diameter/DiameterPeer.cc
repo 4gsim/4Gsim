@@ -35,8 +35,9 @@ DiameterPeer::DiameterPeer(DiameterBase *module) {
 
 	iConn = NULL;
 	rConn = NULL;
-	startTimer(tcTimer, "TC-TIMER", TC_TIMER_TIMEOUT);
 	tcTimer = NULL;
+	startTimer(tcTimer, "TC-TIMER", TC_TIMER_TIMEOUT);
+	tsTimer = NULL;
 	twTimer = NULL;
 	teTimer = NULL;
 	appl = NULL;
@@ -234,8 +235,12 @@ void DiameterPeer::performStateTransition(PeerEvent &event, DiameterMessage *msg
 				FSM_Goto(fsm, R_OPEN);
 				break;
 			case I_RCV_CEA:
-				rDisconnect();
-				startTimer(tsTimer, "TS-TIMER", TS_TIMER_TIMEOUT);
+			    rDisconnect();
+                if ((processCEA(msg) / 1000) != 2)
+                    break;
+                delete this->msg;
+                this->msg = NULL;
+//				startTimer(tsTimer, "TS-TIMER", TS_TIMER_TIMEOUT);
 				FSM_Goto(fsm, I_OPEN);
 				break;
 			case R_PEER_DISC:
@@ -450,6 +455,8 @@ void DiameterPeer::stateEntered() {
 		case I_OPEN:
 			if (teTimer != NULL)
 				module->cancelEvent(teTimer);
+			if (tcTimer != NULL)
+			    module->cancelEvent(tcTimer);
 			startTimer(twTimer, "TW-TIMER", TW_TIMER_TIMEOUT + uniform(-2, 2));
 			break;
 		default:;
@@ -532,7 +539,7 @@ void DiameterPeer::sendDPR(DiameterConnection *conn) {
 
 void DiameterPeer::sendDPA(DiameterConnection *conn, DiameterMessage *dpr) {
 	DiameterMessage *dpa = new DiameterMessage("Disconnect-Peer-Answer");
-	dpa->setHdr(DiameterUtils().createHeader(DeviceWatchdog, 0, 0, 0, 0, appl->applId, dpr->getHdr().getHopByHopId(), dpr->getHdr().getEndToEndId()));
+	dpa->setHdr(DiameterUtils().createHeader(DisconnectPeer, 0, 0, 0, 0, appl->applId, dpr->getHdr().getHopByHopId(), dpr->getHdr().getEndToEndId()));
 
 	dpa->pushAvp(DiameterUtils().createUnsigned32AVP(AVP_ResultCode, 0, 1, 0, 0, 2000));
 

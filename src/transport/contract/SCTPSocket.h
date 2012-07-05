@@ -102,7 +102,7 @@ class  INET_API SCTPSocket
      * The assocId will be picked up from the message: it should have arrived
      * from SCTPMain and contain SCTPCommmand control info.
      */
-    SCTPSocket(cPacket *msg);
+    SCTPSocket(cMessage *msg);
 
     /**
      * Destructor
