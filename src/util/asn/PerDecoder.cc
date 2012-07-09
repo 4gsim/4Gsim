@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -15,8 +17,8 @@
 
 #include "PerDecoder.h"
 
-PerDecoder::PerDecoder(char *val)  {
-	this->val = val;
+PerDecoder::PerDecoder(char *buffer)  {
+	this->buffer = buffer;
 	this->it = 0;
 	leftBits = 8;
 }
@@ -25,37 +27,162 @@ PerDecoder::~PerDecoder() {
 
 }
 
-//bool PerDecoder::decodeExtension(ConstrainedType *constrainedType) {
-//	if (constrainedType->getConstraintType() == EXTCONSTRAINED) {
-//		BitString<CONSTRAINED, 1, 1> *extBit = new BitString<CONSTRAINED, 1, 1>(1);
-//
-//		if (!decodeBitString(extBit))
-//			return false;
-//		abstractType->setExtension(extBit->getBit(0));
-//	}
-//	return true;
-//}
+int64_t PerDecoder::decodeConstrainedValue(int64_t lowerBound, int64_t upperBound) {
+    int64_t range = upperBound - lowerBound + 1;
+    int64_t length;
+    int64_t value;
+
+    if (range < 2) {
+        return 0;
+    } else if (range < 256) {
+        int64_t numBits = countBits(range - 1, 0);
+        value = (decodeBits(numBits) >> (8 - numBits)) + lowerBound;
+    } else if (range < 65537) {
+        length = (countBits(range - 1, 0) + 7) / 8;
+        value = decodeValue(length) + lowerBound;
+    } else {
+        length = decodeLength((countBits(lowerBound, 0) + 7) / 8, (countBits(upperBound, 0) + 7) / 8);
+        value = decodeValue(length) + lowerBound;
+    }
+    return value;
+}
+
+int64_t PerDecoder::decodeUnconstrainedValue() {
+    return decodeValue(decodeLength(0, INT_MAX));
+}
+
+char *PerDecoder::decodeSmallBitString(unsigned char length) {
+    char *buffer = (char*)calloc((length + 7) / 8, sizeof(char));
+    if (length < 9) {
+        *buffer = decodeBits(length);
+    } else {
+        *buffer = decodeBits(8);
+        *(buffer + 1) = decodeBits(length - 8);
+    }
+    return buffer;
+}
+
+char *PerDecoder::decodeBytes(int64_t length) {
+    // gets the buffer from iterator position and moves the iterator
+    allignIterator();
+
+    char *buffer = (char *)calloc(sizeof(char), length);
+    memcpy(buffer, this->buffer + it, length);
+    it += length;
+
+    return buffer;
+}
+
+unsigned char PerDecoder::decodeBits(unsigned char length) {
+    // returns a maximum of 8 bits from the tail of the buffer
+    // the bits are shifted 1100....
+    unsigned char value = 0;
+
+    // if it has to read bits also from the next byte in the buffer
+    if (leftBits - length < 0) {
+
+        // takes the bits from the current byte and moves the iterator
+        value = ((unsigned char)this->buffer[it++] << (8 - leftBits));
+
+        // takes the bits also from the next byte
+        value += ((unsigned char)this->buffer[it] >> leftBits);
+
+        // changes the number of left bits in the iterator byte
+        leftBits = (8 - (length - leftBits));
+
+    // all the bits are in the same byte
+    } else {
+        value = (unsigned char)((this->buffer[it] & bitMask(leftBits - length, leftBits)) << (8 - leftBits));
+        leftBits -= length;
+
+        // if there are no more bits to read in the iterator byte
+        // reset the number of left bits to 8 and move the iterator
+        if (!leftBits) {
+            leftBits = 8;
+            it++;
+        }
+    }
+    return value;
+}
+
+int64_t PerDecoder::decodeValue(int64_t length) {
+    int64_t val = 0;
+    allignIterator();
+
+    for (int i = length - 1; i >= 0; i--) {
+        val += ((1 << (8 * i))) * ((int64_t )*(this->buffer + it++));
+    }
+    return val;
+}
+
+int64_t PerDecoder::decodeSmallNumber() {
+    int64_t value;
+
+    if ((*(this->buffer + it) << (8 - leftBits)) < 128) {
+        value = (decodeBits(7) >> 1);
+    } else {
+        it++;
+        value = decodeLength(0, INT_MAX);
+    }
+    return value;
+}
+
+int64_t PerDecoder::decodeLength(int64_t lowerBound, int64_t upperBound) {
+    int64_t length;
+
+    if (upperBound > 65535) {
+        allignIterator();
+        if ((unsigned char)*(buffer + it) < 128) {
+            length = decodeValue(1);
+        } else if ((unsigned char)*(buffer + it) < 192) {
+            length = decodeValue(2) - 32768;
+        } else { /* FIXME */
+            while ((unsigned char)*(buffer + it) > 191) {
+                length += (decodeValue(1) - 192) * 16384;
+            }
+            length += decodeLength(0, INT_MAX);
+        }
+    } else {
+        length = decodeConstrainedValue(lowerBound, upperBound);
+    }
+
+    return length;
+
+}
+
+unsigned char PerDecoder::bitMask(unsigned char start, unsigned char end) {
+    unsigned char mask = ((1 << (end - start)) - 1);
+    return mask << start;
+}
+
+void PerDecoder::allignIterator() {
+    if (leftBits != 8) {
+        it++;
+        leftBits = 8;
+    }
+}
+
 
 bool PerDecoder::decodeAbstractType(AbstractType& abstractType) {
 	switch(abstractType.getTag()) {
 		case INTEGER:
-			return decodeInteger(static_cast<IntegerBase&>(abstractType));
+			return decodeInteger(dynamic_cast<IntegerBase&>(abstractType));
 		case ENUMERATED:
-			return decodeEnumerated(static_cast<EnumeratedBase&>(abstractType));
+			return decodeEnumerated(dynamic_cast<EnumeratedBase&>(abstractType));
 		case BITSTRING:
-			return decodeBitString(static_cast<BitStringBase&>(abstractType));
+			return decodeBitString(dynamic_cast<BitStringBase&>(abstractType));
 		case OCTETSTRING:
-			return decodeOctetString(static_cast<OctetStringBase&>(abstractType));
+			return decodeOctetString(dynamic_cast<OctetStringBase&>(abstractType));
 		case SEQUENCE:
-			return decodeSequence(static_cast<Sequence&>(abstractType));
+			return decodeSequence(dynamic_cast<Sequence&>(abstractType));
 		case SEQUENCEOF:
-			return decodeSequenceOf(static_cast<SequenceOfBase&>(abstractType));
+			return decodeSequenceOf(dynamic_cast<SequenceOfBase&>(abstractType));
 		case CHOICE:
-			return decodeChoice(static_cast<Choice&>(abstractType));
+			return decodeChoice(dynamic_cast<Choice&>(abstractType));
 		case PRINTABLESTRING:
-			return decodePrintableString(static_cast<PrintableStringBase&>(abstractType));
+			return decodePrintableString(dynamic_cast<PrintableStringBase&>(abstractType));
 		case OPENTYPE:
-			return decodeOpenType(static_cast<OpenType&>(abstractType));
+			return decodeOpenType(dynamic_cast<OpenType&>(abstractType));
 		default:
 			return false;
 	}
@@ -64,33 +191,9 @@ bool PerDecoder::decodeAbstractType(AbstractType& abstractType) {
 
 bool PerDecoder::decodeOpenType(OpenType& openType) {
 	openType.setLength(decodeLength(0, INT_MAX));
-	openType.setValue(val + it);
+	openType.setValue(buffer + it);
 	it += openType.getLength();
 	return true;
-}
-
-int64_t PerDecoder::decodeConstrainedValue(int64_t lowerBound, int64_t upperBound) {
-	int64_t range = upperBound - lowerBound + 1;
-	int64_t len;
-	int64_t val;
-
-	if (range < 2) {
-		return 0;
-	} else if (range < 256) {
-		int64_t numBits = countBits(range - 1, 0);
-		val = (decodeBits(numBits) >> (8 - numBits)) + lowerBound;
-	} else if (range < 65537) {
-		len = (countBits(range - 1, 0) + 7) / 8;
-		val = decodeValue(len) + lowerBound;
-	} else {
-		len = decodeLength((countBits(lowerBound, 0) + 7) / 8, (countBits(upperBound, 0) + 7) / 8);
-		val = decodeValue(len) + lowerBound;
-	}
-	return val;
-}
-
-int64_t PerDecoder::decodeUnconstrainedValue() {
-	return decodeValue(decodeLength(0, INT_MAX));
 }
 
 bool PerDecoder::decodeInteger(IntegerBase& integer) {
@@ -109,21 +212,6 @@ bool PerDecoder::decodeEnumerated(EnumeratedBase& enumerated) {
 		enumerated.setValue(decodeConstrainedValue(0, enumerated.getUpperBound()));
 	return true;
 }
-
-char *PerDecoder::decodeSmallBitString(unsigned char len) {
-	char *buffer = (char*)calloc((len + 7) / 8, sizeof(char));
-	if (len < 9) {
-		*buffer = decodeBits(len);
-	} else {
-		*buffer = decodeBits(8);
-		*(buffer + 1) = decodeBits(len - 8);
-	}
-	return buffer;
-}
-
-//bool PerDecoder::decodeConstrainedBitString(BitStringBase *bitString) {
-//
-//}
 
 bool PerDecoder::decodeBitString(BitStringBase& bitString) {
 	if ((bitString.isExtendable() && decodeBits(1))
@@ -145,10 +233,6 @@ bool PerDecoder::decodeBitString(BitStringBase& bitString) {
 	return true;
 }
 
-//bool PerDecoder::decodeConstrainedOctetString(OctetStringBase *octetString) {
-//
-//}
-
 bool PerDecoder::decodeOctetString(OctetStringBase& octetString) {
 	if ((octetString.isExtendable() && decodeBits(1))
 			|| (octetString.getLowerBound() != octetString.getUpperBound())
@@ -169,15 +253,8 @@ bool PerDecoder::decodeOctetString(OctetStringBase& octetString) {
 	return true;
 }
 
-//bool PerDecoder::decodeSequenceHeader(Sequence *sequence) {
-//	if (!decodeExtension(sequence))
-//		return false;
-//	if (!decodeBitString(sequence.getRootFlags()))
-//		return false;
-//	return true;
-//}
-//
 bool PerDecoder::decodeSequence(Sequence& sequence) {
+    // TODO add support for extension
 	bool hasExtension = false;
 	if (sequence.isExtendable() && decodeBits(1))
 		hasExtension = true;
@@ -261,7 +338,7 @@ bool PerDecoder::decodeChoiceValue(Choice& choice) {
 }
 
 bool PerDecoder::decodeChoice(Choice& choice) {
-	/* TODO add support for extension */
+	// TODO add support for extension
 	if (!decodeChoiceValue(choice))
 		return false;
 
@@ -300,88 +377,3 @@ bool PerDecoder::decodePrintableString(PrintableStringBase& printableString) {
 
 	return true;
 }
-
-char *PerDecoder::decodeBytes(int64_t len) {
-	allignIterator();
-
-	char *val = (char *)calloc(sizeof(char), len);
-	memcpy(val, this->val + it, len);
-	it += len;
-
-	return val;
-}
-
-unsigned char PerDecoder::decodeBits(unsigned char len) {
-	unsigned char val = 0;
-	if (leftBits - len < 0) {
-		val = ((unsigned char)this->val[it++] << (8 - leftBits));
-		val += ((unsigned char)this->val[it] >> leftBits);
-		leftBits = (8 - (len - leftBits));
-	} else {
-		val = (unsigned char)((this->val[it] & bitMask(leftBits - len, leftBits)) << (8 - leftBits));
-		leftBits -= len;
-		if (!leftBits) {
-			leftBits = 8;
-			it++;
-		}
-	}
-	return val;
-}
-
-int64_t PerDecoder::decodeValue(int64_t len) {
-	int64_t val = 0;
-	allignIterator();
-
-	for (int i = len - 1; i >= 0; i--) {
-		val += ((1 << (8 * i))) * ((int64_t )*(this->val + it++));
-	}
-	return val;
-}
-
-int64_t PerDecoder::decodeSmallNumber() {
-	int64_t val;
-
-	if ((*(this->val + it) << (8 - leftBits)) < 128) {
-		val = (decodeBits(7) >> 1);
-	} else {
-		it++;
-		val = decodeLength(0, INT_MAX);
-	}
-	return val;
-}
-
-int64_t PerDecoder::decodeLength(int64_t lowerBound, int64_t upperBound) {
-	int64_t len;
-
-	if (upperBound > 65535) {
-		allignIterator();
-		if ((unsigned char)*(val + it) < 128) {
-			len = decodeValue(1);
-		} else if ((unsigned char)*(val + it) < 192) {
-			len = decodeValue(2) - 32768;
-		} else { /* FIXME */
-			while ((unsigned char)*(val + it) > 191) {
-				len += (decodeValue(1) - 192) * 16384;
-			}
-			len += decodeLength(0, INT_MAX);
-		}
-	} else {
-		len = decodeConstrainedValue(lowerBound, upperBound);
-	}
-
-	return len;
-
-}
-
-unsigned char PerDecoder::bitMask(unsigned char start, unsigned char end) {
-	unsigned char mask = ((1 << (end - start)) - 1);
-	return mask << start;
-}
-
-void PerDecoder::allignIterator() {
-	if (leftBits != 8) {
-		it++;
-		leftBits = 8;
-	}
-}
-

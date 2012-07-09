@@ -51,17 +51,32 @@ enum ObjectType {
  */
 
 /*
- * Method for counting the bits needed to represent a certain value.
+ * Method for counting the bits, needed to represent a certain value.
  */
 int64_t countBits(int64_t value, int64_t count);
 
 class PerEncoder;
 
+/*
+ * Base class for ASN.1 types. All ASN.1 types will be derived from this class and they
+ * will be differentiated based on the tag value. Information about the particular ASN.1
+ * type will be stored in the Info structure defined in each individual class.
+ */
 class AbstractType {
 public:
+    /*
+     * Method for creating ASN.1 types. The ASN.1 type will be created
+     * based on the information provided to this method. This information
+     * cannot be changed afterwards for this particular object.
+     */
     inline static AbstractType* create(const void* info) { return info ? static_cast<const Info*>(info)->create(info) : 0; }
     typedef AbstractType* (*CreateAbstractType)(const void*);
 protected:
+    /*
+     * Info structure will hold all the information necessary for
+     * each ASN.1 type, including tag, type, flags, constraints,
+     * and will change accordingly.
+     */
     struct Info {
     	CreateAbstractType create;
     	char tag;
@@ -72,11 +87,11 @@ public:
 	AbstractType(const void *info) { this->info = info; }
 	virtual ~AbstractType() {}
 
-    /* getter */
+    /* Getter methods. */
 	char getTag() const { return getInfo()->tag; }
 	const Info *getInfo() const { return static_cast<const Info*>(info); }
 
-	/* utility */
+	/* Utility methods. */
 	virtual AbstractType *clone() const = 0;
 	virtual int64_t compare(const AbstractType& other) const = 0;
 };
@@ -91,6 +106,9 @@ public:
 //	static const Info theInfo;
 //};
 
+/*
+ * Base class for all constrained ASN.1 types.
+ */
 class ConstrainedType : public AbstractType {
 protected:
     struct Info {
@@ -103,8 +121,9 @@ protected:
     };
 public:
 	ConstrainedType(const void *info) : AbstractType(info) {}
+	virtual ConstrainedType() {}
 
-	/* getter */
+	/* Getter methods. */
 	char getConstraintType() const { return getInfo()->type; }
 	int64_t getLowerBound() const { return getInfo()->lowerBound; }
 	int64_t getUpperBound() const { return getInfo()->upperBound; }
@@ -113,10 +132,9 @@ public:
 
 };
 
-/**********************************/
-/* Class for ASN.1 OpenType type  */
-/**********************************/
-
+/*
+ * Class for ASN.1 Open type field.
+ */
 class OpenType : public AbstractType {
 private:
 	int64_t length;
@@ -124,64 +142,67 @@ private:
 public:
 	static const Info theInfo;
 
+	/* Constructors. */
 	OpenType(const void *info = &theInfo) : AbstractType(info) {}
 	OpenType(char *val, int64_t len, const void *info = &theInfo);
 	OpenType(AbstractType *val, const void *info = &theInfo);
 	OpenType(const OpenType& other) : AbstractType(other) { operator=(other); }
+
 	virtual ~OpenType() {}
 
-	/* operator */
+	/* Operator methods. */
 	OpenType &operator=(const OpenType& other);
 //	OpenType &operator=(const AbstractType &other);
 
-	/* setter */
+	/* Setter methods. */
 	void setValue(char *value) { this->value = value; }
 	void setLength(int64_t length) { this->length = length; }
 
-	/* getter */
+	/* Getter methods. */
 	char *getValue() const { return value; }
 	int64_t getLength() const { return length; }
 
-	/* utility */
+	/* Utility methods. */
 	virtual AbstractType *clone() const { return new OpenType(*this); }
 	virtual int64_t compare(const AbstractType& other) const;
 	static AbstractType *create(const void *info) { return new OpenType(info); }
 
-	/* encoding */
+	/* Wrapper methods.  */
 	bool decode(char *buffer);
 	bool encode(PerEncoder& encoder) const;
 };
 
-/********************************/
-/* Class for ASN.1 INTEGER type */
-/********************************/
-
+/*
+ * Class for ASN.1 Integer type.
+ */
 class IntegerBase : public ConstrainedType {
 private:
 	int64_t value;
 public:
 	static const Info theInfo;
 
+	/* Constructors. */
 	IntegerBase(const void *info = &theInfo) : ConstrainedType(info) {}
 	IntegerBase(int64_t value, const void *info = &theInfo) : ConstrainedType(info) { setValue(value); }
 	IntegerBase(const IntegerBase& other) : ConstrainedType(other) { operator=(other); }
+
 	virtual ~IntegerBase() {}
 
-	/* operator */
+	/* Operator methods. */
 	IntegerBase &operator=(const IntegerBase &other);
 
-	/* getter */
+	/* Getter methods. */
 	int64_t getValue() const { return value; }
 
-	/* setter */
+	/* Setter methods. */
 	void setValue(int64_t value) { this->value = value; }
 
-	/* utility */
+	/* Utility methods. */
 	virtual AbstractType *clone() const { return new IntegerBase(*this); }
 	virtual int64_t compare(const AbstractType& other) const;
 	static AbstractType *create(const void *info) { return new IntegerBase(info); }
 
-	/* encoding */
+	/* Wrapper methods. */
 	bool decode(char *buffer);
 	bool encode(PerEncoder& encoder) const;
 };
@@ -203,10 +224,9 @@ const typename Integer<type, lowerBound, upperBound>::Info Integer<type, lowerBo
     upperBound
 };
 
-/***********************************/
-/* Class for ASN.1 ENUMERATED type */
-/***********************************/
-
+/*
+ * Class for ASN.1 Enumerated type.
+ */
 class EnumeratedBase : public AbstractType {
 private:
 	int64_t value;
@@ -219,28 +239,30 @@ protected:
     	int64_t upperBound;
     };
 public:
+    /* Constructors. */
 	EnumeratedBase(const void *info) : AbstractType(info) {}
 	EnumeratedBase(const EnumeratedBase& other) : AbstractType(other) { operator=(other); }
+
 	virtual ~EnumeratedBase() {}
 
-	/* operator */
+	/* Operator methods. */
 	EnumeratedBase &operator=(const EnumeratedBase& other);
 
-	/* getter */
+	/* Getter methods. */
 	int64_t getValue() const { return value; }
 	bool isExtendable() const { return getInfo()->extFlag; }
 	int64_t getUpperBound() const { return getInfo()->upperBound; }
 	const Info* getInfo() const { return static_cast<const Info*>(info); }
 
-	/* setter */
+	/* Setter methods. */
 	void setValue(int64_t value) { this->value = value; }
 
-	/* utility */
+	/* Utility methods. */
 	virtual AbstractType *clone() const { return new EnumeratedBase(*this); }
 	virtual int64_t compare(const AbstractType& other) const;
 	static AbstractType *create(const void *info) { return new EnumeratedBase(info); }
 
-	/* encoding */
+	/* Wrapper methods. */
 	bool decode(char *buffer);
 	bool encode(PerEncoder& encoder) const;
 };
@@ -263,10 +285,9 @@ const typename Enumerated<ext, upperBound>::Info Enumerated<ext, upperBound>::th
     upperBound
 };
 
-/**********************************/
-/* Class for ASN.1 BITSTRING type */
-/**********************************/
-
+/*
+ * Class for ASN.1 Bitstring type.
+ */
 class BitStringBase : public ConstrainedType {
 protected:
 	int64_t length;
@@ -274,32 +295,34 @@ protected:
 public:
 	static const Info theInfo;
 
+	/* Constructors. */
 	BitStringBase(const void *info = &theInfo);
 	BitStringBase(const BitStringBase& other) : ConstrainedType(other) { operator=(other); }
+
 	virtual ~BitStringBase() {}
 
-	/* operator */
+	/* Operator methods. */
 	BitStringBase& operator=(const BitStringBase& other);
 //	bool operator==(const BitStringBase& other) const { return compare(other) == 0; }
 
-	/* getter */
+	/* Getter methods. */
 	int64_t getLength() const { return length; }
 	char *getValue() const { return value; }
 	bool getBit(int64_t index) const;
 
-	/* setter */
+	/* Setter methods. */
 	void setValue(char *value) { this->value = value; }
 	void setLength(int64_t length) { this->length = length; }
 	void setBit(int64_t index, bool bit);
 	int64_t resize(int64_t length);
 
-	/* utility */
+	/* Utility methods. */
 	virtual AbstractType *clone() const { return new BitStringBase(*this); }
 	virtual int64_t compare(const AbstractType& other) const;
 	static AbstractType *create(const void *info) { return new BitStringBase(info); }
 	void print();
 
-	/* encoding */
+	/* Wrapper methods. */
 	bool decode(char *buffer);
 	bool encode(PerEncoder& encoder) const;
 };
@@ -321,10 +344,9 @@ const typename BitString<type, lowerBound, upperBound>::Info BitString<type, low
     upperBound
 };
 
-/************************************/
-/* Class for ASN.1 OCTETSTRING type */
-/************************************/
-
+/*
+ * Class for ASN.1 Octetstring type.
+ */
 class OctetStringBase : public ConstrainedType {
 protected:
 	int64_t length;
@@ -332,28 +354,30 @@ protected:
 public:
 	static const Info theInfo;
 
+	/* Constructors. */
 	OctetStringBase(const void *info = &theInfo);
 	OctetStringBase(const OctetStringBase& other) : ConstrainedType(other) { operator=(other); }
+
 	virtual ~OctetStringBase() {}
 
-	/* operator */
+	/* Operator methods. */
 	OctetStringBase& operator=(const OctetStringBase& other);
 //	bool operator==(const OctetStringBase& other) const { return compare(other) == 0; }
 
-	/* getter */
+	/* Getter methods. */
 	int64_t getLength() const { return length; }
 	char *getValue() const { return value; }
 
-	/* setter */
+	/* Setter methods. */
 	void setValue(char *value) { this->value = value; }
 	void setLength(int64_t length) { this->length = length; }
 
-	/* utility */
+	/* Utility methods. */
 	virtual AbstractType *clone() const { return new OctetStringBase(*this); }
 	virtual int64_t compare(const AbstractType& other) const;
 	static AbstractType *create(const void *info) { return new OctetStringBase(info); }
 
-	/* encoding */
+	/* Wrapper methods. */
 	bool decode(char *buffer);
 	bool encode(PerEncoder& encoder) const;
 };
@@ -388,40 +412,41 @@ const typename OctetString<type, lowerBound, upperBound>::Info OctetString<type,
 //	static AbstractType *create(const void *info) { return new AbstractString(info); }
 //};
 
-/****************************************/
-/* Class for ASN.1 PrintableString type */
-/****************************************/
-
+/*
+ * Class for ASN.1 Printablestring type.
+ */
 class PrintableStringBase : public ConstrainedType {
 private:
 	std::string value;
 public:
 	static const Info theInfo;
 
+	/* Constructors. */
 	PrintableStringBase(const void *info = &theInfo) : ConstrainedType(info) {}
 	PrintableStringBase(std::string value, const void *info = &theInfo) : ConstrainedType(info) { setValue(value); }
 	PrintableStringBase(const char *value, const void *info = &theInfo) : ConstrainedType(info) { setValue(value); }
 	PrintableStringBase(const PrintableStringBase& other) : ConstrainedType(other) { operator=(other); }
+
 	virtual ~PrintableStringBase() {}
 
-	/* operator */
+	/* Operator methods. */
 	PrintableStringBase& operator=(const PrintableStringBase& other);
 	//	bool operator==(const PrintableStringBase& other) const { return compare(other) == 0; }
 
-	/* getter */
+	/* Getter methods. */
 	int64_t getLength() const { return value.size(); }
 	std::string getValue() const { return value; }
 
-	/* setter */
+	/* Setter methods. */
 	void setValue(std::string value) { this->value = value; }
 	void print() { printf("%s\n", value.c_str()); }
 
-	/* utility */
+	/* Utility methods. */
 	virtual AbstractType *clone() const { return new PrintableStringBase(*this); }
 	virtual int64_t compare(const AbstractType& other) const;
 	static AbstractType *create(const void *info) { return new PrintableStringBase(info); }
 
-	/* encoding */
+	/* Wrapper methods. */
 	bool decode(char *buffer);
 	bool encode(PerEncoder& encoder) const;
 };
@@ -444,14 +469,13 @@ const typename PrintableString<type, lowerBound, upperBound>::Info PrintableStri
     upperBound
 };
 
-/*********************************/
-/* Class for ASN.1 SEQUENCE type */
-/*********************************/
-
+/*
+ * Class for ASN.1 Sequence type.
+ */
 class Sequence : public AbstractType {
 protected:
-	char *optFlags;
-	char *extFlags;
+	char *optFlags; // holds optional and default bits
+	char *extFlags; // holds extension presence bits
 	std::vector<AbstractType*> items;
     struct Info {
     	CreateAbstractType create;
@@ -465,11 +489,13 @@ protected:
     	int64_t sizeExt;
     };
 public:
+    /* Constructors */
 	Sequence(const void *info);
 	Sequence(const Sequence& other);
+
 	virtual ~Sequence() {}
 
-	/* getter */
+	/* Getter methods. */
 	AbstractType *at(int64_t index) const { return items.at(index); }
 	int64_t getLength() const { return items.size(); }
 	char *getOptFlags() const { return optFlags; }
@@ -479,24 +505,24 @@ public:
 	bool getOptFlag(int64_t index) const;
 	const Info* getInfo() const { return static_cast<const Info*>(info);}
 
-	/* setter */
+	/* Setter methods. */
 	void setOptFlag(int64_t index, bool bit);
 
 //	bool operator==(const Sequence& other) const { return compare(other); }
 
+	/* Utility methods. */
 	virtual AbstractType *clone() const { return new Sequence(*this); }
 	virtual int64_t compare(const AbstractType& other) const;
 	static AbstractType *create(const void *info) { return new Sequence(info); }
 
-	/* encoding */
+	/* Wrapper methods. */
 	bool decode(char *buffer);
 	bool encode(PerEncoder& encoder) const;
 };
 
-/***********************************/
-/* Class for ASN.1 SEQUENCEOF type */
-/***********************************/
-
+/*
+ * Class for ASN.1 Sequenceof type.
+ */
 class SequenceOfBase : public ConstrainedType {
 protected:
 	typedef std::vector<AbstractType*> Container;
@@ -511,26 +537,27 @@ protected:
     	const void* itemInfo;
     };
 public:
+    /* Constructors. */
 	SequenceOfBase(const void *info) : ConstrainedType(info) {}
 	SequenceOfBase(const SequenceOfBase& other);
 	virtual ~SequenceOfBase() {}
 
-	/* getter */
+	/* Getter methods. */
 	int64_t size() const { return items.size(); }
 	AbstractType *at(int64_t it) const { return items.at(it); }
 	void pop_back() { items.pop_back(); }
 	const Info* getInfo() const { return static_cast<const Info*>(info); }
 
-	/* setter */
+	/* Setter methods. */
 	void push_back(AbstractType *item) { items.push_back(item); }
 
-    /* utils */
+    /* Utility methods. */
 	virtual AbstractType *clone() const { return new SequenceOfBase(*this); }
 	virtual int64_t compare(const AbstractType& other) const;
 	static AbstractType *create(const void *info) { return new SequenceOfBase(info); }
     AbstractType * createItem() const;
 
-    /*encoding */
+    /* Wrapper methods. */
 	bool decode(char *buffer);
 	bool encode(PerEncoder& encoder) const;
 };
@@ -564,10 +591,9 @@ const typename SequenceOf<T, type, lowerBound, upperBound>::Info SequenceOf<T, t
 	&T::theInfo
 };
 
-/*******************************/
-/* Class for ASN.1 CHOICE type */
-/*******************************/
-
+/*
+ * Class for ASN.1 Choice type.
+ */
 class Choice : public AbstractType {
 protected:
 	int64_t choice;
@@ -581,28 +607,30 @@ protected:
     	int64_t upperBound;
     };
 public:
+    /* Constructors */
 	Choice(const void *info, int64_t choice = -1, AbstractType *value = NULL);
 	Choice(const Choice& other);
+
 	virtual ~Choice() {}
 
-	/* getter */
+	/* Getter methods. */
 	AbstractType *getValue() const { return value; }
 	int64_t getChoice() const { return choice; }
 	bool isExtendable() const { return getInfo()->extFlag; }
 	int64_t getUpperBound() const { return getInfo()->upperBound; }
 	const Info* getInfo() const { return static_cast<const Info*>(info);}
 
-	/* setter */
+	/* Setter methods. */
 	void setValue(AbstractType *value, int64_t choice) { this->choice = choice; this->value = value; }
 	void createChoice(int64_t choice) { this->choice = choice; createValue(); }
 	void createValue();
 
-	/* utils */
+	/* Utility methods. */
 	virtual AbstractType *clone() const { return new Choice(*this); }
 	virtual int64_t compare(const AbstractType& other) const;
 	static AbstractType *create(const void *info) { return new Choice(info); }
 
-	/* encoding */
+	/* Wrapper methods. */
 	bool decode(char *buffer);
 	bool encode(PerEncoder& encoder) const;
 };

@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -18,15 +20,164 @@
 
 PerEncoder::PerEncoder() {
 	usedBits = 8;
-	len = 0;
-	val = (char *)calloc(len, sizeof(char));
+	length = 0;
+	buffer = NULL;
 }
 
 PerEncoder::~PerEncoder() {
 
 }
 
+bool PerEncoder::encodeConstrainedValue(int64_t lowerBound, int64_t upperBound, int64_t value) {
+
+    int64_t range = upperBound - lowerBound + 1;
+    value -= lowerBound;
+    int64_t bitCount;
+
+    if (range < 2) {
+        return true;
+    } else if (range < 256) {
+        bitCount = countBits(range - 1, 0);
+        value <<= (8 - bitCount);
+        encodeBits(value, bitCount);
+    } else if (range < 65537) {
+        bitCount = (countBits(range - 1, 0) + 7) / 8;
+        encodeValue(value, bitCount);
+    } else {
+        bitCount = (countBits(value, 0) + 7) / 8;
+        if (!encodeLength(bitCount, (countBits(lowerBound, 0) + 7) / 8, (countBits(upperBound, 0) + 7) / 8))
+            return false;
+        encodeValue(value, bitCount);
+    }
+    return true;
+}
+
+bool PerEncoder::encodeUnconstrainedValue(int64_t value) {
+
+    int64_t bitCount = (countBits(value, 0) + 7) / 8;
+
+    if (!encodeLength(bitCount, 0, INT_MAX))
+        return false;
+
+    encodeValue(value, bitCount);
+
+    return true;
+}
+
+void PerEncoder::encodeSmallBitString(char *value, unsigned char length) {
+
+    if (length < 9) {
+        encodeBits(*value, length);
+    } else {
+        encodeBits(*value, 8);
+        encodeBits(*(value + 1), length - 8);
+    }
+}
+
+void PerEncoder::print(bool type) {
+    if (type == BIN) {
+//      for (int64_t i = 0; i < len; i++) {
+//          for (short j = 7; j >= 0; j--) {
+//              if ((data[i] & (1 << j)) == 0)
+//                  printf("0");
+//              else
+//                  printf("1");
+//          }
+//          printf(" ");
+//      }
+    } else {
+        char buffer[length * 3 + 1];
+        int j = 0;
+        for (int i = 0; i < length; i++, j += 3)
+            sprintf(&buffer[j], " %02x ", (unsigned char)this->buffer[i]);
+        buffer[length * 3] = '\0';
+        EV << buffer;
+    }
+    EV << endl;
+}
+
+void PerEncoder::encodeBytes(const char *value, int64_t length) {
+    // appends the bytes to the buffer and increases the size of it
+    this->buffer = (char *)realloc(this->buffer, this->length + length);
+    memcpy(this->buffer + this->length, value, length);
+    this->length += length;
+    usedBits = 8;
+}
+
+bool PerEncoder::encodeSmallNumber(int64_t value) {
+    if (value) {
+        value = value << 1;
+        encodeBits((unsigned char )value, 7);
+    } else {
+        encodeBits(128, 1);
+        if (encodeLength(value, 0, INT_MAX) < 0)
+            return false;
+    }
+    return true;
+}
+
+bool PerEncoder::encodeLength(int64_t length, int64_t lowerBound, int64_t upperBound) {
+    if (upperBound > 65535) {
+        if (length) {
+            encodeValue(length, 1);
+        } else if (length < 16384) {
+            length += 32768;
+            encodeValue(length, 2);
+        } else {
+            for (unsigned char f = 4; f > 0; f--) {
+                while((length - f * 16384) >= 0) {
+                    length -= f * 16384;
+                    char tmp = (char )(192 + f);
+                    encodeBytes(&tmp, 1);
+                }
+            }
+            encodeLength(length, lowerBound, upperBound);
+        }
+    } else {
+        return encodeConstrainedValue(lowerBound, upperBound, length);
+    }
+    return true;
+}
+
+void PerEncoder::encodeBits(char value, unsigned char length) {
+
+    // if there are 8 bits available in the last byte copy the
+    // value in this byte and set the number of used bits
+    if (usedBits == 8) {
+        encodeBytes(&value, 1);
+        usedBits = length;
+        return;
+
+    // if there are not enough bits in the last byte split the value
+    } else if (usedBits + length > 8) {
+        // put the first part in the last byte
+        this->buffer[this->length - 1] += ((unsigned char)value >> usedBits);
+
+        // put the remaining part in the next byte after the buffer is increased
+        // and set the number of used bits according to this part
+        unsigned char tmpBits = length - (8 - usedBits);
+        value = (unsigned char)value << (length - tmpBits);
+        encodeBytes(&value, 1);
+        usedBits = tmpBits;
+
+    // if the value fits in the last byte put it and increase
+    // the number of used bits in the last byte
+    } else {
+        this->buffer[this->length - 1] += ((unsigned char)value >> usedBits);
+        usedBits += length;
+    }
+}
+
+void PerEncoder::encodeValue(int64_t value, int64_t size) {
+    for (int i = size - 1; i >= 0; i--) {
+        char tmp = (char)(value >> i * 8);
+        encodeBytes(&tmp, 1);
+    }
+    usedBits = 8;
+}
+
 bool PerEncoder::encodeAbstractType(const AbstractType& abstractType) {
+
 	switch(abstractType.getTag()) {
 		case INTEGER:
 			return encodeInteger(static_cast<const IntegerBase&>(abstractType));
@@ -53,6 +204,7 @@ bool PerEncoder::encodeAbstractType(const AbstractType& abstractType) {
 }
 
 bool PerEncoder::encodeOpenType(const OpenType& openType) {
+
 	if (!encodeLength(openType.getLength(), 0, INT_MAX))
 		return false;
 
@@ -61,41 +213,8 @@ bool PerEncoder::encodeOpenType(const OpenType& openType) {
 	return true;
 }
 
-bool PerEncoder::encodeConstrainedValue(int64_t lowerBound, int64_t upperBound, int64_t val) {
-	int64_t range = upperBound - lowerBound + 1;
-	val -= lowerBound;
-	int64_t bitCount;
-
-	if (range < 2) {
-		return true;
-	} else if (range < 256) {
-		bitCount = countBits(range - 1, 0);
-		val <<= (8 - bitCount);
-		encodeBits(val, bitCount);
-	} else if (range < 65537) {
-		bitCount = (countBits(range - 1, 0) + 7) / 8;
-		encodeValue(val, bitCount);
-	} else {
-		bitCount = (countBits(val, 0) + 7) / 8;
-		if (!encodeLength(bitCount, (countBits(lowerBound, 0) + 7) / 8, (countBits(upperBound, 0) + 7) / 8))
-			return false;
-		encodeValue(val, bitCount);
-	}
-	return true;
-}
-
-bool PerEncoder::encodeUnconstrainedValue(int64_t value) {
-	int64_t bitCount = (countBits(value, 0) + 7) / 8;
-
-	if (!encodeLength(bitCount, 0, INT_MAX))
-		return false;
-
-	encodeValue(value, bitCount);
-
-	return true;
-}
-
 bool PerEncoder::encodeInteger(const IntegerBase& integer) {
+
 	bool isExtension = (integer.getValue() > integer.getUpperBound());
 	if (integer.isExtendable()) {
 		encodeBits(isExtension << 7, 1);
@@ -108,6 +227,7 @@ bool PerEncoder::encodeInteger(const IntegerBase& integer) {
 }
 
 bool PerEncoder::encodeEnumerated(const EnumeratedBase& enumerated) {
+
 	bool isExtension = (enumerated.getValue() > enumerated.getUpperBound());
 	if (enumerated.isExtendable()) {
 		encodeBits(isExtension << 7, 1);
@@ -119,42 +239,8 @@ bool PerEncoder::encodeEnumerated(const EnumeratedBase& enumerated) {
 		return encodeConstrainedValue(0, enumerated.getUpperBound(), enumerated.getValue());
 }
 
-void PerEncoder::encodeSmallBitString(char *val, unsigned char len) {
-	if (len < 9) {
-		encodeBits(*val, len);
-	} else {
-		encodeBits(*val, 8);
-		encodeBits(*(val + 1), len - 8);
-	}
-}
-
-//bool PerEncoder::encodeConstrainedBitString(const BitString *bitString) {
-//	int64_t bytesNr;
-//
-//	if ((bitString.getLowerBound() == bitString.getUpperBound())
-//			&& (bitString.getUpperBound() < 65537)
-//			&& (!bitString.isExtension()) && (bitString.getTag() != UNCONSTRAINED)) {
-//		if (!bitString.length()) {
-//			return true;
-//		} else if (bitString.length() < 17) {
-//			encodeSmallBitString(bitString.getValue(), bitString.length());
-//		} else {
-//			bytesNr = (bitString.length() + 7) / 8;
-//			encodeBytes(bitString.getValue(), bytesNr);
-//			usedBits = bytesNr * 8 - bitString.length();
-//		}
-//	} else {
-//		if (!encodeLength(bitString.length(), bitString.getLowerBound(), bitString.getTag() != UNCONSTRAINED ? bitString.getUpperBound() : INT_MAX))
-//			return false;
-//
-//		bytesNr = (bitString.length() + 7) / 8;
-//		encodeBytes(bitString.getValue(), bytesNr);
-//		usedBits = bytesNr * 8 - bitString.length();
-//	}
-//	return true;
-//}
-
 bool PerEncoder::encodeBitString(const BitStringBase& bitString) {
+
 	int64_t bytesNr = 0;
 	bool isExtension = (bitString.getLength() > bitString.getUpperBound());
 	if (bitString.isExtendable()) {
@@ -185,27 +271,8 @@ bool PerEncoder::encodeBitString(const BitStringBase& bitString) {
 	return true;
 }
 
-//bool PerEncoder::encodeConstrainedOctetString(const OctetString *octetString) {
-//	if ((octetString.getLowerBound() == octetString.getUpperBound())
-//			&& (octetString.getUpperBound() < 65537)
-//			&& (!octetString.isExtension()) && (octetString.getTag() != UNCONSTRAINED)) {
-//		if (!octetString.length()) {
-//			return true;
-//		} else if (octetString.length() < 3) {
-//			encodeSmallBitString(octetString.getValue(), octetString.length() * 8);
-//		} else {
-//			encodeBytes(octetString.getValue(), octetString.length());
-//		}
-//	} else {
-//		if (!encodeLength(octetString.length(), octetString.getLowerBound(), octetString.getTag() != UNCONSTRAINED ? octetString.getUpperBound() : INT_MAX)) {
-//			return false;
-//		}
-//		encodeBytes(octetString.getValue(), octetString.length());
-//	}
-//	return true;
-//}
-
 bool PerEncoder::encodeOctetString(const OctetStringBase& octetString) {
+
 	bool isExtension = (octetString.getLength() > octetString.getUpperBound());
 	if (octetString.isExtendable()) {
 		encodeBits(isExtension << 7, 1);
@@ -233,6 +300,7 @@ bool PerEncoder::encodeOctetString(const OctetStringBase& octetString) {
 }
 
 bool PerEncoder::encodeSequence(const Sequence& sequence) {
+    // TODO add support for extension
 	if (sequence.isExtendable()) {
 		char extFlag = 0x00;
 		char *extFlags = sequence.getExtFlags();
@@ -277,6 +345,7 @@ bool PerEncoder::encodeSequence(const Sequence& sequence) {
 }
 
 bool PerEncoder::encodeSequenceOf(const SequenceOfBase& sequenceOf) {
+
 	bool isExtension = (sequenceOf.size() > sequenceOf.getUpperBound());
 	if (sequenceOf.isExtendable()) {
 		encodeBits(isExtension << 7, 1);
@@ -296,7 +365,7 @@ bool PerEncoder::encodeSequenceOf(const SequenceOfBase& sequenceOf) {
 }
 
 bool PerEncoder::encodeChoice(const Choice& choice) {
-//	int64_t index = choice.getChoice();
+
 	bool isExtension = (choice.getChoice() > choice.getUpperBound());
 	if (choice.isExtendable()) {
 		encodeBits(isExtension << 7, 1);
@@ -340,92 +409,4 @@ bool PerEncoder::encodePrintableString(const PrintableStringBase& printableStrin
 	return true;
 }
 
-void PerEncoder::print(bool type) {
-	if (type == BIN) {
-//		for (int64_t i = 0; i < len; i++) {
-//			for (short j = 7; j >= 0; j--) {
-//				if ((data[i] & (1 << j)) == 0)
-//					printf("0");
-//				else
-//					printf("1");
-//			}
-//			printf(" ");
-//		}
-	} else {
-	    char buf[len * 3 + 1];
-	    int j = 0;
-	    for (int i = 0; i < len; i++, j += 3)
-	        sprintf(&buf[j], " %02x ", (unsigned char)val[i]);
-	    buf[len * 3] = '\0';
-	    EV << buf;
-	}
-	EV << endl;
-}
-
-void PerEncoder::encodeBytes(const char *val, int64_t len) {
-	this->val = (char *)realloc(this->val, this->len + len);
-	memcpy(this->val + this->len, val, len);
-	this->len += len;
-	usedBits = 8;
-}
-
-bool PerEncoder::encodeSmallNumber(int64_t val) {
-	if (val < 64) {
-		val = val << 1;
-		encodeBits((unsigned char )val, 7);
-	} else {
-		encodeBits(128, 1);
-		if (encodeLength(val, 0, INT_MAX) < 0)
-			return false;
-	}
-	return true;
-}
-
-bool PerEncoder::encodeLength(int64_t len, int64_t lowerBound, int64_t upperBound) {
-	if (upperBound > 65535) { /* FIXME */
-		if (len < 128) {
-			encodeValue(len, 1);
-		} else if (len < 16384) {
-			len += 32768;
-			encodeValue(len, 2);
-		} else {
-			for (unsigned char f = 4; f > 0; f--) {
-				while((len - f * 16384) >= 0) {
-					len -= f * 16384;
-					char tmp = (char )(192 + f);
-					encodeBytes(&tmp, 1);
-				}
-			}
-			encodeLength(len, lowerBound, upperBound);
-		}
-	} else {
-		return encodeConstrainedValue(lowerBound, upperBound, len);
-	}
-	return true;
-}
-
-void PerEncoder::encodeBits(char val, unsigned char len) {
-	if (usedBits == 8) {
-		encodeBytes(&val, 1);
-		usedBits = len;
-		return;
-	} else if (usedBits + len > 8) {
-		this->val[this->len - 1] += ((unsigned char)val >> usedBits);
-		unsigned char tmpBits = len - (8 - usedBits);
-		val = (unsigned char)val << (len - tmpBits);
-		encodeBytes(&val, 1);
-		usedBits = tmpBits;
-	} else {
-		this->val[this->len - 1] += ((unsigned char)val >> usedBits);
-		usedBits += len;
-	}
-}
-
-void PerEncoder::encodeValue(int64_t value, int64_t size) {
-	for (int i = size - 1; i >= 0; i--) {
-		char tmp = (char)(value >> i * 8);
-		encodeBytes(&tmp, 1);
-	}
-	usedBits = 8;
-}
 

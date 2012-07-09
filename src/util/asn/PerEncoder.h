@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -25,12 +27,32 @@
 #define BIN		0
 #define HEX		1
 
+/*
+ * Class for encoding ASN.1 types. The encoder will produce a buffer according to PER
+ * rules. It will start with an empty buffer and add bytes to it according to desired
+ * ASN.1 types, which are to be encoded.
+ */
 class PerEncoder {
+private:
+    short usedBits;
+    int64_t length;
+    char *buffer;
+
+    /* Utility methods for encoding */
+    bool encodeConstrainedValue(int64_t lowerBound, int64_t upperBound, int64_t value);
+    bool encodeUnconstrainedValue(int64_t value);
+    void encodeSmallBitString(char *value, unsigned char length);
+    void encodeBytes(const char *value, int64_t length);
+    bool encodeSmallNumber(int64_t value);
+    bool encodeLength(int64_t length, int64_t lowerBound, int64_t upperBound);
+    void encodeBits(char value, unsigned char length);
+    void encodeValue(int64_t value, int64_t length);
 
 public:
 	PerEncoder();
 	virtual ~PerEncoder();
 
+	/* Encoding methods */
 	bool encodeAbstractType(const AbstractType& abstractType);
 	bool encodeOpenType(const OpenType& openType);
 	bool encodeInteger(const IntegerBase& integer);
@@ -44,29 +66,15 @@ public:
 
 	void print(bool type);
 
-	char *getValue() { return val; }
-	char getValueAt(int64_t index) { return val[index]; }
-	void setValue(char *val) { this->val = val; }
-	int64_t getLength() { return len; }
-	void setLength(int64_t len) { this->len = len; }
+	/* Getter methods */
+    char *getBuffer() { return buffer; }
+    char getByteAt(int64_t index) { return buffer[index]; }
+    int64_t getLength() { return length; }
 
-private:
-	short usedBits;
-	int64_t len;
-	char *val;
+	/* Setter methods */
+	void setBuffer(char *buffer) { this->buffer = buffer; }
+	void setLength(int64_t length) { this->length = length; }
 
-//	bool encodeExtension(const AbstractType *abstractType);
-	bool encodeConstrainedValue(int64_t lowerBound, int64_t upperBound, int64_t val);
-	bool encodeUnconstrainedValue(int64_t val);
-	void encodeSmallBitString(char *val, unsigned char len);
-//	bool encodeConstrainedBitString(const BitStringBase *bitString);
-//	bool encodeConstrainedOctetString(const OctetStringBase *octetString);
-	void encodeBytes(const char *val, int64_t len);
-	bool encodeSmallNumber(int64_t val);
-	bool encodeLength(int64_t len, int64_t lowerBound, int64_t upperBound);
-	void encodeBits(char val, unsigned char len);
-	void encodeValue(int64_t val, int64_t len);
-
-//	bool checkFullConstraint(int64_t lowerBound, int64_t upperBound, int64_t val, AbstractType *abstractType);
 };
+
 #endif /* PERENCODER_H_ */
