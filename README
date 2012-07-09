@@ -4,13 +4,13 @@ LTE Simulator for OMNEST/OMNeT++ 4.2
 Directors for LTEsim:
 
  src/
-   applications/    		application protocols
-     diameter/          	diameter base protocol
-     diameters6a/			diameter application for s6a interface
-   util/					general utility classes
-     asn/					utility classes for ASN.1 encoding/decoding
+   applications/    		   application protocols
+     diameter/           diameter base protocol
+     diameters6a/			     diameter application for s6a interface
+   util/					            general utility classes
+     asn/					           utility classes for ASN.1 encoding/decoding
      headerserializers/		serialize/parse methods for LTE protocols
-     lte/					utility classes for LTE
+     lte/					           utility classes for LTE
      
  
 
