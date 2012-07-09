@@ -1,6 +1,9 @@
 LTE Simulator for OMNEST/OMNeT++ 4.2
 ====================================
 
+LTEsim is an open-source LTE simulation package, written for OMNEST/OMNeT++ 
+simulation system and developed over INET framework.
+
 Directors for LTEsim:
 
  src/
