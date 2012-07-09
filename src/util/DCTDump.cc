@@ -16,11 +16,12 @@
 // 
 
 #include "DCTDump.h"
+#include "IPSerializer.h"
 
 #define MAXBUFLENGTH 65536
 #define MAXDCTLENGTH 100
 
-Define_Module(DCTDump)
+Define_Module(DCTDump);
 
 DCTDump::DCTDump() {
     // TODO Auto-generated constructor stub
@@ -32,15 +33,9 @@ DCTDump::~DCTDump() {
 }
 
 void DCTDump::initialize() {
-    const char* file = this->par("dumpFile");
-    char begin_hdr[] = { 0x53, 0x65, 0x73, 0x73, 0x69, 0x6F, 0x6E, 0x20, 0x54, 0x72, 0x61, 0x6E, 0x73, 0x63, 0x72, 0x69,
-            0x70, 0x74, 0x20, 0x28, 0x66, 0x6F, 0x72, 0x6D, 0x61, 0x74, 0x20, 0x33, 0x2E, 0x31, 0x2C, 0x20,
-            0x72, 0x65, 0x6C, 0x65, 0x61, 0x73, 0x65, 0x20, 0x31, 0x30, 0x2E, 0x36, 0x20, 0x6F, 0x6E, 0x20,
-            0x75, 0x6B, 0x65, 0x6E, 0x67, 0x37, 0x2C, 0x20, 0x4C, 0x69, 0x6E, 0x75, 0x78, 0x20, 0x32, 0x2E,
-            0x36, 0x2E, 0x38, 0x2D, 0x32, 0x34, 0x2D, 0x73, 0x6D, 0x70, 0x20, 0x69, 0x36, 0x38, 0x36, 0x29,
-            0x0A, 0x46, 0x65, 0x62, 0x72, 0x75, 0x61, 0x72, 0x79, 0x20, 0x32, 0x31, 0x2C, 0x20, 0x32, 0x30,
-            0x30, 0x36, 0x20, 0x20, 0x20, 0x20, 0x20, 0x31, 0x36, 0x3A, 0x34, 0x35, 0x3A, 0x32, 0x30, 0x2E,
-            0x35, 0x31, 0x38, 0x35, 0x0A };
+    const char *file = this->par("dumpFile");
+    const char *first_line = "Session Transcript\n";
+    const char *second_line = "February 21, 2006     16:45:20.5186\n";
     if (strcmp(file,"")!=0)
     {
         tcpdump.dumpfile = fopen(file, "wb");
@@ -50,7 +45,8 @@ void DCTDump::initialize() {
             exit(-1);
         }
 
-        fwrite(&begin_hdr, sizeof(begin_hdr), 1, tcpdump.dumpfile);
+        fwrite(first_line, 19, 1, tcpdump.dumpfile);
+        fwrite(second_line, 36, 1, tcpdump.dumpfile);
     }
     else
         tcpdump.dumpfile = NULL;
@@ -64,67 +60,62 @@ void DCTDump::handleMessage(cMessage *msg) {
         std::stringstream vers;
         const char *time = timestamp(stime);
         uint8 buf[MAXBUFLENGTH];
+        int32 buf_len = 0;
+        std::string ascii_buf;
         char dh[MAXDCTLENGTH];
-        struct pcaprec_hdr ph;
         char *p = dh;
 
-        // Write pcap header
-        ph.ts_sec = (int32)stime.dbl();
-        ph.ts_usec = (uint32)((stime.dbl() - ph.ts_sec)*1000000);
+        // Write dump
+        memset((void*)&buf, 0, sizeof(buf));
 
         // Write dct2000 header
         memset((void*)&dh, 0, sizeof(dh));
 
-        // context
+        // context name
         IPDatagram *ipPacket = dynamic_cast<IPDatagram*>(msg);
         if (ipPacket) {
             if (ipPacket->getTransportProtocol()==IP_PROT_SCTP) {
-                strncpy(p, "SCTP", 4);
+                strncpy(p, "SCTP.", 5);
                 p += 5;
             }
             write = true;
+
+            buf_len = IPSerializer().serialize(ipPacket, buf, sizeof(buf));
         }
 
-        // context port number
-        *p = 1;
-        p++;
-
-        // timestamp
-        strncpy(p, time, strlen(time));
-        p += strlen(time) + 1;
+        // context port number - always 1
+        strncpy(p, "1/", 5);
+        p += 2;
 
         // protocol
         if (ipPacket) {
             vers << ipPacket->getVersion();
             // protocol name
-            strncpy(p, "ip", 2);
+            strncpy(p, "ip/", 3);
             p += 3;
             //protocol version
             strncpy(p, vers.str().c_str(), strlen(vers.str().c_str()));
-            p += strlen(vers.str().c_str()) + 1;
-        }
-
-        // direction
-        if (msg->getArrivalGate()->isName("ifIn"))
-            *p = RECEIVED;
-        else
-            *p = SENT;
-        p++;
-
-        // encapsulation
-        if (ipPacket) {
-            *p = RAW_IP;
+            p += strlen(vers.str().c_str());
+            *p = '/';
             p++;
         }
 
-        memset((void*)&buf, 0, sizeof(buf));
+        // direction
+        if (msg->getArrivalGate()->isName("ifIn")) {
+            strncpy(p, " r", 2);
+        } else
+            strncpy(p, " s", 2);
+        p += 2;
 
-        ph.incl_len = p - dh;
-        ph.orig_len = ph.incl_len;
+        // timestamp
+        strncpy(p, " tm ", 4);
+        p += 4;
+        strncpy(p, time, strlen(time));
+        p += strlen(time);
 
-        //fwrite(&ph, sizeof(ph), 1, tcpdump.dumpfile);
         if (write) {
             fwrite(&dh, p - dh, 1, tcpdump.dumpfile);
+            dumpPacket(buf, buf_len);
         }
     }
     // forward
@@ -146,16 +137,26 @@ const char *DCTDump::timestamp(simtime_t stime) {
     return out.str().c_str();
 }
 
-void DCTDump::finish()
-{
+void DCTDump::finish() {
      if (strcmp(this->par("dumpFile"),"")!=0) {
-         char end_hdr[] = {0x0A,
-                 0x41, 0x2E, 0x31, 0x2F, 0x70, 0x70, 0x70, 0x2F, 0x31, 0x2F, 0x2F, 0x2F, 0x20, 0x73, 0x20, 0x74,
-                 0x6D, 0x20, 0x32, 0x30, 0x2E, 0x31, 0x34, 0x31, 0x31, 0x20, 0x6C, 0x20, 0x24, 0x66, 0x66, 0x30,
-         };
-         fwrite(&end_hdr, sizeof(end_hdr), 1, tcpdump.dumpfile);
          fclose(tcpdump.dumpfile);
      }
+}
+
+void DCTDump::dumpPacket(uint8 *buf, int32 len) {
+    if (len > 0) {
+        std::string dump = " $3119022cba260012d8828128";
+//        int32 j = 0;
+//        for (int32 i = 0; i < len * 2; i++) {
+//            if (((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) < 10)
+//                dump += ((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) + 48;
+//            else
+//                dump += ((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) + 87;
+//            j = j + i % 2;
+//        }
+        dump += "\n";
+        fwrite(dump.c_str(), dump.size(), 1, tcpdump.dumpfile);
+    }
 }
 
 
