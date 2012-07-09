@@ -33,6 +33,7 @@ namespace INETFw // load headers into a namespace, to avoid conflicts with platf
 #include "UDPSerializer.h"
 #include "SCTPSerializer.h"    //I.R.
 #include "TCPSerializer.h"    //I.R.
+#include "TCPIPchecksum.h"
 
 #if defined(_MSC_VER)
 #undef s_addr   /* MSVC #definition interferes with us */
@@ -100,6 +101,7 @@ int IPSerializer::serialize(const IPDatagram *dgram, unsigned char *buf, unsigne
     }
 
     ip->ip_len = htons(packetLength);
+    ip->ip_sum = TCPIPchecksum::checksum((unsigned char*)ip, IP_HEADER_BYTES);
 
     return packetLength;
 }

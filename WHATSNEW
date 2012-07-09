@@ -6,7 +6,7 @@ Recent changes in the LTE Simulator
 	- sessions with no state maintained configuration
 	- application id and vendor id
 
-
+- DCTDump module for dumping DCT2000 .out files
 
 Recent changes in the INET Framework
 ====================================

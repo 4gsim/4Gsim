@@ -1,0 +1,7 @@
+2012-07-09  Calin Cerchez
+
+    * added checksum ip packet dump (IPSerializer's serialize method).
+    
+    * modified tcpdump.setVerbosity((int32)par("verbosity")); in order to
+      cast the parameter to int32 type.
+      

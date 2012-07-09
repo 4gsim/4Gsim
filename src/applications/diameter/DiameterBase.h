@@ -27,7 +27,7 @@
 #include "RoutingTableAccess.h"
 
 /*
- * Implements the Diameter base protocol. This section describes the internal
+ * Module for Diameter base protocol. This section describes the internal
  * architecture of the Diameter model.
  *
  * The Diameter base protocol implementation is composed of several classes (discussion

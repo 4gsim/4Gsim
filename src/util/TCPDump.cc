@@ -522,7 +522,7 @@ void TCPDump::initialize()
     struct pcap_hdr fh;
     const char* file = this->par("dumpFile");
     snaplen = this->par("snaplen");
-    tcpdump.setVerbosity(par("verbosity"));
+    tcpdump.setVerbosity((int32)par("verbosity"));
 
 
     if (strcmp(file,"")!=0)

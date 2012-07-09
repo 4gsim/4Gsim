@@ -35,27 +35,29 @@ DCTDump::~DCTDump() {
 void DCTDump::initialize() {
     const char *file = this->par("dumpFile");
     const char *first_line = "Session Transcript\n";
+
+    // TODO Real timestamp
     const char *second_line = "February 21, 2006     16:45:20.5186\n";
     if (strcmp(file,"")!=0)
     {
-        tcpdump.dumpfile = fopen(file, "wb");
-        if (!tcpdump.dumpfile)
+        dumpfile = fopen(file, "wb");
+        if (!dumpfile)
         {
             fprintf(stderr, "Cannot open file [%s] for writing: %s\n", file, strerror(errno));
             exit(-1);
         }
 
-        fwrite(first_line, 19, 1, tcpdump.dumpfile);
-        fwrite(second_line, 36, 1, tcpdump.dumpfile);
+        fwrite(first_line, 19, 1, dumpfile);
+        fwrite(second_line, 36, 1, dumpfile);
     }
     else
-        tcpdump.dumpfile = NULL;
+        dumpfile = NULL;
 
 }
 
 void DCTDump::handleMessage(cMessage *msg) {
-    bool write = false;
-    if (tcpdump.dumpfile != NULL) {
+
+    if (dumpfile != NULL) {
         const simtime_t stime = simulation.getSimTime();
         std::stringstream vers;
         const char *time = timestamp(stime);
@@ -64,6 +66,7 @@ void DCTDump::handleMessage(cMessage *msg) {
         std::string ascii_buf;
         char dh[MAXDCTLENGTH];
         char *p = dh;
+        bool write = false;
 
         // Write dump
         memset((void*)&buf, 0, sizeof(buf));
@@ -114,7 +117,7 @@ void DCTDump::handleMessage(cMessage *msg) {
         p += strlen(time);
 
         if (write) {
-            fwrite(&dh, p - dh, 1, tcpdump.dumpfile);
+            fwrite(&dh, p - dh, 1, dumpfile);
             dumpPacket(buf, buf_len);
         }
     }
@@ -139,23 +142,23 @@ const char *DCTDump::timestamp(simtime_t stime) {
 
 void DCTDump::finish() {
      if (strcmp(this->par("dumpFile"),"")!=0) {
-         fclose(tcpdump.dumpfile);
+         fclose(dumpfile);
      }
 }
 
 void DCTDump::dumpPacket(uint8 *buf, int32 len) {
     if (len > 0) {
-        std::string dump = " $3119022cba260012d8828128";
-//        int32 j = 0;
-//        for (int32 i = 0; i < len * 2; i++) {
-//            if (((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) < 10)
-//                dump += ((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) + 48;
-//            else
-//                dump += ((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) + 87;
-//            j = j + i % 2;
-//        }
+        std::string dump = " $";
+        int32 j = 0;
+        for (int32 i = 0; i < len * 2; i++) {
+            if (((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) < 10)
+                dump += ((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) + 48;
+            else
+                dump += ((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) + 87;
+            j = j + i % 2;
+        }
         dump += "\n";
-        fwrite(dump.c_str(), dump.size(), 1, tcpdump.dumpfile);
+        fwrite(dump.c_str(), dump.size(), 1, dumpfile);
     }
 }
 

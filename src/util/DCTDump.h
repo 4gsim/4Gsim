@@ -21,25 +21,11 @@
 #include <omnetpp.h>
 #include "TCPDump.h"
 
-#define RECEIVED    1
-#define SENT        0
-
-#define RAW_IP      7
-
-#define MAX_FIRST_LINE_LENGTH      200
-#define MAX_TIMESTAMP_LINE_LENGTH  100
-#define MAX_LINE_LENGTH            65536
-#define MAX_TIMESTAMP_LEN          32
-#define MAX_SECONDS_CHARS          16
-#define MAX_SUBSECOND_DECIMALS     4
-#define MAX_CONTEXT_NAME           64
-#define MAX_PROTOCOL_NAME          64
-#define MAX_PORT_DIGITS            2
-#define MAX_VARIANT_DIGITS         32
-#define MAX_OUTHDR_NAME            256
-#define AAL_HEADER_CHARS           12
-
 /*
+ * Module for dumping packets in DCT2000 .out files. The class was
+ * created according to Wireshark implementation for reading and
+ * parsing DCT2000 .out files. Below some info regarding such a file:
+ *
  * out file:
  *  - first line at least "Session Transcript"
  *  - second line, timestamp "February 21, 2006     16:45:20.5186"
@@ -47,24 +33,44 @@
  *      - context name "test_ETSI" followed by '.'
  *      - port number "1" followed by '/'
  *      - protocol name "isdn_l3" followed by '/'
- *      - protocol variant "1" followed by ',' if outhdr is present else followed by '/'
+ *      - protocol variant "1" followed by ','
+ *          if outhdr is present else followed by '/'
  *      - direction " s"
  *      - timestamp " tm 17.1505 "
  *      - start of dump "$"
  *      - dump of packet in ascii format (0x03 -> 0x30 0x33)
  *      - new line after each dump
+ *
+ * Unfortunately there is no info besides Wireshark implementation :(
  */
-
-class DCTDump : public TCPDump {
+class DCTDump : public cSimpleModule {
 private:
+    FILE *dumpfile;
     const char *timestamp(simtime_t stime);
     void dumpPacket(uint8 *buf, int32 len);
 public:
     DCTDump();
     virtual ~DCTDump();
 
-    virtual void handleMessage(cMessage *msg);
+    /*
+     * Method for initializing the module. During initialization,
+     * the dump file will be opened and a specific header for .out
+     * files will be written in it.
+     */
     virtual void initialize();
+
+    /*
+     * Method for handling messages. The incoming message will be
+     * processed and written in the dump file, configured before the
+     * simulation. Afterwards, the message will be forwarded to the
+     * appropriate gate.
+     */
+    virtual void handleMessage(cMessage *msg);
+
+    /*
+     * Method for finishing the module. During finish phase the dump
+     * file will be closed.
+     */
     virtual void finish();
 };
 
