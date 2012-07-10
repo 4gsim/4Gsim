@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -42,14 +44,6 @@ public:
 
 	ProtocolIeContainer *getContainer() { return static_cast<ProtocolIeContainer*>(items.at(0)); }
 };
-//class S1APProcedure : public Sequence {
-//public:
-//	S1APProcedure(ProtocolIeContainer *protIes, AbstractTypeList *extElems = NULL);
-//	S1APProcedure(PerDecoder *perDec);
-//
-//	OpenType *findValue(unsigned short id);
-//};
-//
 
 enum S1APPduChoices {
 	initiatingMessage = 0,
@@ -64,16 +58,7 @@ public:
 	static const Info theInfo;
 	S1APPdu() : Choice(&theInfo) {}
 
-//	void setId(char *id);
 };
-
-//class S1APPdu : public Choice {
-//public:
-
-//	S1APPdu(unsigned char choice = 0, AbstractType *val);
-////	S1APPdu(PerDecoder *perDec);
-//};
-//
 
 class InitiatingMessage : public Sequence {
 private:
@@ -82,22 +67,13 @@ private:
 public:
 	static const Info theInfo;
 	InitiatingMessage(unsigned char code, unsigned char crit, AbstractType *val);
-//	ProtocolIeField(PerDecoder *perDec);
-//
+
 	unsigned char getProcedureCode() { return static_cast<IntegerBase*>(items.at(0))->getValue(); }
 	OpenType *getValue() { return static_cast<OpenType*>(items.at(2)); }
 
 	void setValue(OpenType *val);
 };
 
-//class InitiatingMessage : public Sequence {
-//public:
-//	InitiatingMessage(unsigned char code, unsigned char crit, AbstractType *val);
-//	InitiatingMessage(PerDecoder *perDec);
-//	unsigned char getProcedureCode();
-//	OpenType *getValue();
-//};
-//
 typedef InitiatingMessage SuccessfulOutcome;
 
 typedef InitiatingMessage UnsuccessfulOutcome;

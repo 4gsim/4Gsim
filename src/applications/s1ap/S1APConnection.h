@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -39,18 +41,55 @@ enum S1APConnectionEvent {
 
 class S1AP;
 
+/*
+ * Class for S1AP connection. A S1AP connection is built around a
+ * SCTP socket. Besides the socket, the connection will hold specific
+ * information for S1AP protocol, PLMN id, Cell Id etc.
+ * S1AP connection implements also a state machine which is not defined
+ * in the specification and it helps setting up a connection between the
+ * entities.
+ *
+ *      +-------------------+
+        | S1AP_DISCONNECTED |
+        +-------------------+
+                 ^        |
+                 |        |
+ S1APRcvSetupFailure |        | SCTPEstablished
+ /InvalidResponse    |        |
+                 |        |
+                     |        v
+           +--------------+
+           | S1AP_PENDING |
+           +--------------+
+             |        |
+             |        |
+             |        |  S1APRcvSetupFailure
+             |        |  /CorrectResponse
+             |        |
+             |        v
+          +----------------+
+          | S1AP_CONNECTED |-------------------+
+          +----------------+
+ */
 class S1APConnection : public SCTPSocket::CallbackInterface {
 private:
 	char *plmnId;
 	char *cellId;
-	cFSM *fsm;
 	std::vector<SupportedTaItem> suppTas;
 	std::vector<ServedGummeiItem> servGummeis;
+
+	cFSM *fsm;
+
 	S1AP *module;
+
 	SCTPSocket *socket;
 	AddressVector addresses;
 	int port;
 
+    /*
+     * Callback methods for SCTP socket. Message handling is done in the
+     * data arrived method.
+     */
 	void socketEstablished(int32 connId, void *yourPtr, uint64 buffer);
 	void socketDataArrived(int32 connId, void *yourPtr, cPacket *msg, bool urgent);
 	void socketDataNotificationArrived(int32 connId, void *yourPtr, cPacket *msg);
@@ -102,7 +141,7 @@ public:
 	ProtocolIeField *processDownlinkNasTransport(OpenType *val);
 	void sendUplinkNasTransport(Subscriber *sub, NasPdu *nasPdu);
 	ProtocolIeField *processUplinkNasTransport(OpenType *val);
-	//	std::string info() const;
+
 };
 
 #endif /* S1APCONNECTION_H_ */

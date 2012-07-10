@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -27,8 +29,7 @@ private:
 public:
 	static const Info theInfo;
 	ProtocolIeField(unsigned short id, unsigned char crit, AbstractType *val);
-//	ProtocolIeField(PerDecoder *perDec);
-//
+
 	unsigned short getProtocolId() const { return static_cast<IntegerBase*>(items.at(0))->getValue(); }
 	OpenType *getValue() const { return static_cast<OpenType*>(items.at(2)); }
 

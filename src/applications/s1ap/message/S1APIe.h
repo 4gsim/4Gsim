@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -21,6 +23,10 @@
 #include "S1APControlInfo_m.h"
 #include "IPvXAddress.h"
 #include "BearerContext.h"
+
+/*
+ * Simple S1AP message information elements.
+ */
 
 typedef Integer<CONSTRAINED, 0, 10000000000> BitRate;
 
@@ -120,9 +126,6 @@ typedef Integer<EXTCONSTRAINED, 0, 15> ERabId;
 
 typedef OctetString<CONSTRAINED, 4, 4> GtpTeid;
 
-//	unsigned getTeid();
-//};
-//
 typedef BitString<CONSTRAINED, 28, 28> HomeEnbId;
 
 typedef EncryptionAlgorithms IntegrityProtectionAlgorithms;
@@ -198,15 +201,10 @@ typedef OctetString<CONSTRAINED, 3, 3> TbcdString;
 typedef TbcdString PlmnIdentity;
 
 typedef BitString<EXTCONSTRAINED, 1, 160> TransportLayerAddress;
-//class TransportLayerAddress : public BitString {
-//public:
-//	TransportLayerAddress(IPvXAddress addr);
-//	TransportLayerAddress(PerDecoder *perDec);
-//
-//	IPvXAddress getAddress();
-//};
 
-/********************************************/
+/*
+ * Compound S1AP message information elements.
+ */
 
 class AllocationAndRetentionPriority : public Sequence {
 private:
