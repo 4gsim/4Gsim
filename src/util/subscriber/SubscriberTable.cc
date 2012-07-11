@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -33,18 +35,14 @@ SubscriberTable::~SubscriberTable() {
 	// TODO Auto-generated destructor stub
 	erase(0, subs.size());
 
-	if (inactiveTimer != NULL) {
-		if (inactiveTimer->getContextPointer() != NULL)
-			this->cancelEvent(inactiveTimer);
-		delete inactiveTimer;
+	if (cleanTimer != NULL) {
+		if (cleanTimer->getContextPointer() != NULL)
+			this->cancelEvent(cleanTimer);
+		delete cleanTimer;
 	}
 }
 
 void SubscriberTable::initialize(int stage) {
-
-	nb = NotificationBoardAccess().get();
-//	nb->subscribe(this, NF_SUBSCRIBER_STATE_CHANGED);
-
 	if (findPar("configFile") != -1) {
 		const char *fileName = par("configFile");
 		if ((fileName != NULL) && (strcmp(fileName, ""))) {
@@ -59,14 +57,14 @@ void SubscriberTable::initialize(int stage) {
 	}
 	WATCH_PTRVECTOR(subs);
 
-	inactiveTimer = new cMessage("INACTIVE-TIMER");
-	inactiveTimer->setContextPointer(this);
-	this->scheduleAt(simTime() + INACTIVE_TIMER_TIMEOUT, inactiveTimer);
+	cleanTimer = new cMessage("INACTIVE-TIMER");
+	cleanTimer->setContextPointer(this);
+	this->scheduleAt(simTime() + CLEAN_TIMER_TIMEOUT, cleanTimer);
 }
 
 void SubscriberTable::handleMessage(cMessage *msg) {
 	if (msg->isSelfMessage()) {
-		if (msg == inactiveTimer) {
+		if (msg == cleanTimer) {
 			EV << "SubscriberTable: Inactive subscriber timer expired. Cleaning inactive subscribers.\n";
 			Subscribers::iterator i = subs.begin();
 			Subscribers::iterator last = subs.end();
@@ -78,8 +76,8 @@ void SubscriberTable::handleMessage(cMessage *msg) {
 					subs.erase(i);
 				}
 			}
-			this->cancelEvent(inactiveTimer);
-			this->scheduleAt(simTime() + INACTIVE_TIMER_TIMEOUT, inactiveTimer);
+			this->cancelEvent(cleanTimer);
+			this->scheduleAt(simTime() + CLEAN_TIMER_TIMEOUT, cleanTimer);
 		}
 	} else
 		delete msg;
@@ -168,8 +166,6 @@ void SubscriberTable::loadPDNConnectionsFromXML(const cXMLElement& subElem, Subs
 				} else {
 					esm->addPDNConnection(conn, false);
 				}
-
-//				nb->fireChangeNotification(NF_SUBSCRIBER_PDN_CONN_ADDED, conn);
 			}
 		}
 	}
@@ -197,11 +193,9 @@ void SubscriberTable::loadSubscribersFromXML(const cXMLElement& config) {
 	        	emm->setImsi(LTEUtils().toIMSI(imsi));
 	        	sub->setMsisdn(LTEUtils().toTBCDString(msisdn, MSISDN_UNCODED_SIZE));
 	        	sub->setStatus(SUB_ACTIVE);
-//	        	sub->setId(generateId());
 	        	loadPDNConnectionsFromXML(*(*subIt), sub);
 	        	EV << "SubscriberTable: Subscriber nr. " << size() << endl;
 	        	push_back(sub);
-//	        	nb->fireChangeNotification(NF_SUBSCRIBER_CREATED, sub);
 	        }
 	    }
 	}

@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -82,15 +84,6 @@ const char *Subscriber::statusName() const {
 #undef CASE
 }
 
-//BearerContext *Subscriber::findBearerContext(unsigned char id) {
-//	for (unsigned i = 0; i < conns.size(); i++) {
-//		BearerContext *bearerCtxt = conns[i]->findBearerContext(id);
-//		if (bearerCtxt != NULL)
-//			return bearerCtxt;
-//	}
-//	return NULL;
-//}
-
 void Subscriber::initEntities(unsigned char appType) {
 	ESMEntity *esm = new ESMEntity(appType);
 	EMMEntity *emm = new EMMEntity(appType);
@@ -106,26 +99,3 @@ unsigned Subscriber::popSeqNr() {
 	return seqNr;
 }
 
-//PDNConnection *Subscriber::findPDNConnection(std::string apn)
-//{
-//	PDNConnections::iterator i = conns.find(apn);
-//    ASSERT(i == conns.end() || i->first == i->second->getAPN());
-//    return (i == conns.end()) ? NULL : i->second;
-//}
-//
-//void Subscriber::addPDNConnection(PDNConnection *conn)
-//{
-//    ASSERT(conns.find(conn->getAPN()) == conns.end());
-//    conns[conn->getAPN()] = conn;
-//
-//    //printSocketMap();
-//}
-//
-//PDNConnection *Subscriber::removePDNConnection(PDNConnection *conn)
-//{
-//	PDNConnections::iterator i = conns.find(conn->getAPN());
-//    if (i != conns.end())
-//    	conns.erase(i);
-////    printConnectionMap();
-//    return conn;
-//}

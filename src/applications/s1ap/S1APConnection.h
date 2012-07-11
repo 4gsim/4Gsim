@@ -49,27 +49,28 @@ class S1AP;
  * in the specification and it helps setting up a connection between the
  * entities.
  *
- *      +-------------------+
-        | S1AP_DISCONNECTED |
-        +-------------------+
-                 ^        |
-                 |        |
- S1APRcvSetupFailure |        | SCTPEstablished
- /InvalidResponse    |        |
-                 |        |
-                     |        v
-           +--------------+
-           | S1AP_PENDING |
-           +--------------+
-             |        |
-             |        |
-             |        |  S1APRcvSetupFailure
-             |        |  /CorrectResponse
-             |        |
-             |        v
-          +----------------+
-          | S1AP_CONNECTED |-------------------+
-          +----------------+
+ *                +-------------------+
+ *                | S1AP_DISCONNECTED |-----------+
+ *                +-------------------+           |
+ *                     ^        |                 |
+ *                     |        |                 |
+ * S1APRcvSetupFailure |        | SCTPEstablished |
+ * /InvalidResponse    |        |                 |
+ *                     |        |                 |
+ *                     |        v                 |
+ *                  +--------------+              | S1APRcvSetupRequest
+ *                  | S1AP_PENDING |              | /CorrectRequest
+ *                  +--------------+              |
+ *                             |                  |
+ *                             |                  |
+ *        S1APRcvSetupResponse |                  |
+ *        /CorrectResponse     |                  |
+ *                             |                  |
+ *                             |                  |
+ *                             v                  |
+ *                 +----------------+             |
+ *                 | S1AP_CONNECTED |<------------+
+ *                 +----------------+
  */
 class S1APConnection : public SCTPSocket::CallbackInterface {
 private:
@@ -98,49 +99,119 @@ private:
 	void socketFailure(int32 connId, void *yourPtr, int32 code);
 	void socketStatusArrived(int32 connId, void *yourPtr, SCTPStatusInfo *status) { delete status; }
 
+	/*
+	 * Methods for sending and processing S1AP connection setup messages.
+	 * These methods will be used internally between two S1AP connections.
+	 */
 	void sendS1SetupRequest();
 	ProtocolIeField *processS1SetupRequest(OpenType *val);
 	void sendS1SetupResponse();
 	ProtocolIeField *processS1SetupResponse(OpenType *val);
 	void sendS1SetupFailure(ProtocolIeField *cause);
 
-	const char *stateName(int state);
-	const char *eventName(int event);
-
 public:
 	S1APConnection(S1AP *module);
 	virtual ~S1APConnection();
 
-	void processMessage(cMessage *msg);
-	void setSocket(SCTPSocket *socket) { this->socket = socket; }
-	void setAddresses(AddressVector addresses) { this->addresses = addresses; }
-	void setPort(int port) { this->port = port; }
-
-	int getConnectionId() { return socket->getConnectionId(); }
-	int getState() { return fsm->getState(); }
-	void connect() { socket->connectx(addresses, port); }
-
+	/*
+	 * Method for sending S1AP messages. It creates and sends a SCTPSimpleMessage
+	 * after encoding S1APPdu according to rules described in the ASN.1
+	 * implementation and S1AP messages description.
+	 */
 	void send(S1APPdu *msg);
 
-	void setPlmnId(char *plmnId) { this->plmnId = plmnId; }
-	void setCellId(char *cellId) { this->cellId = cellId; }
-	void setSupportedTas(std::vector<SupportedTaItem> suppTas) { this->suppTas = suppTas; }
-	void setServedGummeis(std::vector<ServedGummeiItem> servGummeis) { this->servGummeis =servGummeis; }
-	char *getCellId() { return cellId; }
-	char *getPlmnId() { return plmnId; }
-	std::vector<SupportedTaItem> getSupportedTas() { return suppTas; }
+    /*
+     * Methods for sending and processing S1AP messages that are not
+     * related to S1AP connection management.
+     */
+    void sendInitialUeMessage(Subscriber *sub, NasPdu *nasPdu);
+    ProtocolIeField *processInitialUeMessage(OpenType *val);
+    void sendInitialContextSetupRequest(Subscriber *sub, NasPdu *nasPdu);
+    ProtocolIeField *processInitialContextSetupRequest(OpenType *va);
+    void sendInitialContextSetupResponse(Subscriber *sub);
+    ProtocolIeField *processInitialContextSetupResponse(OpenType *val);
+    void sendDownlinkNasTransport(Subscriber *sub, NasPdu *pdu);
+    ProtocolIeField *processDownlinkNasTransport(OpenType *val);
+    void sendUplinkNasTransport(Subscriber *sub, NasPdu *nasPdu);
+    ProtocolIeField *processUplinkNasTransport(OpenType *val);
+
+	/*
+	 * Utility methods for state processing and printing.
+	 */
+    const char *stateName(int state);
+    const char *eventName(int event);
 	void performStateTransition(S1APConnectionEvent &event, OpenType *val = NULL);
 
-	void sendInitialUeMessage(Subscriber *sub, NasPdu *nasPdu);
-	ProtocolIeField *processInitialUeMessage(OpenType *val);
-	void sendInitialContextSetupRequest(Subscriber *sub, NasPdu *nasPdu);
-	ProtocolIeField *processInitialContextSetupRequest(OpenType *va);
-	void sendInitialContextSetupResponse(Subscriber *sub);
-	ProtocolIeField *processInitialContextSetupResponse(OpenType *val);
-	void sendDownlinkNasTransport(Subscriber *sub, NasPdu *pdu);
-	ProtocolIeField *processDownlinkNasTransport(OpenType *val);
-	void sendUplinkNasTransport(Subscriber *sub, NasPdu *nasPdu);
-	ProtocolIeField *processUplinkNasTransport(OpenType *val);
+	/*
+	 * Setter methods.
+	 */
+    void setPlmnId(char *plmnId) { this->plmnId = plmnId; }
+    void setCellId(char *cellId) { this->cellId = cellId; }
+    void setSupportedTas(std::vector<SupportedTaItem> suppTas) { this->suppTas = suppTas; }
+    void setServedGummeis(std::vector<ServedGummeiItem> servGummeis) { this->servGummeis =servGummeis; }
+    void setSocket(SCTPSocket *socket) { this->socket = socket; }
+    void setAddresses(AddressVector addresses) { this->addresses = addresses; }
+    void setPort(int port) { this->port = port; }
+
+    /*
+     * Getter methods.
+     */
+    int getConnectionId() { return socket->getConnectionId(); }
+    int getState() { return fsm->getState(); }
+    char *getCellId() { return cellId; }
+    char *getPlmnId() { return plmnId; }
+    std::vector<SupportedTaItem> getSupportedTas() { return suppTas; }
+
+    /*
+     * Wrapper methods.
+     */
+    void connect() { socket->connectx(addresses, port); }
+    void processMessage(cMessage *msg) { socket->processMessage(PK(msg)); }
+
+};
+
+/*
+ * Class for S1AP connection table. This table will hold all the connections
+ * owned by the S1AP protocol model implementation.
+ */
+class S1APConnectionTable {
+private:
+    typedef std::vector<S1APConnection*> S1APConnections;
+    S1APConnections conns;
+public:
+    S1APConnectionTable();
+    virtual ~S1APConnectionTable();
+
+    /*
+     * Method for finding a S1AP connection for a given connection id.
+     * The method returns the connection, if it is found, or NULL otherwise.
+     */
+    S1APConnection *findConnectionForId(int connId);
+
+    /*
+     * Method for finding a S1AP connection for a given cell id.
+     * The method returns the connection, if it is found, or NULL otherwise.
+     */
+    S1APConnection *findConnectionForCellId(char *cellId);
+
+    /*
+     * Method for finding a S1AP connection for a given state.
+     * The method returns the connection, if it is found, or NULL otherwise.
+     */
+    S1APConnection *findConnectionForState(int state);
+
+    /*
+     * Method for deleting a S1AP connection. The method calls first
+     * the destructor for the connection and removes it afterwards.
+     */
+    void erase(unsigned start, unsigned end);
+
+    /*
+     * Wrapper methods.
+     */
+    unsigned int size() {return conns.size();}
+    void push_back(S1APConnection *conn) { conns.push_back(conn); }
+    S1APConnection *at(unsigned i) { return conns.at(i); }
 
 };
 

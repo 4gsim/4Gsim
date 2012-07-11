@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -22,6 +24,12 @@
 #define MMECODE_CODED_SIZE	2
 #define GROUPID_CODED_SIZE	4
 
+/*
+ * Utility class for storing information about SupportedTa's. Each item will
+ * be read, during the initialization phase of the module, from the configuration
+ * file and will be stored in a vector in the module class. This information
+ * is used mainly during the establishment of S1AP connections.
+ */
 class SupportedTaItem {
 public:
 	char *tac;
@@ -33,6 +41,12 @@ public:
 	SupportedTaItem& operator=(const SupportedTaItem& other);
 };
 
+/*
+ * Utility class for storing information about ServedGummei's. Each item will
+ * be read, during the initialization phase of the module, from the configuration
+ * file and will be stored in a vector in the module class. This information
+ * is used mainly during the establishment of S1AP connections.
+ */
 class ServedGummeiItem {
 public:
 	std::vector<char*> servPlmns;

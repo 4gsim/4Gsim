@@ -156,7 +156,7 @@ public:
  	void processTimer(cMessage *timer);
 
  	/*
- 	 * Utility methods for state processing.
+ 	 * Utility methods for state processing and printing.
  	 */
  	void performStateTransition(PeerEvent &event, DiameterMessage *msg);
  	void stateEntered();

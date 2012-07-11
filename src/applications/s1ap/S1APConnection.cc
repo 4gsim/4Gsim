@@ -38,10 +38,6 @@ S1APConnection::~S1APConnection() {
 		delete socket;
 }
 
-void S1APConnection::processMessage(cMessage *msg) {
-	socket->processMessage(PK(msg));
-}
-
 void S1APConnection::socketEstablished(int32 connId, void *yourPtr, uint64 buffer) {
 	if (module->getType() == CONNECTOR) {
 		S1APConnectionEvent event = SCTPEstablished;
@@ -177,6 +173,7 @@ void S1APConnection::performStateTransition(S1APConnectionEvent &event, OpenType
 				}
 				default:
 					EV << "S1AP: Received unexpected event\n";
+					break;
 			}
 			break;
 		case S1AP_PENDING:
@@ -199,10 +196,12 @@ void S1APConnection::performStateTransition(S1APConnectionEvent &event, OpenType
 					break;
 				default:
 					EV << "S1AP: Received unexpected event\n";
+					break;
 			}
 			break;
 		default:
 			EV << "S1AP: Unknown state\n";
+			break;
 	}
 
     if (oldState != fsm->getState())
@@ -696,57 +695,6 @@ ProtocolIeField *S1APConnection::processUplinkNasTransport(OpenType *val) {
 	return NULL;
 }
 
-//std::string S1APConnection::info() const {
-//
-//    std::stringstream out;
-//
-//	out << "conn nr.: " << socket->getConnectionId() << endl;
-//	if (plmnId != NULL)
-//		out << "plmnId: " << LTEUtils().toASCIIString(plmnId, PLMNID_CODED_SIZE) << endl;
-//	if (cellId != NULL)
-//		out << "cellId: " << LTEUtils().toASCIIString(cellId, CELLID_CODED_SIZE) << endl;
-//	if (suppTas.size() > 0) {
-//		out << "suppTas: {\n";
-//		for (unsigned j = 0; j < suppTas.size(); j++) {
-//			out << "\tsuppTa nr. " << j << ": {\n";
-//			out << "\t\ttac: " << LTEUtils().toASCIIString((suppTas.at(j))->tac, TAC_CODED_SIZE) << endl;
-//			out << "\t\tbPlmns: {\n";
-//			std::vector<char*>bplmns = (suppTas.at(j))->bplmns;
-//			for (unsigned k = 0; k < bplmns.size(); k++) {
-//				out << "\t\t\tbPlmn nr. " << k << ": " << LTEUtils().toASCIIString(bplmns.at(k), PLMNID_CODED_SIZE) << endl;
-//			}
-//			out << "\t\t}\n\t}\n";
-//		}
-//		out << "}\n";
-//	}
-//	if (servGummeis.size() > 0) {
-//		out << "servGummeis: {\n";
-//		for (unsigned j = 0; j < servGummeis.size(); j++) {
-//			out << "\tservGummei nr. " << j << ": {\n";
-//			out << "\t\tservPlmns: {\n";
-//			std::vector<char*>servPlmns = (servGummeis.at(j))->servPlmns;
-//			for (unsigned k = 0; k < servPlmns.size(); k++) {
-//				out << "\t\t\tservPlmn nr. " << k << ": " << LTEUtils().toASCIIString(servPlmns.at(k), PLMNID_CODED_SIZE) << endl;
-//			}
-//			out << "\t\t}\n";
-//			out << "\t\tservGrIds: {\n";
-//			std::vector<char*>servGrIds = (servGummeis.at(j))->servGrIds;
-//			for (unsigned k = 0; k < servGrIds.size(); k++) {
-//				out << "\t\t\tservGrId nr. " << k << ": " << LTEUtils().toASCIIString(servGrIds.at(k), 2) << endl;
-//			}
-//			out << "\t\t}\n";
-//			out << "\t\tservMmecs: {\n";
-//			std::vector<char*>servMmecs = (servGummeis.at(j))->servMmecs;
-//			for (unsigned k = 0; k < servMmecs.size(); k++) {
-//				out << "\t\t\tservMmec nr. " << k << ": " << LTEUtils().toASCIIString(servMmecs.at(k), 1) << endl;
-//			}
-//			out << "\t\t}\n\t}\n";
-//		}
-//		out << "}\n";
-//	}
-//	return out.str();
-//}
-
 const char *S1APConnection::stateName(int state) {
 #define CASE(x) case x: s=#x; break
     const char *s = "unknown";
@@ -770,4 +718,52 @@ const char *S1APConnection::eventName(int event) {
     }
     return s;
 #undef CASE
+}
+
+S1APConnectionTable::S1APConnectionTable() {
+    // TODO Auto-generated constructor stub
+
+}
+
+S1APConnectionTable::~S1APConnectionTable() {
+    // TODO Auto-generated destructor stub
+    erase(0, conns.size());
+}
+
+S1APConnection *S1APConnectionTable::findConnectionForId(int connId) {
+    for (unsigned i = 0; i < conns.size(); i++) {
+        S1APConnection *conn = conns[i];
+        if (conn->getConnectionId() == connId)
+            return conn;
+    }
+    return NULL;
+}
+
+S1APConnection *S1APConnectionTable::findConnectionForCellId(char *cellId) {
+    if (cellId == NULL)
+        return NULL;
+    for (unsigned i = 0; i < conns.size(); i++) {
+        S1APConnection *conn = conns[i];
+        if (!strncmp(conn->getCellId(), cellId, CELLID_CODED_SIZE))
+            return conn;
+    }
+    return NULL;
+}
+
+S1APConnection *S1APConnectionTable::findConnectionForState(int state) {
+    for (unsigned i = 0; i < conns.size(); i++) {
+        S1APConnection *conn = conns[i];
+        if (conn->getState() == state)
+            return conn;
+    }
+    return NULL;
+}
+
+void S1APConnectionTable::erase(unsigned start, unsigned end) {
+    S1APConnections::iterator first = conns.begin() + start;
+    S1APConnections::iterator last = conns.begin() + end;
+    S1APConnections::iterator i = first;
+    for (;i != last; ++i)
+        delete *i;
+    conns.erase(first, last);
 }

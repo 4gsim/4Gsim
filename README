@@ -14,7 +14,7 @@ Directors for 4Gsim:
    util/			general utility classes
      asn/			utility classes for ASN.1 encoding/decoding
      headerserializers/		serialize/parse methods for LTE protocols
-     4g/			utility classes for 4G
+     subscriber/			utility classes for subscriber
      
  
 

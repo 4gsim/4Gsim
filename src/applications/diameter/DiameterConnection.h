@@ -115,7 +115,7 @@ public:
     /*
      * Method for finding a Diameter connection with a specific message based
      * on the association id specified in the control info. The method
-     * returns the session if it is found, or NULL otherwise.
+     * returns the connection if it is found, or NULL otherwise.
      */
     DiameterConnection *findConnection(cMessage *msg);
 

@@ -96,9 +96,8 @@ public:
     DiameterSession *findSession(std::string id);
 
     /*
-     * Method for deleting Diameter sessions. The method calls first
-     * the destructor for each session between start and end position
-     * and removes them afterwards.
+     * Method for deleting S1AP connections. The method calls first the destructor
+     * for each connection between start and end position and removes them afterwards.
      */
     void erase(unsigned start, unsigned end);
 
