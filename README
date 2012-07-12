@@ -7,14 +7,18 @@ simulation system and developed over INET framework.
 Directors for 4Gsim:
 
  src/
-   applications/    		application protocols
-     diameter/          	diameter base protocol
-     diameters6a/	     	diameter application for s6a interface
-     s1ap/   		        s1ap protocol
-   util/			general utility classes
-     asn/			utility classes for ASN.1 encoding/decoding
-     headerserializers/		serialize/parse methods for LTE protocols
-     subscriber/			utility classes for subscriber
+   applications/            application protocols
+     diameter/              diameter base protocol
+     diameters6a/           diameter application for s6a interface
+     s1ap/                  s1ap protocol
+   networklayer/            L3 (network layer) protocols
+     gtp/                   gtp protocol main
+       path/                gtp path table
+       tunnel/              gtp tunnel table
+   util/                    general utility classes
+     asn/                   utility classes for ASN.1 encoding/decoding
+     headerserializers/     serialize/parse methods for INET and 4G protocols
+     subscriber/            Classes for subscriber, PDN connection and Bearer context
      
  
 
@@ -86,7 +90,7 @@ Bottom-up:
      mf80211/            MF's 802.11b ad-hoc mode model (modified)
      ext/                External interface
 
-   network/              L3 (network layer) protocols
+   networklayer/         L3 (network layer) protocols
      contract/           API to common L3 functionality
      autorouting/        autoconfiguration of static routes
      arp/                ARP protocol

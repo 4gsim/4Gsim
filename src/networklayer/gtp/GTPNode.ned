@@ -1,23 +1,29 @@
 //
 // Copyright (C) 2012 Calin Cerchez
 //
-// This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Lesser General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
+// This program is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public License
+// as published by the Free Software Foundation; either version 2
+// of the License, or (at your option) any later version.
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with this program.  If not, see http://www.gnu.org/licenses/.
-// 
+// along with this program; if not, see <http://www.gnu.org/licenses/>.
+//
 
-package inet.applications.s1ap;
 
+package inet.networklayer.gtp;
+
+import inet.networklayer.gtp.GTPUser;
+import inet.util.subscriber.SubscriberTable;
 import inet.applications.pingapp.PingApp;
+import inet.applications.sctpapp.SCTPApp;
+import inet.applications.tcpapp.TCPApp;
+import inet.applications.udpapp.UDPApp;
 import inet.base.NotificationBoard;
 import inet.linklayer.ethernet.EthernetInterface;
 import inet.linklayer.ext.ExtInterface;
@@ -25,25 +31,32 @@ import inet.linklayer.ppp.PPPInterface;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.transport.sctp.SCTP;
+import inet.transport.tcp.ITCP;
+import inet.transport.udp.UDP;
 import inet.util.NAMTraceWriter;
 import inet.util.TCPDump;
 import inet.nodes.inet.NetworkLayer;
+import inet.networklayer.gtp.GTPControl;
+import inet.networklayer.gtp.path.GTPPathTable;
+import inet.networklayer.gtp.tunnel.TunnelEndpointTable;
 
-
-module S1APNode
+//
+// 
+//
+module GTPNode
 {
     parameters:
         @node();
         @labels(node,ethernet-node);
-        @display("i=device/pc2");
-        int numSctpApps = default(0);
-        string sctpAppType = default("n/a");
-        string tcpType = default("TCP");  // tcp implementation (e.g. TCP, TCP_old, TCP_NSC)
-        string configFile;
+        @display("i=device/pc2;bgb=573,427");
+        int numUdpApps = 2;
+        string udpAppType = default("n/a");
+        string gtpType = default("n/a");
         bool IPForward = default(false);
         int namid = default(-1);
         string routingFile = default("");
         int numExtInterfaces = default(0);
+        string configFile;
         string dumpFile = default("");
     gates:
         inout pppg[] @labels(PPPFrame-conn);
@@ -69,36 +82,37 @@ module S1APNode
                 routingFile = routingFile;
                 @display("p=57,214");
         }
-        sctp: SCTP {
-            @display("p=450,104;i=block/wheelbarrow");
+        udp: UDP {
+            parameters:
+                @display("p=336,141");
         }
         pingApp: PingApp {
             parameters:
-                @display("p=450,193");
+                @display("p=501,230");
         }
         networkLayer: NetworkLayer {
             parameters:
                 proxyARP = false;
-                @display("p=285,193;q=queue");
+                @display("p=336,230;q=queue");
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
                 ifOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:
-                @display("p=135,353,row,90;q=txQueue");
+                @display("p=186,390,row,90;q=txQueue");
         }
         eth[sizeof(ethg)]: EthernetInterface {
             parameters:
-                @display("p=285,353,row,90;q=txQueue");
+                @display("p=336,390,row,90;q=txQueue");
         }
         ext[numExtInterfaces]: ExtInterface {
             parameters:
-                @display("p=450,353,row,90;q=txQueue;i=block/ifcard");
+                @display("p=501,390,row,90;q=txQueue;i=block/ifcard");
         }
         tcpdump: TCPDump {
             parameters:
-                @display("p=285,265;i=abstract/cache_s");
+                @display("p=336,302;i=abstract/cache_s");
                 dumpFile = dumpFile;
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
@@ -107,17 +121,33 @@ module S1APNode
                 out2[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
         }
 
-        s1ap: S1AP {
-            parameters:
-                configFile = configFile;
-                @display("p=450,34");
+        gtpc: GTPControl {
+            @display("p=414,67");
+            configFile = configFile;
+        }
+        subscriberTable: SubscriberTable {
+            @display("p=59,368");
+            configFile = configFile;
+        }
+        gtpu: GTPUser {
+            @display("p=277,70");
+            configFile = configFile;
+        }
+        tunnelEndpointTable: TunnelEndpointTable {
+            @display("p=155,253");
+        }
+        pathTable: GTPPathTable {
+            @display("p=155,173");
         }
     connections allowunconnected:
-        sctp.to_appl++ --> s1ap.sctpIn;
-        s1ap.sctpOut --> sctp.from_appl++;
+        gtpc.udpOut --> udp.appIn++;
+        gtpc.udpIn <-- udp.appOut++;
 
-        sctp.to_ip --> networkLayer.sctpIn;
-        networkLayer.sctpOut --> sctp.from_ip;
+        gtpu.udpOut --> udp.appIn++;
+        gtpu.udpIn <-- udp.appOut++;
+
+        udp.ipOut --> networkLayer.udpIn;
+        udp.ipIn <-- networkLayer.udpOut;
 
         networkLayer.pingOut --> pingApp.pingIn;
         networkLayer.pingIn <-- pingApp.pingOut;

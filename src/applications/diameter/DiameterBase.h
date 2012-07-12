@@ -27,19 +27,19 @@
 #include "RoutingTableAccess.h"
 
 /*
- * Module for Diameter base protocol. This section describes the internal
- * architecture of the Diameter model.
+ * Module for Diameter base protocol. This section describes the internal architecture
+ * of the Diameter model.
  *
- * The Diameter base protocol implementation is composed of several classes (discussion
- * follows below):
+ * The Diameter base protocol implementation is composed of several classes
+ * (discussion follows below):
  *   - DiameterBase: the module class
  *   - DiameterConnection: manages a connection between two peers
  *   - DiameterPeer: manages a Diameter peer
  *   - DiameterSession: manages a session between end to end peers
  *   - DiameterApplication: manages a Diameter application
  *
- * Diameter base class holds the server socket from which each Diameter connection is forked.
- * Also it manages the connection table, peer table and session table.
+ * Diameter base class holds the server socket from which each Diameter connection
+ * is forked. Also it manages the connection table, peer table and session table.
  *
  * Diameter base protocol model is implemented according to RFC 3588.
  */

@@ -42,9 +42,9 @@ enum SessionEvent {
 };
 
 /*
- * Class for Diameter session. The class implements the session state
- * machine and processes Diameter application messages which are not
- * meant for Diameter base protocol.
+ * Class for Diameter session. The class implements the session state machine and
+ * processes Diameter application messages which are not meant for Diameter base
+ * protocol.
  */
 class DiameterSession : public cPolymorphic {
 private:
@@ -55,8 +55,8 @@ private:
 	DiameterBase *module;
 
 	/*
-	 * Methods for sending and processing Diameter messages. Message handling
-	 * will not be done directly, it will be done during a state transition.
+	 * Methods for sending and processing Diameter messages. Message handling will
+	 * not be done directly, it will be done during a state transition.
 	 */
 	void sendDiameterMessage(unsigned applId, DiameterPeer *peer, DiameterMessage *req);
 	void processDiameterMessage(unsigned applId, DiameterPeer *peer, DiameterMessage *msg);
@@ -78,8 +78,8 @@ public:
 };
 
 /*
- * Class for Diameter session table. This table will hold all the sessions
- * owned by the Diameter base protocol model implementation.
+ * Class for Diameter session table. This table will hold all the sessions owned by
+ * the Diameter base protocol model implementation.
  */
 class DiameterSessionTable {
 private:
@@ -90,8 +90,8 @@ public:
     virtual ~DiameterSessionTable();
 
     /*
-     * Method for finding a Diameter session with a specific id. The method
-     * returns the session if it is found, or NULL otherwise.
+     * Method for finding a Diameter session with a specific id. The method returns
+     * the session if it is found, or NULL otherwise.
      */
     DiameterSession *findSession(std::string id);
 

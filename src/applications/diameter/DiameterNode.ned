@@ -68,35 +68,35 @@ module DiameterNode
                 @display("p=57,214");
         }
         sctp: SCTP {
-            @display("p=379,124;i=block/wheelbarrow");
+            @display("p=320,105;i=block/wheelbarrow");
         }
         pingApp: PingApp {
             parameters:
-                @display("p=379,213");
+                @display("p=320,179");
         }
         networkLayer: NetworkLayer {
             parameters:
                 proxyARP = false;
-                @display("p=214,213;q=queue");
+                @display("p=206,179;q=queue");
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
                 ifOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:
-                @display("p=64,373,row,90;q=txQueue");
+                @display("p=64,352,row,90;q=txQueue");
         }
         eth[sizeof(ethg)]: EthernetInterface {
             parameters:
-                @display("p=214,373,row,90;q=txQueue");
+                @display("p=206,352,row,90;q=txQueue");
         }
         ext[numExtInterfaces]: ExtInterface {
             parameters:
-                @display("p=379,373,row,90;q=txQueue;i=block/ifcard");
+                @display("p=320,352,row,90;q=txQueue;i=block/ifcard");
         }
         dctdump: DCTDump {
             parameters:
-                @display("p=214,285;i=abstract/cache_s");
+                @display("p=206,264;i=abstract/cache_s");
                 dumpFile = dumpFile;
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
@@ -107,7 +107,7 @@ module DiameterNode
         diameter: <diameterAppType> like DiameterBase {
             parameters:
                 configFile = configFile;
-                @display("p=379,54");
+                @display("p=206,40");
         }
     connections allowunconnected:
         sctp.to_appl++ --> diameter.sctpIn;

@@ -36,7 +36,8 @@ private:
 	unsigned getMessageLength(DiameterMessage *msg);
 
 	/*
-	 * Methods for serializing and parsing of Diameter header.
+	 * Methods for serializing and parsing of Diameter header. They return the
+	 * serialized or parsed Diameter header length.
 	 */
 	unsigned serializeHeader(DiameterHeader hdr, unsigned len, char *p);
 	unsigned parseHeader(DiameterHeader *hdr, char *p);
@@ -45,7 +46,8 @@ public:
 	virtual ~DiameterSerializer();
 
 	/*
-	 * Methods for serializing and parsing of Diameter AVP.
+	 * Methods for serializing and parsing of Diameter AVP. They return the
+	 * serialized or parsed AVP length (header + payload).
 	 */
 	unsigned serializeAVP(AVP *avp, char *p);
 	unsigned parseAVP(AVP *avp, char *p);

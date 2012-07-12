@@ -22,8 +22,8 @@
 #include "DiameterMessage_m.h"
 
 /*
- * Class for Diameter message. This class inherits the message
- * base class from .msg file and adds the vector with the AVPs.
+ * Class for Diameter message. This class inherits the message base class from
+ * .msg file and adds the vector with the AVPs.
  */
 class DiameterMessage : public DiameterMessage_Base {
 protected:
@@ -66,8 +66,8 @@ public:
 	void print();
 
 	/*
-	 * Method for finding a AVP with a given AVP code within the vector.
-	 * It returns NULL if the AVP is not found.
+	 * Method for finding a AVP with a given AVP code within the vector. It returns
+	 * NULL, if the AVP is not found.
 	 */
 	AVPPtr findAvp(unsigned avpCode);
 };

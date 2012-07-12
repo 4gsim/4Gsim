@@ -1,6 +1,4 @@
 //
-// Copyright (C) 2012 Calin Cerchez
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -15,25 +13,22 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef DIAMETERAPPLICATION_H_
-#define DIAMETERAPPLICATION_H_
+#ifndef GTPUSER_H_
+#define GTPUSER_H_
 
-#define TGPP	10415
-#define S6a		16777251
+#include "GTP.h"
 
-/*
- * Class for holding info about Diameter application. At the moment it only holds
- * application id and vendor id for S6a application. Maybe it should be moved in
- * peer class...
- */
-class DiameterApplication {
+class GTPUser : public GTP {
+protected:
+
 public:
-	unsigned applId;
-	unsigned vendorId;
-public:
-	DiameterApplication(unsigned applId, unsigned vendorId);
-	virtual ~DiameterApplication();
+	GTPUser();
+	virtual ~GTPUser();
 
+	virtual void initialize(int stage);
+
+	/* notification board */
+	virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 };
 
-#endif /* DIAMETERAPPLICATION_H_ */
+#endif /* GTPUSER_H_ */

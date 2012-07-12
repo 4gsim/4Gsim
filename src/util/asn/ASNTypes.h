@@ -96,16 +96,6 @@ public:
 	virtual int64_t compare(const AbstractType& other) const = 0;
 };
 
-//class AbstractTypeList : public AbstractType {
-//private:
-//	std::vector<AbstractType *>items;
-//public:
-//	AbstractTypeList(const void *info) : AbstractType(info) {}
-//	virtual ~AbstractTypeList() {}
-//
-//	static const Info theInfo;
-//};
-
 /*
  * Base class for all constrained ASN.1 types.
  */
@@ -152,7 +142,6 @@ public:
 
 	/* Operator methods. */
 	OpenType &operator=(const OpenType& other);
-//	OpenType &operator=(const AbstractType &other);
 
 	/* Setter methods. */
 	void setValue(char *value) { this->value = value; }
@@ -362,7 +351,6 @@ public:
 
 	/* Operator methods. */
 	OctetStringBase& operator=(const OctetStringBase& other);
-//	bool operator==(const OctetStringBase& other) const { return compare(other) == 0; }
 
 	/* Getter methods. */
 	int64_t getLength() const { return length; }
@@ -398,19 +386,6 @@ const typename OctetString<type, lowerBound, upperBound>::Info OctetString<type,
     lowerBound,
     upperBound
 };
-
-//class AbstractString : public ConstrainedType {
-//protected:
-//	std::string val;
-//public:
-//	AbstractString(const void *info) : ConstrainedType(info) {}
-//	AbstractString(std::string val, const void *info) : ConstrainedType(info) { this->val = val; }
-//	AbstractString(const AbstractString &other) : ConstrainedType(other) { this->val = other.val; }
-//	virtual ~AbstractString() {}
-//
-//	AbstractString *clone() const { return new AbstractString(*this); }
-//	static AbstractType *create(const void *info) { return new AbstractString(info); }
-//};
 
 /*
  * Class for ASN.1 Printablestring type.
@@ -507,8 +482,6 @@ public:
 
 	/* Setter methods. */
 	void setOptFlag(int64_t index, bool bit);
-
-//	bool operator==(const Sequence& other) const { return compare(other); }
 
 	/* Utility methods. */
 	virtual AbstractType *clone() const { return new Sequence(*this); }

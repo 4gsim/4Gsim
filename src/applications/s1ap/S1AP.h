@@ -21,7 +21,7 @@
 #include <omnetpp.h>
 #include "SCTPSocket.h"
 #include "S1APUtils.h"
-#include "S1APConnectionTable.h"
+#include "S1APConnection.h"
 #include "SubscriberTableAccess.h"
 #include "IRoutingTable.h"
 #include "NotificationBoard.h"
@@ -178,7 +178,7 @@ public:
     void sendMessageUp(Subscriber *sub, NasPdu *nasPdu);
 
 	/*
-	 * Notification methods
+	 * Notification methods.
 	 */
 	virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 	void fireChangeNotification(int category, const cPolymorphic *details) { nb->fireChangeNotification(category, details); }

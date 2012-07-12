@@ -73,12 +73,12 @@ enum PeerEvent {
 };
 
 /*
- * Class for Diameter peer. A Diameter peer can have a initiating
- * or a responding Diameter connection which is basically just the
- * SCTP socket. It can have both for a limited period of time during
- * the election process. All the message processing (base protocol
- * messages and application messages) is done during the state machine
- * changes, described in the specification. For more info contact RFC 3588.
+ * Class for Diameter peer. A Diameter peer can have a initiating or a responding
+ * Diameter connection which is basically just the SCTP socket. It can have both for
+ * a limited period of time during the election process. All the message processing
+ * (base protocol messages and application messages) is done during the state machine
+ * changes, described in the specification.
+ * For more info contact RFC 3588.
  */
 class DiameterPeer : public cPolymorphic {
 private:
@@ -94,9 +94,9 @@ private:
     cMessage *teTimer;  // connection expire timer
 
     /*
-     * Methods for base protocol message processing. CER and CEA are
-     * for connection setup, DWR and DWA are the watchdog messages,
-     * DPR and DPA are termination messages.
+     * Methods for base protocol message processing. CER and CEA are for connection
+     * setup, DWR and DWA are the watchdog messages, DPR and DPA are termination
+     * messages.
      */
     void sendCER(DiameterConnection *conn);
     unsigned processCER(DiameterMessage *msg);
@@ -164,16 +164,16 @@ public:
     const char *eventName(int event);
 
     /*
-     * Methods for processing the application messages. The application
-     * messages are forwarded and received from the appropriate session.
+     * Methods for processing the application messages. The application messages
+     * are forwarded and received from the appropriate session.
      */
  	void sendApplMessage(DiameterConnection *conn, DiameterMessage *msg);
  	void processApplMessage(DiameterConnection *conn, DiameterMessage *msg);
 };
 
 /*
- * Class for Diameter peer table. This table will hold all the peers
- * owned by the Diameter base protocol model implementation.
+ * Class for Diameter peer table. This table will hold all the peers owned by the
+ * Diameter base protocol model implementation.
  */
 class DiameterPeerTable {
 private:
@@ -184,16 +184,20 @@ public:
     virtual ~DiameterPeerTable();
 
     /*
-     * Methods for find a Diameter peer. The method returns the
-     * peer if it is found, or NULL otherwise.
+     * Method for finding a Diameter peer for a given fqdn and realm string. The
+     * method returns the peer, if it is found, or NULL otherwise.
      */
     DiameterPeer *findPeer(std::string dFQDN, std::string dRealm = "");
+
+    /*
+     * Method for finding a Diameter peer for a given application id. The method
+     * returns the peer, if it is found, or NULL otherwise.
+     */
     DiameterPeer *findPeer(unsigned applId);
 
     /*
-     * Method for deleting Diameter peer. The method calls first
-     * the destructor for each peer between start and end position
-     * and removes them afterwards.
+     * Method for deleting a Diameter peer. The method calls first the destructor
+     * for each peer between start and end position and removes them afterwards.
      */
     void erase(unsigned start, unsigned end);
 

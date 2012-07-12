@@ -25,7 +25,8 @@
 #define IPV4_ADDRESS_SIZE	4
 
 /*
- * Diameter utility class. It is used for creating and processing Diameter header and AVPs.
+ * Diameter utility class. It is used for creating and processing Diameter header
+ * and AVPs.
  */
 class DiameterUtils {
 public:
@@ -45,7 +46,8 @@ public:
 	AVP *createGroupedAVP(unsigned avpCode, bool vendFlag, bool manFlag, bool privFlag, unsigned vendorId, std::vector<AVP*> avps);
 
 	/*
-	 * Methods for Diameter header and AVP processing.
+	 * Methods for Diameter header and AVP processing. They return the payload taken
+	 * from the AVP (unsigned, integer, char etc values).
 	 */
 	unsigned processUnsigned32AVP(AVP *unsigned32AVP);
 	int processInteger32AVP(AVP *integer32AVP);

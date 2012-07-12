@@ -30,8 +30,8 @@ class DiameterPeer;
 class DiameterBase;
 
 /*
- * Class for Diameter connection. The class is basically just a SCTP socket,
- * that sends and receives messages for a Diameter peer (owner).
+ * Class for Diameter connection. The class is basically just a SCTP socket, that
+ * sends and receives messages for a Diameter peer (owner).
  */
 class DiameterConnection : public SCTPSocket::CallbackInterface {
 private:
@@ -45,8 +45,8 @@ private:
 	int port;
 
 	/*
-	 * Callback methods for SCTP socket. Message handling is done in the
-	 * data arrived method.
+	 * Callback methods for SCTP socket. Message handling is done in the data
+	 * arrived method.
 	 */
 	void socketEstablished(int32 connId, void *yourPtr, uint64 buffer);
 	void socketDataArrived(int32 connId, void *yourPtr, cPacket *msg, bool urgent);
@@ -76,7 +76,8 @@ public:
     void setPort(int port) { this->port = port; }
 
     /*
-     * Method for processing the origin of each message.
+     * Method for processing the origin of each message. It returns a Diameter result
+     * code, resulted from the origin processing.
      */
 	unsigned processOrigin(DiameterPeer *&peer, DiameterMessage *msg);
 
@@ -88,9 +89,8 @@ public:
     void connect();
 
     /*
-     * Method for sending Diameter messages. It will be used for all messages
-     * coming from the peer and it will add information regarding source
-     * identification.
+     * Method for sending Diameter messages. It will be used for all messages coming
+     * from the peer and it will add information regarding source identification.
      */
 	void send(DiameterMessage *msg, unsigned fqdnPos, unsigned realmPos);
 
@@ -101,8 +101,8 @@ public:
 };
 
 /*
- * Class for Diameter connection map. This class will hold all the
- * connection for the Diameter base protocol model.
+ * Class for Diameter connection map. This class will hold all the connection for
+ * the Diameter base protocol model.
  */
 class DiameterConnectionMap {
 private:
@@ -113,9 +113,9 @@ public:
     virtual ~DiameterConnectionMap();
 
     /*
-     * Method for finding a Diameter connection with a specific message based
-     * on the association id specified in the control info. The method
-     * returns the connection if it is found, or NULL otherwise.
+     * Method for finding a Diameter connection with a specific message based on the
+     * association id specified in the control info. The method returns the connection
+     * if it is found, or NULL otherwise.
      */
     DiameterConnection *findConnection(cMessage *msg);
 
@@ -125,8 +125,8 @@ public:
     void insert(DiameterConnection *conn);
 
     /*
-     * Method for deleting a Diameter connection. The method calls first
-     * the destructor for the connection and removes it afterwards.
+     * Method for deleting a Diameter connection. The method calls first the
+     * destructor for the connection and removes it afterwards.
      */
     void erase(DiameterConnection *conn);
 

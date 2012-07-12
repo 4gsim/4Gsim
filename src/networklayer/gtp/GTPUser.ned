@@ -15,25 +15,16 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef DIAMETERAPPLICATION_H_
-#define DIAMETERAPPLICATION_H_
+package inet.networklayer.gtp;
 
-#define TGPP	10415
-#define S6a		16777251
-
-/*
- * Class for holding info about Diameter application. At the moment it only holds
- * application id and vendor id for S6a application. Maybe it should be moved in
- * peer class...
- */
-class DiameterApplication {
-public:
-	unsigned applId;
-	unsigned vendorId;
-public:
-	DiameterApplication(unsigned applId, unsigned vendorId);
-	virtual ~DiameterApplication();
-
-};
-
-#endif /* DIAMETERAPPLICATION_H_ */
+simple GTPUser
+{
+    parameters:
+        @display("i=block/tunnel");
+        string configFile;
+    gates:
+        input udpIn;
+        output udpOut;
+        input radioIN;
+        output radioOUT;
+}
