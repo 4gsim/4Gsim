@@ -1,6 +1,4 @@
 //
-// Copyright (C) 2012 Calin Cerchez
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -13,36 +11,30 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-// test
+// 
 
-#ifndef GTPCONTROL_H_
-#define GTPCONTROL_H_
+#ifndef NASSERIALIZER_H_
+#define NASSERIALIZER_H_
 
-#include "SubscriberTable.h"
-#include "GatewayTable.h"
-#include "GTP.h"
+#include "NASMessage_m.h"
 
-/*
- * Class for GTP control protocol. This class inherits GTP generic module and adds
- * GTP control functionality.
- */
-class GTPControl : public GTP {
-protected:
-	GatewayTable *gT;
+class NASSerializer {
+private:
+	unsigned char shift;
+	unsigned serializeHeader(NASHeader hdr, char *p);
+
+	unsigned serializeIE(NASInfoElem ie, char *p);
+
+	unsigned calcLength(NASPlainMessage *msg);
 public:
-	SubscriberTable *subT;
+	unsigned short skip;
+	NASSerializer();
+	virtual ~NASSerializer();
 
-	GTPControl();
-	virtual ~GTPControl();
-
-	/* module */
-	virtual void initialize(int stage);
-	void processMessage(GTPMessage *msg, GTPPath *path);
-
-    /*
-     * Notification methods.
-     */
-	virtual void receiveChangeNotification(int category, const cPolymorphic *details);
+	unsigned serialize(NASPlainMessage *msg, char *&buffer);
+	NASHeader parseHeader(char *p);
+	NASInfoElem parseIE(char *p, unsigned char format, unsigned char ieType, unsigned short length = 0);
+//	NASPlainMessage *parse(char *buffer, unsigned len);
 };
 
-#endif /* GTPCONTROL_H_ */
+#endif /* NASSERIALIZER_H_ */

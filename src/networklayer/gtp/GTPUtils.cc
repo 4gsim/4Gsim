@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -104,7 +106,6 @@ GTPInfoElem *GTPUtils::createCauseIE(unsigned short length,
 	ie->setType(GTPV2_Cause);
 	ie->setInstance(instance);
 	ie->setValueArraySize(length);
-//	for (unsigned i = 0; i < length; i++) ie->setValue(i, value[i]);
 	ie->setValue(0, cause);
 	ie->setValue(1, ((pce << 2) & 0x04)  | ((bce << 1) & 0x02) | (cs & 0x01));
 	if (length == GTPV2_CAUSE_IE_MAX_SIZE) {
@@ -155,41 +156,12 @@ GTPInfoElem *GTPUtils::createFteidIE(unsigned char instance, unsigned teid, char
 	return GTPUtils().createIE(GTPV2_F_TEID, len, instance, val);
 }
 
-//GTPInfoElem *GTPUtils::createFteidIE(unsigned char instance, TunnelEndpoint *te) {
-//	GTPPath *path = te->getPath();
-//	unsigned len = path->getLocalAddr().isIPv6() ? 21 : 9;
-//	char *val = (char*)calloc(len, sizeof(char));
-//	char *p = val;
-//
-//	*((char*)p) = (te->getPath()->getLocalAddr().isIPv6() ? 0x40 : 0x80) + path->getType();
-//	p += 1;
-//	*((unsigned*)p) = ntohl(te->getLocalId());
-//	p += 4;
-//	if (path->getLocalAddr().isIPv6()) {	// not supported
-//	} else {
-//		*((unsigned*)p) = ntohl(path->getLocalAddr().get4().getInt());
-//		p += 4;
-//	}
-//	return GTPUtils().createIE(GTPV2_F_TEID, len, instance, val);
-//}
-
 char *GTPUtils::processIE(GTPInfoElem *ie) {
 	char *val = (char*)calloc(ie->getValueArraySize(), sizeof(char));
 	for (unsigned i = 0; i < ie->getValueArraySize(); i++)
 		val[i] = ie->getValue(i);
 	return val;
 }
-
-//int GTPUtils::findIE(unsigned char type, unsigned char instance, GTPMessage *msg) {
-//	if (msg->getHeader()->getVersion() == 2) {
-//		for (unsigned i = 0; i < msg->getIesArraySize(); i++) {
-//			GTPInfoElem *ie = dynamic_cast<GTPInfoElem*>(msg->getIes(i));
-//			if ((ie->getType() == type) && (ie->getInstance() == instance))
-//				return i;
-//		}
-//	}
-//	return -1;
-//}
 
 IPvXAddress GTPUtils::processAddrIE(GTPInfoElem *addr) {
 	char *val = (char*)calloc(addr->getValueArraySize(), sizeof(char));
@@ -247,7 +219,8 @@ unsigned GTPUtils::getGTPv1InfoElemLen(unsigned char type) {
 	switch(type) {
 		case GTPV1_Recovery: return 1;
 		case GTPV1_TEIDData1: return 4;
-		default:;
+		default:
+		    break;
 	}
 	return 0;
 }
@@ -266,32 +239,3 @@ std::vector<GTPInfoElem*> GTPUtils::processGroupedIE(GTPInfoElem *ie) {
 	}
 	return group;
 }
-
-//void GTPUtils::printGTPMessage(GTPMessage *msg) {
-//	EV << "===================================================\n";
-//	EV << "Version: " << (unsigned)msg->getHeader()->getVersion() << endl;
-//	EV << "Flags:\n";
-//	if (msg->getHeader()->getVersion() == GTP_V1) {
-//		GTPv1Header *hdr = dynamic_cast<GTPv1Header*>(msg->getHeader());
-//		EV << "\tProt. Type Flag: " << hdr->getPt() << endl;
-//		EV << "\tExt. Flag: " << hdr->getE() << endl;
-//		EV << "\tSeq. Nr. Flag: " << hdr->getS() << endl;
-//		EV << "\tNPDU Flag: " << hdr->getPn() << endl;
-//		EV << "Message Type: " << (unsigned)hdr->getType() << endl;
-//		EV << "TEID: " << hdr->getTeid() << endl;
-//		if (hdr->getE() || hdr->getE() || hdr->getS()) {
-//			EV << "Seq. Nr.: " << hdr->getSeqNr() << endl;
-//			EV << "NPDU Nr.: " << (unsigned)hdr->getNpduNr() << endl;
-//			EV << "Next Ext. Hdr. Type: " << (unsigned)hdr->getExtNextType() << endl;
-//		}
-//	} else if (msg->getHeader()->getVersion() == GTP_V2) {
-//		GTPv2Header *hdr = dynamic_cast<GTPv2Header*>(msg->getHeader());
-//		EV << "\tPiggyback. Flag: " << hdr->getP() << endl;
-//		EV << "\tTEID Flag: " << hdr->getT() << endl;
-//		EV << "Message Type: " << (unsigned)hdr->getType() << endl;
-//		if (hdr->getT())
-//			EV << "TEID: " << hdr->getTeid() << endl;
-//		EV << "Seq. Nr.: " << hdr->getSeqNr() << endl;
-//	}
-//	EV << "===================================================\n";
-//}

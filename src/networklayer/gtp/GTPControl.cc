@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -32,12 +34,10 @@ GTPControl::~GTPControl() {
 }
 
 void GTPControl::initialize(int stage) {
-
 	GTP::initialize(stage);
 	nb->subscribe(this, NF_SUB_NEEDS_PDN);
 	nb->subscribe(this, NF_SUB_MODIF_TUNN);
 	subT = SubscriberTableAccess().get();
-
 }
 
 void GTPControl::processMessage(GTPMessage *msg, GTPPath *path) {
@@ -61,7 +61,6 @@ void GTPControl::processMessage(GTPMessage *msg, GTPPath *path) {
 }
 
 void GTPControl::receiveChangeNotification(int category, const cPolymorphic *details) {
-
 	Enter_Method_Silent();
 	if (category == NF_SUB_NEEDS_PDN) {
 		EV << "GTPControl: Received NF_SUB_NEEDS_PDN notification. Processing notification.\n";
@@ -89,8 +88,6 @@ void GTPControl::receiveChangeNotification(int category, const cPolymorphic *det
 				sub->setGTPProcedure(EUTRANInitAttachReq);
 			te->sendCreateSessionRequest();
 		}
-//		for (unsigned i = 0; i < sub->conns.size(); i++)
-//			te->sendCreateSessionRequest(sub->conns.at(i));
 	} else if (category == NF_SUB_MODIF_TUNN) {
 		EV << "GTPControl: Received NF_MODIF_TUNN notification. Processing notification.\n";
 		BearerContext *bearer = check_and_cast<BearerContext*>(details);
@@ -99,6 +96,5 @@ void GTPControl::receiveChangeNotification(int category, const cPolymorphic *det
 		if (sub->getEmmEntity()->getState() != EMM_REGISTERED_N) {
 			s11Tunn->sendModifyBearerRequest();
 		}
-
 	}
 }

@@ -13,36 +13,19 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-// test
+// 
 
-#ifndef GTPCONTROL_H_
-#define GTPCONTROL_H_
+package inet.applications.nas;
 
-#include "SubscriberTable.h"
-#include "GatewayTable.h"
-#include "GTP.h"
-
-/*
- * Class for GTP control protocol. This class inherits GTP generic module and adds
- * GTP control functionality.
- */
-class GTPControl : public GTP {
-protected:
-	GatewayTable *gT;
-public:
-	SubscriberTable *subT;
-
-	GTPControl();
-	virtual ~GTPControl();
-
-	/* module */
-	virtual void initialize(int stage);
-	void processMessage(GTPMessage *msg, GTPPath *path);
-
-    /*
-     * Notification methods.
-     */
-	virtual void receiveChangeNotification(int category, const cPolymorphic *details);
-};
-
-#endif /* GTPCONTROL_H_ */
+simple NAS
+{
+    parameters:
+        @display("i=block/control");
+        string configFile = default("");
+        int channelNumber = default(0);
+	gates:
+        input radioIn;
+        output radioOut;
+        input s1apIn;
+        output s1apOut;
+}
