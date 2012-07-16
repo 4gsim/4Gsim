@@ -80,6 +80,14 @@ enum EPSUpdateStatus {
 
 /*
  * Class for NAS EMM entity.
+ * NAS EMM entity handles user equipment mobility for NAS protocol. Because of
+ * that its owner is a subscriber object, but it is also related to NAS module.
+ * For NAS mobility, EMM entity implements the state machine described in the
+ * specification, together with the necessary timers.
+ * All mobility related NAS messages are created and processed by such an
+ * EMM entity.
+ * EMM entity has to be also linked to ESM entity, because the specification
+ * describes certain interworking such as message piggybacking.
  */
 class EMMEntity : public cPolymorphic {
 private:
@@ -175,4 +183,4 @@ public:
 	std::string info(int tabs) const;
 };
 
-#endif /* EMMCONTEXT_H_ */
+#endif /* EMMENTITY_H_ */

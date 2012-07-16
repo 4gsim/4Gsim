@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -152,7 +154,8 @@ void NAS::handleMessageFromS1AP(cMessage *msg) {
 				sub->getEmmEntity()->processAttachComplete(nmsg);
 				break;
 			}
-			default:;
+			default:
+			    break;
 		}
 	}
 	end:
@@ -184,7 +187,6 @@ void NAS::handleMessageFromRadio(cMessage *msg) {
 			delete nmsg;
 			return;
 		}
-//		NASUtils().printMessage(nmsg);
 		switch(nmsg->getHdr().getMsgType()) {
 			case AttachAccept: {
 				EMMEntity *emm = sub->getEmmEntity();
@@ -199,8 +201,6 @@ void NAS::handleMessageFromRadio(cMessage *msg) {
 					IPRoute *route=new IPRoute();
 					route->setInterface(entry);
 					rt->addRoute(route);
-
-//					nb->fireChangeNotification(NF_INTERFACE_CONFIG_CHANGED, route);
 				}
 				break;
 			}
@@ -211,6 +211,7 @@ void NAS::handleMessageFromRadio(cMessage *msg) {
 			}
 			default:
 				delete nmsg;
+				break;
 		}
 	}
 	delete ctrl;
@@ -234,7 +235,8 @@ void NAS::sendToS1AP(NASPlainMessage *nmsg, unsigned subEnbId, unsigned subMmeId
 		case AttachComplete:
 			ctrl->setProcId(id_uplinkNASTransport);
 			break;
-		default:;
+		default:
+		    break;
 	}
 	char *nasPdu;
 	unsigned nasPduLen = NASSerializer().serialize(nmsg, nasPdu);

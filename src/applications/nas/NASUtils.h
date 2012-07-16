@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -18,29 +20,34 @@
 
 #include "NASMessage_m.h"
 
+/*
+ * NAS utility class. It is used for creating and processing NAS header
+ * and IEs.
+ */
 class NASUtils {
 public:
 	NASUtils();
 	virtual ~NASUtils();
 
+    /*
+     * Methods for NAS header and IE creation.
+     */
 	NASHeader createHeader(unsigned char epsBearerId, unsigned char secHdrType, unsigned char protDiscr, unsigned char procTransId, unsigned char msgType);
 	NASInfoElem createIE(unsigned char format, unsigned char ieType, unsigned char type, char value);
 	NASInfoElem createIE(unsigned char format, unsigned char ieType, unsigned char type, unsigned short length, const char *value);
 	NASInfoElem createEPSMobileIdIE(unsigned char format, unsigned char typeOfId, char *id);
 
-//	NASInfoElem createIE(); // for parsing usage
-
+    /*
+     * Methods for NAS header and IE processing. They return the payload taken
+     * from the IE (unsigned, integer, char etc.).
+     */
 	char *processIE(NASInfoElem ie);
 	unsigned processEPSMobileIdIE(NASInfoElem ie, char *&id);
 
-	bool parseAttachRequest(NASPlainMessage *msg, char *buf);
-	bool parseAttachAccept(NASPlainMessage *msg, char *buf);
-	bool parseAttachReject(NASPlainMessage *msg, char *buf);
-	bool parseAttachComplete(NASPlainMessage *msg, char *buf);
-	void parsePDNConnectivityRequest(NASPlainMessage *msg, char *buf);
-	void parseActDefBearerRequest(NASPlainMessage *msg, char *buf);
-	void parseActDefBearerAccept(NASPlainMessage *msg, char *buf) {}
-
+    /*
+     * Method for printing the message contents. Currently it prints info
+     * only for the header.
+     */
 	void printMessage(NASPlainMessage *msg);
 };
 

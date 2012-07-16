@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -28,7 +30,7 @@ NASSerializer::~NASSerializer() {
 	// TODO Auto-generated destructor stub
 }
 
-unsigned NASSerializer::calcLength(NASPlainMessage *msg) {
+unsigned NASSerializer::getMessageLength(NASPlainMessage *msg) {
 	unsigned len = msg->getHdr().getMsgType() & 0x80 ? NAS_ESM_HEADER_SIZE : NAS_EMM_HEADER_SIZE;
 	for (unsigned i = 0; i < msg->getIesArraySize(); i++) {
 		NASInfoElem ie = msg->getIes(i);
@@ -59,7 +61,8 @@ unsigned NASSerializer::calcLength(NASPlainMessage *msg) {
 				if (ie.getFormat() == IE_TLVE)
 					len++;
 				break;
-			default:;
+			default:
+			    break;
 		}
 	}
 	return len;
@@ -128,7 +131,8 @@ unsigned NASSerializer::serializeIE(NASInfoElem ie, char *p) {
 			for (unsigned i = 0; i < ie.getValueArraySize(); i++)
 				*((char*)(p++)) = ie.getValue(i);
 			break;
-		default:;
+		default:
+		    break;
 	}
 	return p - begin;
 }
@@ -175,7 +179,8 @@ NASInfoElem NASSerializer::parseIE(char *p, unsigned char format, unsigned char 
 			for (unsigned i = 0; i < ie.getValueArraySize(); i++)
 				ie.setValue(i, *((char*)(p++)));
 			break;
-		default:;
+		default:
+		    break;
 	}
 	skip = p - begin;
 	return ie;
@@ -208,40 +213,192 @@ unsigned NASSerializer::serialize(NASPlainMessage *msg, char *&buffer) {
 	return len;
 }
 
-//NASPlainMessage *NASSerializer::parse(char *buffer, unsigned len) {
-//	NASPlainMessage *msg = new NASPlainMessage();
-//	char *p = buffer;
-//	NASHeader hdr = parseHeader(p);
-//	if (!hdr.getLength())
-//		return NULL;
-//	p += hdr.getLength();
-//	msg->setHdr(hdr);
-//	switch(hdr.getMsgType()) {
-//		case AttachRequest:
-//			msg->setIesArraySize(5);
-//			msg->setName("Attach-Request");
-//			/* NAS key set identifier */
-//			msg->setIes(0, NASUtils().createIE(IE_V, IEType1));
+bool NASSerializer::parseAttachRequest(NASPlainMessage *msg, char *buf) {
+    char *p = buf;
+    msg->setIesArraySize(5);
+    NASSerializer parser = NASSerializer();
+
+    /* NAS key set identifier */
+    msg->setIes(0, parser.parseIE(p, IE_V, IEType1));
+    p += parser.skip;
+
+    /* EPS attach type */
+    msg->setIes(1, parser.parseIE(p, IE_V, IEType1));
+    p += parser.skip;
+
+    /* EPS mobile identity */
+    msg->setIes(2, parser.parseIE(p, IE_LV, IEType4));
+    p += parser.skip;
+
+    /* UE network capability */
+    msg->setIes(3, parser.parseIE(p, IE_LV, IEType4));
+    p += parser.skip;
+
+    /* ESM message container */
+    msg->setIes(4, parser.parseIE(p, IE_LVE, IEType6));
+    p += parser.skip;
+
+    buf = NASUtils().processIE(msg->getIes(4));
+    p = buf;
+    NASPlainMessage *smsg = new NASPlainMessage();
+    NASHeader hdr = NASSerializer().parseHeader(p);
+    if (!hdr.getLength()) {
+        EV << "NAS: Message decoding error. Dropping message.\n";
+        return false;
+    }
+    p += hdr.getLength();
+    smsg->setHdr(hdr);
+
+    if (smsg->getHdr().getMsgType() == PDNConnectivityRequest) {
+        smsg->setName("PDN-Connectivity-Request");
+        NASUtils().parsePDNConnectivityRequest(smsg, p);
+        msg->encapsulate(smsg);
+    } else {
+        delete smsg;
+    }
+    return true;
+}
+
+void NASSerializer::parsePDNConnectivityRequest(NASPlainMessage *msg, char *buf) {
+    char *p = buf;
+    msg->setIesArraySize(2);
+    NASSerializer parser = NASSerializer();
+
+    /* PDN type */
+    msg->setIes(0, parser.parseIE(p, IE_V, IEType1));
+    p += parser.skip;
+
+    /* Request type */
+    msg->setIes(1, parser.parseIE(p, IE_V, IEType1));
+    p += parser.skip;
+}
+
+bool NASSerializer::parseAttachAccept(NASPlainMessage *msg, char *buf) {
+    char *p = buf;
+    msg->setIesArraySize(5);
+    NASSerializer parser = NASSerializer();
+
+    /* EPS attach result */
+    msg->setIes(0, parser.parseIE(p, IE_V, IEType1));
+    p += parser.skip;
+
+    /* Spare half octet */
+    msg->setIes(1, parser.parseIE(p, IE_V, IEType1));
+    p += parser.skip;
+
+    /* T3412 value */
+    msg->setIes(2, parser.parseIE(p, IE_V, IEType3, 1));
+    p += parser.skip;
+
+    /* TAI list */
+    msg->setIes(3, parser.parseIE(p, IE_LV, IEType4));
+    p += parser.skip;
+
+    /* ESM message container */
+    msg->setIes(4, parser.parseIE(p, IE_LVE, IEType6));
+    p += parser.skip;
+
+    buf = NASUtils().processIE(msg->getIes(4));
+    p = buf;
+    NASPlainMessage *smsg = new NASPlainMessage();
+    NASHeader hdr = NASSerializer().parseHeader(p);
+    if (!hdr.getLength()) {
+        EV << "NAS: Message decoding error. Dropping message.\n";
+        return false;
+    }
+    p += hdr.getLength();
+    smsg->setHdr(hdr);
+
+    if (smsg->getHdr().getMsgType() == ActDefEPSBearerCtxtReq) {
+        smsg->setName("Activate-Default-Bearer-Request");
+        NASUtils().parseActDefBearerRequest(smsg, p);
+        msg->encapsulate(smsg);
+    } else {
+        delete smsg;
+    }
+
+    return true;
+}
+
+void NASSerializer::parseActDefBearerRequest(NASPlainMessage *msg, char *buf) {
+    char *p = buf;
+    msg->setIesArraySize(3);
+    NASSerializer parser = NASSerializer();
+
+    /* EPS QoS */
+    msg->setIes(0, parser.parseIE(p, IE_LV, IEType4));
+    p += parser.skip;
+
+    /* APN */
+    msg->setIes(1, parser.parseIE(p, IE_LV, IEType4));
+    p += parser.skip;
+
+    /* PDN address */
+    msg->setIes(2, parser.parseIE(p, IE_LV, IEType4));
+}
+
+bool NASSerializer::parseAttachReject(NASPlainMessage *msg, char *buf) {
+    char *p = buf;
+    msg->setIesArraySize(1);
+    NASSerializer parser = NASSerializer();
+
+    /* T3412 value */
+    msg->setIes(0, parser.parseIE(p, IE_V, IEType3, 1));
+    p += parser.skip;
+
+    /* ESM message container */
+//  msg->setIes(0, parser.parseIE(p, IE_LVE, IEType6));
+//  p += parser.skip;
 //
-//			/* EPS attach type */
-//			msg->setIes(1, NASUtils().createIE(IE_V, IEType1));
+//  buf = NASUtils().processIE(msg->getIes(0));
+//  p = buf;
+//  NASPlainMessage *smsg = new NASPlainMessage();
+//  NASHeader hdr = NASSerializer().parseHeader(p);
+//  if (!hdr.getLength()) {
+//      EV << "NAS: Message decoding error. Dropping message.\n";
+//      return false;
+//  }
+//  p += hdr.getLength();
+//  smsg->setHdr(hdr);
 //
-//			/* EPS mobile identity */
-//			msg->setIes(2, NASUtils().createIE(IE_LV, IEType4));
-//
-//			/* UE network capability */
-//			msg->setIes(3, NASUtils().createIE(IE_LV, IEType4));
-//
-//			/* ESM message container */
-//			msg->setIes(4, NASUtils().createIE(IE_LVE, IEType6));
-//			break;
-//		case PDNConnectivityRequest:
-//			break;
-//		default:;
-//	}
-//	for (unsigned i = 0; i < msg->getIesArraySize(); i++) {
-//		NASInfoElem ie = msg->getIes(i);
-//		p += parseIE(&ie, p);
-//	}
-//	return msg;
-//}
+//  if (smsg->getHdr().getMsgType() == ActDefEPSBearerCtxtAcc) {
+//      smsg->setName("Activate-Default-Bearer-Request");
+//      NASUtils().parseActDefBearerAccept(smsg, p);
+//      msg->encapsulate(smsg);
+//  } else {
+//      delete smsg;
+//  }
+
+    return true;
+}
+
+bool NASSerializer::parseAttachComplete(NASPlainMessage *msg, char *buf) {
+    char *p = buf;
+    msg->setIesArraySize(1);
+    NASSerializer parser = NASSerializer();
+
+    /* ESM message container */
+    msg->setIes(0, parser.parseIE(p, IE_LVE, IEType6));
+    p += parser.skip;
+
+    buf = NASUtils().processIE(msg->getIes(0));
+    p = buf;
+    NASPlainMessage *smsg = new NASPlainMessage();
+    NASHeader hdr = NASSerializer().parseHeader(p);
+    if (!hdr.getLength()) {
+        EV << "NAS: Message decoding error. Dropping message.\n";
+        return false;
+    }
+    p += hdr.getLength();
+    smsg->setHdr(hdr);
+
+    if (smsg->getHdr().getMsgType() == ActDefEPSBearerCtxtAcc) {
+        smsg->setName("Activate-Default-Bearer-Request");
+        NASUtils().parseActDefBearerAccept(smsg, p);
+        msg->encapsulate(smsg);
+    } else {
+        delete smsg;
+    }
+
+    return true;
+}
