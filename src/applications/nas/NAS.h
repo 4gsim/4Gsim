@@ -1,4 +1,6 @@
 //
+// Copyright (C) 2012 Calin Cerchez
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -23,51 +25,75 @@
 #include "IInterfaceTable.h"
 #include "RoutingTable.h"
 
-//#include "S1APConnectionTableAccess.h"
-//#include "NASRelayTable.h"
-
 #define UE_APPL_TYPE		0
 #define MME_APPL_TYPE		1
 #define RELAY_APPL_TYPE		2
 #define SEND_RETRY_TIMER	2
 
+/*
+ * Module class that implements NAS protocol.
+ */
 class NAS : public cSimpleModule, public INotifiable {
 private:
-	NotificationBoard *nb;	// only for MME
 	unsigned char appType;
+
 	int channelNumber;
+
 	SubscriberTable *subT;
 	IInterfaceTable *ift;
 	IRoutingTable *rt;
+    NotificationBoard *nb;  // only for MME
+
+    /*
+     * Notification methods.
+     */
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
+
+    void loadConfigFromXML(const char *filename);
+    void loadEMMConfigFromXML(const cXMLElement &nasNode);
+    void loadESMConfigFromXML(const cXMLElement &nasNode);
 public:
 	NAS();
 	virtual ~NAS();
 
-	/* module */
-	virtual int numInitStages() const  { return 5; }
+    /*
+     * Method for initializing the module. During initialization
+     * the XML configuration file will be read, and the module
+     * will try to gain access to needed table and boards.
+     */
 	virtual void initialize(int stage);
-	void loadConfigFromXML(const char *filename);
-	void loadEMMConfigFromXML(const cXMLElement &nasNode);
-	void loadESMConfigFromXML(const cXMLElement &nasNode);
+
+    /*
+     * Method for message handling. This is just a decision method,
+     * the actual message processing is done in handleMessageFromS1AP
+     * and handleMessageFromS1AP according to the source of the message
+     * and the application type.
+     */
 	virtual void handleMessage(cMessage *msg);
 
-	/* getter */
+	/*
+	 * Getter methods.
+	 */
 	int getChannelNumber() { return channelNumber; }
 
-	/* message */
+
 	void handleMessageFromS1AP(cMessage *msg);
 	void handleMessageFromRadio(cMessage *msg);
+
+
 	void sendToS1AP(NASPlainMessage *nmsg, unsigned subEnbId, unsigned subMmeId);
 	void sendToRadio(NASPlainMessage *nmsg, int channelNr);
 
-	/* notification */
-	virtual void receiveChangeNotification(int category, const cPolymorphic *details);
-
-	/* timers */
+	/*
+	 * Wrapper methods.
+	 */
 	void dropTimer(cMessage *timer) { drop(timer); }
 	void takeTimer(cMessage *timer) { take(timer); }
 
-//	S1APConnection *findConnection() { return s1apT->findConnection(); }
+	/*
+	 * Utility methods.
+	 */
+	virtual int numInitStages() const  { return 5; }
 
 };
 
