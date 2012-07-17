@@ -11,6 +11,7 @@ Directors for 4Gsim:
      diameter/              diameter base protocol
      diameters6a/           diameter application for s6a interface
      s1ap/                  s1ap protocol
+     nas/                   nas protocol
    networklayer/            L3 (network layer) protocols
      gtp/                   gtp protocol main
        path/                gtp path table
