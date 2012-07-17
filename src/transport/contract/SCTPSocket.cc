@@ -224,7 +224,7 @@ void SCTPSocket::connectx(AddressVector remoteAddressList, int32 remotePort, uin
         sockstate = CONNECTING;
 }
 
-void SCTPSocket::send(cPacket *msg, bool last, bool primary)
+void SCTPSocket::send(cPacket *msg, bool last, bool primary, int ppid)
 {
     if (oneToOne && sockstate!=CONNECTED && sockstate!=CONNECTING && sockstate!=PEER_CLOSED) {
         opp_error("SCTPSocket::send(): not connected or connecting");
@@ -242,6 +242,7 @@ void SCTPSocket::send(cPacket *msg, bool last, bool primary)
     cmd->setSid(lastStream);
     cmd->setLast(last);
     cmd->setPrimary(primary);
+    cmd->setPpid(ppid);
     msg->setKind(SCTP_C_SEND);
     msg->setControlInfo(cmd);
     sendToSCTP(msg);

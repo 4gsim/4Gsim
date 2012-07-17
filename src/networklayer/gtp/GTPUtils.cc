@@ -15,9 +15,9 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
+#include <platdep/sockets.h>
 #include "GTPUtils.h"
 #include "GTPSerializer.h"
-#include <platdep/sockets.h>
 
 GTPUtils::GTPUtils() {
 	// TODO Auto-generated constructor stub

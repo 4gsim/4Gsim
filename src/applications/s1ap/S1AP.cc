@@ -101,7 +101,7 @@ void S1AP::handleLowerMessage(cMessage *msg) {
 
 void S1AP::handleUpperMessage(cMessage *msg) {
 	S1APControlInfo *ctrl = dynamic_cast<S1APControlInfo*>(msg->getControlInfo());
-	Subscriber *sub = subT->findSubscriberForId(ctrl->getSubEnbId(), ctrl->getSubMmeId());
+	Subscriber *sub = subT->findSubscriberForId(ctrl->getUeEnbId(), ctrl->getUeMmeId());
 
 	if (sub != NULL) {
 		S1APConnection *conn = conns.findConnectionForCellId(sub->getCellId());
@@ -134,8 +134,8 @@ void S1AP::handleUpperMessage(cMessage *msg) {
 void S1AP::sendMessageUp(Subscriber *sub, NasPdu *nasPdu) {
 	cMessage *msg = new cMessage();
 	S1APControlInfo *ctrl = new S1APControlInfo();
-	ctrl->setSubEnbId(sub->getEnbId());
-	ctrl->setSubMmeId(sub->getMmeId());
+	ctrl->setUeEnbId(sub->getEnbId());
+	ctrl->setUeMmeId(sub->getMmeId());
 	ctrl->setValueArraySize(nasPdu->getLength());
 	char *buf = nasPdu->getValue();
 	for (unsigned i = 0; i < nasPdu->getLength(); i++)

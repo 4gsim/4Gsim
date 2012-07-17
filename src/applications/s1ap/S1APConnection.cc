@@ -221,7 +221,7 @@ void S1APConnection::send(S1APPdu *msg) {
 	smsg->setDataArraySize(perEnc.getLength());
 
     for (unsigned i = 0; i < perEnc.getLength(); i++)
-    	smsg->setData(i, perEnc.getValueAt(i));
+    	smsg->setData(i, perEnc.getByteAt(i));
 
     smsg->setDataLen(perEnc.getLength());
     smsg->setByteLength(perEnc.getLength());

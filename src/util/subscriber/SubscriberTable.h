@@ -110,7 +110,7 @@ public:
      */
     unsigned int size() {return subs.size();}
     void push_back(Subscriber *sub) { subs.push_back(sub); }
-    S1APConnection *at(unsigned i) { return subs.at(i); }
+    Subscriber *at(unsigned i) { return subs.at(i); }
 
     /*
      * Utility methods.

@@ -189,7 +189,7 @@ class  INET_API SCTPSocket
     /**
      * Sends data packet.
      */
-    void send(cPacket *msg, bool last=true, bool primary=true);
+    void send(cPacket *msg, bool last=true, bool primary=true, int ppid=0);
 
       void sendNotification(cPacket *msg);
     void sendRequest(cPacket *msg);

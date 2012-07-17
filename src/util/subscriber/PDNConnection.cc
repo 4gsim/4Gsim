@@ -13,11 +13,11 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
+#include <platdep/sockets.h>
 #include "PDNConnection.h"
 #include "Subscriber.h"
 #include "DiameterApplication.h"
 #include <algorithm>
-#include <platdep/sockets.h>
 #include "GTPUtils.h"
 #include "NASUtils.h"
 #include "NASSerializer.h"

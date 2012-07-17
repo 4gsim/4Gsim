@@ -73,11 +73,6 @@ private:
     void sendEchoRequest();
     void processEchoRequest(GTPMessage *msg);
 
-    /*
-     * Utility methods for managing the echo expire timer.
-     */
-    void processEchoTimer();
-    void resetEchoTimer();
 public:
 	GTPPath();
 	GTPPath(GTP *module, IPvXAddress localAddr, IPvXAddress remoteAddr, unsigned char type);
@@ -115,6 +110,12 @@ public:
 	 * other messages like tunnel message are forwarded to a GTP tunnel end point.
 	 */
 	void processMessage(cMessage *msg);
+
+    /*
+     * Utility methods for managing the echo expire timer.
+     */
+    void processEchoTimer();
+    void resetEchoTimer();
 
     /*
      * Method for printing information about a GTP path.

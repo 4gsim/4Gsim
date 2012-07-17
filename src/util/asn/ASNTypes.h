@@ -111,7 +111,7 @@ protected:
     };
 public:
 	ConstrainedType(const void *info) : AbstractType(info) {}
-	virtual ConstrainedType() {}
+	virtual ~ConstrainedType() {}
 
 	/* Getter methods. */
 	char getConstraintType() const { return getInfo()->type; }

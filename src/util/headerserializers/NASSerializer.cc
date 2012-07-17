@@ -15,11 +15,9 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-/* See 3GPP TS 24007 chapter 11.2 */
-
+#include <platdep/sockets.h>
 #include "NASSerializer.h"
 #include "NASUtils.h"
-#include <platdep/sockets.h>
 
 NASSerializer::NASSerializer() {
 	// TODO Auto-generated constructor stub
@@ -190,10 +188,10 @@ unsigned NASSerializer::serialize(NASPlainMessage *msg, char *&buffer) {
 	NASPlainMessage *encMsg = NULL;
 	if (msg->getEncapsulatedPacket() != NULL)
 		encMsg = check_and_cast<NASPlainMessage*>(msg->decapsulate());
-	unsigned len = calcLength(msg);
+	unsigned len = getMessageLength(msg);
 	int encPos = -1;
 	if (encMsg != NULL) {
-		len += calcLength(encMsg) + 2;
+		len += getMessageLength(encMsg) + 2;
 		encPos = msg->getEncapPos();
 	}
 	buffer = (char*)calloc(len, sizeof(char));
@@ -251,7 +249,7 @@ bool NASSerializer::parseAttachRequest(NASPlainMessage *msg, char *buf) {
 
     if (smsg->getHdr().getMsgType() == PDNConnectivityRequest) {
         smsg->setName("PDN-Connectivity-Request");
-        NASUtils().parsePDNConnectivityRequest(smsg, p);
+        parsePDNConnectivityRequest(smsg, p);
         msg->encapsulate(smsg);
     } else {
         delete smsg;
@@ -311,7 +309,7 @@ bool NASSerializer::parseAttachAccept(NASPlainMessage *msg, char *buf) {
 
     if (smsg->getHdr().getMsgType() == ActDefEPSBearerCtxtReq) {
         smsg->setName("Activate-Default-Bearer-Request");
-        NASUtils().parseActDefBearerRequest(smsg, p);
+        parseActDefBearerRequest(smsg, p);
         msg->encapsulate(smsg);
     } else {
         delete smsg;
@@ -394,7 +392,7 @@ bool NASSerializer::parseAttachComplete(NASPlainMessage *msg, char *buf) {
 
     if (smsg->getHdr().getMsgType() == ActDefEPSBearerCtxtAcc) {
         smsg->setName("Activate-Default-Bearer-Request");
-        NASUtils().parseActDefBearerAccept(smsg, p);
+        parseActDefBearerAccept(smsg, p);
         msg->encapsulate(smsg);
     } else {
         delete smsg;

@@ -83,6 +83,18 @@ enum
 
     // - layer 7 (application)
     //...
+
+    // 4Gsim notifications
+    NF_SUB_NEEDS_AUTH,
+    NF_SUB_AUTH_ACK,
+    NF_SUB_AUTH_NACK,
+    NF_SUB_NEEDS_PDN,
+    NF_SUB_PDN_ACK,
+    NF_SUB_PDN_NACK,
+    NF_SUB_NEEDS_TUNN,
+    NF_SUB_TUNN_ACK,
+    NF_SUB_TUNN_NACK,
+    NF_SUB_MODIF_TUNN,
 };
 
 /**

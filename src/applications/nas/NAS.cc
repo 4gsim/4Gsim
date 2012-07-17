@@ -93,7 +93,7 @@ void NAS::handleMessageFromS1AP(cMessage *msg) {
 	char *p = buf;
 	for (unsigned i = 0; i < ctrl->getValueArraySize(); i++)
 		buf[i] = ctrl->getValue(i);
-	Subscriber *sub = subT->findSubscriberForId(ctrl->getSubEnbId(), ctrl->getSubMmeId());
+	Subscriber *sub = subT->findSubscriberForId(ctrl->getUeEnbId(), ctrl->getUeMmeId());
 	if (sub == NULL) {
 		EV << "NAS: Unknown subscriber. Dropping message.\n";
 		goto end;
@@ -110,7 +110,7 @@ void NAS::handleMessageFromS1AP(cMessage *msg) {
 		switch(hdr.getMsgType()) {
 			case AttachRequest: {
 				nmsg->setName("Attach-Request");
-				if (!NASUtils().parseAttachRequest(nmsg, p)) {
+				if (!NASSerializer().parseAttachRequest(nmsg, p)) {
 					EV << "NAS: Message processing error. Dropping message.\n";
 					goto end;
 				}
@@ -127,7 +127,7 @@ void NAS::handleMessageFromS1AP(cMessage *msg) {
 			}
 			case AttachAccept: {
 				nmsg->setName("Attach-Accept");
-				if (!NASUtils().parseAttachAccept(nmsg, p)) {
+				if (!NASSerializer().parseAttachAccept(nmsg, p)) {
 					EV << "NAS: Message parsing error. Dropping message.\n";
 					goto end;
 				}
@@ -137,7 +137,7 @@ void NAS::handleMessageFromS1AP(cMessage *msg) {
 			}
 			case AttachReject: {
 				nmsg->setName("Attach-Reject");
-				if (!NASUtils().parseAttachReject(nmsg, p)) {
+				if (!NASSerializer().parseAttachReject(nmsg, p)) {
 					EV << "NAS: Message parsing error. Dropping message.\n";
 					goto end;
 				}
@@ -147,7 +147,7 @@ void NAS::handleMessageFromS1AP(cMessage *msg) {
 			}
 			case AttachComplete: {
 				nmsg->setName("Attach-Complete");
-				if (!NASUtils().parseAttachComplete(nmsg, p)) {
+				if (!NASSerializer().parseAttachComplete(nmsg, p)) {
 					EV << "NAS: Message parsing error. Dropping message.\n";
 					goto end;
 				}
@@ -220,8 +220,8 @@ void NAS::handleMessageFromRadio(cMessage *msg) {
 void NAS::sendToS1AP(NASPlainMessage *nmsg, unsigned subEnbId, unsigned subMmeId) {
 	cMessage *msg = new cMessage(nmsg->getName());
 	S1APControlInfo *ctrl = new S1APControlInfo();
-	ctrl->setSubEnbId(subEnbId);
-	ctrl->setSubMmeId(subMmeId);
+	ctrl->setUeEnbId(subEnbId);
+	ctrl->setUeMmeId(subMmeId);
 	switch(nmsg->getHdr().getMsgType()) {
 		case AttachRequest:
 			ctrl->setProcId(id_initialUEMessage);

@@ -15,8 +15,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#include "GTPSerializer.h"
 #include <platdep/sockets.h>
+#include "GTPSerializer.h"
 #include "GTPUtils.h"
 
 GTPSerializer::GTPSerializer() {

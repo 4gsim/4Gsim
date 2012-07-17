@@ -31,7 +31,14 @@
 #define SEND_RETRY_TIMER	2
 
 /*
- * Module class that implements NAS protocol.
+ * Module class that implements NAS protocol. NAS protocol can be found in 3 different
+ * network nodes, application type, UE, MME and eNB (only relay for NAS messages).
+ * NAS messages can come from S1AP layer or from radio layer and can be sent likewise
+ * to S1AP layer or radio layer, depending on the application type.
+ * NAS module offers message handling support for subscribers EMM and ESM entities
+ * described in more detail in the class files and in the specification.
+ *
+ * More information about NAS can be found in 3GPP TS 24301
  */
 class NAS : public cSimpleModule, public INotifiable {
 private:
@@ -49,6 +56,13 @@ private:
      */
     virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 
+    /*
+     * Methods for loading the configuration from the XML file
+     * ex.
+     *  <NAS appType="0"
+     *       imsi="578195505601234">     <!-- appType - 0 = UE -->
+     *  </NAS>
+     */
     void loadConfigFromXML(const char *filename);
     void loadEMMConfigFromXML(const cXMLElement &nasNode);
     void loadESMConfigFromXML(const cXMLElement &nasNode);
@@ -57,17 +71,16 @@ public:
 	virtual ~NAS();
 
     /*
-     * Method for initializing the module. During initialization
-     * the XML configuration file will be read, and the module
-     * will try to gain access to needed table and boards.
+     * Method for initializing the module. During initialization the XML
+     * configuration file will be read, and the module will try to gain
+     * access to needed table and boards.
      */
 	virtual void initialize(int stage);
 
     /*
-     * Method for message handling. This is just a decision method,
-     * the actual message processing is done in handleMessageFromS1AP
-     * and handleMessageFromS1AP according to the source of the message
-     * and the application type.
+     * Method for message handling. This is just a decision method, the actual
+     * message processing is done in handleMessageFromS1AP and handleMessageFromS1AP
+     * according to the source of the message and the application type.
      */
 	virtual void handleMessage(cMessage *msg);
 
@@ -76,12 +89,30 @@ public:
 	 */
 	int getChannelNumber() { return channelNumber; }
 
-
+	/*
+	 * Method for handling messages coming from S1AP layer. This method will get
+	 * the subscriber for the message based on S1APControlInfo and process the
+	 * message based on its type, modifying the subscribers parameters.
+	 */
 	void handleMessageFromS1AP(cMessage *msg);
+
+	/*
+	 * Method for handling messages coming from radio layer. If the message comes
+	 * to eNB relay it will be forwarded to the appropriate S1AP connection, else
+	 * it will be processed based on its type.
+	 */
 	void handleMessageFromRadio(cMessage *msg);
 
-
+	/*
+	 * Method for sending messages to S1AP layer. The method adds S1AP specific
+	 * information in S1APControlInfo additional to the NAS message.
+	 */
 	void sendToS1AP(NASPlainMessage *nmsg, unsigned subEnbId, unsigned subMmeId);
+
+    /*
+     * Method for sending messages to radio layer. The method adds radio specific
+     * information in PhyControlInfo additional to the NAS message.
+     */
 	void sendToRadio(NASPlainMessage *nmsg, int channelNr);
 
 	/*

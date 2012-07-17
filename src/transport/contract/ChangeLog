@@ -1,3 +1,9 @@
+2012-07-17  Calin Cerchez
+
+    * changed SCTP socket send method to offer the posibility to set 
+    the PPID of the sent message 
+    (SCTPSocket::send(cPacket *msg, bool last, bool primary, int ppid))
+    	
 2005-07-12  Andras Varga
 
     * TCPSocket.h: listen(bool fork) got split to listen() [forking] and

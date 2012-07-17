@@ -18,8 +18,9 @@ Directors for 4Gsim:
        tunnel/              gtp tunnel table
    util/                    general utility classes
      asn/                   utility classes for ASN.1 encoding/decoding
+     gateway/				classes for 4Gsim gateways
      headerserializers/     serialize/parse methods for INET and 4G protocols
-     subscriber/            Classes for subscriber, PDN connection and Bearer context
+     subscriber/            classes for subscriber, PDN connection and Bearer context
      
  
 

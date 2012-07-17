@@ -15,8 +15,8 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#include "S1APIe.h"
 #include <platdep/sockets.h>
+#include "S1APIe.h"
 #include "S1APPdu.h"
 
 NasPdu::NasPdu(char *val, int64_t len) : OctetStringBase() {
