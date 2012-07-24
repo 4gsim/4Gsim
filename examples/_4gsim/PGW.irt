@@ -1,0 +1,31 @@
+ifconfig:
+
+# ethernet card 0 of host
+name: eth0
+	inet_addr: 192.168.4.2
+	Mask: 255.255.255.0
+	MTU: 1500
+	Metric: 1
+	POINTTOPOINT MULTICAST
+
+# ethernet card 1 of host
+name: eth1
+	inet_addr: 192.168.6.2
+	Mask: 255.255.255.0
+	MTU: 1500
+	Metric: 1
+	POINTTOPOINT MULTICAST
+	
+# ethernet card 2 of host
+name: ext0
+	inet_addr: 10.1.1.1
+	Mask: 255.255.255.0
+	MTU: 1500
+	Metric: 1
+	POINTTOPOINT MULTICAST
+
+ifconfigend.
+
+route:
+0.0.0.0		*		0.0.0.0		G	0	ext0
+routeend.

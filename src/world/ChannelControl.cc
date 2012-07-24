@@ -298,7 +298,7 @@ void ChannelControl::sendToChannel(cSimpleModule *srcRadioMod, HostRef srcHost, 
     for (int i=0; i<n; i++)
     {
         HostRef h = neighbors[i];
-        if (h->channel == channel)
+        if (h->channel == channel || h->channel == 10)
         {
             coreEV << "sending message to host listening on the same channel\n";
             // account for propagation delay, based on distance in meters

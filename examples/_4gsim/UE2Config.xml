@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<UEConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="UE.xsd">
+	<NAS 	appType="0"
+			imsi="5781985505601234">		<!-- appType - 0 = UE -->
+	</NAS>   
+</UEConfig>

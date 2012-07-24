@@ -118,7 +118,7 @@ bool PerEncoder::encodeSmallNumber(int64_t value) {
 
 bool PerEncoder::encodeLength(int64_t length, int64_t lowerBound, int64_t upperBound) {
     if (upperBound > 65535) {
-        if (length) {
+        if (length < 128) {
             encodeValue(length, 1);
         } else if (length < 16384) {
             length += 32768;

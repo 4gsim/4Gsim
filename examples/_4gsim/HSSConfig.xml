@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<HSSConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="HSS.xsd">
+    <DNS>
+    	<Entry FQDN="mme.lte.test" address="192.168.3.2"/>
+    </DNS>
+	<Diameter
+				fqdn="hss.lte.test"
+				realm="lte.test"
+				vendor="0"
+				product="HSSDiameter">	
+		<Listeners port="3868">
+			<Listener address="192.168.3.1"/>
+		</Listeners>
+		<Peers>		
+		</Peers>
+    </Diameter>
+    <Subscribers>
+		<Subscriber
+			imsi="578195505601234"
+			msisdn="491999792001">
+			<PDNConns>
+				<PDNConn def="true" apn="home.test" pdnGwAddr="192.168.4.2" pdnAllocAddr="10.10.10.1"/>
+				<!-- <PDNConn def="false" apn="work.test" pdnGwAddr="192.168.4.2" pdnAllocAddr="10.10.20.1"/> -->			
+			</PDNConns>
+		</Subscriber>
+	</Subscribers> 
+</HSSConfig>

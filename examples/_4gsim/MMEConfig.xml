@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<MMEConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="MME.xsd">
+    <NAS appType="1">		<!-- appType - 1 = MME -->
+	</NAS>
+    <S1AP 	type="0"
+    		name="mme1">		<!-- 0 = listener -->
+    	<Listeners port="30000">
+			<Listener address="192.168.2.2"/>
+		</Listeners>
+		<ServGummeis>
+			<ServGummei>
+				<ServPlmns>
+					<ServPlmn mcc="558" mnc="71"/>
+				</ServPlmns>
+				<ServGroupIds>
+					<ServGroup id="4444"/>
+				</ServGroupIds>
+				<ServMmecs>
+					<ServMme code="55"/>
+				</ServMmecs>
+			</ServGummei>
+		</ServGummeis>
+    </S1AP>
+    <DNS>
+    	<Entry fqdn="hss.lte.test" address="192.168.3.1"/>
+    </DNS>
+	<Diameter
+				fqdn="mme.lte.test"
+				realm="lte.test"
+				vendor="0"
+				product="MMEDiameter">	
+		<Listeners port="3868">
+			<Listener address="192.168.3.2"/>
+		</Listeners>
+		<Peers>
+			<Peer fqdn="hss.lte.test" realm="lte.test" port="3868">
+				<Appl id="16777251" vendor="10415"/>	<!-- 16777251 = S6a, 10415 = 3GPP -->
+			</Peer>
+		</Peers>
+    </Diameter>
+    <Gateways>
+    	<Gateway mcc="558" mnc="71" tac="7712" pathId="0"/>
+    </Gateways>
+    <GTP mcc="558" mnc="71">
+		<Paths>
+			<Path localAddr="192.168.5.2" remoteAddr="192.168.5.1" type="10"/> <!-- 10 = S11 MME GTP-C interface -->
+		</Paths>
+	</GTP>
+</MMEConfig>

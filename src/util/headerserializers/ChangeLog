@@ -1,0 +1,6 @@
+2012-07-24  Calin Cerchez
+
+    * added packet per port serializer to UDP serialzing method (UDPSerializer.cc),
+      for now only GTP serialize is possible and it is called base on the GTP control
+      and user port.
+    
