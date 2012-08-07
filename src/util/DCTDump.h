@@ -19,6 +19,7 @@
 #define DCTDUMP_H_
 
 #include <omnetpp.h>
+#include <assert.h>
 #include "TCPDump.h"
 
 /*

@@ -190,7 +190,7 @@ enum RrcEstablishmentCauseValues {
 
 typedef Enumerated<EXTCONSTRAINED, 4> RrcEstablishmentCause;
 
-typedef  BitString<CONSTRAINED, 256, 256> SecurityKey;
+typedef BitString<CONSTRAINED, 256, 256> SecurityKey;
 
 typedef OctetString<CONSTRAINED, 2, 2> Tac;
 

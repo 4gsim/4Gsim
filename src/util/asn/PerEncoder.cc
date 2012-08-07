@@ -18,10 +18,11 @@
 #include "PerEncoder.h"
 #include <omnetpp.h>
 
-PerEncoder::PerEncoder() {
+PerEncoder::PerEncoder(bool alignment) {
 	usedBits = 8;
 	length = 0;
 	buffer = NULL;
+	alignmentFlag = alignment;
 }
 
 PerEncoder::~PerEncoder() {
@@ -98,10 +99,17 @@ void PerEncoder::print(bool type) {
 
 void PerEncoder::encodeBytes(const char *value, int64_t length) {
     // appends the bytes to the buffer and increases the size of it
-    this->buffer = (char *)realloc(this->buffer, this->length + length);
-    memcpy(this->buffer + this->length, value, length);
-    this->length += length;
-    usedBits = 8;
+	if (alignmentFlag == ALIGNED) {
+		this->buffer = (char *)realloc(this->buffer, this->length + length);
+		memcpy(this->buffer + this->length, value, length);
+		this->length += length;
+		usedBits = 8;
+	} else {
+		for (int64_t i = 0; i < length; i++) {
+			encodeBits(value[i], 8);
+			this->length++;
+		}
+	}
 }
 
 bool PerEncoder::encodeSmallNumber(int64_t value) {
@@ -173,7 +181,6 @@ void PerEncoder::encodeValue(int64_t value, int64_t size) {
         char tmp = (char)(value >> i * 8);
         encodeBytes(&tmp, 1);
     }
-    usedBits = 8;
 }
 
 bool PerEncoder::encodeAbstractType(const AbstractType& abstractType) {

@@ -17,6 +17,7 @@
 
 package inet.nodes._4gsim;
 
+import inet.linklayer.lte.rrc.RRC;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.networklayer.common.InterfaceTable;
 import inet.applications.pingapp.PingApp;
@@ -30,9 +31,9 @@ import inet.mobility.BasicMobility;
 module UE
 {
     parameters:
-        @display("i=device/cellphone;bgb=335,382");
+        @display("i=device/cellphone;bgb=512,472");
         string mobilityType = default("NullMobility");
-        string destAddr = default(""); 
+        string destAddr = default("");
         volatile double interval @unit("s") = default(1s);
         int channelNumber;
         string configFile;
@@ -54,7 +55,7 @@ module UE
             @display("p=55,135");
         }
         nas: NAS {
-            @display("p=266,182");
+            @display("p=342,174");
             configFile = configFile;
             channelNumber = channelNumber;
         }
@@ -70,6 +71,9 @@ module UE
         }
         routingTable: RoutingTable {
             @display("p=266,54");
+        }
+        rrc: RRC {
+            @display("p=403,310");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;

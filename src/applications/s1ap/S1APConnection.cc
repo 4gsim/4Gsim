@@ -215,7 +215,7 @@ void S1APConnection::performStateTransition(S1APConnectionEvent &event, OpenType
 void S1APConnection::send(S1APPdu *msg) {
 	cPacket* cmsg = new cPacket();
 	SCTPSimpleMessage* smsg = new SCTPSimpleMessage();
-	PerEncoder perEnc = PerEncoder();
+	PerEncoder perEnc = PerEncoder(ALIGNED);
 	msg->encode(perEnc);
 
 	smsg->setDataArraySize(perEnc.getLength());

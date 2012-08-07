@@ -27,6 +27,9 @@
 #define BIN		0
 #define HEX		1
 
+#define ALIGNED		0
+#define UNALIGNED	1
+
 /*
  * Class for encoding ASN.1 types. The encoder will produce a buffer according to PER
  * rules. It will start with an empty buffer and add bytes to it according to desired
@@ -37,6 +40,7 @@ private:
     short usedBits;
     int64_t length;
     char *buffer;
+    bool alignmentFlag;
 
     /* Utility methods for encoding */
     bool encodeConstrainedValue(int64_t lowerBound, int64_t upperBound, int64_t value);
@@ -49,7 +53,7 @@ private:
     void encodeValue(int64_t value, int64_t length);
 
 public:
-	PerEncoder();
+	PerEncoder(bool alignment);
 	virtual ~PerEncoder();
 
 	/* Encoding methods */

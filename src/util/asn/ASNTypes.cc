@@ -44,7 +44,7 @@ OpenType::OpenType(char *value, int64_t length, const void *info) : AbstractType
 }
 
 OpenType::OpenType(AbstractType *val, const void *info) : AbstractType(info) {
-	PerEncoder enc = PerEncoder();
+	PerEncoder enc = PerEncoder(ALIGNED);
 	enc.encodeAbstractType(*val);
 	this->length = enc.getLength();
 	this->value = enc.getBuffer();
