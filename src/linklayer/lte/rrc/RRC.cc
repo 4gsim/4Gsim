@@ -16,9 +16,11 @@
 // 
 
 #include "RRC.h"
-#include "RRCPdu.h"
+#include "RRCMessage.h"
 #include "PerEncoder.h"
 #include "LTEUtils.h"
+
+Define_Module(RRC);
 
 RRC::RRC() {
 	// TODO Auto-generated constructor stub
@@ -44,9 +46,12 @@ void RRC::initialize(int stage) {
 	TmsiAndLaiGsmMap *tmsiAndLaiGsmMap = new TmsiAndLaiGsmMap(tmsi, lai);
 	InitialUeIdentity initUeId = InitialUeIdentity();
 	initUeId.setValue(tmsiAndLaiGsmMap, tmsiAndLai);
-	RRCConnectionRequest rrcConnReq = RRCConnectionRequest(initUeId, interRATCellReselection, noError);
+	RRCConnectionRequest *rrcConnReq = new RRCConnectionRequest(initUeId, interRATCellReselection, noError);
+	UlCcchMessageType ulCchMessageType = UlCcchMessageType();
+	ulCchMessageType.setValue(rrcConnReq, rrcConnectionRequest);
+	UlCcchMessage ulCchMessage = UlCcchMessage(ulCchMessageType);
 	PerEncoder perEnc = PerEncoder(UNALIGNED);
-	perEnc.encodeSequence(rrcConnReq);
+	perEnc.encodeSequence(ulCchMessage);
 	LTEUtils().printBytes(perEnc.getBuffer(), perEnc.getLength());
 }
 

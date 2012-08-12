@@ -1,0 +1,54 @@
+InformationElements DEFINITIONS AUTOMATIC TAGS ::=
+
+BEGIN
+
+IMPORTS
+
+	hiPDSCHidentities,
+	hiPUSCHidentities,
+	hiRM,
+	maxAC,
+
+Ansi-41-IDNNS::=BIT STRING(SIZE(14))
+
+Digit ::=							INTEGER (0..9)
+
+CN-DomainIdentity::=ENUMERATED{cs-domain,ps-domain,...}
+
+PagingPermissionWithAccessControlParameters ::= SEQUENCE {
+	pagingResponseRestrictionIndicator			ENUMERATED {all, cS, pS, none},
+	locationRegistrationRestrictionIndicator	ENUMERATED {all, cS, pS},
+	locationRegistration						LocationRegistrationParameter
+}
+
+Gsm-map-IDNNS ::=							SEQUENCE {
+	routingbasis									CHOICE {
+		localPTMSI										SEQUENCE {
+			routingparameter								RoutingParameter
+		},
+		tMSIofsamePLMN									SEQUENCE {
+			routingparameter								RoutingParameter
+		},
+		tMSIofdifferentPLMN								SEQUENCE {
+			routingparameter								RoutingParameter
+		},
+		iMSIresponsetopaging							SEQUENCE {
+			routingparameter								RoutingParameter
+		},
+		iMSIcauseUEinitiatedEvent						SEQUENCE {
+			routingparameter								RoutingParameter
+		},
+		iMEI											SEQUENCE {
+			routingparameter								RoutingParameter
+		},
+		spare2											SEQUENCE {
+			routingparameter								RoutingParameter
+		},
+		spare1											SEQUENCE {
+			routingparameter								RoutingParameter
+		}
+	},
+	-- dummy is not used in this version of the specification and
+	-- it should be ignored by the receiver.
+	dummy									BOOLEAN
+}

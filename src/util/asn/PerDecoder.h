@@ -58,6 +58,7 @@ public:
 	/* Decoding methods. */
 	bool decodeAbstractType(AbstractType& abstractType);
 	bool decodeOpenType(OpenType& openType);
+	bool decodeNull(Null& null);
 	bool decodeInteger(IntegerBase& integer);
 	bool decodeEnumerated(EnumeratedBase& enumerated);
 	bool decodeBitString(BitStringBase& bitString);

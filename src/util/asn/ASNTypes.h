@@ -32,16 +32,18 @@ enum ConstraintType {
 };
 
 enum ObjectType {
-	INTEGER				= 0,
-	ENUMERATED			= 1,
-	BITSTRING			= 3,
-	OCTETSTRING			= 4,
-	SEQUENCE			= 6,
-	SEQUENCEOF			= 7,
-	CHOICE				= 10,
-	PRINTABLESTRING		= 16,
-	OPENTYPE			= 19,
-	ABSTRACTTYPELIST	= 20
+    BOOLEAN             = 0,
+	INTEGER				= 1,
+	ENUMERATED			= 2,
+	BITSTRING			= 4,
+	OCTETSTRING			= 5,
+	_NULL               = 6,
+	SEQUENCE			= 7,
+	SEQUENCEOF			= 8,
+	CHOICE				= 11,
+	PRINTABLESTRING		= 17,
+	OPENTYPE			= 20,
+	ABSTRACTTYPELIST	= 21
 };
 
 /*
@@ -159,6 +161,33 @@ public:
 	/* Wrapper methods.  */
 	bool decode(char *buffer);
 	bool encode(PerEncoder& encoder) const;
+};
+
+/*
+ * Class for ASN.1 NULL type
+ */
+class Null : public AbstractType {
+public:
+    static const Info theInfo;
+
+    /* Constructors. */
+    Null(const void *info = &theInfo) : AbstractType(info) {}
+    Null(const OpenType& other) : AbstractType(other) { operator=(other); }
+
+    virtual ~Null() {}
+
+    /* Operator methods. */
+    Null &operator=(const Null& other);
+
+    /* Utility methods. */
+    virtual AbstractType *clone() const { return new Null(*this); }
+    virtual int64_t compare(const AbstractType& other) const;
+    static AbstractType *create(const void *info) { return new Null(info); }
+
+
+    /* Wrapper methods.  */
+    bool decode(char *buffer);
+    bool encode(PerEncoder& encoder) const;
 };
 
 /*

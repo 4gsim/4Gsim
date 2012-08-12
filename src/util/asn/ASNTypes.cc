@@ -88,6 +88,31 @@ bool OpenType::encode(PerEncoder &encoder) const {
 	return encoder.encodeOpenType(*this);
 }
 
+const Null::Info Null::theInfo = {
+        &Null::create,
+        _NULL,
+        0,
+};
+
+Null& Null::operator=(const Null& other)  {
+    return *this;
+}
+
+int64_t Null::compare(const AbstractType& other) const {
+    if (typeid(other) != typeid(Null))
+        return -1;
+    return 0;
+}
+
+bool Null::decode(char *buffer) {
+    return PerDecoder(buffer).decodeNull(*this);
+}
+
+bool Null::encode(PerEncoder &encoder) const {
+    return encoder.encodeNull(*this);
+}
+
+
 const IntegerBase::Info IntegerBase::theInfo = {
 		&IntegerBase::create,
 		INTEGER,

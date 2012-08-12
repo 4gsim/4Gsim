@@ -20,6 +20,23 @@
 
 #include "RRCIe.h"
 
+class CellUpdate : public Sequence {
+private:
+    static const void *itemsInfo[9];
+    static bool itemsPres[9];
+public:
+    static const Info theInfo;
+//    RRCConnectionRequest(InitialUeIdentity& initUeId, unsigned char estCause, bool protErrInd, MeasuredResultsOnRACH *measResOnRach = NULL, V3d0NonCriticalExtensions *v3d0NonCritExt = NULL);
+
+//  unsigned char getProcedureCode() { return static_cast<IntegerBase*>(items.at(0))->getValue(); }
+//  OpenType *getValue() { return static_cast<OpenType*>(items.at(2)); }
+//
+//    void setInitialUeIdentity(InitialUeIdentity& initUeId) { *static_cast<InitialUeIdentity*>(items[0]) = initUeId; }
+//    void setEstablishmentCause(unsigned char estCause) { static_cast<EstablishmentCause*>(items[1])->setValue(estCause); }
+//    void setProtocolErrorIndicator(unsigned char protErrInd) { static_cast<ProtocolErrorIndicator*>(items[1])->setValue(protErrInd); }
+
+};
+
 class RRCConnectionRequest : public Sequence {
 private:
 	static const void *itemsInfo[5];
@@ -34,6 +51,23 @@ public:
 	void setInitialUeIdentity(InitialUeIdentity& initUeId) { *static_cast<InitialUeIdentity*>(items[0]) = initUeId; }
 	void setEstablishmentCause(unsigned char estCause) { static_cast<EstablishmentCause*>(items[1])->setValue(estCause); }
 	void setProtocolErrorIndicator(unsigned char protErrInd) { static_cast<ProtocolErrorIndicator*>(items[1])->setValue(protErrInd); }
+
+};
+
+class URAUpdate : public Sequence {
+private:
+    static const void *itemsInfo[4];
+    static bool itemsPres[4];
+public:
+    static const Info theInfo;
+//    RRCConnectionRequest(InitialUeIdentity& initUeId, unsigned char estCause, bool protErrInd, MeasuredResultsOnRACH *measResOnRach = NULL, V3d0NonCriticalExtensions *v3d0NonCritExt = NULL);
+
+//  unsigned char getProcedureCode() { return static_cast<IntegerBase*>(items.at(0))->getValue(); }
+//  OpenType *getValue() { return static_cast<OpenType*>(items.at(2)); }
+//
+//    void setInitialUeIdentity(InitialUeIdentity& initUeId) { *static_cast<InitialUeIdentity*>(items[0]) = initUeId; }
+//    void setEstablishmentCause(unsigned char estCause) { static_cast<EstablishmentCause*>(items[1])->setValue(estCause); }
+//    void setProtocolErrorIndicator(unsigned char protErrInd) { static_cast<ProtocolErrorIndicator*>(items[1])->setValue(protErrInd); }
 
 };
 

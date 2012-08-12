@@ -18,7 +18,9 @@
 #ifndef RRC_H_
 #define RRC_H_
 
-class RRC {
+#include <omnetpp.h>
+
+class RRC : public cSimpleModule {
 public:
 	RRC();
 	virtual ~RRC();

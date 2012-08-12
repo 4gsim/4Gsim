@@ -59,6 +59,7 @@ public:
 	/* Encoding methods */
 	bool encodeAbstractType(const AbstractType& abstractType);
 	bool encodeOpenType(const OpenType& openType);
+	bool encodeNull(const Null& null);
 	bool encodeInteger(const IntegerBase& integer);
 	bool encodeEnumerated(const EnumeratedBase& enumerated);
 	bool encodeBitString(const BitStringBase& bitString);

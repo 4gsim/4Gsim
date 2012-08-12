@@ -17,6 +17,40 @@
 
 #include "RRCPdu.h"
 
+const void *CellUpdate::itemsInfo[9] = {
+    &DummyIe::theInfo,
+    &DummyIe::theInfo,
+    &DummyIe::theInfo,
+    &DummyIe::theInfo,
+    &DummyIe::theInfo,
+    &DummyIe::theInfo,
+    &DummyIe::theInfo,
+    &DummyIe::theInfo,
+    &DummyIe::theInfo,
+};
+
+bool CellUpdate::itemsPres[9] = {
+    1,
+    1,
+    1,
+    1,
+    1,
+    0,
+    1,
+    0,
+    0,
+};
+
+const CellUpdate::Info CellUpdate::theInfo = {
+    CellUpdate::create,
+    SEQUENCE,
+    0,
+    false,
+    itemsInfo,
+    itemsPres,
+    9, 3, 0
+};
+
 const void *RRCConnectionRequest::itemsInfo[5] = {
 	&InitialUeIdentity::theInfo,
 	&EstablishmentCause::theInfo,
@@ -33,8 +67,42 @@ bool RRCConnectionRequest::itemsPres[5] = {
 	0
 };
 
+const RRCConnectionRequest::Info RRCConnectionRequest::theInfo = {
+    RRCConnectionRequest::create,
+    SEQUENCE,
+    0,
+    false,
+    itemsInfo,
+    itemsPres,
+    5, 2, 0
+};
+
 RRCConnectionRequest::RRCConnectionRequest(InitialUeIdentity& initUeId, unsigned char estCause, bool protErrInd, MeasuredResultsOnRACH *measResOnRach, V3d0NonCriticalExtensions *v3d0NonCritExt) : Sequence(&theInfo) {
 	setInitialUeIdentity(initUeId);
 	setEstablishmentCause(estCause);
 	setProtocolErrorIndicator(protErrInd);
 }
+
+const void *URAUpdate::itemsInfo[4] = {
+    &DummyIe::theInfo,
+    &DummyIe::theInfo,
+    &DummyIe::theInfo,
+    &DummyIe::theInfo,
+};
+
+bool URAUpdate::itemsPres[4] = {
+    1,
+    1,
+    1,
+    0
+};
+
+const URAUpdate::Info URAUpdate::theInfo = {
+    URAUpdate::create,
+    SEQUENCE,
+    0,
+    false,
+    itemsInfo,
+    itemsPres,
+    4, 1, 0
+};
