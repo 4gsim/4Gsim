@@ -1,0 +1,27 @@
+InformationElements DEFINITIONS AUTOMATIC TAGS ::=
+
+BEGIN
+
+IMPORTS
+
+	hiPDSCHidentities,
+	hiPUSCHidentities,
+	hiRM,
+	maxAC,
+
+AllowedTFI-List ::=					SEQUENCE (SIZE (1..maxTF)) OF
+										INTEGER (0..31)
+
+GSM-MessageList ::=					SEQUENCE (SIZE (1..maxInterSysMessages)) OF
+										BIT STRING (SIZE (1..512))
+
+ReqDataBitAssistance ::=			SEQUENCE {
+	ganssSignalID						DGANSS-Sig-Id-Req,
+	ganssDataBitInterval				INTEGER(0..15),
+	ganssSatelliteInfo					SEQUENCE (SIZE (1..maxGANSSSat)) OF INTEGER(0..63) OPTIONAL
+}
+
+MBSFN-TDM-Info-List ::=				SEQUENCE (SIZE (1..maxMBMSservUnmodif)) OF
+										MBSFN-TDM-Info
+
+END

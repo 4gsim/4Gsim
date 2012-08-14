@@ -32,26 +32,26 @@ RRC::~RRC() {
 }
 
 void RRC::initialize(int stage) {
-	char lac[2] = {0x5b, 0x10};
-	char tmsi[4] = {0x19, 0x02, 0x2c, 0xba};
-	std::vector<unsigned char> mcc;
-	std::vector<unsigned char> mnc;
-	mcc.push_back(2);
-	mcc.push_back(6);
-	mcc.push_back(0);
-	mnc.push_back(0);
-	mnc.push_back(2);
-	PlmnIdentity plmnId = PlmnIdentity(mcc, mnc);
-	Lai lai = Lai(plmnId, lac);
-	TmsiAndLaiGsmMap *tmsiAndLaiGsmMap = new TmsiAndLaiGsmMap(tmsi, lai);
-	InitialUeIdentity initUeId = InitialUeIdentity();
-	initUeId.setValue(tmsiAndLaiGsmMap, tmsiAndLai);
-	RRCConnectionRequest *rrcConnReq = new RRCConnectionRequest(initUeId, interRATCellReselection, noError);
-	UlCcchMessageType ulCchMessageType = UlCcchMessageType();
-	ulCchMessageType.setValue(rrcConnReq, rrcConnectionRequest);
-	UlCcchMessage ulCchMessage = UlCcchMessage(ulCchMessageType);
-	PerEncoder perEnc = PerEncoder(UNALIGNED);
-	perEnc.encodeSequence(ulCchMessage);
-	LTEUtils().printBytes(perEnc.getBuffer(), perEnc.getLength());
+//	char lac[2] = {0x5b, 0x10};
+//	char tmsi[4] = {0x19, 0x02, 0x2c, 0xba};
+//	std::vector<unsigned char> mcc;
+//	std::vector<unsigned char> mnc;
+//	mcc.push_back(2);
+//	mcc.push_back(6);
+//	mcc.push_back(0);
+//	mnc.push_back(0);
+//	mnc.push_back(2);
+//	PlmnIdentity plmnId = PlmnIdentity(mcc, mnc);
+//	Lai lai = Lai(plmnId, lac);
+//	TmsiAndLaiGsmMap *tmsiAndLaiGsmMap = new TmsiAndLaiGsmMap(tmsi, lai);
+//	InitialUeIdentity initUeId = InitialUeIdentity();
+//	initUeId.setValue(tmsiAndLaiGsmMap, tmsiAndLai);
+//	RRCConnectionRequest *rrcConnReq = new RRCConnectionRequest(initUeId, interRATCellReselection, noError);
+//	UlCcchMessageType ulCchMessageType = UlCcchMessageType();
+//	ulCchMessageType.setValue(rrcConnReq, rrcConnectionRequest);
+//	UlCcchMessage ulCchMessage = UlCcchMessage(ulCchMessageType);
+//	PerEncoder perEnc = PerEncoder(UNALIGNED);
+//	perEnc.encodeSequence(ulCchMessage);
+//	LTEUtils().printBytes(perEnc.getBuffer(), perEnc.getLength());
 }
 

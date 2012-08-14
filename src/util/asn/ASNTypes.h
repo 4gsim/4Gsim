@@ -136,8 +136,8 @@ public:
 
 	/* Constructors. */
 	OpenType(const void *info = &theInfo) : AbstractType(info) {}
-	OpenType(char *val, int64_t len, const void *info = &theInfo);
-	OpenType(AbstractType *val, const void *info = &theInfo);
+	OpenType(char *value, int64_t length, const void *info = &theInfo);
+	OpenType(AbstractType *value, const void *info = &theInfo);
 	OpenType(const OpenType& other) : AbstractType(other) { operator=(other); }
 
 	virtual ~OpenType() {}
@@ -164,6 +164,42 @@ public:
 };
 
 /*
+ * Class for ASN.1 BOOLEAN type
+ */
+class Boolean : public AbstractType {
+private:
+    bool value;
+public:
+    static const Info theInfo;
+
+    /* Constructors. */
+    Boolean(const void *info = &theInfo) : AbstractType(info) {}
+    Boolean(bool val, const void *info = &theInfo);
+    Boolean(const Boolean& other) : AbstractType(other) { operator=(other); }
+
+    virtual ~Boolean() {}
+
+    /* Operator methods. */
+    Boolean &operator=(const Boolean& other);
+
+    /* Setter methods. */
+    void setValue(bool value) { this->value = value; }
+
+    /* Getter methods. */
+    bool getValue() const { return value; }
+
+    /* Utility methods. */
+    virtual AbstractType *clone() const { return new Boolean(*this); }
+    virtual int64_t compare(const AbstractType& other) const;
+    static AbstractType *create(const void *info) { return new Boolean(info); }
+
+
+    /* Wrapper methods.  */
+    bool decode(char *buffer);
+    bool encode(PerEncoder& encoder) const;
+};
+
+/*
  * Class for ASN.1 NULL type
  */
 class Null : public AbstractType {
@@ -172,7 +208,7 @@ public:
 
     /* Constructors. */
     Null(const void *info = &theInfo) : AbstractType(info) {}
-    Null(const OpenType& other) : AbstractType(other) { operator=(other); }
+    Null(const Null& other) : AbstractType(other) { operator=(other); }
 
     virtual ~Null() {}
 

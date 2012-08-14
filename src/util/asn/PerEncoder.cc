@@ -196,6 +196,8 @@ bool PerEncoder::encodeAbstractType(const AbstractType& abstractType) {
 			return encodeBitString(static_cast<const BitStringBase&>(abstractType));
 		case OCTETSTRING:
 			return encodeOctetString(static_cast<const OctetStringBase&>(abstractType));
+		case BOOLEAN:
+		    return encodeBoolean(static_cast<const Boolean&>(abstractType));
 		case _NULL:
 		    return encodeNull(static_cast<const Null&>(abstractType));
 		case SEQUENCE:
@@ -222,6 +224,11 @@ bool PerEncoder::encodeOpenType(const OpenType& openType) {
 	encodeBytes(openType.getValue(), openType.getLength());
 
 	return true;
+}
+
+bool PerEncoder::encodeBoolean(const Boolean& boolean) {
+    encodeBits(boolean.getValue(), 1);
+    return true;
 }
 
 bool PerEncoder::encodeNull(const Null& null) {

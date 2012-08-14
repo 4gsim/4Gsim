@@ -1134,7 +1134,7 @@ InitialPriorityDelayList ::=		SEQUENCE (SIZE (1..maxASC)) OF
 										NS-IP
 
 InitialUE-Identity ::=				CHOICE {
-	imsi								IMSI-GSM-MAPIMSI-GSM-MAP,
+	imsi								IMSI-GSM-MAP,
 	tmsi-and-LAI						TMSI-and-LAI-GSM-MAP,
 	p-TMSI-and-RAI						P-TMSI-and-RAI-GSM-MAP,
 	imei								IMEI,

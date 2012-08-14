@@ -11,14 +11,17 @@ sequencetxt = 'SEQUENCE'
 choicetxt = 'CHOICE'
 enumeratedtxt = 'ENUMERATED'
 nulltxt = 'NULL'
+booleantxt = 'BOOLEAN'
 asnobjs = list()
 openparanthesis = '('
 closedparanthesis = ')'
 importstxt = 'IMPORTS'
 optionaltxt = 'OPTIONAL'
+defaulttxt = 'DEFAULT'
 endtxt = 'END'
+oftxt = ' OF '
 size = 'SIZE'
-comment = '-- '
+comment = '--'
 comma = ','
 tripledash = '...'
 typeslist = ['Integer', 
@@ -28,7 +31,8 @@ typeslist = ['Integer',
 			'Sequence', 
 			'SequenceOf',
 			'Choice',
-			'_Null']
+			'_Null',
+			'Boolean']
 
 class ASNObject:
 	type = '' 
@@ -107,9 +111,14 @@ def parsesize(asnobj, string):
 
 def parsetype(asnobj, string):
 	type = ""	
+
 	if string.split()[-1] == optionaltxt:
 		asnobj.opt = 1
 		string = string.split(optionaltxt)[0].strip()
+	if defaulttxt in string:
+		asnobj.opt = 1
+		string = string.split(defaulttxt)[0].strip()
+
 	for i in range(0, len(string)):
 		if string[i] == openparanthesis or string[i] == openbracket or string[i] == comma:
 			break
@@ -124,7 +133,7 @@ def parsetype(asnobj, string):
 	elif type == octetstringtxt:
 		asnobj.type = "OctetString"
 	elif type == sequencetxt:
-		if ' OF ' in string:
+		if oftxt in string and openbracket not in string:
 			asnobj.type = "SequenceOf"
 		else:
 			asnobj.type = "Sequence"
@@ -134,16 +143,17 @@ def parsetype(asnobj, string):
 		asnobj.type = "Enumerated"
 	elif type == nulltxt:
 		asnobj.type = "_Null"
+	elif type == booleantxt:
+		asnobj.type = "Boolean"
 	else:
 		asnobj.type = type.replace("-", "")
-		
+
 def parsestring(string):
 	asnobj = ASNObject()
 	words = list()
-
+	
 	if importstxt in string:
 		return asnobj
-	
 	if assign in string:
 		string = string.replace("\t", ' ')
 		string = string.replace("\n", '')
@@ -154,7 +164,7 @@ def parsestring(string):
 		words = string.split(' ', 1)
 		asnobj.name = words[0].replace("-", "_").strip()
 	
-	#print string
+	
 	if len(words) > 1:
 		parsetype(asnobj, words[1])
 		if asnobj.type != "Enumerated":
@@ -181,8 +191,12 @@ def parsestring(string):
 
 		if asnobj.type == "SequenceOf":
 			objs = list()
-			obj = ASNObject()
-			obj.type = words[1].split()[-1].replace("-", "")
+
+			objstring = words[1].split(oftxt)[1]
+			objstring = asnobj.name + "Item " + objstring 
+
+			obj = parsestring(objstring.strip())
+
 			objs.append(obj)
 			asnobj.objs = objs
 	return asnobj
@@ -221,11 +235,11 @@ def checkandhandledeps(asnobj, hdrfile, srcfile):
 def writeobject(asnobj, hdrfile, srcfile):
 	if asnobj.written == 0:
 	
-		# Null
+		# Null and Boolean
 		
-		if asnobj.type == "_Null":
+		if asnobj.type == "_Null" or asnobj.type == "Boolean":
+			hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
 			asnobj.type = asnobj.name
-			hdrfile.write("typedef _Null " + asnobj.name + ";\n")
 	
 		# Constraint types
 	
@@ -334,6 +348,24 @@ def writeobject(asnobj, hdrfile, srcfile):
 		srcfile.write("\n")
 		asnobj.written = 1
 
+def writeheader(file):
+	file.write("//\n" +
+		"// Copyright (C) 2012 Calin Cerchez\n" +
+		"//\n" +
+		"// This program is free software: you can redistribute it and/or modify\n" +
+		"// it under the terms of the GNU Lesser General Public License as published by\n" +
+		"// the Free Software Foundation, either version 3 of the License, or\n" +
+		"// (at your option) any later version.\n" +
+		"//\n" + 
+		"// This program is distributed in the hope that it will be useful,\n" +
+		"// but WITHOUT ANY WARRANTY; without even the implied warranty of\n" +
+		"// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n" +
+		"// GNU Lesser General Public License for more details.\n" +
+		"//\n" + 
+		"// You should have received a copy of the GNU Lesser General Public License\n" +
+		"// along with this program.  If not, see http://www.gnu.org/licenses/.\n" +
+		"//\n\n") 
+
 def main():
 	usage = "usage: %prog [options] input filename"
 	parser = OptionParser(usage)
@@ -342,9 +374,10 @@ def main():
 
 	(options, args) = parser.parse_args()
 	
-	filename = "rrc_ie_def"
+	directory = "/root/Desktop/omnetpp-4.2.2/samples/4Gsim/src/linklayer/lte/rrc/message/"
+	filename = "RRCIe"
 	
-	file = open(filename + ".asn", "r")
+	file = open(directory + filename + ".asn", "r")
 	lines = file.readlines()
 	file.close()
 
@@ -356,18 +389,30 @@ def main():
 			if len(objectstring) > 0: 
 				asnobjs.append(parsestring(objectstring))
 			objectstring = line
-		elif comment not in line and line != "\n":
+		elif comment not in line and line != "\n" and line[:-1] != endtxt:
 			objectstring += line
 
 	asnobjs.append(parsestring(objectstring))
 
 	#printobjects(asnobjs)
 	print ("writing source files...")
-	hdrfile = open(filename + ".h", 'w')
-	srcfile = open(filename + ".cc", 'w')
+	hdrfile = open(directory + filename + ".h", 'w')
+	srcfile = open(directory + filename + ".cc", 'w')
+	writeheader(hdrfile)
+	writeheader(srcfile)
+
+	hdrfile.write("#ifndef " + filename.upper() + "_H_\n" +
+			"#define " + filename.upper() + "_H_\n\n" +
+			"#include \"ASNTypes.h\"\n\n")
+
+	srcfile.write("#include \"" + filename + ".h\"\n\n")
+
 	for i in range (0, len(asnobjs)):
 		asnobj = asnobjs[i]
 		writeobject(asnobj, hdrfile, srcfile)
+
+	hdrfile.write("#endif /* " + filename.upper() + "_H_ */\n")
+
 	srcfile.close()
 	hdrfile.close()
 	

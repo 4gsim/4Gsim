@@ -173,6 +173,8 @@ bool PerDecoder::decodeAbstractType(AbstractType& abstractType) {
 			return decodeBitString(dynamic_cast<BitStringBase&>(abstractType));
 		case OCTETSTRING:
 			return decodeOctetString(dynamic_cast<OctetStringBase&>(abstractType));
+		case BOOLEAN:
+		    return decodeBoolean(dynamic_cast<Boolean&>(abstractType));
 		case _NULL:
 		    return decodeNull(dynamic_cast<Null&>(abstractType));
 		case SEQUENCE:
@@ -196,6 +198,11 @@ bool PerDecoder::decodeOpenType(OpenType& openType) {
 	openType.setValue(buffer + it);
 	it += openType.getLength();
 	return true;
+}
+
+bool PerDecoder::decodeBoolean(Boolean& boolean) {
+    boolean.setValue(decodeBits(1));
+    return true;
 }
 
 bool PerDecoder::decodeNull(Null& null) {

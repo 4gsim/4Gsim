@@ -88,6 +88,39 @@ bool OpenType::encode(PerEncoder &encoder) const {
 	return encoder.encodeOpenType(*this);
 }
 
+const Boolean::Info Boolean::theInfo = {
+        &Boolean::create,
+        BOOLEAN,
+        0,
+};
+
+Boolean::Boolean(bool value, const void *info) : AbstractType(info) {
+    this->value = value;
+}
+
+Boolean& Boolean::operator=(const Boolean& other)  {
+    this->value = other.value;
+    return *this;
+}
+
+int64_t Boolean::compare(const AbstractType& other) const {
+    const Boolean& that = dynamic_cast<const Boolean&>(other);
+
+    if (value == that.value)
+        return 1;
+    else
+        return -1;
+
+}
+
+bool Boolean::decode(char *buffer) {
+    return PerDecoder(buffer).decodeBoolean(*this);
+}
+
+bool Boolean::encode(PerEncoder &encoder) const {
+    return encoder.encodeBoolean(*this);
+}
+
 const Null::Info Null::theInfo = {
         &Null::create,
         _NULL,
