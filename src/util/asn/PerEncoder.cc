@@ -196,7 +196,7 @@ bool PerEncoder::encodeAbstractType(const AbstractType& abstractType) {
 			return encodeBitString(static_cast<const BitStringBase&>(abstractType));
 		case OCTETSTRING:
 			return encodeOctetString(static_cast<const OctetStringBase&>(abstractType));
-		case BOOLEAN:
+		case _BOOLEAN:
 		    return encodeBoolean(static_cast<const Boolean&>(abstractType));
 		case _NULL:
 		    return encodeNull(static_cast<const Null&>(abstractType));

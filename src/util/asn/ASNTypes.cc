@@ -90,7 +90,7 @@ bool OpenType::encode(PerEncoder &encoder) const {
 
 const Boolean::Info Boolean::theInfo = {
         &Boolean::create,
-        BOOLEAN,
+        _BOOLEAN,
         0,
 };
 
@@ -158,6 +158,11 @@ const IntegerBase::Info IntegerBase::theInfo = {
 IntegerBase& IntegerBase::operator=(const IntegerBase& other) {
 	setValue(other.value);
 	return *this;
+}
+
+IntegerBase& IntegerBase::operator =(int64_t value) {
+    setValue(value);
+    return *this;
 }
 
 int64_t IntegerBase::compare(const AbstractType& other) const {

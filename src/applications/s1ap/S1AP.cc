@@ -35,6 +35,7 @@ S1AP::S1AP() {
 	relMmeCapac = 5;
 	sendQueue.setName("sendQueue");
 	retryTimer = new cMessage("Retry-Timer");
+
 }
 
 S1AP::~S1AP() {

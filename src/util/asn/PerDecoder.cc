@@ -173,7 +173,7 @@ bool PerDecoder::decodeAbstractType(AbstractType& abstractType) {
 			return decodeBitString(dynamic_cast<BitStringBase&>(abstractType));
 		case OCTETSTRING:
 			return decodeOctetString(dynamic_cast<OctetStringBase&>(abstractType));
-		case BOOLEAN:
+		case _BOOLEAN:
 		    return decodeBoolean(dynamic_cast<Boolean&>(abstractType));
 		case _NULL:
 		    return decodeNull(dynamic_cast<Null&>(abstractType));

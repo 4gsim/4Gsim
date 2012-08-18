@@ -32,7 +32,7 @@ enum ConstraintType {
 };
 
 enum ObjectType {
-    BOOLEAN             = 0,
+    _BOOLEAN             = 0,
 	INTEGER				= 1,
 	ENUMERATED			= 2,
 	BITSTRING			= 4,
@@ -96,6 +96,23 @@ public:
 	/* Utility methods. */
 	virtual AbstractType *clone() const = 0;
 	virtual int64_t compare(const AbstractType& other) const = 0;
+};
+
+struct EmptyConstraint {
+  enum {
+    type = UNCONSTRAINED,
+    lowerBound = 0,
+    upperBound = UINT_MAX
+  };
+};
+
+template <char type_, int64_t lowerBound_, int64_t upperBound_>
+struct SizeConstraint {
+    enum {
+        type = type_,
+        lowerBound = lowerBound_,
+        upperBound = upperBound_
+    };
 };
 
 /*
@@ -244,6 +261,8 @@ public:
 
 	/* Operator methods. */
 	IntegerBase &operator=(const IntegerBase &other);
+	IntegerBase &operator=(int64_t value);
+	operator int64_t() const { return value; }
 
 	/* Getter methods. */
 	int64_t getValue() const { return value; }
@@ -600,7 +619,7 @@ public:
 	bool encode(PerEncoder& encoder) const;
 };
 
-template <class T, char type, int64_t lowerBound, int64_t upperBound>
+template <class T, class Constraint>
 class SequenceOf : public SequenceOfBase {
 public:
 	static const Info theInfo;
@@ -618,14 +637,14 @@ public:
 	int64_t size() const { return items.size(); }
 };
 
-template <class T, char type, int64_t lowerBound, int64_t upperBound>
-const typename SequenceOf<T, type, lowerBound, upperBound>::Info SequenceOf<T, type, lowerBound, upperBound>::theInfo = {
+template <class T, class Constraint>
+const typename SequenceOf<T, Constraint>::Info SequenceOf<T, Constraint>::theInfo = {
 	SequenceOfBase::create,
 	SEQUENCEOF,
 	0,
-	type,
-	lowerBound,
-	upperBound,
+	Constraint::type,
+	Constraint::lowerBound,
+	Constraint::upperBound,
 	&T::theInfo
 };
 

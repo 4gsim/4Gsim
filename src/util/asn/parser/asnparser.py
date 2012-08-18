@@ -13,16 +13,19 @@ enumeratedtxt = 'ENUMERATED'
 nulltxt = 'NULL'
 booleantxt = 'BOOLEAN'
 asnobjs = list()
-openparanthesis = '('
-closedparanthesis = ')'
+openparantheses = '('
+closedparantheses = ')'
 importstxt = 'IMPORTS'
 optionaltxt = 'OPTIONAL'
 defaulttxt = 'DEFAULT'
 endtxt = 'END'
 oftxt = ' OF '
 size = 'SIZE'
+definitionstxt = 'DEFINITIONS'
+fromtxt = 'FROM'
 comment = '--'
 comma = ','
+colon = ':'
 tripledash = '...'
 typeslist = ['Integer', 
 			'BitString', 
@@ -31,8 +34,11 @@ typeslist = ['Integer',
 			'Sequence', 
 			'SequenceOf',
 			'Choice',
-			'_Null',
+			'Null',
 			'Boolean']
+module = "RRC"
+outfilename = ''
+includes = list()
 
 class ASNObject:
 	type = '' 
@@ -40,10 +46,12 @@ class ASNObject:
 	constrainttype = ''
 	lowerlimit = ''
 	upperlimit = ''
+	value = 0
 	opt = 0
 	ext = 0
 	objs = list()
 	written = 0
+	parent = None
 
 def parsebracket(asnobj, string, cursor):
 	#print string
@@ -55,6 +63,7 @@ def parsebracket(asnobj, string, cursor):
 		if string[i] == comma and openbrackets == 0 and len(objstring) > 0:
 			childobj = parsestring(objstring.strip())
 			objs.append(childobj)
+			childobj.parent = asnobj
 			objstring = ""
 		else:
 			if string[i] == openbracket:
@@ -69,6 +78,7 @@ def parsebracket(asnobj, string, cursor):
 		if len(objstring) > 0:
 			childobj = parsestring(objstring.strip())
 			objs.append(childobj)
+			childobj.parent = asnobj
 			asnobj.constrainttype = "CONSTRAINED"
 	asnobj.objs = objs
 		
@@ -111,7 +121,7 @@ def parsesize(asnobj, string):
 
 def parsetype(asnobj, string):
 	type = ""	
-
+	
 	if string.split()[-1] == optionaltxt:
 		asnobj.opt = 1
 		string = string.split(optionaltxt)[0].strip()
@@ -120,12 +130,12 @@ def parsetype(asnobj, string):
 		string = string.split(defaulttxt)[0].strip()
 
 	for i in range(0, len(string)):
-		if string[i] == openparanthesis or string[i] == openbracket or string[i] == comma:
+		if string[i] == openparantheses or string[i] == openbracket or string[i] == comma or string[i] == colon:
 			break
 		else:
 			type += string[i]
 	type = type.strip()
-
+	
 	if type == integertxt:
 		asnobj.type = "Integer"
 	elif type == bitstringtxt:
@@ -142,52 +152,84 @@ def parsetype(asnobj, string):
 	elif type == enumeratedtxt:
 		asnobj.type = "Enumerated"
 	elif type == nulltxt:
-		asnobj.type = "_Null"
+		asnobj.type = "Null"
 	elif type == booleantxt:
 		asnobj.type = "Boolean"
 	else:
 		asnobj.type = type.replace("-", "")
 
+	if string.index(type) < string.index(assign):
+		asnobj.constrainttype = "CONSTANT"
+		
+def findfilename(string):
+	filename = string
+	while filename.find('-') != -1:
+		pos = filename.index('-')
+		first = filename.split('-')[0]
+		second = filename.split('-')[1].title()
+		if second.find(';') != -1:
+			second = second[:-1]
+		filename = first + second
+	return filename
+		
+def parseheader(string):
+	filename = string.split()[0]
+	global outfilename
+	outfilename = module + findfilename(filename)
+	words = string.split("\n")
+	for i in range(0, len(words)):
+		if fromtxt in words[i]:
+			filename = words[i].split()[1]
+			include = module + findfilename(filename)
+			includes.append(include)
+	
 def parsestring(string):
 	asnobj = ASNObject()
 	words = list()
 	
-	if importstxt in string:
+	if importstxt in string or definitionstxt in string:
+		parseheader(string)
 		return asnobj
 	if assign in string:
 		string = string.replace("\t", ' ')
 		string = string.replace("\n", '')
 		string = re.sub('\s+', ' ', string)
 		words = string.split(assign)
-		asnobj.name = words[0].replace("-", "").strip()
+		if len(words[0].split()) > 1:
+			words = string.split(' ', 1)
+			asnobj.name = words[0].replace("-", "_").strip()
+		else:
+			asnobj.name = words[0].replace("-", "").strip()
 	else:
 		words = string.split(' ', 1)
 		asnobj.name = words[0].replace("-", "_").strip()
 	
-	
 	if len(words) > 1:
 		parsetype(asnobj, words[1])
-		if asnobj.type != "Enumerated":
+		if asnobj.type != "Enumerated" and asnobj.constrainttype != "CONSTANT":
 			firstletter = asnobj.name[0]
 			asnobj.name = asnobj.name[1:]
 			asnobj.name = firstletter.capitalize() + asnobj.name
-		for i in range(0, len(string)):
-			if string[i] == openparanthesis:
-				words = words[1].split(openparanthesis, 1)
-				parsesize(asnobj, words[1])
-				break
-			elif string[i] == openbracket:
-				words = words[1].split(openbracket, 1)
-				tmpstring = words[1].strip()
-				while len(tmpstring) > 0:
-					if tmpstring[len(tmpstring) - 1] == closedbracket:
+			asnobj.name = asnobj.name.replace("_", "")
+
+		if asnobj.constrainttype != "CONSTANT":
+			for i in range(0, len(string)):
+				if string[i] == openparantheses:
+					words = words[1].split(openparantheses, 1)
+					parsesize(asnobj, words[1])
+					break
+				elif string[i] == openbracket:
+					words = words[1].split(openbracket, 1)
+					tmpstring = words[1].strip()
+					while len(tmpstring) > 0:
+						if tmpstring[len(tmpstring) - 1] == closedbracket:
+							tmpstring = tmpstring[:-1]
+							break
 						tmpstring = tmpstring[:-1]
-						break
-					tmpstring = tmpstring[:-1]
-				parsebracket(asnobj, tmpstring, 0)
-				break
-			else:
-				asnobj.constrainttype = "UNCONSTRAINED"
+					parsebracket(asnobj, tmpstring, 0)
+					break
+				else:
+					asnobj.constrainttype = "UNCONSTRAINED"
 
 		if asnobj.type == "SequenceOf":
 			objs = list()
@@ -199,6 +241,11 @@ def parsestring(string):
 
 			objs.append(obj)
 			asnobj.objs = objs
+			
+		if asnobj.constrainttype == "CONSTANT":
+			words = words[1].split(assign)
+			words = words[1].split()
+			asnobj.value = int(words[0])
 	return asnobj
 	
 def printobjects(asnobjs):
@@ -234,23 +281,27 @@ def checkandhandledeps(asnobj, hdrfile, srcfile):
 			
 def writeobject(asnobj, hdrfile, srcfile):
 	if asnobj.written == 0:
-	
+		if asnobj.parent != None:
+			asnobj.name = asnobj.parent.name + asnobj.name 
+		
 		# Null and Boolean
 		
-		if asnobj.type == "_Null" or asnobj.type == "Boolean":
+		if asnobj.type == "Null" or asnobj.type == "Boolean":
 			hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
 			asnobj.type = asnobj.name
 	
 		# Constraint types
-	
-		if asnobj.type == "Integer" or asnobj.type == "BitString" or asnobj.type == "OctetString":
-			hdrfile.write("typedef " + asnobj.type + "<" + asnobj.constrainttype)
-			if asnobj.lowerlimit != '':
-				hdrfile.write(", " + asnobj.lowerlimit)
-			if asnobj.upperlimit != '':
-				hdrfile.write(", " + asnobj.upperlimit)
-			hdrfile.write("> " + asnobj.name + ";\n")
-			asnobj.type = asnobj.name
+		if asnobj.constrainttype == "CONSTANT":
+			hdrfile.write("const " + asnobj.type + "Base " + asnobj.name + "(" + str(asnobj.value) + ");\n")
+		else:
+			if asnobj.type == "Integer" or asnobj.type == "BitString" or asnobj.type == "OctetString":
+				hdrfile.write("typedef " + asnobj.type + "<" + asnobj.constrainttype)
+				if asnobj.lowerlimit != '':
+					hdrfile.write(", " + asnobj.lowerlimit)
+				if asnobj.upperlimit != '':
+					hdrfile.write(", " + asnobj.upperlimit)
+				hdrfile.write("> " + asnobj.name + ";\n")
+				asnobj.type = asnobj.name
 		
 		# Enumerated
 		
@@ -325,7 +376,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 						"\tstatic const void *choicesInfo[" + str(len(asnobj.objs)) + "];\n" +
 						"public:\n" +
 						"\tstatic const Info theInfo;\n"
-						"\t" + asnobj.name + "(): Choices(&theInfo) {}\n")
+						"\t" + asnobj.name + "(): Choice(&theInfo) {}\n")
 			hdrfile.write("};\n")
 			srcfile.write("const void *" + asnobj.name + "::choicesInfo[" + str(len(asnobj.objs)) + "] = {\n")
 			for j in range(0, len(asnobj.objs)):
@@ -374,8 +425,9 @@ def main():
 
 	(options, args) = parser.parse_args()
 	
-	directory = "/root/Desktop/omnetpp-4.2.2/samples/4Gsim/src/linklayer/lte/rrc/message/"
-	filename = "RRCIe"
+	#directory = "/root/Desktop/omnetpp-4.2.2/samples/4Gsim/src/linklayer/lte/rrc/message/"
+	directory = "F:\\omnetpp-4.2.2\\samples\\4Gsim\\src\\linklayer\\lte\\rrc\\message\\"
+	filename = "Constant-definitions"
 	
 	file = open(directory + filename + ".asn", "r")
 	lines = file.readlines()
@@ -396,22 +448,25 @@ def main():
 
 	#printobjects(asnobjs)
 	print ("writing source files...")
-	hdrfile = open(directory + filename + ".h", 'w')
-	srcfile = open(directory + filename + ".cc", 'w')
+	hdrfile = open(directory + outfilename + ".h", 'w')
+	srcfile = open(directory + outfilename + ".cc", 'w')
 	writeheader(hdrfile)
 	writeheader(srcfile)
 
-	hdrfile.write("#ifndef " + filename.upper() + "_H_\n" +
-			"#define " + filename.upper() + "_H_\n\n" +
-			"#include \"ASNTypes.h\"\n\n")
+	hdrfile.write("#ifndef " + outfilename.upper() + "_H_\n" +
+			"#define " + outfilename.upper() + "_H_\n\n" +
+			"#include \"ASNTypes.h\"\n")
+	for i in range(0, len(includes)):
+		hdrfile.write("#include \"" + includes[i] + ".h\"\n")
+	hdrfile.write("\n")
 
-	srcfile.write("#include \"" + filename + ".h\"\n\n")
+	srcfile.write("#include \"" + outfilename + ".h\"\n\n")
 
 	for i in range (0, len(asnobjs)):
 		asnobj = asnobjs[i]
 		writeobject(asnobj, hdrfile, srcfile)
 
-	hdrfile.write("#endif /* " + filename.upper() + "_H_ */\n")
+	hdrfile.write("#endif /* " + outfilename.upper() + "_H_ */\n")
 
 	srcfile.close()
 	hdrfile.close()
