@@ -184,19 +184,56 @@ FROM InformationElements
 FROM Constant-definitions;
 
 
-AllowedTFI-List ::=					SEQUENCE (SIZE (1..maxTF)) OF
-										INTEGER (0..31)
-
-GSM-MessageList ::=					SEQUENCE (SIZE (1..maxInterSysMessages)) OF
-										BIT STRING (SIZE (1..512))
-
-ReqDataBitAssistance ::=			SEQUENCE {
-	ganssSignalID						DGANSS-Sig-Id-Req,
-	ganssDataBitInterval				INTEGER(0..15),
-	ganssSatelliteInfo					SEQUENCE (SIZE (1..maxGANSSSat)) OF INTEGER(0..63) OPTIONAL
+SecurityCapability ::=				SEQUENCE {
+	cipheringAlgorithmCap				BIT STRING {
+										-- For each bit value "0" means false/ not supported
+											spare15(0),
+											spare14(1),
+											spare13(2),
+											spare12(3),
+											spare11(4),
+											spare10(5),
+											spare9(6),
+											spare8(7),
+											spare7(8),
+											spare6(9),
+											spare5(10),
+											spare4(11),
+											spare3(12),
+											uea2(13),
+											uea1(14),
+											uea0(15)
+											}	(SIZE (16)),
+	integrityProtectionAlgorithmCap		BIT STRING {
+										-- For each bit value "0" means false/ not supported
+											spare15(0),
+											spare14(1),
+											spare13(2),
+											spare12(3),
+											spare11(4),
+											spare10(5),
+											spare9(6),
+											spare8(7),
+											spare7(8),
+											spare6(9),
+											spare5(10),
+											spare4(11),
+											spare3(12),
+											uia2(13),
+											uia1(14),
+											spare0(15)
+										 	} 	 (SIZE (16))
 }
 
-MBSFN-TDM-Info-List ::=				SEQUENCE (SIZE (1..maxMBMSservUnmodif)) OF
-										MBSFN-TDM-Info
+EUTRA-RadioAccessCapability ::=		SEQUENCE {
+	ue-EUTRA-Capability					OCTET STRING
+	
+	
+SIR-TFCS ::=						TFCS-IdentityPlain
+
+
+SIR-TFCS-List ::=					SEQUENCE (SIZE (1..maxCCTrCH)) OF
+										SIR-TFCS
+}
 
 END

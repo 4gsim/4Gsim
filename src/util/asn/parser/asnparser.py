@@ -27,15 +27,27 @@ comment = '--'
 comma = ','
 colon = ':'
 tripledash = '...'
-typeslist = ['Integer', 
+types = ['Integer', 
+			'IntegerBase',
 			'BitString', 
+			'BitStringBase',
 			'OctetString', 
+			'OctetStringBase',
 			'Enumerated', 
+			'EnumeratedBase',
 			'Sequence', 
 			'SequenceOf',
 			'Choice',
 			'Null',
 			'Boolean']
+constrainttypes = ['Integer', 
+					'IntegerBase',
+					'BitString', 
+					'BitStringBase',
+					'OctetString', 
+					'OctetStringBase',
+					'Enumerated', 
+					'EnumeratedBase']
 module = "RRC"
 outfilename = ''
 includes = list()
@@ -158,7 +170,7 @@ def parsetype(asnobj, string):
 	else:
 		asnobj.type = type.replace("-", "")
 
-	if string.index(type) < string.index(assign):
+	if assign in string and string.index(type) < string.index(assign):
 		asnobj.constrainttype = "CONSTANT"
 		
 def findfilename(string):
@@ -219,15 +231,21 @@ def parsestring(string):
 					parsesize(asnobj, words[1])
 					break
 				elif string[i] == openbracket:
-					words = words[1].split(openbracket, 1)
-					tmpstring = words[1].strip()
-					while len(tmpstring) > 0:
-						if tmpstring[len(tmpstring) - 1] == closedbracket:
+					if asnobj.type in constrainttypes:
+						words = words[1].split(closedbracket, 1)
+						words = words[1].split(openparantheses, 1)
+						parsesize(asnobj, words[1])
+						break
+					else:
+						words = words[1].split(openbracket, 1)
+						tmpstring = words[1].strip()
+						while len(tmpstring) > 0:
+							if tmpstring[len(tmpstring) - 1] == closedbracket:
+								tmpstring = tmpstring[:-1]
+								break
 							tmpstring = tmpstring[:-1]
-							break
-						tmpstring = tmpstring[:-1]
-					parsebracket(asnobj, tmpstring, 0)
-					break
+						parsebracket(asnobj, tmpstring, 0)
+						break
 				else:
 					asnobj.constrainttype = "UNCONSTRAINED"
 
@@ -265,7 +283,7 @@ def checkandhandledeps(asnobj, hdrfile, srcfile):
 	retval = 0
 	for i in range(0, len(asnobj.objs)):
 		obj = asnobj.objs[i]
-		if obj.type in typeslist:
+		if obj.type in types:
 			writeobject(obj, hdrfile, srcfile)
 		else:
 			found = 0
@@ -280,7 +298,7 @@ def checkandhandledeps(asnobj, hdrfile, srcfile):
 	return retval	
 			
 def writeobject(asnobj, hdrfile, srcfile):
-	if asnobj.written == 0:
+	if asnobj.written == 0 and asnobj.name != '':
 		if asnobj.parent != None:
 			asnobj.name = asnobj.parent.name + asnobj.name 
 		
@@ -291,10 +309,12 @@ def writeobject(asnobj, hdrfile, srcfile):
 			asnobj.type = asnobj.name
 	
 		# Constraint types
-		if asnobj.constrainttype == "CONSTANT":
-			hdrfile.write("const " + asnobj.type + "Base " + asnobj.name + "(" + str(asnobj.value) + ");\n")
-		else:
-			if asnobj.type == "Integer" or asnobj.type == "BitString" or asnobj.type == "OctetString":
+		if asnobj.type in constrainttypes:
+			if asnobj.constrainttype == "CONSTANT":
+				hdrfile.write("#define " + asnobj.name + " " + str(asnobj.value) + "\n")
+			if asnobj.constrainttype == "UNCONSTRAINED":
+				hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
+			else:
 				hdrfile.write("typedef " + asnobj.type + "<" + asnobj.constrainttype)
 				if asnobj.lowerlimit != '':
 					hdrfile.write(", " + asnobj.lowerlimit)
@@ -310,7 +330,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 			hdrfile.write("enum " + asnobj.name + "Values {\n")
 			for j in range(0, len(asnobj.objs)):
 				childobj = asnobj.objs[j]
-				hdrfile.write("\t" + childobj.name + " = " + str(j) + ",\n")
+				hdrfile.write("\t" + childobj.name + "_" + asnobj.name + " = " + str(j) + ",\n")
 			hdrfile.write("};\n")
 			hdrfile.write("typedef Enumerated<" + asnobj.constrainttype + ", " + str(len(asnobj.objs) - 1) + "> " + asnobj.name + ";\n")
 		
@@ -335,7 +355,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 				obj = asnobj.objs[j]
 				srcfile.write("\t&" + obj.type + "::theInfo,\n")
 			srcfile.write("};\n")
-			srcfile.write("const void *" + asnobj.name + "::itemsPres[" + str(len(asnobj.objs)) + "] = {\n")
+			srcfile.write("bool " + asnobj.name + "::itemsPres[" + str(len(asnobj.objs)) + "] = {\n")
 			for j in range(0, len(asnobj.objs)):
 				obj = asnobj.objs[j]
 				if obj.opt == 0:
@@ -356,6 +376,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 						"\titemsPres,\n"
 						"\t" + str(len(asnobj.objs)) + ", " + str(optnr) + ", " + str(extnr) + "\n" +
 						"};\n")
+			srcfile.write("\n")
 			
 		# Sequence Of
 		
@@ -394,9 +415,18 @@ def writeobject(asnobj, hdrfile, srcfile):
 			srcfile.write("\tchoicesInfo,\n" +
 						"\t" + str(len(asnobj.objs) - 1) + "\n" +
 						"};\n")
+			srcfile.write("\n")
+			
+		if asnobj.type not in types:
+			obj = ASNObject()
+			obj.type = asnobj.type
+			asnobj.objs.append(obj)
+			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
+				return
+			hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
 			
 		hdrfile.write("\n")
-		srcfile.write("\n")
+
 		asnobj.written = 1
 
 def writeheader(file):
@@ -427,7 +457,7 @@ def main():
 	
 	#directory = "/root/Desktop/omnetpp-4.2.2/samples/4Gsim/src/linklayer/lte/rrc/message/"
 	directory = "F:\\omnetpp-4.2.2\\samples\\4Gsim\\src\\linklayer\\lte\\rrc\\message\\"
-	filename = "Constant-definitions"
+	filename = "test"
 	
 	file = open(directory + filename + ".asn", "r")
 	lines = file.readlines()

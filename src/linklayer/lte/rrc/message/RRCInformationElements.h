@@ -15,18 +15,17 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef INFORMATIONELEMENTS_H_
-#define INFORMATIONELEMENTS_H_
+#ifndef RRCINFORMATIONELEMENTS_H_
+#define RRCINFORMATIONELEMENTS_H_
 
 #include "ASNTypes.h"
 #include "RRCConstantDefinitions.h"
 
-
 typedef BitString<CONSTRAINED, 14, 14> Ansi41IDNNS;
 
 enum CNDomainIdentityValues {
-	cs_domain = 0,
-	ps_domain = 1,
+	cs_domain_CNDomainIdentity = 0,
+	ps_domain_CNDomainIdentity = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> CNDomainIdentity;
 
@@ -274,8 +273,8 @@ public:
 };
 
 enum AccessClassBarredValues {
-	barred = 0,
-	notBarred = 1,
+	barred_AccessClassBarred = 0,
+	notBarred_AccessClassBarred = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> AccessClassBarred;
 
@@ -320,17 +319,17 @@ typedef BitString<CONSTRAINED, 4, 4> NASSynchronisationIndicator;
 typedef BitString<CONSTRAINED, 32, 32> PTMSIGSMMAP;
 
 enum PagingPermissionWithAccessControlParameterspagingResponseRestrictionIndicatorValues {
-	all = 0,
-	cS = 1,
-	pS = 2,
-	none = 3,
+	all_PagingPermissionWithAccessControlParameterspagingResponseRestrictionIndicator = 0,
+	cS_PagingPermissionWithAccessControlParameterspagingResponseRestrictionIndicator = 1,
+	pS_PagingPermissionWithAccessControlParameterspagingResponseRestrictionIndicator = 2,
+	none_PagingPermissionWithAccessControlParameterspagingResponseRestrictionIndicator = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> PagingPermissionWithAccessControlParameterspagingResponseRestrictionIndicator;
 
 enum PagingPermissionWithAccessControlParameterslocationRegistrationRestrictionIndicatorValues {
-	all = 0,
-	cS = 1,
-	pS = 2,
+	all_PagingPermissionWithAccessControlParameterslocationRegistrationRestrictionIndicator = 0,
+	cS_PagingPermissionWithAccessControlParameterslocationRegistrationRestrictionIndicator = 1,
+	pS_PagingPermissionWithAccessControlParameterslocationRegistrationRestrictionIndicator = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> PagingPermissionWithAccessControlParameterslocationRegistrationRestrictionIndicator;
 
@@ -361,10 +360,10 @@ public:
 };
 
 enum PagingRecordTypeIDValues {
-	imsi_GSM_MAP = 0,
-	tmsi_GSM_MAP_P_TMSI = 1,
-	imsi_DS_41 = 2,
-	tmsi_DS_41 = 3,
+	imsi_GSM_MAP_PagingRecordTypeID = 0,
+	tmsi_GSM_MAP_P_TMSI_PagingRecordTypeID = 1,
+	imsi_DS_41_PagingRecordTypeID = 2,
+	tmsi_DS_41_PagingRecordTypeID = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> PagingRecordTypeID;
 
@@ -441,20 +440,20 @@ typedef BitString<CONSTRAINED, 32, 32> TMSIGSMMAP;
 typedef SequenceOf<AccessClassBarred, CONSTRAINED, maxAC, maxAC> AccessClassBarredList;
 
 enum AllowedIndicatorValues {
-	allowed = 0,
-	notAllowed = 1,
+	allowed_AllowedIndicator = 0,
+	notAllowed_AllowedIndicator = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> AllowedIndicator;
 
 enum TBarredValues {
-	s10 = 0,
-	s20 = 1,
-	s40 = 2,
-	s80 = 3,
-	s160 = 4,
-	s320 = 5,
-	s640 = 6,
-	s1280 = 7,
+	s10_TBarred = 0,
+	s20_TBarred = 1,
+	s40_TBarred = 2,
+	s80_TBarred = 3,
+	s160_TBarred = 4,
+	s320_TBarred = 5,
+	s640_TBarred = 6,
+	s1280_TBarred = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> TBarred;
 
@@ -478,8 +477,8 @@ public:
 };
 
 enum ReservedIndicatorValues {
-	reserved = 0,
-	notReserved = 1,
+	reserved_ReservedIndicator = 0,
+	notReserved_ReservedIndicator = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ReservedIndicator;
 
@@ -493,7 +492,7 @@ public:
 };
 
 enum CellAccessRestrictionv870extcellReservedForCSGValues {
-	true = 0,
+	true_CellAccessRestrictionv870extcellReservedForCSG = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> CellAccessRestrictionv870extcellReservedForCSG;
 
@@ -511,18 +510,18 @@ typedef BitString<CONSTRAINED, 28, 28> CellIdentity;
 typedef SequenceOf<CellIdentity, CONSTRAINED, 1, maxRL> CellIdentityPerRLList;
 
 enum RATValues {
-	utra_FDD = 0,
-	utra_TDD = 1,
-	gsm = 2,
-	cdma2000 = 3,
+	utra_FDD_RAT = 0,
+	utra_TDD_RAT = 1,
+	gsm_RAT = 2,
+	cdma2000_RAT = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> RAT;
 
 enum MappingFunctionTypeValues {
-	linear = 0,
-	functionType2 = 1,
-	functionType3 = 2,
-	functionType4 = 3,
+	linear_MappingFunctionType = 0,
+	functionType2_MappingFunctionType = 1,
+	functionType3_MappingFunctionType = 2,
+	functionType4_MappingFunctionType = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> MappingFunctionType;
 
@@ -578,8 +577,8 @@ typedef Integer<CONSTRAINED, -16, 10> SSearchQual;
 typedef Integer<CONSTRAINED, -53, 45> SSearchRXLEV;
 
 enum RATIdentifierValues {
-	gsm = 0,
-	cdma2000 = 1,
+	gsm_RATIdentifier = 0,
+	cdma2000_RATIdentifier = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> RATIdentifier;
 
@@ -646,14 +645,14 @@ typedef Null TCRMaxNotUsed;
 typedef Integer<CONSTRAINED, 1, 16> NCRTCRMaxHystNCR;
 
 enum TCRMaxHystValues {
-	notUsed = 0,
-	t10 = 1,
-	t20 = 2,
-	t30 = 3,
-	t40 = 4,
-	t50 = 5,
-	t60 = 6,
-	t70 = 7,
+	notUsed_TCRMaxHyst = 0,
+	t10_TCRMaxHyst = 1,
+	t20_TCRMaxHyst = 2,
+	t30_TCRMaxHyst = 3,
+	t40_TCRMaxHyst = 4,
+	t50_TCRMaxHyst = 5,
+	t60_TCRMaxHyst = 6,
+	t70_TCRMaxHyst = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> TCRMaxHyst;
 
@@ -738,22 +737,22 @@ typedef BitString<CONSTRAINED, 27, 27> CSGIdentity;
 typedef Integer<CONSTRAINED, 0, 63> CSGPSCSplitInfoStartPSC;
 
 enum CSGPSCSplitInfonumberOfPSCsValues {
-	psc5 = 0,
-	psc10 = 1,
-	psc15 = 2,
-	psc20 = 3,
-	psc30 = 4,
-	psc40 = 5,
-	psc50 = 6,
-	psc64 = 7,
-	psc80 = 8,
-	psc120 = 9,
-	psc160 = 10,
-	psc256 = 11,
-	alltheRest = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	psc5_CSGPSCSplitInfonumberOfPSCs = 0,
+	psc10_CSGPSCSplitInfonumberOfPSCs = 1,
+	psc15_CSGPSCSplitInfonumberOfPSCs = 2,
+	psc20_CSGPSCSplitInfonumberOfPSCs = 3,
+	psc30_CSGPSCSplitInfonumberOfPSCs = 4,
+	psc40_CSGPSCSplitInfonumberOfPSCs = 5,
+	psc50_CSGPSCSplitInfonumberOfPSCs = 6,
+	psc64_CSGPSCSplitInfonumberOfPSCs = 7,
+	psc80_CSGPSCSplitInfonumberOfPSCs = 8,
+	psc120_CSGPSCSplitInfonumberOfPSCs = 9,
+	psc160_CSGPSCSplitInfonumberOfPSCs = 10,
+	psc256_CSGPSCSplitInfonumberOfPSCs = 11,
+	alltheRest_CSGPSCSplitInfonumberOfPSCs = 12,
+	spare3_CSGPSCSplitInfonumberOfPSCs = 13,
+	spare2_CSGPSCSplitInfonumberOfPSCs = 14,
+	spare1_CSGPSCSplitInfonumberOfPSCs = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> CSGPSCSplitInfonumberOfPSCs;
 
@@ -827,14 +826,14 @@ typedef Integer<CONSTRAINED, 1, maxSCCPCH> OccurrenceSequenceNumberOfPICH;
 typedef Null DedicatedPriorityInformationActionClearDedicatedPriorities;
 
 enum T322Values {
-	m5 = 0,
-	m10 = 1,
-	m20 = 2,
-	m30 = 3,
-	m60 = 4,
-	m120 = 5,
-	m180 = 6,
-	spare1 = 7,
+	m5_T322 = 0,
+	m10_T322 = 1,
+	m20_T322 = 2,
+	m30_T322 = 3,
+	m60_T322 = 4,
+	m120_T322 = 5,
+	m180_T322 = 6,
+	spare1_T322 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> T322;
 
@@ -870,8 +869,8 @@ public:
 typedef Integer<CONSTRAINED, 0, 1023> BCCHARFCN;
 
 enum GSMCellGroupbandIndicatorValues {
-	dcs1800 = 0,
-	pcs1900 = 1,
+	dcs1800_GSMCellGroupbandIndicator = 0,
+	pcs1900_GSMCellGroupbandIndicator = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> GSMCellGroupbandIndicator;
 
@@ -987,22 +986,22 @@ typedef BitString<CONSTRAINED, 16, 16> URAIdentity;
 typedef SequenceOf<URAIdentity, CONSTRAINED, 1, maxURA> URAIdentityList;
 
 enum AccessStratumReleaseIndicatorValues {
-	rel_4 = 0,
-	rel_5 = 1,
-	rel_6 = 2,
-	rel_7 = 3,
-	rel_8 = 4,
-	rel_9 = 5,
-	spare10 = 6,
-	spare9 = 7,
-	spare8 = 8,
-	spare7 = 9,
-	spare6 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	rel_4_AccessStratumReleaseIndicator = 0,
+	rel_5_AccessStratumReleaseIndicator = 1,
+	rel_6_AccessStratumReleaseIndicator = 2,
+	rel_7_AccessStratumReleaseIndicator = 3,
+	rel_8_AccessStratumReleaseIndicator = 4,
+	rel_9_AccessStratumReleaseIndicator = 5,
+	spare10_AccessStratumReleaseIndicator = 6,
+	spare9_AccessStratumReleaseIndicator = 7,
+	spare8_AccessStratumReleaseIndicator = 8,
+	spare7_AccessStratumReleaseIndicator = 9,
+	spare6_AccessStratumReleaseIndicator = 10,
+	spare5_AccessStratumReleaseIndicator = 11,
+	spare4_AccessStratumReleaseIndicator = 12,
+	spare3_AccessStratumReleaseIndicator = 13,
+	spare2_AccessStratumReleaseIndicator = 14,
+	spare1_AccessStratumReleaseIndicator = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> AccessStratumReleaseIndicator;
 
@@ -1021,8 +1020,8 @@ typedef Integer<CONSTRAINED, 0, 31> NFBOAllBusy;
 typedef Integer<CONSTRAINED, 0, 127> NFBOMismatch;
 
 enum TCPCHValues {
-	ct0 = 0,
-	ct1 = 1,
+	ct0_TCPCH = 0,
+	ct1_TCPCH = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> TCPCH;
 
@@ -1044,7 +1043,7 @@ typedef Boolean CapabilityUpdateRequirementUeRadioCapabilityFDDUpdateRequirement
 typedef Boolean CapabilityUpdateRequirementUeRadioCapabilityTDDUpdateRequirement;
 
 enum SystemSpecificCapUpdateReqValues {
-	gsm = 0,
+	gsm_SystemSpecificCapUpdateReq = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> SystemSpecificCapUpdateReq;
 
@@ -1092,8 +1091,8 @@ typedef Boolean CapabilityUpdateRequirementr5UeRadioCapabilityTDDUpdateRequireme
 typedef Boolean CapabilityUpdateRequirementr5UeRadioCapabilityTDDUpdateRequirementTDD128;
 
 enum SystemSpecificCapUpdateReqr5Values {
-	gsm = 0,
-	geranIu = 1,
+	gsm_SystemSpecificCapUpdateReqr5 = 0,
+	geranIu_SystemSpecificCapUpdateReqr5 = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> SystemSpecificCapUpdateReqr5;
 
@@ -1137,14 +1136,14 @@ public:
 };
 
 enum SystemSpecificCapUpdateReqr8Values {
-	gsm = 0,
-	geranIu = 1,
-	eutra = 2,
-	spare5 = 3,
-	spare4 = 4,
-	spare3 = 5,
-	spare2 = 6,
-	spare1 = 7,
+	gsm_SystemSpecificCapUpdateReqr8 = 0,
+	geranIu_SystemSpecificCapUpdateReqr8 = 1,
+	eutra_SystemSpecificCapUpdateReqr8 = 2,
+	spare5_SystemSpecificCapUpdateReqr8 = 3,
+	spare4_SystemSpecificCapUpdateReqr8 = 4,
+	spare3_SystemSpecificCapUpdateReqr8 = 5,
+	spare2_SystemSpecificCapUpdateReqr8 = 6,
+	spare1_SystemSpecificCapUpdateReqr8 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> SystemSpecificCapUpdateReqr8;
 
@@ -1177,41 +1176,41 @@ public:
 };
 
 enum CellUpdateCauseValues {
-	cellReselection = 0,
-	periodicalCellUpdate = 1,
-	uplinkDataTransmission = 2,
-	utran_pagingResponse = 3,
-	re_enteredServiceArea = 4,
-	radiolinkFailure = 5,
-	rlc_unrecoverableError = 6,
-	cellUpdateCause_ext = 7,
+	cellReselection_CellUpdateCause = 0,
+	periodicalCellUpdate_CellUpdateCause = 1,
+	uplinkDataTransmission_CellUpdateCause = 2,
+	utran_pagingResponse_CellUpdateCause = 3,
+	re_enteredServiceArea_CellUpdateCause = 4,
+	radiolinkFailure_CellUpdateCause = 5,
+	rlc_unrecoverableError_CellUpdateCause = 6,
+	cellUpdateCause_ext_CellUpdateCause = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> CellUpdateCause;
 
 enum CellUpdateCauseextValues {
-	mbms_Reception = 0,
-	mbms_PTP_RB_Request = 1,
-	dummy = 2,
-	spare1 = 3,
+	mbms_Reception_CellUpdateCauseext = 0,
+	mbms_PTP_RB_Request_CellUpdateCauseext = 1,
+	dummy_CellUpdateCauseext = 2,
+	spare1_CellUpdateCauseext = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> CellUpdateCauseext;
 
 enum ChipRateCapabilityValues {
-	mcps3_84 = 0,
-	mcps1_28 = 1,
+	mcps3_84_ChipRateCapability = 0,
+	mcps1_28_ChipRateCapability = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ChipRateCapability;
 
 enum CipheringAlgorithmValues {
-	uea0 = 0,
-	uea1 = 1,
+	uea0_CipheringAlgorithm = 0,
+	uea1_CipheringAlgorithm = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> CipheringAlgorithm;
 
 enum CipheringAlgorithmr7Values {
-	uea0 = 0,
-	uea1 = 1,
-	uea2 = 2,
+	uea0_CipheringAlgorithmr7 = 0,
+	uea1_CipheringAlgorithmr7 = 1,
+	uea2_CipheringAlgorithmr7 = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> CipheringAlgorithmr7;
 
@@ -1327,7 +1326,7 @@ public:
 };
 
 enum CompressedModeMeasCapabilityv860extadjacentFrequencyMeasurementsValues {
-	true = 0,
+	true_CompressedModeMeasCapabilityv860extadjacentFrequencyMeasurements = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> CompressedModeMeasCapabilityv860extadjacentFrequencyMeasurements;
 
@@ -1341,7 +1340,7 @@ public:
 };
 
 enum CompressedModeMeasCapabilityv920extinterBandMeasurementsValues {
-	true = 0,
+	true_CompressedModeMeasCapabilityv920extinterBandMeasurements = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> CompressedModeMeasCapabilityv920extinterBandMeasurements;
 
@@ -1370,14 +1369,14 @@ public:
 typedef SequenceOf<CompressedModeMeasCapabEUTRA, CONSTRAINED, 1, maxFreqBandsEUTRA> CompressedModeMeasCapabEUTRAList;
 
 enum RadioFrequencyBandFDDValues {
-	fdd2100 = 0,
-	fdd1900 = 1,
-	fdd1800 = 2,
-	bandVI = 3,
-	bandIV = 4,
-	bandV = 5,
-	bandVII = 6,
-	extension_indicator = 7,
+	fdd2100_RadioFrequencyBandFDD = 0,
+	fdd1900_RadioFrequencyBandFDD = 1,
+	fdd1800_RadioFrequencyBandFDD = 2,
+	bandVI_RadioFrequencyBandFDD = 3,
+	bandIV_RadioFrequencyBandFDD = 4,
+	bandV_RadioFrequencyBandFDD = 5,
+	bandVII_RadioFrequencyBandFDD = 6,
+	extension_indicator_RadioFrequencyBandFDD = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> RadioFrequencyBandFDD;
 
@@ -1397,22 +1396,22 @@ public:
 typedef SequenceOf<CompressedModeMeasCapabFDD, CONSTRAINED, 1, maxFreqBandsFDD> CompressedModeMeasCapabFDDList;
 
 enum RadioFrequencyBandFDD2Values {
-	bandVIII = 0,
-	bandIX = 1,
-	bandX = 2,
-	bandXI = 3,
-	bandXII = 4,
-	bandXIII = 5,
-	bandXIV = 6,
-	bandXV = 7,
-	bandXVI = 8,
-	bandXVII = 9,
-	bandXVIII = 10,
-	bandXIX = 11,
-	bandXX = 12,
-	bandXXI = 13,
-	bandXXII = 14,
-	extension_indicator = 15,
+	bandVIII_RadioFrequencyBandFDD2 = 0,
+	bandIX_RadioFrequencyBandFDD2 = 1,
+	bandX_RadioFrequencyBandFDD2 = 2,
+	bandXI_RadioFrequencyBandFDD2 = 3,
+	bandXII_RadioFrequencyBandFDD2 = 4,
+	bandXIII_RadioFrequencyBandFDD2 = 5,
+	bandXIV_RadioFrequencyBandFDD2 = 6,
+	bandXV_RadioFrequencyBandFDD2 = 7,
+	bandXVI_RadioFrequencyBandFDD2 = 8,
+	bandXVII_RadioFrequencyBandFDD2 = 9,
+	bandXVIII_RadioFrequencyBandFDD2 = 10,
+	bandXIX_RadioFrequencyBandFDD2 = 11,
+	bandXX_RadioFrequencyBandFDD2 = 12,
+	bandXXI_RadioFrequencyBandFDD2 = 13,
+	bandXXII_RadioFrequencyBandFDD2 = 14,
+	extension_indicator_RadioFrequencyBandFDD2 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> RadioFrequencyBandFDD2;
 
@@ -1447,10 +1446,10 @@ public:
 typedef SequenceOf<CompressedModeMeasCapabFDDext, CONSTRAINED, 1, maxFreqBandsFDD> CompressedModeMeasCapabFDDListext;
 
 enum RadioFrequencyBandTDDValues {
-	a = 0,
-	b = 1,
-	c = 2,
-	d = 3,
+	a_RadioFrequencyBandTDD = 0,
+	b_RadioFrequencyBandTDD = 1,
+	c_RadioFrequencyBandTDD = 2,
+	d_RadioFrequencyBandTDD = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> RadioFrequencyBandTDD;
 
@@ -1470,22 +1469,22 @@ public:
 typedef SequenceOf<CompressedModeMeasCapabTDD, CONSTRAINED, 1, maxFreqBandsTDD> CompressedModeMeasCapabTDDList;
 
 enum RadioFrequencyBandGSMValues {
-	gsm450 = 0,
-	gsm480 = 1,
-	gsm850 = 2,
-	gsm900P = 3,
-	gsm900E = 4,
-	gsm1800 = 5,
-	gsm1900 = 6,
-	spare9 = 7,
-	spare8 = 8,
-	spare7 = 9,
-	spare6 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	gsm450_RadioFrequencyBandGSM = 0,
+	gsm480_RadioFrequencyBandGSM = 1,
+	gsm850_RadioFrequencyBandGSM = 2,
+	gsm900P_RadioFrequencyBandGSM = 3,
+	gsm900E_RadioFrequencyBandGSM = 4,
+	gsm1800_RadioFrequencyBandGSM = 5,
+	gsm1900_RadioFrequencyBandGSM = 6,
+	spare9_RadioFrequencyBandGSM = 7,
+	spare8_RadioFrequencyBandGSM = 8,
+	spare7_RadioFrequencyBandGSM = 9,
+	spare6_RadioFrequencyBandGSM = 10,
+	spare5_RadioFrequencyBandGSM = 11,
+	spare4_RadioFrequencyBandGSM = 12,
+	spare3_RadioFrequencyBandGSM = 13,
+	spare2_RadioFrequencyBandGSM = 14,
+	spare1_RadioFrequencyBandGSM = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> RadioFrequencyBandGSM;
 
@@ -1545,17 +1544,17 @@ public:
 };
 
 enum CSGProximityIndicationCapabilitysupportOfIntraFreqProximityIndicationValues {
-	true = 0,
+	true_CSGProximityIndicationCapabilitysupportOfIntraFreqProximityIndication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> CSGProximityIndicationCapabilitysupportOfIntraFreqProximityIndication;
 
 enum CSGProximityIndicationCapabilitysupportOfInterFreqProximityIndicationValues {
-	true = 0,
+	true_CSGProximityIndicationCapabilitysupportOfInterFreqProximityIndication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> CSGProximityIndicationCapabilitysupportOfInterFreqProximityIndication;
 
 enum CSGProximityIndicationCapabilitysupportOfE_UtraProximityIndicationValues {
-	true = 0,
+	true_CSGProximityIndicationCapabilitysupportOfE_UtraProximityIndication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> CSGProximityIndicationCapabilitysupportOfE_UtraProximityIndication;
 
@@ -1569,10 +1568,10 @@ public:
 };
 
 enum DLCapabilityWithSimultaneousHSDSCHConfigValues {
-	kbps32 = 0,
-	kbps64 = 1,
-	kbps128 = 2,
-	kbps384 = 3,
+	kbps32_DLCapabilityWithSimultaneousHSDSCHConfig = 0,
+	kbps64_DLCapabilityWithSimultaneousHSDSCHConfig = 1,
+	kbps128_DLCapabilityWithSimultaneousHSDSCHConfig = 2,
+	kbps384_DLCapabilityWithSimultaneousHSDSCHConfig = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> DLCapabilityWithSimultaneousHSDSCHConfig;
 
@@ -1588,8 +1587,8 @@ public:
 };
 
 enum PCPICHUsageForChannelEstValues {
-	mayBeUsed = 0,
-	shallNotBeUsed = 1,
+	mayBeUsed_PCPICHUsageForChannelEst = 0,
+	shallNotBeUsed_PCPICHUsageForChannelEst = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> PCPICHUsageForChannelEst;
 
@@ -1615,7 +1614,7 @@ typedef Integer<CONSTRAINED, 0, 255> DLFDPCHInfoPerRLr7DlChannelisationCode;
 typedef Integer<CONSTRAINED, 0, 5> TPCCombinationIndex;
 
 enum STTDIndicationValues {
-	true = 0,
+	true_STTDIndication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> STTDIndication;
 
@@ -1687,21 +1686,21 @@ typedef SequenceOf<DLInformationPerSecondaryRL, CONSTRAINED, 1, maxEDCHRL> DLInf
 typedef Integer<CONSTRAINED, 1, 8> DLPhysChCapabilityFDDMaxNoDPCHPDSCHCodes;
 
 enum MaxNoPhysChBitsReceivedValues {
-	dummy = 0,
-	b1200 = 1,
-	b2400 = 2,
-	b3600 = 3,
-	b4800 = 4,
-	b7200 = 5,
-	b9600 = 6,
-	b14400 = 7,
-	b19200 = 8,
-	b28800 = 9,
-	b38400 = 10,
-	b48000 = 11,
-	b57600 = 12,
-	b67200 = 13,
-	b76800 = 14,
+	dummy_MaxNoPhysChBitsReceived = 0,
+	b1200_MaxNoPhysChBitsReceived = 1,
+	b2400_MaxNoPhysChBitsReceived = 2,
+	b3600_MaxNoPhysChBitsReceived = 3,
+	b4800_MaxNoPhysChBitsReceived = 4,
+	b7200_MaxNoPhysChBitsReceived = 5,
+	b9600_MaxNoPhysChBitsReceived = 6,
+	b14400_MaxNoPhysChBitsReceived = 7,
+	b19200_MaxNoPhysChBitsReceived = 8,
+	b28800_MaxNoPhysChBitsReceived = 9,
+	b38400_MaxNoPhysChBitsReceived = 10,
+	b48000_MaxNoPhysChBitsReceived = 11,
+	b57600_MaxNoPhysChBitsReceived = 12,
+	b67200_MaxNoPhysChBitsReceived = 13,
+	b76800_MaxNoPhysChBitsReceived = 14,
 };
 typedef Enumerated<CONSTRAINED, 14> MaxNoPhysChBitsReceived;
 
@@ -1712,7 +1711,7 @@ typedef Boolean DLPhysChCapabilityFDDDummy;
 typedef Null SimultaneousSCCPCHDPCHReceptionNotSupported;
 
 enum MaxNoSCCPCHRLValues {
-	rl1 = 0,
+	rl1_MaxNoSCCPCHRL = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MaxNoSCCPCHRL;
 
@@ -1745,7 +1744,7 @@ public:
 };
 
 enum SupportOfDedicatedPilotsForChEstimationValues {
-	true = 0,
+	true_SupportOfDedicatedPilotsForChEstimation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> SupportOfDedicatedPilotsForChEstimation;
 
@@ -1761,22 +1760,22 @@ public:
 typedef Integer<CONSTRAINED, 1, 20> HSDSCHphysicallayercategoryext;
 
 enum DLPhysChCapabilityFDDv770exthsscchlessHsdschOperationValues {
-	true = 0,
+	true_DLPhysChCapabilityFDDv770exthsscchlessHsdschOperation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLPhysChCapabilityFDDv770exthsscchlessHsdschOperation;
 
 enum DLPhysChCapabilityFDDv770extenhancedFdpchValues {
-	true = 0,
+	true_DLPhysChCapabilityFDDv770extenhancedFdpch = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLPhysChCapabilityFDDv770extenhancedFdpch;
 
 enum DLPhysChCapabilityFDDv770exthsdschReception_CellFachValues {
-	true = 0,
+	true_DLPhysChCapabilityFDDv770exthsdschReception_CellFach = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLPhysChCapabilityFDDv770exthsdschReception_CellFach;
 
 enum DLPhysChCapabilityFDDv770exthsdschReception_CellUraPchValues {
-	true = 0,
+	true_DLPhysChCapabilityFDDv770exthsdschReception_CellUraPch = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLPhysChCapabilityFDDv770exthsdschReception_CellUraPch;
 
@@ -1792,12 +1791,12 @@ public:
 typedef Integer<CONSTRAINED, 21, 24> HSDSCHphysicallayercategoryext2;
 
 enum DLPhysChCapabilityFDDv860extsupportOfTargetCellPreConfigValues {
-	true = 0,
+	true_DLPhysChCapabilityFDDv860extsupportOfTargetCellPreConfig = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLPhysChCapabilityFDDv860extsupportOfTargetCellPreConfig;
 
 enum DLPhysChCapabilityFDDv860extsupportOfHsdschDrxOperationValues {
-	true = 0,
+	true_DLPhysChCapabilityFDDv860extsupportOfHsdschDrxOperation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLPhysChCapabilityFDDv860extsupportOfHsdschDrxOperation;
 
@@ -1813,7 +1812,7 @@ public:
 typedef Integer<CONSTRAINED, 25, 28> HSDSCHphysicallayercategoryext3;
 
 enum DLPhysChCapabilityFDDv920extsupportOfMimoOnlySingleStreamValues {
-	true = 0,
+	true_DLPhysChCapabilityFDDv920extsupportOfMimoOnlySingleStream = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLPhysChCapabilityFDDv920extsupportOfMimoOnlySingleStream;
 
@@ -1831,8 +1830,8 @@ typedef Integer<CONSTRAINED, 1, 14> MaxTSPerFrame;
 typedef Integer<CONSTRAINED, 1, 224> MaxPhysChPerFrame;
 
 enum MinimumSFDLValues {
-	sf1 = 0,
-	sf16 = 1,
+	sf1_MinimumSFDL = 0,
+	sf16_MinimumSFDL = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> MinimumSFDL;
 
@@ -1882,8 +1881,8 @@ typedef Integer<CONSTRAINED, 1, 64> HSDSCHphysicallayercategoryextension;
 typedef Integer<CONSTRAINED, 1, 36> MultiCarrierHSDSCHphysicallayercategoryextension;
 
 enum DLPhysChCapabilityTDD128v860extsupportOfSFModeForHSPDSCHDualStreamValues {
-	sf1 = 0,
-	sf1sf16 = 1,
+	sf1_DLPhysChCapabilityTDD128v860extsupportOfSFModeForHSPDSCHDualStream = 0,
+	sf1sf16_DLPhysChCapabilityTDD128v860extsupportOfSFModeForHSPDSCHDualStream = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> DLPhysChCapabilityTDD128v860extsupportOfSFModeForHSPDSCHDualStream;
 
@@ -1899,8 +1898,8 @@ public:
 typedef Integer<CONSTRAINED, 1, 448> MaxPhysChPerFrame768;
 
 enum MinimumSFDL768Values {
-	sf1 = 0,
-	sf32 = 1,
+	sf1_MinimumSFDL768 = 0,
+	sf32_MinimumSFDL768 = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> MinimumSFDL768;
 
@@ -1941,19 +1940,19 @@ public:
 };
 
 enum MaxNoBitsValues {
-	b640 = 0,
-	b1280 = 1,
-	b2560 = 2,
-	b3840 = 3,
-	b5120 = 4,
-	b6400 = 5,
-	b7680 = 6,
-	b8960 = 7,
-	b10240 = 8,
-	b20480 = 9,
-	b40960 = 10,
-	b81920 = 11,
-	b163840 = 12,
+	b640_MaxNoBits = 0,
+	b1280_MaxNoBits = 1,
+	b2560_MaxNoBits = 2,
+	b3840_MaxNoBits = 3,
+	b5120_MaxNoBits = 4,
+	b6400_MaxNoBits = 5,
+	b7680_MaxNoBits = 6,
+	b8960_MaxNoBits = 7,
+	b10240_MaxNoBits = 8,
+	b20480_MaxNoBits = 9,
+	b40960_MaxNoBits = 10,
+	b81920_MaxNoBits = 11,
+	b163840_MaxNoBits = 12,
 };
 typedef Enumerated<CONSTRAINED, 12> MaxNoBits;
 
@@ -1968,49 +1967,49 @@ public:
 };
 
 enum MaxSimultaneousTransChsDLValues {
-	e4 = 0,
-	e8 = 1,
-	e16 = 2,
-	e32 = 3,
+	e4_MaxSimultaneousTransChsDL = 0,
+	e8_MaxSimultaneousTransChsDL = 1,
+	e16_MaxSimultaneousTransChsDL = 2,
+	e32_MaxSimultaneousTransChsDL = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> MaxSimultaneousTransChsDL;
 
 typedef Integer<CONSTRAINED, 1, 8> MaxSimultaneousCCTrCHCount;
 
 enum MaxTransportBlocksDLValues {
-	tb4 = 0,
-	tb8 = 1,
-	tb16 = 2,
-	tb32 = 3,
-	tb48 = 4,
-	tb64 = 5,
-	tb96 = 6,
-	tb128 = 7,
-	tb256 = 8,
-	tb512 = 9,
+	tb4_MaxTransportBlocksDL = 0,
+	tb8_MaxTransportBlocksDL = 1,
+	tb16_MaxTransportBlocksDL = 2,
+	tb32_MaxTransportBlocksDL = 3,
+	tb48_MaxTransportBlocksDL = 4,
+	tb64_MaxTransportBlocksDL = 5,
+	tb96_MaxTransportBlocksDL = 6,
+	tb128_MaxTransportBlocksDL = 7,
+	tb256_MaxTransportBlocksDL = 8,
+	tb512_MaxTransportBlocksDL = 9,
 };
 typedef Enumerated<CONSTRAINED, 9> MaxTransportBlocksDL;
 
 enum MaxNumberOfTFCDLValues {
-	tfc16 = 0,
-	tfc32 = 1,
-	tfc48 = 2,
-	tfc64 = 3,
-	tfc96 = 4,
-	tfc128 = 5,
-	tfc256 = 6,
-	tfc512 = 7,
-	tfc1024 = 8,
+	tfc16_MaxNumberOfTFCDL = 0,
+	tfc32_MaxNumberOfTFCDL = 1,
+	tfc48_MaxNumberOfTFCDL = 2,
+	tfc64_MaxNumberOfTFCDL = 3,
+	tfc96_MaxNumberOfTFCDL = 4,
+	tfc128_MaxNumberOfTFCDL = 5,
+	tfc256_MaxNumberOfTFCDL = 6,
+	tfc512_MaxNumberOfTFCDL = 7,
+	tfc1024_MaxNumberOfTFCDL = 8,
 };
 typedef Enumerated<CONSTRAINED, 8> MaxNumberOfTFCDL;
 
 enum MaxNumberOfTFValues {
-	tf32 = 0,
-	tf64 = 1,
-	tf128 = 2,
-	tf256 = 3,
-	tf512 = 4,
-	tf1024 = 5,
+	tf32_MaxNumberOfTF = 0,
+	tf64_MaxNumberOfTF = 1,
+	tf128_MaxNumberOfTF = 2,
+	tf256_MaxNumberOfTF = 3,
+	tf512_MaxNumberOfTF = 4,
+	tf1024_MaxNumberOfTF = 5,
 };
 typedef Enumerated<CONSTRAINED, 5> MaxNumberOfTF;
 
@@ -2041,7 +2040,7 @@ typedef SequenceOf<DRACSysInfo, CONSTRAINED, 1, maxDRACclasses> DRACSysInfoList;
 typedef BitString<CONSTRAINED, 16, 16> DSCHRNTI;
 
 enum DelayRestrictionFlagValues {
-	true = 0,
+	true_DelayRestrictionFlag = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DelayRestrictionFlag;
 
@@ -2050,38 +2049,38 @@ typedef BitString<CONSTRAINED, 16, 16> ERNTI;
 typedef BitString<CONSTRAINED, 32, 32> ESNDS41;
 
 enum EstablishmentCauseValues {
-	originatingConversationalCall = 0,
-	originatingStreamingCall = 1,
-	originatingInteractiveCall = 2,
-	originatingBackgroundCall = 3,
-	originatingSubscribedTrafficCall = 4,
-	terminatingConversationalCall = 5,
-	terminatingStreamingCall = 6,
-	terminatingInteractiveCall = 7,
-	terminatingBackgroundCall = 8,
-	emergencyCall = 9,
-	interRAT_CellReselection = 10,
-	interRAT_CellChangeOrder = 11,
-	registration = 12,
-	detach = 13,
-	originatingHighPrioritySignalling = 14,
-	originatingLowPrioritySignalling = 15,
-	callRe_establishment = 16,
-	terminatingHighPrioritySignalling = 17,
-	terminatingLowPrioritySignalling = 18,
-	terminatingCauseUnknown = 19,
-	mbms_Reception = 20,
-	mbms_PTP_RB_Request = 21,
-	spare10 = 22,
-	spare9 = 23,
-	spare8 = 24,
-	spare7 = 25,
-	spare6 = 26,
-	spare5 = 27,
-	spare4 = 28,
-	spare3 = 29,
-	spare2 = 30,
-	spare1 = 31,
+	originatingConversationalCall_EstablishmentCause = 0,
+	originatingStreamingCall_EstablishmentCause = 1,
+	originatingInteractiveCall_EstablishmentCause = 2,
+	originatingBackgroundCall_EstablishmentCause = 3,
+	originatingSubscribedTrafficCall_EstablishmentCause = 4,
+	terminatingConversationalCall_EstablishmentCause = 5,
+	terminatingStreamingCall_EstablishmentCause = 6,
+	terminatingInteractiveCall_EstablishmentCause = 7,
+	terminatingBackgroundCall_EstablishmentCause = 8,
+	emergencyCall_EstablishmentCause = 9,
+	interRAT_CellReselection_EstablishmentCause = 10,
+	interRAT_CellChangeOrder_EstablishmentCause = 11,
+	registration_EstablishmentCause = 12,
+	detach_EstablishmentCause = 13,
+	originatingHighPrioritySignalling_EstablishmentCause = 14,
+	originatingLowPrioritySignalling_EstablishmentCause = 15,
+	callRe_establishment_EstablishmentCause = 16,
+	terminatingHighPrioritySignalling_EstablishmentCause = 17,
+	terminatingLowPrioritySignalling_EstablishmentCause = 18,
+	terminatingCauseUnknown_EstablishmentCause = 19,
+	mbms_Reception_EstablishmentCause = 20,
+	mbms_PTP_RB_Request_EstablishmentCause = 21,
+	spare10_EstablishmentCause = 22,
+	spare9_EstablishmentCause = 23,
+	spare8_EstablishmentCause = 24,
+	spare7_EstablishmentCause = 25,
+	spare6_EstablishmentCause = 26,
+	spare5_EstablishmentCause = 27,
+	spare4_EstablishmentCause = 28,
+	spare3_EstablishmentCause = 29,
+	spare2_EstablishmentCause = 30,
+	spare1_EstablishmentCause = 31,
 };
 typedef Enumerated<CONSTRAINED, 31> EstablishmentCause;
 
@@ -2094,14 +2093,14 @@ typedef Null FailureCauseWithProtErrIncompatibleSimultaneousReconfiguration;
 typedef Integer<CONSTRAINED, 1, maxTGPS> TGPSI;
 
 enum ProtocolErrorCauseValues {
-	asn1_ViolationOrEncodingError = 0,
-	messageTypeNonexistent = 1,
-	messageNotCompatibleWithReceiverState = 2,
-	ie_ValueNotComprehended = 3,
-	informationElementMissing = 4,
-	messageExtensionNotComprehended = 5,
-	spare2 = 6,
-	spare1 = 7,
+	asn1_ViolationOrEncodingError_ProtocolErrorCause = 0,
+	messageTypeNonexistent_ProtocolErrorCause = 1,
+	messageNotCompatibleWithReceiverState_ProtocolErrorCause = 2,
+	ie_ValueNotComprehended_ProtocolErrorCause = 3,
+	informationElementMissing_ProtocolErrorCause = 4,
+	messageExtensionNotComprehended_ProtocolErrorCause = 5,
+	spare2_ProtocolErrorCause = 6,
+	spare1_ProtocolErrorCause = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ProtocolErrorCause;
 
@@ -2175,24 +2174,24 @@ public:
 };
 
 enum GANSSModeValues {
-	networkBased = 0,
-	uEBased = 1,
-	both = 2,
-	none = 3,
+	networkBased_GANSSMode = 0,
+	uEBased_GANSSMode = 1,
+	both_GANSSMode = 2,
+	none_GANSSMode = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> GANSSMode;
 
 typedef Null RRCConnectionReleaseInformationNoRelease;
 
 enum ReleaseCauseValues {
-	normalEvent = 0,
-	unspecified = 1,
-	pre_emptiveRelease = 2,
-	congestion = 3,
-	re_establishmentReject = 4,
-	directedsignallingconnectionre_establishment = 5,
-	userInactivity = 6,
-	spare = 7,
+	normalEvent_ReleaseCause = 0,
+	unspecified_ReleaseCause = 1,
+	pre_emptiveRelease_ReleaseCause = 2,
+	congestion_ReleaseCause = 3,
+	re_establishmentReject_ReleaseCause = 4,
+	directedsignallingconnectionre_establishment_ReleaseCause = 5,
+	userInactivity_ReleaseCause = 6,
+	spare_ReleaseCause = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ReleaseCause;
 
@@ -2306,7 +2305,7 @@ public:
 typedef BitString<CONSTRAINED, 16, 16> HRNTI;
 
 enum HighMobilityDetectedValues {
-	high_MobilityDetected = 0,
+	high_MobilityDetected_HighMobilityDetected = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> HighMobilityDetected;
 
@@ -2387,13 +2386,13 @@ public:
 };
 
 enum IntegrityProtectionAlgorithmValues {
-	uia1 = 0,
+	uia1_IntegrityProtectionAlgorithm = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> IntegrityProtectionAlgorithm;
 
 enum IntegrityProtectionAlgorithmr7Values {
-	uia1 = 0,
-	uia2 = 1,
+	uia1_IntegrityProtectionAlgorithmr7 = 0,
+	uia2_IntegrityProtectionAlgorithmr7 = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> IntegrityProtectionAlgorithmr7;
 
@@ -2444,115 +2443,115 @@ public:
 };
 
 enum MaxHcContextSpaceValues {
-	dummy = 0,
-	by1024 = 1,
-	by2048 = 2,
-	by4096 = 3,
-	by8192 = 4,
+	dummy_MaxHcContextSpace = 0,
+	by1024_MaxHcContextSpace = 1,
+	by2048_MaxHcContextSpace = 2,
+	by4096_MaxHcContextSpace = 3,
+	by8192_MaxHcContextSpace = 4,
 };
 typedef Enumerated<CONSTRAINED, 4> MaxHcContextSpace;
 
 enum MaxHcContextSpacer5extValues {
-	by16384 = 0,
-	by32768 = 1,
-	by65536 = 2,
-	by131072 = 3,
+	by16384_MaxHcContextSpacer5ext = 0,
+	by32768_MaxHcContextSpacer5ext = 1,
+	by65536_MaxHcContextSpacer5ext = 2,
+	by131072_MaxHcContextSpacer5ext = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> MaxHcContextSpacer5ext;
 
 enum MaxROHCContextSessionsr4Values {
-	s2 = 0,
-	s4 = 1,
-	s8 = 2,
-	s12 = 3,
-	s16 = 4,
-	s24 = 5,
-	s32 = 6,
-	s48 = 7,
-	s64 = 8,
-	s128 = 9,
-	s256 = 10,
-	s512 = 11,
-	s1024 = 12,
-	s16384 = 13,
+	s2_MaxROHCContextSessionsr4 = 0,
+	s4_MaxROHCContextSessionsr4 = 1,
+	s8_MaxROHCContextSessionsr4 = 2,
+	s12_MaxROHCContextSessionsr4 = 3,
+	s16_MaxROHCContextSessionsr4 = 4,
+	s24_MaxROHCContextSessionsr4 = 5,
+	s32_MaxROHCContextSessionsr4 = 6,
+	s48_MaxROHCContextSessionsr4 = 7,
+	s64_MaxROHCContextSessionsr4 = 8,
+	s128_MaxROHCContextSessionsr4 = 9,
+	s256_MaxROHCContextSessionsr4 = 10,
+	s512_MaxROHCContextSessionsr4 = 11,
+	s1024_MaxROHCContextSessionsr4 = 12,
+	s16384_MaxROHCContextSessionsr4 = 13,
 };
 typedef Enumerated<CONSTRAINED, 13> MaxROHCContextSessionsr4;
 
 enum MaximumAMEntityNumberRLCCapValues {
-	dummy = 0,
-	am4 = 1,
-	am5 = 2,
-	am6 = 3,
-	am8 = 4,
-	am16 = 5,
-	am30 = 6,
+	dummy_MaximumAMEntityNumberRLCCap = 0,
+	am4_MaximumAMEntityNumberRLCCap = 1,
+	am5_MaximumAMEntityNumberRLCCap = 2,
+	am6_MaximumAMEntityNumberRLCCap = 3,
+	am8_MaximumAMEntityNumberRLCCap = 4,
+	am16_MaximumAMEntityNumberRLCCap = 5,
+	am30_MaximumAMEntityNumberRLCCap = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> MaximumAMEntityNumberRLCCap;
 
 enum MaximumRLCWindowSizeValues {
-	mws2047 = 0,
-	mws4095 = 1,
+	mws2047_MaximumRLCWindowSize = 0,
+	mws4095_MaximumRLCWindowSize = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> MaximumRLCWindowSize;
 
 enum MaxNoDPDCHBitsTransmittedValues {
-	b600 = 0,
-	b1200 = 1,
-	b2400 = 2,
-	b4800 = 3,
-	b9600 = 4,
-	b19200 = 5,
-	b28800 = 6,
-	b38400 = 7,
-	b48000 = 8,
-	b57600 = 9,
+	b600_MaxNoDPDCHBitsTransmitted = 0,
+	b1200_MaxNoDPDCHBitsTransmitted = 1,
+	b2400_MaxNoDPDCHBitsTransmitted = 2,
+	b4800_MaxNoDPDCHBitsTransmitted = 3,
+	b9600_MaxNoDPDCHBitsTransmitted = 4,
+	b19200_MaxNoDPDCHBitsTransmitted = 5,
+	b28800_MaxNoDPDCHBitsTransmitted = 6,
+	b38400_MaxNoDPDCHBitsTransmitted = 7,
+	b48000_MaxNoDPDCHBitsTransmitted = 8,
+	b57600_MaxNoDPDCHBitsTransmitted = 9,
 };
 typedef Enumerated<CONSTRAINED, 9> MaxNoDPDCHBitsTransmitted;
 
 enum MaxNumberOfTFCULValues {
-	dummy1 = 0,
-	dummy2 = 1,
-	tfc16 = 2,
-	tfc32 = 3,
-	tfc48 = 4,
-	tfc64 = 5,
-	tfc96 = 6,
-	tfc128 = 7,
-	tfc256 = 8,
-	tfc512 = 9,
-	tfc1024 = 10,
+	dummy1_MaxNumberOfTFCUL = 0,
+	dummy2_MaxNumberOfTFCUL = 1,
+	tfc16_MaxNumberOfTFCUL = 2,
+	tfc32_MaxNumberOfTFCUL = 3,
+	tfc48_MaxNumberOfTFCUL = 4,
+	tfc64_MaxNumberOfTFCUL = 5,
+	tfc96_MaxNumberOfTFCUL = 6,
+	tfc128_MaxNumberOfTFCUL = 7,
+	tfc256_MaxNumberOfTFCUL = 8,
+	tfc512_MaxNumberOfTFCUL = 9,
+	tfc1024_MaxNumberOfTFCUL = 10,
 };
 typedef Enumerated<CONSTRAINED, 10> MaxNumberOfTFCUL;
 
 enum MaxPhysChPerTimeslotValues {
-	ts1 = 0,
-	ts2 = 1,
+	ts1_MaxPhysChPerTimeslot = 0,
+	ts2_MaxPhysChPerTimeslot = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> MaxPhysChPerTimeslot;
 
 typedef Integer<CONSTRAINED, 1, 4> MaxPhysChPerTimeslotLCRr7;
 
 enum MaxSimultaneousTransChsULValues {
-	dummy = 0,
-	e4 = 1,
-	e8 = 2,
-	e16 = 3,
-	e32 = 4,
+	dummy_MaxSimultaneousTransChsUL = 0,
+	e4_MaxSimultaneousTransChsUL = 1,
+	e8_MaxSimultaneousTransChsUL = 2,
+	e16_MaxSimultaneousTransChsUL = 3,
+	e32_MaxSimultaneousTransChsUL = 4,
 };
 typedef Enumerated<CONSTRAINED, 4> MaxSimultaneousTransChsUL;
 
 enum MaxTransportBlocksULValues {
-	dummy = 0,
-	tb4 = 1,
-	tb8 = 2,
-	tb16 = 3,
-	tb32 = 4,
-	tb48 = 5,
-	tb64 = 6,
-	tb96 = 7,
-	tb128 = 8,
-	tb256 = 9,
-	tb512 = 10,
+	dummy_MaxTransportBlocksUL = 0,
+	tb4_MaxTransportBlocksUL = 1,
+	tb8_MaxTransportBlocksUL = 2,
+	tb16_MaxTransportBlocksUL = 3,
+	tb32_MaxTransportBlocksUL = 4,
+	tb48_MaxTransportBlocksUL = 5,
+	tb64_MaxTransportBlocksUL = 6,
+	tb96_MaxTransportBlocksUL = 7,
+	tb128_MaxTransportBlocksUL = 8,
+	tb256_MaxTransportBlocksUL = 9,
+	tb512_MaxTransportBlocksUL = 10,
 };
 typedef Enumerated<CONSTRAINED, 10> MaxTransportBlocksUL;
 
@@ -2629,18 +2628,18 @@ public:
 };
 
 enum MinimumSFULValues {
-	sf1 = 0,
-	sf2 = 1,
-	sf4 = 2,
-	sf8 = 3,
-	dummy = 4,
+	sf1_MinimumSFUL = 0,
+	sf2_MinimumSFUL = 1,
+	sf4_MinimumSFUL = 2,
+	sf8_MinimumSFUL = 3,
+	dummy_MinimumSFUL = 4,
 };
 typedef Enumerated<CONSTRAINED, 4> MinimumSFUL;
 
 enum MultiModeCapabilityValues {
-	tdd = 0,
-	fdd = 1,
-	fdd_tdd = 2,
+	tdd_MultiModeCapability = 0,
+	fdd_MultiModeCapability = 1,
+	fdd_tdd_MultiModeCapability = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> MultiModeCapability;
 
@@ -2669,7 +2668,7 @@ public:
 };
 
 enum MultiModeRATCapabilityv680extsupportOfHandoverToGANValues {
-	doesSupportHandoverToGAN = 0,
+	doesSupportHandoverToGAN_MultiModeRATCapabilityv680extsupportOfHandoverToGAN = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MultiModeRATCapabilityv680extsupportOfHandoverToGAN;
 
@@ -2683,7 +2682,7 @@ public:
 };
 
 enum MultiModeRATCapabilityv770extsupportOfPSHandoverToGANValues {
-	doesSupportPSHandoverToGAN = 0,
+	doesSupportPSHandoverToGAN_MultiModeRATCapabilityv770extsupportOfPSHandoverToGAN = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MultiModeRATCapabilityv770extsupportOfPSHandoverToGAN;
 
@@ -2697,22 +2696,22 @@ public:
 };
 
 enum MultiModeRATCapabilityv860extsupportOfEUTRAFDDValues {
-	doesSupportEUTRAFDD = 0,
+	doesSupportEUTRAFDD_MultiModeRATCapabilityv860extsupportOfEUTRAFDD = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MultiModeRATCapabilityv860extsupportOfEUTRAFDD;
 
 enum MultiModeRATCapabilityv860extsupportOfInterRATHOToEUTRAFDDValues {
-	doesSupportInterRATHOToEUTRAFDD = 0,
+	doesSupportInterRATHOToEUTRAFDD_MultiModeRATCapabilityv860extsupportOfInterRATHOToEUTRAFDD = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MultiModeRATCapabilityv860extsupportOfInterRATHOToEUTRAFDD;
 
 enum MultiModeRATCapabilityv860extsupportOfEUTRATDDValues {
-	doesSupportEUTRATDD = 0,
+	doesSupportEUTRATDD_MultiModeRATCapabilityv860extsupportOfEUTRATDD = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MultiModeRATCapabilityv860extsupportOfEUTRATDD;
 
 enum MultiModeRATCapabilityv860extsupportOfInterRATHOToEUTRATDDValues {
-	doesSupportInterRATHOToEUTRATDD = 0,
+	doesSupportInterRATHOToEUTRATDD_MultiModeRATCapabilityv860extsupportOfInterRATHOToEUTRATDD = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MultiModeRATCapabilityv860extsupportOfInterRATHOToEUTRATDD;
 
@@ -2740,101 +2739,101 @@ typedef Integer<CONSTRAINED, 1, 8> N308;
 typedef Integer<CONSTRAINED, 0, 7> N310;
 
 enum N312Values {
-	s1 = 0,
-	s50 = 1,
-	s100 = 2,
-	s200 = 3,
-	s400 = 4,
-	s600 = 5,
-	s800 = 6,
-	s1000 = 7,
+	s1_N312 = 0,
+	s50_N312 = 1,
+	s100_N312 = 2,
+	s200_N312 = 3,
+	s400_N312 = 4,
+	s600_N312 = 5,
+	s800_N312 = 6,
+	s1000_N312 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> N312;
 
 enum N312extValues {
-	s2 = 0,
-	s4 = 1,
-	s10 = 2,
-	s20 = 3,
+	s2_N312ext = 0,
+	s4_N312ext = 1,
+	s10_N312ext = 2,
+	s20_N312ext = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> N312ext;
 
 enum N312r5Values {
-	s1 = 0,
-	s2 = 1,
-	s4 = 2,
-	s10 = 3,
-	s20 = 4,
-	s50 = 5,
-	s100 = 6,
-	s200 = 7,
-	s400 = 8,
-	s600 = 9,
-	s800 = 10,
-	s1000 = 11,
+	s1_N312r5 = 0,
+	s2_N312r5 = 1,
+	s4_N312r5 = 2,
+	s10_N312r5 = 3,
+	s20_N312r5 = 4,
+	s50_N312r5 = 5,
+	s100_N312r5 = 6,
+	s200_N312r5 = 7,
+	s400_N312r5 = 8,
+	s600_N312r5 = 9,
+	s800_N312r5 = 10,
+	s1000_N312r5 = 11,
 };
 typedef Enumerated<CONSTRAINED, 11> N312r5;
 
 enum N313Values {
-	s1 = 0,
-	s2 = 1,
-	s4 = 2,
-	s10 = 3,
-	s20 = 4,
-	s50 = 5,
-	s100 = 6,
-	s200 = 7,
+	s1_N313 = 0,
+	s2_N313 = 1,
+	s4_N313 = 2,
+	s10_N313 = 3,
+	s20_N313 = 4,
+	s50_N313 = 5,
+	s100_N313 = 6,
+	s200_N313 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> N313;
 
 enum N315Values {
-	s1 = 0,
-	s50 = 1,
-	s100 = 2,
-	s200 = 3,
-	s400 = 4,
-	s600 = 5,
-	s800 = 6,
-	s1000 = 7,
+	s1_N315 = 0,
+	s50_N315 = 1,
+	s100_N315 = 2,
+	s200_N315 = 3,
+	s400_N315 = 4,
+	s600_N315 = 5,
+	s800_N315 = 6,
+	s1000_N315 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> N315;
 
 enum N315extValues {
-	s2 = 0,
-	s4 = 1,
-	s10 = 2,
-	s20 = 3,
+	s2_N315ext = 0,
+	s4_N315ext = 1,
+	s10_N315ext = 2,
+	s20_N315ext = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> N315ext;
 
 enum N315r5Values {
-	s1 = 0,
-	s2 = 1,
-	s4 = 2,
-	s10 = 3,
-	s20 = 4,
-	s50 = 5,
-	s100 = 6,
-	s200 = 7,
-	s400 = 8,
-	s600 = 9,
-	s800 = 10,
-	s1000 = 11,
+	s1_N315r5 = 0,
+	s2_N315r5 = 1,
+	s4_N315r5 = 2,
+	s10_N315r5 = 3,
+	s20_N315r5 = 4,
+	s50_N315r5 = 5,
+	s100_N315r5 = 6,
+	s200_N315r5 = 7,
+	s400_N315r5 = 8,
+	s600_N315r5 = 9,
+	s800_N315r5 = 10,
+	s1000_N315r5 = 11,
 };
 typedef Enumerated<CONSTRAINED, 11> N315r5;
 
 enum NeighCellSIAcquisitionCapabilitysupportOfIntraFreqSIAcquisitionForHOValues {
-	true = 0,
+	true_NeighCellSIAcquisitionCapabilitysupportOfIntraFreqSIAcquisitionForHO = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> NeighCellSIAcquisitionCapabilitysupportOfIntraFreqSIAcquisitionForHO;
 
 enum NeighCellSIAcquisitionCapabilitysupportOfInterFreqSIAcquisitionForHOValues {
-	true = 0,
+	true_NeighCellSIAcquisitionCapabilitysupportOfInterFreqSIAcquisitionForHO = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> NeighCellSIAcquisitionCapabilitysupportOfInterFreqSIAcquisitionForHO;
 
 enum NeighCellSIAcquisitionCapabilitysupportOfE_UtraSIAcquisitionForHOValues {
-	true = 0,
+	true_NeighCellSIAcquisitionCapabilitysupportOfE_UtraSIAcquisitionForHO = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> NeighCellSIAcquisitionCapabilitysupportOfE_UtraSIAcquisitionForHO;
 
@@ -2866,22 +2865,22 @@ public:
 };
 
 enum NetworkAssistedGPSSupportedValues {
-	networkBased = 0,
-	ue_Based = 1,
-	bothNetworkAndUE_Based = 2,
-	noNetworkAssistedGPS = 3,
+	networkBased_NetworkAssistedGPSSupported = 0,
+	ue_Based_NetworkAssistedGPSSupported = 1,
+	bothNetworkAndUE_Based_NetworkAssistedGPSSupported = 2,
+	noNetworkAssistedGPS_NetworkAssistedGPSSupported = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> NetworkAssistedGPSSupported;
 
 enum PagingCauseValues {
-	terminatingConversationalCall = 0,
-	terminatingStreamingCall = 1,
-	terminatingInteractiveCall = 2,
-	terminatingBackgroundCall = 3,
-	terminatingHighPrioritySignalling = 4,
-	terminatingLowPrioritySignalling = 5,
-	terminatingCauseUnknown = 6,
-	spare = 7,
+	terminatingConversationalCall_PagingCause = 0,
+	terminatingStreamingCall_PagingCause = 1,
+	terminatingInteractiveCall_PagingCause = 2,
+	terminatingBackgroundCall_PagingCause = 3,
+	terminatingHighPrioritySignalling_PagingCause = 4,
+	terminatingLowPrioritySignalling_PagingCause = 5,
+	terminatingCauseUnknown_PagingCause = 6,
+	spare_PagingCause = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> PagingCause;
 
@@ -3028,7 +3027,7 @@ public:
 };
 
 enum PDCPCapabilityr5ext2losslessDLRLC_PDUSizeChangeValues {
-	true = 0,
+	true_PDCPCapabilityr5ext2losslessDLRLC_PDUSizeChange = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> PDCPCapabilityr5ext2losslessDLRLC_PDUSizeChange;
 
@@ -3042,7 +3041,7 @@ public:
 };
 
 enum PDCPCapabilityv770extsupportForCSVoiceoverHSPAValues {
-	true = 0,
+	true_PDCPCapabilityv770extsupportForCSVoiceoverHSPA = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> PDCPCapabilityv770extsupportForCSVoiceoverHSPA;
 
@@ -3107,12 +3106,12 @@ public:
 typedef Integer<CONSTRAINED, 7, 7> ULPhysChCapabilityFDDv770extEdchPhysicalLayerCategoryextension;
 
 enum ULPhysChCapabilityFDDv770extdiscontinuousDpcchTransmissionValues {
-	true = 0,
+	true_ULPhysChCapabilityFDDv770extdiscontinuousDpcchTransmission = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> ULPhysChCapabilityFDDv770extdiscontinuousDpcchTransmission;
 
 enum ULPhysChCapabilityFDDv770extslotFormat4Values {
-	true = 0,
+	true_ULPhysChCapabilityFDDv770extslotFormat4 = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> ULPhysChCapabilityFDDv770extslotFormat4;
 
@@ -3438,30 +3437,30 @@ public:
 };
 
 enum PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriodValues {
-	c2 = 0,
-	c3 = 1,
-	c4 = 2,
-	c5 = 3,
-	c6 = 4,
-	c7 = 5,
-	c8 = 6,
-	c9 = 7,
-	c10 = 8,
-	c12 = 9,
-	c14 = 10,
-	c16 = 11,
-	c18 = 12,
-	c20 = 13,
-	c24 = 14,
-	c28 = 15,
-	c32 = 16,
-	c36 = 17,
-	c40 = 18,
-	c48 = 19,
-	c56 = 20,
-	c64 = 21,
-	c72 = 22,
-	c80 = 23,
+	c2_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 0,
+	c3_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 1,
+	c4_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 2,
+	c5_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 3,
+	c6_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 4,
+	c7_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 5,
+	c8_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 6,
+	c9_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 7,
+	c10_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 8,
+	c12_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 9,
+	c14_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 10,
+	c16_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 11,
+	c18_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 12,
+	c20_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 13,
+	c24_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 14,
+	c28_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 15,
+	c32_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 16,
+	c36_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 17,
+	c40_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 18,
+	c48_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 19,
+	c56_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 20,
+	c64_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 21,
+	c72_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 22,
+	c80_PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod = 23,
 };
 typedef Enumerated<CONSTRAINED, 23> PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod;
 
@@ -3488,8 +3487,8 @@ public:
 };
 
 enum ProtocolErrorIndicatorValues {
-	noError = 0,
-	errorOccurred = 1,
+	noError_ProtocolErrorIndicator = 0,
+	errorOccurred_ProtocolErrorIndicator = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ProtocolErrorIndicator;
 
@@ -3517,38 +3516,38 @@ typedef Null ProtocolErrorMoreInformationDiagnosticsTypeType1Asn1ViolationOrEnco
 typedef Null ProtocolErrorMoreInformationDiagnosticsTypeType1MessageTypeNonexistent;
 
 enum ReceivedMessageTypeValues {
-	activeSetUpdate = 0,
-	cellChangeOrderFromUTRAN = 1,
-	cellUpdateConfirm = 2,
-	counterCheck = 3,
-	downlinkDirectTransfer = 4,
-	interRATHandoverCommand = 5,
-	measurementControl = 6,
-	pagingType2 = 7,
-	physicalChannelReconfiguration = 8,
-	physicalSharedChannelAllocation = 9,
-	radioBearerReconfiguration = 10,
-	radioBearerRelease = 11,
-	radioBearerSetup = 12,
-	rrcConnectionRelease = 13,
-	rrcConnectionReject = 14,
-	rrcConnectionSetup = 15,
-	securityModeCommand = 16,
-	signallingConnectionRelease = 17,
-	transportChannelReconfiguration = 18,
-	transportFormatCombinationControl = 19,
-	ueCapabilityEnquiry = 20,
-	ueCapabilityInformationConfirm = 21,
-	uplinkPhysicalChannelControl = 22,
-	uraUpdateConfirm = 23,
-	utranMobilityInformation = 24,
-	assistanceDataDelivery = 25,
-	spare6 = 26,
-	spare5 = 27,
-	spare4 = 28,
-	spare3 = 29,
-	spare2 = 30,
-	spare1 = 31,
+	activeSetUpdate_ReceivedMessageType = 0,
+	cellChangeOrderFromUTRAN_ReceivedMessageType = 1,
+	cellUpdateConfirm_ReceivedMessageType = 2,
+	counterCheck_ReceivedMessageType = 3,
+	downlinkDirectTransfer_ReceivedMessageType = 4,
+	interRATHandoverCommand_ReceivedMessageType = 5,
+	measurementControl_ReceivedMessageType = 6,
+	pagingType2_ReceivedMessageType = 7,
+	physicalChannelReconfiguration_ReceivedMessageType = 8,
+	physicalSharedChannelAllocation_ReceivedMessageType = 9,
+	radioBearerReconfiguration_ReceivedMessageType = 10,
+	radioBearerRelease_ReceivedMessageType = 11,
+	radioBearerSetup_ReceivedMessageType = 12,
+	rrcConnectionRelease_ReceivedMessageType = 13,
+	rrcConnectionReject_ReceivedMessageType = 14,
+	rrcConnectionSetup_ReceivedMessageType = 15,
+	securityModeCommand_ReceivedMessageType = 16,
+	signallingConnectionRelease_ReceivedMessageType = 17,
+	transportChannelReconfiguration_ReceivedMessageType = 18,
+	transportFormatCombinationControl_ReceivedMessageType = 19,
+	ueCapabilityEnquiry_ReceivedMessageType = 20,
+	ueCapabilityInformationConfirm_ReceivedMessageType = 21,
+	uplinkPhysicalChannelControl_ReceivedMessageType = 22,
+	uraUpdateConfirm_ReceivedMessageType = 23,
+	utranMobilityInformation_ReceivedMessageType = 24,
+	assistanceDataDelivery_ReceivedMessageType = 25,
+	spare6_ReceivedMessageType = 26,
+	spare5_ReceivedMessageType = 27,
+	spare4_ReceivedMessageType = 28,
+	spare3_ReceivedMessageType = 29,
+	spare2_ReceivedMessageType = 30,
+	spare1_ReceivedMessageType = 31,
 };
 typedef Enumerated<CONSTRAINED, 31> ReceivedMessageType;
 
@@ -3593,54 +3592,54 @@ public:
 };
 
 enum RadioFrequencyBandTDDListValues {
-	a = 0,
-	b = 1,
-	c = 2,
-	ab = 3,
-	ac = 4,
-	bc = 5,
-	abc = 6,
-	spare = 7,
+	a_RadioFrequencyBandTDDList = 0,
+	b_RadioFrequencyBandTDDList = 1,
+	c_RadioFrequencyBandTDDList = 2,
+	ab_RadioFrequencyBandTDDList = 3,
+	ac_RadioFrequencyBandTDDList = 4,
+	bc_RadioFrequencyBandTDDList = 5,
+	abc_RadioFrequencyBandTDDList = 6,
+	spare_RadioFrequencyBandTDDList = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> RadioFrequencyBandTDDList;
 
 enum RadioFrequencyBandTDDListr7Values {
-	a = 0,
-	b = 1,
-	c = 2,
-	d = 3,
-	ab = 4,
-	ac = 5,
-	ad = 6,
-	bc = 7,
-	bd = 8,
-	cd = 9,
-	abc = 10,
-	abd = 11,
-	acd = 12,
-	bcd = 13,
-	abcd = 14,
-	notabcd = 15,
+	a_RadioFrequencyBandTDDListr7 = 0,
+	b_RadioFrequencyBandTDDListr7 = 1,
+	c_RadioFrequencyBandTDDListr7 = 2,
+	d_RadioFrequencyBandTDDListr7 = 3,
+	ab_RadioFrequencyBandTDDListr7 = 4,
+	ac_RadioFrequencyBandTDDListr7 = 5,
+	ad_RadioFrequencyBandTDDListr7 = 6,
+	bc_RadioFrequencyBandTDDListr7 = 7,
+	bd_RadioFrequencyBandTDDListr7 = 8,
+	cd_RadioFrequencyBandTDDListr7 = 9,
+	abc_RadioFrequencyBandTDDListr7 = 10,
+	abd_RadioFrequencyBandTDDListr7 = 11,
+	acd_RadioFrequencyBandTDDListr7 = 12,
+	bcd_RadioFrequencyBandTDDListr7 = 13,
+	abcd_RadioFrequencyBandTDDListr7 = 14,
+	notabcd_RadioFrequencyBandTDDListr7 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> RadioFrequencyBandTDDListr7;
 
 enum RadioFrequencyBandTDDextValues {
-	e = 0,
-	f = 1,
-	g = 2,
-	h = 3,
-	i = 4,
-	j = 5,
-	k = 6,
-	l = 7,
-	m = 8,
-	n = 9,
-	o = 10,
-	p = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	e_RadioFrequencyBandTDDext = 0,
+	f_RadioFrequencyBandTDDext = 1,
+	g_RadioFrequencyBandTDDext = 2,
+	h_RadioFrequencyBandTDDext = 3,
+	i_RadioFrequencyBandTDDext = 4,
+	j_RadioFrequencyBandTDDext = 5,
+	k_RadioFrequencyBandTDDext = 6,
+	l_RadioFrequencyBandTDDext = 7,
+	m_RadioFrequencyBandTDDext = 8,
+	n_RadioFrequencyBandTDDext = 9,
+	o_RadioFrequencyBandTDDext = 10,
+	p_RadioFrequencyBandTDDext = 11,
+	spare4_RadioFrequencyBandTDDext = 12,
+	spare3_RadioFrequencyBandTDDext = 13,
+	spare2_RadioFrequencyBandTDDext = 14,
+	spare1_RadioFrequencyBandTDDext = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> RadioFrequencyBandTDDext;
 
@@ -3660,13 +3659,13 @@ public:
 };
 
 enum ReEstablishmentTimerValues {
-	useT314 = 0,
-	useT315 = 1,
+	useT314_ReEstablishmentTimer = 0,
+	useT315_ReEstablishmentTimer = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ReEstablishmentTimer;
 
 enum InterRATInfoValues {
-	gsm = 0,
+	gsm_InterRATInfo = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> InterRATInfo;
 
@@ -3679,8 +3678,8 @@ public:
 };
 
 enum FrequencyBandValues {
-	dcs1800BandUsed = 0,
-	pcs1900BandUsed = 1,
+	dcs1800BandUsed_FrequencyBand = 0,
+	pcs1900BandUsed_FrequencyBand = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> FrequencyBand;
 
@@ -3781,17 +3780,17 @@ public:
 };
 
 enum RejectionCauseValues {
-	congestion = 0,
-	unspecified = 1,
+	congestion_RejectionCause = 0,
+	unspecified_RejectionCause = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> RejectionCause;
 
 typedef Integer<CONSTRAINED, 1, 4> UEPowerClass;
 
 enum TxRxFrequencySeparationValues {
-	default_TxRx_separation = 0,
-	spare2 = 1,
-	spare1 = 2,
+	default_TxRx_separation_TxRxFrequencySeparation = 0,
+	spare2_TxRxFrequencySeparation = 1,
+	spare1_TxRxFrequencySeparation = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> TxRxFrequencySeparation;
 
@@ -3868,14 +3867,14 @@ public:
 };
 
 enum TotalRLCAMBufferSizeValues {
-	dummy = 0,
-	kb10 = 1,
-	kb50 = 2,
-	kb100 = 3,
-	kb150 = 4,
-	kb500 = 5,
-	kb1000 = 6,
-	spare = 7,
+	dummy_TotalRLCAMBufferSize = 0,
+	kb10_TotalRLCAMBufferSize = 1,
+	kb50_TotalRLCAMBufferSize = 2,
+	kb100_TotalRLCAMBufferSize = 3,
+	kb150_TotalRLCAMBufferSize = 4,
+	kb500_TotalRLCAMBufferSize = 5,
+	kb1000_TotalRLCAMBufferSize = 6,
+	spare_TotalRLCAMBufferSize = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> TotalRLCAMBufferSize;
 
@@ -3889,10 +3888,10 @@ public:
 };
 
 enum TotalRLCAMBufferSizer5extValues {
-	kb200 = 0,
-	kb300 = 1,
-	kb400 = 2,
-	kb750 = 3,
+	kb200_TotalRLCAMBufferSizer5ext = 0,
+	kb300_TotalRLCAMBufferSizer5ext = 1,
+	kb400_TotalRLCAMBufferSizer5ext = 2,
+	kb750_TotalRLCAMBufferSizer5ext = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> TotalRLCAMBufferSizer5ext;
 
@@ -3917,8 +3916,8 @@ public:
 };
 
 enum TotalRLCAMBufferSizev920extValues {
-	kb1150 = 0,
-	kb1250 = 1,
+	kb1150_TotalRLCAMBufferSizev920ext = 0,
+	kb1250_TotalRLCAMBufferSizev920ext = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> TotalRLCAMBufferSizev920ext;
 
@@ -3932,10 +3931,10 @@ public:
 };
 
 enum RRCStateIndicatorValues {
-	cell_DCH = 0,
-	cell_FACH = 1,
-	cell_PCH = 2,
-	ura_PCH = 3,
+	cell_DCH_RRCStateIndicator = 0,
+	cell_FACH_RRCStateIndicator = 1,
+	cell_PCH_RRCStateIndicator = 2,
+	ura_PCH_RRCStateIndicator = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> RRCStateIndicator;
 
@@ -3964,8 +3963,8 @@ public:
 };
 
 enum ScramblingCodeTypeValues {
-	shortSC = 0,
-	longSC = 1,
+	shortSC_ScramblingCodeType = 0,
+	longSC_ScramblingCodeType = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ScramblingCodeType;
 
@@ -3974,8 +3973,8 @@ typedef Integer<CONSTRAINED, 0, 16777215> ULScramblingCode;
 typedef BitString<CONSTRAINED, 8, 8> SecondaryEDCHInfoCommonMs2SchedTransmGrantHARQAlloc;
 
 enum SecondaryEDCHInfoCommonServingGrantprimary_Secondary_GrantSelectorValues {
-	primary = 0,
-	secondary = 1,
+	primary_SecondaryEDCHInfoCommonServingGrantprimary_Secondary_GrantSelector = 0,
+	secondary_SecondaryEDCHInfoCommonServingGrantprimary_Secondary_GrantSelector = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> SecondaryEDCHInfoCommonServingGrantprimary_Secondary_GrantSelector;
 
@@ -3989,14 +3988,14 @@ public:
 };
 
 enum MinReducedEDPDCHGainFactorValues {
-	m8_15 = 0,
-	m11_15 = 1,
-	m15_15 = 2,
-	m21_15 = 3,
-	m30_15 = 4,
-	m42_15 = 5,
-	m60_15 = 6,
-	m84_15 = 7,
+	m8_15_MinReducedEDPDCHGainFactor = 0,
+	m11_15_MinReducedEDPDCHGainFactor = 1,
+	m15_15_MinReducedEDPDCHGainFactor = 2,
+	m21_15_MinReducedEDPDCHGainFactor = 3,
+	m30_15_MinReducedEDPDCHGainFactor = 4,
+	m42_15_MinReducedEDPDCHGainFactor = 5,
+	m60_15_MinReducedEDPDCHGainFactor = 6,
+	m84_15_MinReducedEDPDCHGainFactor = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> MinReducedEDPDCHGainFactor;
 
@@ -4052,22 +4051,22 @@ public:
 typedef Integer<CONSTRAINED, 0, 14> TimeslotNumber;
 
 enum DLTSChannelisationCodeValues {
-	cc16_1 = 0,
-	cc16_2 = 1,
-	cc16_3 = 2,
-	cc16_4 = 3,
-	cc16_5 = 4,
-	cc16_6 = 5,
-	cc16_7 = 6,
-	cc16_8 = 7,
-	cc16_9 = 8,
-	cc16_10 = 9,
-	cc16_11 = 10,
-	cc16_12 = 11,
-	cc16_13 = 12,
-	cc16_14 = 13,
-	cc16_15 = 14,
-	cc16_16 = 15,
+	cc16_1_DLTSChannelisationCode = 0,
+	cc16_2_DLTSChannelisationCode = 1,
+	cc16_3_DLTSChannelisationCode = 2,
+	cc16_4_DLTSChannelisationCode = 3,
+	cc16_5_DLTSChannelisationCode = 4,
+	cc16_6_DLTSChannelisationCode = 5,
+	cc16_7_DLTSChannelisationCode = 6,
+	cc16_8_DLTSChannelisationCode = 7,
+	cc16_9_DLTSChannelisationCode = 8,
+	cc16_10_DLTSChannelisationCode = 9,
+	cc16_11_DLTSChannelisationCode = 10,
+	cc16_12_DLTSChannelisationCode = 11,
+	cc16_13_DLTSChannelisationCode = 12,
+	cc16_14_DLTSChannelisationCode = 13,
+	cc16_15_DLTSChannelisationCode = 14,
+	cc16_16_DLTSChannelisationCode = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> DLTSChannelisationCode;
 
@@ -4095,9 +4094,9 @@ public:
 };
 
 enum MidambleConfigurationBurstType1and3Values {
-	ms4 = 0,
-	ms8 = 1,
-	ms16 = 2,
+	ms4_MidambleConfigurationBurstType1and3 = 0,
+	ms8_MidambleConfigurationBurstType1and3 = 1,
+	ms16_MidambleConfigurationBurstType1and3 = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> MidambleConfigurationBurstType1and3;
 
@@ -4154,22 +4153,22 @@ public:
 typedef Integer<CONSTRAINED, 0, 6> TimeslotNumberLCRr4;
 
 enum HSChannelisationCodeLCRValues {
-	cc16_1 = 0,
-	cc16_2 = 1,
-	cc16_3 = 2,
-	cc16_4 = 3,
-	cc16_5 = 4,
-	cc16_6 = 5,
-	cc16_7 = 6,
-	cc16_8 = 7,
-	cc16_9 = 8,
-	cc16_10 = 9,
-	cc16_11 = 10,
-	cc16_12 = 11,
-	cc16_13 = 12,
-	cc16_14 = 13,
-	cc16_15 = 14,
-	cc16_16 = 15,
+	cc16_1_HSChannelisationCodeLCR = 0,
+	cc16_2_HSChannelisationCodeLCR = 1,
+	cc16_3_HSChannelisationCodeLCR = 2,
+	cc16_4_HSChannelisationCodeLCR = 3,
+	cc16_5_HSChannelisationCodeLCR = 4,
+	cc16_6_HSChannelisationCodeLCR = 5,
+	cc16_7_HSChannelisationCodeLCR = 6,
+	cc16_8_HSChannelisationCodeLCR = 7,
+	cc16_9_HSChannelisationCodeLCR = 8,
+	cc16_10_HSChannelisationCodeLCR = 9,
+	cc16_11_HSChannelisationCodeLCR = 10,
+	cc16_12_HSChannelisationCodeLCR = 11,
+	cc16_13_HSChannelisationCodeLCR = 12,
+	cc16_14_HSChannelisationCodeLCR = 13,
+	cc16_15_HSChannelisationCodeLCR = 14,
+	cc16_16_HSChannelisationCodeLCR = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> HSChannelisationCodeLCR;
 
@@ -4215,10 +4214,10 @@ typedef Integer<CONSTRAINED, -7, 8> HSSICHConfigurationTDD128Nackackpoweroffset;
 typedef Integer<CONSTRAINED, -120, -58> HSSICHConfigurationTDD128PowerlevelHSSICH;
 
 enum HSSICHConfigurationTDD128tpc_step_sizeValues {
-	s1 = 0,
-	s2 = 1,
-	s3 = 2,
-	spare1 = 3,
+	s1_HSSICHConfigurationTDD128tpc_step_size = 0,
+	s2_HSSICHConfigurationTDD128tpc_step_size = 1,
+	s3_HSSICHConfigurationTDD128tpc_step_size = 2,
+	spare1_HSSICHConfigurationTDD128tpc_step_size = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> HSSICHConfigurationTDD128tpc_step_size;
 
@@ -4270,15 +4269,15 @@ public:
 typedef Integer<CONSTRAINED, -12, 26> MeasurementPowerOffset;
 
 enum FeedbackcycleValues {
-	fc0 = 0,
-	fc2 = 1,
-	fc4 = 2,
-	fc8 = 3,
-	fc10 = 4,
-	fc20 = 5,
-	fc40 = 6,
-	fc80 = 7,
-	fc160 = 8,
+	fc0_Feedbackcycle = 0,
+	fc2_Feedbackcycle = 1,
+	fc4_Feedbackcycle = 2,
+	fc8_Feedbackcycle = 3,
+	fc10_Feedbackcycle = 4,
+	fc20_Feedbackcycle = 5,
+	fc40_Feedbackcycle = 6,
+	fc80_Feedbackcycle = 7,
+	fc160_Feedbackcycle = 8,
 };
 typedef Enumerated<CONSTRAINED, 8> Feedbackcycle;
 
@@ -4398,67 +4397,67 @@ typedef Integer<CONSTRAINED, 1, 8> HARQInfoNumberOfProcesses;
 typedef Null HARQInfoMemoryPartitioningImplicit;
 
 enum HARQMemorySizeValues {
-	hms800 = 0,
-	hms1600 = 1,
-	hms2400 = 2,
-	hms3200 = 3,
-	hms4000 = 4,
-	hms4800 = 5,
-	hms5600 = 6,
-	hms6400 = 7,
-	hms7200 = 8,
-	hms8000 = 9,
-	hms8800 = 10,
-	hms9600 = 11,
-	hms10400 = 12,
-	hms11200 = 13,
-	hms12000 = 14,
-	hms12800 = 15,
-	hms13600 = 16,
-	hms14400 = 17,
-	hms15200 = 18,
-	hms16000 = 19,
-	hms17600 = 20,
-	hms19200 = 21,
-	hms20800 = 22,
-	hms22400 = 23,
-	hms24000 = 24,
-	hms25600 = 25,
-	hms27200 = 26,
-	hms28800 = 27,
-	hms30400 = 28,
-	hms32000 = 29,
-	hms36000 = 30,
-	hms40000 = 31,
-	hms44000 = 32,
-	hms48000 = 33,
-	hms52000 = 34,
-	hms56000 = 35,
-	hms60000 = 36,
-	hms64000 = 37,
-	hms68000 = 38,
-	hms72000 = 39,
-	hms76000 = 40,
-	hms80000 = 41,
-	hms88000 = 42,
-	hms96000 = 43,
-	hms104000 = 44,
-	hms112000 = 45,
-	hms120000 = 46,
-	hms128000 = 47,
-	hms136000 = 48,
-	hms144000 = 49,
-	hms152000 = 50,
-	hms160000 = 51,
-	hms176000 = 52,
-	hms192000 = 53,
-	hms208000 = 54,
-	hms224000 = 55,
-	hms240000 = 56,
-	hms256000 = 57,
-	hms272000 = 58,
-	hms288000 = 59,
-	hms304000 = 60,
+	hms800_HARQMemorySize = 0,
+	hms1600_HARQMemorySize = 1,
+	hms2400_HARQMemorySize = 2,
+	hms3200_HARQMemorySize = 3,
+	hms4000_HARQMemorySize = 4,
+	hms4800_HARQMemorySize = 5,
+	hms5600_HARQMemorySize = 6,
+	hms6400_HARQMemorySize = 7,
+	hms7200_HARQMemorySize = 8,
+	hms8000_HARQMemorySize = 9,
+	hms8800_HARQMemorySize = 10,
+	hms9600_HARQMemorySize = 11,
+	hms10400_HARQMemorySize = 12,
+	hms11200_HARQMemorySize = 13,
+	hms12000_HARQMemorySize = 14,
+	hms12800_HARQMemorySize = 15,
+	hms13600_HARQMemorySize = 16,
+	hms14400_HARQMemorySize = 17,
+	hms15200_HARQMemorySize = 18,
+	hms16000_HARQMemorySize = 19,
+	hms17600_HARQMemorySize = 20,
+	hms19200_HARQMemorySize = 21,
+	hms20800_HARQMemorySize = 22,
+	hms22400_HARQMemorySize = 23,
+	hms24000_HARQMemorySize = 24,
+	hms25600_HARQMemorySize = 25,
+	hms27200_HARQMemorySize = 26,
+	hms28800_HARQMemorySize = 27,
+	hms30400_HARQMemorySize = 28,
+	hms32000_HARQMemorySize = 29,
+	hms36000_HARQMemorySize = 30,
+	hms40000_HARQMemorySize = 31,
+	hms44000_HARQMemorySize = 32,
+	hms48000_HARQMemorySize = 33,
+	hms52000_HARQMemorySize = 34,
+	hms56000_HARQMemorySize = 35,
+	hms60000_HARQMemorySize = 36,
+	hms64000_HARQMemorySize = 37,
+	hms68000_HARQMemorySize = 38,
+	hms72000_HARQMemorySize = 39,
+	hms76000_HARQMemorySize = 40,
+	hms80000_HARQMemorySize = 41,
+	hms88000_HARQMemorySize = 42,
+	hms96000_HARQMemorySize = 43,
+	hms104000_HARQMemorySize = 44,
+	hms112000_HARQMemorySize = 45,
+	hms120000_HARQMemorySize = 46,
+	hms128000_HARQMemorySize = 47,
+	hms136000_HARQMemorySize = 48,
+	hms144000_HARQMemorySize = 49,
+	hms152000_HARQMemorySize = 50,
+	hms160000_HARQMemorySize = 51,
+	hms176000_HARQMemorySize = 52,
+	hms192000_HARQMemorySize = 53,
+	hms208000_HARQMemorySize = 54,
+	hms224000_HARQMemorySize = 55,
+	hms240000_HARQMemorySize = 56,
+	hms256000_HARQMemorySize = 57,
+	hms272000_HARQMemorySize = 58,
+	hms288000_HARQMemorySize = 59,
+	hms304000_HARQMemorySize = 60,
 };
 typedef Enumerated<CONSTRAINED, 60> HARQMemorySize;
 
@@ -4482,7 +4481,7 @@ public:
 };
 
 enum ServingHSDSCHCellInformationmac_hsResetIndicatorValues {
-	true = 0,
+	true_ServingHSDSCHCellInformationmac_hsResetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> ServingHSDSCHCellInformationmac_hsResetIndicator;
 
@@ -4565,38 +4564,38 @@ public:
 };
 
 enum DLTSChannelisationCodeVHCRValues {
-	cc32_1 = 0,
-	cc32_2 = 1,
-	cc32_3 = 2,
-	cc32_4 = 3,
-	cc132_5 = 4,
-	cc32_6 = 5,
-	cc32_7 = 6,
-	cc32_8 = 7,
-	cc32_9 = 8,
-	cc32_10 = 9,
-	cc32_11 = 10,
-	cc32_12 = 11,
-	cc32_13 = 12,
-	cc32_14 = 13,
-	cc32_15 = 14,
-	cc32_16 = 15,
-	cc32_17 = 16,
-	cc32_18 = 17,
-	cc32_19 = 18,
-	cc32_20 = 19,
-	cc32_21 = 20,
-	cc32_22 = 21,
-	cc32_23 = 22,
-	cc32_24 = 23,
-	cc32_25 = 24,
-	cc32_26 = 25,
-	cc32_27 = 26,
-	cc32_28 = 27,
-	cc32_29 = 28,
-	cc32_30 = 29,
-	cc32_31 = 30,
-	cc32_32 = 31,
+	cc32_1_DLTSChannelisationCodeVHCR = 0,
+	cc32_2_DLTSChannelisationCodeVHCR = 1,
+	cc32_3_DLTSChannelisationCodeVHCR = 2,
+	cc32_4_DLTSChannelisationCodeVHCR = 3,
+	cc132_5_DLTSChannelisationCodeVHCR = 4,
+	cc32_6_DLTSChannelisationCodeVHCR = 5,
+	cc32_7_DLTSChannelisationCodeVHCR = 6,
+	cc32_8_DLTSChannelisationCodeVHCR = 7,
+	cc32_9_DLTSChannelisationCodeVHCR = 8,
+	cc32_10_DLTSChannelisationCodeVHCR = 9,
+	cc32_11_DLTSChannelisationCodeVHCR = 10,
+	cc32_12_DLTSChannelisationCodeVHCR = 11,
+	cc32_13_DLTSChannelisationCodeVHCR = 12,
+	cc32_14_DLTSChannelisationCodeVHCR = 13,
+	cc32_15_DLTSChannelisationCodeVHCR = 14,
+	cc32_16_DLTSChannelisationCodeVHCR = 15,
+	cc32_17_DLTSChannelisationCodeVHCR = 16,
+	cc32_18_DLTSChannelisationCodeVHCR = 17,
+	cc32_19_DLTSChannelisationCodeVHCR = 18,
+	cc32_20_DLTSChannelisationCodeVHCR = 19,
+	cc32_21_DLTSChannelisationCodeVHCR = 20,
+	cc32_22_DLTSChannelisationCodeVHCR = 21,
+	cc32_23_DLTSChannelisationCodeVHCR = 22,
+	cc32_24_DLTSChannelisationCodeVHCR = 23,
+	cc32_25_DLTSChannelisationCodeVHCR = 24,
+	cc32_26_DLTSChannelisationCodeVHCR = 25,
+	cc32_27_DLTSChannelisationCodeVHCR = 26,
+	cc32_28_DLTSChannelisationCodeVHCR = 27,
+	cc32_29_DLTSChannelisationCodeVHCR = 28,
+	cc32_30_DLTSChannelisationCodeVHCR = 29,
+	cc32_31_DLTSChannelisationCodeVHCR = 30,
+	cc32_32_DLTSChannelisationCodeVHCR = 31,
 };
 typedef Enumerated<CONSTRAINED, 31> DLTSChannelisationCodeVHCR;
 
@@ -4674,10 +4673,10 @@ typedef Integer<CONSTRAINED, -7, 8> HSSCCHInfor7ModeSpecificInfoTddTdd128Nackack
 typedef Integer<CONSTRAINED, -120, -58> HSSCCHInfor7ModeSpecificInfoTddTdd128PowerlevelHSSICH;
 
 enum HSSCCHInfor7ModeSpecificInfoTddTdd128tpc_step_sizeValues {
-	s1 = 0,
-	s2 = 1,
-	s3 = 2,
-	spare1 = 3,
+	s1_HSSCCHInfor7ModeSpecificInfoTddTdd128tpc_step_size = 0,
+	s2_HSSCCHInfor7ModeSpecificInfoTddTdd128tpc_step_size = 1,
+	s3_HSSCCHInfor7ModeSpecificInfoTddTdd128tpc_step_size = 2,
+	spare1_HSSCCHInfor7ModeSpecificInfoTddTdd128tpc_step_size = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> HSSCCHInfor7ModeSpecificInfoTddTdd128tpc_step_size;
 
@@ -4777,22 +4776,22 @@ public:
 };
 
 enum Feedbackcycler7Values {
-	fc0 = 0,
-	fc2 = 1,
-	fc4 = 2,
-	fc8 = 3,
-	fc10 = 4,
-	fc20 = 5,
-	fc40 = 6,
-	fc80 = 7,
-	fc160 = 8,
-	fc16 = 9,
-	fc32 = 10,
-	fc64 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	fc0_Feedbackcycler7 = 0,
+	fc2_Feedbackcycler7 = 1,
+	fc4_Feedbackcycler7 = 2,
+	fc8_Feedbackcycler7 = 3,
+	fc10_Feedbackcycler7 = 4,
+	fc20_Feedbackcycler7 = 5,
+	fc40_Feedbackcycler7 = 6,
+	fc80_Feedbackcycler7 = 7,
+	fc160_Feedbackcycler7 = 8,
+	fc16_Feedbackcycler7 = 9,
+	fc32_Feedbackcycler7 = 10,
+	fc64_Feedbackcycler7 = 11,
+	spare4_Feedbackcycler7 = 12,
+	spare3_Feedbackcycler7 = 13,
+	spare2_Feedbackcycler7 = 14,
+	spare1_Feedbackcycler7 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> Feedbackcycler7;
 
@@ -4852,8 +4851,8 @@ public:
 };
 
 enum DLMultiCarrierInformationtsn_LengthValues {
-	tsn_6bits = 0,
-	tsn_9bits = 1,
+	tsn_6bits_DLMultiCarrierInformationtsn_Length = 0,
+	tsn_9bits_DLMultiCarrierInformationtsn_Length = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> DLMultiCarrierInformationtsn_Length;
 
@@ -4895,7 +4894,7 @@ public:
 };
 
 enum DLHSPDSCHInformationr7ModeSpecificInfoFdddl_64QAM_ConfiguredValues {
-	true = 0,
+	true_DLHSPDSCHInformationr7ModeSpecificInfoFdddl_64QAM_Configured = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLHSPDSCHInformationr7ModeSpecificInfoFdddl_64QAM_Configured;
 
@@ -4926,17 +4925,17 @@ public:
 };
 
 enum HARQInfor7numberOfProcessesValues {
-	n1 = 0,
-	n2 = 1,
-	n3 = 2,
-	n4 = 3,
-	n5 = 4,
-	n6 = 5,
-	n7 = 6,
-	n8 = 7,
-	n12 = 8,
-	n14 = 9,
-	n16 = 10,
+	n1_HARQInfor7numberOfProcesses = 0,
+	n2_HARQInfor7numberOfProcesses = 1,
+	n3_HARQInfor7numberOfProcesses = 2,
+	n4_HARQInfor7numberOfProcesses = 3,
+	n5_HARQInfor7numberOfProcesses = 4,
+	n6_HARQInfor7numberOfProcesses = 5,
+	n7_HARQInfor7numberOfProcesses = 6,
+	n8_HARQInfor7numberOfProcesses = 7,
+	n12_HARQInfor7numberOfProcesses = 8,
+	n14_HARQInfor7numberOfProcesses = 9,
+	n16_HARQInfor7numberOfProcesses = 10,
 };
 typedef Enumerated<CONSTRAINED, 10> HARQInfor7numberOfProcesses;
 
@@ -4973,7 +4972,7 @@ public:
 };
 
 enum ServingHSDSCHCellInformationr7mac_hsResetIndicatorValues {
-	true = 0,
+	true_ServingHSDSCHCellInformationr7mac_hsResetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> ServingHSDSCHCellInformationr7mac_hsResetIndicator;
 
@@ -5022,12 +5021,12 @@ public:
 };
 
 enum DLHSPDSCHInformationr8ModeSpecificInfoFdddl_64QAM_ConfiguredValues {
-	true = 0,
+	true_DLHSPDSCHInformationr8ModeSpecificInfoFdddl_64QAM_Configured = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLHSPDSCHInformationr8ModeSpecificInfoFdddl_64QAM_Configured;
 
 enum HSDSCHTBSizeTableValues {
-	octetAligned = 0,
+	octetAligned_HSDSCHTBSizeTable = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> HSDSCHTBSizeTable;
 
@@ -5058,7 +5057,7 @@ public:
 };
 
 enum ServingHSDSCHCellInformationr8mac_hsResetIndicatorValues {
-	true = 0,
+	true_ServingHSDSCHCellInformationr8mac_hsResetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> ServingHSDSCHCellInformationr8mac_hsResetIndicator;
 
@@ -5113,18 +5112,18 @@ typedef Integer<CONSTRAINED, -7, 8> HSSCCHInfor9ModeSpecificInfoTddTdd128Nackack
 typedef Integer<CONSTRAINED, -120, -58> HSSCCHInfor9ModeSpecificInfoTddTdd128PowerlevelHSSICH;
 
 enum HSSCCHInfor9ModeSpecificInfoTddTdd128tpc_step_sizeValues {
-	s1 = 0,
-	s2 = 1,
-	s3 = 2,
-	spare1 = 3,
+	s1_HSSCCHInfor9ModeSpecificInfoTddTdd128tpc_step_size = 0,
+	s2_HSSCCHInfor9ModeSpecificInfoTddTdd128tpc_step_size = 1,
+	s3_HSSCCHInfor9ModeSpecificInfoTddTdd128tpc_step_size = 2,
+	spare1_HSSCCHInfor9ModeSpecificInfoTddTdd128tpc_step_size = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> HSSCCHInfor9ModeSpecificInfoTddTdd128tpc_step_size;
 
 enum HSSCCHInfor9ModeSpecificInfoTddTdd128hS_SCCH_tpc_step_sizeValues {
-	s1 = 0,
-	s2 = 1,
-	s3 = 2,
-	spare1 = 3,
+	s1_HSSCCHInfor9ModeSpecificInfoTddTdd128hS_SCCH_tpc_step_size = 0,
+	s2_HSSCCHInfor9ModeSpecificInfoTddTdd128hS_SCCH_tpc_step_size = 1,
+	s3_HSSCCHInfor9ModeSpecificInfoTddTdd128hS_SCCH_tpc_step_size = 2,
+	spare1_HSSCCHInfor9ModeSpecificInfoTddTdd128hS_SCCH_tpc_step_size = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> HSSCCHInfor9ModeSpecificInfoTddTdd128hS_SCCH_tpc_step_size;
 
@@ -5185,19 +5184,19 @@ public:
 };
 
 enum DLHSPDSCHInformationr9ModeSpecificInfoTddTdd128tS0_IndicatorValues {
-	true = 0,
+	true_DLHSPDSCHInformationr9ModeSpecificInfoTddTdd128tS0_Indicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLHSPDSCHInformationr9ModeSpecificInfoTddTdd128tS0_Indicator;
 
 enum OutofSyncWindowValues {
-	ms40 = 0,
-	ms80 = 1,
-	ms160 = 2,
-	ms320 = 3,
-	ms640 = 4,
-	spare3 = 5,
-	spare2 = 6,
-	spare1 = 7,
+	ms40_OutofSyncWindow = 0,
+	ms80_OutofSyncWindow = 1,
+	ms160_OutofSyncWindow = 2,
+	ms320_OutofSyncWindow = 3,
+	ms640_OutofSyncWindow = 4,
+	spare3_OutofSyncWindow = 5,
+	spare2_OutofSyncWindow = 6,
+	spare1_OutofSyncWindow = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> OutofSyncWindow;
 
@@ -5219,7 +5218,7 @@ public:
 };
 
 enum DLHSPDSCHInformationr9ModeSpecificInfoFdddl_64QAM_ConfiguredValues {
-	true = 0,
+	true_DLHSPDSCHInformationr9ModeSpecificInfoFdddl_64QAM_Configured = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLHSPDSCHInformationr9ModeSpecificInfoFdddl_64QAM_Configured;
 
@@ -5250,7 +5249,7 @@ public:
 };
 
 enum ServingHSDSCHCellInformationr9mac_hsResetIndicatorValues {
-	true = 0,
+	true_ServingHSDSCHCellInformationr9mac_hsResetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> ServingHSDSCHCellInformationr9mac_hsResetIndicator;
 
@@ -5306,136 +5305,136 @@ public:
 typedef SequenceOf<STARTSingle, CONSTRAINED, 1, maxCNdomains> STARTList;
 
 enum SystemSpecificCapUpdateReqv590extValues {
-	geranIu = 0,
+	geranIu_SystemSpecificCapUpdateReqv590ext = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> SystemSpecificCapUpdateReqv590ext;
 
 enum T300Values {
-	ms100 = 0,
-	ms200 = 1,
-	ms400 = 2,
-	ms600 = 3,
-	ms800 = 4,
-	ms1000 = 5,
-	ms1200 = 6,
-	ms1400 = 7,
-	ms1600 = 8,
-	ms1800 = 9,
-	ms2000 = 10,
-	ms3000 = 11,
-	ms4000 = 12,
-	ms6000 = 13,
-	ms8000 = 14,
+	ms100_T300 = 0,
+	ms200_T300 = 1,
+	ms400_T300 = 2,
+	ms600_T300 = 3,
+	ms800_T300 = 4,
+	ms1000_T300 = 5,
+	ms1200_T300 = 6,
+	ms1400_T300 = 7,
+	ms1600_T300 = 8,
+	ms1800_T300 = 9,
+	ms2000_T300 = 10,
+	ms3000_T300 = 11,
+	ms4000_T300 = 12,
+	ms6000_T300 = 13,
+	ms8000_T300 = 14,
 };
 typedef Enumerated<CONSTRAINED, 14> T300;
 
 enum T301Values {
-	ms100 = 0,
-	ms200 = 1,
-	ms400 = 2,
-	ms600 = 3,
-	ms800 = 4,
-	ms1000 = 5,
-	ms1200 = 6,
-	ms1400 = 7,
-	ms1600 = 8,
-	ms1800 = 9,
-	ms2000 = 10,
-	ms3000 = 11,
-	ms4000 = 12,
-	ms6000 = 13,
-	ms8000 = 14,
-	spare = 15,
+	ms100_T301 = 0,
+	ms200_T301 = 1,
+	ms400_T301 = 2,
+	ms600_T301 = 3,
+	ms800_T301 = 4,
+	ms1000_T301 = 5,
+	ms1200_T301 = 6,
+	ms1400_T301 = 7,
+	ms1600_T301 = 8,
+	ms1800_T301 = 9,
+	ms2000_T301 = 10,
+	ms3000_T301 = 11,
+	ms4000_T301 = 12,
+	ms6000_T301 = 13,
+	ms8000_T301 = 14,
+	spare_T301 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> T301;
 
 enum T302Values {
-	ms100 = 0,
-	ms200 = 1,
-	ms400 = 2,
-	ms600 = 3,
-	ms800 = 4,
-	ms1000 = 5,
-	ms1200 = 6,
-	ms1400 = 7,
-	ms1600 = 8,
-	ms1800 = 9,
-	ms2000 = 10,
-	ms3000 = 11,
-	ms4000 = 12,
-	ms6000 = 13,
-	ms8000 = 14,
-	spare = 15,
+	ms100_T302 = 0,
+	ms200_T302 = 1,
+	ms400_T302 = 2,
+	ms600_T302 = 3,
+	ms800_T302 = 4,
+	ms1000_T302 = 5,
+	ms1200_T302 = 6,
+	ms1400_T302 = 7,
+	ms1600_T302 = 8,
+	ms1800_T302 = 9,
+	ms2000_T302 = 10,
+	ms3000_T302 = 11,
+	ms4000_T302 = 12,
+	ms6000_T302 = 13,
+	ms8000_T302 = 14,
+	spare_T302 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> T302;
 
 enum T304Values {
-	ms100 = 0,
-	ms200 = 1,
-	ms400 = 2,
-	ms1000 = 3,
-	ms2000 = 4,
-	spare3 = 5,
-	spare2 = 6,
-	spare1 = 7,
+	ms100_T304 = 0,
+	ms200_T304 = 1,
+	ms400_T304 = 2,
+	ms1000_T304 = 3,
+	ms2000_T304 = 4,
+	spare3_T304 = 5,
+	spare2_T304 = 6,
+	spare1_T304 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> T304;
 
 enum T305Values {
-	noUpdate = 0,
-	m5 = 1,
-	m10 = 2,
-	m30 = 3,
-	m60 = 4,
-	m120 = 5,
-	m360 = 6,
-	m720 = 7,
+	noUpdate_T305 = 0,
+	m5_T305 = 1,
+	m10_T305 = 2,
+	m30_T305 = 3,
+	m60_T305 = 4,
+	m120_T305 = 5,
+	m360_T305 = 6,
+	m720_T305 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> T305;
 
 enum T307Values {
-	s5 = 0,
-	s10 = 1,
-	s15 = 2,
-	s20 = 3,
-	s30 = 4,
-	s40 = 5,
-	s50 = 6,
-	spare = 7,
+	s5_T307 = 0,
+	s10_T307 = 1,
+	s15_T307 = 2,
+	s20_T307 = 3,
+	s30_T307 = 4,
+	s40_T307 = 5,
+	s50_T307 = 6,
+	spare_T307 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> T307;
 
 enum T308Values {
-	ms40 = 0,
-	ms80 = 1,
-	ms160 = 2,
-	ms320 = 3,
+	ms40_T308 = 0,
+	ms80_T308 = 1,
+	ms160_T308 = 2,
+	ms320_T308 = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> T308;
 
 typedef Integer<CONSTRAINED, 1, 8> T309;
 
 enum T310Values {
-	ms40 = 0,
-	ms80 = 1,
-	ms120 = 2,
-	ms160 = 3,
-	ms200 = 4,
-	ms240 = 5,
-	ms280 = 6,
-	ms320 = 7,
+	ms40_T310 = 0,
+	ms80_T310 = 1,
+	ms120_T310 = 2,
+	ms160_T310 = 3,
+	ms200_T310 = 4,
+	ms240_T310 = 5,
+	ms280_T310 = 6,
+	ms320_T310 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> T310;
 
 enum T311Values {
-	ms250 = 0,
-	ms500 = 1,
-	ms750 = 2,
-	ms1000 = 3,
-	ms1250 = 4,
-	ms1500 = 5,
-	ms1750 = 6,
-	ms2000 = 7,
+	ms250_T311 = 0,
+	ms500_T311 = 1,
+	ms750_T311 = 2,
+	ms1000_T311 = 3,
+	ms1250_T311 = 4,
+	ms1500_T311 = 5,
+	ms1750_T311 = 6,
+	ms2000_T311 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> T311;
 
@@ -5444,100 +5443,100 @@ typedef Integer<CONSTRAINED, 0, 15> T312;
 typedef Integer<CONSTRAINED, 0, 15> T313;
 
 enum T314Values {
-	s0 = 0,
-	s2 = 1,
-	s4 = 2,
-	s6 = 3,
-	s8 = 4,
-	s12 = 5,
-	s16 = 6,
-	s20 = 7,
+	s0_T314 = 0,
+	s2_T314 = 1,
+	s4_T314 = 2,
+	s6_T314 = 3,
+	s8_T314 = 4,
+	s12_T314 = 5,
+	s16_T314 = 6,
+	s20_T314 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> T314;
 
 enum T315Values {
-	s0 = 0,
-	s10 = 1,
-	s30 = 2,
-	s60 = 3,
-	s180 = 4,
-	s600 = 5,
-	s1200 = 6,
-	s1800 = 7,
+	s0_T315 = 0,
+	s10_T315 = 1,
+	s30_T315 = 2,
+	s60_T315 = 3,
+	s180_T315 = 4,
+	s600_T315 = 5,
+	s1200_T315 = 6,
+	s1800_T315 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> T315;
 
 enum T316Values {
-	s0 = 0,
-	s10 = 1,
-	s20 = 2,
-	s30 = 3,
-	s40 = 4,
-	s50 = 5,
-	s_inf = 6,
-	spare = 7,
+	s0_T316 = 0,
+	s10_T316 = 1,
+	s20_T316 = 2,
+	s30_T316 = 3,
+	s40_T316 = 4,
+	s50_T316 = 5,
+	s_inf_T316 = 6,
+	spare_T316 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> T316;
 
 enum T317Values {
-	infinity0 = 0,
-	infinity1 = 1,
-	infinity2 = 2,
-	infinity3 = 3,
-	infinity4 = 4,
-	infinity5 = 5,
-	infinity6 = 6,
-	infinity7 = 7,
+	infinity0_T317 = 0,
+	infinity1_T317 = 1,
+	infinity2_T317 = 2,
+	infinity3_T317 = 3,
+	infinity4_T317 = 4,
+	infinity5_T317 = 5,
+	infinity6_T317 = 6,
+	infinity7_T317 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> T317;
 
 enum T318Values {
-	ms250 = 0,
-	ms500 = 1,
-	ms750 = 2,
-	ms1000 = 3,
-	ms1250 = 4,
-	ms1500 = 5,
-	ms1750 = 6,
-	ms2000 = 7,
-	ms3000 = 8,
-	ms4000 = 9,
-	ms6000 = 10,
-	ms8000 = 11,
-	ms10000 = 12,
-	ms12000 = 13,
-	ms16000 = 14,
+	ms250_T318 = 0,
+	ms500_T318 = 1,
+	ms750_T318 = 2,
+	ms1000_T318 = 3,
+	ms1250_T318 = 4,
+	ms1500_T318 = 5,
+	ms1750_T318 = 6,
+	ms2000_T318 = 7,
+	ms3000_T318 = 8,
+	ms4000_T318 = 9,
+	ms6000_T318 = 10,
+	ms8000_T318 = 11,
+	ms10000_T318 = 12,
+	ms12000_T318 = 13,
+	ms16000_T318 = 14,
 };
 typedef Enumerated<CONSTRAINED, 14> T318;
 
 enum T319Values {
-	ms80 = 0,
-	ms160 = 1,
-	ms320 = 2,
-	ms640 = 3,
-	ms1280 = 4,
-	ms2560 = 5,
-	ms5120 = 6,
+	ms80_T319 = 0,
+	ms160_T319 = 1,
+	ms320_T319 = 2,
+	ms640_T319 = 3,
+	ms1280_T319 = 4,
+	ms2560_T319 = 5,
+	ms5120_T319 = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> T319;
 
 enum T321Values {
-	ms100 = 0,
-	ms200 = 1,
-	ms400 = 2,
-	ms800 = 3,
+	ms100_T321 = 0,
+	ms200_T321 = 1,
+	ms400_T321 = 2,
+	ms800_T321 = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> T321;
 
 enum T323Values {
-	s0 = 0,
-	s5 = 1,
-	s10 = 2,
-	s20 = 3,
-	s30 = 4,
-	s60 = 5,
-	s90 = 6,
-	s120 = 7,
+	s0_T323 = 0,
+	s5_T323 = 1,
+	s10_T323 = 2,
+	s20_T323 = 3,
+	s30_T323 = 4,
+	s60_T323 = 5,
+	s90_T323 = 6,
+	s120_T323 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> T323;
 
@@ -5618,7 +5617,7 @@ public:
 };
 
 enum UERadioAccessCapabilityv690extdeviceTypeValues {
-	doesNotBenefitFromBatteryConsumptionOptimisation = 0,
+	doesNotBenefitFromBatteryConsumptionOptimisation_UERadioAccessCapabilityv690extdeviceType = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv690extdeviceType;
 
@@ -5632,7 +5631,7 @@ public:
 };
 
 enum InterRATUERadioAccessCapabilityv690extsupportOfInter_RAT_PS_HandoverValues {
-	doesSupporInter_RAT_PS_Handover = 0,
+	doesSupporInter_RAT_PS_Handover_InterRATUERadioAccessCapabilityv690extsupportOfInter_RAT_PS_Handover = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> InterRATUERadioAccessCapabilityv690extsupportOfInter_RAT_PS_Handover;
 
@@ -5648,7 +5647,7 @@ public:
 };
 
 enum UERadioAccessCapabilityv6b0extIEssupportForSIB11bisValues {
-	true = 0,
+	true_UERadioAccessCapabilityv6b0extIEssupportForSIB11bis = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv6b0extIEssupportForSIB11bis;
 
@@ -5662,7 +5661,7 @@ public:
 };
 
 enum UERadioAccessCapabilityv6e0extIEssupportForFDPCHValues {
-	true = 0,
+	true_UERadioAccessCapabilityv6e0extIEssupportForFDPCH = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv6e0extIEssupportForFDPCH;
 
@@ -5694,27 +5693,27 @@ public:
 };
 
 enum UERadioAccessCapabilityv770extIEsmac_ehsSupportValues {
-	true = 0,
+	true_UERadioAccessCapabilityv770extIEsmac_ehsSupport = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv770extIEsmac_ehsSupport;
 
 enum UESpecificCapabilityInformationLCRTDDValues {
-	nF = 0,
-	nFMc_TriRx_UniTx = 1,
-	nFMc_TriRx_TriTx = 2,
-	nFMc_HexRx_UniTx = 3,
-	nFMc_HexRx_TriTx = 4,
-	nFMc_HexRx_HexTx = 5,
-	spare10 = 6,
-	spare9 = 7,
-	spare8 = 8,
-	spare7 = 9,
-	spare6 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	nF_UESpecificCapabilityInformationLCRTDD = 0,
+	nFMc_TriRx_UniTx_UESpecificCapabilityInformationLCRTDD = 1,
+	nFMc_TriRx_TriTx_UESpecificCapabilityInformationLCRTDD = 2,
+	nFMc_HexRx_UniTx_UESpecificCapabilityInformationLCRTDD = 3,
+	nFMc_HexRx_TriTx_UESpecificCapabilityInformationLCRTDD = 4,
+	nFMc_HexRx_HexTx_UESpecificCapabilityInformationLCRTDD = 5,
+	spare10_UESpecificCapabilityInformationLCRTDD = 6,
+	spare9_UESpecificCapabilityInformationLCRTDD = 7,
+	spare8_UESpecificCapabilityInformationLCRTDD = 8,
+	spare7_UESpecificCapabilityInformationLCRTDD = 9,
+	spare6_UESpecificCapabilityInformationLCRTDD = 10,
+	spare5_UESpecificCapabilityInformationLCRTDD = 11,
+	spare4_UESpecificCapabilityInformationLCRTDD = 12,
+	spare3_UESpecificCapabilityInformationLCRTDD = 13,
+	spare2_UESpecificCapabilityInformationLCRTDD = 14,
+	spare1_UESpecificCapabilityInformationLCRTDD = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> UESpecificCapabilityInformationLCRTDD;
 
@@ -5728,7 +5727,7 @@ public:
 };
 
 enum UERadioAccessCapabilityv790extIEssupportForEDPCCHPowerBoostingValues {
-	true = 0,
+	true_UERadioAccessCapabilityv790extIEssupportForEDPCCHPowerBoosting = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv790extIEssupportForEDPCCHPowerBoosting;
 
@@ -5760,27 +5759,27 @@ public:
 };
 
 enum UERadioAccessCapabilityv860extIEssupportOfCommonEDCHValues {
-	true = 0,
+	true_UERadioAccessCapabilityv860extIEssupportOfCommonEDCH = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv860extIEssupportOfCommonEDCH;
 
 enum UERadioAccessCapabilityv860extIEssupportOfMACiisValues {
-	true = 0,
+	true_UERadioAccessCapabilityv860extIEssupportOfMACiis = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv860extIEssupportOfMACiis;
 
 enum UERadioAccessCapabilityv860extIEssupportOfSPSOperationValues {
-	true = 0,
+	true_UERadioAccessCapabilityv860extIEssupportOfSPSOperation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv860extIEssupportOfSPSOperation;
 
 enum UERadioAccessCapabilityv860extIEssupportOfControlChannelDRXOperationValues {
-	true = 0,
+	true_UERadioAccessCapabilityv860extIEssupportOfControlChannelDRXOperation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv860extIEssupportOfControlChannelDRXOperation;
 
 enum UERadioAccessCapabilityv860extIEssupportOfCSGValues {
-	true = 0,
+	true_UERadioAccessCapabilityv860extIEssupportOfCSG = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv860extIEssupportOfCSG;
 
@@ -5825,7 +5824,7 @@ public:
 };
 
 enum UERadioAccessCapabilityv880extIEssupportForPriorityReselectionInUTRANValues {
-	true = 0,
+	true_UERadioAccessCapabilityv880extIEssupportForPriorityReselectionInUTRAN = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv880extIEssupportForPriorityReselectionInUTRAN;
 
@@ -5839,7 +5838,7 @@ public:
 };
 
 enum UERadioAccessCapabilityv890extIEssupportCellSpecificTxDiversityinDC_OperationValues {
-	true = 0,
+	true_UERadioAccessCapabilityv890extIEssupportCellSpecificTxDiversityinDC_Operation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv890extIEssupportCellSpecificTxDiversityinDC_Operation;
 
@@ -5855,7 +5854,7 @@ public:
 typedef SequenceOf<BandComb, CONSTRAINED, 1, 16> UERadioAccessCapabBandCombList;
 
 enum UERadioAccessCapabilityv920extIEssupportOfenhancedTS0Values {
-	true = 0,
+	true_UERadioAccessCapabilityv920extIEssupportOfenhancedTS0 = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv920extIEssupportOfenhancedTS0;
 
@@ -5869,7 +5868,7 @@ public:
 };
 
 enum UERadioAccessCapabilityv970extIEsue_ExtendedMeasurementSupportValues {
-	true = 0,
+	true_UERadioAccessCapabilityv970extIEsue_ExtendedMeasurementSupport = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv970extIEsue_ExtendedMeasurementSupport;
 
@@ -6054,14 +6053,14 @@ public:
 };
 
 enum UEPowerClassExtValues {
-	class1 = 0,
-	class2 = 1,
-	class3 = 2,
-	class4 = 3,
-	spare4 = 4,
-	spare3 = 5,
-	spare2 = 6,
-	spare1 = 7,
+	class1_UEPowerClassExt = 0,
+	class2_UEPowerClassExt = 1,
+	class3_UEPowerClassExt = 2,
+	class4_UEPowerClassExt = 3,
+	spare4_UEPowerClassExt = 4,
+	spare3_UEPowerClassExt = 5,
+	spare2_UEPowerClassExt = 6,
+	spare1_UEPowerClassExt = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> UEPowerClassExt;
 
@@ -6150,7 +6149,7 @@ public:
 };
 
 enum UEPositioningCapabilityExtv3a0validity_CellPCH_UraPCHValues {
-	true = 0,
+	true_UEPositioningCapabilityExtv3a0validity_CellPCH_UraPCH = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UEPositioningCapabilityExtv3a0validity_CellPCH_UraPCH;
 
@@ -6173,7 +6172,7 @@ public:
 };
 
 enum UEPositioningCapabilityExtv3g0sfn_sfnType2CapabilityValues {
-	true = 0,
+	true_UEPositioningCapabilityExtv3g0sfn_sfnType2Capability = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UEPositioningCapabilityExtv3g0sfn_sfnType2Capability;
 
@@ -6236,12 +6235,12 @@ public:
 };
 
 enum UERadioAccessCapabilityv7e0extsupportForTwoDRXSchemesInPCHValues {
-	true = 0,
+	true_UERadioAccessCapabilityv7e0extsupportForTwoDRXSchemesInPCH = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv7e0extsupportForTwoDRXSchemesInPCH;
 
 enum UERadioAccessCapabilityv7e0extsupportEDPDCHPowerInterpolationValues {
-	true = 0,
+	true_UERadioAccessCapabilityv7e0extsupportEDPDCHPowerInterpolation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv7e0extsupportEDPDCHPowerInterpolation;
 
@@ -6255,14 +6254,14 @@ public:
 };
 
 enum UERadioAccessCapabilityv7f0extsupportofTxDivOnNonMIMOChannelValues {
-	true = 0,
+	true_UERadioAccessCapabilityv7f0extsupportofTxDivOnNonMIMOChannel = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv7f0extsupportofTxDivOnNonMIMOChannel;
 
 typedef Integer<CONSTRAINED, 1, 6> UERadioAccessCapabilityCompTDD128v7f0extTddedchPhysicalLayerCategory;
 
 enum UERadioAccessCapabilityCompTDD128v7f0extsupportForCSVoiceoverHSPAValues {
-	true = 0,
+	true_UERadioAccessCapabilityCompTDD128v7f0extsupportForCSVoiceoverHSPA = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityCompTDD128v7f0extsupportForCSVoiceoverHSPA;
 
@@ -6285,12 +6284,12 @@ public:
 };
 
 enum UERadioAccessCapabilityInfov770extganssSupportIndicationValues {
-	true = 0,
+	true_UERadioAccessCapabilityInfov770extganssSupportIndication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityInfov770extganssSupportIndication;
 
 enum UERadioAccessCapabilityInfov770extmac_ehsSupportValues {
-	true = 0,
+	true_UERadioAccessCapabilityInfov770extmac_ehsSupport = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityInfov770extmac_ehsSupport;
 
@@ -6322,7 +6321,7 @@ public:
 };
 
 enum UERadioAccessCapabilityv880extsupportForPriorityReselectionInUTRANValues {
-	true = 0,
+	true_UERadioAccessCapabilityv880extsupportForPriorityReselectionInUTRAN = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv880extsupportForPriorityReselectionInUTRAN;
 
@@ -6336,7 +6335,7 @@ public:
 };
 
 enum UERadioAccessCapabilityv890extsupportCellSpecificTxDiversityinDC_OperationValues {
-	true = 0,
+	true_UERadioAccessCapabilityv890extsupportCellSpecificTxDiversityinDC_Operation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv890extsupportCellSpecificTxDiversityinDC_Operation;
 
@@ -6350,7 +6349,7 @@ public:
 };
 
 enum UERadioAccessCapabilityv920extsupportOfenhancedTS0Values {
-	true = 0,
+	true_UERadioAccessCapabilityv920extsupportOfenhancedTS0 = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityv920extsupportOfenhancedTS0;
 
@@ -6386,10 +6385,10 @@ typedef Boolean UERadioAccessCapabilityCompTotalAMRLCMemoryExceeds10kB;
 typedef Null RFCapabilityCompFddNotSupported;
 
 enum RFCapabBandFDDCompValues {
-	notSupported = 0,
-	default_TxRx_separation = 1,
-	spare2 = 2,
-	spare1 = 3,
+	notSupported_RFCapabBandFDDComp = 0,
+	default_TxRx_separation_RFCapabBandFDDComp = 1,
+	spare2_RFCapabBandFDDComp = 2,
+	spare1_RFCapabBandFDDComp = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> RFCapabBandFDDComp;
 
@@ -6472,17 +6471,17 @@ public:
 };
 
 enum UERadioAccessCapabilityCompv770extsecurityCapabilityIndicationValues {
-	true = 0,
+	true_UERadioAccessCapabilityCompv770extsecurityCapabilityIndication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityCompv770extsecurityCapabilityIndication;
 
 enum UERadioAccessCapabilityCompv770extganssSupportIndicationValues {
-	true = 0,
+	true_UERadioAccessCapabilityCompv770extganssSupportIndication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityCompv770extganssSupportIndication;
 
 enum UERadioAccessCapabilityCompv770extmac_ehsSupportValues {
-	true = 0,
+	true_UERadioAccessCapabilityCompv770extmac_ehsSupport = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityCompv770extmac_ehsSupport;
 
@@ -6516,32 +6515,32 @@ public:
 typedef Integer<CONSTRAINED, 7, 7> UERadioAccessCapabilityComp2v770extEdchPhysicalLayerCategoryextension;
 
 enum UERadioAccessCapabilityComp2v770exthsscchlessHsdschOperationValues {
-	true = 0,
+	true_UERadioAccessCapabilityComp2v770exthsscchlessHsdschOperation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityComp2v770exthsscchlessHsdschOperation;
 
 enum UERadioAccessCapabilityComp2v770extenhancedFdpchValues {
-	true = 0,
+	true_UERadioAccessCapabilityComp2v770extenhancedFdpch = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityComp2v770extenhancedFdpch;
 
 enum UERadioAccessCapabilityComp2v770exthsdschReception_CellFachValues {
-	true = 0,
+	true_UERadioAccessCapabilityComp2v770exthsdschReception_CellFach = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityComp2v770exthsdschReception_CellFach;
 
 enum UERadioAccessCapabilityComp2v770exthsdschReception_CellUraPchValues {
-	true = 0,
+	true_UERadioAccessCapabilityComp2v770exthsdschReception_CellUraPch = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityComp2v770exthsdschReception_CellUraPch;
 
 enum UERadioAccessCapabilityComp2v770extdiscontinuousDpcchTransmissionValues {
-	true = 0,
+	true_UERadioAccessCapabilityComp2v770extdiscontinuousDpcchTransmission = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityComp2v770extdiscontinuousDpcchTransmission;
 
 enum UERadioAccessCapabilityComp2v770extslotFormat4Values {
-	true = 0,
+	true_UERadioAccessCapabilityComp2v770extslotFormat4 = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityComp2v770extslotFormat4;
 
@@ -6555,7 +6554,7 @@ public:
 };
 
 enum UERadioAccessCapabilityComp2v7f0extsupportofTxDivOnNonMIMOChannelValues {
-	true = 0,
+	true_UERadioAccessCapabilityComp2v7f0extsupportofTxDivOnNonMIMOChannel = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityComp2v7f0extsupportofTxDivOnNonMIMOChannel;
 
@@ -6569,7 +6568,7 @@ public:
 };
 
 enum UERadioAccessCapabilityComp2v860extsupportOfMACiisValues {
-	true = 0,
+	true_UERadioAccessCapabilityComp2v860extsupportOfMACiis = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityComp2v860extsupportOfMACiis;
 
@@ -6594,28 +6593,28 @@ public:
 };
 
 enum UERadioAccessCapabilityCompTDD128supportOfSFModeForHSPDSCHDualStreamValues {
-	sf1 = 0,
-	sf1sf16 = 1,
+	sf1_UERadioAccessCapabilityCompTDD128supportOfSFModeForHSPDSCHDualStream = 0,
+	sf1sf16_UERadioAccessCapabilityCompTDD128supportOfSFModeForHSPDSCHDualStream = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> UERadioAccessCapabilityCompTDD128supportOfSFModeForHSPDSCHDualStream;
 
 enum UERadioAccessCapabilityCompTDD128supportOfCommonEDCHValues {
-	true = 0,
+	true_UERadioAccessCapabilityCompTDD128supportOfCommonEDCH = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityCompTDD128supportOfCommonEDCH;
 
 enum UERadioAccessCapabilityCompTDD128supportOfMACiisValues {
-	true = 0,
+	true_UERadioAccessCapabilityCompTDD128supportOfMACiis = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityCompTDD128supportOfMACiis;
 
 enum UERadioAccessCapabilityCompTDD128supportOfSPSOperationValues {
-	true = 0,
+	true_UERadioAccessCapabilityCompTDD128supportOfSPSOperation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityCompTDD128supportOfSPSOperation;
 
 enum UERadioAccessCapabilityCompTDD128supportOfControlChannelDRXOperationValues {
-	true = 0,
+	true_UERadioAccessCapabilityCompTDD128supportOfControlChannelDRXOperation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UERadioAccessCapabilityCompTDD128supportOfControlChannelDRXOperation;
 
@@ -6702,10 +6701,10 @@ public:
 };
 
 enum URAUpdateCauseValues {
-	changeOfURA = 0,
-	periodicURAUpdate = 1,
-	dummy = 2,
-	spare1 = 3,
+	changeOfURA_URAUpdateCause = 0,
+	periodicURAUpdate_URAUpdateCause = 1,
+	dummy_URAUpdateCause = 2,
+	spare1_URAUpdateCause = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> URAUpdateCause;
 
@@ -6737,8 +6736,8 @@ typedef Integer<CONSTRAINED, 3, 255> RFC2507InfoTcpSPACE;
 typedef Integer<CONSTRAINED, 3, 65535> RFC2507InfoNonTCPSPACE;
 
 enum ExpectReorderingValues {
-	reorderingNotExpected = 0,
-	reorderingExpected = 1,
+	reorderingNotExpected_ExpectReordering = 0,
+	reorderingExpected_ExpectReordering = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ExpectReordering;
 
@@ -6764,8 +6763,8 @@ typedef Integer<CONSTRAINED, 1, 3> ROHCProfiler4;
 typedef SequenceOf<ROHCProfiler4, CONSTRAINED, 1, maxROHC_Profile_r4> ROHCProfileListr4;
 
 enum CIDInclusionInfor4Values {
-	pdcp_Header = 0,
-	rfc3095_PacketFormat = 1,
+	pdcp_Header_CIDInclusionInfor4 = 0,
+	rfc3095_PacketFormat_CIDInclusionInfor4 = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> CIDInclusionInfor4;
 
@@ -6832,22 +6831,22 @@ typedef Integer<CONSTRAINED, 0, 4294967295> COUNTC;
 typedef Integer<CONSTRAINED, 0, 33554431> COUNTCMSB;
 
 enum ULAMRRateValues {
-	t0 = 0,
-	t1 = 1,
-	t2 = 2,
-	t3 = 3,
-	t4 = 4,
-	t5 = 5,
-	t6 = 6,
-	t7 = 7,
-	t8 = 8,
-	spare7 = 9,
-	spare6 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	t0_ULAMRRate = 0,
+	t1_ULAMRRate = 1,
+	t2_ULAMRRate = 2,
+	t3_ULAMRRate = 3,
+	t4_ULAMRRate = 4,
+	t5_ULAMRRate = 5,
+	t6_ULAMRRate = 6,
+	t7_ULAMRRate = 7,
+	t8_ULAMRRate = 8,
+	spare7_ULAMRRate = 9,
+	spare6_ULAMRRate = 10,
+	spare5_ULAMRRate = 11,
+	spare4_ULAMRRate = 12,
+	spare3_ULAMRRate = 13,
+	spare2_ULAMRRate = 14,
+	spare1_ULAMRRate = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> ULAMRRate;
 
@@ -6863,8 +6862,8 @@ public:
 };
 
 enum DefaultConfigModeValues {
-	fdd = 0,
-	tdd = 1,
+	fdd_DefaultConfigMode = 0,
+	tdd_DefaultConfigMode = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> DefaultConfigMode;
 
@@ -6892,124 +6891,124 @@ typedef Integer<CONSTRAINED, 0, 62> DDI;
 typedef Boolean DLAMRLCModeInSequenceDelivery;
 
 enum ReceivingWindowSizeValues {
-	rw1 = 0,
-	rw8 = 1,
-	rw16 = 2,
-	rw32 = 3,
-	rw64 = 4,
-	rw128 = 5,
-	rw256 = 6,
-	rw512 = 7,
-	rw768 = 8,
-	rw1024 = 9,
-	rw1536 = 10,
-	rw2047 = 11,
-	rw2560 = 12,
-	rw3072 = 13,
-	rw3584 = 14,
-	rw4095 = 15,
+	rw1_ReceivingWindowSize = 0,
+	rw8_ReceivingWindowSize = 1,
+	rw16_ReceivingWindowSize = 2,
+	rw32_ReceivingWindowSize = 3,
+	rw64_ReceivingWindowSize = 4,
+	rw128_ReceivingWindowSize = 5,
+	rw256_ReceivingWindowSize = 6,
+	rw512_ReceivingWindowSize = 7,
+	rw768_ReceivingWindowSize = 8,
+	rw1024_ReceivingWindowSize = 9,
+	rw1536_ReceivingWindowSize = 10,
+	rw2047_ReceivingWindowSize = 11,
+	rw2560_ReceivingWindowSize = 12,
+	rw3072_ReceivingWindowSize = 13,
+	rw3584_ReceivingWindowSize = 14,
+	rw4095_ReceivingWindowSize = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> ReceivingWindowSize;
 
 enum TimerStatusProhibitValues {
-	tsp10 = 0,
-	tsp20 = 1,
-	tsp30 = 2,
-	tsp40 = 3,
-	tsp50 = 4,
-	tsp60 = 5,
-	tsp70 = 6,
-	tsp80 = 7,
-	tsp90 = 8,
-	tsp100 = 9,
-	tsp110 = 10,
-	tsp120 = 11,
-	tsp130 = 12,
-	tsp140 = 13,
-	tsp150 = 14,
-	tsp160 = 15,
-	tsp170 = 16,
-	tsp180 = 17,
-	tsp190 = 18,
-	tsp200 = 19,
-	tsp210 = 20,
-	tsp220 = 21,
-	tsp230 = 22,
-	tsp240 = 23,
-	tsp250 = 24,
-	tsp260 = 25,
-	tsp270 = 26,
-	tsp280 = 27,
-	tsp290 = 28,
-	tsp300 = 29,
-	tsp310 = 30,
-	tsp320 = 31,
-	tsp330 = 32,
-	tsp340 = 33,
-	tsp350 = 34,
-	tsp360 = 35,
-	tsp370 = 36,
-	tsp380 = 37,
-	tsp390 = 38,
-	tsp400 = 39,
-	tsp410 = 40,
-	tsp420 = 41,
-	tsp430 = 42,
-	tsp440 = 43,
-	tsp450 = 44,
-	tsp460 = 45,
-	tsp470 = 46,
-	tsp480 = 47,
-	tsp490 = 48,
-	tsp500 = 49,
-	tsp510 = 50,
-	tsp520 = 51,
-	tsp530 = 52,
-	tsp540 = 53,
-	tsp550 = 54,
-	tsp600 = 55,
-	tsp650 = 56,
-	tsp700 = 57,
-	tsp750 = 58,
-	tsp800 = 59,
-	tsp850 = 60,
-	tsp900 = 61,
-	tsp950 = 62,
-	tsp1000 = 63,
+	tsp10_TimerStatusProhibit = 0,
+	tsp20_TimerStatusProhibit = 1,
+	tsp30_TimerStatusProhibit = 2,
+	tsp40_TimerStatusProhibit = 3,
+	tsp50_TimerStatusProhibit = 4,
+	tsp60_TimerStatusProhibit = 5,
+	tsp70_TimerStatusProhibit = 6,
+	tsp80_TimerStatusProhibit = 7,
+	tsp90_TimerStatusProhibit = 8,
+	tsp100_TimerStatusProhibit = 9,
+	tsp110_TimerStatusProhibit = 10,
+	tsp120_TimerStatusProhibit = 11,
+	tsp130_TimerStatusProhibit = 12,
+	tsp140_TimerStatusProhibit = 13,
+	tsp150_TimerStatusProhibit = 14,
+	tsp160_TimerStatusProhibit = 15,
+	tsp170_TimerStatusProhibit = 16,
+	tsp180_TimerStatusProhibit = 17,
+	tsp190_TimerStatusProhibit = 18,
+	tsp200_TimerStatusProhibit = 19,
+	tsp210_TimerStatusProhibit = 20,
+	tsp220_TimerStatusProhibit = 21,
+	tsp230_TimerStatusProhibit = 22,
+	tsp240_TimerStatusProhibit = 23,
+	tsp250_TimerStatusProhibit = 24,
+	tsp260_TimerStatusProhibit = 25,
+	tsp270_TimerStatusProhibit = 26,
+	tsp280_TimerStatusProhibit = 27,
+	tsp290_TimerStatusProhibit = 28,
+	tsp300_TimerStatusProhibit = 29,
+	tsp310_TimerStatusProhibit = 30,
+	tsp320_TimerStatusProhibit = 31,
+	tsp330_TimerStatusProhibit = 32,
+	tsp340_TimerStatusProhibit = 33,
+	tsp350_TimerStatusProhibit = 34,
+	tsp360_TimerStatusProhibit = 35,
+	tsp370_TimerStatusProhibit = 36,
+	tsp380_TimerStatusProhibit = 37,
+	tsp390_TimerStatusProhibit = 38,
+	tsp400_TimerStatusProhibit = 39,
+	tsp410_TimerStatusProhibit = 40,
+	tsp420_TimerStatusProhibit = 41,
+	tsp430_TimerStatusProhibit = 42,
+	tsp440_TimerStatusProhibit = 43,
+	tsp450_TimerStatusProhibit = 44,
+	tsp460_TimerStatusProhibit = 45,
+	tsp470_TimerStatusProhibit = 46,
+	tsp480_TimerStatusProhibit = 47,
+	tsp490_TimerStatusProhibit = 48,
+	tsp500_TimerStatusProhibit = 49,
+	tsp510_TimerStatusProhibit = 50,
+	tsp520_TimerStatusProhibit = 51,
+	tsp530_TimerStatusProhibit = 52,
+	tsp540_TimerStatusProhibit = 53,
+	tsp550_TimerStatusProhibit = 54,
+	tsp600_TimerStatusProhibit = 55,
+	tsp650_TimerStatusProhibit = 56,
+	tsp700_TimerStatusProhibit = 57,
+	tsp750_TimerStatusProhibit = 58,
+	tsp800_TimerStatusProhibit = 59,
+	tsp850_TimerStatusProhibit = 60,
+	tsp900_TimerStatusProhibit = 61,
+	tsp950_TimerStatusProhibit = 62,
+	tsp1000_TimerStatusProhibit = 63,
 };
 typedef Enumerated<CONSTRAINED, 63> TimerStatusProhibit;
 
 enum TimerEPCValues {
-	te50 = 0,
-	te60 = 1,
-	te70 = 2,
-	te80 = 3,
-	te90 = 4,
-	te100 = 5,
-	te120 = 6,
-	te140 = 7,
-	te160 = 8,
-	te180 = 9,
-	te200 = 10,
-	te300 = 11,
-	te400 = 12,
-	te500 = 13,
-	te700 = 14,
-	te900 = 15,
+	te50_TimerEPC = 0,
+	te60_TimerEPC = 1,
+	te70_TimerEPC = 2,
+	te80_TimerEPC = 3,
+	te90_TimerEPC = 4,
+	te100_TimerEPC = 5,
+	te120_TimerEPC = 6,
+	te140_TimerEPC = 7,
+	te160_TimerEPC = 8,
+	te180_TimerEPC = 9,
+	te200_TimerEPC = 10,
+	te300_TimerEPC = 11,
+	te400_TimerEPC = 12,
+	te500_TimerEPC = 13,
+	te700_TimerEPC = 14,
+	te900_TimerEPC = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> TimerEPC;
 
 typedef Boolean DLRLCStatusInfoMissingPDUIndicator;
 
 enum TimerStatusPeriodicValues {
-	tsp100 = 0,
-	tsp200 = 1,
-	tsp300 = 2,
-	tsp400 = 3,
-	tsp500 = 4,
-	tsp750 = 5,
-	tsp1000 = 6,
-	tsp2000 = 7,
+	tsp100_TimerStatusPeriodic = 0,
+	tsp200_TimerStatusPeriodic = 1,
+	tsp300_TimerStatusPeriodic = 2,
+	tsp400_TimerStatusPeriodic = 3,
+	tsp500_TimerStatusPeriodic = 4,
+	tsp750_TimerStatusPeriodic = 5,
+	tsp1000_TimerStatusPeriodic = 6,
+	tsp2000_TimerStatusPeriodic = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> TimerStatusPeriodic;
 
@@ -7079,8 +7078,8 @@ public:
 };
 
 enum DLAMRLCModer7DlRLCPDUsizeflexibleSizeValues {
-	size7 = 0,
-	size15 = 1,
+	size7_DLAMRLCModer7DlRLCPDUsizeflexibleSize = 0,
+	size15_DLAMRLCModer7DlRLCPDUsizeflexibleSize = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> DLAMRLCModer7DlRLCPDUsizeflexibleSize;
 
@@ -7260,12 +7259,12 @@ typedef SequenceOf<DLLogicalChannelMappingr5, CONSTRAINED, 1, maxLoCHperRLC> DLL
 typedef SequenceOf<DLLogicalChannelMappingr7, CONSTRAINED, 1, maxLoCHperRLC> DLLogicalChannelMappingListr7;
 
 enum DLReceptionWindowSizer6Values {
-	size32 = 0,
-	size48 = 1,
-	size64 = 2,
-	size80 = 3,
-	size96 = 4,
-	size112 = 5,
+	size32_DLReceptionWindowSizer6 = 0,
+	size48_DLReceptionWindowSizer6 = 1,
+	size64_DLReceptionWindowSizer6 = 2,
+	size80_DLReceptionWindowSizer6 = 3,
+	size96_DLReceptionWindowSizer6 = 4,
+	size112_DLReceptionWindowSizer6 = 5,
 };
 typedef Enumerated<CONSTRAINED, 5> DLReceptionWindowSizer6;
 
@@ -7291,8 +7290,8 @@ public:
 };
 
 enum DLUMRLCLIsizeValues {
-	size7 = 0,
-	size15 = 1,
+	size7_DLUMRLCLIsize = 0,
+	size15_DLUMRLCLIsize = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> DLUMRLCLIsize;
 
@@ -7339,54 +7338,54 @@ public:
 };
 
 enum TimerMRWValues {
-	te50 = 0,
-	te60 = 1,
-	te70 = 2,
-	te80 = 3,
-	te90 = 4,
-	te100 = 5,
-	te120 = 6,
-	te140 = 7,
-	te160 = 8,
-	te180 = 9,
-	te200 = 10,
-	te300 = 11,
-	te400 = 12,
-	te500 = 13,
-	te700 = 14,
-	te900 = 15,
+	te50_TimerMRW = 0,
+	te60_TimerMRW = 1,
+	te70_TimerMRW = 2,
+	te80_TimerMRW = 3,
+	te90_TimerMRW = 4,
+	te100_TimerMRW = 5,
+	te120_TimerMRW = 6,
+	te140_TimerMRW = 7,
+	te160_TimerMRW = 8,
+	te180_TimerMRW = 9,
+	te200_TimerMRW = 10,
+	te300_TimerMRW = 11,
+	te400_TimerMRW = 12,
+	te500_TimerMRW = 13,
+	te700_TimerMRW = 14,
+	te900_TimerMRW = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> TimerMRW;
 
 enum TimerDiscardValues {
-	td0_1 = 0,
-	td0_25 = 1,
-	td0_5 = 2,
-	td0_75 = 3,
-	td1 = 4,
-	td1_25 = 5,
-	td1_5 = 6,
-	td1_75 = 7,
-	td2 = 8,
-	td2_5 = 9,
-	td3 = 10,
-	td3_5 = 11,
-	td4 = 12,
-	td4_5 = 13,
-	td5 = 14,
-	td7_5 = 15,
+	td0_1_TimerDiscard = 0,
+	td0_25_TimerDiscard = 1,
+	td0_5_TimerDiscard = 2,
+	td0_75_TimerDiscard = 3,
+	td1_TimerDiscard = 4,
+	td1_25_TimerDiscard = 5,
+	td1_5_TimerDiscard = 6,
+	td1_75_TimerDiscard = 7,
+	td2_TimerDiscard = 8,
+	td2_5_TimerDiscard = 9,
+	td3_TimerDiscard = 10,
+	td3_5_TimerDiscard = 11,
+	td4_TimerDiscard = 12,
+	td4_5_TimerDiscard = 13,
+	td5_TimerDiscard = 14,
+	td7_5_TimerDiscard = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> TimerDiscard;
 
 enum MaxMRWValues {
-	mm1 = 0,
-	mm4 = 1,
-	mm6 = 2,
-	mm8 = 3,
-	mm12 = 4,
-	mm16 = 5,
-	mm24 = 6,
-	mm32 = 7,
+	mm1_MaxMRW = 0,
+	mm4_MaxMRW = 1,
+	mm6_MaxMRW = 2,
+	mm8_MaxMRW = 3,
+	mm12_MaxMRW = 4,
+	mm16_MaxMRW = 5,
+	mm24_MaxMRW = 6,
+	mm32_MaxMRW = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> MaxMRW;
 
@@ -7422,8 +7421,8 @@ public:
 typedef SequenceOf<HeaderCompressionInfor4, CONSTRAINED, 1, maxPDCPAlgoType> HeaderCompressionInfoListr4;
 
 enum MaxPDCPSNWindowSizeValues {
-	sn255 = 0,
-	sn65535 = 1,
+	sn255_MaxPDCPSNWindowSize = 0,
+	sn65535_MaxPDCPSNWindowSize = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> MaxPDCPSNWindowSize;
 
@@ -7442,22 +7441,22 @@ typedef BitString<CONSTRAINED, 24, 24> MACdHFNinitialvalue;
 typedef Integer<CONSTRAINED, 1, 8> MACLogicalChannelPriority;
 
 enum MaxDATValues {
-	dat1 = 0,
-	dat2 = 1,
-	dat3 = 2,
-	dat4 = 3,
-	dat5 = 4,
-	dat6 = 5,
-	dat7 = 6,
-	dat8 = 7,
-	dat9 = 8,
-	dat10 = 9,
-	dat15 = 10,
-	dat20 = 11,
-	dat25 = 12,
-	dat30 = 13,
-	dat35 = 14,
-	dat40 = 15,
+	dat1_MaxDAT = 0,
+	dat2_MaxDAT = 1,
+	dat3_MaxDAT = 2,
+	dat4_MaxDAT = 3,
+	dat5_MaxDAT = 4,
+	dat6_MaxDAT = 5,
+	dat7_MaxDAT = 6,
+	dat8_MaxDAT = 7,
+	dat9_MaxDAT = 8,
+	dat10_MaxDAT = 9,
+	dat15_MaxDAT = 10,
+	dat20_MaxDAT = 11,
+	dat25_MaxDAT = 12,
+	dat30_MaxDAT = 13,
+	dat35_MaxDAT = 14,
+	dat40_MaxDAT = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> MaxDAT;
 
@@ -7471,34 +7470,34 @@ public:
 };
 
 enum MaxRSTValues {
-	rst1 = 0,
-	rst4 = 1,
-	rst6 = 2,
-	rst8 = 3,
-	rst12 = 4,
-	rst16 = 5,
-	rst24 = 6,
-	rst32 = 7,
+	rst1_MaxRST = 0,
+	rst4_MaxRST = 1,
+	rst6_MaxRST = 2,
+	rst8_MaxRST = 3,
+	rst12_MaxRST = 4,
+	rst16_MaxRST = 5,
+	rst24_MaxRST = 6,
+	rst32_MaxRST = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> MaxRST;
 
 enum NoExplicitDiscardValues {
-	dt10 = 0,
-	dt20 = 1,
-	dt30 = 2,
-	dt40 = 3,
-	dt50 = 4,
-	dt60 = 5,
-	dt70 = 6,
-	dt80 = 7,
-	dt90 = 8,
-	dt100 = 9,
+	dt10_NoExplicitDiscard = 0,
+	dt20_NoExplicitDiscard = 1,
+	dt30_NoExplicitDiscard = 2,
+	dt40_NoExplicitDiscard = 3,
+	dt50_NoExplicitDiscard = 4,
+	dt60_NoExplicitDiscard = 5,
+	dt70_NoExplicitDiscard = 6,
+	dt80_NoExplicitDiscard = 7,
+	dt90_NoExplicitDiscard = 8,
+	dt100_NoExplicitDiscard = 9,
 };
 typedef Enumerated<CONSTRAINED, 9> NoExplicitDiscard;
 
 enum PDCPPDUHeaderValues {
-	present = 0,
-	absent = 1,
+	present_PDCPPDUHeader = 0,
+	absent_PDCPPDUHeader = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> PDCPPDUHeader;
 
@@ -7541,164 +7540,164 @@ public:
 };
 
 enum PDCPROHCTargetModeValues {
-	o_Mode = 0,
-	r_Mode = 1,
+	o_Mode_PDCPROHCTargetMode = 0,
+	r_Mode_PDCPROHCTargetMode = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> PDCPROHCTargetMode;
 
 enum PollPDUValues {
-	pdu1 = 0,
-	pdu2 = 1,
-	pdu4 = 2,
-	pdu8 = 3,
-	pdu16 = 4,
-	pdu32 = 5,
-	pdu64 = 6,
-	pdu128 = 7,
+	pdu1_PollPDU = 0,
+	pdu2_PollPDU = 1,
+	pdu4_PollPDU = 2,
+	pdu8_PollPDU = 3,
+	pdu16_PollPDU = 4,
+	pdu32_PollPDU = 5,
+	pdu64_PollPDU = 6,
+	pdu128_PollPDU = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> PollPDU;
 
 enum PollSDUValues {
-	sdu1 = 0,
-	sdu4 = 1,
-	sdu16 = 2,
-	sdu64 = 3,
+	sdu1_PollSDU = 0,
+	sdu4_PollSDU = 1,
+	sdu16_PollSDU = 2,
+	sdu64_PollSDU = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> PollSDU;
 
 enum TimerPollProhibitValues {
-	tpp10 = 0,
-	tpp20 = 1,
-	tpp30 = 2,
-	tpp40 = 3,
-	tpp50 = 4,
-	tpp60 = 5,
-	tpp70 = 6,
-	tpp80 = 7,
-	tpp90 = 8,
-	tpp100 = 9,
-	tpp110 = 10,
-	tpp120 = 11,
-	tpp130 = 12,
-	tpp140 = 13,
-	tpp150 = 14,
-	tpp160 = 15,
-	tpp170 = 16,
-	tpp180 = 17,
-	tpp190 = 18,
-	tpp200 = 19,
-	tpp210 = 20,
-	tpp220 = 21,
-	tpp230 = 22,
-	tpp240 = 23,
-	tpp250 = 24,
-	tpp260 = 25,
-	tpp270 = 26,
-	tpp280 = 27,
-	tpp290 = 28,
-	tpp300 = 29,
-	tpp310 = 30,
-	tpp320 = 31,
-	tpp330 = 32,
-	tpp340 = 33,
-	tpp350 = 34,
-	tpp360 = 35,
-	tpp370 = 36,
-	tpp380 = 37,
-	tpp390 = 38,
-	tpp400 = 39,
-	tpp410 = 40,
-	tpp420 = 41,
-	tpp430 = 42,
-	tpp440 = 43,
-	tpp450 = 44,
-	tpp460 = 45,
-	tpp470 = 46,
-	tpp480 = 47,
-	tpp490 = 48,
-	tpp500 = 49,
-	tpp510 = 50,
-	tpp520 = 51,
-	tpp530 = 52,
-	tpp540 = 53,
-	tpp550 = 54,
-	tpp600 = 55,
-	tpp650 = 56,
-	tpp700 = 57,
-	tpp750 = 58,
-	tpp800 = 59,
-	tpp850 = 60,
-	tpp900 = 61,
-	tpp950 = 62,
-	tpp1000 = 63,
+	tpp10_TimerPollProhibit = 0,
+	tpp20_TimerPollProhibit = 1,
+	tpp30_TimerPollProhibit = 2,
+	tpp40_TimerPollProhibit = 3,
+	tpp50_TimerPollProhibit = 4,
+	tpp60_TimerPollProhibit = 5,
+	tpp70_TimerPollProhibit = 6,
+	tpp80_TimerPollProhibit = 7,
+	tpp90_TimerPollProhibit = 8,
+	tpp100_TimerPollProhibit = 9,
+	tpp110_TimerPollProhibit = 10,
+	tpp120_TimerPollProhibit = 11,
+	tpp130_TimerPollProhibit = 12,
+	tpp140_TimerPollProhibit = 13,
+	tpp150_TimerPollProhibit = 14,
+	tpp160_TimerPollProhibit = 15,
+	tpp170_TimerPollProhibit = 16,
+	tpp180_TimerPollProhibit = 17,
+	tpp190_TimerPollProhibit = 18,
+	tpp200_TimerPollProhibit = 19,
+	tpp210_TimerPollProhibit = 20,
+	tpp220_TimerPollProhibit = 21,
+	tpp230_TimerPollProhibit = 22,
+	tpp240_TimerPollProhibit = 23,
+	tpp250_TimerPollProhibit = 24,
+	tpp260_TimerPollProhibit = 25,
+	tpp270_TimerPollProhibit = 26,
+	tpp280_TimerPollProhibit = 27,
+	tpp290_TimerPollProhibit = 28,
+	tpp300_TimerPollProhibit = 29,
+	tpp310_TimerPollProhibit = 30,
+	tpp320_TimerPollProhibit = 31,
+	tpp330_TimerPollProhibit = 32,
+	tpp340_TimerPollProhibit = 33,
+	tpp350_TimerPollProhibit = 34,
+	tpp360_TimerPollProhibit = 35,
+	tpp370_TimerPollProhibit = 36,
+	tpp380_TimerPollProhibit = 37,
+	tpp390_TimerPollProhibit = 38,
+	tpp400_TimerPollProhibit = 39,
+	tpp410_TimerPollProhibit = 40,
+	tpp420_TimerPollProhibit = 41,
+	tpp430_TimerPollProhibit = 42,
+	tpp440_TimerPollProhibit = 43,
+	tpp450_TimerPollProhibit = 44,
+	tpp460_TimerPollProhibit = 45,
+	tpp470_TimerPollProhibit = 46,
+	tpp480_TimerPollProhibit = 47,
+	tpp490_TimerPollProhibit = 48,
+	tpp500_TimerPollProhibit = 49,
+	tpp510_TimerPollProhibit = 50,
+	tpp520_TimerPollProhibit = 51,
+	tpp530_TimerPollProhibit = 52,
+	tpp540_TimerPollProhibit = 53,
+	tpp550_TimerPollProhibit = 54,
+	tpp600_TimerPollProhibit = 55,
+	tpp650_TimerPollProhibit = 56,
+	tpp700_TimerPollProhibit = 57,
+	tpp750_TimerPollProhibit = 58,
+	tpp800_TimerPollProhibit = 59,
+	tpp850_TimerPollProhibit = 60,
+	tpp900_TimerPollProhibit = 61,
+	tpp950_TimerPollProhibit = 62,
+	tpp1000_TimerPollProhibit = 63,
 };
 typedef Enumerated<CONSTRAINED, 63> TimerPollProhibit;
 
 enum TimerPollValues {
-	tp10 = 0,
-	tp20 = 1,
-	tp30 = 2,
-	tp40 = 3,
-	tp50 = 4,
-	tp60 = 5,
-	tp70 = 6,
-	tp80 = 7,
-	tp90 = 8,
-	tp100 = 9,
-	tp110 = 10,
-	tp120 = 11,
-	tp130 = 12,
-	tp140 = 13,
-	tp150 = 14,
-	tp160 = 15,
-	tp170 = 16,
-	tp180 = 17,
-	tp190 = 18,
-	tp200 = 19,
-	tp210 = 20,
-	tp220 = 21,
-	tp230 = 22,
-	tp240 = 23,
-	tp250 = 24,
-	tp260 = 25,
-	tp270 = 26,
-	tp280 = 27,
-	tp290 = 28,
-	tp300 = 29,
-	tp310 = 30,
-	tp320 = 31,
-	tp330 = 32,
-	tp340 = 33,
-	tp350 = 34,
-	tp360 = 35,
-	tp370 = 36,
-	tp380 = 37,
-	tp390 = 38,
-	tp400 = 39,
-	tp410 = 40,
-	tp420 = 41,
-	tp430 = 42,
-	tp440 = 43,
-	tp450 = 44,
-	tp460 = 45,
-	tp470 = 46,
-	tp480 = 47,
-	tp490 = 48,
-	tp500 = 49,
-	tp510 = 50,
-	tp520 = 51,
-	tp530 = 52,
-	tp540 = 53,
-	tp550 = 54,
-	tp600 = 55,
-	tp650 = 56,
-	tp700 = 57,
-	tp750 = 58,
-	tp800 = 59,
-	tp850 = 60,
-	tp900 = 61,
-	tp950 = 62,
-	tp1000 = 63,
+	tp10_TimerPoll = 0,
+	tp20_TimerPoll = 1,
+	tp30_TimerPoll = 2,
+	tp40_TimerPoll = 3,
+	tp50_TimerPoll = 4,
+	tp60_TimerPoll = 5,
+	tp70_TimerPoll = 6,
+	tp80_TimerPoll = 7,
+	tp90_TimerPoll = 8,
+	tp100_TimerPoll = 9,
+	tp110_TimerPoll = 10,
+	tp120_TimerPoll = 11,
+	tp130_TimerPoll = 12,
+	tp140_TimerPoll = 13,
+	tp150_TimerPoll = 14,
+	tp160_TimerPoll = 15,
+	tp170_TimerPoll = 16,
+	tp180_TimerPoll = 17,
+	tp190_TimerPoll = 18,
+	tp200_TimerPoll = 19,
+	tp210_TimerPoll = 20,
+	tp220_TimerPoll = 21,
+	tp230_TimerPoll = 22,
+	tp240_TimerPoll = 23,
+	tp250_TimerPoll = 24,
+	tp260_TimerPoll = 25,
+	tp270_TimerPoll = 26,
+	tp280_TimerPoll = 27,
+	tp290_TimerPoll = 28,
+	tp300_TimerPoll = 29,
+	tp310_TimerPoll = 30,
+	tp320_TimerPoll = 31,
+	tp330_TimerPoll = 32,
+	tp340_TimerPoll = 33,
+	tp350_TimerPoll = 34,
+	tp360_TimerPoll = 35,
+	tp370_TimerPoll = 36,
+	tp380_TimerPoll = 37,
+	tp390_TimerPoll = 38,
+	tp400_TimerPoll = 39,
+	tp410_TimerPoll = 40,
+	tp420_TimerPoll = 41,
+	tp430_TimerPoll = 42,
+	tp440_TimerPoll = 43,
+	tp450_TimerPoll = 44,
+	tp460_TimerPoll = 45,
+	tp470_TimerPoll = 46,
+	tp480_TimerPoll = 47,
+	tp490_TimerPoll = 48,
+	tp500_TimerPoll = 49,
+	tp510_TimerPoll = 50,
+	tp520_TimerPoll = 51,
+	tp530_TimerPoll = 52,
+	tp540_TimerPoll = 53,
+	tp550_TimerPoll = 54,
+	tp600_TimerPoll = 55,
+	tp650_TimerPoll = 56,
+	tp700_TimerPoll = 57,
+	tp750_TimerPoll = 58,
+	tp800_TimerPoll = 59,
+	tp850_TimerPoll = 60,
+	tp900_TimerPoll = 61,
+	tp950_TimerPoll = 62,
+	tp1000_TimerPoll = 63,
 };
 typedef Enumerated<CONSTRAINED, 63> TimerPoll;
 
@@ -7707,26 +7706,26 @@ typedef Boolean PollingInfoLastTransmissionPDUPoll;
 typedef Boolean PollingInfoLastRetransmissionPDUPoll;
 
 enum PollWindowValues {
-	pw50 = 0,
-	pw60 = 1,
-	pw70 = 2,
-	pw80 = 3,
-	pw85 = 4,
-	pw90 = 5,
-	pw95 = 6,
-	pw99 = 7,
+	pw50_PollWindow = 0,
+	pw60_PollWindow = 1,
+	pw70_PollWindow = 2,
+	pw80_PollWindow = 3,
+	pw85_PollWindow = 4,
+	pw90_PollWindow = 5,
+	pw95_PollWindow = 6,
+	pw99_PollWindow = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> PollWindow;
 
 enum TimerPollPeriodicValues {
-	tper100 = 0,
-	tper200 = 1,
-	tper300 = 2,
-	tper400 = 3,
-	tper500 = 4,
-	tper750 = 5,
-	tper1000 = 6,
-	tper2000 = 7,
+	tper100_TimerPollPeriodic = 0,
+	tper200_TimerPollPeriodic = 1,
+	tper300_TimerPollPeriodic = 2,
+	tper400_TimerPollPeriodic = 3,
+	tper500_TimerPollPeriodic = 4,
+	tper750_TimerPollPeriodic = 5,
+	tper1000_TimerPollPeriodic = 6,
+	tper2000_TimerPollPeriodic = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> TimerPollPeriodic;
 
@@ -7752,42 +7751,42 @@ public:
 };
 
 enum TransmissionWindowSizeValues {
-	tw1 = 0,
-	tw8 = 1,
-	tw16 = 2,
-	tw32 = 3,
-	tw64 = 4,
-	tw128 = 5,
-	tw256 = 6,
-	tw512 = 7,
-	tw768 = 8,
-	tw1024 = 9,
-	tw1536 = 10,
-	tw2047 = 11,
-	tw2560 = 12,
-	tw3072 = 13,
-	tw3584 = 14,
-	tw4095 = 15,
+	tw1_TransmissionWindowSize = 0,
+	tw8_TransmissionWindowSize = 1,
+	tw16_TransmissionWindowSize = 2,
+	tw32_TransmissionWindowSize = 3,
+	tw64_TransmissionWindowSize = 4,
+	tw128_TransmissionWindowSize = 5,
+	tw256_TransmissionWindowSize = 6,
+	tw512_TransmissionWindowSize = 7,
+	tw768_TransmissionWindowSize = 8,
+	tw1024_TransmissionWindowSize = 9,
+	tw1536_TransmissionWindowSize = 10,
+	tw2047_TransmissionWindowSize = 11,
+	tw2560_TransmissionWindowSize = 12,
+	tw3072_TransmissionWindowSize = 13,
+	tw3584_TransmissionWindowSize = 14,
+	tw4095_TransmissionWindowSize = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> TransmissionWindowSize;
 
 enum TimerRSTValues {
-	tr50 = 0,
-	tr100 = 1,
-	tr150 = 2,
-	tr200 = 3,
-	tr250 = 4,
-	tr300 = 5,
-	tr350 = 6,
-	tr400 = 7,
-	tr450 = 8,
-	tr500 = 9,
-	tr550 = 10,
-	tr600 = 11,
-	tr700 = 12,
-	tr800 = 13,
-	tr900 = 14,
-	tr1000 = 15,
+	tr50_TimerRST = 0,
+	tr100_TimerRST = 1,
+	tr150_TimerRST = 2,
+	tr200_TimerRST = 3,
+	tr250_TimerRST = 4,
+	tr300_TimerRST = 5,
+	tr350_TimerRST = 6,
+	tr400_TimerRST = 7,
+	tr450_TimerRST = 8,
+	tr500_TimerRST = 9,
+	tr550_TimerRST = 10,
+	tr600_TimerRST = 11,
+	tr700_TimerRST = 12,
+	tr800_TimerRST = 13,
+	tr900_TimerRST = 14,
+	tr1000_TimerRST = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> TimerRST;
 
@@ -7963,8 +7962,8 @@ typedef SequenceOf<TFCValue, CONSTRAINED, 1, maxTFC> AllowedTFCList;
 typedef SequenceOf<TFCValue, CONSTRAINED, 1, maxTFC> NonallowedTFCList;
 
 enum ULTrCHTypeValues {
-	dch = 0,
-	usch = 1,
+	dch_ULTrCHType = 0,
+	usch_ULTrCHType = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ULTrCHType;
 
@@ -8104,8 +8103,8 @@ public:
 };
 
 enum SplitTypeValues {
-	hardSplit = 0,
-	logicalSplit = 1,
+	hardSplit_SplitType = 0,
+	logicalSplit_SplitType = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> SplitType;
 
@@ -8380,8 +8379,8 @@ public:
 typedef Null ChannelCodingTypeNoCoding;
 
 enum CodingRateValues {
-	half = 0,
-	third = 1,
+	half_CodingRate = 0,
+	third_CodingRate = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> CodingRate;
 
@@ -8398,11 +8397,11 @@ public:
 typedef Integer<CONSTRAINED, 1, hiRM> RateMatchingAttribute;
 
 enum CRCSizeValues {
-	crc0 = 0,
-	crc8 = 1,
-	crc12 = 2,
-	crc16 = 3,
-	crc24 = 4,
+	crc0_CRCSize = 0,
+	crc8_CRCSize = 1,
+	crc12_CRCSize = 2,
+	crc16_CRCSize = 3,
+	crc24_CRCSize = 4,
 };
 typedef Enumerated<CONSTRAINED, 4> CRCSize;
 
@@ -8605,8 +8604,8 @@ public:
 };
 
 enum DLTrCHTypeValues {
-	dch = 0,
-	dsch = 1,
+	dch_DLTrCHType = 0,
+	dsch_DLTrCHType = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> DLTrCHType;
 
@@ -8639,7 +8638,7 @@ public:
 };
 
 enum MessTypeValues {
-	transportFormatCombinationControl = 0,
+	transportFormatCombinationControl_MessType = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MessType;
 
@@ -8724,22 +8723,22 @@ public:
 typedef Boolean ULDPCHInfoPredefModeSpecificInfoFddTfciExistence;
 
 enum PuncturingLimitValues {
-	pl0_40 = 0,
-	pl0_44 = 1,
-	pl0_48 = 2,
-	pl0_52 = 3,
-	pl0_56 = 4,
-	pl0_60 = 5,
-	pl0_64 = 6,
-	pl0_68 = 7,
-	pl0_72 = 8,
-	pl0_76 = 9,
-	pl0_80 = 10,
-	pl0_84 = 11,
-	pl0_88 = 12,
-	pl0_92 = 13,
-	pl0_96 = 14,
-	pl1 = 15,
+	pl0_40_PuncturingLimit = 0,
+	pl0_44_PuncturingLimit = 1,
+	pl0_48_PuncturingLimit = 2,
+	pl0_52_PuncturingLimit = 3,
+	pl0_56_PuncturingLimit = 4,
+	pl0_60_PuncturingLimit = 5,
+	pl0_64_PuncturingLimit = 6,
+	pl0_68_PuncturingLimit = 7,
+	pl0_72_PuncturingLimit = 8,
+	pl0_76_PuncturingLimit = 9,
+	pl0_80_PuncturingLimit = 10,
+	pl0_84_PuncturingLimit = 11,
+	pl0_88_PuncturingLimit = 12,
+	pl0_92_PuncturingLimit = 13,
+	pl0_96_PuncturingLimit = 14,
+	pl1_PuncturingLimit = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> PuncturingLimit;
 
@@ -8753,16 +8752,16 @@ public:
 };
 
 enum SecondInterleavingModeValues {
-	frameRelated = 0,
-	timeslotRelated = 1,
+	frameRelated_SecondInterleavingMode = 0,
+	timeslotRelated_SecondInterleavingMode = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> SecondInterleavingMode;
 
 enum TFCICodingValues {
-	tfci_bits_4 = 0,
-	tfci_bits_8 = 1,
-	tfci_bits_16 = 2,
-	tfci_bits_32 = 3,
+	tfci_bits_4_TFCICoding = 0,
+	tfci_bits_8_TFCICoding = 1,
+	tfci_bits_16_TFCICoding = 2,
+	tfci_bits_32_TFCICoding = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> TFCICoding;
 
@@ -8834,15 +8833,15 @@ typedef Null SF512AndPilotSfd32;
 typedef Null SF512AndPilotSfd64;
 
 enum PilotBits128Values {
-	pb4 = 0,
-	pb8 = 1,
+	pb4_PilotBits128 = 0,
+	pb8_PilotBits128 = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> PilotBits128;
 
 enum PilotBits256Values {
-	pb2 = 0,
-	pb4 = 1,
-	pb8 = 2,
+	pb2_PilotBits256 = 0,
+	pb4_PilotBits256 = 1,
+	pb8_PilotBits256 = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> PilotBits256;
 
@@ -8857,8 +8856,8 @@ public:
 };
 
 enum PositionFixedOrFlexibleValues {
-	fixed = 0,
-	flexible = 1,
+	fixed_PositionFixedOrFlexible = 0,
+	flexible_PositionFixedOrFlexible = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> PositionFixedOrFlexible;
 
@@ -8927,7 +8926,7 @@ public:
 };
 
 enum NumberOfTPCBitsValues {
-	tpc4 = 0,
+	tpc4_NumberOfTPCBits = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> NumberOfTPCBits;
 
@@ -8978,15 +8977,15 @@ public:
 };
 
 enum MAChsWindowSizer9Values {
-	mws4 = 0,
-	mws6 = 1,
-	mws8 = 2,
-	mws12 = 3,
-	mws16 = 4,
-	mws24 = 5,
-	mws32 = 6,
-	mw64 = 7,
-	mw128 = 8,
+	mws4_MAChsWindowSizer9 = 0,
+	mws6_MAChsWindowSizer9 = 1,
+	mws8_MAChsWindowSizer9 = 2,
+	mws12_MAChsWindowSizer9 = 3,
+	mws16_MAChsWindowSizer9 = 4,
+	mws24_MAChsWindowSizer9 = 5,
+	mws32_MAChsWindowSizer9 = 6,
+	mw64_MAChsWindowSizer9 = 7,
+	mw128_MAChsWindowSizer9 = 8,
 };
 typedef Enumerated<CONSTRAINED, 8> MAChsWindowSizer9;
 
@@ -9237,7 +9236,7 @@ public:
 typedef Boolean RLCInfor6RlcOneSidedReEst;
 
 enum RLCInfor6altE_bitInterpretationValues {
-	true = 0,
+	true_RLCInfor6altE_bitInterpretation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> RLCInfor6altE_bitInterpretation;
 
@@ -9376,12 +9375,12 @@ public:
 typedef Boolean RLCInfor7RlcOneSidedReEst;
 
 enum RLCInfor7altE_bitInterpretationValues {
-	true = 0,
+	true_RLCInfor7altE_bitInterpretation = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> RLCInfor7altE_bitInterpretation;
 
 enum RLCInfor7useSpecialValueOfHEFieldValues {
-	true = 0,
+	true_RLCInfor7useSpecialValueOfHEField = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> RLCInfor7useSpecialValueOfHEField;
 
@@ -9464,8 +9463,8 @@ public:
 };
 
 enum RLCPDUSizeConstraintlengthIndicatorSizeValues {
-	size7 = 0,
-	size15 = 1,
+	size7_RLCPDUSizeConstraintlengthIndicatorSize = 0,
+	size15_RLCPDUSizeConstraintlengthIndicatorSize = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> RLCPDUSizeConstraintlengthIndicatorSize;
 
@@ -9698,8 +9697,8 @@ public:
 typedef SequenceOf<RBInformationChangedr6, CONSTRAINED, 1, maxRB> RBInformationChangedListr6;
 
 enum RBStopContinueValues {
-	stopRB = 0,
-	continueRB = 1,
+	stopRB_RBStopContinue = 0,
+	continueRB_RBStopContinue = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> RBStopContinue;
 
@@ -9772,31 +9771,31 @@ typedef SequenceOf<RBInformationReconfigr8, CONSTRAINED, 1, maxRB> RBInformation
 typedef SequenceOf<RBIdentity, CONSTRAINED, 1, maxRB> RBInformationReleaseList;
 
 enum TimerOSDr6Values {
-	ms40 = 0,
-	ms80 = 1,
-	ms120 = 2,
-	ms160 = 3,
-	ms240 = 4,
-	ms320 = 5,
-	ms480 = 6,
-	ms640 = 7,
-	ms960 = 8,
-	ms1280 = 9,
-	ms1920 = 10,
-	ms2560 = 11,
-	ms3840 = 12,
-	ms5120 = 13,
+	ms40_TimerOSDr6 = 0,
+	ms80_TimerOSDr6 = 1,
+	ms120_TimerOSDr6 = 2,
+	ms160_TimerOSDr6 = 3,
+	ms240_TimerOSDr6 = 4,
+	ms320_TimerOSDr6 = 5,
+	ms480_TimerOSDr6 = 6,
+	ms640_TimerOSDr6 = 7,
+	ms960_TimerOSDr6 = 8,
+	ms1280_TimerOSDr6 = 9,
+	ms1920_TimerOSDr6 = 10,
+	ms2560_TimerOSDr6 = 11,
+	ms3840_TimerOSDr6 = 12,
+	ms5120_TimerOSDr6 = 13,
 };
 typedef Enumerated<CONSTRAINED, 13> TimerOSDr6;
 
 enum WindowSizeOSDr6Values {
-	ws8 = 0,
-	ws16 = 1,
-	ws32 = 2,
-	ws40 = 3,
-	ws48 = 4,
-	ws56 = 5,
-	ws64 = 6,
+	ws8_WindowSizeOSDr6 = 0,
+	ws16_WindowSizeOSDr6 = 1,
+	ws32_WindowSizeOSDr6 = 2,
+	ws40_WindowSizeOSDr6 = 3,
+	ws48_WindowSizeOSDr6 = 4,
+	ws56_WindowSizeOSDr6 = 5,
+	ws64_WindowSizeOSDr6 = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> WindowSizeOSDr6;
 
@@ -9828,32 +9827,32 @@ public:
 };
 
 enum TimerDARr6Values {
-	ms40 = 0,
-	ms80 = 1,
-	ms120 = 2,
-	ms160 = 3,
-	ms240 = 4,
-	ms320 = 5,
-	ms480 = 6,
-	ms640 = 7,
-	ms960 = 8,
-	ms1280 = 9,
-	ms1920 = 10,
-	ms2560 = 11,
-	ms3840 = 12,
-	ms5120 = 13,
+	ms40_TimerDARr6 = 0,
+	ms80_TimerDARr6 = 1,
+	ms120_TimerDARr6 = 2,
+	ms160_TimerDARr6 = 3,
+	ms240_TimerDARr6 = 4,
+	ms320_TimerDARr6 = 5,
+	ms480_TimerDARr6 = 6,
+	ms640_TimerDARr6 = 7,
+	ms960_TimerDARr6 = 8,
+	ms1280_TimerDARr6 = 9,
+	ms1920_TimerDARr6 = 10,
+	ms2560_TimerDARr6 = 11,
+	ms3840_TimerDARr6 = 12,
+	ms5120_TimerDARr6 = 13,
 };
 typedef Enumerated<CONSTRAINED, 13> TimerDARr6;
 
 enum WindowSizeDARr6Values {
-	ws4 = 0,
-	ws8 = 1,
-	ws16 = 2,
-	ws32 = 3,
-	ws40 = 4,
-	ws48 = 5,
-	ws56 = 6,
-	ws64 = 7,
+	ws4_WindowSizeDARr6 = 0,
+	ws8_WindowSizeDARr6 = 1,
+	ws16_WindowSizeDARr6 = 2,
+	ws32_WindowSizeDARr6 = 3,
+	ws40_WindowSizeDARr6 = 4,
+	ws48_WindowSizeDARr6 = 5,
+	ws56_WindowSizeDARr6 = 6,
+	ws64_WindowSizeDARr6 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> WindowSizeDARr6;
 
@@ -9939,33 +9938,33 @@ public:
 typedef Integer<CONSTRAINED, 0, 7> MAChsAddReconfQueueMachsQueueId;
 
 enum T1ReleaseTimerValues {
-	rt10 = 0,
-	rt20 = 1,
-	rt30 = 2,
-	rt40 = 3,
-	rt50 = 4,
-	rt60 = 5,
-	rt70 = 6,
-	rt80 = 7,
-	rt90 = 8,
-	rt100 = 9,
-	rt120 = 10,
-	rt140 = 11,
-	rt160 = 12,
-	rt200 = 13,
-	rt300 = 14,
-	rt400 = 15,
+	rt10_T1ReleaseTimer = 0,
+	rt20_T1ReleaseTimer = 1,
+	rt30_T1ReleaseTimer = 2,
+	rt40_T1ReleaseTimer = 3,
+	rt50_T1ReleaseTimer = 4,
+	rt60_T1ReleaseTimer = 5,
+	rt70_T1ReleaseTimer = 6,
+	rt80_T1ReleaseTimer = 7,
+	rt90_T1ReleaseTimer = 8,
+	rt100_T1ReleaseTimer = 9,
+	rt120_T1ReleaseTimer = 10,
+	rt140_T1ReleaseTimer = 11,
+	rt160_T1ReleaseTimer = 12,
+	rt200_T1ReleaseTimer = 13,
+	rt300_T1ReleaseTimer = 14,
+	rt400_T1ReleaseTimer = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> T1ReleaseTimer;
 
 enum MAChsWindowSizeValues {
-	mws4 = 0,
-	mws6 = 1,
-	mws8 = 2,
-	mws12 = 3,
-	mws16 = 4,
-	mws24 = 5,
-	mws32 = 6,
+	mws4_MAChsWindowSize = 0,
+	mws6_MAChsWindowSize = 1,
+	mws8_MAChsWindowSize = 2,
+	mws12_MAChsWindowSize = 3,
+	mws16_MAChsWindowSize = 4,
+	mws24_MAChsWindowSize = 5,
+	mws32_MAChsWindowSize = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> MAChsWindowSize;
 
@@ -10018,10 +10017,10 @@ public:
 };
 
 enum TresetResetTimerValues {
-	rt1 = 0,
-	rt2 = 1,
-	rt3 = 2,
-	rt4 = 3,
+	rt1_TresetResetTimer = 0,
+	rt2_TresetResetTimer = 1,
+	rt3_TresetResetTimer = 2,
+	rt4_TresetResetTimer = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> TresetResetTimer;
 
@@ -10083,36 +10082,36 @@ typedef Integer<CONSTRAINED, 0, 15> EDCHMACdFlowMaxRetrans;
 typedef BitString<CONSTRAINED, maxE_DCHMACdFlow, maxE_DCHMACdFlow> EDCHMACdFlowMultiplexingList;
 
 enum EDCHMACdFlowRetransTimerValues {
-	ms10 = 0,
-	ms15 = 1,
-	ms20 = 2,
-	ms25 = 3,
-	ms30 = 4,
-	ms35 = 5,
-	ms40 = 6,
-	ms45 = 7,
-	ms50 = 8,
-	ms55 = 9,
-	ms60 = 10,
-	ms65 = 11,
-	ms70 = 12,
-	ms75 = 13,
-	ms80 = 14,
-	ms85 = 15,
-	ms90 = 16,
-	ms95 = 17,
-	ms100 = 18,
-	ms110 = 19,
-	ms120 = 20,
-	ms140 = 21,
-	ms160 = 22,
-	ms200 = 23,
-	ms240 = 24,
-	ms280 = 25,
-	ms320 = 26,
-	ms400 = 27,
-	ms480 = 28,
-	ms560 = 29,
+	ms10_EDCHMACdFlowRetransTimer = 0,
+	ms15_EDCHMACdFlowRetransTimer = 1,
+	ms20_EDCHMACdFlowRetransTimer = 2,
+	ms25_EDCHMACdFlowRetransTimer = 3,
+	ms30_EDCHMACdFlowRetransTimer = 4,
+	ms35_EDCHMACdFlowRetransTimer = 5,
+	ms40_EDCHMACdFlowRetransTimer = 6,
+	ms45_EDCHMACdFlowRetransTimer = 7,
+	ms50_EDCHMACdFlowRetransTimer = 8,
+	ms55_EDCHMACdFlowRetransTimer = 9,
+	ms60_EDCHMACdFlowRetransTimer = 10,
+	ms65_EDCHMACdFlowRetransTimer = 11,
+	ms70_EDCHMACdFlowRetransTimer = 12,
+	ms75_EDCHMACdFlowRetransTimer = 13,
+	ms80_EDCHMACdFlowRetransTimer = 14,
+	ms85_EDCHMACdFlowRetransTimer = 15,
+	ms90_EDCHMACdFlowRetransTimer = 16,
+	ms95_EDCHMACdFlowRetransTimer = 17,
+	ms100_EDCHMACdFlowRetransTimer = 18,
+	ms110_EDCHMACdFlowRetransTimer = 19,
+	ms120_EDCHMACdFlowRetransTimer = 20,
+	ms140_EDCHMACdFlowRetransTimer = 21,
+	ms160_EDCHMACdFlowRetransTimer = 22,
+	ms200_EDCHMACdFlowRetransTimer = 23,
+	ms240_EDCHMACdFlowRetransTimer = 24,
+	ms280_EDCHMACdFlowRetransTimer = 25,
+	ms320_EDCHMACdFlowRetransTimer = 26,
+	ms400_EDCHMACdFlowRetransTimer = 27,
+	ms480_EDCHMACdFlowRetransTimer = 28,
+	ms560_EDCHMACdFlowRetransTimer = 29,
 };
 typedef Enumerated<CONSTRAINED, 29> EDCHMACdFlowRetransTimer;
 
@@ -10521,8 +10520,8 @@ typedef SequenceOf<EDCHAddReconfMACdFlow, CONSTRAINED, 1, maxE_DCHMACdFlow> EDCH
 typedef SequenceOf<EDCHAddReconfMACdFlowr7, CONSTRAINED, 1, maxE_DCHMACdFlow> EDCHAddReconfMACdFlowListr7;
 
 enum EDCHTTIValues {
-	tti2 = 0,
-	tti10 = 1,
+	tti2_EDCHTTI = 0,
+	tti10_EDCHTTI = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EDCHTTI;
 
@@ -10615,10 +10614,10 @@ public:
 };
 
 enum TransmissionTimeIntervalValues {
-	tti10 = 0,
-	tti20 = 1,
-	tti40 = 2,
-	tti80 = 3,
+	tti10_TransmissionTimeInterval = 0,
+	tti20_TransmissionTimeInterval = 1,
+	tti40_TransmissionTimeInterval = 2,
+	tti80_TransmissionTimeInterval = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> TransmissionTimeInterval;
 
@@ -10640,8 +10639,8 @@ public:
 };
 
 enum ULAddReconfTransChInformationr6Edchharq_InfoValues {
-	rv0 = 0,
-	rvtable = 1,
+	rv0_ULAddReconfTransChInformationr6Edchharq_Info = 0,
+	rvtable_ULAddReconfTransChInformationr6Edchharq_Info = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ULAddReconfTransChInformationr6Edchharq_Info;
 
@@ -10693,8 +10692,8 @@ public:
 };
 
 enum ULAddReconfTransChInformationr7Edchharq_InfoValues {
-	rv0 = 0,
-	rvtable = 1,
+	rv0_ULAddReconfTransChInformationr7Edchharq_Info = 0,
+	rvtable_ULAddReconfTransChInformationr7Edchharq_Info = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ULAddReconfTransChInformationr7Edchharq_Info;
 
@@ -10727,7 +10726,7 @@ public:
 };
 
 enum ULAddReconfTransChInformationr8Edchul_MAC_HeaderTypeValues {
-	mac_iis = 0,
+	mac_iis_ULAddReconfTransChInformationr8Edchul_MAC_HeaderType = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> ULAddReconfTransChInformationr8Edchul_MAC_HeaderType;
 
@@ -10751,8 +10750,8 @@ public:
 };
 
 enum ULAddReconfTransChInformationr8Edchharq_InfoValues {
-	rv0 = 0,
-	rvtable = 1,
+	rv0_ULAddReconfTransChInformationr8Edchharq_Info = 0,
+	rvtable_ULAddReconfTransChInformationr8Edchharq_Info = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ULAddReconfTransChInformationr8Edchharq_Info;
 
@@ -10866,8 +10865,8 @@ typedef BitString<CONSTRAINED> AccessServiceClassTDDChannelisationCodeIndices;
 typedef Null AccessServiceClassTDDSubchannelSizeSize1;
 
 enum AccessServiceClassTDDSubchannelSizeSize2subchannelsValues {
-	subch0 = 0,
-	subch1 = 1,
+	subch0_AccessServiceClassTDDSubchannelSizeSize2subchannels = 0,
+	subch1_AccessServiceClassTDDSubchannelSizeSize2subchannels = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> AccessServiceClassTDDSubchannelSizeSize2subchannels;
 
@@ -10924,8 +10923,8 @@ typedef BitString<CONSTRAINED> AccessServiceClassTDDr7ChannelisationCodeIndices;
 typedef Null AccessServiceClassTDDr7SubchannelSizeSize1;
 
 enum AccessServiceClassTDDr7SubchannelSizeSize2subchannelsValues {
-	subch0 = 0,
-	subch1 = 1,
+	subch0_AccessServiceClassTDDr7SubchannelSizeSize2subchannels = 0,
+	subch1_AccessServiceClassTDDr7SubchannelSizeSize2subchannels = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> AccessServiceClassTDDr7SubchannelSizeSize2subchannels;
 
@@ -10993,8 +10992,8 @@ typedef BitString<CONSTRAINED> AccessServiceClassTDDLCRr4AvailableSYNCUlCodesInd
 typedef Null AccessServiceClassTDDLCRr4SubchannelSizeSize1;
 
 enum AccessServiceClassTDDLCRr4SubchannelSizeSize2subchannelsValues {
-	subch0 = 0,
-	subch1 = 1,
+	subch0_AccessServiceClassTDDLCRr4SubchannelSizeSize2subchannels = 0,
+	subch1_AccessServiceClassTDDLCRr4SubchannelSizeSize2subchannels = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> AccessServiceClassTDDLCRr4SubchannelSizeSize2subchannels;
 
@@ -11080,8 +11079,8 @@ typedef SequenceOf<AdditionalPRACHTFandTFCSCCCH, CONSTRAINED, 1, maxPRACH> Addit
 typedef Boolean AICHInfoSttdIndicator;
 
 enum AICHTransmissionTimingValues {
-	e0 = 0,
-	e1 = 1,
+	e0_AICHTransmissionTiming = 0,
+	e1_AICHTransmissionTiming = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> AICHTransmissionTiming;
 
@@ -11171,13 +11170,13 @@ typedef SequenceOf<APSignatureVCAM, CONSTRAINED, 1, maxPCPCH_APsig> AvailableAPS
 typedef SequenceOf<APSignature, CONSTRAINED, 1, maxPCPCH_APsig> AvailableAPSignatureList;
 
 enum MinimumSpreadingFactorValues {
-	sf4 = 0,
-	sf8 = 1,
-	sf16 = 2,
-	sf32 = 3,
-	sf64 = 4,
-	sf128 = 5,
-	sf256 = 6,
+	sf4_MinimumSpreadingFactor = 0,
+	sf8_MinimumSpreadingFactor = 1,
+	sf16_MinimumSpreadingFactor = 2,
+	sf32_MinimumSpreadingFactor = 3,
+	sf64_MinimumSpreadingFactor = 4,
+	sf128_MinimumSpreadingFactor = 5,
+	sf256_MinimumSpreadingFactor = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> MinimumSpreadingFactor;
 
@@ -11201,13 +11200,13 @@ typedef BitString<CONSTRAINED> AvailableSignatures;
 typedef BitString<CONSTRAINED> AvailableSubChannelNumbers;
 
 enum BEACONPLEstValues {
-	true = 0,
+	true_BEACONPLEst = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> BEACONPLEst;
 
 enum BurstTypeValues {
-	type1 = 0,
-	type2 = 1,
+	type1_BurstType = 0,
+	type2_BurstType = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> BurstType;
 
@@ -11582,21 +11581,21 @@ public:
 };
 
 enum ClosedLoopTimingAdjModeValues {
-	slot1 = 0,
-	slot2 = 1,
+	slot1_ClosedLoopTimingAdjMode = 0,
+	slot2_ClosedLoopTimingAdjMode = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ClosedLoopTimingAdjMode;
 
 typedef Integer<CONSTRAINED, 0, 255> CodeNumberDSCH;
 
 enum SFPDSCHValues {
-	sfp4 = 0,
-	sfp8 = 1,
-	sfp16 = 2,
-	sfp32 = 3,
-	sfp64 = 4,
-	sfp128 = 5,
-	sfp256 = 6,
+	sfp4_SFPDSCH = 0,
+	sfp8_SFPDSCH = 1,
+	sfp16_SFPDSCH = 2,
+	sfp32_SFPDSCH = 3,
+	sfp64_SFPDSCH = 4,
+	sfp128_SFPDSCH = 5,
+	sfp256_SFPDSCH = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> SFPDSCH;
 
@@ -11632,10 +11631,10 @@ public:
 };
 
 enum CodeWordSetValues {
-	longCWS = 0,
-	mediumCWS = 1,
-	shortCWS = 2,
-	ssdtOff = 3,
+	longCWS_CodeWordSet = 0,
+	mediumCWS_CodeWordSet = 1,
+	shortCWS_CodeWordSet = 2,
+	ssdtOff_CodeWordSet = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> CodeWordSet;
 
@@ -11704,47 +11703,47 @@ typedef Null CommonEDCHSystemInfoModeSpecificInfoTddTdd768;
 typedef Null CommonEDCHSystemInfoModeSpecificInfoTddTdd384;
 
 enum ERUCCHInfoTDD128t_RUCCHValues {
-	ms20 = 0,
-	ms40 = 1,
-	ms60 = 2,
-	ms80 = 3,
-	ms120 = 4,
-	ms160 = 5,
-	ms200 = 6,
-	ms240 = 7,
-	ms280 = 8,
-	ms320 = 9,
-	ms400 = 10,
-	ms500 = 11,
-	ms600 = 12,
-	ms800 = 13,
-	ms1000 = 14,
-	ms2000 = 15,
+	ms20_ERUCCHInfoTDD128t_RUCCH = 0,
+	ms40_ERUCCHInfoTDD128t_RUCCH = 1,
+	ms60_ERUCCHInfoTDD128t_RUCCH = 2,
+	ms80_ERUCCHInfoTDD128t_RUCCH = 3,
+	ms120_ERUCCHInfoTDD128t_RUCCH = 4,
+	ms160_ERUCCHInfoTDD128t_RUCCH = 5,
+	ms200_ERUCCHInfoTDD128t_RUCCH = 6,
+	ms240_ERUCCHInfoTDD128t_RUCCH = 7,
+	ms280_ERUCCHInfoTDD128t_RUCCH = 8,
+	ms320_ERUCCHInfoTDD128t_RUCCH = 9,
+	ms400_ERUCCHInfoTDD128t_RUCCH = 10,
+	ms500_ERUCCHInfoTDD128t_RUCCH = 11,
+	ms600_ERUCCHInfoTDD128t_RUCCH = 12,
+	ms800_ERUCCHInfoTDD128t_RUCCH = 13,
+	ms1000_ERUCCHInfoTDD128t_RUCCH = 14,
+	ms2000_ERUCCHInfoTDD128t_RUCCH = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> ERUCCHInfoTDD128t_RUCCH;
 
 typedef Integer<CONSTRAINED, 0, 7> ERUCCHInfoTDD128NRUCCH;
 
 enum ERUCCHInfoTDD128t_WAITValues {
-	everyEDCHTTI = 0,
-	ms40 = 1,
-	ms80 = 2,
-	ms160 = 3,
-	ms320 = 4,
-	ms640 = 5,
-	ms1000 = 6,
-	ms2000 = 7,
+	everyEDCHTTI_ERUCCHInfoTDD128t_WAIT = 0,
+	ms40_ERUCCHInfoTDD128t_WAIT = 1,
+	ms80_ERUCCHInfoTDD128t_WAIT = 2,
+	ms160_ERUCCHInfoTDD128t_WAIT = 3,
+	ms320_ERUCCHInfoTDD128t_WAIT = 4,
+	ms640_ERUCCHInfoTDD128t_WAIT = 5,
+	ms1000_ERUCCHInfoTDD128t_WAIT = 6,
+	ms2000_ERUCCHInfoTDD128t_WAIT = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ERUCCHInfoTDD128t_WAIT;
 
 enum ERUCCHInfoTDD128t_SIValues {
-	everyEDCHTTI = 0,
-	ms20 = 1,
-	ms40 = 2,
-	ms60 = 3,
-	ms80 = 4,
-	ms160 = 5,
-	ms200 = 6,
+	everyEDCHTTI_ERUCCHInfoTDD128t_SI = 0,
+	ms20_ERUCCHInfoTDD128t_SI = 1,
+	ms40_ERUCCHInfoTDD128t_SI = 2,
+	ms60_ERUCCHInfoTDD128t_SI = 3,
+	ms80_ERUCCHInfoTDD128t_SI = 4,
+	ms160_ERUCCHInfoTDD128t_SI = 5,
+	ms200_ERUCCHInfoTDD128t_SI = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> ERUCCHInfoTDD128t_SI;
 
@@ -11752,14 +11751,14 @@ typedef Integer<CONSTRAINED, 2, 5> ERUCCHInfoTDD128ExtendedEstimationWindow;
 
 
 enum PersistenceScalingFactorValues {
-	psf0_9 = 0,
-	psf0_8 = 1,
-	psf0_7 = 2,
-	psf0_6 = 3,
-	psf0_5 = 4,
-	psf0_4 = 5,
-	psf0_3 = 6,
-	psf0_2 = 7,
+	psf0_9_PersistenceScalingFactor = 0,
+	psf0_8_PersistenceScalingFactor = 1,
+	psf0_7_PersistenceScalingFactor = 2,
+	psf0_6_PersistenceScalingFactor = 3,
+	psf0_5_PersistenceScalingFactor = 4,
+	psf0_4_PersistenceScalingFactor = 5,
+	psf0_3_PersistenceScalingFactor = 6,
+	psf0_2_PersistenceScalingFactor = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> PersistenceScalingFactor;
 
@@ -11770,10 +11769,10 @@ typedef Integer<CONSTRAINED, 0, 62> SYNCULInfoForERUCCHPrxUpPCHdes;
 typedef Integer<CONSTRAINED, 0, 3> SYNCULInfoForERUCCHPowerRampStep;
 
 enum SYNCULInfoForERUCCHmax_SYNC_UL_TransmissionsValues {
-	tr1 = 0,
-	tr2 = 1,
-	tr4 = 2,
-	tr8 = 3,
+	tr1_SYNCULInfoForERUCCHmax_SYNC_UL_Transmissions = 0,
+	tr2_SYNCULInfoForERUCCHmax_SYNC_UL_Transmissions = 1,
+	tr4_SYNCULInfoForERUCCHmax_SYNC_UL_Transmissions = 2,
+	tr8_SYNCULInfoForERUCCHmax_SYNC_UL_Transmissions = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> SYNCULInfoForERUCCHmax_SYNC_UL_Transmissions;
 
@@ -11793,34 +11792,34 @@ public:
 typedef Integer<CONSTRAINED, 1, 6> TimeslotNumberPRACHLCRr4;
 
 enum TDDPRACHCCodeLCRr4Values {
-	cc4_1 = 0,
-	cc4_2 = 1,
-	cc4_3 = 2,
-	cc4_4 = 3,
-	cc8_1 = 4,
-	cc8_2 = 5,
-	cc8_3 = 6,
-	cc8_4 = 7,
-	cc8_5 = 8,
-	cc8_6 = 9,
-	cc8_7 = 10,
-	cc8_8 = 11,
-	cc16_1 = 12,
-	cc16_2 = 13,
-	cc16_3 = 14,
-	cc16_4 = 15,
-	cc16_5 = 16,
-	cc16_6 = 17,
-	cc16_7 = 18,
-	cc16_8 = 19,
-	cc16_9 = 20,
-	cc16_10 = 21,
-	cc16_11 = 22,
-	cc16_12 = 23,
-	cc16_13 = 24,
-	cc16_14 = 25,
-	cc16_15 = 26,
-	cc16_16 = 27,
+	cc4_1_TDDPRACHCCodeLCRr4 = 0,
+	cc4_2_TDDPRACHCCodeLCRr4 = 1,
+	cc4_3_TDDPRACHCCodeLCRr4 = 2,
+	cc4_4_TDDPRACHCCodeLCRr4 = 3,
+	cc8_1_TDDPRACHCCodeLCRr4 = 4,
+	cc8_2_TDDPRACHCCodeLCRr4 = 5,
+	cc8_3_TDDPRACHCCodeLCRr4 = 6,
+	cc8_4_TDDPRACHCCodeLCRr4 = 7,
+	cc8_5_TDDPRACHCCodeLCRr4 = 8,
+	cc8_6_TDDPRACHCCodeLCRr4 = 9,
+	cc8_7_TDDPRACHCCodeLCRr4 = 10,
+	cc8_8_TDDPRACHCCodeLCRr4 = 11,
+	cc16_1_TDDPRACHCCodeLCRr4 = 12,
+	cc16_2_TDDPRACHCCodeLCRr4 = 13,
+	cc16_3_TDDPRACHCCodeLCRr4 = 14,
+	cc16_4_TDDPRACHCCodeLCRr4 = 15,
+	cc16_5_TDDPRACHCCodeLCRr4 = 16,
+	cc16_6_TDDPRACHCCodeLCRr4 = 17,
+	cc16_7_TDDPRACHCCodeLCRr4 = 18,
+	cc16_8_TDDPRACHCCodeLCRr4 = 19,
+	cc16_9_TDDPRACHCCodeLCRr4 = 20,
+	cc16_10_TDDPRACHCCodeLCRr4 = 21,
+	cc16_11_TDDPRACHCCodeLCRr4 = 22,
+	cc16_12_TDDPRACHCCodeLCRr4 = 23,
+	cc16_13_TDDPRACHCCodeLCRr4 = 24,
+	cc16_14_TDDPRACHCCodeLCRr4 = 25,
+	cc16_15_TDDPRACHCCodeLCRr4 = 26,
+	cc16_16_TDDPRACHCCodeLCRr4 = 27,
 };
 typedef Enumerated<CONSTRAINED, 27> TDDPRACHCCodeLCRr4;
 
@@ -11861,22 +11860,22 @@ public:
 };
 
 enum TDDFPACHCCode16r4Values {
-	cc16_1 = 0,
-	cc16_2 = 1,
-	cc16_3 = 2,
-	cc16_4 = 3,
-	cc16_5 = 4,
-	cc16_6 = 5,
-	cc16_7 = 6,
-	cc16_8 = 7,
-	cc16_9 = 8,
-	cc16_10 = 9,
-	cc16_11 = 10,
-	cc16_12 = 11,
-	cc16_13 = 12,
-	cc16_14 = 13,
-	cc16_15 = 14,
-	cc16_16 = 15,
+	cc16_1_TDDFPACHCCode16r4 = 0,
+	cc16_2_TDDFPACHCCode16r4 = 1,
+	cc16_3_TDDFPACHCCode16r4 = 2,
+	cc16_4_TDDFPACHCCode16r4 = 3,
+	cc16_5_TDDFPACHCCode16r4 = 4,
+	cc16_6_TDDFPACHCCode16r4 = 5,
+	cc16_7_TDDFPACHCCode16r4 = 6,
+	cc16_8_TDDFPACHCCode16r4 = 7,
+	cc16_9_TDDFPACHCCode16r4 = 8,
+	cc16_10_TDDFPACHCCode16r4 = 9,
+	cc16_11_TDDFPACHCCode16r4 = 10,
+	cc16_12_TDDFPACHCCode16r4 = 11,
+	cc16_13_TDDFPACHCCode16r4 = 12,
+	cc16_14_TDDFPACHCCode16r4 = 13,
+	cc16_15_TDDFPACHCCode16r4 = 14,
+	cc16_16_TDDFPACHCCode16r4 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> TDDFPACHCCode16r4;
 
@@ -11951,8 +11950,8 @@ public:
 };
 
 enum EPUCHInfoTDD128snpl_ReportTypeValues {
-	type1 = 0,
-	type2 = 1,
+	type1_EPUCHInfoTDD128snpl_ReportType = 0,
+	type2_EPUCHInfoTDD128snpl_ReportType = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EPUCHInfoTDD128snpl_ReportType;
 
@@ -12007,36 +12006,36 @@ typedef Integer<CONSTRAINED, 0, 63> EPUCHInfoTDD128MaximumAllowedCodeRate;
 typedef Integer<CONSTRAINED, 0, 15> EPUCHInfoTDD128MaximumNumOfRetransSchedInfo;
 
 enum EPUCHInfoTDD128retransTimerForSchedInfoValues {
-	ms10 = 0,
-	ms15 = 1,
-	ms20 = 2,
-	ms25 = 3,
-	ms30 = 4,
-	ms35 = 5,
-	ms40 = 6,
-	ms45 = 7,
-	ms50 = 8,
-	ms55 = 9,
-	ms60 = 10,
-	ms65 = 11,
-	ms70 = 12,
-	ms75 = 13,
-	ms80 = 14,
-	ms85 = 15,
-	ms90 = 16,
-	ms95 = 17,
-	ms100 = 18,
-	ms110 = 19,
-	ms120 = 20,
-	ms140 = 21,
-	ms160 = 22,
-	ms200 = 23,
-	ms240 = 24,
-	ms280 = 25,
-	ms320 = 26,
-	ms400 = 27,
-	ms480 = 28,
-	ms560 = 29,
+	ms10_EPUCHInfoTDD128retransTimerForSchedInfo = 0,
+	ms15_EPUCHInfoTDD128retransTimerForSchedInfo = 1,
+	ms20_EPUCHInfoTDD128retransTimerForSchedInfo = 2,
+	ms25_EPUCHInfoTDD128retransTimerForSchedInfo = 3,
+	ms30_EPUCHInfoTDD128retransTimerForSchedInfo = 4,
+	ms35_EPUCHInfoTDD128retransTimerForSchedInfo = 5,
+	ms40_EPUCHInfoTDD128retransTimerForSchedInfo = 6,
+	ms45_EPUCHInfoTDD128retransTimerForSchedInfo = 7,
+	ms50_EPUCHInfoTDD128retransTimerForSchedInfo = 8,
+	ms55_EPUCHInfoTDD128retransTimerForSchedInfo = 9,
+	ms60_EPUCHInfoTDD128retransTimerForSchedInfo = 10,
+	ms65_EPUCHInfoTDD128retransTimerForSchedInfo = 11,
+	ms70_EPUCHInfoTDD128retransTimerForSchedInfo = 12,
+	ms75_EPUCHInfoTDD128retransTimerForSchedInfo = 13,
+	ms80_EPUCHInfoTDD128retransTimerForSchedInfo = 14,
+	ms85_EPUCHInfoTDD128retransTimerForSchedInfo = 15,
+	ms90_EPUCHInfoTDD128retransTimerForSchedInfo = 16,
+	ms95_EPUCHInfoTDD128retransTimerForSchedInfo = 17,
+	ms100_EPUCHInfoTDD128retransTimerForSchedInfo = 18,
+	ms110_EPUCHInfoTDD128retransTimerForSchedInfo = 19,
+	ms120_EPUCHInfoTDD128retransTimerForSchedInfo = 20,
+	ms140_EPUCHInfoTDD128retransTimerForSchedInfo = 21,
+	ms160_EPUCHInfoTDD128retransTimerForSchedInfo = 22,
+	ms200_EPUCHInfoTDD128retransTimerForSchedInfo = 23,
+	ms240_EPUCHInfoTDD128retransTimerForSchedInfo = 24,
+	ms280_EPUCHInfoTDD128retransTimerForSchedInfo = 25,
+	ms320_EPUCHInfoTDD128retransTimerForSchedInfo = 26,
+	ms400_EPUCHInfoTDD128retransTimerForSchedInfo = 27,
+	ms480_EPUCHInfoTDD128retransTimerForSchedInfo = 28,
+	ms560_EPUCHInfoTDD128retransTimerForSchedInfo = 29,
 };
 typedef Enumerated<CONSTRAINED, 29> EPUCHInfoTDD128retransTimerForSchedInfo;
 
@@ -12128,37 +12127,37 @@ public:
 };
 
 enum CommonEDCHSystemInfoModeSpecificInfoTddTdd128harq_InfoValues {
-	rv0 = 0,
-	rvtable = 1,
+	rv0_CommonEDCHSystemInfoModeSpecificInfoTddTdd128harq_Info = 0,
+	rvtable_CommonEDCHSystemInfoModeSpecificInfoTddTdd128harq_Info = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> CommonEDCHSystemInfoModeSpecificInfoTddTdd128harq_Info;
 
 typedef Integer<CONSTRAINED, 0, 7> CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoHarqMaximumNumberOfRetransmissions;
 
 enum CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timerValues {
-	ms10 = 0,
-	ms15 = 1,
-	ms20 = 2,
-	ms25 = 3,
-	ms30 = 4,
-	ms35 = 5,
-	ms40 = 6,
-	ms45 = 7,
-	ms50 = 8,
-	ms55 = 9,
-	ms60 = 10,
-	ms65 = 11,
-	ms70 = 12,
-	ms75 = 13,
-	ms80 = 14,
-	ms85 = 15,
-	ms90 = 16,
-	ms95 = 17,
-	ms100 = 18,
-	ms110 = 19,
-	ms120 = 20,
-	ms140 = 21,
-	ms160 = 22,
+	ms10_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 0,
+	ms15_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 1,
+	ms20_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 2,
+	ms25_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 3,
+	ms30_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 4,
+	ms35_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 5,
+	ms40_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 6,
+	ms45_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 7,
+	ms50_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 8,
+	ms55_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 9,
+	ms60_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 10,
+	ms65_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 11,
+	ms70_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 12,
+	ms75_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 13,
+	ms80_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 14,
+	ms85_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 15,
+	ms90_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 16,
+	ms95_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 17,
+	ms100_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 18,
+	ms110_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 19,
+	ms120_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 20,
+	ms140_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 21,
+	ms160_CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer = 22,
 };
 typedef Enumerated<CONSTRAINED, 22> CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer;
 
@@ -12265,8 +12264,8 @@ public:
 typedef Integer<CONSTRAINED, 0, 37> CommonEDCHSystemInfoFDDInitialServingGrantValue;
 
 enum CommonEDCHSystemInfoFDDharq_InfoValues {
-	rv0 = 0,
-	rvtable = 1,
+	rv0_CommonEDCHSystemInfoFDDharq_Info = 0,
+	rvtable_CommonEDCHSystemInfoFDDharq_Info = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> CommonEDCHSystemInfoFDDharq_Info;
 
@@ -12282,14 +12281,14 @@ public:
 typedef Integer<CONSTRAINED, 0, 8> EDPCCHDPCCHPowerOffset;
 
 enum HappyBitDelayConditionValues {
-	ms2 = 0,
-	ms10 = 1,
-	ms20 = 2,
-	ms50 = 3,
-	ms100 = 4,
-	ms200 = 5,
-	ms500 = 6,
-	ms1000 = 7,
+	ms2_HappyBitDelayCondition = 0,
+	ms10_HappyBitDelayCondition = 1,
+	ms20_HappyBitDelayCondition = 2,
+	ms50_HappyBitDelayCondition = 3,
+	ms100_HappyBitDelayCondition = 4,
+	ms200_HappyBitDelayCondition = 5,
+	ms500_HappyBitDelayCondition = 6,
+	ms1000_HappyBitDelayCondition = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> HappyBitDelayCondition;
 
@@ -12335,31 +12334,31 @@ public:
 typedef SequenceOf<EDPDCHReferenceETFCIr7, CONSTRAINED, 1, 8> EDPDCHReferenceETFCIListr7;
 
 enum EDPDCHMaxChannelisationCodesValues {
-	sf256 = 0,
-	sf128 = 1,
-	sf64 = 2,
-	sf32 = 3,
-	sf16 = 4,
-	sf8 = 5,
-	sf4 = 6,
-	sf4x2 = 7,
-	sf2x2 = 8,
-	sf4x2_and_sf2x2 = 9,
+	sf256_EDPDCHMaxChannelisationCodes = 0,
+	sf128_EDPDCHMaxChannelisationCodes = 1,
+	sf64_EDPDCHMaxChannelisationCodes = 2,
+	sf32_EDPDCHMaxChannelisationCodes = 3,
+	sf16_EDPDCHMaxChannelisationCodes = 4,
+	sf8_EDPDCHMaxChannelisationCodes = 5,
+	sf4_EDPDCHMaxChannelisationCodes = 6,
+	sf4x2_EDPDCHMaxChannelisationCodes = 7,
+	sf2x2_EDPDCHMaxChannelisationCodes = 8,
+	sf4x2_and_sf2x2_EDPDCHMaxChannelisationCodes = 9,
 };
 typedef Enumerated<CONSTRAINED, 9> EDPDCHMaxChannelisationCodes;
 
 typedef Integer<CONSTRAINED, 11, 25> EDPDCHPLNonMax;
 
 enum EDPDCHPeriodicyOfSchedInfoValues {
-	everyEDCHTTI = 0,
-	ms4 = 1,
-	ms10 = 2,
-	ms20 = 3,
-	ms50 = 4,
-	ms100 = 5,
-	ms200 = 6,
-	ms500 = 7,
-	ms1000 = 8,
+	everyEDCHTTI_EDPDCHPeriodicyOfSchedInfo = 0,
+	ms4_EDPDCHPeriodicyOfSchedInfo = 1,
+	ms10_EDPDCHPeriodicyOfSchedInfo = 2,
+	ms20_EDPDCHPeriodicyOfSchedInfo = 3,
+	ms50_EDPDCHPeriodicyOfSchedInfo = 4,
+	ms100_EDPDCHPeriodicyOfSchedInfo = 5,
+	ms200_EDPDCHPeriodicyOfSchedInfo = 6,
+	ms500_EDPDCHPeriodicyOfSchedInfo = 7,
+	ms1000_EDPDCHPeriodicyOfSchedInfo = 8,
 };
 typedef Enumerated<CONSTRAINED, 8> EDPDCHPeriodicyOfSchedInfo;
 
@@ -12392,28 +12391,28 @@ typedef Integer<CONSTRAINED, 1, 10> CommonEDCHSystemInfoFDDDlFDPCHTPCcommandErro
 typedef Integer<CONSTRAINED, 0, 15> CommonEDCHSystemInfoFDDAdditionalEDCHTransmitBackoff;
 
 enum CommonEDCHSystemInfoFDDmax_CCCH_ResourceAllocationValues {
-	tti8 = 0,
-	tti12 = 1,
-	tti16 = 2,
-	tti20 = 3,
-	tti24 = 4,
-	tti32 = 5,
-	tti40 = 6,
-	tti80 = 7,
+	tti8_CommonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation = 0,
+	tti12_CommonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation = 1,
+	tti16_CommonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation = 2,
+	tti20_CommonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation = 3,
+	tti24_CommonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation = 4,
+	tti32_CommonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation = 5,
+	tti40_CommonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation = 6,
+	tti80_CommonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> CommonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation;
 
 typedef Integer<CONSTRAINED, 8, 24> CommonEDCHSystemInfoFDDMaxPeriodForCollisionResolution;
 
 enum CommonEDCHSystemInfoFDDe_dch_TransmitContinuationOffsetValues {
-	tti0 = 0,
-	tti4 = 1,
-	tti8 = 2,
-	tti16 = 3,
-	tti24 = 4,
-	tti40 = 5,
-	tti80 = 6,
-	infinity = 7,
+	tti0_CommonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset = 0,
+	tti4_CommonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset = 1,
+	tti8_CommonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset = 2,
+	tti16_CommonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset = 3,
+	tti24_CommonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset = 4,
+	tti40_CommonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset = 5,
+	tti80_CommonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset = 6,
+	infinity_CommonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> CommonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset;
 
@@ -12537,34 +12536,34 @@ public:
 };
 
 enum ControlChannelDRXCycleTDD128Values {
-	sub_frames_1 = 0,
-	sub_frames_2 = 1,
-	sub_frames_4 = 2,
-	sub_frames_8 = 3,
-	sub_frames_16 = 4,
-	sub_frames_32 = 5,
-	sub_frames_64 = 6,
-	spare1 = 7,
+	sub_frames_1_ControlChannelDRXCycleTDD128 = 0,
+	sub_frames_2_ControlChannelDRXCycleTDD128 = 1,
+	sub_frames_4_ControlChannelDRXCycleTDD128 = 2,
+	sub_frames_8_ControlChannelDRXCycleTDD128 = 3,
+	sub_frames_16_ControlChannelDRXCycleTDD128 = 4,
+	sub_frames_32_ControlChannelDRXCycleTDD128 = 5,
+	sub_frames_64_ControlChannelDRXCycleTDD128 = 6,
+	spare1_ControlChannelDRXCycleTDD128 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ControlChannelDRXCycleTDD128;
 
 enum EnablingDelayTDD128Values {
-	radio_frames_0 = 0,
-	radio_frames_1 = 1,
-	radio_frames_2 = 2,
-	radio_frames_4 = 3,
-	radio_frames_8 = 4,
-	radio_frames_16 = 5,
-	radio_frames_32 = 6,
-	radio_frames_64 = 7,
-	radio_frames_128 = 8,
-	spare7 = 9,
-	spare6 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	infinity = 15,
+	radio_frames_0_EnablingDelayTDD128 = 0,
+	radio_frames_1_EnablingDelayTDD128 = 1,
+	radio_frames_2_EnablingDelayTDD128 = 2,
+	radio_frames_4_EnablingDelayTDD128 = 3,
+	radio_frames_8_EnablingDelayTDD128 = 4,
+	radio_frames_16_EnablingDelayTDD128 = 5,
+	radio_frames_32_EnablingDelayTDD128 = 6,
+	radio_frames_64_EnablingDelayTDD128 = 7,
+	radio_frames_128_EnablingDelayTDD128 = 8,
+	spare7_EnablingDelayTDD128 = 9,
+	spare6_EnablingDelayTDD128 = 10,
+	spare5_EnablingDelayTDD128 = 11,
+	spare4_EnablingDelayTDD128 = 12,
+	spare3_EnablingDelayTDD128 = 13,
+	spare2_EnablingDelayTDD128 = 14,
+	infinity_EnablingDelayTDD128 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> EnablingDelayTDD128;
 
@@ -12578,22 +12577,22 @@ public:
 };
 
 enum HSSCCHDRXInactivityThresholdTDD128Values {
-	sub_frames_1 = 0,
-	sub_frames_2 = 1,
-	sub_frames_4 = 2,
-	sub_frames_8 = 3,
-	sub_frames_16 = 4,
-	sub_frames_32 = 5,
-	sub_frames_64 = 6,
-	sub_frames_128 = 7,
-	sub_frames_256 = 8,
-	sub_frames_512 = 9,
-	spare6 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	infinity = 15,
+	sub_frames_1_HSSCCHDRXInactivityThresholdTDD128 = 0,
+	sub_frames_2_HSSCCHDRXInactivityThresholdTDD128 = 1,
+	sub_frames_4_HSSCCHDRXInactivityThresholdTDD128 = 2,
+	sub_frames_8_HSSCCHDRXInactivityThresholdTDD128 = 3,
+	sub_frames_16_HSSCCHDRXInactivityThresholdTDD128 = 4,
+	sub_frames_32_HSSCCHDRXInactivityThresholdTDD128 = 5,
+	sub_frames_64_HSSCCHDRXInactivityThresholdTDD128 = 6,
+	sub_frames_128_HSSCCHDRXInactivityThresholdTDD128 = 7,
+	sub_frames_256_HSSCCHDRXInactivityThresholdTDD128 = 8,
+	sub_frames_512_HSSCCHDRXInactivityThresholdTDD128 = 9,
+	spare6_HSSCCHDRXInactivityThresholdTDD128 = 10,
+	spare5_HSSCCHDRXInactivityThresholdTDD128 = 11,
+	spare4_HSSCCHDRXInactivityThresholdTDD128 = 12,
+	spare3_HSSCCHDRXInactivityThresholdTDD128 = 13,
+	spare2_HSSCCHDRXInactivityThresholdTDD128 = 14,
+	infinity_HSSCCHDRXInactivityThresholdTDD128 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> HSSCCHDRXInactivityThresholdTDD128;
 
@@ -12611,22 +12610,22 @@ public:
 typedef Null EAGCHDRXInfoTDD128EAGCHDRXInfoTypeSameAsHSSCCH;
 
 enum EAGCHInactivityMonitorThresholdTDD128Values {
-	radio_frames_0 = 0,
-	radio_frames_1 = 1,
-	radio_frames_2 = 2,
-	radio_frames_4 = 3,
-	radio_frames_8 = 4,
-	radio_frames_16 = 5,
-	radio_frames_32 = 6,
-	radio_frames_64 = 7,
-	radio_frames_128 = 8,
-	radio_frames_256 = 9,
-	radio_frames_512 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	infinity = 15,
+	radio_frames_0_EAGCHInactivityMonitorThresholdTDD128 = 0,
+	radio_frames_1_EAGCHInactivityMonitorThresholdTDD128 = 1,
+	radio_frames_2_EAGCHInactivityMonitorThresholdTDD128 = 2,
+	radio_frames_4_EAGCHInactivityMonitorThresholdTDD128 = 3,
+	radio_frames_8_EAGCHInactivityMonitorThresholdTDD128 = 4,
+	radio_frames_16_EAGCHInactivityMonitorThresholdTDD128 = 5,
+	radio_frames_32_EAGCHInactivityMonitorThresholdTDD128 = 6,
+	radio_frames_64_EAGCHInactivityMonitorThresholdTDD128 = 7,
+	radio_frames_128_EAGCHInactivityMonitorThresholdTDD128 = 8,
+	radio_frames_256_EAGCHInactivityMonitorThresholdTDD128 = 9,
+	radio_frames_512_EAGCHInactivityMonitorThresholdTDD128 = 10,
+	spare5_EAGCHInactivityMonitorThresholdTDD128 = 11,
+	spare4_EAGCHInactivityMonitorThresholdTDD128 = 12,
+	spare3_EAGCHInactivityMonitorThresholdTDD128 = 13,
+	spare2_EAGCHInactivityMonitorThresholdTDD128 = 14,
+	infinity_EAGCHInactivityMonitorThresholdTDD128 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> EAGCHInactivityMonitorThresholdTDD128;
 
@@ -12702,9 +12701,9 @@ typedef SequenceOf<CPCHPersistenceLevels, CONSTRAINED, 1, maxCPCHsets> CPCHPersi
 typedef Integer<CONSTRAINED, -10, 10> DeltaPpm;
 
 enum ULDPCCHSlotFormatValues {
-	slf0 = 0,
-	slf1 = 1,
-	slf2 = 2,
+	slf0_ULDPCCHSlotFormat = 0,
+	slf1_ULDPCCHSlotFormat = 1,
+	slf2_ULDPCCHSlotFormat = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> ULDPCCHSlotFormat;
 
@@ -12713,8 +12712,8 @@ typedef Integer<CONSTRAINED, 1, 8> NStartMessage;
 typedef Integer<CONSTRAINED, 0, 7> NEOT;
 
 enum CPCHStatusIndicationModeValues {
-	pa_mode = 0,
-	pamsf_mode = 1,
+	pa_mode_CPCHStatusIndicationMode = 0,
+	pamsf_mode_CPCHStatusIndicationMode = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> CPCHStatusIndicationMode;
 
@@ -12723,8 +12722,8 @@ typedef Integer<CONSTRAINED, 0, 79> PCPCHChannelInfoPcpchULScramblingCode;
 typedef Integer<CONSTRAINED, 0, 511> PCPCHChannelInfoPcpchDLChannelisationCode;
 
 enum PCPLengthValues {
-	as0 = 0,
-	as8 = 1,
+	as0_PCPLength = 0,
+	as8_PCPLength = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> PCPLength;
 
@@ -12760,22 +12759,22 @@ public:
 typedef SequenceOf<CPCHSetInfo, CONSTRAINED, 1, maxCPCHsets> CPCHSetInfoList;
 
 enum CQIDTXTimerValues {
-	sub_frames_0 = 0,
-	sub_frames_1 = 1,
-	sub_frames_2 = 2,
-	sub_frames_4 = 3,
-	sub_frames_8 = 4,
-	sub_frames_16 = 5,
-	sub_frames_32 = 6,
-	sub_frames_64 = 7,
-	sub_frames_128 = 8,
-	sub_frames_256 = 9,
-	sub_frames_512 = 10,
-	sub_frames_Infinity = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	sub_frames_0_CQIDTXTimer = 0,
+	sub_frames_1_CQIDTXTimer = 1,
+	sub_frames_2_CQIDTXTimer = 2,
+	sub_frames_4_CQIDTXTimer = 3,
+	sub_frames_8_CQIDTXTimer = 4,
+	sub_frames_16_CQIDTXTimer = 5,
+	sub_frames_32_CQIDTXTimer = 6,
+	sub_frames_64_CQIDTXTimer = 7,
+	sub_frames_128_CQIDTXTimer = 8,
+	sub_frames_256_CQIDTXTimer = 9,
+	sub_frames_512_CQIDTXTimer = 10,
+	sub_frames_Infinity_CQIDTXTimer = 11,
+	spare4_CQIDTXTimer = 12,
+	spare3_CQIDTXTimer = 13,
+	spare2_CQIDTXTimer = 14,
+	spare1_CQIDTXTimer = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> CQIDTXTimer;
 
@@ -12831,8 +12830,8 @@ public:
 };
 
 enum MidambleConfigurationBurstType2Values {
-	ms3 = 0,
-	ms6 = 1,
+	ms3_MidambleConfigurationBurstType2 = 0,
+	ms6_MidambleConfigurationBurstType2 = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> MidambleConfigurationBurstType2;
 
@@ -13039,15 +13038,15 @@ public:
 typedef Boolean IndividualTimeslotInfoLCRr4TfciExistence;
 
 enum IndividualTimeslotInfoLCRr4modulationValues {
-	mod_QPSK = 0,
-	mod_8PSK = 1,
+	mod_QPSK_IndividualTimeslotInfoLCRr4modulation = 0,
+	mod_8PSK_IndividualTimeslotInfoLCRr4modulation = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> IndividualTimeslotInfoLCRr4modulation;
 
 enum IndividualTimeslotInfoLCRr4ss_TPC_SymbolsValues {
-	zero = 0,
-	one = 1,
-	sixteenOverSF = 2,
+	zero_IndividualTimeslotInfoLCRr4ss_TPC_Symbols = 0,
+	one_IndividualTimeslotInfoLCRr4ss_TPC_Symbols = 1,
+	sixteenOverSF_IndividualTimeslotInfoLCRr4ss_TPC_Symbols = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> IndividualTimeslotInfoLCRr4ss_TPC_Symbols;
 
@@ -13380,8 +13379,8 @@ public:
 };
 
 enum MidambleConfigurationBurstType2VHCRValues {
-	ms4 = 0,
-	ms8 = 1,
+	ms4_MidambleConfigurationBurstType2VHCR = 0,
+	ms8_MidambleConfigurationBurstType2VHCR = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> MidambleConfigurationBurstType2VHCR;
 
@@ -13635,8 +13634,8 @@ public:
 };
 
 enum ScramblingCodeChangeValues {
-	codeChange = 0,
-	noCodeChange = 1,
+	codeChange_ScramblingCodeChange = 0,
+	noCodeChange_ScramblingCodeChange = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ScramblingCodeChange;
 
@@ -13671,8 +13670,8 @@ public:
 };
 
 enum DPCModeValues {
-	singleTPC = 0,
-	tpcTripletInSoft = 1,
+	singleTPC_DPCMode = 0,
+	tpcTripletInSoft_DPCMode = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> DPCMode;
 
@@ -13792,12 +13791,12 @@ public:
 };
 
 enum TGMPValues {
-	tdd_Measurement = 0,
-	fdd_Measurement = 1,
-	gsm_CarrierRSSIMeasurement = 2,
-	gsm_initialBSICIdentification = 3,
-	gsmBSICReconfirmation = 4,
-	multi_carrier = 5,
+	tdd_Measurement_TGMP = 0,
+	fdd_Measurement_TGMP = 1,
+	gsm_CarrierRSSIMeasurement_TGMP = 2,
+	gsm_initialBSICIdentification_TGMP = 3,
+	gsmBSICReconfirmation_TGMP = 4,
+	multi_carrier_TGMP = 5,
 };
 typedef Enumerated<CONSTRAINED, 5> TGMP;
 
@@ -13812,27 +13811,27 @@ typedef Integer<CONSTRAINED, 15, 270> TGD;
 typedef Integer<CONSTRAINED, 1, 144> TGPL;
 
 enum RPPValues {
-	mode0 = 0,
-	mode1 = 1,
+	mode0_RPP = 0,
+	mode1_RPP = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> RPP;
 
 enum ITPValues {
-	mode0 = 0,
-	mode1 = 1,
+	mode0_ITP = 0,
+	mode1_ITP = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ITP;
 
 enum ULCompressedModeMethodValues {
-	sf_2 = 0,
-	higherLayerScheduling = 1,
+	sf_2_ULCompressedModeMethod = 0,
+	higherLayerScheduling_ULCompressedModeMethod = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ULCompressedModeMethod;
 
 enum DLCompressedModeMethodValues {
-	dummy = 0,
-	sf_2 = 1,
-	higherLayerScheduling = 2,
+	dummy_DLCompressedModeMethod = 0,
+	sf_2_DLCompressedModeMethod = 1,
+	higherLayerScheduling_DLCompressedModeMethod = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> DLCompressedModeMethod;
 
@@ -13854,8 +13853,8 @@ public:
 };
 
 enum DLFrameTypeValues {
-	dl_FrameTypeA = 0,
-	dl_FrameTypeB = 1,
+	dl_FrameTypeA_DLFrameType = 0,
+	dl_FrameTypeB_DLFrameType = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> DLFrameType;
 
@@ -13893,16 +13892,16 @@ public:
 };
 
 enum TXDiversityModeValues {
-	noDiversity = 0,
-	sttd = 1,
-	closedLoopMode1 = 2,
-	dummy = 3,
+	noDiversity_TXDiversityMode = 0,
+	sttd_TXDiversityMode = 1,
+	closedLoopMode1_TXDiversityMode = 2,
+	dummy_TXDiversityMode = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> TXDiversityMode;
 
 enum SFieldValues {
-	e1bit = 0,
-	e2bits = 1,
+	e1bit_SField = 0,
+	e2bits_SField = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> SField;
 
@@ -14007,8 +14006,8 @@ public:
 };
 
 enum SSDTULValues {
-	ul = 0,
-	ul_AndDL = 1,
+	ul_SSDTUL = 0,
+	ul_AndDL_SSDTUL = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> SSDTUL;
 
@@ -14125,7 +14124,7 @@ public:
 };
 
 enum DLCommonInformationr5mac_hsResetIndicatorValues {
-	true = 0,
+	true_DLCommonInformationr5mac_hsResetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLCommonInformationr5mac_hsResetIndicator;
 
@@ -14139,7 +14138,7 @@ public:
 };
 
 enum TimingMaintainedSynchIndValues {
-	false = 0,
+	false_TimingMaintainedSynchInd = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> TimingMaintainedSynchInd;
 
@@ -14285,12 +14284,12 @@ public:
 };
 
 enum DLCommonInformationr6mac_hsResetIndicatorValues {
-	true = 0,
+	true_DLCommonInformationr6mac_hsResetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLCommonInformationr6mac_hsResetIndicator;
 
 enum DLCommonInformationr6postVerificationPeriodValues {
-	true = 0,
+	true_DLCommonInformationr6postVerificationPeriod = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLCommonInformationr6postVerificationPeriod;
 
@@ -14361,12 +14360,12 @@ public:
 };
 
 enum DLCommonInformationr7mac_hsResetIndicatorValues {
-	true = 0,
+	true_DLCommonInformationr7mac_hsResetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLCommonInformationr7mac_hsResetIndicator;
 
 enum DLCommonInformationr7postVerificationPeriodValues {
-	true = 0,
+	true_DLCommonInformationr7postVerificationPeriod = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLCommonInformationr7postVerificationPeriod;
 
@@ -14407,14 +14406,14 @@ public:
 };
 
 enum TGMPr8Values {
-	tdd_Measurement = 0,
-	fdd_Measurement = 1,
-	gsm_CarrierRSSIMeasurement = 2,
-	gsm_initialBSICIdentification = 3,
-	gsmBSICReconfirmation = 4,
-	multi_carrier = 5,
-	e_UTRA = 6,
-	spare = 7,
+	tdd_Measurement_TGMPr8 = 0,
+	fdd_Measurement_TGMPr8 = 1,
+	gsm_CarrierRSSIMeasurement_TGMPr8 = 2,
+	gsm_initialBSICIdentification_TGMPr8 = 3,
+	gsmBSICReconfirmation_TGMPr8 = 4,
+	multi_carrier_TGMPr8 = 5,
+	e_UTRA_TGMPr8 = 6,
+	spare_TGMPr8 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> TGMPr8;
 
@@ -14497,12 +14496,12 @@ public:
 };
 
 enum DLCommonInformationr8mac_hsResetIndicatorValues {
-	true = 0,
+	true_DLCommonInformationr8mac_hsResetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLCommonInformationr8mac_hsResetIndicator;
 
 enum DLCommonInformationr8postVerificationPeriodValues {
-	true = 0,
+	true_DLCommonInformationr8postVerificationPeriod = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLCommonInformationr8postVerificationPeriod;
 
@@ -14534,14 +14533,14 @@ public:
 };
 
 enum SSDTCellIdentityValues {
-	ssdt_id_a = 0,
-	ssdt_id_b = 1,
-	ssdt_id_c = 2,
-	ssdt_id_d = 3,
-	ssdt_id_e = 4,
-	ssdt_id_f = 5,
-	ssdt_id_g = 6,
-	ssdt_id_h = 7,
+	ssdt_id_a_SSDTCellIdentity = 0,
+	ssdt_id_b_SSDTCellIdentity = 1,
+	ssdt_id_c_SSDTCellIdentity = 2,
+	ssdt_id_d_SSDTCellIdentity = 3,
+	ssdt_id_e_SSDTCellIdentity = 4,
+	ssdt_id_f_SSDTCellIdentity = 5,
+	ssdt_id_g_SSDTCellIdentity = 6,
+	ssdt_id_h_SSDTCellIdentity = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> SSDTCellIdentity;
 
@@ -14744,10 +14743,10 @@ typedef Integer<CONSTRAINED, -7, 8> HSSCCHInfor6ModeSpecificInfoTddTdd128Nackack
 typedef Integer<CONSTRAINED, -120, -58> HSSCCHInfor6ModeSpecificInfoTddTdd128PowerlevelHSSICH;
 
 enum HSSCCHInfor6ModeSpecificInfoTddTdd128tpc_step_sizeValues {
-	s1 = 0,
-	s2 = 1,
-	s3 = 2,
-	spare1 = 3,
+	s1_HSSCCHInfor6ModeSpecificInfoTddTdd128tpc_step_size = 0,
+	s2_HSSCCHInfor6ModeSpecificInfoTddTdd128tpc_step_size = 1,
+	s3_HSSCCHInfor6ModeSpecificInfoTddTdd128tpc_step_size = 2,
+	spare1_HSSCCHInfor6ModeSpecificInfoTddTdd128tpc_step_size = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> HSSCCHInfor6ModeSpecificInfoTddTdd128tpc_step_size;
 
@@ -14879,10 +14878,10 @@ typedef Null HSSCCHInfor8extModeSpecificInfoTddTdd384;
 typedef Null HSSCCHInfor8extModeSpecificInfoTddTdd768;
 
 enum HSSCCHInfor8extModeSpecificInfoTddTdd128hS_SCCH_tpc_step_sizeValues {
-	s1 = 0,
-	s2 = 1,
-	s3 = 2,
-	spare1 = 3,
+	s1_HSSCCHInfor8extModeSpecificInfoTddTdd128hS_SCCH_tpc_step_size = 0,
+	s2_HSSCCHInfor8extModeSpecificInfoTddTdd128hS_SCCH_tpc_step_size = 1,
+	s3_HSSCCHInfor8extModeSpecificInfoTddTdd128hS_SCCH_tpc_step_size = 2,
+	spare1_HSSCCHInfor8extModeSpecificInfoTddTdd128hS_SCCH_tpc_step_size = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> HSSCCHInfor8extModeSpecificInfoTddTdd128hS_SCCH_tpc_step_size;
 
@@ -15109,22 +15108,22 @@ public:
 };
 
 enum SCCPCHChannelisationCodeValues {
-	cc16_1 = 0,
-	cc16_2 = 1,
-	cc16_3 = 2,
-	cc16_4 = 3,
-	cc16_5 = 4,
-	cc16_6 = 5,
-	cc16_7 = 6,
-	cc16_8 = 7,
-	cc16_9 = 8,
-	cc16_10 = 9,
-	cc16_11 = 10,
-	cc16_12 = 11,
-	cc16_13 = 12,
-	cc16_14 = 13,
-	cc16_15 = 14,
-	cc16_16 = 15,
+	cc16_1_SCCPCHChannelisationCode = 0,
+	cc16_2_SCCPCHChannelisationCode = 1,
+	cc16_3_SCCPCHChannelisationCode = 2,
+	cc16_4_SCCPCHChannelisationCode = 3,
+	cc16_5_SCCPCHChannelisationCode = 4,
+	cc16_6_SCCPCHChannelisationCode = 5,
+	cc16_7_SCCPCHChannelisationCode = 6,
+	cc16_8_SCCPCHChannelisationCode = 7,
+	cc16_9_SCCPCHChannelisationCode = 8,
+	cc16_10_SCCPCHChannelisationCode = 9,
+	cc16_11_SCCPCHChannelisationCode = 10,
+	cc16_12_SCCPCHChannelisationCode = 11,
+	cc16_13_SCCPCHChannelisationCode = 12,
+	cc16_14_SCCPCHChannelisationCode = 13,
+	cc16_15_SCCPCHChannelisationCode = 14,
+	cc16_16_SCCPCHChannelisationCode = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> SCCPCHChannelisationCode;
 
@@ -15254,22 +15253,22 @@ public:
 };
 
 enum SibOFFValues {
-	so2 = 0,
-	so4 = 1,
-	so6 = 2,
-	so8 = 3,
-	so10 = 4,
-	so12 = 5,
-	so14 = 6,
-	so16 = 7,
-	so18 = 8,
-	so20 = 9,
-	so22 = 10,
-	so24 = 11,
-	so26 = 12,
-	so28 = 13,
-	so30 = 14,
-	so32 = 15,
+	so2_SibOFF = 0,
+	so4_SibOFF = 1,
+	so6_SibOFF = 2,
+	so8_SibOFF = 3,
+	so10_SibOFF = 4,
+	so12_SibOFF = 5,
+	so14_SibOFF = 6,
+	so16_SibOFF = 7,
+	so18_SibOFF = 8,
+	so20_SibOFF = 9,
+	so22_SibOFF = 10,
+	so24_SibOFF = 11,
+	so26_SibOFF = 12,
+	so28_SibOFF = 13,
+	so30_SibOFF = 14,
+	so32_SibOFF = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> SibOFF;
 
@@ -15719,9 +15718,9 @@ typedef Integer<CONSTRAINED, 1, 12> EAGCHInformationr7ModeSpecificTddTdd384Lengt
 typedef Integer<CONSTRAINED, 0, 14> EAGCHIndividualTSnumber;
 
 enum MidambleConfigurationBurstType1Values {
-	ms4 = 0,
-	ms8 = 1,
-	ms16 = 2,
+	ms4_MidambleConfigurationBurstType1 = 0,
+	ms8_MidambleConfigurationBurstType1 = 1,
+	ms16_MidambleConfigurationBurstType1 = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> MidambleConfigurationBurstType1;
 
@@ -15926,14 +15925,14 @@ public:
 };
 
 enum EHICHInformationTDD384768burst_TypeValues {
-	type1 = 0,
-	type2 = 1,
+	type1_EHICHInformationTDD384768burst_Type = 0,
+	type2_EHICHInformationTDD384768burst_Type = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EHICHInformationTDD384768burst_Type;
 
 enum EHICHInformationTDD384768midamble_Allocation_ModeValues {
-	default = 0,
-	common = 1,
+	default_EHICHInformationTDD384768midamble_Allocation_Mode = 0,
+	common_EHICHInformationTDD384768midamble_Allocation_Mode = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EHICHInformationTDD384768midamble_Allocation_Mode;
 
@@ -16268,7 +16267,7 @@ public:
 typedef Null DLSecondaryCellInfoFDDContinue;
 
 enum DLSecondaryCellInfoFDDNewConfigurationdl_64QAM_ConfiguredValues {
-	true = 0,
+	true_DLSecondaryCellInfoFDDNewConfigurationdl_64QAM_Configured = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLSecondaryCellInfoFDDNewConfigurationdl_64QAM_Configured;
 
@@ -16292,7 +16291,7 @@ public:
 };
 
 enum DLSecondaryCellInfoFDDv890extdifferentTxModeFromServingHS_DSCHCellValues {
-	different = 0,
+	different_DLSecondaryCellInfoFDDv890extdifferentTxModeFromServingHS_DSCHCell = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLSecondaryCellInfoFDDv890extdifferentTxModeFromServingHS_DSCHCell;
 
@@ -16308,14 +16307,14 @@ public:
 typedef Null DLSecondaryCellInfoFDDr9ConfigurationInfoContinue;
 
 enum DLSecondaryCellInfoFDDr9ConfigurationInfoNewConfigurationdl_64QAM_ConfiguredValues {
-	true = 0,
+	true_DLSecondaryCellInfoFDDr9ConfigurationInfoNewConfigurationdl_64QAM_Configured = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLSecondaryCellInfoFDDr9ConfigurationInfoNewConfigurationdl_64QAM_Configured;
 
 typedef SequenceOf<HSSCCHCodes, CONSTRAINED, 1, maxHSSCCHs> DLSecondaryCellInfoFDDr9ConfigurationInfoNewConfigurationHSSCCHChannelisationCodeInfo;
 
 enum DLSecondaryCellInfoFDDr9ConfigurationInfoNewConfigurationdifferentTxModeFromServingHS_DSCHCellValues {
-	different = 0,
+	different_DLSecondaryCellInfoFDDr9ConfigurationInfoNewConfigurationdifferentTxModeFromServingHS_DSCHCell = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> DLSecondaryCellInfoFDDr9ConfigurationInfoNewConfigurationdifferentTxModeFromServingHS_DSCHCell;
 
@@ -16339,16 +16338,16 @@ public:
 typedef Null SecondaryCellMIMOparametersFDDContinue;
 
 enum MIMONMRatioValues {
-	mnm1_2 = 0,
-	mnm2_3 = 1,
-	mnm3_4 = 2,
-	mnm4_5 = 3,
-	mnm5_6 = 4,
-	mnm6_7 = 5,
-	mnm7_8 = 6,
-	mnm8_9 = 7,
-	mnm9_10 = 8,
-	mnm1_1 = 9,
+	mnm1_2_MIMONMRatio = 0,
+	mnm2_3_MIMONMRatio = 1,
+	mnm3_4_MIMONMRatio = 2,
+	mnm4_5_MIMONMRatio = 3,
+	mnm5_6_MIMONMRatio = 4,
+	mnm6_7_MIMONMRatio = 5,
+	mnm7_8_MIMONMRatio = 6,
+	mnm8_9_MIMONMRatio = 7,
+	mnm9_10_MIMONMRatio = 8,
+	mnm1_1_MIMONMRatio = 9,
 };
 typedef Enumerated<CONSTRAINED, 9> MIMONMRatio;
 
@@ -16433,7 +16432,7 @@ public:
 };
 
 enum ULEDCHInformationr8mac_es_e_resetIndicatorValues {
-	true = 0,
+	true_ULEDCHInformationr8mac_es_e_resetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> ULEDCHInformationr8mac_es_e_resetIndicator;
 
@@ -16442,8 +16441,8 @@ typedef BitString<CONSTRAINED, 8, 8> EDPDCHSchedulingTransmConfigurationMs2Sched
 typedef Integer<CONSTRAINED, 0, 38> EDPDCHSchedulingTransmConfigurationServingGrantValue;
 
 enum EDPDCHSchedulingTransmConfigurationServingGrantprimary_Secondary_GrantSelectorValues {
-	primary = 0,
-	secondary = 1,
+	primary_EDPDCHSchedulingTransmConfigurationServingGrantprimary_Secondary_GrantSelector = 0,
+	secondary_EDPDCHSchedulingTransmConfigurationServingGrantprimary_Secondary_GrantSelector = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EDPDCHSchedulingTransmConfigurationServingGrantprimary_Secondary_GrantSelector;
 
@@ -16488,72 +16487,72 @@ public:
 typedef Integer<CONSTRAINED, -35, 10> ERUCCHInfoModeSpecificInfoTdd384tdd768ERUCCHConstantValue;
 
 enum ERUCCHInfoModeSpecificInfoTdd384tdd768t_RUCCHValues {
-	ms40 = 0,
-	ms80 = 1,
-	ms120 = 2,
-	ms160 = 3,
-	ms200 = 4,
-	ms240 = 5,
-	ms280 = 6,
-	ms320 = 7,
+	ms40_ERUCCHInfoModeSpecificInfoTdd384tdd768t_RUCCH = 0,
+	ms80_ERUCCHInfoModeSpecificInfoTdd384tdd768t_RUCCH = 1,
+	ms120_ERUCCHInfoModeSpecificInfoTdd384tdd768t_RUCCH = 2,
+	ms160_ERUCCHInfoModeSpecificInfoTdd384tdd768t_RUCCH = 3,
+	ms200_ERUCCHInfoModeSpecificInfoTdd384tdd768t_RUCCH = 4,
+	ms240_ERUCCHInfoModeSpecificInfoTdd384tdd768t_RUCCH = 5,
+	ms280_ERUCCHInfoModeSpecificInfoTdd384tdd768t_RUCCH = 6,
+	ms320_ERUCCHInfoModeSpecificInfoTdd384tdd768t_RUCCH = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ERUCCHInfoModeSpecificInfoTdd384tdd768t_RUCCH;
 
 typedef Integer<CONSTRAINED, 0, 14> ERUCCHInfoModeSpecificInfoTdd384tdd768ERUCCHTSNumber;
 
 enum ERUCCHInfoModeSpecificInfoTdd384tdd768e_RUCCH_MidambleValues {
-	direct = 0,
-	direct_Inverted = 1,
+	direct_ERUCCHInfoModeSpecificInfoTdd384tdd768e_RUCCH_Midamble = 0,
+	direct_Inverted_ERUCCHInfoModeSpecificInfoTdd384tdd768e_RUCCH_Midamble = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> ERUCCHInfoModeSpecificInfoTdd384tdd768e_RUCCH_Midamble;
 
 enum ERUCCHInfoModeSpecificInfoTdd384tdd768t_advValues {
-	sec1 = 0,
-	sec2 = 1,
-	sec4 = 2,
-	sec8 = 3,
-	sec16 = 4,
-	sec32 = 5,
-	sec128 = 6,
-	infinity = 7,
+	sec1_ERUCCHInfoModeSpecificInfoTdd384tdd768t_adv = 0,
+	sec2_ERUCCHInfoModeSpecificInfoTdd384tdd768t_adv = 1,
+	sec4_ERUCCHInfoModeSpecificInfoTdd384tdd768t_adv = 2,
+	sec8_ERUCCHInfoModeSpecificInfoTdd384tdd768t_adv = 3,
+	sec16_ERUCCHInfoModeSpecificInfoTdd384tdd768t_adv = 4,
+	sec32_ERUCCHInfoModeSpecificInfoTdd384tdd768t_adv = 5,
+	sec128_ERUCCHInfoModeSpecificInfoTdd384tdd768t_adv = 6,
+	infinity_ERUCCHInfoModeSpecificInfoTdd384tdd768t_adv = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ERUCCHInfoModeSpecificInfoTdd384tdd768t_adv;
 
 enum ERUCCHInfoModeSpecificInfoTdd384tdd768t_SCHEDValues {
-	zero = 0,
-	ms40 = 1,
-	ms80 = 2,
-	ms160 = 3,
-	ms250 = 4,
-	sec1 = 5,
-	sec2 = 6,
-	sec4 = 7,
+	zero_ERUCCHInfoModeSpecificInfoTdd384tdd768t_SCHED = 0,
+	ms40_ERUCCHInfoModeSpecificInfoTdd384tdd768t_SCHED = 1,
+	ms80_ERUCCHInfoModeSpecificInfoTdd384tdd768t_SCHED = 2,
+	ms160_ERUCCHInfoModeSpecificInfoTdd384tdd768t_SCHED = 3,
+	ms250_ERUCCHInfoModeSpecificInfoTdd384tdd768t_SCHED = 4,
+	sec1_ERUCCHInfoModeSpecificInfoTdd384tdd768t_SCHED = 5,
+	sec2_ERUCCHInfoModeSpecificInfoTdd384tdd768t_SCHED = 6,
+	sec4_ERUCCHInfoModeSpecificInfoTdd384tdd768t_SCHED = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ERUCCHInfoModeSpecificInfoTdd384tdd768t_SCHED;
 
 enum SF16CodesValues {
-	cc16_1 = 0,
-	cc16_2 = 1,
-	cc16_3 = 2,
-	cc16_4 = 3,
-	cc16_5 = 4,
-	cc16_6 = 5,
-	cc16_7 = 6,
-	cc16_8 = 7,
+	cc16_1_SF16Codes = 0,
+	cc16_2_SF16Codes = 1,
+	cc16_3_SF16Codes = 2,
+	cc16_4_SF16Codes = 3,
+	cc16_5_SF16Codes = 4,
+	cc16_6_SF16Codes = 5,
+	cc16_7_SF16Codes = 6,
+	cc16_8_SF16Codes = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> SF16Codes;
 
 typedef SequenceOf<SF16Codes, CONSTRAINED, 1, 8> ERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd384SF16;
 
 enum SF8CodesValues {
-	cc8_1 = 0,
-	cc8_2 = 1,
-	cc8_3 = 2,
-	cc8_4 = 3,
-	cc8_5 = 4,
-	cc8_6 = 5,
-	cc8_7 = 6,
-	cc8_8 = 7,
+	cc8_1_SF8Codes = 0,
+	cc8_2_SF8Codes = 1,
+	cc8_3_SF8Codes = 2,
+	cc8_4_SF8Codes = 3,
+	cc8_5_SF8Codes = 4,
+	cc8_6_SF8Codes = 5,
+	cc8_7_SF8Codes = 6,
+	cc8_8_SF8Codes = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> SF8Codes;
 
@@ -16568,44 +16567,44 @@ public:
 };
 
 enum SF32CodesValues {
-	cc32_1 = 0,
-	cc32_2 = 1,
-	cc32_3 = 2,
-	cc32_4 = 3,
-	cc32_5 = 4,
-	cc32_6 = 5,
-	cc32_7 = 6,
-	cc32_8 = 7,
-	cc32_9 = 8,
-	cc32_10 = 9,
-	cc32_11 = 10,
-	cc32_12 = 11,
-	cc32_13 = 12,
-	cc32_14 = 13,
-	cc32_15 = 14,
-	cc32_16 = 15,
+	cc32_1_SF32Codes = 0,
+	cc32_2_SF32Codes = 1,
+	cc32_3_SF32Codes = 2,
+	cc32_4_SF32Codes = 3,
+	cc32_5_SF32Codes = 4,
+	cc32_6_SF32Codes = 5,
+	cc32_7_SF32Codes = 6,
+	cc32_8_SF32Codes = 7,
+	cc32_9_SF32Codes = 8,
+	cc32_10_SF32Codes = 9,
+	cc32_11_SF32Codes = 10,
+	cc32_12_SF32Codes = 11,
+	cc32_13_SF32Codes = 12,
+	cc32_14_SF32Codes = 13,
+	cc32_15_SF32Codes = 14,
+	cc32_16_SF32Codes = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> SF32Codes;
 
 typedef SequenceOf<SF32Codes, CONSTRAINED, 1, 16> ERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd768SF32;
 
 enum SF16Codes2Values {
-	cc16_1 = 0,
-	cc16_2 = 1,
-	cc16_3 = 2,
-	cc16_4 = 3,
-	cc16_5 = 4,
-	cc16_6 = 5,
-	cc16_7 = 6,
-	cc16_8 = 7,
-	cc16_9 = 8,
-	cc16_10 = 9,
-	cc16_11 = 10,
-	cc16_12 = 11,
-	cc16_13 = 12,
-	cc16_14 = 13,
-	cc16_15 = 14,
-	cc16_16 = 15,
+	cc16_1_SF16Codes2 = 0,
+	cc16_2_SF16Codes2 = 1,
+	cc16_3_SF16Codes2 = 2,
+	cc16_4_SF16Codes2 = 3,
+	cc16_5_SF16Codes2 = 4,
+	cc16_6_SF16Codes2 = 5,
+	cc16_7_SF16Codes2 = 6,
+	cc16_8_SF16Codes2 = 7,
+	cc16_9_SF16Codes2 = 8,
+	cc16_10_SF16Codes2 = 9,
+	cc16_11_SF16Codes2 = 10,
+	cc16_12_SF16Codes2 = 11,
+	cc16_13_SF16Codes2 = 12,
+	cc16_14_SF16Codes2 = 13,
+	cc16_15_SF16Codes2 = 14,
+	cc16_16_SF16Codes2 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> SF16Codes2;
 
@@ -16637,47 +16636,47 @@ public:
 };
 
 enum ERUCCHInfoModeSpecificInfoTdd128t_RUCCHValues {
-	ms20 = 0,
-	ms40 = 1,
-	ms60 = 2,
-	ms80 = 3,
-	ms120 = 4,
-	ms160 = 5,
-	ms200 = 6,
-	ms240 = 7,
-	ms280 = 8,
-	ms320 = 9,
-	ms400 = 10,
-	ms500 = 11,
-	ms600 = 12,
-	ms800 = 13,
-	ms1000 = 14,
-	ms2000 = 15,
+	ms20_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 0,
+	ms40_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 1,
+	ms60_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 2,
+	ms80_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 3,
+	ms120_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 4,
+	ms160_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 5,
+	ms200_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 6,
+	ms240_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 7,
+	ms280_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 8,
+	ms320_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 9,
+	ms400_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 10,
+	ms500_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 11,
+	ms600_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 12,
+	ms800_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 13,
+	ms1000_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 14,
+	ms2000_ERUCCHInfoModeSpecificInfoTdd128t_RUCCH = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> ERUCCHInfoModeSpecificInfoTdd128t_RUCCH;
 
 typedef Integer<CONSTRAINED, 0, 7> ERUCCHInfoModeSpecificInfoTdd128NRUCCH;
 
 enum ERUCCHInfoModeSpecificInfoTdd128t_WAITValues {
-	everyEDCHTTI = 0,
-	ms40 = 1,
-	ms80 = 2,
-	ms160 = 3,
-	ms320 = 4,
-	ms640 = 5,
-	ms1000 = 6,
-	ms2000 = 7,
+	everyEDCHTTI_ERUCCHInfoModeSpecificInfoTdd128t_WAIT = 0,
+	ms40_ERUCCHInfoModeSpecificInfoTdd128t_WAIT = 1,
+	ms80_ERUCCHInfoModeSpecificInfoTdd128t_WAIT = 2,
+	ms160_ERUCCHInfoModeSpecificInfoTdd128t_WAIT = 3,
+	ms320_ERUCCHInfoModeSpecificInfoTdd128t_WAIT = 4,
+	ms640_ERUCCHInfoModeSpecificInfoTdd128t_WAIT = 5,
+	ms1000_ERUCCHInfoModeSpecificInfoTdd128t_WAIT = 6,
+	ms2000_ERUCCHInfoModeSpecificInfoTdd128t_WAIT = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ERUCCHInfoModeSpecificInfoTdd128t_WAIT;
 
 enum ERUCCHInfoModeSpecificInfoTdd128t_SIValues {
-	everyEDCHTTI = 0,
-	ms20 = 1,
-	ms40 = 2,
-	ms60 = 3,
-	ms80 = 4,
-	ms160 = 5,
-	ms200 = 6,
+	everyEDCHTTI_ERUCCHInfoModeSpecificInfoTdd128t_SI = 0,
+	ms20_ERUCCHInfoModeSpecificInfoTdd128t_SI = 1,
+	ms40_ERUCCHInfoModeSpecificInfoTdd128t_SI = 2,
+	ms60_ERUCCHInfoModeSpecificInfoTdd128t_SI = 3,
+	ms80_ERUCCHInfoModeSpecificInfoTdd128t_SI = 4,
+	ms160_ERUCCHInfoModeSpecificInfoTdd128t_SI = 5,
+	ms200_ERUCCHInfoModeSpecificInfoTdd128t_SI = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> ERUCCHInfoModeSpecificInfoTdd128t_SI;
 
@@ -16744,8 +16743,8 @@ public:
 };
 
 enum EPUCHInfoModeSpecificInfoTdd128snpl_ReportTypeValues {
-	type1 = 0,
-	type2 = 1,
+	type1_EPUCHInfoModeSpecificInfoTdd128snpl_ReportType = 0,
+	type2_EPUCHInfoModeSpecificInfoTdd128snpl_ReportType = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EPUCHInfoModeSpecificInfoTdd128snpl_ReportType;
 
@@ -16762,36 +16761,36 @@ typedef Integer<CONSTRAINED, 0, 63> EPUCHInfoModeSpecificInfoTdd128MaximumAllowe
 typedef Integer<CONSTRAINED, 0, 15> EPUCHInfoModeSpecificInfoTdd128MaximumNumOfRetransSchedInfo;
 
 enum EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfoValues {
-	ms10 = 0,
-	ms15 = 1,
-	ms20 = 2,
-	ms25 = 3,
-	ms30 = 4,
-	ms35 = 5,
-	ms40 = 6,
-	ms45 = 7,
-	ms50 = 8,
-	ms55 = 9,
-	ms60 = 10,
-	ms65 = 11,
-	ms70 = 12,
-	ms75 = 13,
-	ms80 = 14,
-	ms85 = 15,
-	ms90 = 16,
-	ms95 = 17,
-	ms100 = 18,
-	ms110 = 19,
-	ms120 = 20,
-	ms140 = 21,
-	ms160 = 22,
-	ms200 = 23,
-	ms240 = 24,
-	ms280 = 25,
-	ms320 = 26,
-	ms400 = 27,
-	ms480 = 28,
-	ms560 = 29,
+	ms10_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 0,
+	ms15_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 1,
+	ms20_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 2,
+	ms25_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 3,
+	ms30_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 4,
+	ms35_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 5,
+	ms40_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 6,
+	ms45_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 7,
+	ms50_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 8,
+	ms55_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 9,
+	ms60_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 10,
+	ms65_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 11,
+	ms70_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 12,
+	ms75_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 13,
+	ms80_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 14,
+	ms85_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 15,
+	ms90_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 16,
+	ms95_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 17,
+	ms100_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 18,
+	ms110_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 19,
+	ms120_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 20,
+	ms140_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 21,
+	ms160_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 22,
+	ms200_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 23,
+	ms240_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 24,
+	ms280_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 25,
+	ms320_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 26,
+	ms400_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 27,
+	ms480_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 28,
+	ms560_EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo = 29,
 };
 typedef Enumerated<CONSTRAINED, 29> EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo;
 
@@ -16828,37 +16827,37 @@ typedef BitString<CONSTRAINED, 13, 13> NonScheduledTransGrantInfoTDDTdd384768Tim
 typedef Integer<CONSTRAINED, 1, 32> NonScheduledTransGrantInfoTDDTdd384768PowerResourceRelatedInfo;
 
 enum ULTSChannelisationCodeValues {
-	cc1_1 = 0,
-	cc2_1 = 1,
-	cc2_2 = 2,
-	cc4_1 = 3,
-	cc4_2 = 4,
-	cc4_3 = 5,
-	cc4_4 = 6,
-	cc8_1 = 7,
-	cc8_2 = 8,
-	cc8_3 = 9,
-	cc8_4 = 10,
-	cc8_5 = 11,
-	cc8_6 = 12,
-	cc8_7 = 13,
-	cc8_8 = 14,
-	cc16_1 = 15,
-	cc16_2 = 16,
-	cc16_3 = 17,
-	cc16_4 = 18,
-	cc16_5 = 19,
-	cc16_6 = 20,
-	cc16_7 = 21,
-	cc16_8 = 22,
-	cc16_9 = 23,
-	cc16_10 = 24,
-	cc16_11 = 25,
-	cc16_12 = 26,
-	cc16_13 = 27,
-	cc16_14 = 28,
-	cc16_15 = 29,
-	cc16_16 = 30,
+	cc1_1_ULTSChannelisationCode = 0,
+	cc2_1_ULTSChannelisationCode = 1,
+	cc2_2_ULTSChannelisationCode = 2,
+	cc4_1_ULTSChannelisationCode = 3,
+	cc4_2_ULTSChannelisationCode = 4,
+	cc4_3_ULTSChannelisationCode = 5,
+	cc4_4_ULTSChannelisationCode = 6,
+	cc8_1_ULTSChannelisationCode = 7,
+	cc8_2_ULTSChannelisationCode = 8,
+	cc8_3_ULTSChannelisationCode = 9,
+	cc8_4_ULTSChannelisationCode = 10,
+	cc8_5_ULTSChannelisationCode = 11,
+	cc8_6_ULTSChannelisationCode = 12,
+	cc8_7_ULTSChannelisationCode = 13,
+	cc8_8_ULTSChannelisationCode = 14,
+	cc16_1_ULTSChannelisationCode = 15,
+	cc16_2_ULTSChannelisationCode = 16,
+	cc16_3_ULTSChannelisationCode = 17,
+	cc16_4_ULTSChannelisationCode = 18,
+	cc16_5_ULTSChannelisationCode = 19,
+	cc16_6_ULTSChannelisationCode = 20,
+	cc16_7_ULTSChannelisationCode = 21,
+	cc16_8_ULTSChannelisationCode = 22,
+	cc16_9_ULTSChannelisationCode = 23,
+	cc16_10_ULTSChannelisationCode = 24,
+	cc16_11_ULTSChannelisationCode = 25,
+	cc16_12_ULTSChannelisationCode = 26,
+	cc16_13_ULTSChannelisationCode = 27,
+	cc16_14_ULTSChannelisationCode = 28,
+	cc16_15_ULTSChannelisationCode = 29,
+	cc16_16_ULTSChannelisationCode = 30,
 };
 typedef Enumerated<CONSTRAINED, 30> ULTSChannelisationCode;
 
@@ -16959,7 +16958,7 @@ public:
 };
 
 enum ULEDCHInformationr9mac_es_e_resetIndicatorValues {
-	true = 0,
+	true_ULEDCHInformationr9mac_es_e_resetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> ULEDCHInformationr9mac_es_e_resetIndicator;
 
@@ -17021,13 +17020,13 @@ public:
 };
 
 enum NonScheduledTransGrantInfoTDDr9Tdd128t_SI_nstValues {
-	everyEDCHTTI = 0,
-	ms20 = 1,
-	ms40 = 2,
-	ms60 = 3,
-	ms80 = 4,
-	ms160 = 5,
-	ms200 = 6,
+	everyEDCHTTI_NonScheduledTransGrantInfoTDDr9Tdd128t_SI_nst = 0,
+	ms20_NonScheduledTransGrantInfoTDDr9Tdd128t_SI_nst = 1,
+	ms40_NonScheduledTransGrantInfoTDDr9Tdd128t_SI_nst = 2,
+	ms60_NonScheduledTransGrantInfoTDDr9Tdd128t_SI_nst = 3,
+	ms80_NonScheduledTransGrantInfoTDDr9Tdd128t_SI_nst = 4,
+	ms160_NonScheduledTransGrantInfoTDDr9Tdd128t_SI_nst = 5,
+	ms200_NonScheduledTransGrantInfoTDDr9Tdd128t_SI_nst = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> NonScheduledTransGrantInfoTDDr9Tdd128t_SI_nst;
 
@@ -17127,54 +17126,54 @@ public:
 };
 
 enum UEDRXCycleInactivityThresholdValues {
-	sub_frames_0 = 0,
-	sub_frames_1 = 1,
-	sub_frames_2 = 2,
-	sub_frames_4 = 3,
-	sub_frames_8 = 4,
-	sub_frames_16 = 5,
-	sub_frames_32 = 6,
-	sub_frames_64 = 7,
-	sub_frames_128 = 8,
-	sub_frames_256 = 9,
-	sub_frames_512 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	sub_frames_0_UEDRXCycleInactivityThreshold = 0,
+	sub_frames_1_UEDRXCycleInactivityThreshold = 1,
+	sub_frames_2_UEDRXCycleInactivityThreshold = 2,
+	sub_frames_4_UEDRXCycleInactivityThreshold = 3,
+	sub_frames_8_UEDRXCycleInactivityThreshold = 4,
+	sub_frames_16_UEDRXCycleInactivityThreshold = 5,
+	sub_frames_32_UEDRXCycleInactivityThreshold = 6,
+	sub_frames_64_UEDRXCycleInactivityThreshold = 7,
+	sub_frames_128_UEDRXCycleInactivityThreshold = 8,
+	sub_frames_256_UEDRXCycleInactivityThreshold = 9,
+	sub_frames_512_UEDRXCycleInactivityThreshold = 10,
+	spare5_UEDRXCycleInactivityThreshold = 11,
+	spare4_UEDRXCycleInactivityThreshold = 12,
+	spare3_UEDRXCycleInactivityThreshold = 13,
+	spare2_UEDRXCycleInactivityThreshold = 14,
+	spare1_UEDRXCycleInactivityThreshold = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> UEDRXCycleInactivityThreshold;
 
 enum UEDRXCycleValues {
-	sub_frames_4 = 0,
-	sub_frames_5 = 1,
-	sub_frames_8 = 2,
-	sub_frames_10 = 3,
-	sub_frames_16 = 4,
-	sub_frames_20 = 5,
-	spare2 = 6,
-	spare1 = 7,
+	sub_frames_4_UEDRXCycle = 0,
+	sub_frames_5_UEDRXCycle = 1,
+	sub_frames_8_UEDRXCycle = 2,
+	sub_frames_10_UEDRXCycle = 3,
+	sub_frames_16_UEDRXCycle = 4,
+	sub_frames_20_UEDRXCycle = 5,
+	spare2_UEDRXCycle = 6,
+	spare1_UEDRXCycle = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> UEDRXCycle;
 
 enum UEGrantMonitoringInactivityThresholdValues {
-	e_dch_tti_0 = 0,
-	e_dch_tti_1 = 1,
-	e_dch_tti_2 = 2,
-	e_dch_tti_4 = 3,
-	e_dch_tti_8 = 4,
-	e_dch_tti_16 = 5,
-	e_dch_tti_32 = 6,
-	e_dch_tti_64 = 7,
-	e_dch_tti_128 = 8,
-	e_dch_tti_256 = 9,
-	spare6 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	e_dch_tti_0_UEGrantMonitoringInactivityThreshold = 0,
+	e_dch_tti_1_UEGrantMonitoringInactivityThreshold = 1,
+	e_dch_tti_2_UEGrantMonitoringInactivityThreshold = 2,
+	e_dch_tti_4_UEGrantMonitoringInactivityThreshold = 3,
+	e_dch_tti_8_UEGrantMonitoringInactivityThreshold = 4,
+	e_dch_tti_16_UEGrantMonitoringInactivityThreshold = 5,
+	e_dch_tti_32_UEGrantMonitoringInactivityThreshold = 6,
+	e_dch_tti_64_UEGrantMonitoringInactivityThreshold = 7,
+	e_dch_tti_128_UEGrantMonitoringInactivityThreshold = 8,
+	e_dch_tti_256_UEGrantMonitoringInactivityThreshold = 9,
+	spare6_UEGrantMonitoringInactivityThreshold = 10,
+	spare5_UEGrantMonitoringInactivityThreshold = 11,
+	spare4_UEGrantMonitoringInactivityThreshold = 12,
+	spare3_UEGrantMonitoringInactivityThreshold = 13,
+	spare2_UEGrantMonitoringInactivityThreshold = 14,
+	spare1_UEGrantMonitoringInactivityThreshold = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> UEGrantMonitoringInactivityThreshold;
 
@@ -17199,30 +17198,30 @@ public:
 };
 
 enum UEDTXCycle110msValues {
-	sub_frames_1 = 0,
-	sub_frames_5 = 1,
-	sub_frames_10 = 2,
-	sub_frames_20 = 3,
+	sub_frames_1_UEDTXCycle110ms = 0,
+	sub_frames_5_UEDTXCycle110ms = 1,
+	sub_frames_10_UEDTXCycle110ms = 2,
+	sub_frames_20_UEDTXCycle110ms = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> UEDTXCycle110ms;
 
 enum UEDTXCycle210msValues {
-	sub_frames_5 = 0,
-	sub_frames_10 = 1,
-	sub_frames_20 = 2,
-	sub_frames_40 = 3,
-	sub_frames_80 = 4,
-	sub_frames_160 = 5,
-	spare2 = 6,
-	spare1 = 7,
+	sub_frames_5_UEDTXCycle210ms = 0,
+	sub_frames_10_UEDTXCycle210ms = 1,
+	sub_frames_20_UEDTXCycle210ms = 2,
+	sub_frames_40_UEDTXCycle210ms = 3,
+	sub_frames_80_UEDTXCycle210ms = 4,
+	sub_frames_160_UEDTXCycle210ms = 5,
+	spare2_UEDTXCycle210ms = 6,
+	spare1_UEDTXCycle210ms = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> UEDTXCycle210ms;
 
 enum MACDTXCycle10msValues {
-	sub_frames_5 = 0,
-	sub_frames_10 = 1,
-	sub_frames_20 = 2,
-	spare1 = 3,
+	sub_frames_5_MACDTXCycle10ms = 0,
+	sub_frames_10_MACDTXCycle10ms = 1,
+	sub_frames_20_MACDTXCycle10ms = 2,
+	spare1_MACDTXCycle10ms = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> MACDTXCycle10ms;
 
@@ -17236,46 +17235,46 @@ public:
 };
 
 enum UEDTXCycle12msValues {
-	sub_frames_1 = 0,
-	sub_frames_4 = 1,
-	sub_frames_5 = 2,
-	sub_frames_8 = 3,
-	sub_frames_10 = 4,
-	sub_frames_16 = 5,
-	sub_frames_20 = 6,
-	spare1 = 7,
+	sub_frames_1_UEDTXCycle12ms = 0,
+	sub_frames_4_UEDTXCycle12ms = 1,
+	sub_frames_5_UEDTXCycle12ms = 2,
+	sub_frames_8_UEDTXCycle12ms = 3,
+	sub_frames_10_UEDTXCycle12ms = 4,
+	sub_frames_16_UEDTXCycle12ms = 5,
+	sub_frames_20_UEDTXCycle12ms = 6,
+	spare1_UEDTXCycle12ms = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> UEDTXCycle12ms;
 
 enum UEDTXCycle22msValues {
-	sub_frames_4 = 0,
-	sub_frames_5 = 1,
-	sub_frames_8 = 2,
-	sub_frames_10 = 3,
-	sub_frames_16 = 4,
-	sub_frames_20 = 5,
-	sub_frames_32 = 6,
-	sub_frames_40 = 7,
-	sub_frames_64 = 8,
-	sub_frames_80 = 9,
-	sub_frames_128 = 10,
-	sub_frames_160 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	sub_frames_4_UEDTXCycle22ms = 0,
+	sub_frames_5_UEDTXCycle22ms = 1,
+	sub_frames_8_UEDTXCycle22ms = 2,
+	sub_frames_10_UEDTXCycle22ms = 3,
+	sub_frames_16_UEDTXCycle22ms = 4,
+	sub_frames_20_UEDTXCycle22ms = 5,
+	sub_frames_32_UEDTXCycle22ms = 6,
+	sub_frames_40_UEDTXCycle22ms = 7,
+	sub_frames_64_UEDTXCycle22ms = 8,
+	sub_frames_80_UEDTXCycle22ms = 9,
+	sub_frames_128_UEDTXCycle22ms = 10,
+	sub_frames_160_UEDTXCycle22ms = 11,
+	spare4_UEDTXCycle22ms = 12,
+	spare3_UEDTXCycle22ms = 13,
+	spare2_UEDTXCycle22ms = 14,
+	spare1_UEDTXCycle22ms = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> UEDTXCycle22ms;
 
 enum MACDTXCycle2msValues {
-	sub_frames_1 = 0,
-	sub_frames_4 = 1,
-	sub_frames_5 = 2,
-	sub_frames_8 = 3,
-	sub_frames_10 = 4,
-	sub_frames_16 = 5,
-	sub_frames_20 = 6,
-	spare1 = 7,
+	sub_frames_1_MACDTXCycle2ms = 0,
+	sub_frames_4_MACDTXCycle2ms = 1,
+	sub_frames_5_MACDTXCycle2ms = 2,
+	sub_frames_8_MACDTXCycle2ms = 3,
+	sub_frames_10_MACDTXCycle2ms = 4,
+	sub_frames_16_MACDTXCycle2ms = 5,
+	sub_frames_20_MACDTXCycle2ms = 6,
+	spare1_MACDTXCycle2ms = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> MACDTXCycle2ms;
 
@@ -17297,58 +17296,58 @@ public:
 };
 
 enum UEDTXCycle2InactivityThresholdValues {
-	e_dch_tti_1 = 0,
-	e_dch_tti_4 = 1,
-	e_dch_tti_8 = 2,
-	e_dch_tti_16 = 3,
-	e_dch_tti_32 = 4,
-	e_dch_tti_64 = 5,
-	e_dch_tti_128 = 6,
-	e_dch_tti_256 = 7,
-	spare8 = 8,
-	spare7 = 9,
-	spare6 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	e_dch_tti_1_UEDTXCycle2InactivityThreshold = 0,
+	e_dch_tti_4_UEDTXCycle2InactivityThreshold = 1,
+	e_dch_tti_8_UEDTXCycle2InactivityThreshold = 2,
+	e_dch_tti_16_UEDTXCycle2InactivityThreshold = 3,
+	e_dch_tti_32_UEDTXCycle2InactivityThreshold = 4,
+	e_dch_tti_64_UEDTXCycle2InactivityThreshold = 5,
+	e_dch_tti_128_UEDTXCycle2InactivityThreshold = 6,
+	e_dch_tti_256_UEDTXCycle2InactivityThreshold = 7,
+	spare8_UEDTXCycle2InactivityThreshold = 8,
+	spare7_UEDTXCycle2InactivityThreshold = 9,
+	spare6_UEDTXCycle2InactivityThreshold = 10,
+	spare5_UEDTXCycle2InactivityThreshold = 11,
+	spare4_UEDTXCycle2InactivityThreshold = 12,
+	spare3_UEDTXCycle2InactivityThreshold = 13,
+	spare2_UEDTXCycle2InactivityThreshold = 14,
+	spare1_UEDTXCycle2InactivityThreshold = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> UEDTXCycle2InactivityThreshold;
 
 typedef Integer<CONSTRAINED, 0, 38> DTXInfoUedtxcycle2DefaultSG;
 
 enum UEDTXlongpreamblelengthValues {
-	slots_4 = 0,
-	slots_15 = 1,
+	slots_4_UEDTXlongpreamblelength = 0,
+	slots_15_UEDTXlongpreamblelength = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> UEDTXlongpreamblelength;
 
 enum MACInactivityThresholdValues {
-	e_dch_tti_1 = 0,
-	e_dch_tti_2 = 1,
-	e_dch_tti_4 = 2,
-	e_dch_tti_8 = 3,
-	e_dch_tti_16 = 4,
-	e_dch_tti_32 = 5,
-	e_dch_tti_64 = 6,
-	e_dch_tti_128 = 7,
-	e_dch_tti_256 = 8,
-	e_dch_tti_512 = 9,
-	e_dch_tti_Infinity = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	e_dch_tti_1_MACInactivityThreshold = 0,
+	e_dch_tti_2_MACInactivityThreshold = 1,
+	e_dch_tti_4_MACInactivityThreshold = 2,
+	e_dch_tti_8_MACInactivityThreshold = 3,
+	e_dch_tti_16_MACInactivityThreshold = 4,
+	e_dch_tti_32_MACInactivityThreshold = 5,
+	e_dch_tti_64_MACInactivityThreshold = 6,
+	e_dch_tti_128_MACInactivityThreshold = 7,
+	e_dch_tti_256_MACInactivityThreshold = 8,
+	e_dch_tti_512_MACInactivityThreshold = 9,
+	e_dch_tti_Infinity_MACInactivityThreshold = 10,
+	spare5_MACInactivityThreshold = 11,
+	spare4_MACInactivityThreshold = 12,
+	spare3_MACInactivityThreshold = 13,
+	spare2_MACInactivityThreshold = 14,
+	spare1_MACInactivityThreshold = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> MACInactivityThreshold;
 
 enum UEDPCCHBurstValues {
-	sub_frames_1 = 0,
-	sub_frames_2 = 1,
-	sub_frames_5 = 2,
-	spare1 = 3,
+	sub_frames_1_UEDPCCHBurst = 0,
+	sub_frames_2_UEDPCCHBurst = 1,
+	sub_frames_5_UEDPCCHBurst = 2,
+	spare1_UEDPCCHBurst = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> UEDPCCHBurst;
 
@@ -17362,10 +17361,10 @@ public:
 };
 
 enum UplinkDPCCHSlotFormatInformationValues {
-	slot_format_1 = 0,
-	dummy = 1,
-	slot_format_4 = 2,
-	spare1 = 3,
+	slot_format_1_UplinkDPCCHSlotFormatInformation = 0,
+	dummy_UplinkDPCCHSlotFormatInformation = 1,
+	slot_format_4_UplinkDPCCHSlotFormatInformation = 2,
+	spare1_UplinkDPCCHSlotFormatInformation = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> UplinkDPCCHSlotFormatInformation;
 
@@ -17383,8 +17382,8 @@ typedef SequenceOf<DynamicPersistenceLevel, CONSTRAINED, 1, maxPRACH> DynamicPer
 typedef Integer<CONSTRAINED, 0, 38> EDCHRLInfoNewServingCellServingGrantValue;
 
 enum EDCHRLInfoNewServingCellServingGrantprimary_Secondary_GrantSelectorValues {
-	primary = 0,
-	secondary = 1,
+	primary_EDCHRLInfoNewServingCellServingGrantprimary_Secondary_GrantSelector = 0,
+	secondary_EDCHRLInfoNewServingCellServingGrantprimary_Secondary_GrantSelector = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EDCHRLInfoNewServingCellServingGrantprimary_Secondary_GrantSelector;
 
@@ -17480,8 +17479,8 @@ public:
 typedef Integer<CONSTRAINED, 0, 38> EDCHRLInfoNewServingCellr7ServingGrantValue;
 
 enum EDCHRLInfoNewServingCellr7ServingGrantprimary_Secondary_GrantSelectorValues {
-	primary = 0,
-	secondary = 1,
+	primary_EDCHRLInfoNewServingCellr7ServingGrantprimary_Secondary_GrantSelector = 0,
+	secondary_EDCHRLInfoNewServingCellr7ServingGrantprimary_Secondary_GrantSelector = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EDCHRLInfoNewServingCellr7ServingGrantprimary_Secondary_GrantSelector;
 
@@ -17733,22 +17732,22 @@ public:
 };
 
 enum EnablingDelayValues {
-	radio_frames_0 = 0,
-	radio_frames_1 = 1,
-	radio_frames_2 = 2,
-	radio_frames_4 = 3,
-	radio_frames_8 = 4,
-	radio_frames_16 = 5,
-	radio_frames_32 = 6,
-	radio_frames_64 = 7,
-	radio_frames_128 = 8,
-	spare7 = 9,
-	spare6 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	radio_frames_0_EnablingDelay = 0,
+	radio_frames_1_EnablingDelay = 1,
+	radio_frames_2_EnablingDelay = 2,
+	radio_frames_4_EnablingDelay = 3,
+	radio_frames_8_EnablingDelay = 4,
+	radio_frames_16_EnablingDelay = 5,
+	radio_frames_32_EnablingDelay = 6,
+	radio_frames_64_EnablingDelay = 7,
+	radio_frames_128_EnablingDelay = 8,
+	spare7_EnablingDelay = 9,
+	spare6_EnablingDelay = 10,
+	spare5_EnablingDelay = 11,
+	spare4_EnablingDelay = 12,
+	spare3_EnablingDelay = 13,
+	spare2_EnablingDelay = 14,
+	spare1_EnablingDelay = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> EnablingDelay;
 
@@ -17829,10 +17828,10 @@ typedef Integer<CONSTRAINED, -120, -58> HSSCCHSystemInfoTDD128PowerlevelHSSICH;
 typedef Integer<CONSTRAINED, -7, 8> HSSCCHSystemInfoTDD128Nackackpoweroffset;
 
 enum HSSCCHSystemInfoTDD128tpc_step_sizeValues {
-	s1 = 0,
-	s2 = 1,
-	s3 = 2,
-	spare1 = 3,
+	s1_HSSCCHSystemInfoTDD128tpc_step_size = 0,
+	s2_HSSCCHSystemInfoTDD128tpc_step_size = 1,
+	s3_HSSCCHSystemInfoTDD128tpc_step_size = 2,
+	spare1_HSSCCHSystemInfoTDD128tpc_step_size = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> HSSCCHSystemInfoTDD128tpc_step_size;
 
@@ -17861,22 +17860,22 @@ public:
 };
 
 enum HSDSCHDrxBurstFachValues {
-	f1 = 0,
-	f2 = 1,
-	f4 = 2,
-	f8 = 3,
-	f16 = 4,
-	spare3 = 5,
-	spare2 = 6,
-	spare1 = 7,
+	f1_HSDSCHDrxBurstFach = 0,
+	f2_HSDSCHDrxBurstFach = 1,
+	f4_HSDSCHDrxBurstFach = 2,
+	f8_HSDSCHDrxBurstFach = 3,
+	f16_HSDSCHDrxBurstFach = 4,
+	spare3_HSDSCHDrxBurstFach = 5,
+	spare2_HSDSCHDrxBurstFach = 6,
+	spare1_HSDSCHDrxBurstFach = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> HSDSCHDrxBurstFach;
 
 enum HSDSCHDrxCycleFachValues {
-	f4 = 0,
-	f8 = 1,
-	f16 = 2,
-	f32 = 3,
+	f4_HSDSCHDrxCycleFach = 0,
+	f8_HSDSCHDrxCycleFach = 1,
+	f16_HSDSCHDrxCycleFach = 2,
+	f32_HSDSCHDrxCycleFach = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> HSDSCHDrxCycleFach;
 
@@ -17901,10 +17900,10 @@ public:
 };
 
 enum PICountPerFrameValues {
-	e18 = 0,
-	e36 = 1,
-	e72 = 2,
-	e144 = 3,
+	e18_PICountPerFrame = 0,
+	e36_PICountPerFrame = 1,
+	e72_PICountPerFrame = 2,
+	e144_PICountPerFrame = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> PICountPerFrame;
 
@@ -17920,22 +17919,22 @@ public:
 };
 
 enum TDDPICHCCodeValues {
-	cc16_1 = 0,
-	cc16_2 = 1,
-	cc16_3 = 2,
-	cc16_4 = 3,
-	cc16_5 = 4,
-	cc16_6 = 5,
-	cc16_7 = 6,
-	cc16_8 = 7,
-	cc16_9 = 8,
-	cc16_10 = 9,
-	cc16_11 = 10,
-	cc16_12 = 11,
-	cc16_13 = 12,
-	cc16_14 = 13,
-	cc16_15 = 14,
-	cc16_16 = 15,
+	cc16_1_TDDPICHCCode = 0,
+	cc16_2_TDDPICHCCode = 1,
+	cc16_3_TDDPICHCCode = 2,
+	cc16_4_TDDPICHCCode = 3,
+	cc16_5_TDDPICHCCode = 4,
+	cc16_6_TDDPICHCCode = 5,
+	cc16_7_TDDPICHCCode = 6,
+	cc16_8_TDDPICHCCode = 7,
+	cc16_9_TDDPICHCCode = 8,
+	cc16_10_TDDPICHCCode = 9,
+	cc16_11_TDDPICHCCode = 10,
+	cc16_12_TDDPICHCCode = 11,
+	cc16_13_TDDPICHCCode = 12,
+	cc16_14_TDDPICHCCode = 13,
+	cc16_15_TDDPICHCCode = 14,
+	cc16_16_TDDPICHCCode = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> TDDPICHCCode;
 
@@ -17966,16 +17965,16 @@ public:
 };
 
 enum PagingIndicatorLengthValues {
-	pi4 = 0,
-	pi8 = 1,
-	pi16 = 2,
+	pi4_PagingIndicatorLength = 0,
+	pi8_PagingIndicatorLength = 1,
+	pi16_PagingIndicatorLength = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> PagingIndicatorLength;
 
 enum NGAPValues {
-	f2 = 0,
-	f4 = 1,
-	f8 = 2,
+	f2_NGAP = 0,
+	f4_NGAP = 1,
+	f8_NGAP = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> NGAP;
 
@@ -18138,8 +18137,8 @@ typedef Integer<CONSTRAINED, 0, maxRxPatternForHSDSCH_TDD128_1> HSDSCHSPSNewOper
 typedef Integer<CONSTRAINED, 0, maxTbsForHSDSCH_TDD128_1> HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHInitialTfsIndex;
 
 enum HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHmodulationValues {
-	modQPSK = 0,
-	mod16QAM = 1,
+	modQPSK_HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHmodulation = 0,
+	mod16QAM_HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHmodulation = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHmodulation;
 
@@ -18254,15 +18253,15 @@ public:
 };
 
 enum IndividualTimeslotInfoLCRr4extmodulationValues {
-	mod_QPSK = 0,
-	mod_8PSK = 1,
+	mod_QPSK_IndividualTimeslotInfoLCRr4extmodulation = 0,
+	mod_8PSK_IndividualTimeslotInfoLCRr4extmodulation = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> IndividualTimeslotInfoLCRr4extmodulation;
 
 enum IndividualTimeslotInfoLCRr4extss_TPC_SymbolsValues {
-	zero = 0,
-	one = 1,
-	sixteenOverSF = 2,
+	zero_IndividualTimeslotInfoLCRr4extss_TPC_Symbols = 0,
+	one_IndividualTimeslotInfoLCRr4extss_TPC_Symbols = 1,
+	sixteenOverSF_IndividualTimeslotInfoLCRr4extss_TPC_Symbols = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> IndividualTimeslotInfoLCRr4extss_TPC_Symbols;
 
@@ -18432,8 +18431,8 @@ public:
 };
 
 enum MIMOOperationValues {
-	start = 0,
-	continue = 1,
+	start_MIMOOperation = 0,
+	continue_MIMOOperation = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> MIMOOperation;
 
@@ -18476,7 +18475,7 @@ public:
 
 
 enum MIMOParametersv7g0extprecodingWeightSetRestrictionValues {
-	true = 0,
+	true_MIMOParametersv7g0extprecodingWeightSetRestriction = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MIMOParametersv7g0extprecodingWeightSetRestriction;
 
@@ -18499,8 +18498,8 @@ public:
 };
 
 enum MIMOParametersr8ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStreamValues {
-	sf1 = 0,
-	sf1sf16 = 1,
+	sf1_MIMOParametersr8ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream = 0,
+	sf1sf16_MIMOParametersr8ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> MIMOParametersr8ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream;
 
@@ -18541,7 +18540,7 @@ public:
 };
 
 enum MIMOParametersr9ModeSpecificInfoFddprecodingWeightSetRestrictionValues {
-	true = 0,
+	true_MIMOParametersr9ModeSpecificInfoFddprecodingWeightSetRestriction = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MIMOParametersr9ModeSpecificInfoFddprecodingWeightSetRestriction;
 
@@ -18555,8 +18554,8 @@ public:
 };
 
 enum MIMOParametersr9ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStreamValues {
-	sf1 = 0,
-	sf1sf16 = 1,
+	sf1_MIMOParametersr9ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream = 0,
+	sf1sf16_MIMOParametersr9ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> MIMOParametersr9ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream;
 
@@ -18630,13 +18629,13 @@ public:
 typedef Null NonScheduledTransGrantInfoTDDextTdd384768;
 
 enum NonScheduledTransGrantInfoTDDextTdd128t_SI_nstValues {
-	everyEDCHTTI = 0,
-	ms20 = 1,
-	ms40 = 2,
-	ms60 = 3,
-	ms80 = 4,
-	ms160 = 5,
-	ms200 = 6,
+	everyEDCHTTI_NonScheduledTransGrantInfoTDDextTdd128t_SI_nst = 0,
+	ms20_NonScheduledTransGrantInfoTDDextTdd128t_SI_nst = 1,
+	ms40_NonScheduledTransGrantInfoTDDextTdd128t_SI_nst = 2,
+	ms60_NonScheduledTransGrantInfoTDDextTdd128t_SI_nst = 3,
+	ms80_NonScheduledTransGrantInfoTDDextTdd128t_SI_nst = 4,
+	ms160_NonScheduledTransGrantInfoTDDextTdd128t_SI_nst = 5,
+	ms200_NonScheduledTransGrantInfoTDDextTdd128t_SI_nst = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> NonScheduledTransGrantInfoTDDextTdd128t_SI_nst;
 
@@ -18964,38 +18963,38 @@ public:
 };
 
 enum TDD768PICHCCodeValues {
-	cc32_1 = 0,
-	cc32_2 = 1,
-	cc32_3 = 2,
-	cc32_4 = 3,
-	cc32_5 = 4,
-	cc32_6 = 5,
-	cc32_7 = 6,
-	cc32_8 = 7,
-	cc32_9 = 8,
-	cc32_10 = 9,
-	cc32_11 = 10,
-	cc32_12 = 11,
-	cc32_13 = 12,
-	cc32_14 = 13,
-	cc32_15 = 14,
-	cc32_16 = 15,
-	cc32_17 = 16,
-	cc32_18 = 17,
-	cc32_19 = 18,
-	cc32_20 = 19,
-	cc32_21 = 20,
-	cc32_22 = 21,
-	cc32_23 = 22,
-	cc32_24 = 23,
-	cc32_25 = 24,
-	cc32_26 = 25,
-	cc32_27 = 26,
-	cc32_28 = 27,
-	cc32_29 = 28,
-	cc32_30 = 29,
-	cc32_31 = 30,
-	cc32_32 = 31,
+	cc32_1_TDD768PICHCCode = 0,
+	cc32_2_TDD768PICHCCode = 1,
+	cc32_3_TDD768PICHCCode = 2,
+	cc32_4_TDD768PICHCCode = 3,
+	cc32_5_TDD768PICHCCode = 4,
+	cc32_6_TDD768PICHCCode = 5,
+	cc32_7_TDD768PICHCCode = 6,
+	cc32_8_TDD768PICHCCode = 7,
+	cc32_9_TDD768PICHCCode = 8,
+	cc32_10_TDD768PICHCCode = 9,
+	cc32_11_TDD768PICHCCode = 10,
+	cc32_12_TDD768PICHCCode = 11,
+	cc32_13_TDD768PICHCCode = 12,
+	cc32_14_TDD768PICHCCode = 13,
+	cc32_15_TDD768PICHCCode = 14,
+	cc32_16_TDD768PICHCCode = 15,
+	cc32_17_TDD768PICHCCode = 16,
+	cc32_18_TDD768PICHCCode = 17,
+	cc32_19_TDD768PICHCCode = 18,
+	cc32_20_TDD768PICHCCode = 19,
+	cc32_21_TDD768PICHCCode = 20,
+	cc32_22_TDD768PICHCCode = 21,
+	cc32_23_TDD768PICHCCode = 22,
+	cc32_24_TDD768PICHCCode = 23,
+	cc32_25_TDD768PICHCCode = 24,
+	cc32_26_TDD768PICHCCode = 25,
+	cc32_27_TDD768PICHCCode = 26,
+	cc32_28_TDD768PICHCCode = 27,
+	cc32_29_TDD768PICHCCode = 28,
+	cc32_30_TDD768PICHCCode = 29,
+	cc32_31_TDD768PICHCCode = 30,
+	cc32_32_TDD768PICHCCode = 31,
 };
 typedef Enumerated<CONSTRAINED, 31> TDD768PICHCCode;
 
@@ -19043,8 +19042,8 @@ public:
 };
 
 enum PRACHMidambleValues {
-	direct = 0,
-	direct_Inverted = 1,
+	direct_PRACHMidamble = 0,
+	direct_Inverted_PRACHMidamble = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> PRACHMidamble;
 
@@ -19063,10 +19062,10 @@ public:
 typedef SequenceOf<ASCSettingTDDLCRr4, CONSTRAINED, 1, maxASC> PRACHPartitioningLCRr4;
 
 enum SFPRACHValues {
-	sfpr32 = 0,
-	sfpr64 = 1,
-	sfpr128 = 2,
-	sfpr256 = 3,
+	sfpr32_SFPRACH = 0,
+	sfpr64_SFPRACH = 1,
+	sfpr128_SFPRACH = 2,
+	sfpr256_SFPRACH = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> SFPRACH;
 
@@ -19080,36 +19079,36 @@ public:
 };
 
 enum TDDPRACHCCode8Values {
-	cc8_1 = 0,
-	cc8_2 = 1,
-	cc8_3 = 2,
-	cc8_4 = 3,
-	cc8_5 = 4,
-	cc8_6 = 5,
-	cc8_7 = 6,
-	cc8_8 = 7,
+	cc8_1_TDDPRACHCCode8 = 0,
+	cc8_2_TDDPRACHCCode8 = 1,
+	cc8_3_TDDPRACHCCode8 = 2,
+	cc8_4_TDDPRACHCCode8 = 3,
+	cc8_5_TDDPRACHCCode8 = 4,
+	cc8_6_TDDPRACHCCode8 = 5,
+	cc8_7_TDDPRACHCCode8 = 6,
+	cc8_8_TDDPRACHCCode8 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> TDDPRACHCCode8;
 
 typedef SequenceOf<TDDPRACHCCode8, CONSTRAINED, 1, 8> TDDPRACHCCodeListSf8;
 
 enum TDDPRACHCCode16Values {
-	cc16_1 = 0,
-	cc16_2 = 1,
-	cc16_3 = 2,
-	cc16_4 = 3,
-	cc16_5 = 4,
-	cc16_6 = 5,
-	cc16_7 = 6,
-	cc16_8 = 7,
-	cc16_9 = 8,
-	cc16_10 = 9,
-	cc16_11 = 10,
-	cc16_12 = 11,
-	cc16_13 = 12,
-	cc16_14 = 13,
-	cc16_15 = 14,
-	cc16_16 = 15,
+	cc16_1_TDDPRACHCCode16 = 0,
+	cc16_2_TDDPRACHCCode16 = 1,
+	cc16_3_TDDPRACHCCode16 = 2,
+	cc16_4_TDDPRACHCCode16 = 3,
+	cc16_5_TDDPRACHCCode16 = 4,
+	cc16_6_TDDPRACHCCode16 = 5,
+	cc16_7_TDDPRACHCCode16 = 6,
+	cc16_8_TDDPRACHCCode16 = 7,
+	cc16_9_TDDPRACHCCode16 = 8,
+	cc16_10_TDDPRACHCCode16 = 9,
+	cc16_11_TDDPRACHCCode16 = 10,
+	cc16_12_TDDPRACHCCode16 = 11,
+	cc16_13_TDDPRACHCCode16 = 12,
+	cc16_14_TDDPRACHCCode16 = 13,
+	cc16_15_TDDPRACHCCode16 = 14,
+	cc16_16_TDDPRACHCCode16 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> TDDPRACHCCode16;
 
@@ -19150,44 +19149,44 @@ public:
 };
 
 enum TDD768PRACHCCode32Values {
-	cc32_1 = 0,
-	cc32_2 = 1,
-	cc32_3 = 2,
-	cc32_4 = 3,
-	cc32_5 = 4,
-	cc32_6 = 5,
-	cc32_7 = 6,
-	cc32_8 = 7,
-	cc32_9 = 8,
-	cc32_10 = 9,
-	cc32_11 = 10,
-	cc32_12 = 11,
-	cc32_13 = 12,
-	cc32_14 = 13,
-	cc32_15 = 14,
-	cc32_16 = 15,
+	cc32_1_TDD768PRACHCCode32 = 0,
+	cc32_2_TDD768PRACHCCode32 = 1,
+	cc32_3_TDD768PRACHCCode32 = 2,
+	cc32_4_TDD768PRACHCCode32 = 3,
+	cc32_5_TDD768PRACHCCode32 = 4,
+	cc32_6_TDD768PRACHCCode32 = 5,
+	cc32_7_TDD768PRACHCCode32 = 6,
+	cc32_8_TDD768PRACHCCode32 = 7,
+	cc32_9_TDD768PRACHCCode32 = 8,
+	cc32_10_TDD768PRACHCCode32 = 9,
+	cc32_11_TDD768PRACHCCode32 = 10,
+	cc32_12_TDD768PRACHCCode32 = 11,
+	cc32_13_TDD768PRACHCCode32 = 12,
+	cc32_14_TDD768PRACHCCode32 = 13,
+	cc32_15_TDD768PRACHCCode32 = 14,
+	cc32_16_TDD768PRACHCCode32 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> TDD768PRACHCCode32;
 
 typedef SequenceOf<TDD768PRACHCCode32, CONSTRAINED, 1, 16> TDD768PRACHCCodeListSf32;
 
 enum TDD768PRACHCCode16Values {
-	cc16_1 = 0,
-	cc16_2 = 1,
-	cc16_3 = 2,
-	cc16_4 = 3,
-	cc16_5 = 4,
-	cc16_6 = 5,
-	cc16_7 = 6,
-	cc16_8 = 7,
-	cc16_9 = 8,
-	cc16_10 = 9,
-	cc16_11 = 10,
-	cc16_12 = 11,
-	cc16_13 = 12,
-	cc16_14 = 13,
-	cc16_15 = 14,
-	cc16_16 = 15,
+	cc16_1_TDD768PRACHCCode16 = 0,
+	cc16_2_TDD768PRACHCCode16 = 1,
+	cc16_3_TDD768PRACHCCode16 = 2,
+	cc16_4_TDD768PRACHCCode16 = 3,
+	cc16_5_TDD768PRACHCCode16 = 4,
+	cc16_6_TDD768PRACHCCode16 = 5,
+	cc16_7_TDD768PRACHCCode16 = 6,
+	cc16_8_TDD768PRACHCCode16 = 7,
+	cc16_9_TDD768PRACHCCode16 = 8,
+	cc16_10_TDD768PRACHCCode16 = 9,
+	cc16_11_TDD768PRACHCCode16 = 10,
+	cc16_12_TDD768PRACHCCode16 = 11,
+	cc16_13_TDD768PRACHCCode16 = 12,
+	cc16_14_TDD768PRACHCCode16 = 13,
+	cc16_15_TDD768PRACHCCode16 = 14,
+	cc16_16_TDD768PRACHCCode16 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> TDD768PRACHCCode16;
 
@@ -19224,10 +19223,10 @@ typedef Integer<CONSTRAINED, 0, 62> SYNCULInfor4PrxUpPCHdes;
 typedef Integer<CONSTRAINED, 0, 3> SYNCULInfor4PowerRampStep;
 
 enum SYNCULInfor4max_SYNC_UL_TransmissionsValues {
-	tr1 = 0,
-	tr2 = 1,
-	tr4 = 2,
-	tr8 = 3,
+	tr1_SYNCULInfor4max_SYNC_UL_Transmissions = 0,
+	tr2_SYNCULInfor4max_SYNC_UL_Transmissions = 1,
+	tr4_SYNCULInfor4max_SYNC_UL_Transmissions = 2,
+	tr8_SYNCULInfor4max_SYNC_UL_Transmissions = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> SYNCULInfor4max_SYNC_UL_Transmissions;
 
@@ -19722,69 +19721,69 @@ public:
 typedef Boolean UplinkTimeslotsCodesVHCRDynamicSFusage;
 
 enum ULTSChannelisationCodeVHCRValues {
-	cc1_1 = 0,
-	cc2_1 = 1,
-	cc2_2 = 2,
-	cc4_1 = 3,
-	cc4_2 = 4,
-	cc4_3 = 5,
-	cc4_4 = 6,
-	cc8_1 = 7,
-	cc8_2 = 8,
-	cc8_3 = 9,
-	cc8_4 = 10,
-	cc8_5 = 11,
-	cc8_6 = 12,
-	cc8_7 = 13,
-	cc8_8 = 14,
-	cc16_1 = 15,
-	cc16_2 = 16,
-	cc16_3 = 17,
-	cc16_4 = 18,
-	cc16_5 = 19,
-	cc16_6 = 20,
-	cc16_7 = 21,
-	cc16_8 = 22,
-	cc16_9 = 23,
-	cc16_10 = 24,
-	cc16_11 = 25,
-	cc16_12 = 26,
-	cc16_13 = 27,
-	cc16_14 = 28,
-	cc16_15 = 29,
-	cc16_16 = 30,
-	cc32_1 = 31,
-	cc32_2 = 32,
-	cc32_3 = 33,
-	cc32_4 = 34,
-	cc32_5 = 35,
-	cc32_6 = 36,
-	cc32_7 = 37,
-	cc32_8 = 38,
-	cc32_9 = 39,
-	cc32_10 = 40,
-	cc32_11 = 41,
-	cc32_12 = 42,
-	cc32_13 = 43,
-	cc32_14 = 44,
-	cc32_15 = 45,
-	cc32_16 = 46,
-	cc32_17 = 47,
-	cc32_18 = 48,
-	cc32_19 = 49,
-	cc32_20 = 50,
-	cc32_21 = 51,
-	cc32_22 = 52,
-	cc32_23 = 53,
-	cc32_24 = 54,
-	cc32_25 = 55,
-	cc32_26 = 56,
-	cc32_27 = 57,
-	cc32_28 = 58,
-	cc32_29 = 59,
-	cc32_30 = 60,
-	cc32_31 = 61,
-	cc32_32 = 62,
+	cc1_1_ULTSChannelisationCodeVHCR = 0,
+	cc2_1_ULTSChannelisationCodeVHCR = 1,
+	cc2_2_ULTSChannelisationCodeVHCR = 2,
+	cc4_1_ULTSChannelisationCodeVHCR = 3,
+	cc4_2_ULTSChannelisationCodeVHCR = 4,
+	cc4_3_ULTSChannelisationCodeVHCR = 5,
+	cc4_4_ULTSChannelisationCodeVHCR = 6,
+	cc8_1_ULTSChannelisationCodeVHCR = 7,
+	cc8_2_ULTSChannelisationCodeVHCR = 8,
+	cc8_3_ULTSChannelisationCodeVHCR = 9,
+	cc8_4_ULTSChannelisationCodeVHCR = 10,
+	cc8_5_ULTSChannelisationCodeVHCR = 11,
+	cc8_6_ULTSChannelisationCodeVHCR = 12,
+	cc8_7_ULTSChannelisationCodeVHCR = 13,
+	cc8_8_ULTSChannelisationCodeVHCR = 14,
+	cc16_1_ULTSChannelisationCodeVHCR = 15,
+	cc16_2_ULTSChannelisationCodeVHCR = 16,
+	cc16_3_ULTSChannelisationCodeVHCR = 17,
+	cc16_4_ULTSChannelisationCodeVHCR = 18,
+	cc16_5_ULTSChannelisationCodeVHCR = 19,
+	cc16_6_ULTSChannelisationCodeVHCR = 20,
+	cc16_7_ULTSChannelisationCodeVHCR = 21,
+	cc16_8_ULTSChannelisationCodeVHCR = 22,
+	cc16_9_ULTSChannelisationCodeVHCR = 23,
+	cc16_10_ULTSChannelisationCodeVHCR = 24,
+	cc16_11_ULTSChannelisationCodeVHCR = 25,
+	cc16_12_ULTSChannelisationCodeVHCR = 26,
+	cc16_13_ULTSChannelisationCodeVHCR = 27,
+	cc16_14_ULTSChannelisationCodeVHCR = 28,
+	cc16_15_ULTSChannelisationCodeVHCR = 29,
+	cc16_16_ULTSChannelisationCodeVHCR = 30,
+	cc32_1_ULTSChannelisationCodeVHCR = 31,
+	cc32_2_ULTSChannelisationCodeVHCR = 32,
+	cc32_3_ULTSChannelisationCodeVHCR = 33,
+	cc32_4_ULTSChannelisationCodeVHCR = 34,
+	cc32_5_ULTSChannelisationCodeVHCR = 35,
+	cc32_6_ULTSChannelisationCodeVHCR = 36,
+	cc32_7_ULTSChannelisationCodeVHCR = 37,
+	cc32_8_ULTSChannelisationCodeVHCR = 38,
+	cc32_9_ULTSChannelisationCodeVHCR = 39,
+	cc32_10_ULTSChannelisationCodeVHCR = 40,
+	cc32_11_ULTSChannelisationCodeVHCR = 41,
+	cc32_12_ULTSChannelisationCodeVHCR = 42,
+	cc32_13_ULTSChannelisationCodeVHCR = 43,
+	cc32_14_ULTSChannelisationCodeVHCR = 44,
+	cc32_15_ULTSChannelisationCodeVHCR = 45,
+	cc32_16_ULTSChannelisationCodeVHCR = 46,
+	cc32_17_ULTSChannelisationCodeVHCR = 47,
+	cc32_18_ULTSChannelisationCodeVHCR = 48,
+	cc32_19_ULTSChannelisationCodeVHCR = 49,
+	cc32_20_ULTSChannelisationCodeVHCR = 50,
+	cc32_21_ULTSChannelisationCodeVHCR = 51,
+	cc32_22_ULTSChannelisationCodeVHCR = 52,
+	cc32_23_ULTSChannelisationCodeVHCR = 53,
+	cc32_24_ULTSChannelisationCodeVHCR = 54,
+	cc32_25_ULTSChannelisationCodeVHCR = 55,
+	cc32_26_ULTSChannelisationCodeVHCR = 56,
+	cc32_27_ULTSChannelisationCodeVHCR = 57,
+	cc32_28_ULTSChannelisationCodeVHCR = 58,
+	cc32_29_ULTSChannelisationCodeVHCR = 59,
+	cc32_30_ULTSChannelisationCodeVHCR = 60,
+	cc32_31_ULTSChannelisationCodeVHCR = 61,
+	cc32_32_ULTSChannelisationCodeVHCR = 62,
 };
 typedef Enumerated<CONSTRAINED, 62> ULTSChannelisationCodeVHCR;
 
@@ -20229,38 +20228,38 @@ typedef SequenceOf<PrimaryCPICHInfo, CONSTRAINED, 1, maxRL> RLRemovalInformation
 typedef SequenceOf<PrimaryCPICHInfo, CONSTRAINED, 1, maxEDCHRL> RLRemovalInformationListSecULFreq;
 
 enum SCCPCHChannelisationCodeVHCRValues {
-	cc32_1 = 0,
-	cc32_2 = 1,
-	cc32_3 = 2,
-	cc32_4 = 3,
-	cc32_5 = 4,
-	cc32_6 = 5,
-	cc32_7 = 6,
-	cc32_8 = 7,
-	cc32_9 = 8,
-	cc32_10 = 9,
-	cc32_11 = 10,
-	cc32_12 = 11,
-	cc32_13 = 12,
-	cc32_14 = 13,
-	cc32_15 = 14,
-	cc32_16 = 15,
-	cc32_17 = 16,
-	cc32_18 = 17,
-	cc32_19 = 18,
-	cc32_20 = 19,
-	cc32_21 = 20,
-	cc32_22 = 21,
-	cc32_23 = 22,
-	cc32_24 = 23,
-	cc32_25 = 24,
-	cc32_26 = 25,
-	cc32_27 = 26,
-	cc32_28 = 27,
-	cc32_29 = 28,
-	cc32_30 = 29,
-	cc32_31 = 30,
-	cc32_32 = 31,
+	cc32_1_SCCPCHChannelisationCodeVHCR = 0,
+	cc32_2_SCCPCHChannelisationCodeVHCR = 1,
+	cc32_3_SCCPCHChannelisationCodeVHCR = 2,
+	cc32_4_SCCPCHChannelisationCodeVHCR = 3,
+	cc32_5_SCCPCHChannelisationCodeVHCR = 4,
+	cc32_6_SCCPCHChannelisationCodeVHCR = 5,
+	cc32_7_SCCPCHChannelisationCodeVHCR = 6,
+	cc32_8_SCCPCHChannelisationCodeVHCR = 7,
+	cc32_9_SCCPCHChannelisationCodeVHCR = 8,
+	cc32_10_SCCPCHChannelisationCodeVHCR = 9,
+	cc32_11_SCCPCHChannelisationCodeVHCR = 10,
+	cc32_12_SCCPCHChannelisationCodeVHCR = 11,
+	cc32_13_SCCPCHChannelisationCodeVHCR = 12,
+	cc32_14_SCCPCHChannelisationCodeVHCR = 13,
+	cc32_15_SCCPCHChannelisationCodeVHCR = 14,
+	cc32_16_SCCPCHChannelisationCodeVHCR = 15,
+	cc32_17_SCCPCHChannelisationCodeVHCR = 16,
+	cc32_18_SCCPCHChannelisationCodeVHCR = 17,
+	cc32_19_SCCPCHChannelisationCodeVHCR = 18,
+	cc32_20_SCCPCHChannelisationCodeVHCR = 19,
+	cc32_21_SCCPCHChannelisationCodeVHCR = 20,
+	cc32_22_SCCPCHChannelisationCodeVHCR = 21,
+	cc32_23_SCCPCHChannelisationCodeVHCR = 22,
+	cc32_24_SCCPCHChannelisationCodeVHCR = 23,
+	cc32_25_SCCPCHChannelisationCodeVHCR = 24,
+	cc32_26_SCCPCHChannelisationCodeVHCR = 25,
+	cc32_27_SCCPCHChannelisationCodeVHCR = 26,
+	cc32_28_SCCPCHChannelisationCodeVHCR = 27,
+	cc32_29_SCCPCHChannelisationCodeVHCR = 28,
+	cc32_30_SCCPCHChannelisationCodeVHCR = 29,
+	cc32_31_SCCPCHChannelisationCodeVHCR = 30,
+	cc32_32_SCCPCHChannelisationCodeVHCR = 31,
 };
 typedef Enumerated<CONSTRAINED, 31> SCCPCHChannelisationCodeVHCR;
 
@@ -20396,7 +20395,7 @@ typedef Integer<CONSTRAINED, 0, 3> MBMSMCCHConfigurationInfor6RepetitionPeriodCo
 typedef Integer<CONSTRAINED, 7, 10> MBMSMCCHConfigurationInfor6ModificationPeriodCoefficient;
 
 enum MBMSTCTFPresenceValues {
-	false = 0,
+	false_MBMSTCTFPresence = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MBMSTCTFPresence;
 
@@ -20491,8 +20490,8 @@ public:
 };
 
 enum SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384modulationValues {
-	modQPSK = 0,
-	mod16QAM = 1,
+	modQPSK_SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384modulation = 0,
+	mod16QAM_SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384modulation = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384modulation;
 
@@ -20506,8 +20505,8 @@ public:
 };
 
 enum SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768modulationValues {
-	modQPSK = 0,
-	mod16QAM = 1,
+	modQPSK_SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768modulation = 0,
+	mod16QAM_SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768modulation = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768modulation;
 
@@ -20521,16 +20520,16 @@ public:
 };
 
 enum TimeSlotLCRextValues {
-	ts7 = 0,
-	spare3 = 1,
-	spare2 = 2,
-	spare1 = 3,
+	ts7_TimeSlotLCRext = 0,
+	spare3_TimeSlotLCRext = 1,
+	spare2_TimeSlotLCRext = 2,
+	spare1_TimeSlotLCRext = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> TimeSlotLCRext;
 
 enum SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128modulationValues {
-	modQPSK = 0,
-	mod16QAM = 1,
+	modQPSK_SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128modulation = 0,
+	mod16QAM_SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128modulation = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128modulation;
 
@@ -20631,7 +20630,7 @@ public:
 };
 
 enum SecondaryCellMIMOparametersFDDv950extprecodingWeightSetRestrictionValues {
-	true = 0,
+	true_SecondaryCellMIMOparametersFDDv950extprecodingWeightSetRestriction = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> SecondaryCellMIMOparametersFDDv950extprecodingWeightSetRestriction;
 
@@ -20647,10 +20646,10 @@ public:
 typedef Boolean ServingCellChangeMACreset;
 
 enum ServingCellChangeMsgTypeValues {
-	radioBearerSetup = 0,
-	radioBearerReconfiguration = 1,
-	transportChannelReconfiguration = 2,
-	physicalChannelReconfiguration = 3,
+	radioBearerSetup_ServingCellChangeMsgType = 0,
+	radioBearerReconfiguration_ServingCellChangeMsgType = 1,
+	transportChannelReconfiguration_ServingCellChangeMsgType = 2,
+	physicalChannelReconfiguration_ServingCellChangeMsgType = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> ServingCellChangeMsgType;
 
@@ -20679,13 +20678,13 @@ public:
 typedef Integer<CONSTRAINED, 0, 7> SpecialBurstScheduling;
 
 enum SpreadingFactorValues {
-	sf4 = 0,
-	sf8 = 1,
-	sf16 = 2,
-	sf32 = 3,
-	sf64 = 4,
-	sf128 = 5,
-	sf256 = 6,
+	sf4_SpreadingFactor = 0,
+	sf8_SpreadingFactor = 1,
+	sf16_SpreadingFactor = 2,
+	sf32_SpreadingFactor = 3,
+	sf64_SpreadingFactor = 4,
+	sf128_SpreadingFactor = 5,
+	sf256_SpreadingFactor = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> SpreadingFactor;
 
@@ -20703,10 +20702,10 @@ typedef BitString<CONSTRAINED> SynchronisationParametersr4SyncULCodesBitmap;
 typedef Integer<CONSTRAINED, 0, 62> SynchronisationParametersr4PrxUpPCHdes;
 
 enum SYNCULProcedurer4max_SYNC_UL_TransmissionsValues {
-	tr1 = 0,
-	tr2 = 1,
-	tr4 = 2,
-	tr8 = 3,
+	tr1_SYNCULProcedurer4max_SYNC_UL_Transmissions = 0,
+	tr2_SYNCULProcedurer4max_SYNC_UL_Transmissions = 1,
+	tr4_SYNCULProcedurer4max_SYNC_UL_Transmissions = 2,
+	tr8_SYNCULProcedurer4max_SYNC_UL_Transmissions = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> SYNCULProcedurer4max_SYNC_UL_Transmissions;
 
@@ -20742,19 +20741,19 @@ public:
 typedef SequenceOf<TDDMBSFNTSlotInfo, CONSTRAINED, 1, maxTS> TDDMBSFNInformation;
 
 enum TFCControlDurationValues {
-	tfc_cd1 = 0,
-	tfc_cd2 = 1,
-	tfc_cd4 = 2,
-	tfc_cd8 = 3,
-	tfc_cd16 = 4,
-	tfc_cd24 = 5,
-	tfc_cd32 = 6,
-	tfc_cd48 = 7,
-	tfc_cd64 = 8,
-	tfc_cd128 = 9,
-	tfc_cd192 = 10,
-	tfc_cd256 = 11,
-	tfc_cd512 = 12,
+	tfc_cd1_TFCControlDuration = 0,
+	tfc_cd2_TFCControlDuration = 1,
+	tfc_cd4_TFCControlDuration = 2,
+	tfc_cd8_TFCControlDuration = 3,
+	tfc_cd16_TFCControlDuration = 4,
+	tfc_cd24_TFCControlDuration = 5,
+	tfc_cd32_TFCControlDuration = 6,
+	tfc_cd48_TFCControlDuration = 7,
+	tfc_cd64_TFCControlDuration = 8,
+	tfc_cd128_TFCControlDuration = 9,
+	tfc_cd192_TFCControlDuration = 10,
+	tfc_cd256_TFCControlDuration = 11,
+	tfc_cd512_TFCControlDuration = 12,
 };
 typedef Enumerated<CONSTRAINED, 12> TFCControlDuration;
 
@@ -20773,7 +20772,7 @@ public:
 };
 
 enum UL16QAMConfigmac_es_e_resetIndicatorValues {
-	true = 0,
+	true_UL16QAMConfigmac_es_e_resetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UL16QAMConfigmac_es_e_resetIndicator;
 
@@ -21541,7 +21540,7 @@ public:
 };
 
 enum ULEDCHInformationr6mac_es_e_resetIndicatorValues {
-	true = 0,
+	true_ULEDCHInformationr6mac_es_e_resetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> ULEDCHInformationr6mac_es_e_resetIndicator;
 
@@ -21555,7 +21554,7 @@ public:
 };
 
 enum ULEDCHInformationr7mac_es_e_resetIndicatorValues {
-	true = 0,
+	true_ULEDCHInformationr7mac_es_e_resetIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> ULEDCHInformationr7mac_es_e_resetIndicator;
 
@@ -21601,14 +21600,14 @@ typedef Integer<CONSTRAINED, -2048, 2047> AcquisitionSatInfoDoppler0thOrder;
 typedef Integer<CONSTRAINED, -42, 21> ExtraDopplerInfoDoppler1stOrder;
 
 enum DopplerUncertaintyValues {
-	hz12_5 = 0,
-	hz25 = 1,
-	hz50 = 2,
-	hz100 = 3,
-	hz200 = 4,
-	spare3 = 5,
-	spare2 = 6,
-	spare1 = 7,
+	hz12_5_DopplerUncertainty = 0,
+	hz25_DopplerUncertainty = 1,
+	hz50_DopplerUncertainty = 2,
+	hz100_DopplerUncertainty = 3,
+	hz200_DopplerUncertainty = 4,
+	spare3_DopplerUncertainty = 5,
+	spare2_DopplerUncertainty = 6,
+	spare1_DopplerUncertainty = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> DopplerUncertainty;
 
@@ -21628,22 +21627,22 @@ typedef Integer<CONSTRAINED, 0, 19> AcquisitionSatInfoIntegerCodePhase;
 typedef Integer<CONSTRAINED, 0, 3> AcquisitionSatInfoGpsBitNumber;
 
 enum CodePhaseSearchWindowValues {
-	w1023 = 0,
-	w1 = 1,
-	w2 = 2,
-	w3 = 3,
-	w4 = 4,
-	w6 = 5,
-	w8 = 6,
-	w12 = 7,
-	w16 = 8,
-	w24 = 9,
-	w32 = 10,
-	w48 = 11,
-	w64 = 12,
-	w96 = 13,
-	w128 = 14,
-	w192 = 15,
+	w1023_CodePhaseSearchWindow = 0,
+	w1_CodePhaseSearchWindow = 1,
+	w2_CodePhaseSearchWindow = 2,
+	w3_CodePhaseSearchWindow = 3,
+	w4_CodePhaseSearchWindow = 4,
+	w6_CodePhaseSearchWindow = 5,
+	w8_CodePhaseSearchWindow = 6,
+	w12_CodePhaseSearchWindow = 7,
+	w16_CodePhaseSearchWindow = 8,
+	w24_CodePhaseSearchWindow = 9,
+	w32_CodePhaseSearchWindow = 10,
+	w48_CodePhaseSearchWindow = 11,
+	w64_CodePhaseSearchWindow = 12,
+	w96_CodePhaseSearchWindow = 13,
+	w128_CodePhaseSearchWindow = 14,
+	w192_CodePhaseSearchWindow = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> CodePhaseSearchWindow;
 
@@ -22007,38 +22006,38 @@ public:
 typedef SequenceOf<AuxInfoGANSSID3element, CONSTRAINED, 1,  maxGANSSSat> AuxInfoGANSSID3;
 
 enum AverageRLCBufferPayloadValues {
-	pla0 = 0,
-	pla4 = 1,
-	pla8 = 2,
-	pla16 = 3,
-	pla32 = 4,
-	pla64 = 5,
-	pla128 = 6,
-	pla256 = 7,
-	pla512 = 8,
-	pla1024 = 9,
-	pla2k = 10,
-	pla4k = 11,
-	pla8k = 12,
-	pla16k = 13,
-	pla32k = 14,
-	pla64k = 15,
-	pla128k = 16,
-	pla256k = 17,
-	pla512k = 18,
-	pla1024k = 19,
-	spare12 = 20,
-	spare11 = 21,
-	spare10 = 22,
-	spare9 = 23,
-	spare8 = 24,
-	spare7 = 25,
-	spare6 = 26,
-	spare5 = 27,
-	spare4 = 28,
-	spare3 = 29,
-	spare2 = 30,
-	spare1 = 31,
+	pla0_AverageRLCBufferPayload = 0,
+	pla4_AverageRLCBufferPayload = 1,
+	pla8_AverageRLCBufferPayload = 2,
+	pla16_AverageRLCBufferPayload = 3,
+	pla32_AverageRLCBufferPayload = 4,
+	pla64_AverageRLCBufferPayload = 5,
+	pla128_AverageRLCBufferPayload = 6,
+	pla256_AverageRLCBufferPayload = 7,
+	pla512_AverageRLCBufferPayload = 8,
+	pla1024_AverageRLCBufferPayload = 9,
+	pla2k_AverageRLCBufferPayload = 10,
+	pla4k_AverageRLCBufferPayload = 11,
+	pla8k_AverageRLCBufferPayload = 12,
+	pla16k_AverageRLCBufferPayload = 13,
+	pla32k_AverageRLCBufferPayload = 14,
+	pla64k_AverageRLCBufferPayload = 15,
+	pla128k_AverageRLCBufferPayload = 16,
+	pla256k_AverageRLCBufferPayload = 17,
+	pla512k_AverageRLCBufferPayload = 18,
+	pla1024k_AverageRLCBufferPayload = 19,
+	spare12_AverageRLCBufferPayload = 20,
+	spare11_AverageRLCBufferPayload = 21,
+	spare10_AverageRLCBufferPayload = 22,
+	spare9_AverageRLCBufferPayload = 23,
+	spare8_AverageRLCBufferPayload = 24,
+	spare7_AverageRLCBufferPayload = 25,
+	spare6_AverageRLCBufferPayload = 26,
+	spare5_AverageRLCBufferPayload = 27,
+	spare4_AverageRLCBufferPayload = 28,
+	spare3_AverageRLCBufferPayload = 29,
+	spare2_AverageRLCBufferPayload = 30,
+	spare1_AverageRLCBufferPayload = 31,
 };
 typedef Enumerated<CONSTRAINED, 31> AverageRLCBufferPayload;
 
@@ -22062,8 +22061,8 @@ typedef SequenceOf<BLERMeasurementResults, CONSTRAINED, 1, maxTrCH> BLERMeasurem
 typedef SequenceOf<TransportChannelIdentity, CONSTRAINED, 1, maxTrCH> BLERTransChIdList;
 
 enum BSICVerificationRequiredValues {
-	required = 0,
-	notRequired = 1,
+	required_BSICVerificationRequired = 0,
+	notRequired_BSICVerificationRequired = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> BSICVerificationRequired;
 
@@ -22093,11 +22092,11 @@ public:
 };
 
 enum TriggeringCondition2Values {
-	activeSetCellsOnly = 0,
-	monitoredSetCellsOnly = 1,
-	activeSetAndMonitoredSetCells = 2,
-	detectedSetCellsOnly = 3,
-	detectedSetAndMonitoredSetCells = 4,
+	activeSetCellsOnly_TriggeringCondition2 = 0,
+	monitoredSetCellsOnly_TriggeringCondition2 = 1,
+	activeSetAndMonitoredSetCells_TriggeringCondition2 = 2,
+	detectedSetCellsOnly_TriggeringCondition2 = 3,
+	detectedSetAndMonitoredSetCells_TriggeringCondition2 = 4,
 };
 typedef Enumerated<CONSTRAINED, 4> TriggeringCondition2;
 
@@ -22116,38 +22115,38 @@ typedef SequenceOf<ForbiddenAffectCell, CONSTRAINED, 1, maxCellMeas> ForbiddenAf
 typedef Integer<CONSTRAINED, 0, 20> W;
 
 enum ReportDeactivationThresholdValues {
-	notApplicable = 0,
-	t1 = 1,
-	t2 = 2,
-	t3 = 3,
-	t4 = 4,
-	t5 = 5,
-	t6 = 6,
-	t7 = 7,
+	notApplicable_ReportDeactivationThreshold = 0,
+	t1_ReportDeactivationThreshold = 1,
+	t2_ReportDeactivationThreshold = 2,
+	t3_ReportDeactivationThreshold = 3,
+	t4_ReportDeactivationThreshold = 4,
+	t5_ReportDeactivationThreshold = 5,
+	t6_ReportDeactivationThreshold = 6,
+	t7_ReportDeactivationThreshold = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ReportDeactivationThreshold;
 
 enum ReportingAmountValues {
-	ra1 = 0,
-	ra2 = 1,
-	ra4 = 2,
-	ra8 = 3,
-	ra16 = 4,
-	ra32 = 5,
-	ra64 = 6,
-	ra_Infinity = 7,
+	ra1_ReportingAmount = 0,
+	ra2_ReportingAmount = 1,
+	ra4_ReportingAmount = 2,
+	ra8_ReportingAmount = 3,
+	ra16_ReportingAmount = 4,
+	ra32_ReportingAmount = 5,
+	ra64_ReportingAmount = 6,
+	ra_Infinity_ReportingAmount = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ReportingAmount;
 
 enum ReportingIntervalValues {
-	noPeriodicalreporting = 0,
-	ri0_25 = 1,
-	ri0_5 = 2,
-	ri1 = 3,
-	ri2 = 4,
-	ri4 = 5,
-	ri8 = 6,
-	ri16 = 7,
+	noPeriodicalreporting_ReportingInterval = 0,
+	ri0_25_ReportingInterval = 1,
+	ri0_5_ReportingInterval = 2,
+	ri1_ReportingInterval = 3,
+	ri2_ReportingInterval = 4,
+	ri4_ReportingInterval = 5,
+	ri8_ReportingInterval = 6,
+	ri16_ReportingInterval = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ReportingInterval;
 
@@ -22161,9 +22160,9 @@ public:
 };
 
 enum TriggeringCondition1Values {
-	activeSetCellsOnly = 0,
-	monitoredSetCellsOnly = 1,
-	activeSetAndMonitoredSetCells = 2,
+	activeSetCellsOnly_TriggeringCondition1 = 0,
+	monitoredSetCellsOnly_TriggeringCondition1 = 1,
+	activeSetAndMonitoredSetCells_TriggeringCondition1 = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> TriggeringCondition1;
 
@@ -22177,14 +22176,14 @@ public:
 };
 
 enum ReplacementActivationThresholdValues {
-	notApplicable = 0,
-	t1 = 1,
-	t2 = 2,
-	t3 = 3,
-	t4 = 4,
-	t5 = 5,
-	t6 = 6,
-	t7 = 7,
+	notApplicable_ReplacementActivationThreshold = 0,
+	t1_ReplacementActivationThreshold = 1,
+	t2_ReplacementActivationThreshold = 2,
+	t3_ReplacementActivationThreshold = 3,
+	t4_ReplacementActivationThreshold = 4,
+	t5_ReplacementActivationThreshold = 5,
+	t6_ReplacementActivationThreshold = 6,
+	t7_ReplacementActivationThreshold = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ReplacementActivationThreshold;
 
@@ -22232,58 +22231,58 @@ public:
 typedef Integer<CONSTRAINED, 0, 15> Hysteresis;
 
 enum TimeToTriggerValues {
-	ttt0 = 0,
-	ttt10 = 1,
-	ttt20 = 2,
-	ttt40 = 3,
-	ttt60 = 4,
-	ttt80 = 5,
-	ttt100 = 6,
-	ttt120 = 7,
-	ttt160 = 8,
-	ttt200 = 9,
-	ttt240 = 10,
-	tt320 = 11,
-	ttt640 = 12,
-	ttt1280 = 13,
-	ttt2560 = 14,
-	ttt5000 = 15,
+	ttt0_TimeToTrigger = 0,
+	ttt10_TimeToTrigger = 1,
+	ttt20_TimeToTrigger = 2,
+	ttt40_TimeToTrigger = 3,
+	ttt60_TimeToTrigger = 4,
+	ttt80_TimeToTrigger = 5,
+	ttt100_TimeToTrigger = 6,
+	ttt120_TimeToTrigger = 7,
+	ttt160_TimeToTrigger = 8,
+	ttt200_TimeToTrigger = 9,
+	ttt240_TimeToTrigger = 10,
+	tt320_TimeToTrigger = 11,
+	ttt640_TimeToTrigger = 12,
+	ttt1280_TimeToTrigger = 13,
+	ttt2560_TimeToTrigger = 14,
+	ttt5000_TimeToTrigger = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> TimeToTrigger;
 
 enum MaxNumberOfReportingCellsType1Values {
-	e1 = 0,
-	e2 = 1,
-	e3 = 2,
-	e4 = 3,
-	e5 = 4,
-	e6 = 5,
+	e1_MaxNumberOfReportingCellsType1 = 0,
+	e2_MaxNumberOfReportingCellsType1 = 1,
+	e3_MaxNumberOfReportingCellsType1 = 2,
+	e4_MaxNumberOfReportingCellsType1 = 3,
+	e5_MaxNumberOfReportingCellsType1 = 4,
+	e6_MaxNumberOfReportingCellsType1 = 5,
 };
 typedef Enumerated<CONSTRAINED, 5> MaxNumberOfReportingCellsType1;
 
 enum MaxNumberOfReportingCellsType3Values {
-	viactCellsPlus1 = 0,
-	viactCellsPlus2 = 1,
-	viactCellsPlus3 = 2,
-	viactCellsPlus4 = 3,
-	viactCellsPlus5 = 4,
-	viactCellsPlus6 = 5,
+	viactCellsPlus1_MaxNumberOfReportingCellsType3 = 0,
+	viactCellsPlus2_MaxNumberOfReportingCellsType3 = 1,
+	viactCellsPlus3_MaxNumberOfReportingCellsType3 = 2,
+	viactCellsPlus4_MaxNumberOfReportingCellsType3 = 3,
+	viactCellsPlus5_MaxNumberOfReportingCellsType3 = 4,
+	viactCellsPlus6_MaxNumberOfReportingCellsType3 = 5,
 };
 typedef Enumerated<CONSTRAINED, 5> MaxNumberOfReportingCellsType3;
 
 enum MaxNumberOfReportingCellsType2Values {
-	e1 = 0,
-	e2 = 1,
-	e3 = 2,
-	e4 = 3,
-	e5 = 4,
-	e6 = 5,
-	e7 = 6,
-	e8 = 7,
-	e9 = 8,
-	e10 = 9,
-	e11 = 10,
-	e12 = 11,
+	e1_MaxNumberOfReportingCellsType2 = 0,
+	e2_MaxNumberOfReportingCellsType2 = 1,
+	e3_MaxNumberOfReportingCellsType2 = 2,
+	e4_MaxNumberOfReportingCellsType2 = 3,
+	e5_MaxNumberOfReportingCellsType2 = 4,
+	e6_MaxNumberOfReportingCellsType2 = 5,
+	e7_MaxNumberOfReportingCellsType2 = 6,
+	e8_MaxNumberOfReportingCellsType2 = 7,
+	e9_MaxNumberOfReportingCellsType2 = 8,
+	e10_MaxNumberOfReportingCellsType2 = 9,
+	e11_MaxNumberOfReportingCellsType2 = 10,
+	e12_MaxNumberOfReportingCellsType2 = 11,
 };
 typedef Enumerated<CONSTRAINED, 11> MaxNumberOfReportingCellsType2;
 
@@ -22316,22 +22315,22 @@ public:
 };
 
 enum ReportingIntervalLongValues {
-	ril0 = 0,
-	ril0_25 = 1,
-	ril0_5 = 2,
-	ril1 = 3,
-	ril2 = 4,
-	ril3 = 5,
-	ril4 = 6,
-	ril6 = 7,
-	ril8 = 8,
-	ril12 = 9,
-	ril16 = 10,
-	ril20 = 11,
-	ril24 = 12,
-	ril28 = 13,
-	ril32 = 14,
-	ril64 = 15,
+	ril0_ReportingIntervalLong = 0,
+	ril0_25_ReportingIntervalLong = 1,
+	ril0_5_ReportingIntervalLong = 2,
+	ril1_ReportingIntervalLong = 3,
+	ril2_ReportingIntervalLong = 4,
+	ril3_ReportingIntervalLong = 5,
+	ril4_ReportingIntervalLong = 6,
+	ril6_ReportingIntervalLong = 7,
+	ril8_ReportingIntervalLong = 8,
+	ril12_ReportingIntervalLong = 9,
+	ril16_ReportingIntervalLong = 10,
+	ril20_ReportingIntervalLong = 11,
+	ril24_ReportingIntervalLong = 12,
+	ril28_ReportingIntervalLong = 13,
+	ril32_ReportingIntervalLong = 14,
+	ril64_ReportingIntervalLong = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> ReportingIntervalLong;
 
@@ -22424,8 +22423,8 @@ public:
 typedef Integer<CONSTRAINED, 0, maxMeasOccasionPattern_1> CellDCHMeasOccasionPatternLCRPatternIdentifier;
 
 enum CellDCHMeasOccasionPatternLCRstatusFlagValues {
-	activate = 0,
-	deactivate = 1,
+	activate_CellDCHMeasOccasionPatternLCRstatusFlag = 0,
+	deactivate_CellDCHMeasOccasionPatternLCRstatusFlag = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> CellDCHMeasOccasionPatternLCRstatusFlag;
 
@@ -22603,14 +22602,14 @@ typedef Integer<CONSTRAINED, -50, 50> QOffsetSN;
 typedef Null PenaltyTimeRSCPNotUsed;
 
 enum TemporaryOffset1Values {
-	to3 = 0,
-	to6 = 1,
-	to9 = 2,
-	to12 = 3,
-	to15 = 4,
-	to18 = 5,
-	to21 = 6,
-	infinite = 7,
+	to3_TemporaryOffset1 = 0,
+	to6_TemporaryOffset1 = 1,
+	to9_TemporaryOffset1 = 2,
+	to12_TemporaryOffset1 = 3,
+	to15_TemporaryOffset1 = 4,
+	to18_TemporaryOffset1 = 5,
+	to21_TemporaryOffset1 = 6,
+	infinite_TemporaryOffset1 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> TemporaryOffset1;
 
@@ -23059,14 +23058,14 @@ public:
 typedef Null PenaltyTimeECN0NotUsed;
 
 enum TemporaryOffset2Values {
-	to2 = 0,
-	to3 = 1,
-	to4 = 2,
-	to6 = 3,
-	to8 = 4,
-	to10 = 5,
-	to12 = 6,
-	infinite = 7,
+	to2_TemporaryOffset2 = 0,
+	to3_TemporaryOffset2 = 1,
+	to4_TemporaryOffset2 = 2,
+	to6_TemporaryOffset2 = 3,
+	to8_TemporaryOffset2 = 4,
+	to10_TemporaryOffset2 = 5,
+	to12_TemporaryOffset2 = 6,
+	infinite_TemporaryOffset2 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> TemporaryOffset2;
 
@@ -23325,7 +23324,7 @@ public:
 };
 
 enum CellMeasuredResultsv920extcsgMemberIndicationValues {
-	member = 0,
+	member_CellMeasuredResultsv920extcsgMemberIndication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> CellMeasuredResultsv920extcsgMemberIndication;
 
@@ -23365,9 +23364,9 @@ public:
 typedef SequenceOf<PrimaryCCPCHInfoLCRr4, CONSTRAINED, 1, maxCellMeas> CellMeasurementEventResultsLCRr4;
 
 enum SFNSFNOTDTypeValues {
-	noReport = 0,
-	type1 = 1,
-	type2 = 2,
+	noReport_SFNSFNOTDType = 0,
+	type1_SFNSFNOTDType = 1,
+	type2_SFNSFNOTDType = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> SFNSFNOTDType;
 
@@ -23608,12 +23607,12 @@ typedef SequenceOf<CSGInterFreqCellInfo, CONSTRAINED, 1, maxFreq> CSGInterFreqCe
 
 
 enum CSGProximityDetectionuTRACSGProximityDetecValues {
-	enable = 0,
+	enable_CSGProximityDetectionuTRACSGProximityDetec = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> CSGProximityDetectionuTRACSGProximityDetec;
 
 enum CSGProximityDetectione_UTRACSGProximityDetecValues {
-	enable = 0,
+	enable_CSGProximityDetectione_UTRACSGProximityDetec = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> CSGProximityDetectione_UTRACSGProximityDetec;
 
@@ -23627,8 +23626,8 @@ public:
 };
 
 enum CSGProximityIndicationcSGproximityIndValues {
-	entering = 0,
-	leaving = 1,
+	entering_CSGProximityIndicationcSGproximityInd = 0,
+	leaving_CSGProximityIndicationcSGproximityInd = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> CSGProximityIndicationcSGproximityInd;
 
@@ -23713,14 +23712,14 @@ public:
 };
 
 enum GANSSStatusHealthValues {
-	udre_scale_1dot0 = 0,
-	udre_scale_0dot75 = 1,
-	udre_scale_0dot5 = 2,
-	udre_scale_0dot3 = 3,
-	udre_scale_0dot2 = 4,
-	udre_scale_0dot1 = 5,
-	no_data = 6,
-	invalid_data = 7,
+	udre_scale_1dot0_GANSSStatusHealth = 0,
+	udre_scale_0dot75_GANSSStatusHealth = 1,
+	udre_scale_0dot5_GANSSStatusHealth = 2,
+	udre_scale_0dot3_GANSSStatusHealth = 3,
+	udre_scale_0dot2_GANSSStatusHealth = 4,
+	udre_scale_0dot1_GANSSStatusHealth = 5,
+	no_data_GANSSStatusHealth = 6,
+	invalid_data_GANSSStatusHealth = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> GANSSStatusHealth;
 
@@ -23729,10 +23728,10 @@ typedef Integer<CONSTRAINED, 0, 63> DGANSSSignalInformationSatId;
 typedef BitString<CONSTRAINED, 10, 10> DGANSSSignalInformationIodedganss;
 
 enum UDREValues {
-	lessThan1 = 0,
-	between1_and_4 = 1,
-	between4_and_8 = 2,
-	over8 = 3,
+	lessThan1_UDRE = 0,
+	between1_and_4_UDRE = 1,
+	between4_and_8_UDRE = 2,
+	over8_UDRE = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> UDRE;
 
@@ -23761,26 +23760,26 @@ typedef Integer<CONSTRAINED, 0, 63> DGANSSSignalInformationr9SatId;
 typedef BitString<CONSTRAINED, 10, 10> DGANSSSignalInformationr9Iodedganss;
 
 enum UDREGrowthRateValues {
-	growth_1_5 = 0,
-	growth_2 = 1,
-	growth_4 = 2,
-	growth_6 = 3,
-	growth_8 = 4,
-	growth_10 = 5,
-	growth_12 = 6,
-	growth_16 = 7,
+	growth_1_5_UDREGrowthRate = 0,
+	growth_2_UDREGrowthRate = 1,
+	growth_4_UDREGrowthRate = 2,
+	growth_6_UDREGrowthRate = 3,
+	growth_8_UDREGrowthRate = 4,
+	growth_10_UDREGrowthRate = 5,
+	growth_12_UDREGrowthRate = 6,
+	growth_16_UDREGrowthRate = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> UDREGrowthRate;
 
 enum UDREValidityTimeValues {
-	val_20sec = 0,
-	val_40sec = 1,
-	val_80sec = 2,
-	val_160sec = 3,
-	val_320sec = 4,
-	val_640sec = 5,
-	val_1280sec = 6,
-	val_2560sec = 7,
+	val_20sec_UDREValidityTime = 0,
+	val_40sec_UDREValidityTime = 1,
+	val_80sec_UDREValidityTime = 2,
+	val_160sec_UDREValidityTime = 3,
+	val_320sec_UDREValidityTime = 4,
+	val_640sec_UDREValidityTime = 5,
+	val_1280sec_UDREValidityTime = 6,
+	val_2560sec_UDREValidityTime = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> UDREValidityTime;
 
@@ -23872,20 +23871,20 @@ typedef SequenceOf<DGPSCorrectionSatInfor9, CONSTRAINED, 1, maxSat> DGPSCorrecti
 typedef SequenceOf<DGPSCorrectionSatInfov920ext, CONSTRAINED, 1, maxSat> DGPSCorrectionSatInfoListv920ext;
 
 enum DiffCorrectionStatusValues {
-	udre_1_0 = 0,
-	udre_0_75 = 1,
-	udre_0_5 = 2,
-	udre_0_3 = 3,
-	udre_0_2 = 4,
-	udre_0_1 = 5,
-	noData = 6,
-	invalidData = 7,
+	udre_1_0_DiffCorrectionStatus = 0,
+	udre_0_75_DiffCorrectionStatus = 1,
+	udre_0_5_DiffCorrectionStatus = 2,
+	udre_0_3_DiffCorrectionStatus = 3,
+	udre_0_2_DiffCorrectionStatus = 4,
+	udre_0_1_DiffCorrectionStatus = 5,
+	noData_DiffCorrectionStatus = 6,
+	invalidData_DiffCorrectionStatus = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> DiffCorrectionStatus;
 
 enum EllipsoidPointlatitudeSignValues {
-	north = 0,
-	south = 1,
+	north_EllipsoidPointlatitudeSign = 0,
+	south_EllipsoidPointlatitudeSign = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EllipsoidPointlatitudeSign;
 
@@ -23903,8 +23902,8 @@ public:
 };
 
 enum EllipsoidPointAltitudelatitudeSignValues {
-	north = 0,
-	south = 1,
+	north_EllipsoidPointAltitudelatitudeSign = 0,
+	south_EllipsoidPointAltitudelatitudeSign = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EllipsoidPointAltitudelatitudeSign;
 
@@ -23913,8 +23912,8 @@ typedef Integer<CONSTRAINED, 0, 8388607> EllipsoidPointAltitudeLatitude;
 typedef Integer<CONSTRAINED, -8388608, 8388607> EllipsoidPointAltitudeLongitude;
 
 enum EllipsoidPointAltitudealtitudeDirectionValues {
-	height = 0,
-	depth = 1,
+	height_EllipsoidPointAltitudealtitudeDirection = 0,
+	depth_EllipsoidPointAltitudealtitudeDirection = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EllipsoidPointAltitudealtitudeDirection;
 
@@ -23930,8 +23929,8 @@ public:
 };
 
 enum EllipsoidPointAltitudeEllipsoidelatitudeSignValues {
-	north = 0,
-	south = 1,
+	north_EllipsoidPointAltitudeEllipsoidelatitudeSign = 0,
+	south_EllipsoidPointAltitudeEllipsoidelatitudeSign = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EllipsoidPointAltitudeEllipsoidelatitudeSign;
 
@@ -23940,8 +23939,8 @@ typedef Integer<CONSTRAINED, 0, 8388607> EllipsoidPointAltitudeEllipsoideLatitud
 typedef Integer<CONSTRAINED, -8388608, 8388607> EllipsoidPointAltitudeEllipsoideLongitude;
 
 enum EllipsoidPointAltitudeEllipsoidealtitudeDirectionValues {
-	height = 0,
-	depth = 1,
+	height_EllipsoidPointAltitudeEllipsoidealtitudeDirection = 0,
+	depth_EllipsoidPointAltitudeEllipsoidealtitudeDirection = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EllipsoidPointAltitudeEllipsoidealtitudeDirection;
 
@@ -23967,8 +23966,8 @@ public:
 };
 
 enum EllipsoidPointUncertCirclelatitudeSignValues {
-	north = 0,
-	south = 1,
+	north_EllipsoidPointUncertCirclelatitudeSign = 0,
+	south_EllipsoidPointUncertCirclelatitudeSign = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EllipsoidPointUncertCirclelatitudeSign;
 
@@ -23988,8 +23987,8 @@ public:
 };
 
 enum EllipsoidPointUncertEllipselatitudeSignValues {
-	north = 0,
-	south = 1,
+	north_EllipsoidPointUncertEllipselatitudeSign = 0,
+	south_EllipsoidPointUncertEllipselatitudeSign = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> EllipsoidPointUncertEllipselatitudeSign;
 
@@ -24015,10 +24014,10 @@ public:
 };
 
 enum EnvironmentCharacterisationValues {
-	possibleHeavyMultipathNLOS = 0,
-	lightMultipathLOS = 1,
-	notDefined = 2,
-	spare = 3,
+	possibleHeavyMultipathNLOS_EnvironmentCharacterisation = 0,
+	lightMultipathLOS_EnvironmentCharacterisation = 1,
+	notDefined_EnvironmentCharacterisation = 2,
+	spare_EnvironmentCharacterisation = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> EnvironmentCharacterisation;
 
@@ -24036,10 +24035,10 @@ public:
 typedef SequenceOf<EutraEventResult, CONSTRAINED, 1, maxReportedEUTRAFreqs> EutraEventResultList;
 
 enum EventIDInterRATValues {
-	e3a = 0,
-	e3b = 1,
-	e3c = 2,
-	e3d = 3,
+	e3a_EventIDInterRAT = 0,
+	e3b_EventIDInterRAT = 1,
+	e3c_EventIDInterRAT = 2,
+	e3d_EventIDInterRAT = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> EventIDInterRAT;
 
@@ -24053,12 +24052,12 @@ public:
 };
 
 enum EUTRAMeasurementBandwidthValues {
-	mbw6 = 0,
-	mbw15 = 1,
-	mbw25 = 2,
-	mbw50 = 3,
-	mbw75 = 4,
-	mbw100 = 5,
+	mbw6_EUTRAMeasurementBandwidth = 0,
+	mbw15_EUTRAMeasurementBandwidth = 1,
+	mbw25_EUTRAMeasurementBandwidth = 2,
+	mbw50_EUTRAMeasurementBandwidth = 3,
+	mbw75_EUTRAMeasurementBandwidth = 4,
+	mbw100_EUTRAMeasurementBandwidth = 5,
 };
 typedef Enumerated<CONSTRAINED, 5> EUTRAMeasurementBandwidth;
 
@@ -24201,7 +24200,7 @@ public:
 };
 
 enum EUTRASIacquisitionResultscsgMemberIndicationValues {
-	member = 0,
+	member_EUTRASIacquisitionResultscsgMemberIndication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> EUTRASIacquisitionResultscsgMemberIndication;
 
@@ -24535,34 +24534,34 @@ public:
 };
 
 enum EventIDInterFreqValues {
-	e2a = 0,
-	e2b = 1,
-	e2c = 2,
-	e2d = 3,
-	e2e = 4,
-	e2f = 5,
-	spare2 = 6,
-	spare1 = 7,
+	e2a_EventIDInterFreq = 0,
+	e2b_EventIDInterFreq = 1,
+	e2c_EventIDInterFreq = 2,
+	e2d_EventIDInterFreq = 3,
+	e2e_EventIDInterFreq = 4,
+	e2f_EventIDInterFreq = 5,
+	spare2_EventIDInterFreq = 6,
+	spare1_EventIDInterFreq = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> EventIDInterFreq;
 
 enum EventIDIntraFreqValues {
-	e1a = 0,
-	e1b = 1,
-	e1c = 2,
-	e1d = 3,
-	e1e = 4,
-	e1f = 5,
-	e1g = 6,
-	e1h = 7,
-	e1i = 8,
-	e1j = 9,
-	spare6 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	e1a_EventIDIntraFreq = 0,
+	e1b_EventIDIntraFreq = 1,
+	e1c_EventIDIntraFreq = 2,
+	e1d_EventIDIntraFreq = 3,
+	e1e_EventIDIntraFreq = 4,
+	e1f_EventIDIntraFreq = 5,
+	e1g_EventIDIntraFreq = 6,
+	e1h_EventIDIntraFreq = 7,
+	e1i_EventIDIntraFreq = 8,
+	e1j_EventIDIntraFreq = 9,
+	spare6_EventIDIntraFreq = 10,
+	spare5_EventIDIntraFreq = 11,
+	spare4_EventIDIntraFreq = 12,
+	spare3_EventIDIntraFreq = 13,
+	spare2_EventIDIntraFreq = 14,
+	spare1_EventIDIntraFreq = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> EventIDIntraFreq;
 
@@ -24615,8 +24614,8 @@ public:
 };
 
 enum TrafficVolumeEventTypeValues {
-	e4a = 0,
-	e4b = 1,
+	e4a_TrafficVolumeEventType = 0,
+	e4b_TrafficVolumeEventType = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> TrafficVolumeEventType;
 
@@ -24893,10 +24892,10 @@ typedef Integer<CONSTRAINED, 0, 1022> GPSMeasurementParamWholeGPSChips;
 typedef Integer<CONSTRAINED, 0, 1023> GPSMeasurementParamFractionalGPSChips;
 
 enum MultipathIndicatorValues {
-	nm = 0,
-	low = 1,
-	medium = 2,
-	high = 3,
+	nm_MultipathIndicator = 0,
+	low_MultipathIndicator = 1,
+	medium_MultipathIndicator = 2,
+	high_MultipathIndicator = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> MultipathIndicator;
 
@@ -25054,8 +25053,8 @@ public:
 };
 
 enum HorizontalWithVerticalVelocityverticalSpeedDirectionValues {
-	upward = 0,
-	downward = 1,
+	upward_HorizontalWithVerticalVelocityverticalSpeedDirection = 0,
+	downward_HorizontalWithVerticalVelocityverticalSpeedDirection = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> HorizontalWithVerticalVelocityverticalSpeedDirection;
 
@@ -25090,8 +25089,8 @@ public:
 };
 
 enum HorizontalWithVerticalVelocityAndUncertaintyverticalSpeedDirectionValues {
-	upward = 0,
-	downward = 1,
+	upward_HorizontalWithVerticalVelocityAndUncertaintyverticalSpeedDirection = 0,
+	downward_HorizontalWithVerticalVelocityAndUncertaintyverticalSpeedDirection = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> HorizontalWithVerticalVelocityAndUncertaintyverticalSpeedDirection;
 
@@ -25241,14 +25240,14 @@ public:
 typedef Integer<CONSTRAINED, -42,  21> ExtraDopplerDopplerFirstOrder;
 
 enum ExtraDopplerdopplerUncertaintyValues {
-	dopU40 = 0,
-	dopU20 = 1,
-	dopU10 = 2,
-	dopU5 = 3,
-	dopU2_5 = 4,
-	spare3 = 5,
-	spare2 = 6,
-	spare1 = 7,
+	dopU40_ExtraDopplerdopplerUncertainty = 0,
+	dopU20_ExtraDopplerdopplerUncertainty = 1,
+	dopU10_ExtraDopplerdopplerUncertainty = 2,
+	dopU5_ExtraDopplerdopplerUncertainty = 3,
+	dopU2_5_ExtraDopplerdopplerUncertainty = 4,
+	spare3_ExtraDopplerdopplerUncertainty = 5,
+	spare2_ExtraDopplerdopplerUncertainty = 6,
+	spare1_ExtraDopplerdopplerUncertainty = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ExtraDopplerdopplerUncertainty;
 
@@ -25268,8 +25267,8 @@ typedef Boolean FACHMeasurementOccasionInfoInterfreqFDDmeasind;
 typedef Boolean FACHMeasurementOccasionInfoInterfreqTDDmeasind;
 
 enum RATTypeValues {
-	gsm = 0,
-	is2000 = 1,
+	gsm_RATType = 0,
+	is2000_RATType = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> RATType;
 
@@ -25296,35 +25295,35 @@ public:
 };
 
 enum FilterCoefficientValues {
-	fc0 = 0,
-	fc1 = 1,
-	fc2 = 2,
-	fc3 = 3,
-	fc4 = 4,
-	fc5 = 5,
-	fc6 = 6,
-	fc7 = 7,
-	fc8 = 8,
-	fc9 = 9,
-	fc11 = 10,
-	fc13 = 11,
-	fc15 = 12,
-	fc17 = 13,
-	fc19 = 14,
-	spare1 = 15,
+	fc0_FilterCoefficient = 0,
+	fc1_FilterCoefficient = 1,
+	fc2_FilterCoefficient = 2,
+	fc3_FilterCoefficient = 3,
+	fc4_FilterCoefficient = 4,
+	fc5_FilterCoefficient = 5,
+	fc6_FilterCoefficient = 6,
+	fc7_FilterCoefficient = 7,
+	fc8_FilterCoefficient = 8,
+	fc9_FilterCoefficient = 9,
+	fc11_FilterCoefficient = 10,
+	fc13_FilterCoefficient = 11,
+	fc15_FilterCoefficient = 12,
+	fc17_FilterCoefficient = 13,
+	fc19_FilterCoefficient = 14,
+	spare1_FilterCoefficient = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> FilterCoefficient;
 
 typedef Integer<CONSTRAINED, 0, 15> FineSFNSFN;
 
 enum FreqQualityEstimateQuantityFDDValues {
-	cpich_Ec_N0 = 0,
-	cpich_RSCP = 1,
+	cpich_Ec_N0_FreqQualityEstimateQuantityFDD = 0,
+	cpich_RSCP_FreqQualityEstimateQuantityFDD = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> FreqQualityEstimateQuantityFDD;
 
 enum FreqQualityEstimateQuantityTDDValues {
-	primaryCCPCH_RSCP = 0,
+	primaryCCPCH_RSCP_FreqQualityEstimateQuantityTDD = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> FreqQualityEstimateQuantityTDD;
 
@@ -25374,14 +25373,14 @@ typedef Integer<CONSTRAINED, -8388608, 8388607> UEPositioningGANSSTimeModelGanss
 typedef Integer<CONSTRAINED, -64, 63> UEPositioningGANSSTimeModelGanssta2;
 
 enum UEPositioningGANSSTimeModelgnss_to_idValues {
-	gps = 0,
-	galileo = 1,
-	qzss = 2,
-	glonass = 3,
-	spare4 = 4,
-	spare3 = 5,
-	spare2 = 6,
-	spare1 = 7,
+	gps_UEPositioningGANSSTimeModelgnss_to_id = 0,
+	galileo_UEPositioningGANSSTimeModelgnss_to_id = 1,
+	qzss_UEPositioningGANSSTimeModelgnss_to_id = 2,
+	glonass_UEPositioningGANSSTimeModelgnss_to_id = 3,
+	spare4_UEPositioningGANSSTimeModelgnss_to_id = 4,
+	spare3_UEPositioningGANSSTimeModelgnss_to_id = 5,
+	spare2_UEPositioningGANSSTimeModelgnss_to_id = 6,
+	spare1_UEPositioningGANSSTimeModelgnss_to_id = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> UEPositioningGANSSTimeModelgnss_to_id;
 
@@ -25408,7 +25407,7 @@ public:
 };
 
 enum UEPositioningGANSSNavigationModelnon_broadcastIndicationValues {
-	true = 0,
+	true_UEPositioningGANSSNavigationModelnon_broadcastIndication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UEPositioningGANSSNavigationModelnon_broadcastIndication;
 
@@ -25614,19 +25613,19 @@ public:
 };
 
 enum UEPositioningGANSSSBASIDValues {
-	waas = 0,
-	egnos = 1,
-	msas = 2,
-	gagan = 3,
-	spare4 = 4,
-	spare3 = 5,
-	spare2 = 6,
-	spare1 = 7,
+	waas_UEPositioningGANSSSBASID = 0,
+	egnos_UEPositioningGANSSSBASID = 1,
+	msas_UEPositioningGANSSSBASID = 2,
+	gagan_UEPositioningGANSSSBASID = 3,
+	spare4_UEPositioningGANSSSBASID = 4,
+	spare3_UEPositioningGANSSSBASID = 5,
+	spare2_UEPositioningGANSSSBASID = 6,
+	spare1_UEPositioningGANSSSBASID = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> UEPositioningGANSSSBASID;
 
 enum UEPositioningGANSSAddNavigationModelsnon_broadcastIndicationValues {
-	true = 0,
+	true_UEPositioningGANSSAddNavigationModelsnon_broadcastIndication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UEPositioningGANSSAddNavigationModelsnon_broadcastIndication;
 
@@ -26145,17 +26144,17 @@ public:
 };
 
 enum GanssReqGenericDatav860extganssAddNavigationModelValues {
-	true = 0,
+	true_GanssReqGenericDatav860extganssAddNavigationModel = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> GanssReqGenericDatav860extganssAddNavigationModel;
 
 enum GanssReqGenericDatav860extganssAddUTCmodelValues {
-	true = 0,
+	true_GanssReqGenericDatav860extganssAddUTCmodel = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> GanssReqGenericDatav860extganssAddUTCmodel;
 
 enum GanssReqGenericDatav860extganssAuxInfoValues {
-	true = 0,
+	true_GanssReqGenericDatav860extganssAuxInfo = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> GanssReqGenericDatav860extganssAuxInfo;
 
@@ -26679,10 +26678,10 @@ public:
 };
 
 enum IntraFreqMeasQuantityFDDValues {
-	cpich_Ec_N0 = 0,
-	cpich_RSCP = 1,
-	pathloss = 2,
-	dummy = 3,
+	cpich_Ec_N0_IntraFreqMeasQuantityFDD = 0,
+	cpich_RSCP_IntraFreqMeasQuantityFDD = 1,
+	pathloss_IntraFreqMeasQuantityFDD = 2,
+	dummy_IntraFreqMeasQuantityFDD = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> IntraFreqMeasQuantityFDD;
 
@@ -26696,10 +26695,10 @@ public:
 };
 
 enum IntraFreqMeasQuantityTDDValues {
-	primaryCCPCH_RSCP = 0,
-	pathloss = 1,
-	timeslotISCP = 2,
-	dummy = 3,
+	primaryCCPCH_RSCP_IntraFreqMeasQuantityTDD = 0,
+	pathloss_IntraFreqMeasQuantityTDD = 1,
+	timeslotISCP_IntraFreqMeasQuantityTDD = 2,
+	dummy_IntraFreqMeasQuantityTDD = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> IntraFreqMeasQuantityTDD;
 
@@ -26898,8 +26897,8 @@ public:
 };
 
 enum InterFreqRepQuantityRACHFDDValues {
-	cpich_EcN0 = 0,
-	cpich_RSCP = 1,
+	cpich_EcN0_InterFreqRepQuantityRACHFDD = 0,
+	cpich_RSCP_InterFreqRepQuantityRACHFDD = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> InterFreqRepQuantityRACHFDD;
 
@@ -26913,8 +26912,8 @@ public:
 };
 
 enum InterFreqRepQuantityRACHTDDValues {
-	dummy = 0,
-	primaryCCPCH_RSCP = 1,
+	dummy_InterFreqRepQuantityRACHTDD = 0,
+	primaryCCPCH_RSCP_InterFreqRepQuantityRACHTDD = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> InterFreqRepQuantityRACHTDD;
 
@@ -27202,9 +27201,9 @@ public:
 };
 
 enum MeasurementValidityue_StateValues {
-	cell_DCH = 0,
-	all_But_Cell_DCH = 1,
-	all_States = 2,
+	cell_DCH_MeasurementValidityue_State = 0,
+	all_But_Cell_DCH_MeasurementValidityue_State = 1,
+	all_States_MeasurementValidityue_State = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> MeasurementValidityue_State;
 
@@ -27364,11 +27363,11 @@ public:
 };
 
 enum IS2000SpecificMeasInfoValues {
-	frequency = 0,
-	timeslot = 1,
-	colourcode = 2,
-	outputpower = 3,
-	pn_Offset = 4,
+	frequency_IS2000SpecificMeasInfo = 0,
+	timeslot_IS2000SpecificMeasInfo = 1,
+	colourcode_IS2000SpecificMeasInfo = 2,
+	outputpower_IS2000SpecificMeasInfo = 3,
+	pn_Offset_IS2000SpecificMeasInfo = 4,
 };
 typedef Enumerated<CONSTRAINED, 4> IS2000SpecificMeasInfo;
 
@@ -27494,8 +27493,8 @@ public:
 typedef SequenceOf<InterRATEvent, CONSTRAINED, 1, maxMeasEvent> InterRATEventList;
 
 enum MeasurementQuantityGSMValues {
-	gsm_CarrierRSSI = 0,
-	dummy = 1,
+	gsm_CarrierRSSI_MeasurementQuantityGSM = 0,
+	dummy_MeasurementQuantityGSM = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> MeasurementQuantityGSM;
 
@@ -27569,8 +27568,8 @@ public:
 };
 
 enum MeasurementQuantityEUTRAValues {
-	rrsp = 0,
-	rsrq = 1,
+	rrsp_MeasurementQuantityEUTRA = 0,
+	rsrq_MeasurementQuantityEUTRA = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> MeasurementQuantityEUTRA;
 
@@ -27712,8 +27711,8 @@ public:
 };
 
 enum InterRATReportingQuantityr8RatSpecificInfoEutrareportingQuantityValues {
-	measurementQuantity = 0,
-	both = 1,
+	measurementQuantity_InterRATReportingQuantityr8RatSpecificInfoEutrareportingQuantity = 0,
+	both_InterRATReportingQuantityr8RatSpecificInfoEutrareportingQuantity = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> InterRATReportingQuantityr8RatSpecificInfoEutrareportingQuantity;
 
@@ -28106,8 +28105,8 @@ public:
 };
 
 enum IntraFreqMeasQuantityFDDsib3Values {
-	cpich_Ec_N0 = 0,
-	cpich_RSCP = 1,
+	cpich_Ec_N0_IntraFreqMeasQuantityFDDsib3 = 0,
+	cpich_RSCP_IntraFreqMeasQuantityFDDsib3 = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> IntraFreqMeasQuantityFDDsib3;
 
@@ -28125,10 +28124,10 @@ typedef SequenceOf<CellMeasuredResults, CONSTRAINED, 1, maxCellMeas> IntraFreqMe
 typedef SequenceOf<CellMeasuredResultsv920ext, CONSTRAINED, 1, maxCellMeas> IntraFreqMeasuredResultsListv920ext;
 
 enum IntraFreqRepQuantityRACHFDDValues {
-	cpich_EcN0 = 0,
-	cpich_RSCP = 1,
-	pathloss = 2,
-	noReport = 3,
+	cpich_EcN0_IntraFreqRepQuantityRACHFDD = 0,
+	cpich_RSCP_IntraFreqRepQuantityRACHFDD = 1,
+	pathloss_IntraFreqRepQuantityRACHFDD = 2,
+	noReport_IntraFreqRepQuantityRACHFDD = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> IntraFreqRepQuantityRACHFDD;
 
@@ -28142,9 +28141,9 @@ public:
 };
 
 enum IntraFreqRepQuantityRACHTDDValues {
-	timeslotISCP = 0,
-	primaryCCPCH_RSCP = 1,
-	noReport = 2,
+	timeslotISCP_IntraFreqRepQuantityRACHTDD = 0,
+	primaryCCPCH_RSCP_IntraFreqRepQuantityRACHTDD = 1,
+	noReport_IntraFreqRepQuantityRACHTDD = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> IntraFreqRepQuantityRACHTDD;
 
@@ -28177,14 +28176,14 @@ public:
 };
 
 enum MaxReportedCellsOnRACHValues {
-	noReport = 0,
-	currentCell = 1,
-	currentAnd_1_BestNeighbour = 2,
-	currentAnd_2_BestNeighbour = 3,
-	currentAnd_3_BestNeighbour = 4,
-	currentAnd_4_BestNeighbour = 5,
-	currentAnd_5_BestNeighbour = 6,
-	currentAnd_6_BestNeighbour = 7,
+	noReport_MaxReportedCellsOnRACH = 0,
+	currentCell_MaxReportedCellsOnRACH = 1,
+	currentAnd_1_BestNeighbour_MaxReportedCellsOnRACH = 2,
+	currentAnd_2_BestNeighbour_MaxReportedCellsOnRACH = 3,
+	currentAnd_3_BestNeighbour_MaxReportedCellsOnRACH = 4,
+	currentAnd_4_BestNeighbour_MaxReportedCellsOnRACH = 5,
+	currentAnd_5_BestNeighbour_MaxReportedCellsOnRACH = 6,
+	currentAnd_6_BestNeighbour_MaxReportedCellsOnRACH = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> MaxReportedCellsOnRACH;
 
@@ -28198,14 +28197,14 @@ public:
 };
 
 enum TransferModeValues {
-	acknowledgedModeRLC = 0,
-	unacknowledgedModeRLC = 1,
+	acknowledgedModeRLC_TransferMode = 0,
+	unacknowledgedModeRLC_TransferMode = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> TransferMode;
 
 enum PeriodicalOrEventTriggerValues {
-	periodical = 0,
-	eventTrigger = 1,
+	periodical_PeriodicalOrEventTrigger = 0,
+	eventTrigger_PeriodicalOrEventTrigger = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> PeriodicalOrEventTrigger;
 
@@ -28405,87 +28404,87 @@ public:
 typedef SequenceOf<CellMeasuredResultsr9, CONSTRAINED, 1, maxCellMeasOnSecULFreq> IntraFrequencyMeasuredResultsListOnSecULFreq;
 
 enum IPLengthValues {
-	ipl5 = 0,
-	ipl10 = 1,
+	ipl5_IPLength = 0,
+	ipl10_IPLength = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> IPLength;
 
 typedef Boolean IPPCCPCHr4;
 
 enum IPSpacingValues {
-	e5 = 0,
-	e7 = 1,
-	e10 = 2,
-	e15 = 3,
-	e20 = 4,
-	e30 = 5,
-	e40 = 6,
-	e50 = 7,
+	e5_IPSpacing = 0,
+	e7_IPSpacing = 1,
+	e10_IPSpacing = 2,
+	e15_IPSpacing = 3,
+	e20_IPSpacing = 4,
+	e30_IPSpacing = 5,
+	e40_IPSpacing = 6,
+	e50_IPSpacing = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> IPSpacing;
 
 enum IPSpacingTDDValues {
-	e30 = 0,
-	e40 = 1,
-	e50 = 2,
-	e70 = 3,
-	e100 = 4,
+	e30_IPSpacingTDD = 0,
+	e40_IPSpacingTDD = 1,
+	e50_IPSpacingTDD = 2,
+	e70_IPSpacingTDD = 3,
+	e100_IPSpacingTDD = 4,
 };
 typedef Enumerated<CONSTRAINED, 4> IPSpacingTDD;
 
 enum RLCBuffersPayloadValues {
-	pl0 = 0,
-	pl4 = 1,
-	pl8 = 2,
-	pl16 = 3,
-	pl32 = 4,
-	pl64 = 5,
-	pl128 = 6,
-	pl256 = 7,
-	pl512 = 8,
-	pl1024 = 9,
-	pl2k = 10,
-	pl4k = 11,
-	pl8k = 12,
-	pl16k = 13,
-	pl32k = 14,
-	pl64k = 15,
-	pl128k = 16,
-	pl256k = 17,
-	pl512k = 18,
-	pl1024k = 19,
-	spare12 = 20,
-	spare11 = 21,
-	spare10 = 22,
-	spare9 = 23,
-	spare8 = 24,
-	spare7 = 25,
-	spare6 = 26,
-	spare5 = 27,
-	spare4 = 28,
-	spare3 = 29,
-	spare2 = 30,
-	spare1 = 31,
+	pl0_RLCBuffersPayload = 0,
+	pl4_RLCBuffersPayload = 1,
+	pl8_RLCBuffersPayload = 2,
+	pl16_RLCBuffersPayload = 3,
+	pl32_RLCBuffersPayload = 4,
+	pl64_RLCBuffersPayload = 5,
+	pl128_RLCBuffersPayload = 6,
+	pl256_RLCBuffersPayload = 7,
+	pl512_RLCBuffersPayload = 8,
+	pl1024_RLCBuffersPayload = 9,
+	pl2k_RLCBuffersPayload = 10,
+	pl4k_RLCBuffersPayload = 11,
+	pl8k_RLCBuffersPayload = 12,
+	pl16k_RLCBuffersPayload = 13,
+	pl32k_RLCBuffersPayload = 14,
+	pl64k_RLCBuffersPayload = 15,
+	pl128k_RLCBuffersPayload = 16,
+	pl256k_RLCBuffersPayload = 17,
+	pl512k_RLCBuffersPayload = 18,
+	pl1024k_RLCBuffersPayload = 19,
+	spare12_RLCBuffersPayload = 20,
+	spare11_RLCBuffersPayload = 21,
+	spare10_RLCBuffersPayload = 22,
+	spare9_RLCBuffersPayload = 23,
+	spare8_RLCBuffersPayload = 24,
+	spare7_RLCBuffersPayload = 25,
+	spare6_RLCBuffersPayload = 26,
+	spare5_RLCBuffersPayload = 27,
+	spare4_RLCBuffersPayload = 28,
+	spare3_RLCBuffersPayload = 29,
+	spare2_RLCBuffersPayload = 30,
+	spare1_RLCBuffersPayload = 31,
 };
 typedef Enumerated<CONSTRAINED, 31> RLCBuffersPayload;
 
 enum VarianceOfRLCBufferPayloadValues {
-	plv0 = 0,
-	plv4 = 1,
-	plv8 = 2,
-	plv16 = 3,
-	plv32 = 4,
-	plv64 = 5,
-	plv128 = 6,
-	plv256 = 7,
-	plv512 = 8,
-	plv1024 = 9,
-	plv2k = 10,
-	plv4k = 11,
-	plv8k = 12,
-	plv16k = 13,
-	spare2 = 14,
-	spare1 = 15,
+	plv0_VarianceOfRLCBufferPayload = 0,
+	plv4_VarianceOfRLCBufferPayload = 1,
+	plv8_VarianceOfRLCBufferPayload = 2,
+	plv16_VarianceOfRLCBufferPayload = 3,
+	plv32_VarianceOfRLCBufferPayload = 4,
+	plv64_VarianceOfRLCBufferPayload = 5,
+	plv128_VarianceOfRLCBufferPayload = 6,
+	plv256_VarianceOfRLCBufferPayload = 7,
+	plv512_VarianceOfRLCBufferPayload = 8,
+	plv1024_VarianceOfRLCBufferPayload = 9,
+	plv2k_VarianceOfRLCBufferPayload = 10,
+	plv4k_VarianceOfRLCBufferPayload = 11,
+	plv8k_VarianceOfRLCBufferPayload = 12,
+	plv16k_VarianceOfRLCBufferPayload = 13,
+	spare2_VarianceOfRLCBufferPayload = 14,
+	spare1_VarianceOfRLCBufferPayload = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> VarianceOfRLCBufferPayload;
 
@@ -28596,14 +28595,14 @@ public:
 };
 
 enum UEPositioningErrorCauseValues {
-	notEnoughOTDOA_Cells = 0,
-	notEnoughGPS_Satellites = 1,
-	assistanceDataMissing = 2,
-	notAccomplishedGPS_TimingOfCellFrames = 3,
-	undefinedError = 4,
-	requestDeniedByUser = 5,
-	notProcessedAndTimeout = 6,
-	referenceCellNotServingCell = 7,
+	notEnoughOTDOA_Cells_UEPositioningErrorCause = 0,
+	notEnoughGPS_Satellites_UEPositioningErrorCause = 1,
+	assistanceDataMissing_UEPositioningErrorCause = 2,
+	notAccomplishedGPS_TimingOfCellFrames_UEPositioningErrorCause = 3,
+	undefinedError_UEPositioningErrorCause = 4,
+	requestDeniedByUser_UEPositioningErrorCause = 5,
+	notProcessedAndTimeout_UEPositioningErrorCause = 6,
+	referenceCellNotServingCell_UEPositioningErrorCause = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> UEPositioningErrorCause;
 
@@ -28811,22 +28810,22 @@ public:
 };
 
 enum UEPositioningErrorCauser7Values {
-	notEnoughOTDOA_Cells = 0,
-	notEnoughGPS_Satellites = 1,
-	assistanceDataMissing = 2,
-	notAccomplishedGPS_TimingOfCellFrames = 3,
-	undefinedError = 4,
-	requestDeniedByUser = 5,
-	notProcessedAndTimeout = 6,
-	referenceCellNotServingCell = 7,
-	notEnoughGANSS_Satellites = 8,
-	notAccomplishedGANSS_TimingOfCellFrames = 9,
-	spare6 = 10,
-	spare5 = 11,
-	spare4 = 12,
-	spare3 = 13,
-	spare2 = 14,
-	spare1 = 15,
+	notEnoughOTDOA_Cells_UEPositioningErrorCauser7 = 0,
+	notEnoughGPS_Satellites_UEPositioningErrorCauser7 = 1,
+	assistanceDataMissing_UEPositioningErrorCauser7 = 2,
+	notAccomplishedGPS_TimingOfCellFrames_UEPositioningErrorCauser7 = 3,
+	undefinedError_UEPositioningErrorCauser7 = 4,
+	requestDeniedByUser_UEPositioningErrorCauser7 = 5,
+	notProcessedAndTimeout_UEPositioningErrorCauser7 = 6,
+	referenceCellNotServingCell_UEPositioningErrorCauser7 = 7,
+	notEnoughGANSS_Satellites_UEPositioningErrorCauser7 = 8,
+	notAccomplishedGANSS_TimingOfCellFrames_UEPositioningErrorCauser7 = 9,
+	spare6_UEPositioningErrorCauser7 = 10,
+	spare5_UEPositioningErrorCauser7 = 11,
+	spare4_UEPositioningErrorCauser7 = 12,
+	spare3_UEPositioningErrorCauser7 = 13,
+	spare2_UEPositioningErrorCauser7 = 14,
+	spare1_UEPositioningErrorCauser7 = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> UEPositioningErrorCauser7;
 
@@ -28874,7 +28873,7 @@ public:
 typedef BitString<CONSTRAINED, 2, 2> UEPositioningGANSSAdditionalAssistanceDataRequestv860extGanssAddIonoModelReq;
 
 enum UEPositioningGANSSAdditionalAssistanceDataRequestv860extganssEOPreqValues {
-	true = 0,
+	true_UEPositioningGANSSAdditionalAssistanceDataRequestv860extganssEOPreq = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UEPositioningGANSSAdditionalAssistanceDataRequestv860extganssEOPreq;
 
@@ -29105,30 +29104,30 @@ public:
 };
 
 enum UEPositioningMethodTypeValues {
-	ue_Assisted = 0,
-	ue_Based = 1,
-	ue_BasedPreferred = 2,
-	ue_AssistedPreferred = 3,
+	ue_Assisted_UEPositioningMethodType = 0,
+	ue_Based_UEPositioningMethodType = 1,
+	ue_BasedPreferred_UEPositioningMethodType = 2,
+	ue_AssistedPreferred_UEPositioningMethodType = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> UEPositioningMethodType;
 
 enum PositioningMethodValues {
-	otdoa = 0,
-	gps = 1,
-	otdoaOrGPS = 2,
-	cellID = 3,
+	otdoa_PositioningMethod = 0,
+	gps_PositioningMethod = 1,
+	otdoaOrGPS_PositioningMethod = 2,
+	cellID_PositioningMethod = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> PositioningMethod;
 
 enum UEPositioningResponseTimeValues {
-	s1 = 0,
-	s2 = 1,
-	s4 = 2,
-	s8 = 3,
-	s16 = 4,
-	s32 = 5,
-	s64 = 6,
-	s128 = 7,
+	s1_UEPositioningResponseTime = 0,
+	s2_UEPositioningResponseTime = 1,
+	s4_UEPositioningResponseTime = 2,
+	s8_UEPositioningResponseTime = 3,
+	s16_UEPositioningResponseTime = 4,
+	s32_UEPositioningResponseTime = 5,
+	s64_UEPositioningResponseTime = 6,
+	s128_UEPositioningResponseTime = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> UEPositioningResponseTime;
 
@@ -29152,66 +29151,66 @@ public:
 typedef Boolean UEPositioningEventParamReportFirstFix;
 
 enum UEPositioningMeasurementIntervalValues {
-	e5 = 0,
-	e15 = 1,
-	e60 = 2,
-	e300 = 3,
-	e900 = 4,
-	e1800 = 5,
-	e3600 = 6,
-	e7200 = 7,
+	e5_UEPositioningMeasurementInterval = 0,
+	e15_UEPositioningMeasurementInterval = 1,
+	e60_UEPositioningMeasurementInterval = 2,
+	e300_UEPositioningMeasurementInterval = 3,
+	e900_UEPositioningMeasurementInterval = 4,
+	e1800_UEPositioningMeasurementInterval = 5,
+	e3600_UEPositioningMeasurementInterval = 6,
+	e7200_UEPositioningMeasurementInterval = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> UEPositioningMeasurementInterval;
 
 enum ThresholdPositionChangeValues {
-	pc10 = 0,
-	pc20 = 1,
-	pc30 = 2,
-	pc40 = 3,
-	pc50 = 4,
-	pc100 = 5,
-	pc200 = 6,
-	pc300 = 7,
-	pc500 = 8,
-	pc1000 = 9,
-	pc2000 = 10,
-	pc5000 = 11,
-	pc10000 = 12,
-	pc20000 = 13,
-	pc50000 = 14,
-	pc100000 = 15,
+	pc10_ThresholdPositionChange = 0,
+	pc20_ThresholdPositionChange = 1,
+	pc30_ThresholdPositionChange = 2,
+	pc40_ThresholdPositionChange = 3,
+	pc50_ThresholdPositionChange = 4,
+	pc100_ThresholdPositionChange = 5,
+	pc200_ThresholdPositionChange = 6,
+	pc300_ThresholdPositionChange = 7,
+	pc500_ThresholdPositionChange = 8,
+	pc1000_ThresholdPositionChange = 9,
+	pc2000_ThresholdPositionChange = 10,
+	pc5000_ThresholdPositionChange = 11,
+	pc10000_ThresholdPositionChange = 12,
+	pc20000_ThresholdPositionChange = 13,
+	pc50000_ThresholdPositionChange = 14,
+	pc100000_ThresholdPositionChange = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> ThresholdPositionChange;
 
 enum ThresholdSFNSFNChangeValues {
-	c0_25 = 0,
-	c0_5 = 1,
-	c1 = 2,
-	c2 = 3,
-	c3 = 4,
-	c4 = 5,
-	c5 = 6,
-	c10 = 7,
-	c20 = 8,
-	c50 = 9,
-	c100 = 10,
-	c200 = 11,
-	c500 = 12,
-	c1000 = 13,
-	c2000 = 14,
-	c5000 = 15,
+	c0_25_ThresholdSFNSFNChange = 0,
+	c0_5_ThresholdSFNSFNChange = 1,
+	c1_ThresholdSFNSFNChange = 2,
+	c2_ThresholdSFNSFNChange = 3,
+	c3_ThresholdSFNSFNChange = 4,
+	c4_ThresholdSFNSFNChange = 5,
+	c5_ThresholdSFNSFNChange = 6,
+	c10_ThresholdSFNSFNChange = 7,
+	c20_ThresholdSFNSFNChange = 8,
+	c50_ThresholdSFNSFNChange = 9,
+	c100_ThresholdSFNSFNChange = 10,
+	c200_ThresholdSFNSFNChange = 11,
+	c500_ThresholdSFNSFNChange = 12,
+	c1000_ThresholdSFNSFNChange = 13,
+	c2000_ThresholdSFNSFNChange = 14,
+	c5000_ThresholdSFNSFNChange = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> ThresholdSFNSFNChange;
 
 enum ThresholdSFNGPSTOWValues {
-	ms1 = 0,
-	ms2 = 1,
-	ms3 = 2,
-	ms5 = 3,
-	ms10 = 4,
-	ms20 = 5,
-	ms50 = 6,
-	ms100 = 7,
+	ms1_ThresholdSFNGPSTOW = 0,
+	ms2_ThresholdSFNGPSTOW = 1,
+	ms3_ThresholdSFNGPSTOW = 2,
+	ms5_ThresholdSFNGPSTOW = 3,
+	ms10_ThresholdSFNGPSTOW = 4,
+	ms20_ThresholdSFNGPSTOW = 5,
+	ms50_ThresholdSFNGPSTOW = 6,
+	ms100_ThresholdSFNGPSTOW = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ThresholdSFNGPSTOW;
 
@@ -29360,47 +29359,47 @@ public:
 };
 
 enum SFNSFNDriftValues {
-	sfnsfndrift0 = 0,
-	sfnsfndrift1 = 1,
-	sfnsfndrift2 = 2,
-	sfnsfndrift3 = 3,
-	sfnsfndrift4 = 4,
-	sfnsfndrift5 = 5,
-	sfnsfndrift8 = 6,
-	sfnsfndrift10 = 7,
-	sfnsfndrift15 = 8,
-	sfnsfndrift25 = 9,
-	sfnsfndrift35 = 10,
-	sfnsfndrift50 = 11,
-	sfnsfndrift65 = 12,
-	sfnsfndrift80 = 13,
-	sfnsfndrift100 = 14,
-	sfnsfndrift_1 = 15,
-	sfnsfndrift_2 = 16,
-	sfnsfndrift_3 = 17,
-	sfnsfndrift_4 = 18,
-	sfnsfndrift_5 = 19,
-	sfnsfndrift_8 = 20,
-	sfnsfndrift_10 = 21,
-	sfnsfndrift_15 = 22,
-	sfnsfndrift_25 = 23,
-	sfnsfndrift_35 = 24,
-	sfnsfndrift_50 = 25,
-	sfnsfndrift_65 = 26,
-	sfnsfndrift_80 = 27,
-	sfnsfndrift_100 = 28,
+	sfnsfndrift0_SFNSFNDrift = 0,
+	sfnsfndrift1_SFNSFNDrift = 1,
+	sfnsfndrift2_SFNSFNDrift = 2,
+	sfnsfndrift3_SFNSFNDrift = 3,
+	sfnsfndrift4_SFNSFNDrift = 4,
+	sfnsfndrift5_SFNSFNDrift = 5,
+	sfnsfndrift8_SFNSFNDrift = 6,
+	sfnsfndrift10_SFNSFNDrift = 7,
+	sfnsfndrift15_SFNSFNDrift = 8,
+	sfnsfndrift25_SFNSFNDrift = 9,
+	sfnsfndrift35_SFNSFNDrift = 10,
+	sfnsfndrift50_SFNSFNDrift = 11,
+	sfnsfndrift65_SFNSFNDrift = 12,
+	sfnsfndrift80_SFNSFNDrift = 13,
+	sfnsfndrift100_SFNSFNDrift = 14,
+	sfnsfndrift_1_SFNSFNDrift = 15,
+	sfnsfndrift_2_SFNSFNDrift = 16,
+	sfnsfndrift_3_SFNSFNDrift = 17,
+	sfnsfndrift_4_SFNSFNDrift = 18,
+	sfnsfndrift_5_SFNSFNDrift = 19,
+	sfnsfndrift_8_SFNSFNDrift = 20,
+	sfnsfndrift_10_SFNSFNDrift = 21,
+	sfnsfndrift_15_SFNSFNDrift = 22,
+	sfnsfndrift_25_SFNSFNDrift = 23,
+	sfnsfndrift_35_SFNSFNDrift = 24,
+	sfnsfndrift_50_SFNSFNDrift = 25,
+	sfnsfndrift_65_SFNSFNDrift = 26,
+	sfnsfndrift_80_SFNSFNDrift = 27,
+	sfnsfndrift_100_SFNSFNDrift = 28,
 };
 typedef Enumerated<CONSTRAINED, 28> SFNSFNDrift;
 
 enum OTDOASearchWindowSizeValues {
-	c20 = 0,
-	c40 = 1,
-	c80 = 2,
-	c160 = 3,
-	c320 = 4,
-	c640 = 5,
-	c1280 = 6,
-	moreThan1280 = 7,
+	c20_OTDOASearchWindowSize = 0,
+	c40_OTDOASearchWindowSize = 1,
+	c80_OTDOASearchWindowSize = 2,
+	c160_OTDOASearchWindowSize = 3,
+	c320_OTDOASearchWindowSize = 4,
+	c640_OTDOASearchWindowSize = 5,
+	c1280_OTDOASearchWindowSize = 6,
+	moreThan1280_OTDOASearchWindowSize = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> OTDOASearchWindowSize;
 
@@ -29503,27 +29502,27 @@ public:
 };
 
 enum SFNTOWUncertaintyValues {
-	lessThan10 = 0,
-	moreThan10 = 1,
+	lessThan10_SFNTOWUncertainty = 0,
+	moreThan10_SFNTOWUncertainty = 1,
 };
 typedef Enumerated<CONSTRAINED, 1> SFNTOWUncertainty;
 
 enum UTRANGPSDriftRateValues {
-	utran_GPSDrift0 = 0,
-	utran_GPSDrift1 = 1,
-	utran_GPSDrift2 = 2,
-	utran_GPSDrift5 = 3,
-	utran_GPSDrift10 = 4,
-	utran_GPSDrift15 = 5,
-	utran_GPSDrift25 = 6,
-	utran_GPSDrift50 = 7,
-	utran_GPSDrift_1 = 8,
-	utran_GPSDrift_2 = 9,
-	utran_GPSDrift_5 = 10,
-	utran_GPSDrift_10 = 11,
-	utran_GPSDrift_15 = 12,
-	utran_GPSDrift_25 = 13,
-	utran_GPSDrift_50 = 14,
+	utran_GPSDrift0_UTRANGPSDriftRate = 0,
+	utran_GPSDrift1_UTRANGPSDriftRate = 1,
+	utran_GPSDrift2_UTRANGPSDriftRate = 2,
+	utran_GPSDrift5_UTRANGPSDriftRate = 3,
+	utran_GPSDrift10_UTRANGPSDriftRate = 4,
+	utran_GPSDrift15_UTRANGPSDriftRate = 5,
+	utran_GPSDrift25_UTRANGPSDriftRate = 6,
+	utran_GPSDrift50_UTRANGPSDriftRate = 7,
+	utran_GPSDrift_1_UTRANGPSDriftRate = 8,
+	utran_GPSDrift_2_UTRANGPSDriftRate = 9,
+	utran_GPSDrift_5_UTRANGPSDriftRate = 10,
+	utran_GPSDrift_10_UTRANGPSDriftRate = 11,
+	utran_GPSDrift_15_UTRANGPSDriftRate = 12,
+	utran_GPSDrift_25_UTRANGPSDriftRate = 13,
+	utran_GPSDrift_50_UTRANGPSDriftRate = 14,
 };
 typedef Enumerated<CONSTRAINED, 14> UTRANGPSDriftRate;
 
@@ -29555,11 +29554,11 @@ public:
 };
 
 enum SatelliteStatusValues {
-	ns_NN_U = 0,
-	es_SN = 1,
-	es_NN_U = 2,
-	rev2 = 3,
-	rev = 4,
+	ns_NN_U_SatelliteStatus = 0,
+	es_SN_SatelliteStatus = 1,
+	es_NN_U_SatelliteStatus = 2,
+	rev2_SatelliteStatus = 3,
+	rev_SatelliteStatus = 4,
 };
 typedef Enumerated<CONSTRAINED, 4> SatelliteStatus;
 
@@ -29820,54 +29819,54 @@ public:
 };
 
 enum TrafficVolumeThresholdValues {
-	th8 = 0,
-	th16 = 1,
-	th32 = 2,
-	th64 = 3,
-	th128 = 4,
-	th256 = 5,
-	th512 = 6,
-	th1024 = 7,
-	th2k = 8,
-	th3k = 9,
-	th4k = 10,
-	th6k = 11,
-	th8k = 12,
-	th12k = 13,
-	th16k = 14,
-	th24k = 15,
-	th32k = 16,
-	th48k = 17,
-	th64k = 18,
-	th96k = 19,
-	th128k = 20,
-	th192k = 21,
-	th256k = 22,
-	th384k = 23,
-	th512k = 24,
-	th768k = 25,
+	th8_TrafficVolumeThreshold = 0,
+	th16_TrafficVolumeThreshold = 1,
+	th32_TrafficVolumeThreshold = 2,
+	th64_TrafficVolumeThreshold = 3,
+	th128_TrafficVolumeThreshold = 4,
+	th256_TrafficVolumeThreshold = 5,
+	th512_TrafficVolumeThreshold = 6,
+	th1024_TrafficVolumeThreshold = 7,
+	th2k_TrafficVolumeThreshold = 8,
+	th3k_TrafficVolumeThreshold = 9,
+	th4k_TrafficVolumeThreshold = 10,
+	th6k_TrafficVolumeThreshold = 11,
+	th8k_TrafficVolumeThreshold = 12,
+	th12k_TrafficVolumeThreshold = 13,
+	th16k_TrafficVolumeThreshold = 14,
+	th24k_TrafficVolumeThreshold = 15,
+	th32k_TrafficVolumeThreshold = 16,
+	th48k_TrafficVolumeThreshold = 17,
+	th64k_TrafficVolumeThreshold = 18,
+	th96k_TrafficVolumeThreshold = 19,
+	th128k_TrafficVolumeThreshold = 20,
+	th192k_TrafficVolumeThreshold = 21,
+	th256k_TrafficVolumeThreshold = 22,
+	th384k_TrafficVolumeThreshold = 23,
+	th512k_TrafficVolumeThreshold = 24,
+	th768k_TrafficVolumeThreshold = 25,
 };
 typedef Enumerated<CONSTRAINED, 25> TrafficVolumeThreshold;
 
 enum PendingTimeAfterTriggerValues {
-	ptat0_25 = 0,
-	ptat0_5 = 1,
-	ptat1 = 2,
-	ptat2 = 3,
-	ptat4 = 4,
-	ptat8 = 5,
-	ptat16 = 6,
+	ptat0_25_PendingTimeAfterTrigger = 0,
+	ptat0_5_PendingTimeAfterTrigger = 1,
+	ptat1_PendingTimeAfterTrigger = 2,
+	ptat2_PendingTimeAfterTrigger = 3,
+	ptat4_PendingTimeAfterTrigger = 4,
+	ptat8_PendingTimeAfterTrigger = 5,
+	ptat16_PendingTimeAfterTrigger = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> PendingTimeAfterTrigger;
 
 enum TXInterruptionAfterTriggerValues {
-	txiat0_25 = 0,
-	txiat0_5 = 1,
-	txiat1 = 2,
-	txiat2 = 3,
-	txiat4 = 4,
-	txiat8 = 5,
-	txiat16 = 6,
+	txiat0_25_TXInterruptionAfterTrigger = 0,
+	txiat0_5_TXInterruptionAfterTrigger = 1,
+	txiat1_TXInterruptionAfterTrigger = 2,
+	txiat2_TXInterruptionAfterTrigger = 3,
+	txiat4_TXInterruptionAfterTrigger = 4,
+	txiat8_TXInterruptionAfterTrigger = 5,
+	txiat16_TXInterruptionAfterTrigger = 6,
 };
 typedef Enumerated<CONSTRAINED, 6> TXInterruptionAfterTrigger;
 
@@ -29991,9 +29990,9 @@ public:
 };
 
 enum UEMeasurementQuantityValues {
-	ue_TransmittedPower = 0,
-	utra_Carrier_RSSI = 1,
-	ue_RX_TX_TimeDifference = 2,
+	ue_TransmittedPower_UEMeasurementQuantity = 0,
+	utra_Carrier_RSSI_UEMeasurementQuantity = 1,
+	ue_RX_TX_TimeDifference_UEMeasurementQuantity = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> UEMeasurementQuantity;
 
@@ -30290,7 +30289,7 @@ public:
 };
 
 enum SFNOffsetValidityValues {
-	false = 0,
+	false_SFNOffsetValidity = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> SFNOffsetValidity;
 
@@ -30494,7 +30493,7 @@ typedef Boolean UEPositioningReportingQuantityr7GpsTimingOfCellWanted;
 typedef Boolean UEPositioningReportingQuantityr7AdditionalAssistanceDataReq;
 
 enum UEPositioningReportingQuantityr7velocityRequestedValues {
-	true = 0,
+	true_UEPositioningReportingQuantityr7velocityRequested = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UEPositioningReportingQuantityr7velocityRequested;
 
@@ -30516,26 +30515,26 @@ public:
 typedef Boolean UEPositioningEventParamr7ReportFirstFix;
 
 enum ThresholdSFNGPSTOWusValues {
-	us1 = 0,
-	us2 = 1,
-	us3 = 2,
-	us5 = 3,
-	us10 = 4,
-	us20 = 5,
-	us50 = 6,
-	us100 = 7,
+	us1_ThresholdSFNGPSTOWus = 0,
+	us2_ThresholdSFNGPSTOWus = 1,
+	us3_ThresholdSFNGPSTOWus = 2,
+	us5_ThresholdSFNGPSTOWus = 3,
+	us10_ThresholdSFNGPSTOWus = 4,
+	us20_ThresholdSFNGPSTOWus = 5,
+	us50_ThresholdSFNGPSTOWus = 6,
+	us100_ThresholdSFNGPSTOWus = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ThresholdSFNGPSTOWus;
 
 enum ThresholdSFNGANSSTOWValues {
-	us1 = 0,
-	us2 = 1,
-	us3 = 2,
-	us5 = 3,
-	us10 = 4,
-	us20 = 5,
-	us50 = 6,
-	us100 = 7,
+	us1_ThresholdSFNGANSSTOW = 0,
+	us2_ThresholdSFNGANSSTOW = 1,
+	us3_ThresholdSFNGANSSTOW = 2,
+	us5_ThresholdSFNGANSSTOW = 3,
+	us10_ThresholdSFNGANSSTOW = 4,
+	us20_ThresholdSFNGANSSTOW = 5,
+	us50_ThresholdSFNGANSSTOW = 6,
+	us100_ThresholdSFNGANSSTOW = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> ThresholdSFNGANSSTOW;
 
@@ -30794,22 +30793,22 @@ public:
 };
 
 enum TutranGanssDriftRateValues {
-	ugdr0 = 0,
-	ugdr1 = 1,
-	ugdr2 = 2,
-	ugdr5 = 3,
-	ugdr10 = 4,
-	ugdr15 = 5,
-	ugdr25 = 6,
-	ugdr50 = 7,
-	ugdr_1 = 8,
-	ugdr_2 = 9,
-	ugdr_5 = 10,
-	ugdr_10 = 11,
-	ugdr_15 = 12,
-	ugdr_25 = 13,
-	ugdr_50 = 14,
-	spare = 15,
+	ugdr0_TutranGanssDriftRate = 0,
+	ugdr1_TutranGanssDriftRate = 1,
+	ugdr2_TutranGanssDriftRate = 2,
+	ugdr5_TutranGanssDriftRate = 3,
+	ugdr10_TutranGanssDriftRate = 4,
+	ugdr15_TutranGanssDriftRate = 5,
+	ugdr25_TutranGanssDriftRate = 6,
+	ugdr50_TutranGanssDriftRate = 7,
+	ugdr_1_TutranGanssDriftRate = 8,
+	ugdr_2_TutranGanssDriftRate = 9,
+	ugdr_5_TutranGanssDriftRate = 10,
+	ugdr_10_TutranGanssDriftRate = 11,
+	ugdr_15_TutranGanssDriftRate = 12,
+	ugdr_25_TutranGanssDriftRate = 13,
+	ugdr_50_TutranGanssDriftRate = 14,
+	spare_TutranGanssDriftRate = 15,
 };
 typedef Enumerated<CONSTRAINED, 15> TutranGanssDriftRate;
 
@@ -30896,7 +30895,7 @@ typedef Boolean UEPositioningReportingQuantityr8GpsTimingOfCellWanted;
 typedef Boolean UEPositioningReportingQuantityr8AdditionalAssistanceDataReq;
 
 enum UEPositioningReportingQuantityr8velocityRequestedValues {
-	true = 0,
+	true_UEPositioningReportingQuantityr8velocityRequested = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> UEPositioningReportingQuantityr8velocityRequested;
 
@@ -31951,12 +31950,12 @@ public:
 };
 
 enum CBSDRXLevel1Informationextensionr6Values {
-	p8 = 0,
-	p16 = 1,
-	p32 = 2,
-	p64 = 3,
-	p128 = 4,
-	p256 = 5,
+	p8_CBSDRXLevel1Informationextensionr6 = 0,
+	p16_CBSDRXLevel1Informationextensionr6 = 1,
+	p32_CBSDRXLevel1Informationextensionr6 = 2,
+	p64_CBSDRXLevel1Informationextensionr6 = 3,
+	p128_CBSDRXLevel1Informationextensionr6 = 4,
+	p256_CBSDRXLevel1Informationextensionr6 = 5,
 };
 typedef Enumerated<CONSTRAINED, 5> CBSDRXLevel1Informationextensionr6;
 
@@ -31991,14 +31990,14 @@ public:
 typedef SequenceOf<FrequencyInfoCDMA2000, CONSTRAINED, 1, maxNumCDMA2000Freqs> CDMA2000UMTSFrequencyList;
 
 enum DataTransmFrequencydataTransmFreqGranularityValues {
-	ms100 = 0,
-	ms250 = 1,
-	ms500 = 2,
-	ms1000 = 3,
-	ms2000 = 4,
-	ms5000 = 5,
-	ms10000 = 6,
-	ms60000 = 7,
+	ms100_DataTransmFrequencydataTransmFreqGranularity = 0,
+	ms250_DataTransmFrequencydataTransmFreqGranularity = 1,
+	ms500_DataTransmFrequencydataTransmFreqGranularity = 2,
+	ms1000_DataTransmFrequencydataTransmFreqGranularity = 3,
+	ms2000_DataTransmFrequencydataTransmFreqGranularity = 4,
+	ms5000_DataTransmFrequencydataTransmFreqGranularity = 5,
+	ms10000_DataTransmFrequencydataTransmFreqGranularity = 6,
+	ms60000_DataTransmFrequencydataTransmFreqGranularity = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> DataTransmFrequencydataTransmFreqGranularity;
 
@@ -32438,7 +32437,7 @@ public:
 };
 
 enum MasterInformationBlockv860extIEscsg_IndicatorValues {
-	true = 0,
+	true_MasterInformationBlockv860extIEscsg_Indicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MasterInformationBlockv860extIEscsg_Indicator;
 
@@ -32527,38 +32526,38 @@ typedef BitString<CONSTRAINED, 1, 214> SIBDatavariable;
 typedef SequenceOf<SchedulingInformationSIB, CONSTRAINED, 1, maxSIB> SIBReferenceList;
 
 enum SIBTypeValues {
-	masterInformationBlock = 0,
-	systemInformationBlockType1 = 1,
-	systemInformationBlockType2 = 2,
-	systemInformationBlockType3 = 3,
-	systemInformationBlockType4 = 4,
-	systemInformationBlockType5 = 5,
-	systemInformationBlockType6 = 6,
-	systemInformationBlockType7 = 7,
-	dummy = 8,
-	dummy2 = 9,
-	dummy3 = 10,
-	systemInformationBlockType11 = 11,
-	systemInformationBlockType12 = 12,
-	systemInformationBlockType13 = 13,
-	systemInformationBlockType13_1 = 14,
-	systemInformationBlockType13_2 = 15,
-	systemInformationBlockType13_3 = 16,
-	systemInformationBlockType13_4 = 17,
-	systemInformationBlockType14 = 18,
-	systemInformationBlockType15 = 19,
-	systemInformationBlockType15_1 = 20,
-	systemInformationBlockType15_2 = 21,
-	systemInformationBlockType15_3 = 22,
-	systemInformationBlockType16 = 23,
-	systemInformationBlockType17 = 24,
-	systemInformationBlockType15_4 = 25,
-	systemInformationBlockType18 = 26,
-	schedulingBlock1 = 27,
-	schedulingBlock2 = 28,
-	systemInformationBlockType15_5 = 29,
-	systemInformationBlockType5bis = 30,
-	extensionType = 31,
+	masterInformationBlock_SIBType = 0,
+	systemInformationBlockType1_SIBType = 1,
+	systemInformationBlockType2_SIBType = 2,
+	systemInformationBlockType3_SIBType = 3,
+	systemInformationBlockType4_SIBType = 4,
+	systemInformationBlockType5_SIBType = 5,
+	systemInformationBlockType6_SIBType = 6,
+	systemInformationBlockType7_SIBType = 7,
+	dummy_SIBType = 8,
+	dummy2_SIBType = 9,
+	dummy3_SIBType = 10,
+	systemInformationBlockType11_SIBType = 11,
+	systemInformationBlockType12_SIBType = 12,
+	systemInformationBlockType13_SIBType = 13,
+	systemInformationBlockType13_1_SIBType = 14,
+	systemInformationBlockType13_2_SIBType = 15,
+	systemInformationBlockType13_3_SIBType = 16,
+	systemInformationBlockType13_4_SIBType = 17,
+	systemInformationBlockType14_SIBType = 18,
+	systemInformationBlockType15_SIBType = 19,
+	systemInformationBlockType15_1_SIBType = 20,
+	systemInformationBlockType15_2_SIBType = 21,
+	systemInformationBlockType15_3_SIBType = 22,
+	systemInformationBlockType16_SIBType = 23,
+	systemInformationBlockType17_SIBType = 24,
+	systemInformationBlockType15_4_SIBType = 25,
+	systemInformationBlockType18_SIBType = 26,
+	schedulingBlock1_SIBType = 27,
+	schedulingBlock2_SIBType = 28,
+	systemInformationBlockType15_5_SIBType = 29,
+	systemInformationBlockType5bis_SIBType = 30,
+	extensionType_SIBType = 31,
 };
 typedef Enumerated<CONSTRAINED, 31> SIBType;
 
@@ -32673,7 +32672,7 @@ public:
 };
 
 enum MBSFNOnlyServiceValues {
-	true = 0,
+	true_MBSFNOnlyService = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MBSFNOnlyService;
 
@@ -32714,7 +32713,7 @@ public:
 };
 
 enum SysInfoType3v920extIEsimsEmergencySupportIndicatorValues {
-	supported = 0,
+	supported_SysInfoType3v920extIEsimsEmergencySupportIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> SysInfoType3v920extIEsimsEmergencySupportIndicator;
 
@@ -32990,7 +32989,7 @@ public:
 };
 
 enum SysInfoType5v680extIEshsdpa_CellIndicatorValues {
-	hsdpa_CapableCell = 0,
+	hsdpa_CapableCell_SysInfoType5v680extIEshsdpa_CellIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> SysInfoType5v680extIEshsdpa_CellIndicator;
 
@@ -33004,7 +33003,7 @@ public:
 };
 
 enum SysInfoType5v690extIEsedch_CellIndicatorValues {
-	edch_CapableCell = 0,
+	edch_CapableCell_SysInfoType5v690extIEsedch_CellIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> SysInfoType5v690extIEsedch_CellIndicator;
 
@@ -33140,7 +33139,7 @@ public:
 };
 
 enum SysInfoType5v8b0extIEstresetUsageIndicatorValues {
-	true = 0,
+	true_SysInfoType5v8b0extIEstresetUsageIndicator = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> SysInfoType5v8b0extIEstresetUsageIndicator;
 
@@ -33597,7 +33596,7 @@ public:
 };
 
 enum MBSFNFrequencyv860extimb_IndicationValues {
-	true = 0,
+	true_MBSFNFrequencyv860extimb_Indication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MBSFNFrequencyv860extimb_Indication;
 
@@ -34857,38 +34856,38 @@ public:
 typedef BitString<CONSTRAINED, 1, 2048> ANSI41NASParameter;
 
 enum MBMSAccessProbabilityFactorValues {
-	apf0 = 0,
-	apf32 = 1,
-	apf64 = 2,
-	apf96 = 3,
-	apf128 = 4,
-	apf160 = 5,
-	apf192 = 6,
-	apf224 = 7,
-	apf256 = 8,
-	apf288 = 9,
-	apf320 = 10,
-	apf352 = 11,
-	apf384 = 12,
-	apf416 = 13,
-	apf448 = 14,
-	apf480 = 15,
-	apf512 = 16,
-	apf544 = 17,
-	apf576 = 18,
-	apf608 = 19,
-	apf640 = 20,
-	apf672 = 21,
-	apf704 = 22,
-	apf736 = 23,
-	apf768 = 24,
-	apf800 = 25,
-	apf832 = 26,
-	apf864 = 27,
-	apf896 = 28,
-	apf928 = 29,
-	apf960 = 30,
-	apf1000 = 31,
+	apf0_MBMSAccessProbabilityFactor = 0,
+	apf32_MBMSAccessProbabilityFactor = 1,
+	apf64_MBMSAccessProbabilityFactor = 2,
+	apf96_MBMSAccessProbabilityFactor = 3,
+	apf128_MBMSAccessProbabilityFactor = 4,
+	apf160_MBMSAccessProbabilityFactor = 5,
+	apf192_MBMSAccessProbabilityFactor = 6,
+	apf224_MBMSAccessProbabilityFactor = 7,
+	apf256_MBMSAccessProbabilityFactor = 8,
+	apf288_MBMSAccessProbabilityFactor = 9,
+	apf320_MBMSAccessProbabilityFactor = 10,
+	apf352_MBMSAccessProbabilityFactor = 11,
+	apf384_MBMSAccessProbabilityFactor = 12,
+	apf416_MBMSAccessProbabilityFactor = 13,
+	apf448_MBMSAccessProbabilityFactor = 14,
+	apf480_MBMSAccessProbabilityFactor = 15,
+	apf512_MBMSAccessProbabilityFactor = 16,
+	apf544_MBMSAccessProbabilityFactor = 17,
+	apf576_MBMSAccessProbabilityFactor = 18,
+	apf608_MBMSAccessProbabilityFactor = 19,
+	apf640_MBMSAccessProbabilityFactor = 20,
+	apf672_MBMSAccessProbabilityFactor = 21,
+	apf704_MBMSAccessProbabilityFactor = 22,
+	apf736_MBMSAccessProbabilityFactor = 23,
+	apf768_MBMSAccessProbabilityFactor = 24,
+	apf800_MBMSAccessProbabilityFactor = 25,
+	apf832_MBMSAccessProbabilityFactor = 26,
+	apf864_MBMSAccessProbabilityFactor = 27,
+	apf896_MBMSAccessProbabilityFactor = 28,
+	apf928_MBMSAccessProbabilityFactor = 29,
+	apf960_MBMSAccessProbabilityFactor = 30,
+	apf1000_MBMSAccessProbabilityFactor = 31,
 };
 typedef Enumerated<CONSTRAINED, 31> MBMSAccessProbabilityFactor;
 
@@ -34931,10 +34930,10 @@ public:
 typedef Integer<CONSTRAINED, 1, maxSCCPCH> MBMSSCCPCHIdentity;
 
 enum MBMSSoftCombTimingOffsetValues {
-	ms0 = 0,
-	ms10 = 1,
-	ms20 = 2,
-	ms40 = 3,
+	ms0_MBMSSoftCombTimingOffset = 0,
+	ms10_MBMSSoftCombTimingOffset = 1,
+	ms20_MBMSSoftCombTimingOffset = 2,
+	ms40_MBMSSoftCombTimingOffset = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> MBMSSoftCombTimingOffset;
 
@@ -35169,10 +35168,10 @@ public:
 typedef Integer<CONSTRAINED, -10, 5> MBMSMICHPowerOffset;
 
 enum MBMSNICountPerFrameValues {
-	ni18 = 0,
-	ni36 = 1,
-	ni72 = 2,
-	ni144 = 3,
+	ni18_MBMSNICountPerFrame = 0,
+	ni36_MBMSNICountPerFrame = 1,
+	ni72_MBMSNICountPerFrame = 2,
+	ni144_MBMSNICountPerFrame = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> MBMSNICountPerFrame;
 
@@ -35188,9 +35187,9 @@ public:
 };
 
 enum MBMSMICHNotificationIndLengthValues {
-	mn4 = 0,
-	mn8 = 1,
-	mn16 = 2,
+	mn4_MBMSMICHNotificationIndLength = 0,
+	mn8_MBMSMICHNotificationIndLength = 1,
+	mn16_MBMSMICHNotificationIndLength = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> MBMSMICHNotificationIndLength;
 
@@ -35276,10 +35275,10 @@ public:
 };
 
 enum MBMSNICountPerFrameIMB384Values {
-	ni16 = 0,
-	ni32 = 1,
-	ni64 = 2,
-	ni128 = 3,
+	ni16_MBMSNICountPerFrameIMB384 = 0,
+	ni32_MBMSNICountPerFrameIMB384 = 1,
+	ni64_MBMSNICountPerFrameIMB384 = 2,
+	ni128_MBMSNICountPerFrameIMB384 = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> MBMSNICountPerFrameIMB384;
 
@@ -35350,12 +35349,12 @@ public:
 };
 
 enum MBMSRequiredUEActionModValues {
-	none = 0,
-	acquireCountingInfo = 1,
-	acquireCountingInfoPTM_RBsUnmodified = 2,
-	acquirePTM_RBInfo = 3,
-	requestPTPRB = 4,
-	releasePTM_RB = 5,
+	none_MBMSRequiredUEActionMod = 0,
+	acquireCountingInfo_MBMSRequiredUEActionMod = 1,
+	acquireCountingInfoPTM_RBsUnmodified_MBMSRequiredUEActionMod = 2,
+	acquirePTM_RBInfo_MBMSRequiredUEActionMod = 3,
+	requestPTPRB_MBMSRequiredUEActionMod = 4,
+	releasePTM_RB_MBMSRequiredUEActionMod = 5,
 };
 typedef Enumerated<CONSTRAINED, 5> MBMSRequiredUEActionMod;
 
@@ -35371,7 +35370,7 @@ public:
 };
 
 enum MBMSModifedServicer6dummyValues {
-	true = 0,
+	true_MBMSModifedServicer6dummy = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MBMSModifedServicer6dummy;
 
@@ -35400,14 +35399,14 @@ public:
 };
 
 enum MBMSPTMRBReleaseCauseLCRr7Values {
-	normalRelease = 0,
-	outOfMBMSServiceCoverageInRAN = 1,
-	networkAbnormalRelease = 2,
-	spare5 = 3,
-	spare4 = 4,
-	spare3 = 5,
-	spare2 = 6,
-	spare1 = 7,
+	normalRelease_MBMSPTMRBReleaseCauseLCRr7 = 0,
+	outOfMBMSServiceCoverageInRAN_MBMSPTMRBReleaseCauseLCRr7 = 1,
+	networkAbnormalRelease_MBMSPTMRBReleaseCauseLCRr7 = 2,
+	spare5_MBMSPTMRBReleaseCauseLCRr7 = 3,
+	spare4_MBMSPTMRBReleaseCauseLCRr7 = 4,
+	spare3_MBMSPTMRBReleaseCauseLCRr7 = 5,
+	spare2_MBMSPTMRBReleaseCauseLCRr7 = 6,
+	spare1_MBMSPTMRBReleaseCauseLCRr7 = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> MBMSPTMRBReleaseCauseLCRr7;
 
@@ -35425,10 +35424,10 @@ typedef SequenceOf<MBMSModifiedServicev770ext, CONSTRAINED, 1, maxMBMSservModif>
 typedef SequenceOf<MBMSModifiedServiceLCRv7c0ext, CONSTRAINED, 1, maxMBMSservModif> MBMSModifiedServiceListLCRv7c0ext;
 
 enum MBMSSCCPCHPwrOffsetDiffValues {
-	mcpo_minus6 = 0,
-	mcpo_minus3 = 1,
-	mcpo_plus3 = 2,
-	mcpo_plus6 = 3,
+	mcpo_minus6_MBMSSCCPCHPwrOffsetDiff = 0,
+	mcpo_minus3_MBMSSCCPCHPwrOffsetDiff = 1,
+	mcpo_plus3_MBMSSCCPCHPwrOffsetDiff = 2,
+	mcpo_plus6_MBMSSCCPCHPwrOffsetDiff = 3,
 };
 typedef Enumerated<CONSTRAINED, 3> MBMSSCCPCHPwrOffsetDiff;
 
@@ -35541,21 +35540,21 @@ typedef SequenceOf<MBMSPhyChInformationr6, CONSTRAINED, 1, maxMBMS_CommonPhyCh> 
 typedef SequenceOf<MBMSPhyChInformationr7, CONSTRAINED, 1, maxMBMS_CommonPhyCh> MBMSPhyChInformationListr7;
 
 enum MBMSPLServiceRestrictInfor6Values {
-	true = 0,
+	true_MBMSPLServiceRestrictInfor6 = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MBMSPLServiceRestrictInfor6;
 
 typedef Integer<CONSTRAINED, 1, maxMBMS_Freq> MBMSPreferredFrequencyInfor6MbmsPreferredFrequency;
 
 enum MBMSQoffsetValues {
-	q4 = 0,
-	q8 = 1,
-	q12 = 2,
-	q16 = 3,
-	q20 = 4,
-	q30 = 5,
-	q40 = 6,
-	qInfinity = 7,
+	q4_MBMSQoffset = 0,
+	q8_MBMSQoffset = 1,
+	q12_MBMSQoffset = 2,
+	q16_MBMSQoffset = 3,
+	q20_MBMSQoffset = 4,
+	q30_MBMSQoffset = 5,
+	q40_MBMSQoffset = 6,
+	qInfinity_MBMSQoffset = 7,
 };
 typedef Enumerated<CONSTRAINED, 7> MBMSQoffset;
 
@@ -35583,9 +35582,9 @@ typedef SequenceOf<MBMSPreferredFrequencyInfor6, CONSTRAINED, 1, maxMBMS_Freq> M
 typedef Integer<CONSTRAINED, 0, 2047> MBMSPTMActivationTimer6;
 
 enum MBMSRequiredUEActionUModValues {
-	none = 0,
-	acquirePTM_RBInfo = 1,
-	requestPTPRB = 2,
+	none_MBMSRequiredUEActionUMod = 0,
+	acquirePTM_RBInfo_MBMSRequiredUEActionUMod = 1,
+	requestPTPRB_MBMSRequiredUEActionUMod = 2,
 };
 typedef Enumerated<CONSTRAINED, 2> MBMSRequiredUEActionUMod;
 
@@ -35740,7 +35739,7 @@ public:
 typedef SequenceOf<MBMSUnmodifiedServicev770ext, CONSTRAINED, 1, maxMBMSservUnmodif> MBMSUnmodifiedServiceListv770ext;
 
 enum MBSFNservicesNotNotifiedr7notificationOfAllMBSFNServicesInTheBandValues {
-	true = 0,
+	true_MBSFNservicesNotNotifiedr7notificationOfAllMBSFNServicesInTheBand = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MBSFNservicesNotNotifiedr7notificationOfAllMBSFNServicesInTheBand;
 
@@ -35773,7 +35772,7 @@ public:
 };
 
 enum MBSFNInterFrequencyNeighbourv860extimb_IndicationValues {
-	true = 0,
+	true_MBSFNInterFrequencyNeighbourv860extimb_Indication = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> MBSFNInterFrequencyNeighbourv860extimb_Indication;
 
@@ -35831,4 +35830,4 @@ public:
 
 typedef SequenceOf<MBSFNTDMInfo, CONSTRAINED, 1, maxMBMSservUnmodif> MBSFNTDMInfoList;
 
-#endif /* INFORMATIONELEMENTS_H_ */
+#endif /* RRCINFORMATIONELEMENTS_H_ */

@@ -15,5 +15,21 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
+#ifndef RRCINTERNODEDEFINITIONS_H_
+#define RRCINTERNODEDEFINITIONS_H_
+
+#include "ASNTypes.h"
+#include "RRCPDUDefinitions.h"
+#include "RRCInformationElements.h"
 #include "RRCConstantDefinitions.h"
 
+typedef BitString<CONSTRAINED, 16, 16> SecurityCapabilityCipheringAlgorithmCap;
+typedef BitString<CONSTRAINED, 16, 16> SecurityCapabilityIntegrityProtectionAlgorithmCap;
+class SecurityCapability : Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	SecurityCapability(): Sequence(&theInfo) {}
+};

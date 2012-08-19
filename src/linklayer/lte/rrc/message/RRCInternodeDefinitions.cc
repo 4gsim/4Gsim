@@ -15,5 +15,23 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#include "RRCConstantDefinitions.h"
+#include "RRCInternodeDefinitions.h"
+
+const void *SecurityCapability::itemsInfo[2] = {
+	&SecurityCapabilityCipheringAlgorithmCap::theInfo,
+	&SecurityCapabilityIntegrityProtectionAlgorithmCap::theInfo,
+};
+bool SecurityCapability::itemsPres[2] = {
+	1,
+	1,
+};
+const SecurityCapability::Info SecurityCapability::theInfo = {
+	SecurityCapability::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
 

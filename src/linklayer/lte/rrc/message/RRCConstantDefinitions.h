@@ -20,314 +20,310 @@
 
 #include "ASNTypes.h"
 
+#define hiPDSCHidentities 64
 
-const IntegerBase hiPDSCHidentities(64);
+#define hiPUSCHidentities 64
 
-const IntegerBase hiPUSCHidentities(64);
+#define hiRM 256
 
-const IntegerBase hiRM(256);
+#define maxAC 16
 
-const IntegerBase maxAC(16);
+#define maxAdditionalMeas 4
 
-const IntegerBase maxAdditionalMeas(4);
+#define maxASC 8
 
-const IntegerBase maxASC(8);
+#define maxASCmap 7
 
-const IntegerBase maxASCmap(7);
+#define maxASCpersist 6
 
-const IntegerBase maxASCpersist(6);
+#define maxCCTrCH 8
 
-const IntegerBase maxCCTrCH(8);
+#define maxCellMeas 32
 
-const IntegerBase maxCellMeas(32);
+#define maxCellMeasOnSecULFreq 32
 
-const IntegerBase maxCellMeasOnSecULFreq(32);
+#define maxCellMeas_1 31
 
-const IntegerBase maxCellMeas_1(31);
+#define maxCellMeasOnSecULFreq_1 31
 
-const IntegerBase maxCellMeasOnSecULFreq_1(31);
+#define maxCNdomains 4
 
-extern const IntegerBase maxCNdomains;
+#define maxCommonHRNTI 4
 
-const IntegerBase maxCommonHRNTI(4);
+#define maxCommonQueueID 2
 
-const IntegerBase maxCommonQueueID(2);
+#define maxCPCHsets 16
 
-const IntegerBase maxCPCHsets(16);
+#define maxDedicatedCSGFreq 4
 
-const IntegerBase maxDedicatedCSGFreq(4);
+#define maxDPCH_DLchan 8
 
-const IntegerBase maxDPCH_DLchan(8);
+#define maxDPDCH_UL 6
 
-const IntegerBase maxDPDCH_UL(6);
+#define maxDRACclasses 8
 
-const IntegerBase maxDRACclasses(8);
+#define maxE_DCHMACdFlow 8
 
-const IntegerBase maxE_DCHMACdFlow(8);
+#define maxE_DCHMACdFlow_1 7
 
-const IntegerBase maxE_DCHMACdFlow_1(7);
+#define maxEUTRACellPerFreq 16
 
-const IntegerBase maxEUTRACellPerFreq(16);
+#define maxEUTRATargetFreqs 8
 
-const IntegerBase maxEUTRATargetFreqs(8);
+#define maxEDCHRL 4
 
-const IntegerBase maxEDCHRL(4);
+#define maxEDCHRL_1 3
 
-const IntegerBase maxEDCHRL_1(3);
+#define maxEDCHs 32
 
-const IntegerBase maxEDCHs(32);
+#define maxEDCHTxPattern_TDD128 4
 
-const IntegerBase maxEDCHTxPattern_TDD128(4);
+#define maxEDCHTxPattern_TDD128_1 3
 
-const IntegerBase maxEDCHTxPattern_TDD128_1(3);
+#define maxERNTIgroup 32
 
-const IntegerBase maxERNTIgroup(32);
+#define maxERNTIperGroup 2
 
-const IntegerBase maxERNTIperGroup(2);
+#define maxERUCCH 256
 
-const IntegerBase maxERUCCH(256);
+#define maxFACHPCH 8
 
-const IntegerBase maxFACHPCH(8);
+#define maxFreq 8
 
-const IntegerBase maxFreq(8);
+#define maxFreqBandsEUTRA 16
 
-const IntegerBase maxFreqBandsEUTRA(16);
+#define maxFreqBandsFDD 8
 
-const IntegerBase maxFreqBandsFDD(8);
+#define maxFreqBandsFDD_ext 15
 
-const IntegerBase maxFreqBandsFDD_ext(15);
+#define maxFreqBandsTDD 4
 
-const IntegerBase maxFreqBandsTDD(4);
+#define maxFreqBandsTDD_ext 16
 
-const IntegerBase maxFreqBandsTDD_ext(16);
+#define maxFreqBandsGSM 16
 
-const IntegerBase maxFreqBandsGSM(16);
+#define maxGANSS 8
 
-const IntegerBase maxGANSS(8);
+#define maxGANSS_1 7
 
-const IntegerBase maxGANSS_1(7);
+#define maxGANSSSat 64
 
-const IntegerBase maxGANSSSat(64);
+#define maxGANSSSat_1 63
 
-const IntegerBase maxGANSSSat_1(63);
+#define maxGERAN_SI 8
 
-const IntegerBase maxGERAN_SI(8);
+#define maxGSMTargetCells 32
 
-const IntegerBase maxGSMTargetCells(32);
+#define maxHNBNameSize 48
 
-const IntegerBase maxHNBNameSize(48);
+#define maxHProcesses 8
 
-const IntegerBase maxHProcesses(8);
+#define maxHS_SCCHLessTrBlk 4
 
-const IntegerBase maxHS_SCCHLessTrBlk(4);
+#define maxHSDSCHTBIndex 64
 
-const IntegerBase maxHSDSCHTBIndex(64);
+#define maxHSDSCHTBIndex_tdd384 512
 
-const IntegerBase maxHSDSCHTBIndex_tdd384(512);
+#define maxHSSCCHs 4
 
-const IntegerBase maxHSSCCHs(4);
+#define maxHSSCCHs_1 3
 
-const IntegerBase maxHSSCCHs_1(3);
+#define maxHSSICH_TDD128 4
 
-const IntegerBase maxHSSICH_TDD128(4);
+#define maxHSSICH_TDD128_1 3
 
-const IntegerBase maxHSSICH_TDD128_1(3);
+#define maxInterSysMessages 4
 
-const IntegerBase maxInterSysMessages(4);
+#define maxLoCHperRLC 2
 
-const IntegerBase maxLoCHperRLC(2);
+#define maxMAC_d_PDUsizes 8
 
-const IntegerBase maxMAC_d_PDUsizes(8);
+#define maxMBMS_CommonCCTrCh 32
 
-const IntegerBase maxMBMS_CommonCCTrCh(32);
+#define maxMBMS_CommonPhyCh 32
 
-const IntegerBase maxMBMS_CommonPhyCh(32);
+#define maxMBMS_CommonRB 32
 
-const IntegerBase maxMBMS_CommonRB(32);
+#define maxMBMS_CommonTrCh 32
 
-const IntegerBase maxMBMS_CommonTrCh(32);
+#define maxMBMS_Freq 4
 
-const IntegerBase maxMBMS_Freq(4);
+#define maxMBMS_L1CP 4
 
-const IntegerBase maxMBMS_L1CP(4);
+#define maxMBMSservCount 8
 
-const IntegerBase maxMBMSservCount(8);
+#define maxMBMSservModif 32
 
-const IntegerBase maxMBMSservModif(32);
+#define maxMBMSservSched 16
 
-const IntegerBase maxMBMSservSched(16);
+#define maxMBMSservSelect 8
 
-const IntegerBase maxMBMSservSelect(8);
+#define maxMBMSservUnmodif 64
 
-const IntegerBase maxMBMSservUnmodif(64);
+#define maxMBMSTransmis 4
 
-const IntegerBase maxMBMSTransmis(4);
+#define maxMBSFNClusters 16
 
-const IntegerBase maxMBSFNClusters(16);
+#define maxMeasCSGRange 4
 
-const IntegerBase maxMeasCSGRange(4);
+#define maxMeasEvent 8
 
-const IntegerBase maxMeasEvent(8);
+#define maxMeasEventOnSecULFreq 8
 
-const IntegerBase maxMeasEventOnSecULFreq(8);
+#define maxMeasIntervals 3
 
-const IntegerBase maxMeasIntervals(3);
+#define maxMeasOccasionPattern 5
 
-const IntegerBase maxMeasOccasionPattern(5);
+#define maxMeasOccasionPattern_1 4
 
-const IntegerBase maxMeasOccasionPattern_1(4);
+#define maxMeasParEvent 2
 
-const IntegerBase maxMeasParEvent(2);
+#define maxNumCDMA2000Freqs 8
 
-const IntegerBase maxNumCDMA2000Freqs(8);
+#define maxNumE_AGCH 4
 
-const IntegerBase maxNumE_AGCH(4);
+#define maxNumE_HICH 4
 
-const IntegerBase maxNumE_HICH(4);
+#define maxNumEUTRAFreqs 8
 
-const IntegerBase maxNumEUTRAFreqs(8);
+#define maxNumGSMCellGroup 16
 
-const IntegerBase maxNumGSMCellGroup(16);
+#define maxNumGSMFreqRanges 32
 
-const IntegerBase maxNumGSMFreqRanges(32);
+#define maxNumFDDFreqs 8
 
-const IntegerBase maxNumFDDFreqs(8);
+#define maxNumTDDFreqs 8
 
-const IntegerBase maxNumTDDFreqs(8);
+#define maxNoOfMeas 16
 
-const IntegerBase maxNoOfMeas(16);
+#define maxOtherRAT 15
 
-const IntegerBase maxOtherRAT(15);
+#define maxOtherRAT_16 16
 
-const IntegerBase maxOtherRAT_16(16);
+#define maxPage1 8
 
-const IntegerBase maxPage1(8);
+#define maxPCPCH_APsig 16
 
-const IntegerBase maxPCPCH_APsig(16);
+#define maxPCPCH_APsubCh 12
 
-const IntegerBase maxPCPCH_APsubCh(12);
+#define maxPCPCH_CDsig 16
 
-const IntegerBase maxPCPCH_CDsig(16);
+#define maxPCPCH_CDsubCh 12
 
-const IntegerBase maxPCPCH_CDsubCh(12);
+#define maxPCPCH_SF 7
 
-const IntegerBase maxPCPCH_SF(7);
+#define maxPCPCHs 64
 
-const IntegerBase maxPCPCHs(64);
+#define maxPDCPAlgoType 8
 
-const IntegerBase maxPDCPAlgoType(8);
+#define maxPDSCH 8
 
-const IntegerBase maxPDSCH(8);
+#define maxPDSCH_TFCIgroups 256
 
-const IntegerBase maxPDSCH_TFCIgroups(256);
+#define maxPRACH 16
 
-const IntegerBase maxPRACH(16);
+#define maxPRACH_FPACH 8
 
-const IntegerBase maxPRACH_FPACH(8);
+#define maxPredefConfig 16
 
-const IntegerBase maxPredefConfig(16);
+#define maxPrio 8
 
-const IntegerBase maxPrio(8);
+#define maxPrio_1 7
 
-const IntegerBase maxPrio_1(7);
+#define maxPUSCH 8
 
-const IntegerBase maxPUSCH(8);
+#define maxQueueIDs 8
 
-const IntegerBase maxQueueIDs(8);
+#define maxRABsetup 16
 
-const IntegerBase maxRABsetup(16);
+#define maxRAT 16
 
-const IntegerBase maxRAT(16);
+#define maxRB 32
 
-const IntegerBase maxRB(32);
+#define maxRBallRABs 27
 
-const IntegerBase maxRBallRABs(27);
+#define maxRBMuxOptions 8
 
-const IntegerBase maxRBMuxOptions(8);
+#define maxRBperRAB 8
 
-const IntegerBase maxRBperRAB(8);
+#define maxRBperTrCh 16
 
-const IntegerBase maxRBperTrCh(16);
+#define maxReportedEUTRACellPerFreq 4
 
-const IntegerBase maxReportedEUTRACellPerFreq(4);
+#define maxReportedEUTRAFreqs 4
 
-const IntegerBase maxReportedEUTRAFreqs(4);
+#define maxReportedGSMCells 8
 
-const IntegerBase maxReportedGSMCells(8);
+#define maxRL 8
 
-const IntegerBase maxRL(8);
+#define maxRL_1 7
 
-const IntegerBase maxRL_1(7);
+#define maxRLCPDUsizePerLogChan 32
 
-const IntegerBase maxRLCPDUsizePerLogChan(32);
+#define maxRFC3095_CID 16384
 
-const IntegerBase maxRFC3095_CID(16384);
+#define maxROHC_PacketSizes_r4 16
 
-const IntegerBase maxROHC_PacketSizes_r4(16);
+#define maxROHC_Profile_r4 8
 
-const IntegerBase maxROHC_Profile_r4(8);
+#define maxRxPatternForHSDSCH_TDD128 4
 
-const IntegerBase maxRxPatternForHSDSCH_TDD128(4);
+#define maxRxPatternForHSDSCH_TDD128_1 3
 
-const IntegerBase maxRxPatternForHSDSCH_TDD128_1(3);
+#define maxSat 16
 
-const IntegerBase maxSat(16);
+#define maxSatClockModels 4
 
-const IntegerBase maxSatClockModels(4);
+#define maxSCCPCH 16
 
-const IntegerBase maxSCCPCH(16);
+#define maxSgnType 8
 
-const IntegerBase maxSgnType(8);
+#define maxSIB 32
 
-const IntegerBase maxSIB(32);
+#define maxSIB_FACH 8
 
-const IntegerBase maxSIB_FACH(8);
+#define maxSIBperMsg 16
 
-const IntegerBase maxSIBperMsg(16);
+#define maxSIrequest 4
 
-const IntegerBase maxSIrequest(4);
+#define maxSRBsetup 8
 
-const IntegerBase maxSRBsetup(8);
+#define maxSystemCapability 16
 
-const IntegerBase maxSystemCapability(16);
+#define maxTDD128Carrier 6
 
-const IntegerBase maxTDD128Carrier(6);
+#define maxTbsForHSDSCH_TDD128 4
 
-const IntegerBase maxTbsForHSDSCH_TDD128(4);
+#define maxTbsForHSDSCH_TDD128_1 3
 
-const IntegerBase maxTbsForHSDSCH_TDD128_1(3);
+#define maxTF 32
 
-const IntegerBase maxTF(32);
+#define maxTF_CPCH 16
 
-const IntegerBase maxTF_CPCH(16);
+#define maxTFC 1024
 
-const IntegerBase maxTFC(1024);
+#define maxTFCsub 1024
 
-const IntegerBase maxTFCsub(1024);
+#define maxTFCI_2_Combs 512
 
-const IntegerBase maxTFCI_2_Combs(512);
+#define maxTGPS 6
 
-const IntegerBase maxTGPS(6);
+#define maxTrCH 32
 
-const IntegerBase maxTrCH(32);
+#define maxTrCHpreconf 32
 
-const IntegerBase maxTrCHpreconf(32);
+#define maxTS 14
 
-const IntegerBase maxTS(14);
+#define maxTS_1 13
 
-const IntegerBase maxTS_1(13);
+#define maxTS_2 12
 
-const IntegerBase maxTS_2(12);
+#define maxTS_LCR 6
 
-const IntegerBase maxTS_LCR(6);
+#define maxTS_LCR_1 5
 
-const IntegerBase maxTS_LCR_1(5);
+#define maxURA 8
 
-const IntegerBase maxURA(8);
-
-const IntegerBase maxURNTI_Group(8);
-
-//typedef SequenceOf<CNDomainInformationFull, CONSTRAINED, 1, maxCNdomains> CNDomainInformationListFull;
-
+#define maxURNTI_Group 8
 
 #endif /* RRCCONSTANTDEFINITIONS_H_ */

@@ -98,23 +98,6 @@ public:
 	virtual int64_t compare(const AbstractType& other) const = 0;
 };
 
-struct EmptyConstraint {
-  enum {
-    type = UNCONSTRAINED,
-    lowerBound = 0,
-    upperBound = UINT_MAX
-  };
-};
-
-template <char type_, int64_t lowerBound_, int64_t upperBound_>
-struct SizeConstraint {
-    enum {
-        type = type_,
-        lowerBound = lowerBound_,
-        upperBound = upperBound_
-    };
-};
-
 /*
  * Base class for all constrained ASN.1 types.
  */
@@ -619,7 +602,7 @@ public:
 	bool encode(PerEncoder& encoder) const;
 };
 
-template <class T, class Constraint>
+template <class T, ConstraintType type, int64_t lowerBound, int64_t upperBound>
 class SequenceOf : public SequenceOfBase {
 public:
 	static const Info theInfo;
@@ -637,14 +620,14 @@ public:
 	int64_t size() const { return items.size(); }
 };
 
-template <class T, class Constraint>
-const typename SequenceOf<T, Constraint>::Info SequenceOf<T, Constraint>::theInfo = {
+template <class T, ConstraintType type, int64_t lowerBound, int64_t upperBound>
+const typename SequenceOf<T, type, lowerBound, upperBound>::Info SequenceOf<T, type, lowerBound, upperBound>::theInfo = {
 	SequenceOfBase::create,
 	SEQUENCEOF,
 	0,
-	Constraint::type,
-	Constraint::lowerBound,
-	Constraint::upperBound,
+	type,
+	lowerBound,
+	upperBound,
 	&T::theInfo
 };
 

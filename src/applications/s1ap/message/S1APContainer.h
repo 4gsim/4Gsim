@@ -38,12 +38,12 @@ public:
 
 typedef ProtocolIeField ProtocolIeSingleContainer;
 
-typedef SequenceOf<ProtocolIeField, SizeConstraint<CONSTRAINED, 0, maxProtocolIEs>> ProtocolIeContainer;
+typedef SequenceOf<ProtocolIeField, CONSTRAINED, 0, maxProtocolIEs> ProtocolIeContainer;
 OpenType *findValue(ProtocolIeContainer *container, unsigned short id);
 
 typedef ProtocolIeField ProtocolExtField;
 
-typedef SequenceOf<ProtocolExtField, SizeConstraint<CONSTRAINED, 0, maxProtocolIEs>> ProtocolExtContainer;
+typedef SequenceOf<ProtocolExtField, CONSTRAINED, 0, maxProtocolIEs> ProtocolExtContainer;
 
 #endif /* S1APCONTAINER_H_ */
 
