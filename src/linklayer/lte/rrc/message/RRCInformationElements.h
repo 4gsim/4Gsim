@@ -21,6 +21,8 @@
 #include "ASNTypes.h"
 #include "RRCConstantDefinitions.h"
 
+namespace RRC {
+
 typedef BitString<CONSTRAINED, 14, 14> Ansi41IDNNS;
 
 enum CNDomainIdentityValues {
@@ -55,6 +57,9 @@ typedef SequenceOf<CNDomainInformation, CONSTRAINED, 1, maxCNdomains> CNDomainIn
 
 typedef SequenceOf<CNDomainInformationFull, CONSTRAINED, 1, maxCNdomains> CNDomainInformationListFull;
 
+typedef BitString<CONSTRAINED, 1, 2048> ANSI41NASParameter;
+
+typedef ANSI41NASParameter NASSystemInformationANSI41;
 
 class CNDomainSysInfoCnType : Choice {
 private:
@@ -3940,9 +3945,9 @@ typedef Enumerated<CONSTRAINED, 3> RRCStateIndicator;
 
 typedef BitString<CONSTRAINED, 10, 10> SRNTI2;
 
-typedef BitString<CONSTRAINED> SecurityCapabilityCipheringAlgorithmCap;
+typedef BitString<CONSTRAINED, 16, 16> SecurityCapabilityCipheringAlgorithmCap;
 
-typedef BitString<CONSTRAINED> SecurityCapabilityIntegrityProtectionAlgorithmCap;
+typedef BitString<CONSTRAINED, 16, 16> SecurityCapabilityIntegrityProtectionAlgorithmCap;
 
 class SecurityCapability : Sequence {
 private:
@@ -5803,7 +5808,7 @@ public:
 	UERadioAccessCapabilityv860extIEs(): Sequence(&theInfo) {}
 };
 
-typedef OctetString<UNCONSTRAINED> EUTRARadioAccessCapabilityUeEUTRACapability;
+typedef OctetStringBase EUTRARadioAccessCapabilityUeEUTRACapability;
 
 class EUTRARadioAccessCapability : Sequence {
 private:
@@ -9280,6 +9285,7 @@ public:
 
 typedef Integer<CONSTRAINED, 0, maxE_DCHMACdFlow_1> EDCHMACdFlowIdentity;
 
+typedef OctetModeRLCSizeInfoType1 RLCPDUSize;
 
 typedef SequenceOf<RLCPDUSize, CONSTRAINED, 1, maxRLCPDUsizePerLogChan> RLCPDUSizeList;
 
@@ -10849,7 +10855,7 @@ typedef Integer<CONSTRAINED, 0, 15> AccessServiceClassFDDAvailableSignatureStart
 
 typedef Integer<CONSTRAINED, 0, 15> AccessServiceClassFDDAvailableSignatureEndIndex;
 
-typedef BitString<CONSTRAINED> AccessServiceClassFDDAssignedSubChannelNumber;
+typedef BitString<CONSTRAINED, 4, 4> AccessServiceClassFDDAssignedSubChannelNumber;
 
 class AccessServiceClassFDD : Sequence {
 private:
@@ -10860,7 +10866,7 @@ public:
 	AccessServiceClassFDD(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> AccessServiceClassTDDChannelisationCodeIndices;
+typedef BitString<CONSTRAINED, 8, 8> AccessServiceClassTDDChannelisationCodeIndices;
 
 typedef Null AccessServiceClassTDDSubchannelSizeSize1;
 
@@ -10879,7 +10885,7 @@ public:
 	AccessServiceClassTDDSubchannelSizeSize2(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> AccessServiceClassTDDSubchannelSizeSize4Subchannels;
+typedef BitString<CONSTRAINED, 4, 4> AccessServiceClassTDDSubchannelSizeSize4Subchannels;
 
 class AccessServiceClassTDDSubchannelSizeSize4 : Sequence {
 private:
@@ -10890,7 +10896,7 @@ public:
 	AccessServiceClassTDDSubchannelSizeSize4(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> AccessServiceClassTDDSubchannelSizeSize8Subchannels;
+typedef BitString<CONSTRAINED, 8, 8> AccessServiceClassTDDSubchannelSizeSize8Subchannels;
 
 class AccessServiceClassTDDSubchannelSizeSize8 : Sequence {
 private:
@@ -10918,7 +10924,7 @@ public:
 	AccessServiceClassTDD(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> AccessServiceClassTDDr7ChannelisationCodeIndices;
+typedef BitString<CONSTRAINED, 16, 16> AccessServiceClassTDDr7ChannelisationCodeIndices;
 
 typedef Null AccessServiceClassTDDr7SubchannelSizeSize1;
 
@@ -10937,7 +10943,7 @@ public:
 	AccessServiceClassTDDr7SubchannelSizeSize2(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> AccessServiceClassTDDr7SubchannelSizeSize4Subchannels;
+typedef BitString<CONSTRAINED, 4, 4> AccessServiceClassTDDr7SubchannelSizeSize4Subchannels;
 
 class AccessServiceClassTDDr7SubchannelSizeSize4 : Sequence {
 private:
@@ -10948,7 +10954,7 @@ public:
 	AccessServiceClassTDDr7SubchannelSizeSize4(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> AccessServiceClassTDDr7SubchannelSizeSize8Subchannels;
+typedef BitString<CONSTRAINED, 8, 8> AccessServiceClassTDDr7SubchannelSizeSize8Subchannels;
 
 class AccessServiceClassTDDr7SubchannelSizeSize8 : Sequence {
 private:
@@ -10959,7 +10965,7 @@ public:
 	AccessServiceClassTDDr7SubchannelSizeSize8(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> AccessServiceClassTDDr7SubchannelSizeSize16Subchannels;
+typedef BitString<CONSTRAINED, 16, 16> AccessServiceClassTDDr7SubchannelSizeSize16Subchannels;
 
 class AccessServiceClassTDDr7SubchannelSizeSize16 : Sequence {
 private:
@@ -10987,7 +10993,7 @@ public:
 	AccessServiceClassTDDr7(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> AccessServiceClassTDDLCRr4AvailableSYNCUlCodesIndics;
+typedef BitString<CONSTRAINED, 8, 8> AccessServiceClassTDDLCRr4AvailableSYNCUlCodesIndics;
 
 typedef Null AccessServiceClassTDDLCRr4SubchannelSizeSize1;
 
@@ -11006,7 +11012,7 @@ public:
 	AccessServiceClassTDDLCRr4SubchannelSizeSize2(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> AccessServiceClassTDDLCRr4SubchannelSizeSize4Subchannels;
+typedef BitString<CONSTRAINED, 4, 4> AccessServiceClassTDDLCRr4SubchannelSizeSize4Subchannels;
 
 class AccessServiceClassTDDLCRr4SubchannelSizeSize4 : Sequence {
 private:
@@ -11017,7 +11023,7 @@ public:
 	AccessServiceClassTDDLCRr4SubchannelSizeSize4(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> AccessServiceClassTDDLCRr4SubchannelSizeSize8Subchannels;
+typedef BitString<CONSTRAINED, 8, 8> AccessServiceClassTDDLCRr4SubchannelSizeSize8Subchannels;
 
 class AccessServiceClassTDDLCRr4SubchannelSizeSize8 : Sequence {
 private:
@@ -11195,9 +11201,9 @@ public:
 
 typedef SequenceOf<AvailableMinimumSFVCAM, CONSTRAINED, 1, maxPCPCH_SF> AvailableMinimumSFListVCAM;
 
-typedef BitString<CONSTRAINED> AvailableSignatures;
+typedef BitString<CONSTRAINED, 16, 16> AvailableSignatures;
 
-typedef BitString<CONSTRAINED> AvailableSubChannelNumbers;
+typedef BitString<CONSTRAINED, 12, 12> AvailableSubChannelNumbers;
 
 enum BEACONPLEstValues {
 	true_BEACONPLEst = 0,
@@ -11749,6 +11755,9 @@ typedef Enumerated<CONSTRAINED, 6> ERUCCHInfoTDD128t_SI;
 
 typedef Integer<CONSTRAINED, 2, 5> ERUCCHInfoTDD128ExtendedEstimationWindow;
 
+typedef SequenceOf<ASCSettingTDDLCRr4, CONSTRAINED, 1, maxASC> PRACHPartitioningLCRr4;
+
+typedef PRACHPartitioningLCRr4 ERUCCHAccessServiceClass;
 
 enum PersistenceScalingFactorValues {
 	psf0_9_PersistenceScalingFactor = 0,
@@ -11776,7 +11785,7 @@ enum SYNCULInfoForERUCCHmax_SYNC_UL_TransmissionsValues {
 };
 typedef Enumerated<CONSTRAINED, 3> SYNCULInfoForERUCCHmax_SYNC_UL_Transmissions;
 
-typedef BitString<CONSTRAINED> SyncULCodesBitmap;
+typedef BitString<CONSTRAINED, 8, 8> SyncULCodesBitmap;
 
 typedef Integer<CONSTRAINED, 1, 32> SYNCULInfoForERUCCHMmax;
 
@@ -12930,7 +12939,7 @@ public:
 	DLTSChannelisationCodesShortCodesRepresentationConsecutive(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> DLTSChannelisationCodesShortCodesRepresentationBitmap;
+typedef BitString<CONSTRAINED, 16, 16> DLTSChannelisationCodesShortCodesRepresentationBitmap;
 
 class DLTSChannelisationCodesShortCodesRepresentation : Choice {
 private:
@@ -13481,7 +13490,7 @@ public:
 	DLTSChannelisationCodesShortVHCRCodesRepresentationConsecutive(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> DLTSChannelisationCodesShortVHCRCodesRepresentationBitmap;
+typedef BitString<CONSTRAINED, 32, 32> DLTSChannelisationCodesShortVHCRCodesRepresentationBitmap;
 
 class DLTSChannelisationCodesShortVHCRCodesRepresentation : Choice {
 private:
@@ -18473,6 +18482,16 @@ public:
 	MIMOParametersr7(): Sequence(&theInfo) {}
 };
 
+class MIMOPilotConfigurationv7f0ext : Sequence {
+private:
+	static const void *itemsInfo[1];
+	static bool itemsPres[1];
+public:
+	static const Info theInfo;
+	MIMOPilotConfigurationv7f0ext(): Sequence(&theInfo) {}
+};
+
+typedef MIMOPilotConfigurationv7f0ext MIMOParametersv7f0ext;
 
 enum MIMOParametersv7g0extprecodingWeightSetRestrictionValues {
 	true_MIMOParametersv7g0extprecodingWeightSetRestriction = 0,
@@ -18593,15 +18612,6 @@ private:
 public:
 	static const Info theInfo;
 	MIMOParametersr9(): Sequence(&theInfo) {}
-};
-
-class MIMOPilotConfigurationv7f0ext : Sequence {
-private:
-	static const void *itemsInfo[1];
-	static bool itemsPres[1];
-public:
-	static const Info theInfo;
-	MIMOPilotConfigurationv7f0ext(): Sequence(&theInfo) {}
 };
 
 typedef Integer<CONSTRAINED, 0, 127> UpPCHpositionLCR;
@@ -19058,8 +19068,6 @@ public:
 	static const Info theInfo;
 	PRACHPartitioning(): Choice(&theInfo) {}
 };
-
-typedef SequenceOf<ASCSettingTDDLCRr4, CONSTRAINED, 1, maxASC> PRACHPartitioningLCRr4;
 
 enum SFPRACHValues {
 	sfpr32_SFPRACH = 0,
@@ -20176,6 +20184,7 @@ public:
 	RLAdditionInformationv6b0ext(): Sequence(&theInfo) {}
 };
 
+typedef MIMOParametersv7f0ext TargetCellPreconfigInfov890ext;
 
 class RLAdditionInformationv890ext : Sequence {
 private:
@@ -20186,6 +20195,21 @@ public:
 	RLAdditionInformationv890ext(): Sequence(&theInfo) {}
 };
 
+enum SecondaryCellMIMOparametersFDDv950extprecodingWeightSetRestrictionValues {
+	true_SecondaryCellMIMOparametersFDDv950extprecodingWeightSetRestriction = 0,
+};
+typedef Enumerated<CONSTRAINED, 0> SecondaryCellMIMOparametersFDDv950extprecodingWeightSetRestriction;
+
+class SecondaryCellMIMOparametersFDDv950ext : Sequence {
+private:
+	static const void *itemsInfo[1];
+	static bool itemsPres[1];
+public:
+	static const Info theInfo;
+	SecondaryCellMIMOparametersFDDv950ext(): Sequence(&theInfo) {}
+};
+
+typedef SecondaryCellMIMOparametersFDDv950ext TargetCellPreconfigInfov950ext;
 
 class RLAdditionInformationv950ext : Sequence {
 private:
@@ -20629,20 +20653,6 @@ public:
 	SecondaryCCPCHInfoDiffMBMS(): Sequence(&theInfo) {}
 };
 
-enum SecondaryCellMIMOparametersFDDv950extprecodingWeightSetRestrictionValues {
-	true_SecondaryCellMIMOparametersFDDv950extprecodingWeightSetRestriction = 0,
-};
-typedef Enumerated<CONSTRAINED, 0> SecondaryCellMIMOparametersFDDv950extprecodingWeightSetRestriction;
-
-class SecondaryCellMIMOparametersFDDv950ext : Sequence {
-private:
-	static const void *itemsInfo[1];
-	static bool itemsPres[1];
-public:
-	static const Info theInfo;
-	SecondaryCellMIMOparametersFDDv950ext(): Sequence(&theInfo) {}
-};
-
 typedef Boolean ServingCellChangeMACreset;
 
 enum ServingCellChangeMsgTypeValues {
@@ -20697,7 +20707,7 @@ public:
 	SPSInformationTDD128r8(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED> SynchronisationParametersr4SyncULCodesBitmap;
+typedef BitString<CONSTRAINED, 8, 8> SynchronisationParametersr4SyncULCodesBitmap;
 
 typedef Integer<CONSTRAINED, 0, 62> SynchronisationParametersr4PrxUpPCHdes;
 
@@ -23605,6 +23615,7 @@ public:
 
 typedef SequenceOf<CSGInterFreqCellInfo, CONSTRAINED, 1, maxFreq> CSGInterFreqCellInfoList;
 
+typedef CSGCellInfoList CSGIntraFreqCellInfoList;
 
 enum CSGProximityDetectionuTRACSGProximityDetecValues {
 	enable_CSGProximityDetectionuTRACSGProximityDetec = 0,
@@ -29924,6 +29935,7 @@ typedef Boolean QualityReportingQuantityDlTransChBLER;
 
 typedef Null QualityReportingQuantityModeSpecificInfoFdd;
 
+typedef TFCSIdentityPlain SIRTFCS;
 
 typedef SequenceOf<SIRTFCS, CONSTRAINED, 1, maxCCTrCH> SIRTFCSList;
 
@@ -32086,7 +32098,7 @@ public:
 	ETWSInformation(): Sequence(&theInfo) {}
 };
 
-typedef OctetString<UNCONSTRAINED> ETWSWarningSecurityInfo;
+typedef OctetStringBase ETWSWarningSecurityInfo;
 
 typedef Integer<CONSTRAINED, 1, 8> ExpirationTimeFactor;
 
@@ -32259,7 +32271,7 @@ typedef BitString<CONSTRAINED, 1, 512> GSMMessageListItem;
 
 typedef SequenceOf<GSMMessageListItem, CONSTRAINED, 1, maxInterSysMessages> GSMMessageList;
 
-typedef BitString<CONSTRAINED> GsmSecurityCapability;
+typedef BitString<CONSTRAINED, 7, 7> GsmSecurityCapability;
 
 typedef OctetString<CONSTRAINED, 1, maxHNBNameSize> HNBName;
 
@@ -33269,6 +33281,7 @@ public:
 	SysInfoType5(): Sequence(&theInfo) {}
 };
 
+typedef SysInfoType5 SysInfoType5bis;
 
 class SysInfoType6ModeSpecificInfoFdd : Sequence {
 private:
@@ -33941,6 +33954,7 @@ public:
 	SysInfoType13(): Sequence(&theInfo) {}
 };
 
+typedef ANSI41NASParameter ANSI41RANDInformation;
 
 class SysInfoType131NonCriticalExtensions : Sequence {
 private:
@@ -33960,6 +33974,7 @@ public:
 	SysInfoType131(): Sequence(&theInfo) {}
 };
 
+typedef ANSI41NASParameter ANSI41UserZoneIDInformation;
 
 class SysInfoType132NonCriticalExtensions : Sequence {
 private:
@@ -33979,6 +33994,7 @@ public:
 	SysInfoType132(): Sequence(&theInfo) {}
 };
 
+typedef ANSI41NASParameter ANSI41PrivateNeighbourListInfo;
 
 class SysInfoType133NonCriticalExtensions : Sequence {
 private:
@@ -33998,6 +34014,7 @@ public:
 	SysInfoType133(): Sequence(&theInfo) {}
 };
 
+typedef ANSI41NASParameter ANSI41GlobalServiceRedirectInfo;
 
 class SysInfoType134NonCriticalExtensions : Sequence {
 private:
@@ -34853,8 +34870,6 @@ public:
 	UEHistoryInformation(): Sequence(&theInfo) {}
 };
 
-typedef BitString<CONSTRAINED, 1, 2048> ANSI41NASParameter;
-
 enum MBMSAccessProbabilityFactorValues {
 	apf0_MBMSAccessProbabilityFactor = 0,
 	apf32_MBMSAccessProbabilityFactor = 1,
@@ -35360,6 +35375,7 @@ typedef Enumerated<CONSTRAINED, 5> MBMSRequiredUEActionMod;
 
 typedef Integer<CONSTRAINED, 1, maxMBMS_Freq> MBMSPFLIndex;
 
+typedef FrequencyInfo MBMSPFLInfo;
 
 class MBMSModifedServicer6MbmsPreferredFrequency : Choice {
 private:
@@ -35829,5 +35845,7 @@ public:
 };
 
 typedef SequenceOf<MBSFNTDMInfo, CONSTRAINED, 1, maxMBMSservUnmodif> MBSFNTDMInfoList;
+
+}
 
 #endif /* RRCINFORMATIONELEMENTS_H_ */

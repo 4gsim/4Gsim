@@ -23,9 +23,11 @@ oftxt = ' OF '
 size = 'SIZE'
 definitionstxt = 'DEFINITIONS'
 fromtxt = 'FROM'
+containingtxt = 'CONTAINING'
 comment = '--'
 comma = ','
 colon = ':'
+semicolon = ';'
 tripledash = '...'
 types = ['Integer', 
 			'IntegerBase',
@@ -45,12 +47,11 @@ constrainttypes = ['Integer',
 					'BitString', 
 					'BitStringBase',
 					'OctetString', 
-					'OctetStringBase',
-					'Enumerated', 
-					'EnumeratedBase']
+					'OctetStringBase']
 module = "RRC"
 outfilename = ''
 includes = list()
+imports = list()
 
 class ASNObject:
 	type = '' 
@@ -100,6 +101,11 @@ def parsesize(asnobj, string):
 	limits.append("")
 	skip = 0
 	begin = 0
+
+	if containingtxt in string:
+                asnobj.constrainttype = "UNCONSTRAINED"
+                return
+	
 	if size in string:
 		for i in range(0, len(string)):
 			begin += 1
@@ -192,8 +198,16 @@ def parseheader(string):
 	for i in range(0, len(words)):
 		if fromtxt in words[i]:
 			filename = words[i].split()[1]
+			if semicolon in filename:
+                                filename = filename[:-1]
 			include = module + findfilename(filename)
 			includes.append(include)
+		else:
+                        imp = words[i].replace("-", "").strip()
+                        if comma in imp:
+                                imp = imp[:-1]
+                        imports.append(imp)
+                        #print imp
 	
 def parsestring(string):
 	asnobj = ASNObject()
@@ -232,6 +246,7 @@ def parsestring(string):
 					break
 				elif string[i] == openbracket:
 					if asnobj.type in constrainttypes:
+                                                
 						words = words[1].split(closedbracket, 1)
 						words = words[1].split(openparantheses, 1)
 						parsesize(asnobj, words[1])
@@ -264,6 +279,9 @@ def parsestring(string):
 			words = words[1].split(assign)
 			words = words[1].split()
 			asnobj.value = int(words[0])
+
+                if asnobj.constrainttype == "UNCONSTRAINED" and asnobj.type in constrainttypes:
+                        asnobj.type += "Base"
 	return asnobj
 	
 def printobjects(asnobjs):
@@ -285,6 +303,8 @@ def checkandhandledeps(asnobj, hdrfile, srcfile):
 		obj = asnobj.objs[i]
 		if obj.type in types:
 			writeobject(obj, hdrfile, srcfile)
+		elif obj.type in imports:
+                        pass
 		else:
 			found = 0
 			for j in range(0, len(asnobjs)):
@@ -300,7 +320,20 @@ def checkandhandledeps(asnobj, hdrfile, srcfile):
 def writeobject(asnobj, hdrfile, srcfile):
 	if asnobj.written == 0 and asnobj.name != '':
 		if asnobj.parent != None:
-			asnobj.name = asnobj.parent.name + asnobj.name 
+			asnobj.name = asnobj.parent.name + asnobj.name
+
+                # Non standard types
+
+		if asnobj.type not in types:
+                        objs = list()
+			obj = ASNObject()
+			obj.type = asnobj.type
+			objs.append(obj)
+			asnobj.objs = objs
+			#print asnobj.name
+			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
+                                return
+			hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
 		
 		# Null and Boolean
 		
@@ -417,16 +450,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 						"};\n")
 			srcfile.write("\n")
 			
-		if asnobj.type not in types:
-			obj = ASNObject()
-			obj.type = asnobj.type
-			asnobj.objs.append(obj)
-			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
-				return
-			hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
-			
 		hdrfile.write("\n")
-
 		asnobj.written = 1
 
 def writeheader(file):
@@ -456,8 +480,8 @@ def main():
 	(options, args) = parser.parse_args()
 	
 	#directory = "/root/Desktop/omnetpp-4.2.2/samples/4Gsim/src/linklayer/lte/rrc/message/"
-	directory = "F:\\omnetpp-4.2.2\\samples\\4Gsim\\src\\linklayer\\lte\\rrc\\message\\"
-	filename = "test"
+	directory = "D:\\omnetpp-4.2.2\\samples\\4Gsim\\src\\linklayer\\lte\\rrc\\message\\"
+	filename = "InformationElements"
 	
 	file = open(directory + filename + ".asn", "r")
 	lines = file.readlines()
@@ -492,9 +516,15 @@ def main():
 
 	srcfile.write("#include \"" + outfilename + ".h\"\n\n")
 
+	srcfile.write("namespace " + module + " {\n\n")
+	hdrfile.write("namespace " + module + " {\n\n")
+
 	for i in range (0, len(asnobjs)):
 		asnobj = asnobjs[i]
 		writeobject(asnobj, hdrfile, srcfile)
+
+        srcfile.write("}\n")
+        hdrfile.write("}\n\n")
 
 	hdrfile.write("#endif /* " + outfilename.upper() + "_H_ */\n")
 

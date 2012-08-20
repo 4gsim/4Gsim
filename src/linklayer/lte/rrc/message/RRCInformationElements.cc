@@ -17,6 +17,8 @@
 
 #include "RRCInformationElements.h"
 
+namespace RRC {
+
 const void *CNDomainInformation::itemsInfo[2] = {
 	&CNDomainIdentity::theInfo,
 	&NASSystemInformationGSMMAP::theInfo,
@@ -6761,7 +6763,7 @@ const UERadioAccessCapabilityv860extIEs::Info UERadioAccessCapabilityv860extIEs:
 };
 
 const void *EUTRARadioAccessCapability::itemsInfo[1] = {
-	&EUTRARadioAccessCapabilityUeEUTRACapability::theInfo,
+	&OctetStringBase::theInfo,
 };
 bool EUTRARadioAccessCapability::itemsPres[1] = {
 	1,
@@ -24611,6 +24613,22 @@ const MIMOParametersr7::Info MIMOParametersr7::theInfo = {
 	3, 2, 0
 };
 
+const void *MIMOPilotConfigurationv7f0ext::itemsInfo[1] = {
+	&SCPICHPowerOffsetMIMO::theInfo,
+};
+bool MIMOPilotConfigurationv7f0ext::itemsPres[1] = {
+	0,
+};
+const MIMOPilotConfigurationv7f0ext::Info MIMOPilotConfigurationv7f0ext::theInfo = {
+	MIMOPilotConfigurationv7f0ext::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	1, 1, 0
+};
+
 const void *MIMOParametersv7g0ext::itemsInfo[1] = {
 	&MIMOParametersv7g0extprecodingWeightSetRestriction::theInfo,
 };
@@ -24787,22 +24805,6 @@ const MIMOParametersr9::Info MIMOParametersr9::theInfo = {
 	itemsInfo,
 	itemsPres,
 	2, 0, 0
-};
-
-const void *MIMOPilotConfigurationv7f0ext::itemsInfo[1] = {
-	&SCPICHPowerOffsetMIMO::theInfo,
-};
-bool MIMOPilotConfigurationv7f0ext::itemsPres[1] = {
-	0,
-};
-const MIMOPilotConfigurationv7f0ext::Info MIMOPilotConfigurationv7f0ext::theInfo = {
-	MIMOPilotConfigurationv7f0ext::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	1, 1, 0
 };
 
 const void *MultifrequencyInfoLCRr7::itemsInfo[3] = {
@@ -27275,6 +27277,22 @@ const RLAdditionInformationv890ext::Info RLAdditionInformationv890ext::theInfo =
 	1, 1, 0
 };
 
+const void *SecondaryCellMIMOparametersFDDv950ext::itemsInfo[1] = {
+	&SecondaryCellMIMOparametersFDDv950extprecodingWeightSetRestriction::theInfo,
+};
+bool SecondaryCellMIMOparametersFDDv950ext::itemsPres[1] = {
+	0,
+};
+const SecondaryCellMIMOparametersFDDv950ext::Info SecondaryCellMIMOparametersFDDv950ext::theInfo = {
+	SecondaryCellMIMOparametersFDDv950ext::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	1, 1, 0
+};
+
 const void *RLAdditionInformationv950ext::itemsInfo[1] = {
 	&TargetCellPreconfigInfov950ext::theInfo,
 };
@@ -27924,22 +27942,6 @@ const SecondaryCCPCHInfoDiffMBMS::Info SecondaryCCPCHInfoDiffMBMS::theInfo = {
 	itemsInfo,
 	itemsPres,
 	4, 3, 0
-};
-
-const void *SecondaryCellMIMOparametersFDDv950ext::itemsInfo[1] = {
-	&SecondaryCellMIMOparametersFDDv950extprecodingWeightSetRestriction::theInfo,
-};
-bool SecondaryCellMIMOparametersFDDv950ext::itemsPres[1] = {
-	0,
-};
-const SecondaryCellMIMOparametersFDDv950ext::Info SecondaryCellMIMOparametersFDDv950ext::theInfo = {
-	SecondaryCellMIMOparametersFDDv950ext::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	1, 1, 0
 };
 
 const void *ServingCellChangeParameters::itemsInfo[3] = {
@@ -51982,3 +51984,4 @@ const MBSFNTDMInfo::Info MBSFNTDMInfo::theInfo = {
 	4, 0, 0
 };
 
+}
