@@ -17,7 +17,7 @@
 
 #include "RRCPDUDefinitions.h"
 
-namespace RRC {
+namespace rrcNamespace {
 
 const void *ActiveSetUpdater3IEs::itemsInfo[12] = {
 	&RRCTransactionIdentifier::theInfo,

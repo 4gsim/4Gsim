@@ -17,7 +17,7 @@
 
 #include "RRCInformationElements.h"
 
-namespace RRC {
+namespace rrcNamespace {
 
 const void *CNDomainInformation::itemsInfo[2] = {
 	&CNDomainIdentity::theInfo,

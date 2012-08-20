@@ -1,5 +1,6 @@
 import re
 from optparse import OptionParser
+import os
 
 openbracket = '{'
 closedbracket = '}'
@@ -49,6 +50,8 @@ constrainttypes = ['Integer',
 					'OctetString', 
 					'OctetStringBase']
 module = "RRC"
+#directory = "/root/Desktop/omnetpp-4.2.2/samples/4Gsim/src/linklayer/lte/rrc/message/"
+directory = "D:\\omnetpp-4.2.2\\samples\\4Gsim\\src\\linklayer\\lte\\rrc\\message\\"
 outfilename = ''
 includes = list()
 imports = list()
@@ -345,7 +348,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 		if asnobj.type in constrainttypes:
 			if asnobj.constrainttype == "CONSTANT":
 				hdrfile.write("#define " + asnobj.name + " " + str(asnobj.value) + "\n")
-			if asnobj.constrainttype == "UNCONSTRAINED":
+			elif asnobj.constrainttype == "UNCONSTRAINED":
 				hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
 			else:
 				hdrfile.write("typedef " + asnobj.type + "<" + asnobj.constrainttype)
@@ -469,27 +472,16 @@ def writeheader(file):
 		"//\n" + 
 		"// You should have received a copy of the GNU Lesser General Public License\n" +
 		"// along with this program.  If not, see http://www.gnu.org/licenses/.\n" +
-		"//\n\n") 
+		"//\n\n")
 
-def main():
-	usage = "usage: %prog [options] input filename"
-	parser = OptionParser(usage)
-	parser.add_option("-o", "--output", dest="filename",
-		          help="name of output file", metavar="FILENAME")
-
-	(options, args) = parser.parse_args()
-	
-	#directory = "/root/Desktop/omnetpp-4.2.2/samples/4Gsim/src/linklayer/lte/rrc/message/"
-	directory = "D:\\omnetpp-4.2.2\\samples\\4Gsim\\src\\linklayer\\lte\\rrc\\message\\"
-	filename = "InformationElements"
-	
-	file = open(directory + filename + ".asn", "r")
+def parsefile(filename):
+	file = open(directory + filename, "r")
 	lines = file.readlines()
 	file.close()
 
 	objectstring = ""
     
-	print ("parsing file...")    
+	print ("parsing file " + filename + "...")    
 	for i, line in enumerate(lines):  
 		if assign in line:
 			if len(objectstring) > 0: 
@@ -500,8 +492,12 @@ def main():
 
 	asnobjs.append(parsestring(objectstring))
 
-	#printobjects(asnobjs)
-	print ("writing source files...")
+def writefile(filename):
+        global asnobjs
+        global includes
+        global imports
+        
+        print ("writing source files for " + filename + "...")
 	hdrfile = open(directory + outfilename + ".h", 'w')
 	srcfile = open(directory + outfilename + ".cc", 'w')
 	writeheader(hdrfile)
@@ -516,8 +512,8 @@ def main():
 
 	srcfile.write("#include \"" + outfilename + ".h\"\n\n")
 
-	srcfile.write("namespace " + module + " {\n\n")
-	hdrfile.write("namespace " + module + " {\n\n")
+	srcfile.write("namespace " + module.lower() + "Namespace {\n\n")
+	hdrfile.write("namespace " + module.lower() + "Namespace {\n\n")
 
 	for i in range (0, len(asnobjs)):
 		asnobj = asnobjs[i]
@@ -530,6 +526,30 @@ def main():
 
 	srcfile.close()
 	hdrfile.close()
+
+        
+	includes = list()
+        imports = list()
+        asnobjs = list()
+
+def main():
+        os.chdir(directory)
+        for filename in os.listdir("."):
+                if filename.endswith(".asn"):
+                        parsefile(filename)
+                        writefile(filename)
+                        
+##	usage = "usage: %prog [options] input filename"
+##	parser = OptionParser(usage)
+##	parser.add_option("-o", "--output", dest="filename",
+##		          help="name of output file", metavar="FILENAME")
+##
+##	(options, args) = parser.parse_args()
+##	
+
+##
+##	#printobjects(asnobjs)
+
 	
 if __name__ == "__main__":
 	main()

@@ -21,7 +21,7 @@
 #include "ASNTypes.h"
 #include "RRCConstantDefinitions.h"
 
-namespace RRC {
+namespace rrcNamespace {
 
 typedef BitString<CONSTRAINED, 14, 14> Ansi41IDNNS;
 

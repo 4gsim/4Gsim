@@ -20,6 +20,8 @@
 
 #include "ASNTypes.h"
 
+namespace rrcNamespace {
+
 #define hiPDSCHidentities 64
 
 #define hiPUSCHidentities 64
@@ -325,5 +327,7 @@
 #define maxURA 8
 
 #define maxURNTI_Group 8
+
+}
 
 #endif /* RRCCONSTANTDEFINITIONS_H_ */

@@ -22,7 +22,7 @@
 #include "RRCPDUDefinitions.h"
 #include "RRCInformationElements.h"
 
-namespace RRC {
+namespace rrcNamespace {
 
 typedef Null DLDCCHMessageTypeSpare3;
 
@@ -252,4 +252,5 @@ public:
 };
 
 }
+
 #endif /* RRCCLASSDEFINITIONS_H_ */

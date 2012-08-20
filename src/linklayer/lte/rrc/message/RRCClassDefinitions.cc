@@ -17,7 +17,7 @@
 
 #include "RRCClassDefinitions.h"
 
-namespace RRC {
+namespace rrcNamespace {
 
 const void *DLDCCHMessageType::choicesInfo[32] = {
 	&ActiveSetUpdate::theInfo,
