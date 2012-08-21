@@ -285,6 +285,7 @@ def parsestring(string):
 
                 if asnobj.constrainttype == "UNCONSTRAINED" and asnobj.type in constrainttypes:
                         asnobj.type += "Base"
+
 	return asnobj
 	
 def printobjects(asnobjs):
@@ -324,6 +325,12 @@ def writeobject(asnobj, hdrfile, srcfile):
 	if asnobj.written == 0 and asnobj.name != '':
 		if asnobj.parent != None:
 			asnobj.name = asnobj.parent.name + asnobj.name
+
+		if asnobj.name == module:
+                        asnobj.name = asnobj.name + "_"
+
+                if asnobj.type == module:
+                        asnobj.type = asnobj.type + "_"
 
                 # Non standard types
 
@@ -512,8 +519,8 @@ def writefile(filename):
 
 	srcfile.write("#include \"" + outfilename + ".h\"\n\n")
 
-	srcfile.write("namespace " + module.lower() + "Namespace {\n\n")
-	hdrfile.write("namespace " + module.lower() + "Namespace {\n\n")
+	srcfile.write("namespace " + module.lower() + " {\n\n")
+	hdrfile.write("namespace " + module.lower() + " {\n\n")
 
 	for i in range (0, len(asnobjs)):
 		asnobj = asnobjs[i]

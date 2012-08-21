@@ -22,7 +22,7 @@
 #include "RRCInformationElements.h"
 #include "RRCConstantDefinitions.h"
 
-namespace rrcNamespace {
+namespace rrc {
 
 class ActiveSetUpdater3IEs : Sequence {
 private:

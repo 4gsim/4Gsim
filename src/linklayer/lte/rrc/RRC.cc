@@ -32,6 +32,7 @@ RRC::~RRC() {
 }
 
 void RRC::initialize(int stage) {
+
 //	char lac[2] = {0x5b, 0x10};
 //	char tmsi[4] = {0x19, 0x02, 0x2c, 0xba};
 //	std::vector<unsigned char> mcc;

@@ -17,6 +17,6 @@
 
 #include "RRCConstantDefinitions.h"
 
-namespace rrcNamespace {
+namespace rrc {
 
 }

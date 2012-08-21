@@ -19,7 +19,9 @@
 #define RRC_H_
 
 #include <omnetpp.h>
-//#include "RRCPDUDefinitions.h"
+#include "RRCClassDefinitions.h"
+
+using namespace rrc;
 
 class RRC : public cSimpleModule {
 public:

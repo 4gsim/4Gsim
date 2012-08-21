@@ -20,7 +20,7 @@
 
 #include "ASNTypes.h"
 
-namespace rrcNamespace {
+namespace rrc {
 
 #define hiPDSCHidentities 64
 
