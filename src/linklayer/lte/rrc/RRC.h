@@ -21,8 +21,6 @@
 #include <omnetpp.h>
 #include "RRCClassDefinitions.h"
 
-using namespace rrc;
-
 class RRC : public cSimpleModule {
 public:
 	RRC();

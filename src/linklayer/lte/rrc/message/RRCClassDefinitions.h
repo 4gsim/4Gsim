@@ -24,93 +24,41 @@
 
 namespace rrc {
 
-typedef Null DLDCCHMessageTypeSpare3;
-
-typedef Null DLDCCHMessageTypeSpare2;
-
-typedef Null DLDCCHMessageTypeSpare1;
-
 class DLDCCHMessageType : Choice {
 private:
-	static const void *choicesInfo[32];
+	static const void *choicesInfo[1];
 public:
 	static const Info theInfo;
 	DLDCCHMessageType(): Choice(&theInfo) {}
 };
 
-class DLDCCHMessage : Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	DLDCCHMessage(): Sequence(&theInfo) {}
-};
-
-typedef Null ULDCCHMessageTypeSpare1;
-
 class ULDCCHMessageType : Choice {
 private:
-	static const void *choicesInfo[32];
+	static const void *choicesInfo[1];
 public:
 	static const Info theInfo;
 	ULDCCHMessageType(): Choice(&theInfo) {}
 };
 
-class ULDCCHMessage : Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	ULDCCHMessage(): Sequence(&theInfo) {}
-};
-
-typedef Null DLCCCHMessageTypeSpare2;
-
-typedef Null DLCCCHMessageTypeSpare1;
-
 class DLCCCHMessageType : Choice {
 private:
-	static const void *choicesInfo[8];
+	static const void *choicesInfo[1];
 public:
 	static const Info theInfo;
 	DLCCCHMessageType(): Choice(&theInfo) {}
 };
 
-class DLCCCHMessage : Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	DLCCCHMessage(): Sequence(&theInfo) {}
-};
-
-typedef Null ULCCCHMessageTypeSpare;
-
 class ULCCCHMessageType : Choice {
 private:
-	static const void *choicesInfo[4];
+	static const void *choicesInfo[1];
 public:
 	static const Info theInfo;
 	ULCCCHMessageType(): Choice(&theInfo) {}
 };
 
-class ULCCCHMessage : Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	ULCCCHMessage(): Sequence(&theInfo) {}
-};
-
-typedef Null PCCHMessageTypeSpare;
-
 class PCCHMessageType : Choice {
 private:
-	static const void *choicesInfo[2];
+	static const void *choicesInfo[1];
 public:
 	static const Info theInfo;
 	PCCHMessageType(): Choice(&theInfo) {}
@@ -123,13 +71,13 @@ private:
 public:
 	static const Info theInfo;
 	PCCHMessage(): Sequence(&theInfo) {}
-};
 
-typedef Null DLSHCCHMessageTypeSpare;
+	void setMessage(const PCCHMessageType& Message) { *static_cast<PCCHMessageType*>(items[0]) = Message; }
+};
 
 class DLSHCCHMessageType : Choice {
 private:
-	static const void *choicesInfo[2];
+	static const void *choicesInfo[1];
 public:
 	static const Info theInfo;
 	DLSHCCHMessageType(): Choice(&theInfo) {}
@@ -142,13 +90,13 @@ private:
 public:
 	static const Info theInfo;
 	DLSHCCHMessage(): Sequence(&theInfo) {}
-};
 
-typedef Null ULSHCCHMessageTypeSpare;
+	void setMessage(const DLSHCCHMessageType& Message) { *static_cast<DLSHCCHMessageType*>(items[0]) = Message; }
+};
 
 class ULSHCCHMessageType : Choice {
 private:
-	static const void *choicesInfo[2];
+	static const void *choicesInfo[1];
 public:
 	static const Info theInfo;
 	ULSHCCHMessageType(): Choice(&theInfo) {}
@@ -161,15 +109,13 @@ private:
 public:
 	static const Info theInfo;
 	ULSHCCHMessage(): Sequence(&theInfo) {}
+
+	void setMessage(const ULSHCCHMessageType& Message) { *static_cast<ULSHCCHMessageType*>(items[0]) = Message; }
 };
-
-typedef Null BCCHFACHMessageTypeSpare2;
-
-typedef Null BCCHFACHMessageTypeSpare1;
 
 class BCCHFACHMessageType : Choice {
 private:
-	static const void *choicesInfo[4];
+	static const void *choicesInfo[1];
 public:
 	static const Info theInfo;
 	BCCHFACHMessageType(): Choice(&theInfo) {}
@@ -182,6 +128,8 @@ private:
 public:
 	static const Info theInfo;
 	BCCHFACHMessage(): Sequence(&theInfo) {}
+
+	void setMessage(const BCCHFACHMessageType& Message) { *static_cast<BCCHFACHMessageType*>(items[0]) = Message; }
 };
 
 class BCCHBCHMessage : Sequence {
@@ -191,29 +139,13 @@ private:
 public:
 	static const Info theInfo;
 	BCCHBCHMessage(): Sequence(&theInfo) {}
+
+	void setMessage(const SystemInformationBCH& Message) { *static_cast<SystemInformationBCH*>(items[0]) = Message; }
 };
-
-typedef Null MCCHMessageTypeSpare9;
-
-typedef Null MCCHMessageTypeSpare8;
-
-typedef Null MCCHMessageTypeSpare7;
-
-typedef Null MCCHMessageTypeSpare6;
-
-typedef Null MCCHMessageTypeSpare5;
-
-typedef Null MCCHMessageTypeSpare4;
-
-typedef Null MCCHMessageTypeSpare3;
-
-typedef Null MCCHMessageTypeSpare2;
-
-typedef Null MCCHMessageTypeSpare1;
 
 class MCCHMessageType : Choice {
 private:
-	static const void *choicesInfo[16];
+	static const void *choicesInfo[1];
 public:
 	static const Info theInfo;
 	MCCHMessageType(): Choice(&theInfo) {}
@@ -226,17 +158,13 @@ private:
 public:
 	static const Info theInfo;
 	MCCHMessage(): Sequence(&theInfo) {}
+
+	void setMessage(const MCCHMessageType& Message) { *static_cast<MCCHMessageType*>(items[0]) = Message; }
 };
-
-typedef Null MSCHMessageTypeSpare3;
-
-typedef Null MSCHMessageTypeSpare2;
-
-typedef Null MSCHMessageTypeSpare1;
 
 class MSCHMessageType : Choice {
 private:
-	static const void *choicesInfo[4];
+	static const void *choicesInfo[1];
 public:
 	static const Info theInfo;
 	MSCHMessageType(): Choice(&theInfo) {}
@@ -249,6 +177,8 @@ private:
 public:
 	static const Info theInfo;
 	MSCHMessage(): Sequence(&theInfo) {}
+
+	void setMessage(const MSCHMessageType& Message) { *static_cast<MSCHMessageType*>(items[0]) = Message; }
 };
 
 }

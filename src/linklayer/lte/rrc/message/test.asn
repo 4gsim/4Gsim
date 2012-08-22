@@ -500,19 +500,17 @@ FROM Constant-definitions;
 --
 -- ***************************************************
 
-MBMSCurrentCellPTMRBInformation ::= SEQUENCE {
-	-- Current Cell PTM RB Information IEs
-		mbms-CurrentCell-SCCPCHList		MBMS-CurrentCell-SCCPCHList-r6		OPTIONAL,
-		mbms-SIBType5-SCCPCHList		MBMS-SIBType5-SCCPCHList-r6			OPTIONAL,
-	-- Non critical extensions
-		v770NonCriticalExtensions		SEQUENCE {
-			mbmsCurrentCellPTMRBInfo-v770ext
-											MBMSCurrentCellPTMRBInfo-v770ext-IEs,
-			nonCriticalExtensions			SEQUENCE {}		OPTIONAL
-		}		OPTIONAL
+Digit ::=							INTEGER (0..9)
+
+MCC ::=								SEQUENCE (SIZE (3)) OF
+										Digit
+
+MNC ::=								SEQUENCE (SIZE (2..3)) OF
+										Digit
+
+PLMN-Identity ::=					SEQUENCE {
+	mcc									MCC,
+	mnc									MNC
 }
 
-MBMSCurrentCellPTMRBInfo-v770ext-IEs ::= SEQUENCE {
-		mbsfn-TDM-Info-List				MBSFN-TDM-Info-List					OPTIONAL
-}
 END

@@ -32,7 +32,15 @@ RRC::~RRC() {
 }
 
 void RRC::initialize(int stage) {
-
+    using namespace rrc;
+    ULCCCHMessage ulcchMessage = ULCCCHMessage();
+    MNC mnc = MNC();
+    MCC mcc = MCC();
+    mcc.push_back(new Digit(2));
+    mcc.push_back(new Digit(6));
+    mcc.push_back(new Digit(0));
+    mnc.push_back(new Digit(0));
+    mnc.push_back(new Digit(2));
 //	char lac[2] = {0x5b, 0x10};
 //	char tmsi[4] = {0x19, 0x02, 0x2c, 0xba};
 //	std::vector<unsigned char> mcc;

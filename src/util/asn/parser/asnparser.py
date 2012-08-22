@@ -1,35 +1,5 @@
 import re
-from optparse import OptionParser
-import os
 
-openbracket = '{'
-closedbracket = '}'
-assign = '::='
-integertxt = 'INTEGER'
-bitstringtxt = 'BIT STRING'
-octetstringtxt = 'OCTET STRING'
-sequencetxt = 'SEQUENCE'
-choicetxt = 'CHOICE'
-enumeratedtxt = 'ENUMERATED'
-nulltxt = 'NULL'
-booleantxt = 'BOOLEAN'
-asnobjs = list()
-openparantheses = '('
-closedparantheses = ')'
-importstxt = 'IMPORTS'
-optionaltxt = 'OPTIONAL'
-defaulttxt = 'DEFAULT'
-endtxt = 'END'
-oftxt = ' OF '
-size = 'SIZE'
-definitionstxt = 'DEFINITIONS'
-fromtxt = 'FROM'
-containingtxt = 'CONTAINING'
-comment = '--'
-comma = ','
-colon = ':'
-semicolon = ';'
-tripledash = '...'
 types = ['Integer', 
 			'IntegerBase',
 			'BitString', 
@@ -49,12 +19,8 @@ constrainttypes = ['Integer',
 					'BitStringBase',
 					'OctetString', 
 					'OctetStringBase']
-module = "RRC"
-#directory = "/root/Desktop/omnetpp-4.2.2/samples/4Gsim/src/linklayer/lte/rrc/message/"
-directory = "D:\\omnetpp-4.2.2\\samples\\4Gsim\\src\\linklayer\\lte\\rrc\\message\\"
-outfilename = ''
-includes = list()
-imports = list()
+
+mod = ''
 
 class ASNObject:
 	type = '' 
@@ -68,6 +34,9 @@ class ASNObject:
 	objs = list()
 	written = 0
 	parent = None
+	outfilename = ''
+        includes = list()
+        imports = list()
 
 def parsebracket(asnobj, string, cursor):
 	#print string
@@ -76,19 +45,19 @@ def parsebracket(asnobj, string, cursor):
 	openbrackets = 0
 	objs = list()
 	for i in range(0, len(string)):
-		if string[i] == comma and openbrackets == 0 and len(objstring) > 0:
+		if string[i] == ',' and '{' == 0 and len(objstring) > 0:
 			childobj = parsestring(objstring.strip())
 			objs.append(childobj)
 			childobj.parent = asnobj
 			objstring = ""
 		else:
-			if string[i] == openbracket:
+			if string[i] == '{':
 				openbrackets += 1
-			elif string[i] == closedbracket:
+			elif string[i] == '}':
 				if openbrackets != 0:
 					openbrackets -= 1
 			objstring += string[i]
-	if tripledash in objstring:
+	if '...' in objstring:
 		asnobj.constrainttype = "EXTCONSTRAINED"
 	else:
 		if len(objstring) > 0:
@@ -97,7 +66,7 @@ def parsebracket(asnobj, string, cursor):
 			childobj.parent = asnobj
 			asnobj.constrainttype = "CONSTRAINED"
 	asnobj.objs = objs
-		
+
 def parsesize(asnobj, string):
 	count = 0
 	limits = list()
@@ -105,17 +74,17 @@ def parsesize(asnobj, string):
 	skip = 0
 	begin = 0
 
-	if containingtxt in string:
+	if 'CONTAINING' in string:
                 asnobj.constrainttype = "UNCONSTRAINED"
                 return
 	
-	if size in string:
+	if 'SIZE' in string:
 		for i in range(0, len(string)):
 			begin += 1
 			if string[i] == '(':
 				break
 			
-	if comma in string:
+	if ',' in string:
 		asnobj.constrainttype = "EXTCONSTRAINED"
 	else:
 		asnobj.constrainttype = "CONSTRAINED"
@@ -143,45 +112,45 @@ def parsesize(asnobj, string):
 def parsetype(asnobj, string):
 	type = ""	
 	
-	if string.split()[-1] == optionaltxt:
+	if string.split()[-1] == 'OPTIONAL':
 		asnobj.opt = 1
-		string = string.split(optionaltxt)[0].strip()
-	if defaulttxt in string:
+		string = string.split('OPTIONAL')[0].strip()
+	if 'DEFAULT' in string:
 		asnobj.opt = 1
-		string = string.split(defaulttxt)[0].strip()
+		string = string.split('DEFAULT')[0].strip()
 
 	for i in range(0, len(string)):
-		if string[i] == openparantheses or string[i] == openbracket or string[i] == comma or string[i] == colon:
+		if string[i] == '(' or string[i] == '{' or string[i] == ',' or string[i] == ':':
 			break
 		else:
 			type += string[i]
 	type = type.strip()
 	
-	if type == integertxt:
+	if type == 'INTEGER':
 		asnobj.type = "Integer"
-	elif type == bitstringtxt:
+	elif type == 'BIT STRING':
 		asnobj.type = "BitString"
-	elif type == octetstringtxt:
+	elif type == 'OCTET STRING':
 		asnobj.type = "OctetString"
-	elif type == sequencetxt:
-		if oftxt in string and openbracket not in string:
+	elif type == 'SEQUENCE':
+		if 'OF' in string and '{' not in string:
 			asnobj.type = "SequenceOf"
 		else:
 			asnobj.type = "Sequence"
-	elif type == choicetxt:
+	elif type == 'CHOICE':
 		asnobj.type = "Choice"
-	elif type == enumeratedtxt:
+	elif type == 'ENUMERATED':
 		asnobj.type = "Enumerated"
-	elif type == nulltxt:
+	elif type == 'NULL':
 		asnobj.type = "Null"
-	elif type == booleantxt:
+	elif type == 'BOOLEAN':
 		asnobj.type = "Boolean"
 	else:
 		asnobj.type = type.replace("-", "")
 
-	if assign in string and string.index(type) < string.index(assign):
+	if '::=' in string and string.index(type) < string.index('::='):
 		asnobj.constrainttype = "CONSTANT"
-		
+
 def findfilename(string):
 	filename = string
 	while filename.find('-') != -1:
@@ -193,37 +162,41 @@ def findfilename(string):
 		filename = first + second
 	return filename
 		
-def parseheader(string):
+def parseheader(asnobj, string):
+        includes = list()
+        imports = list()
 	filename = string.split()[0]
-	global outfilename
-	outfilename = module + findfilename(filename)
+	asnobj.outfilename = mod + findfilename(filename)
 	words = string.split("\n")
 	for i in range(0, len(words)):
-		if fromtxt in words[i]:
+		if 'FROM' in words[i]:
 			filename = words[i].split()[1]
-			if semicolon in filename:
+			if ';' in filename:
                                 filename = filename[:-1]
-			include = module + findfilename(filename)
+			include = mod + findfilename(filename)
 			includes.append(include)
 		else:
                         imp = words[i].replace("-", "").strip()
-                        if comma in imp:
+                        if ',' in imp:
                                 imp = imp[:-1]
                         imports.append(imp)
                         #print imp
-	
+	asnobj.includes = includes
+	asnobj.imports = imports
+
+
 def parsestring(string):
 	asnobj = ASNObject()
 	words = list()
 	
-	if importstxt in string or definitionstxt in string:
-		parseheader(string)
+	if 'IMPORTS' in string or 'DEFINITIONS' in string:
+		parseheader(asnobj, string)
 		return asnobj
-	if assign in string:
+	if '::=' in string:
 		string = string.replace("\t", ' ')
 		string = string.replace("\n", '')
 		string = re.sub('\s+', ' ', string)
-		words = string.split(assign)
+		words = string.split('::=')
 		if len(words[0].split()) > 1:
 			words = string.split(' ', 1)
 			asnobj.name = words[0].replace("-", "_").strip()
@@ -243,22 +216,22 @@ def parsestring(string):
 
 		if asnobj.constrainttype != "CONSTANT":
 			for i in range(0, len(string)):
-				if string[i] == openparantheses:
-					words = words[1].split(openparantheses, 1)
+				if string[i] == '(':
+					words = words[1].split('(', 1)
 					parsesize(asnobj, words[1])
 					break
-				elif string[i] == openbracket:
+				elif string[i] == '{':
 					if asnobj.type in constrainttypes:
                                                 
-						words = words[1].split(closedbracket, 1)
-						words = words[1].split(openparantheses, 1)
+						words = words[1].split('}', 1)
+						words = words[1].split('(', 1)
 						parsesize(asnobj, words[1])
 						break
 					else:
-						words = words[1].split(openbracket, 1)
+						words = words[1].split('{', 1)
 						tmpstring = words[1].strip()
 						while len(tmpstring) > 0:
-							if tmpstring[len(tmpstring) - 1] == closedbracket:
+							if tmpstring[len(tmpstring) - 1] == '}':
 								tmpstring = tmpstring[:-1]
 								break
 							tmpstring = tmpstring[:-1]
@@ -270,7 +243,7 @@ def parsestring(string):
 		if asnobj.type == "SequenceOf":
 			objs = list()
 
-			objstring = words[1].split(oftxt)[1]
+			objstring = words[1].split('OF')[1]
 			objstring = asnobj.name + "Item " + objstring 
 
 			obj = parsestring(objstring.strip())
@@ -279,7 +252,7 @@ def parsestring(string):
 			asnobj.objs = objs
 			
 		if asnobj.constrainttype == "CONSTANT":
-			words = words[1].split(assign)
+			words = words[1].split('::=')
 			words = words[1].split()
 			asnobj.value = int(words[0])
 
@@ -287,276 +260,28 @@ def parsestring(string):
                         asnobj.type += "Base"
 
 	return asnobj
-	
-def printobjects(asnobjs):
-	for i in range(0, len(asnobjs)):
-		asnobj = asnobjs[i]
-		print (asnobj.type + " - " + asnobj.name)
-		if asnobj.lowerlimit != '':
-			print ("<" + asnobj.constrainttype + ", " + asnobj.lowerlimit + ", " + asnobj.upperlimit + ">")
-		#for j in range (0, len(asnobj.objs)):
-		#	print asnobj.objs[j]	
-		if len(asnobj.objs) > 0:
-			print ("children s")
-			printobjects(asnobj.objs)
-			print ("children e")
 
-def checkandhandledeps(asnobj, hdrfile, srcfile):
-	retval = 0
-	for i in range(0, len(asnobj.objs)):
-		obj = asnobj.objs[i]
-		if obj.type in types:
-			writeobject(obj, hdrfile, srcfile)
-		elif obj.type in imports:
-                        pass
-		else:
-			found = 0
-			for j in range(0, len(asnobjs)):
-				if obj.type == asnobjs[j].name:
-					writeobject(asnobjs[j], hdrfile, srcfile)
-					found = 1
-					break
-			if not found:
-				print ("Warning: Unknown ASN.1 object type " + obj.type + ". Skipping " + asnobj.name + ".\n")
-				retval = -1
-	return retval	
-			
-def writeobject(asnobj, hdrfile, srcfile):
-	if asnobj.written == 0 and asnobj.name != '':
-		if asnobj.parent != None:
-			asnobj.name = asnobj.parent.name + asnobj.name
 
-		if asnobj.name == module:
-                        asnobj.name = asnobj.name + "_"
-
-                if asnobj.type == module:
-                        asnobj.type = asnobj.type + "_"
-
-                # Non standard types
-
-		if asnobj.type not in types:
-                        objs = list()
-			obj = ASNObject()
-			obj.type = asnobj.type
-			objs.append(obj)
-			asnobj.objs = objs
-			#print asnobj.name
-			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
-                                return
-			hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
-		
-		# Null and Boolean
-		
-		if asnobj.type == "Null" or asnobj.type == "Boolean":
-			hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
-			asnobj.type = asnobj.name
-	
-		# Constraint types
-		if asnobj.type in constrainttypes:
-			if asnobj.constrainttype == "CONSTANT":
-				hdrfile.write("#define " + asnobj.name + " " + str(asnobj.value) + "\n")
-			elif asnobj.constrainttype == "UNCONSTRAINED":
-				hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
-			else:
-				hdrfile.write("typedef " + asnobj.type + "<" + asnobj.constrainttype)
-				if asnobj.lowerlimit != '':
-					hdrfile.write(", " + asnobj.lowerlimit)
-				if asnobj.upperlimit != '':
-					hdrfile.write(", " + asnobj.upperlimit)
-				hdrfile.write("> " + asnobj.name + ";\n")
-				asnobj.type = asnobj.name
-		
-		# Enumerated
-		
-		if asnobj.type == "Enumerated":
-			asnobj.type = asnobj.name
-			hdrfile.write("enum " + asnobj.name + "Values {\n")
-			for j in range(0, len(asnobj.objs)):
-				childobj = asnobj.objs[j]
-				hdrfile.write("\t" + childobj.name + "_" + asnobj.name + " = " + str(j) + ",\n")
-			hdrfile.write("};\n")
-			hdrfile.write("typedef Enumerated<" + asnobj.constrainttype + ", " + str(len(asnobj.objs) - 1) + "> " + asnobj.name + ";\n")
-		
-		# Sequence
-		
-		if asnobj.type == "Sequence":
-			optnr = 0
-			extnr = 0
-			asnobj.type = asnobj.name
-			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
-				return
-			hdrfile.write("class " + asnobj.name + " : Sequence {\n" +
-						"private:\n" +
-						"\tstatic const void *itemsInfo[" + str(len(asnobj.objs)) + "];\n" +
-						"\tstatic bool itemsPres[" + str(len(asnobj.objs)) + "];\n" +
-						"public:\n" +
-						"\tstatic const Info theInfo;\n"
-						"\t" + asnobj.name + "(): Sequence(&theInfo) {}\n")
-			hdrfile.write("};\n")
-			srcfile.write("const void *" + asnobj.name + "::itemsInfo[" + str(len(asnobj.objs)) + "] = {\n")
-			for j in range(0, len(asnobj.objs)):
-				obj = asnobj.objs[j]
-				srcfile.write("\t&" + obj.type + "::theInfo,\n")
-			srcfile.write("};\n")
-			srcfile.write("bool " + asnobj.name + "::itemsPres[" + str(len(asnobj.objs)) + "] = {\n")
-			for j in range(0, len(asnobj.objs)):
-				obj = asnobj.objs[j]
-				if obj.opt == 0:
-					srcfile.write("\t1,\n")
-				else:
-					srcfile.write("\t0,\n")
-					optnr += 1
-			srcfile.write("};\n")
-			srcfile.write("const " + asnobj.name + "::Info " + asnobj.name + "::theInfo = {\n" +
-						"\t" + asnobj.name + "::create,\n" +
-						"\tSEQUENCE,\n" +
-						"\t0,\n")
-			if asnobj.constrainttype == "EXTCONSTRAINED":
-				srcfile.write("\ttrue,\n")
-			else:
-				srcfile.write("\tfalse,\n")
-			srcfile.write("\titemsInfo,\n" +
-						"\titemsPres,\n"
-						"\t" + str(len(asnobj.objs)) + ", " + str(optnr) + ", " + str(extnr) + "\n" +
-						"};\n")
-			srcfile.write("\n")
-			
-		# Sequence Of
-		
-		if asnobj.type == "SequenceOf":
-			asnobj.type = asnobj.name
-			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
-				return
-			hdrfile.write("typedef SequenceOf<" + asnobj.objs[0].type + ", " + asnobj.constrainttype + ", " + asnobj.lowerlimit + ", " + asnobj.upperlimit + "> " + asnobj.name + ";\n")
-			
-		# Choice
-		
-		if asnobj.type == "Choice":
-			asnobj.type = asnobj.name
-			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
-				return
-			hdrfile.write("class " + asnobj.name + " : Choice {\n" +
-						"private:\n" +
-						"\tstatic const void *choicesInfo[" + str(len(asnobj.objs)) + "];\n" +
-						"public:\n" +
-						"\tstatic const Info theInfo;\n"
-						"\t" + asnobj.name + "(): Choice(&theInfo) {}\n")
-			hdrfile.write("};\n")
-			srcfile.write("const void *" + asnobj.name + "::choicesInfo[" + str(len(asnobj.objs)) + "] = {\n")
-			for j in range(0, len(asnobj.objs)):
-				obj = asnobj.objs[j]
-				srcfile.write("\t&" + obj.type + "::theInfo,\n")
-			srcfile.write("};\n")
-			srcfile.write("const " + asnobj.name + "::Info " + asnobj.name + "::theInfo = {\n" +
-						"\t" + asnobj.name + "::create,\n" +
-						"\tCHOICE,\n" +
-						"\t0,\n")
-			if asnobj.constrainttype == "EXTCONSTRAINED":
-				srcfile.write("\ttrue,\n")
-			else:
-				srcfile.write("\tfalse,\n")
-			srcfile.write("\tchoicesInfo,\n" +
-						"\t" + str(len(asnobj.objs) - 1) + "\n" +
-						"};\n")
-			srcfile.write("\n")
-			
-		hdrfile.write("\n")
-		asnobj.written = 1
-
-def writeheader(file):
-	file.write("//\n" +
-		"// Copyright (C) 2012 Calin Cerchez\n" +
-		"//\n" +
-		"// This program is free software: you can redistribute it and/or modify\n" +
-		"// it under the terms of the GNU Lesser General Public License as published by\n" +
-		"// the Free Software Foundation, either version 3 of the License, or\n" +
-		"// (at your option) any later version.\n" +
-		"//\n" + 
-		"// This program is distributed in the hope that it will be useful,\n" +
-		"// but WITHOUT ANY WARRANTY; without even the implied warranty of\n" +
-		"// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n" +
-		"// GNU Lesser General Public License for more details.\n" +
-		"//\n" + 
-		"// You should have received a copy of the GNU Lesser General Public License\n" +
-		"// along with this program.  If not, see http://www.gnu.org/licenses/.\n" +
-		"//\n\n")
-
-def parsefile(filename):
+def parsefile(directory, filename, module):
 	file = open(directory + filename, "r")
 	lines = file.readlines()
 	file.close()
+	asnobjs = list()
+
+        global mod
+	mod = module
 
 	objectstring = ""
     
 	print ("parsing file " + filename + "...")    
 	for i, line in enumerate(lines):  
-		if assign in line:
+		if '::=' in line:
 			if len(objectstring) > 0: 
 				asnobjs.append(parsestring(objectstring))
 			objectstring = line
-		elif comment not in line and line != "\n" and line[:-1] != endtxt:
+		elif '--' not in line and line != "\n" and line[:-1] != 'END':
 			objectstring += line
 
 	asnobjs.append(parsestring(objectstring))
 
-def writefile(filename):
-        global asnobjs
-        global includes
-        global imports
-        
-        print ("writing source files for " + filename + "...")
-	hdrfile = open(directory + outfilename + ".h", 'w')
-	srcfile = open(directory + outfilename + ".cc", 'w')
-	writeheader(hdrfile)
-	writeheader(srcfile)
-
-	hdrfile.write("#ifndef " + outfilename.upper() + "_H_\n" +
-			"#define " + outfilename.upper() + "_H_\n\n" +
-			"#include \"ASNTypes.h\"\n")
-	for i in range(0, len(includes)):
-		hdrfile.write("#include \"" + includes[i] + ".h\"\n")
-	hdrfile.write("\n")
-
-	srcfile.write("#include \"" + outfilename + ".h\"\n\n")
-
-	srcfile.write("namespace " + module.lower() + " {\n\n")
-	hdrfile.write("namespace " + module.lower() + " {\n\n")
-
-	for i in range (0, len(asnobjs)):
-		asnobj = asnobjs[i]
-		writeobject(asnobj, hdrfile, srcfile)
-
-        srcfile.write("}\n")
-        hdrfile.write("}\n\n")
-
-	hdrfile.write("#endif /* " + outfilename.upper() + "_H_ */\n")
-
-	srcfile.close()
-	hdrfile.close()
-
-        
-	includes = list()
-        imports = list()
-        asnobjs = list()
-
-def main():
-        os.chdir(directory)
-        for filename in os.listdir("."):
-                if filename.endswith(".asn"):
-                        parsefile(filename)
-                        writefile(filename)
-                        
-##	usage = "usage: %prog [options] input filename"
-##	parser = OptionParser(usage)
-##	parser.add_option("-o", "--output", dest="filename",
-##		          help="name of output file", metavar="FILENAME")
-##
-##	(options, args) = parser.parse_args()
-##	
-
-##
-##	#printobjects(asnobjs)
-
-	
-if __name__ == "__main__":
-	main()
+	return asnobjs
