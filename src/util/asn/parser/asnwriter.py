@@ -5,6 +5,9 @@ asnobjs = list()
 imports = list()
 includes = list()
 
+def firstlower(string):
+        return string[0].lower() + string[1:]
+
 def checkandhandledeps(asnobj, hdrfile, srcfile):
 	retval = 0
 	for i in range(0, len(asnobj.objs)):
@@ -39,9 +42,9 @@ def writeobject(asnobj, hdrfile, srcfile):
 			objs.append(obj)
 			asnobj.objs = objs
 			#print asnobj.name
-##			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
-##                                return
-##			hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
+			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
+                                return
+			hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
 		
 		# Null and Boolean
 		
@@ -50,6 +53,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 			asnobj.type = asnobj.name
 	
 		# Constraint types
+		
 		if asnobj.type in constrainttypes:
 			if asnobj.constrainttype == "CONSTANT":
 				hdrfile.write("#define " + asnobj.name + " " + str(asnobj.value) + "\n")
@@ -62,7 +66,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 				if asnobj.upperlimit != '':
 					hdrfile.write(", " + asnobj.upperlimit)
 				hdrfile.write("> " + asnobj.name + ";\n")
-				asnobj.type = asnobj.name
+			asnobj.type = asnobj.name
 		
 		# Enumerated
 		
@@ -83,7 +87,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 			asnobj.type = asnobj.name
 			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
 				return
-			hdrfile.write("class " + asnobj.name + " : Sequence {\n" +
+			hdrfile.write("class " + asnobj.name + " : public Sequence {\n" +
 						"private:\n" +
 						"\tstatic const void *itemsInfo[" + str(len(asnobj.objs)) + "];\n" +
 						"\tstatic bool itemsPres[" + str(len(asnobj.objs)) + "];\n" +
@@ -92,7 +96,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 						"\t" + asnobj.name + "(): Sequence(&theInfo) {}\n\n")
 			for j in range(0, len(asnobj.objs)):
                                 obj = asnobj.objs[j]
-                                hdrfile.write("\tvoid set" + obj.name + "(const " + obj.type + "& " + obj.name + ") { *static_cast<" + obj.type + "*>(items[" + str(j) + "]) = " + obj.name + "; }\n")
+                                hdrfile.write("\tvoid set" + obj.name + "(const " + obj.type + "& " + firstlower(obj.name) + ") { *static_cast<" + obj.type + "*>(items[" + str(j) + "]) = " + firstlower(obj.name) + "; }\n")
 			hdrfile.write("};\n")
 			srcfile.write("const void *" + asnobj.name + "::itemsInfo[" + str(len(asnobj.objs)) + "] = {\n")
 			for j in range(0, len(asnobj.objs)):
@@ -136,7 +140,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 			asnobj.type = asnobj.name
 			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
 				return
-			hdrfile.write("class " + asnobj.name + " : Choice {\n" +
+			hdrfile.write("class " + asnobj.name + " : public Choice {\n" +
 						"private:\n" +
 						"\tstatic const void *choicesInfo[" + str(len(asnobj.objs)) + "];\n" +
 						"public:\n" +

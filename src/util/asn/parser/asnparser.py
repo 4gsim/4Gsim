@@ -45,7 +45,7 @@ def parsebracket(asnobj, string, cursor):
 	openbrackets = 0
 	objs = list()
 	for i in range(0, len(string)):
-		if string[i] == ',' and '{' == 0 and len(objstring) > 0:
+		if string[i] == ',' and openbrackets == 0 and len(objstring) > 0:
 			childobj = parsestring(objstring.strip())
 			objs.append(childobj)
 			childobj.parent = asnobj
@@ -133,7 +133,7 @@ def parsetype(asnobj, string):
 	elif type == 'OCTET STRING':
 		asnobj.type = "OctetString"
 	elif type == 'SEQUENCE':
-		if 'OF' in string and '{' not in string:
+		if ' OF ' in string and '{' not in string:
 			asnobj.type = "SequenceOf"
 		else:
 			asnobj.type = "Sequence"
@@ -205,7 +205,7 @@ def parsestring(string):
 	else:
 		words = string.split(' ', 1)
 		asnobj.name = words[0].replace("-", "_").strip()
-	
+	#print string + "\n"
 	if len(words) > 1:
 		parsetype(asnobj, words[1])
 		if asnobj.type != "Enumerated" and asnobj.constrainttype != "CONSTANT":
@@ -243,7 +243,7 @@ def parsestring(string):
 		if asnobj.type == "SequenceOf":
 			objs = list()
 
-			objstring = words[1].split('OF')[1]
+			objstring = words[1].split(' OF ')[1]
 			objstring = asnobj.name + "Item " + objstring 
 
 			obj = parsestring(objstring.strip())

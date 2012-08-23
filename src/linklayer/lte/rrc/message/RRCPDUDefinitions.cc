@@ -178,7 +178,7 @@ const ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::Info
 };
 
 const void *ActiveSetUpdateR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&ActiveSetUpdateR3LaterNonCriticalExtensionsActiveSetUpdater3addext::theInfo,
 	&ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool ActiveSetUpdateR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -303,7 +303,7 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsR6V6b0NonCriticalExtensions::I
 
 const void *ActiveSetUpdateLaterthanr3CriticalExtensionsR6::itemsInfo[3] = {
 	&ActiveSetUpdater6IEs::theInfo,
-	&BitStringBase::theInfo,
+	&ActiveSetUpdateLaterthanr3CriticalExtensionsR6ActiveSetUpdater6addext::theInfo,
 	&ActiveSetUpdateLaterthanr3CriticalExtensionsR6V6b0NonCriticalExtensions::theInfo,
 };
 bool ActiveSetUpdateLaterthanr3CriticalExtensionsR6::itemsPres[3] = {
@@ -495,7 +495,7 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCri
 
 const void *ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&ActiveSetUpdater7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7ActiveSetUpdater7addext::theInfo,
 	&ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::theInfo,
 };
 bool ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7::itemsPres[3] = {
@@ -645,7 +645,7 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExte
 
 const void *ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&ActiveSetUpdater8IEs::theInfo,
-	&BitStringBase::theInfo,
+	&ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR8ActiveSetUpdater8addext::theInfo,
 	&ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR8V890NonCriticalExtensions::theInfo,
 };
 bool ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsPres[3] = {
@@ -783,7 +783,7 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExte
 
 const void *ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&ActiveSetUpdater9IEs::theInfo,
-	&BitStringBase::theInfo,
+	&ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9ActiveSetUpdater9addext::theInfo,
 	&ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::theInfo,
 };
 bool ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsPres[3] = {
@@ -913,7 +913,7 @@ const ActiveSetUpdateCompleteLaterNonCriticalExtensionsNonCriticalExtensions::In
 };
 
 const void *ActiveSetUpdateCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&ActiveSetUpdateCompleteLaterNonCriticalExtensionsActiveSetUpdateCompleter3addext::theInfo,
 	&ActiveSetUpdateCompleteLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool ActiveSetUpdateCompleteLaterNonCriticalExtensions::itemsPres[2] = {
@@ -969,7 +969,7 @@ const ActiveSetUpdateFailureLaterNonCriticalExtensionsNonCriticalExtensions::Inf
 };
 
 const void *ActiveSetUpdateFailureLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&ActiveSetUpdateFailureLaterNonCriticalExtensionsActiveSetUpdateFailurer3addext::theInfo,
 	&ActiveSetUpdateFailureLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool ActiveSetUpdateFailureLaterNonCriticalExtensions::itemsPres[2] = {
@@ -1199,7 +1199,7 @@ const AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtension
 };
 
 const void *AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsAssistanceDataDeliveryr3addext::theInfo,
 	&AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -1383,7 +1383,7 @@ const CellChangeOrderFromUTRANR3LaterNonCriticalExtensionsV590NonCriticalExtensi
 };
 
 const void *CellChangeOrderFromUTRANR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&CellChangeOrderFromUTRANR3LaterNonCriticalExtensionsCellChangeOrderFromUTRANr3addext::theInfo,
 	&CellChangeOrderFromUTRANR3LaterNonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool CellChangeOrderFromUTRANR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -1498,7 +1498,7 @@ const CellChangeOrderFromUTRANFailureR3LaterNonCriticalExtensionsNonCriticalExte
 };
 
 const void *CellChangeOrderFromUTRANFailureR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&CellChangeOrderFromUTRANFailureR3LaterNonCriticalExtensionsCellChangeOrderFromUTRANFailurer3addext::theInfo,
 	&CellChangeOrderFromUTRANFailureR3LaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool CellChangeOrderFromUTRANFailureR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -1783,7 +1783,7 @@ const CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensions::Info CellUp
 };
 
 const void *CellUpdateLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&CellUpdateLaterNonCriticalExtensionsCellUpdater3addext::theInfo,
 	&CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool CellUpdateLaterNonCriticalExtensions::itemsPres[2] = {
@@ -2225,7 +2225,7 @@ const CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0
 };
 
 const void *CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsCellUpdateConfirmr3addext::theInfo,
 	&CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -2479,7 +2479,7 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV
 };
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsCellUpdateConfirmr4addext::theInfo,
 	&CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstions::theInfo,
 };
 bool CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -2702,7 +2702,7 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonC
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&CellUpdateConfirmr5IEs::theInfo,
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5CellUpdateConfirmr5addext::theInfo,
 	&CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions::theInfo,
 };
 bool CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsPres[3] = {
@@ -2852,7 +2852,7 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&CellUpdateConfirmr6IEs::theInfo,
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6CellUpdateConfirmr6addext::theInfo,
 	&CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::theInfo,
 };
 bool CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsPres[3] = {
@@ -3068,7 +3068,7 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&CellUpdateConfirmr7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7CellUpdateConfirmr7addext::theInfo,
 	&CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::theInfo,
 };
 bool CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsPres[3] = {
@@ -3380,7 +3380,7 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&CellUpdateConfirmr8IEs::theInfo,
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8CellUpdateConfirmr8addext::theInfo,
 	&CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::theInfo,
 };
 bool CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsPres[3] = {
@@ -3558,7 +3558,7 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&CellUpdateConfirmr9IEs::theInfo,
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9CellUpdateConfirmr9addext::theInfo,
 	&CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::theInfo,
 };
 bool CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsPres[3] = {
@@ -3854,7 +3854,7 @@ const CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions
 };
 
 const void *CellUpdateConfirmCCCHR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsCellUpdateConfirmCCCHr3addext::theInfo,
 	&CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool CellUpdateConfirmCCCHR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -3960,7 +3960,7 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensi
 };
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsCellUpdateConfirmCCCHr4addext::theInfo,
 	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -4047,7 +4047,7 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&CellUpdateConfirmr5IEs::theInfo,
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5CellUpdateConfirmCCCHr5addext::theInfo,
 	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions::theInfo,
 };
 bool CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsPres[3] = {
@@ -4099,7 +4099,7 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&CellUpdateConfirmr6IEs::theInfo,
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6CellUpdateConfirmr6addext::theInfo,
 	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::theInfo,
 };
 bool CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsPres[3] = {
@@ -4169,7 +4169,7 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&CellUpdateConfirmr7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7CellUpdateConfirmr7addext::theInfo,
 	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::theInfo,
 };
 bool CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsPres[3] = {
@@ -4293,7 +4293,7 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&CellUpdateConfirmr8IEs::theInfo,
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8CellUpdateConfirmr8addext::theInfo,
 	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::theInfo,
 };
 bool CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsPres[3] = {
@@ -4327,7 +4327,7 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&CellUpdateConfirmr9IEs::theInfo,
-	&BitStringBase::theInfo,
+	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9CellUpdateConfirmr9addext::theInfo,
 	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9NonCriticalExtensions::theInfo,
 };
 bool CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsPres[3] = {
@@ -4503,7 +4503,7 @@ const CounterCheckR3LaterNonCriticalExtensionsNonCriticalExtensions::Info Counte
 };
 
 const void *CounterCheckR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&CounterCheckR3LaterNonCriticalExtensionsCounterCheckr3addext::theInfo,
 	&CounterCheckR3LaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool CounterCheckR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -4598,7 +4598,7 @@ const CounterCheckResponseLaterNonCriticalExtensionsNonCriticalExtensions::Info 
 };
 
 const void *CounterCheckResponseLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&CounterCheckResponseLaterNonCriticalExtensionsCounterCheckResponser3addext::theInfo,
 	&CounterCheckResponseLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool CounterCheckResponseLaterNonCriticalExtensions::itemsPres[2] = {
@@ -4670,7 +4670,7 @@ const DownlinkDirectTransferR3LaterNonCriticalExtensionsNonCriticalExtensions::I
 };
 
 const void *DownlinkDirectTransferR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&DownlinkDirectTransferR3LaterNonCriticalExtensionsDownlinkDirectTransferr3addext::theInfo,
 	&DownlinkDirectTransferR3LaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool DownlinkDirectTransferR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -7031,7 +7031,7 @@ const HandoverToUTRANCompleteLaterNonCriticalExtensionsNonCriticalExtensions::In
 };
 
 const void *HandoverToUTRANCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&HandoverToUTRANCompleteLaterNonCriticalExtensionsHandoverToUTRANCompleter3addext::theInfo,
 	&HandoverToUTRANCompleteLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool HandoverToUTRANCompleteLaterNonCriticalExtensions::itemsPres[2] = {
@@ -7239,7 +7239,7 @@ const InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV5
 };
 
 const void *InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsInitialDirectTransferr3addext::theInfo,
 	&InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -7509,7 +7509,7 @@ const HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensionsV690NonCriticalExte
 };
 
 const void *HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensionsHandoverFromUTRANCommandGSMr3addext::theInfo,
 	&HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensionsV690NonCriticalExtensions::theInfo,
 };
 bool HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -7658,7 +7658,7 @@ const HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6V860NonCriticalE
 
 const void *HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6::itemsInfo[3] = {
 	&HandoverFromUTRANCommandGSMr6IEs::theInfo,
-	&BitStringBase::theInfo,
+	&HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6HandoverFromUTRANCommandGSMr6addext::theInfo,
 	&HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6V860NonCriticalExtensions::theInfo,
 };
 bool HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6::itemsPres[3] = {
@@ -7927,7 +7927,7 @@ const HandoverFromUTRANCommandCDMA2000R3LaterNonCriticalExtensionsNonCriticalExt
 };
 
 const void *HandoverFromUTRANCommandCDMA2000R3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&HandoverFromUTRANCommandCDMA2000R3LaterNonCriticalExtensionsHandoverFromUTRANCommandCDMA2000r3addext::theInfo,
 	&HandoverFromUTRANCommandCDMA2000R3LaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool HandoverFromUTRANCommandCDMA2000R3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -8010,7 +8010,7 @@ const HandoverFromUTRANCommandCDMA2000::Info HandoverFromUTRANCommandCDMA2000::t
 const void *HandoverFromUTRANCommandEUTRAr8IEs::itemsInfo[3] = {
 	&ActivationTime::theInfo,
 	&RABInformationList::theInfo,
-	&OctetStringBase::theInfo,
+	&HandoverFromUTRANCommandEUTRAr8IEsEutraMessage::theInfo,
 };
 bool HandoverFromUTRANCommandEUTRAr8IEs::itemsPres[3] = {
 	0,
@@ -8043,7 +8043,7 @@ const HandoverFromUTRANCommandEUTRACriticalExtensionsR8NonCriticalExtensions::In
 
 const void *HandoverFromUTRANCommandEUTRACriticalExtensionsR8::itemsInfo[3] = {
 	&HandoverFromUTRANCommandEUTRAr8IEs::theInfo,
-	&BitStringBase::theInfo,
+	&HandoverFromUTRANCommandEUTRACriticalExtensionsR8HandoverFromUTRANCommandEUTRAr8addext::theInfo,
 	&HandoverFromUTRANCommandEUTRACriticalExtensionsR8NonCriticalExtensions::theInfo,
 };
 bool HandoverFromUTRANCommandEUTRACriticalExtensionsR8::itemsPres[3] = {
@@ -8168,7 +8168,7 @@ const HandoverFromUtranFailurev590extIEs::Info HandoverFromUtranFailurev590extIE
 };
 
 const void *HandoverFromUtranFailurev860extIEs::itemsInfo[1] = {
-	&OctetStringBase::theInfo,
+	&HandoverFromUtranFailurev860extIEsEutraMessage::theInfo,
 };
 bool HandoverFromUtranFailurev860extIEs::itemsPres[1] = {
 	0,
@@ -8234,7 +8234,7 @@ const HandoverFromUTRANFailureLaterNonCriticalExtensionsV590NonCriticalExtension
 };
 
 const void *HandoverFromUTRANFailureLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&HandoverFromUTRANFailureLaterNonCriticalExtensionsHandoverFromUTRANFailurer3addext::theInfo,
 	&HandoverFromUTRANFailureLaterNonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool HandoverFromUTRANFailureLaterNonCriticalExtensions::itemsPres[2] = {
@@ -8870,7 +8870,7 @@ const InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensi
 
 const void *InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[3] = {
 	&InterRATHandoverInfov3d0extIEs::theInfo,
-	&BitStringBase::theInfo,
+	&InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsInterRATHandoverInfor3addext::theInfo,
 	&InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensions::theInfo,
 };
 bool InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[3] = {
@@ -9253,7 +9253,7 @@ const MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLate
 };
 
 const void *MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsMeasurementControlr3addext::theInfo,
 	&MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -9399,7 +9399,7 @@ const MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions
 };
 
 const void *MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsMeasurementControlr4addext::theInfo,
 	&MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -9598,7 +9598,7 @@ const MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensio
 
 const void *MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&MeasurementControlr7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsR7MeasurementControlr7addext::theInfo,
 	&MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsR7V7b0NonCriticalExtensions::theInfo,
 };
 bool MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsR7::itemsPres[3] = {
@@ -9692,7 +9692,7 @@ const MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensio
 
 const void *MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&MeasurementControlr8IEs::theInfo,
-	&BitStringBase::theInfo,
+	&MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsR8MeasurementControlr8addext::theInfo,
 	&MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsR8V8a0NonCriticalExtensions::theInfo,
 };
 bool MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsPres[3] = {
@@ -9752,7 +9752,7 @@ const MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensio
 
 const void *MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&MeasurementControlr9IEs::theInfo,
-	&BitStringBase::theInfo,
+	&MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9MeasurementControlr9addext::theInfo,
 	&MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9NonCriticalExtensions::theInfo,
 };
 bool MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsPres[3] = {
@@ -9947,7 +9947,7 @@ const MeasurementControlFailureLaterNonCriticalExtensionsV590NonCriticalExtensio
 };
 
 const void *MeasurementControlFailureLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&MeasurementControlFailureLaterNonCriticalExtensionsMeasurementControlFailurer3addext::theInfo,
 	&MeasurementControlFailureLaterNonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool MeasurementControlFailureLaterNonCriticalExtensions::itemsPres[2] = {
@@ -10285,7 +10285,7 @@ const MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0No
 };
 
 const void *MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsMeasurementReportr3addext::theInfo,
 	&MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -10429,7 +10429,7 @@ const PagingType1LaterNonCriticalExtensionsV590NonCriticalExtensions::Info Pagin
 };
 
 const void *PagingType1LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&PagingType1LaterNonCriticalExtensionsPagingType1r3addext::theInfo,
 	&PagingType1LaterNonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool PagingType1LaterNonCriticalExtensions::itemsPres[2] = {
@@ -10481,7 +10481,7 @@ const PagingType2LaterNonCriticalExtensionsNonCriticalExtensions::Info PagingTyp
 };
 
 const void *PagingType2LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&PagingType2LaterNonCriticalExtensionsPagingType2r3addext::theInfo,
 	&PagingType2LaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool PagingType2LaterNonCriticalExtensions::itemsPres[2] = {
@@ -10782,7 +10782,7 @@ const PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalE
 };
 
 const void *PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsPhysicalChannelReconfigurationr3addext::theInfo,
 	&PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtenstions::theInfo,
 };
 bool PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -10981,7 +10981,7 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCritic
 };
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsPhysicalChannelReconfigurationr4addext::theInfo,
 	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstions::theInfo,
 };
 bool PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -11149,7 +11149,7 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&PhysicalChannelReconfigurationr5IEs::theInfo,
-	&BitStringBase::theInfo,
+	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5PhysicalChannelReconfigurationr5addext::theInfo,
 	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::theInfo,
 };
 bool PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsPres[3] = {
@@ -11295,7 +11295,7 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&PhysicalChannelReconfigurationr6IEs::theInfo,
-	&BitStringBase::theInfo,
+	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6PhysicalChannelReconfigurationr6addext::theInfo,
 	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::theInfo,
 };
 bool PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsPres[3] = {
@@ -11543,7 +11543,7 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&PhysicalChannelReconfigurationr7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7PhysicalChannelReconfigurationr7addext::theInfo,
 	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::theInfo,
 };
 bool PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsPres[3] = {
@@ -11785,7 +11785,7 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&PhysicalChannelReconfigurationr8IEs::theInfo,
-	&BitStringBase::theInfo,
+	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8PhysicalChannelReconfigurationr8addext::theInfo,
 	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::theInfo,
 };
 bool PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsPres[3] = {
@@ -11941,7 +11941,7 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&PhysicalChannelReconfigurationr9IEs::theInfo,
-	&BitStringBase::theInfo,
+	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9PhysicalChannelReconfigurationr9addext::theInfo,
 	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::theInfo,
 };
 bool PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsPres[3] = {
@@ -12133,7 +12133,7 @@ const PhysicalChannelReconfigurationCompleteLaterNonCriticalExtensionsV770NonCri
 };
 
 const void *PhysicalChannelReconfigurationCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&PhysicalChannelReconfigurationCompleteLaterNonCriticalExtensionsPhysicalChannelReconfigurationCompleter3addext::theInfo,
 	&PhysicalChannelReconfigurationCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions::theInfo,
 };
 bool PhysicalChannelReconfigurationCompleteLaterNonCriticalExtensions::itemsPres[2] = {
@@ -12193,7 +12193,7 @@ const PhysicalChannelReconfigurationFailureLaterNonCriticalExtensionsNonCritical
 };
 
 const void *PhysicalChannelReconfigurationFailureLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&PhysicalChannelReconfigurationFailureLaterNonCriticalExtensionsPhysicalChannelReconfigurationFailurer3addext::theInfo,
 	&PhysicalChannelReconfigurationFailureLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool PhysicalChannelReconfigurationFailureLaterNonCriticalExtensions::itemsPres[2] = {
@@ -12277,7 +12277,7 @@ const PhysicalSharedChannelAllocationR3LaterNonCriticalExtensionsNonCriticalExte
 };
 
 const void *PhysicalSharedChannelAllocationR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&PhysicalSharedChannelAllocationR3LaterNonCriticalExtensionsPhysicalSharedChannelAllocationr3addext::theInfo,
 	&PhysicalSharedChannelAllocationR3LaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool PhysicalSharedChannelAllocationR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -12427,7 +12427,7 @@ const PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriti
 };
 
 const void *PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsPhysicalSharedChannelAllocationr4addext::theInfo,
 	&PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions::theInfo,
 };
 bool PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -12584,7 +12584,7 @@ const PUSCHCapacityRequestLaterNonCriticalExtensionsV590NonCriticalExtensions::I
 };
 
 const void *PUSCHCapacityRequestLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&PUSCHCapacityRequestLaterNonCriticalExtensionsPuschCapacityRequestr3addext::theInfo,
 	&PUSCHCapacityRequestLaterNonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool PUSCHCapacityRequestLaterNonCriticalExtensions::itemsPres[2] = {
@@ -12972,7 +12972,7 @@ const RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExten
 };
 
 const void *RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsRadioBearerReconfigurationr3addext::theInfo,
 	&RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -13238,7 +13238,7 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalEx
 };
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsRadioBearerReconfigurationr4addext::theInfo,
 	&RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -13551,7 +13551,7 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&RadioBearerReconfigurationr5IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5RadioBearerReconfigurationr5addext::theInfo,
 	&RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions::theInfo,
 };
 bool RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsPres[3] = {
@@ -13855,7 +13855,7 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&RadioBearerReconfigurationr6IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6RadioBearerReconfigurationr6addext::theInfo,
 	&RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsPres[3] = {
@@ -14064,7 +14064,7 @@ const RadioBearerReconfigurationv780extIEs::Info RadioBearerReconfigurationv780e
 };
 
 const void *RadioBearerReconfigurationv790extIEs::itemsInfo[1] = {
-	&BitStringBase::theInfo,
+	&RadioBearerReconfigurationv790extIEsRadioBearerReconfigurationr7addext::theInfo,
 };
 bool RadioBearerReconfigurationv790extIEs::itemsPres[1] = {
 	0,
@@ -14571,7 +14571,7 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&RadioBearerReconfigurationr8IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8RadioBearerReconfigurationr8addext::theInfo,
 	&RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsPres[3] = {
@@ -14825,7 +14825,7 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&RadioBearerReconfigurationr9IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9RadioBearerReconfigurationr9addext::theInfo,
 	&RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsPres[3] = {
@@ -15017,7 +15017,7 @@ const RadioBearerReconfigurationCompleteLaterNonCriticalExtensionsV770NonCritica
 };
 
 const void *RadioBearerReconfigurationCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RadioBearerReconfigurationCompleteLaterNonCriticalExtensionsRadioBearerReconfigurationCompleter3addext::theInfo,
 	&RadioBearerReconfigurationCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReconfigurationCompleteLaterNonCriticalExtensions::itemsPres[2] = {
@@ -15077,7 +15077,7 @@ const RadioBearerReconfigurationFailureLaterNonCriticalExtensionsNonCriticalExte
 };
 
 const void *RadioBearerReconfigurationFailureLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RadioBearerReconfigurationFailureLaterNonCriticalExtensionsRadioBearerReconfigurationFailurer3addext::theInfo,
 	&RadioBearerReconfigurationFailureLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool RadioBearerReconfigurationFailureLaterNonCriticalExtensions::itemsPres[2] = {
@@ -15429,7 +15429,7 @@ const RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b
 };
 
 const void *RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsRadioBearerReleaser3addext::theInfo,
 	&RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -15681,7 +15681,7 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions
 };
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsRadioBearerReleaser4addext::theInfo,
 	&RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -15902,7 +15902,7 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5V690Non
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&RadioBearerReleaser5IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5RadioBearerReleaser5addext::theInfo,
 	&RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsPres[3] = {
@@ -16070,7 +16070,7 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&RadioBearerReleaser6IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6RadioBearerReleaser6addext::theInfo,
 	&RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsPres[3] = {
@@ -16336,7 +16336,7 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&RadioBearerReleaser7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7RadioBearerReleaser7addext::theInfo,
 	&RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsPres[3] = {
@@ -16596,7 +16596,7 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&RadioBearerReleaser8IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8RadioBearerReleaser8addext::theInfo,
 	&RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsPres[3] = {
@@ -16768,7 +16768,7 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&RadioBearerReleaser9IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9RadioBearerReleaser9addext::theInfo,
 	&RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsPres[3] = {
@@ -16960,7 +16960,7 @@ const RadioBearerReleaseCompleteLaterNonCriticalExtensionsV770NonCriticalExtensi
 };
 
 const void *RadioBearerReleaseCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RadioBearerReleaseCompleteLaterNonCriticalExtensionsRadioBearerReleaseCompleter3addext::theInfo,
 	&RadioBearerReleaseCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions::theInfo,
 };
 bool RadioBearerReleaseCompleteLaterNonCriticalExtensions::itemsPres[2] = {
@@ -17020,7 +17020,7 @@ const RadioBearerReleaseFailureLaterNonCriticalExtensionsNonCriticalExtensions::
 };
 
 const void *RadioBearerReleaseFailureLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RadioBearerReleaseFailureLaterNonCriticalExtensionsRadioBearerReleaseFailurer3addext::theInfo,
 	&RadioBearerReleaseFailureLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool RadioBearerReleaseFailureLaterNonCriticalExtensions::itemsPres[2] = {
@@ -17370,7 +17370,7 @@ const RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0N
 };
 
 const void *RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsRadioBearerSetupr3addext::theInfo,
 	&RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -17620,7 +17620,7 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV5
 };
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsRadioBearerSetupr4addext::theInfo,
 	&RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -17839,7 +17839,7 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCr
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&RadioBearerSetupr5IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5RadioBearerSetupr5addext::theInfo,
 	&RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions::theInfo,
 };
 bool RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsPres[3] = {
@@ -18044,7 +18044,7 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&RadioBearerSetupr6IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6RadioBearerSetupr6addext::theInfo,
 	&RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::theInfo,
 };
 bool RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsPres[3] = {
@@ -18269,7 +18269,7 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&RadioBearerSetupr7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7RadioBearerSetupr7addext::theInfo,
 	&RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::theInfo,
 };
 bool RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsPres[3] = {
@@ -18577,7 +18577,7 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&RadioBearerSetupr8IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8RadioBearerSetupr8addext::theInfo,
 	&RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::theInfo,
 };
 bool RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsPres[3] = {
@@ -18751,7 +18751,7 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&RadioBearerSetupr9IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9RadioBearerSetupr9addext::theInfo,
 	&RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::theInfo,
 };
 bool RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsPres[3] = {
@@ -19011,7 +19011,7 @@ const RadioBearerSetupCompleteLaterNonCriticalExtensionsV770NonCriticalExtension
 };
 
 const void *RadioBearerSetupCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RadioBearerSetupCompleteLaterNonCriticalExtensionsRadioBearerSetupCompleter3addext::theInfo,
 	&RadioBearerSetupCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions::theInfo,
 };
 bool RadioBearerSetupCompleteLaterNonCriticalExtensions::itemsPres[2] = {
@@ -19073,7 +19073,7 @@ const RadioBearerSetupFailureLaterNonCriticalExtensionsNonCriticalExtensions::In
 };
 
 const void *RadioBearerSetupFailureLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RadioBearerSetupFailureLaterNonCriticalExtensionsRadioBearerSetupFailurer3addext::theInfo,
 	&RadioBearerSetupFailureLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool RadioBearerSetupFailureLaterNonCriticalExtensions::itemsPres[2] = {
@@ -19253,7 +19253,7 @@ const RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensions::
 };
 
 const void *RRCConnectionRejectR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RRCConnectionRejectR3LaterNonCriticalExtensionsRrcConnectionRejectr3addext::theInfo,
 	&RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionRejectR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -19474,7 +19474,7 @@ const RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensions:
 };
 
 const void *RRCConnectionReleaseR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RRCConnectionReleaseR3LaterNonCriticalExtensionsRrcConnectionReleaser3addext::theInfo,
 	&RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionReleaseR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -19598,7 +19598,7 @@ const RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensio
 };
 
 const void *RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsRrcConnectionReleaser4addext::theInfo,
 	&RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -19760,7 +19760,7 @@ const RRCConnectionReleaseCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensi
 };
 
 const void *RRCConnectionReleaseCCCHR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RRCConnectionReleaseCCCHR3LaterNonCriticalExtensionsRrcConnectionReleaseCCCHr3addext::theInfo,
 	&RRCConnectionReleaseCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionReleaseCCCHR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -19862,7 +19862,7 @@ const RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExte
 };
 
 const void *RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsRrcConnectionReleaseCCCHr4addext::theInfo,
 	&RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -19949,7 +19949,7 @@ const RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCri
 
 const void *RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&RRCConnectionReleaseCCCHr5IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5RrcConnectionReleaseCCCHr5addext::theInfo,
 	&RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5::itemsPres[3] = {
@@ -20073,7 +20073,7 @@ const RRCConnectionReleaseCompleteLaterNonCriticalExtensionsNonCriticalExtension
 };
 
 const void *RRCConnectionReleaseCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RRCConnectionReleaseCompleteLaterNonCriticalExtensionsRrcConnectionReleaseCompleter3addext::theInfo,
 	&RRCConnectionReleaseCompleteLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool RRCConnectionReleaseCompleteLaterNonCriticalExtensions::itemsPres[2] = {
@@ -20812,7 +20812,7 @@ const RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::I
 };
 
 const void *RRCConnectionSetupR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RRCConnectionSetupR3LaterNonCriticalExtensionsRrcConnectionSetupr3addext::theInfo,
 	&RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionSetupR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -20944,7 +20944,7 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions
 };
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsRrcConnectionSetupr4addext::theInfo,
 	&RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -21135,7 +21135,7 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V690Non
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&RRCConnectionSetupr5IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5RrcConnectionSetupr5addext::theInfo,
 	&RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsPres[3] = {
@@ -21335,7 +21335,7 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&RRCConnectionSetupr6IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6RrcConnectionSetupr6addext::theInfo,
 	&RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsPres[3] = {
@@ -21579,7 +21579,7 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&RRCConnectionSetupr7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7RrcConnectionSetupr7addext::theInfo,
 	&RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsPres[3] = {
@@ -21849,7 +21849,7 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&RRCConnectionSetupr8IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8RrcConnectionSetupr8addext::theInfo,
 	&RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsPres[3] = {
@@ -22065,7 +22065,7 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&RRCConnectionSetupr9IEs::theInfo,
-	&BitStringBase::theInfo,
+	&RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9RrcConnectionSetupr9addext::theInfo,
 	&RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsPres[3] = {
@@ -22325,7 +22325,7 @@ const RRCConnectionSetupCompletev5c0extIEs::Info RRCConnectionSetupCompletev5c0e
 };
 
 const void *RRCConnectionSetupCompletev690extIEs::itemsInfo[1] = {
-	&BitStringBase::theInfo,
+	&RRCConnectionSetupCompletev690extIEsUeCapabilityContainer::theInfo,
 };
 bool RRCConnectionSetupCompletev690extIEs::itemsPres[1] = {
 	0,
@@ -22479,7 +22479,7 @@ const RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensio
 };
 
 const void *RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsRrcConnectionSetupCompleter3addext::theInfo,
 	&RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensions::theInfo,
 };
 bool RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -22755,7 +22755,7 @@ const RRCFailureInfoR3LaterNonCriticalExtensionsNonCriticalExtensions::Info RRCF
 };
 
 const void *RRCFailureInfoR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RRCFailureInfoR3LaterNonCriticalExtensionsRrcFailureInfor3addext::theInfo,
 	&RRCFailureInfoR3LaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool RRCFailureInfoR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -22832,7 +22832,7 @@ const RRCStatusLaterNonCriticalExtensionsNonCriticalExtensions::Info RRCStatusLa
 };
 
 const void *RRCStatusLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&RRCStatusLaterNonCriticalExtensionsRrcStatusr3addext::theInfo,
 	&RRCStatusLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool RRCStatusLaterNonCriticalExtensions::itemsPres[2] = {
@@ -22908,7 +22908,7 @@ const SecurityModeCommandR3LaterNonCriticalExtensionsNonCriticalExtensions::Info
 };
 
 const void *SecurityModeCommandR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&SecurityModeCommandR3LaterNonCriticalExtensionsSecurityModeCommandr3addext::theInfo,
 	&SecurityModeCommandR3LaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool SecurityModeCommandR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -22983,7 +22983,7 @@ const SecurityModeCommandLaterthanr3CriticalExtensionsR7NonCriticalExtensions::I
 
 const void *SecurityModeCommandLaterthanr3CriticalExtensionsR7::itemsInfo[3] = {
 	&SecurityModeCommandr7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&SecurityModeCommandLaterthanr3CriticalExtensionsR7SecurityModeCommandr7addext::theInfo,
 	&SecurityModeCommandLaterthanr3CriticalExtensionsR7NonCriticalExtensions::theInfo,
 };
 bool SecurityModeCommandLaterthanr3CriticalExtensionsR7::itemsPres[3] = {
@@ -23074,7 +23074,7 @@ const SecurityModeCompleteLaterNonCriticalExtensionsNonCriticalExtensions::Info 
 };
 
 const void *SecurityModeCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&SecurityModeCompleteLaterNonCriticalExtensionsSecurityModeCompleter3addext::theInfo,
 	&SecurityModeCompleteLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool SecurityModeCompleteLaterNonCriticalExtensions::itemsPres[2] = {
@@ -23128,7 +23128,7 @@ const SecurityModeFailureLaterNonCriticalExtensionsNonCriticalExtensions::Info S
 };
 
 const void *SecurityModeFailureLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&SecurityModeFailureLaterNonCriticalExtensionsSecurityModeFailurer3addext::theInfo,
 	&SecurityModeFailureLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool SecurityModeFailureLaterNonCriticalExtensions::itemsPres[2] = {
@@ -23198,7 +23198,7 @@ const SignallingConnectionReleaseR3LaterNonCriticalExtensionsNonCriticalExtensio
 };
 
 const void *SignallingConnectionReleaseR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&SignallingConnectionReleaseR3LaterNonCriticalExtensionsSignallingConnectionReleaser3addext::theInfo,
 	&SignallingConnectionReleaseR3LaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool SignallingConnectionReleaseR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -23327,7 +23327,7 @@ const SignallingConnectionReleaseIndicationLaterNonCriticalExtensionsV860nonCrit
 };
 
 const void *SignallingConnectionReleaseIndicationLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&SignallingConnectionReleaseIndicationLaterNonCriticalExtensionsSignallingConnectionReleaseIndicationr3addext::theInfo,
 	&SignallingConnectionReleaseIndicationLaterNonCriticalExtensionsV860nonCriticalExtentions::theInfo,
 };
 bool SignallingConnectionReleaseIndicationLaterNonCriticalExtensions::itemsPres[2] = {
@@ -23783,7 +23783,7 @@ const SystemInformationChangeIndicationLaterNonCriticalExtensionsV860NonCritical
 };
 
 const void *SystemInformationChangeIndicationLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&SystemInformationChangeIndicationLaterNonCriticalExtensionsSystemInformationChangeIndicationr3addext::theInfo,
 	&SystemInformationChangeIndicationLaterNonCriticalExtensionsV860NonCriticalExtensions::theInfo,
 };
 bool SystemInformationChangeIndicationLaterNonCriticalExtensions::itemsPres[2] = {
@@ -24119,7 +24119,7 @@ const TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCritical
 };
 
 const void *TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsTransportChannelReconfigurationr3addext::theInfo,
 	&TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -24359,7 +24359,7 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriti
 };
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsTransportChannelReconfigurationr4addext::theInfo,
 	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::theInfo,
 };
 bool TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -24568,7 +24568,7 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&TransportChannelReconfigurationr5IEs::theInfo,
-	&BitStringBase::theInfo,
+	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5TransportChannelReconfigurationr5addext::theInfo,
 	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::theInfo,
 };
 bool TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsPres[3] = {
@@ -24722,7 +24722,7 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&TransportChannelReconfigurationr6IEs::theInfo,
-	&BitStringBase::theInfo,
+	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6TransportChannelReconfigurationr6addext::theInfo,
 	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::theInfo,
 };
 bool TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsPres[3] = {
@@ -24976,7 +24976,7 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&TransportChannelReconfigurationr7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7TransportChannelReconfigurationr7addext::theInfo,
 	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::theInfo,
 };
 bool TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsPres[3] = {
@@ -25224,7 +25224,7 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&TransportChannelReconfigurationr8IEs::theInfo,
-	&BitStringBase::theInfo,
+	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8TransportChannelReconfigurationr8addext::theInfo,
 	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::theInfo,
 };
 bool TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsPres[3] = {
@@ -25386,7 +25386,7 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&TransportChannelReconfigurationr9IEs::theInfo,
-	&BitStringBase::theInfo,
+	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9TransportChannelReconfigurationr9addext::theInfo,
 	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::theInfo,
 };
 bool TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsPres[3] = {
@@ -25578,7 +25578,7 @@ const TransportChannelReconfigurationCompleteLaterNonCriticalExtensionsV770NonCr
 };
 
 const void *TransportChannelReconfigurationCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&TransportChannelReconfigurationCompleteLaterNonCriticalExtensionsTransportChannelReconfigurationCompleter3addext::theInfo,
 	&TransportChannelReconfigurationCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions::theInfo,
 };
 bool TransportChannelReconfigurationCompleteLaterNonCriticalExtensions::itemsPres[2] = {
@@ -25638,7 +25638,7 @@ const TransportChannelReconfigurationFailureLaterNonCriticalExtensionsNonCritica
 };
 
 const void *TransportChannelReconfigurationFailureLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&TransportChannelReconfigurationFailureLaterNonCriticalExtensionsTransportChannelReconfigurationFailurer3addext::theInfo,
 	&TransportChannelReconfigurationFailureLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool TransportChannelReconfigurationFailureLaterNonCriticalExtensions::itemsPres[2] = {
@@ -25753,7 +25753,7 @@ const TransportFormatCombinationControlLaterNonCriticalExtensionsV820NonCritical
 };
 
 const void *TransportFormatCombinationControlLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&TransportFormatCombinationControlLaterNonCriticalExtensionsTransportFormatCombinationControlr3addext::theInfo,
 	&TransportFormatCombinationControlLaterNonCriticalExtensionsV820NonCriticalExtensions::theInfo,
 };
 bool TransportFormatCombinationControlLaterNonCriticalExtensions::itemsPres[2] = {
@@ -25811,7 +25811,7 @@ const TransportFormatCombinationControlFailureLaterNonCriticalExtensionsNonCriti
 };
 
 const void *TransportFormatCombinationControlFailureLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&TransportFormatCombinationControlFailureLaterNonCriticalExtensionsTransportFormatCombinationControlFailurer3addext::theInfo,
 	&TransportFormatCombinationControlFailureLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool TransportFormatCombinationControlFailureLaterNonCriticalExtensions::itemsPres[2] = {
@@ -26017,7 +26017,7 @@ const UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::
 };
 
 const void *UECapabilityEnquiryR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&UECapabilityEnquiryR3LaterNonCriticalExtensionsUeCapabilityEnquiryr3addext::theInfo,
 	&UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool UECapabilityEnquiryR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -26200,7 +26200,7 @@ const UECapabilityInformationv5c0ext::Info UECapabilityInformationv5c0ext::theIn
 };
 
 const void *UECapabilityInformationv690extIEs::itemsInfo[1] = {
-	&BitStringBase::theInfo,
+	&UECapabilityInformationv690extIEsUeCapabilityContainer::theInfo,
 };
 bool UECapabilityInformationv690extIEs::itemsPres[1] = {
 	0,
@@ -26302,7 +26302,7 @@ const UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV
 };
 
 const void *UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsUeCapabilityInformationr3addext::theInfo,
 	&UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -26610,7 +26610,7 @@ const UECapabilityInformationConfirmR3LaterNonCriticalExtensionsV770NonCriticalE
 };
 
 const void *UECapabilityInformationConfirmR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&UECapabilityInformationConfirmR3LaterNonCriticalExtensionsUeCapabilityInformationConfirmr3addext::theInfo,
 	&UECapabilityInformationConfirmR3LaterNonCriticalExtensionsV770NonCriticalExtensions::theInfo,
 };
 bool UECapabilityInformationConfirmR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -26773,7 +26773,7 @@ const UplinkDirectTransferLaterNonCriticalExtensionsV690NonCriticalExtensions::I
 };
 
 const void *UplinkDirectTransferLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&UplinkDirectTransferLaterNonCriticalExtensionsUplinkDirectTransferr3addext::theInfo,
 	&UplinkDirectTransferLaterNonCriticalExtensionsV690NonCriticalExtensions::theInfo,
 };
 bool UplinkDirectTransferLaterNonCriticalExtensions::itemsPres[2] = {
@@ -26889,7 +26889,7 @@ const UplinkPhysicalChannelControlR3LaterNonCriticalExtensionsV4b0NonCriticalExt
 };
 
 const void *UplinkPhysicalChannelControlR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&UplinkPhysicalChannelControlR3LaterNonCriticalExtensionsUplinkPhysicalChannelControlr3addext::theInfo,
 	&UplinkPhysicalChannelControlR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::theInfo,
 };
 bool UplinkPhysicalChannelControlR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -27046,7 +27046,7 @@ const UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4V4d0NonCritical
 };
 
 const void *UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsUplinkPhysicalChannelControlr4addext::theInfo,
 	&UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions::theInfo,
 };
 bool UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsPres[2] = {
@@ -27226,7 +27226,7 @@ const UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtension
 
 const void *UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&UplinkPhysicalChannelControlr5IEs::theInfo,
-	&BitStringBase::theInfo,
+	&UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsR5UplinkPhysicalChannelControlr5addext::theInfo,
 	&UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::theInfo,
 };
 bool UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsPres[3] = {
@@ -27366,7 +27366,7 @@ const UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtension
 
 const void *UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&UplinkPhysicalChannelControlr7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR7UplinkPhysicalChannelControlr7addext::theInfo,
 	&UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR7NonCriticalExtensions::theInfo,
 };
 bool UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsPres[3] = {
@@ -27557,7 +27557,7 @@ const URAUpdateLaterNonCriticalExtensionsV770NonCriticalExtensions::Info URAUpda
 };
 
 const void *URAUpdateLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&URAUpdateLaterNonCriticalExtensionsUraUpdater3addext::theInfo,
 	&URAUpdateLaterNonCriticalExtensionsV770NonCriticalExtensions::theInfo,
 };
 bool URAUpdateLaterNonCriticalExtensions::itemsPres[2] = {
@@ -27727,7 +27727,7 @@ const URAUpdateConfirmR3LaterNonCriticalExtensionsV690NonCriticalExtensions::Inf
 };
 
 const void *URAUpdateConfirmR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&URAUpdateConfirmR3LaterNonCriticalExtensionsUraUpdateConfirmr3addext::theInfo,
 	&URAUpdateConfirmR3LaterNonCriticalExtensionsV690NonCriticalExtensions::theInfo,
 };
 bool URAUpdateConfirmR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -27934,7 +27934,7 @@ const URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR7V860NonCr
 
 const void *URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&URAUpdateConfirmr7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR7UraUpdateConfirmr7addext::theInfo,
 	&URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR7V860NonCriticalExtensions::theInfo,
 };
 bool URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR7::itemsPres[3] = {
@@ -28092,7 +28092,7 @@ const URAUpdateConfirmCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensions:
 };
 
 const void *URAUpdateConfirmCCCHR3LaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&URAUpdateConfirmCCCHR3LaterNonCriticalExtensionsUraUpdateConfirmCCCHr3addext::theInfo,
 	&URAUpdateConfirmCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensions::theInfo,
 };
 bool URAUpdateConfirmCCCHR3LaterNonCriticalExtensions::itemsPres[2] = {
@@ -28321,7 +28321,7 @@ const UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensi
 };
 
 const void *UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsUtranMobilityInformationr3addext::theInfo,
 	&UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV690NonCriticalExtensions::theInfo,
 };
 bool UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsPres[2] = {
@@ -28562,7 +28562,7 @@ const UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7V
 
 const void *UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&UTRANMobilityInformationr7IEs::theInfo,
-	&BitStringBase::theInfo,
+	&UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7UtranMobilityInformationr7addext::theInfo,
 	&UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7V860NonCriticalExtensions::theInfo,
 };
 bool UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7::itemsPres[3] = {
@@ -28700,7 +28700,7 @@ const UTRANMobilityInformationConfirmLaterNonCriticalExtensionsV770NonCriticalEx
 };
 
 const void *UTRANMobilityInformationConfirmLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&UTRANMobilityInformationConfirmLaterNonCriticalExtensionsUtranMobilityInformationConfirmr3addext::theInfo,
 	&UTRANMobilityInformationConfirmLaterNonCriticalExtensionsV770NonCriticalExtension::theInfo,
 };
 bool UTRANMobilityInformationConfirmLaterNonCriticalExtensions::itemsPres[2] = {
@@ -28758,7 +28758,7 @@ const UTRANMobilityInformationFailureLaterNonCriticalExtensionsNonCriticalExtens
 };
 
 const void *UTRANMobilityInformationFailureLaterNonCriticalExtensions::itemsInfo[2] = {
-	&BitStringBase::theInfo,
+	&UTRANMobilityInformationFailureLaterNonCriticalExtensionsUtranMobilityInformationFailurer3addext::theInfo,
 	&UTRANMobilityInformationFailureLaterNonCriticalExtensionsNonCriticalExtensions::theInfo,
 };
 bool UTRANMobilityInformationFailureLaterNonCriticalExtensions::itemsPres[2] = {
@@ -29612,16 +29612,16 @@ const SystemInformationContainerNonCriticalExtensions::Info SystemInformationCon
 };
 
 const void *SystemInformationContainer::itemsInfo[11] = {
-	&OctetStringBase::theInfo,
-	&OctetStringBase::theInfo,
-	&OctetStringBase::theInfo,
-	&OctetStringBase::theInfo,
-	&OctetStringBase::theInfo,
-	&OctetStringBase::theInfo,
-	&OctetStringBase::theInfo,
-	&OctetStringBase::theInfo,
-	&OctetStringBase::theInfo,
-	&OctetStringBase::theInfo,
+	&SystemInformationContainerMib::theInfo,
+	&SystemInformationContainerSysInfoTypeSB1::theInfo,
+	&SystemInformationContainerSysInfoTypeSB2::theInfo,
+	&SystemInformationContainerSysInfoType1::theInfo,
+	&SystemInformationContainerSysInfoType3::theInfo,
+	&SystemInformationContainerSysInfoType5::theInfo,
+	&SystemInformationContainerSysInfoType7::theInfo,
+	&SystemInformationContainerSysInfoType11::theInfo,
+	&SystemInformationContainerSysInfoType11bis::theInfo,
+	&SystemInformationContainerSysInfoType12::theInfo,
 	&SystemInformationContainerNonCriticalExtensions::theInfo,
 };
 bool SystemInformationContainer::itemsPres[11] = {

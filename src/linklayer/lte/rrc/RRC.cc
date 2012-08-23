@@ -41,8 +41,20 @@ void RRC::initialize(int stage) {
     mcc.push_back(new Digit(0));
     mnc.push_back(new Digit(0));
     mnc.push_back(new Digit(2));
-//	char lac[2] = {0x5b, 0x10};
-//	char tmsi[4] = {0x19, 0x02, 0x2c, 0xba};
+    PLMNIdentity plmnId = PLMNIdentity();
+    plmnId.setMcc(mcc);
+    plmnId.setMnc(mnc);
+    char lac[2] = {0x5b, 0x10};
+    LAI lai = LAI();
+    lai.setPlmnIdentity(plmnId);
+    lai.setLAILac(LAILac(lac));
+    TMSIandLAIGSMMAP *tMSIandLAIGSMMAP = new TMSIandLAIGSMMAP();
+    char tmsi[4] = {0x19, 0x02, 0x2c, 0xba};
+    tMSIandLAIGSMMAP->setTmsi(TMSIGSMMAP(tmsi));
+    tMSIandLAIGSMMAP->setLai(lai);
+    InitialUEIdentity initUeId = InitialUEIdentity();
+
+
 //	std::vector<unsigned char> mcc;
 //	std::vector<unsigned char> mnc;
 //	mcc.push_back(2);

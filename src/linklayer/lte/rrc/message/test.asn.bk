@@ -1,4 +1,12 @@
-Internode-definitions DEFINITIONS AUTOMATIC TAGS ::=
+PDU-definitions DEFINITIONS AUTOMATIC TAGS ::=
+
+BEGIN
+
+--**************************************************************
+--
+-- IE parameter types from other modules
+--
+--**************************************************************
 
 IMPORTS
 
@@ -494,23 +502,276 @@ FROM InformationElements
 	maxURNTI-Group
 FROM Constant-definitions;
 
+
 -- ***************************************************
 --
--- MBMS CURRENT CELL PTM RB INFORMATION
+-- ACTIVE SET UPDATE (FDD only)
 --
 -- ***************************************************
 
-Digit ::=							INTEGER (0..9)
+ActiveSetUpdate ::= CHOICE {
+	r3								SEQUENCE {
+		activeSetUpdate-r3				ActiveSetUpdate-r3-IEs,
+		laterNonCriticalExtensions		SEQUENCE {
+			-- Container for additional R99 extensions
+			activeSetUpdate-r3-add-ext		BIT STRING		OPTIONAL,
+			v4b0NonCriticalExtensions		SEQUENCE {
+				activeSetUpdate-v4b0ext		ActiveSetUpdate-v4b0ext-IEs,
+				v590NonCriticalExtensions		SEQUENCE {
+					activeSetUpdate-v590ext			ActiveSetUpdate-v590ext-IEs,
+					v690NonCriticalExtensions		SEQUENCE {
+						activeSetUpdate-v690ext			ActiveSetUpdate-v690ext-IEs,
+						nonCriticalExtensions			SEQUENCE {} OPTIONAL
+					}	OPTIONAL
+				}	OPTIONAL
+			} OPTIONAL
+		} OPTIONAL
+	},
+	later-than-r3					SEQUENCE {
+		rrc-TransactionIdentifier		RRC-TransactionIdentifier,
+		criticalExtensions				CHOICE {
+			r6								SEQUENCE {
+				activeSetUpdate-r6				ActiveSetUpdate-r6-IEs,
+				activeSetUpdate-r6-add-ext		BIT STRING		OPTIONAL,
+				v6b0NonCriticalExtensions		SEQUENCE {
+					activeSetUpdate-v6b0ext			ActiveSetUpdate-v6b0ext-IEs,
+					nonCriticalExtensions			SEQUENCE {}		OPTIONAL
+				}	OPTIONAL
+			},
+			criticalExtensions				CHOICE {
+				r7								SEQUENCE {
+					activeSetUpdate-r7				ActiveSetUpdate-r7-IEs,
+					activeSetUpdate-r7-add-ext		BIT STRING		OPTIONAL,
+					v780NonCriticalExtensions		SEQUENCE {
+						activeSetUpdate-v780ext			ActiveSetUpdate-v780ext-IEs,
+						v7f0NonCriticalExtensions	SEQUENCE {
+							activeSetUdpate-v7f0ext		ActiveSetUpdate-v7f0ext-IEs,
+							v7g0NonCriticalExtensions	SEQUENCE {
+								activeSetUdpate-v7g0ext		ActiveSetUpdate-v7g0ext-IEs,
+								nonCriticalExtensions			SEQUENCE {}		OPTIONAL
+							}	OPTIONAL
+						}	OPTIONAL
+					}	OPTIONAL
+				},
+				criticalExtensions				CHOICE {
+					r8								SEQUENCE {
+						activeSetUpdate-r8				ActiveSetUpdate-r8-IEs,
+						-- Container for adding non critical extensions after freezing REL-9
+						activeSetUpdate-r8-add-ext		BIT STRING		OPTIONAL,
+						v890NonCriticalExtensions		SEQUENCE {
+							activeSetUpdate-v890ext			ActiveSetUpdate-v890ext-IEs,
+							v7g0NonCriticalExtensions		SEQUENCE {
+								activeSetUpdate-v7g0ext			ActiveSetUpdate-v7g0ext-IEs,
+								nonCriticalExtensions			SEQUENCE {}		OPTIONAL
+							}	OPTIONAL
+						}	OPTIONAL
+					},
+					criticalExtensions				CHOICE {
+						r9								SEQUENCE {
+							activeSetUpdate-r9				ActiveSetUpdate-r9-IEs,
+							-- Container for adding non critical extensions after freezing REL-10
+							activeSetUpdate-r9-add-ext		BIT STRING		OPTIONAL,
+							v950NonCriticalExtensions		SEQUENCE {
+								activeSetUpdate-v950ext			ActiveSetUpdate-v950ext-IEs,
+								nonCriticalExtensions			SEQUENCE {}		OPTIONAL
+							}	OPTIONAL
+						},
+						criticalExtensions				SEQUENCE {}
+					}
+				}
+			}
+		}
+	}
+}
 
-MCC ::=								SEQUENCE (SIZE (3)) OF
-										Digit
+ActiveSetUpdate-r3-IEs ::= SEQUENCE {
+	-- User equipment IEs
+		rrc-TransactionIdentifier		RRC-TransactionIdentifier,
+		-- dummy and dummy2 are not used in this version of the specification, they should
+		-- not be sent and if received they should be ignored.
+		dummy						IntegrityProtectionModeInfo			OPTIONAL,
+		dummy2						CipheringModeInfo					OPTIONAL,
+		activationTime					ActivationTime						OPTIONAL,
+		newU-RNTI						U-RNTI								OPTIONAL,
+	-- Core network IEs
+		cn-InformationInfo				CN-InformationInfo					OPTIONAL,
+	-- Radio bearer IEs
+		-- dummy3 is not used in this version of the specification, it should
+		-- not be sent and if received it should be ignored.
+		dummy3						DL-CounterSynchronisationInfo		OPTIONAL,
+	-- Physical channel IEs
+		maxAllowedUL-TX-Power			MaxAllowedUL-TX-Power				OPTIONAL,
+		rl-AdditionInformationList		RL-AdditionInformationList			OPTIONAL,
+		rl-RemovalInformationList		RL-RemovalInformationList			OPTIONAL,
+		tx-DiversityMode				TX-DiversityMode					OPTIONAL,
+		-- dummy4 is not used in this version of the specification, it should
+		-- not be sent and if received it should be ignored.
+		dummy4							SSDT-Information					OPTIONAL
+}
 
-MNC ::=								SEQUENCE (SIZE (2..3)) OF
-										Digit
+ActiveSetUpdate-v4b0ext-IEs ::= SEQUENCE {
+	-- Physical channel IEs
+		-- dummy is not used in this version of the specification, it should
+		-- not be sent and if received it should be ignored.
+		dummy								SSDT-UL								OPTIONAL,
+		-- The order of the RLs in IE cell-id-PerRL-List is the same as
+		-- in IE RL-AdditionInformationList included in this message
+		cell-id-PerRL-List					CellIdentity-PerRL-List				OPTIONAL
+}
 
-PLMN-Identity ::=					SEQUENCE {
-	mcc									MCC,
-	mnc									MNC
+ActiveSetUpdate-v590ext-IEs ::= SEQUENCE {
+	-- Physical channel IEs
+		dpc-Mode							DPC-Mode,
+		dl-TPC-PowerOffsetPerRL-List		DL-TPC-PowerOffsetPerRL-List			OPTIONAL
+}
+
+ActiveSetUpdate-v690ext-IEs ::= SEQUENCE {
+	-- Core network IEs
+		primary-plmn-Identity				PLMN-Identity						OPTIONAL
+}
+
+ActiveSetUpdate-r6-IEs ::= SEQUENCE {
+	-- User equipment IEs
+		activationTime						ActivationTime						OPTIONAL,
+		newU-RNTI							U-RNTI								OPTIONAL,
+		newH-RNTI							H-RNTI								OPTIONAL,
+		newPrimary-E-RNTI					E-RNTI								OPTIONAL,
+		newSecondary-E-RNTI					E-RNTI								OPTIONAL,
+	-- Core network IEs
+		cn-InformationInfo					CN-InformationInfo-r6				OPTIONAL,
+	-- Physical channel IEs
+		maxAllowedUL-TX-Power				MaxAllowedUL-TX-Power				OPTIONAL,
+		rl-AdditionInformationList			RL-AdditionInformationList-r6		OPTIONAL,
+		rl-RemovalInformationList			RL-RemovalInformationList			OPTIONAL,
+		tx-DiversityMode					TX-DiversityMode					OPTIONAL,
+		dpc-Mode							DPC-Mode							OPTIONAL,
+		serving-HSDSCH-CellInformation		Serving-HSDSCH-CellInformation		OPTIONAL,
+		e-dch-ReconfigurationInfo			E-DCH-ReconfigurationInfo			OPTIONAL
+}
+
+ActiveSetUpdate-v6b0ext-IEs ::= SEQUENCE {
+	-- Physical channel IEs
+		rl-AdditionInformation-list-v6b0ext		RL-AdditionInformation-list-v6b0ext	OPTIONAL
+}
+
+ActiveSetUpdate-r7-IEs ::= SEQUENCE {
+	-- User equipment IEs
+		activationTime						ActivationTime						OPTIONAL,
+		newU-RNTI							U-RNTI								OPTIONAL,
+		newH-RNTI							H-RNTI								OPTIONAL,
+		newPrimary-E-RNTI					E-RNTI								OPTIONAL,
+		newSecondary-E-RNTI					E-RNTI								OPTIONAL,
+	-- Core network IEs
+		cn-InformationInfo					CN-InformationInfo-r6				OPTIONAL,
+	-- Physical channel IEs
+		dtx-drx-TimingInfo					DTX-DRX-TimingInfo-r7				OPTIONAL,
+		dtx-drx-Info						DTX-DRX-Info-r7						OPTIONAL,
+		hs-scch-LessInfo					HS-SCCH-LessInfo-r7					OPTIONAL,
+		mimoParameters						MIMO-Parameters-r7					OPTIONAL,
+		maxAllowedUL-TX-Power				MaxAllowedUL-TX-Power				OPTIONAL,
+		rl-AdditionInformationList			RL-AdditionInformationList-r7		OPTIONAL,
+		rl-RemovalInformationList			RL-RemovalInformationList			OPTIONAL,
+		tx-DiversityMode					TX-DiversityMode					OPTIONAL,
+		dpc-Mode							DPC-Mode							OPTIONAL,
+		serving-HSDSCH-CellInformation		Serving-HSDSCH-CellInformation-r7	OPTIONAL,
+		e-dch-ReconfigurationInfo			E-DCH-ReconfigurationInfo-r7		OPTIONAL,
+		ul-16QAM-Config						UL-16QAM-Config						OPTIONAL,
+		e-dch-ReconfInfoSameCell			E-DCH-RL-InfoSameServingCell		OPTIONAL,
+		e-TFC-Boost-Info					E-TFC-Boost-Info-r7					OPTIONAL,
+		e-DPDCH-PowerInterpolation			E-DPDCH-PowerInterpolation			OPTIONAL
+}
+
+ActiveSetUpdate-v780ext-IEs ::= SEQUENCE {
+	-- Physical channel IEs
+		hs-DSCH-TBSizeTable					HS-DSCH-TBSizeTable					OPTIONAL
+}
+
+ActiveSetUpdate-v7f0ext-IEs ::= SEQUENCE {
+	-- Physical channel IEs
+	mimoParameters							MIMO-Parameters-v7f0ext				OPTIONAL
+}
+
+ActiveSetUpdate-v7g0ext-IEs ::= SEQUENCE {
+	-- Physical channel IEs
+	mimoParameters							MIMO-Parameters-v7g0ext				OPTIONAL
+}
+
+ActiveSetUpdate-r8-IEs ::= SEQUENCE {
+	-- User equipment IEs
+		activationTime						ActivationTime						OPTIONAL,
+		newU-RNTI							U-RNTI								OPTIONAL,
+		newH-RNTI							H-RNTI								OPTIONAL,
+		newPrimary-E-RNTI					E-RNTI								OPTIONAL,
+		newSecondary-E-RNTI					E-RNTI								OPTIONAL,
+	-- Core network IEs
+		cn-InformationInfo					CN-InformationInfo-r6				OPTIONAL,
+	-- Physical channel IEs
+		dtx-drx-TimingInfo					DTX-DRX-TimingInfo-r7				OPTIONAL,
+		dtx-drx-Info						DTX-DRX-Info-r7						OPTIONAL,
+		hs-scch-LessInfo					HS-SCCH-LessInfo-r7					OPTIONAL,
+		mimoParameters						MIMO-Parameters-r8					OPTIONAL,
+		maxAllowedUL-TX-Power				MaxAllowedUL-TX-Power				OPTIONAL,
+		rl-AdditionInformationList			RL-AdditionInformationList-r8		OPTIONAL,
+		servingCellChangeParameters			ServingCellChangeParameters			OPTIONAL,
+		rl-RemovalInformationList			RL-RemovalInformationList			OPTIONAL,
+		tx-DiversityMode					TX-DiversityMode					OPTIONAL,
+		dpc-Mode							DPC-Mode							OPTIONAL,
+		serving-HSDSCH-CellInformation		Serving-HSDSCH-CellInformation-r8	OPTIONAL,
+		e-dch-ReconfigurationInfo			E-DCH-ReconfigurationInfo-r7		OPTIONAL,
+		ul-16QAM-Config						UL-16QAM-Config						OPTIONAL,
+		e-dch-ReconfInfoSameCell			E-DCH-RL-InfoSameServingCell		OPTIONAL,
+		e-TFC-Boost-Info					E-TFC-Boost-Info-r7					OPTIONAL,
+		e-DPDCH-PowerInterpolation			E-DPDCH-PowerInterpolation			OPTIONAL,
+		dl-SecondaryCellInfoFDD				DL-SecondaryCellInfoFDD				OPTIONAL
+}
+
+ActiveSetUpdate-v890ext-IEs ::= SEQUENCE {
+	-- Physical channel IEs
+		dl-SecondaryCellInfoFDD-v890ext		DL-SecondaryCellInfoFDD-v890ext		OPTIONAL,
+		mimoParameters						MIMO-Parameters-v7f0ext				OPTIONAL,
+		rl-AdditionInformationList			RL-AdditionInformationList-v890ext	OPTIONAL
+}
+
+ActiveSetUpdate-r9-IEs ::= SEQUENCE {
+	-- User equipment IEs
+		activationTime						ActivationTime						OPTIONAL,
+		newU-RNTI							U-RNTI								OPTIONAL,
+		newH-RNTI							H-RNTI								OPTIONAL,
+		newPrimary-E-RNTI					E-RNTI								OPTIONAL,
+		newSecondary-E-RNTI					E-RNTI								OPTIONAL,
+	-- Core network IEs
+		cn-InformationInfo					CN-InformationInfo-r6				OPTIONAL,
+	-- Physical channel IEs
+		dtx-drx-TimingInfo					DTX-DRX-TimingInfo-r7				OPTIONAL,
+		dtx-drx-Info						DTX-DRX-Info-r7						OPTIONAL,
+		hs-scch-LessInfo					HS-SCCH-LessInfo-r7					OPTIONAL,
+		mimoParameters						MIMO-Parameters-r9					OPTIONAL,
+		maxAllowedUL-TX-Power				MaxAllowedUL-TX-Power				OPTIONAL,
+		ul-SecondaryCellInfoFDD				UL-SecondaryCellInfoFDD				OPTIONAL,
+		e-dch-ReconfigurationInfo-SecULFrequency	
+									E-DCH-ReconfigurationInfo-SecULFrequency	OPTIONAL,
+		rl-AdditionInformationList			RL-AdditionInformationList-r9		OPTIONAL,
+		rl-AdditionInformationList-SecULFreq 
+									RL-AdditionInformationList-SecULFreq		OPTIONAL,
+		servingCellChangeParameters			ServingCellChangeParameters			OPTIONAL,
+		rl-RemovalInformationList			RL-RemovalInformationList			OPTIONAL,
+		rl-RemovalInformationList-SecULFreq 
+									RL-RemovalInformationList-SecULFreq			OPTIONAL,
+		tx-DiversityMode					TX-DiversityMode					OPTIONAL,
+		dpc-Mode							DPC-Mode							OPTIONAL,
+		serving-HSDSCH-CellInformation		Serving-HSDSCH-CellInformation-r9	OPTIONAL,
+		e-dch-ReconfigurationInfo			E-DCH-ReconfigurationInfo-r7		OPTIONAL,
+		ul-16QAM-Config						UL-16QAM-Config						OPTIONAL,
+		e-dch-ReconfInfoSameCell			E-DCH-RL-InfoSameServingCell		OPTIONAL,
+		e-TFC-Boost-Info					E-TFC-Boost-Info-r7					OPTIONAL,
+		e-DPDCH-PowerInterpolation			E-DPDCH-PowerInterpolation			OPTIONAL,
+		dl-SecondaryCellInfoFDD				DL-SecondaryCellInfoFDD-r9			OPTIONAL
+}
+
+ActiveSetUpdate-v950ext-IEs ::= SEQUENCE {
+	-- Physical channel IEs
+		secondaryCellMimoParameters			SecondaryCellMIMOparametersFDD-v950ext		OPTIONAL,
+		rl-AdditionInformationList			RL-AdditionInformationList-v950ext			OPTIONAL
 }
 
 END

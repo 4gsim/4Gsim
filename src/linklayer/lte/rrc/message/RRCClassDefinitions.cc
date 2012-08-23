@@ -19,8 +19,39 @@
 
 namespace rrc {
 
-const void *DLDCCHMessageType::choicesInfo[1] = {
+const void *DLDCCHMessageType::choicesInfo[32] = {
 	&ActiveSetUpdate::theInfo,
+	&AssistanceDataDelivery::theInfo,
+	&CellChangeOrderFromUTRAN::theInfo,
+	&CellUpdateConfirm::theInfo,
+	&CounterCheck::theInfo,
+	&DownlinkDirectTransfer::theInfo,
+	&HandoverFromUTRANCommandGSM::theInfo,
+	&HandoverFromUTRANCommandCDMA2000::theInfo,
+	&MeasurementControl::theInfo,
+	&PagingType2::theInfo,
+	&PhysicalChannelReconfiguration::theInfo,
+	&PhysicalSharedChannelAllocation::theInfo,
+	&RadioBearerReconfiguration::theInfo,
+	&RadioBearerRelease::theInfo,
+	&RadioBearerSetup::theInfo,
+	&RRCConnectionRelease::theInfo,
+	&SecurityModeCommand::theInfo,
+	&SignallingConnectionRelease::theInfo,
+	&TransportChannelReconfiguration::theInfo,
+	&TransportFormatCombinationControl::theInfo,
+	&UECapabilityEnquiry::theInfo,
+	&UECapabilityInformationConfirm::theInfo,
+	&UplinkPhysicalChannelControl::theInfo,
+	&URAUpdateConfirm::theInfo,
+	&UTRANMobilityInformation::theInfo,
+	&HandoverFromUTRANCommandGERANIu::theInfo,
+	&MBMSModifiedServicesInformation::theInfo,
+	&ETWSPrimaryNotificationWithSecurity::theInfo,
+	&HandoverFromUTRANCommandEUTRA::theInfo,
+	&DLDCCHMessageTypeSpare3::theInfo,
+	&DLDCCHMessageTypeSpare2::theInfo,
+	&DLDCCHMessageTypeSpare1::theInfo,
 };
 const DLDCCHMessageType::Info DLDCCHMessageType::theInfo = {
 	DLDCCHMessageType::create,
@@ -28,11 +59,60 @@ const DLDCCHMessageType::Info DLDCCHMessageType::theInfo = {
 	0,
 	false,
 	choicesInfo,
-	0
+	31
 };
 
-const void *ULDCCHMessageType::choicesInfo[1] = {
+const void *DLDCCHMessage::itemsInfo[2] = {
+	&IntegrityCheckInfo::theInfo,
+	&DLDCCHMessageType::theInfo,
+};
+bool DLDCCHMessage::itemsPres[2] = {
+	0,
+	1,
+};
+const DLDCCHMessage::Info DLDCCHMessage::theInfo = {
+	DLDCCHMessage::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 1, 0
+};
+
+const void *ULDCCHMessageType::choicesInfo[32] = {
 	&ActiveSetUpdateComplete::theInfo,
+	&ActiveSetUpdateFailure::theInfo,
+	&CellChangeOrderFromUTRANFailure::theInfo,
+	&CounterCheckResponse::theInfo,
+	&HandoverToUTRANComplete::theInfo,
+	&InitialDirectTransfer::theInfo,
+	&HandoverFromUTRANFailure::theInfo,
+	&MeasurementControlFailure::theInfo,
+	&MeasurementReport::theInfo,
+	&PhysicalChannelReconfigurationComplete::theInfo,
+	&PhysicalChannelReconfigurationFailure::theInfo,
+	&RadioBearerReconfigurationComplete::theInfo,
+	&RadioBearerReconfigurationFailure::theInfo,
+	&RadioBearerReleaseComplete::theInfo,
+	&RadioBearerReleaseFailure::theInfo,
+	&RadioBearerSetupComplete::theInfo,
+	&RadioBearerSetupFailure::theInfo,
+	&RRCConnectionReleaseComplete::theInfo,
+	&RRCConnectionSetupComplete::theInfo,
+	&RRCStatus::theInfo,
+	&SecurityModeComplete::theInfo,
+	&SecurityModeFailure::theInfo,
+	&SignallingConnectionReleaseIndication::theInfo,
+	&TransportChannelReconfigurationComplete::theInfo,
+	&TransportChannelReconfigurationFailure::theInfo,
+	&TransportFormatCombinationControlFailure::theInfo,
+	&UECapabilityInformation::theInfo,
+	&UplinkDirectTransfer::theInfo,
+	&UTRANMobilityInformationConfirm::theInfo,
+	&UTRANMobilityInformationFailure::theInfo,
+	&MBMSModificationRequest::theInfo,
+	&ULDCCHMessageTypeSpare1::theInfo,
 };
 const ULDCCHMessageType::Info ULDCCHMessageType::theInfo = {
 	ULDCCHMessageType::create,
@@ -40,11 +120,36 @@ const ULDCCHMessageType::Info ULDCCHMessageType::theInfo = {
 	0,
 	false,
 	choicesInfo,
-	0
+	31
 };
 
-const void *DLCCCHMessageType::choicesInfo[1] = {
+const void *ULDCCHMessage::itemsInfo[2] = {
+	&IntegrityCheckInfo::theInfo,
+	&ULDCCHMessageType::theInfo,
+};
+bool ULDCCHMessage::itemsPres[2] = {
+	0,
+	1,
+};
+const ULDCCHMessage::Info ULDCCHMessage::theInfo = {
+	ULDCCHMessage::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 1, 0
+};
+
+const void *DLCCCHMessageType::choicesInfo[8] = {
 	&CellUpdateConfirmCCCH::theInfo,
+	&RRCConnectionReject::theInfo,
+	&RRCConnectionReleaseCCCH::theInfo,
+	&RRCConnectionSetup::theInfo,
+	&URAUpdateConfirmCCCH::theInfo,
+	&ETWSPrimaryNotificationWithSecurity::theInfo,
+	&DLCCCHMessageTypeSpare2::theInfo,
+	&DLCCCHMessageTypeSpare1::theInfo,
 };
 const DLCCCHMessageType::Info DLCCCHMessageType::theInfo = {
 	DLCCCHMessageType::create,
@@ -52,11 +157,32 @@ const DLCCCHMessageType::Info DLCCCHMessageType::theInfo = {
 	0,
 	false,
 	choicesInfo,
-	0
+	7
 };
 
-const void *ULCCCHMessageType::choicesInfo[1] = {
+const void *DLCCCHMessage::itemsInfo[2] = {
+	&IntegrityCheckInfo::theInfo,
+	&DLCCCHMessageType::theInfo,
+};
+bool DLCCCHMessage::itemsPres[2] = {
+	0,
+	1,
+};
+const DLCCCHMessage::Info DLCCCHMessage::theInfo = {
+	DLCCCHMessage::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 1, 0
+};
+
+const void *ULCCCHMessageType::choicesInfo[4] = {
 	&CellUpdate::theInfo,
+	&RRCConnectionRequest::theInfo,
+	&URAUpdate::theInfo,
+	&ULCCCHMessageTypeSpare::theInfo,
 };
 const ULCCCHMessageType::Info ULCCCHMessageType::theInfo = {
 	ULCCCHMessageType::create,
@@ -64,11 +190,30 @@ const ULCCCHMessageType::Info ULCCCHMessageType::theInfo = {
 	0,
 	false,
 	choicesInfo,
-	0
+	3
 };
 
-const void *PCCHMessageType::choicesInfo[1] = {
+const void *ULCCCHMessage::itemsInfo[2] = {
+	&IntegrityCheckInfo::theInfo,
+	&ULCCCHMessageType::theInfo,
+};
+bool ULCCCHMessage::itemsPres[2] = {
+	0,
+	1,
+};
+const ULCCCHMessage::Info ULCCCHMessage::theInfo = {
+	ULCCCHMessage::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 1, 0
+};
+
+const void *PCCHMessageType::choicesInfo[2] = {
 	&PagingType1::theInfo,
+	&PCCHMessageTypeSpare::theInfo,
 };
 const PCCHMessageType::Info PCCHMessageType::theInfo = {
 	PCCHMessageType::create,
@@ -76,7 +221,7 @@ const PCCHMessageType::Info PCCHMessageType::theInfo = {
 	0,
 	false,
 	choicesInfo,
-	0
+	1
 };
 
 const void *PCCHMessage::itemsInfo[1] = {
@@ -95,8 +240,9 @@ const PCCHMessage::Info PCCHMessage::theInfo = {
 	1, 0, 0
 };
 
-const void *DLSHCCHMessageType::choicesInfo[1] = {
+const void *DLSHCCHMessageType::choicesInfo[2] = {
 	&PhysicalSharedChannelAllocation::theInfo,
+	&DLSHCCHMessageTypeSpare::theInfo,
 };
 const DLSHCCHMessageType::Info DLSHCCHMessageType::theInfo = {
 	DLSHCCHMessageType::create,
@@ -104,7 +250,7 @@ const DLSHCCHMessageType::Info DLSHCCHMessageType::theInfo = {
 	0,
 	false,
 	choicesInfo,
-	0
+	1
 };
 
 const void *DLSHCCHMessage::itemsInfo[1] = {
@@ -123,8 +269,9 @@ const DLSHCCHMessage::Info DLSHCCHMessage::theInfo = {
 	1, 0, 0
 };
 
-const void *ULSHCCHMessageType::choicesInfo[1] = {
+const void *ULSHCCHMessageType::choicesInfo[2] = {
 	&PUSCHCapacityRequest::theInfo,
+	&ULSHCCHMessageTypeSpare::theInfo,
 };
 const ULSHCCHMessageType::Info ULSHCCHMessageType::theInfo = {
 	ULSHCCHMessageType::create,
@@ -132,7 +279,7 @@ const ULSHCCHMessageType::Info ULSHCCHMessageType::theInfo = {
 	0,
 	false,
 	choicesInfo,
-	0
+	1
 };
 
 const void *ULSHCCHMessage::itemsInfo[1] = {
@@ -151,8 +298,11 @@ const ULSHCCHMessage::Info ULSHCCHMessage::theInfo = {
 	1, 0, 0
 };
 
-const void *BCCHFACHMessageType::choicesInfo[1] = {
+const void *BCCHFACHMessageType::choicesInfo[4] = {
 	&SystemInformationFACH::theInfo,
+	&SystemInformationChangeIndication::theInfo,
+	&BCCHFACHMessageTypeSpare2::theInfo,
+	&BCCHFACHMessageTypeSpare1::theInfo,
 };
 const BCCHFACHMessageType::Info BCCHFACHMessageType::theInfo = {
 	BCCHFACHMessageType::create,
@@ -160,7 +310,7 @@ const BCCHFACHMessageType::Info BCCHFACHMessageType::theInfo = {
 	0,
 	false,
 	choicesInfo,
-	0
+	3
 };
 
 const void *BCCHFACHMessage::itemsInfo[1] = {
@@ -195,8 +345,23 @@ const BCCHBCHMessage::Info BCCHBCHMessage::theInfo = {
 	1, 0, 0
 };
 
-const void *MCCHMessageType::choicesInfo[1] = {
+const void *MCCHMessageType::choicesInfo[16] = {
 	&MBMSAccessInformation::theInfo,
+	&MBMSCommonPTMRBInformation::theInfo,
+	&MBMSCurrentCellPTMRBInformation::theInfo,
+	&MBMSGeneralInformation::theInfo,
+	&MBMSModifiedServicesInformation::theInfo,
+	&MBMSNeighbouringCellPTMRBInformation::theInfo,
+	&MBMSUnmodifiedServicesInformation::theInfo,
+	&MCCHMessageTypeSpare9::theInfo,
+	&MCCHMessageTypeSpare8::theInfo,
+	&MCCHMessageTypeSpare7::theInfo,
+	&MCCHMessageTypeSpare6::theInfo,
+	&MCCHMessageTypeSpare5::theInfo,
+	&MCCHMessageTypeSpare4::theInfo,
+	&MCCHMessageTypeSpare3::theInfo,
+	&MCCHMessageTypeSpare2::theInfo,
+	&MCCHMessageTypeSpare1::theInfo,
 };
 const MCCHMessageType::Info MCCHMessageType::theInfo = {
 	MCCHMessageType::create,
@@ -204,7 +369,7 @@ const MCCHMessageType::Info MCCHMessageType::theInfo = {
 	0,
 	false,
 	choicesInfo,
-	0
+	15
 };
 
 const void *MCCHMessage::itemsInfo[1] = {
@@ -223,8 +388,11 @@ const MCCHMessage::Info MCCHMessage::theInfo = {
 	1, 0, 0
 };
 
-const void *MSCHMessageType::choicesInfo[1] = {
+const void *MSCHMessageType::choicesInfo[4] = {
 	&MBMSSchedulingInformation::theInfo,
+	&MSCHMessageTypeSpare3::theInfo,
+	&MSCHMessageTypeSpare2::theInfo,
+	&MSCHMessageTypeSpare1::theInfo,
 };
 const MSCHMessageType::Info MSCHMessageType::theInfo = {
 	MSCHMessageType::create,
@@ -232,7 +400,7 @@ const MSCHMessageType::Info MSCHMessageType::theInfo = {
 	0,
 	false,
 	choicesInfo,
-	0
+	3
 };
 
 const void *MSCHMessage::itemsInfo[1] = {
