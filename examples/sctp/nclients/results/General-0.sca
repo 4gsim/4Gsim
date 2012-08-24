@@ -1,0 +1,214 @@
+version 2
+run General-0-20120824-21:07:43-5470
+attr configname General
+attr datetime 20120824-21:07:43
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvars2 $repetition=0
+attr measurement ""
+attr network NClients
+attr processid 5470
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+
+scalar NClients.cli[0].sctpApp[0] 	ums 	1000
+scalar NClients.cli[1].sctpApp[0] 	ums 	1000
+scalar NClients.cli[2].sctpApp[0] 	ums 	1000
+scalar NClients.cli[3].sctpApp[0] 	ums 	1000
+scalar NClients.cli[0].sctp 	"Number of Fast Retransmissions 1:192.168.0.8" 	0
+scalar NClients.cli[0].sctp 	"Number of Timer-Based Retransmissions 1:192.168.0.8" 	0
+scalar NClients.cli[0].sctp 	"Number of Heartbeats Sent 1:192.168.0.8" 	1
+scalar NClients.cli[0].sctp 	"Number of Heartbeats Received 1:192.168.0.8" 	1
+scalar NClients.cli[0].sctp 	"Number of Heartbeat ACKs Sent 1:192.168.0.8" 	1
+scalar NClients.cli[0].sctp 	"Number of Heartbeat ACKs Received 1:192.168.0.8" 	1
+scalar NClients.srv.sctp 	"Number of Fast Retransmissions 7:192.168.0.4" 	0
+scalar NClients.srv.sctp 	"Number of Timer-Based Retransmissions 7:192.168.0.4" 	0
+scalar NClients.srv.sctp 	"Number of Heartbeats Sent 7:192.168.0.4" 	1
+scalar NClients.srv.sctp 	"Number of Heartbeats Received 7:192.168.0.4" 	1
+scalar NClients.srv.sctp 	"Number of Heartbeat ACKs Sent 7:192.168.0.4" 	1
+scalar NClients.srv.sctp 	"Number of Heartbeat ACKs Received 7:192.168.0.4" 	1
+scalar NClients.srv.sctp 	"Number of Fast Retransmissions 9:192.168.0.5" 	0
+scalar NClients.srv.sctp 	"Number of Timer-Based Retransmissions 9:192.168.0.5" 	0
+scalar NClients.srv.sctp 	"Number of Heartbeats Sent 9:192.168.0.5" 	1
+scalar NClients.srv.sctp 	"Number of Heartbeats Received 9:192.168.0.5" 	1
+scalar NClients.srv.sctp 	"Number of Heartbeat ACKs Sent 9:192.168.0.5" 	1
+scalar NClients.srv.sctp 	"Number of Heartbeat ACKs Received 9:192.168.0.5" 	1
+scalar NClients.cli[1].sctp 	"Number of Fast Retransmissions 2:192.168.0.8" 	0
+scalar NClients.cli[1].sctp 	"Number of Timer-Based Retransmissions 2:192.168.0.8" 	0
+scalar NClients.cli[1].sctp 	"Number of Heartbeats Sent 2:192.168.0.8" 	1
+scalar NClients.cli[1].sctp 	"Number of Heartbeats Received 2:192.168.0.8" 	1
+scalar NClients.cli[1].sctp 	"Number of Heartbeat ACKs Sent 2:192.168.0.8" 	1
+scalar NClients.cli[1].sctp 	"Number of Heartbeat ACKs Received 2:192.168.0.8" 	1
+scalar NClients.cli[3].sctp 	"Number of Fast Retransmissions 4:192.168.0.8" 	0
+scalar NClients.cli[3].sctp 	"Number of Timer-Based Retransmissions 4:192.168.0.8" 	0
+scalar NClients.cli[3].sctp 	"Number of Heartbeats Sent 4:192.168.0.8" 	1
+scalar NClients.cli[3].sctp 	"Number of Heartbeats Received 4:192.168.0.8" 	1
+scalar NClients.cli[3].sctp 	"Number of Heartbeat ACKs Sent 4:192.168.0.8" 	1
+scalar NClients.cli[3].sctp 	"Number of Heartbeat ACKs Received 4:192.168.0.8" 	1
+scalar NClients.srv.sctp 	"Number of Fast Retransmissions 8:192.168.0.7" 	0
+scalar NClients.srv.sctp 	"Number of Timer-Based Retransmissions 8:192.168.0.7" 	0
+scalar NClients.srv.sctp 	"Number of Heartbeats Sent 8:192.168.0.7" 	1
+scalar NClients.srv.sctp 	"Number of Heartbeats Received 8:192.168.0.7" 	1
+scalar NClients.srv.sctp 	"Number of Heartbeat ACKs Sent 8:192.168.0.7" 	1
+scalar NClients.srv.sctp 	"Number of Heartbeat ACKs Received 8:192.168.0.7" 	1
+scalar NClients.srv.sctp 	"Number of Fast Retransmissions 6:192.168.0.6" 	0
+scalar NClients.srv.sctp 	"Number of Timer-Based Retransmissions 6:192.168.0.6" 	0
+scalar NClients.srv.sctp 	"Number of Heartbeats Sent 6:192.168.0.6" 	2
+scalar NClients.srv.sctp 	"Number of Heartbeats Received 6:192.168.0.6" 	1
+scalar NClients.srv.sctp 	"Number of Heartbeat ACKs Sent 6:192.168.0.6" 	1
+scalar NClients.srv.sctp 	"Number of Heartbeat ACKs Received 6:192.168.0.6" 	2
+scalar NClients.cli[2].sctp 	"Number of Fast Retransmissions 3:192.168.0.8" 	0
+scalar NClients.cli[2].sctp 	"Number of Timer-Based Retransmissions 3:192.168.0.8" 	0
+scalar NClients.cli[2].sctp 	"Number of Heartbeats Sent 3:192.168.0.8" 	1
+scalar NClients.cli[2].sctp 	"Number of Heartbeats Received 3:192.168.0.8" 	2
+scalar NClients.cli[2].sctp 	"Number of Heartbeat ACKs Sent 3:192.168.0.8" 	2
+scalar NClients.cli[2].sctp 	"Number of Heartbeat ACKs Received 3:192.168.0.8" 	1
+scalar NClients.r1.networkLayer.arp 	"ARP requests sent" 	0
+scalar NClients.r1.networkLayer.arp 	"ARP replies sent" 	0
+scalar NClients.r1.networkLayer.arp 	"ARP resolutions" 	0
+scalar NClients.r1.networkLayer.arp 	"failed ARP resolutions" 	0
+scalar NClients.r1.ppp[0].queue 	"packets received by queue" 	35
+scalar NClients.r1.ppp[0].queue 	"packets dropped by queue" 	0
+scalar NClients.r1.ppp[1].queue 	"packets received by queue" 	34
+scalar NClients.r1.ppp[1].queue 	"packets dropped by queue" 	0
+scalar NClients.r1.ppp[2].queue 	"packets received by queue" 	35
+scalar NClients.r1.ppp[2].queue 	"packets dropped by queue" 	0
+scalar NClients.r1.ppp[3].queue 	"packets received by queue" 	35
+scalar NClients.r1.ppp[3].queue 	"packets dropped by queue" 	0
+scalar NClients.r1.ppp[4].queue 	"packets received by queue" 	141
+scalar NClients.r1.ppp[4].queue 	"packets dropped by queue" 	0
+scalar NClients.r2.networkLayer.arp 	"ARP requests sent" 	0
+scalar NClients.r2.networkLayer.arp 	"ARP replies sent" 	0
+scalar NClients.r2.networkLayer.arp 	"ARP resolutions" 	0
+scalar NClients.r2.networkLayer.arp 	"failed ARP resolutions" 	0
+scalar NClients.r2.ppp[0].queue 	"packets received by queue" 	139
+scalar NClients.r2.ppp[0].queue 	"packets dropped by queue" 	0
+scalar NClients.r2.ppp[1].queue 	"packets received by queue" 	141
+scalar NClients.r2.ppp[1].queue 	"packets dropped by queue" 	0
+scalar NClients.r3.networkLayer.arp 	"ARP requests sent" 	0
+scalar NClients.r3.networkLayer.arp 	"ARP replies sent" 	0
+scalar NClients.r3.networkLayer.arp 	"ARP resolutions" 	0
+scalar NClients.r3.networkLayer.arp 	"failed ARP resolutions" 	0
+scalar NClients.r3.ppp[0].queue 	"packets received by queue" 	139
+scalar NClients.r3.ppp[0].queue 	"packets dropped by queue" 	0
+scalar NClients.r3.ppp[1].queue 	"packets received by queue" 	141
+scalar NClients.r3.ppp[1].queue 	"packets dropped by queue" 	0
+scalar NClients.cli[0].sctp 	"Association Lifetime" 	26.262092866007
+scalar NClients.cli[0].sctp 	"Acked Bytes" 	30000
+scalar NClients.cli[0].sctp 	"Throughput [bit/s]" 	9138.6471453176
+scalar NClients.cli[0].sctp 	"Transmitted Bytes" 	30000
+scalar NClients.cli[0].sctp 	"Fast RTX" 	0
+scalar NClients.cli[0].sctp 	"Timer-Based RTX" 	0
+scalar NClients.cli[0].sctp 	"Duplicate Acks" 	0
+scalar NClients.cli[0].sctp 	"Packets Received" 	35
+scalar NClients.cli[0].sctp 	"Packets Dropped" 	0
+scalar NClients.cli[0].pingApp 	"Pings sent" 	0
+scalar NClients.cli[0].networkLayer.arp 	"ARP requests sent" 	0
+scalar NClients.cli[0].networkLayer.arp 	"ARP replies sent" 	0
+scalar NClients.cli[0].networkLayer.arp 	"ARP resolutions" 	0
+scalar NClients.cli[0].networkLayer.arp 	"failed ARP resolutions" 	0
+scalar NClients.cli[0].ppp[0].queue 	"packets received by queue" 	36
+scalar NClients.cli[0].ppp[0].queue 	"packets dropped by queue" 	0
+scalar NClients.cli[1].sctp 	"Association Lifetime" 	26.77698521263
+scalar NClients.cli[1].sctp 	"Acked Bytes" 	29000
+scalar NClients.cli[1].sctp 	"Throughput [bit/s]" 	8664.1568555138
+scalar NClients.cli[1].sctp 	"Transmitted Bytes" 	30000
+scalar NClients.cli[1].sctp 	"Fast RTX" 	0
+scalar NClients.cli[1].sctp 	"Timer-Based RTX" 	0
+scalar NClients.cli[1].sctp 	"Duplicate Acks" 	0
+scalar NClients.cli[1].sctp 	"Packets Received" 	34
+scalar NClients.cli[1].sctp 	"Packets Dropped" 	0
+scalar NClients.cli[1].pingApp 	"Pings sent" 	0
+scalar NClients.cli[1].networkLayer.arp 	"ARP requests sent" 	0
+scalar NClients.cli[1].networkLayer.arp 	"ARP replies sent" 	0
+scalar NClients.cli[1].networkLayer.arp 	"ARP resolutions" 	0
+scalar NClients.cli[1].networkLayer.arp 	"failed ARP resolutions" 	0
+scalar NClients.cli[1].ppp[0].queue 	"packets received by queue" 	34
+scalar NClients.cli[1].ppp[0].queue 	"packets dropped by queue" 	0
+scalar NClients.cli[2].sctp 	"Association Lifetime" 	54.493471971858
+scalar NClients.cli[2].sctp 	"Acked Bytes" 	29000
+scalar NClients.cli[2].sctp 	"Throughput [bit/s]" 	4257.3906856185
+scalar NClients.cli[2].sctp 	"Transmitted Bytes" 	30000
+scalar NClients.cli[2].sctp 	"Fast RTX" 	0
+scalar NClients.cli[2].sctp 	"Timer-Based RTX" 	0
+scalar NClients.cli[2].sctp 	"Duplicate Acks" 	0
+scalar NClients.cli[2].sctp 	"Packets Received" 	35
+scalar NClients.cli[2].sctp 	"Packets Dropped" 	0
+scalar NClients.cli[2].pingApp 	"Pings sent" 	0
+scalar NClients.cli[2].networkLayer.arp 	"ARP requests sent" 	0
+scalar NClients.cli[2].networkLayer.arp 	"ARP replies sent" 	0
+scalar NClients.cli[2].networkLayer.arp 	"ARP resolutions" 	0
+scalar NClients.cli[2].networkLayer.arp 	"failed ARP resolutions" 	0
+scalar NClients.cli[2].ppp[0].queue 	"packets received by queue" 	35
+scalar NClients.cli[2].ppp[0].queue 	"packets dropped by queue" 	0
+scalar NClients.cli[3].sctp 	"Association Lifetime" 	30.310461319227
+scalar NClients.cli[3].sctp 	"Acked Bytes" 	30000
+scalar NClients.cli[3].sctp 	"Throughput [bit/s]" 	7918.058305756
+scalar NClients.cli[3].sctp 	"Transmitted Bytes" 	30000
+scalar NClients.cli[3].sctp 	"Fast RTX" 	0
+scalar NClients.cli[3].sctp 	"Timer-Based RTX" 	0
+scalar NClients.cli[3].sctp 	"Duplicate Acks" 	0
+scalar NClients.cli[3].sctp 	"Packets Received" 	35
+scalar NClients.cli[3].sctp 	"Packets Dropped" 	0
+scalar NClients.cli[3].pingApp 	"Pings sent" 	0
+scalar NClients.cli[3].networkLayer.arp 	"ARP requests sent" 	0
+scalar NClients.cli[3].networkLayer.arp 	"ARP replies sent" 	0
+scalar NClients.cli[3].networkLayer.arp 	"ARP resolutions" 	0
+scalar NClients.cli[3].networkLayer.arp 	"failed ARP resolutions" 	0
+scalar NClients.cli[3].ppp[0].queue 	"packets received by queue" 	36
+scalar NClients.cli[3].ppp[0].queue 	"packets dropped by queue" 	0
+scalar NClients.srv.sctpApp[0] 	"bytes rcvd" 	30000
+scalar NClients.srv.sctpApp[0] 	throughput 	4404.4856479092
+scalar NClients.srv.sctpApp[0] 	"bytes rcvd" 	30000
+scalar NClients.srv.sctpApp[0] 	throughput 	9139.8889017826
+scalar NClients.srv.sctpApp[0] 	"bytes rcvd" 	30000
+scalar NClients.srv.sctpApp[0] 	throughput 	7918.9904907786
+scalar NClients.srv.sctpApp[0] 	"bytes rcvd" 	30000
+scalar NClients.srv.sctpApp[0] 	throughput 	8964.1153422426
+scalar NClients.srv.sctp 	"Association Lifetime" 	54.493544771858
+scalar NClients.srv.sctp 	"Acked Bytes" 	0
+scalar NClients.srv.sctp 	"Throughput [bit/s]" 	0
+scalar NClients.srv.sctp 	"Transmitted Bytes" 	0
+scalar NClients.srv.sctp 	"Fast RTX" 	0
+scalar NClients.srv.sctp 	"Timer-Based RTX" 	0
+scalar NClients.srv.sctp 	"Duplicate Acks" 	0
+scalar NClients.srv.sctp 	"Packets Received" 	141
+scalar NClients.srv.sctp 	"Packets Dropped" 	0
+scalar NClients.srv.sctp 	"Association Lifetime" 	26.262441666007
+scalar NClients.srv.sctp 	"Acked Bytes" 	0
+scalar NClients.srv.sctp 	"Throughput [bit/s]" 	0
+scalar NClients.srv.sctp 	"Transmitted Bytes" 	0
+scalar NClients.srv.sctp 	"Fast RTX" 	0
+scalar NClients.srv.sctp 	"Timer-Based RTX" 	0
+scalar NClients.srv.sctp 	"Duplicate Acks" 	0
+scalar NClients.srv.sctp 	"Packets Received" 	141
+scalar NClients.srv.sctp 	"Packets Dropped" 	0
+scalar NClients.srv.sctp 	"Association Lifetime" 	30.310810119227
+scalar NClients.srv.sctp 	"Acked Bytes" 	0
+scalar NClients.srv.sctp 	"Throughput [bit/s]" 	0
+scalar NClients.srv.sctp 	"Transmitted Bytes" 	0
+scalar NClients.srv.sctp 	"Fast RTX" 	0
+scalar NClients.srv.sctp 	"Timer-Based RTX" 	0
+scalar NClients.srv.sctp 	"Duplicate Acks" 	0
+scalar NClients.srv.sctp 	"Packets Received" 	141
+scalar NClients.srv.sctp 	"Packets Dropped" 	0
+scalar NClients.srv.sctp 	"Association Lifetime" 	26.77705801263
+scalar NClients.srv.sctp 	"Acked Bytes" 	0
+scalar NClients.srv.sctp 	"Throughput [bit/s]" 	0
+scalar NClients.srv.sctp 	"Transmitted Bytes" 	0
+scalar NClients.srv.sctp 	"Fast RTX" 	0
+scalar NClients.srv.sctp 	"Timer-Based RTX" 	0
+scalar NClients.srv.sctp 	"Duplicate Acks" 	0
+scalar NClients.srv.sctp 	"Packets Received" 	141
+scalar NClients.srv.sctp 	"Packets Dropped" 	0
+scalar NClients.srv.pingApp 	"Pings sent" 	0
+scalar NClients.srv.networkLayer.arp 	"ARP requests sent" 	0
+scalar NClients.srv.networkLayer.arp 	"ARP replies sent" 	0
+scalar NClients.srv.networkLayer.arp 	"ARP resolutions" 	0
+scalar NClients.srv.networkLayer.arp 	"failed ARP resolutions" 	0
+scalar NClients.srv.ppp[0].queue 	"packets received by queue" 	139
+scalar NClients.srv.ppp[0].queue 	"packets dropped by queue" 	0

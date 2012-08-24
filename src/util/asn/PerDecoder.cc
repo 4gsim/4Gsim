@@ -150,11 +150,6 @@ int64_t PerDecoder::decodeLength(int64_t lowerBound, int64_t upperBound) {
 
 }
 
-unsigned char PerDecoder::bitMask(unsigned char start, unsigned char end) {
-    unsigned char mask = ((1 << (end - start)) - 1);
-    return mask << start;
-}
-
 void PerDecoder::allignIterator() {
     if (leftBits != 8) {
         it++;
@@ -166,27 +161,27 @@ void PerDecoder::allignIterator() {
 bool PerDecoder::decodeAbstractType(AbstractType& abstractType) {
 	switch(abstractType.getTag()) {
 		case INTEGER:
-			return decodeInteger(dynamic_cast<IntegerBase&>(abstractType));
+			return decodeInteger(static_cast<IntegerBase&>(abstractType));
 		case ENUMERATED:
-			return decodeEnumerated(dynamic_cast<EnumeratedBase&>(abstractType));
+			return decodeEnumerated(static_cast<EnumeratedBase&>(abstractType));
 		case BITSTRING:
-			return decodeBitString(dynamic_cast<BitStringBase&>(abstractType));
+			return decodeBitString(static_cast<BitStringBase&>(abstractType));
 		case OCTETSTRING:
-			return decodeOctetString(dynamic_cast<OctetStringBase&>(abstractType));
+			return decodeOctetString(static_cast<OctetStringBase&>(abstractType));
 		case _BOOLEAN:
-		    return decodeBoolean(dynamic_cast<Boolean&>(abstractType));
+		    return decodeBoolean(static_cast<Boolean&>(abstractType));
 		case _NULL:
-		    return decodeNull(dynamic_cast<Null&>(abstractType));
+		    return decodeNull(static_cast<Null&>(abstractType));
 		case SEQUENCE:
-			return decodeSequence(dynamic_cast<Sequence&>(abstractType));
+			return decodeSequence(static_cast<Sequence&>(abstractType));
 		case SEQUENCEOF:
-			return decodeSequenceOf(dynamic_cast<SequenceOfBase&>(abstractType));
+			return decodeSequenceOf(static_cast<SequenceOfBase&>(abstractType));
 		case CHOICE:
-			return decodeChoice(dynamic_cast<Choice&>(abstractType));
+			return decodeChoice(static_cast<Choice&>(abstractType));
 		case PRINTABLESTRING:
-			return decodePrintableString(dynamic_cast<PrintableStringBase&>(abstractType));
+			return decodePrintableString(static_cast<PrintableStringBase&>(abstractType));
 		case OPENTYPE:
-			return decodeOpenType(dynamic_cast<OpenType&>(abstractType));
+			return decodeOpenType(static_cast<OpenType&>(abstractType));
 		default:
 			return false;
 	}

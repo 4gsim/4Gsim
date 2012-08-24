@@ -57,6 +57,11 @@ enum ObjectType {
  */
 int64_t countBits(int64_t value, int64_t count);
 
+/*
+ * Method for returning a bit mask
+ */
+unsigned char bitMask(unsigned char start, unsigned char end);
+
 class PerEncoder;
 
 /*
@@ -245,7 +250,7 @@ public:
 	/* Operator methods. */
 	IntegerBase &operator=(const IntegerBase &other);
 	IntegerBase &operator=(int64_t value);
-	operator int64_t() const { return value; }
+//	operator int64_t() const { return value; }
 
 	/* Getter methods. */
 	int64_t getValue() const { return value; }

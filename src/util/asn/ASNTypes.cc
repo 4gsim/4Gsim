@@ -32,6 +32,11 @@ int64_t countBits(int64_t value, int64_t count) {
 		return count;
 }
 
+unsigned char bitMask(unsigned char start, unsigned char end) {
+    unsigned char mask = ((1 << (end - start)) - 1);
+    return mask << start;
+}
+
 const OpenType::Info OpenType::theInfo = {
 		&OpenType::create,
 		OPENTYPE,
@@ -160,7 +165,7 @@ IntegerBase& IntegerBase::operator=(const IntegerBase& other) {
 	return *this;
 }
 
-IntegerBase& IntegerBase::operator =(int64_t value) {
+IntegerBase& IntegerBase::operator=(int64_t value) {
     setValue(value);
     return *this;
 }

@@ -152,8 +152,8 @@ void PerEncoder::encodeBits(char value, unsigned char length) {
     // if there are 8 bits available in the last byte copy the
     // value in this byte and set the number of used bits
     if (usedBits == 8) {
-        this->buffer = (char *)realloc(this->buffer, this->length++);
-        memcpy(this->buffer + this->length, &value, 1);
+        this->buffer = (char *)realloc(this->buffer, this->length + 1);
+        memcpy(this->buffer + this->length++, &value, 1);
         usedBits = length;
         return;
 
@@ -166,8 +166,8 @@ void PerEncoder::encodeBits(char value, unsigned char length) {
         // and set the number of used bits according to this part
         unsigned char tmpBits = length - (8 - usedBits);
         value = (unsigned char)value << (length - tmpBits);
-        this->buffer = (char *)realloc(this->buffer, this->length++);
-        memcpy(this->buffer + this->length, &value, 1);
+        this->buffer = (char *)realloc(this->buffer, this->length + 1);
+        memcpy(this->buffer + this->length++, &value, 1);
         usedBits = tmpBits;
 
     // if the value fits in the last byte put it and increase

@@ -48,7 +48,6 @@ private:
     unsigned char decodeBits(unsigned char length);
 
     /* Utility methods. */
-    unsigned char bitMask(unsigned char start, unsigned char end);
     void allignIterator();
 
 public:
