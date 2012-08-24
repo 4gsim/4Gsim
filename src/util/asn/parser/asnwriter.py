@@ -140,12 +140,18 @@ def writeobject(asnobj, hdrfile, srcfile):
 			asnobj.type = asnobj.name
 			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
 				return
+
 			hdrfile.write("class " + asnobj.name + " : public Choice {\n" +
 						"private:\n" +
 						"\tstatic const void *choicesInfo[" + str(len(asnobj.objs)) + "];\n" +
-						"public:\n" +
-						"\tstatic const Info theInfo;\n"
-						"\t" + asnobj.name + "(): Choice(&theInfo) {}\n")
+						"public:\n")
+			hdrfile.write("\tenum " + asnobj.name + "Choices {\n")
+			for j in range(0, len(asnobj.objs)):
+                                obj = asnobj.objs[j]
+                                hdrfile.write("\t\t" + firstlower(obj.name) + " = " + str(j) + ",\n")
+			hdrfile.write("\t};\n")
+			hdrfile.write("\tstatic const Info theInfo;\n"
+                                                "\t" + asnobj.name + "(): Choice(&theInfo) {}\n")
 			hdrfile.write("};\n")
 			srcfile.write("const void *" + asnobj.name + "::choicesInfo[" + str(len(asnobj.objs)) + "] = {\n")
 			for j in range(0, len(asnobj.objs)):

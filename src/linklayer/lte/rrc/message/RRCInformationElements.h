@@ -72,6 +72,10 @@ class CNDomainSysInfoCnType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CNDomainSysInfoCnTypeChoices {
+		gsmMAP = 0,
+		ansi41 = 1,
+	};
 	static const Info theInfo;
 	CNDomainSysInfoCnType(): Choice(&theInfo) {}
 };
@@ -243,6 +247,16 @@ class GsmmapIDNNSRoutingbasis : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum GsmmapIDNNSRoutingbasisChoices {
+		gsmmapIDNNSRoutingbasisLocalPTMSI = 0,
+		gsmmapIDNNSRoutingbasisTMSIofsamePLMN = 1,
+		gsmmapIDNNSRoutingbasisTMSIofdifferentPLMN = 2,
+		gsmmapIDNNSRoutingbasisIMSIresponsetopaging = 3,
+		gsmmapIDNNSRoutingbasisIMSIcauseUEinitiatedEvent = 4,
+		gsmmapIDNNSRoutingbasisIMEI = 5,
+		gsmmapIDNNSRoutingbasisSpare2 = 6,
+		gsmmapIDNNSRoutingbasisSpare1 = 7,
+	};
 	static const Info theInfo;
 	GsmmapIDNNSRoutingbasis(): Choice(&theInfo) {}
 };
@@ -271,6 +285,10 @@ class IntraDomainNasNodeSelectorVersionRelease99CnType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum IntraDomainNasNodeSelectorVersionRelease99CnTypeChoices {
+		gsmMapIDNNS = 0,
+		ansi41IDNNS = 1,
+	};
 	static const Info theInfo;
 	IntraDomainNasNodeSelectorVersionRelease99CnType(): Choice(&theInfo) {}
 };
@@ -303,6 +321,10 @@ class IntraDomainNasNodeSelectorVersion : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum IntraDomainNasNodeSelectorVersionChoices {
+		intraDomainNasNodeSelectorVersionRelease99 = 0,
+		intraDomainNasNodeSelectorVersionLater = 1,
+	};
 	static const Info theInfo;
 	IntraDomainNasNodeSelectorVersion(): Choice(&theInfo) {}
 };
@@ -346,6 +368,10 @@ class LocationRegistrationParameters : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum LocationRegistrationParametersChoices {
+		locationRegistrationParametersNoRestriction = 0,
+		restriction = 1,
+	};
 	static const Info theInfo;
 	LocationRegistrationParameters(): Choice(&theInfo) {}
 };
@@ -431,6 +457,10 @@ class PagingPermissionWithAccessControlForSharedNetwork : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PagingPermissionWithAccessControlForSharedNetworkChoices {
+		pagingPermissionWithAccessControlList = 0,
+		pagingPermissionWithAccessControlForAll = 1,
+	};
 	static const Info theInfo;
 	PagingPermissionWithAccessControlForSharedNetwork(): Choice(&theInfo) {}
 };
@@ -497,6 +527,12 @@ class PLMNType : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum PLMNTypeChoices {
+		pLMNTypeGsmMAP = 0,
+		pLMNTypeAnsi41 = 1,
+		pLMNTypeGsmMAPandANSI41 = 2,
+		pLMNTypeSpare = 3,
+	};
 	static const Info theInfo;
 	PLMNType(): Choice(&theInfo) {}
 };
@@ -509,6 +545,10 @@ class RABIdentity : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RABIdentityChoices {
+		rABIdentityGsmMAPRABIdentity = 0,
+		rABIdentityAnsi41RABIdentity = 1,
+	};
 	static const Info theInfo;
 	RABIdentity(): Choice(&theInfo) {}
 };
@@ -567,6 +607,10 @@ class CellBarred : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellBarredChoices {
+		cellBarredBarred = 0,
+		cellBarredNotBarred = 1,
+	};
 	static const Info theInfo;
 	CellBarred(): Choice(&theInfo) {}
 };
@@ -680,6 +724,10 @@ class CellSelectReselectInfoSIB34CellSelectQualityMeasure : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellSelectReselectInfoSIB34CellSelectQualityMeasureChoices {
+		cellSelectReselectInfoSIB34CellSelectQualityMeasureCpichEcN0 = 0,
+		cellSelectReselectInfoSIB34CellSelectQualityMeasureCpichRSCP = 1,
+	};
 	static const Info theInfo;
 	CellSelectReselectInfoSIB34CellSelectQualityMeasure(): Choice(&theInfo) {}
 };
@@ -765,6 +813,10 @@ class CellSelectReselectInfoSIB34ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellSelectReselectInfoSIB34ModeSpecificInfoChoices {
+		cellSelectReselectInfoSIB34ModeSpecificInfoFdd = 0,
+		cellSelectReselectInfoSIB34ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CellSelectReselectInfoSIB34ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -807,6 +859,14 @@ class TCRMax : public Choice {
 private:
 	static const void *choicesInfo[6];
 public:
+	enum TCRMaxChoices {
+		tCRMaxNotUsed = 0,
+		t30 = 1,
+		t60 = 2,
+		t120 = 3,
+		t180 = 4,
+		t240 = 5,
+	};
 	static const Info theInfo;
 	TCRMax(): Choice(&theInfo) {}
 };
@@ -872,6 +932,10 @@ class FrequencyInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum FrequencyInfoModeSpecificInfoChoices {
+		fdd = 0,
+		tdd = 1,
+	};
 	static const Info theInfo;
 	FrequencyInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -945,6 +1009,10 @@ class DomainSpecificAccessRestrictionv670ext : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DomainSpecificAccessRestrictionv670extChoices {
+		domainSpecificAccessRestrictionv670extNoRestriction = 0,
+		domainSpecificAccessRestrictionv670extRestriction = 1,
+	};
 	static const Info theInfo;
 	DomainSpecificAccessRestrictionv670ext(): Choice(&theInfo) {}
 };
@@ -980,6 +1048,10 @@ class DomainSpecificAccessRestrictionForSharedNetworkv670ext : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DomainSpecificAccessRestrictionForSharedNetworkv670extChoices {
+		domainSpecificAccessRestictionList = 0,
+		domainSpecificAccessRestictionParametersForAll = 1,
+	};
 	static const Info theInfo;
 	DomainSpecificAccessRestrictionForSharedNetworkv670ext(): Choice(&theInfo) {}
 };
@@ -1086,6 +1158,12 @@ class GSMCellGroupFollowingARFCNs : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum GSMCellGroupFollowingARFCNsChoices {
+		gSMCellGroupFollowingARFCNsExplicitListOfARFCNs = 0,
+		gSMCellGroupFollowingARFCNsEquallySpacedARFCNs = 1,
+		gSMCellGroupFollowingARFCNsVariableBitMapOfARFCNs = 2,
+		gSMCellGroupFollowingARFCNsContinuousRangeOfARFCNs = 3,
+	};
 	static const Info theInfo;
 	GSMCellGroupFollowingARFCNs(): Choice(&theInfo) {}
 };
@@ -1118,6 +1196,12 @@ class PriorityLevelRadioAccessTechnology : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum PriorityLevelRadioAccessTechnologyChoices {
+		priorityLevelRadioAccessTechnologyUtraFDD = 0,
+		priorityLevelRadioAccessTechnologyUtraTDD = 1,
+		priorityLevelRadioAccessTechnologyEutra = 2,
+		priorityLevelRadioAccessTechnologyGsm = 3,
+	};
 	static const Info theInfo;
 	PriorityLevelRadioAccessTechnology(): Choice(&theInfo) {}
 };
@@ -1155,6 +1239,10 @@ class DedicatedPriorityInformationAction : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DedicatedPriorityInformationActionChoices {
+		dedicatedPriorityInformationActionClearDedicatedPriorities = 0,
+		dedicatedPriorityInformationActionConfigureDedicatedPriorities = 1,
+	};
 	static const Info theInfo;
 	DedicatedPriorityInformationAction(): Choice(&theInfo) {}
 };
@@ -1457,6 +1545,10 @@ class CipheringModeCommand : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CipheringModeCommandChoices {
+		startRestart = 0,
+		cipheringModeCommandDummy = 1,
+	};
 	static const Info theInfo;
 	CipheringModeCommand(): Choice(&theInfo) {}
 };
@@ -1530,6 +1622,16 @@ class CNPagedUEIdentity : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum CNPagedUEIdentityChoices {
+		imsiGSMMAP = 0,
+		tmsiGSMMAP = 1,
+		pTMSIGSMMAP = 2,
+		imsiDS41 = 3,
+		tmsiDS41 = 4,
+		cNPagedUEIdentitySpare3 = 5,
+		cNPagedUEIdentitySpare2 = 6,
+		cNPagedUEIdentitySpare1 = 7,
+	};
 	static const Info theInfo;
 	CNPagedUEIdentity(): Choice(&theInfo) {}
 };
@@ -1820,6 +1922,10 @@ class PowerControlAlgorithm : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PowerControlAlgorithmChoices {
+		algorithm1 = 0,
+		powerControlAlgorithmAlgorithm2 = 1,
+	};
 	static const Info theInfo;
 	PowerControlAlgorithm(): Choice(&theInfo) {}
 };
@@ -1991,6 +2097,10 @@ class DLInformationPerSecondaryRLERGCHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerSecondaryRLERGCHInfoChoices {
+		eRGCHInformation = 0,
+		dLInformationPerSecondaryRLERGCHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerSecondaryRLERGCHInfo(): Choice(&theInfo) {}
 };
@@ -2063,6 +2173,10 @@ class SimultaneousSCCPCHDPCHReception : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SimultaneousSCCPCHDPCHReceptionChoices {
+		simultaneousSCCPCHDPCHReceptionNotSupported = 0,
+		simultaneousSCCPCHDPCHReceptionSupported = 1,
+	};
 	static const Info theInfo;
 	SimultaneousSCCPCHDPCHReception(): Choice(&theInfo) {}
 };
@@ -2286,6 +2400,10 @@ class DLPhysChCapabilityTDD768Tdd768hspdsch : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLPhysChCapabilityTDD768Tdd768hspdschChoices {
+		supported = 0,
+		dLPhysChCapabilityTDD768Tdd768hspdschUnsupported = 1,
+	};
 	static const Info theInfo;
 	DLPhysChCapabilityTDD768Tdd768hspdsch(): Choice(&theInfo) {}
 };
@@ -2348,6 +2466,10 @@ class TurboSupport : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TurboSupportChoices {
+		turboSupportNotSupported = 0,
+		supported = 1,
+	};
 	static const Info theInfo;
 	TurboSupport(): Choice(&theInfo) {}
 };
@@ -2519,6 +2641,10 @@ class ProtocolErrorInformationDiagnosticsType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ProtocolErrorInformationDiagnosticsTypeChoices {
+		protocolErrorInformationDiagnosticsTypeType1 = 0,
+		protocolErrorInformationDiagnosticsTypeSpare = 1,
+	};
 	static const Info theInfo;
 	ProtocolErrorInformationDiagnosticsType(): Choice(&theInfo) {}
 };
@@ -2560,6 +2686,24 @@ class FailureCauseWithProtErr : public Choice {
 private:
 	static const void *choicesInfo[16];
 public:
+	enum FailureCauseWithProtErrChoices {
+		failureCauseWithProtErrConfigurationUnsupported = 0,
+		failureCauseWithProtErrPhysicalChannelFailure = 1,
+		failureCauseWithProtErrIncompatibleSimultaneousReconfiguration = 2,
+		compressedModeRuntimeError = 3,
+		protocolError = 4,
+		failureCauseWithProtErrCellUpdateOccurred = 5,
+		failureCauseWithProtErrInvalidConfiguration = 6,
+		failureCauseWithProtErrConfigurationIncomplete = 7,
+		failureCauseWithProtErrUnsupportedMeasurement = 8,
+		failureCauseWithProtErrMbmsSessionAlreadyReceivedCorrectly = 9,
+		failureCauseWithProtErrLowerPriorityMBMSService = 10,
+		failureCauseWithProtErrSpare5 = 11,
+		failureCauseWithProtErrSpare4 = 12,
+		failureCauseWithProtErrSpare3 = 13,
+		failureCauseWithProtErrSpare2 = 14,
+		failureCauseWithProtErrSpare1 = 15,
+	};
 	static const Info theInfo;
 	FailureCauseWithProtErr(): Choice(&theInfo) {}
 };
@@ -2615,6 +2759,10 @@ class RRCConnectionReleaseInformation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RRCConnectionReleaseInformationChoices {
+		rRCConnectionReleaseInformationNoRelease = 0,
+		rRCConnectionReleaseInformationRelease = 1,
+	};
 	static const Info theInfo;
 	RRCConnectionReleaseInformation(): Choice(&theInfo) {}
 };
@@ -2687,6 +2835,40 @@ class URNTIGroup : public Choice {
 private:
 	static const void *choicesInfo[32];
 public:
+	enum URNTIGroupChoices {
+		uRNTIGroupAll = 0,
+		uRNTIGroupURNTIBitMaskIndexb1 = 1,
+		uRNTIGroupURNTIBitMaskIndexb2 = 2,
+		uRNTIGroupURNTIBitMaskIndexb3 = 3,
+		uRNTIGroupURNTIBitMaskIndexb4 = 4,
+		uRNTIGroupURNTIBitMaskIndexb5 = 5,
+		uRNTIGroupURNTIBitMaskIndexb6 = 6,
+		uRNTIGroupURNTIBitMaskIndexb7 = 7,
+		uRNTIGroupURNTIBitMaskIndexb8 = 8,
+		uRNTIGroupURNTIBitMaskIndexb9 = 9,
+		uRNTIGroupURNTIBitMaskIndexb10 = 10,
+		uRNTIGroupURNTIBitMaskIndexb11 = 11,
+		uRNTIGroupURNTIBitMaskIndexb12 = 12,
+		uRNTIGroupURNTIBitMaskIndexb13 = 13,
+		uRNTIGroupURNTIBitMaskIndexb14 = 14,
+		uRNTIGroupURNTIBitMaskIndexb15 = 15,
+		uRNTIGroupURNTIBitMaskIndexb16 = 16,
+		uRNTIGroupURNTIBitMaskIndexb17 = 17,
+		uRNTIGroupURNTIBitMaskIndexb18 = 18,
+		uRNTIGroupURNTIBitMaskIndexb19 = 19,
+		uRNTIGroupURNTIBitMaskIndexb20 = 20,
+		uRNTIGroupURNTIBitMaskIndexb21 = 21,
+		uRNTIGroupURNTIBitMaskIndexb22 = 22,
+		uRNTIGroupURNTIBitMaskIndexb23 = 23,
+		uRNTIGroupURNTIBitMaskIndexb24 = 24,
+		uRNTIGroupURNTIBitMaskIndexb25 = 25,
+		uRNTIGroupURNTIBitMaskIndexb26 = 26,
+		uRNTIGroupURNTIBitMaskIndexb27 = 27,
+		uRNTIGroupURNTIBitMaskIndexb28 = 28,
+		uRNTIGroupURNTIBitMaskIndexb29 = 29,
+		uRNTIGroupURNTIBitMaskIndexb30 = 30,
+		uRNTIGroupURNTIBitMaskIndexb31 = 31,
+	};
 	static const Info theInfo;
 	URNTIGroup(): Choice(&theInfo) {}
 };
@@ -2781,6 +2963,16 @@ class InitialUEIdentity : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum InitialUEIdentityChoices {
+		imsi = 0,
+		tmsiandLAI = 1,
+		pTMSIandRAI = 2,
+		imei = 3,
+		esnDS41 = 4,
+		imsiDS41 = 5,
+		imsiandESNDS41 = 6,
+		tmsiDS41 = 7,
+	};
 	static const Info theInfo;
 	InitialUEIdentity(): Choice(&theInfo) {}
 };
@@ -2853,6 +3045,10 @@ class IntegrityProtectionModeCommand : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum IntegrityProtectionModeCommandChoices {
+		integrityProtectionModeCommandStartIntegrityProtection = 0,
+		integrityProtectionModeCommandModify = 1,
+	};
 	static const Info theInfo;
 	IntegrityProtectionModeCommand(): Choice(&theInfo) {}
 };
@@ -3426,6 +3622,10 @@ class PagingRecord : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PagingRecordChoices {
+		pagingRecordCnIdentity = 0,
+		pagingRecordUtranIdentity = 1,
+	};
 	static const Info theInfo;
 	PagingRecord(): Choice(&theInfo) {}
 };
@@ -3462,6 +3662,10 @@ class PagingRecord2r5 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PagingRecord2r5Choices {
+		pagingRecord2r5UtranSingleUEIdentity = 0,
+		pagingRecord2r5UtranGroupIdentity = 1,
+	};
 	static const Info theInfo;
 	PagingRecord2r5(): Choice(&theInfo) {}
 };
@@ -3478,6 +3682,10 @@ class PDCPCapabilitySupportForRfc2507 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PDCPCapabilitySupportForRfc2507Choices {
+		pDCPCapabilitySupportForRfc2507NotSupported = 0,
+		supported = 1,
+	};
 	static const Info theInfo;
 	PDCPCapabilitySupportForRfc2507(): Choice(&theInfo) {}
 };
@@ -3514,6 +3722,10 @@ class PDCPCapabilityr4extSupportForRfc3095 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PDCPCapabilityr4extSupportForRfc3095Choices {
+		pDCPCapabilityr4extSupportForRfc3095NotSupported = 0,
+		pDCPCapabilityr4extSupportForRfc3095Supported = 1,
+	};
 	static const Info theInfo;
 	PDCPCapabilityr4extSupportForRfc3095(): Choice(&theInfo) {}
 };
@@ -3697,6 +3909,10 @@ class ULPhysChCapabilityTDD384v770extTdd384edch : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULPhysChCapabilityTDD384v770extTdd384edchChoices {
+		uLPhysChCapabilityTDD384v770extTdd384edchSupported = 0,
+		uLPhysChCapabilityTDD384v770extTdd384edchUnsupported = 1,
+	};
 	static const Info theInfo;
 	ULPhysChCapabilityTDD384v770extTdd384edch(): Choice(&theInfo) {}
 };
@@ -3744,6 +3960,10 @@ class ULPhysChCapabilityTDD768Tdd384edch : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULPhysChCapabilityTDD768Tdd384edchChoices {
+		uLPhysChCapabilityTDD768Tdd384edchSupported = 0,
+		uLPhysChCapabilityTDD768Tdd384edchUnsupported = 1,
+	};
 	static const Info theInfo;
 	ULPhysChCapabilityTDD768Tdd384edch(): Choice(&theInfo) {}
 };
@@ -3794,6 +4014,10 @@ class ULPhysChCapabilityTDD128v770extTdd128edch : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULPhysChCapabilityTDD128v770extTdd128edchChoices {
+		uLPhysChCapabilityTDD128v770extTdd128edchSupported = 0,
+		uLPhysChCapabilityTDD128v770extTdd128edchUnsupported = 1,
+	};
 	static const Info theInfo;
 	ULPhysChCapabilityTDD128v770extTdd128edch(): Choice(&theInfo) {}
 };
@@ -4017,6 +4241,10 @@ class PhysicalChannelCapabilityhspdschr5Fddhspdsch : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PhysicalChannelCapabilityhspdschr5FddhspdschChoices {
+		physicalChannelCapabilityhspdschr5FddhspdschSupported = 0,
+		physicalChannelCapabilityhspdschr5FddhspdschUnsupported = 1,
+	};
 	static const Info theInfo;
 	PhysicalChannelCapabilityhspdschr5Fddhspdsch(): Choice(&theInfo) {}
 };
@@ -4027,6 +4255,10 @@ class PhysicalChannelCapabilityhspdschr5Tdd384hspdsch : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PhysicalChannelCapabilityhspdschr5Tdd384hspdschChoices {
+		supported = 0,
+		physicalChannelCapabilityhspdschr5Tdd384hspdschUnsupported = 1,
+	};
 	static const Info theInfo;
 	PhysicalChannelCapabilityhspdschr5Tdd384hspdsch(): Choice(&theInfo) {}
 };
@@ -4037,6 +4269,10 @@ class PhysicalChannelCapabilityhspdschr5Tdd128hspdsch : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PhysicalChannelCapabilityhspdschr5Tdd128hspdschChoices {
+		supported = 0,
+		physicalChannelCapabilityhspdschr5Tdd128hspdschUnsupported = 1,
+	};
 	static const Info theInfo;
 	PhysicalChannelCapabilityhspdschr5Tdd128hspdsch(): Choice(&theInfo) {}
 };
@@ -4133,6 +4369,10 @@ class ProtocolErrorIndicatorWithMoreInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ProtocolErrorIndicatorWithMoreInfoChoices {
+		protocolErrorIndicatorWithMoreInfoNoError = 0,
+		protocolErrorIndicatorWithMoreInfoErrorOccurred = 1,
+	};
 	static const Info theInfo;
 	ProtocolErrorIndicatorWithMoreInfo(): Choice(&theInfo) {}
 };
@@ -4197,6 +4437,16 @@ class ProtocolErrorMoreInformationDiagnosticsTypeType1 : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum ProtocolErrorMoreInformationDiagnosticsTypeType1Choices {
+		protocolErrorMoreInformationDiagnosticsTypeType1Asn1ViolationOrEncodingError = 0,
+		protocolErrorMoreInformationDiagnosticsTypeType1MessageTypeNonexistent = 1,
+		messageNotCompatibleWithReceiverState = 2,
+		ieValueNotComprehended = 3,
+		conditionalInformationElementError = 4,
+		messageExtensionNotComprehended = 5,
+		protocolErrorMoreInformationDiagnosticsTypeType1Spare1 = 6,
+		protocolErrorMoreInformationDiagnosticsTypeType1Spare2 = 7,
+	};
 	static const Info theInfo;
 	ProtocolErrorMoreInformationDiagnosticsTypeType1(): Choice(&theInfo) {}
 };
@@ -4207,6 +4457,10 @@ class ProtocolErrorMoreInformationDiagnosticsType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ProtocolErrorMoreInformationDiagnosticsTypeChoices {
+		protocolErrorMoreInformationDiagnosticsTypeType1 = 0,
+		protocolErrorMoreInformationDiagnosticsTypeSpare = 1,
+	};
 	static const Info theInfo;
 	ProtocolErrorMoreInformationDiagnosticsType(): Choice(&theInfo) {}
 };
@@ -4307,6 +4561,10 @@ class RedirectionInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RedirectionInfoChoices {
+		frequencyInfo = 0,
+		interRATInfo = 1,
+	};
 	static const Info theInfo;
 	RedirectionInfo(): Choice(&theInfo) {}
 };
@@ -4364,6 +4622,10 @@ class RedirectionInfor6 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RedirectionInfor6Choices {
+		frequencyInfo = 0,
+		interRATInfo = 1,
+	};
 	static const Info theInfo;
 	RedirectionInfor6(): Choice(&theInfo) {}
 };
@@ -4418,6 +4680,10 @@ class InterRATInfov860ext : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum InterRATInfov860extChoices {
+		interRATInfov860extGsm = 0,
+		interRATInfov860extEutra = 1,
+	};
 	static const Info theInfo;
 	InterRATInfov860ext(): Choice(&theInfo) {}
 };
@@ -4426,6 +4692,10 @@ class RedirectionInfov860ext : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RedirectionInfov860extChoices {
+		redirectionInfov860extFrequencyInfo = 0,
+		interRATInfo = 1,
+	};
 	static const Info theInfo;
 	RedirectionInfov860ext(): Choice(&theInfo) {}
 };
@@ -4803,6 +5073,11 @@ class HSSCCHTDD384MidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum HSSCCHTDD384MidambleAllocationModeChoices {
+		hSSCCHTDD384MidambleAllocationModeDefaultMidamble = 0,
+		hSSCCHTDD384MidambleAllocationModeCommonMidamble = 1,
+		hSSCCHTDD384MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	HSSCCHTDD384MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -4833,6 +5108,10 @@ class HSSICHConfigurationTDD384MidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSSICHConfigurationTDD384MidambleAllocationModeChoices {
+		hSSICHConfigurationTDD384MidambleAllocationModeDefaultMidamble = 0,
+		hSSICHConfigurationTDD384MidambleAllocationModeUeSpecificMidamble = 1,
+	};
 	static const Info theInfo;
 	HSSICHConfigurationTDD384MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -4914,6 +5193,11 @@ class HSSCCHTDD128MidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum HSSCCHTDD128MidambleAllocationModeChoices {
+		hSSCCHTDD128MidambleAllocationModeDefaultMidamble = 0,
+		hSSCCHTDD128MidambleAllocationModeCommonMidamble = 1,
+		hSSCCHTDD128MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	HSSCCHTDD128MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -4937,6 +5221,10 @@ class HSSICHConfigurationTDD128MidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSSICHConfigurationTDD128MidambleAllocationModeChoices {
+		hSSICHConfigurationTDD128MidambleAllocationModeDefaultMidamble = 0,
+		hSSICHConfigurationTDD128MidambleAllocationModeUeSpecificMidamble = 1,
+	};
 	static const Info theInfo;
 	HSSICHConfigurationTDD128MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -4995,6 +5283,10 @@ class HSSCCHInfoModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSSCCHInfoModeSpecificInfoTddChoices {
+		hSSCCHInfoModeSpecificInfoTddTdd384 = 0,
+		hSSCCHInfoModeSpecificInfoTddTdd128 = 1,
+	};
 	static const Info theInfo;
 	HSSCCHInfoModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -5003,6 +5295,10 @@ class HSSCCHInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSSCCHInfoModeSpecificInfoChoices {
+		hSSCCHInfoModeSpecificInfoFdd = 0,
+		hSSCCHInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	HSSCCHInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -5057,6 +5353,10 @@ class MeasurementFeedbackInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementFeedbackInfoModeSpecificInfoChoices {
+		measurementFeedbackInfoModeSpecificInfoFdd = 0,
+		measurementFeedbackInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	MeasurementFeedbackInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -5103,6 +5403,11 @@ class HSPDSCHMidambleConfigurationTDD128MidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum HSPDSCHMidambleConfigurationTDD128MidambleAllocationModeChoices {
+		hSPDSCHMidambleConfigurationTDD128MidambleAllocationModeDefaultMidamble = 0,
+		hSPDSCHMidambleConfigurationTDD128MidambleAllocationModeCommonMidamble = 1,
+		hSPDSCHMidambleConfigurationTDD128MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	HSPDSCHMidambleConfigurationTDD128MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -5136,6 +5441,10 @@ class DLHSPDSCHInformationModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLHSPDSCHInformationModeSpecificInfoTddChoices {
+		dLHSPDSCHInformationModeSpecificInfoTddTdd384 = 0,
+		dLHSPDSCHInformationModeSpecificInfoTddTdd128 = 1,
+	};
 	static const Info theInfo;
 	DLHSPDSCHInformationModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -5146,6 +5455,10 @@ class DLHSPDSCHInformationModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLHSPDSCHInformationModeSpecificInfoChoices {
+		dLHSPDSCHInformationModeSpecificInfoTdd = 0,
+		dLHSPDSCHInformationModeSpecificInfoFdd = 1,
+	};
 	static const Info theInfo;
 	DLHSPDSCHInformationModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -5238,6 +5551,10 @@ class HARQInfoMemoryPartitioning : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HARQInfoMemoryPartitioningChoices {
+		hARQInfoMemoryPartitioningImplicit = 0,
+		hARQInfoMemoryPartitioningExplicit = 1,
+	};
 	static const Info theInfo;
 	HARQInfoMemoryPartitioning(): Choice(&theInfo) {}
 };
@@ -5313,6 +5630,11 @@ class HSSCCHTDD384r6MidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum HSSCCHTDD384r6MidambleAllocationModeChoices {
+		hSSCCHTDD384r6MidambleAllocationModeDefaultMidamble = 0,
+		hSSCCHTDD384r6MidambleAllocationModeCommonMidamble = 1,
+		hSSCCHTDD384r6MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	HSSCCHTDD384r6MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -5420,6 +5742,11 @@ class HSSCCHTDD768MidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum HSSCCHTDD768MidambleAllocationModeChoices {
+		hSSCCHTDD768MidambleAllocationModeDefaultMidamble = 0,
+		hSSCCHTDD768MidambleAllocationModeCommonMidamble = 1,
+		hSSCCHTDD768MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	HSSCCHTDD768MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -5441,6 +5768,10 @@ class HSSICHConfigurationTDD768MidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSSICHConfigurationTDD768MidambleAllocationModeChoices {
+		hSSICHConfigurationTDD768MidambleAllocationModeDefaultMidamble = 0,
+		hSSICHConfigurationTDD768MidambleAllocationModeUeSpecificMidamble = 1,
+	};
 	static const Info theInfo;
 	HSSICHConfigurationTDD768MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -5517,6 +5848,11 @@ class HSSCCHTDD128r6MidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum HSSCCHTDD128r6MidambleAllocationModeChoices {
+		hSSCCHTDD128r6MidambleAllocationModeDefaultMidamble = 0,
+		hSSCCHTDD128r6MidambleAllocationModeCommonMidamble = 1,
+		hSSCCHTDD128r6MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	HSSCCHTDD128r6MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -5540,6 +5876,10 @@ class HSSICHConfigurationTDD128r6MidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSSICHConfigurationTDD128r6MidambleAllocationModeChoices {
+		hSSICHConfigurationTDD128r6MidambleAllocationModeDefaultMidamble = 0,
+		hSSICHConfigurationTDD128r6MidambleAllocationModeUeSpecificMidamble = 1,
+	};
 	static const Info theInfo;
 	HSSICHConfigurationTDD128r6MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -5599,6 +5939,11 @@ class HSSCCHInfor7ModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum HSSCCHInfor7ModeSpecificInfoTddChoices {
+		hSSCCHInfor7ModeSpecificInfoTddTdd384 = 0,
+		hSSCCHInfor7ModeSpecificInfoTddTdd768 = 1,
+		hSSCCHInfor7ModeSpecificInfoTddTdd128 = 2,
+	};
 	static const Info theInfo;
 	HSSCCHInfor7ModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -5607,6 +5952,10 @@ class HSSCCHInfor7ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSSCCHInfor7ModeSpecificInfoChoices {
+		hSSCCHInfor7ModeSpecificInfoFdd = 0,
+		hSSCCHInfor7ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	HSSCCHInfor7ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -5662,6 +6011,10 @@ class MeasurementFeedbackInfor7ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementFeedbackInfor7ModeSpecificInfoChoices {
+		measurementFeedbackInfor7ModeSpecificInfoFdd = 0,
+		measurementFeedbackInfor7ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	MeasurementFeedbackInfor7ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -5756,6 +6109,11 @@ class DLHSPDSCHInformationr7ModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLHSPDSCHInformationr7ModeSpecificInfoTddChoices {
+		dLHSPDSCHInformationr7ModeSpecificInfoTddTdd384 = 0,
+		dLHSPDSCHInformationr7ModeSpecificInfoTddTdd768 = 1,
+		dLHSPDSCHInformationr7ModeSpecificInfoTddTdd128 = 2,
+	};
 	static const Info theInfo;
 	DLHSPDSCHInformationr7ModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -5780,6 +6138,10 @@ class DLHSPDSCHInformationr7ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLHSPDSCHInformationr7ModeSpecificInfoChoices {
+		dLHSPDSCHInformationr7ModeSpecificInfoTdd = 0,
+		dLHSPDSCHInformationr7ModeSpecificInfoFdd = 1,
+	};
 	static const Info theInfo;
 	DLHSPDSCHInformationr7ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -5834,6 +6196,10 @@ class HARQInfor7MemoryPartitioning : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HARQInfor7MemoryPartitioningChoices {
+		hARQInfor7MemoryPartitioningImplicit = 0,
+		hARQInfor7MemoryPartitioningExplicit = 1,
+	};
 	static const Info theInfo;
 	HARQInfor7MemoryPartitioning(): Choice(&theInfo) {}
 };
@@ -5910,6 +6276,11 @@ class DLHSPDSCHInformationr8ModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLHSPDSCHInformationr8ModeSpecificInfoTddChoices {
+		dLHSPDSCHInformationr8ModeSpecificInfoTddTdd384 = 0,
+		dLHSPDSCHInformationr8ModeSpecificInfoTddTdd768 = 1,
+		dLHSPDSCHInformationr8ModeSpecificInfoTddTdd128 = 2,
+	};
 	static const Info theInfo;
 	DLHSPDSCHInformationr8ModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -5940,6 +6311,10 @@ class DLHSPDSCHInformationr8ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLHSPDSCHInformationr8ModeSpecificInfoChoices {
+		dLHSPDSCHInformationr8ModeSpecificInfoTdd = 0,
+		dLHSPDSCHInformationr8ModeSpecificInfoFdd = 1,
+	};
 	static const Info theInfo;
 	DLHSPDSCHInformationr8ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -6077,6 +6452,11 @@ class HSSCCHInfor9ModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum HSSCCHInfor9ModeSpecificInfoTddChoices {
+		hSSCCHInfor9ModeSpecificInfoTddTdd384 = 0,
+		hSSCCHInfor9ModeSpecificInfoTddTdd768 = 1,
+		hSSCCHInfor9ModeSpecificInfoTddTdd128 = 2,
+	};
 	static const Info theInfo;
 	HSSCCHInfor9ModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -6085,6 +6465,10 @@ class HSSCCHInfor9ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSSCCHInfor9ModeSpecificInfoChoices {
+		hSSCCHInfor9ModeSpecificInfoFdd = 0,
+		hSSCCHInfor9ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	HSSCCHInfor9ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -6157,6 +6541,11 @@ class DLHSPDSCHInformationr9ModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLHSPDSCHInformationr9ModeSpecificInfoTddChoices {
+		dLHSPDSCHInformationr9ModeSpecificInfoTddTdd384 = 0,
+		dLHSPDSCHInformationr9ModeSpecificInfoTddTdd768 = 1,
+		dLHSPDSCHInformationr9ModeSpecificInfoTddTdd128 = 2,
+	};
 	static const Info theInfo;
 	DLHSPDSCHInformationr9ModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -6182,6 +6571,10 @@ class DLHSPDSCHInformationr9ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLHSPDSCHInformationr9ModeSpecificInfoChoices {
+		dLHSPDSCHInformationr9ModeSpecificInfoTdd = 0,
+		dLHSPDSCHInformationr9ModeSpecificInfoFdd = 1,
+	};
 	static const Info theInfo;
 	DLHSPDSCHInformationr9ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -6527,6 +6920,10 @@ class ULTransChCapabilityModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULTransChCapabilityModeSpecificInfoChoices {
+		uLTransChCapabilityModeSpecificInfoFdd = 0,
+		uLTransChCapabilityModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULTransChCapabilityModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -6592,6 +6989,10 @@ class PhysicalChannelCapabilityedchr6Fddedch : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PhysicalChannelCapabilityedchr6FddedchChoices {
+		physicalChannelCapabilityedchr6FddedchSupported = 0,
+		physicalChannelCapabilityedchr6FddedchUnsupported = 1,
+	};
 	static const Info theInfo;
 	PhysicalChannelCapabilityedchr6Fddedch(): Choice(&theInfo) {}
 };
@@ -7643,6 +8044,10 @@ class RFCapabilityCompFdd : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RFCapabilityCompFddChoices {
+		rFCapabilityCompFddNotSupported = 0,
+		supported = 1,
+	};
 	static const Info theInfo;
 	RFCapabilityCompFdd(): Choice(&theInfo) {}
 };
@@ -7653,6 +8058,10 @@ class RFCapabilityCompTdd384RFCapability : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RFCapabilityCompTdd384RFCapabilityChoices {
+		rFCapabilityCompTdd384RFCapabilityNotSupported = 0,
+		supported = 1,
+	};
 	static const Info theInfo;
 	RFCapabilityCompTdd384RFCapability(): Choice(&theInfo) {}
 };
@@ -7663,6 +8072,10 @@ class RFCapabilityCompTdd128RFCapability : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RFCapabilityCompTdd128RFCapabilityChoices {
+		rFCapabilityCompTdd128RFCapabilityNotSupported = 0,
+		supported = 1,
+	};
 	static const Info theInfo;
 	RFCapabilityCompTdd128RFCapability(): Choice(&theInfo) {}
 };
@@ -7711,6 +8124,10 @@ class RFCapabilityCompv770extTdd768RFCapability : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RFCapabilityCompv770extTdd768RFCapabilityChoices {
+		rFCapabilityCompv770extTdd768RFCapabilityNotSupported = 0,
+		supported = 1,
+	};
 	static const Info theInfo;
 	RFCapabilityCompv770extTdd768RFCapability(): Choice(&theInfo) {}
 };
@@ -7989,6 +8406,10 @@ class ULSecondaryCellInfoFDD : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULSecondaryCellInfoFDDChoices {
+		uLSecondaryCellInfoFDDContinue = 0,
+		uLSecondaryCellInfoFDDNewConfiguration = 1,
+	};
 	static const Info theInfo;
 	ULSecondaryCellInfoFDD(): Choice(&theInfo) {}
 };
@@ -8080,6 +8501,9 @@ class AlgorithmSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[1];
 public:
+	enum AlgorithmSpecificInfoChoices {
+		rfc2507Info = 0,
+	};
 	static const Info theInfo;
 	AlgorithmSpecificInfo(): Choice(&theInfo) {}
 };
@@ -8147,6 +8571,10 @@ class AlgorithmSpecificInfor4 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum AlgorithmSpecificInfor4Choices {
+		rfc2507Info = 0,
+		rfc3095Info = 1,
+	};
 	static const Info theInfo;
 	AlgorithmSpecificInfor4(): Choice(&theInfo) {}
 };
@@ -8424,6 +8852,11 @@ class OctetModeRLCSizeInfoType1 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum OctetModeRLCSizeInfoType1Choices {
+		octetModeRLCSizeInfoType1SizeType1 = 0,
+		octetModeRLCSizeInfoType1SizeType2 = 1,
+		octetModeRLCSizeInfoType1SizeType3 = 2,
+	};
 	static const Info theInfo;
 	OctetModeRLCSizeInfoType1(): Choice(&theInfo) {}
 };
@@ -8454,6 +8887,10 @@ class DLAMRLCModer7DlRLCPDUsize : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLAMRLCModer7DlRLCPDUsizeChoices {
+		fixedSize = 0,
+		dLAMRLCModer7DlRLCPDUsizeflexibleSize = 1,
+	};
 	static const Info theInfo;
 	DLAMRLCModer7DlRLCPDUsize(): Choice(&theInfo) {}
 };
@@ -8552,6 +8989,12 @@ class DLTransportChannelType : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum DLTransportChannelTypeChoices {
+		dch = 0,
+		dLTransportChannelTypeFach = 1,
+		dsch = 2,
+		dchanddsch = 3,
+	};
 	static const Info theInfo;
 	DLTransportChannelType(): Choice(&theInfo) {}
 };
@@ -8588,6 +9031,14 @@ class DLTransportChannelTyper5 : public Choice {
 private:
 	static const void *choicesInfo[6];
 public:
+	enum DLTransportChannelTyper5Choices {
+		dch = 0,
+		dLTransportChannelTyper5Fach = 1,
+		dsch = 2,
+		dchanddsch = 3,
+		hsdsch = 4,
+		dchandhsdsch = 5,
+	};
 	static const Info theInfo;
 	DLTransportChannelTyper5(): Choice(&theInfo) {}
 };
@@ -8610,6 +9061,10 @@ class DLTransportChannelTyper7Hsdsch : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLTransportChannelTyper7HsdschChoices {
+		machs = 0,
+		macehs = 1,
+	};
 	static const Info theInfo;
 	DLTransportChannelTyper7Hsdsch(): Choice(&theInfo) {}
 };
@@ -8630,6 +9085,10 @@ class DLTransportChannelTyper7Dchandhsdsch : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLTransportChannelTyper7DchandhsdschChoices {
+		machs = 0,
+		macehs = 1,
+	};
 	static const Info theInfo;
 	DLTransportChannelTyper7Dchandhsdsch(): Choice(&theInfo) {}
 };
@@ -8638,6 +9097,14 @@ class DLTransportChannelTyper7 : public Choice {
 private:
 	static const void *choicesInfo[6];
 public:
+	enum DLTransportChannelTyper7Choices {
+		dch = 0,
+		dLTransportChannelTyper7Fach = 1,
+		dsch = 2,
+		dchanddsch = 3,
+		dLTransportChannelTyper7Hsdsch = 4,
+		dLTransportChannelTyper7Dchandhsdsch = 5,
+	};
 	static const Info theInfo;
 	DLTransportChannelTyper7(): Choice(&theInfo) {}
 };
@@ -8689,6 +9156,11 @@ class DLRLCMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLRLCModeChoices {
+		dlAMRLCMode = 0,
+		dLRLCModeDlUMRLCMode = 1,
+		dlTMRLCMode = 2,
+	};
 	static const Info theInfo;
 	DLRLCMode(): Choice(&theInfo) {}
 };
@@ -8714,6 +9186,11 @@ class DLRLCModer5 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLRLCModer5Choices {
+		dlAMRLCMode = 0,
+		dlUMRLCMode = 1,
+		dlTMRLCMode = 2,
+	};
 	static const Info theInfo;
 	DLRLCModer5(): Choice(&theInfo) {}
 };
@@ -8734,6 +9211,11 @@ class DLRLCModer6 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLRLCModer6Choices {
+		dlAMRLCMode = 0,
+		dlUMRLCMode = 1,
+		dlTMRLCMode = 2,
+	};
 	static const Info theInfo;
 	DLRLCModer6(): Choice(&theInfo) {}
 };
@@ -8742,6 +9224,11 @@ class DLRLCModer7 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLRLCModer7Choices {
+		dlAMRLCMode = 0,
+		dlUMRLCMode = 1,
+		dlTMRLCMode = 2,
+	};
 	static const Info theInfo;
 	DLRLCModer7(): Choice(&theInfo) {}
 };
@@ -8849,6 +9336,10 @@ class LosslessSRNSRelocSupport : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum LosslessSRNSRelocSupportChoices {
+		supported = 0,
+		losslessSRNSRelocSupportNotSupported = 1,
+	};
 	static const Info theInfo;
 	LosslessSRNSRelocSupport(): Choice(&theInfo) {}
 };
@@ -9189,6 +9680,12 @@ class TransmissionRLCDiscard : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum TransmissionRLCDiscardChoices {
+		timerBasedExplicit = 0,
+		timerBasedNoExplicit = 1,
+		maxDATRetransmissions = 2,
+		noDiscard = 3,
+	};
 	static const Info theInfo;
 	TransmissionRLCDiscard(): Choice(&theInfo) {}
 };
@@ -9279,6 +9776,12 @@ class ULRLCMode : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum ULRLCModeChoices {
+		ulAMRLCMode = 0,
+		ulUMRLCMode = 1,
+		ulTMRLCMode = 2,
+		uLRLCModeSpare = 3,
+	};
 	static const Info theInfo;
 	ULRLCMode(): Choice(&theInfo) {}
 };
@@ -9299,6 +9802,10 @@ class RLCInfoChoice : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RLCInfoChoiceChoices {
+		rlcInfo = 0,
+		sameasRB = 1,
+	};
 	static const Info theInfo;
 	RLCInfoChoice(): Choice(&theInfo) {}
 };
@@ -9311,6 +9818,12 @@ class ULTransportChannelType : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum ULTransportChannelTypeChoices {
+		dch = 0,
+		uLTransportChannelTypeRach = 1,
+		uLTransportChannelTypeDummy = 2,
+		usch = 3,
+	};
 	static const Info theInfo;
 	ULTransportChannelType(): Choice(&theInfo) {}
 };
@@ -9338,6 +9851,11 @@ class ULLogicalChannelMappingRlcSizeList : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ULLogicalChannelMappingRlcSizeListChoices {
+		uLLogicalChannelMappingRlcSizeListAllSizes = 0,
+		uLLogicalChannelMappingRlcSizeListConfigured = 1,
+		explicitList = 2,
+	};
 	static const Info theInfo;
 	ULLogicalChannelMappingRlcSizeList(): Choice(&theInfo) {}
 };
@@ -9376,6 +9894,10 @@ class ULLogicalChannelMappings : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULLogicalChannelMappingsChoices {
+		oneLogicalChannel = 0,
+		twoLogicalChannels = 1,
+	};
 	static const Info theInfo;
 	ULLogicalChannelMappings(): Choice(&theInfo) {}
 };
@@ -9475,6 +9997,13 @@ class TFCSubset : public Choice {
 private:
 	static const void *choicesInfo[5];
 public:
+	enum TFCSubsetChoices {
+		minimumAllowedTFCNumber = 0,
+		allowedTFCList = 1,
+		nonallowedTFCList = 2,
+		restrictedTrChInfoList = 3,
+		tFCSubsetFullTFCS = 4,
+	};
 	static const Info theInfo;
 	TFCSubset(): Choice(&theInfo) {}
 };
@@ -9553,6 +10082,15 @@ class TFCSReconfAddCtfcSize : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum TFCSReconfAddCtfcSizeChoices {
+		tFCSReconfAddCtfcSizeCtfc2Bit = 0,
+		tFCSReconfAddCtfcSizeCtfc4Bit = 1,
+		tFCSReconfAddCtfcSizeCtfc6Bit = 2,
+		tFCSReconfAddCtfcSizeCtfc8Bit = 3,
+		tFCSReconfAddCtfcSizeCtfc12Bit = 4,
+		tFCSReconfAddCtfcSizeCtfc16Bit = 5,
+		tFCSReconfAddCtfcSizeCtfc24Bit = 6,
+	};
 	static const Info theInfo;
 	TFCSReconfAddCtfcSize(): Choice(&theInfo) {}
 };
@@ -9599,6 +10137,12 @@ class ExplicitTFCSConfiguration : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum ExplicitTFCSConfigurationChoices {
+		complete = 0,
+		addition = 1,
+		removal = 2,
+		explicitTFCSConfigurationReplacement = 3,
+	};
 	static const Info theInfo;
 	ExplicitTFCSConfiguration(): Choice(&theInfo) {}
 };
@@ -9631,6 +10175,15 @@ class TFCSInfoForDSCH : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum TFCSInfoForDSCHChoices {
+		tFCSInfoForDSCHCtfc2bit = 0,
+		tFCSInfoForDSCHCtfc4bit = 1,
+		tFCSInfoForDSCHCtfc6bit = 2,
+		tFCSInfoForDSCHCtfc8bit = 3,
+		tFCSInfoForDSCHCtfc12bit = 4,
+		tFCSInfoForDSCHCtfc16bit = 5,
+		tFCSInfoForDSCHCtfc24bit = 6,
+	};
 	static const Info theInfo;
 	TFCSInfoForDSCH(): Choice(&theInfo) {}
 };
@@ -9653,6 +10206,10 @@ class TFCIField2Information : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TFCIField2InformationChoices {
+		tfciRange = 0,
+		explicitconfig = 1,
+	};
 	static const Info theInfo;
 	TFCIField2Information(): Choice(&theInfo) {}
 };
@@ -9675,6 +10232,10 @@ class TFCS : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TFCSChoices {
+		normalTFCISignalling = 0,
+		dummy = 1,
+	};
 	static const Info theInfo;
 	TFCS(): Choice(&theInfo) {}
 };
@@ -9736,6 +10297,10 @@ class ULCommonTransChInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULCommonTransChInfoModeSpecificInfoChoices {
+		uLCommonTransChInfoModeSpecificInfoFdd = 0,
+		uLCommonTransChInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULCommonTransChInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -9807,6 +10372,12 @@ class BitModeRLCSizeInfo : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum BitModeRLCSizeInfoChoices {
+		bitModeRLCSizeInfoSizeType1 = 0,
+		bitModeRLCSizeInfoSizeType2 = 1,
+		bitModeRLCSizeInfoSizeType3 = 2,
+		bitModeRLCSizeInfoSizeType4 = 3,
+	};
 	static const Info theInfo;
 	BitModeRLCSizeInfo(): Choice(&theInfo) {}
 };
@@ -9815,6 +10386,10 @@ class DedicatedDynamicTFInfoRlcSize : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DedicatedDynamicTFInfoRlcSizeChoices {
+		bitMode = 0,
+		octetModeType1 = 1,
+	};
 	static const Info theInfo;
 	DedicatedDynamicTFInfoRlcSize(): Choice(&theInfo) {}
 };
@@ -9831,6 +10406,12 @@ class NumberOfTransportBlocks : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum NumberOfTransportBlocksChoices {
+		numberOfTransportBlocksZero = 0,
+		numberOfTransportBlocksOne = 1,
+		numberOfTransportBlocksSmall = 2,
+		numberOfTransportBlocksLarge = 3,
+	};
 	static const Info theInfo;
 	NumberOfTransportBlocks(): Choice(&theInfo) {}
 };
@@ -9861,6 +10442,11 @@ class LogicalChannelList : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum LogicalChannelListChoices {
+		logicalChannelListAllSizes = 0,
+		logicalChannelListConfigured = 1,
+		logicalChannelListExplicitList = 2,
+	};
 	static const Info theInfo;
 	LogicalChannelList(): Choice(&theInfo) {}
 };
@@ -9884,6 +10470,10 @@ class DedicatedDynamicTFInfoDynamicTTIRlcSize : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DedicatedDynamicTFInfoDynamicTTIRlcSizeChoices {
+		bitMode = 0,
+		octetModeType1 = 1,
+	};
 	static const Info theInfo;
 	DedicatedDynamicTFInfoDynamicTTIRlcSize(): Choice(&theInfo) {}
 };
@@ -9917,6 +10507,13 @@ class DedicatedTransChTFSTti : public Choice {
 private:
 	static const void *choicesInfo[5];
 public:
+	enum DedicatedTransChTFSTtiChoices {
+		tti10 = 0,
+		tti20 = 1,
+		tti40 = 2,
+		tti80 = 3,
+		dynamic = 4,
+	};
 	static const Info theInfo;
 	DedicatedTransChTFSTti(): Choice(&theInfo) {}
 };
@@ -9935,6 +10532,11 @@ class ChannelCodingType : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ChannelCodingTypeChoices {
+		channelCodingTypeNoCoding = 0,
+		convolutional = 1,
+		channelCodingTypeTurbo = 2,
+	};
 	static const Info theInfo;
 	ChannelCodingType(): Choice(&theInfo) {}
 };
@@ -9985,6 +10587,11 @@ class OctetModeRLCSizeInfoType2 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum OctetModeRLCSizeInfoType2Choices {
+		octetModeRLCSizeInfoType2SizeType1 = 0,
+		octetModeRLCSizeInfoType2SizeType2 = 1,
+		octetModeRLCSizeInfoType2SizeType3 = 2,
+	};
 	static const Info theInfo;
 	OctetModeRLCSizeInfoType2(): Choice(&theInfo) {}
 };
@@ -10004,6 +10611,10 @@ class CommonDynamicTFInfoRlcSizeTddCommonTDDChoice : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CommonDynamicTFInfoRlcSizeTddCommonTDDChoiceChoices {
+		bitModeRLCSizeInfo = 0,
+		octetModeRLCSizeInfoType1 = 1,
+	};
 	static const Info theInfo;
 	CommonDynamicTFInfoRlcSizeTddCommonTDDChoice(): Choice(&theInfo) {}
 };
@@ -10023,6 +10634,10 @@ class CommonDynamicTFInfoRlcSize : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CommonDynamicTFInfoRlcSizeChoices {
+		commonDynamicTFInfoRlcSizeFdd = 0,
+		commonDynamicTFInfoRlcSizeTdd = 1,
+	};
 	static const Info theInfo;
 	CommonDynamicTFInfoRlcSize(): Choice(&theInfo) {}
 };
@@ -10048,6 +10663,10 @@ class CommonDynamicTFInfoDynamicTTICommonTDDChoice : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CommonDynamicTFInfoDynamicTTICommonTDDChoiceChoices {
+		bitModeRLCSizeInfo = 0,
+		octetModeRLCSizeInfoType1 = 1,
+	};
 	static const Info theInfo;
 	CommonDynamicTFInfoDynamicTTICommonTDDChoice(): Choice(&theInfo) {}
 };
@@ -10071,6 +10690,13 @@ class CommonTransChTFSTti : public Choice {
 private:
 	static const void *choicesInfo[5];
 public:
+	enum CommonTransChTFSTtiChoices {
+		tti10 = 0,
+		tti20 = 1,
+		tti40 = 2,
+		tti80 = 3,
+		dynamic = 4,
+	};
 	static const Info theInfo;
 	CommonTransChTFSTti(): Choice(&theInfo) {}
 };
@@ -10091,6 +10717,10 @@ class TransportFormatSet : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TransportFormatSetChoices {
+		dedicatedTransChTFS = 0,
+		commonTransChTFS = 1,
+	};
 	static const Info theInfo;
 	TransportFormatSet(): Choice(&theInfo) {}
 };
@@ -10116,6 +10746,10 @@ class DLCommonTransChInfoModeSpecificInfoFddDlParameters : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonTransChInfoModeSpecificInfoFddDlParametersChoices {
+		dlDCHTFCS = 0,
+		dLCommonTransChInfoModeSpecificInfoFddDlParametersSameAsUL = 1,
+	};
 	static const Info theInfo;
 	DLCommonTransChInfoModeSpecificInfoFddDlParameters(): Choice(&theInfo) {}
 };
@@ -10135,6 +10769,10 @@ class IndividualDLCCTrCHInfoTfcsSignallingMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum IndividualDLCCTrCHInfoTfcsSignallingModeChoices {
+		explicitconfig = 0,
+		sameAsUL = 1,
+	};
 	static const Info theInfo;
 	IndividualDLCCTrCHInfoTfcsSignallingMode(): Choice(&theInfo) {}
 };
@@ -10168,6 +10806,10 @@ class DLCommonTransChInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonTransChInfoModeSpecificInfoChoices {
+		dLCommonTransChInfoModeSpecificInfoFdd = 0,
+		dLCommonTransChInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLCommonTransChInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -10206,6 +10848,10 @@ class DLAddReconfTransChInformationTfsSignallingMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLAddReconfTransChInformationTfsSignallingModeChoices {
+		explicitconfig = 0,
+		sameAsULTrCH = 1,
+	};
 	static const Info theInfo;
 	DLAddReconfTransChInformationTfsSignallingMode(): Choice(&theInfo) {}
 };
@@ -10247,6 +10893,10 @@ class TMSignallingInfoTmSignallingMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TMSignallingInfoTmSignallingModeChoices {
+		tMSignallingInfoTmSignallingModeMode1 = 0,
+		tMSignallingInfoTmSignallingModeMode2 = 1,
+	};
 	static const Info theInfo;
 	TMSignallingInfoTmSignallingMode(): Choice(&theInfo) {}
 };
@@ -10322,6 +10972,10 @@ class ULDPCHPowerControlInfoPredef : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfoPredefChoices {
+		uLDPCHPowerControlInfoPredefFdd = 0,
+		uLDPCHPowerControlInfoPredefTdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfoPredef(): Choice(&theInfo) {}
 };
@@ -10392,6 +11046,15 @@ class RepetitionPeriodAndLength : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum RepetitionPeriodAndLengthChoices {
+		repetitionPeriodAndLengthRepetitionPeriod1 = 0,
+		repetitionPeriodAndLengthRepetitionPeriod2 = 1,
+		repetitionPeriodAndLengthRepetitionPeriod4 = 2,
+		repetitionPeriodAndLengthRepetitionPeriod8 = 3,
+		repetitionPeriodAndLengthRepetitionPeriod16 = 4,
+		repetitionPeriodAndLengthRepetitionPeriod32 = 5,
+		repetitionPeriodAndLengthRepetitionPeriod64 = 6,
+	};
 	static const Info theInfo;
 	RepetitionPeriodAndLength(): Choice(&theInfo) {}
 };
@@ -10425,6 +11088,10 @@ class ULDPCHInfoPredefModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHInfoPredefModeSpecificInfoChoices {
+		uLDPCHInfoPredefModeSpecificInfoFdd = 0,
+		uLDPCHInfoPredefModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHInfoPredefModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -10470,6 +11137,16 @@ class SF512AndPilot : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum SF512AndPilotChoices {
+		sF512AndPilotSfd4 = 0,
+		sF512AndPilotSfd8 = 1,
+		sF512AndPilotSfd16 = 2,
+		sF512AndPilotSfd32 = 3,
+		sF512AndPilotSfd64 = 4,
+		sfd128 = 5,
+		sfd256 = 6,
+		sF512AndPilotSfd512 = 7,
+	};
 	static const Info theInfo;
 	SF512AndPilot(): Choice(&theInfo) {}
 };
@@ -10510,6 +11187,10 @@ class DLDPCHInfoCommonPredefModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHInfoCommonPredefModeSpecificInfoChoices {
+		dLDPCHInfoCommonPredefModeSpecificInfoFdd = 0,
+		dLDPCHInfoCommonPredefModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLDPCHInfoCommonPredefModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -10583,6 +11264,10 @@ class ULDPCHInfoPredefv770extModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHInfoPredefv770extModeSpecificInfoChoices {
+		uLDPCHInfoPredefv770extModeSpecificInfoFdd = 0,
+		uLDPCHInfoPredefv770extModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHInfoPredefv770extModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -10652,6 +11337,10 @@ class PredefinedConfigStatusInfoOther : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PredefinedConfigStatusInfoOtherChoices {
+		predefinedConfigStatusInfoOtherNotStored = 0,
+		storedWithDifferentValueTag = 1,
+	};
 	static const Info theInfo;
 	PredefinedConfigStatusInfoOther(): Choice(&theInfo) {}
 };
@@ -10660,6 +11349,10 @@ class PredefinedConfigStatusInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PredefinedConfigStatusInfoChoices {
+		predefinedConfigStatusInfoStoredWithValueTagSameAsPrevius = 0,
+		predefinedConfigStatusInfoOther = 1,
+	};
 	static const Info theInfo;
 	PredefinedConfigStatusInfo(): Choice(&theInfo) {}
 };
@@ -10895,6 +11588,10 @@ class RLCInfoChoicer5 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RLCInfoChoicer5Choices {
+		rlcInfo = 0,
+		sameasRB = 1,
+	};
 	static const Info theInfo;
 	RLCInfoChoicer5(): Choice(&theInfo) {}
 };
@@ -10977,6 +11674,10 @@ class RLCInfoChoicer6 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RLCInfoChoicer6Choices {
+		rlcInfo = 0,
+		sameasRB = 1,
+	};
 	static const Info theInfo;
 	RLCInfoChoicer6(): Choice(&theInfo) {}
 };
@@ -10989,6 +11690,11 @@ class ULLogicalChannelMappingr6UlTrCHTypeDchrachuschRlcSizeList : public Choice 
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ULLogicalChannelMappingr6UlTrCHTypeDchrachuschRlcSizeListChoices {
+		uLLogicalChannelMappingr6UlTrCHTypeDchrachuschRlcSizeListAllSizes = 0,
+		uLLogicalChannelMappingr6UlTrCHTypeDchrachuschRlcSizeListConfigured = 1,
+		explicitList = 2,
+	};
 	static const Info theInfo;
 	ULLogicalChannelMappingr6UlTrCHTypeDchrachuschRlcSizeList(): Choice(&theInfo) {}
 };
@@ -11033,6 +11739,10 @@ class ULLogicalChannelMappingr6UlTrCHType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULLogicalChannelMappingr6UlTrCHTypeChoices {
+		uLLogicalChannelMappingr6UlTrCHTypeDchrachusch = 0,
+		uLLogicalChannelMappingr6UlTrCHTypeEdch = 1,
+	};
 	static const Info theInfo;
 	ULLogicalChannelMappingr6UlTrCHType(): Choice(&theInfo) {}
 };
@@ -11069,6 +11779,10 @@ class ULLogicalChannelMappingsr6 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULLogicalChannelMappingsr6Choices {
+		oneLogicalChannel = 0,
+		twoLogicalChannels = 1,
+	};
 	static const Info theInfo;
 	ULLogicalChannelMappingsr6(): Choice(&theInfo) {}
 };
@@ -11157,6 +11871,10 @@ class RLCInfoChoicer7 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RLCInfoChoicer7Choices {
+		rlcInfo = 0,
+		sameasRB = 1,
+	};
 	static const Info theInfo;
 	RLCInfoChoicer7(): Choice(&theInfo) {}
 };
@@ -11211,6 +11929,11 @@ class ULLogicalChannelMappingr8UlTrCHTypeDchrachuschRlcSizeList : public Choice 
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ULLogicalChannelMappingr8UlTrCHTypeDchrachuschRlcSizeListChoices {
+		uLLogicalChannelMappingr8UlTrCHTypeDchrachuschRlcSizeListAllSizes = 0,
+		uLLogicalChannelMappingr8UlTrCHTypeDchrachuschRlcSizeListConfigured = 1,
+		explicitList = 2,
+	};
 	static const Info theInfo;
 	ULLogicalChannelMappingr8UlTrCHTypeDchrachuschRlcSizeList(): Choice(&theInfo) {}
 };
@@ -11267,6 +11990,10 @@ class ULLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSize : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSizeChoices {
+		uLLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSizeFixedSize = 0,
+		flexibleSize = 1,
+	};
 	static const Info theInfo;
 	ULLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSize(): Choice(&theInfo) {}
 };
@@ -11291,6 +12018,10 @@ class ULLogicalChannelMappingr8UlTrCHType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULLogicalChannelMappingr8UlTrCHTypeChoices {
+		uLLogicalChannelMappingr8UlTrCHTypeDchrachusch = 0,
+		uLLogicalChannelMappingr8UlTrCHTypeEdch = 1,
+	};
 	static const Info theInfo;
 	ULLogicalChannelMappingr8UlTrCHType(): Choice(&theInfo) {}
 };
@@ -11327,6 +12058,10 @@ class ULLogicalChannelMappingsr8 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULLogicalChannelMappingsr8Choices {
+		oneLogicalChannel = 0,
+		twoLogicalChannels = 1,
+	};
 	static const Info theInfo;
 	ULLogicalChannelMappingsr8(): Choice(&theInfo) {}
 };
@@ -11512,6 +12247,10 @@ class RBInformationChangedr6RbChange : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RBInformationChangedr6RbChangeChoices {
+		rBInformationChangedr6RbChangeRelease = 0,
+		remapToDefaultRb = 1,
+	};
 	static const Info theInfo;
 	RBInformationChangedr6RbChange(): Choice(&theInfo) {}
 };
@@ -12076,6 +12815,14 @@ class CommonTransChTFSLCRTti : public Choice {
 private:
 	static const void *choicesInfo[6];
 public:
+	enum CommonTransChTFSLCRTtiChoices {
+		tti5 = 0,
+		tti10 = 1,
+		tti20 = 2,
+		tti40 = 3,
+		tti80 = 4,
+		dynamic = 5,
+	};
 	static const Info theInfo;
 	CommonTransChTFSLCRTti(): Choice(&theInfo) {}
 };
@@ -12114,6 +12861,10 @@ class DLAddReconfTransChInformation2TfsSignallingMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLAddReconfTransChInformation2TfsSignallingModeChoices {
+		explicitconfig = 0,
+		sameAsULTrCH = 1,
+	};
 	static const Info theInfo;
 	DLAddReconfTransChInformation2TfsSignallingMode(): Choice(&theInfo) {}
 };
@@ -12138,6 +12889,10 @@ class DLAddReconfTransChInformationr4TfsSignallingMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLAddReconfTransChInformationr4TfsSignallingModeChoices {
+		explicitconfig = 0,
+		sameAsULTrCH = 1,
+	};
 	static const Info theInfo;
 	DLAddReconfTransChInformationr4TfsSignallingMode(): Choice(&theInfo) {}
 };
@@ -12164,6 +12919,11 @@ class DLTrCHTypeId1r5 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLTrCHTypeId1r5Choices {
+		dch = 0,
+		dsch = 1,
+		dLTrCHTypeId1r5Hsdsch = 2,
+	};
 	static const Info theInfo;
 	DLTrCHTypeId1r5(): Choice(&theInfo) {}
 };
@@ -12184,6 +12944,11 @@ class DLAddReconfTransChInformationr5TfsSignallingMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLAddReconfTransChInformationr5TfsSignallingModeChoices {
+		explicitconfig = 0,
+		sameAsULTrCH = 1,
+		hsdsch = 2,
+	};
 	static const Info theInfo;
 	DLAddReconfTransChInformationr5TfsSignallingMode(): Choice(&theInfo) {}
 };
@@ -12207,6 +12972,10 @@ class HSDSCHInfor7DlMACHeaderType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSDSCHInfor7DlMACHeaderTypeChoices {
+		machs = 0,
+		macehs = 1,
+	};
 	static const Info theInfo;
 	HSDSCHInfor7DlMACHeaderType(): Choice(&theInfo) {}
 };
@@ -12227,6 +12996,11 @@ class DLAddReconfTransChInformationr7TfsSignallingMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLAddReconfTransChInformationr7TfsSignallingModeChoices {
+		explicitconfig = 0,
+		sameAsULTrCH = 1,
+		hsdsch = 2,
+	};
 	static const Info theInfo;
 	DLAddReconfTransChInformationr7TfsSignallingMode(): Choice(&theInfo) {}
 };
@@ -12250,6 +13024,10 @@ class HSDSCHInfor9DlMACHeaderType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSDSCHInfor9DlMACHeaderTypeChoices {
+		machs = 0,
+		macehs = 1,
+	};
 	static const Info theInfo;
 	HSDSCHInfor9DlMACHeaderType(): Choice(&theInfo) {}
 };
@@ -12270,6 +13048,11 @@ class DLAddReconfTransChInformationr9TfsSignallingMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLAddReconfTransChInformationr9TfsSignallingModeChoices {
+		explicitconfig = 0,
+		sameAsULTrCH = 1,
+		hsdsch = 2,
+	};
 	static const Info theInfo;
 	DLAddReconfTransChInformationr9TfsSignallingMode(): Choice(&theInfo) {}
 };
@@ -12306,6 +13089,10 @@ class DLCommonTransChInfor4ModeSpecificInfoFddDlParameters : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonTransChInfor4ModeSpecificInfoFddDlParametersChoices {
+		dLCommonTransChInfor4ModeSpecificInfoFddDlParametersDlDCHTFCS = 0,
+		dLCommonTransChInfor4ModeSpecificInfoFddDlParametersSameAsUL = 1,
+	};
 	static const Info theInfo;
 	DLCommonTransChInfor4ModeSpecificInfoFddDlParameters(): Choice(&theInfo) {}
 };
@@ -12336,6 +13123,10 @@ class DLCommonTransChInfor4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonTransChInfor4ModeSpecificInfoChoices {
+		dLCommonTransChInfor4ModeSpecificInfoFdd = 0,
+		dLCommonTransChInfor4ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLCommonTransChInfor4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -12370,6 +13161,11 @@ class DLTrCHTypeId2r5 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLTrCHTypeId2r5Choices {
+		dch = 0,
+		dsch = 1,
+		hsdsch = 2,
+	};
 	static const Info theInfo;
 	DLTrCHTypeId2r5(): Choice(&theInfo) {}
 };
@@ -12391,6 +13187,10 @@ class DLTrCHTypeId2r7Hsdsch : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLTrCHTypeId2r7HsdschChoices {
+		machs = 0,
+		macehs = 1,
+	};
 	static const Info theInfo;
 	DLTrCHTypeId2r7Hsdsch(): Choice(&theInfo) {}
 };
@@ -12399,6 +13199,11 @@ class DLTrCHTypeId2r7 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLTrCHTypeId2r7Choices {
+		dch = 0,
+		dsch = 1,
+		dLTrCHTypeId2r7Hsdsch = 2,
+	};
 	static const Info theInfo;
 	DLTrCHTypeId2r7(): Choice(&theInfo) {}
 };
@@ -12459,6 +13264,10 @@ class EDCHAddReconfMACdFlowTransmissionGrantType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EDCHAddReconfMACdFlowTransmissionGrantTypeChoices {
+		eDCHAddReconfMACdFlowTransmissionGrantTypeNonScheduledTransGrantInfo = 0,
+		eDCHAddReconfMACdFlowTransmissionGrantTypeScheduledTransmissionGrantInfo = 1,
+	};
 	static const Info theInfo;
 	EDCHAddReconfMACdFlowTransmissionGrantType(): Choice(&theInfo) {}
 };
@@ -12500,6 +13309,10 @@ class EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoMode
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfoChoices {
+		eDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfoFdd = 0,
+		eDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -12521,6 +13334,10 @@ class EDCHAddReconfMACdFlowr7TransmissionGrantType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EDCHAddReconfMACdFlowr7TransmissionGrantTypeChoices {
+		eDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfo = 0,
+		eDCHAddReconfMACdFlowr7TransmissionGrantTypeScheduledTransmissionGrantInfo = 1,
+	};
 	static const Info theInfo;
 	EDCHAddReconfMACdFlowr7TransmissionGrantType(): Choice(&theInfo) {}
 };
@@ -12570,6 +13387,10 @@ class SignalledGainFactorsModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SignalledGainFactorsModeSpecificInfoChoices {
+		signalledGainFactorsModeSpecificInfoFdd = 0,
+		signalledGainFactorsModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	SignalledGainFactorsModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -12593,6 +13414,10 @@ class GainFactorInformation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum GainFactorInformationChoices {
+		signalledGainFactors = 0,
+		computedGainFactors = 1,
+	};
 	static const Info theInfo;
 	GainFactorInformation(): Choice(&theInfo) {}
 };
@@ -12614,6 +13439,10 @@ class PowerOffsetInfoShortModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PowerOffsetInfoShortModeSpecificInfoChoices {
+		powerOffsetInfoShortModeSpecificInfoFdd = 0,
+		powerOffsetInfoShortModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	PowerOffsetInfoShortModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -12667,6 +13496,10 @@ class TransportFormatSetLCR : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TransportFormatSetLCRChoices {
+		dedicatedTransChTFS = 0,
+		commonTransChTFSLCR = 1,
+	};
 	static const Info theInfo;
 	TransportFormatSetLCR(): Choice(&theInfo) {}
 };
@@ -12707,6 +13540,10 @@ class ULAddReconfTransChInformationr6 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULAddReconfTransChInformationr6Choices {
+		uLAddReconfTransChInformationr6Dchusch = 0,
+		uLAddReconfTransChInformationr6Edch = 1,
+	};
 	static const Info theInfo;
 	ULAddReconfTransChInformationr6(): Choice(&theInfo) {}
 };
@@ -12743,6 +13580,10 @@ class ULAddReconfTransChInformationr7EdchModeSpecific : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULAddReconfTransChInformationr7EdchModeSpecificChoices {
+		uLAddReconfTransChInformationr7EdchModeSpecificFdd = 0,
+		uLAddReconfTransChInformationr7EdchModeSpecificTdd = 1,
+	};
 	static const Info theInfo;
 	ULAddReconfTransChInformationr7EdchModeSpecific(): Choice(&theInfo) {}
 };
@@ -12770,6 +13611,10 @@ class ULAddReconfTransChInformationr7 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULAddReconfTransChInformationr7Choices {
+		uLAddReconfTransChInformationr7Dchusch = 0,
+		uLAddReconfTransChInformationr7Edch = 1,
+	};
 	static const Info theInfo;
 	ULAddReconfTransChInformationr7(): Choice(&theInfo) {}
 };
@@ -12811,6 +13656,10 @@ class ULAddReconfTransChInformationr8EdchModeSpecific : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULAddReconfTransChInformationr8EdchModeSpecificChoices {
+		uLAddReconfTransChInformationr8EdchModeSpecificFdd = 0,
+		uLAddReconfTransChInformationr8EdchModeSpecificTdd = 1,
+	};
 	static const Info theInfo;
 	ULAddReconfTransChInformationr8EdchModeSpecific(): Choice(&theInfo) {}
 };
@@ -12839,6 +13688,10 @@ class ULAddReconfTransChInformationr8 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULAddReconfTransChInformationr8Choices {
+		uLAddReconfTransChInformationr8Dchusch = 0,
+		uLAddReconfTransChInformationr8Edch = 1,
+	};
 	static const Info theInfo;
 	ULAddReconfTransChInformationr8(): Choice(&theInfo) {}
 };
@@ -12871,6 +13724,10 @@ class ULCommonTransChInfor4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULCommonTransChInfor4ModeSpecificInfoChoices {
+		uLCommonTransChInfor4ModeSpecificInfoFdd = 0,
+		uLCommonTransChInfor4ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULCommonTransChInfor4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -12907,6 +13764,10 @@ class ULTransportChannelIdentityr6 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULTransportChannelIdentityr6Choices {
+		uLTransportChannelIdentityr6Dchusch = 0,
+		edch = 1,
+	};
 	static const Info theInfo;
 	ULTransportChannelIdentityr6(): Choice(&theInfo) {}
 };
@@ -12999,6 +13860,12 @@ class AccessServiceClassTDDSubchannelSize : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum AccessServiceClassTDDSubchannelSizeChoices {
+		accessServiceClassTDDSubchannelSizeSize1 = 0,
+		accessServiceClassTDDSubchannelSizeSize2 = 1,
+		accessServiceClassTDDSubchannelSizeSize4 = 2,
+		accessServiceClassTDDSubchannelSizeSize8 = 3,
+	};
 	static const Info theInfo;
 	AccessServiceClassTDDSubchannelSize(): Choice(&theInfo) {}
 };
@@ -13079,6 +13946,13 @@ class AccessServiceClassTDDr7SubchannelSize : public Choice {
 private:
 	static const void *choicesInfo[5];
 public:
+	enum AccessServiceClassTDDr7SubchannelSizeChoices {
+		accessServiceClassTDDr7SubchannelSizeSize1 = 0,
+		accessServiceClassTDDr7SubchannelSizeSize2 = 1,
+		accessServiceClassTDDr7SubchannelSizeSize4 = 2,
+		accessServiceClassTDDr7SubchannelSizeSize8 = 3,
+		accessServiceClassTDDr7SubchannelSizeSize16 = 4,
+	};
 	static const Info theInfo;
 	AccessServiceClassTDDr7SubchannelSize(): Choice(&theInfo) {}
 };
@@ -13146,6 +14020,12 @@ class AccessServiceClassTDDLCRr4SubchannelSize : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum AccessServiceClassTDDLCRr4SubchannelSizeChoices {
+		accessServiceClassTDDLCRr4SubchannelSizeSize1 = 0,
+		accessServiceClassTDDLCRr4SubchannelSizeSize2 = 1,
+		accessServiceClassTDDLCRr4SubchannelSizeSize4 = 2,
+		accessServiceClassTDDLCRr4SubchannelSizeSize8 = 3,
+	};
 	static const Info theInfo;
 	AccessServiceClassTDDLCRr4SubchannelSize(): Choice(&theInfo) {}
 };
@@ -13414,6 +14294,10 @@ class ULDPCHPowerControlInfoTddUlOLPCSignalling : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfoTddUlOLPCSignallingChoices {
+		uLDPCHPowerControlInfoTddUlOLPCSignallingBroadcastULOLPCinfo = 0,
+		uLDPCHPowerControlInfoTddUlOLPCSignallingIndividuallySignalled = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfoTddUlOLPCSignalling(): Choice(&theInfo) {}
 };
@@ -13434,6 +14318,10 @@ class ULDPCHPowerControlInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfoChoices {
+		uLDPCHPowerControlInfoFdd = 0,
+		uLDPCHPowerControlInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfo(): Choice(&theInfo) {}
 };
@@ -13495,6 +14383,10 @@ class ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOption 
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOptionChoices {
+		uLDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384 = 0,
+		uLDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOption(): Choice(&theInfo) {}
 };
@@ -13515,6 +14407,10 @@ class ULDPCHPowerControlInfor4TddUlOLPCSignalling : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfor4TddUlOLPCSignallingChoices {
+		uLDPCHPowerControlInfor4TddUlOLPCSignallingBroadcastULOLPCinfo = 0,
+		uLDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalled = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfor4TddUlOLPCSignalling(): Choice(&theInfo) {}
 };
@@ -13535,6 +14431,10 @@ class ULDPCHPowerControlInfor4 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfor4Choices {
+		uLDPCHPowerControlInfor4Fdd = 0,
+		uLDPCHPowerControlInfor4Tdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfor4(): Choice(&theInfo) {}
 };
@@ -13597,6 +14497,10 @@ class ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOption 
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOptionChoices {
+		uLDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384 = 0,
+		uLDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOption(): Choice(&theInfo) {}
 };
@@ -13617,6 +14521,10 @@ class ULDPCHPowerControlInfor5TddUlOLPCSignalling : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfor5TddUlOLPCSignallingChoices {
+		uLDPCHPowerControlInfor5TddUlOLPCSignallingBroadcastULOLPCinfo = 0,
+		uLDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalled = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfor5TddUlOLPCSignalling(): Choice(&theInfo) {}
 };
@@ -13637,6 +14545,10 @@ class ULDPCHPowerControlInfor5 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfor5Choices {
+		uLDPCHPowerControlInfor5Fdd = 0,
+		uLDPCHPowerControlInfor5Tdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfor5(): Choice(&theInfo) {}
 };
@@ -13713,6 +14625,11 @@ class ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOption 
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionChoices {
+		uLDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384 = 0,
+		uLDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd768 = 1,
+		uLDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128 = 2,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOption(): Choice(&theInfo) {}
 };
@@ -13733,6 +14650,10 @@ class ULDPCHPowerControlInfor7TddUlOLPCSignalling : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfor7TddUlOLPCSignallingChoices {
+		uLDPCHPowerControlInfor7TddUlOLPCSignallingBroadcastULOLPCinfo = 0,
+		uLDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalled = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfor7TddUlOLPCSignalling(): Choice(&theInfo) {}
 };
@@ -13753,6 +14674,10 @@ class ULDPCHPowerControlInfor7 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfor7Choices {
+		uLDPCHPowerControlInfor7Fdd = 0,
+		uLDPCHPowerControlInfor7Tdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfor7(): Choice(&theInfo) {}
 };
@@ -13805,6 +14730,10 @@ class ChannelAssignmentActive : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ChannelAssignmentActiveChoices {
+		channelAssignmentActiveNotActive = 0,
+		isActive = 1,
+	};
 	static const Info theInfo;
 	ChannelAssignmentActive(): Choice(&theInfo) {}
 };
@@ -14122,6 +15051,11 @@ class MidambleShiftAndBurstTypeLCRr4MidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTypeLCRr4MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeLCRr4MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeLCRr4MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTypeLCRr4MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeLCRr4MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -14295,6 +15229,10 @@ class EPUCHTSSlotsLCRMidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EPUCHTSSlotsLCRMidambleAllocationModeChoices {
+		ePUCHTSSlotsLCRMidambleAllocationModeDefaultMidamble = 0,
+		ePUCHTSSlotsLCRMidambleAllocationModeUeSpecificMidamble = 1,
+	};
 	static const Info theInfo;
 	EPUCHTSSlotsLCRMidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -14393,6 +15331,10 @@ class EHICHInformationLCRMidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EHICHInformationLCRMidambleAllocationModeChoices {
+		eHICHInformationLCRMidambleAllocationModeDefaultMidamble = 0,
+		eHICHInformationLCRMidambleAllocationModeUeSpecificMidamble = 1,
+	};
 	static const Info theInfo;
 	EHICHInformationLCRMidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -14440,6 +15382,11 @@ class EAGCHIndividualLCRMidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum EAGCHIndividualLCRMidambleAllocationModeChoices {
+		eAGCHIndividualLCRMidambleAllocationModeDefaultMidamble = 0,
+		eAGCHIndividualLCRMidambleAllocationModeCommonMidamble = 1,
+		eAGCHIndividualLCRMidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	EAGCHIndividualLCRMidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -14548,6 +15495,11 @@ class CommonEDCHSystemInfoModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum CommonEDCHSystemInfoModeSpecificInfoTddChoices {
+		commonEDCHSystemInfoModeSpecificInfoTddTdd768 = 0,
+		commonEDCHSystemInfoModeSpecificInfoTddTdd384 = 1,
+		commonEDCHSystemInfoModeSpecificInfoTddTdd128 = 2,
+	};
 	static const Info theInfo;
 	CommonEDCHSystemInfoModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -14556,6 +15508,10 @@ class CommonEDCHSystemInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CommonEDCHSystemInfoModeSpecificInfoChoices {
+		commonEDCHSystemInfoModeSpecificInfoDummy = 0,
+		commonEDCHSystemInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CommonEDCHSystemInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -14585,6 +15541,10 @@ class PRACHPartitioningr7 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PRACHPartitioningr7Choices {
+		pRACHPartitioningr7Fdd = 0,
+		pRACHPartitioningr7Tdd = 1,
+	};
 	static const Info theInfo;
 	PRACHPartitioningr7(): Choice(&theInfo) {}
 };
@@ -14981,6 +15941,15 @@ class RepetitionPeriodLengthAndOffset : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum RepetitionPeriodLengthAndOffsetChoices {
+		repetitionPeriodLengthAndOffsetRepetitionPeriod1 = 0,
+		repetitionPeriodLengthAndOffsetRepetitionPeriod2 = 1,
+		repetitionPeriodLengthAndOffsetRepetitionPeriod4 = 2,
+		repetitionPeriodLengthAndOffsetRepetitionPeriod8 = 3,
+		repetitionPeriodLengthAndOffsetRepetitionPeriod16 = 4,
+		repetitionPeriodLengthAndOffsetRepetitionPeriod32 = 5,
+		repetitionPeriodLengthAndOffsetRepetitionPeriod64 = 6,
+	};
 	static const Info theInfo;
 	RepetitionPeriodLengthAndOffset(): Choice(&theInfo) {}
 };
@@ -15118,6 +16087,10 @@ class EAGCHDRXInfoTDD128EAGCHDRXInfoType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EAGCHDRXInfoTDD128EAGCHDRXInfoTypeChoices {
+		eAGCHDRXInfoTDD128EAGCHDRXInfoTypeSameAsHSSCCH = 0,
+		eAGCHDRXInfoTDD128EAGCHDRXInfoTypeEAGCHDRXParameters = 1,
+	};
 	static const Info theInfo;
 	EAGCHDRXInfoTDD128EAGCHDRXInfoType(): Choice(&theInfo) {}
 };
@@ -15150,6 +16123,10 @@ class ControlChannelDRXInfoTDD128r8ControlChannelDrxOperation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ControlChannelDRXInfoTDD128r8ControlChannelDrxOperationChoices {
+		controlChannelDRXInfoTDD128r8ControlChannelDrxOperationContinue = 0,
+		controlChannelDRXInfoTDD128r8ControlChannelDrxOperationNewOperation = 1,
+	};
 	static const Info theInfo;
 	ControlChannelDRXInfoTDD128r8ControlChannelDrxOperation(): Choice(&theInfo) {}
 };
@@ -15333,6 +16310,11 @@ class MidambleShiftAndBurstTypeBurstTypeType1MidambleAllocationMode : public Cho
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTypeBurstTypeType1MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeBurstTypeType1MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeBurstTypeType1MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTypeBurstTypeType1MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeBurstTypeType1MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -15376,6 +16358,11 @@ class MidambleShiftAndBurstTypeBurstTypeType2MidambleAllocationMode : public Cho
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTypeBurstTypeType2MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeBurstTypeType2MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeBurstTypeType2MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTypeBurstTypeType2MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeBurstTypeType2MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -15409,6 +16396,10 @@ class MidambleShiftAndBurstTypeBurstTypeType3MidambleAllocationMode : public Cho
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MidambleShiftAndBurstTypeBurstTypeType3MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeBurstTypeType3MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeBurstTypeType3MidambleAllocationModeUeSpecificMidamble = 1,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeBurstTypeType3MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -15429,6 +16420,11 @@ class MidambleShiftAndBurstTypeBurstType : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTypeBurstTypeChoices {
+		midambleShiftAndBurstTypeBurstTypeType1 = 0,
+		midambleShiftAndBurstTypeBurstTypeType2 = 1,
+		midambleShiftAndBurstTypeBurstTypeType3 = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeBurstType(): Choice(&theInfo) {}
 };
@@ -15475,6 +16471,10 @@ class DLTSChannelisationCodesShortCodesRepresentation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLTSChannelisationCodesShortCodesRepresentationChoices {
+		dLTSChannelisationCodesShortCodesRepresentationConsecutive = 0,
+		dLTSChannelisationCodesShortCodesRepresentationBitmap = 1,
+	};
 	static const Info theInfo;
 	DLTSChannelisationCodesShortCodesRepresentation(): Choice(&theInfo) {}
 };
@@ -15521,6 +16521,10 @@ class DownlinkAdditionalTimeslotsParameters : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DownlinkAdditionalTimeslotsParametersChoices {
+		downlinkAdditionalTimeslotsParametersSameAsLast = 0,
+		downlinkAdditionalTimeslotsParametersNewParameters = 1,
+	};
 	static const Info theInfo;
 	DownlinkAdditionalTimeslotsParameters(): Choice(&theInfo) {}
 };
@@ -15542,6 +16546,10 @@ class DownlinkTimeslotsCodesMoreTimeslotsAdditionalTimeslots : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DownlinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsChoices {
+		downlinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutive = 0,
+		downlinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsTimeslotList = 1,
+	};
 	static const Info theInfo;
 	DownlinkTimeslotsCodesMoreTimeslotsAdditionalTimeslots(): Choice(&theInfo) {}
 };
@@ -15550,6 +16558,10 @@ class DownlinkTimeslotsCodesMoreTimeslots : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DownlinkTimeslotsCodesMoreTimeslotsChoices {
+		downlinkTimeslotsCodesMoreTimeslotsNoMore = 0,
+		downlinkTimeslotsCodesMoreTimeslotsAdditionalTimeslots = 1,
+	};
 	static const Info theInfo;
 	DownlinkTimeslotsCodesMoreTimeslots(): Choice(&theInfo) {}
 };
@@ -15659,6 +16671,10 @@ class DownlinkAdditionalTimeslotsLCRr4Parameters : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DownlinkAdditionalTimeslotsLCRr4ParametersChoices {
+		downlinkAdditionalTimeslotsLCRr4ParametersSameAsLast = 0,
+		downlinkAdditionalTimeslotsLCRr4ParametersNewParameters = 1,
+	};
 	static const Info theInfo;
 	DownlinkAdditionalTimeslotsLCRr4Parameters(): Choice(&theInfo) {}
 };
@@ -15680,6 +16696,10 @@ class DownlinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslots : public Choic
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DownlinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsChoices {
+		downlinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsConsecutive = 0,
+		downlinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsTimeslotList = 1,
+	};
 	static const Info theInfo;
 	DownlinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslots(): Choice(&theInfo) {}
 };
@@ -15688,6 +16708,10 @@ class DownlinkTimeslotsCodesLCRr4MoreTimeslots : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DownlinkTimeslotsCodesLCRr4MoreTimeslotsChoices {
+		downlinkTimeslotsCodesLCRr4MoreTimeslotsNoMore = 0,
+		downlinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslots = 1,
+	};
 	static const Info theInfo;
 	DownlinkTimeslotsCodesLCRr4MoreTimeslots(): Choice(&theInfo) {}
 };
@@ -15720,6 +16744,10 @@ class DLCCTrChr4TddOption : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCCTrChr4TddOptionChoices {
+		dLCCTrChr4TddOptionTdd384 = 0,
+		dLCCTrChr4TddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	DLCCTrChr4TddOption(): Choice(&theInfo) {}
 };
@@ -15760,6 +16788,11 @@ class MidambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationMode : public C
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationModeChoices {
+		midambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -15795,6 +16828,11 @@ class MidambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationMode : public C
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationModeChoices {
+		midambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -15828,6 +16866,10 @@ class MidambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationMode : public C
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MidambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationModeChoices {
+		midambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationModeUeSpecificMidamble = 1,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -15850,6 +16892,12 @@ class MidambleShiftAndBurstTyper7BurstType : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum MidambleShiftAndBurstTyper7BurstTypeChoices {
+		midambleShiftAndBurstTyper7BurstTypeType1 = 0,
+		midambleShiftAndBurstTyper7BurstTypeType2 = 1,
+		midambleShiftAndBurstTyper7BurstTypeType3 = 2,
+		midambleShiftAndBurstTyper7BurstTypeMbsfnBurstType4 = 3,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTyper7BurstType(): Choice(&theInfo) {}
 };
@@ -15909,6 +16957,10 @@ class DownlinkAdditionalTimeslotsr7Parameters : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DownlinkAdditionalTimeslotsr7ParametersChoices {
+		downlinkAdditionalTimeslotsr7ParametersSameAsLast = 0,
+		downlinkAdditionalTimeslotsr7ParametersNewParameters = 1,
+	};
 	static const Info theInfo;
 	DownlinkAdditionalTimeslotsr7Parameters(): Choice(&theInfo) {}
 };
@@ -15930,6 +16982,10 @@ class DownlinkTimeslotsCodesr7MoreTimeslotsAdditionalTimeslots : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DownlinkTimeslotsCodesr7MoreTimeslotsAdditionalTimeslotsChoices {
+		downlinkTimeslotsCodesr7MoreTimeslotsAdditionalTimeslotsConsecutive = 0,
+		downlinkTimeslotsCodesr7MoreTimeslotsAdditionalTimeslotsTimeslotList = 1,
+	};
 	static const Info theInfo;
 	DownlinkTimeslotsCodesr7MoreTimeslotsAdditionalTimeslots(): Choice(&theInfo) {}
 };
@@ -15938,6 +16994,10 @@ class DownlinkTimeslotsCodesr7MoreTimeslots : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DownlinkTimeslotsCodesr7MoreTimeslotsChoices {
+		downlinkTimeslotsCodesr7MoreTimeslotsNoMore = 0,
+		downlinkTimeslotsCodesr7MoreTimeslotsAdditionalTimeslots = 1,
+	};
 	static const Info theInfo;
 	DownlinkTimeslotsCodesr7MoreTimeslots(): Choice(&theInfo) {}
 };
@@ -15987,6 +17047,11 @@ class MidambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationMode : public
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -16030,6 +17095,11 @@ class MidambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationMode : public
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -16063,6 +17133,10 @@ class MidambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationMode : public
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MidambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationModeUeSpecificMidamble = 1,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -16085,6 +17159,12 @@ class MidambleShiftAndBurstTypeVHCRBurstType : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum MidambleShiftAndBurstTypeVHCRBurstTypeChoices {
+		midambleShiftAndBurstTypeVHCRBurstTypeType1 = 0,
+		midambleShiftAndBurstTypeVHCRBurstTypeType2 = 1,
+		midambleShiftAndBurstTypeVHCRBurstTypeType3 = 2,
+		midambleShiftAndBurstTypeVHCRBurstTypeMbsfnBurstType4 = 3,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeVHCRBurstType(): Choice(&theInfo) {}
 };
@@ -16131,6 +17211,10 @@ class DLTSChannelisationCodesShortVHCRCodesRepresentation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLTSChannelisationCodesShortVHCRCodesRepresentationChoices {
+		dLTSChannelisationCodesShortVHCRCodesRepresentationConsecutive = 0,
+		dLTSChannelisationCodesShortVHCRCodesRepresentationBitmap = 1,
+	};
 	static const Info theInfo;
 	DLTSChannelisationCodesShortVHCRCodesRepresentation(): Choice(&theInfo) {}
 };
@@ -16177,6 +17261,10 @@ class DownlinkAdditionalTimeslotsVHCRParameters : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DownlinkAdditionalTimeslotsVHCRParametersChoices {
+		downlinkAdditionalTimeslotsVHCRParametersSameAsLast = 0,
+		downlinkAdditionalTimeslotsVHCRParametersNewParameters = 1,
+	};
 	static const Info theInfo;
 	DownlinkAdditionalTimeslotsVHCRParameters(): Choice(&theInfo) {}
 };
@@ -16198,6 +17286,10 @@ class DownlinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslots : public Choice
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DownlinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsChoices {
+		downlinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutive = 0,
+		downlinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsTimeslotList = 1,
+	};
 	static const Info theInfo;
 	DownlinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslots(): Choice(&theInfo) {}
 };
@@ -16206,6 +17298,10 @@ class DownlinkTimeslotsCodesVHCRMoreTimeslots : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DownlinkTimeslotsCodesVHCRMoreTimeslotsChoices {
+		downlinkTimeslotsCodesVHCRMoreTimeslotsNoMore = 0,
+		downlinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslots = 1,
+	};
 	static const Info theInfo;
 	DownlinkTimeslotsCodesVHCRMoreTimeslots(): Choice(&theInfo) {}
 };
@@ -16249,6 +17345,11 @@ class DLCCTrChr7TddOption : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLCCTrChr7TddOptionChoices {
+		dLCCTrChr7TddOptionTdd384 = 0,
+		dLCCTrChr7TddOptionTdd768 = 1,
+		dLCCTrChr7TddOptionTdd128 = 2,
+	};
 	static const Info theInfo;
 	DLCCTrChr7TddOption(): Choice(&theInfo) {}
 };
@@ -16296,6 +17397,16 @@ class SF512AndCodeNumber : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum SF512AndCodeNumberChoices {
+		sF512AndCodeNumberSf4 = 0,
+		sF512AndCodeNumberSf8 = 1,
+		sF512AndCodeNumberSf16 = 2,
+		sF512AndCodeNumberSf32 = 3,
+		sF512AndCodeNumberSf64 = 4,
+		sF512AndCodeNumberSf128 = 5,
+		sF512AndCodeNumberSf256 = 6,
+		sF512AndCodeNumberSf512 = 7,
+	};
 	static const Info theInfo;
 	SF512AndCodeNumber(): Choice(&theInfo) {}
 };
@@ -16338,6 +17449,10 @@ class DLDPCHInfoCommonCfnHandling : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHInfoCommonCfnHandlingChoices {
+		dLDPCHInfoCommonCfnHandlingMaintain = 0,
+		dLDPCHInfoCommonCfnHandlingInitialise = 1,
+	};
 	static const Info theInfo;
 	DLDPCHInfoCommonCfnHandling(): Choice(&theInfo) {}
 };
@@ -16374,6 +17489,10 @@ class DLDPCHPowerControlInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHPowerControlInfoModeSpecificInfoChoices {
+		dLDPCHPowerControlInfoModeSpecificInfoFdd = 0,
+		dLDPCHPowerControlInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLDPCHPowerControlInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -16450,6 +17569,10 @@ class DLDPCHInfoCommonModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHInfoCommonModeSpecificInfoChoices {
+		dLDPCHInfoCommonModeSpecificInfoFdd = 0,
+		dLDPCHInfoCommonModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLDPCHInfoCommonModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -16485,6 +17608,10 @@ class TGPSequenceTgpsStatus : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TGPSequenceTgpsStatusChoices {
+		tGPSequenceTgpsStatusActivate = 0,
+		tGPSequenceTgpsStatusDeactivate = 1,
+	};
 	static const Info theInfo;
 	TGPSequenceTgpsStatus(): Choice(&theInfo) {}
 };
@@ -16550,6 +17677,11 @@ class ULDLMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ULDLModeChoices {
+		ul = 0,
+		dl = 1,
+		uLDLModeUlanddl = 2,
+	};
 	static const Info theInfo;
 	ULDLMode(): Choice(&theInfo) {}
 };
@@ -16673,6 +17805,10 @@ class DLCommonInformationModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonInformationModeSpecificInfoChoices {
+		dLCommonInformationModeSpecificInfoFdd = 0,
+		dLCommonInformationModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLCommonInformationModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -16706,6 +17842,10 @@ class DLDPCHInfoCommonr4CfnHandling : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHInfoCommonr4CfnHandlingChoices {
+		dLDPCHInfoCommonr4CfnHandlingMaintain = 0,
+		dLDPCHInfoCommonr4CfnHandlingInitialise = 1,
+	};
 	static const Info theInfo;
 	DLDPCHInfoCommonr4CfnHandling(): Choice(&theInfo) {}
 };
@@ -16743,6 +17883,10 @@ class DLDPCHInfoCommonr4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHInfoCommonr4ModeSpecificInfoChoices {
+		dLDPCHInfoCommonr4ModeSpecificInfoFdd = 0,
+		dLDPCHInfoCommonr4ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLDPCHInfoCommonr4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -16812,6 +17956,10 @@ class DLCommonInformationr4ModeSpecificInfoTddTddOption : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonInformationr4ModeSpecificInfoTddTddOptionChoices {
+		dLCommonInformationr4ModeSpecificInfoTddTddOptionTdd384 = 0,
+		dLCommonInformationr4ModeSpecificInfoTddTddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	DLCommonInformationr4ModeSpecificInfoTddTddOption(): Choice(&theInfo) {}
 };
@@ -16832,6 +17980,10 @@ class DLCommonInformationr4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonInformationr4ModeSpecificInfoChoices {
+		dLCommonInformationr4ModeSpecificInfoFdd = 0,
+		dLCommonInformationr4ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLCommonInformationr4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -16881,6 +18033,10 @@ class DLCommonInformationr5ModeSpecificInfoTddTddOption : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonInformationr5ModeSpecificInfoTddTddOptionChoices {
+		dLCommonInformationr5ModeSpecificInfoTddTddOptionTdd384 = 0,
+		dLCommonInformationr5ModeSpecificInfoTddTddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	DLCommonInformationr5ModeSpecificInfoTddTddOption(): Choice(&theInfo) {}
 };
@@ -16901,6 +18057,10 @@ class DLCommonInformationr5ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonInformationr5ModeSpecificInfoChoices {
+		dLCommonInformationr5ModeSpecificInfoFdd = 0,
+		dLCommonInformationr5ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLCommonInformationr5ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -16945,6 +18105,10 @@ class DLDPCHInfoCommonr6CfnHandling : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHInfoCommonr6CfnHandlingChoices {
+		dLDPCHInfoCommonr6CfnHandlingMaintain = 0,
+		dLDPCHInfoCommonr6CfnHandlingInitialise = 1,
+	};
 	static const Info theInfo;
 	DLDPCHInfoCommonr6CfnHandling(): Choice(&theInfo) {}
 };
@@ -16982,6 +18146,10 @@ class DLDPCHInfoCommonr6ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHInfoCommonr6ModeSpecificInfoChoices {
+		dLDPCHInfoCommonr6ModeSpecificInfoFdd = 0,
+		dLDPCHInfoCommonr6ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLDPCHInfoCommonr6ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -17016,6 +18184,10 @@ class DLFDPCHInfoCommonr6CfnHandling : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLFDPCHInfoCommonr6CfnHandlingChoices {
+		dLFDPCHInfoCommonr6CfnHandlingMaintain = 0,
+		dLFDPCHInfoCommonr6CfnHandlingInitialise = 1,
+	};
 	static const Info theInfo;
 	DLFDPCHInfoCommonr6CfnHandling(): Choice(&theInfo) {}
 };
@@ -17039,6 +18211,10 @@ class DLCommonInformationr6DldpchInfoCommon : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonInformationr6DldpchInfoCommonChoices {
+		dlDPCHInfoCommon = 0,
+		dlFDPCHInfoCommon = 1,
+	};
 	static const Info theInfo;
 	DLCommonInformationr6DldpchInfoCommon(): Choice(&theInfo) {}
 };
@@ -17075,6 +18251,10 @@ class DLCommonInformationr6ModeSpecificInfoTddTddOption : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonInformationr6ModeSpecificInfoTddTddOptionChoices {
+		dLCommonInformationr6ModeSpecificInfoTddTddOptionTdd384 = 0,
+		dLCommonInformationr6ModeSpecificInfoTddTddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	DLCommonInformationr6ModeSpecificInfoTddTddOption(): Choice(&theInfo) {}
 };
@@ -17095,6 +18275,10 @@ class DLCommonInformationr6ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonInformationr6ModeSpecificInfoChoices {
+		dLCommonInformationr6ModeSpecificInfoFdd = 0,
+		dLCommonInformationr6ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLCommonInformationr6ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -17127,6 +18311,10 @@ class DLCommonInformationr7DldpchInfoCommon : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonInformationr7DldpchInfoCommonChoices {
+		dlDPCHInfoCommon = 0,
+		dlFDPCHInfoCommon = 1,
+	};
 	static const Info theInfo;
 	DLCommonInformationr7DldpchInfoCommon(): Choice(&theInfo) {}
 };
@@ -17165,6 +18353,11 @@ class DLCommonInformationr7ModeSpecificInfoTddTddOption : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLCommonInformationr7ModeSpecificInfoTddTddOptionChoices {
+		dLCommonInformationr7ModeSpecificInfoTddTddOptionTdd384 = 0,
+		dLCommonInformationr7ModeSpecificInfoTddTddOptionTdd768 = 1,
+		dLCommonInformationr7ModeSpecificInfoTddTddOptionTdd128 = 2,
+	};
 	static const Info theInfo;
 	DLCommonInformationr7ModeSpecificInfoTddTddOption(): Choice(&theInfo) {}
 };
@@ -17185,6 +18378,10 @@ class DLCommonInformationr7ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonInformationr7ModeSpecificInfoChoices {
+		dLCommonInformationr7ModeSpecificInfoFdd = 0,
+		dLCommonInformationr7ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLCommonInformationr7ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -17217,6 +18414,10 @@ class DLCommonInformationr8DldpchInfoCommon : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonInformationr8DldpchInfoCommonChoices {
+		dlDPCHInfoCommon = 0,
+		dlFDPCHInfoCommon = 1,
+	};
 	static const Info theInfo;
 	DLCommonInformationr8DldpchInfoCommon(): Choice(&theInfo) {}
 };
@@ -17238,6 +18439,10 @@ class TGPSequencer8TgpsStatus : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TGPSequencer8TgpsStatusChoices {
+		tGPSequencer8TgpsStatusActivate = 0,
+		tGPSequencer8TgpsStatusDeactivate = 1,
+	};
 	static const Info theInfo;
 	TGPSequencer8TgpsStatus(): Choice(&theInfo) {}
 };
@@ -17341,6 +18546,11 @@ class DLCommonInformationr8ModeSpecificInfoTddTddOption : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLCommonInformationr8ModeSpecificInfoTddTddOptionChoices {
+		dLCommonInformationr8ModeSpecificInfoTddTddOptionTdd384 = 0,
+		dLCommonInformationr8ModeSpecificInfoTddTddOptionTdd768 = 1,
+		dLCommonInformationr8ModeSpecificInfoTddTddOptionTdd128 = 2,
+	};
 	static const Info theInfo;
 	DLCommonInformationr8ModeSpecificInfoTddTddOption(): Choice(&theInfo) {}
 };
@@ -17361,6 +18571,10 @@ class DLCommonInformationr8ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLCommonInformationr8ModeSpecificInfoChoices {
+		dLCommonInformationr8ModeSpecificInfoFdd = 0,
+		dLCommonInformationr8ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DLCommonInformationr8ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -17456,6 +18670,10 @@ class DLDPCHInfoPerRL : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHInfoPerRLChoices {
+		dLDPCHInfoPerRLFdd = 0,
+		dLDPCHInfoPerRLTdd = 1,
+	};
 	static const Info theInfo;
 	DLDPCHInfoPerRL(): Choice(&theInfo) {}
 };
@@ -17493,6 +18711,10 @@ class DLDPCHInfoPerRLr4 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHInfoPerRLr4Choices {
+		dLDPCHInfoPerRLr4Fdd = 0,
+		dLDPCHInfoPerRLr4Tdd = 1,
+	};
 	static const Info theInfo;
 	DLDPCHInfoPerRLr4(): Choice(&theInfo) {}
 };
@@ -17533,6 +18755,10 @@ class DLDPCHInfoPerRLr5 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHInfoPerRLr5Choices {
+		dLDPCHInfoPerRLr5Fdd = 0,
+		dLDPCHInfoPerRLr5Tdd = 1,
+	};
 	static const Info theInfo;
 	DLDPCHInfoPerRLr5(): Choice(&theInfo) {}
 };
@@ -17570,6 +18796,10 @@ class DLDPCHInfoPerRLr6 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHInfoPerRLr6Choices {
+		dLDPCHInfoPerRLr6Fdd = 0,
+		dLDPCHInfoPerRLr6Tdd = 1,
+	};
 	static const Info theInfo;
 	DLDPCHInfoPerRLr6(): Choice(&theInfo) {}
 };
@@ -17607,6 +18837,10 @@ class DLDPCHInfoPerRLr7 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLDPCHInfoPerRLr7Choices {
+		dLDPCHInfoPerRLr7Fdd = 0,
+		dLDPCHInfoPerRLr7Tdd = 1,
+	};
 	static const Info theInfo;
 	DLDPCHInfoPerRLr7(): Choice(&theInfo) {}
 };
@@ -17730,6 +18964,10 @@ class HSSCCHInfor6ModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSSCCHInfor6ModeSpecificInfoTddChoices {
+		hSSCCHInfor6ModeSpecificInfoTddTdd384 = 0,
+		hSSCCHInfor6ModeSpecificInfoTddTdd128 = 1,
+	};
 	static const Info theInfo;
 	HSSCCHInfor6ModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -17738,6 +18976,10 @@ class HSSCCHInfor6ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSSCCHInfor6ModeSpecificInfoChoices {
+		hSSCCHInfor6ModeSpecificInfoFdd = 0,
+		hSSCCHInfor6ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	HSSCCHInfor6ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -17779,6 +19021,10 @@ class DLHSPDSCHInformationr6ModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLHSPDSCHInformationr6ModeSpecificInfoTddChoices {
+		dLHSPDSCHInformationr6ModeSpecificInfoTddTdd384 = 0,
+		dLHSPDSCHInformationr6ModeSpecificInfoTddTdd128 = 1,
+	};
 	static const Info theInfo;
 	DLHSPDSCHInformationr6ModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -17789,6 +19035,10 @@ class DLHSPDSCHInformationr6ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLHSPDSCHInformationr6ModeSpecificInfoChoices {
+		dLHSPDSCHInformationr6ModeSpecificInfoTdd = 0,
+		dLHSPDSCHInformationr6ModeSpecificInfoFdd = 1,
+	};
 	static const Info theInfo;
 	DLHSPDSCHInformationr6ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -17825,6 +19075,11 @@ class DLHSPDSCHInformationr8extModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum DLHSPDSCHInformationr8extModeSpecificInfoTddChoices {
+		dLHSPDSCHInformationr8extModeSpecificInfoTddTdd384 = 0,
+		dLHSPDSCHInformationr8extModeSpecificInfoTddTdd768 = 1,
+		dLHSPDSCHInformationr8extModeSpecificInfoTddTdd128 = 2,
+	};
 	static const Info theInfo;
 	DLHSPDSCHInformationr8extModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -17835,6 +19090,10 @@ class DLHSPDSCHInformationr8extModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLHSPDSCHInformationr8extModeSpecificInfoChoices {
+		dLHSPDSCHInformationr8extModeSpecificInfoTdd = 0,
+		dLHSPDSCHInformationr8extModeSpecificInfoFdd = 1,
+	};
 	static const Info theInfo;
 	DLHSPDSCHInformationr8extModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -17879,6 +19138,11 @@ class HSSCCHInfor8extModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum HSSCCHInfor8extModeSpecificInfoTddChoices {
+		hSSCCHInfor8extModeSpecificInfoTddTdd384 = 0,
+		hSSCCHInfor8extModeSpecificInfoTddTdd768 = 1,
+		hSSCCHInfor8extModeSpecificInfoTddTdd128 = 2,
+	};
 	static const Info theInfo;
 	HSSCCHInfor8extModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -17887,6 +19151,10 @@ class HSSCCHInfor8extModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSSCCHInfor8extModeSpecificInfoChoices {
+		hSSCCHInfor8extModeSpecificInfoFdd = 0,
+		hSSCCHInfor8extModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	HSSCCHInfor8extModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -17982,6 +19250,12 @@ class PDSCHCodeMappingSignallingMethod : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum PDSCHCodeMappingSignallingMethodChoices {
+		codeRange = 0,
+		tfciRange = 1,
+		explicitconfig = 2,
+		replace = 3,
+	};
 	static const Info theInfo;
 	PDSCHCodeMappingSignallingMethod(): Choice(&theInfo) {}
 };
@@ -18052,6 +19326,10 @@ class PrimaryCCPCHInfoTddSyncCase : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PrimaryCCPCHInfoTddSyncCaseChoices {
+		primaryCCPCHInfoTddSyncCaseSyncCase1 = 0,
+		primaryCCPCHInfoTddSyncCaseSyncCase2 = 1,
+	};
 	static const Info theInfo;
 	PrimaryCCPCHInfoTddSyncCase(): Choice(&theInfo) {}
 };
@@ -18075,6 +19353,10 @@ class PrimaryCCPCHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PrimaryCCPCHInfoChoices {
+		primaryCCPCHInfoFdd = 0,
+		primaryCCPCHInfoTdd = 1,
+	};
 	static const Info theInfo;
 	PrimaryCCPCHInfo(): Choice(&theInfo) {}
 };
@@ -18083,6 +19365,10 @@ class DLInformationPerRLModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLModeSpecificInfoChoices {
+		dLInformationPerRLModeSpecificInfoFdd = 0,
+		tdd = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -18107,6 +19393,15 @@ class SF256AndCodeNumber : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum SF256AndCodeNumberChoices {
+		sF256AndCodeNumberSf4 = 0,
+		sF256AndCodeNumberSf8 = 1,
+		sF256AndCodeNumberSf16 = 2,
+		sF256AndCodeNumberSf32 = 3,
+		sF256AndCodeNumberSf64 = 4,
+		sF256AndCodeNumberSf128 = 5,
+		sF256AndCodeNumberSf256 = 6,
+	};
 	static const Info theInfo;
 	SF256AndCodeNumber(): Choice(&theInfo) {}
 };
@@ -18175,6 +19470,10 @@ class SecondaryCCPCHInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SecondaryCCPCHInfoModeSpecificInfoChoices {
+		secondaryCCPCHInfoModeSpecificInfoFdd = 0,
+		secondaryCCPCHInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	SecondaryCCPCHInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -18261,6 +19560,40 @@ class SIBTypeAndTag : public Choice {
 private:
 	static const void *choicesInfo[32];
 public:
+	enum SIBTypeAndTagChoices {
+		sysInfoType1 = 0,
+		sysInfoType2 = 1,
+		sysInfoType3 = 2,
+		sysInfoType4 = 3,
+		sysInfoType5 = 4,
+		sysInfoType6 = 5,
+		sIBTypeAndTagSysInfoType7 = 6,
+		dummy = 7,
+		sIBTypeAndTagDummy2 = 8,
+		sIBTypeAndTagDummy3 = 9,
+		sysInfoType11 = 10,
+		sysInfoType12 = 11,
+		sysInfoType13 = 12,
+		sysInfoType131 = 13,
+		sysInfoType132 = 14,
+		sysInfoType133 = 15,
+		sysInfoType134 = 16,
+		sIBTypeAndTagSysInfoType14 = 17,
+		sysInfoType15 = 18,
+		sysInfoType16 = 19,
+		sIBTypeAndTagSysInfoType17 = 20,
+		sysInfoType151 = 21,
+		sysInfoType152 = 22,
+		sysInfoType153 = 23,
+		sysInfoType154 = 24,
+		sysInfoType18 = 25,
+		sysInfoType155 = 26,
+		sysInfoType5bis = 27,
+		sIBTypeAndTagSpare4 = 28,
+		sIBTypeAndTagSpare3 = 29,
+		sIBTypeAndTagSpare2 = 30,
+		sIBTypeAndTagSpare1 = 31,
+	};
 	static const Info theInfo;
 	SIBTypeAndTag(): Choice(&theInfo) {}
 };
@@ -18293,6 +19626,19 @@ class SchedulingInformationSchedulingSibPos : public Choice {
 private:
 	static const void *choicesInfo[11];
 public:
+	enum SchedulingInformationSchedulingSibPosChoices {
+		schedulingInformationSchedulingSibPosRep4 = 0,
+		schedulingInformationSchedulingSibPosRep8 = 1,
+		schedulingInformationSchedulingSibPosRep16 = 2,
+		schedulingInformationSchedulingSibPosRep32 = 3,
+		schedulingInformationSchedulingSibPosRep64 = 4,
+		schedulingInformationSchedulingSibPosRep128 = 5,
+		schedulingInformationSchedulingSibPosRep256 = 6,
+		schedulingInformationSchedulingSibPosRep512 = 7,
+		schedulingInformationSchedulingSibPosRep1024 = 8,
+		schedulingInformationSchedulingSibPosRep2048 = 9,
+		schedulingInformationSchedulingSibPosRep4096 = 10,
+	};
 	static const Info theInfo;
 	SchedulingInformationSchedulingSibPos(): Choice(&theInfo) {}
 };
@@ -18384,6 +19730,10 @@ class SCCPCHInfoForFACHModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SCCPCHInfoForFACHModeSpecificInfoChoices {
+		sCCPCHInfoForFACHModeSpecificInfoFdd = 0,
+		sCCPCHInfoForFACHModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	SCCPCHInfoForFACHModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -18466,6 +19816,10 @@ class PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCase : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCaseChoices {
+		primaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCaseSyncCase1 = 0,
+		primaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCaseSyncCase2 = 1,
+	};
 	static const Info theInfo;
 	PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCase(): Choice(&theInfo) {}
 };
@@ -18498,6 +19852,10 @@ class PrimaryCCPCHInfor4TddTddOption : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PrimaryCCPCHInfor4TddTddOptionChoices {
+		primaryCCPCHInfor4TddTddOptionTdd384tdd768 = 0,
+		primaryCCPCHInfor4TddTddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	PrimaryCCPCHInfor4TddTddOption(): Choice(&theInfo) {}
 };
@@ -18521,6 +19879,10 @@ class PrimaryCCPCHInfor4 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PrimaryCCPCHInfor4Choices {
+		primaryCCPCHInfor4Fdd = 0,
+		primaryCCPCHInfor4Tdd = 1,
+	};
 	static const Info theInfo;
 	PrimaryCCPCHInfor4(): Choice(&theInfo) {}
 };
@@ -18529,6 +19891,10 @@ class DLInformationPerRLr4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr4ModeSpecificInfoChoices {
+		dLInformationPerRLr4ModeSpecificInfoFdd = 0,
+		tdd = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -18582,6 +19948,10 @@ class SecondaryCCPCHInfor4ModeSpecificInfoTddTddOption : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SecondaryCCPCHInfor4ModeSpecificInfoTddTddOptionChoices {
+		secondaryCCPCHInfor4ModeSpecificInfoTddTddOptionTdd384 = 0,
+		secondaryCCPCHInfor4ModeSpecificInfoTddTddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	SecondaryCCPCHInfor4ModeSpecificInfoTddTddOption(): Choice(&theInfo) {}
 };
@@ -18603,6 +19973,10 @@ class SecondaryCCPCHInfor4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SecondaryCCPCHInfor4ModeSpecificInfoChoices {
+		secondaryCCPCHInfor4ModeSpecificInfoFdd = 0,
+		secondaryCCPCHInfor4ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	SecondaryCCPCHInfor4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -18635,6 +20009,10 @@ class SCCPCHInfoForFACHr4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SCCPCHInfoForFACHr4ModeSpecificInfoChoices {
+		sCCPCHInfoForFACHr4ModeSpecificInfoFdd = 0,
+		sCCPCHInfoForFACHr4ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	SCCPCHInfoForFACHr4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -18687,6 +20065,10 @@ class DLInformationPerRLr5ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr5ModeSpecificInfoChoices {
+		dLInformationPerRLr5ModeSpecificInfoFdd = 0,
+		tdd = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr5ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -18722,6 +20104,10 @@ class DLInformationPerRLr5bisModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr5bisModeSpecificInfoChoices {
+		dLInformationPerRLr5bisModeSpecificInfoFdd = 0,
+		tdd = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr5bisModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -18761,6 +20147,10 @@ class DLInformationPerRLr6ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr6ModeSpecificInfoChoices {
+		dLInformationPerRLr6ModeSpecificInfoFdd = 0,
+		tdd = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr6ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -18769,6 +20159,10 @@ class DLInformationPerRLr6DldpchInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr6DldpchInfoChoices {
+		dlDPCHInfoPerRL = 0,
+		dlFDPCHInfoPerRL = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr6DldpchInfo(): Choice(&theInfo) {}
 };
@@ -18779,6 +20173,10 @@ class DLInformationPerRLr6EHICHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr6EHICHInfoChoices {
+		eHICHInformation = 0,
+		dLInformationPerRLr6EHICHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr6EHICHInfo(): Choice(&theInfo) {}
 };
@@ -18789,6 +20187,10 @@ class DLInformationPerRLr6ERGCHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr6ERGCHInfoChoices {
+		eRGCHInformation = 0,
+		dLInformationPerRLr6ERGCHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr6ERGCHInfo(): Choice(&theInfo) {}
 };
@@ -18841,6 +20243,10 @@ class DLInformationPerRLr7ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr7ModeSpecificInfoChoices {
+		dLInformationPerRLr7ModeSpecificInfoFdd = 0,
+		tdd = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr7ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -18849,6 +20255,10 @@ class DLInformationPerRLr7DldpchInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr7DldpchInfoChoices {
+		dlDPCHInfoPerRL = 0,
+		dlFDPCHInfoPerRL = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr7DldpchInfo(): Choice(&theInfo) {}
 };
@@ -18896,6 +20306,11 @@ class MidambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationMode : public
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -18931,6 +20346,11 @@ class MidambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationMode : public
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -18951,6 +20371,10 @@ class MidambleShiftAndBurstTypeEDCHBurstType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MidambleShiftAndBurstTypeEDCHBurstTypeChoices {
+		midambleShiftAndBurstTypeEDCHBurstTypeType1 = 0,
+		midambleShiftAndBurstTypeEDCHBurstTypeType2 = 1,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeEDCHBurstType(): Choice(&theInfo) {}
 };
@@ -19050,6 +20474,11 @@ class EAGCHInformationr7ModeSpecificTdd : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum EAGCHInformationr7ModeSpecificTddChoices {
+		eAGCHInformationr7ModeSpecificTddTdd384 = 0,
+		eAGCHInformationr7ModeSpecificTddTdd768 = 1,
+		eAGCHInformationr7ModeSpecificTddTdd128 = 2,
+	};
 	static const Info theInfo;
 	EAGCHInformationr7ModeSpecificTdd(): Choice(&theInfo) {}
 };
@@ -19058,6 +20487,10 @@ class EAGCHInformationr7ModeSpecific : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EAGCHInformationr7ModeSpecificChoices {
+		eAGCHInformationr7ModeSpecificFdd = 0,
+		eAGCHInformationr7ModeSpecificTdd = 1,
+	};
 	static const Info theInfo;
 	EAGCHInformationr7ModeSpecific(): Choice(&theInfo) {}
 };
@@ -19079,6 +20512,10 @@ class DLInformationPerRLr7ModeSpecificInfo2FddEHICHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr7ModeSpecificInfo2FddEHICHInfoChoices {
+		eHICHInformation = 0,
+		dLInformationPerRLr7ModeSpecificInfo2FddEHICHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr7ModeSpecificInfo2FddEHICHInfo(): Choice(&theInfo) {}
 };
@@ -19089,6 +20526,10 @@ class DLInformationPerRLr7ModeSpecificInfo2FddERGCHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr7ModeSpecificInfo2FddERGCHInfoChoices {
+		eRGCHInformation = 0,
+		dLInformationPerRLr7ModeSpecificInfo2FddERGCHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr7ModeSpecificInfo2FddERGCHInfo(): Choice(&theInfo) {}
 };
@@ -19113,6 +20554,10 @@ class EHICHInformationTDD384768ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EHICHInformationTDD384768ModeSpecificInfoChoices {
+		tdd384 = 0,
+		tdd768 = 1,
+	};
 	static const Info theInfo;
 	EHICHInformationTDD384768ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -19170,6 +20615,10 @@ class DLInformationPerRLr7ModeSpecificInfo2Tdd : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr7ModeSpecificInfo2TddChoices {
+		dLInformationPerRLr7ModeSpecificInfo2TddTdd384tdd768 = 0,
+		dLInformationPerRLr7ModeSpecificInfo2TddTdd128 = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr7ModeSpecificInfo2Tdd(): Choice(&theInfo) {}
 };
@@ -19178,6 +20627,10 @@ class DLInformationPerRLr7ModeSpecificInfo2 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr7ModeSpecificInfo2Choices {
+		dLInformationPerRLr7ModeSpecificInfo2Fdd = 0,
+		dLInformationPerRLr7ModeSpecificInfo2Tdd = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr7ModeSpecificInfo2(): Choice(&theInfo) {}
 };
@@ -19218,6 +20671,10 @@ class DLInformationPerRLr8ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr8ModeSpecificInfoChoices {
+		dLInformationPerRLr8ModeSpecificInfoFdd = 0,
+		tdd = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr8ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -19226,6 +20683,10 @@ class DLInformationPerRLr8DldpchInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr8DldpchInfoChoices {
+		dlDPCHInfoPerRL = 0,
+		dlFDPCHInfoPerRL = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr8DldpchInfo(): Choice(&theInfo) {}
 };
@@ -19298,6 +20759,11 @@ class EAGCHInformationr8ModeSpecificTdd : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum EAGCHInformationr8ModeSpecificTddChoices {
+		eAGCHInformationr8ModeSpecificTddTdd384 = 0,
+		eAGCHInformationr8ModeSpecificTddTdd768 = 1,
+		eAGCHInformationr8ModeSpecificTddTdd128 = 2,
+	};
 	static const Info theInfo;
 	EAGCHInformationr8ModeSpecificTdd(): Choice(&theInfo) {}
 };
@@ -19306,6 +20772,10 @@ class EAGCHInformationr8ModeSpecific : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EAGCHInformationr8ModeSpecificChoices {
+		eAGCHInformationr8ModeSpecificFdd = 0,
+		eAGCHInformationr8ModeSpecificTdd = 1,
+	};
 	static const Info theInfo;
 	EAGCHInformationr8ModeSpecific(): Choice(&theInfo) {}
 };
@@ -19327,6 +20797,10 @@ class DLInformationPerRLr8ModeSpecificInfo2FddEHICHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr8ModeSpecificInfo2FddEHICHInfoChoices {
+		eHICHInformation = 0,
+		dLInformationPerRLr8ModeSpecificInfo2FddEHICHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr8ModeSpecificInfo2FddEHICHInfo(): Choice(&theInfo) {}
 };
@@ -19337,6 +20811,10 @@ class DLInformationPerRLr8ModeSpecificInfo2FddERGCHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr8ModeSpecificInfo2FddERGCHInfoChoices {
+		eRGCHInformation = 0,
+		dLInformationPerRLr8ModeSpecificInfo2FddERGCHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr8ModeSpecificInfo2FddERGCHInfo(): Choice(&theInfo) {}
 };
@@ -19379,6 +20857,10 @@ class DLInformationPerRLr8ModeSpecificInfo2Tdd : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr8ModeSpecificInfo2TddChoices {
+		dLInformationPerRLr8ModeSpecificInfo2TddTdd384tdd768 = 0,
+		dLInformationPerRLr8ModeSpecificInfo2TddTdd128 = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr8ModeSpecificInfo2Tdd(): Choice(&theInfo) {}
 };
@@ -19387,6 +20869,10 @@ class DLInformationPerRLr8ModeSpecificInfo2 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLInformationPerRLr8ModeSpecificInfo2Choices {
+		dLInformationPerRLr8ModeSpecificInfo2Fdd = 0,
+		dLInformationPerRLr8ModeSpecificInfo2Tdd = 1,
+	};
 	static const Info theInfo;
 	DLInformationPerRLr8ModeSpecificInfo2(): Choice(&theInfo) {}
 };
@@ -19462,6 +20948,10 @@ class PrimaryCCPCHInfoPostSyncCase : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PrimaryCCPCHInfoPostSyncCaseChoices {
+		primaryCCPCHInfoPostSyncCaseSyncCase1 = 0,
+		primaryCCPCHInfoPostSyncCaseSyncCase2 = 1,
+	};
 	static const Info theInfo;
 	PrimaryCCPCHInfoPostSyncCase(): Choice(&theInfo) {}
 };
@@ -19565,6 +21055,10 @@ class DLSecondaryCellInfoFDD : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLSecondaryCellInfoFDDChoices {
+		dLSecondaryCellInfoFDDContinue = 0,
+		dLSecondaryCellInfoFDDNewConfiguration = 1,
+	};
 	static const Info theInfo;
 	DLSecondaryCellInfoFDD(): Choice(&theInfo) {}
 };
@@ -19622,6 +21116,10 @@ class DLSecondaryCellInfoFDDr9ConfigurationInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLSecondaryCellInfoFDDr9ConfigurationInfoChoices {
+		dLSecondaryCellInfoFDDr9ConfigurationInfoContinue = 0,
+		dLSecondaryCellInfoFDDr9ConfigurationInfoNewConfiguration = 1,
+	};
 	static const Info theInfo;
 	DLSecondaryCellInfoFDDr9ConfigurationInfo(): Choice(&theInfo) {}
 };
@@ -19662,6 +21160,10 @@ class MIMOPilotConfigurationr9SecondCPICHPattern : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MIMOPilotConfigurationr9SecondCPICHPatternChoices {
+		mIMOPilotConfigurationr9SecondCPICHPatternNormalPattern = 0,
+		mIMOPilotConfigurationr9SecondCPICHPatternDiversityPattern = 1,
+	};
 	static const Info theInfo;
 	MIMOPilotConfigurationr9SecondCPICHPattern(): Choice(&theInfo) {}
 };
@@ -19693,6 +21195,10 @@ class SecondaryCellMIMOparametersFDD : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SecondaryCellMIMOparametersFDDChoices {
+		secondaryCellMIMOparametersFDDContinue = 0,
+		secondaryCellMIMOparametersFDDNewConfiguration = 1,
+	};
 	static const Info theInfo;
 	SecondaryCellMIMOparametersFDD(): Choice(&theInfo) {}
 };
@@ -19882,6 +21388,10 @@ class ERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd384 : public Choi
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd384Choices {
+		eRUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd384SF16 = 0,
+		eRUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd384SF8 = 1,
+	};
 	static const Info theInfo;
 	ERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd384(): Choice(&theInfo) {}
 };
@@ -19934,6 +21444,10 @@ class ERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd768 : public Choi
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd768Choices {
+		eRUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd768SF32 = 0,
+		eRUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd768SF816 = 1,
+	};
 	static const Info theInfo;
 	ERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd768(): Choice(&theInfo) {}
 };
@@ -19942,6 +21456,10 @@ class ERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoChoices {
+		eRUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd384 = 0,
+		eRUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfoTdd768 = 1,
+	};
 	static const Info theInfo;
 	ERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -20034,6 +21552,10 @@ class ERUCCHInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ERUCCHInfoModeSpecificInfoChoices {
+		eRUCCHInfoModeSpecificInfoTdd384tdd768 = 0,
+		eRUCCHInfoModeSpecificInfoTdd128 = 1,
+	};
 	static const Info theInfo;
 	ERUCCHInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -20171,6 +21693,10 @@ class EPUCHInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EPUCHInfoModeSpecificInfoChoices {
+		ePUCHInfoModeSpecificInfoTdd348tdd768 = 0,
+		ePUCHInfoModeSpecificInfoTdd128 = 1,
+	};
 	static const Info theInfo;
 	EPUCHInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -20262,6 +21788,10 @@ class NonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleAllocationMode : publi
 private:
 	static const void *choicesInfo[2];
 public:
+	enum NonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleAllocationModeChoices {
+		nonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleAllocationModeDefaultMidamble = 0,
+		nonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleAllocationModeUeSpecificMidamble = 1,
+	};
 	static const Info theInfo;
 	NonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -20308,6 +21838,10 @@ class NonScheduledTransGrantInfoTDD : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum NonScheduledTransGrantInfoTDDChoices {
+		nonScheduledTransGrantInfoTDDTdd384768 = 0,
+		nonScheduledTransGrantInfoTDDTdd128 = 1,
+	};
 	static const Info theInfo;
 	NonScheduledTransGrantInfoTDD(): Choice(&theInfo) {}
 };
@@ -20329,6 +21863,10 @@ class ULEDCHInformationr8ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULEDCHInformationr8ModeSpecificInfoChoices {
+		uLEDCHInformationr8ModeSpecificInfoFdd = 0,
+		uLEDCHInformationr8ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULEDCHInformationr8ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -20415,6 +21953,10 @@ class NonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleAllocationMode : pub
 private:
 	static const void *choicesInfo[2];
 public:
+	enum NonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleAllocationModeChoices {
+		nonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleAllocationModeDefaultMidamble = 0,
+		nonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleAllocationModeUeSpecificMidamble = 1,
+	};
 	static const Info theInfo;
 	NonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -20473,6 +22015,10 @@ class NonScheduledTransGrantInfoTDDr9 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum NonScheduledTransGrantInfoTDDr9Choices {
+		nonScheduledTransGrantInfoTDDr9Tdd384768 = 0,
+		nonScheduledTransGrantInfoTDDr9Tdd128 = 1,
+	};
 	static const Info theInfo;
 	NonScheduledTransGrantInfoTDDr9(): Choice(&theInfo) {}
 };
@@ -20494,6 +22040,10 @@ class ULEDCHInformationr9ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULEDCHInformationr9ModeSpecificInfoChoices {
+		uLEDCHInformationr9ModeSpecificInfoFdd = 0,
+		uLEDCHInformationr9ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULEDCHInformationr9ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -20545,6 +22095,10 @@ class TGPSequenceShortTgpsStatus : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TGPSequenceShortTgpsStatusChoices {
+		tGPSequenceShortTgpsStatusActivate = 0,
+		tGPSequenceShortTgpsStatusDeactivate = 1,
+	};
 	static const Info theInfo;
 	TGPSequenceShortTgpsStatus(): Choice(&theInfo) {}
 };
@@ -20755,6 +22309,10 @@ class DTXInfoEdchTTILength : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DTXInfoEdchTTILengthChoices {
+		dtxedchTTI10ms = 0,
+		dtxedchTTI2ms = 1,
+	};
 	static const Info theInfo;
 	DTXInfoEdchTTILength(): Choice(&theInfo) {}
 };
@@ -20906,6 +22464,10 @@ class EDCHRLInfoNewServingCellERGCHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EDCHRLInfoNewServingCellERGCHInfoChoices {
+		eRGCHInformation = 0,
+		eDCHRLInfoNewServingCellERGCHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	EDCHRLInfoNewServingCellERGCHInfo(): Choice(&theInfo) {}
 };
@@ -20936,6 +22498,10 @@ class EDCHRLInfoOtherCellEHICHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EDCHRLInfoOtherCellEHICHInfoChoices {
+		eHICHInformation = 0,
+		eDCHRLInfoOtherCellEHICHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	EDCHRLInfoOtherCellEHICHInfo(): Choice(&theInfo) {}
 };
@@ -20946,6 +22512,10 @@ class EDCHRLInfoOtherCellERGCHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EDCHRLInfoOtherCellERGCHInfoChoices {
+		eRGCHInformation = 0,
+		eDCHRLInfoOtherCellERGCHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	EDCHRLInfoOtherCellERGCHInfo(): Choice(&theInfo) {}
 };
@@ -21009,6 +22579,10 @@ class EDCHRLInfoNewServingCellr7ERGCHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EDCHRLInfoNewServingCellr7ERGCHInfoChoices {
+		eRGCHInformation = 0,
+		eDCHRLInfoNewServingCellr7ERGCHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	EDCHRLInfoNewServingCellr7ERGCHInfo(): Choice(&theInfo) {}
 };
@@ -21053,6 +22627,10 @@ class EDCHRLInfoNewSecServingCellERGCHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EDCHRLInfoNewSecServingCellERGCHInfoChoices {
+		eRGCHInformation = 0,
+		eDCHRLInfoNewSecServingCellERGCHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	EDCHRLInfoNewSecServingCellERGCHInfo(): Choice(&theInfo) {}
 };
@@ -21076,6 +22654,10 @@ class EDCHRLInfoOtherCellSecULFreqERGCHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EDCHRLInfoOtherCellSecULFreqERGCHInfoChoices {
+		eRGCHInformation = 0,
+		eDCHRLInfoOtherCellSecULFreqERGCHInfoReleaseIndicator = 1,
+	};
 	static const Info theInfo;
 	EDCHRLInfoOtherCellSecULFreqERGCHInfo(): Choice(&theInfo) {}
 };
@@ -21142,6 +22724,10 @@ class EHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleAllocationMod
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleAllocationModeChoices {
+		eHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleAllocationModeDefaultMidamble = 0,
+		eHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleAllocationModeUeSpecificMidamble = 1,
+	};
 	static const Info theInfo;
 	EHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -21166,6 +22752,10 @@ class EHICHInformationForSPSTDD128Configurationmode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EHICHInformationForSPSTDD128ConfigurationmodeChoices {
+		eHICHInformationForSPSTDD128ConfigurationmodeImplicit = 0,
+		eHICHInformationForSPSTDD128ConfigurationmodeExplicit = 1,
+	};
 	static const Info theInfo;
 	EHICHInformationForSPSTDD128Configurationmode(): Choice(&theInfo) {}
 };
@@ -21238,6 +22828,10 @@ class EDCHSPSInformationTDD128EdchSPSOperation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EDCHSPSInformationTDD128EdchSPSOperationChoices {
+		eDCHSPSInformationTDD128EdchSPSOperationContinue = 0,
+		newOperation = 1,
+	};
 	static const Info theInfo;
 	EDCHSPSInformationTDD128EdchSPSOperation(): Choice(&theInfo) {}
 };
@@ -21359,6 +22953,10 @@ class EXTULTimingAdvanceModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum EXTULTimingAdvanceModeSpecificInfoChoices {
+		eXTULTimingAdvanceModeSpecificInfoTdd384 = 0,
+		eXTULTimingAdvanceModeSpecificInfoTdd768 = 1,
+	};
 	static const Info theInfo;
 	EXTULTimingAdvanceModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -21588,6 +23186,17 @@ class RepPerLengthOffsetPICH : public Choice {
 private:
 	static const void *choicesInfo[9];
 public:
+	enum RepPerLengthOffsetPICHChoices {
+		repPerLengthOffsetPICHRpp42 = 0,
+		repPerLengthOffsetPICHRpp82 = 1,
+		repPerLengthOffsetPICHRpp84 = 2,
+		repPerLengthOffsetPICHRpp162 = 3,
+		repPerLengthOffsetPICHRpp164 = 4,
+		repPerLengthOffsetPICHRpp322 = 5,
+		repPerLengthOffsetPICHRpp324 = 6,
+		repPerLengthOffsetPICHRpp642 = 7,
+		repPerLengthOffsetPICHRpp644 = 8,
+	};
 	static const Info theInfo;
 	RepPerLengthOffsetPICH(): Choice(&theInfo) {}
 };
@@ -21629,6 +23238,10 @@ class PICHInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PICHInfoChoices {
+		pICHInfoFdd = 0,
+		pICHInfoTdd = 1,
+	};
 	static const Info theInfo;
 	PICHInfo(): Choice(&theInfo) {}
 };
@@ -21703,6 +23316,10 @@ class PICHForHSDPASupportedPagingTDD128 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PICHForHSDPASupportedPagingTDD128Choices {
+		pICHForHSDPASupportedPagingTDD128Implicit = 0,
+		explicit = 1,
+	};
 	static const Info theInfo;
 	PICHForHSDPASupportedPagingTDD128(): Choice(&theInfo) {}
 };
@@ -21850,6 +23467,10 @@ class HSDSCHSPSInformationTDD128HsdschSPSOperation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSDSCHSPSInformationTDD128HsdschSPSOperationChoices {
+		hSDSCHSPSInformationTDD128HsdschSPSOperationContinue = 0,
+		newOperation = 1,
+	};
 	static const Info theInfo;
 	HSDSCHSPSInformationTDD128HsdschSPSOperation(): Choice(&theInfo) {}
 };
@@ -21895,6 +23516,10 @@ class HSSCCHLessInfor7HsscchLessOperation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum HSSCCHLessInfor7HsscchLessOperationChoices {
+		hSSCCHLessInfor7HsscchLessOperationContinue = 0,
+		newOperation = 1,
+	};
 	static const Info theInfo;
 	HSSCCHLessInfor7HsscchLessOperation(): Choice(&theInfo) {}
 };
@@ -21920,6 +23545,11 @@ class HSSCCHTDD128MultiCarrierMidambleAllocationMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum HSSCCHTDD128MultiCarrierMidambleAllocationModeChoices {
+		hSSCCHTDD128MultiCarrierMidambleAllocationModeDefaultMidamble = 0,
+		hSSCCHTDD128MultiCarrierMidambleAllocationModeCommonMidamble = 1,
+		hSSCCHTDD128MultiCarrierMidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	HSSCCHTDD128MultiCarrierMidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -22001,6 +23631,11 @@ class MidambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationMode : public C
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -22036,6 +23671,11 @@ class MidambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationMode : public C
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -22056,6 +23696,10 @@ class MidambleShiftAndBurstTypeDLBurstType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MidambleShiftAndBurstTypeDLBurstTypeChoices {
+		midambleShiftAndBurstTypeDLBurstTypeType1 = 0,
+		midambleShiftAndBurstTypeDLBurstTypeType2 = 1,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeDLBurstType(): Choice(&theInfo) {}
 };
@@ -22090,6 +23734,11 @@ class MidambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationMode : publ
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -22125,6 +23774,11 @@ class MidambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationMode : publ
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MidambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationModeChoices {
+		midambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationModeDefaultMidamble = 0,
+		midambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationModeCommonMidamble = 1,
+		midambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationModeUeSpecificMidamble = 2,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationMode(): Choice(&theInfo) {}
 };
@@ -22145,6 +23799,10 @@ class MidambleShiftAndBurstTypeDLVHCRBurstType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MidambleShiftAndBurstTypeDLVHCRBurstTypeChoices {
+		midambleShiftAndBurstTypeDLVHCRBurstTypeType1 = 0,
+		midambleShiftAndBurstTypeDLVHCRBurstTypeType2 = 1,
+	};
 	static const Info theInfo;
 	MidambleShiftAndBurstTypeDLVHCRBurstType(): Choice(&theInfo) {}
 };
@@ -22183,6 +23841,10 @@ class MIMOPilotConfigurationSecondCPICHPattern : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MIMOPilotConfigurationSecondCPICHPatternChoices {
+		mIMOPilotConfigurationSecondCPICHPatternNormalPattern = 0,
+		mIMOPilotConfigurationSecondCPICHPatternDiversityPattern = 1,
+	};
 	static const Info theInfo;
 	MIMOPilotConfigurationSecondCPICHPattern(): Choice(&theInfo) {}
 };
@@ -22276,6 +23938,10 @@ class MIMOParametersr8ModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MIMOParametersr8ModeSpecificInfoTddChoices {
+		mIMOParametersr8ModeSpecificInfoTddTdd128 = 0,
+		mIMOParametersr8ModeSpecificInfoTddTdd384tdd768 = 1,
+	};
 	static const Info theInfo;
 	MIMOParametersr8ModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -22284,6 +23950,10 @@ class MIMOParametersr8ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MIMOParametersr8ModeSpecificInfoChoices {
+		mIMOParametersr8ModeSpecificInfoFdd = 0,
+		mIMOParametersr8ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	MIMOParametersr8ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -22342,6 +24012,10 @@ class MIMOParametersr9ModeSpecificInfoTdd : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MIMOParametersr9ModeSpecificInfoTddChoices {
+		mIMOParametersr9ModeSpecificInfoTddTdd128 = 0,
+		mIMOParametersr9ModeSpecificInfoTddTdd384tdd768 = 1,
+	};
 	static const Info theInfo;
 	MIMOParametersr9ModeSpecificInfoTdd(): Choice(&theInfo) {}
 };
@@ -22350,6 +24024,10 @@ class MIMOParametersr9ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MIMOParametersr9ModeSpecificInfoChoices {
+		mIMOParametersr9ModeSpecificInfoFdd = 0,
+		mIMOParametersr9ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	MIMOParametersr9ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -22423,6 +24101,10 @@ class NonScheduledTransGrantInfoTDDext : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum NonScheduledTransGrantInfoTDDextChoices {
+		nonScheduledTransGrantInfoTDDextTdd384768 = 0,
+		nonScheduledTransGrantInfoTDDextTdd128 = 1,
+	};
 	static const Info theInfo;
 	NonScheduledTransGrantInfoTDDext(): Choice(&theInfo) {}
 };
@@ -22513,6 +24195,10 @@ class PDSCHCapacityAllocationInfoConfiguration : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PDSCHCapacityAllocationInfoConfigurationChoices {
+		pDSCHCapacityAllocationInfoConfigurationOldConfiguration = 0,
+		pDSCHCapacityAllocationInfoConfigurationNewConfiguration = 1,
+	};
 	static const Info theInfo;
 	PDSCHCapacityAllocationInfoConfiguration(): Choice(&theInfo) {}
 };
@@ -22568,6 +24254,10 @@ class PDSCHInfor4TddOption : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PDSCHInfor4TddOptionChoices {
+		pDSCHInfor4TddOptionTdd384 = 0,
+		pDSCHInfor4TddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	PDSCHInfor4TddOption(): Choice(&theInfo) {}
 };
@@ -22602,6 +24292,10 @@ class PDSCHCapacityAllocationInfor4Configuration : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PDSCHCapacityAllocationInfor4ConfigurationChoices {
+		pDSCHCapacityAllocationInfor4ConfigurationOldConfiguration = 0,
+		pDSCHCapacityAllocationInfor4ConfigurationNewConfiguration = 1,
+	};
 	static const Info theInfo;
 	PDSCHCapacityAllocationInfor4Configuration(): Choice(&theInfo) {}
 };
@@ -22667,6 +24361,11 @@ class PDSCHInfor7TddOption : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum PDSCHInfor7TddOptionChoices {
+		pDSCHInfor7TddOptionTdd384 = 0,
+		pDSCHInfor7TddOptionTdd768 = 1,
+		pDSCHInfor7TddOptionTdd128 = 2,
+	};
 	static const Info theInfo;
 	PDSCHInfor7TddOption(): Choice(&theInfo) {}
 };
@@ -22701,6 +24400,10 @@ class PDSCHCapacityAllocationInfor7Configuration : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PDSCHCapacityAllocationInfor7ConfigurationChoices {
+		pDSCHCapacityAllocationInfor7ConfigurationOldConfiguration = 0,
+		pDSCHCapacityAllocationInfor7ConfigurationNewConfiguration = 1,
+	};
 	static const Info theInfo;
 	PDSCHCapacityAllocationInfor7Configuration(): Choice(&theInfo) {}
 };
@@ -22864,6 +24567,10 @@ class PICHInfoHCRVHCRr7ChannelisationCode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PICHInfoHCRVHCRr7ChannelisationCodeChoices {
+		tdd384 = 0,
+		tdd768 = 1,
+	};
 	static const Info theInfo;
 	PICHInfoHCRVHCRr7ChannelisationCode(): Choice(&theInfo) {}
 };
@@ -22935,6 +24642,10 @@ class PRACHPartitioning : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PRACHPartitioningChoices {
+		pRACHPartitioningFdd = 0,
+		pRACHPartitioningTdd = 1,
+	};
 	static const Info theInfo;
 	PRACHPartitioning(): Choice(&theInfo) {}
 };
@@ -23002,6 +24713,10 @@ class TDDPRACHCCodeList : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TDDPRACHCCodeListChoices {
+		tDDPRACHCCodeListSf8 = 0,
+		tDDPRACHCCodeListSf16 = 1,
+	};
 	static const Info theInfo;
 	TDDPRACHCCodeList(): Choice(&theInfo) {}
 };
@@ -23023,6 +24738,10 @@ class PRACHRACHInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PRACHRACHInfoModeSpecificInfoChoices {
+		pRACHRACHInfoModeSpecificInfoFdd = 0,
+		pRACHRACHInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	PRACHRACHInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -23086,6 +24805,10 @@ class TDD768PRACHCCodeList : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TDD768PRACHCCodeListChoices {
+		tDD768PRACHCCodeListSf32 = 0,
+		tDD768PRACHCCodeListSf16 = 1,
+	};
 	static const Info theInfo;
 	TDD768PRACHCCodeList(): Choice(&theInfo) {}
 };
@@ -23178,6 +24901,10 @@ class PRACHSystemInformationModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PRACHSystemInformationModeSpecificInfoChoices {
+		pRACHSystemInformationModeSpecificInfoFdd = 0,
+		pRACHSystemInformationModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	PRACHSystemInformationModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -23336,6 +25063,10 @@ class UplinkAdditionalTimeslotsParameters : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UplinkAdditionalTimeslotsParametersChoices {
+		uplinkAdditionalTimeslotsParametersSameAsLast = 0,
+		uplinkAdditionalTimeslotsParametersNewParameters = 1,
+	};
 	static const Info theInfo;
 	UplinkAdditionalTimeslotsParameters(): Choice(&theInfo) {}
 };
@@ -23357,6 +25088,10 @@ class UplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslots : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsChoices {
+		uplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutive = 0,
+		uplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsTimeslotList = 1,
+	};
 	static const Info theInfo;
 	UplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslots(): Choice(&theInfo) {}
 };
@@ -23365,6 +25100,10 @@ class UplinkTimeslotsCodesMoreTimeslots : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UplinkTimeslotsCodesMoreTimeslotsChoices {
+		uplinkTimeslotsCodesMoreTimeslotsNoMore = 0,
+		uplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslots = 1,
+	};
 	static const Info theInfo;
 	UplinkTimeslotsCodesMoreTimeslots(): Choice(&theInfo) {}
 };
@@ -23412,6 +25151,10 @@ class PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfigu
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfigurationChoices {
+		pUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration = 0,
+		pUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfigurationNewConfiguration = 1,
+	};
 	static const Info theInfo;
 	PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfiguration(): Choice(&theInfo) {}
 };
@@ -23433,6 +25176,10 @@ class PUSCHCapacityAllocationInfoPuschAllocation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PUSCHCapacityAllocationInfoPuschAllocationChoices {
+		pUSCHCapacityAllocationInfoPuschAllocationPuschAllocationPending = 0,
+		pUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignment = 1,
+	};
 	static const Info theInfo;
 	PUSCHCapacityAllocationInfoPuschAllocation(): Choice(&theInfo) {}
 };
@@ -23467,6 +25214,10 @@ class PUSCHPowerControlInfor4TddOption : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PUSCHPowerControlInfor4TddOptionChoices {
+		pUSCHPowerControlInfor4TddOptionTdd384 = 0,
+		pUSCHPowerControlInfor4TddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	PUSCHPowerControlInfor4TddOption(): Choice(&theInfo) {}
 };
@@ -23550,6 +25301,10 @@ class UplinkAdditionalTimeslotsLCRr4Parameters : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UplinkAdditionalTimeslotsLCRr4ParametersChoices {
+		uplinkAdditionalTimeslotsLCRr4ParametersSameAsLast = 0,
+		uplinkAdditionalTimeslotsLCRr4ParametersNewParameters = 1,
+	};
 	static const Info theInfo;
 	UplinkAdditionalTimeslotsLCRr4Parameters(): Choice(&theInfo) {}
 };
@@ -23571,6 +25326,10 @@ class UplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslots : public Choice 
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsChoices {
+		uplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsConsecutive = 0,
+		uplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsTimeslotList = 1,
+	};
 	static const Info theInfo;
 	UplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslots(): Choice(&theInfo) {}
 };
@@ -23579,6 +25338,10 @@ class UplinkTimeslotsCodesLCRr4MoreTimeslots : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UplinkTimeslotsCodesLCRr4MoreTimeslotsChoices {
+		uplinkTimeslotsCodesLCRr4MoreTimeslotsNoMore = 0,
+		uplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslots = 1,
+	};
 	static const Info theInfo;
 	UplinkTimeslotsCodesLCRr4MoreTimeslots(): Choice(&theInfo) {}
 };
@@ -23612,6 +25375,10 @@ class PUSCHInfor4TddOption : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PUSCHInfor4TddOptionChoices {
+		pUSCHInfor4TddOptionTdd384 = 0,
+		pUSCHInfor4TddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	PUSCHInfor4TddOption(): Choice(&theInfo) {}
 };
@@ -23645,6 +25412,10 @@ class PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfi
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfigurationChoices {
+		pUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration = 0,
+		pUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfigurationNewConfiguration = 1,
+	};
 	static const Info theInfo;
 	PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfiguration(): Choice(&theInfo) {}
 };
@@ -23666,6 +25437,10 @@ class PUSCHCapacityAllocationInfor4PuschAllocation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PUSCHCapacityAllocationInfor4PuschAllocationChoices {
+		pUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationPending = 0,
+		pUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignment = 1,
+	};
 	static const Info theInfo;
 	PUSCHCapacityAllocationInfor4PuschAllocation(): Choice(&theInfo) {}
 };
@@ -23702,6 +25477,11 @@ class PUSCHPowerControlInfor7TddOption : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum PUSCHPowerControlInfor7TddOptionChoices {
+		pUSCHPowerControlInfor7TddOptionTdd384 = 0,
+		pUSCHPowerControlInfor7TddOptionTdd768 = 1,
+		pUSCHPowerControlInfor7TddOptionTdd128 = 2,
+	};
 	static const Info theInfo;
 	PUSCHPowerControlInfor7TddOption(): Choice(&theInfo) {}
 };
@@ -23843,6 +25623,10 @@ class UplinkAdditionalTimeslotsVHCRParameters : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UplinkAdditionalTimeslotsVHCRParametersChoices {
+		uplinkAdditionalTimeslotsVHCRParametersSameAsLast = 0,
+		uplinkAdditionalTimeslotsVHCRParametersNewParameters = 1,
+	};
 	static const Info theInfo;
 	UplinkAdditionalTimeslotsVHCRParameters(): Choice(&theInfo) {}
 };
@@ -23864,6 +25648,10 @@ class UplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslots : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsChoices {
+		uplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutive = 0,
+		uplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsTimeslotList = 1,
+	};
 	static const Info theInfo;
 	UplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslots(): Choice(&theInfo) {}
 };
@@ -23872,6 +25660,10 @@ class UplinkTimeslotsCodesVHCRMoreTimeslots : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UplinkTimeslotsCodesVHCRMoreTimeslotsChoices {
+		uplinkTimeslotsCodesVHCRMoreTimeslotsNoMore = 0,
+		uplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslots = 1,
+	};
 	static const Info theInfo;
 	UplinkTimeslotsCodesVHCRMoreTimeslots(): Choice(&theInfo) {}
 };
@@ -23919,6 +25711,10 @@ class PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfi
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfigurationChoices {
+		pUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration = 0,
+		pUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfigurationNewConfiguration = 1,
+	};
 	static const Info theInfo;
 	PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfiguration(): Choice(&theInfo) {}
 };
@@ -23940,6 +25736,10 @@ class PUSCHCapacityAllocationInfor7PuschAllocation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PUSCHCapacityAllocationInfor7PuschAllocationChoices {
+		pUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationPending = 0,
+		pUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignment = 1,
+	};
 	static const Info theInfo;
 	PUSCHCapacityAllocationInfor7PuschAllocation(): Choice(&theInfo) {}
 };
@@ -24088,6 +25888,14 @@ class RepetitionPeriodAndLengthForSPS : public Choice {
 private:
 	static const void *choicesInfo[6];
 public:
+	enum RepetitionPeriodAndLengthForSPSChoices {
+		repetitionPeriodAndLengthForSPSRepetitionPeriod1 = 0,
+		repetitionPeriodAndLengthForSPSRepetitionPeriod2 = 1,
+		repetitionPeriodAndLengthForSPSRepetitionPeriod4 = 2,
+		repetitionPeriodAndLengthForSPSRepetitionPeriod8 = 3,
+		repetitionPeriodAndLengthForSPSRepetitionPeriod16 = 4,
+		repetitionPeriodAndLengthForSPSRepetitionPeriod32 = 5,
+	};
 	static const Info theInfo;
 	RepetitionPeriodAndLengthForSPS(): Choice(&theInfo) {}
 };
@@ -24114,6 +25922,17 @@ class RepPerLengthOffsetMICH : public Choice {
 private:
 	static const void *choicesInfo[9];
 public:
+	enum RepPerLengthOffsetMICHChoices {
+		repPerLengthOffsetMICHRpp42 = 0,
+		repPerLengthOffsetMICHRpp82 = 1,
+		repPerLengthOffsetMICHRpp84 = 2,
+		repPerLengthOffsetMICHRpp162 = 3,
+		repPerLengthOffsetMICHRpp164 = 4,
+		repPerLengthOffsetMICHRpp322 = 5,
+		repPerLengthOffsetMICHRpp324 = 6,
+		repPerLengthOffsetMICHRpp642 = 7,
+		repPerLengthOffsetMICHRpp644 = 8,
+	};
 	static const Info theInfo;
 	RepPerLengthOffsetMICH(): Choice(&theInfo) {}
 };
@@ -24138,6 +25957,10 @@ class RLAdditionInformationr6DldpchInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RLAdditionInformationr6DldpchInfoChoices {
+		dlDPCHInfoPerRL = 0,
+		dlFDPCHInfoPerRL = 1,
+	};
 	static const Info theInfo;
 	RLAdditionInformationr6DldpchInfo(): Choice(&theInfo) {}
 };
@@ -24161,6 +25984,10 @@ class RLAdditionInformationr7DldpchInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RLAdditionInformationr7DldpchInfoChoices {
+		dlDPCHInfoPerRL = 0,
+		dlFDPCHInfoPerRL = 1,
+	};
 	static const Info theInfo;
 	RLAdditionInformationr7DldpchInfo(): Choice(&theInfo) {}
 };
@@ -24184,6 +26011,10 @@ class RLAdditionInformationr8DldpchInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RLAdditionInformationr8DldpchInfoChoices {
+		dlDPCHInfoPerRL = 0,
+		dlFDPCHInfoPerRL = 1,
+	};
 	static const Info theInfo;
 	RLAdditionInformationr8DldpchInfo(): Choice(&theInfo) {}
 };
@@ -24194,6 +26025,10 @@ class DTXDRXTimingInfor7Timing : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DTXDRXTimingInfor7TimingChoices {
+		dTXDRXTimingInfor7TimingContinue = 0,
+		newTiming = 1,
+	};
 	static const Info theInfo;
 	DTXDRXTimingInfor7Timing(): Choice(&theInfo) {}
 };
@@ -24250,6 +26085,10 @@ class RLAdditionInformationr9DldpchInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum RLAdditionInformationr9DldpchInfoChoices {
+		dlDPCHInfoPerRL = 0,
+		dlFDPCHInfoPerRL = 1,
+	};
 	static const Info theInfo;
 	RLAdditionInformationr9DldpchInfo(): Choice(&theInfo) {}
 };
@@ -24486,6 +26325,10 @@ class SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfoChoices {
+		secondaryCCPCHInfoHCRVHCRr7ModeSpecificInfoTdd384 = 0,
+		secondaryCCPCHInfoHCRVHCRr7ModeSpecificInfoTdd768 = 1,
+	};
 	static const Info theInfo;
 	SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -24565,6 +26408,11 @@ class SecondaryCCPCHInfoMBMSr6ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum SecondaryCCPCHInfoMBMSr6ModeSpecificInfoChoices {
+		secondaryCCPCHInfoMBMSr6ModeSpecificInfoFdd = 0,
+		secondaryCCPCHInfoMBMSr6ModeSpecificInfoTdd384 = 1,
+		secondaryCCPCHInfoMBMSr6ModeSpecificInfoTdd128 = 2,
+	};
 	static const Info theInfo;
 	SecondaryCCPCHInfoMBMSr6ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -24636,6 +26484,14 @@ class MBMSMSCHSchedulingInfo : public Choice {
 private:
 	static const void *choicesInfo[6];
 public:
+	enum MBMSMSCHSchedulingInfoChoices {
+		mBMSMSCHSchedulingInfoSchedulingPeriod32Offset = 0,
+		mBMSMSCHSchedulingInfoSchedulingPeriod64Offset = 1,
+		mBMSMSCHSchedulingInfoSchedulingPeriod128Offset = 2,
+		mBMSMSCHSchedulingInfoSchedulingPeriod256Offset = 3,
+		mBMSMSCHSchedulingInfoSchedulingPeriod512Offset = 4,
+		mBMSMSCHSchedulingInfoSchedulingPeriod1024Offset = 5,
+	};
 	static const Info theInfo;
 	MBMSMSCHSchedulingInfo(): Choice(&theInfo) {}
 };
@@ -24690,6 +26546,10 @@ class SecondaryCCPCHInfoMBMSr7ModeSpecificInfoFddModulation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SecondaryCCPCHInfoMBMSr7ModeSpecificInfoFddModulationChoices {
+		secondaryCCPCHInfoMBMSr7ModeSpecificInfoFddModulationModQPSK = 0,
+		secondaryCCPCHInfoMBMSr7ModeSpecificInfoFddModulationMod16QAM = 1,
+	};
 	static const Info theInfo;
 	SecondaryCCPCHInfoMBMSr7ModeSpecificInfoFddModulation(): Choice(&theInfo) {}
 };
@@ -24779,6 +26639,12 @@ class SecondaryCCPCHInfoMBMSr7ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum SecondaryCCPCHInfoMBMSr7ModeSpecificInfoChoices {
+		secondaryCCPCHInfoMBMSr7ModeSpecificInfoFdd = 0,
+		secondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384 = 1,
+		secondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768 = 2,
+		secondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128 = 3,
+	};
 	static const Info theInfo;
 	SecondaryCCPCHInfoMBMSr7ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -24853,6 +26719,10 @@ class SecondaryCCPCHFrameType2InfoModulation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SecondaryCCPCHFrameType2InfoModulationChoices {
+		secondaryCCPCHFrameType2InfoModulationModQPSK = 0,
+		secondaryCCPCHFrameType2InfoModulationMod16QAM = 1,
+	};
 	static const Info theInfo;
 	SecondaryCCPCHFrameType2InfoModulation(): Choice(&theInfo) {}
 };
@@ -25031,6 +26901,10 @@ class TimeslotListr4 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TimeslotListr4Choices {
+		timeslotListr4Tdd384 = 0,
+		timeslotListr4Tdd128 = 1,
+	};
 	static const Info theInfo;
 	TimeslotListr4(): Choice(&theInfo) {}
 };
@@ -25094,6 +26968,10 @@ class ULCCTrCHr4TddOption : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULCCTrCHr4TddOptionChoices {
+		uLCCTrCHr4TddOptionTdd384 = 0,
+		uLCCTrCHr4TddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	ULCCTrCHr4TddOption(): Choice(&theInfo) {}
 };
@@ -25189,6 +27067,10 @@ class UplinkAdditionalTimeslotsLCRr7Parameters : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UplinkAdditionalTimeslotsLCRr7ParametersChoices {
+		uplinkAdditionalTimeslotsLCRr7ParametersSameAsLast = 0,
+		uplinkAdditionalTimeslotsLCRr7ParametersNewParameters = 1,
+	};
 	static const Info theInfo;
 	UplinkAdditionalTimeslotsLCRr7Parameters(): Choice(&theInfo) {}
 };
@@ -25210,6 +27092,10 @@ class UplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslots : public Choice 
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslotsChoices {
+		uplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslotsConsecutive = 0,
+		uplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslotsTimeslotList = 1,
+	};
 	static const Info theInfo;
 	UplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslots(): Choice(&theInfo) {}
 };
@@ -25218,6 +27104,10 @@ class UplinkTimeslotsCodesLCRr7MoreTimeslots : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UplinkTimeslotsCodesLCRr7MoreTimeslotsChoices {
+		uplinkTimeslotsCodesLCRr7MoreTimeslotsNoMore = 0,
+		uplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslots = 1,
+	};
 	static const Info theInfo;
 	UplinkTimeslotsCodesLCRr7MoreTimeslots(): Choice(&theInfo) {}
 };
@@ -25251,6 +27141,11 @@ class ULCCTrCHr7TddOption : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ULCCTrCHr7TddOptionChoices {
+		uLCCTrCHr7TddOptionTdd384 = 0,
+		uLCCTrCHr7TddOptionTdd768 = 1,
+		uLCCTrCHr7TddOptionTdd128 = 2,
+	};
 	static const Info theInfo;
 	ULCCTrCHr7TddOption(): Choice(&theInfo) {}
 };
@@ -25317,6 +27212,10 @@ class ULTimingAdvanceControl : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULTimingAdvanceControlChoices {
+		uLTimingAdvanceControlDisabled = 0,
+		uLTimingAdvanceControlEnabled = 1,
+	};
 	static const Info theInfo;
 	ULTimingAdvanceControl(): Choice(&theInfo) {}
 };
@@ -25338,6 +27237,10 @@ class ULDPCHInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHInfoModeSpecificInfoChoices {
+		uLDPCHInfoModeSpecificInfoFdd = 0,
+		uLDPCHInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -25358,6 +27261,10 @@ class ULChannelRequirement : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULChannelRequirementChoices {
+		ulDPCHInfo = 0,
+		dummy = 1,
+	};
 	static const Info theInfo;
 	ULChannelRequirement(): Choice(&theInfo) {}
 };
@@ -25411,6 +27318,10 @@ class ULTimingAdvanceControlr4EnabledTddOption : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULTimingAdvanceControlr4EnabledTddOptionChoices {
+		uLTimingAdvanceControlr4EnabledTddOptionTdd384 = 0,
+		uLTimingAdvanceControlr4EnabledTddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	ULTimingAdvanceControlr4EnabledTddOption(): Choice(&theInfo) {}
 };
@@ -25430,6 +27341,10 @@ class ULTimingAdvanceControlr4 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULTimingAdvanceControlr4Choices {
+		uLTimingAdvanceControlr4Disabled = 0,
+		uLTimingAdvanceControlr4Enabled = 1,
+	};
 	static const Info theInfo;
 	ULTimingAdvanceControlr4(): Choice(&theInfo) {}
 };
@@ -25451,6 +27366,10 @@ class ULDPCHInfor4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHInfor4ModeSpecificInfoChoices {
+		uLDPCHInfor4ModeSpecificInfoFdd = 0,
+		uLDPCHInfor4ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHInfor4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -25471,6 +27390,10 @@ class ULChannelRequirementr4 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULChannelRequirementr4Choices {
+		ulDPCHInfo = 0,
+		dummy = 1,
+	};
 	static const Info theInfo;
 	ULChannelRequirementr4(): Choice(&theInfo) {}
 };
@@ -25511,6 +27434,10 @@ class ULDPCHInfor5ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHInfor5ModeSpecificInfoChoices {
+		uLDPCHInfor5ModeSpecificInfoFdd = 0,
+		uLDPCHInfor5ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHInfor5ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -25531,6 +27458,10 @@ class ULChannelRequirementr5 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULChannelRequirementr5Choices {
+		ulDPCHInfo = 0,
+		dummy = 1,
+	};
 	static const Info theInfo;
 	ULChannelRequirementr5(): Choice(&theInfo) {}
 };
@@ -25539,6 +27470,11 @@ class ULChannelRequirementWithCPCHSetID : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ULChannelRequirementWithCPCHSetIDChoices {
+		ulDPCHInfo = 0,
+		dummy1 = 1,
+		dummy2 = 2,
+	};
 	static const Info theInfo;
 	ULChannelRequirementWithCPCHSetID(): Choice(&theInfo) {}
 };
@@ -25547,6 +27483,11 @@ class ULChannelRequirementWithCPCHSetIDr4 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ULChannelRequirementWithCPCHSetIDr4Choices {
+		ulDPCHInfo = 0,
+		dummy1 = 1,
+		dummy2 = 2,
+	};
 	static const Info theInfo;
 	ULChannelRequirementWithCPCHSetIDr4(): Choice(&theInfo) {}
 };
@@ -25555,6 +27496,11 @@ class ULChannelRequirementWithCPCHSetIDr5 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ULChannelRequirementWithCPCHSetIDr5Choices {
+		ulDPCHInfo = 0,
+		dummy1 = 1,
+		dummy2 = 2,
+	};
 	static const Info theInfo;
 	ULChannelRequirementWithCPCHSetIDr5(): Choice(&theInfo) {}
 };
@@ -25607,6 +27553,10 @@ class ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOption 
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOptionChoices {
+		uLDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384 = 0,
+		uLDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOption(): Choice(&theInfo) {}
 };
@@ -25627,6 +27577,10 @@ class ULDPCHPowerControlInfor6TddUlOLPCSignalling : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfor6TddUlOLPCSignallingChoices {
+		uLDPCHPowerControlInfor6TddUlOLPCSignallingBroadcastULOLPCinfo = 0,
+		uLDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalled = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfor6TddUlOLPCSignalling(): Choice(&theInfo) {}
 };
@@ -25647,6 +27601,10 @@ class ULDPCHPowerControlInfor6 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHPowerControlInfor6Choices {
+		uLDPCHPowerControlInfor6Fdd = 0,
+		uLDPCHPowerControlInfor6Tdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHPowerControlInfor6(): Choice(&theInfo) {}
 };
@@ -25686,6 +27644,10 @@ class ULDPCHInfor6ModeSpecificInfoFddDpdchPresence : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHInfor6ModeSpecificInfoFddDpdchPresenceChoices {
+		uLDPCHInfor6ModeSpecificInfoFddDpdchPresencePresent = 0,
+		uLDPCHInfor6ModeSpecificInfoFddDpdchPresenceNotPresent = 1,
+	};
 	static const Info theInfo;
 	ULDPCHInfor6ModeSpecificInfoFddDpdchPresence(): Choice(&theInfo) {}
 };
@@ -25720,6 +27682,10 @@ class ULDPCHInfor6ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHInfor6ModeSpecificInfoChoices {
+		uLDPCHInfor6ModeSpecificInfoFdd = 0,
+		uLDPCHInfor6ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHInfor6ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -25773,6 +27739,10 @@ class ULDPCHInfor7ModeSpecificInfoFddDpdchPresence : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHInfor7ModeSpecificInfoFddDpdchPresenceChoices {
+		uLDPCHInfor7ModeSpecificInfoFddDpdchPresencePresent = 0,
+		uLDPCHInfor7ModeSpecificInfoFddDpdchPresenceNotPresent = 1,
+	};
 	static const Info theInfo;
 	ULDPCHInfor7ModeSpecificInfoFddDpdchPresence(): Choice(&theInfo) {}
 };
@@ -25833,6 +27803,11 @@ class ULTimingAdvanceControlr7EnabledTddOption : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ULTimingAdvanceControlr7EnabledTddOptionChoices {
+		uLTimingAdvanceControlr7EnabledTddOptionTdd384 = 0,
+		uLTimingAdvanceControlr7EnabledTddOptionTdd768 = 1,
+		uLTimingAdvanceControlr7EnabledTddOptionTdd128 = 2,
+	};
 	static const Info theInfo;
 	ULTimingAdvanceControlr7EnabledTddOption(): Choice(&theInfo) {}
 };
@@ -25852,6 +27827,10 @@ class ULTimingAdvanceControlr7 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULTimingAdvanceControlr7Choices {
+		uLTimingAdvanceControlr7Disabled = 0,
+		uLTimingAdvanceControlr7Enabled = 1,
+	};
 	static const Info theInfo;
 	ULTimingAdvanceControlr7(): Choice(&theInfo) {}
 };
@@ -25873,6 +27852,10 @@ class ULDPCHInfor7ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULDPCHInfor7ModeSpecificInfoChoices {
+		uLDPCHInfor7ModeSpecificInfoFdd = 0,
+		uLDPCHInfor7ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULDPCHInfor7ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -25970,6 +27953,10 @@ class ULTimingAdvanceControlLCRr4 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULTimingAdvanceControlLCRr4Choices {
+		uLTimingAdvanceControlLCRr4Disabled = 0,
+		uLTimingAdvanceControlLCRr4Enabled = 1,
+	};
 	static const Info theInfo;
 	ULTimingAdvanceControlLCRr4(): Choice(&theInfo) {}
 };
@@ -26004,6 +27991,10 @@ class ULEDCHInformationext : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULEDCHInformationextChoices {
+		uLEDCHInformationextFdd = 0,
+		uLEDCHInformationextTdd = 1,
+	};
 	static const Info theInfo;
 	ULEDCHInformationext(): Choice(&theInfo) {}
 };
@@ -26063,6 +28054,10 @@ class ULEDCHInformationr7ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULEDCHInformationr7ModeSpecificInfoChoices {
+		uLEDCHInformationr7ModeSpecificInfoFdd = 0,
+		uLEDCHInformationr7ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	ULEDCHInformationr7ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -26685,6 +28680,10 @@ class BSICReported : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum BSICReportedChoices {
+		bSICReportedVerifiedBSIC = 0,
+		nonVerifiedBSIC = 1,
+	};
 	static const Info theInfo;
 	BSICReported(): Choice(&theInfo) {}
 };
@@ -26723,6 +28722,10 @@ class ForbiddenAffectCell : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ForbiddenAffectCellChoices {
+		fdd = 0,
+		tdd = 1,
+	};
 	static const Info theInfo;
 	ForbiddenAffectCell(): Choice(&theInfo) {}
 };
@@ -26864,6 +28867,17 @@ class IntraFreqEvent : public Choice {
 private:
 	static const void *choicesInfo[9];
 public:
+	enum IntraFreqEventChoices {
+		e1a = 0,
+		e1b = 1,
+		e1c = 2,
+		intraFreqEventE1d = 3,
+		e1e = 4,
+		e1f = 5,
+		intraFreqEventE1g = 6,
+		e1h = 7,
+		e1i = 8,
+	};
 	static const Info theInfo;
 	IntraFreqEvent(): Choice(&theInfo) {}
 };
@@ -26930,6 +28944,22 @@ class ReportingCellStatus : public Choice {
 private:
 	static const void *choicesInfo[14];
 public:
+	enum ReportingCellStatusChoices {
+		withinActiveSet = 0,
+		withinMonitoredSetUsedFreq = 1,
+		withinActiveAndOrMonitoredUsedFreq = 2,
+		withinDetectedSetUsedFreq = 3,
+		withinMonitoredAndOrDetectedUsedFreq = 4,
+		allActiveplusMonitoredSet = 5,
+		allActivePlusDetectedSet = 6,
+		allActivePlusMonitoredAndOrDetectedSet = 7,
+		withinVirtualActSet = 8,
+		withinMonitoredSetNonUsedFreq = 9,
+		withinMonitoredAndOrVirtualActiveSetNonUsedFreq = 10,
+		allVirtualActSetplusMonitoredSetNonUsedFreq = 11,
+		withinActSetOrVirtualActSetInterRATcells = 12,
+		withinActSetAndOrMonitoredUsedFreqOrVirtualActSetAndOrMonitoredNonUsedFreq = 13,
+	};
 	static const Info theInfo;
 	ReportingCellStatus(): Choice(&theInfo) {}
 };
@@ -26997,6 +29027,10 @@ class CellDCHReportCriteria : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellDCHReportCriteriaChoices {
+		intraFreqReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+	};
 	static const Info theInfo;
 	CellDCHReportCriteria(): Choice(&theInfo) {}
 };
@@ -27053,6 +29087,17 @@ class IntraFreqEventLCRr4 : public Choice {
 private:
 	static const void *choicesInfo[9];
 public:
+	enum IntraFreqEventLCRr4Choices {
+		e1a = 0,
+		e1b = 1,
+		e1c = 2,
+		intraFreqEventLCRr4E1d = 3,
+		e1e = 4,
+		e1f = 5,
+		intraFreqEventLCRr4E1g = 6,
+		e1h = 7,
+		e1i = 8,
+	};
 	static const Info theInfo;
 	IntraFreqEventLCRr4(): Choice(&theInfo) {}
 };
@@ -27088,6 +29133,10 @@ class CellDCHReportCriteriaLCRr4 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellDCHReportCriteriaLCRr4Choices {
+		intraFreqReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+	};
 	static const Info theInfo;
 	CellDCHReportCriteriaLCRr4(): Choice(&theInfo) {}
 };
@@ -27163,6 +29212,11 @@ class ReferenceTimeDifferenceToCell : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ReferenceTimeDifferenceToCellChoices {
+		referenceTimeDifferenceToCellAccuracy40 = 0,
+		referenceTimeDifferenceToCellAccuracy256 = 1,
+		referenceTimeDifferenceToCellAccuracy2560 = 2,
+	};
 	static const Info theInfo;
 	ReferenceTimeDifferenceToCell(): Choice(&theInfo) {}
 };
@@ -27219,6 +29273,10 @@ class CellInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellInfoModeSpecificInfoChoices {
+		cellInfoModeSpecificInfoFdd = 0,
+		cellInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CellInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -27273,6 +29331,10 @@ class TimeslotInfoListr4 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TimeslotInfoListr4Choices {
+		timeslotInfoListr4Tdd384 = 0,
+		timeslotInfoListr4Tdd128 = 1,
+	};
 	static const Info theInfo;
 	TimeslotInfoListr4(): Choice(&theInfo) {}
 };
@@ -27297,6 +29359,10 @@ class CellInfor4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellInfor4ModeSpecificInfoChoices {
+		cellInfor4ModeSpecificInfoFdd = 0,
+		cellInfor4ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CellInfor4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -27334,6 +29400,15 @@ class PenaltyTimeRSCP : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum PenaltyTimeRSCPChoices {
+		penaltyTimeRSCPNotUsed = 0,
+		pt10 = 1,
+		pt20 = 2,
+		pt30 = 3,
+		pt40 = 4,
+		pt50 = 5,
+		pt60 = 6,
+	};
 	static const Info theInfo;
 	PenaltyTimeRSCP(): Choice(&theInfo) {}
 };
@@ -27400,6 +29475,11 @@ class CellSelectReselectInfoMCRSCPModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum CellSelectReselectInfoMCRSCPModeSpecificInfoChoices {
+		cellSelectReselectInfoMCRSCPModeSpecificInfoFdd = 0,
+		cellSelectReselectInfoMCRSCPModeSpecificInfoTdd = 1,
+		cellSelectReselectInfoMCRSCPModeSpecificInfoGsm = 2,
+	};
 	static const Info theInfo;
 	CellSelectReselectInfoMCRSCPModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -27467,6 +29547,10 @@ class CellInfor9ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellInfor9ModeSpecificInfoChoices {
+		cellInfor9ModeSpecificInfoFdd = 0,
+		cellInfor9ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CellInfor9ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -27523,6 +29607,10 @@ class CellInfoSIRSCPModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellInfoSIRSCPModeSpecificInfoChoices {
+		cellInfoSIRSCPModeSpecificInfoFdd = 0,
+		cellInfoSIRSCPModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CellInfoSIRSCPModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -27565,6 +29653,11 @@ class CellSelectReselectInfoSIB1112RSCPModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum CellSelectReselectInfoSIB1112RSCPModeSpecificInfoChoices {
+		cellSelectReselectInfoSIB1112RSCPModeSpecificInfoFdd = 0,
+		cellSelectReselectInfoSIB1112RSCPModeSpecificInfoTdd = 1,
+		cellSelectReselectInfoSIB1112RSCPModeSpecificInfoGsm = 2,
+	};
 	static const Info theInfo;
 	CellSelectReselectInfoSIB1112RSCPModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -27655,6 +29748,10 @@ class CellInfoSIECN0ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellInfoSIECN0ModeSpecificInfoChoices {
+		cellInfoSIECN0ModeSpecificInfoFdd = 0,
+		cellInfoSIECN0ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CellInfoSIECN0ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -27697,6 +29794,11 @@ class CellSelectReselectInfoSIB1112ECN0ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum CellSelectReselectInfoSIB1112ECN0ModeSpecificInfoChoices {
+		cellSelectReselectInfoSIB1112ECN0ModeSpecificInfoFdd = 0,
+		cellSelectReselectInfoSIB1112ECN0ModeSpecificInfoTdd = 1,
+		cellSelectReselectInfoSIB1112ECN0ModeSpecificInfoGsm = 2,
+	};
 	static const Info theInfo;
 	CellSelectReselectInfoSIB1112ECN0ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -27786,6 +29888,10 @@ class CellInfoSIHCSRSCPModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellInfoSIHCSRSCPModeSpecificInfoChoices {
+		cellInfoSIHCSRSCPModeSpecificInfoFdd = 0,
+		cellInfoSIHCSRSCPModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CellInfoSIHCSRSCPModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -27828,6 +29934,11 @@ class CellSelectReselectInfoSIB1112HCSRSCPModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum CellSelectReselectInfoSIB1112HCSRSCPModeSpecificInfoChoices {
+		cellSelectReselectInfoSIB1112HCSRSCPModeSpecificInfoFdd = 0,
+		cellSelectReselectInfoSIB1112HCSRSCPModeSpecificInfoTdd = 1,
+		cellSelectReselectInfoSIB1112HCSRSCPModeSpecificInfoGsm = 2,
+	};
 	static const Info theInfo;
 	CellSelectReselectInfoSIB1112HCSRSCPModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -27917,6 +30028,10 @@ class CellInfoSIHCSECN0ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellInfoSIHCSECN0ModeSpecificInfoChoices {
+		cellInfoSIHCSECN0ModeSpecificInfoFdd = 0,
+		cellInfoSIHCSECN0ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CellInfoSIHCSECN0ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -27951,6 +30066,15 @@ class PenaltyTimeECN0 : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum PenaltyTimeECN0Choices {
+		penaltyTimeECN0NotUsed = 0,
+		pt10 = 1,
+		pt20 = 2,
+		pt30 = 3,
+		pt40 = 4,
+		pt50 = 5,
+		pt60 = 6,
+	};
 	static const Info theInfo;
 	PenaltyTimeECN0(): Choice(&theInfo) {}
 };
@@ -28017,6 +30141,11 @@ class CellSelectReselectInfoSIB1112HCSECN0ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum CellSelectReselectInfoSIB1112HCSECN0ModeSpecificInfoChoices {
+		cellSelectReselectInfoSIB1112HCSECN0ModeSpecificInfoFdd = 0,
+		cellSelectReselectInfoSIB1112HCSECN0ModeSpecificInfoTdd = 1,
+		cellSelectReselectInfoSIB1112HCSECN0ModeSpecificInfoGsm = 2,
+	};
 	static const Info theInfo;
 	CellSelectReselectInfoSIB1112HCSECN0ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -28077,6 +30206,10 @@ class SFNSFNObsTimeDifference : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SFNSFNObsTimeDifferenceChoices {
+		type1 = 0,
+		type2 = 1,
+	};
 	static const Info theInfo;
 	SFNSFNObsTimeDifference(): Choice(&theInfo) {}
 };
@@ -28126,6 +30259,10 @@ class CellSynchronisationInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellSynchronisationInfoModeSpecificInfoChoices {
+		cellSynchronisationInfoModeSpecificInfoFdd = 0,
+		cellSynchronisationInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CellSynchronisationInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -28186,6 +30323,10 @@ class CellMeasuredResultsModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellMeasuredResultsModeSpecificInfoChoices {
+		cellMeasuredResultsModeSpecificInfoFdd = 0,
+		cellMeasuredResultsModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CellMeasuredResultsModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -28251,6 +30392,10 @@ class CellMeasuredResultsr9ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellMeasuredResultsr9ModeSpecificInfoChoices {
+		cellMeasuredResultsr9ModeSpecificInfoFdd = 0,
+		cellMeasuredResultsr9ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CellMeasuredResultsr9ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -28293,6 +30438,10 @@ class CellMeasurementEventResults : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellMeasurementEventResultsChoices {
+		cellMeasurementEventResultsFdd = 0,
+		cellMeasurementEventResultsTdd = 1,
+	};
 	static const Info theInfo;
 	CellMeasurementEventResults(): Choice(&theInfo) {}
 };
@@ -28305,6 +30454,10 @@ class CellMeasurementEventResultsOnSecUlFreq : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellMeasurementEventResultsOnSecUlFreqChoices {
+		cellMeasurementEventResultsOnSecUlFreqFdd = 0,
+		cellMeasurementEventResultsOnSecUlFreqSpare = 1,
+	};
 	static const Info theInfo;
 	CellMeasurementEventResultsOnSecUlFreq(): Choice(&theInfo) {}
 };
@@ -28367,6 +30520,10 @@ class CellReportingQuantitiesModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CellReportingQuantitiesModeSpecificInfoChoices {
+		cellReportingQuantitiesModeSpecificInfoFdd = 0,
+		cellReportingQuantitiesModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CellReportingQuantitiesModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -28423,6 +30580,11 @@ class CellSelectReselectInfoSIB1112ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum CellSelectReselectInfoSIB1112ModeSpecificInfoChoices {
+		cellSelectReselectInfoSIB1112ModeSpecificInfoFdd = 0,
+		cellSelectReselectInfoSIB1112ModeSpecificInfoTdd = 1,
+		cellSelectReselectInfoSIB1112ModeSpecificInfoGsm = 2,
+	};
 	static const Info theInfo;
 	CellSelectReselectInfoSIB1112ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -28590,6 +30752,10 @@ class CSGCellInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CSGCellInfoModeSpecificInfoChoices {
+		cSGCellInfoModeSpecificInfoFdd = 0,
+		cSGCellInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	CSGCellInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -28677,6 +30843,10 @@ class CSGProximityIndicationRadioAccessTechnology : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum CSGProximityIndicationRadioAccessTechnologyChoices {
+		cSGProximityIndicationRadioAccessTechnologyUTRA = 0,
+		cSGProximityIndicationRadioAccessTechnologyEUTRA = 1,
+	};
 	static const Info theInfo;
 	CSGProximityIndicationRadioAccessTechnology(): Choice(&theInfo) {}
 };
@@ -29242,6 +31412,11 @@ class EUTRAFrequencyRemoval : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum EUTRAFrequencyRemovalChoices {
+		eUTRAFrequencyRemovalRemoveAllFrequencies = 0,
+		eUTRAFrequencyRemovalRemoveSomeFrequencies = 1,
+		eUTRAFrequencyRemovalRemoveNoFrequencies = 2,
+	};
 	static const Info theInfo;
 	EUTRAFrequencyRemoval(): Choice(&theInfo) {}
 };
@@ -29418,6 +31593,10 @@ class ForbiddenAffectCellr4 : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ForbiddenAffectCellr4Choices {
+		fdd = 0,
+		tdd = 1,
+	};
 	static const Info theInfo;
 	ForbiddenAffectCellr4(): Choice(&theInfo) {}
 };
@@ -29940,6 +32119,11 @@ class ULTrCHIdentity : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum ULTrCHIdentityChoices {
+		dch = 0,
+		uLTrCHIdentityRachorcpch = 1,
+		usch = 2,
+	};
 	static const Info theInfo;
 	ULTrCHIdentity(): Choice(&theInfo) {}
 };
@@ -29980,6 +32164,16 @@ class UEInternalEventResults : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum UEInternalEventResultsChoices {
+		uEInternalEventResultsEvent6a = 0,
+		uEInternalEventResultsEvent6b = 1,
+		uEInternalEventResultsEvent6c = 2,
+		uEInternalEventResultsEvent6d = 3,
+		uEInternalEventResultsEvent6e = 4,
+		event6f = 5,
+		event6g = 6,
+		uEInternalEventResultsSpare = 7,
+	};
 	static const Info theInfo;
 	UEInternalEventResults(): Choice(&theInfo) {}
 };
@@ -30026,6 +32220,10 @@ class UTRANGPSReferenceTimeResultModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UTRANGPSReferenceTimeResultModeSpecificInfoChoices {
+		uTRANGPSReferenceTimeResultModeSpecificInfoFdd = 0,
+		uTRANGPSReferenceTimeResultModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UTRANGPSReferenceTimeResultModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -30075,6 +32273,10 @@ class UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfo :
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfoChoices {
+		uEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfoFdd = 0,
+		uEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -30095,6 +32297,11 @@ class UEPositioningPositionEstimateInfoReferenceTime : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum UEPositioningPositionEstimateInfoReferenceTimeChoices {
+		utranGPSReferenceTimeResult = 0,
+		gpsReferenceTimeOnly = 1,
+		uEPositioningPositionEstimateInfoReferenceTimeCellTiming = 2,
+	};
 	static const Info theInfo;
 	UEPositioningPositionEstimateInfoReferenceTime(): Choice(&theInfo) {}
 };
@@ -30103,6 +32310,13 @@ class PositionEstimate : public Choice {
 private:
 	static const void *choicesInfo[5];
 public:
+	enum PositionEstimateChoices {
+		ellipsoidPoint = 0,
+		ellipsoidPointUncertCircle = 1,
+		ellipsoidPointUncertEllipse = 2,
+		ellipsoidPointAltitude = 3,
+		ellipsoidPointAltitudeEllipse = 4,
+	};
 	static const Info theInfo;
 	PositionEstimate(): Choice(&theInfo) {}
 };
@@ -30192,6 +32406,10 @@ class UEPositioningOTDOAMeasurementModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOAMeasurementModeSpecificInfoChoices {
+		uEPositioningOTDOAMeasurementModeSpecificInfoFdd = 0,
+		uEPositioningOTDOAMeasurementModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOAMeasurementModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -30223,6 +32441,10 @@ class NeighbourModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum NeighbourModeSpecificInfoChoices {
+		neighbourModeSpecificInfoFdd = 0,
+		neighbourModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	NeighbourModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -30259,6 +32481,10 @@ class UEPositioningGPSMeasurementResultsReferenceTime : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningGPSMeasurementResultsReferenceTimeChoices {
+		utranGPSReferenceTimeResult = 0,
+		gpsReferenceTimeOnly = 1,
+	};
 	static const Info theInfo;
 	UEPositioningGPSMeasurementResultsReferenceTime(): Choice(&theInfo) {}
 };
@@ -30320,6 +32546,12 @@ class UEPositioningMeasurementEventResults : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum UEPositioningMeasurementEventResultsChoices {
+		event7a = 0,
+		event7b = 1,
+		event7c = 2,
+		uEPositioningMeasurementEventResultsAdditionalOrReplacedPosMeasEvent = 3,
+	};
 	static const Info theInfo;
 	UEPositioningMeasurementEventResults(): Choice(&theInfo) {}
 };
@@ -30330,6 +32562,16 @@ class EventResults : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum EventResultsChoices {
+		intraFreqEventResults = 0,
+		interFreqEventResults = 1,
+		interRATEventResults = 2,
+		trafficVolumeEventResults = 3,
+		qualityEventResults = 4,
+		ueInternalEventResults = 5,
+		uepositioningMeasurementEventResults = 6,
+		eventResultsSpare = 7,
+	};
 	static const Info theInfo;
 	EventResults(): Choice(&theInfo) {}
 };
@@ -30382,6 +32624,10 @@ class UTRANGANSSReferenceTimeMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UTRANGANSSReferenceTimeModeChoices {
+		uTRANGANSSReferenceTimeModeFdd = 0,
+		uTRANGANSSReferenceTimeModeTdd = 1,
+	};
 	static const Info theInfo;
 	UTRANGANSSReferenceTimeMode(): Choice(&theInfo) {}
 };
@@ -30426,6 +32672,10 @@ class UEPositioningPositionEstimateInfov770extReferenceTimeOptionsR7ReferenceTim
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningPositionEstimateInfov770extReferenceTimeOptionsR7ReferenceTimeChoices {
+		utranGANSSReferenceTimeResult = 0,
+		ganssReferenceTimeOnly = 1,
+	};
 	static const Info theInfo;
 	UEPositioningPositionEstimateInfov770extReferenceTimeOptionsR7ReferenceTime(): Choice(&theInfo) {}
 };
@@ -30446,6 +32696,10 @@ class UEPositioningPositionEstimateInfov770extReferenceTimeOptions : public Choi
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningPositionEstimateInfov770extReferenceTimeOptionsChoices {
+		uEPositioningPositionEstimateInfov770extReferenceTimeOptionsEarlierthanr7 = 0,
+		uEPositioningPositionEstimateInfov770extReferenceTimeOptionsR7 = 1,
+	};
 	static const Info theInfo;
 	UEPositioningPositionEstimateInfov770extReferenceTimeOptions(): Choice(&theInfo) {}
 };
@@ -30549,6 +32803,12 @@ class VelocityEstimate : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum VelocityEstimateChoices {
+		horizontalVelocity = 0,
+		horizontalWithVerticalVelocity = 1,
+		horizontalVelocityWithUncertainty = 2,
+		horizontalWithVerticalVelocityAndUncertainty = 3,
+	};
 	static const Info theInfo;
 	VelocityEstimate(): Choice(&theInfo) {}
 };
@@ -30584,6 +32844,10 @@ class UEPositioningGANSSMeasuredResultsReferenceTime : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningGANSSMeasuredResultsReferenceTimeChoices {
+		utranGANSSReferenceTimeResult = 0,
+		ganssReferenceTimeOnly = 1,
+	};
 	static const Info theInfo;
 	UEPositioningGANSSMeasuredResultsReferenceTime(): Choice(&theInfo) {}
 };
@@ -30616,6 +32880,12 @@ class UEPositioningMeasurementEventResultsv770ext : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum UEPositioningMeasurementEventResultsv770extChoices {
+		event7a = 0,
+		event7c = 1,
+		event7d = 2,
+		uEPositioningMeasurementEventResultsv770extSpare = 3,
+	};
 	static const Info theInfo;
 	UEPositioningMeasurementEventResultsv770ext(): Choice(&theInfo) {}
 };
@@ -30624,6 +32894,9 @@ class EventResultsv770ext : public Choice {
 private:
 	static const void *choicesInfo[1];
 public:
+	enum EventResultsv770extChoices {
+		uepositioningMeasurementEventResults = 0,
+	};
 	static const Info theInfo;
 	EventResultsv770ext(): Choice(&theInfo) {}
 };
@@ -30653,6 +32926,9 @@ class UEPositioningMeasurementEventResultsv860ext : public Choice {
 private:
 	static const void *choicesInfo[1];
 public:
+	enum UEPositioningMeasurementEventResultsv860extChoices {
+		event7d = 0,
+	};
 	static const Info theInfo;
 	UEPositioningMeasurementEventResultsv860ext(): Choice(&theInfo) {}
 };
@@ -30661,6 +32937,9 @@ class EventResultsv860ext : public Choice {
 private:
 	static const void *choicesInfo[1];
 public:
+	enum EventResultsv860extChoices {
+		uepositioningMeasurementEventResults = 0,
+	};
 	static const Info theInfo;
 	EventResultsv860ext(): Choice(&theInfo) {}
 };
@@ -31655,6 +33934,10 @@ class UEPositioningGANSSAuxiliaryInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningGANSSAuxiliaryInfoChoices {
+		ganssID1 = 0,
+		ganssID3 = 1,
+	};
 	static const Info theInfo;
 	UEPositioningGANSSAuxiliaryInfo(): Choice(&theInfo) {}
 };
@@ -32106,6 +34389,11 @@ class RemovedInterFreqCellList : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum RemovedInterFreqCellListChoices {
+		removedInterFreqCellListRemoveAllInterFreqCells = 0,
+		removedInterFreqCellListRemoveSomeInterFreqCells = 1,
+		removedInterFreqCellListRemoveNoInterFreqCells = 2,
+	};
 	static const Info theInfo;
 	RemovedInterFreqCellList(): Choice(&theInfo) {}
 };
@@ -32185,6 +34473,10 @@ class NewInterFreqCellr8ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum NewInterFreqCellr8ModeSpecificInfoChoices {
+		newInterFreqCellr8ModeSpecificInfoNoInfo = 0,
+		newInterFreqCellr8ModeSpecificInfoTdd128 = 1,
+	};
 	static const Info theInfo;
 	NewInterFreqCellr8ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -32237,6 +34529,10 @@ class NewInterFreqCellr9ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum NewInterFreqCellr9ModeSpecificInfoChoices {
+		newInterFreqCellr9ModeSpecificInfoNoInfo = 0,
+		newInterFreqCellr9ModeSpecificInfoTdd128 = 1,
+	};
 	static const Info theInfo;
 	NewInterFreqCellr9ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -32274,6 +34570,10 @@ class InterFreqSIAcquisitionModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum InterFreqSIAcquisitionModeSpecificInfoChoices {
+		interFreqSIAcquisitionModeSpecificInfoFdd = 0,
+		interFreqSIAcquisitionModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	InterFreqSIAcquisitionModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -32531,6 +34831,14 @@ class InterFreqEvent : public Choice {
 private:
 	static const void *choicesInfo[6];
 public:
+	enum InterFreqEventChoices {
+		event2a = 0,
+		event2b = 1,
+		event2c = 2,
+		event2d = 3,
+		event2e = 4,
+		event2f = 5,
+	};
 	static const Info theInfo;
 	InterFreqEvent(): Choice(&theInfo) {}
 };
@@ -32539,6 +34847,14 @@ class InterFreqEventr6 : public Choice {
 private:
 	static const void *choicesInfo[6];
 public:
+	enum InterFreqEventr6Choices {
+		event2a = 0,
+		event2b = 1,
+		event2c = 2,
+		event2d = 3,
+		event2e = 4,
+		event2f = 5,
+	};
 	static const Info theInfo;
 	InterFreqEventr6(): Choice(&theInfo) {}
 };
@@ -32625,6 +34941,10 @@ class IntraFreqMeasQuantityModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum IntraFreqMeasQuantityModeSpecificInfoChoices {
+		intraFreqMeasQuantityModeSpecificInfoFdd = 0,
+		intraFreqMeasQuantityModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	IntraFreqMeasQuantityModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -32678,6 +34998,10 @@ class InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecif
 private:
 	static const void *choicesInfo[2];
 public:
+	enum InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfoChoices {
+		interFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfoFdd = 0,
+		interFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -32698,6 +35022,10 @@ class InterFreqMeasQuantityReportingCriteria : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum InterFreqMeasQuantityReportingCriteriaChoices {
+		interFreqMeasQuantityReportingCriteriaIntraFreqReportingCriteria = 0,
+		interFreqMeasQuantityReportingCriteriaInterFreqReportingCriteria = 1,
+	};
 	static const Info theInfo;
 	InterFreqMeasQuantityReportingCriteria(): Choice(&theInfo) {}
 };
@@ -32883,6 +35211,12 @@ class DummyInterFreqRACHReportingInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum DummyInterFreqRACHReportingInfoModeSpecificInfoChoices {
+		dummyInterFreqRACHReportingInfoModeSpecificInfoFdd = 0,
+		dummyInterFreqRACHReportingInfoModeSpecificInfoTdd = 1,
+		interFreqRACHReportingThreshold = 2,
+		maxReportedCellsOnRACHinterFreq = 3,
+	};
 	static const Info theInfo;
 	DummyInterFreqRACHReportingInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -32924,6 +35258,10 @@ class InterFreqRACHReportingInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum InterFreqRACHReportingInfoModeSpecificInfoChoices {
+		interFreqRACHReportingInfoModeSpecificInfoFdd = 0,
+		interFreqRACHReportingInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	InterFreqRACHReportingInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -32979,6 +35317,12 @@ class InterFreqReportCriteria : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum InterFreqReportCriteriaChoices {
+		intraFreqReportingCriteria = 0,
+		interFreqReportingCriteria = 1,
+		periodicalReportingCriteria = 2,
+		noReporting = 3,
+	};
 	static const Info theInfo;
 	InterFreqReportCriteria(): Choice(&theInfo) {}
 };
@@ -32991,6 +35335,17 @@ class IntraFreqEventr4 : public Choice {
 private:
 	static const void *choicesInfo[9];
 public:
+	enum IntraFreqEventr4Choices {
+		e1a = 0,
+		e1b = 1,
+		e1c = 2,
+		intraFreqEventr4E1d = 3,
+		e1e = 4,
+		e1f = 5,
+		intraFreqEventr4E1g = 6,
+		e1h = 7,
+		e1i = 8,
+	};
 	static const Info theInfo;
 	IntraFreqEventr4(): Choice(&theInfo) {}
 };
@@ -33026,6 +35381,12 @@ class InterFreqReportCriteriar4 : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum InterFreqReportCriteriar4Choices {
+		intraFreqReportingCriteria = 0,
+		interFreqReportingCriteria = 1,
+		periodicalReportingCriteria = 2,
+		noReporting = 3,
+	};
 	static const Info theInfo;
 	InterFreqReportCriteriar4(): Choice(&theInfo) {}
 };
@@ -33036,6 +35397,18 @@ class IntraFreqEventr6 : public Choice {
 private:
 	static const void *choicesInfo[10];
 public:
+	enum IntraFreqEventr6Choices {
+		e1a = 0,
+		e1b = 1,
+		e1c = 2,
+		e1d = 3,
+		e1e = 4,
+		e1f = 5,
+		intraFreqEventr6E1g = 6,
+		e1h = 7,
+		e1i = 8,
+		e1j = 9,
+	};
 	static const Info theInfo;
 	IntraFreqEventr6(): Choice(&theInfo) {}
 };
@@ -33082,6 +35455,12 @@ class InterFreqReportCriteriar6 : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum InterFreqReportCriteriar6Choices {
+		intraFreqReportingCriteria = 0,
+		interFreqReportingCriteria = 1,
+		periodicalReportingCriteria = 2,
+		noReporting = 3,
+	};
 	static const Info theInfo;
 	InterFreqReportCriteriar6(): Choice(&theInfo) {}
 };
@@ -33092,6 +35471,18 @@ class IntraFreqEventr7 : public Choice {
 private:
 	static const void *choicesInfo[10];
 public:
+	enum IntraFreqEventr7Choices {
+		e1a = 0,
+		e1b = 1,
+		e1c = 2,
+		e1d = 3,
+		e1e = 4,
+		e1f = 5,
+		intraFreqEventr7E1g = 6,
+		e1h = 7,
+		e1i = 8,
+		e1j = 9,
+	};
 	static const Info theInfo;
 	IntraFreqEventr7(): Choice(&theInfo) {}
 };
@@ -33127,6 +35518,12 @@ class InterFreqReportCriteriar7 : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum InterFreqReportCriteriar7Choices {
+		intraFreqReportingCriteria = 0,
+		interFreqReportingCriteria = 1,
+		periodicalReportingCriteria = 2,
+		noReporting = 3,
+	};
 	static const Info theInfo;
 	InterFreqReportCriteriar7(): Choice(&theInfo) {}
 };
@@ -33135,6 +35532,13 @@ class IntraFreqEventOnSecULFreq : public Choice {
 private:
 	static const void *choicesInfo[5];
 public:
+	enum IntraFreqEventOnSecULFreqChoices {
+		e1a = 0,
+		e1b = 1,
+		e1c = 2,
+		e1e = 3,
+		e1f = 4,
+	};
 	static const Info theInfo;
 	IntraFreqEventOnSecULFreq(): Choice(&theInfo) {}
 };
@@ -33183,6 +35587,12 @@ class InterFreqReportCriteriar9 : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum InterFreqReportCriteriar9Choices {
+		intraFreqReportingCriteria = 0,
+		interFreqReportingCriteria = 1,
+		periodicalReportingCriteria = 2,
+		noReporting = 3,
+	};
 	static const Info theInfo;
 	InterFreqReportCriteriar9(): Choice(&theInfo) {}
 };
@@ -33244,6 +35654,11 @@ class UEAutonomousUpdateMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum UEAutonomousUpdateModeChoices {
+		uEAutonomousUpdateModeDummy = 0,
+		uEAutonomousUpdateModeOnWithNoReporting = 1,
+		dummy2 = 2,
+	};
 	static const Info theInfo;
 	UEAutonomousUpdateMode(): Choice(&theInfo) {}
 };
@@ -33379,6 +35794,12 @@ class InterRATTargetCellDescriptionTechnologySpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum InterRATTargetCellDescriptionTechnologySpecificInfoChoices {
+		interRATTargetCellDescriptionTechnologySpecificInfoGsm = 0,
+		interRATTargetCellDescriptionTechnologySpecificInfoIs2000 = 1,
+		interRATTargetCellDescriptionTechnologySpecificInfoSpare2 = 2,
+		interRATTargetCellDescriptionTechnologySpecificInfoSpare1 = 3,
+	};
 	static const Info theInfo;
 	InterRATTargetCellDescriptionTechnologySpecificInfo(): Choice(&theInfo) {}
 };
@@ -33406,6 +35827,11 @@ class RemovedInterRATCellList : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum RemovedInterRATCellListChoices {
+		removedInterRATCellListRemoveAllInterRATCells = 0,
+		removedInterRATCellListRemoveSomeInterRATCells = 1,
+		removedInterRATCellListRemoveNoInterRATCells = 2,
+	};
 	static const Info theInfo;
 	RemovedInterRATCellList(): Choice(&theInfo) {}
 };
@@ -33458,6 +35884,12 @@ class NewInterRATCellTechnologySpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum NewInterRATCellTechnologySpecificInfoChoices {
+		newInterRATCellTechnologySpecificInfoGsm = 0,
+		newInterRATCellTechnologySpecificInfoIs2000 = 1,
+		newInterRATCellTechnologySpecificInfoAbsent = 2,
+		newInterRATCellTechnologySpecificInfoSpare1 = 3,
+	};
 	static const Info theInfo;
 	NewInterRATCellTechnologySpecificInfo(): Choice(&theInfo) {}
 };
@@ -33526,6 +35958,12 @@ class NewInterRATCellBTechnologySpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum NewInterRATCellBTechnologySpecificInfoChoices {
+		newInterRATCellBTechnologySpecificInfoGsm = 0,
+		newInterRATCellBTechnologySpecificInfoIs2000 = 1,
+		newInterRATCellBTechnologySpecificInfoAbsent = 2,
+		newInterRATCellBTechnologySpecificInfoSpare1 = 3,
+	};
 	static const Info theInfo;
 	NewInterRATCellBTechnologySpecificInfo(): Choice(&theInfo) {}
 };
@@ -33587,6 +36025,12 @@ class InterRATEvent : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum InterRATEventChoices {
+		event3a = 0,
+		event3b = 1,
+		event3c = 2,
+		event3d = 3,
+	};
 	static const Info theInfo;
 	InterRATEvent(): Choice(&theInfo) {}
 };
@@ -33638,6 +36082,10 @@ class InterRATMeasQuantityRatSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum InterRATMeasQuantityRatSpecificInfoChoices {
+		interRATMeasQuantityRatSpecificInfoGsm = 0,
+		interRATMeasQuantityRatSpecificInfoIs2000 = 1,
+	};
 	static const Info theInfo;
 	InterRATMeasQuantityRatSpecificInfo(): Choice(&theInfo) {}
 };
@@ -33711,6 +36159,11 @@ class InterRATMeasQuantityr8RatSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum InterRATMeasQuantityr8RatSpecificInfoChoices {
+		interRATMeasQuantityr8RatSpecificInfoGsm = 0,
+		interRATMeasQuantityr8RatSpecificInfoIs2000 = 1,
+		interRATMeasQuantityr8RatSpecificInfoEUTRA = 2,
+	};
 	static const Info theInfo;
 	InterRATMeasQuantityr8RatSpecificInfo(): Choice(&theInfo) {}
 };
@@ -33733,6 +36186,10 @@ class InterRATMeasuredResults : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum InterRATMeasuredResultsChoices {
+		gsm = 0,
+		interRATMeasuredResultsSpare = 1,
+	};
 	static const Info theInfo;
 	InterRATMeasuredResults(): Choice(&theInfo) {}
 };
@@ -33764,6 +36221,9 @@ class InterRATReportingQuantityRatSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[1];
 public:
+	enum InterRATReportingQuantityRatSpecificInfoChoices {
+		interRATReportingQuantityRatSpecificInfoGsm = 0,
+	};
 	static const Info theInfo;
 	InterRATReportingQuantityRatSpecificInfo(): Choice(&theInfo) {}
 };
@@ -33795,6 +36255,11 @@ class InterRATReportCriteria : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum InterRATReportCriteriaChoices {
+		interRATReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+		noReporting = 2,
+	};
 	static const Info theInfo;
 	InterRATReportCriteria(): Choice(&theInfo) {}
 };
@@ -33845,6 +36310,10 @@ class InterRATMeasurementr8InterRATMeasurementObjects : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum InterRATMeasurementr8InterRATMeasurementObjectsChoices {
+		interRATCellInfoList = 0,
+		eutraFrequencyList = 1,
+	};
 	static const Info theInfo;
 	InterRATMeasurementr8InterRATMeasurementObjects(): Choice(&theInfo) {}
 };
@@ -33885,6 +36354,10 @@ class InterRATReportingQuantityr8RatSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum InterRATReportingQuantityr8RatSpecificInfoChoices {
+		interRATReportingQuantityr8RatSpecificInfoGsm = 0,
+		interRATReportingQuantityr8RatSpecificInfoEutra = 1,
+	};
 	static const Info theInfo;
 	InterRATReportingQuantityr8RatSpecificInfo(): Choice(&theInfo) {}
 };
@@ -33920,6 +36393,10 @@ class InterRATMeasurementr9InterRATMeasurementObjects : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum InterRATMeasurementr9InterRATMeasurementObjectsChoices {
+		interRATCellInfoList = 0,
+		eutraFrequencyList = 1,
+	};
 	static const Info theInfo;
 	InterRATMeasurementr9InterRATMeasurementObjects(): Choice(&theInfo) {}
 };
@@ -33971,6 +36448,11 @@ class RemovedIntraFreqCellList : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum RemovedIntraFreqCellListChoices {
+		removedIntraFreqCellListRemoveAllIntraFreqCells = 0,
+		removedIntraFreqCellListRemoveSomeIntraFreqCells = 1,
+		removedIntraFreqCellListRemoveNoIntraFreqCells = 2,
+	};
 	static const Info theInfo;
 	RemovedIntraFreqCellList(): Choice(&theInfo) {}
 };
@@ -34039,6 +36521,11 @@ class RemovedIntraFreqCellListOnSecULFreq : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum RemovedIntraFreqCellListOnSecULFreqChoices {
+		removedIntraFreqCellListOnSecULFreqRemoveAllIntraFreqCells = 0,
+		removedIntraFreqCellListOnSecULFreqRemoveSomeIntraFreqCells = 1,
+		removedIntraFreqCellListOnSecULFreqRemoveNoIntraFreqCells = 2,
+	};
 	static const Info theInfo;
 	RemovedIntraFreqCellListOnSecULFreq(): Choice(&theInfo) {}
 };
@@ -34114,6 +36601,10 @@ class IntraFreqSIAcquisitionModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum IntraFreqSIAcquisitionModeSpecificInfoChoices {
+		intraFreqSIAcquisitionModeSpecificInfoFdd = 0,
+		intraFreqSIAcquisitionModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	IntraFreqSIAcquisitionModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -34429,6 +36920,10 @@ class IntraFreqReportingQuantityForRACHModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum IntraFreqReportingQuantityForRACHModeSpecificInfoChoices {
+		intraFreqReportingQuantityForRACHModeSpecificInfoFdd = 0,
+		intraFreqReportingQuantityForRACHModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	IntraFreqReportingQuantityForRACHModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -34652,6 +37147,11 @@ class IntraFreqReportCriteria : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum IntraFreqReportCriteriaChoices {
+		intraFreqReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+		noReporting = 2,
+	};
 	static const Info theInfo;
 	IntraFreqReportCriteria(): Choice(&theInfo) {}
 };
@@ -34660,6 +37160,11 @@ class IntraFreqReportCriteriar4 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum IntraFreqReportCriteriar4Choices {
+		intraFreqReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+		noReporting = 2,
+	};
 	static const Info theInfo;
 	IntraFreqReportCriteriar4(): Choice(&theInfo) {}
 };
@@ -34668,6 +37173,11 @@ class IntraFreqReportCriteriar6 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum IntraFreqReportCriteriar6Choices {
+		intraFreqReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+		noReporting = 2,
+	};
 	static const Info theInfo;
 	IntraFreqReportCriteriar6(): Choice(&theInfo) {}
 };
@@ -34676,6 +37186,11 @@ class IntraFreqReportCriteriar7 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum IntraFreqReportCriteriar7Choices {
+		intraFreqReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+		noReporting = 2,
+	};
 	static const Info theInfo;
 	IntraFreqReportCriteriar7(): Choice(&theInfo) {}
 };
@@ -34684,6 +37199,11 @@ class IntraFreqReportCriteriar9 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum IntraFreqReportCriteriar9Choices {
+		intraFreqReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+		noReporting = 2,
+	};
 	static const Info theInfo;
 	IntraFreqReportCriteriar9(): Choice(&theInfo) {}
 };
@@ -34913,6 +37433,10 @@ class QualityMeasuredResultsModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum QualityMeasuredResultsModeSpecificInfoChoices {
+		qualityMeasuredResultsModeSpecificInfoFdd = 0,
+		qualityMeasuredResultsModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	QualityMeasuredResultsModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -34977,6 +37501,10 @@ class UEInternalMeasuredResultsModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEInternalMeasuredResultsModeSpecificInfoChoices {
+		uEInternalMeasuredResultsModeSpecificInfoFdd = 0,
+		uEInternalMeasuredResultsModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEInternalMeasuredResultsModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -35108,6 +37636,16 @@ class MeasuredResults : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum MeasuredResultsChoices {
+		intraFreqMeasuredResultsList = 0,
+		interFreqMeasuredResultsList = 1,
+		interRATMeasuredResultsList = 2,
+		trafficVolumeMeasuredResultsList = 3,
+		qualityMeasuredResults = 4,
+		ueInternalMeasuredResults = 5,
+		uepositioningMeasuredResults = 6,
+		measuredResultsSpare = 7,
+	};
 	static const Info theInfo;
 	MeasuredResults(): Choice(&theInfo) {}
 };
@@ -35140,6 +37678,10 @@ class Neighbourv390extModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum Neighbourv390extModeSpecificInfoChoices {
+		neighbourv390extModeSpecificInfoFdd = 0,
+		neighbourv390extModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	Neighbourv390extModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -35194,6 +37736,10 @@ class MeasuredResultsv590ext : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasuredResultsv590extChoices {
+		intraFrequencyMeasuredResultsList = 0,
+		interFrequencyMeasuredResultsList = 1,
+	};
 	static const Info theInfo;
 	MeasuredResultsv590ext(): Choice(&theInfo) {}
 };
@@ -35240,6 +37786,10 @@ class UEInternalMeasuredResultsv770extModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEInternalMeasuredResultsv770extModeSpecificInfoChoices {
+		uEInternalMeasuredResultsv770extModeSpecificInfoTdd384768 = 0,
+		uEInternalMeasuredResultsv770extModeSpecificInfoTdd128 = 1,
+	};
 	static const Info theInfo;
 	UEInternalMeasuredResultsv770extModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -35326,6 +37876,10 @@ class MeasuredResultsv770ext : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasuredResultsv770extChoices {
+		ueInternalMeasuredResults = 0,
+		uepositioningMeasuredResults = 1,
+	};
 	static const Info theInfo;
 	MeasuredResultsv770ext(): Choice(&theInfo) {}
 };
@@ -35377,6 +37931,9 @@ class MeasuredResultsv860ext : public Choice {
 private:
 	static const void *choicesInfo[1];
 public:
+	enum MeasuredResultsv860extChoices {
+		uepositioningMeasuredResults = 0,
+	};
 	static const Info theInfo;
 	MeasuredResultsv860ext(): Choice(&theInfo) {}
 };
@@ -35385,6 +37942,10 @@ class MeasuredResultsv920ext : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasuredResultsv920extChoices {
+		intraFreqMeasuredResultsList = 0,
+		interFreqMeasuredResultsList = 1,
+	};
 	static const Info theInfo;
 	MeasuredResultsv920ext(): Choice(&theInfo) {}
 };
@@ -35427,6 +37988,16 @@ class MeasuredResultsLCRr4 : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum MeasuredResultsLCRr4Choices {
+		intraFreqMeasuredResultsList = 0,
+		interFreqMeasuredResultsList = 1,
+		interRATMeasuredResultsList = 2,
+		trafficVolumeMeasuredResultsList = 3,
+		qualityMeasuredResults = 4,
+		ueInternalMeasuredResults = 5,
+		uepositioniingMeasuredResults = 6,
+		measuredResultsLCRr4Spare = 7,
+	};
 	static const Info theInfo;
 	MeasuredResultsLCRr4(): Choice(&theInfo) {}
 };
@@ -35461,6 +38032,12 @@ class MeasuredResultsOnRACHCurrentCellModeSpecificInfoFddMeasurementQuantity : p
 private:
 	static const void *choicesInfo[4];
 public:
+	enum MeasuredResultsOnRACHCurrentCellModeSpecificInfoFddMeasurementQuantityChoices {
+		cpichEcN0 = 0,
+		cpichRSCP = 1,
+		pathloss = 2,
+		measuredResultsOnRACHCurrentCellModeSpecificInfoFddMeasurementQuantitySpare = 3,
+	};
 	static const Info theInfo;
 	MeasuredResultsOnRACHCurrentCellModeSpecificInfoFddMeasurementQuantity(): Choice(&theInfo) {}
 };
@@ -35492,6 +38069,10 @@ class MeasuredResultsOnRACHCurrentCellModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasuredResultsOnRACHCurrentCellModeSpecificInfoChoices {
+		measuredResultsOnRACHCurrentCellModeSpecificInfoFdd = 0,
+		measuredResultsOnRACHCurrentCellModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	MeasuredResultsOnRACHCurrentCellModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -35513,6 +38094,12 @@ class MonitoredCellRACHResultModeSpecificInfoFddMeasurementQuantity : public Cho
 private:
 	static const void *choicesInfo[4];
 public:
+	enum MonitoredCellRACHResultModeSpecificInfoFddMeasurementQuantityChoices {
+		cpichEcN0 = 0,
+		cpichRSCP = 1,
+		pathloss = 2,
+		monitoredCellRACHResultModeSpecificInfoFddMeasurementQuantitySpare = 3,
+	};
 	static const Info theInfo;
 	MonitoredCellRACHResultModeSpecificInfoFddMeasurementQuantity(): Choice(&theInfo) {}
 };
@@ -35545,6 +38132,10 @@ class MonitoredCellRACHResultModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MonitoredCellRACHResultModeSpecificInfoChoices {
+		monitoredCellRACHResultModeSpecificInfoFdd = 0,
+		monitoredCellRACHResultModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	MonitoredCellRACHResultModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -35730,6 +38321,11 @@ class UEPositioningEventSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum UEPositioningEventSpecificInfoChoices {
+		e7a = 0,
+		e7b = 1,
+		e7c = 2,
+	};
 	static const Info theInfo;
 	UEPositioningEventSpecificInfo(): Choice(&theInfo) {}
 };
@@ -35756,6 +38352,11 @@ class UEPositioningReportCriteria : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum UEPositioningReportCriteriaChoices {
+		uepositioningReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+		uEPositioningReportCriteriaNoReporting = 2,
+	};
 	static const Info theInfo;
 	UEPositioningReportCriteria(): Choice(&theInfo) {}
 };
@@ -35788,6 +38389,10 @@ class UEPositioningOTDOAReferenceCellInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOAReferenceCellInfoModeSpecificInfoChoices {
+		uEPositioningOTDOAReferenceCellInfoModeSpecificInfoFdd = 0,
+		uEPositioningOTDOAReferenceCellInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOAReferenceCellInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -35816,6 +38421,10 @@ class UEPositioningOTDOAReferenceCellInfoPositioningMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOAReferenceCellInfoPositioningModeChoices {
+		uEPositioningOTDOAReferenceCellInfoPositioningModeUeBased = 0,
+		uEPositioningOTDOAReferenceCellInfoPositioningModeUeAssisted = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOAReferenceCellInfoPositioningMode(): Choice(&theInfo) {}
 };
@@ -35880,6 +38489,10 @@ class UEPositioningOTDOANeighbourCellInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOANeighbourCellInfoModeSpecificInfoChoices {
+		uEPositioningOTDOANeighbourCellInfoModeSpecificInfoFdd = 0,
+		uEPositioningOTDOANeighbourCellInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOANeighbourCellInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -35969,6 +38582,10 @@ class UEPositioningOTDOANeighbourCellInfoPositioningMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOANeighbourCellInfoPositioningModeChoices {
+		uEPositioningOTDOANeighbourCellInfoPositioningModeUeBased = 0,
+		uEPositioningOTDOANeighbourCellInfoPositioningModeUeAssisted = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOANeighbourCellInfoPositioningMode(): Choice(&theInfo) {}
 };
@@ -36048,6 +38665,10 @@ class UTRANGPSReferenceTimeModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UTRANGPSReferenceTimeModeSpecificInfoChoices {
+		uTRANGPSReferenceTimeModeSpecificInfoFdd = 0,
+		uTRANGPSReferenceTimeModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UTRANGPSReferenceTimeModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -36408,6 +39029,10 @@ class UEPositioningGPSReferenceCellInfoModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningGPSReferenceCellInfoModeSpecificInfoChoices {
+		uEPositioningGPSReferenceCellInfoModeSpecificInfoFdd = 0,
+		uEPositioningGPSReferenceCellInfoModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningGPSReferenceCellInfoModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -36467,6 +39092,11 @@ class TrafficVolumeMeasQuantity : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum TrafficVolumeMeasQuantityChoices {
+		trafficVolumeMeasQuantityRlcBufferPayload = 0,
+		averageRLCBufferPayload = 1,
+		varianceOfRLCBufferPayload = 2,
+	};
 	static const Info theInfo;
 	TrafficVolumeMeasQuantity(): Choice(&theInfo) {}
 };
@@ -36590,6 +39220,11 @@ class TrafficVolumeReportCriteria : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum TrafficVolumeReportCriteriaChoices {
+		trafficVolumeReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+		trafficVolumeReportCriteriaNoReporting = 2,
+	};
 	static const Info theInfo;
 	TrafficVolumeReportCriteria(): Choice(&theInfo) {}
 };
@@ -36632,6 +39267,10 @@ class QualityReportingQuantityModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum QualityReportingQuantityModeSpecificInfoChoices {
+		qualityReportingQuantityModeSpecificInfoFdd = 0,
+		qualityReportingQuantityModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	QualityReportingQuantityModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -36677,6 +39316,11 @@ class QualityReportCriteria : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum QualityReportCriteriaChoices {
+		qualityReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+		qualityReportCriteriaNoReporting = 2,
+	};
 	static const Info theInfo;
 	QualityReportCriteria(): Choice(&theInfo) {}
 };
@@ -36744,6 +39388,10 @@ class UEInternalReportingQuantityModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEInternalReportingQuantityModeSpecificInfoChoices {
+		uEInternalReportingQuantityModeSpecificInfoFdd = 0,
+		uEInternalReportingQuantityModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEInternalReportingQuantityModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -36792,6 +39440,15 @@ class UEInternalEventParam : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum UEInternalEventParamChoices {
+		event6a = 0,
+		event6b = 1,
+		event6c = 2,
+		event6d = 3,
+		event6e = 4,
+		event6f = 5,
+		event6g = 6,
+	};
 	static const Info theInfo;
 	UEInternalEventParam(): Choice(&theInfo) {}
 };
@@ -36815,6 +39472,11 @@ class UEInternalReportCriteria : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum UEInternalReportCriteriaChoices {
+		ueInternalReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+		uEInternalReportCriteriaNoReporting = 2,
+	};
 	static const Info theInfo;
 	UEInternalReportCriteria(): Choice(&theInfo) {}
 };
@@ -36836,6 +39498,15 @@ class MeasurementType : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum MeasurementTypeChoices {
+		intraFrequencyMeasurement = 0,
+		interFrequencyMeasurement = 1,
+		interRATMeasurement = 2,
+		uepositioningMeasurement = 3,
+		trafficVolumeMeasurement = 4,
+		qualityMeasurement = 5,
+		ueInternalMeasurement = 6,
+	};
 	static const Info theInfo;
 	MeasurementType(): Choice(&theInfo) {}
 };
@@ -36857,6 +39528,11 @@ class MeasurementCommand : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MeasurementCommandChoices {
+		setup = 0,
+		measurementCommandModify = 1,
+		measurementCommandRelease = 2,
+	};
 	static const Info theInfo;
 	MeasurementCommand(): Choice(&theInfo) {}
 };
@@ -36910,6 +39586,10 @@ class UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfoChoices {
+		uEPositioningOTDOAReferenceCellInfor4ModeSpecificInfoFdd = 0,
+		uEPositioningOTDOAReferenceCellInfor4ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -36918,6 +39598,10 @@ class ReferenceCellPosition : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ReferenceCellPositionChoices {
+		ellipsoidPoint = 0,
+		ellipsoidPointWithAltitude = 1,
+	};
 	static const Info theInfo;
 	ReferenceCellPosition(): Choice(&theInfo) {}
 };
@@ -36950,6 +39634,10 @@ class UEPositioningOTDOAReferenceCellInfor4PositioningMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOAReferenceCellInfor4PositioningModeChoices {
+		uEPositioningOTDOAReferenceCellInfor4PositioningModeUeBased = 0,
+		uEPositioningOTDOAReferenceCellInfor4PositioningModeUeAssisted = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOAReferenceCellInfor4PositioningMode(): Choice(&theInfo) {}
 };
@@ -36994,6 +39682,10 @@ class UEPositioningIPDLParametersr4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningIPDLParametersr4ModeSpecificInfoChoices {
+		uEPositioningIPDLParametersr4ModeSpecificInfoFdd = 0,
+		uEPositioningIPDLParametersr4ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningIPDLParametersr4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -37051,6 +39743,10 @@ class UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfoChoices {
+		uEPositioningOTDOANeighbourCellInfor4ModeSpecificInfoFdd = 0,
+		uEPositioningOTDOANeighbourCellInfor4ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -37097,6 +39793,10 @@ class UEPositioningOTDOANeighbourCellInfor4PositioningMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOANeighbourCellInfor4PositioningModeChoices {
+		uEPositioningOTDOANeighbourCellInfor4PositioningModeUeBased = 0,
+		uEPositioningOTDOANeighbourCellInfor4PositioningModeUeAssisted = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOANeighbourCellInfor4PositioningMode(): Choice(&theInfo) {}
 };
@@ -37193,6 +39893,10 @@ class UEInternalReportingQuantityr4ModeSpecificInfoTddTddOption : public Choice 
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionChoices {
+		uEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd384 = 0,
+		uEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd128 = 1,
+	};
 	static const Info theInfo;
 	UEInternalReportingQuantityr4ModeSpecificInfoTddTddOption(): Choice(&theInfo) {}
 };
@@ -37212,6 +39916,10 @@ class UEInternalReportingQuantityr4ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEInternalReportingQuantityr4ModeSpecificInfoChoices {
+		uEInternalReportingQuantityr4ModeSpecificInfoFdd = 0,
+		uEInternalReportingQuantityr4ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEInternalReportingQuantityr4ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -37245,6 +39953,15 @@ class MeasurementTyper4 : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum MeasurementTyper4Choices {
+		intraFrequencyMeasurement = 0,
+		interFrequencyMeasurement = 1,
+		interRATMeasurement = 2,
+		upMeasurement = 3,
+		trafficVolumeMeasurement = 4,
+		qualityMeasurement = 5,
+		ueInternalMeasurement = 6,
+	};
 	static const Info theInfo;
 	MeasurementTyper4(): Choice(&theInfo) {}
 };
@@ -37266,6 +39983,11 @@ class MeasurementCommandr4 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MeasurementCommandr4Choices {
+		setup = 0,
+		measurementCommandr4Modify = 1,
+		measurementCommandr4Release = 2,
+	};
 	static const Info theInfo;
 	MeasurementCommandr4(): Choice(&theInfo) {}
 };
@@ -37274,6 +39996,15 @@ class MeasurementTyper6 : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum MeasurementTyper6Choices {
+		intraFrequencyMeasurement = 0,
+		interFrequencyMeasurement = 1,
+		interRATMeasurement = 2,
+		upMeasurement = 3,
+		trafficVolumeMeasurement = 4,
+		qualityMeasurement = 5,
+		ueInternalMeasurement = 6,
+	};
 	static const Info theInfo;
 	MeasurementTyper6(): Choice(&theInfo) {}
 };
@@ -37295,6 +40026,11 @@ class MeasurementCommandr6 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MeasurementCommandr6Choices {
+		setup = 0,
+		measurementCommandr6Modify = 1,
+		measurementCommandr6Release = 2,
+	};
 	static const Info theInfo;
 	MeasurementCommandr6(): Choice(&theInfo) {}
 };
@@ -37365,6 +40101,12 @@ class UEPositioningEventSpecificInfor7 : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum UEPositioningEventSpecificInfor7Choices {
+		e7a = 0,
+		e7b = 1,
+		e7c = 2,
+		e7d = 3,
+	};
 	static const Info theInfo;
 	UEPositioningEventSpecificInfor7(): Choice(&theInfo) {}
 };
@@ -37391,6 +40133,11 @@ class UEPositioningReportCriteriar7 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum UEPositioningReportCriteriar7Choices {
+		uepositioningReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+		uEPositioningReportCriteriar7NoReporting = 2,
+	};
 	static const Info theInfo;
 	UEPositioningReportCriteriar7(): Choice(&theInfo) {}
 };
@@ -37423,6 +40170,10 @@ class UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfoChoices {
+		uEPositioningOTDOAReferenceCellInfor7ModeSpecificInfoFdd = 0,
+		uEPositioningOTDOAReferenceCellInfor7ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -37458,6 +40209,10 @@ class UEPositioningOTDOAReferenceCellInfor7PositioningMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOAReferenceCellInfor7PositioningModeChoices {
+		uEPositioningOTDOAReferenceCellInfor7PositioningModeUeBased = 0,
+		uEPositioningOTDOAReferenceCellInfor7PositioningModeUeAssisted = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOAReferenceCellInfor7PositioningMode(): Choice(&theInfo) {}
 };
@@ -37503,6 +40258,10 @@ class UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfoChoices {
+		uEPositioningOTDOANeighbourCellInfor7ModeSpecificInfoFdd = 0,
+		uEPositioningOTDOANeighbourCellInfor7ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -37547,6 +40306,10 @@ class UEPositioningOTDOANeighbourCellInfor7PositioningMode : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOANeighbourCellInfor7PositioningModeChoices {
+		uEPositioningOTDOANeighbourCellInfor7PositioningModeUeBased = 0,
+		uEPositioningOTDOANeighbourCellInfor7PositioningModeUeAssisted = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOANeighbourCellInfor7PositioningMode(): Choice(&theInfo) {}
 };
@@ -37671,6 +40434,10 @@ class UEPositioningGANSSReferenceTimeUtranganssreferenceTimeMode : public Choice
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningGANSSReferenceTimeUtranganssreferenceTimeModeChoices {
+		uEPositioningGANSSReferenceTimeUtranganssreferenceTimeModeFdd = 0,
+		uEPositioningGANSSReferenceTimeUtranganssreferenceTimeModeTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningGANSSReferenceTimeUtranganssreferenceTimeMode(): Choice(&theInfo) {}
 };
@@ -37791,6 +40558,15 @@ class MeasurementTyper7 : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum MeasurementTyper7Choices {
+		intraFrequencyMeasurement = 0,
+		interFrequencyMeasurement = 1,
+		interRATMeasurement = 2,
+		upMeasurement = 3,
+		trafficVolumeMeasurement = 4,
+		qualityMeasurement = 5,
+		ueInternalMeasurement = 6,
+	};
 	static const Info theInfo;
 	MeasurementTyper7(): Choice(&theInfo) {}
 };
@@ -37812,6 +40588,11 @@ class MeasurementCommandr7 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MeasurementCommandr7Choices {
+		setup = 0,
+		measurementCommandr7Modify = 1,
+		measurementCommandr7Release = 2,
+	};
 	static const Info theInfo;
 	MeasurementCommandr7(): Choice(&theInfo) {}
 };
@@ -37936,6 +40717,15 @@ class MeasurementTyper8 : public Choice {
 private:
 	static const void *choicesInfo[7];
 public:
+	enum MeasurementTyper8Choices {
+		intraFrequencyMeasurement = 0,
+		interFrequencyMeasurement = 1,
+		interRATMeasurement = 2,
+		upMeasurement = 3,
+		trafficVolumeMeasurement = 4,
+		qualityMeasurement = 5,
+		ueInternalMeasurement = 6,
+	};
 	static const Info theInfo;
 	MeasurementTyper8(): Choice(&theInfo) {}
 };
@@ -37957,6 +40747,11 @@ class MeasurementCommandr8 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MeasurementCommandr8Choices {
+		setup = 0,
+		measurementCommandr8Modify = 1,
+		measurementCommandr8Release = 2,
+	};
 	static const Info theInfo;
 	MeasurementCommandr8(): Choice(&theInfo) {}
 };
@@ -38029,6 +40824,16 @@ class MeasurementTyper9 : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum MeasurementTyper9Choices {
+		intraFrequencyMeasurement = 0,
+		interFrequencyMeasurement = 1,
+		interRATMeasurement = 2,
+		upMeasurement = 3,
+		trafficVolumeMeasurement = 4,
+		qualityMeasurement = 5,
+		ueInternalMeasurement = 6,
+		csgProximityDetection = 7,
+	};
 	static const Info theInfo;
 	MeasurementTyper9(): Choice(&theInfo) {}
 };
@@ -38050,6 +40855,11 @@ class MeasurementCommandr9 : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MeasurementCommandr9Choices {
+		setup = 0,
+		measurementCommandr9Modify = 1,
+		measurementCommandr9Release = 2,
+	};
 	static const Info theInfo;
 	MeasurementCommandr9(): Choice(&theInfo) {}
 };
@@ -38082,6 +40892,10 @@ class MeasurementControlSysInfoUseofHCSHcsnotusedCellSelectQualityMeasure : publ
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementControlSysInfoUseofHCSHcsnotusedCellSelectQualityMeasureChoices {
+		measurementControlSysInfoUseofHCSHcsnotusedCellSelectQualityMeasureCpichRSCP = 0,
+		measurementControlSysInfoUseofHCSHcsnotusedCellSelectQualityMeasureCpichEcN0 = 1,
+	};
 	static const Info theInfo;
 	MeasurementControlSysInfoUseofHCSHcsnotusedCellSelectQualityMeasure(): Choice(&theInfo) {}
 };
@@ -38126,6 +40940,10 @@ class MeasurementControlSysInfoUseofHCSHcsusedCellSelectQualityMeasure : public 
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementControlSysInfoUseofHCSHcsusedCellSelectQualityMeasureChoices {
+		measurementControlSysInfoUseofHCSHcsusedCellSelectQualityMeasureCpichRSCP = 0,
+		measurementControlSysInfoUseofHCSHcsusedCellSelectQualityMeasureCpichEcN0 = 1,
+	};
 	static const Info theInfo;
 	MeasurementControlSysInfoUseofHCSHcsusedCellSelectQualityMeasure(): Choice(&theInfo) {}
 };
@@ -38146,6 +40964,10 @@ class MeasurementControlSysInfoUseofHCS : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementControlSysInfoUseofHCSChoices {
+		measurementControlSysInfoUseofHCSHcsnotused = 0,
+		measurementControlSysInfoUseofHCSHcsused = 1,
+	};
 	static const Info theInfo;
 	MeasurementControlSysInfoUseofHCS(): Choice(&theInfo) {}
 };
@@ -38154,6 +40976,10 @@ class TrafficVolumeReportCriteriaSysInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum TrafficVolumeReportCriteriaSysInfoChoices {
+		trafficVolumeReportingCriteria = 0,
+		periodicalReportingCriteria = 1,
+	};
 	static const Info theInfo;
 	TrafficVolumeReportCriteriaSysInfo(): Choice(&theInfo) {}
 };
@@ -38229,6 +41055,10 @@ class MeasurementControlSysInfoExtensionUseofHCSHcsnotusedCellSelectQualityMeasu
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementControlSysInfoExtensionUseofHCSHcsnotusedCellSelectQualityMeasureChoices {
+		measurementControlSysInfoExtensionUseofHCSHcsnotusedCellSelectQualityMeasureCpichRSCP = 0,
+		measurementControlSysInfoExtensionUseofHCSHcsnotusedCellSelectQualityMeasureCpichEcN0 = 1,
+	};
 	static const Info theInfo;
 	MeasurementControlSysInfoExtensionUseofHCSHcsnotusedCellSelectQualityMeasure(): Choice(&theInfo) {}
 };
@@ -38273,6 +41103,10 @@ class MeasurementControlSysInfoExtensionUseofHCSHcsusedCellSelectQualityMeasure 
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementControlSysInfoExtensionUseofHCSHcsusedCellSelectQualityMeasureChoices {
+		measurementControlSysInfoExtensionUseofHCSHcsusedCellSelectQualityMeasureCpichRSCP = 0,
+		measurementControlSysInfoExtensionUseofHCSHcsusedCellSelectQualityMeasureCpichEcN0 = 1,
+	};
 	static const Info theInfo;
 	MeasurementControlSysInfoExtensionUseofHCSHcsusedCellSelectQualityMeasure(): Choice(&theInfo) {}
 };
@@ -38293,6 +41127,10 @@ class MeasurementControlSysInfoExtensionUseofHCS : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementControlSysInfoExtensionUseofHCSChoices {
+		measurementControlSysInfoExtensionUseofHCSHcsnotused = 0,
+		measurementControlSysInfoExtensionUseofHCSHcsused = 1,
+	};
 	static const Info theInfo;
 	MeasurementControlSysInfoExtensionUseofHCS(): Choice(&theInfo) {}
 };
@@ -38355,6 +41193,10 @@ class MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsnotusedCellSelectQuality
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsnotusedCellSelectQualityMeasureChoices {
+		measurementControlSysInfoExtensionLCRr4UseofHCSHcsnotusedCellSelectQualityMeasureCpichRSCP = 0,
+		measurementControlSysInfoExtensionLCRr4UseofHCSHcsnotusedCellSelectQualityMeasureCpichEcN0 = 1,
+	};
 	static const Info theInfo;
 	MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsnotusedCellSelectQualityMeasure(): Choice(&theInfo) {}
 };
@@ -38399,6 +41241,10 @@ class MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsusedCellSelectQualityMea
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsusedCellSelectQualityMeasureChoices {
+		measurementControlSysInfoExtensionLCRr4UseofHCSHcsusedCellSelectQualityMeasureCpichRSCP = 0,
+		measurementControlSysInfoExtensionLCRr4UseofHCSHcsusedCellSelectQualityMeasureCpichEcN0 = 1,
+	};
 	static const Info theInfo;
 	MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsusedCellSelectQualityMeasure(): Choice(&theInfo) {}
 };
@@ -38419,6 +41265,10 @@ class MeasurementControlSysInfoExtensionLCRr4UseofHCS : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementControlSysInfoExtensionLCRr4UseofHCSChoices {
+		measurementControlSysInfoExtensionLCRr4UseofHCSHcsnotused = 0,
+		measurementControlSysInfoExtensionLCRr4UseofHCSHcsused = 1,
+	};
 	static const Info theInfo;
 	MeasurementControlSysInfoExtensionLCRr4UseofHCS(): Choice(&theInfo) {}
 };
@@ -38462,6 +41312,10 @@ class MeasurementControlSysInfoLCRr4extUseofHCSHcsnotusedCellSelectQualityMeasur
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementControlSysInfoLCRr4extUseofHCSHcsnotusedCellSelectQualityMeasureChoices {
+		measurementControlSysInfoLCRr4extUseofHCSHcsnotusedCellSelectQualityMeasureCpichRSCP = 0,
+		measurementControlSysInfoLCRr4extUseofHCSHcsnotusedCellSelectQualityMeasureCpichEcN0 = 1,
+	};
 	static const Info theInfo;
 	MeasurementControlSysInfoLCRr4extUseofHCSHcsnotusedCellSelectQualityMeasure(): Choice(&theInfo) {}
 };
@@ -38505,6 +41359,10 @@ class MeasurementControlSysInfoLCRr4extUseofHCSHcsusedCellSelectQualityMeasure :
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementControlSysInfoLCRr4extUseofHCSHcsusedCellSelectQualityMeasureChoices {
+		measurementControlSysInfoLCRr4extUseofHCSHcsusedCellSelectQualityMeasureCpichRSCP = 0,
+		measurementControlSysInfoLCRr4extUseofHCSHcsusedCellSelectQualityMeasureCpichEcN0 = 1,
+	};
 	static const Info theInfo;
 	MeasurementControlSysInfoLCRr4extUseofHCSHcsusedCellSelectQualityMeasure(): Choice(&theInfo) {}
 };
@@ -38524,6 +41382,10 @@ class MeasurementControlSysInfoLCRr4extUseofHCS : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MeasurementControlSysInfoLCRr4extUseofHCSChoices {
+		measurementControlSysInfoLCRr4extUseofHCSHcsnotused = 0,
+		measurementControlSysInfoLCRr4extUseofHCSHcsused = 1,
+	};
 	static const Info theInfo;
 	MeasurementControlSysInfoLCRr4extUseofHCS(): Choice(&theInfo) {}
 };
@@ -38860,6 +41722,10 @@ class UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfoChoices {
+		uEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfoFdd = 0,
+		uEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -38908,6 +41774,10 @@ class UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfoChoices {
+		uEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfoFdd = 0,
+		uEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -39307,6 +42177,10 @@ class DeferredMeasurementControlReadingSupportModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DeferredMeasurementControlReadingSupportModeSpecificInfoChoices {
+		deferredMeasurementControlReadingSupportModeSpecificInfoFdd = 0,
+		deferredMeasurementControlReadingSupportModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	DeferredMeasurementControlReadingSupportModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -39381,6 +42255,24 @@ class SIBTypeExtGANSS : public Choice {
 private:
 	static const void *choicesInfo[16];
 public:
+	enum SIBTypeExtGANSSChoices {
+		sIBTypeExtGANSSSystemInfoType151bis = 0,
+		sIBTypeExtGANSSSystemInfoType152bis = 1,
+		sIBTypeExtGANSSSystemInfoType152ter = 2,
+		sIBTypeExtGANSSSystemInfoType153bis = 3,
+		sIBTypeExtGANSSSystemInfoType156 = 4,
+		sIBTypeExtGANSSSystemInfoType157 = 5,
+		sIBTypeExtGANSSSystemInfoType158 = 6,
+		sIBTypeExtGANSSSpare9 = 7,
+		sIBTypeExtGANSSSpare8 = 8,
+		sIBTypeExtGANSSSpare7 = 9,
+		sIBTypeExtGANSSSpare6 = 10,
+		sIBTypeExtGANSSSpare5 = 11,
+		sIBTypeExtGANSSSpare4 = 12,
+		sIBTypeExtGANSSSpare3 = 13,
+		sIBTypeExtGANSSSpare2 = 14,
+		sIBTypeExtGANSSSpare1 = 15,
+	};
 	static const Info theInfo;
 	SIBTypeExtGANSS(): Choice(&theInfo) {}
 };
@@ -39391,6 +42283,12 @@ class ValueTagInfo : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum ValueTagInfoChoices {
+		valueTagInfoNone = 0,
+		cellValueTag = 1,
+		plmnValueTag = 2,
+		sIBOccurrenceIdentityAndValueTag = 3,
+	};
 	static const Info theInfo;
 	ValueTagInfo(): Choice(&theInfo) {}
 };
@@ -39447,6 +42345,16 @@ class SIBTypeExt : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum SIBTypeExtChoices {
+		sIBTypeExtSystemInfoType11bis = 0,
+		sIBTypeExtSystemInfoType15bis = 1,
+		sIBTypeExtSystemInfoType151bis = 2,
+		sIBTypeExtSystemInfoType152bis = 3,
+		sIBTypeExtSystemInfoType153bis = 4,
+		sIBTypeExtSystemInfoType156 = 5,
+		sIBTypeExtSystemInfoType157 = 6,
+		sIBTypeExtSystemInfoType158 = 7,
+	};
 	static const Info theInfo;
 	SIBTypeExt(): Choice(&theInfo) {}
 };
@@ -39486,6 +42394,16 @@ class SIBTypeExt2 : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum SIBTypeExt2Choices {
+		sIBTypeExt2SystemInfoType19 = 0,
+		sIBTypeExt2SystemInfoType152ter = 1,
+		sIBTypeExt2SystemInfoType20 = 2,
+		sIBTypeExt2Spare5 = 3,
+		sIBTypeExt2Spare4 = 4,
+		sIBTypeExt2Spare3 = 5,
+		sIBTypeExt2Spare2 = 6,
+		sIBTypeExt2Spare1 = 7,
+	};
 	static const Info theInfo;
 	SIBTypeExt2(): Choice(&theInfo) {}
 };
@@ -39555,6 +42473,16 @@ class InterRATChangeFailureCause : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum InterRATChangeFailureCauseChoices {
+		interRATChangeFailureCauseConfigurationUnacceptable = 0,
+		interRATChangeFailureCausePhysicalChannelFailure = 1,
+		protocolError = 2,
+		interRATChangeFailureCauseUnspecified = 3,
+		interRATChangeFailureCauseSpare4 = 4,
+		interRATChangeFailureCauseSpare3 = 5,
+		interRATChangeFailureCauseSpare2 = 6,
+		interRATChangeFailureCauseSpare1 = 7,
+	};
 	static const Info theInfo;
 	InterRATChangeFailureCause(): Choice(&theInfo) {}
 };
@@ -39592,6 +42520,10 @@ class InterRATUERadioAccessCapability : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum InterRATUERadioAccessCapabilityChoices {
+		interRATUERadioAccessCapabilityGsm = 0,
+		interRATUERadioAccessCapabilityCdma2000 = 1,
+	};
 	static const Info theInfo;
 	InterRATUERadioAccessCapability(): Choice(&theInfo) {}
 };
@@ -39624,6 +42556,9 @@ class InterRATUESecurityCapability : public Choice {
 private:
 	static const void *choicesInfo[1];
 public:
+	enum InterRATUESecurityCapabilityChoices {
+		interRATUESecurityCapabilityGsm = 0,
+	};
 	static const Info theInfo;
 	InterRATUESecurityCapability(): Choice(&theInfo) {}
 };
@@ -39664,6 +42599,24 @@ class InterRATHOFailureCause : public Choice {
 private:
 	static const void *choicesInfo[16];
 public:
+	enum InterRATHOFailureCauseChoices {
+		interRATHOFailureCauseConfigurationUnacceptable = 0,
+		interRATHOFailureCausePhysicalChannelFailure = 1,
+		protocolError = 2,
+		interRATHOFailureCauseInterRATProtocolError = 3,
+		interRATHOFailureCauseUnspecified = 4,
+		interRATHOFailureCauseSpare11 = 5,
+		interRATHOFailureCauseSpare10 = 6,
+		interRATHOFailureCauseSpare9 = 7,
+		interRATHOFailureCauseSpare8 = 8,
+		interRATHOFailureCauseSpare7 = 9,
+		interRATHOFailureCauseSpare6 = 10,
+		interRATHOFailureCauseSpare5 = 11,
+		interRATHOFailureCauseSpare4 = 12,
+		interRATHOFailureCauseSpare3 = 13,
+		interRATHOFailureCauseSpare2 = 14,
+		interRATHOFailureCauseSpare1 = 15,
+	};
 	static const Info theInfo;
 	InterRATHOFailureCause(): Choice(&theInfo) {}
 };
@@ -39686,6 +42639,40 @@ class SIBSbTypeAndTag : public Choice {
 private:
 	static const void *choicesInfo[32];
 public:
+	enum SIBSbTypeAndTagChoices {
+		sysInfoType1 = 0,
+		sysInfoType2 = 1,
+		sysInfoType3 = 2,
+		sysInfoType4 = 3,
+		sysInfoType5 = 4,
+		sysInfoType6 = 5,
+		sIBSbTypeAndTagSysInfoType7 = 6,
+		dummy = 7,
+		sIBSbTypeAndTagDummy2 = 8,
+		sIBSbTypeAndTagDummy3 = 9,
+		sysInfoType11 = 10,
+		sysInfoType12 = 11,
+		sysInfoType13 = 12,
+		sysInfoType131 = 13,
+		sysInfoType132 = 14,
+		sysInfoType133 = 15,
+		sysInfoType134 = 16,
+		sIBSbTypeAndTagSysInfoType14 = 17,
+		sysInfoType15 = 18,
+		sysInfoType16 = 19,
+		sIBSbTypeAndTagSysInfoType17 = 20,
+		sysInfoTypeSB1 = 21,
+		sysInfoTypeSB2 = 22,
+		sysInfoType151 = 23,
+		sysInfoType152 = 24,
+		sysInfoType153 = 25,
+		sysInfoType154 = 26,
+		sysInfoType18 = 27,
+		sysInfoType155 = 28,
+		sysInfoType5bis = 29,
+		sIBSbTypeAndTagSpare2 = 30,
+		sIBSbTypeAndTagSpare1 = 31,
+	};
 	static const Info theInfo;
 	SIBSbTypeAndTag(): Choice(&theInfo) {}
 };
@@ -40371,6 +43358,10 @@ class SysInfoType5ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SysInfoType5ModeSpecificInfoChoices {
+		sysInfoType5ModeSpecificInfoFdd = 0,
+		sysInfoType5ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	SysInfoType5ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -40463,6 +43454,10 @@ class SysInfoType5v690extIEsSccpchSystemInformationMBMS : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SysInfoType5v690extIEsSccpchSystemInformationMBMSChoices {
+		mcchOnSCCPCHusedForNonMBMS = 0,
+		mcchOnSCCPCHusedOnlyForMBMS = 1,
+	};
 	static const Info theInfo;
 	SysInfoType5v690extIEsSccpchSystemInformationMBMS(): Choice(&theInfo) {}
 };
@@ -40521,6 +43516,11 @@ class SysInfoType5v770extIEsModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum SysInfoType5v770extIEsModeSpecificInfoChoices {
+		sysInfoType5v770extIEsModeSpecificInfoFdd = 0,
+		sysInfoType5v770extIEsModeSpecificInfoTdd768 = 1,
+		sysInfoType5v770extIEsModeSpecificInfoTdd128 = 2,
+	};
 	static const Info theInfo;
 	SysInfoType5v770extIEsModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -40529,6 +43529,9 @@ class SysInfoType5v770extIEsSccpchSystemInformationMBMS : public Choice {
 private:
 	static const void *choicesInfo[1];
 public:
+	enum SysInfoType5v770extIEsSccpchSystemInformationMBMSChoices {
+		mcchOnSCCPCHusedOnlyForMBMS = 0,
+	};
 	static const Info theInfo;
 	SysInfoType5v770extIEsSccpchSystemInformationMBMS(): Choice(&theInfo) {}
 };
@@ -40596,6 +43599,10 @@ class SysInfoType5v860extIEsModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SysInfoType5v860extIEsModeSpecificInfoChoices {
+		sysInfoType5v860extIEsModeSpecificInfoFdd = 0,
+		sysInfoType5v860extIEsModeSpecificInfoTdd128 = 1,
+	};
 	static const Info theInfo;
 	SysInfoType5v860extIEsModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -40831,6 +43838,10 @@ class SysInfoType6ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SysInfoType6ModeSpecificInfoChoices {
+		sysInfoType6ModeSpecificInfoFdd = 0,
+		sysInfoType6ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	SysInfoType6ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -41037,6 +44048,10 @@ class SysInfoType7ModeSpecificInfo : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum SysInfoType7ModeSpecificInfoChoices {
+		sysInfoType7ModeSpecificInfoFdd = 0,
+		sysInfoType7ModeSpecificInfoTdd = 1,
+	};
 	static const Info theInfo;
 	SysInfoType7ModeSpecificInfo(): Choice(&theInfo) {}
 };
@@ -43153,6 +46168,14 @@ class MBMSL1CombiningSchedule : public Choice {
 private:
 	static const void *choicesInfo[6];
 public:
+	enum MBMSL1CombiningScheduleChoices {
+		cycleLength32 = 0,
+		cycleLength64 = 1,
+		cycleLength128 = 2,
+		cycleLength256 = 3,
+		cycleLength512 = 4,
+		cycleLength1024 = 5,
+	};
 	static const Info theInfo;
 	MBMSL1CombiningSchedule(): Choice(&theInfo) {}
 };
@@ -43222,6 +46245,10 @@ class MBMSL23Configuration : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MBMSL23ConfigurationChoices {
+		mBMSL23ConfigurationSameAsCurrent = 0,
+		mBMSL23ConfigurationDifferent = 1,
+	};
 	static const Info theInfo;
 	MBMSL23Configuration(): Choice(&theInfo) {}
 };
@@ -43294,6 +46321,11 @@ class MBMSMICHConfigurationInfor6Mode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MBMSMICHConfigurationInfor6ModeChoices {
+		mBMSMICHConfigurationInfor6ModeFdd = 0,
+		mBMSMICHConfigurationInfor6ModeTdd384 = 1,
+		mBMSMICHConfigurationInfor6ModeTdd128 = 2,
+	};
 	static const Info theInfo;
 	MBMSMICHConfigurationInfor6Mode(): Choice(&theInfo) {}
 };
@@ -43347,6 +46379,11 @@ class MBMSMICHConfigurationInfov770extMode : public Choice {
 private:
 	static const void *choicesInfo[3];
 public:
+	enum MBMSMICHConfigurationInfov770extModeChoices {
+		mBMSMICHConfigurationInfov770extModeTdd384 = 0,
+		mBMSMICHConfigurationInfov770extModeTdd768 = 1,
+		mBMSMICHConfigurationInfov770extModeTdd128 = 2,
+	};
 	static const Info theInfo;
 	MBMSMICHConfigurationInfov770extMode(): Choice(&theInfo) {}
 };
@@ -43386,6 +46423,9 @@ class MBMSMICHConfigurationInfov890extMode : public Choice {
 private:
 	static const void *choicesInfo[1];
 public:
+	enum MBMSMICHConfigurationInfov890extModeChoices {
+		mBMSMICHConfigurationInfov890extModeImb384 = 0,
+	};
 	static const Info theInfo;
 	MBMSMICHConfigurationInfov890extMode(): Choice(&theInfo) {}
 };
@@ -43411,6 +46451,10 @@ class MBMSServiceIdentityr6PlmnIdentityOther : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MBMSServiceIdentityr6PlmnIdentityOtherChoices {
+		mBMSServiceIdentityr6PlmnIdentityOtherSameAsMIBMultiPLMNId = 0,
+		explicitPLMNId = 1,
+	};
 	static const Info theInfo;
 	MBMSServiceIdentityr6PlmnIdentityOther(): Choice(&theInfo) {}
 };
@@ -43419,6 +46463,10 @@ class MBMSServiceIdentityr6PlmnIdentity : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MBMSServiceIdentityr6PlmnIdentityChoices {
+		mBMSServiceIdentityr6PlmnIdentitySameAsMIBPLMNId = 0,
+		mBMSServiceIdentityr6PlmnIdentityOther = 1,
+	};
 	static const Info theInfo;
 	MBMSServiceIdentityr6PlmnIdentity(): Choice(&theInfo) {}
 };
@@ -43465,6 +46513,10 @@ class MBMSModifedServicer6MbmsPreferredFrequency : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MBMSModifedServicer6MbmsPreferredFrequencyChoices {
+		mcch = 0,
+		dcch = 1,
+	};
 	static const Info theInfo;
 	MBMSModifedServicer6MbmsPreferredFrequency(): Choice(&theInfo) {}
 };
@@ -43560,6 +46612,10 @@ class MBMSNeighbouringCellSCCPCHr6Layer1Combining : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MBMSNeighbouringCellSCCPCHr6Layer1CombiningChoices {
+		mBMSNeighbouringCellSCCPCHr6Layer1CombiningFdd = 0,
+		mBMSNeighbouringCellSCCPCHr6Layer1CombiningTdd = 1,
+	};
 	static const Info theInfo;
 	MBMSNeighbouringCellSCCPCHr6Layer1Combining(): Choice(&theInfo) {}
 };
@@ -43597,6 +46653,10 @@ class MBMSNeighbouringCellSCCPCHv770extLayer1Combining : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MBMSNeighbouringCellSCCPCHv770extLayer1CombiningChoices {
+		mBMSNeighbouringCellSCCPCHv770extLayer1CombiningFdd = 0,
+		mBMSNeighbouringCellSCCPCHv770extLayer1CombiningTdd = 1,
+	};
 	static const Info theInfo;
 	MBMSNeighbouringCellSCCPCHv770extLayer1Combining(): Choice(&theInfo) {}
 };
@@ -43705,6 +46765,10 @@ class MBMSPreferredFrequencyInfor6LayerConvergenceInformation : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MBMSPreferredFrequencyInfor6LayerConvergenceInformationChoices {
+		mbmsQoffset = 0,
+		mBMSPreferredFrequencyInfor6LayerConvergenceInformationMbmsHCSoffset = 1,
+	};
 	static const Info theInfo;
 	MBMSPreferredFrequencyInfor6LayerConvergenceInformation(): Choice(&theInfo) {}
 };
@@ -43741,6 +46805,10 @@ class MBMSSelectedServiceInfoStatus : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MBMSSelectedServiceInfoStatusChoices {
+		mBMSSelectedServiceInfoStatusNone = 0,
+		some = 1,
+	};
 	static const Info theInfo;
 	MBMSSelectedServiceInfoStatus(): Choice(&theInfo) {}
 };
@@ -43943,6 +47011,10 @@ class MBSFNInterFrequencyNeighbourr7MbsfnServicesNotification : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum MBSFNInterFrequencyNeighbourr7MbsfnServicesNotificationChoices {
+		mBSFNInterFrequencyNeighbourr7MbsfnServicesNotificationMbsfnServicesNotified = 0,
+		mbsfnServicesNotNotified = 1,
+	};
 	static const Info theInfo;
 	MBSFNInterFrequencyNeighbourr7MbsfnServicesNotification(): Choice(&theInfo) {}
 };

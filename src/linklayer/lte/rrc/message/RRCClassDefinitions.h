@@ -34,6 +34,40 @@ class DLDCCHMessageType : public Choice {
 private:
 	static const void *choicesInfo[32];
 public:
+	enum DLDCCHMessageTypeChoices {
+		activeSetUpdate = 0,
+		assistanceDataDelivery = 1,
+		cellChangeOrderFromUTRAN = 2,
+		cellUpdateConfirm = 3,
+		counterCheck = 4,
+		downlinkDirectTransfer = 5,
+		handoverFromUTRANCommandGSM = 6,
+		handoverFromUTRANCommandCDMA2000 = 7,
+		measurementControl = 8,
+		pagingType2 = 9,
+		physicalChannelReconfiguration = 10,
+		physicalSharedChannelAllocation = 11,
+		radioBearerReconfiguration = 12,
+		radioBearerRelease = 13,
+		radioBearerSetup = 14,
+		rrcConnectionRelease = 15,
+		securityModeCommand = 16,
+		signallingConnectionRelease = 17,
+		transportChannelReconfiguration = 18,
+		transportFormatCombinationControl = 19,
+		ueCapabilityEnquiry = 20,
+		ueCapabilityInformationConfirm = 21,
+		uplinkPhysicalChannelControl = 22,
+		uraUpdateConfirm = 23,
+		utranMobilityInformation = 24,
+		handoverFromUTRANCommandGERANIu = 25,
+		mbmsModifiedServicesInformation = 26,
+		etwsPrimaryNotificationWithSecurity = 27,
+		handoverFromUTRANCommandEUTRA = 28,
+		dLDCCHMessageTypeSpare3 = 29,
+		dLDCCHMessageTypeSpare2 = 30,
+		dLDCCHMessageTypeSpare1 = 31,
+	};
 	static const Info theInfo;
 	DLDCCHMessageType(): Choice(&theInfo) {}
 };
@@ -56,6 +90,40 @@ class ULDCCHMessageType : public Choice {
 private:
 	static const void *choicesInfo[32];
 public:
+	enum ULDCCHMessageTypeChoices {
+		activeSetUpdateComplete = 0,
+		activeSetUpdateFailure = 1,
+		cellChangeOrderFromUTRANFailure = 2,
+		counterCheckResponse = 3,
+		handoverToUTRANComplete = 4,
+		initialDirectTransfer = 5,
+		handoverFromUTRANFailure = 6,
+		measurementControlFailure = 7,
+		measurementReport = 8,
+		physicalChannelReconfigurationComplete = 9,
+		physicalChannelReconfigurationFailure = 10,
+		radioBearerReconfigurationComplete = 11,
+		radioBearerReconfigurationFailure = 12,
+		radioBearerReleaseComplete = 13,
+		radioBearerReleaseFailure = 14,
+		radioBearerSetupComplete = 15,
+		radioBearerSetupFailure = 16,
+		rrcConnectionReleaseComplete = 17,
+		rrcConnectionSetupComplete = 18,
+		rrcStatus = 19,
+		securityModeComplete = 20,
+		securityModeFailure = 21,
+		signallingConnectionReleaseIndication = 22,
+		transportChannelReconfigurationComplete = 23,
+		transportChannelReconfigurationFailure = 24,
+		transportFormatCombinationControlFailure = 25,
+		ueCapabilityInformation = 26,
+		uplinkDirectTransfer = 27,
+		utranMobilityInformationConfirm = 28,
+		utranMobilityInformationFailure = 29,
+		mbmsModificationRequest = 30,
+		uLDCCHMessageTypeSpare1 = 31,
+	};
 	static const Info theInfo;
 	ULDCCHMessageType(): Choice(&theInfo) {}
 };
@@ -80,6 +148,16 @@ class DLCCCHMessageType : public Choice {
 private:
 	static const void *choicesInfo[8];
 public:
+	enum DLCCCHMessageTypeChoices {
+		cellUpdateConfirm = 0,
+		rrcConnectionReject = 1,
+		rrcConnectionRelease = 2,
+		rrcConnectionSetup = 3,
+		uraUpdateConfirm = 4,
+		etwsPrimaryNotificationWithSecurity = 5,
+		dLCCCHMessageTypeSpare2 = 6,
+		dLCCCHMessageTypeSpare1 = 7,
+	};
 	static const Info theInfo;
 	DLCCCHMessageType(): Choice(&theInfo) {}
 };
@@ -102,6 +180,12 @@ class ULCCCHMessageType : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum ULCCCHMessageTypeChoices {
+		cellUpdate = 0,
+		rrcConnectionRequest = 1,
+		uraUpdate = 2,
+		uLCCCHMessageTypeSpare = 3,
+	};
 	static const Info theInfo;
 	ULCCCHMessageType(): Choice(&theInfo) {}
 };
@@ -124,6 +208,10 @@ class PCCHMessageType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum PCCHMessageTypeChoices {
+		pagingType1 = 0,
+		pCCHMessageTypeSpare = 1,
+	};
 	static const Info theInfo;
 	PCCHMessageType(): Choice(&theInfo) {}
 };
@@ -145,6 +233,10 @@ class DLSHCCHMessageType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum DLSHCCHMessageTypeChoices {
+		physicalSharedChannelAllocation = 0,
+		dLSHCCHMessageTypeSpare = 1,
+	};
 	static const Info theInfo;
 	DLSHCCHMessageType(): Choice(&theInfo) {}
 };
@@ -166,6 +258,10 @@ class ULSHCCHMessageType : public Choice {
 private:
 	static const void *choicesInfo[2];
 public:
+	enum ULSHCCHMessageTypeChoices {
+		puschCapacityRequest = 0,
+		uLSHCCHMessageTypeSpare = 1,
+	};
 	static const Info theInfo;
 	ULSHCCHMessageType(): Choice(&theInfo) {}
 };
@@ -189,6 +285,12 @@ class BCCHFACHMessageType : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum BCCHFACHMessageTypeChoices {
+		systemInformation = 0,
+		systemInformationChangeIndication = 1,
+		bCCHFACHMessageTypeSpare2 = 2,
+		bCCHFACHMessageTypeSpare1 = 3,
+	};
 	static const Info theInfo;
 	BCCHFACHMessageType(): Choice(&theInfo) {}
 };
@@ -237,6 +339,24 @@ class MCCHMessageType : public Choice {
 private:
 	static const void *choicesInfo[16];
 public:
+	enum MCCHMessageTypeChoices {
+		mbmsAccessInformation = 0,
+		mbmsCommonPTMRBInformation = 1,
+		mbmsCurrentCellPTMRBInformation = 2,
+		mbmsGeneralInformation = 3,
+		mbmsModifiedServicesInformation = 4,
+		mbmsNeighbouringCellPTMRBInformation = 5,
+		mbmsUnmodifiedServicesInformation = 6,
+		mCCHMessageTypeSpare9 = 7,
+		mCCHMessageTypeSpare8 = 8,
+		mCCHMessageTypeSpare7 = 9,
+		mCCHMessageTypeSpare6 = 10,
+		mCCHMessageTypeSpare5 = 11,
+		mCCHMessageTypeSpare4 = 12,
+		mCCHMessageTypeSpare3 = 13,
+		mCCHMessageTypeSpare2 = 14,
+		mCCHMessageTypeSpare1 = 15,
+	};
 	static const Info theInfo;
 	MCCHMessageType(): Choice(&theInfo) {}
 };
@@ -262,6 +382,12 @@ class MSCHMessageType : public Choice {
 private:
 	static const void *choicesInfo[4];
 public:
+	enum MSCHMessageTypeChoices {
+		mbmsSchedulingInformation = 0,
+		mSCHMessageTypeSpare3 = 1,
+		mSCHMessageTypeSpare2 = 2,
+		mSCHMessageTypeSpare1 = 3,
+	};
 	static const Info theInfo;
 	MSCHMessageType(): Choice(&theInfo) {}
 };
