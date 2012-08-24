@@ -17,7 +17,6 @@
 
 package inet.nodes._4gsim;
 
-import inet.linklayer.lte.rrc.RRC;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.networklayer.common.InterfaceTable;
 import inet.applications.pingapp.PingApp;
@@ -71,9 +70,6 @@ module UE
         }
         routingTable: RoutingTable {
             @display("p=266,54");
-        }
-        rrc: RRC {
-            @display("p=403,310");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
