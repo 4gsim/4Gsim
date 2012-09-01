@@ -140,7 +140,7 @@ public:
 	static const Info theInfo;
 
 	/* Constructors. */
-	OpenType(const void *info = &theInfo) : AbstractType(info) {}
+	OpenType(const void *info = &theInfo);
 	OpenType(char *value, int64_t length, const void *info = &theInfo);
 	OpenType(AbstractType *value, const void *info = &theInfo);
 	OpenType(const OpenType& other) : AbstractType(other) { operator=(other); }

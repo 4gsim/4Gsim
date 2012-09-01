@@ -4,6 +4,7 @@ from asnparser import *
 asnobjs = list()
 imports = list()
 includes = list()
+forbidden = ['explicit']
 
 def firstlower(string):
         return string[0].lower() + string[1:]
@@ -84,6 +85,12 @@ def writeobject(asnobj, hdrfile, srcfile):
 		if asnobj.type == "Sequence":
 			optnr = 0
 			extnr = 0
+			objs = list()
+			if len(asnobj.objs) > 0:
+                                for j in range(0, len(asnobj.objs)):
+                                        obj = asnobj.objs[j]
+                                        if obj.opt == 0:
+                                                objs.append(obj)
 			asnobj.type = asnobj.name
 			if checkandhandledeps(asnobj, hdrfile, srcfile) != 0:
 				return
@@ -93,7 +100,14 @@ def writeobject(asnobj, hdrfile, srcfile):
 						"\tstatic bool itemsPres[" + str(len(asnobj.objs)) + "];\n" +
 						"public:\n" +
 						"\tstatic const Info theInfo;\n"
-						"\t" + asnobj.name + "(): Sequence(&theInfo) {}\n\n")
+						"\t" + asnobj.name + "(): Sequence(&theInfo) {}\n")
+			if len(objs) > 0:
+                                hdrfile.write("\t" + asnobj.name + "(")
+                                for j in range(0, len(objs) - 1):
+                                        obj = objs[j]
+                                        hdrfile.write("const " + obj.type + "& " + firstlower(obj.name) + ", ")
+                                obj = objs[len(objs) - 1]
+                                hdrfile.write("const " + obj.type + "& " + firstlower(obj.name) + ");\n\n")
 			for j in range(0, len(asnobj.objs)):
                                 obj = asnobj.objs[j]
                                 hdrfile.write("\tvoid set" + obj.name + "(const " + obj.type + "& " + firstlower(obj.name) + ") { *static_cast<" + obj.type + "*>(items[" + str(j) + "]) = " + firstlower(obj.name) + "; }\n")
@@ -124,6 +138,17 @@ def writeobject(asnobj, hdrfile, srcfile):
 						"\titemsPres,\n"
 						"\t" + str(len(asnobj.objs)) + ", " + str(optnr) + ", " + str(extnr) + "\n" +
 						"};\n")
+			if len(objs) > 0:
+                                srcfile.write(asnobj.name + "::" + asnobj.name + "(")
+                                for j in range(0, len(objs) - 1):
+                                        obj = objs[j]
+                                        srcfile.write("const " + obj.type + "& " + firstlower(obj.name) + ", ")
+                                obj = objs[len(objs) - 1]
+                                srcfile.write("const " + obj.type + "& " + firstlower(obj.name) + ") : Sequence(&theInfo) {\n")
+                                for j in range(0, len(objs)):
+                                        obj = objs[j]
+                                        srcfile.write("\tset" + obj.name + "(" + firstlower(obj.name) + ");\n")
+                                srcfile.write("}\n")
 			srcfile.write("\n")
 			
 		# Sequence Of
@@ -148,6 +173,9 @@ def writeobject(asnobj, hdrfile, srcfile):
 			hdrfile.write("\tenum " + asnobj.name + "Choices {\n")
 			for j in range(0, len(asnobj.objs)):
                                 obj = asnobj.objs[j]
+                                obj.name = firstlower(obj.name)
+                                if obj.name in forbidden:
+                                        obj.name = "_" + obj.name
                                 hdrfile.write("\t\t" + firstlower(obj.name) + " = " + str(j) + ",\n")
 			hdrfile.write("\t};\n")
 			hdrfile.write("\tstatic const Info theInfo;\n"

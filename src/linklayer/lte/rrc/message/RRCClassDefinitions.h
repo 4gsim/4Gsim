@@ -79,6 +79,7 @@ private:
 public:
 	static const Info theInfo;
 	DLDCCHMessage(): Sequence(&theInfo) {}
+	DLDCCHMessage(const DLDCCHMessageType& message);
 
 	void setIntegrityCheckInfo(const IntegrityCheckInfo& integrityCheckInfo) { *static_cast<IntegrityCheckInfo*>(items[0]) = integrityCheckInfo; }
 	void setMessage(const DLDCCHMessageType& message) { *static_cast<DLDCCHMessageType*>(items[1]) = message; }
@@ -135,6 +136,7 @@ private:
 public:
 	static const Info theInfo;
 	ULDCCHMessage(): Sequence(&theInfo) {}
+	ULDCCHMessage(const ULDCCHMessageType& message);
 
 	void setIntegrityCheckInfo(const IntegrityCheckInfo& integrityCheckInfo) { *static_cast<IntegrityCheckInfo*>(items[0]) = integrityCheckInfo; }
 	void setMessage(const ULDCCHMessageType& message) { *static_cast<ULDCCHMessageType*>(items[1]) = message; }
@@ -169,6 +171,7 @@ private:
 public:
 	static const Info theInfo;
 	DLCCCHMessage(): Sequence(&theInfo) {}
+	DLCCCHMessage(const DLCCCHMessageType& message);
 
 	void setIntegrityCheckInfo(const IntegrityCheckInfo& integrityCheckInfo) { *static_cast<IntegrityCheckInfo*>(items[0]) = integrityCheckInfo; }
 	void setMessage(const DLCCCHMessageType& message) { *static_cast<DLCCCHMessageType*>(items[1]) = message; }
@@ -197,6 +200,7 @@ private:
 public:
 	static const Info theInfo;
 	ULCCCHMessage(): Sequence(&theInfo) {}
+	ULCCCHMessage(const ULCCCHMessageType& message);
 
 	void setIntegrityCheckInfo(const IntegrityCheckInfo& integrityCheckInfo) { *static_cast<IntegrityCheckInfo*>(items[0]) = integrityCheckInfo; }
 	void setMessage(const ULCCCHMessageType& message) { *static_cast<ULCCCHMessageType*>(items[1]) = message; }
@@ -223,6 +227,7 @@ private:
 public:
 	static const Info theInfo;
 	PCCHMessage(): Sequence(&theInfo) {}
+	PCCHMessage(const PCCHMessageType& message);
 
 	void setMessage(const PCCHMessageType& message) { *static_cast<PCCHMessageType*>(items[0]) = message; }
 };
@@ -248,6 +253,7 @@ private:
 public:
 	static const Info theInfo;
 	DLSHCCHMessage(): Sequence(&theInfo) {}
+	DLSHCCHMessage(const DLSHCCHMessageType& message);
 
 	void setMessage(const DLSHCCHMessageType& message) { *static_cast<DLSHCCHMessageType*>(items[0]) = message; }
 };
@@ -273,6 +279,7 @@ private:
 public:
 	static const Info theInfo;
 	ULSHCCHMessage(): Sequence(&theInfo) {}
+	ULSHCCHMessage(const ULSHCCHMessageType& message);
 
 	void setMessage(const ULSHCCHMessageType& message) { *static_cast<ULSHCCHMessageType*>(items[0]) = message; }
 };
@@ -302,6 +309,7 @@ private:
 public:
 	static const Info theInfo;
 	BCCHFACHMessage(): Sequence(&theInfo) {}
+	BCCHFACHMessage(const BCCHFACHMessageType& message);
 
 	void setMessage(const BCCHFACHMessageType& message) { *static_cast<BCCHFACHMessageType*>(items[0]) = message; }
 };
@@ -313,6 +321,7 @@ private:
 public:
 	static const Info theInfo;
 	BCCHBCHMessage(): Sequence(&theInfo) {}
+	BCCHBCHMessage(const SystemInformationBCH& message);
 
 	void setMessage(const SystemInformationBCH& message) { *static_cast<SystemInformationBCH*>(items[0]) = message; }
 };
@@ -368,6 +377,7 @@ private:
 public:
 	static const Info theInfo;
 	MCCHMessage(): Sequence(&theInfo) {}
+	MCCHMessage(const MCCHMessageType& message);
 
 	void setMessage(const MCCHMessageType& message) { *static_cast<MCCHMessageType*>(items[0]) = message; }
 };
@@ -399,6 +409,7 @@ private:
 public:
 	static const Info theInfo;
 	MSCHMessage(): Sequence(&theInfo) {}
+	MSCHMessage(const MSCHMessageType& message);
 
 	void setMessage(const MSCHMessageType& message) { *static_cast<MSCHMessageType*>(items[0]) = message; }
 };

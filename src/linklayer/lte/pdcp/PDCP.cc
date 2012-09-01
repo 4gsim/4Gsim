@@ -15,13 +15,16 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package inet.linklayer.lte.rrc;
+#include "PDCP.h"
 
-simple RRC
-{
-    gates:
-        input nasIn;
-        output nasOut;
-    	input rlcIn;
-        output rlcOut;
+Define_Module(PDCP);
+
+PDCP::PDCP() {
+    // TODO Auto-generated constructor stub
+
 }
+
+PDCP::~PDCP() {
+    // TODO Auto-generated destructor stub
+}
+

@@ -36,6 +36,10 @@ const CNDomainInformation::Info CNDomainInformation::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CNDomainInformation::CNDomainInformation(const CNDomainIdentity& cnDomainIdentity, const NASSystemInformationGSMMAP& cnDomainSpecificNASInfo) : Sequence(&theInfo) {
+	setCnDomainIdentity(cnDomainIdentity);
+	setCnDomainSpecificNASInfo(cnDomainSpecificNASInfo);
+}
 
 const void *CNDomainInformationFull::itemsInfo[3] = {
 	&CNDomainIdentity::theInfo,
@@ -56,6 +60,11 @@ const CNDomainInformationFull::Info CNDomainInformationFull::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+CNDomainInformationFull::CNDomainInformationFull(const CNDomainIdentity& cnDomainIdentity, const NASSystemInformationGSMMAP& cnDomainSpecificNASInfo, const CNDRXCycleLengthCoefficient& cnDRXCycleLengthCoeff) : Sequence(&theInfo) {
+	setCnDomainIdentity(cnDomainIdentity);
+	setCnDomainSpecificNASInfo(cnDomainSpecificNASInfo);
+	setCnDRXCycleLengthCoeff(cnDRXCycleLengthCoeff);
+}
 
 const void *CNDomainSysInfoCnType::choicesInfo[2] = {
 	&NASSystemInformationGSMMAP::theInfo,
@@ -89,6 +98,11 @@ const CNDomainSysInfo::Info CNDomainSysInfo::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+CNDomainSysInfo::CNDomainSysInfo(const CNDomainIdentity& cnDomainIdentity, const CNDomainSysInfoCnType& cNDomainSysInfoCnType, const CNDRXCycleLengthCoefficient& cnDRXCycleLengthCoeff) : Sequence(&theInfo) {
+	setCnDomainIdentity(cnDomainIdentity);
+	setCNDomainSysInfoCnType(cNDomainSysInfoCnType);
+	setCnDRXCycleLengthCoeff(cnDRXCycleLengthCoeff);
+}
 
 const void *PLMNIdentity::itemsInfo[2] = {
 	&MCC::theInfo,
@@ -107,6 +121,10 @@ const PLMNIdentity::Info PLMNIdentity::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+PLMNIdentity::PLMNIdentity(const MCC& mcc, const MNC& mnc) : Sequence(&theInfo) {
+	setMcc(mcc);
+	setMnc(mnc);
+}
 
 const void *CNInformationInfo::itemsInfo[3] = {
 	&PLMNIdentity::theInfo,
@@ -185,6 +203,9 @@ const GsmmapIDNNSRoutingbasisLocalPTMSI::Info GsmmapIDNNSRoutingbasisLocalPTMSI:
 	itemsPres,
 	1, 0, 0
 };
+GsmmapIDNNSRoutingbasisLocalPTMSI::GsmmapIDNNSRoutingbasisLocalPTMSI(const RoutingParameter& routingparameter) : Sequence(&theInfo) {
+	setRoutingparameter(routingparameter);
+}
 
 const void *GsmmapIDNNSRoutingbasisTMSIofsamePLMN::itemsInfo[1] = {
 	&RoutingParameter::theInfo,
@@ -201,6 +222,9 @@ const GsmmapIDNNSRoutingbasisTMSIofsamePLMN::Info GsmmapIDNNSRoutingbasisTMSIofs
 	itemsPres,
 	1, 0, 0
 };
+GsmmapIDNNSRoutingbasisTMSIofsamePLMN::GsmmapIDNNSRoutingbasisTMSIofsamePLMN(const RoutingParameter& routingparameter) : Sequence(&theInfo) {
+	setRoutingparameter(routingparameter);
+}
 
 const void *GsmmapIDNNSRoutingbasisTMSIofdifferentPLMN::itemsInfo[1] = {
 	&RoutingParameter::theInfo,
@@ -217,6 +241,9 @@ const GsmmapIDNNSRoutingbasisTMSIofdifferentPLMN::Info GsmmapIDNNSRoutingbasisTM
 	itemsPres,
 	1, 0, 0
 };
+GsmmapIDNNSRoutingbasisTMSIofdifferentPLMN::GsmmapIDNNSRoutingbasisTMSIofdifferentPLMN(const RoutingParameter& routingparameter) : Sequence(&theInfo) {
+	setRoutingparameter(routingparameter);
+}
 
 const void *GsmmapIDNNSRoutingbasisIMSIresponsetopaging::itemsInfo[1] = {
 	&RoutingParameter::theInfo,
@@ -233,6 +260,9 @@ const GsmmapIDNNSRoutingbasisIMSIresponsetopaging::Info GsmmapIDNNSRoutingbasisI
 	itemsPres,
 	1, 0, 0
 };
+GsmmapIDNNSRoutingbasisIMSIresponsetopaging::GsmmapIDNNSRoutingbasisIMSIresponsetopaging(const RoutingParameter& routingparameter) : Sequence(&theInfo) {
+	setRoutingparameter(routingparameter);
+}
 
 const void *GsmmapIDNNSRoutingbasisIMSIcauseUEinitiatedEvent::itemsInfo[1] = {
 	&RoutingParameter::theInfo,
@@ -249,6 +279,9 @@ const GsmmapIDNNSRoutingbasisIMSIcauseUEinitiatedEvent::Info GsmmapIDNNSRoutingb
 	itemsPres,
 	1, 0, 0
 };
+GsmmapIDNNSRoutingbasisIMSIcauseUEinitiatedEvent::GsmmapIDNNSRoutingbasisIMSIcauseUEinitiatedEvent(const RoutingParameter& routingparameter) : Sequence(&theInfo) {
+	setRoutingparameter(routingparameter);
+}
 
 const void *GsmmapIDNNSRoutingbasisIMEI::itemsInfo[1] = {
 	&RoutingParameter::theInfo,
@@ -265,6 +298,9 @@ const GsmmapIDNNSRoutingbasisIMEI::Info GsmmapIDNNSRoutingbasisIMEI::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+GsmmapIDNNSRoutingbasisIMEI::GsmmapIDNNSRoutingbasisIMEI(const RoutingParameter& routingparameter) : Sequence(&theInfo) {
+	setRoutingparameter(routingparameter);
+}
 
 const void *GsmmapIDNNSRoutingbasisSpare2::itemsInfo[1] = {
 	&RoutingParameter::theInfo,
@@ -281,6 +317,9 @@ const GsmmapIDNNSRoutingbasisSpare2::Info GsmmapIDNNSRoutingbasisSpare2::theInfo
 	itemsPres,
 	1, 0, 0
 };
+GsmmapIDNNSRoutingbasisSpare2::GsmmapIDNNSRoutingbasisSpare2(const RoutingParameter& routingparameter) : Sequence(&theInfo) {
+	setRoutingparameter(routingparameter);
+}
 
 const void *GsmmapIDNNSRoutingbasisSpare1::itemsInfo[1] = {
 	&RoutingParameter::theInfo,
@@ -297,6 +336,9 @@ const GsmmapIDNNSRoutingbasisSpare1::Info GsmmapIDNNSRoutingbasisSpare1::theInfo
 	itemsPres,
 	1, 0, 0
 };
+GsmmapIDNNSRoutingbasisSpare1::GsmmapIDNNSRoutingbasisSpare1(const RoutingParameter& routingparameter) : Sequence(&theInfo) {
+	setRoutingparameter(routingparameter);
+}
 
 const void *GsmmapIDNNSRoutingbasis::choicesInfo[8] = {
 	&GsmmapIDNNSRoutingbasisLocalPTMSI::theInfo,
@@ -334,6 +376,10 @@ const GsmmapIDNNS::Info GsmmapIDNNS::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+GsmmapIDNNS::GsmmapIDNNS(const GsmmapIDNNSRoutingbasis& gsmmapIDNNSRoutingbasis, const GsmmapIDNNSDummy& gsmmapIDNNSDummy) : Sequence(&theInfo) {
+	setGsmmapIDNNSRoutingbasis(gsmmapIDNNSRoutingbasis);
+	setGsmmapIDNNSDummy(gsmmapIDNNSDummy);
+}
 
 const void *IntraDomainNasNodeSelectorVersionRelease99CnType::choicesInfo[2] = {
 	&GsmmapIDNNS::theInfo,
@@ -363,6 +409,9 @@ const IntraDomainNasNodeSelectorVersionRelease99::Info IntraDomainNasNodeSelecto
 	itemsPres,
 	1, 0, 0
 };
+IntraDomainNasNodeSelectorVersionRelease99::IntraDomainNasNodeSelectorVersionRelease99(const IntraDomainNasNodeSelectorVersionRelease99CnType& intraDomainNasNodeSelectorVersionRelease99CnType) : Sequence(&theInfo) {
+	setIntraDomainNasNodeSelectorVersionRelease99CnType(intraDomainNasNodeSelectorVersionRelease99CnType);
+}
 
 const void *IntraDomainNasNodeSelectorVersionLater::itemsInfo[1] = {
 	&IntraDomainNasNodeSelectorVersionLaterFuturecoding::theInfo,
@@ -379,6 +428,9 @@ const IntraDomainNasNodeSelectorVersionLater::Info IntraDomainNasNodeSelectorVer
 	itemsPres,
 	1, 0, 0
 };
+IntraDomainNasNodeSelectorVersionLater::IntraDomainNasNodeSelectorVersionLater(const IntraDomainNasNodeSelectorVersionLaterFuturecoding& intraDomainNasNodeSelectorVersionLaterFuturecoding) : Sequence(&theInfo) {
+	setIntraDomainNasNodeSelectorVersionLaterFuturecoding(intraDomainNasNodeSelectorVersionLaterFuturecoding);
+}
 
 const void *IntraDomainNasNodeSelectorVersion::choicesInfo[2] = {
 	&IntraDomainNasNodeSelectorVersionRelease99::theInfo,
@@ -408,6 +460,9 @@ const IntraDomainNasNodeSelector::Info IntraDomainNasNodeSelector::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+IntraDomainNasNodeSelector::IntraDomainNasNodeSelector(const IntraDomainNasNodeSelectorVersion& intraDomainNasNodeSelectorVersion) : Sequence(&theInfo) {
+	setIntraDomainNasNodeSelectorVersion(intraDomainNasNodeSelectorVersion);
+}
 
 const void *LAI::itemsInfo[2] = {
 	&PLMNIdentity::theInfo,
@@ -426,6 +481,10 @@ const LAI::Info LAI::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+LAI::LAI(const PLMNIdentity& plmnIdentity, const LAILac& lAILac) : Sequence(&theInfo) {
+	setPlmnIdentity(plmnIdentity);
+	setLAILac(lAILac);
+}
 
 const void *LocationRegistrationParameters::choicesInfo[2] = {
 	&LocationRegistrationParametersNoRestriction::theInfo,
@@ -457,6 +516,9 @@ const PLMNIdentityWithOptionalMCCr6::Info PLMNIdentityWithOptionalMCCr6::theInfo
 	itemsPres,
 	2, 1, 0
 };
+PLMNIdentityWithOptionalMCCr6::PLMNIdentityWithOptionalMCCr6(const MNC& mnc) : Sequence(&theInfo) {
+	setMnc(mnc);
+}
 
 const void *MultiplePLMNListr6::itemsInfo[2] = {
 	&MultiplePLMNListr6MibPLMNIdentity::theInfo,
@@ -475,6 +537,10 @@ const MultiplePLMNListr6::Info MultiplePLMNListr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MultiplePLMNListr6::MultiplePLMNListr6(const MultiplePLMNListr6MibPLMNIdentity& multiplePLMNListr6MibPLMNIdentity, const MultiplePLMNListr6MultiplePLMNs& multiplePLMNListr6MultiplePLMNs) : Sequence(&theInfo) {
+	setMultiplePLMNListr6MibPLMNIdentity(multiplePLMNListr6MibPLMNIdentity);
+	setMultiplePLMNListr6MultiplePLMNs(multiplePLMNListr6MultiplePLMNs);
+}
 
 const void *PagingPermissionWithAccessControlParameters::itemsInfo[3] = {
 	&PagingPermissionWithAccessControlParameterspagingResponseRestrictionIndicator::theInfo,
@@ -495,6 +561,11 @@ const PagingPermissionWithAccessControlParameters::Info PagingPermissionWithAcce
 	itemsPres,
 	3, 0, 0
 };
+PagingPermissionWithAccessControlParameters::PagingPermissionWithAccessControlParameters(const PagingPermissionWithAccessControlParameterspagingResponseRestrictionIndicator& pagingPermissionWithAccessControlParameterspagingResponseRestrictionIndicator, const PagingPermissionWithAccessControlParameterslocationRegistrationRestrictionIndicator& pagingPermissionWithAccessControlParameterslocationRegistrationRestrictionIndicator, const LocationRegistrationParameters& locationRegistration) : Sequence(&theInfo) {
+	setPagingPermissionWithAccessControlParameterspagingResponseRestrictionIndicator(pagingPermissionWithAccessControlParameterspagingResponseRestrictionIndicator);
+	setPagingPermissionWithAccessControlParameterslocationRegistrationRestrictionIndicator(pagingPermissionWithAccessControlParameterslocationRegistrationRestrictionIndicator);
+	setLocationRegistration(locationRegistration);
+}
 
 const void *PagingPermissionWithAccessControlList::itemsInfo[5] = {
 	&PagingPermissionWithAccessControlParameters::theInfo,
@@ -548,6 +619,9 @@ const PLMNTypeGsmMAP::Info PLMNTypeGsmMAP::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+PLMNTypeGsmMAP::PLMNTypeGsmMAP(const PLMNIdentity& plmnIdentity) : Sequence(&theInfo) {
+	setPlmnIdentity(plmnIdentity);
+}
 
 const void *PLMNTypeAnsi41::itemsInfo[4] = {
 	&PREV::theInfo,
@@ -570,6 +644,12 @@ const PLMNTypeAnsi41::Info PLMNTypeAnsi41::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+PLMNTypeAnsi41::PLMNTypeAnsi41(const PREV& pREV, const MinPREV& minPREV, const SID& sid, const NID& nid) : Sequence(&theInfo) {
+	setPREV(pREV);
+	setMinPREV(minPREV);
+	setSid(sid);
+	setNid(nid);
+}
 
 const void *PLMNTypeGsmMAPandANSI41::itemsInfo[5] = {
 	&PLMNIdentity::theInfo,
@@ -594,6 +674,13 @@ const PLMNTypeGsmMAPandANSI41::Info PLMNTypeGsmMAPandANSI41::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+PLMNTypeGsmMAPandANSI41::PLMNTypeGsmMAPandANSI41(const PLMNIdentity& plmnIdentity, const PREV& pREV, const MinPREV& minPREV, const SID& sid, const NID& nid) : Sequence(&theInfo) {
+	setPlmnIdentity(plmnIdentity);
+	setPREV(pREV);
+	setMinPREV(minPREV);
+	setSid(sid);
+	setNid(nid);
+}
 
 const void *PLMNType::choicesInfo[4] = {
 	&PLMNTypeGsmMAP::theInfo,
@@ -640,6 +727,10 @@ const RAI::Info RAI::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RAI::RAI(const LAI& lai, const RoutingAreaCode& rac) : Sequence(&theInfo) {
+	setLai(lai);
+	setRac(rac);
+}
 
 const void *CellBarredBarred::itemsInfo[2] = {
 	&AllowedIndicator::theInfo,
@@ -658,6 +749,10 @@ const CellBarredBarred::Info CellBarredBarred::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CellBarredBarred::CellBarredBarred(const AllowedIndicator& intraFreqCellReselectionInd, const TBarred& tBarred) : Sequence(&theInfo) {
+	setIntraFreqCellReselectionInd(intraFreqCellReselectionInd);
+	setTBarred(tBarred);
+}
 
 const void *CellBarred::choicesInfo[2] = {
 	&CellBarredBarred::theInfo,
@@ -693,6 +788,11 @@ const CellAccessRestriction::Info CellAccessRestriction::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+CellAccessRestriction::CellAccessRestriction(const CellBarred& cellBarred, const ReservedIndicator& cellReservedForOperatorUse, const ReservedIndicator& cellReservationExtension) : Sequence(&theInfo) {
+	setCellBarred(cellBarred);
+	setCellReservedForOperatorUse(cellReservedForOperatorUse);
+	setCellReservationExtension(cellReservationExtension);
+}
 
 const void *CellAccessRestrictionv870ext::itemsInfo[1] = {
 	&CellAccessRestrictionv870extcellReservedForCSG::theInfo,
@@ -731,6 +831,10 @@ const MappingFunctionParameter::Info MappingFunctionParameter::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+MappingFunctionParameter::MappingFunctionParameter(const MappingFunctionType& functionType, const MapParameter& mapParameter2) : Sequence(&theInfo) {
+	setFunctionType(functionType);
+	setMapParameter2(mapParameter2);
+}
 
 const void *Mapping::itemsInfo[2] = {
 	&RAT::theInfo,
@@ -749,6 +853,10 @@ const Mapping::Info Mapping::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+Mapping::Mapping(const RAT& rat, const MappingFunctionParameterList& mappingFunctionParameterList) : Sequence(&theInfo) {
+	setRat(rat);
+	setMappingFunctionParameterList(mappingFunctionParameterList);
+}
 
 const void *CellSelectReselectInfoSIB34CellSelectQualityMeasureCpichEcN0::itemsInfo[1] = {
 	&QHystS::theInfo,
@@ -800,6 +908,11 @@ const RATFDDInfo::Info RATFDDInfo::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+RATFDDInfo::RATFDDInfo(const RATIdentifier& ratIdentifier, const SSearchQual& sSearchRAT, const SSearchQual& sLimitSearchRAT) : Sequence(&theInfo) {
+	setRatIdentifier(ratIdentifier);
+	setSSearchRAT(sSearchRAT);
+	setSLimitSearchRAT(sLimitSearchRAT);
+}
 
 const void *CellSelectReselectInfoSIB34ModeSpecificInfoFdd::itemsInfo[6] = {
 	&SSearchQual::theInfo,
@@ -826,6 +939,10 @@ const CellSelectReselectInfoSIB34ModeSpecificInfoFdd::Info CellSelectReselectInf
 	itemsPres,
 	6, 4, 0
 };
+CellSelectReselectInfoSIB34ModeSpecificInfoFdd::CellSelectReselectInfoSIB34ModeSpecificInfoFdd(const QQualMin& qQualMin, const QRxlevMin& qRxlevMin) : Sequence(&theInfo) {
+	setQQualMin(qQualMin);
+	setQRxlevMin(qRxlevMin);
+}
 
 const void *RATTDDInfo::itemsInfo[4] = {
 	&RATIdentifier::theInfo,
@@ -848,6 +965,11 @@ const RATTDDInfo::Info RATTDDInfo::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+RATTDDInfo::RATTDDInfo(const RATIdentifier& ratIdentifier, const SSearchRXLEV& sSearchRAT, const SSearchRXLEV& sLimitSearchRAT) : Sequence(&theInfo) {
+	setRatIdentifier(ratIdentifier);
+	setSSearchRAT(sSearchRAT);
+	setSLimitSearchRAT(sLimitSearchRAT);
+}
 
 const void *CellSelectReselectInfoSIB34ModeSpecificInfoTdd::itemsInfo[5] = {
 	&SSearchRXLEV::theInfo,
@@ -872,6 +994,9 @@ const CellSelectReselectInfoSIB34ModeSpecificInfoTdd::Info CellSelectReselectInf
 	itemsPres,
 	5, 4, 0
 };
+CellSelectReselectInfoSIB34ModeSpecificInfoTdd::CellSelectReselectInfoSIB34ModeSpecificInfoTdd(const QRxlevMin& qRxlevMin) : Sequence(&theInfo) {
+	setQRxlevMin(qRxlevMin);
+}
 
 const void *CellSelectReselectInfoSIB34ModeSpecificInfo::choicesInfo[2] = {
 	&CellSelectReselectInfoSIB34ModeSpecificInfoFdd::theInfo,
@@ -903,6 +1028,9 @@ const NCRTCRMaxHyst::Info NCRTCRMaxHyst::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NCRTCRMaxHyst::NCRTCRMaxHyst(const TCRMaxHyst& tCRMaxHyst) : Sequence(&theInfo) {
+	setTCRMaxHyst(tCRMaxHyst);
+}
 
 const void *TCRMax::choicesInfo[6] = {
 	&TCRMaxNotUsed::theInfo,
@@ -968,6 +1096,13 @@ const CellSelectReselectInfoSIB34::Info CellSelectReselectInfoSIB34::theInfo = {
 	itemsPres,
 	7, 2, 0
 };
+CellSelectReselectInfoSIB34::CellSelectReselectInfoSIB34(const CellSelectReselectInfoSIB34CellSelectQualityMeasure& cellSelectReselectInfoSIB34CellSelectQualityMeasure, const CellSelectReselectInfoSIB34ModeSpecificInfo& cellSelectReselectInfoSIB34ModeSpecificInfo, const QHystS& qHystlS, const TReselectionS& tReselectionS, const MaxAllowedULTXPower& maxAllowedULTXPower) : Sequence(&theInfo) {
+	setCellSelectReselectInfoSIB34CellSelectQualityMeasure(cellSelectReselectInfoSIB34CellSelectQualityMeasure);
+	setCellSelectReselectInfoSIB34ModeSpecificInfo(cellSelectReselectInfoSIB34ModeSpecificInfo);
+	setQHystlS(qHystlS);
+	setTReselectionS(tReselectionS);
+	setMaxAllowedULTXPower(maxAllowedULTXPower);
+}
 
 const void *FrequencyInfoFDD::itemsInfo[2] = {
 	&UARFCN::theInfo,
@@ -986,6 +1121,9 @@ const FrequencyInfoFDD::Info FrequencyInfoFDD::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+FrequencyInfoFDD::FrequencyInfoFDD(const UARFCN& uarfcnDL) : Sequence(&theInfo) {
+	setUarfcnDL(uarfcnDL);
+}
 
 const void *FrequencyInfoTDD::itemsInfo[1] = {
 	&UARFCN::theInfo,
@@ -1002,6 +1140,9 @@ const FrequencyInfoTDD::Info FrequencyInfoTDD::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+FrequencyInfoTDD::FrequencyInfoTDD(const UARFCN& uarfcnNt) : Sequence(&theInfo) {
+	setUarfcnNt(uarfcnNt);
+}
 
 const void *FrequencyInfoModeSpecificInfo::choicesInfo[2] = {
 	&FrequencyInfoFDD::theInfo,
@@ -1031,6 +1172,9 @@ const FrequencyInfo::Info FrequencyInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+FrequencyInfo::FrequencyInfo(const FrequencyInfoModeSpecificInfo& frequencyInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setFrequencyInfoModeSpecificInfo(frequencyInfoModeSpecificInfo);
+}
 
 const void *CSGPSCSplitInfo::itemsInfo[3] = {
 	&CSGPSCSplitInfoStartPSC::theInfo,
@@ -1051,6 +1195,10 @@ const CSGPSCSplitInfo::Info CSGPSCSplitInfo::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+CSGPSCSplitInfo::CSGPSCSplitInfo(const CSGPSCSplitInfoStartPSC& cSGPSCSplitInfoStartPSC, const CSGPSCSplitInfonumberOfPSCs& cSGPSCSplitInfonumberOfPSCs) : Sequence(&theInfo) {
+	setCSGPSCSplitInfoStartPSC(cSGPSCSplitInfoStartPSC);
+	setCSGPSCSplitInfonumberOfPSCs(cSGPSCSplitInfonumberOfPSCs);
+}
 
 const void *DomainSpecificAccessRestrictionv670extRestriction::itemsInfo[1] = {
 	&AccessClassBarredList::theInfo,
@@ -1098,6 +1246,10 @@ const DomainSpecificAccessRestrictionParamv670ext::Info DomainSpecificAccessRest
 	itemsPres,
 	2, 0, 0
 };
+DomainSpecificAccessRestrictionParamv670ext::DomainSpecificAccessRestrictionParamv670ext(const DomainSpecificAccessRestrictionv670ext& cSDomainSpecificAccessRestriction, const DomainSpecificAccessRestrictionv670ext& pSDomainSpecificAccessRestriction) : Sequence(&theInfo) {
+	setCSDomainSpecificAccessRestriction(cSDomainSpecificAccessRestriction);
+	setPSDomainSpecificAccessRestriction(pSDomainSpecificAccessRestriction);
+}
 
 const void *DomainSpecificAccessRestrictionListv670ext::itemsInfo[5] = {
 	&DomainSpecificAccessRestrictionParamv670ext::theInfo,
@@ -1151,6 +1303,9 @@ const MappingLCRr4::Info MappingLCRr4::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MappingLCRr4::MappingLCRr4(const MappingFunctionParameterList& mappingFunctionParameterList) : Sequence(&theInfo) {
+	setMappingFunctionParameterList(mappingFunctionParameterList);
+}
 
 const void *PriorityLevelRadioAccessTechnologyUtraFDD::itemsInfo[0] = {
 };
@@ -1211,6 +1366,10 @@ const GSMCellGroupFollowingARFCNsEquallySpacedARFCNs::Info GSMCellGroupFollowing
 	itemsPres,
 	2, 0, 0
 };
+GSMCellGroupFollowingARFCNsEquallySpacedARFCNs::GSMCellGroupFollowingARFCNsEquallySpacedARFCNs(const GSMCellGroupFollowingARFCNsEquallySpacedARFCNsArfcnSpacing& gSMCellGroupFollowingARFCNsEquallySpacedARFCNsArfcnSpacing, const GSMCellGroupFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs& gSMCellGroupFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs) : Sequence(&theInfo) {
+	setGSMCellGroupFollowingARFCNsEquallySpacedARFCNsArfcnSpacing(gSMCellGroupFollowingARFCNsEquallySpacedARFCNsArfcnSpacing);
+	setGSMCellGroupFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs(gSMCellGroupFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs);
+}
 
 const void *GSMCellGroupFollowingARFCNsContinuousRangeOfARFCNs::itemsInfo[1] = {
 	&BCCHARFCN::theInfo,
@@ -1227,6 +1386,9 @@ const GSMCellGroupFollowingARFCNsContinuousRangeOfARFCNs::Info GSMCellGroupFollo
 	itemsPres,
 	1, 0, 0
 };
+GSMCellGroupFollowingARFCNsContinuousRangeOfARFCNs::GSMCellGroupFollowingARFCNsContinuousRangeOfARFCNs(const BCCHARFCN& endingARFCN) : Sequence(&theInfo) {
+	setEndingARFCN(endingARFCN);
+}
 
 const void *GSMCellGroupFollowingARFCNs::choicesInfo[4] = {
 	&GSMCellGroupFollowingARFCNsExplicitListOfARFCNs::theInfo,
@@ -1262,6 +1424,11 @@ const GSMCellGroup::Info GSMCellGroup::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+GSMCellGroup::GSMCellGroup(const BCCHARFCN& startingARFCN, const GSMCellGroupbandIndicator& gSMCellGroupbandIndicator, const GSMCellGroupFollowingARFCNs& gSMCellGroupFollowingARFCNs) : Sequence(&theInfo) {
+	setStartingARFCN(startingARFCN);
+	setGSMCellGroupbandIndicator(gSMCellGroupbandIndicator);
+	setGSMCellGroupFollowingARFCNs(gSMCellGroupFollowingARFCNs);
+}
 
 const void *PriorityLevelRadioAccessTechnologyGsm::itemsInfo[1] = {
 	&GSMCellGroup::theInfo,
@@ -1278,6 +1445,9 @@ const PriorityLevelRadioAccessTechnologyGsm::Info PriorityLevelRadioAccessTechno
 	itemsPres,
 	1, 0, 0
 };
+PriorityLevelRadioAccessTechnologyGsm::PriorityLevelRadioAccessTechnologyGsm(const GSMCellGroup& gsmCellGroup) : Sequence(&theInfo) {
+	setGsmCellGroup(gsmCellGroup);
+}
 
 const void *PriorityLevelRadioAccessTechnology::choicesInfo[4] = {
 	&PriorityLevelRadioAccessTechnologyUtraFDD::theInfo,
@@ -1311,6 +1481,9 @@ const PriorityLevel::Info PriorityLevel::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+PriorityLevel::PriorityLevel(const PriorityLevelRadioAccessTechnology& priorityLevelRadioAccessTechnology) : Sequence(&theInfo) {
+	setPriorityLevelRadioAccessTechnology(priorityLevelRadioAccessTechnology);
+}
 
 const void *DedicatedPriorityInformationActionConfigureDedicatedPriorities::itemsInfo[3] = {
 	&T322::theInfo,
@@ -1331,6 +1504,9 @@ const DedicatedPriorityInformationActionConfigureDedicatedPriorities::Info Dedic
 	itemsPres,
 	3, 2, 0
 };
+DedicatedPriorityInformationActionConfigureDedicatedPriorities::DedicatedPriorityInformationActionConfigureDedicatedPriorities(const DedicatedPriorityInformationActionConfigureDedicatedPrioritiesEutraDetection& dedicatedPriorityInformationActionConfigureDedicatedPrioritiesEutraDetection) : Sequence(&theInfo) {
+	setDedicatedPriorityInformationActionConfigureDedicatedPrioritiesEutraDetection(dedicatedPriorityInformationActionConfigureDedicatedPrioritiesEutraDetection);
+}
 
 const void *DedicatedPriorityInformationAction::choicesInfo[2] = {
 	&DedicatedPriorityInformationActionClearDedicatedPriorities::theInfo,
@@ -1360,6 +1536,9 @@ const DedicatedPriorityInformation::Info DedicatedPriorityInformation::theInfo =
 	itemsPres,
 	1, 0, 0
 };
+DedicatedPriorityInformation::DedicatedPriorityInformation(const DedicatedPriorityInformationAction& dedicatedPriorityInformationAction) : Sequence(&theInfo) {
+	setDedicatedPriorityInformationAction(dedicatedPriorityInformationAction);
+}
 
 const void *BackoffControlParams::itemsInfo[7] = {
 	&NAPRetransMax::theInfo,
@@ -1388,6 +1567,15 @@ const BackoffControlParams::Info BackoffControlParams::theInfo = {
 	itemsPres,
 	7, 0, 0
 };
+BackoffControlParams::BackoffControlParams(const NAPRetransMax& nAPRetransMax, const NAccessFails& nAccessFails, const NFBONoAICH& nfBONoAICH, const NSBOBusy& nsBOBusy, const NFBOAllBusy& nfBOAllBusy, const NFBOMismatch& nfBOMismatch, const TCPCH& tCPCH) : Sequence(&theInfo) {
+	setNAPRetransMax(nAPRetransMax);
+	setNAccessFails(nAccessFails);
+	setNfBONoAICH(nfBONoAICH);
+	setNsBOBusy(nsBOBusy);
+	setNfBOAllBusy(nfBOAllBusy);
+	setNfBOMismatch(nfBOMismatch);
+	setTCPCH(tCPCH);
+}
 
 const void *CapabilityUpdateRequirement::itemsInfo[3] = {
 	&CapabilityUpdateRequirementUeRadioCapabilityFDDUpdateRequirement::theInfo,
@@ -1408,6 +1596,10 @@ const CapabilityUpdateRequirement::Info CapabilityUpdateRequirement::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+CapabilityUpdateRequirement::CapabilityUpdateRequirement(const CapabilityUpdateRequirementUeRadioCapabilityFDDUpdateRequirement& capabilityUpdateRequirementUeRadioCapabilityFDDUpdateRequirement, const CapabilityUpdateRequirementUeRadioCapabilityTDDUpdateRequirement& capabilityUpdateRequirementUeRadioCapabilityTDDUpdateRequirement) : Sequence(&theInfo) {
+	setCapabilityUpdateRequirementUeRadioCapabilityFDDUpdateRequirement(capabilityUpdateRequirementUeRadioCapabilityFDDUpdateRequirement);
+	setCapabilityUpdateRequirementUeRadioCapabilityTDDUpdateRequirement(capabilityUpdateRequirementUeRadioCapabilityTDDUpdateRequirement);
+}
 
 const void *CapabilityUpdateRequirementr4ext::itemsInfo[1] = {
 	&CapabilityUpdateRequirementr4extUeRadioCapabilityUpdateRequirementTDD128::theInfo,
@@ -1424,6 +1616,9 @@ const CapabilityUpdateRequirementr4ext::Info CapabilityUpdateRequirementr4ext::t
 	itemsPres,
 	1, 0, 0
 };
+CapabilityUpdateRequirementr4ext::CapabilityUpdateRequirementr4ext(const CapabilityUpdateRequirementr4extUeRadioCapabilityUpdateRequirementTDD128& capabilityUpdateRequirementr4extUeRadioCapabilityUpdateRequirementTDD128) : Sequence(&theInfo) {
+	setCapabilityUpdateRequirementr4extUeRadioCapabilityUpdateRequirementTDD128(capabilityUpdateRequirementr4extUeRadioCapabilityUpdateRequirementTDD128);
+}
 
 const void *CapabilityUpdateRequirementr4::itemsInfo[4] = {
 	&CapabilityUpdateRequirementr4UeRadioCapabilityFDDUpdateRequirementFDD::theInfo,
@@ -1446,6 +1641,11 @@ const CapabilityUpdateRequirementr4::Info CapabilityUpdateRequirementr4::theInfo
 	itemsPres,
 	4, 1, 0
 };
+CapabilityUpdateRequirementr4::CapabilityUpdateRequirementr4(const CapabilityUpdateRequirementr4UeRadioCapabilityFDDUpdateRequirementFDD& capabilityUpdateRequirementr4UeRadioCapabilityFDDUpdateRequirementFDD, const CapabilityUpdateRequirementr4UeRadioCapabilityTDDUpdateRequirementTDD384& capabilityUpdateRequirementr4UeRadioCapabilityTDDUpdateRequirementTDD384, const CapabilityUpdateRequirementr4UeRadioCapabilityTDDUpdateRequirementTDD128& capabilityUpdateRequirementr4UeRadioCapabilityTDDUpdateRequirementTDD128) : Sequence(&theInfo) {
+	setCapabilityUpdateRequirementr4UeRadioCapabilityFDDUpdateRequirementFDD(capabilityUpdateRequirementr4UeRadioCapabilityFDDUpdateRequirementFDD);
+	setCapabilityUpdateRequirementr4UeRadioCapabilityTDDUpdateRequirementTDD384(capabilityUpdateRequirementr4UeRadioCapabilityTDDUpdateRequirementTDD384);
+	setCapabilityUpdateRequirementr4UeRadioCapabilityTDDUpdateRequirementTDD128(capabilityUpdateRequirementr4UeRadioCapabilityTDDUpdateRequirementTDD128);
+}
 
 const void *CapabilityUpdateRequirementr5::itemsInfo[4] = {
 	&CapabilityUpdateRequirementr5UeRadioCapabilityFDDUpdateRequirementFDD::theInfo,
@@ -1468,6 +1668,11 @@ const CapabilityUpdateRequirementr5::Info CapabilityUpdateRequirementr5::theInfo
 	itemsPres,
 	4, 1, 0
 };
+CapabilityUpdateRequirementr5::CapabilityUpdateRequirementr5(const CapabilityUpdateRequirementr5UeRadioCapabilityFDDUpdateRequirementFDD& capabilityUpdateRequirementr5UeRadioCapabilityFDDUpdateRequirementFDD, const CapabilityUpdateRequirementr5UeRadioCapabilityTDDUpdateRequirementTDD384& capabilityUpdateRequirementr5UeRadioCapabilityTDDUpdateRequirementTDD384, const CapabilityUpdateRequirementr5UeRadioCapabilityTDDUpdateRequirementTDD128& capabilityUpdateRequirementr5UeRadioCapabilityTDDUpdateRequirementTDD128) : Sequence(&theInfo) {
+	setCapabilityUpdateRequirementr5UeRadioCapabilityFDDUpdateRequirementFDD(capabilityUpdateRequirementr5UeRadioCapabilityFDDUpdateRequirementFDD);
+	setCapabilityUpdateRequirementr5UeRadioCapabilityTDDUpdateRequirementTDD384(capabilityUpdateRequirementr5UeRadioCapabilityTDDUpdateRequirementTDD384);
+	setCapabilityUpdateRequirementr5UeRadioCapabilityTDDUpdateRequirementTDD128(capabilityUpdateRequirementr5UeRadioCapabilityTDDUpdateRequirementTDD128);
+}
 
 const void *CapabilityUpdateRequirementv770ext::itemsInfo[1] = {
 	&CapabilityUpdateRequirementv770extUeRadioCapabilityTDDUpdateRequirementTDD768::theInfo,
@@ -1484,6 +1689,9 @@ const CapabilityUpdateRequirementv770ext::Info CapabilityUpdateRequirementv770ex
 	itemsPres,
 	1, 0, 0
 };
+CapabilityUpdateRequirementv770ext::CapabilityUpdateRequirementv770ext(const CapabilityUpdateRequirementv770extUeRadioCapabilityTDDUpdateRequirementTDD768& capabilityUpdateRequirementv770extUeRadioCapabilityTDDUpdateRequirementTDD768) : Sequence(&theInfo) {
+	setCapabilityUpdateRequirementv770extUeRadioCapabilityTDDUpdateRequirementTDD768(capabilityUpdateRequirementv770extUeRadioCapabilityTDDUpdateRequirementTDD768);
+}
 
 const void *CapabilityUpdateRequirementr7::itemsInfo[5] = {
 	&CapabilityUpdateRequirementr7UeRadioCapabilityFDDUpdateRequirementFDD::theInfo,
@@ -1508,6 +1716,12 @@ const CapabilityUpdateRequirementr7::Info CapabilityUpdateRequirementr7::theInfo
 	itemsPres,
 	5, 1, 0
 };
+CapabilityUpdateRequirementr7::CapabilityUpdateRequirementr7(const CapabilityUpdateRequirementr7UeRadioCapabilityFDDUpdateRequirementFDD& capabilityUpdateRequirementr7UeRadioCapabilityFDDUpdateRequirementFDD, const CapabilityUpdateRequirementr7UeRadioCapabilityTDDUpdateRequirementTDD384& capabilityUpdateRequirementr7UeRadioCapabilityTDDUpdateRequirementTDD384, const CapabilityUpdateRequirementr7UeRadioCapabilityTDDUpdateRequirementTDD768& capabilityUpdateRequirementr7UeRadioCapabilityTDDUpdateRequirementTDD768, const CapabilityUpdateRequirementr7UeRadioCapabilityTDDUpdateRequirementTDD128& capabilityUpdateRequirementr7UeRadioCapabilityTDDUpdateRequirementTDD128) : Sequence(&theInfo) {
+	setCapabilityUpdateRequirementr7UeRadioCapabilityFDDUpdateRequirementFDD(capabilityUpdateRequirementr7UeRadioCapabilityFDDUpdateRequirementFDD);
+	setCapabilityUpdateRequirementr7UeRadioCapabilityTDDUpdateRequirementTDD384(capabilityUpdateRequirementr7UeRadioCapabilityTDDUpdateRequirementTDD384);
+	setCapabilityUpdateRequirementr7UeRadioCapabilityTDDUpdateRequirementTDD768(capabilityUpdateRequirementr7UeRadioCapabilityTDDUpdateRequirementTDD768);
+	setCapabilityUpdateRequirementr7UeRadioCapabilityTDDUpdateRequirementTDD128(capabilityUpdateRequirementr7UeRadioCapabilityTDDUpdateRequirementTDD128);
+}
 
 const void *CapabilityUpdateRequirementv860ext::itemsInfo[1] = {
 	&SystemSpecificCapUpdateReqListr8::theInfo,
@@ -1548,6 +1762,12 @@ const CapabilityUpdateRequirementr8::Info CapabilityUpdateRequirementr8::theInfo
 	itemsPres,
 	5, 1, 0
 };
+CapabilityUpdateRequirementr8::CapabilityUpdateRequirementr8(const CapabilityUpdateRequirementr8UeRadioCapabilityFDDUpdateRequirementFDD& capabilityUpdateRequirementr8UeRadioCapabilityFDDUpdateRequirementFDD, const CapabilityUpdateRequirementr8UeRadioCapabilityTDDUpdateRequirementTDD384& capabilityUpdateRequirementr8UeRadioCapabilityTDDUpdateRequirementTDD384, const CapabilityUpdateRequirementr8UeRadioCapabilityTDDUpdateRequirementTDD768& capabilityUpdateRequirementr8UeRadioCapabilityTDDUpdateRequirementTDD768, const CapabilityUpdateRequirementr8UeRadioCapabilityTDDUpdateRequirementTDD128& capabilityUpdateRequirementr8UeRadioCapabilityTDDUpdateRequirementTDD128) : Sequence(&theInfo) {
+	setCapabilityUpdateRequirementr8UeRadioCapabilityFDDUpdateRequirementFDD(capabilityUpdateRequirementr8UeRadioCapabilityFDDUpdateRequirementFDD);
+	setCapabilityUpdateRequirementr8UeRadioCapabilityTDDUpdateRequirementTDD384(capabilityUpdateRequirementr8UeRadioCapabilityTDDUpdateRequirementTDD384);
+	setCapabilityUpdateRequirementr8UeRadioCapabilityTDDUpdateRequirementTDD768(capabilityUpdateRequirementr8UeRadioCapabilityTDDUpdateRequirementTDD768);
+	setCapabilityUpdateRequirementr8UeRadioCapabilityTDDUpdateRequirementTDD128(capabilityUpdateRequirementr8UeRadioCapabilityTDDUpdateRequirementTDD128);
+}
 
 const void *CipheringModeCommand::choicesInfo[2] = {
 	&CipheringAlgorithm::theInfo,
@@ -1577,6 +1797,9 @@ const CipheringModeCommandr7::Info CipheringModeCommandr7::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+CipheringModeCommandr7::CipheringModeCommandr7(const CipheringAlgorithmr7& startRestart) : Sequence(&theInfo) {
+	setStartRestart(startRestart);
+}
 
 const void *RBActivationTimeInfo::itemsInfo[2] = {
 	&RBIdentity::theInfo,
@@ -1595,6 +1818,10 @@ const RBActivationTimeInfo::Info RBActivationTimeInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RBActivationTimeInfo::RBActivationTimeInfo(const RBIdentity& rbIdentity, const RLCSequenceNumber& rlcSequenceNumber) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRlcSequenceNumber(rlcSequenceNumber);
+}
 
 const void *CipheringModeInfo::itemsInfo[3] = {
 	&CipheringModeCommand::theInfo,
@@ -1615,6 +1842,9 @@ const CipheringModeInfo::Info CipheringModeInfo::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+CipheringModeInfo::CipheringModeInfo(const CipheringModeCommand& cipheringModeCommand) : Sequence(&theInfo) {
+	setCipheringModeCommand(cipheringModeCommand);
+}
 
 const void *CipheringModeInfor7::itemsInfo[3] = {
 	&CipheringModeCommandr7::theInfo,
@@ -1635,6 +1865,9 @@ const CipheringModeInfor7::Info CipheringModeInfor7::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+CipheringModeInfor7::CipheringModeInfor7(const CipheringModeCommandr7& cipheringModeCommand) : Sequence(&theInfo) {
+	setCipheringModeCommand(cipheringModeCommand);
+}
 
 const void *CNPagedUEIdentity::choicesInfo[8] = {
 	&IMSIGSMMAP::theInfo,
@@ -1674,6 +1907,11 @@ const GSMMeasurements::Info GSMMeasurements::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+GSMMeasurements::GSMMeasurements(const GSMMeasurementsGsm900& gSMMeasurementsGsm900, const GSMMeasurementsDcs1800& gSMMeasurementsDcs1800, const GSMMeasurementsGsm1900& gSMMeasurementsGsm1900) : Sequence(&theInfo) {
+	setGSMMeasurementsGsm900(gSMMeasurementsGsm900);
+	setGSMMeasurementsDcs1800(gSMMeasurementsDcs1800);
+	setGSMMeasurementsGsm1900(gSMMeasurementsGsm1900);
+}
 
 const void *CompressedModeMeasCapability::itemsInfo[4] = {
 	&CompressedModeMeasCapabilityFddMeasurements::theInfo,
@@ -1696,6 +1934,9 @@ const CompressedModeMeasCapability::Info CompressedModeMeasCapability::theInfo =
 	itemsPres,
 	4, 3, 0
 };
+CompressedModeMeasCapability::CompressedModeMeasCapability(const CompressedModeMeasCapabilityFddMeasurements& compressedModeMeasCapabilityFddMeasurements) : Sequence(&theInfo) {
+	setCompressedModeMeasCapabilityFddMeasurements(compressedModeMeasCapabilityFddMeasurements);
+}
 
 const void *CompressedModeMeasCapabilityLCRr4::itemsInfo[1] = {
 	&CompressedModeMeasCapabilityLCRr4Tdd128Measurements::theInfo,
@@ -1762,6 +2003,10 @@ const CompressedModeMeasCapabEUTRA::Info CompressedModeMeasCapabEUTRA::theInfo =
 	itemsPres,
 	2, 0, 0
 };
+CompressedModeMeasCapabEUTRA::CompressedModeMeasCapabEUTRA(const RadioFrequencyBandEUTRA& radioFrequencyBandEUTRA, const CompressedModeMeasCapabEUTRACompressedMode& compressedModeMeasCapabEUTRACompressedMode) : Sequence(&theInfo) {
+	setRadioFrequencyBandEUTRA(radioFrequencyBandEUTRA);
+	setCompressedModeMeasCapabEUTRACompressedMode(compressedModeMeasCapabEUTRACompressedMode);
+}
 
 const void *CompressedModeMeasCapabFDD::itemsInfo[3] = {
 	&RadioFrequencyBandFDD::theInfo,
@@ -1782,6 +2027,10 @@ const CompressedModeMeasCapabFDD::Info CompressedModeMeasCapabFDD::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+CompressedModeMeasCapabFDD::CompressedModeMeasCapabFDD(const CompressedModeMeasCapabFDDDlMeasurementsFDD& compressedModeMeasCapabFDDDlMeasurementsFDD, const CompressedModeMeasCapabFDDUlMeasurementsFDD& compressedModeMeasCapabFDDUlMeasurementsFDD) : Sequence(&theInfo) {
+	setCompressedModeMeasCapabFDDDlMeasurementsFDD(compressedModeMeasCapabFDDDlMeasurementsFDD);
+	setCompressedModeMeasCapabFDDUlMeasurementsFDD(compressedModeMeasCapabFDDUlMeasurementsFDD);
+}
 
 const void *CompressedModeMeasCapabFDD2::itemsInfo[4] = {
 	&RadioFrequencyBandFDD::theInfo,
@@ -1804,6 +2053,10 @@ const CompressedModeMeasCapabFDD2::Info CompressedModeMeasCapabFDD2::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+CompressedModeMeasCapabFDD2::CompressedModeMeasCapabFDD2(const CompressedModeMeasCapabFDD2DlMeasurementsFDD& compressedModeMeasCapabFDD2DlMeasurementsFDD, const CompressedModeMeasCapabFDD2UlMeasurementsFDD& compressedModeMeasCapabFDD2UlMeasurementsFDD) : Sequence(&theInfo) {
+	setCompressedModeMeasCapabFDD2DlMeasurementsFDD(compressedModeMeasCapabFDD2DlMeasurementsFDD);
+	setCompressedModeMeasCapabFDD2UlMeasurementsFDD(compressedModeMeasCapabFDD2UlMeasurementsFDD);
+}
 
 const void *CompressedModeMeasCapabFDDext::itemsInfo[3] = {
 	&RadioFrequencyBandFDD2::theInfo,
@@ -1824,6 +2077,11 @@ const CompressedModeMeasCapabFDDext::Info CompressedModeMeasCapabFDDext::theInfo
 	itemsPres,
 	3, 0, 0
 };
+CompressedModeMeasCapabFDDext::CompressedModeMeasCapabFDDext(const RadioFrequencyBandFDD2& radioFrequencyBandFDD2, const CompressedModeMeasCapabFDDextDlMeasurementsFDD& compressedModeMeasCapabFDDextDlMeasurementsFDD, const CompressedModeMeasCapabFDDextUlMeasurementsFDD& compressedModeMeasCapabFDDextUlMeasurementsFDD) : Sequence(&theInfo) {
+	setRadioFrequencyBandFDD2(radioFrequencyBandFDD2);
+	setCompressedModeMeasCapabFDDextDlMeasurementsFDD(compressedModeMeasCapabFDDextDlMeasurementsFDD);
+	setCompressedModeMeasCapabFDDextUlMeasurementsFDD(compressedModeMeasCapabFDDextUlMeasurementsFDD);
+}
 
 const void *CompressedModeMeasCapabTDD::itemsInfo[3] = {
 	&RadioFrequencyBandTDD::theInfo,
@@ -1844,6 +2102,11 @@ const CompressedModeMeasCapabTDD::Info CompressedModeMeasCapabTDD::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+CompressedModeMeasCapabTDD::CompressedModeMeasCapabTDD(const RadioFrequencyBandTDD& radioFrequencyBandTDD, const CompressedModeMeasCapabTDDDlMeasurementsTDD& compressedModeMeasCapabTDDDlMeasurementsTDD, const CompressedModeMeasCapabTDDUlMeasurementsTDD& compressedModeMeasCapabTDDUlMeasurementsTDD) : Sequence(&theInfo) {
+	setRadioFrequencyBandTDD(radioFrequencyBandTDD);
+	setCompressedModeMeasCapabTDDDlMeasurementsTDD(compressedModeMeasCapabTDDDlMeasurementsTDD);
+	setCompressedModeMeasCapabTDDUlMeasurementsTDD(compressedModeMeasCapabTDDUlMeasurementsTDD);
+}
 
 const void *CompressedModeMeasCapabGSM::itemsInfo[3] = {
 	&RadioFrequencyBandGSM::theInfo,
@@ -1864,6 +2127,11 @@ const CompressedModeMeasCapabGSM::Info CompressedModeMeasCapabGSM::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+CompressedModeMeasCapabGSM::CompressedModeMeasCapabGSM(const RadioFrequencyBandGSM& radioFrequencyBandGSM, const CompressedModeMeasCapabGSMDlMeasurementsGSM& compressedModeMeasCapabGSMDlMeasurementsGSM, const CompressedModeMeasCapabGSMUlMeasurementsGSM& compressedModeMeasCapabGSMUlMeasurementsGSM) : Sequence(&theInfo) {
+	setRadioFrequencyBandGSM(radioFrequencyBandGSM);
+	setCompressedModeMeasCapabGSMDlMeasurementsGSM(compressedModeMeasCapabGSMDlMeasurementsGSM);
+	setCompressedModeMeasCapabGSMUlMeasurementsGSM(compressedModeMeasCapabGSMUlMeasurementsGSM);
+}
 
 const void *CompressedModeMeasCapabMC::itemsInfo[2] = {
 	&CompressedModeMeasCapabMCDlMeasurementsMC::theInfo,
@@ -1882,6 +2150,10 @@ const CompressedModeMeasCapabMC::Info CompressedModeMeasCapabMC::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CompressedModeMeasCapabMC::CompressedModeMeasCapabMC(const CompressedModeMeasCapabMCDlMeasurementsMC& compressedModeMeasCapabMCDlMeasurementsMC, const CompressedModeMeasCapabMCUlMeasurementsMC& compressedModeMeasCapabMCUlMeasurementsMC) : Sequence(&theInfo) {
+	setCompressedModeMeasCapabMCDlMeasurementsMC(compressedModeMeasCapabMCDlMeasurementsMC);
+	setCompressedModeMeasCapabMCUlMeasurementsMC(compressedModeMeasCapabMCUlMeasurementsMC);
+}
 
 const void *PowerControlAlgorithm::choicesInfo[2] = {
 	&TPCStepSizeFDD::theInfo,
@@ -1917,6 +2189,11 @@ const CPCHParameters::Info CPCHParameters::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+CPCHParameters::CPCHParameters(const BackoffControlParams& backoffControlParams, const PowerControlAlgorithm& powerControlAlgorithm, const DLDPCCHBER& dlDPCCHBER) : Sequence(&theInfo) {
+	setBackoffControlParams(backoffControlParams);
+	setPowerControlAlgorithm(powerControlAlgorithm);
+	setDlDPCCHBER(dlDPCCHBER);
+}
 
 const void *CSGProximityIndicationCapability::itemsInfo[3] = {
 	&CSGProximityIndicationCapabilitysupportOfIntraFreqProximityIndication::theInfo,
@@ -1953,6 +2230,9 @@ const PrimaryCPICHInfo::Info PrimaryCPICHInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+PrimaryCPICHInfo::PrimaryCPICHInfo(const PrimaryScramblingCode& primaryScramblingCode) : Sequence(&theInfo) {
+	setPrimaryScramblingCode(primaryScramblingCode);
+}
 
 const void *SecondaryCPICHInfo::itemsInfo[2] = {
 	&SecondaryScramblingCode::theInfo,
@@ -1971,6 +2251,9 @@ const SecondaryCPICHInfo::Info SecondaryCPICHInfo::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SecondaryCPICHInfo::SecondaryCPICHInfo(const ChannelisationCode256& channelisationCode) : Sequence(&theInfo) {
+	setChannelisationCode(channelisationCode);
+}
 
 const void *DLFDPCHInfoPerRLr7::itemsInfo[8] = {
 	&PCPICHUsageForChannelEst::theInfo,
@@ -2001,6 +2284,12 @@ const DLFDPCHInfoPerRLr7::Info DLFDPCHInfoPerRLr7::theInfo = {
 	itemsPres,
 	8, 4, 0
 };
+DLFDPCHInfoPerRLr7::DLFDPCHInfoPerRLr7(const PCPICHUsageForChannelEst& pCPICHUsageForChannelEst, const DPCHFrameOffset& fdpchFrameOffset, const DLFDPCHInfoPerRLr7DlChannelisationCode& dLFDPCHInfoPerRLr7DlChannelisationCode, const TPCCombinationIndex& tpcCombinationIndex) : Sequence(&theInfo) {
+	setPCPICHUsageForChannelEst(pCPICHUsageForChannelEst);
+	setFdpchFrameOffset(fdpchFrameOffset);
+	setDLFDPCHInfoPerRLr7DlChannelisationCode(dLFDPCHInfoPerRLr7DlChannelisationCode);
+	setTpcCombinationIndex(tpcCombinationIndex);
+}
 
 const void *EAGCHInformation::itemsInfo[1] = {
 	&EAGCHChannelisationCode::theInfo,
@@ -2017,6 +2306,9 @@ const EAGCHInformation::Info EAGCHInformation::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EAGCHInformation::EAGCHInformation(const EAGCHChannelisationCode& eAGCHChannelisationCode) : Sequence(&theInfo) {
+	setEAGCHChannelisationCode(eAGCHChannelisationCode);
+}
 
 const void *EHICHInformation::itemsInfo[2] = {
 	&EHICHChannelisationCode::theInfo,
@@ -2035,6 +2327,10 @@ const EHICHInformation::Info EHICHInformation::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+EHICHInformation::EHICHInformation(const EHICHChannelisationCode& channelisationCode, const EHICHRGCHSignatureSequence& signatureSequence) : Sequence(&theInfo) {
+	setChannelisationCode(channelisationCode);
+	setSignatureSequence(signatureSequence);
+}
 
 const void *ERGCHInformation::itemsInfo[2] = {
 	&EHICHRGCHSignatureSequence::theInfo,
@@ -2053,6 +2349,10 @@ const ERGCHInformation::Info ERGCHInformation::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ERGCHInformation::ERGCHInformation(const EHICHRGCHSignatureSequence& signatureSequence, const ERGCHCombinationIndex& rgCombinationIndex) : Sequence(&theInfo) {
+	setSignatureSequence(signatureSequence);
+	setRgCombinationIndex(rgCombinationIndex);
+}
 
 const void *DLInformationPerSecondaryRLERGCHInfo::choicesInfo[2] = {
 	&ERGCHInformation::theInfo,
@@ -2092,6 +2392,10 @@ const DLInformationPerSecondaryRL::Info DLInformationPerSecondaryRL::theInfo = {
 	itemsPres,
 	6, 4, 0
 };
+DLInformationPerSecondaryRL::DLInformationPerSecondaryRL(const PrimaryCPICHInfo& primaryCPICHInfo, const DLFDPCHInfoPerRLr7& dlFDPCHInfoPerRLSecULFreq) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setDlFDPCHInfoPerRLSecULFreq(dlFDPCHInfoPerRLSecULFreq);
+}
 
 const void *SimultaneousSCCPCHDPCHReceptionSupported::itemsInfo[2] = {
 	&MaxNoSCCPCHRL::theInfo,
@@ -2110,6 +2414,10 @@ const SimultaneousSCCPCHDPCHReceptionSupported::Info SimultaneousSCCPCHDPCHRecep
 	itemsPres,
 	2, 0, 0
 };
+SimultaneousSCCPCHDPCHReceptionSupported::SimultaneousSCCPCHDPCHReceptionSupported(const MaxNoSCCPCHRL& maxNoSCCPCHRL, const SimultaneousSCCPCHDPCHReceptionSupportedSimultaneousSCCPCHDPCHDPDCHReception& simultaneousSCCPCHDPCHReceptionSupportedSimultaneousSCCPCHDPCHDPDCHReception) : Sequence(&theInfo) {
+	setMaxNoSCCPCHRL(maxNoSCCPCHRL);
+	setSimultaneousSCCPCHDPCHReceptionSupportedSimultaneousSCCPCHDPCHDPDCHReception(simultaneousSCCPCHDPCHReceptionSupportedSimultaneousSCCPCHDPCHDPDCHReception);
+}
 
 const void *SimultaneousSCCPCHDPCHReception::choicesInfo[2] = {
 	&SimultaneousSCCPCHDPCHReceptionNotSupported::theInfo,
@@ -2147,6 +2455,13 @@ const DLPhysChCapabilityFDD::Info DLPhysChCapabilityFDD::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+DLPhysChCapabilityFDD::DLPhysChCapabilityFDD(const DLPhysChCapabilityFDDMaxNoDPCHPDSCHCodes& dLPhysChCapabilityFDDMaxNoDPCHPDSCHCodes, const MaxNoPhysChBitsReceived& maxNoPhysChBitsReceived, const DLPhysChCapabilityFDDSupportForSF512& dLPhysChCapabilityFDDSupportForSF512, const DLPhysChCapabilityFDDDummy& dLPhysChCapabilityFDDDummy, const SimultaneousSCCPCHDPCHReception& dummy2) : Sequence(&theInfo) {
+	setDLPhysChCapabilityFDDMaxNoDPCHPDSCHCodes(dLPhysChCapabilityFDDMaxNoDPCHPDSCHCodes);
+	setMaxNoPhysChBitsReceived(maxNoPhysChBitsReceived);
+	setDLPhysChCapabilityFDDSupportForSF512(dLPhysChCapabilityFDDSupportForSF512);
+	setDLPhysChCapabilityFDDDummy(dLPhysChCapabilityFDDDummy);
+	setDummy2(dummy2);
+}
 
 const void *DLPhysChCapabilityFDDv380ext::itemsInfo[1] = {
 	&SupportOfDedicatedPilotsForChEstimation::theInfo,
@@ -2249,6 +2564,13 @@ const DLPhysChCapabilityTDD::Info DLPhysChCapabilityTDD::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+DLPhysChCapabilityTDD::DLPhysChCapabilityTDD(const MaxTSPerFrame& maxTSPerFrame, const MaxPhysChPerFrame& maxPhysChPerFrame, const MinimumSFDL& minimumSF, const DLPhysChCapabilityTDDSupportOfPDSCH& dLPhysChCapabilityTDDSupportOfPDSCH, const MaxPhysChPerTS& maxPhysChPerTS) : Sequence(&theInfo) {
+	setMaxTSPerFrame(maxTSPerFrame);
+	setMaxPhysChPerFrame(maxPhysChPerFrame);
+	setMinimumSF(minimumSF);
+	setDLPhysChCapabilityTDDSupportOfPDSCH(dLPhysChCapabilityTDDSupportOfPDSCH);
+	setMaxPhysChPerTS(maxPhysChPerTS);
+}
 
 const void *DLPhysChCapabilityTDDLCRr4::itemsInfo[6] = {
 	&MaxTSPerSubFramer4::theInfo,
@@ -2275,6 +2597,14 @@ const DLPhysChCapabilityTDDLCRr4::Info DLPhysChCapabilityTDDLCRr4::theInfo = {
 	itemsPres,
 	6, 0, 0
 };
+DLPhysChCapabilityTDDLCRr4::DLPhysChCapabilityTDDLCRr4(const MaxTSPerSubFramer4& maxTSPerSubFrame, const MaxPhysChPerSubFramer4& maxPhysChPerFrame, const MinimumSFDL& minimumSF, const DLPhysChCapabilityTDDLCRr4SupportOfPDSCH& dLPhysChCapabilityTDDLCRr4SupportOfPDSCH, const MaxPhysChPerTS& maxPhysChPerTS, const DLPhysChCapabilityTDDLCRr4SupportOf8PSK& dLPhysChCapabilityTDDLCRr4SupportOf8PSK) : Sequence(&theInfo) {
+	setMaxTSPerSubFrame(maxTSPerSubFrame);
+	setMaxPhysChPerFrame(maxPhysChPerFrame);
+	setMinimumSF(minimumSF);
+	setDLPhysChCapabilityTDDLCRr4SupportOfPDSCH(dLPhysChCapabilityTDDLCRr4SupportOfPDSCH);
+	setMaxPhysChPerTS(maxPhysChPerTS);
+	setDLPhysChCapabilityTDDLCRr4SupportOf8PSK(dLPhysChCapabilityTDDLCRr4SupportOf8PSK);
+}
 
 const void *DLPhysChCapabilityTDD128v770ext::itemsInfo[1] = {
 	&MultiCarrierHSDSCHphysicallayercategory::theInfo,
@@ -2350,6 +2680,14 @@ const DLPhysChCapabilityTDD768::Info DLPhysChCapabilityTDD768::theInfo = {
 	itemsPres,
 	6, 0, 0
 };
+DLPhysChCapabilityTDD768::DLPhysChCapabilityTDD768(const MaxTSPerFrame& maxTSPerFrame, const MaxPhysChPerFrame768& maxPhysChPerFrame, const MinimumSFDL768& minimumSF, const DLPhysChCapabilityTDD768SupportOfPDSCH& dLPhysChCapabilityTDD768SupportOfPDSCH, const DLPhysChCapabilityTDD768Tdd768hspdsch& dLPhysChCapabilityTDD768Tdd768hspdsch, const MaxPhysChPerTS768& maxPhysChPerTS) : Sequence(&theInfo) {
+	setMaxTSPerFrame(maxTSPerFrame);
+	setMaxPhysChPerFrame(maxPhysChPerFrame);
+	setMinimumSF(minimumSF);
+	setDLPhysChCapabilityTDD768SupportOfPDSCH(dLPhysChCapabilityTDD768SupportOfPDSCH);
+	setDLPhysChCapabilityTDD768Tdd768hspdsch(dLPhysChCapabilityTDD768Tdd768hspdsch);
+	setMaxPhysChPerTS(maxPhysChPerTS);
+}
 
 const void *DLPhysChCapabilityInfoTDD768::itemsInfo[5] = {
 	&MaxTSPerFrame::theInfo,
@@ -2374,6 +2712,13 @@ const DLPhysChCapabilityInfoTDD768::Info DLPhysChCapabilityInfoTDD768::theInfo =
 	itemsPres,
 	5, 0, 0
 };
+DLPhysChCapabilityInfoTDD768::DLPhysChCapabilityInfoTDD768(const MaxTSPerFrame& maxTSPerFrame, const MaxPhysChPerFrame768& maxPhysChPerFrame, const MinimumSFDL768& minimumSF, const DLPhysChCapabilityInfoTDD768SupportOfPDSCH& dLPhysChCapabilityInfoTDD768SupportOfPDSCH, const MaxPhysChPerTS768& maxPhysChPerTS) : Sequence(&theInfo) {
+	setMaxTSPerFrame(maxTSPerFrame);
+	setMaxPhysChPerFrame(maxPhysChPerFrame);
+	setMinimumSF(minimumSF);
+	setDLPhysChCapabilityInfoTDD768SupportOfPDSCH(dLPhysChCapabilityInfoTDD768SupportOfPDSCH);
+	setMaxPhysChPerTS(maxPhysChPerTS);
+}
 
 const void *TurboSupport::choicesInfo[2] = {
 	&TurboSupportNotSupported::theInfo,
@@ -2417,6 +2762,16 @@ const DLTransChCapability::Info DLTransChCapability::theInfo = {
 	itemsPres,
 	8, 0, 0
 };
+DLTransChCapability::DLTransChCapability(const MaxNoBits& maxNoBitsReceived, const MaxNoBits& maxConvCodeBitsReceived, const TurboSupport& turboDecodingSupport, const MaxSimultaneousTransChsDL& maxSimultaneousTransChs, const MaxSimultaneousCCTrCHCount& maxSimultaneousCCTrCHCount, const MaxTransportBlocksDL& maxReceivedTransportBlocks, const MaxNumberOfTFCDL& maxNumberOfTFC, const MaxNumberOfTF& maxNumberOfTF) : Sequence(&theInfo) {
+	setMaxNoBitsReceived(maxNoBitsReceived);
+	setMaxConvCodeBitsReceived(maxConvCodeBitsReceived);
+	setTurboDecodingSupport(turboDecodingSupport);
+	setMaxSimultaneousTransChs(maxSimultaneousTransChs);
+	setMaxSimultaneousCCTrCHCount(maxSimultaneousCCTrCHCount);
+	setMaxReceivedTransportBlocks(maxReceivedTransportBlocks);
+	setMaxNumberOfTFC(maxNumberOfTFC);
+	setMaxNumberOfTF(maxNumberOfTF);
+}
 
 const void *DRACSysInfo::itemsInfo[2] = {
 	&TransmissionProbability::theInfo,
@@ -2435,6 +2790,10 @@ const DRACSysInfo::Info DRACSysInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+DRACSysInfo::DRACSysInfo(const TransmissionProbability& transmissionProbability, const MaximumBitRate& maximumBitRate) : Sequence(&theInfo) {
+	setTransmissionProbability(transmissionProbability);
+	setMaximumBitRate(maximumBitRate);
+}
 
 const void *ProtocolErrorInformationDiagnosticsTypeType1::itemsInfo[1] = {
 	&ProtocolErrorCause::theInfo,
@@ -2451,6 +2810,9 @@ const ProtocolErrorInformationDiagnosticsTypeType1::Info ProtocolErrorInformatio
 	itemsPres,
 	1, 0, 0
 };
+ProtocolErrorInformationDiagnosticsTypeType1::ProtocolErrorInformationDiagnosticsTypeType1(const ProtocolErrorCause& protocolErrorCause) : Sequence(&theInfo) {
+	setProtocolErrorCause(protocolErrorCause);
+}
 
 const void *ProtocolErrorInformationDiagnosticsType::choicesInfo[2] = {
 	&ProtocolErrorInformationDiagnosticsTypeType1::theInfo,
@@ -2480,6 +2842,9 @@ const ProtocolErrorInformation::Info ProtocolErrorInformation::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+ProtocolErrorInformation::ProtocolErrorInformation(const ProtocolErrorInformationDiagnosticsType& protocolErrorInformationDiagnosticsType) : Sequence(&theInfo) {
+	setProtocolErrorInformationDiagnosticsType(protocolErrorInformationDiagnosticsType);
+}
 
 const void *FailureCauseWithProtErr::choicesInfo[16] = {
 	&FailureCauseWithProtErrConfigurationUnsupported::theInfo,
@@ -2525,6 +2890,10 @@ const FailureCauseWithProtErrTrId::Info FailureCauseWithProtErrTrId::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+FailureCauseWithProtErrTrId::FailureCauseWithProtErrTrId(const RRCTransactionIdentifier& rrcTransactionIdentifier, const FailureCauseWithProtErr& failureCause) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setFailureCause(failureCause);
+}
 
 const void *RRCConnectionReleaseInformationRelease::itemsInfo[1] = {
 	&ReleaseCause::theInfo,
@@ -2541,6 +2910,9 @@ const RRCConnectionReleaseInformationRelease::Info RRCConnectionReleaseInformati
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionReleaseInformationRelease::RRCConnectionReleaseInformationRelease(const ReleaseCause& releaseCause) : Sequence(&theInfo) {
+	setReleaseCause(releaseCause);
+}
 
 const void *RRCConnectionReleaseInformation::choicesInfo[2] = {
 	&RRCConnectionReleaseInformationNoRelease::theInfo,
@@ -2613,6 +2985,9 @@ const GroupReleaseInformation::Info GroupReleaseInformation::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+GroupReleaseInformation::GroupReleaseInformation(const URNTIGroup& uRNTIGroup) : Sequence(&theInfo) {
+	setURNTIGroup(uRNTIGroup);
+}
 
 const void *GroupIdentityWithReleaseInformation::itemsInfo[2] = {
 	&RRCConnectionReleaseInformation::theInfo,
@@ -2631,6 +3006,10 @@ const GroupIdentityWithReleaseInformation::Info GroupIdentityWithReleaseInformat
 	itemsPres,
 	2, 0, 0
 };
+GroupIdentityWithReleaseInformation::GroupIdentityWithReleaseInformation(const RRCConnectionReleaseInformation& rrcConnectionReleaseInformation, const GroupReleaseInformation& groupReleaseInformation) : Sequence(&theInfo) {
+	setRrcConnectionReleaseInformation(rrcConnectionReleaseInformation);
+	setGroupReleaseInformation(groupReleaseInformation);
+}
 
 const void *IdleIntervalMeasCapabEUTRA::itemsInfo[2] = {
 	&RadioFrequencyBandEUTRA::theInfo,
@@ -2649,6 +3028,10 @@ const IdleIntervalMeasCapabEUTRA::Info IdleIntervalMeasCapabEUTRA::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+IdleIntervalMeasCapabEUTRA::IdleIntervalMeasCapabEUTRA(const RadioFrequencyBandEUTRA& radioFrequencyBandEUTRA, const IdleIntervalMeasCapabEUTRAIdleInterval& idleIntervalMeasCapabEUTRAIdleInterval) : Sequence(&theInfo) {
+	setRadioFrequencyBandEUTRA(radioFrequencyBandEUTRA);
+	setIdleIntervalMeasCapabEUTRAIdleInterval(idleIntervalMeasCapabEUTRAIdleInterval);
+}
 
 const void *IMSIandESNDS41::itemsInfo[2] = {
 	&IMSIDS41::theInfo,
@@ -2667,6 +3050,10 @@ const IMSIandESNDS41::Info IMSIandESNDS41::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+IMSIandESNDS41::IMSIandESNDS41(const IMSIDS41& imsiDS41, const ESNDS41& esnDS41) : Sequence(&theInfo) {
+	setImsiDS41(imsiDS41);
+	setEsnDS41(esnDS41);
+}
 
 const void *TMSIandLAIGSMMAP::itemsInfo[2] = {
 	&TMSIGSMMAP::theInfo,
@@ -2685,6 +3072,10 @@ const TMSIandLAIGSMMAP::Info TMSIandLAIGSMMAP::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+TMSIandLAIGSMMAP::TMSIandLAIGSMMAP(const TMSIGSMMAP& tmsi, const LAI& lai) : Sequence(&theInfo) {
+	setTmsi(tmsi);
+	setLai(lai);
+}
 
 const void *PTMSIandRAIGSMMAP::itemsInfo[2] = {
 	&PTMSIGSMMAP::theInfo,
@@ -2703,6 +3094,10 @@ const PTMSIandRAIGSMMAP::Info PTMSIandRAIGSMMAP::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+PTMSIandRAIGSMMAP::PTMSIandRAIGSMMAP(const PTMSIGSMMAP& pTMSI, const RAI& rai) : Sequence(&theInfo) {
+	setPTMSI(pTMSI);
+	setRai(rai);
+}
 
 const void *InitialUEIdentity::choicesInfo[8] = {
 	&IMSIGSMMAP::theInfo,
@@ -2740,6 +3135,10 @@ const IntegrityCheckInfo::Info IntegrityCheckInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+IntegrityCheckInfo::IntegrityCheckInfo(const MessageAuthenticationCode& messageAuthenticationCode, const RRCMessageSequenceNumber& rrcMessageSequenceNumber) : Sequence(&theInfo) {
+	setMessageAuthenticationCode(messageAuthenticationCode);
+	setRrcMessageSequenceNumber(rrcMessageSequenceNumber);
+}
 
 const void *IntegrityProtActivationInfo::itemsInfo[1] = {
 	&RRCMessageSequenceNumberList::theInfo,
@@ -2756,6 +3155,9 @@ const IntegrityProtActivationInfo::Info IntegrityProtActivationInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+IntegrityProtActivationInfo::IntegrityProtActivationInfo(const RRCMessageSequenceNumberList& rrcMessageSequenceNumberList) : Sequence(&theInfo) {
+	setRrcMessageSequenceNumberList(rrcMessageSequenceNumberList);
+}
 
 const void *IntegrityProtectionModeCommandStartIntegrityProtection::itemsInfo[1] = {
 	&IntegrityProtInitNumber::theInfo,
@@ -2772,6 +3174,9 @@ const IntegrityProtectionModeCommandStartIntegrityProtection::Info IntegrityProt
 	itemsPres,
 	1, 0, 0
 };
+IntegrityProtectionModeCommandStartIntegrityProtection::IntegrityProtectionModeCommandStartIntegrityProtection(const IntegrityProtInitNumber& integrityProtInitNumber) : Sequence(&theInfo) {
+	setIntegrityProtInitNumber(integrityProtInitNumber);
+}
 
 const void *IntegrityProtectionModeCommandModify::itemsInfo[1] = {
 	&IntegrityProtActivationInfo::theInfo,
@@ -2788,6 +3193,9 @@ const IntegrityProtectionModeCommandModify::Info IntegrityProtectionModeCommandM
 	itemsPres,
 	1, 0, 0
 };
+IntegrityProtectionModeCommandModify::IntegrityProtectionModeCommandModify(const IntegrityProtActivationInfo& dlIntegrityProtActivationInfo) : Sequence(&theInfo) {
+	setDlIntegrityProtActivationInfo(dlIntegrityProtActivationInfo);
+}
 
 const void *IntegrityProtectionModeCommand::choicesInfo[2] = {
 	&IntegrityProtectionModeCommandStartIntegrityProtection::theInfo,
@@ -2819,6 +3227,9 @@ const IntegrityProtectionModeInfo::Info IntegrityProtectionModeInfo::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+IntegrityProtectionModeInfo::IntegrityProtectionModeInfo(const IntegrityProtectionModeCommand& integrityProtectionModeCommand) : Sequence(&theInfo) {
+	setIntegrityProtectionModeCommand(integrityProtectionModeCommand);
+}
 
 const void *IntegrityProtectionModeInfor7::itemsInfo[2] = {
 	&IntegrityProtectionModeCommand::theInfo,
@@ -2837,6 +3248,9 @@ const IntegrityProtectionModeInfor7::Info IntegrityProtectionModeInfor7::theInfo
 	itemsPres,
 	2, 1, 0
 };
+IntegrityProtectionModeInfor7::IntegrityProtectionModeInfor7(const IntegrityProtectionModeCommand& integrityProtectionModeCommand) : Sequence(&theInfo) {
+	setIntegrityProtectionModeCommand(integrityProtectionModeCommand);
+}
 
 const void *MeasurementCapability::itemsInfo[2] = {
 	&CompressedModeMeasCapability::theInfo,
@@ -2855,6 +3269,10 @@ const MeasurementCapability::Info MeasurementCapability::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MeasurementCapability::MeasurementCapability(const CompressedModeMeasCapability& downlinkCompressedMode, const CompressedModeMeasCapability& uplinkCompressedMode) : Sequence(&theInfo) {
+	setDownlinkCompressedMode(downlinkCompressedMode);
+	setUplinkCompressedMode(uplinkCompressedMode);
+}
 
 const void *MeasurementCapabilityExt::itemsInfo[4] = {
 	&CompressedModeMeasCapabFDDList::theInfo,
@@ -2877,6 +3295,9 @@ const MeasurementCapabilityExt::Info MeasurementCapabilityExt::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+MeasurementCapabilityExt::MeasurementCapabilityExt(const CompressedModeMeasCapabFDDList& compressedModeMeasCapabFDDList) : Sequence(&theInfo) {
+	setCompressedModeMeasCapabFDDList(compressedModeMeasCapabFDDList);
+}
 
 const void *MeasurementCapabilityExt2::itemsInfo[4] = {
 	&CompressedModeMeasCapabFDDList2::theInfo,
@@ -2899,6 +3320,9 @@ const MeasurementCapabilityExt2::Info MeasurementCapabilityExt2::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+MeasurementCapabilityExt2::MeasurementCapabilityExt2(const CompressedModeMeasCapabFDDList2& compressedModeMeasCapabFDDList) : Sequence(&theInfo) {
+	setCompressedModeMeasCapabFDDList(compressedModeMeasCapabFDDList);
+}
 
 const void *MeasurementCapabilityExt3::itemsInfo[1] = {
 	&CompressedModeMeasCapabEUTRAList::theInfo,
@@ -2933,6 +3357,10 @@ const MeasurementCapabilityr4ext::Info MeasurementCapabilityr4ext::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MeasurementCapabilityr4ext::MeasurementCapabilityr4ext(const CompressedModeMeasCapabilityLCRr4& downlinkCompressedModeLCR, const CompressedModeMeasCapabilityLCRr4& uplinkCompressedModeLCR) : Sequence(&theInfo) {
+	setDownlinkCompressedModeLCR(downlinkCompressedModeLCR);
+	setUplinkCompressedModeLCR(uplinkCompressedModeLCR);
+}
 
 const void *MeasurementCapabilityv860ext::itemsInfo[1] = {
 	&CompressedModeMeasCapabilityv860ext::theInfo,
@@ -2949,6 +3377,9 @@ const MeasurementCapabilityv860ext::Info MeasurementCapabilityv860ext::theInfo =
 	itemsPres,
 	1, 0, 0
 };
+MeasurementCapabilityv860ext::MeasurementCapabilityv860ext(const CompressedModeMeasCapabilityv860ext& downlinkCompressedMode) : Sequence(&theInfo) {
+	setDownlinkCompressedMode(downlinkCompressedMode);
+}
 
 const void *MeasurementCapabilityv920ext::itemsInfo[1] = {
 	&CompressedModeMeasCapabilityv920ext::theInfo,
@@ -2965,6 +3396,9 @@ const MeasurementCapabilityv920ext::Info MeasurementCapabilityv920ext::theInfo =
 	itemsPres,
 	1, 0, 0
 };
+MeasurementCapabilityv920ext::MeasurementCapabilityv920ext(const CompressedModeMeasCapabilityv920ext& downlinkCompressedMode) : Sequence(&theInfo) {
+	setDownlinkCompressedMode(downlinkCompressedMode);
+}
 
 const void *MeasurementCapabilityTDD::itemsInfo[1] = {
 	&IdleIntervalMeasCapabEUTRAList::theInfo,
@@ -2999,6 +3433,10 @@ const MultiRATCapability::Info MultiRATCapability::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MultiRATCapability::MultiRATCapability(const MultiRATCapabilitySupportOfGSM& multiRATCapabilitySupportOfGSM, const MultiRATCapabilitySupportOfMulticarrier& multiRATCapabilitySupportOfMulticarrier) : Sequence(&theInfo) {
+	setMultiRATCapabilitySupportOfGSM(multiRATCapabilitySupportOfGSM);
+	setMultiRATCapabilitySupportOfMulticarrier(multiRATCapabilitySupportOfMulticarrier);
+}
 
 const void *MultiModeRATCapabilityv590ext::itemsInfo[1] = {
 	&MultiModeRATCapabilityv590extSupportOfUTRANToGERANNACC::theInfo,
@@ -3015,6 +3453,9 @@ const MultiModeRATCapabilityv590ext::Info MultiModeRATCapabilityv590ext::theInfo
 	itemsPres,
 	1, 0, 0
 };
+MultiModeRATCapabilityv590ext::MultiModeRATCapabilityv590ext(const MultiModeRATCapabilityv590extSupportOfUTRANToGERANNACC& multiModeRATCapabilityv590extSupportOfUTRANToGERANNACC) : Sequence(&theInfo) {
+	setMultiModeRATCapabilityv590extSupportOfUTRANToGERANNACC(multiModeRATCapabilityv590extSupportOfUTRANToGERANNACC);
+}
 
 const void *MultiModeRATCapabilityv680ext::itemsInfo[1] = {
 	&MultiModeRATCapabilityv680extsupportOfHandoverToGAN::theInfo,
@@ -3139,6 +3580,11 @@ const PagingRecordCnIdentity::Info PagingRecordCnIdentity::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+PagingRecordCnIdentity::PagingRecordCnIdentity(const PagingCause& pagingCause, const CNDomainIdentity& cnDomainIdentity, const CNPagedUEIdentity& cnpagedUEIdentity) : Sequence(&theInfo) {
+	setPagingCause(pagingCause);
+	setCnDomainIdentity(cnDomainIdentity);
+	setCnpagedUEIdentity(cnpagedUEIdentity);
+}
 
 const void *URNTI::itemsInfo[2] = {
 	&SRNCIdentity::theInfo,
@@ -3157,6 +3603,10 @@ const URNTI::Info URNTI::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+URNTI::URNTI(const SRNCIdentity& srncIdentity, const SRNTI& sRNTI) : Sequence(&theInfo) {
+	setSrncIdentity(srncIdentity);
+	setSRNTI(sRNTI);
+}
 
 const void *PagingRecordUtranIdentityCnOriginatedPageconnectedModeUE::itemsInfo[3] = {
 	&PagingCause::theInfo,
@@ -3177,6 +3627,11 @@ const PagingRecordUtranIdentityCnOriginatedPageconnectedModeUE::Info PagingRecor
 	itemsPres,
 	3, 0, 0
 };
+PagingRecordUtranIdentityCnOriginatedPageconnectedModeUE::PagingRecordUtranIdentityCnOriginatedPageconnectedModeUE(const PagingCause& pagingCause, const CNDomainIdentity& cnDomainIdentity, const PagingRecordTypeID& pagingRecordTypeID) : Sequence(&theInfo) {
+	setPagingCause(pagingCause);
+	setCnDomainIdentity(cnDomainIdentity);
+	setPagingRecordTypeID(pagingRecordTypeID);
+}
 
 const void *PagingRecordUtranIdentity::itemsInfo[2] = {
 	&URNTI::theInfo,
@@ -3195,6 +3650,9 @@ const PagingRecordUtranIdentity::Info PagingRecordUtranIdentity::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+PagingRecordUtranIdentity::PagingRecordUtranIdentity(const URNTI& uRNTI) : Sequence(&theInfo) {
+	setURNTI(uRNTI);
+}
 
 const void *PagingRecord::choicesInfo[2] = {
 	&PagingRecordCnIdentity::theInfo,
@@ -3228,6 +3686,11 @@ const PagingRecord2r5UtranSingleUEIdentityCnOriginatedPageconnectedModeUE::Info 
 	itemsPres,
 	3, 0, 0
 };
+PagingRecord2r5UtranSingleUEIdentityCnOriginatedPageconnectedModeUE::PagingRecord2r5UtranSingleUEIdentityCnOriginatedPageconnectedModeUE(const PagingCause& pagingCause, const CNDomainIdentity& cnDomainIdentity, const PagingRecordTypeID& pagingRecordTypeID) : Sequence(&theInfo) {
+	setPagingCause(pagingCause);
+	setCnDomainIdentity(cnDomainIdentity);
+	setPagingRecordTypeID(pagingRecordTypeID);
+}
 
 const void *PagingRecord2r5UtranSingleUEIdentity::itemsInfo[3] = {
 	&URNTI::theInfo,
@@ -3248,6 +3711,10 @@ const PagingRecord2r5UtranSingleUEIdentity::Info PagingRecord2r5UtranSingleUEIde
 	itemsPres,
 	3, 1, 0
 };
+PagingRecord2r5UtranSingleUEIdentity::PagingRecord2r5UtranSingleUEIdentity(const URNTI& uRNTI, const RRCConnectionReleaseInformation& rrcConnectionReleaseInformation) : Sequence(&theInfo) {
+	setURNTI(uRNTI);
+	setRrcConnectionReleaseInformation(rrcConnectionReleaseInformation);
+}
 
 const void *PagingRecord2r5::choicesInfo[2] = {
 	&PagingRecord2r5UtranSingleUEIdentity::theInfo,
@@ -3292,6 +3759,10 @@ const PDCPCapability::Info PDCPCapability::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+PDCPCapability::PDCPCapability(const PDCPCapabilityLosslessSRNSRelocationSupport& pDCPCapabilityLosslessSRNSRelocationSupport, const PDCPCapabilitySupportForRfc2507& pDCPCapabilitySupportForRfc2507) : Sequence(&theInfo) {
+	setPDCPCapabilityLosslessSRNSRelocationSupport(pDCPCapabilityLosslessSRNSRelocationSupport);
+	setPDCPCapabilitySupportForRfc2507(pDCPCapabilitySupportForRfc2507);
+}
 
 const void *PDCPCapabilityr4extSupportForRfc3095Supported::itemsInfo[2] = {
 	&MaxROHCContextSessionsr4::theInfo,
@@ -3357,6 +3828,9 @@ const PDCPCapabilityr5ext::Info PDCPCapabilityr5ext::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+PDCPCapabilityr5ext::PDCPCapabilityr5ext(const PDCPCapabilityr5extSupportForRfc3095ContextRelocation& pDCPCapabilityr5extSupportForRfc3095ContextRelocation) : Sequence(&theInfo) {
+	setPDCPCapabilityr5extSupportForRfc3095ContextRelocation(pDCPCapabilityr5extSupportForRfc3095ContextRelocation);
+}
 
 const void *PDCPCapabilityr5ext2::itemsInfo[1] = {
 	&PDCPCapabilityr5ext2losslessDLRLC_PDUSizeChange::theInfo,
@@ -3407,6 +3881,10 @@ const ULPhysChCapabilityFDD::Info ULPhysChCapabilityFDD::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ULPhysChCapabilityFDD::ULPhysChCapabilityFDD(const MaxNoDPDCHBitsTransmitted& maxNoDPDCHBitsTransmitted, const ULPhysChCapabilityFDDDummy& uLPhysChCapabilityFDDDummy) : Sequence(&theInfo) {
+	setMaxNoDPDCHBitsTransmitted(maxNoDPDCHBitsTransmitted);
+	setULPhysChCapabilityFDDDummy(uLPhysChCapabilityFDDDummy);
+}
 
 const void *PhysicalChannelCapabilityFddPhysChCapability::itemsInfo[2] = {
 	&DLPhysChCapabilityFDD::theInfo,
@@ -3425,6 +3903,10 @@ const PhysicalChannelCapabilityFddPhysChCapability::Info PhysicalChannelCapabili
 	itemsPres,
 	2, 0, 0
 };
+PhysicalChannelCapabilityFddPhysChCapability::PhysicalChannelCapabilityFddPhysChCapability(const DLPhysChCapabilityFDD& downlinkPhysChCapability, const ULPhysChCapabilityFDD& uplinkPhysChCapability) : Sequence(&theInfo) {
+	setDownlinkPhysChCapability(downlinkPhysChCapability);
+	setUplinkPhysChCapability(uplinkPhysChCapability);
+}
 
 const void *ULPhysChCapabilityTDD::itemsInfo[4] = {
 	&MaxTSPerFrame::theInfo,
@@ -3447,6 +3929,12 @@ const ULPhysChCapabilityTDD::Info ULPhysChCapabilityTDD::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+ULPhysChCapabilityTDD::ULPhysChCapabilityTDD(const MaxTSPerFrame& maxTSPerFrame, const MaxPhysChPerTimeslot& maxPhysChPerTimeslot, const MinimumSFUL& minimumSF, const ULPhysChCapabilityTDDSupportOfPUSCH& uLPhysChCapabilityTDDSupportOfPUSCH) : Sequence(&theInfo) {
+	setMaxTSPerFrame(maxTSPerFrame);
+	setMaxPhysChPerTimeslot(maxPhysChPerTimeslot);
+	setMinimumSF(minimumSF);
+	setULPhysChCapabilityTDDSupportOfPUSCH(uLPhysChCapabilityTDDSupportOfPUSCH);
+}
 
 const void *PhysicalChannelCapabilityTddPhysChCapability::itemsInfo[2] = {
 	&DLPhysChCapabilityTDD::theInfo,
@@ -3465,6 +3953,10 @@ const PhysicalChannelCapabilityTddPhysChCapability::Info PhysicalChannelCapabili
 	itemsPres,
 	2, 0, 0
 };
+PhysicalChannelCapabilityTddPhysChCapability::PhysicalChannelCapabilityTddPhysChCapability(const DLPhysChCapabilityTDD& downlinkPhysChCapability, const ULPhysChCapabilityTDD& uplinkPhysChCapability) : Sequence(&theInfo) {
+	setDownlinkPhysChCapability(downlinkPhysChCapability);
+	setUplinkPhysChCapability(uplinkPhysChCapability);
+}
 
 const void *PhysicalChannelCapability::itemsInfo[2] = {
 	&PhysicalChannelCapabilityFddPhysChCapability::theInfo,
@@ -3521,6 +4013,10 @@ const PhysicalChannelCapabilityv770extFddPhysChCapability::Info PhysicalChannelC
 	itemsPres,
 	2, 0, 0
 };
+PhysicalChannelCapabilityv770extFddPhysChCapability::PhysicalChannelCapabilityv770extFddPhysChCapability(const DLPhysChCapabilityFDDv770ext& downlinkPhysChCapability, const ULPhysChCapabilityFDDv770ext& uplinkPhysChCapability) : Sequence(&theInfo) {
+	setDownlinkPhysChCapability(downlinkPhysChCapability);
+	setUplinkPhysChCapability(uplinkPhysChCapability);
+}
 
 const void *ULPhysChCapabilityTDD384v770extTdd384edchSupported::itemsInfo[1] = {
 	&ULPhysChCapabilityTDD384v770extTdd384edchSupportedTddedchPhysicalLayerCategory::theInfo,
@@ -3537,6 +4033,9 @@ const ULPhysChCapabilityTDD384v770extTdd384edchSupported::Info ULPhysChCapabilit
 	itemsPres,
 	1, 0, 0
 };
+ULPhysChCapabilityTDD384v770extTdd384edchSupported::ULPhysChCapabilityTDD384v770extTdd384edchSupported(const ULPhysChCapabilityTDD384v770extTdd384edchSupportedTddedchPhysicalLayerCategory& uLPhysChCapabilityTDD384v770extTdd384edchSupportedTddedchPhysicalLayerCategory) : Sequence(&theInfo) {
+	setULPhysChCapabilityTDD384v770extTdd384edchSupportedTddedchPhysicalLayerCategory(uLPhysChCapabilityTDD384v770extTdd384edchSupportedTddedchPhysicalLayerCategory);
+}
 
 const void *ULPhysChCapabilityTDD384v770extTdd384edch::choicesInfo[2] = {
 	&ULPhysChCapabilityTDD384v770extTdd384edchSupported::theInfo,
@@ -3566,6 +4065,9 @@ const ULPhysChCapabilityTDD384v770ext::Info ULPhysChCapabilityTDD384v770ext::the
 	itemsPres,
 	1, 0, 0
 };
+ULPhysChCapabilityTDD384v770ext::ULPhysChCapabilityTDD384v770ext(const ULPhysChCapabilityTDD384v770extTdd384edch& uLPhysChCapabilityTDD384v770extTdd384edch) : Sequence(&theInfo) {
+	setULPhysChCapabilityTDD384v770extTdd384edch(uLPhysChCapabilityTDD384v770extTdd384edch);
+}
 
 const void *PhysicalChannelCapabilityv770extTddPhysChCapability384::itemsInfo[1] = {
 	&ULPhysChCapabilityTDD384v770ext::theInfo,
@@ -3582,6 +4084,9 @@ const PhysicalChannelCapabilityv770extTddPhysChCapability384::Info PhysicalChann
 	itemsPres,
 	1, 0, 0
 };
+PhysicalChannelCapabilityv770extTddPhysChCapability384::PhysicalChannelCapabilityv770extTddPhysChCapability384(const ULPhysChCapabilityTDD384v770ext& uplinkPhysChCapability) : Sequence(&theInfo) {
+	setUplinkPhysChCapability(uplinkPhysChCapability);
+}
 
 const void *ULPhysChCapabilityTDD768Tdd384edchSupported::itemsInfo[1] = {
 	&ULPhysChCapabilityTDD768Tdd384edchSupportedTddedchPhysicalLayerCategory::theInfo,
@@ -3598,6 +4103,9 @@ const ULPhysChCapabilityTDD768Tdd384edchSupported::Info ULPhysChCapabilityTDD768
 	itemsPres,
 	1, 0, 0
 };
+ULPhysChCapabilityTDD768Tdd384edchSupported::ULPhysChCapabilityTDD768Tdd384edchSupported(const ULPhysChCapabilityTDD768Tdd384edchSupportedTddedchPhysicalLayerCategory& uLPhysChCapabilityTDD768Tdd384edchSupportedTddedchPhysicalLayerCategory) : Sequence(&theInfo) {
+	setULPhysChCapabilityTDD768Tdd384edchSupportedTddedchPhysicalLayerCategory(uLPhysChCapabilityTDD768Tdd384edchSupportedTddedchPhysicalLayerCategory);
+}
 
 const void *ULPhysChCapabilityTDD768Tdd384edch::choicesInfo[2] = {
 	&ULPhysChCapabilityTDD768Tdd384edchSupported::theInfo,
@@ -3635,6 +4143,13 @@ const ULPhysChCapabilityTDD768::Info ULPhysChCapabilityTDD768::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+ULPhysChCapabilityTDD768::ULPhysChCapabilityTDD768(const MaxTSPerFrame& maxTSPerFrame, const MaxPhysChPerTimeslot& maxPhysChPerTimeslot, const MinimumSFUL& minimumSF, const ULPhysChCapabilityTDD768SupportOfPUSCH& uLPhysChCapabilityTDD768SupportOfPUSCH, const ULPhysChCapabilityTDD768Tdd384edch& uLPhysChCapabilityTDD768Tdd384edch) : Sequence(&theInfo) {
+	setMaxTSPerFrame(maxTSPerFrame);
+	setMaxPhysChPerTimeslot(maxPhysChPerTimeslot);
+	setMinimumSF(minimumSF);
+	setULPhysChCapabilityTDD768SupportOfPUSCH(uLPhysChCapabilityTDD768SupportOfPUSCH);
+	setULPhysChCapabilityTDD768Tdd384edch(uLPhysChCapabilityTDD768Tdd384edch);
+}
 
 const void *PhysicalChannelCapabilityv770extTddPhysChCapability768::itemsInfo[2] = {
 	&DLPhysChCapabilityTDD768::theInfo,
@@ -3653,6 +4168,10 @@ const PhysicalChannelCapabilityv770extTddPhysChCapability768::Info PhysicalChann
 	itemsPres,
 	2, 0, 0
 };
+PhysicalChannelCapabilityv770extTddPhysChCapability768::PhysicalChannelCapabilityv770extTddPhysChCapability768(const DLPhysChCapabilityTDD768& downlinkPhysChCapability, const ULPhysChCapabilityTDD768& uplinkPhysChCapability) : Sequence(&theInfo) {
+	setDownlinkPhysChCapability(downlinkPhysChCapability);
+	setUplinkPhysChCapability(uplinkPhysChCapability);
+}
 
 const void *ULPhysChCapabilityTDD128v770extTdd128edchSupported::itemsInfo[1] = {
 	&ULPhysChCapabilityTDD128v770extTdd128edchSupportedTddedchPhysicalLayerCategory::theInfo,
@@ -3669,6 +4188,9 @@ const ULPhysChCapabilityTDD128v770extTdd128edchSupported::Info ULPhysChCapabilit
 	itemsPres,
 	1, 0, 0
 };
+ULPhysChCapabilityTDD128v770extTdd128edchSupported::ULPhysChCapabilityTDD128v770extTdd128edchSupported(const ULPhysChCapabilityTDD128v770extTdd128edchSupportedTddedchPhysicalLayerCategory& uLPhysChCapabilityTDD128v770extTdd128edchSupportedTddedchPhysicalLayerCategory) : Sequence(&theInfo) {
+	setULPhysChCapabilityTDD128v770extTdd128edchSupportedTddedchPhysicalLayerCategory(uLPhysChCapabilityTDD128v770extTdd128edchSupportedTddedchPhysicalLayerCategory);
+}
 
 const void *ULPhysChCapabilityTDD128v770extTdd128edch::choicesInfo[2] = {
 	&ULPhysChCapabilityTDD128v770extTdd128edchSupported::theInfo,
@@ -3700,6 +4222,10 @@ const ULPhysChCapabilityTDD128v770ext::Info ULPhysChCapabilityTDD128v770ext::the
 	itemsPres,
 	2, 0, 0
 };
+ULPhysChCapabilityTDD128v770ext::ULPhysChCapabilityTDD128v770ext(const MaxPhysChPerTimeslotLCRr7& maxPhysChPerTimeslot, const ULPhysChCapabilityTDD128v770extTdd128edch& uLPhysChCapabilityTDD128v770extTdd128edch) : Sequence(&theInfo) {
+	setMaxPhysChPerTimeslot(maxPhysChPerTimeslot);
+	setULPhysChCapabilityTDD128v770extTdd128edch(uLPhysChCapabilityTDD128v770extTdd128edch);
+}
 
 const void *PhysicalChannelCapabilityv770extTddPhysChCapability128::itemsInfo[2] = {
 	&DLPhysChCapabilityTDD128v770ext::theInfo,
@@ -3718,6 +4244,10 @@ const PhysicalChannelCapabilityv770extTddPhysChCapability128::Info PhysicalChann
 	itemsPres,
 	2, 0, 0
 };
+PhysicalChannelCapabilityv770extTddPhysChCapability128::PhysicalChannelCapabilityv770extTddPhysChCapability128(const DLPhysChCapabilityTDD128v770ext& downlinkPhysChCapability, const ULPhysChCapabilityTDD128v770ext& uplinkPhysChCapability) : Sequence(&theInfo) {
+	setDownlinkPhysChCapability(downlinkPhysChCapability);
+	setUplinkPhysChCapability(uplinkPhysChCapability);
+}
 
 const void *PhysicalChannelCapabilityv770ext::itemsInfo[4] = {
 	&PhysicalChannelCapabilityv770extFddPhysChCapability::theInfo,
@@ -3756,6 +4286,9 @@ const PhysicalChannelCapabilityv860extFddPhysChCapability::Info PhysicalChannelC
 	itemsPres,
 	1, 0, 0
 };
+PhysicalChannelCapabilityv860extFddPhysChCapability::PhysicalChannelCapabilityv860extFddPhysChCapability(const DLPhysChCapabilityFDDv860ext& downlinkPhysChCapability) : Sequence(&theInfo) {
+	setDownlinkPhysChCapability(downlinkPhysChCapability);
+}
 
 const void *PhysicalChannelCapabilityv860extTddPhysChCapability128::itemsInfo[1] = {
 	&DLPhysChCapabilityTDD128v860ext::theInfo,
@@ -3772,6 +4305,9 @@ const PhysicalChannelCapabilityv860extTddPhysChCapability128::Info PhysicalChann
 	itemsPres,
 	1, 0, 0
 };
+PhysicalChannelCapabilityv860extTddPhysChCapability128::PhysicalChannelCapabilityv860extTddPhysChCapability128(const DLPhysChCapabilityTDD128v860ext& downlinkPhysChCapability) : Sequence(&theInfo) {
+	setDownlinkPhysChCapability(downlinkPhysChCapability);
+}
 
 const void *PhysicalChannelCapabilityv860ext::itemsInfo[2] = {
 	&PhysicalChannelCapabilityv860extFddPhysChCapability::theInfo,
@@ -3824,6 +4360,10 @@ const PhysicalChannelCapabilityv920extFddPhysChCapability::Info PhysicalChannelC
 	itemsPres,
 	2, 0, 0
 };
+PhysicalChannelCapabilityv920extFddPhysChCapability::PhysicalChannelCapabilityv920extFddPhysChCapability(const DLPhysChCapabilityFDDv920ext& downlinkPhysChCapability, const ULPhysChCapabilityFDDv920ext& uplinkPhysChCapability) : Sequence(&theInfo) {
+	setDownlinkPhysChCapability(downlinkPhysChCapability);
+	setUplinkPhysChCapability(uplinkPhysChCapability);
+}
 
 const void *PhysicalChannelCapabilityv920ext::itemsInfo[1] = {
 	&PhysicalChannelCapabilityv920extFddPhysChCapability::theInfo,
@@ -3858,6 +4398,10 @@ const PhysicalChannelCapabilityInfov770extTddPhysChCapability768::Info PhysicalC
 	itemsPres,
 	2, 0, 0
 };
+PhysicalChannelCapabilityInfov770extTddPhysChCapability768::PhysicalChannelCapabilityInfov770extTddPhysChCapability768(const DLPhysChCapabilityInfoTDD768& downlinkPhysChCapability, const ULPhysChCapabilityTDD& uplinkPhysChCapability) : Sequence(&theInfo) {
+	setDownlinkPhysChCapability(downlinkPhysChCapability);
+	setUplinkPhysChCapability(uplinkPhysChCapability);
+}
 
 const void *ULPhysChCapabilityInfoTDD128v770ext::itemsInfo[1] = {
 	&MaxPhysChPerTimeslotLCRr7::theInfo,
@@ -3874,6 +4418,9 @@ const ULPhysChCapabilityInfoTDD128v770ext::Info ULPhysChCapabilityInfoTDD128v770
 	itemsPres,
 	1, 0, 0
 };
+ULPhysChCapabilityInfoTDD128v770ext::ULPhysChCapabilityInfoTDD128v770ext(const MaxPhysChPerTimeslotLCRr7& maxPhysChPerTimeslot) : Sequence(&theInfo) {
+	setMaxPhysChPerTimeslot(maxPhysChPerTimeslot);
+}
 
 const void *PhysicalChannelCapabilityInfov770extTddPhysChCapability128::itemsInfo[1] = {
 	&ULPhysChCapabilityInfoTDD128v770ext::theInfo,
@@ -3890,6 +4437,9 @@ const PhysicalChannelCapabilityInfov770extTddPhysChCapability128::Info PhysicalC
 	itemsPres,
 	1, 0, 0
 };
+PhysicalChannelCapabilityInfov770extTddPhysChCapability128::PhysicalChannelCapabilityInfov770extTddPhysChCapability128(const ULPhysChCapabilityInfoTDD128v770ext& uplinkPhysChCapability) : Sequence(&theInfo) {
+	setUplinkPhysChCapability(uplinkPhysChCapability);
+}
 
 const void *PhysicalChannelCapabilityInfov770ext::itemsInfo[2] = {
 	&PhysicalChannelCapabilityInfov770extTddPhysChCapability768::theInfo,
@@ -3932,6 +4482,13 @@ const ULPhysChCapabilityTDDLCRr4::Info ULPhysChCapabilityTDDLCRr4::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+ULPhysChCapabilityTDDLCRr4::ULPhysChCapabilityTDDLCRr4(const MaxTSPerSubFramer4& maxTSPerSubFrame, const MaxPhysChPerTimeslot& maxPhysChPerTimeslot, const MinimumSFUL& minimumSF, const ULPhysChCapabilityTDDLCRr4SupportOfPUSCH& uLPhysChCapabilityTDDLCRr4SupportOfPUSCH, const ULPhysChCapabilityTDDLCRr4SupportOf8PSK& uLPhysChCapabilityTDDLCRr4SupportOf8PSK) : Sequence(&theInfo) {
+	setMaxTSPerSubFrame(maxTSPerSubFrame);
+	setMaxPhysChPerTimeslot(maxPhysChPerTimeslot);
+	setMinimumSF(minimumSF);
+	setULPhysChCapabilityTDDLCRr4SupportOfPUSCH(uLPhysChCapabilityTDDLCRr4SupportOfPUSCH);
+	setULPhysChCapabilityTDDLCRr4SupportOf8PSK(uLPhysChCapabilityTDDLCRr4SupportOf8PSK);
+}
 
 const void *PhysicalChannelCapabilityLCRr4Tdd128PhysChCapability::itemsInfo[2] = {
 	&DLPhysChCapabilityTDDLCRr4::theInfo,
@@ -3950,6 +4507,10 @@ const PhysicalChannelCapabilityLCRr4Tdd128PhysChCapability::Info PhysicalChannel
 	itemsPres,
 	2, 0, 0
 };
+PhysicalChannelCapabilityLCRr4Tdd128PhysChCapability::PhysicalChannelCapabilityLCRr4Tdd128PhysChCapability(const DLPhysChCapabilityTDDLCRr4& downlinkPhysChCapability, const ULPhysChCapabilityTDDLCRr4& uplinkPhysChCapability) : Sequence(&theInfo) {
+	setDownlinkPhysChCapability(downlinkPhysChCapability);
+	setUplinkPhysChCapability(uplinkPhysChCapability);
+}
 
 const void *PhysicalChannelCapabilityLCRr4::itemsInfo[1] = {
 	&PhysicalChannelCapabilityLCRr4Tdd128PhysChCapability::theInfo,
@@ -3986,6 +4547,11 @@ const PhysicalChannelCapabilityhspdschr5FddhspdschSupported::Info PhysicalChanne
 	itemsPres,
 	3, 0, 0
 };
+PhysicalChannelCapabilityhspdschr5FddhspdschSupported::PhysicalChannelCapabilityhspdschr5FddhspdschSupported(const HSDSCHphysicallayercategory& hsdschphysicallayercategory, const PhysicalChannelCapabilityhspdschr5FddhspdschSupportedDummy& physicalChannelCapabilityhspdschr5FddhspdschSupportedDummy, const PhysicalChannelCapabilityhspdschr5FddhspdschSupportedDummy2& physicalChannelCapabilityhspdschr5FddhspdschSupportedDummy2) : Sequence(&theInfo) {
+	setHsdschphysicallayercategory(hsdschphysicallayercategory);
+	setPhysicalChannelCapabilityhspdschr5FddhspdschSupportedDummy(physicalChannelCapabilityhspdschr5FddhspdschSupportedDummy);
+	setPhysicalChannelCapabilityhspdschr5FddhspdschSupportedDummy2(physicalChannelCapabilityhspdschr5FddhspdschSupportedDummy2);
+}
 
 const void *PhysicalChannelCapabilityhspdschr5Fddhspdsch::choicesInfo[2] = {
 	&PhysicalChannelCapabilityhspdschr5FddhspdschSupported::theInfo,
@@ -4045,6 +4611,11 @@ const PhysicalChannelCapabilityhspdschr5::Info PhysicalChannelCapabilityhspdschr
 	itemsPres,
 	3, 0, 0
 };
+PhysicalChannelCapabilityhspdschr5::PhysicalChannelCapabilityhspdschr5(const PhysicalChannelCapabilityhspdschr5Fddhspdsch& physicalChannelCapabilityhspdschr5Fddhspdsch, const PhysicalChannelCapabilityhspdschr5Tdd384hspdsch& physicalChannelCapabilityhspdschr5Tdd384hspdsch, const PhysicalChannelCapabilityhspdschr5Tdd128hspdsch& physicalChannelCapabilityhspdschr5Tdd128hspdsch) : Sequence(&theInfo) {
+	setPhysicalChannelCapabilityhspdschr5Fddhspdsch(physicalChannelCapabilityhspdschr5Fddhspdsch);
+	setPhysicalChannelCapabilityhspdschr5Tdd384hspdsch(physicalChannelCapabilityhspdschr5Tdd384hspdsch);
+	setPhysicalChannelCapabilityhspdschr5Tdd128hspdsch(physicalChannelCapabilityhspdschr5Tdd128hspdsch);
+}
 
 const void *PNBSCHAllocationr4::itemsInfo[1] = {
 	&PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod::theInfo,
@@ -4061,6 +4632,9 @@ const PNBSCHAllocationr4::Info PNBSCHAllocationr4::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+PNBSCHAllocationr4::PNBSCHAllocationr4(const PNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod& pNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod) : Sequence(&theInfo) {
+	setPNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod(pNBSCHAllocationr4numberOfRepetitionsPerSFNPeriod);
+}
 
 const void *PreRedirectionInfo::itemsInfo[2] = {
 	&PreRedirectionInfoSupportEUTRAFDD::theInfo,
@@ -4079,6 +4653,10 @@ const PreRedirectionInfo::Info PreRedirectionInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+PreRedirectionInfo::PreRedirectionInfo(const PreRedirectionInfoSupportEUTRAFDD& preRedirectionInfoSupportEUTRAFDD, const PreRedirectionInfoSupportEUTRATDD& preRedirectionInfoSupportEUTRATDD) : Sequence(&theInfo) {
+	setPreRedirectionInfoSupportEUTRAFDD(preRedirectionInfoSupportEUTRAFDD);
+	setPreRedirectionInfoSupportEUTRATDD(preRedirectionInfoSupportEUTRATDD);
+}
 
 const void *ProtocolErrorIndicatorWithMoreInfoErrorOccurred::itemsInfo[2] = {
 	&RRCTransactionIdentifier::theInfo,
@@ -4097,6 +4675,10 @@ const ProtocolErrorIndicatorWithMoreInfoErrorOccurred::Info ProtocolErrorIndicat
 	itemsPres,
 	2, 0, 0
 };
+ProtocolErrorIndicatorWithMoreInfoErrorOccurred::ProtocolErrorIndicatorWithMoreInfoErrorOccurred(const RRCTransactionIdentifier& rrcTransactionIdentifier, const ProtocolErrorInformation& protocolErrorInformation) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setProtocolErrorInformation(protocolErrorInformation);
+}
 
 const void *ProtocolErrorIndicatorWithMoreInfo::choicesInfo[2] = {
 	&ProtocolErrorIndicatorWithMoreInfoNoError::theInfo,
@@ -4128,6 +4710,10 @@ const IdentificationOfReceivedMessage::Info IdentificationOfReceivedMessage::the
 	itemsPres,
 	2, 0, 0
 };
+IdentificationOfReceivedMessage::IdentificationOfReceivedMessage(const RRCTransactionIdentifier& rrcTransactionIdentifier, const ReceivedMessageType& receivedMessageType) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setReceivedMessageType(receivedMessageType);
+}
 
 const void *ProtocolErrorMoreInformationDiagnosticsTypeType1::choicesInfo[8] = {
 	&ProtocolErrorMoreInformationDiagnosticsTypeType1Asn1ViolationOrEncodingError::theInfo,
@@ -4176,6 +4762,9 @@ const ProtocolErrorMoreInformation::Info ProtocolErrorMoreInformation::theInfo =
 	itemsPres,
 	1, 0, 0
 };
+ProtocolErrorMoreInformation::ProtocolErrorMoreInformation(const ProtocolErrorMoreInformationDiagnosticsType& protocolErrorMoreInformationDiagnosticsType) : Sequence(&theInfo) {
+	setProtocolErrorMoreInformationDiagnosticsType(protocolErrorMoreInformationDiagnosticsType);
+}
 
 const void *Rbtimerindicator::itemsInfo[2] = {
 	&RbtimerindicatorT314expired::theInfo,
@@ -4194,6 +4783,10 @@ const Rbtimerindicator::Info Rbtimerindicator::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+Rbtimerindicator::Rbtimerindicator(const RbtimerindicatorT314expired& rbtimerindicatorT314expired, const RbtimerindicatorT315expired& rbtimerindicatorT315expired) : Sequence(&theInfo) {
+	setRbtimerindicatorT314expired(rbtimerindicatorT314expired);
+	setRbtimerindicatorT315expired(rbtimerindicatorT315expired);
+}
 
 const void *RedirectionInfo::choicesInfo[2] = {
 	&FrequencyInfo::theInfo,
@@ -4225,6 +4818,10 @@ const BSIC::Info BSIC::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+BSIC::BSIC(const NCC& ncc, const BCC& bcc) : Sequence(&theInfo) {
+	setNcc(ncc);
+	setBcc(bcc);
+}
 
 const void *GSMTargetCellInfo::itemsInfo[3] = {
 	&BCCHARFCN::theInfo,
@@ -4245,6 +4842,10 @@ const GSMTargetCellInfo::Info GSMTargetCellInfo::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+GSMTargetCellInfo::GSMTargetCellInfo(const BCCHARFCN& bcchARFCN, const FrequencyBand& frequencyband) : Sequence(&theInfo) {
+	setBcchARFCN(bcchARFCN);
+	setFrequencyband(frequencyband);
+}
 
 const void *InterRATInfor6::itemsInfo[2] = {
 	&InterRATInfo::theInfo,
@@ -4263,6 +4864,9 @@ const InterRATInfor6::Info InterRATInfor6::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+InterRATInfor6::InterRATInfor6(const InterRATInfo& rat) : Sequence(&theInfo) {
+	setRat(rat);
+}
 
 const void *RedirectionInfor6::choicesInfo[2] = {
 	&FrequencyInfo::theInfo,
@@ -4292,6 +4896,9 @@ const EUTRABlacklistedCell::Info EUTRABlacklistedCell::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EUTRABlacklistedCell::EUTRABlacklistedCell(const EUTRAPhysicalCellIdentity& physicalCellIdentity) : Sequence(&theInfo) {
+	setPhysicalCellIdentity(physicalCellIdentity);
+}
 
 const void *EUTRATargetFreqInfo::itemsInfo[2] = {
 	&EARFCN::theInfo,
@@ -4310,6 +4917,9 @@ const EUTRATargetFreqInfo::Info EUTRATargetFreqInfo::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+EUTRATargetFreqInfo::EUTRATargetFreqInfo(const EARFCN& dlEUTRACarrierFreq) : Sequence(&theInfo) {
+	setDlEUTRACarrierFreq(dlEUTRACarrierFreq);
+}
 
 const void *InterRATInfov860extEutra::itemsInfo[1] = {
 	&EUTRATargetFreqInfoList::theInfo,
@@ -4326,6 +4936,9 @@ const InterRATInfov860extEutra::Info InterRATInfov860extEutra::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+InterRATInfov860extEutra::InterRATInfov860extEutra(const EUTRATargetFreqInfoList& eutraTargetFreqInfoList) : Sequence(&theInfo) {
+	setEutraTargetFreqInfoList(eutraTargetFreqInfoList);
+}
 
 const void *InterRATInfov860ext::choicesInfo[2] = {
 	&InterRATInfov860extGsm::theInfo,
@@ -4370,6 +4983,10 @@ const RFCapabilityFddRFCapability::Info RFCapabilityFddRFCapability::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RFCapabilityFddRFCapability::RFCapabilityFddRFCapability(const UEPowerClass& uePowerClass, const TxRxFrequencySeparation& txRxFrequencySeparation) : Sequence(&theInfo) {
+	setUePowerClass(uePowerClass);
+	setTxRxFrequencySeparation(txRxFrequencySeparation);
+}
 
 const void *RFCapabilityTddRFCapability::itemsInfo[3] = {
 	&UEPowerClass::theInfo,
@@ -4390,6 +5007,11 @@ const RFCapabilityTddRFCapability::Info RFCapabilityTddRFCapability::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+RFCapabilityTddRFCapability::RFCapabilityTddRFCapability(const UEPowerClass& uePowerClass, const RadioFrequencyBandTDDList& radioFrequencyTDDBandList, const ChipRateCapability& chipRateCapability) : Sequence(&theInfo) {
+	setUePowerClass(uePowerClass);
+	setRadioFrequencyTDDBandList(radioFrequencyTDDBandList);
+	setChipRateCapability(chipRateCapability);
+}
 
 const void *RFCapability::itemsInfo[2] = {
 	&RFCapabilityFddRFCapability::theInfo,
@@ -4428,6 +5050,11 @@ const RFCapabilityr4extTddRFCapability::Info RFCapabilityr4extTddRFCapability::t
 	itemsPres,
 	3, 0, 0
 };
+RFCapabilityr4extTddRFCapability::RFCapabilityr4extTddRFCapability(const UEPowerClass& uePowerClass, const RadioFrequencyBandTDDList& radioFrequencyBandTDDList, const ChipRateCapability& chipRateCapability) : Sequence(&theInfo) {
+	setUePowerClass(uePowerClass);
+	setRadioFrequencyBandTDDList(radioFrequencyBandTDDList);
+	setChipRateCapability(chipRateCapability);
+}
 
 const void *RFCapabilityr4ext::itemsInfo[1] = {
 	&RFCapabilityr4extTddRFCapability::theInfo,
@@ -4462,6 +5089,10 @@ const RFCapabilityv770extTdd768RFCapability::Info RFCapabilityv770extTdd768RFCap
 	itemsPres,
 	2, 0, 0
 };
+RFCapabilityv770extTdd768RFCapability::RFCapabilityv770extTdd768RFCapability(const UEPowerClass& uePowerClass, const RadioFrequencyBandTDDListr7& radioFrequencyBandTDDList) : Sequence(&theInfo) {
+	setUePowerClass(uePowerClass);
+	setRadioFrequencyBandTDDList(radioFrequencyBandTDDList);
+}
 
 const void *RFCapabilityv770ext::itemsInfo[3] = {
 	&RadioFrequencyBandTDDListr7::theInfo,
@@ -4522,6 +5153,11 @@ const RLCCapability::Info RLCCapability::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+RLCCapability::RLCCapability(const TotalRLCAMBufferSize& totalRLCAMBufferSize, const MaximumRLCWindowSize& maximumRLCWindowSize, const MaximumAMEntityNumberRLCCap& maximumAMEntityNumber) : Sequence(&theInfo) {
+	setTotalRLCAMBufferSize(totalRLCAMBufferSize);
+	setMaximumRLCWindowSize(maximumRLCWindowSize);
+	setMaximumAMEntityNumber(maximumAMEntityNumber);
+}
 
 const void *RLCCapabilityr5ext::itemsInfo[1] = {
 	&TotalRLCAMBufferSizer5ext::theInfo,
@@ -4554,6 +5190,9 @@ const RLCCapabilityv770ext::Info RLCCapabilityv770ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+RLCCapabilityv770ext::RLCCapabilityv770ext(const RLCCapabilityv770extSupportOfTwoLogicalChannel& rLCCapabilityv770extSupportOfTwoLogicalChannel) : Sequence(&theInfo) {
+	setRLCCapabilityv770extSupportOfTwoLogicalChannel(rLCCapabilityv770extSupportOfTwoLogicalChannel);
+}
 
 const void *RLCCapabilityv920ext::itemsInfo[1] = {
 	&TotalRLCAMBufferSizev920ext::theInfo,
@@ -4588,6 +5227,10 @@ const SecurityCapability::Info SecurityCapability::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SecurityCapability::SecurityCapability(const SecurityCapabilityCipheringAlgorithmCap& securityCapabilityCipheringAlgorithmCap, const SecurityCapabilityIntegrityProtectionAlgorithmCap& securityCapabilityIntegrityProtectionAlgorithmCap) : Sequence(&theInfo) {
+	setSecurityCapabilityCipheringAlgorithmCap(securityCapabilityCipheringAlgorithmCap);
+	setSecurityCapabilityIntegrityProtectionAlgorithmCap(securityCapabilityIntegrityProtectionAlgorithmCap);
+}
 
 const void *SecondaryServingEDCHCellInfo::itemsInfo[2] = {
 	&ERNTI::theInfo,
@@ -4622,6 +5265,9 @@ const SecondaryEDCHInfoCommonServingGrant::Info SecondaryEDCHInfoCommonServingGr
 	itemsPres,
 	1, 0, 0
 };
+SecondaryEDCHInfoCommonServingGrant::SecondaryEDCHInfoCommonServingGrant(const SecondaryEDCHInfoCommonServingGrantprimary_Secondary_GrantSelector& secondaryEDCHInfoCommonServingGrantprimary_Secondary_GrantSelector) : Sequence(&theInfo) {
+	setSecondaryEDCHInfoCommonServingGrantprimary_Secondary_GrantSelector(secondaryEDCHInfoCommonServingGrantprimary_Secondary_GrantSelector);
+}
 
 const void *SecondaryEDCHInfoCommon::itemsInfo[9] = {
 	&FrequencyInfo::theInfo,
@@ -4654,6 +5300,13 @@ const SecondaryEDCHInfoCommon::Info SecondaryEDCHInfoCommon::theInfo = {
 	itemsPres,
 	9, 4, 0
 };
+SecondaryEDCHInfoCommon::SecondaryEDCHInfoCommon(const FrequencyInfo& frequencyInfo, const ScramblingCodeType& scramblingCodeType, const ULScramblingCode& scramblingCodeNumber, const SecondaryEDCHInfoCommonDpcchPowerOffsetSecondaryULFrequency& secondaryEDCHInfoCommonDpcchPowerOffsetSecondaryULFrequency, const PCPreamble& pcPreamble) : Sequence(&theInfo) {
+	setFrequencyInfo(frequencyInfo);
+	setScramblingCodeType(scramblingCodeType);
+	setScramblingCodeNumber(scramblingCodeNumber);
+	setSecondaryEDCHInfoCommonDpcchPowerOffsetSecondaryULFrequency(secondaryEDCHInfoCommonDpcchPowerOffsetSecondaryULFrequency);
+	setPcPreamble(pcPreamble);
+}
 
 const void *HSSCCHInfoModeSpecificInfoFdd::itemsInfo[2] = {
 	&HSSCCHInfoModeSpecificInfoFddHSSCCHChannelisationCodeInfo::theInfo,
@@ -4672,6 +5325,9 @@ const HSSCCHInfoModeSpecificInfoFdd::Info HSSCCHInfoModeSpecificInfoFdd::theInfo
 	itemsPres,
 	2, 1, 0
 };
+HSSCCHInfoModeSpecificInfoFdd::HSSCCHInfoModeSpecificInfoFdd(const HSSCCHInfoModeSpecificInfoFddHSSCCHChannelisationCodeInfo& hSSCCHInfoModeSpecificInfoFddHSSCCHChannelisationCodeInfo) : Sequence(&theInfo) {
+	setHSSCCHInfoModeSpecificInfoFddHSSCCHChannelisationCodeInfo(hSSCCHInfoModeSpecificInfoFddHSSCCHChannelisationCodeInfo);
+}
 
 const void *HSSICHPowerControlInfoTDD384::itemsInfo[2] = {
 	&HSSICHPowerControlInfoTDD384UltargetSIR::theInfo,
@@ -4690,6 +5346,10 @@ const HSSICHPowerControlInfoTDD384::Info HSSICHPowerControlInfoTDD384::theInfo =
 	itemsPres,
 	2, 0, 0
 };
+HSSICHPowerControlInfoTDD384::HSSICHPowerControlInfoTDD384(const HSSICHPowerControlInfoTDD384UltargetSIR& hSSICHPowerControlInfoTDD384UltargetSIR, const ConstantValue& hssichConstantValue) : Sequence(&theInfo) {
+	setHSSICHPowerControlInfoTDD384UltargetSIR(hSSICHPowerControlInfoTDD384UltargetSIR);
+	setHssichConstantValue(hssichConstantValue);
+}
 
 const void *HSSCCHTDD384MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftLong::theInfo,
@@ -4706,6 +5366,9 @@ const HSSCCHTDD384MidambleAllocationModeUeSpecificMidamble::Info HSSCCHTDD384Mid
 	itemsPres,
 	1, 0, 0
 };
+HSSCCHTDD384MidambleAllocationModeUeSpecificMidamble::HSSCCHTDD384MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *HSSCCHTDD384MidambleAllocationMode::choicesInfo[3] = {
 	&HSSCCHTDD384MidambleAllocationModeDefaultMidamble::theInfo,
@@ -4736,6 +5399,9 @@ const HSSICHConfigurationTDD384MidambleAllocationModeUeSpecificMidamble::Info HS
 	itemsPres,
 	1, 0, 0
 };
+HSSICHConfigurationTDD384MidambleAllocationModeUeSpecificMidamble::HSSICHConfigurationTDD384MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *HSSICHConfigurationTDD384MidambleAllocationMode::choicesInfo[2] = {
 	&HSSICHConfigurationTDD384MidambleAllocationModeDefaultMidamble::theInfo,
@@ -4771,6 +5437,12 @@ const HSSICHConfigurationTDD384::Info HSSICHConfigurationTDD384::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+HSSICHConfigurationTDD384::HSSICHConfigurationTDD384(const TimeslotNumber& timeslotNumber, const DLTSChannelisationCode& channelisationCode, const HSSICHConfigurationTDD384MidambleAllocationMode& hSSICHConfigurationTDD384MidambleAllocationMode, const MidambleConfigurationBurstType1and3& midambleconfiguration) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setChannelisationCode(channelisationCode);
+	setHSSICHConfigurationTDD384MidambleAllocationMode(hSSICHConfigurationTDD384MidambleAllocationMode);
+	setMidambleconfiguration(midambleconfiguration);
+}
 
 const void *HSSCCHTDD384::itemsInfo[6] = {
 	&TimeslotNumber::theInfo,
@@ -4797,6 +5469,14 @@ const HSSCCHTDD384::Info HSSCCHTDD384::theInfo = {
 	itemsPres,
 	6, 0, 0
 };
+HSSCCHTDD384::HSSCCHTDD384(const TimeslotNumber& timeslotNumber, const DLTSChannelisationCode& channelisationCode, const HSSCCHTDD384MidambleAllocationMode& hSSCCHTDD384MidambleAllocationMode, const MidambleConfigurationBurstType1and3& midambleconfiguration, const BlerTarget& blertarget, const HSSICHConfigurationTDD384& hssichconfiguration) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setChannelisationCode(channelisationCode);
+	setHSSCCHTDD384MidambleAllocationMode(hSSCCHTDD384MidambleAllocationMode);
+	setMidambleconfiguration(midambleconfiguration);
+	setBlertarget(blertarget);
+	setHssichconfiguration(hssichconfiguration);
+}
 
 const void *HSSCCHInfoModeSpecificInfoTddTdd384::itemsInfo[3] = {
 	&HSSCCHInfoModeSpecificInfoTddTdd384Nackackpoweroffset::theInfo,
@@ -4817,6 +5497,11 @@ const HSSCCHInfoModeSpecificInfoTddTdd384::Info HSSCCHInfoModeSpecificInfoTddTdd
 	itemsPres,
 	3, 0, 0
 };
+HSSCCHInfoModeSpecificInfoTddTdd384::HSSCCHInfoModeSpecificInfoTddTdd384(const HSSCCHInfoModeSpecificInfoTddTdd384Nackackpoweroffset& hSSCCHInfoModeSpecificInfoTddTdd384Nackackpoweroffset, const HSSICHPowerControlInfoTDD384& hsSICHPowerControlInfo, const HSSCCHInfoModeSpecificInfoTddTdd384HSSCCHSetConfiguration& hSSCCHInfoModeSpecificInfoTddTdd384HSSCCHSetConfiguration) : Sequence(&theInfo) {
+	setHSSCCHInfoModeSpecificInfoTddTdd384Nackackpoweroffset(hSSCCHInfoModeSpecificInfoTddTdd384Nackackpoweroffset);
+	setHsSICHPowerControlInfo(hsSICHPowerControlInfo);
+	setHSSCCHInfoModeSpecificInfoTddTdd384HSSCCHSetConfiguration(hSSCCHInfoModeSpecificInfoTddTdd384HSSCCHSetConfiguration);
+}
 
 const void *HSSCCHTDD128MidambleAllocationMode::choicesInfo[3] = {
 	&HSSCCHTDD128MidambleAllocationModeDefaultMidamble::theInfo,
@@ -4847,6 +5532,9 @@ const HSSICHConfigurationTDD128MidambleAllocationModeUeSpecificMidamble::Info HS
 	itemsPres,
 	1, 0, 0
 };
+HSSICHConfigurationTDD128MidambleAllocationModeUeSpecificMidamble::HSSICHConfigurationTDD128MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *HSSICHConfigurationTDD128MidambleAllocationMode::choicesInfo[2] = {
 	&HSSICHConfigurationTDD128MidambleAllocationModeDefaultMidamble::theInfo,
@@ -4888,6 +5576,15 @@ const HSSICHConfigurationTDD128::Info HSSICHConfigurationTDD128::theInfo = {
 	itemsPres,
 	7, 0, 0
 };
+HSSICHConfigurationTDD128::HSSICHConfigurationTDD128(const TimeslotNumberLCRr4& timeslotNumber, const HSChannelisationCodeLCR& channelisationCode, const HSSICHConfigurationTDD128MidambleAllocationMode& hSSICHConfigurationTDD128MidambleAllocationMode, const HSSICHConfigurationTDD128MidambleConfiguration& hSSICHConfigurationTDD128MidambleConfiguration, const HSSICHConfigurationTDD128Nackackpoweroffset& hSSICHConfigurationTDD128Nackackpoweroffset, const HSSICHConfigurationTDD128PowerlevelHSSICH& hSSICHConfigurationTDD128PowerlevelHSSICH, const HSSICHConfigurationTDD128tpc_step_size& hSSICHConfigurationTDD128tpc_step_size) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setChannelisationCode(channelisationCode);
+	setHSSICHConfigurationTDD128MidambleAllocationMode(hSSICHConfigurationTDD128MidambleAllocationMode);
+	setHSSICHConfigurationTDD128MidambleConfiguration(hSSICHConfigurationTDD128MidambleConfiguration);
+	setHSSICHConfigurationTDD128Nackackpoweroffset(hSSICHConfigurationTDD128Nackackpoweroffset);
+	setHSSICHConfigurationTDD128PowerlevelHSSICH(hSSICHConfigurationTDD128PowerlevelHSSICH);
+	setHSSICHConfigurationTDD128tpc_step_size(hSSICHConfigurationTDD128tpc_step_size);
+}
 
 const void *HSSCCHTDD128::itemsInfo[7] = {
 	&TimeslotNumberLCRr4::theInfo,
@@ -4916,6 +5613,15 @@ const HSSCCHTDD128::Info HSSCCHTDD128::theInfo = {
 	itemsPres,
 	7, 0, 0
 };
+HSSCCHTDD128::HSSCCHTDD128(const TimeslotNumberLCRr4& timeslotNumber, const HSChannelisationCodeLCR& firstChannelisationCode, const HSChannelisationCodeLCR& secondChannelisationCode, const HSSCCHTDD128MidambleAllocationMode& hSSCCHTDD128MidambleAllocationMode, const HSSCCHTDD128MidambleConfiguration& hSSCCHTDD128MidambleConfiguration, const BlerTarget& blertarget, const HSSICHConfigurationTDD128& hssichconfiguration) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setFirstChannelisationCode(firstChannelisationCode);
+	setSecondChannelisationCode(secondChannelisationCode);
+	setHSSCCHTDD128MidambleAllocationMode(hSSCCHTDD128MidambleAllocationMode);
+	setHSSCCHTDD128MidambleConfiguration(hSSCCHTDD128MidambleConfiguration);
+	setBlertarget(blertarget);
+	setHssichconfiguration(hssichconfiguration);
+}
 
 const void *HSSCCHInfoModeSpecificInfoTdd::choicesInfo[2] = {
 	&HSSCCHInfoModeSpecificInfoTddTdd384::theInfo,
@@ -4958,6 +5664,9 @@ const HSSCCHInfo::Info HSSCCHInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+HSSCCHInfo::HSSCCHInfo(const HSSCCHInfoModeSpecificInfo& hSSCCHInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setHSSCCHInfoModeSpecificInfo(hSSCCHInfoModeSpecificInfo);
+}
 
 const void *MeasurementFeedbackInfoModeSpecificInfoFdd::itemsInfo[4] = {
 	&MeasurementPowerOffset::theInfo,
@@ -4980,6 +5689,12 @@ const MeasurementFeedbackInfoModeSpecificInfoFdd::Info MeasurementFeedbackInfoMo
 	itemsPres,
 	4, 0, 0
 };
+MeasurementFeedbackInfoModeSpecificInfoFdd::MeasurementFeedbackInfoModeSpecificInfoFdd(const MeasurementPowerOffset& measurementPowerOffset, const Feedbackcycle& feedbackcycle, const CQIRepetitionFactor& cqiRepetitionFactor, const DeltaCQI& deltaCQI) : Sequence(&theInfo) {
+	setMeasurementPowerOffset(measurementPowerOffset);
+	setFeedbackcycle(feedbackcycle);
+	setCqiRepetitionFactor(cqiRepetitionFactor);
+	setDeltaCQI(deltaCQI);
+}
 
 const void *MeasurementFeedbackInfoModeSpecificInfo::choicesInfo[2] = {
 	&MeasurementFeedbackInfoModeSpecificInfoFdd::theInfo,
@@ -5009,6 +5724,9 @@ const MeasurementFeedbackInfo::Info MeasurementFeedbackInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MeasurementFeedbackInfo::MeasurementFeedbackInfo(const MeasurementFeedbackInfoModeSpecificInfo& measurementFeedbackInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setMeasurementFeedbackInfoModeSpecificInfo(measurementFeedbackInfoModeSpecificInfo);
+}
 
 const void *DLHSPDSCHTSConfiguration::itemsInfo[0] = {
 };
@@ -5071,6 +5789,10 @@ const HSPDSCHMidambleConfigurationTDD128::Info HSPDSCHMidambleConfigurationTDD12
 	itemsPres,
 	2, 0, 0
 };
+HSPDSCHMidambleConfigurationTDD128::HSPDSCHMidambleConfigurationTDD128(const HSPDSCHMidambleConfigurationTDD128MidambleAllocationMode& hSPDSCHMidambleConfigurationTDD128MidambleAllocationMode, const HSPDSCHMidambleConfigurationTDD128MidambleConfiguration& hSPDSCHMidambleConfigurationTDD128MidambleConfiguration) : Sequence(&theInfo) {
+	setHSPDSCHMidambleConfigurationTDD128MidambleAllocationMode(hSPDSCHMidambleConfigurationTDD128MidambleAllocationMode);
+	setHSPDSCHMidambleConfigurationTDD128MidambleConfiguration(hSPDSCHMidambleConfigurationTDD128MidambleConfiguration);
+}
 
 const void *DLHSPDSCHInformationModeSpecificInfoTddTdd128::itemsInfo[1] = {
 	&HSPDSCHMidambleConfigurationTDD128::theInfo,
@@ -5133,6 +5855,9 @@ const DLHSPDSCHInformation::Info DLHSPDSCHInformation::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DLHSPDSCHInformation::DLHSPDSCHInformation(const DLHSPDSCHInformationModeSpecificInfo& dLHSPDSCHInformationModeSpecificInfo) : Sequence(&theInfo) {
+	setDLHSPDSCHInformationModeSpecificInfo(dLHSPDSCHInformationModeSpecificInfo);
+}
 
 const void *HARQInfoMemoryPartitioning::choicesInfo[2] = {
 	&HARQInfoMemoryPartitioningImplicit::theInfo,
@@ -5164,6 +5889,10 @@ const HARQInfo::Info HARQInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+HARQInfo::HARQInfo(const HARQInfoNumberOfProcesses& hARQInfoNumberOfProcesses, const HARQInfoMemoryPartitioning& hARQInfoMemoryPartitioning) : Sequence(&theInfo) {
+	setHARQInfoNumberOfProcesses(hARQInfoNumberOfProcesses);
+	setHARQInfoMemoryPartitioning(hARQInfoMemoryPartitioning);
+}
 
 const void *ServingHSDSCHCellInformation::itemsInfo[7] = {
 	&DeltaACK::theInfo,
@@ -5192,6 +5921,9 @@ const ServingHSDSCHCellInformation::Info ServingHSDSCHCellInformation::theInfo =
 	itemsPres,
 	7, 6, 0
 };
+ServingHSDSCHCellInformation::ServingHSDSCHCellInformation(const HARQPreambleMode& harqPreambleMode) : Sequence(&theInfo) {
+	setHarqPreambleMode(harqPreambleMode);
+}
 
 const void *HSSCCHInfor7ModeSpecificInfoFdd::itemsInfo[2] = {
 	&HSSCCHInfor7ModeSpecificInfoFddHSSCCHChannelisationCodeInfo::theInfo,
@@ -5210,6 +5942,9 @@ const HSSCCHInfor7ModeSpecificInfoFdd::Info HSSCCHInfor7ModeSpecificInfoFdd::the
 	itemsPres,
 	2, 1, 0
 };
+HSSCCHInfor7ModeSpecificInfoFdd::HSSCCHInfor7ModeSpecificInfoFdd(const HSSCCHInfor7ModeSpecificInfoFddHSSCCHChannelisationCodeInfo& hSSCCHInfor7ModeSpecificInfoFddHSSCCHChannelisationCodeInfo) : Sequence(&theInfo) {
+	setHSSCCHInfor7ModeSpecificInfoFddHSSCCHChannelisationCodeInfo(hSSCCHInfor7ModeSpecificInfoFddHSSCCHChannelisationCodeInfo);
+}
 
 const void *HSSCCHTDD384r6MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftLong::theInfo,
@@ -5226,6 +5961,9 @@ const HSSCCHTDD384r6MidambleAllocationModeUeSpecificMidamble::Info HSSCCHTDD384r
 	itemsPres,
 	1, 0, 0
 };
+HSSCCHTDD384r6MidambleAllocationModeUeSpecificMidamble::HSSCCHTDD384r6MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *HSSCCHTDD384r6MidambleAllocationMode::choicesInfo[3] = {
 	&HSSCCHTDD384r6MidambleAllocationModeDefaultMidamble::theInfo,
@@ -5264,6 +6002,13 @@ const HSSCCHTDD384r6::Info HSSCCHTDD384r6::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+HSSCCHTDD384r6::HSSCCHTDD384r6(const TimeslotNumber& timeslotNumber, const DLTSChannelisationCode& channelisationCode, const HSSCCHTDD384r6MidambleAllocationMode& hSSCCHTDD384r6MidambleAllocationMode, const MidambleConfigurationBurstType1and3& midambleconfiguration, const HSSICHConfigurationTDD384& hssichconfiguration) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setChannelisationCode(channelisationCode);
+	setHSSCCHTDD384r6MidambleAllocationMode(hSSCCHTDD384r6MidambleAllocationMode);
+	setMidambleconfiguration(midambleconfiguration);
+	setHssichconfiguration(hssichconfiguration);
+}
 
 const void *HSSCCHInfor7ModeSpecificInfoTddTdd384::itemsInfo[5] = {
 	&HSSCCHInfor7ModeSpecificInfoTddTdd384Nackackpoweroffset::theInfo,
@@ -5288,6 +6033,12 @@ const HSSCCHInfor7ModeSpecificInfoTddTdd384::Info HSSCCHInfor7ModeSpecificInfoTd
 	itemsPres,
 	5, 1, 0
 };
+HSSCCHInfor7ModeSpecificInfoTddTdd384::HSSCCHInfor7ModeSpecificInfoTddTdd384(const HSSCCHInfor7ModeSpecificInfoTddTdd384Nackackpoweroffset& hSSCCHInfor7ModeSpecificInfoTddTdd384Nackackpoweroffset, const HSSICHPowerControlInfoTDD384& hsSICHPowerControlInfo, const BlerTarget& blertarget, const HSSCCHInfor7ModeSpecificInfoTddTdd384HSSCCHSetConfiguration& hSSCCHInfor7ModeSpecificInfoTddTdd384HSSCCHSetConfiguration) : Sequence(&theInfo) {
+	setHSSCCHInfor7ModeSpecificInfoTddTdd384Nackackpoweroffset(hSSCCHInfor7ModeSpecificInfoTddTdd384Nackackpoweroffset);
+	setHsSICHPowerControlInfo(hsSICHPowerControlInfo);
+	setBlertarget(blertarget);
+	setHSSCCHInfor7ModeSpecificInfoTddTdd384HSSCCHSetConfiguration(hSSCCHInfor7ModeSpecificInfoTddTdd384HSSCCHSetConfiguration);
+}
 
 const void *HSSICHPowerControlInfoTDD768::itemsInfo[2] = {
 	&HSSICHPowerControlInfoTDD768UltargetSIR::theInfo,
@@ -5306,6 +6057,10 @@ const HSSICHPowerControlInfoTDD768::Info HSSICHPowerControlInfoTDD768::theInfo =
 	itemsPres,
 	2, 0, 0
 };
+HSSICHPowerControlInfoTDD768::HSSICHPowerControlInfoTDD768(const HSSICHPowerControlInfoTDD768UltargetSIR& hSSICHPowerControlInfoTDD768UltargetSIR, const ConstantValue& hssichConstantValue) : Sequence(&theInfo) {
+	setHSSICHPowerControlInfoTDD768UltargetSIR(hSSICHPowerControlInfoTDD768UltargetSIR);
+	setHssichConstantValue(hssichConstantValue);
+}
 
 const void *HSSCCHTDD768MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftLong::theInfo,
@@ -5322,6 +6077,9 @@ const HSSCCHTDD768MidambleAllocationModeUeSpecificMidamble::Info HSSCCHTDD768Mid
 	itemsPres,
 	1, 0, 0
 };
+HSSCCHTDD768MidambleAllocationModeUeSpecificMidamble::HSSCCHTDD768MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *HSSCCHTDD768MidambleAllocationMode::choicesInfo[3] = {
 	&HSSCCHTDD768MidambleAllocationModeDefaultMidamble::theInfo,
@@ -5352,6 +6110,9 @@ const HSSICHConfigurationTDD768MidambleAllocationModeUeSpecificMidamble::Info HS
 	itemsPres,
 	1, 0, 0
 };
+HSSICHConfigurationTDD768MidambleAllocationModeUeSpecificMidamble::HSSICHConfigurationTDD768MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *HSSICHConfigurationTDD768MidambleAllocationMode::choicesInfo[2] = {
 	&HSSICHConfigurationTDD768MidambleAllocationModeDefaultMidamble::theInfo,
@@ -5387,6 +6148,12 @@ const HSSICHConfigurationTDD768::Info HSSICHConfigurationTDD768::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+HSSICHConfigurationTDD768::HSSICHConfigurationTDD768(const TimeslotNumber& timeslotNumber, const DLTSChannelisationCodeVHCR& channelisationCode, const HSSICHConfigurationTDD768MidambleAllocationMode& hSSICHConfigurationTDD768MidambleAllocationMode, const MidambleConfigurationBurstType1and3& midambleconfiguration) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setChannelisationCode(channelisationCode);
+	setHSSICHConfigurationTDD768MidambleAllocationMode(hSSICHConfigurationTDD768MidambleAllocationMode);
+	setMidambleconfiguration(midambleconfiguration);
+}
 
 const void *HSSCCHTDD768::itemsInfo[5] = {
 	&TimeslotNumber::theInfo,
@@ -5411,6 +6178,13 @@ const HSSCCHTDD768::Info HSSCCHTDD768::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+HSSCCHTDD768::HSSCCHTDD768(const TimeslotNumber& timeslotNumber, const DLTSChannelisationCodeVHCR& channelisationCode, const HSSCCHTDD768MidambleAllocationMode& hSSCCHTDD768MidambleAllocationMode, const MidambleConfigurationBurstType1and3& midambleconfiguration, const HSSICHConfigurationTDD768& hssichconfiguration) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setChannelisationCode(channelisationCode);
+	setHSSCCHTDD768MidambleAllocationMode(hSSCCHTDD768MidambleAllocationMode);
+	setMidambleconfiguration(midambleconfiguration);
+	setHssichconfiguration(hssichconfiguration);
+}
 
 const void *HSSCCHInfor7ModeSpecificInfoTddTdd768::itemsInfo[5] = {
 	&HSSCCHInfor7ModeSpecificInfoTddTdd768Nackackpoweroffset::theInfo,
@@ -5435,6 +6209,12 @@ const HSSCCHInfor7ModeSpecificInfoTddTdd768::Info HSSCCHInfor7ModeSpecificInfoTd
 	itemsPres,
 	5, 1, 0
 };
+HSSCCHInfor7ModeSpecificInfoTddTdd768::HSSCCHInfor7ModeSpecificInfoTddTdd768(const HSSCCHInfor7ModeSpecificInfoTddTdd768Nackackpoweroffset& hSSCCHInfor7ModeSpecificInfoTddTdd768Nackackpoweroffset, const HSSICHPowerControlInfoTDD768& hsSICHPowerControlInfo, const BlerTarget& blertarget, const HSSCCHInfor7ModeSpecificInfoTddTdd768HSSCCHSetConfiguration& hSSCCHInfor7ModeSpecificInfoTddTdd768HSSCCHSetConfiguration) : Sequence(&theInfo) {
+	setHSSCCHInfor7ModeSpecificInfoTddTdd768Nackackpoweroffset(hSSCCHInfor7ModeSpecificInfoTddTdd768Nackackpoweroffset);
+	setHsSICHPowerControlInfo(hsSICHPowerControlInfo);
+	setBlertarget(blertarget);
+	setHSSCCHInfor7ModeSpecificInfoTddTdd768HSSCCHSetConfiguration(hSSCCHInfor7ModeSpecificInfoTddTdd768HSSCCHSetConfiguration);
+}
 
 const void *HSSCCHTDD128r6MidambleAllocationMode::choicesInfo[3] = {
 	&HSSCCHTDD128r6MidambleAllocationModeDefaultMidamble::theInfo,
@@ -5465,6 +6245,9 @@ const HSSICHConfigurationTDD128r6MidambleAllocationModeUeSpecificMidamble::Info 
 	itemsPres,
 	1, 0, 0
 };
+HSSICHConfigurationTDD128r6MidambleAllocationModeUeSpecificMidamble::HSSICHConfigurationTDD128r6MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *HSSICHConfigurationTDD128r6MidambleAllocationMode::choicesInfo[2] = {
 	&HSSICHConfigurationTDD128r6MidambleAllocationModeDefaultMidamble::theInfo,
@@ -5500,6 +6283,12 @@ const HSSICHConfigurationTDD128r6::Info HSSICHConfigurationTDD128r6::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+HSSICHConfigurationTDD128r6::HSSICHConfigurationTDD128r6(const TimeslotNumberLCRr4& timeslotNumber, const HSChannelisationCodeLCR& channelisationCode, const HSSICHConfigurationTDD128r6MidambleAllocationMode& hSSICHConfigurationTDD128r6MidambleAllocationMode, const HSSICHConfigurationTDD128r6MidambleConfiguration& hSSICHConfigurationTDD128r6MidambleConfiguration) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setChannelisationCode(channelisationCode);
+	setHSSICHConfigurationTDD128r6MidambleAllocationMode(hSSICHConfigurationTDD128r6MidambleAllocationMode);
+	setHSSICHConfigurationTDD128r6MidambleConfiguration(hSSICHConfigurationTDD128r6MidambleConfiguration);
+}
 
 const void *HSSCCHTDD128r6::itemsInfo[6] = {
 	&TimeslotNumberLCRr4::theInfo,
@@ -5526,6 +6315,14 @@ const HSSCCHTDD128r6::Info HSSCCHTDD128r6::theInfo = {
 	itemsPres,
 	6, 0, 0
 };
+HSSCCHTDD128r6::HSSCCHTDD128r6(const TimeslotNumberLCRr4& timeslotNumber, const HSChannelisationCodeLCR& firstChannelisationCode, const HSChannelisationCodeLCR& secondChannelisationCode, const HSSCCHTDD128r6MidambleAllocationMode& hSSCCHTDD128r6MidambleAllocationMode, const HSSCCHTDD128r6MidambleConfiguration& hSSCCHTDD128r6MidambleConfiguration, const HSSICHConfigurationTDD128r6& hssichconfiguration) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setFirstChannelisationCode(firstChannelisationCode);
+	setSecondChannelisationCode(secondChannelisationCode);
+	setHSSCCHTDD128r6MidambleAllocationMode(hSSCCHTDD128r6MidambleAllocationMode);
+	setHSSCCHTDD128r6MidambleConfiguration(hSSCCHTDD128r6MidambleConfiguration);
+	setHssichconfiguration(hssichconfiguration);
+}
 
 const void *HSSCCHInfor7ModeSpecificInfoTddTdd128::itemsInfo[7] = {
 	&HSSCCHInfor7ModeSpecificInfoTddTdd128Nackackpoweroffset::theInfo,
@@ -5554,6 +6351,13 @@ const HSSCCHInfor7ModeSpecificInfoTddTdd128::Info HSSCCHInfor7ModeSpecificInfoTd
 	itemsPres,
 	7, 2, 0
 };
+HSSCCHInfor7ModeSpecificInfoTddTdd128::HSSCCHInfor7ModeSpecificInfoTddTdd128(const HSSCCHInfor7ModeSpecificInfoTddTdd128Nackackpoweroffset& hSSCCHInfor7ModeSpecificInfoTddTdd128Nackackpoweroffset, const HSSCCHInfor7ModeSpecificInfoTddTdd128PowerlevelHSSICH& hSSCCHInfor7ModeSpecificInfoTddTdd128PowerlevelHSSICH, const HSSCCHInfor7ModeSpecificInfoTddTdd128tpc_step_size& hSSCCHInfor7ModeSpecificInfoTddTdd128tpc_step_size, const BlerTarget& blertarget, const HSSCCHInfor7ModeSpecificInfoTddTdd128HSSCCHSetConfiguration& hSSCCHInfor7ModeSpecificInfoTddTdd128HSSCCHSetConfiguration) : Sequence(&theInfo) {
+	setHSSCCHInfor7ModeSpecificInfoTddTdd128Nackackpoweroffset(hSSCCHInfor7ModeSpecificInfoTddTdd128Nackackpoweroffset);
+	setHSSCCHInfor7ModeSpecificInfoTddTdd128PowerlevelHSSICH(hSSCCHInfor7ModeSpecificInfoTddTdd128PowerlevelHSSICH);
+	setHSSCCHInfor7ModeSpecificInfoTddTdd128tpc_step_size(hSSCCHInfor7ModeSpecificInfoTddTdd128tpc_step_size);
+	setBlertarget(blertarget);
+	setHSSCCHInfor7ModeSpecificInfoTddTdd128HSSCCHSetConfiguration(hSSCCHInfor7ModeSpecificInfoTddTdd128HSSCCHSetConfiguration);
+}
 
 const void *HSSCCHInfor7ModeSpecificInfoTdd::choicesInfo[3] = {
 	&HSSCCHInfor7ModeSpecificInfoTddTdd384::theInfo,
@@ -5597,6 +6401,9 @@ const HSSCCHInfor7::Info HSSCCHInfor7::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+HSSCCHInfor7::HSSCCHInfor7(const HSSCCHInfor7ModeSpecificInfo& hSSCCHInfor7ModeSpecificInfo) : Sequence(&theInfo) {
+	setHSSCCHInfor7ModeSpecificInfo(hSSCCHInfor7ModeSpecificInfo);
+}
 
 const void *MeasurementFeedbackInfor7ModeSpecificInfoFdd::itemsInfo[4] = {
 	&MeasurementPowerOffset::theInfo,
@@ -5619,6 +6426,12 @@ const MeasurementFeedbackInfor7ModeSpecificInfoFdd::Info MeasurementFeedbackInfo
 	itemsPres,
 	4, 0, 0
 };
+MeasurementFeedbackInfor7ModeSpecificInfoFdd::MeasurementFeedbackInfor7ModeSpecificInfoFdd(const MeasurementPowerOffset& measurementPowerOffset, const Feedbackcycler7& feedbackcycle, const CQIRepetitionFactor& cqiRepetitionFactor, const DeltaCQI& deltaCQI) : Sequence(&theInfo) {
+	setMeasurementPowerOffset(measurementPowerOffset);
+	setFeedbackcycle(feedbackcycle);
+	setCqiRepetitionFactor(cqiRepetitionFactor);
+	setDeltaCQI(deltaCQI);
+}
 
 const void *MeasurementFeedbackInfor7ModeSpecificInfo::choicesInfo[2] = {
 	&MeasurementFeedbackInfor7ModeSpecificInfoFdd::theInfo,
@@ -5648,6 +6461,9 @@ const MeasurementFeedbackInfor7::Info MeasurementFeedbackInfor7::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MeasurementFeedbackInfor7::MeasurementFeedbackInfor7(const MeasurementFeedbackInfor7ModeSpecificInfo& measurementFeedbackInfor7ModeSpecificInfo) : Sequence(&theInfo) {
+	setMeasurementFeedbackInfor7ModeSpecificInfo(measurementFeedbackInfor7ModeSpecificInfo);
+}
 
 const void *DLHSPDSCHInformationr7ModeSpecificInfoTddTdd384::itemsInfo[1] = {
 	&DLHSPDSCHTSConfiguration::theInfo,
@@ -5809,6 +6625,9 @@ const DLHSPDSCHInformationr7::Info DLHSPDSCHInformationr7::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DLHSPDSCHInformationr7::DLHSPDSCHInformationr7(const DLHSPDSCHInformationr7ModeSpecificInfo& dLHSPDSCHInformationr7ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLHSPDSCHInformationr7ModeSpecificInfo(dLHSPDSCHInformationr7ModeSpecificInfo);
+}
 
 const void *HARQInfor7MemoryPartitioningExplicit::itemsInfo[2] = {
 	&HARQInfor7MemoryPartitioningExplicitMemorySize::theInfo,
@@ -5827,6 +6646,9 @@ const HARQInfor7MemoryPartitioningExplicit::Info HARQInfor7MemoryPartitioningExp
 	itemsPres,
 	2, 1, 0
 };
+HARQInfor7MemoryPartitioningExplicit::HARQInfor7MemoryPartitioningExplicit(const HARQInfor7MemoryPartitioningExplicitMemorySize& hARQInfor7MemoryPartitioningExplicitMemorySize) : Sequence(&theInfo) {
+	setHARQInfor7MemoryPartitioningExplicitMemorySize(hARQInfor7MemoryPartitioningExplicitMemorySize);
+}
 
 const void *HARQInfor7MemoryPartitioning::choicesInfo[2] = {
 	&HARQInfor7MemoryPartitioningImplicit::theInfo,
@@ -5858,6 +6680,10 @@ const HARQInfor7::Info HARQInfor7::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+HARQInfor7::HARQInfor7(const HARQInfor7numberOfProcesses& hARQInfor7numberOfProcesses, const HARQInfor7MemoryPartitioning& hARQInfor7MemoryPartitioning) : Sequence(&theInfo) {
+	setHARQInfor7numberOfProcesses(hARQInfor7numberOfProcesses);
+	setHARQInfor7MemoryPartitioning(hARQInfor7MemoryPartitioning);
+}
 
 const void *ServingHSDSCHCellInformationr7::itemsInfo[7] = {
 	&DeltaACK::theInfo,
@@ -5886,6 +6712,9 @@ const ServingHSDSCHCellInformationr7::Info ServingHSDSCHCellInformationr7::theIn
 	itemsPres,
 	7, 6, 0
 };
+ServingHSDSCHCellInformationr7::ServingHSDSCHCellInformationr7(const HARQPreambleMode& harqPreambleMode) : Sequence(&theInfo) {
+	setHarqPreambleMode(harqPreambleMode);
+}
 
 const void *DLHSPDSCHInformationr8ModeSpecificInfoTddTdd384::itemsInfo[1] = {
 	&DLHSPDSCHTSConfiguration::theInfo,
@@ -6001,6 +6830,9 @@ const DLHSPDSCHInformationr8::Info DLHSPDSCHInformationr8::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DLHSPDSCHInformationr8::DLHSPDSCHInformationr8(const DLHSPDSCHInformationr8ModeSpecificInfo& dLHSPDSCHInformationr8ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLHSPDSCHInformationr8ModeSpecificInfo(dLHSPDSCHInformationr8ModeSpecificInfo);
+}
 
 const void *ServingHSDSCHCellInformationr8::itemsInfo[7] = {
 	&DeltaACK::theInfo,
@@ -6029,6 +6861,9 @@ const ServingHSDSCHCellInformationr8::Info ServingHSDSCHCellInformationr8::theIn
 	itemsPres,
 	7, 6, 0
 };
+ServingHSDSCHCellInformationr8::ServingHSDSCHCellInformationr8(const HARQPreambleMode& harqPreambleMode) : Sequence(&theInfo) {
+	setHarqPreambleMode(harqPreambleMode);
+}
 
 const void *HSSCCHInfor9ModeSpecificInfoFdd::itemsInfo[2] = {
 	&HSSCCHInfor9ModeSpecificInfoFddHSSCCHChannelisationCodeInfo::theInfo,
@@ -6047,6 +6882,9 @@ const HSSCCHInfor9ModeSpecificInfoFdd::Info HSSCCHInfor9ModeSpecificInfoFdd::the
 	itemsPres,
 	2, 1, 0
 };
+HSSCCHInfor9ModeSpecificInfoFdd::HSSCCHInfor9ModeSpecificInfoFdd(const HSSCCHInfor9ModeSpecificInfoFddHSSCCHChannelisationCodeInfo& hSSCCHInfor9ModeSpecificInfoFddHSSCCHChannelisationCodeInfo) : Sequence(&theInfo) {
+	setHSSCCHInfor9ModeSpecificInfoFddHSSCCHChannelisationCodeInfo(hSSCCHInfor9ModeSpecificInfoFddHSSCCHChannelisationCodeInfo);
+}
 
 const void *HSSCCHInfor9ModeSpecificInfoTddTdd384::itemsInfo[5] = {
 	&HSSCCHInfor9ModeSpecificInfoTddTdd384Nackackpoweroffset::theInfo,
@@ -6071,6 +6909,12 @@ const HSSCCHInfor9ModeSpecificInfoTddTdd384::Info HSSCCHInfor9ModeSpecificInfoTd
 	itemsPres,
 	5, 1, 0
 };
+HSSCCHInfor9ModeSpecificInfoTddTdd384::HSSCCHInfor9ModeSpecificInfoTddTdd384(const HSSCCHInfor9ModeSpecificInfoTddTdd384Nackackpoweroffset& hSSCCHInfor9ModeSpecificInfoTddTdd384Nackackpoweroffset, const HSSICHPowerControlInfoTDD384& hsSICHPowerControlInfo, const BlerTarget& blertarget, const HSSCCHInfor9ModeSpecificInfoTddTdd384HSSCCHSetConfiguration& hSSCCHInfor9ModeSpecificInfoTddTdd384HSSCCHSetConfiguration) : Sequence(&theInfo) {
+	setHSSCCHInfor9ModeSpecificInfoTddTdd384Nackackpoweroffset(hSSCCHInfor9ModeSpecificInfoTddTdd384Nackackpoweroffset);
+	setHsSICHPowerControlInfo(hsSICHPowerControlInfo);
+	setBlertarget(blertarget);
+	setHSSCCHInfor9ModeSpecificInfoTddTdd384HSSCCHSetConfiguration(hSSCCHInfor9ModeSpecificInfoTddTdd384HSSCCHSetConfiguration);
+}
 
 const void *HSSCCHInfor9ModeSpecificInfoTddTdd768::itemsInfo[5] = {
 	&HSSCCHInfor9ModeSpecificInfoTddTdd768Nackackpoweroffset::theInfo,
@@ -6095,6 +6939,12 @@ const HSSCCHInfor9ModeSpecificInfoTddTdd768::Info HSSCCHInfor9ModeSpecificInfoTd
 	itemsPres,
 	5, 1, 0
 };
+HSSCCHInfor9ModeSpecificInfoTddTdd768::HSSCCHInfor9ModeSpecificInfoTddTdd768(const HSSCCHInfor9ModeSpecificInfoTddTdd768Nackackpoweroffset& hSSCCHInfor9ModeSpecificInfoTddTdd768Nackackpoweroffset, const HSSICHPowerControlInfoTDD768& hsSICHPowerControlInfo, const BlerTarget& blertarget, const HSSCCHInfor9ModeSpecificInfoTddTdd768HSSCCHSetConfiguration& hSSCCHInfor9ModeSpecificInfoTddTdd768HSSCCHSetConfiguration) : Sequence(&theInfo) {
+	setHSSCCHInfor9ModeSpecificInfoTddTdd768Nackackpoweroffset(hSSCCHInfor9ModeSpecificInfoTddTdd768Nackackpoweroffset);
+	setHsSICHPowerControlInfo(hsSICHPowerControlInfo);
+	setBlertarget(blertarget);
+	setHSSCCHInfor9ModeSpecificInfoTddTdd768HSSCCHSetConfiguration(hSSCCHInfor9ModeSpecificInfoTddTdd768HSSCCHSetConfiguration);
+}
 
 const void *HSSCCHInfor9ModeSpecificInfoTddTdd128::itemsInfo[8] = {
 	&HSSCCHInfor9ModeSpecificInfoTddTdd128Nackackpoweroffset::theInfo,
@@ -6125,6 +6975,13 @@ const HSSCCHInfor9ModeSpecificInfoTddTdd128::Info HSSCCHInfor9ModeSpecificInfoTd
 	itemsPres,
 	8, 3, 0
 };
+HSSCCHInfor9ModeSpecificInfoTddTdd128::HSSCCHInfor9ModeSpecificInfoTddTdd128(const HSSCCHInfor9ModeSpecificInfoTddTdd128Nackackpoweroffset& hSSCCHInfor9ModeSpecificInfoTddTdd128Nackackpoweroffset, const HSSCCHInfor9ModeSpecificInfoTddTdd128PowerlevelHSSICH& hSSCCHInfor9ModeSpecificInfoTddTdd128PowerlevelHSSICH, const HSSCCHInfor9ModeSpecificInfoTddTdd128tpc_step_size& hSSCCHInfor9ModeSpecificInfoTddTdd128tpc_step_size, const BlerTarget& blertarget, const HSSCCHInfor9ModeSpecificInfoTddTdd128HSSCCHSetConfiguration& hSSCCHInfor9ModeSpecificInfoTddTdd128HSSCCHSetConfiguration) : Sequence(&theInfo) {
+	setHSSCCHInfor9ModeSpecificInfoTddTdd128Nackackpoweroffset(hSSCCHInfor9ModeSpecificInfoTddTdd128Nackackpoweroffset);
+	setHSSCCHInfor9ModeSpecificInfoTddTdd128PowerlevelHSSICH(hSSCCHInfor9ModeSpecificInfoTddTdd128PowerlevelHSSICH);
+	setHSSCCHInfor9ModeSpecificInfoTddTdd128tpc_step_size(hSSCCHInfor9ModeSpecificInfoTddTdd128tpc_step_size);
+	setBlertarget(blertarget);
+	setHSSCCHInfor9ModeSpecificInfoTddTdd128HSSCCHSetConfiguration(hSSCCHInfor9ModeSpecificInfoTddTdd128HSSCCHSetConfiguration);
+}
 
 const void *HSSCCHInfor9ModeSpecificInfoTdd::choicesInfo[3] = {
 	&HSSCCHInfor9ModeSpecificInfoTddTdd384::theInfo,
@@ -6168,6 +7025,9 @@ const HSSCCHInfor9::Info HSSCCHInfor9::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+HSSCCHInfor9::HSSCCHInfor9(const HSSCCHInfor9ModeSpecificInfo& hSSCCHInfor9ModeSpecificInfo) : Sequence(&theInfo) {
+	setHSSCCHInfor9ModeSpecificInfo(hSSCCHInfor9ModeSpecificInfo);
+}
 
 const void *DLHSPDSCHInformationr9ModeSpecificInfoTddTdd384::itemsInfo[1] = {
 	&DLHSPDSCHTSConfiguration::theInfo,
@@ -6287,6 +7147,9 @@ const DLHSPDSCHInformationr9::Info DLHSPDSCHInformationr9::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DLHSPDSCHInformationr9::DLHSPDSCHInformationr9(const DLHSPDSCHInformationr9ModeSpecificInfo& dLHSPDSCHInformationr9ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLHSPDSCHInformationr9ModeSpecificInfo(dLHSPDSCHInformationr9ModeSpecificInfo);
+}
 
 const void *ServingHSDSCHCellInformationr9::itemsInfo[7] = {
 	&DeltaACK::theInfo,
@@ -6315,6 +7178,9 @@ const ServingHSDSCHCellInformationr9::Info ServingHSDSCHCellInformationr9::theIn
 	itemsPres,
 	7, 6, 0
 };
+ServingHSDSCHCellInformationr9::ServingHSDSCHCellInformationr9(const HARQPreambleMode& harqPreambleMode) : Sequence(&theInfo) {
+	setHarqPreambleMode(harqPreambleMode);
+}
 
 const void *SRVCCInfo::itemsInfo[1] = {
 	&SRVCCInfoNonce::theInfo,
@@ -6349,6 +7215,10 @@ const RABInfoReplace::Info RABInfoReplace::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RABInfoReplace::RABInfoReplace(const RABIdentity& rabIdentity, const CNDomainIdentity& cnDomainIdentity) : Sequence(&theInfo) {
+	setRabIdentity(rabIdentity);
+	setCnDomainIdentity(cnDomainIdentity);
+}
 
 const void *SRVCCSecurityRABInfov860ext::itemsInfo[2] = {
 	&SRVCCInfo::theInfo,
@@ -6367,6 +7237,10 @@ const SRVCCSecurityRABInfov860ext::Info SRVCCSecurityRABInfov860ext::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SRVCCSecurityRABInfov860ext::SRVCCSecurityRABInfov860ext(const SRVCCInfo& srvccInfo, const RABInfoReplace& rabInfoReplace) : Sequence(&theInfo) {
+	setSrvccInfo(srvccInfo);
+	setRabInfoReplace(rabInfoReplace);
+}
 
 const void *STARTSingle::itemsInfo[2] = {
 	&CNDomainIdentity::theInfo,
@@ -6385,6 +7259,10 @@ const STARTSingle::Info STARTSingle::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+STARTSingle::STARTSingle(const CNDomainIdentity& cnDomainIdentity, const STARTValue& startValue) : Sequence(&theInfo) {
+	setCnDomainIdentity(cnDomainIdentity);
+	setStartValue(startValue);
+}
 
 const void *ULTransChCapabilityModeSpecificInfoTdd::itemsInfo[1] = {
 	&MaxSimultaneousCCTrCHCount::theInfo,
@@ -6401,6 +7279,9 @@ const ULTransChCapabilityModeSpecificInfoTdd::Info ULTransChCapabilityModeSpecif
 	itemsPres,
 	1, 0, 0
 };
+ULTransChCapabilityModeSpecificInfoTdd::ULTransChCapabilityModeSpecificInfoTdd(const MaxSimultaneousCCTrCHCount& maxSimultaneousCCTrCHCount) : Sequence(&theInfo) {
+	setMaxSimultaneousCCTrCHCount(maxSimultaneousCCTrCHCount);
+}
 
 const void *ULTransChCapabilityModeSpecificInfo::choicesInfo[2] = {
 	&ULTransChCapabilityModeSpecificInfoFdd::theInfo,
@@ -6444,6 +7325,16 @@ const ULTransChCapability::Info ULTransChCapability::theInfo = {
 	itemsPres,
 	8, 0, 0
 };
+ULTransChCapability::ULTransChCapability(const MaxNoBits& maxNoBitsTransmitted, const MaxNoBits& maxConvCodeBitsTransmitted, const TurboSupport& turboEncodingSupport, const MaxSimultaneousTransChsUL& maxSimultaneousTransChs, const ULTransChCapabilityModeSpecificInfo& uLTransChCapabilityModeSpecificInfo, const MaxTransportBlocksUL& maxTransmittedBlocks, const MaxNumberOfTFCUL& maxNumberOfTFC, const MaxNumberOfTF& maxNumberOfTF) : Sequence(&theInfo) {
+	setMaxNoBitsTransmitted(maxNoBitsTransmitted);
+	setMaxConvCodeBitsTransmitted(maxConvCodeBitsTransmitted);
+	setTurboEncodingSupport(turboEncodingSupport);
+	setMaxSimultaneousTransChs(maxSimultaneousTransChs);
+	setULTransChCapabilityModeSpecificInfo(uLTransChCapabilityModeSpecificInfo);
+	setMaxTransmittedBlocks(maxTransmittedBlocks);
+	setMaxNumberOfTFC(maxNumberOfTFC);
+	setMaxNumberOfTF(maxNumberOfTF);
+}
 
 const void *TransportChannelCapability::itemsInfo[2] = {
 	&DLTransChCapability::theInfo,
@@ -6462,6 +7353,10 @@ const TransportChannelCapability::Info TransportChannelCapability::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+TransportChannelCapability::TransportChannelCapability(const DLTransChCapability& dlTransChCapability, const ULTransChCapability& ulTransChCapability) : Sequence(&theInfo) {
+	setDlTransChCapability(dlTransChCapability);
+	setUlTransChCapability(ulTransChCapability);
+}
 
 const void *URNTIShort::itemsInfo[2] = {
 	&SRNCIdentity::theInfo,
@@ -6480,6 +7375,10 @@ const URNTIShort::Info URNTIShort::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+URNTIShort::URNTIShort(const SRNCIdentity& srncIdentity, const SRNTI2& sRNTI2) : Sequence(&theInfo) {
+	setSrncIdentity(srncIdentity);
+	setSRNTI2(sRNTI2);
+}
 
 const void *PhysicalChannelCapabilityedchr6FddedchSupported::itemsInfo[1] = {
 	&PhysicalChannelCapabilityedchr6FddedchSupportedEdchPhysicalLayerCategory::theInfo,
@@ -6496,6 +7395,9 @@ const PhysicalChannelCapabilityedchr6FddedchSupported::Info PhysicalChannelCapab
 	itemsPres,
 	1, 0, 0
 };
+PhysicalChannelCapabilityedchr6FddedchSupported::PhysicalChannelCapabilityedchr6FddedchSupported(const PhysicalChannelCapabilityedchr6FddedchSupportedEdchPhysicalLayerCategory& physicalChannelCapabilityedchr6FddedchSupportedEdchPhysicalLayerCategory) : Sequence(&theInfo) {
+	setPhysicalChannelCapabilityedchr6FddedchSupportedEdchPhysicalLayerCategory(physicalChannelCapabilityedchr6FddedchSupportedEdchPhysicalLayerCategory);
+}
 
 const void *PhysicalChannelCapabilityedchr6Fddedch::choicesInfo[2] = {
 	&PhysicalChannelCapabilityedchr6FddedchSupported::theInfo,
@@ -6525,6 +7427,9 @@ const PhysicalChannelCapabilityedchr6::Info PhysicalChannelCapabilityedchr6::the
 	itemsPres,
 	1, 0, 0
 };
+PhysicalChannelCapabilityedchr6::PhysicalChannelCapabilityedchr6(const PhysicalChannelCapabilityedchr6Fddedch& physicalChannelCapabilityedchr6Fddedch) : Sequence(&theInfo) {
+	setPhysicalChannelCapabilityedchr6Fddedch(physicalChannelCapabilityedchr6Fddedch);
+}
 
 const void *UERadioAccessCapabilityv690ext::itemsInfo[2] = {
 	&PhysicalChannelCapabilityedchr6::theInfo,
@@ -6543,6 +7448,9 @@ const UERadioAccessCapabilityv690ext::Info UERadioAccessCapabilityv690ext::theIn
 	itemsPres,
 	2, 1, 0
 };
+UERadioAccessCapabilityv690ext::UERadioAccessCapabilityv690ext(const PhysicalChannelCapabilityedchr6& physicalchannelcapabilityedch) : Sequence(&theInfo) {
+	setPhysicalchannelcapabilityedch(physicalchannelcapabilityedch);
+}
 
 const void *InterRATUERadioAccessCapabilityv690ext::itemsInfo[2] = {
 	&InterRATUERadioAccessCapabilityv690extsupportOfInter_RAT_PS_Handover::theInfo,
@@ -6561,6 +7469,9 @@ const InterRATUERadioAccessCapabilityv690ext::Info InterRATUERadioAccessCapabili
 	itemsPres,
 	2, 1, 0
 };
+InterRATUERadioAccessCapabilityv690ext::InterRATUERadioAccessCapabilityv690ext(const GSMMSRadioAccessCapability& gsmMSRadioAccessCapability) : Sequence(&theInfo) {
+	setGsmMSRadioAccessCapability(gsmMSRadioAccessCapability);
+}
 
 const void *UERadioAccessCapabilityv6b0extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv6b0extIEssupportForSIB11bis::theInfo,
@@ -6655,6 +7566,12 @@ const UERadioAccessCapabilityv770extIEs::Info UERadioAccessCapabilityv770extIEs:
 	itemsPres,
 	8, 4, 0
 };
+UERadioAccessCapabilityv770extIEs::UERadioAccessCapabilityv770extIEs(const RLCCapabilityv770ext& rlcCapability, const PhysicalChannelCapabilityv770ext& physicalChannelCapability, const MultiModeRATCapabilityv770ext& multiModeRATCapability, const UEPositioningCapabilityv770ext& uePositioningCapability) : Sequence(&theInfo) {
+	setRlcCapability(rlcCapability);
+	setPhysicalChannelCapability(physicalChannelCapability);
+	setMultiModeRATCapability(multiModeRATCapability);
+	setUePositioningCapability(uePositioningCapability);
+}
 
 const void *UERadioAccessCapabilityv790extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv790extIEssupportForEDPCCHPowerBoosting::theInfo,
@@ -6723,6 +7640,9 @@ const UERadioAccessCapabBandFDD3::Info UERadioAccessCapabBandFDD3::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+UERadioAccessCapabBandFDD3::UERadioAccessCapabBandFDD3(const MeasurementCapabilityExt3& measurementCapability3) : Sequence(&theInfo) {
+	setMeasurementCapability3(measurementCapability3);
+}
 
 const void *UERadioAccessCapabilityv860extIEs::itemsInfo[12] = {
 	&RFCapabilityv860ext::theInfo,
@@ -6761,6 +7681,11 @@ const UERadioAccessCapabilityv860extIEs::Info UERadioAccessCapabilityv860extIEs:
 	itemsPres,
 	12, 9, 0
 };
+UERadioAccessCapabilityv860extIEs::UERadioAccessCapabilityv860extIEs(const PhysicalChannelCapabilityv860ext& physicalChannelCapability, const MultiModeRATCapabilityv860ext& multiModeRATCapability, const UEPositioningCapabilityv860ext& uePositioningCapability) : Sequence(&theInfo) {
+	setPhysicalChannelCapability(physicalChannelCapability);
+	setMultiModeRATCapability(multiModeRATCapability);
+	setUePositioningCapability(uePositioningCapability);
+}
 
 const void *EUTRARadioAccessCapability::itemsInfo[1] = {
 	&EUTRARadioAccessCapabilityUeEUTRACapability::theInfo,
@@ -6777,6 +7702,9 @@ const EUTRARadioAccessCapability::Info EUTRARadioAccessCapability::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EUTRARadioAccessCapability::EUTRARadioAccessCapability(const EUTRARadioAccessCapabilityUeEUTRACapability& eUTRARadioAccessCapabilityUeEUTRACapability) : Sequence(&theInfo) {
+	setEUTRARadioAccessCapabilityUeEUTRACapability(eUTRARadioAccessCapabilityUeEUTRACapability);
+}
 
 const void *InterRATUERadioAccessCapabilityv860ext::itemsInfo[1] = {
 	&EUTRARadioAccessCapability::theInfo,
@@ -6853,6 +7781,10 @@ const UERadioAccessCapabilityv920extIEs::Info UERadioAccessCapabilityv920extIEs:
 	itemsPres,
 	7, 5, 0
 };
+UERadioAccessCapabilityv920extIEs::UERadioAccessCapabilityv920extIEs(const PhysicalChannelCapabilityv920ext& physicalChannelCapability, const RLCCapabilityv920ext& rlcCapability) : Sequence(&theInfo) {
+	setPhysicalChannelCapability(physicalChannelCapability);
+	setRlcCapability(rlcCapability);
+}
 
 const void *UERadioAccessCapabilityv970extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv970extIEsue_ExtendedMeasurementSupport::theInfo,
@@ -6901,6 +7833,9 @@ const UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV890NonCriticalExtensionsV920NonCriticalExtensionsV970NonCriticalExtensions::UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV890NonCriticalExtensionsV920NonCriticalExtensionsV970NonCriticalExtensions(const UERadioAccessCapabilityv970extIEs& ueRadioAccessCapabilityv970ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv970ext(ueRadioAccessCapabilityv970ext);
+}
 
 const void *UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV890NonCriticalExtensionsV920NonCriticalExtensions::itemsInfo[2] = {
 	&UERadioAccessCapabilityv920extIEs::theInfo,
@@ -6919,6 +7854,9 @@ const UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV890NonCriticalExtensionsV920NonCriticalExtensions::UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV890NonCriticalExtensionsV920NonCriticalExtensions(const UERadioAccessCapabilityv920extIEs& ueRadioAccessCapabilityv920ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv920ext(ueRadioAccessCapabilityv920ext);
+}
 
 const void *UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV890NonCriticalExtensions::itemsInfo[2] = {
 	&UERadioAccessCapabilityv890extIEs::theInfo,
@@ -6937,6 +7875,9 @@ const UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV890NonCriticalExtensions::UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV890NonCriticalExtensions(const UERadioAccessCapabilityv890extIEs& ueRadioAccessCapabilityv890ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv890ext(ueRadioAccessCapabilityv890ext);
+}
 
 const void *UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensions::itemsInfo[2] = {
 	&UERadioAccessCapabilityv880extIEs::theInfo,
@@ -6955,6 +7896,9 @@ const UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensions::UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensions(const UERadioAccessCapabilityv880extIEs& ueRadioAccessCapabilityv880ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv880ext(ueRadioAccessCapabilityv880ext);
+}
 
 const void *UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensions::itemsInfo[3] = {
 	&UERadioAccessCapabilityv860extIEs::theInfo,
@@ -6975,6 +7919,9 @@ const UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions
 	itemsPres,
 	3, 2, 0
 };
+UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensions::UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensionsV860NonCriticalExtensions(const UERadioAccessCapabilityv860extIEs& ueRadioAccessCapabilityv860ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv860ext(ueRadioAccessCapabilityv860ext);
+}
 
 const void *UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensions::itemsInfo[2] = {
 	&UERadioAccessCapabilityv790extIEs::theInfo,
@@ -6993,6 +7940,9 @@ const UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensions::UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790NonCriticalExtensions(const UERadioAccessCapabilityv790extIEs& ueRadioAccessCapabilityv790ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv790ext(ueRadioAccessCapabilityv790ext);
+}
 
 const void *UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&UERadioAccessCapabilityv770extIEs::theInfo,
@@ -7011,6 +7961,9 @@ const UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensions::UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensions(const UERadioAccessCapabilityv770extIEs& ueRadioAccessCapabilityv770ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv770ext(ueRadioAccessCapabilityv770ext);
+}
 
 const void *UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions::itemsInfo[2] = {
 	&UERadioAccessCapabilityv6e0extIEs::theInfo,
@@ -7029,6 +7982,9 @@ const UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions::UECapabilityContainerIEsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions(const UERadioAccessCapabilityv6e0extIEs& ueRadioAccessCapabilityv6e0ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv6e0ext(ueRadioAccessCapabilityv6e0ext);
+}
 
 const void *UECapabilityContainerIEsV6b0NonCriticalExtensions::itemsInfo[2] = {
 	&UERadioAccessCapabilityv6b0extIEs::theInfo,
@@ -7047,6 +8003,9 @@ const UECapabilityContainerIEsV6b0NonCriticalExtensions::Info UECapabilityContai
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityContainerIEsV6b0NonCriticalExtensions::UECapabilityContainerIEsV6b0NonCriticalExtensions(const UERadioAccessCapabilityv6b0extIEs& ueRadioAccessCapabilityv6b0ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv6b0ext(ueRadioAccessCapabilityv6b0ext);
+}
 
 const void *UECapabilityContainerIEs::itemsInfo[3] = {
 	&UERadioAccessCapabilityv690ext::theInfo,
@@ -7067,6 +8026,9 @@ const UECapabilityContainerIEs::Info UECapabilityContainerIEs::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+UECapabilityContainerIEs::UECapabilityContainerIEs(const UERadioAccessCapabilityv690ext& ueRadioAccessCapabilityv690ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv690ext(ueRadioAccessCapabilityv690ext);
+}
 
 const void *UEConnTimersAndConstants::itemsInfo[22] = {
 	&T301::theInfo,
@@ -7239,6 +8201,12 @@ const UEIdleTimersAndConstants::Info UEIdleTimersAndConstants::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+UEIdleTimersAndConstants::UEIdleTimersAndConstants(const T300& t300, const N300& n300, const T312& t312, const N312& n312) : Sequence(&theInfo) {
+	setT300(t300);
+	setN300(n300);
+	setT312(t312);
+	setN312(n312);
+}
 
 const void *UEHSPAIdentitiesr6::itemsInfo[3] = {
 	&HRNTI::theInfo,
@@ -7293,6 +8261,10 @@ const UEMultiModeRATCapability::Info UEMultiModeRATCapability::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+UEMultiModeRATCapability::UEMultiModeRATCapability(const MultiRATCapability& multiRATCapabilityList, const MultiModeCapability& multiModeCapability) : Sequence(&theInfo) {
+	setMultiRATCapabilityList(multiRATCapabilityList);
+	setMultiModeCapability(multiModeCapability);
+}
 
 const void *UEPositioningCapability::itemsInfo[5] = {
 	&UEPositioningCapabilityStandaloneLocMethodsSupported::theInfo,
@@ -7317,6 +8289,13 @@ const UEPositioningCapability::Info UEPositioningCapability::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+UEPositioningCapability::UEPositioningCapability(const UEPositioningCapabilityStandaloneLocMethodsSupported& uEPositioningCapabilityStandaloneLocMethodsSupported, const UEPositioningCapabilityUeBasedOTDOASupported& uEPositioningCapabilityUeBasedOTDOASupported, const NetworkAssistedGPSSupported& networkAssistedGPSSupported, const UEPositioningCapabilitySupportForUEGPSTimingOfCellFrames& uEPositioningCapabilitySupportForUEGPSTimingOfCellFrames, const UEPositioningCapabilitySupportForIPDL& uEPositioningCapabilitySupportForIPDL) : Sequence(&theInfo) {
+	setUEPositioningCapabilityStandaloneLocMethodsSupported(uEPositioningCapabilityStandaloneLocMethodsSupported);
+	setUEPositioningCapabilityUeBasedOTDOASupported(uEPositioningCapabilityUeBasedOTDOASupported);
+	setNetworkAssistedGPSSupported(networkAssistedGPSSupported);
+	setUEPositioningCapabilitySupportForUEGPSTimingOfCellFrames(uEPositioningCapabilitySupportForUEGPSTimingOfCellFrames);
+	setUEPositioningCapabilitySupportForIPDL(uEPositioningCapabilitySupportForIPDL);
+}
 
 const void *UERadioAccessCapability::itemsInfo[9] = {
 	&PDCPCapability::theInfo,
@@ -7349,6 +8328,16 @@ const UERadioAccessCapability::Info UERadioAccessCapability::theInfo = {
 	itemsPres,
 	9, 1, 0
 };
+UERadioAccessCapability::UERadioAccessCapability(const PDCPCapability& pdcpCapability, const RLCCapability& rlcCapability, const TransportChannelCapability& transportChannelCapability, const RFCapability& rfCapability, const PhysicalChannelCapability& physicalChannelCapability, const UEMultiModeRATCapability& ueMultiModeRATCapability, const SecurityCapability& securityCapability, const UEPositioningCapability& uepositioningCapability) : Sequence(&theInfo) {
+	setPdcpCapability(pdcpCapability);
+	setRlcCapability(rlcCapability);
+	setTransportChannelCapability(transportChannelCapability);
+	setRfCapability(rfCapability);
+	setPhysicalChannelCapability(physicalChannelCapability);
+	setUeMultiModeRATCapability(ueMultiModeRATCapability);
+	setSecurityCapability(securityCapability);
+	setUepositioningCapability(uepositioningCapability);
+}
 
 const void *UERadioAccessCapabBandFDDFddRFCapability::itemsInfo[2] = {
 	&UEPowerClassExt::theInfo,
@@ -7367,6 +8356,10 @@ const UERadioAccessCapabBandFDDFddRFCapability::Info UERadioAccessCapabBandFDDFd
 	itemsPres,
 	2, 0, 0
 };
+UERadioAccessCapabBandFDDFddRFCapability::UERadioAccessCapabBandFDDFddRFCapability(const UEPowerClassExt& uePowerClass, const TxRxFrequencySeparation& txRxFrequencySeparation) : Sequence(&theInfo) {
+	setUePowerClass(uePowerClass);
+	setTxRxFrequencySeparation(txRxFrequencySeparation);
+}
 
 const void *UERadioAccessCapabBandFDD::itemsInfo[3] = {
 	&RadioFrequencyBandFDD::theInfo,
@@ -7387,6 +8380,10 @@ const UERadioAccessCapabBandFDD::Info UERadioAccessCapabBandFDD::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+UERadioAccessCapabBandFDD::UERadioAccessCapabBandFDD(const RadioFrequencyBandFDD& radioFrequencyBandFDD, const MeasurementCapabilityExt& measurementCapability) : Sequence(&theInfo) {
+	setRadioFrequencyBandFDD(radioFrequencyBandFDD);
+	setMeasurementCapability(measurementCapability);
+}
 
 const void *UERadioAccessCapabilityv370ext::itemsInfo[1] = {
 	&UERadioAccessCapabBandFDDList::theInfo,
@@ -7403,6 +8400,9 @@ const UERadioAccessCapabilityv370ext::Info UERadioAccessCapabilityv370ext::theIn
 	itemsPres,
 	1, 0, 0
 };
+UERadioAccessCapabilityv370ext::UERadioAccessCapabilityv370ext(const UERadioAccessCapabBandFDDList& ueRadioAccessCapabBandFDDList) : Sequence(&theInfo) {
+	setUeRadioAccessCapabBandFDDList(ueRadioAccessCapabBandFDDList);
+}
 
 const void *UERadioAccessCapabilityInfo::itemsInfo[2] = {
 	&UERadioAccessCapability::theInfo,
@@ -7421,6 +8421,10 @@ const UERadioAccessCapabilityInfo::Info UERadioAccessCapabilityInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+UERadioAccessCapabilityInfo::UERadioAccessCapabilityInfo(const UERadioAccessCapability& ueRadioAccessCapability, const UERadioAccessCapabilityv370ext& ueRadioAccessCapabilityv370ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapability(ueRadioAccessCapability);
+	setUeRadioAccessCapabilityv370ext(ueRadioAccessCapabilityv370ext);
+}
 
 const void *UEPositioningCapabilityExtv380::itemsInfo[1] = {
 	&UEPositioningCapabilityExtv380RxtxTimeDifferenceType2Capable::theInfo,
@@ -7437,6 +8441,9 @@ const UEPositioningCapabilityExtv380::Info UEPositioningCapabilityExtv380::theIn
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningCapabilityExtv380::UEPositioningCapabilityExtv380(const UEPositioningCapabilityExtv380RxtxTimeDifferenceType2Capable& uEPositioningCapabilityExtv380RxtxTimeDifferenceType2Capable) : Sequence(&theInfo) {
+	setUEPositioningCapabilityExtv380RxtxTimeDifferenceType2Capable(uEPositioningCapabilityExtv380RxtxTimeDifferenceType2Capable);
+}
 
 const void *UERadioAccessCapabilityv380ext::itemsInfo[1] = {
 	&UEPositioningCapabilityExtv380::theInfo,
@@ -7453,6 +8460,9 @@ const UERadioAccessCapabilityv380ext::Info UERadioAccessCapabilityv380ext::theIn
 	itemsPres,
 	1, 0, 0
 };
+UERadioAccessCapabilityv380ext::UERadioAccessCapabilityv380ext(const UEPositioningCapabilityExtv380& uePositioningCapabilityExtv380) : Sequence(&theInfo) {
+	setUePositioningCapabilityExtv380(uePositioningCapabilityExtv380);
+}
 
 const void *UEPositioningCapabilityExtv3a0::itemsInfo[1] = {
 	&UEPositioningCapabilityExtv3a0validity_CellPCH_UraPCH::theInfo,
@@ -7469,6 +8479,9 @@ const UEPositioningCapabilityExtv3a0::Info UEPositioningCapabilityExtv3a0::theIn
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningCapabilityExtv3a0::UEPositioningCapabilityExtv3a0(const UEPositioningCapabilityExtv3a0validity_CellPCH_UraPCH& uEPositioningCapabilityExtv3a0validity_CellPCH_UraPCH) : Sequence(&theInfo) {
+	setUEPositioningCapabilityExtv3a0validity_CellPCH_UraPCH(uEPositioningCapabilityExtv3a0validity_CellPCH_UraPCH);
+}
 
 const void *UERadioAccessCapabilityv3a0ext::itemsInfo[1] = {
 	&UEPositioningCapabilityExtv3a0::theInfo,
@@ -7485,6 +8498,9 @@ const UERadioAccessCapabilityv3a0ext::Info UERadioAccessCapabilityv3a0ext::theIn
 	itemsPres,
 	1, 0, 0
 };
+UERadioAccessCapabilityv3a0ext::UERadioAccessCapabilityv3a0ext(const UEPositioningCapabilityExtv3a0& uePositioningCapabilityExtv3a0) : Sequence(&theInfo) {
+	setUePositioningCapabilityExtv3a0(uePositioningCapabilityExtv3a0);
+}
 
 const void *UEPositioningCapabilityExtv3g0::itemsInfo[1] = {
 	&UEPositioningCapabilityExtv3g0sfn_sfnType2Capability::theInfo,
@@ -7501,6 +8517,9 @@ const UEPositioningCapabilityExtv3g0::Info UEPositioningCapabilityExtv3g0::theIn
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningCapabilityExtv3g0::UEPositioningCapabilityExtv3g0(const UEPositioningCapabilityExtv3g0sfn_sfnType2Capability& uEPositioningCapabilityExtv3g0sfn_sfnType2Capability) : Sequence(&theInfo) {
+	setUEPositioningCapabilityExtv3g0sfn_sfnType2Capability(uEPositioningCapabilityExtv3g0sfn_sfnType2Capability);
+}
 
 const void *UERadioAccessCapabilityv3g0ext::itemsInfo[1] = {
 	&UEPositioningCapabilityExtv3g0::theInfo,
@@ -7517,6 +8536,9 @@ const UERadioAccessCapabilityv3g0ext::Info UERadioAccessCapabilityv3g0ext::theIn
 	itemsPres,
 	1, 0, 0
 };
+UERadioAccessCapabilityv3g0ext::UERadioAccessCapabilityv3g0ext(const UEPositioningCapabilityExtv3g0& uePositioningCapabilityExtv3g0) : Sequence(&theInfo) {
+	setUePositioningCapabilityExtv3g0(uePositioningCapabilityExtv3g0);
+}
 
 const void *UERadioAccessCapabBandFDD2FddRFCapability::itemsInfo[2] = {
 	&UEPowerClassExt::theInfo,
@@ -7535,6 +8557,10 @@ const UERadioAccessCapabBandFDD2FddRFCapability::Info UERadioAccessCapabBandFDD2
 	itemsPres,
 	2, 0, 0
 };
+UERadioAccessCapabBandFDD2FddRFCapability::UERadioAccessCapabBandFDD2FddRFCapability(const UEPowerClassExt& uePowerClass, const TxRxFrequencySeparation& txRxFrequencySeparation) : Sequence(&theInfo) {
+	setUePowerClass(uePowerClass);
+	setTxRxFrequencySeparation(txRxFrequencySeparation);
+}
 
 const void *UERadioAccessCapabBandFDD2::itemsInfo[3] = {
 	&RadioFrequencyBandFDD2::theInfo,
@@ -7555,6 +8581,10 @@ const UERadioAccessCapabBandFDD2::Info UERadioAccessCapabBandFDD2::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+UERadioAccessCapabBandFDD2::UERadioAccessCapabBandFDD2(const RadioFrequencyBandFDD2& radioFrequencyBandFDD2, const MeasurementCapabilityExt2& measurementCapability2) : Sequence(&theInfo) {
+	setRadioFrequencyBandFDD2(radioFrequencyBandFDD2);
+	setMeasurementCapability2(measurementCapability2);
+}
 
 const void *UERadioAccessCapabBandFDDext::itemsInfo[2] = {
 	&RadioFrequencyBandFDD::theInfo,
@@ -7573,6 +8603,10 @@ const UERadioAccessCapabBandFDDext::Info UERadioAccessCapabBandFDDext::theInfo =
 	itemsPres,
 	2, 0, 0
 };
+UERadioAccessCapabBandFDDext::UERadioAccessCapabBandFDDext(const RadioFrequencyBandFDD& radioFrequencyBandFDD, const CompressedModeMeasCapabFDDListext& compressedModeMeasCapabFDDListext) : Sequence(&theInfo) {
+	setRadioFrequencyBandFDD(radioFrequencyBandFDD);
+	setCompressedModeMeasCapabFDDListext(compressedModeMeasCapabFDDListext);
+}
 
 const void *UERadioAccessCapabilityv650ext::itemsInfo[2] = {
 	&UERadioAccessCapabBandFDDList2::theInfo,
@@ -7591,6 +8625,9 @@ const UERadioAccessCapabilityv650ext::Info UERadioAccessCapabilityv650ext::theIn
 	itemsPres,
 	2, 1, 0
 };
+UERadioAccessCapabilityv650ext::UERadioAccessCapabilityv650ext(const UERadioAccessCapabBandFDDList2& ueRadioAccessCapabBandFDDList2) : Sequence(&theInfo) {
+	setUeRadioAccessCapabBandFDDList2(ueRadioAccessCapabBandFDDList2);
+}
 
 const void *UERadioAccessCapabilityv7e0ext::itemsInfo[2] = {
 	&UERadioAccessCapabilityv7e0extsupportForTwoDRXSchemesInPCH::theInfo,
@@ -7679,6 +8716,9 @@ const UERadioAccessCapabilityInfov770ext::Info UERadioAccessCapabilityInfov770ex
 	itemsPres,
 	5, 4, 0
 };
+UERadioAccessCapabilityInfov770ext::UERadioAccessCapabilityInfov770ext(const PhysicalChannelCapabilityInfov770ext& physicalChannelCapability) : Sequence(&theInfo) {
+	setPhysicalChannelCapability(physicalChannelCapability);
+}
 
 const void *UERadioAccessCapabilityInfoTDD128v8b0ext::itemsInfo[2] = {
 	&MeasurementCapabilityTDD::theInfo,
@@ -7713,6 +8753,9 @@ const UERadioAccessCapabilityv860ext::Info UERadioAccessCapabilityv860ext::theIn
 	itemsPres,
 	1, 0, 0
 };
+UERadioAccessCapabilityv860ext::UERadioAccessCapabilityv860ext(const UERadioAccessCapabBandFDDList3& ueRadioAccessCapabBandFDDList3) : Sequence(&theInfo) {
+	setUeRadioAccessCapabBandFDDList3(ueRadioAccessCapabBandFDDList3);
+}
 
 const void *UERadioAccessCapabilityv880ext::itemsInfo[1] = {
 	&UERadioAccessCapabilityv880extsupportForPriorityReselectionInUTRAN::theInfo,
@@ -7781,6 +8824,11 @@ const UERadioAccessCapabilityv4b0extTddCapabilityExt::Info UERadioAccessCapabili
 	itemsPres,
 	3, 0, 0
 };
+UERadioAccessCapabilityv4b0extTddCapabilityExt::UERadioAccessCapabilityv4b0extTddCapabilityExt(const RFCapabilityr4ext& rfCapability, const PhysicalChannelCapabilityLCRr4& physicalChannelCapabilityLCR, const MeasurementCapabilityr4ext& measurementCapabilityr4ext) : Sequence(&theInfo) {
+	setRfCapability(rfCapability);
+	setPhysicalChannelCapabilityLCR(physicalChannelCapabilityLCR);
+	setMeasurementCapabilityr4ext(measurementCapabilityr4ext);
+}
 
 const void *UERadioAccessCapabilityv4b0ext::itemsInfo[3] = {
 	&PDCPCapabilityr4ext::theInfo,
@@ -7801,6 +8849,9 @@ const UERadioAccessCapabilityv4b0ext::Info UERadioAccessCapabilityv4b0ext::theIn
 	itemsPres,
 	3, 2, 0
 };
+UERadioAccessCapabilityv4b0ext::UERadioAccessCapabilityv4b0ext(const PDCPCapabilityr4ext& pdcpCapabilityr4ext) : Sequence(&theInfo) {
+	setPdcpCapabilityr4ext(pdcpCapabilityr4ext);
+}
 
 const void *RFCapabilityCompFdd::choicesInfo[2] = {
 	&RFCapabilityCompFddNotSupported::theInfo,
@@ -7860,6 +8911,11 @@ const RFCapabilityComp::Info RFCapabilityComp::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+RFCapabilityComp::RFCapabilityComp(const RFCapabilityCompFdd& rFCapabilityCompFdd, const RFCapabilityCompTdd384RFCapability& rFCapabilityCompTdd384RFCapability, const RFCapabilityCompTdd128RFCapability& rFCapabilityCompTdd128RFCapability) : Sequence(&theInfo) {
+	setRFCapabilityCompFdd(rFCapabilityCompFdd);
+	setRFCapabilityCompTdd384RFCapability(rFCapabilityCompTdd384RFCapability);
+	setRFCapabilityCompTdd128RFCapability(rFCapabilityCompTdd128RFCapability);
+}
 
 const void *UERadioAccessCapabilityComp::itemsInfo[2] = {
 	&UERadioAccessCapabilityCompTotalAMRLCMemoryExceeds10kB::theInfo,
@@ -7878,6 +8934,10 @@ const UERadioAccessCapabilityComp::Info UERadioAccessCapabilityComp::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+UERadioAccessCapabilityComp::UERadioAccessCapabilityComp(const UERadioAccessCapabilityCompTotalAMRLCMemoryExceeds10kB& uERadioAccessCapabilityCompTotalAMRLCMemoryExceeds10kB, const RFCapabilityComp& rfCapabilityComp) : Sequence(&theInfo) {
+	setUERadioAccessCapabilityCompTotalAMRLCMemoryExceeds10kB(uERadioAccessCapabilityCompTotalAMRLCMemoryExceeds10kB);
+	setRfCapabilityComp(rfCapabilityComp);
+}
 
 const void *UERadioAccessCapabilityCompext::itemsInfo[1] = {
 	&RFCapabBandListFDDCompext::theInfo,
@@ -7894,6 +8954,9 @@ const UERadioAccessCapabilityCompext::Info UERadioAccessCapabilityCompext::theIn
 	itemsPres,
 	1, 0, 0
 };
+UERadioAccessCapabilityCompext::UERadioAccessCapabilityCompext(const RFCapabBandListFDDCompext& rfCapabilityFDDComp) : Sequence(&theInfo) {
+	setRfCapabilityFDDComp(rfCapabilityFDDComp);
+}
 
 const void *RFCapabilityCompv770extTdd768RFCapability::choicesInfo[2] = {
 	&RFCapabilityCompv770extTdd768RFCapabilityNotSupported::theInfo,
@@ -7927,6 +8990,9 @@ const RFCapabilityCompv770ext::Info RFCapabilityCompv770ext::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+RFCapabilityCompv770ext::RFCapabilityCompv770ext(const RFCapabilityCompv770extTdd768RFCapability& rFCapabilityCompv770extTdd768RFCapability) : Sequence(&theInfo) {
+	setRFCapabilityCompv770extTdd768RFCapability(rFCapabilityCompv770extTdd768RFCapability);
+}
 
 const void *UERadioAccessCapabilityCompv770ext::itemsInfo[4] = {
 	&RFCapabilityCompv770ext::theInfo,
@@ -7949,6 +9015,9 @@ const UERadioAccessCapabilityCompv770ext::Info UERadioAccessCapabilityCompv770ex
 	itemsPres,
 	4, 3, 0
 };
+UERadioAccessCapabilityCompv770ext::UERadioAccessCapabilityCompv770ext(const RFCapabilityCompv770ext& rfCapabilityComp) : Sequence(&theInfo) {
+	setRfCapabilityComp(rfCapabilityComp);
+}
 
 const void *UERadioAccessCapabilityComp2FddPhysicalChannelCapabhspdschedch::itemsInfo[3] = {
 	&DLCapabilityWithSimultaneousHSDSCHConfig::theInfo,
@@ -7969,6 +9038,10 @@ const UERadioAccessCapabilityComp2FddPhysicalChannelCapabhspdschedch::Info UERad
 	itemsPres,
 	3, 1, 0
 };
+UERadioAccessCapabilityComp2FddPhysicalChannelCapabhspdschedch::UERadioAccessCapabilityComp2FddPhysicalChannelCapabhspdschedch(const HSDSCHphysicallayercategory& physicalChannelCapabComphspdschr6, const PhysicalChannelCapabilityedchr6& physicalChannelCapabilityedchr6) : Sequence(&theInfo) {
+	setPhysicalChannelCapabComphspdschr6(physicalChannelCapabComphspdschr6);
+	setPhysicalChannelCapabilityedchr6(physicalChannelCapabilityedchr6);
+}
 
 const void *UERadioAccessCapabilityComp2::itemsInfo[1] = {
 	&UERadioAccessCapabilityComp2FddPhysicalChannelCapabhspdschedch::theInfo,
@@ -8119,6 +9192,12 @@ const UERadioAccessCapabilityv590ext::Info UERadioAccessCapabilityv590ext::theIn
 	itemsPres,
 	5, 1, 0
 };
+UERadioAccessCapabilityv590ext::UERadioAccessCapabilityv590ext(const PDCPCapabilityr5ext& pdcpCapabilityr5ext, const RLCCapabilityr5ext& rlcCapabilityr5ext, const PhysicalChannelCapabilityhspdschr5& physicalChannelCapability, const MultiModeRATCapabilityv590ext& multiModeRATCapabilityv590ext) : Sequence(&theInfo) {
+	setPdcpCapabilityr5ext(pdcpCapabilityr5ext);
+	setRlcCapabilityr5ext(rlcCapabilityr5ext);
+	setPhysicalChannelCapability(physicalChannelCapability);
+	setMultiModeRATCapabilityv590ext(multiModeRATCapabilityv590ext);
+}
 
 const void *UERadioAccessCapabilityv5c0ext::itemsInfo[1] = {
 	&PDCPCapabilityr5ext2::theInfo,
@@ -8135,6 +9214,9 @@ const UERadioAccessCapabilityv5c0ext::Info UERadioAccessCapabilityv5c0ext::theIn
 	itemsPres,
 	1, 0, 0
 };
+UERadioAccessCapabilityv5c0ext::UERadioAccessCapabilityv5c0ext(const PDCPCapabilityr5ext2& pdcpCapabilityr5ext2) : Sequence(&theInfo) {
+	setPdcpCapabilityr5ext2(pdcpCapabilityr5ext2);
+}
 
 const void *UERadioAccessCapabilityv680ext::itemsInfo[1] = {
 	&MultiModeRATCapabilityv680ext::theInfo,
@@ -8151,6 +9233,9 @@ const UERadioAccessCapabilityv680ext::Info UERadioAccessCapabilityv680ext::theIn
 	itemsPres,
 	1, 0, 0
 };
+UERadioAccessCapabilityv680ext::UERadioAccessCapabilityv680ext(const MultiModeRATCapabilityv680ext& multiModeRATCapabilityv680ext) : Sequence(&theInfo) {
+	setMultiModeRATCapabilityv680ext(multiModeRATCapabilityv680ext);
+}
 
 const void *ULPhysChCapabilityFDDr6::itemsInfo[2] = {
 	&MaxNoDPDCHBitsTransmitted::theInfo,
@@ -8169,6 +9254,10 @@ const ULPhysChCapabilityFDDr6::Info ULPhysChCapabilityFDDr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ULPhysChCapabilityFDDr6::ULPhysChCapabilityFDDr6(const MaxNoDPDCHBitsTransmitted& maxNoDPDCHBitsTransmitted, const PhysicalChannelCapabilityedchr6& physicalchannelcapabilityedch) : Sequence(&theInfo) {
+	setMaxNoDPDCHBitsTransmitted(maxNoDPDCHBitsTransmitted);
+	setPhysicalchannelcapabilityedch(physicalchannelcapabilityedch);
+}
 
 const void *ULSecondaryCellInfoFDDNewConfiguration::itemsInfo[3] = {
 	&SecondaryServingEDCHCellInfo::theInfo,
@@ -8218,6 +9307,9 @@ const UESecurityInformation::Info UESecurityInformation::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+UESecurityInformation::UESecurityInformation(const STARTValue& startCS) : Sequence(&theInfo) {
+	setStartCS(startCS);
+}
 
 const void *UESecurityInformation2::itemsInfo[1] = {
 	&STARTValue::theInfo,
@@ -8234,6 +9326,9 @@ const UESecurityInformation2::Info UESecurityInformation2::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+UESecurityInformation2::UESecurityInformation2(const STARTValue& startPS) : Sequence(&theInfo) {
+	setStartPS(startPS);
+}
 
 const void *UTRANDRXCycleLengthCoefficientr7::itemsInfo[3] = {
 	&UTRANDRXCycleLengthCoefficientr7DrxCycleLengthCoefficient::theInfo,
@@ -8254,6 +9349,9 @@ const UTRANDRXCycleLengthCoefficientr7::Info UTRANDRXCycleLengthCoefficientr7::t
 	itemsPres,
 	3, 2, 0
 };
+UTRANDRXCycleLengthCoefficientr7::UTRANDRXCycleLengthCoefficientr7(const UTRANDRXCycleLengthCoefficientr7DrxCycleLengthCoefficient& uTRANDRXCycleLengthCoefficientr7DrxCycleLengthCoefficient) : Sequence(&theInfo) {
+	setUTRANDRXCycleLengthCoefficientr7DrxCycleLengthCoefficient(uTRANDRXCycleLengthCoefficientr7DrxCycleLengthCoefficient);
+}
 
 const void *RFC2507Info::itemsInfo[6] = {
 	&RFC2507InfoFMAXPERIOD::theInfo,
@@ -8280,6 +9378,9 @@ const RFC2507Info::Info RFC2507Info::theInfo = {
 	itemsPres,
 	6, 5, 0
 };
+RFC2507Info::RFC2507Info(const ExpectReordering& expectReordering) : Sequence(&theInfo) {
+	setExpectReordering(expectReordering);
+}
 
 const void *AlgorithmSpecificInfo::choicesInfo[1] = {
 	&RFC2507Info::theInfo,
@@ -8312,6 +9413,10 @@ const ULRFC3095r4::Info ULRFC3095r4::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+ULRFC3095r4::ULRFC3095r4(const CIDInclusionInfor4& dummy1, const ROHCPacketSizeListr4& dummy) : Sequence(&theInfo) {
+	setDummy1(dummy1);
+	setDummy(dummy);
+}
 
 const void *DLRFC3095r4::itemsInfo[3] = {
 	&CIDInclusionInfor4::theInfo,
@@ -8332,6 +9437,9 @@ const DLRFC3095r4::Info DLRFC3095r4::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DLRFC3095r4::DLRFC3095r4(const CIDInclusionInfor4& dummy) : Sequence(&theInfo) {
+	setDummy(dummy);
+}
 
 const void *RFC3095Infor4::itemsInfo[3] = {
 	&ROHCProfileListr4::theInfo,
@@ -8352,6 +9460,9 @@ const RFC3095Infor4::Info RFC3095Infor4::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+RFC3095Infor4::RFC3095Infor4(const ROHCProfileListr4& rohcProfileList) : Sequence(&theInfo) {
+	setRohcProfileList(rohcProfileList);
+}
 
 const void *AlgorithmSpecificInfor4::choicesInfo[2] = {
 	&RFC2507Info::theInfo,
@@ -8383,6 +9494,10 @@ const CommonRBMappingInfo::Info CommonRBMappingInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CommonRBMappingInfo::CommonRBMappingInfo(const LogicalChannelIdentity& logicalChannelIdentity, const MACehsQueueId& macehsQueueId) : Sequence(&theInfo) {
+	setLogicalChannelIdentity(logicalChannelIdentity);
+	setMacehsQueueId(macehsQueueId);
+}
 
 const void *CSHSPAInformation::itemsInfo[2] = {
 	&ULAMRRate::theInfo,
@@ -8401,6 +9516,9 @@ const CSHSPAInformation::Info CSHSPAInformation::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+CSHSPAInformation::CSHSPAInformation(const MaxCSDelay& maxCSDelay) : Sequence(&theInfo) {
+	setMaxCSDelay(maxCSDelay);
+}
 
 const void *DefaultConfigForCellFACH::itemsInfo[2] = {
 	&DefaultConfigMode::theInfo,
@@ -8419,6 +9537,10 @@ const DefaultConfigForCellFACH::Info DefaultConfigForCellFACH::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+DefaultConfigForCellFACH::DefaultConfigForCellFACH(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdForCellFACH& defaultConfigIdForCellFACH) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdForCellFACH(defaultConfigIdForCellFACH);
+}
 
 const void *DLRLCStatusInfo::itemsInfo[4] = {
 	&TimerStatusProhibit::theInfo,
@@ -8441,6 +9563,9 @@ const DLRLCStatusInfo::Info DLRLCStatusInfo::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+DLRLCStatusInfo::DLRLCStatusInfo(const DLRLCStatusInfoMissingPDUIndicator& dLRLCStatusInfoMissingPDUIndicator) : Sequence(&theInfo) {
+	setDLRLCStatusInfoMissingPDUIndicator(dLRLCStatusInfoMissingPDUIndicator);
+}
 
 const void *DLAMRLCMode::itemsInfo[3] = {
 	&DLAMRLCModeInSequenceDelivery::theInfo,
@@ -8461,6 +9586,11 @@ const DLAMRLCMode::Info DLAMRLCMode::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+DLAMRLCMode::DLAMRLCMode(const DLAMRLCModeInSequenceDelivery& dLAMRLCModeInSequenceDelivery, const ReceivingWindowSize& receivingWindowSize, const DLRLCStatusInfo& dlRLCStatusInfo) : Sequence(&theInfo) {
+	setDLAMRLCModeInSequenceDelivery(dLAMRLCModeInSequenceDelivery);
+	setReceivingWindowSize(receivingWindowSize);
+	setDlRLCStatusInfo(dlRLCStatusInfo);
+}
 
 const void *OctetModeRLCSizeInfoType1SizeType2::itemsInfo[2] = {
 	&OctetModeRLCSizeInfoType1SizeType2Part1::theInfo,
@@ -8479,6 +9609,9 @@ const OctetModeRLCSizeInfoType1SizeType2::Info OctetModeRLCSizeInfoType1SizeType
 	itemsPres,
 	2, 1, 0
 };
+OctetModeRLCSizeInfoType1SizeType2::OctetModeRLCSizeInfoType1SizeType2(const OctetModeRLCSizeInfoType1SizeType2Part1& octetModeRLCSizeInfoType1SizeType2Part1) : Sequence(&theInfo) {
+	setOctetModeRLCSizeInfoType1SizeType2Part1(octetModeRLCSizeInfoType1SizeType2Part1);
+}
 
 const void *OctetModeRLCSizeInfoType1SizeType3::itemsInfo[2] = {
 	&OctetModeRLCSizeInfoType1SizeType3Part1::theInfo,
@@ -8497,6 +9630,9 @@ const OctetModeRLCSizeInfoType1SizeType3::Info OctetModeRLCSizeInfoType1SizeType
 	itemsPres,
 	2, 1, 0
 };
+OctetModeRLCSizeInfoType1SizeType3::OctetModeRLCSizeInfoType1SizeType3(const OctetModeRLCSizeInfoType1SizeType3Part1& octetModeRLCSizeInfoType1SizeType3Part1) : Sequence(&theInfo) {
+	setOctetModeRLCSizeInfoType1SizeType3Part1(octetModeRLCSizeInfoType1SizeType3Part1);
+}
 
 const void *OctetModeRLCSizeInfoType1::choicesInfo[3] = {
 	&OctetModeRLCSizeInfoType1SizeType1::theInfo,
@@ -8533,6 +9669,12 @@ const DLAMRLCModer5::Info DLAMRLCModer5::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+DLAMRLCModer5::DLAMRLCModer5(const OctetModeRLCSizeInfoType1& dlRLCPDUsize, const DLAMRLCModer5InSequenceDelivery& dLAMRLCModer5InSequenceDelivery, const ReceivingWindowSize& receivingWindowSize, const DLRLCStatusInfo& dlRLCStatusInfo) : Sequence(&theInfo) {
+	setDlRLCPDUsize(dlRLCPDUsize);
+	setDLAMRLCModer5InSequenceDelivery(dLAMRLCModer5InSequenceDelivery);
+	setReceivingWindowSize(receivingWindowSize);
+	setDlRLCStatusInfo(dlRLCStatusInfo);
+}
 
 const void *DLAMRLCModer7DlRLCPDUsize::choicesInfo[2] = {
 	&OctetModeRLCSizeInfoType1::theInfo,
@@ -8568,6 +9710,12 @@ const DLAMRLCModer7::Info DLAMRLCModer7::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+DLAMRLCModer7::DLAMRLCModer7(const DLAMRLCModer7DlRLCPDUsize& dLAMRLCModer7DlRLCPDUsize, const DLAMRLCModer7InSequenceDelivery& dLAMRLCModer7InSequenceDelivery, const ReceivingWindowSize& receivingWindowSize, const DLRLCStatusInfo& dlRLCStatusInfo) : Sequence(&theInfo) {
+	setDLAMRLCModer7DlRLCPDUsize(dLAMRLCModer7DlRLCPDUsize);
+	setDLAMRLCModer7InSequenceDelivery(dLAMRLCModer7InSequenceDelivery);
+	setReceivingWindowSize(receivingWindowSize);
+	setDlRLCStatusInfo(dlRLCStatusInfo);
+}
 
 const void *RBWithPDCPInfo::itemsInfo[2] = {
 	&RBIdentity::theInfo,
@@ -8586,6 +9734,10 @@ const RBWithPDCPInfo::Info RBWithPDCPInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RBWithPDCPInfo::RBWithPDCPInfo(const RBIdentity& rbIdentity, const PDCPSNInfo& pdcpSNInfo) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setPdcpSNInfo(pdcpSNInfo);
+}
 
 const void *DLCounterSynchronisationInfo::itemsInfo[1] = {
 	&RBWithPDCPInfoList::theInfo,
@@ -8622,6 +9774,11 @@ const RBPDCPContextRelocation::Info RBPDCPContextRelocation::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+RBPDCPContextRelocation::RBPDCPContextRelocation(const RBIdentity& rbIdentity, const RBPDCPContextRelocationDlRFC3095ContextRelocation& rBPDCPContextRelocationDlRFC3095ContextRelocation, const RBPDCPContextRelocationUlRFC3095ContextRelocation& rBPDCPContextRelocationUlRFC3095ContextRelocation) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRBPDCPContextRelocationDlRFC3095ContextRelocation(rBPDCPContextRelocationDlRFC3095ContextRelocation);
+	setRBPDCPContextRelocationUlRFC3095ContextRelocation(rBPDCPContextRelocationUlRFC3095ContextRelocation);
+}
 
 const void *DLCounterSynchronisationInfor5::itemsInfo[2] = {
 	&RBWithPDCPInfoList::theInfo,
@@ -8658,6 +9815,10 @@ const TransportChannelIdentityDCHandDSCH::Info TransportChannelIdentityDCHandDSC
 	itemsPres,
 	2, 0, 0
 };
+TransportChannelIdentityDCHandDSCH::TransportChannelIdentityDCHandDSCH(const TransportChannelIdentity& dchtransportchid, const TransportChannelIdentity& dschtransportchid) : Sequence(&theInfo) {
+	setDchtransportchid(dchtransportchid);
+	setDschtransportchid(dschtransportchid);
+}
 
 const void *DLTransportChannelType::choicesInfo[4] = {
 	&TransportChannelIdentity::theInfo,
@@ -8691,6 +9852,9 @@ const DLLogicalChannelMapping::Info DLLogicalChannelMapping::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+DLLogicalChannelMapping::DLLogicalChannelMapping(const DLTransportChannelType& dlTransportChannelType) : Sequence(&theInfo) {
+	setDlTransportChannelType(dlTransportChannelType);
+}
 
 const void *MACdFlowIdentityDCHandHSDSCH::itemsInfo[2] = {
 	&TransportChannelIdentity::theInfo,
@@ -8709,6 +9873,10 @@ const MACdFlowIdentityDCHandHSDSCH::Info MACdFlowIdentityDCHandHSDSCH::theInfo =
 	itemsPres,
 	2, 0, 0
 };
+MACdFlowIdentityDCHandHSDSCH::MACdFlowIdentityDCHandHSDSCH(const TransportChannelIdentity& dchtransportchid, const MACdFlowIdentity& hsdschmacdflowid) : Sequence(&theInfo) {
+	setDchtransportchid(dchtransportchid);
+	setHsdschmacdflowid(hsdschmacdflowid);
+}
 
 const void *DLTransportChannelTyper5::choicesInfo[6] = {
 	&TransportChannelIdentity::theInfo,
@@ -8744,6 +9912,9 @@ const DLLogicalChannelMappingr5::Info DLLogicalChannelMappingr5::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+DLLogicalChannelMappingr5::DLLogicalChannelMappingr5(const DLTransportChannelTyper5& dlTransportChannelType) : Sequence(&theInfo) {
+	setDlTransportChannelType(dlTransportChannelType);
+}
 
 const void *DLTransportChannelTyper7Hsdsch::choicesInfo[2] = {
 	&MACdFlowIdentity::theInfo,
@@ -8775,6 +9946,10 @@ const MACehsQueueIdDCHandHSDSCH::Info MACehsQueueIdDCHandHSDSCH::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MACehsQueueIdDCHandHSDSCH::MACehsQueueIdDCHandHSDSCH(const TransportChannelIdentity& dchtransportchid, const MACehsQueueId& hsdschmacehsQueueId) : Sequence(&theInfo) {
+	setDchtransportchid(dchtransportchid);
+	setHsdschmacehsQueueId(hsdschmacehsQueueId);
+}
 
 const void *DLTransportChannelTyper7Dchandhsdsch::choicesInfo[2] = {
 	&MACdFlowIdentityDCHandHSDSCH::theInfo,
@@ -8823,6 +9998,9 @@ const DLLogicalChannelMappingr7::Info DLLogicalChannelMappingr7::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+DLLogicalChannelMappingr7::DLLogicalChannelMappingr7(const DLTransportChannelTyper7& dlTransportChannelType) : Sequence(&theInfo) {
+	setDlTransportChannelType(dlTransportChannelType);
+}
 
 const void *DLTMRLCMode::itemsInfo[1] = {
 	&DLTMRLCModeSegmentationIndication::theInfo,
@@ -8839,6 +10017,9 @@ const DLTMRLCMode::Info DLTMRLCMode::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DLTMRLCMode::DLTMRLCMode(const DLTMRLCModeSegmentationIndication& dLTMRLCModeSegmentationIndication) : Sequence(&theInfo) {
+	setDLTMRLCModeSegmentationIndication(dLTMRLCModeSegmentationIndication);
+}
 
 const void *DLRLCMode::choicesInfo[3] = {
 	&DLAMRLCMode::theInfo,
@@ -8869,6 +10050,9 @@ const DLUMRLCModer5::Info DLUMRLCModer5::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DLUMRLCModer5::DLUMRLCModer5(const DLUMRLCLIsize& dlUMRLCLIsize) : Sequence(&theInfo) {
+	setDlUMRLCLIsize(dlUMRLCLIsize);
+}
 
 const void *DLRLCModer5::choicesInfo[3] = {
 	&DLAMRLCModer5::theInfo,
@@ -8901,6 +10085,9 @@ const DLUMRLCModer6::Info DLUMRLCModer6::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+DLUMRLCModer6::DLUMRLCModer6(const DLUMRLCLIsize& dlUMRLCLIsize) : Sequence(&theInfo) {
+	setDlUMRLCLIsize(dlUMRLCLIsize);
+}
 
 const void *DLRLCModer6::choicesInfo[3] = {
 	&DLAMRLCModer5::theInfo,
@@ -8949,6 +10136,11 @@ const ExplicitDiscard::Info ExplicitDiscard::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+ExplicitDiscard::ExplicitDiscard(const TimerMRW& timerMRW, const TimerDiscard& timerDiscard, const MaxMRW& maxMRW) : Sequence(&theInfo) {
+	setTimerMRW(timerMRW);
+	setTimerDiscard(timerDiscard);
+	setMaxMRW(maxMRW);
+}
 
 const void *HeaderCompressionInfo::itemsInfo[1] = {
 	&AlgorithmSpecificInfo::theInfo,
@@ -8965,6 +10157,9 @@ const HeaderCompressionInfo::Info HeaderCompressionInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+HeaderCompressionInfo::HeaderCompressionInfo(const AlgorithmSpecificInfo& algorithmSpecificInfo) : Sequence(&theInfo) {
+	setAlgorithmSpecificInfo(algorithmSpecificInfo);
+}
 
 const void *HeaderCompressionInfor4::itemsInfo[1] = {
 	&AlgorithmSpecificInfor4::theInfo,
@@ -8981,6 +10176,9 @@ const HeaderCompressionInfor4::Info HeaderCompressionInfor4::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+HeaderCompressionInfor4::HeaderCompressionInfor4(const AlgorithmSpecificInfor4& algorithmSpecificInfo) : Sequence(&theInfo) {
+	setAlgorithmSpecificInfo(algorithmSpecificInfo);
+}
 
 const void *LosslessSRNSRelocSupport::choicesInfo[2] = {
 	&MaxPDCPSNWindowSize::theInfo,
@@ -9014,6 +10212,11 @@ const MaxDATRetransmissions::Info MaxDATRetransmissions::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+MaxDATRetransmissions::MaxDATRetransmissions(const MaxDAT& maxDAT, const TimerMRW& timerMRW, const MaxMRW& maxMRW) : Sequence(&theInfo) {
+	setMaxDAT(maxDAT);
+	setTimerMRW(timerMRW);
+	setMaxMRW(maxMRW);
+}
 
 const void *PDCPInfo::itemsInfo[3] = {
 	&LosslessSRNSRelocSupport::theInfo,
@@ -9034,6 +10237,9 @@ const PDCPInfo::Info PDCPInfo::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+PDCPInfo::PDCPInfo(const PDCPPDUHeader& pdcpPDUHeader) : Sequence(&theInfo) {
+	setPdcpPDUHeader(pdcpPDUHeader);
+}
 
 const void *PDCPInfor4::itemsInfo[3] = {
 	&LosslessSRNSRelocSupport::theInfo,
@@ -9054,6 +10260,9 @@ const PDCPInfor4::Info PDCPInfor4::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+PDCPInfor4::PDCPInfor4(const PDCPPDUHeader& pdcpPDUHeader) : Sequence(&theInfo) {
+	setPdcpPDUHeader(pdcpPDUHeader);
+}
 
 const void *PDCPInfoReconfig::itemsInfo[2] = {
 	&PDCPInfo::theInfo,
@@ -9072,6 +10281,10 @@ const PDCPInfoReconfig::Info PDCPInfoReconfig::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+PDCPInfoReconfig::PDCPInfoReconfig(const PDCPInfo& pdcpInfo, const PDCPInfoReconfigDummy& pDCPInfoReconfigDummy) : Sequence(&theInfo) {
+	setPdcpInfo(pdcpInfo);
+	setPDCPInfoReconfigDummy(pDCPInfoReconfigDummy);
+}
 
 const void *PDCPInfoReconfigr4::itemsInfo[1] = {
 	&PDCPInfor4::theInfo,
@@ -9088,6 +10301,9 @@ const PDCPInfoReconfigr4::Info PDCPInfoReconfigr4::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+PDCPInfoReconfigr4::PDCPInfoReconfigr4(const PDCPInfor4& pdcpInfo) : Sequence(&theInfo) {
+	setPdcpInfo(pdcpInfo);
+}
 
 const void *PollingInfo::itemsInfo[8] = {
 	&TimerPollProhibit::theInfo,
@@ -9118,6 +10334,10 @@ const PollingInfo::Info PollingInfo::theInfo = {
 	itemsPres,
 	8, 6, 0
 };
+PollingInfo::PollingInfo(const PollingInfoLastTransmissionPDUPoll& pollingInfoLastTransmissionPDUPoll, const PollingInfoLastRetransmissionPDUPoll& pollingInfoLastRetransmissionPDUPoll) : Sequence(&theInfo) {
+	setPollingInfoLastTransmissionPDUPoll(pollingInfoLastTransmissionPDUPoll);
+	setPollingInfoLastRetransmissionPDUPoll(pollingInfoLastRetransmissionPDUPoll);
+}
 
 const void *TransmissionRLCDiscard::choicesInfo[4] = {
 	&ExplicitDiscard::theInfo,
@@ -9157,6 +10377,12 @@ const ULAMRLCMode::Info ULAMRLCMode::theInfo = {
 	itemsPres,
 	5, 1, 0
 };
+ULAMRLCMode::ULAMRLCMode(const TransmissionRLCDiscard& transmissionRLCDiscard, const TransmissionWindowSize& transmissionWindowSize, const TimerRST& timerRST, const MaxRST& maxRST) : Sequence(&theInfo) {
+	setTransmissionRLCDiscard(transmissionRLCDiscard);
+	setTransmissionWindowSize(transmissionWindowSize);
+	setTimerRST(timerRST);
+	setMaxRST(maxRST);
+}
 
 const void *ULUMRLCMode::itemsInfo[1] = {
 	&TransmissionRLCDiscard::theInfo,
@@ -9191,6 +10417,9 @@ const ULTMRLCMode::Info ULTMRLCMode::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ULTMRLCMode::ULTMRLCMode(const ULTMRLCModeSegmentationIndication& uLTMRLCModeSegmentationIndication) : Sequence(&theInfo) {
+	setULTMRLCModeSegmentationIndication(uLTMRLCModeSegmentationIndication);
+}
 
 const void *ULRLCMode::choicesInfo[4] = {
 	&ULAMRLCMode::theInfo,
@@ -9268,6 +10497,9 @@ const RLCSizeInfo::Info RLCSizeInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+RLCSizeInfo::RLCSizeInfo(const RLCSizeInfoRlcSizeIndex& rLCSizeInfoRlcSizeIndex) : Sequence(&theInfo) {
+	setRLCSizeInfoRlcSizeIndex(rLCSizeInfoRlcSizeIndex);
+}
 
 const void *ULLogicalChannelMappingRlcSizeList::choicesInfo[3] = {
 	&ULLogicalChannelMappingRlcSizeListAllSizes::theInfo,
@@ -9304,6 +10536,11 @@ const ULLogicalChannelMapping::Info ULLogicalChannelMapping::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+ULLogicalChannelMapping::ULLogicalChannelMapping(const ULTransportChannelType& ulTransportChannelType, const ULLogicalChannelMappingRlcSizeList& uLLogicalChannelMappingRlcSizeList, const MACLogicalChannelPriority& macLogicalChannelPriority) : Sequence(&theInfo) {
+	setUlTransportChannelType(ulTransportChannelType);
+	setULLogicalChannelMappingRlcSizeList(uLLogicalChannelMappingRlcSizeList);
+	setMacLogicalChannelPriority(macLogicalChannelPriority);
+}
 
 const void *ULLogicalChannelMappingList::itemsInfo[2] = {
 	&ULLogicalChannelMappingListRlcLogicalChannelMappingIndicator::theInfo,
@@ -9322,6 +10559,10 @@ const ULLogicalChannelMappingList::Info ULLogicalChannelMappingList::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ULLogicalChannelMappingList::ULLogicalChannelMappingList(const ULLogicalChannelMappingListRlcLogicalChannelMappingIndicator& uLLogicalChannelMappingListRlcLogicalChannelMappingIndicator, const ULLogicalChannelMappingListUlLogicalChannelMapping& uLLogicalChannelMappingListUlLogicalChannelMapping) : Sequence(&theInfo) {
+	setULLogicalChannelMappingListRlcLogicalChannelMappingIndicator(uLLogicalChannelMappingListRlcLogicalChannelMappingIndicator);
+	setULLogicalChannelMappingListUlLogicalChannelMapping(uLLogicalChannelMappingListUlLogicalChannelMapping);
+}
 
 const void *ULLogicalChannelMappings::choicesInfo[2] = {
 	&ULLogicalChannelMapping::theInfo,
@@ -9373,6 +10614,10 @@ const SRBInformationSetup::Info SRBInformationSetup::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+SRBInformationSetup::SRBInformationSetup(const RLCInfoChoice& rlcInfoChoice, const RBMappingInfo& rbMappingInfo) : Sequence(&theInfo) {
+	setRlcInfoChoice(rlcInfoChoice);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *RBInformationSetup::itemsInfo[4] = {
 	&RBIdentity::theInfo,
@@ -9395,6 +10640,11 @@ const RBInformationSetup::Info RBInformationSetup::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+RBInformationSetup::RBInformationSetup(const RBIdentity& rbIdentity, const RLCInfoChoice& rlcInfoChoice, const RBMappingInfo& rbMappingInfo) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRlcInfoChoice(rlcInfoChoice);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *PredefinedRBConfiguration::itemsInfo[3] = {
 	&ReEstablishmentTimer::theInfo,
@@ -9415,6 +10665,11 @@ const PredefinedRBConfiguration::Info PredefinedRBConfiguration::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+PredefinedRBConfiguration::PredefinedRBConfiguration(const ReEstablishmentTimer& reEstablishmentTimer, const SRBInformationSetupList& srbInformationList, const RBInformationSetupList& rbInformationList) : Sequence(&theInfo) {
+	setReEstablishmentTimer(reEstablishmentTimer);
+	setSrbInformationList(srbInformationList);
+	setRbInformationList(rbInformationList);
+}
 
 const void *RestrictedTrChInfo::itemsInfo[3] = {
 	&ULTrCHType::theInfo,
@@ -9435,6 +10690,10 @@ const RestrictedTrChInfo::Info RestrictedTrChInfo::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+RestrictedTrChInfo::RestrictedTrChInfo(const ULTrCHType& ulTransportChannelType, const TransportChannelIdentity& restrictedTrChIdentity) : Sequence(&theInfo) {
+	setUlTransportChannelType(ulTransportChannelType);
+	setRestrictedTrChIdentity(restrictedTrChIdentity);
+}
 
 const void *TFCSubset::choicesInfo[5] = {
 	&TFCValue::theInfo,
@@ -9583,6 +10842,9 @@ const TFCSReconfAdd::Info TFCSReconfAdd::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+TFCSReconfAdd::TFCSReconfAdd(const TFCSReconfAddCtfcSize& tFCSReconfAddCtfcSize) : Sequence(&theInfo) {
+	setTFCSReconfAddCtfcSize(tFCSReconfAddCtfcSize);
+}
 
 const void *TFCSRemoval::itemsInfo[1] = {
 	&TFCSRemovalTfci::theInfo,
@@ -9599,6 +10861,9 @@ const TFCSRemoval::Info TFCSRemoval::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+TFCSRemoval::TFCSRemoval(const TFCSRemovalTfci& tFCSRemovalTfci) : Sequence(&theInfo) {
+	setTFCSRemovalTfci(tFCSRemovalTfci);
+}
 
 const void *ExplicitTFCSConfigurationReplacement::itemsInfo[2] = {
 	&TFCSRemovalList::theInfo,
@@ -9617,6 +10882,10 @@ const ExplicitTFCSConfigurationReplacement::Info ExplicitTFCSConfigurationReplac
 	itemsPres,
 	2, 0, 0
 };
+ExplicitTFCSConfigurationReplacement::ExplicitTFCSConfigurationReplacement(const TFCSRemovalList& tfcsRemoval, const TFCSReconfAdd& tfcsAdd) : Sequence(&theInfo) {
+	setTfcsRemoval(tfcsRemoval);
+	setTfcsAdd(tfcsAdd);
+}
 
 const void *ExplicitTFCSConfiguration::choicesInfo[4] = {
 	&TFCSReconfAdd::theInfo,
@@ -9668,6 +10937,10 @@ const TFCIRange::Info TFCIRange::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+TFCIRange::TFCIRange(const TFCIRangeMaxTFCIField2Value& tFCIRangeMaxTFCIField2Value, const TFCSInfoForDSCH& tfcsInfoForDSCH) : Sequence(&theInfo) {
+	setTFCIRangeMaxTFCIField2Value(tFCIRangeMaxTFCIField2Value);
+	setTfcsInfoForDSCH(tfcsInfoForDSCH);
+}
 
 const void *TFCIField2Information::choicesInfo[2] = {
 	&TFCIRangeList::theInfo,
@@ -9732,6 +11005,9 @@ const ULCommonTransChInfoModeSpecificInfoFdd::Info ULCommonTransChInfoModeSpecif
 	itemsPres,
 	1, 0, 0
 };
+ULCommonTransChInfoModeSpecificInfoFdd::ULCommonTransChInfoModeSpecificInfoFdd(const TFCS& ulTFCS) : Sequence(&theInfo) {
+	setUlTFCS(ulTFCS);
+}
 
 const void *TFCSIdentity::itemsInfo[2] = {
 	&TFCSIdentityPlain::theInfo,
@@ -9750,6 +11026,9 @@ const TFCSIdentity::Info TFCSIdentity::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+TFCSIdentity::TFCSIdentity(const TFCSIdentitySharedChannelIndicator& tFCSIdentitySharedChannelIndicator) : Sequence(&theInfo) {
+	setTFCSIdentitySharedChannelIndicator(tFCSIdentitySharedChannelIndicator);
+}
 
 const void *IndividualULCCTrCHInfo::itemsInfo[3] = {
 	&TFCSIdentity::theInfo,
@@ -9770,6 +11049,11 @@ const IndividualULCCTrCHInfo::Info IndividualULCCTrCHInfo::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+IndividualULCCTrCHInfo::IndividualULCCTrCHInfo(const TFCSIdentity& ulTFCSIdentity, const TFCS& ulTFCS, const TFCSubset& tfcSubset) : Sequence(&theInfo) {
+	setUlTFCSIdentity(ulTFCSIdentity);
+	setUlTFCS(ulTFCS);
+	setTfcSubset(tfcSubset);
+}
 
 const void *ULCommonTransChInfoModeSpecificInfoTdd::itemsInfo[1] = {
 	&IndividualULCCTrCHInfoList::theInfo,
@@ -9837,6 +11121,9 @@ const BitModeRLCSizeInfoSizeType2::Info BitModeRLCSizeInfoSizeType2::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+BitModeRLCSizeInfoSizeType2::BitModeRLCSizeInfoSizeType2(const BitModeRLCSizeInfoSizeType2Part1& bitModeRLCSizeInfoSizeType2Part1) : Sequence(&theInfo) {
+	setBitModeRLCSizeInfoSizeType2Part1(bitModeRLCSizeInfoSizeType2Part1);
+}
 
 const void *BitModeRLCSizeInfoSizeType3::itemsInfo[2] = {
 	&BitModeRLCSizeInfoSizeType3Part1::theInfo,
@@ -9855,6 +11142,9 @@ const BitModeRLCSizeInfoSizeType3::Info BitModeRLCSizeInfoSizeType3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+BitModeRLCSizeInfoSizeType3::BitModeRLCSizeInfoSizeType3(const BitModeRLCSizeInfoSizeType3Part1& bitModeRLCSizeInfoSizeType3Part1) : Sequence(&theInfo) {
+	setBitModeRLCSizeInfoSizeType3Part1(bitModeRLCSizeInfoSizeType3Part1);
+}
 
 const void *BitModeRLCSizeInfoSizeType4::itemsInfo[2] = {
 	&BitModeRLCSizeInfoSizeType4Part1::theInfo,
@@ -9873,6 +11163,9 @@ const BitModeRLCSizeInfoSizeType4::Info BitModeRLCSizeInfoSizeType4::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+BitModeRLCSizeInfoSizeType4::BitModeRLCSizeInfoSizeType4(const BitModeRLCSizeInfoSizeType4Part1& bitModeRLCSizeInfoSizeType4Part1) : Sequence(&theInfo) {
+	setBitModeRLCSizeInfoSizeType4Part1(bitModeRLCSizeInfoSizeType4Part1);
+}
 
 const void *BitModeRLCSizeInfo::choicesInfo[4] = {
 	&BitModeRLCSizeInfoSizeType1::theInfo,
@@ -9934,6 +11227,9 @@ const LogicalChannelByRB::Info LogicalChannelByRB::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+LogicalChannelByRB::LogicalChannelByRB(const RBIdentity& rbIdentity) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+}
 
 const void *LogicalChannelList::choicesInfo[3] = {
 	&LogicalChannelListAllSizes::theInfo,
@@ -9968,6 +11264,11 @@ const DedicatedDynamicTFInfo::Info DedicatedDynamicTFInfo::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+DedicatedDynamicTFInfo::DedicatedDynamicTFInfo(const DedicatedDynamicTFInfoRlcSize& dedicatedDynamicTFInfoRlcSize, const DedicatedDynamicTFInfoNumberOfTbSizeList& dedicatedDynamicTFInfoNumberOfTbSizeList, const LogicalChannelList& logicalChannelList) : Sequence(&theInfo) {
+	setDedicatedDynamicTFInfoRlcSize(dedicatedDynamicTFInfoRlcSize);
+	setDedicatedDynamicTFInfoNumberOfTbSizeList(dedicatedDynamicTFInfoNumberOfTbSizeList);
+	setLogicalChannelList(logicalChannelList);
+}
 
 const void *DedicatedDynamicTFInfoDynamicTTIRlcSize::choicesInfo[2] = {
 	&BitModeRLCSizeInfo::theInfo,
@@ -10015,6 +11316,11 @@ const DedicatedDynamicTFInfoDynamicTTI::Info DedicatedDynamicTFInfoDynamicTTI::t
 	itemsPres,
 	3, 0, 0
 };
+DedicatedDynamicTFInfoDynamicTTI::DedicatedDynamicTFInfoDynamicTTI(const DedicatedDynamicTFInfoDynamicTTIRlcSize& dedicatedDynamicTFInfoDynamicTTIRlcSize, const NumberOfTbSizeAndTTIList& numberOfTbSizeAndTTIList, const LogicalChannelList& logicalChannelList) : Sequence(&theInfo) {
+	setDedicatedDynamicTFInfoDynamicTTIRlcSize(dedicatedDynamicTFInfoDynamicTTIRlcSize);
+	setNumberOfTbSizeAndTTIList(numberOfTbSizeAndTTIList);
+	setLogicalChannelList(logicalChannelList);
+}
 
 const void *DedicatedTransChTFSTti::choicesInfo[5] = {
 	&DedicatedDynamicTFInfoList::theInfo,
@@ -10065,6 +11371,11 @@ const SemistaticTFInformation::Info SemistaticTFInformation::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+SemistaticTFInformation::SemistaticTFInformation(const ChannelCodingType& channelCodingType, const RateMatchingAttribute& rateMatchingAttribute, const CRCSize& crcSize) : Sequence(&theInfo) {
+	setChannelCodingType(channelCodingType);
+	setRateMatchingAttribute(rateMatchingAttribute);
+	setCrcSize(crcSize);
+}
 
 const void *DedicatedTransChTFS::itemsInfo[2] = {
 	&DedicatedTransChTFSTti::theInfo,
@@ -10083,6 +11394,10 @@ const DedicatedTransChTFS::Info DedicatedTransChTFS::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+DedicatedTransChTFS::DedicatedTransChTFS(const DedicatedTransChTFSTti& dedicatedTransChTFSTti, const SemistaticTFInformation& semistaticTFInformation) : Sequence(&theInfo) {
+	setDedicatedTransChTFSTti(dedicatedTransChTFSTti);
+	setSemistaticTFInformation(semistaticTFInformation);
+}
 
 const void *OctetModeRLCSizeInfoType2::choicesInfo[3] = {
 	&OctetModeRLCSizeInfoType2SizeType1::theInfo,
@@ -10113,6 +11428,9 @@ const CommonDynamicTFInfoRlcSizeFdd::Info CommonDynamicTFInfoRlcSizeFdd::theInfo
 	itemsPres,
 	1, 0, 0
 };
+CommonDynamicTFInfoRlcSizeFdd::CommonDynamicTFInfoRlcSizeFdd(const OctetModeRLCSizeInfoType2& octetModeRLCSizeInfoType2) : Sequence(&theInfo) {
+	setOctetModeRLCSizeInfoType2(octetModeRLCSizeInfoType2);
+}
 
 const void *CommonDynamicTFInfoRlcSizeTddCommonTDDChoice::choicesInfo[2] = {
 	&BitModeRLCSizeInfo::theInfo,
@@ -10142,6 +11460,9 @@ const CommonDynamicTFInfoRlcSizeTdd::Info CommonDynamicTFInfoRlcSizeTdd::theInfo
 	itemsPres,
 	1, 0, 0
 };
+CommonDynamicTFInfoRlcSizeTdd::CommonDynamicTFInfoRlcSizeTdd(const CommonDynamicTFInfoRlcSizeTddCommonTDDChoice& commonDynamicTFInfoRlcSizeTddCommonTDDChoice) : Sequence(&theInfo) {
+	setCommonDynamicTFInfoRlcSizeTddCommonTDDChoice(commonDynamicTFInfoRlcSizeTddCommonTDDChoice);
+}
 
 const void *CommonDynamicTFInfoRlcSize::choicesInfo[2] = {
 	&CommonDynamicTFInfoRlcSizeFdd::theInfo,
@@ -10175,6 +11496,11 @@ const CommonDynamicTFInfo::Info CommonDynamicTFInfo::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+CommonDynamicTFInfo::CommonDynamicTFInfo(const CommonDynamicTFInfoRlcSize& commonDynamicTFInfoRlcSize, const CommonDynamicTFInfoNumberOfTbSizeList& commonDynamicTFInfoNumberOfTbSizeList, const LogicalChannelList& logicalChannelList) : Sequence(&theInfo) {
+	setCommonDynamicTFInfoRlcSize(commonDynamicTFInfoRlcSize);
+	setCommonDynamicTFInfoNumberOfTbSizeList(commonDynamicTFInfoNumberOfTbSizeList);
+	setLogicalChannelList(logicalChannelList);
+}
 
 const void *CommonDynamicTFInfoDynamicTTICommonTDDChoice::choicesInfo[2] = {
 	&BitModeRLCSizeInfo::theInfo,
@@ -10208,6 +11534,11 @@ const CommonDynamicTFInfoDynamicTTI::Info CommonDynamicTFInfoDynamicTTI::theInfo
 	itemsPres,
 	3, 0, 0
 };
+CommonDynamicTFInfoDynamicTTI::CommonDynamicTFInfoDynamicTTI(const CommonDynamicTFInfoDynamicTTICommonTDDChoice& commonDynamicTFInfoDynamicTTICommonTDDChoice, const NumberOfTbSizeAndTTIList& numberOfTbSizeAndTTIList, const LogicalChannelList& logicalChannelList) : Sequence(&theInfo) {
+	setCommonDynamicTFInfoDynamicTTICommonTDDChoice(commonDynamicTFInfoDynamicTTICommonTDDChoice);
+	setNumberOfTbSizeAndTTIList(numberOfTbSizeAndTTIList);
+	setLogicalChannelList(logicalChannelList);
+}
 
 const void *CommonTransChTFSTti::choicesInfo[5] = {
 	&CommonDynamicTFInfoList::theInfo,
@@ -10242,6 +11573,10 @@ const CommonTransChTFS::Info CommonTransChTFS::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CommonTransChTFS::CommonTransChTFS(const CommonTransChTFSTti& commonTransChTFSTti, const SemistaticTFInformation& semistaticTFInformation) : Sequence(&theInfo) {
+	setCommonTransChTFSTti(commonTransChTFSTti);
+	setSemistaticTFInformation(semistaticTFInformation);
+}
 
 const void *TransportFormatSet::choicesInfo[2] = {
 	&DedicatedTransChTFS::theInfo,
@@ -10275,6 +11610,11 @@ const ULAddReconfTransChInformation::Info ULAddReconfTransChInformation::theInfo
 	itemsPres,
 	3, 0, 0
 };
+ULAddReconfTransChInformation::ULAddReconfTransChInformation(const ULTrCHType& ulTransportChannelType, const TransportChannelIdentity& transportChannelIdentity, const TransportFormatSet& transportFormatSet) : Sequence(&theInfo) {
+	setUlTransportChannelType(ulTransportChannelType);
+	setTransportChannelIdentity(transportChannelIdentity);
+	setTransportFormatSet(transportFormatSet);
+}
 
 const void *DLCommonTransChInfoModeSpecificInfoFddDlParameters::choicesInfo[2] = {
 	&TFCS::theInfo,
@@ -10335,6 +11675,10 @@ const IndividualDLCCTrCHInfo::Info IndividualDLCCTrCHInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+IndividualDLCCTrCHInfo::IndividualDLCCTrCHInfo(const TFCSIdentity& dlTFCSIdentity, const IndividualDLCCTrCHInfoTfcsSignallingMode& individualDLCCTrCHInfoTfcsSignallingMode) : Sequence(&theInfo) {
+	setDlTFCSIdentity(dlTFCSIdentity);
+	setIndividualDLCCTrCHInfoTfcsSignallingMode(individualDLCCTrCHInfoTfcsSignallingMode);
+}
 
 const void *DLCommonTransChInfoModeSpecificInfoTdd::itemsInfo[1] = {
 	&IndividualDLCCTrCHInfoList::theInfo,
@@ -10382,6 +11726,9 @@ const DLCommonTransChInfo::Info DLCommonTransChInfo::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+DLCommonTransChInfo::DLCommonTransChInfo(const DLCommonTransChInfoModeSpecificInfo& dLCommonTransChInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setDLCommonTransChInfoModeSpecificInfo(dLCommonTransChInfoModeSpecificInfo);
+}
 
 const void *ULTransportChannelIdentity::itemsInfo[2] = {
 	&ULTrCHType::theInfo,
@@ -10400,6 +11747,10 @@ const ULTransportChannelIdentity::Info ULTransportChannelIdentity::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ULTransportChannelIdentity::ULTransportChannelIdentity(const ULTrCHType& ulTransportChannelType, const TransportChannelIdentity& ulTransportChannelIdentity) : Sequence(&theInfo) {
+	setUlTransportChannelType(ulTransportChannelType);
+	setUlTransportChannelIdentity(ulTransportChannelIdentity);
+}
 
 const void *DLAddReconfTransChInformationTfsSignallingMode::choicesInfo[2] = {
 	&TransportFormatSet::theInfo,
@@ -10429,6 +11780,9 @@ const QualityTarget::Info QualityTarget::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+QualityTarget::QualityTarget(const BLERQualityValue& blerQualityValue) : Sequence(&theInfo) {
+	setBlerQualityValue(blerQualityValue);
+}
 
 const void *TMSignallingInfoTmSignallingModeMode2::itemsInfo[1] = {
 	&ULControlledTrChList::theInfo,
@@ -10445,6 +11799,9 @@ const TMSignallingInfoTmSignallingModeMode2::Info TMSignallingInfoTmSignallingMo
 	itemsPres,
 	1, 0, 0
 };
+TMSignallingInfoTmSignallingModeMode2::TMSignallingInfoTmSignallingModeMode2(const ULControlledTrChList& ulcontrolledTrChList) : Sequence(&theInfo) {
+	setUlcontrolledTrChList(ulcontrolledTrChList);
+}
 
 const void *TMSignallingInfoTmSignallingMode::choicesInfo[2] = {
 	&TMSignallingInfoTmSignallingModeMode1::theInfo,
@@ -10476,6 +11833,10 @@ const TMSignallingInfo::Info TMSignallingInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+TMSignallingInfo::TMSignallingInfo(const MessType& messType, const TMSignallingInfoTmSignallingMode& tMSignallingInfoTmSignallingMode) : Sequence(&theInfo) {
+	setMessType(messType);
+	setTMSignallingInfoTmSignallingMode(tMSignallingInfoTmSignallingMode);
+}
 
 const void *DLAddReconfTransChInformation::itemsInfo[5] = {
 	&DLTrCHType::theInfo,
@@ -10500,6 +11861,11 @@ const DLAddReconfTransChInformation::Info DLAddReconfTransChInformation::theInfo
 	itemsPres,
 	5, 2, 0
 };
+DLAddReconfTransChInformation::DLAddReconfTransChInformation(const DLTrCHType& dlTransportChannelType, const TransportChannelIdentity& dltransportChannelIdentity, const DLAddReconfTransChInformationTfsSignallingMode& dLAddReconfTransChInformationTfsSignallingMode) : Sequence(&theInfo) {
+	setDlTransportChannelType(dlTransportChannelType);
+	setDltransportChannelIdentity(dltransportChannelIdentity);
+	setDLAddReconfTransChInformationTfsSignallingMode(dLAddReconfTransChInformationTfsSignallingMode);
+}
 
 const void *PreDefTransChConfiguration::itemsInfo[4] = {
 	&ULCommonTransChInfo::theInfo,
@@ -10522,6 +11888,12 @@ const PreDefTransChConfiguration::Info PreDefTransChConfiguration::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+PreDefTransChConfiguration::PreDefTransChConfiguration(const ULCommonTransChInfo& ulCommonTransChInfo, const ULAddReconfTransChInfoList& ulAddReconfTrChInfoList, const DLCommonTransChInfo& dlCommonTransChInfo, const DLAddReconfTransChInfoList& dlTrChInfoList) : Sequence(&theInfo) {
+	setUlCommonTransChInfo(ulCommonTransChInfo);
+	setUlAddReconfTrChInfoList(ulAddReconfTrChInfoList);
+	setDlCommonTransChInfo(dlCommonTransChInfo);
+	setDlTrChInfoList(dlTrChInfoList);
+}
 
 const void *ULDPCHPowerControlInfoPredefFdd::itemsInfo[1] = {
 	&PowerControlAlgorithm::theInfo,
@@ -10538,6 +11910,9 @@ const ULDPCHPowerControlInfoPredefFdd::Info ULDPCHPowerControlInfoPredefFdd::the
 	itemsPres,
 	1, 0, 0
 };
+ULDPCHPowerControlInfoPredefFdd::ULDPCHPowerControlInfoPredefFdd(const PowerControlAlgorithm& powerControlAlgorithm) : Sequence(&theInfo) {
+	setPowerControlAlgorithm(powerControlAlgorithm);
+}
 
 const void *ULDPCHPowerControlInfoPredefTdd::itemsInfo[1] = {
 	&ConstantValueTdd::theInfo,
@@ -10554,6 +11929,9 @@ const ULDPCHPowerControlInfoPredefTdd::Info ULDPCHPowerControlInfoPredefTdd::the
 	itemsPres,
 	1, 0, 0
 };
+ULDPCHPowerControlInfoPredefTdd::ULDPCHPowerControlInfoPredefTdd(const ConstantValueTdd& dpchConstantValue) : Sequence(&theInfo) {
+	setDpchConstantValue(dpchConstantValue);
+}
 
 const void *ULDPCHPowerControlInfoPredef::choicesInfo[2] = {
 	&ULDPCHPowerControlInfoPredefFdd::theInfo,
@@ -10585,6 +11963,10 @@ const ULDPCHInfoPredefModeSpecificInfoFdd::Info ULDPCHInfoPredefModeSpecificInfo
 	itemsPres,
 	2, 0, 0
 };
+ULDPCHInfoPredefModeSpecificInfoFdd::ULDPCHInfoPredefModeSpecificInfoFdd(const ULDPCHInfoPredefModeSpecificInfoFddTfciExistence& uLDPCHInfoPredefModeSpecificInfoFddTfciExistence, const PuncturingLimit& puncturingLimit) : Sequence(&theInfo) {
+	setULDPCHInfoPredefModeSpecificInfoFddTfciExistence(uLDPCHInfoPredefModeSpecificInfoFddTfciExistence);
+	setPuncturingLimit(puncturingLimit);
+}
 
 const void *RepetitionPeriodAndLength::choicesInfo[7] = {
 	&RepetitionPeriodAndLengthRepetitionPeriod1::theInfo,
@@ -10625,6 +12007,10 @@ const CommonTimeslotInfo::Info CommonTimeslotInfo::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+CommonTimeslotInfo::CommonTimeslotInfo(const SecondInterleavingMode& secondInterleavingMode, const PuncturingLimit& puncturingLimit) : Sequence(&theInfo) {
+	setSecondInterleavingMode(secondInterleavingMode);
+	setPuncturingLimit(puncturingLimit);
+}
 
 const void *ULDPCHInfoPredefModeSpecificInfoTdd::itemsInfo[1] = {
 	&CommonTimeslotInfo::theInfo,
@@ -10641,6 +12027,9 @@ const ULDPCHInfoPredefModeSpecificInfoTdd::Info ULDPCHInfoPredefModeSpecificInfo
 	itemsPres,
 	1, 0, 0
 };
+ULDPCHInfoPredefModeSpecificInfoTdd::ULDPCHInfoPredefModeSpecificInfoTdd(const CommonTimeslotInfo& commonTimeslotInfo) : Sequence(&theInfo) {
+	setCommonTimeslotInfo(commonTimeslotInfo);
+}
 
 const void *ULDPCHInfoPredefModeSpecificInfo::choicesInfo[2] = {
 	&ULDPCHInfoPredefModeSpecificInfoFdd::theInfo,
@@ -10672,6 +12061,10 @@ const ULDPCHInfoPredef::Info ULDPCHInfoPredef::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ULDPCHInfoPredef::ULDPCHInfoPredef(const ULDPCHPowerControlInfoPredef& ulDPCHPowerControlInfo, const ULDPCHInfoPredefModeSpecificInfo& uLDPCHInfoPredefModeSpecificInfo) : Sequence(&theInfo) {
+	setUlDPCHPowerControlInfo(ulDPCHPowerControlInfo);
+	setULDPCHInfoPredefModeSpecificInfo(uLDPCHInfoPredefModeSpecificInfo);
+}
 
 const void *SF512AndPilot::choicesInfo[8] = {
 	&SF512AndPilotSfd4::theInfo,
@@ -10711,6 +12104,11 @@ const DLDPCHInfoCommonPredefModeSpecificInfoFdd::Info DLDPCHInfoCommonPredefMode
 	itemsPres,
 	3, 0, 0
 };
+DLDPCHInfoCommonPredefModeSpecificInfoFdd::DLDPCHInfoCommonPredefModeSpecificInfoFdd(const SF512AndPilot& spreadingFactorAndPilot, const PositionFixedOrFlexible& positionFixedOrFlexible, const DLDPCHInfoCommonPredefModeSpecificInfoFddTfciExistence& dLDPCHInfoCommonPredefModeSpecificInfoFddTfciExistence) : Sequence(&theInfo) {
+	setSpreadingFactorAndPilot(spreadingFactorAndPilot);
+	setPositionFixedOrFlexible(positionFixedOrFlexible);
+	setDLDPCHInfoCommonPredefModeSpecificInfoFddTfciExistence(dLDPCHInfoCommonPredefModeSpecificInfoFddTfciExistence);
+}
 
 const void *DLDPCHInfoCommonPredefModeSpecificInfoTdd::itemsInfo[1] = {
 	&CommonTimeslotInfo::theInfo,
@@ -10727,6 +12125,9 @@ const DLDPCHInfoCommonPredefModeSpecificInfoTdd::Info DLDPCHInfoCommonPredefMode
 	itemsPres,
 	1, 0, 0
 };
+DLDPCHInfoCommonPredefModeSpecificInfoTdd::DLDPCHInfoCommonPredefModeSpecificInfoTdd(const CommonTimeslotInfo& commonTimeslotInfo) : Sequence(&theInfo) {
+	setCommonTimeslotInfo(commonTimeslotInfo);
+}
 
 const void *DLDPCHInfoCommonPredefModeSpecificInfo::choicesInfo[2] = {
 	&DLDPCHInfoCommonPredefModeSpecificInfoFdd::theInfo,
@@ -10756,6 +12157,9 @@ const DLDPCHInfoCommonPredef::Info DLDPCHInfoCommonPredef::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DLDPCHInfoCommonPredef::DLDPCHInfoCommonPredef(const DLDPCHInfoCommonPredefModeSpecificInfo& dLDPCHInfoCommonPredefModeSpecificInfo) : Sequence(&theInfo) {
+	setDLDPCHInfoCommonPredefModeSpecificInfo(dLDPCHInfoCommonPredefModeSpecificInfo);
+}
 
 const void *DLCommonInformationPredef::itemsInfo[1] = {
 	&DLDPCHInfoCommonPredef::theInfo,
@@ -10790,6 +12194,9 @@ const PreDefPhyChConfiguration::Info PreDefPhyChConfiguration::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+PreDefPhyChConfiguration::PreDefPhyChConfiguration(const ULDPCHInfoPredef& ulDPCHInfoPredef) : Sequence(&theInfo) {
+	setUlDPCHInfoPredef(ulDPCHInfoPredef);
+}
 
 const void *PreDefRadioConfiguration::itemsInfo[3] = {
 	&PredefinedRBConfiguration::theInfo,
@@ -10810,6 +12217,11 @@ const PreDefRadioConfiguration::Info PreDefRadioConfiguration::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+PreDefRadioConfiguration::PreDefRadioConfiguration(const PredefinedRBConfiguration& predefinedRBConfiguration, const PreDefTransChConfiguration& preDefTransChConfiguration, const PreDefPhyChConfiguration& preDefPhyChConfiguration) : Sequence(&theInfo) {
+	setPredefinedRBConfiguration(predefinedRBConfiguration);
+	setPreDefTransChConfiguration(preDefTransChConfiguration);
+	setPreDefPhyChConfiguration(preDefPhyChConfiguration);
+}
 
 const void *ULDPCHInfoPredefv770extModeSpecificInfoFdd::itemsInfo[1] = {
 	&NumberOfTPCBits::theInfo,
@@ -10855,6 +12267,9 @@ const ULDPCHInfoPredefv770ext::Info ULDPCHInfoPredefv770ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+ULDPCHInfoPredefv770ext::ULDPCHInfoPredefv770ext(const ULDPCHInfoPredefv770extModeSpecificInfo& uLDPCHInfoPredefv770extModeSpecificInfo) : Sequence(&theInfo) {
+	setULDPCHInfoPredefv770extModeSpecificInfo(uLDPCHInfoPredefv770extModeSpecificInfo);
+}
 
 const void *PreDefPhyChConfigurationv770ext::itemsInfo[1] = {
 	&ULDPCHInfoPredefv770ext::theInfo,
@@ -10871,6 +12286,9 @@ const PreDefPhyChConfigurationv770ext::Info PreDefPhyChConfigurationv770ext::the
 	itemsPres,
 	1, 0, 0
 };
+PreDefPhyChConfigurationv770ext::PreDefPhyChConfigurationv770ext(const ULDPCHInfoPredefv770ext& ulDPCHInfoPredef) : Sequence(&theInfo) {
+	setUlDPCHInfoPredef(ulDPCHInfoPredef);
+}
 
 const void *PreDefRadioConfigurationv770ext::itemsInfo[1] = {
 	&PreDefPhyChConfigurationv770ext::theInfo,
@@ -10887,6 +12305,9 @@ const PreDefRadioConfigurationv770ext::Info PreDefRadioConfigurationv770ext::the
 	itemsPres,
 	1, 0, 0
 };
+PreDefRadioConfigurationv770ext::PreDefRadioConfigurationv770ext(const PreDefPhyChConfigurationv770ext& preDefPhyChConfiguration) : Sequence(&theInfo) {
+	setPreDefPhyChConfiguration(preDefPhyChConfiguration);
+}
 
 const void *PreDefRadioConfigurationv920ext::itemsInfo[1] = {
 	&MAChsWindowSizer9::theInfo,
@@ -10903,6 +12324,9 @@ const PreDefRadioConfigurationv920ext::Info PreDefRadioConfigurationv920ext::the
 	itemsPres,
 	1, 0, 0
 };
+PreDefRadioConfigurationv920ext::PreDefRadioConfigurationv920ext(const MAChsWindowSizer9& macehsWindowSize) : Sequence(&theInfo) {
+	setMacehsWindowSize(macehsWindowSize);
+}
 
 const void *PredefinedConfigStatusInfoOther::choicesInfo[2] = {
 	&PredefinedConfigStatusInfoOtherNotStored::theInfo,
@@ -10947,6 +12371,9 @@ const PredefinedConfigSetWithDifferentValueTag::Info PredefinedConfigSetWithDiff
 	itemsPres,
 	2, 1, 0
 };
+PredefinedConfigSetWithDifferentValueTag::PredefinedConfigSetWithDifferentValueTag(const PredefinedConfigValueTagList& valueTagList) : Sequence(&theInfo) {
+	setValueTagList(valueTagList);
+}
 
 const void *PredefinedConfigStatusListComp::itemsInfo[2] = {
 	&PredefinedConfigSetsWithDifferentValueTag::theInfo,
@@ -10965,6 +12392,9 @@ const PredefinedConfigStatusListComp::Info PredefinedConfigStatusListComp::theIn
 	itemsPres,
 	2, 1, 0
 };
+PredefinedConfigStatusListComp::PredefinedConfigStatusListComp(const PredefinedConfigSetsWithDifferentValueTag& setsWithDifferentValueTag) : Sequence(&theInfo) {
+	setSetsWithDifferentValueTag(setsWithDifferentValueTag);
+}
 
 const void *RABInfo::itemsInfo[4] = {
 	&RABIdentity::theInfo,
@@ -10987,6 +12417,11 @@ const RABInfo::Info RABInfo::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+RABInfo::RABInfo(const RABIdentity& rabIdentity, const CNDomainIdentity& cnDomainIdentity, const ReEstablishmentTimer& reEstablishmentTimer) : Sequence(&theInfo) {
+	setRabIdentity(rabIdentity);
+	setCnDomainIdentity(cnDomainIdentity);
+	setReEstablishmentTimer(reEstablishmentTimer);
+}
 
 const void *RABInfor6ext::itemsInfo[1] = {
 	&MBMSSessionIdentity::theInfo,
@@ -11019,6 +12454,9 @@ const RABInfov6b0ext::Info RABInfov6b0ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+RABInfov6b0ext::RABInfov6b0ext(const RABInfov6b0extMbmsServiceIdentity& rABInfov6b0extMbmsServiceIdentity) : Sequence(&theInfo) {
+	setRABInfov6b0extMbmsServiceIdentity(rABInfov6b0extMbmsServiceIdentity);
+}
 
 const void *RABInfor6::itemsInfo[5] = {
 	&RABIdentity::theInfo,
@@ -11043,6 +12481,11 @@ const RABInfor6::Info RABInfor6::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+RABInfor6::RABInfor6(const RABIdentity& rabIdentity, const CNDomainIdentity& cnDomainIdentity, const ReEstablishmentTimer& reEstablishmentTimer) : Sequence(&theInfo) {
+	setRabIdentity(rabIdentity);
+	setCnDomainIdentity(cnDomainIdentity);
+	setReEstablishmentTimer(reEstablishmentTimer);
+}
 
 const void *RABInfor7::itemsInfo[6] = {
 	&RABIdentity::theInfo,
@@ -11069,6 +12512,11 @@ const RABInfor7::Info RABInfor7::theInfo = {
 	itemsPres,
 	6, 3, 0
 };
+RABInfor7::RABInfor7(const RABIdentity& rabIdentity, const CNDomainIdentity& cnDomainIdentity, const ReEstablishmentTimer& reEstablishmentTimer) : Sequence(&theInfo) {
+	setRabIdentity(rabIdentity);
+	setCnDomainIdentity(cnDomainIdentity);
+	setReEstablishmentTimer(reEstablishmentTimer);
+}
 
 const void *RABInformationReconfig::itemsInfo[3] = {
 	&RABIdentity::theInfo,
@@ -11089,6 +12537,11 @@ const RABInformationReconfig::Info RABInformationReconfig::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+RABInformationReconfig::RABInformationReconfig(const RABIdentity& rabIdentity, const CNDomainIdentity& cnDomainIdentity, const NASSynchronisationIndicator& nasSynchronisationIndicator) : Sequence(&theInfo) {
+	setRabIdentity(rabIdentity);
+	setCnDomainIdentity(cnDomainIdentity);
+	setNasSynchronisationIndicator(nasSynchronisationIndicator);
+}
 
 const void *RABInformationReconfigr8::itemsInfo[4] = {
 	&RABIdentity::theInfo,
@@ -11111,6 +12564,11 @@ const RABInformationReconfigr8::Info RABInformationReconfigr8::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+RABInformationReconfigr8::RABInformationReconfigr8(const RABIdentity& rabIdentity, const CNDomainIdentity& cnDomainIdentity, const NASSynchronisationIndicator& nasSynchronisationIndicator) : Sequence(&theInfo) {
+	setRabIdentity(rabIdentity);
+	setCnDomainIdentity(cnDomainIdentity);
+	setNasSynchronisationIndicator(nasSynchronisationIndicator);
+}
 
 const void *RABInfoPost::itemsInfo[3] = {
 	&RABIdentity::theInfo,
@@ -11131,6 +12589,10 @@ const RABInfoPost::Info RABInfoPost::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+RABInfoPost::RABInfoPost(const RABIdentity& rabIdentity, const CNDomainIdentity& cnDomainIdentity) : Sequence(&theInfo) {
+	setRabIdentity(rabIdentity);
+	setCnDomainIdentity(cnDomainIdentity);
+}
 
 const void *RABInformationMBMSPtp::itemsInfo[3] = {
 	&RBIdentity::theInfo,
@@ -11151,6 +12613,10 @@ const RABInformationMBMSPtp::Info RABInformationMBMSPtp::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+RABInformationMBMSPtp::RABInformationMBMSPtp(const RBIdentity& rbIdentity, const RABInformationMBMSPtpMbmsServiceIdentity& rABInformationMBMSPtpMbmsServiceIdentity) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRABInformationMBMSPtpMbmsServiceIdentity(rABInformationMBMSPtpMbmsServiceIdentity);
+}
 
 const void *RABInformationSetup::itemsInfo[2] = {
 	&RABInfo::theInfo,
@@ -11169,6 +12635,10 @@ const RABInformationSetup::Info RABInformationSetup::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RABInformationSetup::RABInformationSetup(const RABInfo& rabInfo, const RBInformationSetupList& rbInformationSetupList) : Sequence(&theInfo) {
+	setRabInfo(rabInfo);
+	setRbInformationSetupList(rbInformationSetupList);
+}
 
 const void *RBInformationSetupr4::itemsInfo[4] = {
 	&RBIdentity::theInfo,
@@ -11191,6 +12661,11 @@ const RBInformationSetupr4::Info RBInformationSetupr4::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+RBInformationSetupr4::RBInformationSetupr4(const RBIdentity& rbIdentity, const RLCInfoChoice& rlcInfoChoice, const RBMappingInfo& rbMappingInfo) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRlcInfoChoice(rlcInfoChoice);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *RABInformationSetupr4::itemsInfo[2] = {
 	&RABInfo::theInfo,
@@ -11209,6 +12684,10 @@ const RABInformationSetupr4::Info RABInformationSetupr4::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RABInformationSetupr4::RABInformationSetupr4(const RABInfo& rabInfo, const RBInformationSetupListr4& rbInformationSetupList) : Sequence(&theInfo) {
+	setRabInfo(rabInfo);
+	setRbInformationSetupList(rbInformationSetupList);
+}
 
 const void *RLCInfor5::itemsInfo[3] = {
 	&ULRLCMode::theInfo,
@@ -11229,6 +12708,9 @@ const RLCInfor5::Info RLCInfor5::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+RLCInfor5::RLCInfor5(const RLCInfor5RlcOneSidedReEst& rLCInfor5RlcOneSidedReEst) : Sequence(&theInfo) {
+	setRLCInfor5RlcOneSidedReEst(rLCInfor5RlcOneSidedReEst);
+}
 
 const void *RLCInfoChoicer5::choicesInfo[2] = {
 	&RLCInfor5::theInfo,
@@ -11282,6 +12764,11 @@ const RBInformationSetupr5::Info RBInformationSetupr5::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+RBInformationSetupr5::RBInformationSetupr5(const RBIdentity& rbIdentity, const RLCInfoChoicer5& rlcInfoChoice, const RBMappingInfor5& rbMappingInfo) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRlcInfoChoice(rlcInfoChoice);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *RABInformationSetupr5::itemsInfo[2] = {
 	&RABInfo::theInfo,
@@ -11300,6 +12787,10 @@ const RABInformationSetupr5::Info RABInformationSetupr5::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RABInformationSetupr5::RABInformationSetupr5(const RABInfo& rabInfo, const RBInformationSetupListr5& rbInformationSetupList) : Sequence(&theInfo) {
+	setRabInfo(rabInfo);
+	setRbInformationSetupList(rbInformationSetupList);
+}
 
 const void *RABInformationSetupr6ext::itemsInfo[1] = {
 	&RABInfor6ext::theInfo,
@@ -11316,6 +12807,9 @@ const RABInformationSetupr6ext::Info RABInformationSetupr6ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+RABInformationSetupr6ext::RABInformationSetupr6ext(const RABInfor6ext& rabInfor6ext) : Sequence(&theInfo) {
+	setRabInfor6ext(rabInfor6ext);
+}
 
 const void *RLCInfor6::itemsInfo[4] = {
 	&ULRLCMode::theInfo,
@@ -11338,6 +12832,9 @@ const RLCInfor6::Info RLCInfor6::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+RLCInfor6::RLCInfor6(const RLCInfor6RlcOneSidedReEst& rLCInfor6RlcOneSidedReEst) : Sequence(&theInfo) {
+	setRLCInfor6RlcOneSidedReEst(rLCInfor6RlcOneSidedReEst);
+}
 
 const void *RLCInfoChoicer6::choicesInfo[2] = {
 	&RLCInfor6::theInfo,
@@ -11385,6 +12882,10 @@ const ULLogicalChannelMappingr6UlTrCHTypeDchrachusch::Info ULLogicalChannelMappi
 	itemsPres,
 	3, 1, 0
 };
+ULLogicalChannelMappingr6UlTrCHTypeDchrachusch::ULLogicalChannelMappingr6UlTrCHTypeDchrachusch(const ULTransportChannelType& ulTransportChannelType, const ULLogicalChannelMappingr6UlTrCHTypeDchrachuschRlcSizeList& uLLogicalChannelMappingr6UlTrCHTypeDchrachuschRlcSizeList) : Sequence(&theInfo) {
+	setUlTransportChannelType(ulTransportChannelType);
+	setULLogicalChannelMappingr6UlTrCHTypeDchrachuschRlcSizeList(uLLogicalChannelMappingr6UlTrCHTypeDchrachuschRlcSizeList);
+}
 
 const void *ULLogicalChannelMappingr6UlTrCHTypeEdch::itemsInfo[5] = {
 	&LogicalChannelIdentity::theInfo,
@@ -11409,6 +12910,13 @@ const ULLogicalChannelMappingr6UlTrCHTypeEdch::Info ULLogicalChannelMappingr6UlT
 	itemsPres,
 	5, 0, 0
 };
+ULLogicalChannelMappingr6UlTrCHTypeEdch::ULLogicalChannelMappingr6UlTrCHTypeEdch(const LogicalChannelIdentity& logicalChannelIdentity, const EDCHMACdFlowIdentity& eDCHMACdFlowIdentity, const DDI& ddi, const RLCPDUSizeList& rlcPDUSizeList, const ULLogicalChannelMappingr6UlTrCHTypeEdchIncludeInSchedulingInfo& uLLogicalChannelMappingr6UlTrCHTypeEdchIncludeInSchedulingInfo) : Sequence(&theInfo) {
+	setLogicalChannelIdentity(logicalChannelIdentity);
+	setEDCHMACdFlowIdentity(eDCHMACdFlowIdentity);
+	setDdi(ddi);
+	setRlcPDUSizeList(rlcPDUSizeList);
+	setULLogicalChannelMappingr6UlTrCHTypeEdchIncludeInSchedulingInfo(uLLogicalChannelMappingr6UlTrCHTypeEdchIncludeInSchedulingInfo);
+}
 
 const void *ULLogicalChannelMappingr6UlTrCHType::choicesInfo[2] = {
 	&ULLogicalChannelMappingr6UlTrCHTypeDchrachusch::theInfo,
@@ -11440,6 +12948,10 @@ const ULLogicalChannelMappingr6::Info ULLogicalChannelMappingr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ULLogicalChannelMappingr6::ULLogicalChannelMappingr6(const ULLogicalChannelMappingr6UlTrCHType& uLLogicalChannelMappingr6UlTrCHType, const MACLogicalChannelPriority& macLogicalChannelPriority) : Sequence(&theInfo) {
+	setULLogicalChannelMappingr6UlTrCHType(uLLogicalChannelMappingr6UlTrCHType);
+	setMacLogicalChannelPriority(macLogicalChannelPriority);
+}
 
 const void *ULLogicalChannelMappingListr6::itemsInfo[2] = {
 	&ULLogicalChannelMappingListr6RlcLogicalChannelMappingIndicator::theInfo,
@@ -11458,6 +12970,10 @@ const ULLogicalChannelMappingListr6::Info ULLogicalChannelMappingListr6::theInfo
 	itemsPres,
 	2, 0, 0
 };
+ULLogicalChannelMappingListr6::ULLogicalChannelMappingListr6(const ULLogicalChannelMappingListr6RlcLogicalChannelMappingIndicator& uLLogicalChannelMappingListr6RlcLogicalChannelMappingIndicator, const ULLogicalChannelMappingListr6UlLogicalChannelMapping& uLLogicalChannelMappingListr6UlLogicalChannelMapping) : Sequence(&theInfo) {
+	setULLogicalChannelMappingListr6RlcLogicalChannelMappingIndicator(uLLogicalChannelMappingListr6RlcLogicalChannelMappingIndicator);
+	setULLogicalChannelMappingListr6UlLogicalChannelMapping(uLLogicalChannelMappingListr6UlLogicalChannelMapping);
+}
 
 const void *ULLogicalChannelMappingsr6::choicesInfo[2] = {
 	&ULLogicalChannelMappingr6::theInfo,
@@ -11511,6 +13027,11 @@ const RBInformationSetupr6::Info RBInformationSetupr6::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+RBInformationSetupr6::RBInformationSetupr6(const RBIdentity& rbIdentity, const RLCInfoChoicer6& rlcInfoChoice, const RBMappingInfor6& rbMappingInfo) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRlcInfoChoice(rlcInfoChoice);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *RABInformationSetupr6::itemsInfo[2] = {
 	&RABInfor6::theInfo,
@@ -11529,6 +13050,10 @@ const RABInformationSetupr6::Info RABInformationSetupr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RABInformationSetupr6::RABInformationSetupr6(const RABInfor6& rabInfo, const RBInformationSetupListr6& rbInformationSetupList) : Sequence(&theInfo) {
+	setRabInfo(rabInfo);
+	setRbInformationSetupList(rbInformationSetupList);
+}
 
 const void *RABInformationSetupv6b0ext::itemsInfo[1] = {
 	&RABInfov6b0ext::theInfo,
@@ -11569,6 +13094,9 @@ const RLCInfor7::Info RLCInfor7::theInfo = {
 	itemsPres,
 	5, 4, 0
 };
+RLCInfor7::RLCInfor7(const RLCInfor7RlcOneSidedReEst& rLCInfor7RlcOneSidedReEst) : Sequence(&theInfo) {
+	setRLCInfor7RlcOneSidedReEst(rLCInfor7RlcOneSidedReEst);
+}
 
 const void *RLCInfoChoicer7::choicesInfo[2] = {
 	&RLCInfor7::theInfo,
@@ -11622,6 +13150,11 @@ const RBInformationSetupr7::Info RBInformationSetupr7::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+RBInformationSetupr7::RBInformationSetupr7(const RBIdentity& rbIdentity, const RLCInfoChoicer7& rlcInfoChoice, const RBMappingInfor7& rbMappingInfo) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRlcInfoChoice(rlcInfoChoice);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *RABInformationSetupr7::itemsInfo[2] = {
 	&RABInfor7::theInfo,
@@ -11640,6 +13173,10 @@ const RABInformationSetupr7::Info RABInformationSetupr7::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RABInformationSetupr7::RABInformationSetupr7(const RABInfor7& rabInfo, const RBInformationSetupListr7& rbInformationSetupList) : Sequence(&theInfo) {
+	setRabInfo(rabInfo);
+	setRbInformationSetupList(rbInformationSetupList);
+}
 
 const void *ULLogicalChannelMappingr8UlTrCHTypeDchrachuschRlcSizeList::choicesInfo[3] = {
 	&ULLogicalChannelMappingr8UlTrCHTypeDchrachuschRlcSizeListAllSizes::theInfo,
@@ -11674,6 +13211,10 @@ const ULLogicalChannelMappingr8UlTrCHTypeDchrachusch::Info ULLogicalChannelMappi
 	itemsPres,
 	3, 1, 0
 };
+ULLogicalChannelMappingr8UlTrCHTypeDchrachusch::ULLogicalChannelMappingr8UlTrCHTypeDchrachusch(const ULTransportChannelType& ulTransportChannelType, const ULLogicalChannelMappingr8UlTrCHTypeDchrachuschRlcSizeList& uLLogicalChannelMappingr8UlTrCHTypeDchrachuschRlcSizeList) : Sequence(&theInfo) {
+	setUlTransportChannelType(ulTransportChannelType);
+	setULLogicalChannelMappingr8UlTrCHTypeDchrachuschRlcSizeList(uLLogicalChannelMappingr8UlTrCHTypeDchrachuschRlcSizeList);
+}
 
 const void *ULLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSizeFixedSize::itemsInfo[2] = {
 	&DDI::theInfo,
@@ -11692,6 +13233,10 @@ const ULLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSizeFixedSize::Info ULLogical
 	itemsPres,
 	2, 0, 0
 };
+ULLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSizeFixedSize::ULLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSizeFixedSize(const DDI& ddi, const RLCPDUSizeList& rlcPDUSizeList) : Sequence(&theInfo) {
+	setDdi(ddi);
+	setRlcPDUSizeList(rlcPDUSizeList);
+}
 
 const void *RLCPDUSizeConstraint::itemsInfo[3] = {
 	&RLCPDUSizeConstraintlengthIndicatorSize::theInfo,
@@ -11712,6 +13257,10 @@ const RLCPDUSizeConstraint::Info RLCPDUSizeConstraint::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+RLCPDUSizeConstraint::RLCPDUSizeConstraint(const RLCPDUSizeConstraintMinRLCPDUSize& rLCPDUSizeConstraintMinRLCPDUSize, const RLCPDUSizeConstraintLargestRLCPDUSize& rLCPDUSizeConstraintLargestRLCPDUSize) : Sequence(&theInfo) {
+	setRLCPDUSizeConstraintMinRLCPDUSize(rLCPDUSizeConstraintMinRLCPDUSize);
+	setRLCPDUSizeConstraintLargestRLCPDUSize(rLCPDUSizeConstraintLargestRLCPDUSize);
+}
 
 const void *ULLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSize::choicesInfo[2] = {
 	&ULLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSizeFixedSize::theInfo,
@@ -11747,6 +13296,12 @@ const ULLogicalChannelMappingr8UlTrCHTypeEdch::Info ULLogicalChannelMappingr8UlT
 	itemsPres,
 	4, 0, 0
 };
+ULLogicalChannelMappingr8UlTrCHTypeEdch::ULLogicalChannelMappingr8UlTrCHTypeEdch(const LogicalChannelIdentity& logicalChannelIdentity, const EDCHMACdFlowIdentity& eDCHMACdFlowIdentity, const ULLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSize& uLLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSize, const ULLogicalChannelMappingr8UlTrCHTypeEdchIncludeInSchedulingInfo& uLLogicalChannelMappingr8UlTrCHTypeEdchIncludeInSchedulingInfo) : Sequence(&theInfo) {
+	setLogicalChannelIdentity(logicalChannelIdentity);
+	setEDCHMACdFlowIdentity(eDCHMACdFlowIdentity);
+	setULLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSize(uLLogicalChannelMappingr8UlTrCHTypeEdchRlcPDUSize);
+	setULLogicalChannelMappingr8UlTrCHTypeEdchIncludeInSchedulingInfo(uLLogicalChannelMappingr8UlTrCHTypeEdchIncludeInSchedulingInfo);
+}
 
 const void *ULLogicalChannelMappingr8UlTrCHType::choicesInfo[2] = {
 	&ULLogicalChannelMappingr8UlTrCHTypeDchrachusch::theInfo,
@@ -11778,6 +13333,10 @@ const ULLogicalChannelMappingr8::Info ULLogicalChannelMappingr8::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ULLogicalChannelMappingr8::ULLogicalChannelMappingr8(const ULLogicalChannelMappingr8UlTrCHType& uLLogicalChannelMappingr8UlTrCHType, const MACLogicalChannelPriority& macLogicalChannelPriority) : Sequence(&theInfo) {
+	setULLogicalChannelMappingr8UlTrCHType(uLLogicalChannelMappingr8UlTrCHType);
+	setMacLogicalChannelPriority(macLogicalChannelPriority);
+}
 
 const void *ULLogicalChannelMappingListr8::itemsInfo[2] = {
 	&ULLogicalChannelMappingListr8RlcLogicalChannelMappingIndicator::theInfo,
@@ -11796,6 +13355,10 @@ const ULLogicalChannelMappingListr8::Info ULLogicalChannelMappingListr8::theInfo
 	itemsPres,
 	2, 0, 0
 };
+ULLogicalChannelMappingListr8::ULLogicalChannelMappingListr8(const ULLogicalChannelMappingListr8RlcLogicalChannelMappingIndicator& uLLogicalChannelMappingListr8RlcLogicalChannelMappingIndicator, const ULLogicalChannelMappingListr8UlLogicalChannelMapping& uLLogicalChannelMappingListr8UlLogicalChannelMapping) : Sequence(&theInfo) {
+	setULLogicalChannelMappingListr8RlcLogicalChannelMappingIndicator(uLLogicalChannelMappingListr8RlcLogicalChannelMappingIndicator);
+	setULLogicalChannelMappingListr8UlLogicalChannelMapping(uLLogicalChannelMappingListr8UlLogicalChannelMapping);
+}
 
 const void *ULLogicalChannelMappingsr8::choicesInfo[2] = {
 	&ULLogicalChannelMappingr8::theInfo,
@@ -11849,6 +13412,11 @@ const RBInformationSetupr8::Info RBInformationSetupr8::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+RBInformationSetupr8::RBInformationSetupr8(const RBIdentity& rbIdentity, const RLCInfoChoicer7& rlcInfoChoice, const RBMappingInfor8& rbMappingInfo) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRlcInfoChoice(rlcInfoChoice);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *RABInformationSetupr8::itemsInfo[4] = {
 	&RABInfor7::theInfo,
@@ -11871,6 +13439,10 @@ const RABInformationSetupr8::Info RABInformationSetupr8::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+RABInformationSetupr8::RABInformationSetupr8(const RABInfor7& rabInfo, const RBInformationSetupListr8& rbInformationSetupList) : Sequence(&theInfo) {
+	setRabInfo(rabInfo);
+	setRbInformationSetupList(rbInformationSetupList);
+}
 
 const void *RABInformationSetupv820ext::itemsInfo[1] = {
 	&CSHSPAInformation::theInfo,
@@ -11907,6 +13479,11 @@ const RBCOUNTCInformation::Info RBCOUNTCInformation::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+RBCOUNTCInformation::RBCOUNTCInformation(const RBIdentity& rbIdentity, const COUNTC& countCUL, const COUNTC& countCDL) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setCountCUL(countCUL);
+	setCountCDL(countCDL);
+}
 
 const void *RBCOUNTCMSBInformation::itemsInfo[3] = {
 	&RBIdentity::theInfo,
@@ -11927,6 +13504,11 @@ const RBCOUNTCMSBInformation::Info RBCOUNTCMSBInformation::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+RBCOUNTCMSBInformation::RBCOUNTCMSBInformation(const RBIdentity& rbIdentity, const COUNTCMSB& countCMSBUL, const COUNTCMSB& countCMSBDL) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setCountCMSBUL(countCMSBUL);
+	setCountCMSBDL(countCMSBDL);
+}
 
 const void *RBInformationAffected::itemsInfo[2] = {
 	&RBIdentity::theInfo,
@@ -11945,6 +13527,10 @@ const RBInformationAffected::Info RBInformationAffected::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RBInformationAffected::RBInformationAffected(const RBIdentity& rbIdentity, const RBMappingInfo& rbMappingInfo) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *RBInformationAffectedr5::itemsInfo[2] = {
 	&RBIdentity::theInfo,
@@ -11963,6 +13549,10 @@ const RBInformationAffectedr5::Info RBInformationAffectedr5::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RBInformationAffectedr5::RBInformationAffectedr5(const RBIdentity& rbIdentity, const RBMappingInfor5& rbMappingInfo) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *RBInformationAffectedr6::itemsInfo[2] = {
 	&RBIdentity::theInfo,
@@ -11981,6 +13571,10 @@ const RBInformationAffectedr6::Info RBInformationAffectedr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RBInformationAffectedr6::RBInformationAffectedr6(const RBIdentity& rbIdentity, const RBMappingInfor6& rbMappingInfo) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *RBInformationAffectedr7::itemsInfo[2] = {
 	&RBIdentity::theInfo,
@@ -11999,6 +13593,10 @@ const RBInformationAffectedr7::Info RBInformationAffectedr7::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RBInformationAffectedr7::RBInformationAffectedr7(const RBIdentity& rbIdentity, const RBMappingInfor7& rbMappingInfo) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *RBInformationAffectedr8::itemsInfo[2] = {
 	&RBIdentity::theInfo,
@@ -12017,6 +13615,10 @@ const RBInformationAffectedr8::Info RBInformationAffectedr8::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RBInformationAffectedr8::RBInformationAffectedr8(const RBIdentity& rbIdentity, const RBMappingInfor8& rbMappingInfo) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *RBInformationChangedr6RbChange::choicesInfo[2] = {
 	&RBInformationChangedr6RbChangeRelease::theInfo,
@@ -12048,6 +13650,10 @@ const RBInformationChangedr6::Info RBInformationChangedr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RBInformationChangedr6::RBInformationChangedr6(const RBIdentity& rbIdentity, const RBInformationChangedr6RbChange& rBInformationChangedr6RbChange) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setRBInformationChangedr6RbChange(rBInformationChangedr6RbChange);
+}
 
 const void *RBInformationReconfig::itemsInfo[6] = {
 	&RBIdentity::theInfo,
@@ -12074,6 +13680,9 @@ const RBInformationReconfig::Info RBInformationReconfig::theInfo = {
 	itemsPres,
 	6, 5, 0
 };
+RBInformationReconfig::RBInformationReconfig(const RBIdentity& rbIdentity) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+}
 
 const void *RBInformationReconfigr4::itemsInfo[6] = {
 	&RBIdentity::theInfo,
@@ -12100,6 +13709,9 @@ const RBInformationReconfigr4::Info RBInformationReconfigr4::theInfo = {
 	itemsPres,
 	6, 5, 0
 };
+RBInformationReconfigr4::RBInformationReconfigr4(const RBIdentity& rbIdentity) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+}
 
 const void *RBInformationReconfigr5::itemsInfo[6] = {
 	&RBIdentity::theInfo,
@@ -12126,6 +13738,9 @@ const RBInformationReconfigr5::Info RBInformationReconfigr5::theInfo = {
 	itemsPres,
 	6, 5, 0
 };
+RBInformationReconfigr5::RBInformationReconfigr5(const RBIdentity& rbIdentity) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+}
 
 const void *RBInformationReconfigr6::itemsInfo[6] = {
 	&RBIdentity::theInfo,
@@ -12152,6 +13767,9 @@ const RBInformationReconfigr6::Info RBInformationReconfigr6::theInfo = {
 	itemsPres,
 	6, 5, 0
 };
+RBInformationReconfigr6::RBInformationReconfigr6(const RBIdentity& rbIdentity) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+}
 
 const void *RBInformationReconfigr7::itemsInfo[6] = {
 	&RBIdentity::theInfo,
@@ -12178,6 +13796,9 @@ const RBInformationReconfigr7::Info RBInformationReconfigr7::theInfo = {
 	itemsPres,
 	6, 5, 0
 };
+RBInformationReconfigr7::RBInformationReconfigr7(const RBIdentity& rbIdentity) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+}
 
 const void *RBInformationReconfigr8::itemsInfo[6] = {
 	&RBIdentity::theInfo,
@@ -12204,6 +13825,9 @@ const RBInformationReconfigr8::Info RBInformationReconfigr8::theInfo = {
 	itemsPres,
 	6, 5, 0
 };
+RBInformationReconfigr8::RBInformationReconfigr8(const RBIdentity& rbIdentity) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+}
 
 const void *UMRLCOutOSeqDeliveryInfor6::itemsInfo[2] = {
 	&TimerOSDr6::theInfo,
@@ -12222,6 +13846,9 @@ const UMRLCOutOSeqDeliveryInfor6::Info UMRLCOutOSeqDeliveryInfor6::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+UMRLCOutOSeqDeliveryInfor6::UMRLCOutOSeqDeliveryInfor6(const WindowSizeOSDr6& windowSizeOSD) : Sequence(&theInfo) {
+	setWindowSizeOSD(windowSizeOSD);
+}
 
 const void *RLCInfoMCCHr6::itemsInfo[2] = {
 	&DLUMRLCLIsize::theInfo,
@@ -12240,6 +13867,9 @@ const RLCInfoMCCHr6::Info RLCInfoMCCHr6::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+RLCInfoMCCHr6::RLCInfoMCCHr6(const DLUMRLCLIsize& dlUMRLCLIsize) : Sequence(&theInfo) {
+	setDlUMRLCLIsize(dlUMRLCLIsize);
+}
 
 const void *RLCInfoMSCHr6::itemsInfo[1] = {
 	&DLUMRLCLIsize::theInfo,
@@ -12256,6 +13886,9 @@ const RLCInfoMSCHr6::Info RLCInfoMSCHr6::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+RLCInfoMSCHr6::RLCInfoMSCHr6(const DLUMRLCLIsize& dlUMRLCLIsize) : Sequence(&theInfo) {
+	setDlUMRLCLIsize(dlUMRLCLIsize);
+}
 
 const void *UMRLCDuplAvoidReordInfor6::itemsInfo[2] = {
 	&TimerDARr6::theInfo,
@@ -12274,6 +13907,10 @@ const UMRLCDuplAvoidReordInfor6::Info UMRLCDuplAvoidReordInfor6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+UMRLCDuplAvoidReordInfor6::UMRLCDuplAvoidReordInfor6(const TimerDARr6& timerDAR, const WindowSizeDARr6& widowSizeDAR) : Sequence(&theInfo) {
+	setTimerDAR(timerDAR);
+	setWidowSizeDAR(widowSizeDAR);
+}
 
 const void *RLCInfoMTCHr6::itemsInfo[2] = {
 	&DLUMRLCLIsize::theInfo,
@@ -12292,6 +13929,9 @@ const RLCInfoMTCHr6::Info RLCInfoMTCHr6::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+RLCInfoMTCHr6::RLCInfoMTCHr6(const DLUMRLCLIsize& dlUMRLCLIsize) : Sequence(&theInfo) {
+	setDlUMRLCLIsize(dlUMRLCLIsize);
+}
 
 const void *SRBInformationSetupr5::itemsInfo[3] = {
 	&RBIdentity::theInfo,
@@ -12312,6 +13952,10 @@ const SRBInformationSetupr5::Info SRBInformationSetupr5::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+SRBInformationSetupr5::SRBInformationSetupr5(const RLCInfoChoicer5& rlcInfoChoice, const RBMappingInfor5& rbMappingInfo) : Sequence(&theInfo) {
+	setRlcInfoChoice(rlcInfoChoice);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *SRBInformationSetupr6::itemsInfo[3] = {
 	&RBIdentity::theInfo,
@@ -12332,6 +13976,10 @@ const SRBInformationSetupr6::Info SRBInformationSetupr6::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+SRBInformationSetupr6::SRBInformationSetupr6(const RLCInfoChoicer6& rlcInfoChoice, const RBMappingInfor6& rbMappingInfo) : Sequence(&theInfo) {
+	setRlcInfoChoice(rlcInfoChoice);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *SRBInformationSetupr7::itemsInfo[3] = {
 	&RBIdentity::theInfo,
@@ -12352,6 +14000,10 @@ const SRBInformationSetupr7::Info SRBInformationSetupr7::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+SRBInformationSetupr7::SRBInformationSetupr7(const RLCInfoChoicer7& rlcInfoChoice, const RBMappingInfor7& rbMappingInfo) : Sequence(&theInfo) {
+	setRlcInfoChoice(rlcInfoChoice);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *SRBInformationSetupr8::itemsInfo[3] = {
 	&RBIdentity::theInfo,
@@ -12372,6 +14024,10 @@ const SRBInformationSetupr8::Info SRBInformationSetupr8::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+SRBInformationSetupr8::SRBInformationSetupr8(const RLCInfoChoicer7& rlcInfoChoice, const RBMappingInfor8& rbMappingInfo) : Sequence(&theInfo) {
+	setRlcInfoChoice(rlcInfoChoice);
+	setRbMappingInfo(rbMappingInfo);
+}
 
 const void *ULCounterSynchronisationInfo::itemsInfo[2] = {
 	&RBWithPDCPInfoList::theInfo,
@@ -12390,6 +14046,9 @@ const ULCounterSynchronisationInfo::Info ULCounterSynchronisationInfo::theInfo =
 	itemsPres,
 	2, 1, 0
 };
+ULCounterSynchronisationInfo::ULCounterSynchronisationInfo(const STARTList& startList) : Sequence(&theInfo) {
+	setStartList(startList);
+}
 
 const void *MACdPDUsizeInfo::itemsInfo[2] = {
 	&MACdPDUsizeInfoMacdPDUSize::theInfo,
@@ -12408,6 +14067,10 @@ const MACdPDUsizeInfo::Info MACdPDUsizeInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MACdPDUsizeInfo::MACdPDUsizeInfo(const MACdPDUsizeInfoMacdPDUSize& mACdPDUsizeInfoMacdPDUSize, const MACdPDUsizeInfoMacdPDUIndex& mACdPDUsizeInfoMacdPDUIndex) : Sequence(&theInfo) {
+	setMACdPDUsizeInfoMacdPDUSize(mACdPDUsizeInfoMacdPDUSize);
+	setMACdPDUsizeInfoMacdPDUIndex(mACdPDUsizeInfoMacdPDUIndex);
+}
 
 const void *MAChsAddReconfQueue::itemsInfo[5] = {
 	&MAChsAddReconfQueueMachsQueueId::theInfo,
@@ -12432,6 +14095,12 @@ const MAChsAddReconfQueue::Info MAChsAddReconfQueue::theInfo = {
 	itemsPres,
 	5, 1, 0
 };
+MAChsAddReconfQueue::MAChsAddReconfQueue(const MAChsAddReconfQueueMachsQueueId& mAChsAddReconfQueueMachsQueueId, const MACdFlowIdentity& macdFlowId, const T1ReleaseTimer& reorderingReleaseTimer, const MAChsWindowSize& machsWindowSize) : Sequence(&theInfo) {
+	setMAChsAddReconfQueueMachsQueueId(mAChsAddReconfQueueMachsQueueId);
+	setMacdFlowId(macdFlowId);
+	setReorderingReleaseTimer(reorderingReleaseTimer);
+	setMachsWindowSize(machsWindowSize);
+}
 
 const void *MAChsDelQueue::itemsInfo[1] = {
 	&MAChsDelQueueMachsQueueId::theInfo,
@@ -12448,6 +14117,9 @@ const MAChsDelQueue::Info MAChsDelQueue::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MAChsDelQueue::MAChsDelQueue(const MAChsDelQueueMachsQueueId& mAChsDelQueueMachsQueueId) : Sequence(&theInfo) {
+	setMAChsDelQueueMachsQueueId(mAChsDelQueueMachsQueueId);
+}
 
 const void *AddOrReconfMACdFlow::itemsInfo[2] = {
 	&MAChsAddReconfQueueList::theInfo,
@@ -12488,6 +14160,11 @@ const MACehsAddReconfReordQ::Info MACehsAddReconfReordQ::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+MACehsAddReconfReordQ::MACehsAddReconfReordQ(const MACehsQueueId& macehsQueueId, const T1ReleaseTimer& reorderingReleaseTimer, const MAChsWindowSize& macehsWindowSize) : Sequence(&theInfo) {
+	setMacehsQueueId(macehsQueueId);
+	setReorderingReleaseTimer(reorderingReleaseTimer);
+	setMacehsWindowSize(macehsWindowSize);
+}
 
 const void *MACehsDelReordQ::itemsInfo[1] = {
 	&MACehsQueueId::theInfo,
@@ -12504,6 +14181,9 @@ const MACehsDelReordQ::Info MACehsDelReordQ::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MACehsDelReordQ::MACehsDelReordQ(const MACehsQueueId& macehsQueueId) : Sequence(&theInfo) {
+	setMacehsQueueId(macehsQueueId);
+}
 
 const void *AddOrReconfMACehsReordQ::itemsInfo[2] = {
 	&MACehsAddReconfReordQList::theInfo,
@@ -12544,6 +14224,11 @@ const MACehsAddReconfReordQr9::Info MACehsAddReconfReordQr9::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+MACehsAddReconfReordQr9::MACehsAddReconfReordQr9(const MACehsQueueId& macehsQueueId, const T1ReleaseTimer& reorderingReleaseTimer, const MAChsWindowSizer9& macehsWindowSize) : Sequence(&theInfo) {
+	setMacehsQueueId(macehsQueueId);
+	setReorderingReleaseTimer(reorderingReleaseTimer);
+	setMacehsWindowSize(macehsWindowSize);
+}
 
 const void *AddOrReconfMACehsReordQr9::itemsInfo[1] = {
 	&MACehsAddReconfReordQListr9::theInfo,
@@ -12584,6 +14269,11 @@ const CommonEDCHMACdFlow::Info CommonEDCHMACdFlow::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+CommonEDCHMACdFlow::CommonEDCHMACdFlow(const EDCHMACdFlowIdentity& macdFlowIdentity, const EDCHMACdFlowPowerOffset& macdFlowPowerOffset, const EDCHMACdFlowMaxRetrans& macdFlowMaxRetrans) : Sequence(&theInfo) {
+	setMacdFlowIdentity(macdFlowIdentity);
+	setMacdFlowPowerOffset(macdFlowPowerOffset);
+	setMacdFlowMaxRetrans(macdFlowMaxRetrans);
+}
 
 const void *CommonTransChTFSLCRTti::choicesInfo[6] = {
 	&CommonDynamicTFInfoList::theInfo,
@@ -12619,6 +14309,10 @@ const CommonTransChTFSLCR::Info CommonTransChTFSLCR::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CommonTransChTFSLCR::CommonTransChTFSLCR(const CommonTransChTFSLCRTti& commonTransChTFSLCRTti, const SemistaticTFInformation& semistaticTFInformation) : Sequence(&theInfo) {
+	setCommonTransChTFSLCRTti(commonTransChTFSLCRTti);
+	setSemistaticTFInformation(semistaticTFInformation);
+}
 
 const void *CommonMACehsReorderingQueue::itemsInfo[4] = {
 	&MACehsQueueId::theInfo,
@@ -12641,6 +14335,11 @@ const CommonMACehsReorderingQueue::Info CommonMACehsReorderingQueue::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+CommonMACehsReorderingQueue::CommonMACehsReorderingQueue(const MACehsQueueId& macehsQueueId, const T1ReleaseTimer& t1ReleaseTimer, const MAChsWindowSize& macehsWindowSize) : Sequence(&theInfo) {
+	setMacehsQueueId(macehsQueueId);
+	setT1ReleaseTimer(t1ReleaseTimer);
+	setMacehsWindowSize(macehsWindowSize);
+}
 
 const void *DLAddReconfTransChInformation2TfsSignallingMode::choicesInfo[2] = {
 	&TransportFormatSet::theInfo,
@@ -12676,6 +14375,11 @@ const DLAddReconfTransChInformation2::Info DLAddReconfTransChInformation2::theIn
 	itemsPres,
 	4, 1, 0
 };
+DLAddReconfTransChInformation2::DLAddReconfTransChInformation2(const DLTrCHType& dlTransportChannelType, const TransportChannelIdentity& transportChannelIdentity, const DLAddReconfTransChInformation2TfsSignallingMode& dLAddReconfTransChInformation2TfsSignallingMode) : Sequence(&theInfo) {
+	setDlTransportChannelType(dlTransportChannelType);
+	setTransportChannelIdentity(transportChannelIdentity);
+	setDLAddReconfTransChInformation2TfsSignallingMode(dLAddReconfTransChInformation2TfsSignallingMode);
+}
 
 const void *DLAddReconfTransChInformationr4TfsSignallingMode::choicesInfo[2] = {
 	&TransportFormatSet::theInfo,
@@ -12711,6 +14415,11 @@ const DLAddReconfTransChInformationr4::Info DLAddReconfTransChInformationr4::the
 	itemsPres,
 	4, 1, 0
 };
+DLAddReconfTransChInformationr4::DLAddReconfTransChInformationr4(const DLTrCHType& dlTransportChannelType, const TransportChannelIdentity& dltransportChannelIdentity, const DLAddReconfTransChInformationr4TfsSignallingMode& dLAddReconfTransChInformationr4TfsSignallingMode) : Sequence(&theInfo) {
+	setDlTransportChannelType(dlTransportChannelType);
+	setDltransportChannelIdentity(dltransportChannelIdentity);
+	setDLAddReconfTransChInformationr4TfsSignallingMode(dLAddReconfTransChInformationr4TfsSignallingMode);
+}
 
 const void *DLTrCHTypeId1r5::choicesInfo[3] = {
 	&TransportChannelIdentity::theInfo,
@@ -12777,6 +14486,10 @@ const DLAddReconfTransChInformationr5::Info DLAddReconfTransChInformationr5::the
 	itemsPres,
 	3, 1, 0
 };
+DLAddReconfTransChInformationr5::DLAddReconfTransChInformationr5(const DLTrCHTypeId1r5& dlTransportChannelType, const DLAddReconfTransChInformationr5TfsSignallingMode& dLAddReconfTransChInformationr5TfsSignallingMode) : Sequence(&theInfo) {
+	setDlTransportChannelType(dlTransportChannelType);
+	setDLAddReconfTransChInformationr5TfsSignallingMode(dLAddReconfTransChInformationr5TfsSignallingMode);
+}
 
 const void *HSDSCHInfor7DlMACHeaderType::choicesInfo[2] = {
 	&AddOrReconfMACdFlow::theInfo,
@@ -12842,6 +14555,10 @@ const DLAddReconfTransChInformationr7::Info DLAddReconfTransChInformationr7::the
 	itemsPres,
 	3, 1, 0
 };
+DLAddReconfTransChInformationr7::DLAddReconfTransChInformationr7(const DLTrCHTypeId1r5& dlTransportChannelType, const DLAddReconfTransChInformationr7TfsSignallingMode& dLAddReconfTransChInformationr7TfsSignallingMode) : Sequence(&theInfo) {
+	setDlTransportChannelType(dlTransportChannelType);
+	setDLAddReconfTransChInformationr7TfsSignallingMode(dLAddReconfTransChInformationr7TfsSignallingMode);
+}
 
 const void *HSDSCHInfor9DlMACHeaderType::choicesInfo[2] = {
 	&AddOrReconfMACdFlow::theInfo,
@@ -12907,6 +14624,10 @@ const DLAddReconfTransChInformationr9::Info DLAddReconfTransChInformationr9::the
 	itemsPres,
 	3, 1, 0
 };
+DLAddReconfTransChInformationr9::DLAddReconfTransChInformationr9(const DLTrCHTypeId1r5& dlTransportChannelType, const DLAddReconfTransChInformationr9TfsSignallingMode& dLAddReconfTransChInformationr9TfsSignallingMode) : Sequence(&theInfo) {
+	setDlTransportChannelType(dlTransportChannelType);
+	setDLAddReconfTransChInformationr9TfsSignallingMode(dLAddReconfTransChInformationr9TfsSignallingMode);
+}
 
 const void *DLCommonTransChInfor4ModeSpecificInfoFddDlParametersDlDCHTFCS::itemsInfo[1] = {
 	&TFCS::theInfo,
@@ -13017,6 +14738,10 @@ const DLTransportChannelIdentity::Info DLTransportChannelIdentity::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+DLTransportChannelIdentity::DLTransportChannelIdentity(const DLTrCHType& dlTransportChannelType, const TransportChannelIdentity& dlTransportChannelIdentity) : Sequence(&theInfo) {
+	setDlTransportChannelType(dlTransportChannelType);
+	setDlTransportChannelIdentity(dlTransportChannelIdentity);
+}
 
 const void *DLTrCHTypeId2r5::choicesInfo[3] = {
 	&TransportChannelIdentity::theInfo,
@@ -13047,6 +14772,9 @@ const DLTransportChannelIdentityr5::Info DLTransportChannelIdentityr5::theInfo =
 	itemsPres,
 	1, 0, 0
 };
+DLTransportChannelIdentityr5::DLTransportChannelIdentityr5(const DLTrCHTypeId2r5& dlTransportChannelType) : Sequence(&theInfo) {
+	setDlTransportChannelType(dlTransportChannelType);
+}
 
 const void *DLTrCHTypeId2r7Hsdsch::choicesInfo[2] = {
 	&MACdFlowIdentity::theInfo,
@@ -13090,6 +14818,9 @@ const DLTransportChannelIdentityr7::Info DLTransportChannelIdentityr7::theInfo =
 	itemsPres,
 	1, 0, 0
 };
+DLTransportChannelIdentityr7::DLTransportChannelIdentityr7(const DLTrCHTypeId2r7& dlTransportChannelType) : Sequence(&theInfo) {
+	setDlTransportChannelType(dlTransportChannelType);
+}
 
 const void *DRACStaticInformation::itemsInfo[3] = {
 	&TransmissionTimeValidity::theInfo,
@@ -13110,6 +14841,11 @@ const DRACStaticInformation::Info DRACStaticInformation::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+DRACStaticInformation::DRACStaticInformation(const TransmissionTimeValidity& transmissionTimeValidity, const TimeDurationBeforeRetry& timeDurationBeforeRetry, const DRACClassIdentity& dracClassIdentity) : Sequence(&theInfo) {
+	setTransmissionTimeValidity(transmissionTimeValidity);
+	setTimeDurationBeforeRetry(timeDurationBeforeRetry);
+	setDracClassIdentity(dracClassIdentity);
+}
 
 const void *EDCHAddReconfMACdFlowTransmissionGrantTypeNonScheduledTransGrantInfo::itemsInfo[2] = {
 	&EDCHAddReconfMACdFlowTransmissionGrantTypeNonScheduledTransGrantInfoMaxMACePDUContents::theInfo,
@@ -13128,6 +14864,9 @@ const EDCHAddReconfMACdFlowTransmissionGrantTypeNonScheduledTransGrantInfo::Info
 	itemsPres,
 	2, 1, 0
 };
+EDCHAddReconfMACdFlowTransmissionGrantTypeNonScheduledTransGrantInfo::EDCHAddReconfMACdFlowTransmissionGrantTypeNonScheduledTransGrantInfo(const EDCHAddReconfMACdFlowTransmissionGrantTypeNonScheduledTransGrantInfoMaxMACePDUContents& eDCHAddReconfMACdFlowTransmissionGrantTypeNonScheduledTransGrantInfoMaxMACePDUContents) : Sequence(&theInfo) {
+	setEDCHAddReconfMACdFlowTransmissionGrantTypeNonScheduledTransGrantInfoMaxMACePDUContents(eDCHAddReconfMACdFlowTransmissionGrantTypeNonScheduledTransGrantInfoMaxMACePDUContents);
+}
 
 const void *EDCHAddReconfMACdFlowTransmissionGrantType::choicesInfo[2] = {
 	&EDCHAddReconfMACdFlowTransmissionGrantTypeNonScheduledTransGrantInfo::theInfo,
@@ -13165,6 +14904,9 @@ const EDCHAddReconfMACdFlow::Info EDCHAddReconfMACdFlow::theInfo = {
 	itemsPres,
 	5, 4, 0
 };
+EDCHAddReconfMACdFlow::EDCHAddReconfMACdFlow(const EDCHMACdFlowIdentity& macdFlowIdentity) : Sequence(&theInfo) {
+	setMacdFlowIdentity(macdFlowIdentity);
+}
 
 const void *EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfoFdd::itemsInfo[2] = {
 	&EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfoFddMaxMACePDUContents::theInfo,
@@ -13183,6 +14925,9 @@ const EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoMode
 	itemsPres,
 	2, 1, 0
 };
+EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfoFdd::EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfoFdd(const EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfoFddMaxMACePDUContents& eDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfoFddMaxMACePDUContents) : Sequence(&theInfo) {
+	setEDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfoFddMaxMACePDUContents(eDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfoFddMaxMACePDUContents);
+}
 
 const void *EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfo::choicesInfo[2] = {
 	&EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfoFdd::theInfo,
@@ -13212,6 +14957,9 @@ const EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfo::In
 	itemsPres,
 	1, 0, 0
 };
+EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfo::EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfo(const EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfo& eDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setEDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfo(eDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfoModeSpecificInfo);
+}
 
 const void *EDCHAddReconfMACdFlowr7TransmissionGrantType::choicesInfo[2] = {
 	&EDCHAddReconfMACdFlowr7TransmissionGrantTypeNonScheduledTransGrantInfo::theInfo,
@@ -13251,6 +14999,9 @@ const EDCHAddReconfMACdFlowr7::Info EDCHAddReconfMACdFlowr7::theInfo = {
 	itemsPres,
 	6, 5, 0
 };
+EDCHAddReconfMACdFlowr7::EDCHAddReconfMACdFlowr7(const EDCHMACdFlowIdentity& macdFlowIdentity) : Sequence(&theInfo) {
+	setMacdFlowIdentity(macdFlowIdentity);
+}
 
 const void *SignalledGainFactorsModeSpecificInfoFdd::itemsInfo[1] = {
 	&GainFactor::theInfo,
@@ -13267,6 +15018,9 @@ const SignalledGainFactorsModeSpecificInfoFdd::Info SignalledGainFactorsModeSpec
 	itemsPres,
 	1, 0, 0
 };
+SignalledGainFactorsModeSpecificInfoFdd::SignalledGainFactorsModeSpecificInfoFdd(const GainFactor& gainFactorBetaC) : Sequence(&theInfo) {
+	setGainFactorBetaC(gainFactorBetaC);
+}
 
 const void *SignalledGainFactorsModeSpecificInfo::choicesInfo[2] = {
 	&SignalledGainFactorsModeSpecificInfoFdd::theInfo,
@@ -13300,6 +15054,10 @@ const SignalledGainFactors::Info SignalledGainFactors::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+SignalledGainFactors::SignalledGainFactors(const SignalledGainFactorsModeSpecificInfo& signalledGainFactorsModeSpecificInfo, const GainFactor& gainFactorBetaD) : Sequence(&theInfo) {
+	setSignalledGainFactorsModeSpecificInfo(signalledGainFactorsModeSpecificInfo);
+	setGainFactorBetaD(gainFactorBetaD);
+}
 
 const void *GainFactorInformation::choicesInfo[2] = {
 	&SignalledGainFactors::theInfo,
@@ -13329,6 +15087,9 @@ const PowerOffsetInfoShortModeSpecificInfoFdd::Info PowerOffsetInfoShortModeSpec
 	itemsPres,
 	1, 0, 0
 };
+PowerOffsetInfoShortModeSpecificInfoFdd::PowerOffsetInfoShortModeSpecificInfoFdd(const GainFactor& gainFactorBetaC) : Sequence(&theInfo) {
+	setGainFactorBetaC(gainFactorBetaC);
+}
 
 const void *PowerOffsetInfoShortModeSpecificInfo::choicesInfo[2] = {
 	&PowerOffsetInfoShortModeSpecificInfoFdd::theInfo,
@@ -13362,6 +15123,11 @@ const PowerOffsetInfoShort::Info PowerOffsetInfoShort::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+PowerOffsetInfoShort::PowerOffsetInfoShort(const TFCValue& referenceTFC, const PowerOffsetInfoShortModeSpecificInfo& powerOffsetInfoShortModeSpecificInfo, const GainFactor& gainFactorBetaD) : Sequence(&theInfo) {
+	setReferenceTFC(referenceTFC);
+	setPowerOffsetInfoShortModeSpecificInfo(powerOffsetInfoShortModeSpecificInfo);
+	setGainFactorBetaD(gainFactorBetaD);
+}
 
 const void *PowerOffsetInformation::itemsInfo[2] = {
 	&GainFactorInformation::theInfo,
@@ -13380,6 +15146,9 @@ const PowerOffsetInformation::Info PowerOffsetInformation::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+PowerOffsetInformation::PowerOffsetInformation(const GainFactorInformation& gainFactorInformation) : Sequence(&theInfo) {
+	setGainFactorInformation(gainFactorInformation);
+}
 
 const void *TFCSubsetList::itemsInfo[0] = {
 };
@@ -13427,6 +15196,11 @@ const ULAddReconfTransChInformationr6Dchusch::Info ULAddReconfTransChInformation
 	itemsPres,
 	3, 0, 0
 };
+ULAddReconfTransChInformationr6Dchusch::ULAddReconfTransChInformationr6Dchusch(const ULTrCHType& ulTransportChannelType, const TransportChannelIdentity& transportChannelIdentity, const TransportFormatSet& transportFormatSet) : Sequence(&theInfo) {
+	setUlTransportChannelType(ulTransportChannelType);
+	setTransportChannelIdentity(transportChannelIdentity);
+	setTransportFormatSet(transportFormatSet);
+}
 
 const void *ULAddReconfTransChInformationr6Edch::itemsInfo[3] = {
 	&EDCHTTI::theInfo,
@@ -13447,6 +15221,10 @@ const ULAddReconfTransChInformationr6Edch::Info ULAddReconfTransChInformationr6E
 	itemsPres,
 	3, 1, 0
 };
+ULAddReconfTransChInformationr6Edch::ULAddReconfTransChInformationr6Edch(const EDCHTTI& tti, const ULAddReconfTransChInformationr6Edchharq_Info& uLAddReconfTransChInformationr6Edchharq_Info) : Sequence(&theInfo) {
+	setTti(tti);
+	setULAddReconfTransChInformationr6Edchharq_Info(uLAddReconfTransChInformationr6Edchharq_Info);
+}
 
 const void *ULAddReconfTransChInformationr6::choicesInfo[2] = {
 	&ULAddReconfTransChInformationr6Dchusch::theInfo,
@@ -13480,6 +15258,11 @@ const ULAddReconfTransChInformationr7Dchusch::Info ULAddReconfTransChInformation
 	itemsPres,
 	3, 0, 0
 };
+ULAddReconfTransChInformationr7Dchusch::ULAddReconfTransChInformationr7Dchusch(const ULTrCHType& ulTransportChannelType, const TransportChannelIdentity& transportChannelIdentity, const TransportFormatSet& transportFormatSet) : Sequence(&theInfo) {
+	setUlTransportChannelType(ulTransportChannelType);
+	setTransportChannelIdentity(transportChannelIdentity);
+	setTransportFormatSet(transportFormatSet);
+}
 
 const void *ULAddReconfTransChInformationr7EdchModeSpecificFdd::itemsInfo[1] = {
 	&EDCHTTI::theInfo,
@@ -13496,6 +15279,9 @@ const ULAddReconfTransChInformationr7EdchModeSpecificFdd::Info ULAddReconfTransC
 	itemsPres,
 	1, 0, 0
 };
+ULAddReconfTransChInformationr7EdchModeSpecificFdd::ULAddReconfTransChInformationr7EdchModeSpecificFdd(const EDCHTTI& tti) : Sequence(&theInfo) {
+	setTti(tti);
+}
 
 const void *ULAddReconfTransChInformationr7EdchModeSpecific::choicesInfo[2] = {
 	&ULAddReconfTransChInformationr7EdchModeSpecificFdd::theInfo,
@@ -13529,6 +15315,10 @@ const ULAddReconfTransChInformationr7Edch::Info ULAddReconfTransChInformationr7E
 	itemsPres,
 	3, 1, 0
 };
+ULAddReconfTransChInformationr7Edch::ULAddReconfTransChInformationr7Edch(const ULAddReconfTransChInformationr7EdchModeSpecific& uLAddReconfTransChInformationr7EdchModeSpecific, const ULAddReconfTransChInformationr7Edchharq_Info& uLAddReconfTransChInformationr7Edchharq_Info) : Sequence(&theInfo) {
+	setULAddReconfTransChInformationr7EdchModeSpecific(uLAddReconfTransChInformationr7EdchModeSpecific);
+	setULAddReconfTransChInformationr7Edchharq_Info(uLAddReconfTransChInformationr7Edchharq_Info);
+}
 
 const void *ULAddReconfTransChInformationr7::choicesInfo[2] = {
 	&ULAddReconfTransChInformationr7Dchusch::theInfo,
@@ -13562,6 +15352,11 @@ const ULAddReconfTransChInformationr8Dchusch::Info ULAddReconfTransChInformation
 	itemsPres,
 	3, 0, 0
 };
+ULAddReconfTransChInformationr8Dchusch::ULAddReconfTransChInformationr8Dchusch(const ULTrCHType& ulTransportChannelType, const TransportChannelIdentity& transportChannelIdentity, const TransportFormatSet& transportFormatSet) : Sequence(&theInfo) {
+	setUlTransportChannelType(ulTransportChannelType);
+	setTransportChannelIdentity(transportChannelIdentity);
+	setTransportFormatSet(transportFormatSet);
+}
 
 const void *ULAddReconfTransChInformationr8EdchModeSpecificFdd::itemsInfo[1] = {
 	&EDCHTTI::theInfo,
@@ -13578,6 +15373,9 @@ const ULAddReconfTransChInformationr8EdchModeSpecificFdd::Info ULAddReconfTransC
 	itemsPres,
 	1, 0, 0
 };
+ULAddReconfTransChInformationr8EdchModeSpecificFdd::ULAddReconfTransChInformationr8EdchModeSpecificFdd(const EDCHTTI& tti) : Sequence(&theInfo) {
+	setTti(tti);
+}
 
 const void *ULAddReconfTransChInformationr8EdchModeSpecific::choicesInfo[2] = {
 	&ULAddReconfTransChInformationr8EdchModeSpecificFdd::theInfo,
@@ -13613,6 +15411,10 @@ const ULAddReconfTransChInformationr8Edch::Info ULAddReconfTransChInformationr8E
 	itemsPres,
 	4, 2, 0
 };
+ULAddReconfTransChInformationr8Edch::ULAddReconfTransChInformationr8Edch(const ULAddReconfTransChInformationr8EdchModeSpecific& uLAddReconfTransChInformationr8EdchModeSpecific, const ULAddReconfTransChInformationr8Edchharq_Info& uLAddReconfTransChInformationr8Edchharq_Info) : Sequence(&theInfo) {
+	setULAddReconfTransChInformationr8EdchModeSpecific(uLAddReconfTransChInformationr8EdchModeSpecific);
+	setULAddReconfTransChInformationr8Edchharq_Info(uLAddReconfTransChInformationr8Edchharq_Info);
+}
 
 const void *ULAddReconfTransChInformationr8::choicesInfo[2] = {
 	&ULAddReconfTransChInformationr8Dchusch::theInfo,
@@ -13642,6 +15444,9 @@ const ULCommonTransChInfor4ModeSpecificInfoFdd::Info ULCommonTransChInfor4ModeSp
 	itemsPres,
 	1, 0, 0
 };
+ULCommonTransChInfor4ModeSpecificInfoFdd::ULCommonTransChInfor4ModeSpecificInfoFdd(const TFCS& ulTFCS) : Sequence(&theInfo) {
+	setUlTFCS(ulTFCS);
+}
 
 const void *ULCommonTransChInfor4ModeSpecificInfoTdd::itemsInfo[1] = {
 	&IndividualULCCTrCHInfoList::theInfo,
@@ -13711,6 +15516,10 @@ const ULTransportChannelIdentityr6Dchusch::Info ULTransportChannelIdentityr6Dchu
 	itemsPres,
 	2, 0, 0
 };
+ULTransportChannelIdentityr6Dchusch::ULTransportChannelIdentityr6Dchusch(const ULTrCHType& ulTransportChannelType, const TransportChannelIdentity& ulTransportChannelIdentity) : Sequence(&theInfo) {
+	setUlTransportChannelType(ulTransportChannelType);
+	setUlTransportChannelIdentity(ulTransportChannelIdentity);
+}
 
 const void *ULTransportChannelIdentityr6::choicesInfo[2] = {
 	&ULTransportChannelIdentityr6Dchusch::theInfo,
@@ -13758,6 +15567,11 @@ const AccessServiceClassFDD::Info AccessServiceClassFDD::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+AccessServiceClassFDD::AccessServiceClassFDD(const AccessServiceClassFDDAvailableSignatureStartIndex& accessServiceClassFDDAvailableSignatureStartIndex, const AccessServiceClassFDDAvailableSignatureEndIndex& accessServiceClassFDDAvailableSignatureEndIndex, const AccessServiceClassFDDAssignedSubChannelNumber& accessServiceClassFDDAssignedSubChannelNumber) : Sequence(&theInfo) {
+	setAccessServiceClassFDDAvailableSignatureStartIndex(accessServiceClassFDDAvailableSignatureStartIndex);
+	setAccessServiceClassFDDAvailableSignatureEndIndex(accessServiceClassFDDAvailableSignatureEndIndex);
+	setAccessServiceClassFDDAssignedSubChannelNumber(accessServiceClassFDDAssignedSubChannelNumber);
+}
 
 const void *AccessServiceClassTDDSubchannelSizeSize2::itemsInfo[1] = {
 	&AccessServiceClassTDDSubchannelSizeSize2subchannels::theInfo,
@@ -13839,6 +15653,9 @@ const AccessServiceClassTDD::Info AccessServiceClassTDD::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+AccessServiceClassTDD::AccessServiceClassTDD(const AccessServiceClassTDDSubchannelSize& accessServiceClassTDDSubchannelSize) : Sequence(&theInfo) {
+	setAccessServiceClassTDDSubchannelSize(accessServiceClassTDDSubchannelSize);
+}
 
 const void *AccessServiceClassTDDr7SubchannelSizeSize2::itemsInfo[1] = {
 	&AccessServiceClassTDDr7SubchannelSizeSize2subchannels::theInfo,
@@ -13937,6 +15754,9 @@ const AccessServiceClassTDDr7::Info AccessServiceClassTDDr7::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+AccessServiceClassTDDr7::AccessServiceClassTDDr7(const AccessServiceClassTDDr7SubchannelSize& accessServiceClassTDDr7SubchannelSize) : Sequence(&theInfo) {
+	setAccessServiceClassTDDr7SubchannelSize(accessServiceClassTDDr7SubchannelSize);
+}
 
 const void *AccessServiceClassTDDLCRr4SubchannelSizeSize2::itemsInfo[1] = {
 	&AccessServiceClassTDDLCRr4SubchannelSizeSize2subchannels::theInfo,
@@ -14018,6 +15838,9 @@ const AccessServiceClassTDDLCRr4::Info AccessServiceClassTDDLCRr4::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+AccessServiceClassTDDLCRr4::AccessServiceClassTDDLCRr4(const AccessServiceClassTDDLCRr4SubchannelSize& accessServiceClassTDDLCRr4SubchannelSize) : Sequence(&theInfo) {
+	setAccessServiceClassTDDLCRr4SubchannelSize(accessServiceClassTDDLCRr4SubchannelSize);
+}
 
 const void *DynamicTFInformationCCCH::itemsInfo[1] = {
 	&OctetModeRLCSizeInfoType2::theInfo,
@@ -14034,6 +15857,9 @@ const DynamicTFInformationCCCH::Info DynamicTFInformationCCCH::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DynamicTFInformationCCCH::DynamicTFInformationCCCH(const OctetModeRLCSizeInfoType2& octetModeRLCSizeInfoType2) : Sequence(&theInfo) {
+	setOctetModeRLCSizeInfoType2(octetModeRLCSizeInfoType2);
+}
 
 const void *AdditionalPRACHTFandTFCSCCCHIEs::itemsInfo[2] = {
 	&PowerOffsetInformation::theInfo,
@@ -14052,6 +15878,10 @@ const AdditionalPRACHTFandTFCSCCCHIEs::Info AdditionalPRACHTFandTFCSCCCHIEs::the
 	itemsPres,
 	2, 0, 0
 };
+AdditionalPRACHTFandTFCSCCCHIEs::AdditionalPRACHTFandTFCSCCCHIEs(const PowerOffsetInformation& powerOffsetInformation, const DynamicTFInformationCCCH& dynamicTFInformationCCCH) : Sequence(&theInfo) {
+	setPowerOffsetInformation(powerOffsetInformation);
+	setDynamicTFInformationCCCH(dynamicTFInformationCCCH);
+}
 
 const void *AdditionalPRACHTFandTFCSCCCH::itemsInfo[1] = {
 	&AdditionalPRACHTFandTFCSCCCHIEs::theInfo,
@@ -14088,6 +15918,11 @@ const AICHInfo::Info AICHInfo::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+AICHInfo::AICHInfo(const ChannelisationCode256& channelisationCode256, const AICHInfoSttdIndicator& aICHInfoSttdIndicator, const AICHTransmissionTiming& aichTransmissionTiming) : Sequence(&theInfo) {
+	setChannelisationCode256(channelisationCode256);
+	setAICHInfoSttdIndicator(aICHInfoSttdIndicator);
+	setAichTransmissionTiming(aichTransmissionTiming);
+}
 
 const void *AllocationPeriodInfo::itemsInfo[2] = {
 	&AllocationPeriodInfoAllocationActivationTime::theInfo,
@@ -14106,6 +15941,10 @@ const AllocationPeriodInfo::Info AllocationPeriodInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+AllocationPeriodInfo::AllocationPeriodInfo(const AllocationPeriodInfoAllocationActivationTime& allocationPeriodInfoAllocationActivationTime, const AllocationPeriodInfoAllocationDuration& allocationPeriodInfoAllocationDuration) : Sequence(&theInfo) {
+	setAllocationPeriodInfoAllocationActivationTime(allocationPeriodInfoAllocationActivationTime);
+	setAllocationPeriodInfoAllocationDuration(allocationPeriodInfoAllocationDuration);
+}
 
 const void *APSignatureVCAM::itemsInfo[2] = {
 	&APSignature::theInfo,
@@ -14124,6 +15963,9 @@ const APSignatureVCAM::Info APSignatureVCAM::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+APSignatureVCAM::APSignatureVCAM(const APSignature& apSignature) : Sequence(&theInfo) {
+	setApSignature(apSignature);
+}
 
 const void *ASCSettingFDD::itemsInfo[1] = {
 	&AccessServiceClassFDD::theInfo,
@@ -14210,6 +16052,12 @@ const AvailableMinimumSFVCAM::Info AvailableMinimumSFVCAM::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+AvailableMinimumSFVCAM::AvailableMinimumSFVCAM(const MinimumSpreadingFactor& minimumSpreadingFactor, const NFMax& nfMax, const MaxAvailablePCPCHNumber& maxAvailablePCPCHNumber, const AvailableAPSignatureVCAMList& availableAPSignatureVCAMList) : Sequence(&theInfo) {
+	setMinimumSpreadingFactor(minimumSpreadingFactor);
+	setNfMax(nfMax);
+	setMaxAvailablePCPCHNumber(maxAvailablePCPCHNumber);
+	setAvailableAPSignatureVCAMList(availableAPSignatureVCAMList);
+}
 
 const void *ULDPCHPowerControlInfoFdd::itemsInfo[4] = {
 	&DPCCHPowerOffset::theInfo,
@@ -14232,6 +16080,12 @@ const ULDPCHPowerControlInfoFdd::Info ULDPCHPowerControlInfoFdd::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+ULDPCHPowerControlInfoFdd::ULDPCHPowerControlInfoFdd(const DPCCHPowerOffset& dpcchPowerOffset, const PCPreamble& pcPreamble, const SRBdelay& sRBdelay, const PowerControlAlgorithm& powerControlAlgorithm) : Sequence(&theInfo) {
+	setDpcchPowerOffset(dpcchPowerOffset);
+	setPcPreamble(pcPreamble);
+	setSRBdelay(sRBdelay);
+	setPowerControlAlgorithm(powerControlAlgorithm);
+}
 
 const void *IndividualTSInterference::itemsInfo[2] = {
 	&TimeslotNumber::theInfo,
@@ -14250,6 +16104,10 @@ const IndividualTSInterference::Info IndividualTSInterference::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+IndividualTSInterference::IndividualTSInterference(const TimeslotNumber& timeslot, const TDDULInterference& ulTimeslotInterference) : Sequence(&theInfo) {
+	setTimeslot(timeslot);
+	setUlTimeslotInterference(ulTimeslotInterference);
+}
 
 const void *ULDPCHPowerControlInfoTddUlOLPCSignallingIndividuallySignalled::itemsInfo[3] = {
 	&IndividualTSInterferenceList::theInfo,
@@ -14270,6 +16128,11 @@ const ULDPCHPowerControlInfoTddUlOLPCSignallingIndividuallySignalled::Info ULDPC
 	itemsPres,
 	3, 0, 0
 };
+ULDPCHPowerControlInfoTddUlOLPCSignallingIndividuallySignalled::ULDPCHPowerControlInfoTddUlOLPCSignallingIndividuallySignalled(const IndividualTSInterferenceList& individualTSInterferenceList, const ConstantValueTdd& dpchConstantValue, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setIndividualTSInterferenceList(individualTSInterferenceList);
+	setDpchConstantValue(dpchConstantValue);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *ULDPCHPowerControlInfoTddUlOLPCSignalling::choicesInfo[2] = {
 	&ULDPCHPowerControlInfoTddUlOLPCSignallingBroadcastULOLPCinfo::theInfo,
@@ -14332,6 +16195,9 @@ const CCTrCHPowerControlInfo::Info CCTrCHPowerControlInfo::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+CCTrCHPowerControlInfo::CCTrCHPowerControlInfo(const ULDPCHPowerControlInfo& ulDPCHPowerControlInfo) : Sequence(&theInfo) {
+	setUlDPCHPowerControlInfo(ulDPCHPowerControlInfo);
+}
 
 const void *ULDPCHPowerControlInfor4Fdd::itemsInfo[4] = {
 	&DPCCHPowerOffset::theInfo,
@@ -14354,6 +16220,12 @@ const ULDPCHPowerControlInfor4Fdd::Info ULDPCHPowerControlInfor4Fdd::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+ULDPCHPowerControlInfor4Fdd::ULDPCHPowerControlInfor4Fdd(const DPCCHPowerOffset& dpcchPowerOffset, const PCPreamble& pcPreamble, const SRBdelay& sRBdelay, const PowerControlAlgorithm& powerControlAlgorithm) : Sequence(&theInfo) {
+	setDpcchPowerOffset(dpcchPowerOffset);
+	setPcPreamble(pcPreamble);
+	setSRBdelay(sRBdelay);
+	setPowerControlAlgorithm(powerControlAlgorithm);
+}
 
 const void *ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384::itemsInfo[2] = {
 	&IndividualTSInterferenceList::theInfo,
@@ -14372,6 +16244,10 @@ const ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOptionT
 	itemsPres,
 	2, 0, 0
 };
+ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384::ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384(const IndividualTSInterferenceList& individualTSInterferenceList, const ConstantValue& dpchConstantValue) : Sequence(&theInfo) {
+	setIndividualTSInterferenceList(individualTSInterferenceList);
+	setDpchConstantValue(dpchConstantValue);
+}
 
 const void *ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128::itemsInfo[1] = {
 	&TPCStepSizeTDD::theInfo,
@@ -14388,6 +16264,9 @@ const ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOptionT
 	itemsPres,
 	1, 0, 0
 };
+ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128::ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128(const TPCStepSizeTDD& tpcStepSize) : Sequence(&theInfo) {
+	setTpcStepSize(tpcStepSize);
+}
 
 const void *ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOption::choicesInfo[2] = {
 	&ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384::theInfo,
@@ -14419,6 +16298,10 @@ const ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalled::Info ULD
 	itemsPres,
 	2, 0, 0
 };
+ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalled::ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalled(const ULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOption& uLDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOption, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setULDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOption(uLDPCHPowerControlInfor4TddUlOLPCSignallingIndividuallySignalledTddOption);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *ULDPCHPowerControlInfor4TddUlOLPCSignalling::choicesInfo[2] = {
 	&ULDPCHPowerControlInfor4TddUlOLPCSignallingBroadcastULOLPCinfo::theInfo,
@@ -14450,6 +16333,9 @@ const ULDPCHPowerControlInfor4Tdd::Info ULDPCHPowerControlInfor4Tdd::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ULDPCHPowerControlInfor4Tdd::ULDPCHPowerControlInfor4Tdd(const ULDPCHPowerControlInfor4TddUlOLPCSignalling& uLDPCHPowerControlInfor4TddUlOLPCSignalling) : Sequence(&theInfo) {
+	setULDPCHPowerControlInfor4TddUlOLPCSignalling(uLDPCHPowerControlInfor4TddUlOLPCSignalling);
+}
 
 const void *ULDPCHPowerControlInfor4::choicesInfo[2] = {
 	&ULDPCHPowerControlInfor4Fdd::theInfo,
@@ -14481,6 +16367,9 @@ const CCTrCHPowerControlInfor4::Info CCTrCHPowerControlInfor4::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+CCTrCHPowerControlInfor4::CCTrCHPowerControlInfor4(const ULDPCHPowerControlInfor4& ulDPCHPowerControlInfo) : Sequence(&theInfo) {
+	setUlDPCHPowerControlInfo(ulDPCHPowerControlInfo);
+}
 
 const void *ULDPCHPowerControlInfor5Fdd::itemsInfo[7] = {
 	&DPCCHPowerOffset::theInfo,
@@ -14509,6 +16398,12 @@ const ULDPCHPowerControlInfor5Fdd::Info ULDPCHPowerControlInfor5Fdd::theInfo = {
 	itemsPres,
 	7, 3, 0
 };
+ULDPCHPowerControlInfor5Fdd::ULDPCHPowerControlInfor5Fdd(const DPCCHPowerOffset& dpcchPowerOffset, const PCPreamble& pcPreamble, const SRBdelay& sRBdelay, const PowerControlAlgorithm& powerControlAlgorithm) : Sequence(&theInfo) {
+	setDpcchPowerOffset(dpcchPowerOffset);
+	setPcPreamble(pcPreamble);
+	setSRBdelay(sRBdelay);
+	setPowerControlAlgorithm(powerControlAlgorithm);
+}
 
 const void *ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384::itemsInfo[2] = {
 	&IndividualTSInterferenceList::theInfo,
@@ -14527,6 +16422,10 @@ const ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOptionT
 	itemsPres,
 	2, 0, 0
 };
+ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384::ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384(const IndividualTSInterferenceList& individualTSInterferenceList, const ConstantValue& dpchConstantValue) : Sequence(&theInfo) {
+	setIndividualTSInterferenceList(individualTSInterferenceList);
+	setDpchConstantValue(dpchConstantValue);
+}
 
 const void *ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128::itemsInfo[1] = {
 	&TPCStepSizeTDD::theInfo,
@@ -14543,6 +16442,9 @@ const ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOptionT
 	itemsPres,
 	1, 0, 0
 };
+ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128::ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128(const TPCStepSizeTDD& tpcStepSize) : Sequence(&theInfo) {
+	setTpcStepSize(tpcStepSize);
+}
 
 const void *ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOption::choicesInfo[2] = {
 	&ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384::theInfo,
@@ -14574,6 +16476,10 @@ const ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalled::Info ULD
 	itemsPres,
 	2, 0, 0
 };
+ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalled::ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalled(const ULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOption& uLDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOption, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setULDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOption(uLDPCHPowerControlInfor5TddUlOLPCSignallingIndividuallySignalledTddOption);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *ULDPCHPowerControlInfor5TddUlOLPCSignalling::choicesInfo[2] = {
 	&ULDPCHPowerControlInfor5TddUlOLPCSignallingBroadcastULOLPCinfo::theInfo,
@@ -14605,6 +16511,9 @@ const ULDPCHPowerControlInfor5Tdd::Info ULDPCHPowerControlInfor5Tdd::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ULDPCHPowerControlInfor5Tdd::ULDPCHPowerControlInfor5Tdd(const ULDPCHPowerControlInfor5TddUlOLPCSignalling& uLDPCHPowerControlInfor5TddUlOLPCSignalling) : Sequence(&theInfo) {
+	setULDPCHPowerControlInfor5TddUlOLPCSignalling(uLDPCHPowerControlInfor5TddUlOLPCSignalling);
+}
 
 const void *ULDPCHPowerControlInfor5::choicesInfo[2] = {
 	&ULDPCHPowerControlInfor5Fdd::theInfo,
@@ -14636,6 +16545,9 @@ const CCTrCHPowerControlInfor5::Info CCTrCHPowerControlInfor5::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+CCTrCHPowerControlInfor5::CCTrCHPowerControlInfor5(const ULDPCHPowerControlInfor5& ulDPCHPowerControlInfo) : Sequence(&theInfo) {
+	setUlDPCHPowerControlInfo(ulDPCHPowerControlInfo);
+}
 
 const void *ULDPCHPowerControlInfor7Fdd::itemsInfo[8] = {
 	&DPCCHPowerOffset::theInfo,
@@ -14666,6 +16578,13 @@ const ULDPCHPowerControlInfor7Fdd::Info ULDPCHPowerControlInfor7Fdd::theInfo = {
 	itemsPres,
 	8, 3, 0
 };
+ULDPCHPowerControlInfor7Fdd::ULDPCHPowerControlInfor7Fdd(const DPCCHPowerOffset& dpcchPowerOffset, const PCPreamble& pcPreamble, const SRBdelay& sRBdelay, const PowerControlAlgorithm& powerControlAlgorithm, const HARQPreambleMode& harqPreambleMode) : Sequence(&theInfo) {
+	setDpcchPowerOffset(dpcchPowerOffset);
+	setPcPreamble(pcPreamble);
+	setSRBdelay(sRBdelay);
+	setPowerControlAlgorithm(powerControlAlgorithm);
+	setHarqPreambleMode(harqPreambleMode);
+}
 
 const void *ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384::itemsInfo[2] = {
 	&IndividualTSInterferenceList::theInfo,
@@ -14684,6 +16603,10 @@ const ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionT
 	itemsPres,
 	2, 0, 0
 };
+ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384::ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384(const IndividualTSInterferenceList& individualTSInterferenceList, const ConstantValue& dpchConstantValue) : Sequence(&theInfo) {
+	setIndividualTSInterferenceList(individualTSInterferenceList);
+	setDpchConstantValue(dpchConstantValue);
+}
 
 const void *ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd768::itemsInfo[2] = {
 	&IndividualTSInterferenceList::theInfo,
@@ -14702,6 +16625,10 @@ const ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionT
 	itemsPres,
 	2, 0, 0
 };
+ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd768::ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd768(const IndividualTSInterferenceList& individualTSInterferenceList, const ConstantValue& dpchConstantValue) : Sequence(&theInfo) {
+	setIndividualTSInterferenceList(individualTSInterferenceList);
+	setDpchConstantValue(dpchConstantValue);
+}
 
 const void *ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128::itemsInfo[2] = {
 	&BEACONPLEst::theInfo,
@@ -14720,6 +16647,9 @@ const ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionT
 	itemsPres,
 	2, 1, 0
 };
+ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128::ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128(const TPCStepSizeTDD& tpcStepSize) : Sequence(&theInfo) {
+	setTpcStepSize(tpcStepSize);
+}
 
 const void *ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOption::choicesInfo[3] = {
 	&ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384::theInfo,
@@ -14752,6 +16682,10 @@ const ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalled::Info ULD
 	itemsPres,
 	2, 0, 0
 };
+ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalled::ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalled(const ULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOption& uLDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOption, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setULDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOption(uLDPCHPowerControlInfor7TddUlOLPCSignallingIndividuallySignalledTddOption);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *ULDPCHPowerControlInfor7TddUlOLPCSignalling::choicesInfo[2] = {
 	&ULDPCHPowerControlInfor7TddUlOLPCSignallingBroadcastULOLPCinfo::theInfo,
@@ -14783,6 +16717,9 @@ const ULDPCHPowerControlInfor7Tdd::Info ULDPCHPowerControlInfor7Tdd::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ULDPCHPowerControlInfor7Tdd::ULDPCHPowerControlInfor7Tdd(const ULDPCHPowerControlInfor7TddUlOLPCSignalling& uLDPCHPowerControlInfor7TddUlOLPCSignalling) : Sequence(&theInfo) {
+	setULDPCHPowerControlInfor7TddUlOLPCSignalling(uLDPCHPowerControlInfor7TddUlOLPCSignalling);
+}
 
 const void *ULDPCHPowerControlInfor7::choicesInfo[2] = {
 	&ULDPCHPowerControlInfor7Fdd::theInfo,
@@ -14814,6 +16751,9 @@ const CCTrCHPowerControlInfor7::Info CCTrCHPowerControlInfor7::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+CCTrCHPowerControlInfor7::CCTrCHPowerControlInfor7(const ULDPCHPowerControlInfor7& ulDPCHPowerControlInfo) : Sequence(&theInfo) {
+	setUlDPCHPowerControlInfo(ulDPCHPowerControlInfo);
+}
 
 const void *CellAndChannelIdentity::itemsInfo[4] = {
 	&BurstType::theInfo,
@@ -14836,6 +16776,12 @@ const CellAndChannelIdentity::Info CellAndChannelIdentity::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+CellAndChannelIdentity::CellAndChannelIdentity(const BurstType& burstType, const MidambleShiftLong& midambleShift, const TimeslotNumber& timeslot, const CellParametersID& cellParametersID) : Sequence(&theInfo) {
+	setBurstType(burstType);
+	setMidambleShift(midambleShift);
+	setTimeslot(timeslot);
+	setCellParametersID(cellParametersID);
+}
 
 const void *ChannelAssignmentActive::choicesInfo[2] = {
 	&ChannelAssignmentActiveNotActive::theInfo,
@@ -14867,6 +16813,9 @@ const ChannelReqParamsForUCSM::Info ChannelReqParamsForUCSM::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ChannelReqParamsForUCSM::ChannelReqParamsForUCSM(const AvailableAPSignatureList& availableAPSignatureList) : Sequence(&theInfo) {
+	setAvailableAPSignatureList(availableAPSignatureList);
+}
 
 const void *PDSCHCodeMap::itemsInfo[4] = {
 	&SFPDSCH::theInfo,
@@ -14889,6 +16838,12 @@ const PDSCHCodeMap::Info PDSCHCodeMap::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+PDSCHCodeMap::PDSCHCodeMap(const SFPDSCH& spreadingFactor, const MultiCodeInfo& multiCodeInfo, const CodeNumberDSCH& codeNumberStart, const CodeNumberDSCH& codeNumberStop) : Sequence(&theInfo) {
+	setSpreadingFactor(spreadingFactor);
+	setMultiCodeInfo(multiCodeInfo);
+	setCodeNumberStart(codeNumberStart);
+	setCodeNumberStop(codeNumberStop);
+}
 
 const void *CodeRange::itemsInfo[1] = {
 	&PDSCHCodeMapList::theInfo,
@@ -14905,6 +16860,9 @@ const CodeRange::Info CodeRange::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+CodeRange::CodeRange(const PDSCHCodeMapList& pdschCodeMapList) : Sequence(&theInfo) {
+	setPdschCodeMapList(pdschCodeMapList);
+}
 
 const void *CodeResourceInformationTDD128::itemsInfo[2] = {
 	&HSChannelisationCodeLCR::theInfo,
@@ -14923,6 +16881,10 @@ const CodeResourceInformationTDD128::Info CodeResourceInformationTDD128::theInfo
 	itemsPres,
 	2, 0, 0
 };
+CodeResourceInformationTDD128::CodeResourceInformationTDD128(const HSChannelisationCodeLCR& startcode, const HSChannelisationCodeLCR& stopcode) : Sequence(&theInfo) {
+	setStartcode(startcode);
+	setStopcode(stopcode);
+}
 
 const void *ERGCHInformationCommonEdch::itemsInfo[1] = {
 	&EHICHRGCHSignatureSequence::theInfo,
@@ -14975,6 +16937,9 @@ const ULDPCHCodeInfoForCommonEDCH::Info ULDPCHCodeInfoForCommonEDCH::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ULDPCHCodeInfoForCommonEDCH::ULDPCHCodeInfoForCommonEDCH(const ScramblingCodeType& ulDPCCHscramblingCodeType) : Sequence(&theInfo) {
+	setUlDPCCHscramblingCodeType(ulDPCCHscramblingCodeType);
+}
 
 const void *CommonEDCHResourceInfoList::itemsInfo[5] = {
 	&CommonEDCHResourceInfoListSoffset::theInfo,
@@ -14999,6 +16964,10 @@ const CommonEDCHResourceInfoList::Info CommonEDCHResourceInfoList::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+CommonEDCHResourceInfoList::CommonEDCHResourceInfoList(const EHICHInformationCommonEdch& ehichInfo, const ULDPCHCodeInfoForCommonEDCH& ulDPCHCodeInfoForCommonEDCH) : Sequence(&theInfo) {
+	setEhichInfo(ehichInfo);
+	setUlDPCHCodeInfoForCommonEDCH(ulDPCHCodeInfoForCommonEDCH);
+}
 
 const void *CommonERNTIInfo::itemsInfo[0] = {
 };
@@ -15051,6 +17020,10 @@ const SYNCULInfoForERUCCH::Info SYNCULInfoForERUCCH::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+SYNCULInfoForERUCCH::SYNCULInfoForERUCCH(const SyncULCodesBitmap& eRUCCHSyncULCodesBitmap, const SYNCULInfoForERUCCHMmax& sYNCULInfoForERUCCHMmax) : Sequence(&theInfo) {
+	setERUCCHSyncULCodesBitmap(eRUCCHSyncULCodesBitmap);
+	setSYNCULInfoForERUCCHMmax(sYNCULInfoForERUCCHMmax);
+}
 
 const void *MidambleShiftAndBurstTypeLCRr4MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftAndBurstTypeLCRr4MidambleAllocationModeUeSpecificMidambleMidambleShift::theInfo,
@@ -15067,6 +17040,9 @@ const MidambleShiftAndBurstTypeLCRr4MidambleAllocationModeUeSpecificMidamble::In
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeLCRr4MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeLCRr4MidambleAllocationModeUeSpecificMidamble(const MidambleShiftAndBurstTypeLCRr4MidambleAllocationModeUeSpecificMidambleMidambleShift& midambleShiftAndBurstTypeLCRr4MidambleAllocationModeUeSpecificMidambleMidambleShift) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstTypeLCRr4MidambleAllocationModeUeSpecificMidambleMidambleShift(midambleShiftAndBurstTypeLCRr4MidambleAllocationModeUeSpecificMidambleMidambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeLCRr4MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTypeLCRr4MidambleAllocationModeDefaultMidamble::theInfo,
@@ -15099,6 +17075,10 @@ const MidambleShiftAndBurstTypeLCRr4::Info MidambleShiftAndBurstTypeLCRr4::theIn
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeLCRr4::MidambleShiftAndBurstTypeLCRr4(const MidambleShiftAndBurstTypeLCRr4MidambleAllocationMode& midambleShiftAndBurstTypeLCRr4MidambleAllocationMode, const MidambleShiftAndBurstTypeLCRr4MidambleConfiguration& midambleShiftAndBurstTypeLCRr4MidambleConfiguration) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstTypeLCRr4MidambleAllocationMode(midambleShiftAndBurstTypeLCRr4MidambleAllocationMode);
+	setMidambleShiftAndBurstTypeLCRr4MidambleConfiguration(midambleShiftAndBurstTypeLCRr4MidambleConfiguration);
+}
 
 const void *FPACHInfor4::itemsInfo[4] = {
 	&TimeslotNumberLCRr4::theInfo,
@@ -15121,6 +17101,12 @@ const FPACHInfor4::Info FPACHInfor4::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+FPACHInfor4::FPACHInfor4(const TimeslotNumberLCRr4& timeslot, const TDDFPACHCCode16r4& channelisationCode, const MidambleShiftAndBurstTypeLCRr4& midambleShiftAndBurstType, const WiLCR& wi) : Sequence(&theInfo) {
+	setTimeslot(timeslot);
+	setChannelisationCode(channelisationCode);
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+	setWi(wi);
+}
 
 const void *PRACHInformationLCR::itemsInfo[4] = {
 	&TimeslotNumberPRACHLCRr4::theInfo,
@@ -15143,6 +17129,11 @@ const PRACHInformationLCR::Info PRACHInformationLCR::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+PRACHInformationLCR::PRACHInformationLCR(const TimeslotNumberPRACHLCRr4& timeslot, const PRACHChanCodesListLCR& prachChanCodeslistLCR, const MidambleShiftAndBurstTypeLCRr4& midambleShiftAndBurstType) : Sequence(&theInfo) {
+	setTimeslot(timeslot);
+	setPrachChanCodeslistLCR(prachChanCodeslistLCR);
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+}
 
 const void *ERUCCHInfoTDD128::itemsInfo[9] = {
 	&ERUCCHInfoTDD128t_RUCCH::theInfo,
@@ -15193,6 +17184,10 @@ const ReferenceBetaQPSK::Info ReferenceBetaQPSK::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ReferenceBetaQPSK::ReferenceBetaQPSK(const ReferenceBetaQPSKReferenceCodeRate& referenceBetaQPSKReferenceCodeRate, const ReferenceBetaQPSKReferenceBeta& referenceBetaQPSKReferenceBeta) : Sequence(&theInfo) {
+	setReferenceBetaQPSKReferenceCodeRate(referenceBetaQPSKReferenceCodeRate);
+	setReferenceBetaQPSKReferenceBeta(referenceBetaQPSKReferenceBeta);
+}
 
 const void *ReferenceBeta16QAM::itemsInfo[2] = {
 	&ReferenceBeta16QAMReferenceCodeRate::theInfo,
@@ -15211,6 +17206,10 @@ const ReferenceBeta16QAM::Info ReferenceBeta16QAM::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ReferenceBeta16QAM::ReferenceBeta16QAM(const ReferenceBeta16QAMReferenceCodeRate& referenceBeta16QAMReferenceCodeRate, const ReferenceBeta16QAMReferenceBeta& referenceBeta16QAMReferenceBeta) : Sequence(&theInfo) {
+	setReferenceBeta16QAMReferenceCodeRate(referenceBeta16QAMReferenceCodeRate);
+	setReferenceBeta16QAMReferenceBeta(referenceBeta16QAMReferenceBeta);
+}
 
 const void *ETFCSInfo::itemsInfo[2] = {
 	&ETFCSInfoReferenceBetaQPSKList::theInfo,
@@ -15229,6 +17228,10 @@ const ETFCSInfo::Info ETFCSInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ETFCSInfo::ETFCSInfo(const ETFCSInfoReferenceBetaQPSKList& eTFCSInfoReferenceBetaQPSKList, const ETFCSInfoReferenceBeta16QAMList& eTFCSInfoReferenceBeta16QAMList) : Sequence(&theInfo) {
+	setETFCSInfoReferenceBetaQPSKList(eTFCSInfoReferenceBetaQPSKList);
+	setETFCSInfoReferenceBeta16QAMList(eTFCSInfoReferenceBeta16QAMList);
+}
 
 const void *ULSynchronisationParametersr4::itemsInfo[2] = {
 	&ULSynchronisationParametersr4StepSize::theInfo,
@@ -15247,6 +17250,10 @@ const ULSynchronisationParametersr4::Info ULSynchronisationParametersr4::theInfo
 	itemsPres,
 	2, 0, 0
 };
+ULSynchronisationParametersr4::ULSynchronisationParametersr4(const ULSynchronisationParametersr4StepSize& uLSynchronisationParametersr4StepSize, const ULSynchronisationParametersr4Frequency& uLSynchronisationParametersr4Frequency) : Sequence(&theInfo) {
+	setULSynchronisationParametersr4StepSize(uLSynchronisationParametersr4StepSize);
+	setULSynchronisationParametersr4Frequency(uLSynchronisationParametersr4Frequency);
+}
 
 const void *EPUCHTSSlotsLCRMidambleAllocationMode::choicesInfo[2] = {
 	&EPUCHTSSlotsLCRMidambleAllocationModeDefaultMidamble::theInfo,
@@ -15280,6 +17287,11 @@ const EPUCHTSSlotsLCR::Info EPUCHTSSlotsLCR::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+EPUCHTSSlotsLCR::EPUCHTSSlotsLCR(const TimeslotNumberLCRr4& timeslotNumber, const EPUCHTSSlotsLCRMidambleAllocationMode& ePUCHTSSlotsLCRMidambleAllocationMode, const EPUCHTSSlotsLCRMidambleConfiguration& ePUCHTSSlotsLCRMidambleConfiguration) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setEPUCHTSSlotsLCRMidambleAllocationMode(ePUCHTSSlotsLCRMidambleAllocationMode);
+	setEPUCHTSSlotsLCRMidambleConfiguration(ePUCHTSSlotsLCRMidambleConfiguration);
+}
 
 const void *EPUCHInfoTDD128::itemsInfo[13] = {
 	&ETFCSInfo::theInfo,
@@ -15320,6 +17332,16 @@ const EPUCHInfoTDD128::Info EPUCHInfoTDD128::theInfo = {
 	itemsPres,
 	13, 5, 0
 };
+EPUCHInfoTDD128::EPUCHInfoTDD128(const ETFCSInfo& eTFCSInfo, const EPUCHInfoTDD128PrxBASEdes& ePUCHInfoTDD128PrxBASEdes, const TPCStepSizeTDD& tpcStepSize, const EPUCHInfoTDD128EPUCHTSConfigurationList& ePUCHInfoTDD128EPUCHTSConfigurationList, const EPUCHInfoTDD128MinimumAllowedCodeRate& ePUCHInfoTDD128MinimumAllowedCodeRate, const EPUCHInfoTDD128MaximumAllowedCodeRate& ePUCHInfoTDD128MaximumAllowedCodeRate, const EPUCHInfoTDD128MaximumNumOfRetransSchedInfo& ePUCHInfoTDD128MaximumNumOfRetransSchedInfo, const EPUCHInfoTDD128retransTimerForSchedInfo& ePUCHInfoTDD128retransTimerForSchedInfo) : Sequence(&theInfo) {
+	setETFCSInfo(eTFCSInfo);
+	setEPUCHInfoTDD128PrxBASEdes(ePUCHInfoTDD128PrxBASEdes);
+	setTpcStepSize(tpcStepSize);
+	setEPUCHInfoTDD128EPUCHTSConfigurationList(ePUCHInfoTDD128EPUCHTSConfigurationList);
+	setEPUCHInfoTDD128MinimumAllowedCodeRate(ePUCHInfoTDD128MinimumAllowedCodeRate);
+	setEPUCHInfoTDD128MaximumAllowedCodeRate(ePUCHInfoTDD128MaximumAllowedCodeRate);
+	setEPUCHInfoTDD128MaximumNumOfRetransSchedInfo(ePUCHInfoTDD128MaximumNumOfRetransSchedInfo);
+	setEPUCHInfoTDD128retransTimerForSchedInfo(ePUCHInfoTDD128retransTimerForSchedInfo);
+}
 
 const void *EHICHInformationLCRMidambleAllocationMode::choicesInfo[2] = {
 	&EHICHInformationLCRMidambleAllocationModeDefaultMidamble::theInfo,
@@ -15357,6 +17379,13 @@ const EHICHInformationLCR::Info EHICHInformationLCR::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+EHICHInformationLCR::EHICHInformationLCR(const EHICHInformationLCREi& eHICHInformationLCREi, const TimeslotNumberLCRr4& timeslotNumber, const HSChannelisationCodeLCR& channelisationCode, const EHICHInformationLCRMidambleAllocationMode& eHICHInformationLCRMidambleAllocationMode, const EHICHInformationLCRMidambleConfiguration& eHICHInformationLCRMidambleConfiguration) : Sequence(&theInfo) {
+	setEHICHInformationLCREi(eHICHInformationLCREi);
+	setTimeslotNumber(timeslotNumber);
+	setChannelisationCode(channelisationCode);
+	setEHICHInformationLCRMidambleAllocationMode(eHICHInformationLCRMidambleAllocationMode);
+	setEHICHInformationLCRMidambleConfiguration(eHICHInformationLCRMidambleConfiguration);
+}
 
 const void *EHICHInformationTDD128::itemsInfo[2] = {
 	&EHICHInformationTDD128NEHICH::theInfo,
@@ -15375,6 +17404,10 @@ const EHICHInformationTDD128::Info EHICHInformationTDD128::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+EHICHInformationTDD128::EHICHInformationTDD128(const EHICHInformationTDD128NEHICH& eHICHInformationTDD128NEHICH, const EHICHInformationLCRList& eHICHInfoList) : Sequence(&theInfo) {
+	setEHICHInformationTDD128NEHICH(eHICHInformationTDD128NEHICH);
+	setEHICHInfoList(eHICHInfoList);
+}
 
 const void *EAGCHIndividualLCRMidambleAllocationMode::choicesInfo[3] = {
 	&EAGCHIndividualLCRMidambleAllocationModeDefaultMidamble::theInfo,
@@ -15413,6 +17446,13 @@ const EAGCHIndividualLCR::Info EAGCHIndividualLCR::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+EAGCHIndividualLCR::EAGCHIndividualLCR(const TimeslotNumberLCRr4& timeslotNumber, const HSChannelisationCodeLCR& firstChannelisationCode, const HSChannelisationCodeLCR& secondChannelisationCode, const EAGCHIndividualLCRMidambleAllocationMode& eAGCHIndividualLCRMidambleAllocationMode, const EAGCHIndividualLCRMidambleConfiguration& eAGCHIndividualLCRMidambleConfiguration) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setFirstChannelisationCode(firstChannelisationCode);
+	setSecondChannelisationCode(secondChannelisationCode);
+	setEAGCHIndividualLCRMidambleAllocationMode(eAGCHIndividualLCRMidambleAllocationMode);
+	setEAGCHIndividualLCRMidambleConfiguration(eAGCHIndividualLCRMidambleConfiguration);
+}
 
 const void *EAGCHInformationTDD128::itemsInfo[4] = {
 	&EAGCHInformationTDD128RdiIndicator::theInfo,
@@ -15435,6 +17475,12 @@ const EAGCHInformationTDD128::Info EAGCHInformationTDD128::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+EAGCHInformationTDD128::EAGCHInformationTDD128(const EAGCHInformationTDD128RdiIndicator& eAGCHInformationTDD128RdiIndicator, const TPCStepSizeTDD& tpcStepSize, const EAGCHSetConfigLCR& eAGCHSetConfig, const BlerTarget& eAGCHBLERTarget) : Sequence(&theInfo) {
+	setEAGCHInformationTDD128RdiIndicator(eAGCHInformationTDD128RdiIndicator);
+	setTpcStepSize(tpcStepSize);
+	setEAGCHSetConfig(eAGCHSetConfig);
+	setEAGCHBLERTarget(eAGCHBLERTarget);
+}
 
 const void *CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfo::itemsInfo[4] = {
 	&CommonERNTIInfo::theInfo,
@@ -15457,6 +17503,12 @@ const CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfo::Info Co
 	itemsPres,
 	4, 0, 0
 };
+CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfo::CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfo(const CommonERNTIInfo& commonerntiInfo, const CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoHarqMaximumNumberOfRetransmissions& commonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoHarqMaximumNumberOfRetransmissions, const CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer& commonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer, const CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoHarqpoweroffset& commonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoHarqpoweroffset) : Sequence(&theInfo) {
+	setCommonerntiInfo(commonerntiInfo);
+	setCommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoHarqMaximumNumberOfRetransmissions(commonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoHarqMaximumNumberOfRetransmissions);
+	setCommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer(commonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoharq_retransmission_timer);
+	setCommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoHarqpoweroffset(commonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfoHarqpoweroffset);
+}
 
 const void *CommonEDCHSystemInfoModeSpecificInfoTddTdd128::itemsInfo[6] = {
 	&ERUCCHInfoTDD128::theInfo,
@@ -15483,6 +17535,14 @@ const CommonEDCHSystemInfoModeSpecificInfoTddTdd128::Info CommonEDCHSystemInfoMo
 	itemsPres,
 	6, 0, 0
 };
+CommonEDCHSystemInfoModeSpecificInfoTddTdd128::CommonEDCHSystemInfoModeSpecificInfoTddTdd128(const ERUCCHInfoTDD128& eRUCCHInfo, const EPUCHInfoTDD128& ePUCHInfo, const EHICHInformationTDD128& ehichInformation, const EAGCHInformationTDD128& eagchInformation, const CommonEDCHSystemInfoModeSpecificInfoTddTdd128harq_Info& commonEDCHSystemInfoModeSpecificInfoTddTdd128harq_Info, const CommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfo& commonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfo) : Sequence(&theInfo) {
+	setERUCCHInfo(eRUCCHInfo);
+	setEPUCHInfo(ePUCHInfo);
+	setEhichInformation(ehichInformation);
+	setEagchInformation(eagchInformation);
+	setCommonEDCHSystemInfoModeSpecificInfoTddTdd128harq_Info(commonEDCHSystemInfoModeSpecificInfoTddTdd128harq_Info);
+	setCommonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfo(commonEDCHSystemInfoModeSpecificInfoTddTdd128CcchtransmissionInfo);
+}
 
 const void *CommonEDCHSystemInfoModeSpecificInfoTdd::choicesInfo[3] = {
 	&CommonEDCHSystemInfoModeSpecificInfoTddTdd768::theInfo,
@@ -15530,6 +17590,10 @@ const CommonEDCHSystemInfo::Info CommonEDCHSystemInfo::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+CommonEDCHSystemInfo::CommonEDCHSystemInfo(const CommonEDCHMACdFlowList& commonEDCHMACdFlowList, const CommonEDCHSystemInfoModeSpecificInfo& commonEDCHSystemInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setCommonEDCHMACdFlowList(commonEDCHMACdFlowList);
+	setCommonEDCHSystemInfoModeSpecificInfo(commonEDCHSystemInfoModeSpecificInfo);
+}
 
 const void *PRACHPartitioningr7::choicesInfo[2] = {
 	&PRACHPartitioningr7Fdd::theInfo,
@@ -15561,6 +17625,10 @@ const PRACHPowerOffset::Info PRACHPowerOffset::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+PRACHPowerOffset::PRACHPowerOffset(const PowerRampStep& powerRampStep, const PreambleRetransMax& preambleRetransMax) : Sequence(&theInfo) {
+	setPowerRampStep(powerRampStep);
+	setPreambleRetransMax(preambleRetransMax);
+}
 
 const void *RACHTransmissionParameters::itemsInfo[3] = {
 	&RACHTransmissionParametersMmax::theInfo,
@@ -15581,6 +17649,11 @@ const RACHTransmissionParameters::Info RACHTransmissionParameters::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+RACHTransmissionParameters::RACHTransmissionParameters(const RACHTransmissionParametersMmax& rACHTransmissionParametersMmax, const NB01& nb01Min, const NB01& nb01Max) : Sequence(&theInfo) {
+	setRACHTransmissionParametersMmax(rACHTransmissionParametersMmax);
+	setNb01Min(nb01Min);
+	setNb01Max(nb01Max);
+}
 
 const void *PRACHPreambleForEnhancedUplink::itemsInfo[13] = {
 	&AvailableSignatures::theInfo,
@@ -15621,6 +17694,10 @@ const PRACHPreambleForEnhancedUplink::Info PRACHPreambleForEnhancedUplink::theIn
 	itemsPres,
 	13, 11, 0
 };
+PRACHPreambleForEnhancedUplink::PRACHPreambleForEnhancedUplink(const PRACHPreambleForEnhancedUplinkEaiIndication& pRACHPreambleForEnhancedUplinkEaiIndication, const PRACHPreambleForEnhancedUplinkPowerOffsetPpe& pRACHPreambleForEnhancedUplinkPowerOffsetPpe) : Sequence(&theInfo) {
+	setPRACHPreambleForEnhancedUplinkEaiIndication(pRACHPreambleForEnhancedUplinkEaiIndication);
+	setPRACHPreambleForEnhancedUplinkPowerOffsetPpe(pRACHPreambleForEnhancedUplinkPowerOffsetPpe);
+}
 
 const void *ULDPCHpowerControlInfoForCommonEDCH::itemsInfo[4] = {
 	&PowerControlAlgorithm::theInfo,
@@ -15643,6 +17720,9 @@ const ULDPCHpowerControlInfoForCommonEDCH::Info ULDPCHpowerControlInfoForCommonE
 	itemsPres,
 	4, 3, 0
 };
+ULDPCHpowerControlInfoForCommonEDCH::ULDPCHpowerControlInfoForCommonEDCH(const PowerControlAlgorithm& powerControlAlgorithm) : Sequence(&theInfo) {
+	setPowerControlAlgorithm(powerControlAlgorithm);
+}
 
 const void *ETFCBoostInfor7::itemsInfo[2] = {
 	&ETFCBoostInfor7ETFCIBoost::theInfo,
@@ -15661,6 +17741,9 @@ const ETFCBoostInfor7::Info ETFCBoostInfor7::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ETFCBoostInfor7::ETFCBoostInfor7(const ETFCBoostInfor7ETFCIBoost& eTFCBoostInfor7ETFCIBoost) : Sequence(&theInfo) {
+	setETFCBoostInfor7ETFCIBoost(eTFCBoostInfor7ETFCIBoost);
+}
 
 const void *EDPCCHInfor7::itemsInfo[4] = {
 	&EDPCCHDPCCHPowerOffset::theInfo,
@@ -15683,6 +17766,10 @@ const EDPCCHInfor7::Info EDPCCHInfor7::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+EDPCCHInfor7::EDPCCHInfor7(const EDPCCHDPCCHPowerOffset& eDPCCHDPCCHPowerOffset, const HappyBitDelayCondition& happyBitDelayCondition) : Sequence(&theInfo) {
+	setEDPCCHDPCCHPowerOffset(eDPCCHDPCCHPowerOffset);
+	setHappyBitDelayCondition(happyBitDelayCondition);
+}
 
 const void *EDPDCHReferenceETFCIr7::itemsInfo[2] = {
 	&EDPDCHReferenceETFCIr7ReferenceETFCI::theInfo,
@@ -15701,6 +17788,10 @@ const EDPDCHReferenceETFCIr7::Info EDPDCHReferenceETFCIr7::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+EDPDCHReferenceETFCIr7::EDPDCHReferenceETFCIr7(const EDPDCHReferenceETFCIr7ReferenceETFCI& eDPDCHReferenceETFCIr7ReferenceETFCI, const EDPDCHReferenceETFCIr7ReferenceETFCIPOr7& eDPDCHReferenceETFCIr7ReferenceETFCIPOr7) : Sequence(&theInfo) {
+	setEDPDCHReferenceETFCIr7ReferenceETFCI(eDPDCHReferenceETFCIr7ReferenceETFCI);
+	setEDPDCHReferenceETFCIr7ReferenceETFCIPOr7(eDPDCHReferenceETFCIr7ReferenceETFCIPOr7);
+}
 
 const void *EDPDCHSchedulingInfoConfiguration::itemsInfo[3] = {
 	&EDPDCHPeriodicyOfSchedInfo::theInfo,
@@ -15721,6 +17812,9 @@ const EDPDCHSchedulingInfoConfiguration::Info EDPDCHSchedulingInfoConfiguration:
 	itemsPres,
 	3, 2, 0
 };
+EDPDCHSchedulingInfoConfiguration::EDPDCHSchedulingInfoConfiguration(const EDPDCHSchedulingInfoConfigurationPowerOffsetForSchedInfo& eDPDCHSchedulingInfoConfigurationPowerOffsetForSchedInfo) : Sequence(&theInfo) {
+	setEDPDCHSchedulingInfoConfigurationPowerOffsetForSchedInfo(eDPDCHSchedulingInfoConfigurationPowerOffsetForSchedInfo);
+}
 
 const void *EDPDCHInfor8::itemsInfo[9] = {
 	&ETFCITableIndex::theInfo,
@@ -15753,6 +17847,13 @@ const EDPDCHInfor8::Info EDPDCHInfor8::theInfo = {
 	itemsPres,
 	9, 4, 0
 };
+EDPDCHInfor8::EDPDCHInfor8(const ETFCITableIndex& eTFCITableIndex, const EDPDCHReferenceETFCIListr7& referenceETFCIs, const EDPDCHMaxChannelisationCodes& maxChannelisationCodes, const EDPDCHPLNonMax& plNonMax, const EDPDCHSchedulingInfoConfiguration& schedulingInfoConfiguration) : Sequence(&theInfo) {
+	setETFCITableIndex(eTFCITableIndex);
+	setReferenceETFCIs(referenceETFCIs);
+	setMaxChannelisationCodes(maxChannelisationCodes);
+	setPlNonMax(plNonMax);
+	setSchedulingInfoConfiguration(schedulingInfoConfiguration);
+}
 
 const void *CommonEDCHSystemInfoFDD::itemsInfo[18] = {
 	&ULInterference::theInfo,
@@ -15803,6 +17904,24 @@ const CommonEDCHSystemInfoFDD::Info CommonEDCHSystemInfoFDD::theInfo = {
 	itemsPres,
 	18, 2, 0
 };
+CommonEDCHSystemInfoFDD::CommonEDCHSystemInfoFDD(const CommonEDCHMACdFlowList& commonEDCHMACdFlowList, const PRACHPreambleForEnhancedUplink& prachPreambleForEnhancedUplink, const CommonEDCHSystemInfoFDDInitialServingGrantValue& commonEDCHSystemInfoFDDInitialServingGrantValue, const EDCHTTI& edchTTI, const EAGCHInformation& eagchInformation, const CommonEDCHSystemInfoFDDharq_Info& commonEDCHSystemInfoFDDharq_Info, const ULDPCHpowerControlInfoForCommonEDCH& ulDPCHpowerControlInfoForCommonEDCH, const EDPCCHInfor7& edpcchInfo, const EDPDCHInfor8& edpdchInfo, const CommonEDCHSystemInfoFDDDlFDPCHTPCcommandErrorRate& commonEDCHSystemInfoFDDDlFDPCHTPCcommandErrorRate, const CommonEDCHSystemInfoFDDAdditionalEDCHTransmitBackoff& commonEDCHSystemInfoFDDAdditionalEDCHTransmitBackoff, const CommonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation& commonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation, const CommonEDCHSystemInfoFDDMaxPeriodForCollisionResolution& commonEDCHSystemInfoFDDMaxPeriodForCollisionResolution, const CommonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset& commonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset, const CommonEDCHSystemInfoFDDAcknacksupportonHSDPCCH& commonEDCHSystemInfoFDDAcknacksupportonHSDPCCH, const CommonEDCHSystemInfoFDDCommonEDCHResourceInfoList& commonEDCHSystemInfoFDDCommonEDCHResourceInfoList) : Sequence(&theInfo) {
+	setCommonEDCHMACdFlowList(commonEDCHMACdFlowList);
+	setPrachPreambleForEnhancedUplink(prachPreambleForEnhancedUplink);
+	setCommonEDCHSystemInfoFDDInitialServingGrantValue(commonEDCHSystemInfoFDDInitialServingGrantValue);
+	setEdchTTI(edchTTI);
+	setEagchInformation(eagchInformation);
+	setCommonEDCHSystemInfoFDDharq_Info(commonEDCHSystemInfoFDDharq_Info);
+	setUlDPCHpowerControlInfoForCommonEDCH(ulDPCHpowerControlInfoForCommonEDCH);
+	setEdpcchInfo(edpcchInfo);
+	setEdpdchInfo(edpdchInfo);
+	setCommonEDCHSystemInfoFDDDlFDPCHTPCcommandErrorRate(commonEDCHSystemInfoFDDDlFDPCHTPCcommandErrorRate);
+	setCommonEDCHSystemInfoFDDAdditionalEDCHTransmitBackoff(commonEDCHSystemInfoFDDAdditionalEDCHTransmitBackoff);
+	setCommonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation(commonEDCHSystemInfoFDDmax_CCCH_ResourceAllocation);
+	setCommonEDCHSystemInfoFDDMaxPeriodForCollisionResolution(commonEDCHSystemInfoFDDMaxPeriodForCollisionResolution);
+	setCommonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset(commonEDCHSystemInfoFDDe_dch_TransmitContinuationOffset);
+	setCommonEDCHSystemInfoFDDAcknacksupportonHSDPCCH(commonEDCHSystemInfoFDDAcknacksupportonHSDPCCH);
+	setCommonEDCHSystemInfoFDDCommonEDCHResourceInfoList(commonEDCHSystemInfoFDDCommonEDCHResourceInfoList);
+}
 
 const void *CommonTimeslotInfoMBMS::itemsInfo[3] = {
 	&SecondInterleavingMode::theInfo,
@@ -15823,6 +17942,10 @@ const CommonTimeslotInfoMBMS::Info CommonTimeslotInfoMBMS::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+CommonTimeslotInfoMBMS::CommonTimeslotInfoMBMS(const SecondInterleavingMode& secondInterleavingMode, const PuncturingLimit& puncturingLimit) : Sequence(&theInfo) {
+	setSecondInterleavingMode(secondInterleavingMode);
+	setPuncturingLimit(puncturingLimit);
+}
 
 const void *RepetitionPeriodLengthAndOffsetRepetitionPeriod2::itemsInfo[2] = {
 	&RepetitionPeriodLengthAndOffsetRepetitionPeriod2Length::theInfo,
@@ -15841,6 +17964,10 @@ const RepetitionPeriodLengthAndOffsetRepetitionPeriod2::Info RepetitionPeriodLen
 	itemsPres,
 	2, 0, 0
 };
+RepetitionPeriodLengthAndOffsetRepetitionPeriod2::RepetitionPeriodLengthAndOffsetRepetitionPeriod2(const RepetitionPeriodLengthAndOffsetRepetitionPeriod2Length& repetitionPeriodLengthAndOffsetRepetitionPeriod2Length, const RepetitionPeriodLengthAndOffsetRepetitionPeriod2Offset& repetitionPeriodLengthAndOffsetRepetitionPeriod2Offset) : Sequence(&theInfo) {
+	setRepetitionPeriodLengthAndOffsetRepetitionPeriod2Length(repetitionPeriodLengthAndOffsetRepetitionPeriod2Length);
+	setRepetitionPeriodLengthAndOffsetRepetitionPeriod2Offset(repetitionPeriodLengthAndOffsetRepetitionPeriod2Offset);
+}
 
 const void *RepetitionPeriodLengthAndOffsetRepetitionPeriod4::itemsInfo[2] = {
 	&RepetitionPeriodLengthAndOffsetRepetitionPeriod4Length::theInfo,
@@ -15859,6 +17986,10 @@ const RepetitionPeriodLengthAndOffsetRepetitionPeriod4::Info RepetitionPeriodLen
 	itemsPres,
 	2, 0, 0
 };
+RepetitionPeriodLengthAndOffsetRepetitionPeriod4::RepetitionPeriodLengthAndOffsetRepetitionPeriod4(const RepetitionPeriodLengthAndOffsetRepetitionPeriod4Length& repetitionPeriodLengthAndOffsetRepetitionPeriod4Length, const RepetitionPeriodLengthAndOffsetRepetitionPeriod4Offset& repetitionPeriodLengthAndOffsetRepetitionPeriod4Offset) : Sequence(&theInfo) {
+	setRepetitionPeriodLengthAndOffsetRepetitionPeriod4Length(repetitionPeriodLengthAndOffsetRepetitionPeriod4Length);
+	setRepetitionPeriodLengthAndOffsetRepetitionPeriod4Offset(repetitionPeriodLengthAndOffsetRepetitionPeriod4Offset);
+}
 
 const void *RepetitionPeriodLengthAndOffsetRepetitionPeriod8::itemsInfo[2] = {
 	&RepetitionPeriodLengthAndOffsetRepetitionPeriod8Length::theInfo,
@@ -15877,6 +18008,10 @@ const RepetitionPeriodLengthAndOffsetRepetitionPeriod8::Info RepetitionPeriodLen
 	itemsPres,
 	2, 0, 0
 };
+RepetitionPeriodLengthAndOffsetRepetitionPeriod8::RepetitionPeriodLengthAndOffsetRepetitionPeriod8(const RepetitionPeriodLengthAndOffsetRepetitionPeriod8Length& repetitionPeriodLengthAndOffsetRepetitionPeriod8Length, const RepetitionPeriodLengthAndOffsetRepetitionPeriod8Offset& repetitionPeriodLengthAndOffsetRepetitionPeriod8Offset) : Sequence(&theInfo) {
+	setRepetitionPeriodLengthAndOffsetRepetitionPeriod8Length(repetitionPeriodLengthAndOffsetRepetitionPeriod8Length);
+	setRepetitionPeriodLengthAndOffsetRepetitionPeriod8Offset(repetitionPeriodLengthAndOffsetRepetitionPeriod8Offset);
+}
 
 const void *RepetitionPeriodLengthAndOffsetRepetitionPeriod16::itemsInfo[2] = {
 	&RepetitionPeriodLengthAndOffsetRepetitionPeriod16Length::theInfo,
@@ -15895,6 +18030,10 @@ const RepetitionPeriodLengthAndOffsetRepetitionPeriod16::Info RepetitionPeriodLe
 	itemsPres,
 	2, 0, 0
 };
+RepetitionPeriodLengthAndOffsetRepetitionPeriod16::RepetitionPeriodLengthAndOffsetRepetitionPeriod16(const RepetitionPeriodLengthAndOffsetRepetitionPeriod16Length& repetitionPeriodLengthAndOffsetRepetitionPeriod16Length, const RepetitionPeriodLengthAndOffsetRepetitionPeriod16Offset& repetitionPeriodLengthAndOffsetRepetitionPeriod16Offset) : Sequence(&theInfo) {
+	setRepetitionPeriodLengthAndOffsetRepetitionPeriod16Length(repetitionPeriodLengthAndOffsetRepetitionPeriod16Length);
+	setRepetitionPeriodLengthAndOffsetRepetitionPeriod16Offset(repetitionPeriodLengthAndOffsetRepetitionPeriod16Offset);
+}
 
 const void *RepetitionPeriodLengthAndOffsetRepetitionPeriod32::itemsInfo[2] = {
 	&RepetitionPeriodLengthAndOffsetRepetitionPeriod32Length::theInfo,
@@ -15913,6 +18052,10 @@ const RepetitionPeriodLengthAndOffsetRepetitionPeriod32::Info RepetitionPeriodLe
 	itemsPres,
 	2, 0, 0
 };
+RepetitionPeriodLengthAndOffsetRepetitionPeriod32::RepetitionPeriodLengthAndOffsetRepetitionPeriod32(const RepetitionPeriodLengthAndOffsetRepetitionPeriod32Length& repetitionPeriodLengthAndOffsetRepetitionPeriod32Length, const RepetitionPeriodLengthAndOffsetRepetitionPeriod32Offset& repetitionPeriodLengthAndOffsetRepetitionPeriod32Offset) : Sequence(&theInfo) {
+	setRepetitionPeriodLengthAndOffsetRepetitionPeriod32Length(repetitionPeriodLengthAndOffsetRepetitionPeriod32Length);
+	setRepetitionPeriodLengthAndOffsetRepetitionPeriod32Offset(repetitionPeriodLengthAndOffsetRepetitionPeriod32Offset);
+}
 
 const void *RepetitionPeriodLengthAndOffsetRepetitionPeriod64::itemsInfo[2] = {
 	&RepetitionPeriodLengthAndOffsetRepetitionPeriod64Length::theInfo,
@@ -15931,6 +18074,10 @@ const RepetitionPeriodLengthAndOffsetRepetitionPeriod64::Info RepetitionPeriodLe
 	itemsPres,
 	2, 0, 0
 };
+RepetitionPeriodLengthAndOffsetRepetitionPeriod64::RepetitionPeriodLengthAndOffsetRepetitionPeriod64(const RepetitionPeriodLengthAndOffsetRepetitionPeriod64Length& repetitionPeriodLengthAndOffsetRepetitionPeriod64Length, const RepetitionPeriodLengthAndOffsetRepetitionPeriod64Offset& repetitionPeriodLengthAndOffsetRepetitionPeriod64Offset) : Sequence(&theInfo) {
+	setRepetitionPeriodLengthAndOffsetRepetitionPeriod64Length(repetitionPeriodLengthAndOffsetRepetitionPeriod64Length);
+	setRepetitionPeriodLengthAndOffsetRepetitionPeriod64Offset(repetitionPeriodLengthAndOffsetRepetitionPeriod64Offset);
+}
 
 const void *RepetitionPeriodLengthAndOffset::choicesInfo[7] = {
 	&RepetitionPeriodLengthAndOffsetRepetitionPeriod1::theInfo,
@@ -15971,6 +18118,10 @@ const CommonTimeslotInfoSCCPCH::Info CommonTimeslotInfoSCCPCH::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+CommonTimeslotInfoSCCPCH::CommonTimeslotInfoSCCPCH(const SecondInterleavingMode& secondInterleavingMode, const PuncturingLimit& puncturingLimit) : Sequence(&theInfo) {
+	setSecondInterleavingMode(secondInterleavingMode);
+	setPuncturingLimit(puncturingLimit);
+}
 
 const void *ControlChannelDRXInfoTDD128r8ControlChannelDrxOperationContinue::itemsInfo[1] = {
 	&EnablingDelayTDD128::theInfo,
@@ -16007,6 +18158,10 @@ const HSSCCHDRXInfoTDD128::Info HSSCCHDRXInfoTDD128::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+HSSCCHDRXInfoTDD128::HSSCCHDRXInfoTDD128(const ControlChannelDRXCycleTDD128& hSSCCHDRXCycle, const HSSCCHDRXInfoTDD128HSSCCHDRXOffset& hSSCCHDRXInfoTDD128HSSCCHDRXOffset) : Sequence(&theInfo) {
+	setHSSCCHDRXCycle(hSSCCHDRXCycle);
+	setHSSCCHDRXInfoTDD128HSSCCHDRXOffset(hSSCCHDRXInfoTDD128HSSCCHDRXOffset);
+}
 
 const void *EAGCHDRXInfoTDD128EAGCHDRXInfoTypeEAGCHDRXParameters::itemsInfo[3] = {
 	&ControlChannelDRXCycleTDD128::theInfo,
@@ -16027,6 +18182,10 @@ const EAGCHDRXInfoTDD128EAGCHDRXInfoTypeEAGCHDRXParameters::Info EAGCHDRXInfoTDD
 	itemsPres,
 	3, 1, 0
 };
+EAGCHDRXInfoTDD128EAGCHDRXInfoTypeEAGCHDRXParameters::EAGCHDRXInfoTDD128EAGCHDRXInfoTypeEAGCHDRXParameters(const ControlChannelDRXCycleTDD128& eAGCHDRXCycle, const EAGCHDRXInfoTDD128EAGCHDRXInfoTypeEAGCHDRXParametersEAGCHDRXOffset& eAGCHDRXInfoTDD128EAGCHDRXInfoTypeEAGCHDRXParametersEAGCHDRXOffset) : Sequence(&theInfo) {
+	setEAGCHDRXCycle(eAGCHDRXCycle);
+	setEAGCHDRXInfoTDD128EAGCHDRXInfoTypeEAGCHDRXParametersEAGCHDRXOffset(eAGCHDRXInfoTDD128EAGCHDRXInfoTypeEAGCHDRXParametersEAGCHDRXOffset);
+}
 
 const void *EAGCHDRXInfoTDD128EAGCHDRXInfoType::choicesInfo[2] = {
 	&EAGCHDRXInfoTDD128EAGCHDRXInfoTypeSameAsHSSCCH::theInfo,
@@ -16056,6 +18215,9 @@ const EAGCHDRXInfoTDD128::Info EAGCHDRXInfoTDD128::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EAGCHDRXInfoTDD128::EAGCHDRXInfoTDD128(const EAGCHDRXInfoTDD128EAGCHDRXInfoType& eAGCHDRXInfoTDD128EAGCHDRXInfoType) : Sequence(&theInfo) {
+	setEAGCHDRXInfoTDD128EAGCHDRXInfoType(eAGCHDRXInfoTDD128EAGCHDRXInfoType);
+}
 
 const void *ControlChannelDRXInfoTDD128r8ControlChannelDrxOperationNewOperation::itemsInfo[3] = {
 	&HSSCCHDRXInfoTDD128::theInfo,
@@ -16076,6 +18238,10 @@ const ControlChannelDRXInfoTDD128r8ControlChannelDrxOperationNewOperation::Info 
 	itemsPres,
 	3, 1, 0
 };
+ControlChannelDRXInfoTDD128r8ControlChannelDrxOperationNewOperation::ControlChannelDRXInfoTDD128r8ControlChannelDrxOperationNewOperation(const HSSCCHDRXInfoTDD128& hSSCCHDrxInfo, const EnablingDelayTDD128& enablingDelay) : Sequence(&theInfo) {
+	setHSSCCHDrxInfo(hSSCCHDrxInfo);
+	setEnablingDelay(enablingDelay);
+}
 
 const void *ControlChannelDRXInfoTDD128r8ControlChannelDrxOperation::choicesInfo[2] = {
 	&ControlChannelDRXInfoTDD128r8ControlChannelDrxOperationContinue::theInfo,
@@ -16105,6 +18271,9 @@ const ControlChannelDRXInfoTDD128r8::Info ControlChannelDRXInfoTDD128r8::theInfo
 	itemsPres,
 	1, 0, 0
 };
+ControlChannelDRXInfoTDD128r8::ControlChannelDRXInfoTDD128r8(const ControlChannelDRXInfoTDD128r8ControlChannelDrxOperation& controlChannelDRXInfoTDD128r8ControlChannelDrxOperation) : Sequence(&theInfo) {
+	setControlChannelDRXInfoTDD128r8ControlChannelDrxOperation(controlChannelDRXInfoTDD128r8ControlChannelDrxOperation);
+}
 
 const void *CPCHPersistenceLevels::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -16123,6 +18292,10 @@ const CPCHPersistenceLevels::Info CPCHPersistenceLevels::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CPCHPersistenceLevels::CPCHPersistenceLevels(const CPCHSetID& cpchSetID, const DynamicPersistenceLevelTFList& dynamicPersistenceLevelTFList) : Sequence(&theInfo) {
+	setCpchSetID(cpchSetID);
+	setDynamicPersistenceLevelTFList(dynamicPersistenceLevelTFList);
+}
 
 const void *UCSMInfo::itemsInfo[3] = {
 	&MinimumSpreadingFactor::theInfo,
@@ -16143,6 +18316,11 @@ const UCSMInfo::Info UCSMInfo::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+UCSMInfo::UCSMInfo(const MinimumSpreadingFactor& minimumSpreadingFactor, const NFMax& nfMax, const ChannelReqParamsForUCSM& channelReqParamsForUCSM) : Sequence(&theInfo) {
+	setMinimumSpreadingFactor(minimumSpreadingFactor);
+	setNfMax(nfMax);
+	setChannelReqParamsForUCSM(channelReqParamsForUCSM);
+}
 
 const void *PCPCHChannelInfo::itemsInfo[5] = {
 	&PCPCHChannelInfoPcpchULScramblingCode::theInfo,
@@ -16167,6 +18345,11 @@ const PCPCHChannelInfo::Info PCPCHChannelInfo::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+PCPCHChannelInfo::PCPCHChannelInfo(const PCPCHChannelInfoPcpchULScramblingCode& pCPCHChannelInfoPcpchULScramblingCode, const PCPCHChannelInfoPcpchDLChannelisationCode& pCPCHChannelInfoPcpchDLChannelisationCode, const PCPLength& pcpLength) : Sequence(&theInfo) {
+	setPCPCHChannelInfoPcpchULScramblingCode(pCPCHChannelInfoPcpchULScramblingCode);
+	setPCPCHChannelInfoPcpchDLChannelisationCode(pCPCHChannelInfoPcpchDLChannelisationCode);
+	setPcpLength(pcpLength);
+}
 
 const void *CPCHSetInfo::itemsInfo[16] = {
 	&CPCHSetID::theInfo,
@@ -16213,6 +18396,22 @@ const CPCHSetInfo::Info CPCHSetInfo::theInfo = {
 	itemsPres,
 	16, 2, 0
 };
+CPCHSetInfo::CPCHSetInfo(const CPCHSetID& cpchSetID, const TransportFormatSet& transportFormatSet, const TFCS& tfcs, const APPreambleScramblingCode& apPreambleScramblingCode, const APAICHChannelisationCode& apAICHChannelisationCode, const CDPreambleScramblingCode& cdPreambleScramblingCode, const CDCAICHChannelisationCode& cdCAICHChannelisationCode, const DeltaPpm& deltaPpm, const ULDPCCHSlotFormat& ulDPCCHSlotFormat, const NStartMessage& nStartMessage, const NEOT& nEOT, const ChannelAssignmentActive& channelAssignmentActive, const CPCHStatusIndicationMode& cpchStatusIndicationMode, const PCPCHChannelInfoList& pcpchChannelInfoList) : Sequence(&theInfo) {
+	setCpchSetID(cpchSetID);
+	setTransportFormatSet(transportFormatSet);
+	setTfcs(tfcs);
+	setApPreambleScramblingCode(apPreambleScramblingCode);
+	setApAICHChannelisationCode(apAICHChannelisationCode);
+	setCdPreambleScramblingCode(cdPreambleScramblingCode);
+	setCdCAICHChannelisationCode(cdCAICHChannelisationCode);
+	setDeltaPpm(deltaPpm);
+	setUlDPCCHSlotFormat(ulDPCCHSlotFormat);
+	setNStartMessage(nStartMessage);
+	setNEOT(nEOT);
+	setChannelAssignmentActive(channelAssignmentActive);
+	setCpchStatusIndicationMode(cpchStatusIndicationMode);
+	setPcpchChannelInfoList(pcpchChannelInfoList);
+}
 
 const void *TimeInfo::itemsInfo[2] = {
 	&ActivationTime::theInfo,
@@ -16247,6 +18446,9 @@ const MidambleShiftAndBurstTypeBurstTypeType1MidambleAllocationModeUeSpecificMid
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeBurstTypeType1MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeBurstTypeType1MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeBurstTypeType1MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTypeBurstTypeType1MidambleAllocationModeDefaultMidamble::theInfo,
@@ -16279,6 +18481,10 @@ const MidambleShiftAndBurstTypeBurstTypeType1::Info MidambleShiftAndBurstTypeBur
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeBurstTypeType1::MidambleShiftAndBurstTypeBurstTypeType1(const MidambleConfigurationBurstType1and3& midambleConfigurationBurstType1and3, const MidambleShiftAndBurstTypeBurstTypeType1MidambleAllocationMode& midambleShiftAndBurstTypeBurstTypeType1MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType1and3(midambleConfigurationBurstType1and3);
+	setMidambleShiftAndBurstTypeBurstTypeType1MidambleAllocationMode(midambleShiftAndBurstTypeBurstTypeType1MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTypeBurstTypeType2MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftShort::theInfo,
@@ -16295,6 +18501,9 @@ const MidambleShiftAndBurstTypeBurstTypeType2MidambleAllocationModeUeSpecificMid
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeBurstTypeType2MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeBurstTypeType2MidambleAllocationModeUeSpecificMidamble(const MidambleShiftShort& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeBurstTypeType2MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTypeBurstTypeType2MidambleAllocationModeDefaultMidamble::theInfo,
@@ -16327,6 +18536,10 @@ const MidambleShiftAndBurstTypeBurstTypeType2::Info MidambleShiftAndBurstTypeBur
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeBurstTypeType2::MidambleShiftAndBurstTypeBurstTypeType2(const MidambleConfigurationBurstType2& midambleConfigurationBurstType2, const MidambleShiftAndBurstTypeBurstTypeType2MidambleAllocationMode& midambleShiftAndBurstTypeBurstTypeType2MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType2(midambleConfigurationBurstType2);
+	setMidambleShiftAndBurstTypeBurstTypeType2MidambleAllocationMode(midambleShiftAndBurstTypeBurstTypeType2MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTypeBurstTypeType3MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftLong::theInfo,
@@ -16343,6 +18556,9 @@ const MidambleShiftAndBurstTypeBurstTypeType3MidambleAllocationModeUeSpecificMid
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeBurstTypeType3MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeBurstTypeType3MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeBurstTypeType3MidambleAllocationMode::choicesInfo[2] = {
 	&MidambleShiftAndBurstTypeBurstTypeType3MidambleAllocationModeDefaultMidamble::theInfo,
@@ -16374,6 +18590,10 @@ const MidambleShiftAndBurstTypeBurstTypeType3::Info MidambleShiftAndBurstTypeBur
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeBurstTypeType3::MidambleShiftAndBurstTypeBurstTypeType3(const MidambleConfigurationBurstType1and3& midambleConfigurationBurstType1and3, const MidambleShiftAndBurstTypeBurstTypeType3MidambleAllocationMode& midambleShiftAndBurstTypeBurstTypeType3MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType1and3(midambleConfigurationBurstType1and3);
+	setMidambleShiftAndBurstTypeBurstTypeType3MidambleAllocationMode(midambleShiftAndBurstTypeBurstTypeType3MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTypeBurstType::choicesInfo[3] = {
 	&MidambleShiftAndBurstTypeBurstTypeType1::theInfo,
@@ -16404,6 +18624,9 @@ const MidambleShiftAndBurstType::Info MidambleShiftAndBurstType::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstType::MidambleShiftAndBurstType(const MidambleShiftAndBurstTypeBurstType& midambleShiftAndBurstTypeBurstType) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstTypeBurstType(midambleShiftAndBurstTypeBurstType);
+}
 
 const void *IndividualTimeslotInfo::itemsInfo[3] = {
 	&TimeslotNumber::theInfo,
@@ -16424,6 +18647,11 @@ const IndividualTimeslotInfo::Info IndividualTimeslotInfo::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+IndividualTimeslotInfo::IndividualTimeslotInfo(const TimeslotNumber& timeslotNumber, const IndividualTimeslotInfoTfciExistence& individualTimeslotInfoTfciExistence, const MidambleShiftAndBurstType& midambleShiftAndBurstType) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setIndividualTimeslotInfoTfciExistence(individualTimeslotInfoTfciExistence);
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+}
 
 const void *DLTSChannelisationCodesShortCodesRepresentationConsecutive::itemsInfo[2] = {
 	&DLTSChannelisationCode::theInfo,
@@ -16442,6 +18670,10 @@ const DLTSChannelisationCodesShortCodesRepresentationConsecutive::Info DLTSChann
 	itemsPres,
 	2, 0, 0
 };
+DLTSChannelisationCodesShortCodesRepresentationConsecutive::DLTSChannelisationCodesShortCodesRepresentationConsecutive(const DLTSChannelisationCode& firstChannelisationCode, const DLTSChannelisationCode& lastChannelisationCode) : Sequence(&theInfo) {
+	setFirstChannelisationCode(firstChannelisationCode);
+	setLastChannelisationCode(lastChannelisationCode);
+}
 
 const void *DLTSChannelisationCodesShortCodesRepresentation::choicesInfo[2] = {
 	&DLTSChannelisationCodesShortCodesRepresentationConsecutive::theInfo,
@@ -16471,6 +18703,9 @@ const DLTSChannelisationCodesShort::Info DLTSChannelisationCodesShort::theInfo =
 	itemsPres,
 	1, 0, 0
 };
+DLTSChannelisationCodesShort::DLTSChannelisationCodesShort(const DLTSChannelisationCodesShortCodesRepresentation& dLTSChannelisationCodesShortCodesRepresentation) : Sequence(&theInfo) {
+	setDLTSChannelisationCodesShortCodesRepresentation(dLTSChannelisationCodesShortCodesRepresentation);
+}
 
 const void *DownlinkAdditionalTimeslotsParametersSameAsLast::itemsInfo[1] = {
 	&TimeslotNumber::theInfo,
@@ -16487,6 +18722,9 @@ const DownlinkAdditionalTimeslotsParametersSameAsLast::Info DownlinkAdditionalTi
 	itemsPres,
 	1, 0, 0
 };
+DownlinkAdditionalTimeslotsParametersSameAsLast::DownlinkAdditionalTimeslotsParametersSameAsLast(const TimeslotNumber& timeslotNumber) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+}
 
 const void *DownlinkAdditionalTimeslotsParametersNewParameters::itemsInfo[2] = {
 	&IndividualTimeslotInfo::theInfo,
@@ -16505,6 +18743,10 @@ const DownlinkAdditionalTimeslotsParametersNewParameters::Info DownlinkAdditiona
 	itemsPres,
 	2, 0, 0
 };
+DownlinkAdditionalTimeslotsParametersNewParameters::DownlinkAdditionalTimeslotsParametersNewParameters(const IndividualTimeslotInfo& individualTimeslotInfo, const DLTSChannelisationCodesShort& dlTSChannelisationCodesShort) : Sequence(&theInfo) {
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+	setDlTSChannelisationCodesShort(dlTSChannelisationCodesShort);
+}
 
 const void *DownlinkAdditionalTimeslotsParameters::choicesInfo[2] = {
 	&DownlinkAdditionalTimeslotsParametersSameAsLast::theInfo,
@@ -16534,6 +18776,9 @@ const DownlinkAdditionalTimeslots::Info DownlinkAdditionalTimeslots::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DownlinkAdditionalTimeslots::DownlinkAdditionalTimeslots(const DownlinkAdditionalTimeslotsParameters& downlinkAdditionalTimeslotsParameters) : Sequence(&theInfo) {
+	setDownlinkAdditionalTimeslotsParameters(downlinkAdditionalTimeslotsParameters);
+}
 
 const void *DownlinkTimeslotsCodesMoreTimeslotsAdditionalTimeslots::choicesInfo[2] = {
 	&DownlinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutive::theInfo,
@@ -16580,6 +18825,11 @@ const DownlinkTimeslotsCodes::Info DownlinkTimeslotsCodes::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+DownlinkTimeslotsCodes::DownlinkTimeslotsCodes(const IndividualTimeslotInfo& firstIndividualTimeslotInfo, const DLTSChannelisationCodesShort& dlTSChannelisationCodesShort, const DownlinkTimeslotsCodesMoreTimeslots& downlinkTimeslotsCodesMoreTimeslots) : Sequence(&theInfo) {
+	setFirstIndividualTimeslotInfo(firstIndividualTimeslotInfo);
+	setDlTSChannelisationCodesShort(dlTSChannelisationCodesShort);
+	setDownlinkTimeslotsCodesMoreTimeslots(downlinkTimeslotsCodesMoreTimeslots);
+}
 
 const void *DLCCTrCh::itemsInfo[5] = {
 	&TFCSIdentityPlain::theInfo,
@@ -16604,6 +18854,9 @@ const DLCCTrCh::Info DLCCTrCh::theInfo = {
 	itemsPres,
 	5, 4, 0
 };
+DLCCTrCh::DLCCTrCh(const TimeInfo& timeInfo) : Sequence(&theInfo) {
+	setTimeInfo(timeInfo);
+}
 
 const void *DLCCTrChr4TddOptionTdd384::itemsInfo[1] = {
 	&DownlinkTimeslotsCodes::theInfo,
@@ -16646,6 +18899,13 @@ const IndividualTimeslotInfoLCRr4::Info IndividualTimeslotInfoLCRr4::theInfo = {
 	itemsPres,
 	6, 1, 0
 };
+IndividualTimeslotInfoLCRr4::IndividualTimeslotInfoLCRr4(const TimeslotNumberLCRr4& timeslotNumber, const IndividualTimeslotInfoLCRr4TfciExistence& individualTimeslotInfoLCRr4TfciExistence, const MidambleShiftAndBurstTypeLCRr4& midambleShiftAndBurstType, const IndividualTimeslotInfoLCRr4modulation& individualTimeslotInfoLCRr4modulation, const IndividualTimeslotInfoLCRr4ss_TPC_Symbols& individualTimeslotInfoLCRr4ss_TPC_Symbols) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setIndividualTimeslotInfoLCRr4TfciExistence(individualTimeslotInfoLCRr4TfciExistence);
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+	setIndividualTimeslotInfoLCRr4modulation(individualTimeslotInfoLCRr4modulation);
+	setIndividualTimeslotInfoLCRr4ss_TPC_Symbols(individualTimeslotInfoLCRr4ss_TPC_Symbols);
+}
 
 const void *DownlinkAdditionalTimeslotsLCRr4ParametersSameAsLast::itemsInfo[1] = {
 	&TimeslotNumberLCRr4::theInfo,
@@ -16662,6 +18922,9 @@ const DownlinkAdditionalTimeslotsLCRr4ParametersSameAsLast::Info DownlinkAdditio
 	itemsPres,
 	1, 0, 0
 };
+DownlinkAdditionalTimeslotsLCRr4ParametersSameAsLast::DownlinkAdditionalTimeslotsLCRr4ParametersSameAsLast(const TimeslotNumberLCRr4& timeslotNumber) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+}
 
 const void *DownlinkAdditionalTimeslotsLCRr4ParametersNewParameters::itemsInfo[2] = {
 	&IndividualTimeslotInfoLCRr4::theInfo,
@@ -16680,6 +18943,10 @@ const DownlinkAdditionalTimeslotsLCRr4ParametersNewParameters::Info DownlinkAddi
 	itemsPres,
 	2, 0, 0
 };
+DownlinkAdditionalTimeslotsLCRr4ParametersNewParameters::DownlinkAdditionalTimeslotsLCRr4ParametersNewParameters(const IndividualTimeslotInfoLCRr4& individualTimeslotInfo, const DLTSChannelisationCodesShort& dlTSChannelisationCodesShort) : Sequence(&theInfo) {
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+	setDlTSChannelisationCodesShort(dlTSChannelisationCodesShort);
+}
 
 const void *DownlinkAdditionalTimeslotsLCRr4Parameters::choicesInfo[2] = {
 	&DownlinkAdditionalTimeslotsLCRr4ParametersSameAsLast::theInfo,
@@ -16709,6 +18976,9 @@ const DownlinkAdditionalTimeslotsLCRr4::Info DownlinkAdditionalTimeslotsLCRr4::t
 	itemsPres,
 	1, 0, 0
 };
+DownlinkAdditionalTimeslotsLCRr4::DownlinkAdditionalTimeslotsLCRr4(const DownlinkAdditionalTimeslotsLCRr4Parameters& downlinkAdditionalTimeslotsLCRr4Parameters) : Sequence(&theInfo) {
+	setDownlinkAdditionalTimeslotsLCRr4Parameters(downlinkAdditionalTimeslotsLCRr4Parameters);
+}
 
 const void *DownlinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslots::choicesInfo[2] = {
 	&DownlinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsConsecutive::theInfo,
@@ -16755,6 +19025,11 @@ const DownlinkTimeslotsCodesLCRr4::Info DownlinkTimeslotsCodesLCRr4::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+DownlinkTimeslotsCodesLCRr4::DownlinkTimeslotsCodesLCRr4(const IndividualTimeslotInfoLCRr4& firstIndividualTimeslotInfo, const DLTSChannelisationCodesShort& dlTSChannelisationCodesShort, const DownlinkTimeslotsCodesLCRr4MoreTimeslots& downlinkTimeslotsCodesLCRr4MoreTimeslots) : Sequence(&theInfo) {
+	setFirstIndividualTimeslotInfo(firstIndividualTimeslotInfo);
+	setDlTSChannelisationCodesShort(dlTSChannelisationCodesShort);
+	setDownlinkTimeslotsCodesLCRr4MoreTimeslots(downlinkTimeslotsCodesLCRr4MoreTimeslots);
+}
 
 const void *DLCCTrChr4TddOptionTdd128::itemsInfo[1] = {
 	&DownlinkTimeslotsCodesLCRr4::theInfo,
@@ -16808,6 +19083,10 @@ const DLCCTrChr4::Info DLCCTrChr4::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+DLCCTrChr4::DLCCTrChr4(const TimeInfo& timeInfo, const DLCCTrChr4TddOption& dLCCTrChr4TddOption) : Sequence(&theInfo) {
+	setTimeInfo(timeInfo);
+	setDLCCTrChr4TddOption(dLCCTrChr4TddOption);
+}
 
 const void *MidambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftLong::theInfo,
@@ -16824,6 +19103,9 @@ const MidambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationModeUeSpecificM
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationModeDefaultMidamble::theInfo,
@@ -16856,6 +19138,10 @@ const MidambleShiftAndBurstTyper7BurstTypeType1::Info MidambleShiftAndBurstTyper
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTyper7BurstTypeType1::MidambleShiftAndBurstTyper7BurstTypeType1(const MidambleConfigurationBurstType1and3& midambleConfigurationBurstType1and3, const MidambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationMode& midambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType1and3(midambleConfigurationBurstType1and3);
+	setMidambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationMode(midambleShiftAndBurstTyper7BurstTypeType1MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftShort::theInfo,
@@ -16872,6 +19158,9 @@ const MidambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationModeUeSpecificM
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationModeUeSpecificMidamble(const MidambleShiftShort& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationModeDefaultMidamble::theInfo,
@@ -16904,6 +19193,10 @@ const MidambleShiftAndBurstTyper7BurstTypeType2::Info MidambleShiftAndBurstTyper
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTyper7BurstTypeType2::MidambleShiftAndBurstTyper7BurstTypeType2(const MidambleConfigurationBurstType2& midambleConfigurationBurstType2, const MidambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationMode& midambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType2(midambleConfigurationBurstType2);
+	setMidambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationMode(midambleShiftAndBurstTyper7BurstTypeType2MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftLong::theInfo,
@@ -16920,6 +19213,9 @@ const MidambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationModeUeSpecificM
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationMode::choicesInfo[2] = {
 	&MidambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationModeDefaultMidamble::theInfo,
@@ -16951,6 +19247,10 @@ const MidambleShiftAndBurstTyper7BurstTypeType3::Info MidambleShiftAndBurstTyper
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTyper7BurstTypeType3::MidambleShiftAndBurstTyper7BurstTypeType3(const MidambleConfigurationBurstType1and3& midambleConfigurationBurstType1and3, const MidambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationMode& midambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType1and3(midambleConfigurationBurstType1and3);
+	setMidambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationMode(midambleShiftAndBurstTyper7BurstTypeType3MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTyper7BurstType::choicesInfo[4] = {
 	&MidambleShiftAndBurstTyper7BurstTypeType1::theInfo,
@@ -16982,6 +19282,9 @@ const MidambleShiftAndBurstTyper7::Info MidambleShiftAndBurstTyper7::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTyper7::MidambleShiftAndBurstTyper7(const MidambleShiftAndBurstTyper7BurstType& midambleShiftAndBurstTyper7BurstType) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstTyper7BurstType(midambleShiftAndBurstTyper7BurstType);
+}
 
 const void *IndividualTimeslotInfor7::itemsInfo[3] = {
 	&TimeslotNumber::theInfo,
@@ -17002,6 +19305,11 @@ const IndividualTimeslotInfor7::Info IndividualTimeslotInfor7::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+IndividualTimeslotInfor7::IndividualTimeslotInfor7(const TimeslotNumber& timeslotNumber, const IndividualTimeslotInfor7TfciExistence& individualTimeslotInfor7TfciExistence, const MidambleShiftAndBurstTyper7& midambleShiftAndBurstType) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setIndividualTimeslotInfor7TfciExistence(individualTimeslotInfor7TfciExistence);
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+}
 
 const void *DownlinkAdditionalTimeslotsr7ParametersSameAsLast::itemsInfo[1] = {
 	&TimeslotNumber::theInfo,
@@ -17018,6 +19326,9 @@ const DownlinkAdditionalTimeslotsr7ParametersSameAsLast::Info DownlinkAdditional
 	itemsPres,
 	1, 0, 0
 };
+DownlinkAdditionalTimeslotsr7ParametersSameAsLast::DownlinkAdditionalTimeslotsr7ParametersSameAsLast(const TimeslotNumber& timeslotNumber) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+}
 
 const void *DownlinkAdditionalTimeslotsr7ParametersNewParameters::itemsInfo[2] = {
 	&IndividualTimeslotInfor7::theInfo,
@@ -17036,6 +19347,10 @@ const DownlinkAdditionalTimeslotsr7ParametersNewParameters::Info DownlinkAdditio
 	itemsPres,
 	2, 0, 0
 };
+DownlinkAdditionalTimeslotsr7ParametersNewParameters::DownlinkAdditionalTimeslotsr7ParametersNewParameters(const IndividualTimeslotInfor7& individualTimeslotInfo, const DLTSChannelisationCodesShort& dlTSChannelisationCodesShort) : Sequence(&theInfo) {
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+	setDlTSChannelisationCodesShort(dlTSChannelisationCodesShort);
+}
 
 const void *DownlinkAdditionalTimeslotsr7Parameters::choicesInfo[2] = {
 	&DownlinkAdditionalTimeslotsr7ParametersSameAsLast::theInfo,
@@ -17065,6 +19380,9 @@ const DownlinkAdditionalTimeslotsr7::Info DownlinkAdditionalTimeslotsr7::theInfo
 	itemsPres,
 	1, 0, 0
 };
+DownlinkAdditionalTimeslotsr7::DownlinkAdditionalTimeslotsr7(const DownlinkAdditionalTimeslotsr7Parameters& downlinkAdditionalTimeslotsr7Parameters) : Sequence(&theInfo) {
+	setDownlinkAdditionalTimeslotsr7Parameters(downlinkAdditionalTimeslotsr7Parameters);
+}
 
 const void *DownlinkTimeslotsCodesr7MoreTimeslotsAdditionalTimeslots::choicesInfo[2] = {
 	&DownlinkTimeslotsCodesr7MoreTimeslotsAdditionalTimeslotsConsecutive::theInfo,
@@ -17111,6 +19429,11 @@ const DownlinkTimeslotsCodesr7::Info DownlinkTimeslotsCodesr7::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+DownlinkTimeslotsCodesr7::DownlinkTimeslotsCodesr7(const IndividualTimeslotInfor7& firstIndividualTimeslotInfo, const DLTSChannelisationCodesShort& dlTSChannelisationCodesShort, const DownlinkTimeslotsCodesr7MoreTimeslots& downlinkTimeslotsCodesr7MoreTimeslots) : Sequence(&theInfo) {
+	setFirstIndividualTimeslotInfo(firstIndividualTimeslotInfo);
+	setDlTSChannelisationCodesShort(dlTSChannelisationCodesShort);
+	setDownlinkTimeslotsCodesr7MoreTimeslots(downlinkTimeslotsCodesr7MoreTimeslots);
+}
 
 const void *DLCCTrChr7TddOptionTdd384::itemsInfo[1] = {
 	&DownlinkTimeslotsCodesr7::theInfo,
@@ -17143,6 +19466,9 @@ const MidambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationModeUeSpecifi
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationModeDefaultMidamble::theInfo,
@@ -17175,6 +19501,10 @@ const MidambleShiftAndBurstTypeVHCRBurstTypeType1::Info MidambleShiftAndBurstTyp
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeVHCRBurstTypeType1::MidambleShiftAndBurstTypeVHCRBurstTypeType1(const MidambleConfigurationBurstType1and3& midambleConfigurationBurstType1and3, const MidambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationMode& midambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType1and3(midambleConfigurationBurstType1and3);
+	setMidambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationMode(midambleShiftAndBurstTypeVHCRBurstTypeType1MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftShortVHCR::theInfo,
@@ -17191,6 +19521,9 @@ const MidambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationModeUeSpecifi
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationModeUeSpecificMidamble(const MidambleShiftShortVHCR& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationModeDefaultMidamble::theInfo,
@@ -17223,6 +19556,10 @@ const MidambleShiftAndBurstTypeVHCRBurstTypeType2::Info MidambleShiftAndBurstTyp
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeVHCRBurstTypeType2::MidambleShiftAndBurstTypeVHCRBurstTypeType2(const MidambleConfigurationBurstType2VHCR& midambleConfigurationBurstType2, const MidambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationMode& midambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType2(midambleConfigurationBurstType2);
+	setMidambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationMode(midambleShiftAndBurstTypeVHCRBurstTypeType2MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftLong::theInfo,
@@ -17239,6 +19576,9 @@ const MidambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationModeUeSpecifi
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationMode::choicesInfo[2] = {
 	&MidambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationModeDefaultMidamble::theInfo,
@@ -17270,6 +19610,10 @@ const MidambleShiftAndBurstTypeVHCRBurstTypeType3::Info MidambleShiftAndBurstTyp
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeVHCRBurstTypeType3::MidambleShiftAndBurstTypeVHCRBurstTypeType3(const MidambleConfigurationBurstType1and3& midambleConfigurationBurstType1and3, const MidambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationMode& midambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType1and3(midambleConfigurationBurstType1and3);
+	setMidambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationMode(midambleShiftAndBurstTypeVHCRBurstTypeType3MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTypeVHCRBurstType::choicesInfo[4] = {
 	&MidambleShiftAndBurstTypeVHCRBurstTypeType1::theInfo,
@@ -17301,6 +19645,9 @@ const MidambleShiftAndBurstTypeVHCR::Info MidambleShiftAndBurstTypeVHCR::theInfo
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeVHCR::MidambleShiftAndBurstTypeVHCR(const MidambleShiftAndBurstTypeVHCRBurstType& midambleShiftAndBurstTypeVHCRBurstType) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstTypeVHCRBurstType(midambleShiftAndBurstTypeVHCRBurstType);
+}
 
 const void *IndividualTimeslotInfoVHCR::itemsInfo[3] = {
 	&TimeslotNumber::theInfo,
@@ -17321,6 +19668,11 @@ const IndividualTimeslotInfoVHCR::Info IndividualTimeslotInfoVHCR::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+IndividualTimeslotInfoVHCR::IndividualTimeslotInfoVHCR(const TimeslotNumber& timeslotNumber, const IndividualTimeslotInfoVHCRTfciExistence& individualTimeslotInfoVHCRTfciExistence, const MidambleShiftAndBurstTypeVHCR& midambleShiftAndBurstTypeVHCR) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setIndividualTimeslotInfoVHCRTfciExistence(individualTimeslotInfoVHCRTfciExistence);
+	setMidambleShiftAndBurstTypeVHCR(midambleShiftAndBurstTypeVHCR);
+}
 
 const void *DLTSChannelisationCodesShortVHCRCodesRepresentationConsecutive::itemsInfo[2] = {
 	&DLTSChannelisationCodeVHCR::theInfo,
@@ -17339,6 +19691,10 @@ const DLTSChannelisationCodesShortVHCRCodesRepresentationConsecutive::Info DLTSC
 	itemsPres,
 	2, 0, 0
 };
+DLTSChannelisationCodesShortVHCRCodesRepresentationConsecutive::DLTSChannelisationCodesShortVHCRCodesRepresentationConsecutive(const DLTSChannelisationCodeVHCR& firstChannelisationCode, const DLTSChannelisationCodeVHCR& lastChannelisationCode) : Sequence(&theInfo) {
+	setFirstChannelisationCode(firstChannelisationCode);
+	setLastChannelisationCode(lastChannelisationCode);
+}
 
 const void *DLTSChannelisationCodesShortVHCRCodesRepresentation::choicesInfo[2] = {
 	&DLTSChannelisationCodesShortVHCRCodesRepresentationConsecutive::theInfo,
@@ -17368,6 +19724,9 @@ const DLTSChannelisationCodesShortVHCR::Info DLTSChannelisationCodesShortVHCR::t
 	itemsPres,
 	1, 0, 0
 };
+DLTSChannelisationCodesShortVHCR::DLTSChannelisationCodesShortVHCR(const DLTSChannelisationCodesShortVHCRCodesRepresentation& dLTSChannelisationCodesShortVHCRCodesRepresentation) : Sequence(&theInfo) {
+	setDLTSChannelisationCodesShortVHCRCodesRepresentation(dLTSChannelisationCodesShortVHCRCodesRepresentation);
+}
 
 const void *DownlinkAdditionalTimeslotsVHCRParametersSameAsLast::itemsInfo[1] = {
 	&TimeslotNumber::theInfo,
@@ -17384,6 +19743,9 @@ const DownlinkAdditionalTimeslotsVHCRParametersSameAsLast::Info DownlinkAddition
 	itemsPres,
 	1, 0, 0
 };
+DownlinkAdditionalTimeslotsVHCRParametersSameAsLast::DownlinkAdditionalTimeslotsVHCRParametersSameAsLast(const TimeslotNumber& timeslotNumber) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+}
 
 const void *DownlinkAdditionalTimeslotsVHCRParametersNewParameters::itemsInfo[2] = {
 	&IndividualTimeslotInfoVHCR::theInfo,
@@ -17402,6 +19764,10 @@ const DownlinkAdditionalTimeslotsVHCRParametersNewParameters::Info DownlinkAddit
 	itemsPres,
 	2, 0, 0
 };
+DownlinkAdditionalTimeslotsVHCRParametersNewParameters::DownlinkAdditionalTimeslotsVHCRParametersNewParameters(const IndividualTimeslotInfoVHCR& individualTimeslotInfo, const DLTSChannelisationCodesShortVHCR& dlTSChannelisationCodesShort) : Sequence(&theInfo) {
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+	setDlTSChannelisationCodesShort(dlTSChannelisationCodesShort);
+}
 
 const void *DownlinkAdditionalTimeslotsVHCRParameters::choicesInfo[2] = {
 	&DownlinkAdditionalTimeslotsVHCRParametersSameAsLast::theInfo,
@@ -17431,6 +19797,9 @@ const DownlinkAdditionalTimeslotsVHCR::Info DownlinkAdditionalTimeslotsVHCR::the
 	itemsPres,
 	1, 0, 0
 };
+DownlinkAdditionalTimeslotsVHCR::DownlinkAdditionalTimeslotsVHCR(const DownlinkAdditionalTimeslotsVHCRParameters& downlinkAdditionalTimeslotsVHCRParameters) : Sequence(&theInfo) {
+	setDownlinkAdditionalTimeslotsVHCRParameters(downlinkAdditionalTimeslotsVHCRParameters);
+}
 
 const void *DownlinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslots::choicesInfo[2] = {
 	&DownlinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutive::theInfo,
@@ -17477,6 +19846,11 @@ const DownlinkTimeslotsCodesVHCR::Info DownlinkTimeslotsCodesVHCR::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+DownlinkTimeslotsCodesVHCR::DownlinkTimeslotsCodesVHCR(const IndividualTimeslotInfoVHCR& firstIndividualTimeslotInfo, const DLTSChannelisationCodesShortVHCR& dlTSChannelisationCodesShort, const DownlinkTimeslotsCodesVHCRMoreTimeslots& downlinkTimeslotsCodesVHCRMoreTimeslots) : Sequence(&theInfo) {
+	setFirstIndividualTimeslotInfo(firstIndividualTimeslotInfo);
+	setDlTSChannelisationCodesShort(dlTSChannelisationCodesShort);
+	setDownlinkTimeslotsCodesVHCRMoreTimeslots(downlinkTimeslotsCodesVHCRMoreTimeslots);
+}
 
 const void *DLCCTrChr7TddOptionTdd768::itemsInfo[1] = {
 	&DownlinkTimeslotsCodesVHCR::theInfo,
@@ -17547,6 +19921,10 @@ const DLCCTrChr7::Info DLCCTrChr7::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+DLCCTrChr7::DLCCTrChr7(const TimeInfo& timeInfo, const DLCCTrChr7TddOption& dLCCTrChr7TddOption) : Sequence(&theInfo) {
+	setTimeInfo(timeInfo);
+	setDLCCTrChr7TddOption(dLCCTrChr7TddOption);
+}
 
 const void *SF512AndCodeNumber::choicesInfo[8] = {
 	&SF512AndCodeNumberSf4::theInfo,
@@ -17586,6 +19964,9 @@ const DLChannelisationCode::Info DLChannelisationCode::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DLChannelisationCode::DLChannelisationCode(const SF512AndCodeNumber& sfAndCodeNumber) : Sequence(&theInfo) {
+	setSfAndCodeNumber(sfAndCodeNumber);
+}
 
 const void *DLDPCHInfoCommonCfnHandlingInitialise::itemsInfo[1] = {
 	&Cfntargetsfnframeoffset::theInfo,
@@ -17631,6 +20012,9 @@ const DLDPCHPowerControlInfoModeSpecificInfoFdd::Info DLDPCHPowerControlInfoMode
 	itemsPres,
 	1, 0, 0
 };
+DLDPCHPowerControlInfoModeSpecificInfoFdd::DLDPCHPowerControlInfoModeSpecificInfoFdd(const DPCMode& dpcMode) : Sequence(&theInfo) {
+	setDpcMode(dpcMode);
+}
 
 const void *DLDPCHPowerControlInfoModeSpecificInfoTdd::itemsInfo[1] = {
 	&TPCStepSizeTDD::theInfo,
@@ -17676,6 +20060,9 @@ const DLDPCHPowerControlInfo::Info DLDPCHPowerControlInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DLDPCHPowerControlInfo::DLDPCHPowerControlInfo(const DLDPCHPowerControlInfoModeSpecificInfo& dLDPCHPowerControlInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setDLDPCHPowerControlInfoModeSpecificInfo(dLDPCHPowerControlInfoModeSpecificInfo);
+}
 
 const void *RestrictedTrCH::itemsInfo[3] = {
 	&DLTrCHType::theInfo,
@@ -17696,6 +20083,11 @@ const RestrictedTrCH::Info RestrictedTrCH::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+RestrictedTrCH::RestrictedTrCH(const DLTrCHType& dlrestrictedTrChType, const TransportChannelIdentity& restrictedDLTrCHIdentity, const AllowedTFIList& allowedTFIList) : Sequence(&theInfo) {
+	setDlrestrictedTrChType(dlrestrictedTrChType);
+	setRestrictedDLTrCHIdentity(restrictedDLTrCHIdentity);
+	setAllowedTFIList(allowedTFIList);
+}
 
 const void *Dlratematchingrestriction::itemsInfo[1] = {
 	&RestrictedTrCHInfoList::theInfo,
@@ -17738,6 +20130,12 @@ const DLDPCHInfoCommonModeSpecificInfoFdd::Info DLDPCHInfoCommonModeSpecificInfo
 	itemsPres,
 	6, 2, 0
 };
+DLDPCHInfoCommonModeSpecificInfoFdd::DLDPCHInfoCommonModeSpecificInfoFdd(const PowerOffsetPilotpdpdch& powerOffsetPilotpdpdch, const SF512AndPilot& spreadingFactorAndPilot, const PositionFixedOrFlexible& positionFixedOrFlexible, const DLDPCHInfoCommonModeSpecificInfoFddTfciExistence& dLDPCHInfoCommonModeSpecificInfoFddTfciExistence) : Sequence(&theInfo) {
+	setPowerOffsetPilotpdpdch(powerOffsetPilotpdpdch);
+	setSpreadingFactorAndPilot(spreadingFactorAndPilot);
+	setPositionFixedOrFlexible(positionFixedOrFlexible);
+	setDLDPCHInfoCommonModeSpecificInfoFddTfciExistence(dLDPCHInfoCommonModeSpecificInfoFddTfciExistence);
+}
 
 const void *DLDPCHInfoCommonModeSpecificInfoTdd::itemsInfo[1] = {
 	&DLDPCHPowerControlInfo::theInfo,
@@ -17785,6 +20183,10 @@ const DLDPCHInfoCommon::Info DLDPCHInfoCommon::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+DLDPCHInfoCommon::DLDPCHInfoCommon(const DLDPCHInfoCommonCfnHandling& dLDPCHInfoCommonCfnHandling, const DLDPCHInfoCommonModeSpecificInfo& dLDPCHInfoCommonModeSpecificInfo) : Sequence(&theInfo) {
+	setDLDPCHInfoCommonCfnHandling(dLDPCHInfoCommonCfnHandling);
+	setDLDPCHInfoCommonModeSpecificInfo(dLDPCHInfoCommonModeSpecificInfo);
+}
 
 const void *TGPSequenceTgpsStatusActivate::itemsInfo[1] = {
 	&TGCFN::theInfo,
@@ -17801,6 +20203,9 @@ const TGPSequenceTgpsStatusActivate::Info TGPSequenceTgpsStatusActivate::theInfo
 	itemsPres,
 	1, 0, 0
 };
+TGPSequenceTgpsStatusActivate::TGPSequenceTgpsStatusActivate(const TGCFN& tgcfn) : Sequence(&theInfo) {
+	setTgcfn(tgcfn);
+}
 
 const void *TGPSequenceTgpsStatus::choicesInfo[2] = {
 	&TGPSequenceTgpsStatusActivate::theInfo,
@@ -17832,6 +20237,10 @@ const ULDLModeUlanddl::Info ULDLModeUlanddl::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ULDLModeUlanddl::ULDLModeUlanddl(const ULCompressedModeMethod& ul, const DLCompressedModeMethod& dl) : Sequence(&theInfo) {
+	setUl(ul);
+	setDl(dl);
+}
 
 const void *ULDLMode::choicesInfo[3] = {
 	&ULCompressedModeMethod::theInfo,
@@ -17896,6 +20305,20 @@ const TGPSConfigurationParams::Info TGPSConfigurationParams::theInfo = {
 	itemsPres,
 	18, 6, 0
 };
+TGPSConfigurationParams::TGPSConfigurationParams(const TGMP& tgmp, const TGPRC& tgprc, const TGSN& tgsn, const TGL& tgl1, const TGD& tgd, const TGPL& tgpl1, const RPP& rpp, const ITP& itp, const ULDLMode& ulDLMode, const DLFrameType& dlFrameType, const DeltaSIR& deltaSIR1, const DeltaSIR& deltaSIRAfter1) : Sequence(&theInfo) {
+	setTgmp(tgmp);
+	setTgprc(tgprc);
+	setTgsn(tgsn);
+	setTgl1(tgl1);
+	setTgd(tgd);
+	setTgpl1(tgpl1);
+	setRpp(rpp);
+	setItp(itp);
+	setUlDLMode(ulDLMode);
+	setDlFrameType(dlFrameType);
+	setDeltaSIR1(deltaSIR1);
+	setDeltaSIRAfter1(deltaSIRAfter1);
+}
 
 const void *TGPSequence::itemsInfo[3] = {
 	&TGPSI::theInfo,
@@ -17916,6 +20339,10 @@ const TGPSequence::Info TGPSequence::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+TGPSequence::TGPSequence(const TGPSI& tgpsi, const TGPSequenceTgpsStatus& tGPSequenceTgpsStatus) : Sequence(&theInfo) {
+	setTgpsi(tgpsi);
+	setTGPSequenceTgpsStatus(tGPSequenceTgpsStatus);
+}
 
 const void *DPCHCompressedModeInfo::itemsInfo[1] = {
 	&TGPSequenceList::theInfo,
@@ -17932,6 +20359,9 @@ const DPCHCompressedModeInfo::Info DPCHCompressedModeInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DPCHCompressedModeInfo::DPCHCompressedModeInfo(const TGPSequenceList& tgpSequenceList) : Sequence(&theInfo) {
+	setTgpSequenceList(tgpSequenceList);
+}
 
 const void *SSDTInformation::itemsInfo[2] = {
 	&SField::theInfo,
@@ -17950,6 +20380,10 @@ const SSDTInformation::Info SSDTInformation::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SSDTInformation::SSDTInformation(const SField& sField, const CodeWordSet& codeWordSet) : Sequence(&theInfo) {
+	setSField(sField);
+	setCodeWordSet(codeWordSet);
+}
 
 const void *DLCommonInformationModeSpecificInfoFdd::itemsInfo[4] = {
 	&DefaultDPCHOffsetValueFDD::theInfo,
@@ -18019,6 +20453,9 @@ const DLCommonInformation::Info DLCommonInformation::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+DLCommonInformation::DLCommonInformation(const DLCommonInformationModeSpecificInfo& dLCommonInformationModeSpecificInfo) : Sequence(&theInfo) {
+	setDLCommonInformationModeSpecificInfo(dLCommonInformationModeSpecificInfo);
+}
 
 const void *DLDPCHInfoCommonr4CfnHandlingInitialise::itemsInfo[1] = {
 	&Cfntargetsfnframeoffset::theInfo,
@@ -18074,6 +20511,12 @@ const DLDPCHInfoCommonr4ModeSpecificInfoFdd::Info DLDPCHInfoCommonr4ModeSpecific
 	itemsPres,
 	6, 2, 0
 };
+DLDPCHInfoCommonr4ModeSpecificInfoFdd::DLDPCHInfoCommonr4ModeSpecificInfoFdd(const PowerOffsetPilotpdpdch& powerOffsetPilotpdpdch, const SF512AndPilot& spreadingFactorAndPilot, const PositionFixedOrFlexible& positionFixedOrFlexible, const DLDPCHInfoCommonr4ModeSpecificInfoFddTfciExistence& dLDPCHInfoCommonr4ModeSpecificInfoFddTfciExistence) : Sequence(&theInfo) {
+	setPowerOffsetPilotpdpdch(powerOffsetPilotpdpdch);
+	setSpreadingFactorAndPilot(spreadingFactorAndPilot);
+	setPositionFixedOrFlexible(positionFixedOrFlexible);
+	setDLDPCHInfoCommonr4ModeSpecificInfoFddTfciExistence(dLDPCHInfoCommonr4ModeSpecificInfoFddTfciExistence);
+}
 
 const void *DLDPCHInfoCommonr4ModeSpecificInfoTdd::itemsInfo[1] = {
 	&DLDPCHPowerControlInfo::theInfo,
@@ -18123,6 +20566,10 @@ const DLDPCHInfoCommonr4::Info DLDPCHInfoCommonr4::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+DLDPCHInfoCommonr4::DLDPCHInfoCommonr4(const DLDPCHInfoCommonr4CfnHandling& dLDPCHInfoCommonr4CfnHandling, const DLDPCHInfoCommonr4ModeSpecificInfo& dLDPCHInfoCommonr4ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLDPCHInfoCommonr4CfnHandling(dLDPCHInfoCommonr4CfnHandling);
+	setDLDPCHInfoCommonr4ModeSpecificInfo(dLDPCHInfoCommonr4ModeSpecificInfo);
+}
 
 const void *SSDTInformationr4::itemsInfo[3] = {
 	&SField::theInfo,
@@ -18143,6 +20590,10 @@ const SSDTInformationr4::Info SSDTInformationr4::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+SSDTInformationr4::SSDTInformationr4(const SField& sField, const CodeWordSet& codeWordSet) : Sequence(&theInfo) {
+	setSField(sField);
+	setCodeWordSet(codeWordSet);
+}
 
 const void *DLCommonInformationr4ModeSpecificInfoFdd::itemsInfo[4] = {
 	&DefaultDPCHOffsetValueFDD::theInfo,
@@ -18181,6 +20632,9 @@ const DLCommonInformationr4ModeSpecificInfoTddTddOptionTdd128::Info DLCommonInfo
 	itemsPres,
 	1, 0, 0
 };
+DLCommonInformationr4ModeSpecificInfoTddTddOptionTdd128::DLCommonInformationr4ModeSpecificInfoTddTddOptionTdd128(const DLCommonInformationr4ModeSpecificInfoTddTddOptionTdd128TstdIndicator& dLCommonInformationr4ModeSpecificInfoTddTddOptionTdd128TstdIndicator) : Sequence(&theInfo) {
+	setDLCommonInformationr4ModeSpecificInfoTddTddOptionTdd128TstdIndicator(dLCommonInformationr4ModeSpecificInfoTddTddOptionTdd128TstdIndicator);
+}
 
 const void *DLCommonInformationr4ModeSpecificInfoTddTddOption::choicesInfo[2] = {
 	&DLCommonInformationr4ModeSpecificInfoTddTddOptionTdd384::theInfo,
@@ -18212,6 +20666,9 @@ const DLCommonInformationr4ModeSpecificInfoTdd::Info DLCommonInformationr4ModeSp
 	itemsPres,
 	2, 1, 0
 };
+DLCommonInformationr4ModeSpecificInfoTdd::DLCommonInformationr4ModeSpecificInfoTdd(const DLCommonInformationr4ModeSpecificInfoTddTddOption& dLCommonInformationr4ModeSpecificInfoTddTddOption) : Sequence(&theInfo) {
+	setDLCommonInformationr4ModeSpecificInfoTddTddOption(dLCommonInformationr4ModeSpecificInfoTddTddOption);
+}
 
 const void *DLCommonInformationr4ModeSpecificInfo::choicesInfo[2] = {
 	&DLCommonInformationr4ModeSpecificInfoFdd::theInfo,
@@ -18243,6 +20700,9 @@ const DLCommonInformationr4::Info DLCommonInformationr4::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+DLCommonInformationr4::DLCommonInformationr4(const DLCommonInformationr4ModeSpecificInfo& dLCommonInformationr4ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLCommonInformationr4ModeSpecificInfo(dLCommonInformationr4ModeSpecificInfo);
+}
 
 const void *DLCommonInformationr5ModeSpecificInfoFdd::itemsInfo[4] = {
 	&DefaultDPCHOffsetValueFDD::theInfo,
@@ -18281,6 +20741,9 @@ const DLCommonInformationr5ModeSpecificInfoTddTddOptionTdd128::Info DLCommonInfo
 	itemsPres,
 	1, 0, 0
 };
+DLCommonInformationr5ModeSpecificInfoTddTddOptionTdd128::DLCommonInformationr5ModeSpecificInfoTddTddOptionTdd128(const DLCommonInformationr5ModeSpecificInfoTddTddOptionTdd128TstdIndicator& dLCommonInformationr5ModeSpecificInfoTddTddOptionTdd128TstdIndicator) : Sequence(&theInfo) {
+	setDLCommonInformationr5ModeSpecificInfoTddTddOptionTdd128TstdIndicator(dLCommonInformationr5ModeSpecificInfoTddTddOptionTdd128TstdIndicator);
+}
 
 const void *DLCommonInformationr5ModeSpecificInfoTddTddOption::choicesInfo[2] = {
 	&DLCommonInformationr5ModeSpecificInfoTddTddOptionTdd384::theInfo,
@@ -18312,6 +20775,9 @@ const DLCommonInformationr5ModeSpecificInfoTdd::Info DLCommonInformationr5ModeSp
 	itemsPres,
 	2, 1, 0
 };
+DLCommonInformationr5ModeSpecificInfoTdd::DLCommonInformationr5ModeSpecificInfoTdd(const DLCommonInformationr5ModeSpecificInfoTddTddOption& dLCommonInformationr5ModeSpecificInfoTddTddOption) : Sequence(&theInfo) {
+	setDLCommonInformationr5ModeSpecificInfoTddTddOption(dLCommonInformationr5ModeSpecificInfoTddTddOption);
+}
 
 const void *DLCommonInformationr5ModeSpecificInfo::choicesInfo[2] = {
 	&DLCommonInformationr5ModeSpecificInfoFdd::theInfo,
@@ -18345,6 +20811,9 @@ const DLCommonInformationr5::Info DLCommonInformationr5::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DLCommonInformationr5::DLCommonInformationr5(const DLCommonInformationr5ModeSpecificInfo& dLCommonInformationr5ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLCommonInformationr5ModeSpecificInfo(dLCommonInformationr5ModeSpecificInfo);
+}
 
 const void *DLDPCHInfoCommonr6CfnHandlingMaintain::itemsInfo[1] = {
 	&TimingMaintainedSynchInd::theInfo,
@@ -18400,6 +20869,12 @@ const DLDPCHInfoCommonr6ModeSpecificInfoFdd::Info DLDPCHInfoCommonr6ModeSpecific
 	itemsPres,
 	6, 2, 0
 };
+DLDPCHInfoCommonr6ModeSpecificInfoFdd::DLDPCHInfoCommonr6ModeSpecificInfoFdd(const PowerOffsetPilotpdpdch& powerOffsetPilotpdpdch, const SF512AndPilot& spreadingFactorAndPilot, const PositionFixedOrFlexible& positionFixedOrFlexible, const DLDPCHInfoCommonr6ModeSpecificInfoFddTfciExistence& dLDPCHInfoCommonr6ModeSpecificInfoFddTfciExistence) : Sequence(&theInfo) {
+	setPowerOffsetPilotpdpdch(powerOffsetPilotpdpdch);
+	setSpreadingFactorAndPilot(spreadingFactorAndPilot);
+	setPositionFixedOrFlexible(positionFixedOrFlexible);
+	setDLDPCHInfoCommonr6ModeSpecificInfoFddTfciExistence(dLDPCHInfoCommonr6ModeSpecificInfoFddTfciExistence);
+}
 
 const void *DLDPCHInfoCommonr6ModeSpecificInfoTdd::itemsInfo[1] = {
 	&DLDPCHPowerControlInfo::theInfo,
@@ -18449,6 +20924,10 @@ const DLDPCHInfoCommonr6::Info DLDPCHInfoCommonr6::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+DLDPCHInfoCommonr6::DLDPCHInfoCommonr6(const DLDPCHInfoCommonr6CfnHandling& dLDPCHInfoCommonr6CfnHandling, const DLDPCHInfoCommonr6ModeSpecificInfo& dLDPCHInfoCommonr6ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLDPCHInfoCommonr6CfnHandling(dLDPCHInfoCommonr6CfnHandling);
+	setDLDPCHInfoCommonr6ModeSpecificInfo(dLDPCHInfoCommonr6ModeSpecificInfo);
+}
 
 const void *DLFDPCHInfoCommonr6CfnHandlingMaintain::itemsInfo[1] = {
 	&TimingMaintainedSynchInd::theInfo,
@@ -18498,6 +20977,9 @@ const DLFDPCHInfoCommonr6::Info DLFDPCHInfoCommonr6::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DLFDPCHInfoCommonr6::DLFDPCHInfoCommonr6(const DLFDPCHInfoCommonr6CfnHandling& dLFDPCHInfoCommonr6CfnHandling) : Sequence(&theInfo) {
+	setDLFDPCHInfoCommonr6CfnHandling(dLFDPCHInfoCommonr6CfnHandling);
+}
 
 const void *DLCommonInformationr6DldpchInfoCommon::choicesInfo[2] = {
 	&DLDPCHInfoCommonr6::theInfo,
@@ -18547,6 +21029,9 @@ const DLCommonInformationr6ModeSpecificInfoTddTddOptionTdd128::Info DLCommonInfo
 	itemsPres,
 	1, 0, 0
 };
+DLCommonInformationr6ModeSpecificInfoTddTddOptionTdd128::DLCommonInformationr6ModeSpecificInfoTddTddOptionTdd128(const DLCommonInformationr6ModeSpecificInfoTddTddOptionTdd128TstdIndicator& dLCommonInformationr6ModeSpecificInfoTddTddOptionTdd128TstdIndicator) : Sequence(&theInfo) {
+	setDLCommonInformationr6ModeSpecificInfoTddTddOptionTdd128TstdIndicator(dLCommonInformationr6ModeSpecificInfoTddTddOptionTdd128TstdIndicator);
+}
 
 const void *DLCommonInformationr6ModeSpecificInfoTddTddOption::choicesInfo[2] = {
 	&DLCommonInformationr6ModeSpecificInfoTddTddOptionTdd384::theInfo,
@@ -18578,6 +21063,9 @@ const DLCommonInformationr6ModeSpecificInfoTdd::Info DLCommonInformationr6ModeSp
 	itemsPres,
 	2, 1, 0
 };
+DLCommonInformationr6ModeSpecificInfoTdd::DLCommonInformationr6ModeSpecificInfoTdd(const DLCommonInformationr6ModeSpecificInfoTddTddOption& dLCommonInformationr6ModeSpecificInfoTddTddOption) : Sequence(&theInfo) {
+	setDLCommonInformationr6ModeSpecificInfoTddTddOption(dLCommonInformationr6ModeSpecificInfoTddTddOption);
+}
 
 const void *DLCommonInformationr6ModeSpecificInfo::choicesInfo[2] = {
 	&DLCommonInformationr6ModeSpecificInfoFdd::theInfo,
@@ -18613,6 +21101,9 @@ const DLCommonInformationr6::Info DLCommonInformationr6::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+DLCommonInformationr6::DLCommonInformationr6(const DLCommonInformationr6ModeSpecificInfo& dLCommonInformationr6ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLCommonInformationr6ModeSpecificInfo(dLCommonInformationr6ModeSpecificInfo);
+}
 
 const void *DLCommonInformationr7DldpchInfoCommon::choicesInfo[2] = {
 	&DLDPCHInfoCommonr6::theInfo,
@@ -18662,6 +21153,9 @@ const DLCommonInformationr7ModeSpecificInfoTddTddOptionTdd128::Info DLCommonInfo
 	itemsPres,
 	1, 0, 0
 };
+DLCommonInformationr7ModeSpecificInfoTddTddOptionTdd128::DLCommonInformationr7ModeSpecificInfoTddTddOptionTdd128(const DLCommonInformationr7ModeSpecificInfoTddTddOptionTdd128TstdIndicator& dLCommonInformationr7ModeSpecificInfoTddTddOptionTdd128TstdIndicator) : Sequence(&theInfo) {
+	setDLCommonInformationr7ModeSpecificInfoTddTddOptionTdd128TstdIndicator(dLCommonInformationr7ModeSpecificInfoTddTddOptionTdd128TstdIndicator);
+}
 
 const void *DLCommonInformationr7ModeSpecificInfoTddTddOption::choicesInfo[3] = {
 	&DLCommonInformationr7ModeSpecificInfoTddTddOptionTdd384::theInfo,
@@ -18694,6 +21188,9 @@ const DLCommonInformationr7ModeSpecificInfoTdd::Info DLCommonInformationr7ModeSp
 	itemsPres,
 	2, 1, 0
 };
+DLCommonInformationr7ModeSpecificInfoTdd::DLCommonInformationr7ModeSpecificInfoTdd(const DLCommonInformationr7ModeSpecificInfoTddTddOption& dLCommonInformationr7ModeSpecificInfoTddTddOption) : Sequence(&theInfo) {
+	setDLCommonInformationr7ModeSpecificInfoTddTddOption(dLCommonInformationr7ModeSpecificInfoTddTddOption);
+}
 
 const void *DLCommonInformationr7ModeSpecificInfo::choicesInfo[2] = {
 	&DLCommonInformationr7ModeSpecificInfoFdd::theInfo,
@@ -18729,6 +21226,9 @@ const DLCommonInformationr7::Info DLCommonInformationr7::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+DLCommonInformationr7::DLCommonInformationr7(const DLCommonInformationr7ModeSpecificInfo& dLCommonInformationr7ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLCommonInformationr7ModeSpecificInfo(dLCommonInformationr7ModeSpecificInfo);
+}
 
 const void *DLCommonInformationr8DldpchInfoCommon::choicesInfo[2] = {
 	&DLDPCHInfoCommonr6::theInfo,
@@ -18758,6 +21258,9 @@ const TGPSequencer8TgpsStatusActivate::Info TGPSequencer8TgpsStatusActivate::the
 	itemsPres,
 	1, 0, 0
 };
+TGPSequencer8TgpsStatusActivate::TGPSequencer8TgpsStatusActivate(const TGCFN& tgcfn) : Sequence(&theInfo) {
+	setTgcfn(tgcfn);
+}
 
 const void *TGPSequencer8TgpsStatus::choicesInfo[2] = {
 	&TGPSequencer8TgpsStatusActivate::theInfo,
@@ -18819,6 +21322,20 @@ const TGPSConfigurationParamsr8::Info TGPSConfigurationParamsr8::theInfo = {
 	itemsPres,
 	17, 5, 0
 };
+TGPSConfigurationParamsr8::TGPSConfigurationParamsr8(const TGMPr8& tgmp, const TGPRC& tgprc, const TGSN& tgsn, const TGL& tgl1, const TGD& tgd, const TGPL& tgpl1, const RPP& rpp, const ITP& itp, const ULDLMode& ulDLMode, const DLFrameType& dlFrameType, const DeltaSIR& deltaSIR1, const DeltaSIR& deltaSIRAfter1) : Sequence(&theInfo) {
+	setTgmp(tgmp);
+	setTgprc(tgprc);
+	setTgsn(tgsn);
+	setTgl1(tgl1);
+	setTgd(tgd);
+	setTgpl1(tgpl1);
+	setRpp(rpp);
+	setItp(itp);
+	setUlDLMode(ulDLMode);
+	setDlFrameType(dlFrameType);
+	setDeltaSIR1(deltaSIR1);
+	setDeltaSIRAfter1(deltaSIRAfter1);
+}
 
 const void *TGPSequencer8::itemsInfo[3] = {
 	&TGPSI::theInfo,
@@ -18839,6 +21356,10 @@ const TGPSequencer8::Info TGPSequencer8::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+TGPSequencer8::TGPSequencer8(const TGPSI& tgpsi, const TGPSequencer8TgpsStatus& tGPSequencer8TgpsStatus) : Sequence(&theInfo) {
+	setTgpsi(tgpsi);
+	setTGPSequencer8TgpsStatus(tGPSequencer8TgpsStatus);
+}
 
 const void *DPCHCompressedModeInfor8::itemsInfo[1] = {
 	&TGPSequenceListr8::theInfo,
@@ -18855,6 +21376,9 @@ const DPCHCompressedModeInfor8::Info DPCHCompressedModeInfor8::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DPCHCompressedModeInfor8::DPCHCompressedModeInfor8(const TGPSequenceListr8& tgpSequenceList) : Sequence(&theInfo) {
+	setTgpSequenceList(tgpSequenceList);
+}
 
 const void *DLCommonInformationr8ModeSpecificInfoFdd::itemsInfo[3] = {
 	&DefaultDPCHOffsetValueFDD::theInfo,
@@ -18891,6 +21415,9 @@ const DLCommonInformationr8ModeSpecificInfoTddTddOptionTdd128::Info DLCommonInfo
 	itemsPres,
 	1, 0, 0
 };
+DLCommonInformationr8ModeSpecificInfoTddTddOptionTdd128::DLCommonInformationr8ModeSpecificInfoTddTddOptionTdd128(const DLCommonInformationr8ModeSpecificInfoTddTddOptionTdd128TstdIndicator& dLCommonInformationr8ModeSpecificInfoTddTddOptionTdd128TstdIndicator) : Sequence(&theInfo) {
+	setDLCommonInformationr8ModeSpecificInfoTddTddOptionTdd128TstdIndicator(dLCommonInformationr8ModeSpecificInfoTddTddOptionTdd128TstdIndicator);
+}
 
 const void *DLCommonInformationr8ModeSpecificInfoTddTddOption::choicesInfo[3] = {
 	&DLCommonInformationr8ModeSpecificInfoTddTddOptionTdd384::theInfo,
@@ -18923,6 +21450,9 @@ const DLCommonInformationr8ModeSpecificInfoTdd::Info DLCommonInformationr8ModeSp
 	itemsPres,
 	2, 1, 0
 };
+DLCommonInformationr8ModeSpecificInfoTdd::DLCommonInformationr8ModeSpecificInfoTdd(const DLCommonInformationr8ModeSpecificInfoTddTddOption& dLCommonInformationr8ModeSpecificInfoTddTddOption) : Sequence(&theInfo) {
+	setDLCommonInformationr8ModeSpecificInfoTddTddOption(dLCommonInformationr8ModeSpecificInfoTddTddOption);
+}
 
 const void *DLCommonInformationr8ModeSpecificInfo::choicesInfo[2] = {
 	&DLCommonInformationr8ModeSpecificInfoFdd::theInfo,
@@ -18958,6 +21488,9 @@ const DLCommonInformationr8::Info DLCommonInformationr8::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+DLCommonInformationr8::DLCommonInformationr8(const DLCommonInformationr8ModeSpecificInfo& dLCommonInformationr8ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLCommonInformationr8ModeSpecificInfo(dLCommonInformationr8ModeSpecificInfo);
+}
 
 const void *DLDPCHInfoCommonPost::itemsInfo[1] = {
 	&DLDPCHPowerControlInfo::theInfo,
@@ -18990,6 +21523,9 @@ const DLCommonInformationPost::Info DLCommonInformationPost::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DLCommonInformationPost::DLCommonInformationPost(const DLDPCHInfoCommonPost& dlDPCHInfoCommon) : Sequence(&theInfo) {
+	setDlDPCHInfoCommon(dlDPCHInfoCommon);
+}
 
 const void *DLDPCHInfoPerRLFdd::itemsInfo[7] = {
 	&PCPICHUsageForChannelEst::theInfo,
@@ -19018,6 +21554,12 @@ const DLDPCHInfoPerRLFdd::Info DLDPCHInfoPerRLFdd::theInfo = {
 	itemsPres,
 	7, 3, 0
 };
+DLDPCHInfoPerRLFdd::DLDPCHInfoPerRLFdd(const PCPICHUsageForChannelEst& pCPICHUsageForChannelEst, const DPCHFrameOffset& dpchFrameOffset, const DLChannelisationCodeList& dlChannelisationCodeList, const TPCCombinationIndex& tpcCombinationIndex) : Sequence(&theInfo) {
+	setPCPICHUsageForChannelEst(pCPICHUsageForChannelEst);
+	setDpchFrameOffset(dpchFrameOffset);
+	setDlChannelisationCodeList(dlChannelisationCodeList);
+	setTpcCombinationIndex(tpcCombinationIndex);
+}
 
 const void *DLDPCHInfoPerRLTdd::itemsInfo[2] = {
 	&DLCCTrChList::theInfo,
@@ -19077,6 +21619,12 @@ const DLDPCHInfoPerRLr4Fdd::Info DLDPCHInfoPerRLr4Fdd::theInfo = {
 	itemsPres,
 	7, 3, 0
 };
+DLDPCHInfoPerRLr4Fdd::DLDPCHInfoPerRLr4Fdd(const PCPICHUsageForChannelEst& pCPICHUsageForChannelEst, const DPCHFrameOffset& dpchFrameOffset, const DLChannelisationCodeList& dlChannelisationCodeList, const TPCCombinationIndex& tpcCombinationIndex) : Sequence(&theInfo) {
+	setPCPICHUsageForChannelEst(pCPICHUsageForChannelEst);
+	setDpchFrameOffset(dpchFrameOffset);
+	setDlChannelisationCodeList(dlChannelisationCodeList);
+	setTpcCombinationIndex(tpcCombinationIndex);
+}
 
 const void *DLDPCHInfoPerRLr4Tdd::itemsInfo[2] = {
 	&DLCCTrChListr4::theInfo,
@@ -19138,6 +21686,12 @@ const DLDPCHInfoPerRLr5Fdd::Info DLDPCHInfoPerRLr5Fdd::theInfo = {
 	itemsPres,
 	8, 4, 0
 };
+DLDPCHInfoPerRLr5Fdd::DLDPCHInfoPerRLr5Fdd(const PCPICHUsageForChannelEst& pCPICHUsageForChannelEst, const DPCHFrameOffset& dpchFrameOffset, const DLChannelisationCodeList& dlChannelisationCodeList, const TPCCombinationIndex& tpcCombinationIndex) : Sequence(&theInfo) {
+	setPCPICHUsageForChannelEst(pCPICHUsageForChannelEst);
+	setDpchFrameOffset(dpchFrameOffset);
+	setDlChannelisationCodeList(dlChannelisationCodeList);
+	setTpcCombinationIndex(tpcCombinationIndex);
+}
 
 const void *DLDPCHInfoPerRLr5Tdd::itemsInfo[2] = {
 	&DLCCTrChListr4::theInfo,
@@ -19197,6 +21751,12 @@ const DLDPCHInfoPerRLr6Fdd::Info DLDPCHInfoPerRLr6Fdd::theInfo = {
 	itemsPres,
 	7, 3, 0
 };
+DLDPCHInfoPerRLr6Fdd::DLDPCHInfoPerRLr6Fdd(const PCPICHUsageForChannelEst& pCPICHUsageForChannelEst, const DPCHFrameOffset& dpchFrameOffset, const DLChannelisationCodeList& dlChannelisationCodeList, const TPCCombinationIndex& tpcCombinationIndex) : Sequence(&theInfo) {
+	setPCPICHUsageForChannelEst(pCPICHUsageForChannelEst);
+	setDpchFrameOffset(dpchFrameOffset);
+	setDlChannelisationCodeList(dlChannelisationCodeList);
+	setTpcCombinationIndex(tpcCombinationIndex);
+}
 
 const void *DLDPCHInfoPerRLr6Tdd::itemsInfo[2] = {
 	&DLCCTrChListr4::theInfo,
@@ -19256,6 +21816,12 @@ const DLDPCHInfoPerRLr7Fdd::Info DLDPCHInfoPerRLr7Fdd::theInfo = {
 	itemsPres,
 	7, 3, 0
 };
+DLDPCHInfoPerRLr7Fdd::DLDPCHInfoPerRLr7Fdd(const PCPICHUsageForChannelEst& pCPICHUsageForChannelEst, const DPCHFrameOffset& dpchFrameOffset, const DLChannelisationCodeList& dlChannelisationCodeList, const TPCCombinationIndex& tpcCombinationIndex) : Sequence(&theInfo) {
+	setPCPICHUsageForChannelEst(pCPICHUsageForChannelEst);
+	setDpchFrameOffset(dpchFrameOffset);
+	setDlChannelisationCodeList(dlChannelisationCodeList);
+	setTpcCombinationIndex(tpcCombinationIndex);
+}
 
 const void *DLDPCHInfoPerRLr7Tdd::itemsInfo[2] = {
 	&DLCCTrChListr7::theInfo,
@@ -19313,6 +21879,12 @@ const DLFDPCHInfoPerRLr6::Info DLFDPCHInfoPerRLr6::theInfo = {
 	itemsPres,
 	6, 2, 0
 };
+DLFDPCHInfoPerRLr6::DLFDPCHInfoPerRLr6(const PCPICHUsageForChannelEst& pCPICHUsageForChannelEst, const DPCHFrameOffset& fdpchFrameOffset, const DLFDPCHInfoPerRLr6DlChannelisationCode& dLFDPCHInfoPerRLr6DlChannelisationCode, const TPCCombinationIndex& tpcCombinationIndex) : Sequence(&theInfo) {
+	setPCPICHUsageForChannelEst(pCPICHUsageForChannelEst);
+	setFdpchFrameOffset(fdpchFrameOffset);
+	setDLFDPCHInfoPerRLr6DlChannelisationCode(dLFDPCHInfoPerRLr6DlChannelisationCode);
+	setTpcCombinationIndex(tpcCombinationIndex);
+}
 
 const void *DLDPCHInfoPerRLPostFDD::itemsInfo[3] = {
 	&PCPICHUsageForChannelEst::theInfo,
@@ -19333,6 +21905,11 @@ const DLDPCHInfoPerRLPostFDD::Info DLDPCHInfoPerRLPostFDD::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+DLDPCHInfoPerRLPostFDD::DLDPCHInfoPerRLPostFDD(const PCPICHUsageForChannelEst& pCPICHUsageForChannelEst, const DLChannelisationCode& dlChannelisationCode, const TPCCombinationIndex& tpcCombinationIndex) : Sequence(&theInfo) {
+	setPCPICHUsageForChannelEst(pCPICHUsageForChannelEst);
+	setDlChannelisationCode(dlChannelisationCode);
+	setTpcCombinationIndex(tpcCombinationIndex);
+}
 
 const void *DLDPCHInfoPerRLPostTDD::itemsInfo[1] = {
 	&DownlinkTimeslotsCodes::theInfo,
@@ -19349,6 +21926,9 @@ const DLDPCHInfoPerRLPostTDD::Info DLDPCHInfoPerRLPostTDD::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DLDPCHInfoPerRLPostTDD::DLDPCHInfoPerRLPostTDD(const DownlinkTimeslotsCodes& dlDPCHTimeslotsCodes) : Sequence(&theInfo) {
+	setDlDPCHTimeslotsCodes(dlDPCHTimeslotsCodes);
+}
 
 const void *DLDPCHInfoPerRLPostTDDLCRr4::itemsInfo[1] = {
 	&DownlinkTimeslotsCodesLCRr4::theInfo,
@@ -19365,6 +21945,9 @@ const DLDPCHInfoPerRLPostTDDLCRr4::Info DLDPCHInfoPerRLPostTDDLCRr4::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DLDPCHInfoPerRLPostTDDLCRr4::DLDPCHInfoPerRLPostTDDLCRr4(const DownlinkTimeslotsCodesLCRr4& dlCCTrCHTimeslotsCodes) : Sequence(&theInfo) {
+	setDlCCTrCHTimeslotsCodes(dlCCTrCHTimeslotsCodes);
+}
 
 const void *HSSCCHInfor6ModeSpecificInfoFdd::itemsInfo[2] = {
 	&HSSCCHInfor6ModeSpecificInfoFddHSSCCHChannelisationCodeInfo::theInfo,
@@ -19383,6 +21966,9 @@ const HSSCCHInfor6ModeSpecificInfoFdd::Info HSSCCHInfor6ModeSpecificInfoFdd::the
 	itemsPres,
 	2, 1, 0
 };
+HSSCCHInfor6ModeSpecificInfoFdd::HSSCCHInfor6ModeSpecificInfoFdd(const HSSCCHInfor6ModeSpecificInfoFddHSSCCHChannelisationCodeInfo& hSSCCHInfor6ModeSpecificInfoFddHSSCCHChannelisationCodeInfo) : Sequence(&theInfo) {
+	setHSSCCHInfor6ModeSpecificInfoFddHSSCCHChannelisationCodeInfo(hSSCCHInfor6ModeSpecificInfoFddHSSCCHChannelisationCodeInfo);
+}
 
 const void *HSSCCHInfor6ModeSpecificInfoTddTdd384::itemsInfo[5] = {
 	&HSSCCHInfor6ModeSpecificInfoTddTdd384Nackackpoweroffset::theInfo,
@@ -19407,6 +21993,12 @@ const HSSCCHInfor6ModeSpecificInfoTddTdd384::Info HSSCCHInfor6ModeSpecificInfoTd
 	itemsPres,
 	5, 1, 0
 };
+HSSCCHInfor6ModeSpecificInfoTddTdd384::HSSCCHInfor6ModeSpecificInfoTddTdd384(const HSSCCHInfor6ModeSpecificInfoTddTdd384Nackackpoweroffset& hSSCCHInfor6ModeSpecificInfoTddTdd384Nackackpoweroffset, const HSSICHPowerControlInfoTDD384& hsSICHPowerControlInfo, const BlerTarget& blertarget, const HSSCCHInfor6ModeSpecificInfoTddTdd384HSSCCHSetConfiguration& hSSCCHInfor6ModeSpecificInfoTddTdd384HSSCCHSetConfiguration) : Sequence(&theInfo) {
+	setHSSCCHInfor6ModeSpecificInfoTddTdd384Nackackpoweroffset(hSSCCHInfor6ModeSpecificInfoTddTdd384Nackackpoweroffset);
+	setHsSICHPowerControlInfo(hsSICHPowerControlInfo);
+	setBlertarget(blertarget);
+	setHSSCCHInfor6ModeSpecificInfoTddTdd384HSSCCHSetConfiguration(hSSCCHInfor6ModeSpecificInfoTddTdd384HSSCCHSetConfiguration);
+}
 
 const void *HSSCCHInfor6ModeSpecificInfoTddTdd128::itemsInfo[5] = {
 	&HSSCCHInfor6ModeSpecificInfoTddTdd128Nackackpoweroffset::theInfo,
@@ -19431,6 +22023,13 @@ const HSSCCHInfor6ModeSpecificInfoTddTdd128::Info HSSCCHInfor6ModeSpecificInfoTd
 	itemsPres,
 	5, 0, 0
 };
+HSSCCHInfor6ModeSpecificInfoTddTdd128::HSSCCHInfor6ModeSpecificInfoTddTdd128(const HSSCCHInfor6ModeSpecificInfoTddTdd128Nackackpoweroffset& hSSCCHInfor6ModeSpecificInfoTddTdd128Nackackpoweroffset, const HSSCCHInfor6ModeSpecificInfoTddTdd128PowerlevelHSSICH& hSSCCHInfor6ModeSpecificInfoTddTdd128PowerlevelHSSICH, const HSSCCHInfor6ModeSpecificInfoTddTdd128tpc_step_size& hSSCCHInfor6ModeSpecificInfoTddTdd128tpc_step_size, const BlerTarget& blertarget, const HSSCCHInfor6ModeSpecificInfoTddTdd128HSSCCHSetConfiguration& hSSCCHInfor6ModeSpecificInfoTddTdd128HSSCCHSetConfiguration) : Sequence(&theInfo) {
+	setHSSCCHInfor6ModeSpecificInfoTddTdd128Nackackpoweroffset(hSSCCHInfor6ModeSpecificInfoTddTdd128Nackackpoweroffset);
+	setHSSCCHInfor6ModeSpecificInfoTddTdd128PowerlevelHSSICH(hSSCCHInfor6ModeSpecificInfoTddTdd128PowerlevelHSSICH);
+	setHSSCCHInfor6ModeSpecificInfoTddTdd128tpc_step_size(hSSCCHInfor6ModeSpecificInfoTddTdd128tpc_step_size);
+	setBlertarget(blertarget);
+	setHSSCCHInfor6ModeSpecificInfoTddTdd128HSSCCHSetConfiguration(hSSCCHInfor6ModeSpecificInfoTddTdd128HSSCCHSetConfiguration);
+}
 
 const void *HSSCCHInfor6ModeSpecificInfoTdd::choicesInfo[2] = {
 	&HSSCCHInfor6ModeSpecificInfoTddTdd384::theInfo,
@@ -19473,6 +22072,9 @@ const HSSCCHInfor6::Info HSSCCHInfor6::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+HSSCCHInfor6::HSSCCHInfor6(const HSSCCHInfor6ModeSpecificInfo& hSSCCHInfor6ModeSpecificInfo) : Sequence(&theInfo) {
+	setHSSCCHInfor6ModeSpecificInfo(hSSCCHInfor6ModeSpecificInfo);
+}
 
 const void *DLHSPDSCHInformationr6ModeSpecificInfoTddTdd384::itemsInfo[1] = {
 	&DLHSPDSCHTSConfiguration::theInfo,
@@ -19551,6 +22153,9 @@ const DLHSPDSCHInformationr6::Info DLHSPDSCHInformationr6::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DLHSPDSCHInformationr6::DLHSPDSCHInformationr6(const DLHSPDSCHInformationr6ModeSpecificInfo& dLHSPDSCHInformationr6ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLHSPDSCHInformationr6ModeSpecificInfo(dLHSPDSCHInformationr6ModeSpecificInfo);
+}
 
 const void *DLHSPDSCHInformationr8extModeSpecificInfoTddTdd128::itemsInfo[1] = {
 	&OutofSyncWindow::theInfo,
@@ -19610,6 +22215,9 @@ const DLHSPDSCHInformationr8ext::Info DLHSPDSCHInformationr8ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DLHSPDSCHInformationr8ext::DLHSPDSCHInformationr8ext(const DLHSPDSCHInformationr8extModeSpecificInfo& dLHSPDSCHInformationr8extModeSpecificInfo) : Sequence(&theInfo) {
+	setDLHSPDSCHInformationr8extModeSpecificInfo(dLHSPDSCHInformationr8extModeSpecificInfo);
+}
 
 const void *HSSCCHInfor8extModeSpecificInfoTddTdd128::itemsInfo[1] = {
 	&HSSCCHInfor8extModeSpecificInfoTddTdd128hS_SCCH_tpc_step_size::theInfo,
@@ -19669,6 +22277,9 @@ const HSSCCHInfor8ext::Info HSSCCHInfor8ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+HSSCCHInfor8ext::HSSCCHInfor8ext(const HSSCCHInfor8extModeSpecificInfo& hSSCCHInfor8extModeSpecificInfo) : Sequence(&theInfo) {
+	setHSSCCHInfor8extModeSpecificInfo(hSSCCHInfor8extModeSpecificInfo);
+}
 
 const void *DLHSPDSCHInformationr8ext2::itemsInfo[1] = {
 	&HSSCCHInfor8ext::theInfo,
@@ -19703,6 +22314,9 @@ const PDSCHSHODCHInfo::Info PDSCHSHODCHInfo::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+PDSCHSHODCHInfo::PDSCHSHODCHInfo(const DSCHRadioLinkIdentifier& dschRadioLinkIdentifier) : Sequence(&theInfo) {
+	setDschRadioLinkIdentifier(dschRadioLinkIdentifier);
+}
 
 const void *DSCHMapping::itemsInfo[4] = {
 	&MaxTFCIField2Value::theInfo,
@@ -19725,6 +22339,12 @@ const DSCHMapping::Info DSCHMapping::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+DSCHMapping::DSCHMapping(const MaxTFCIField2Value& maxTFCIField2Value, const SFPDSCH& spreadingFactor, const CodeNumberDSCH& codeNumber, const MultiCodeInfo& multiCodeInfo) : Sequence(&theInfo) {
+	setMaxTFCIField2Value(maxTFCIField2Value);
+	setSpreadingFactor(spreadingFactor);
+	setCodeNumber(codeNumber);
+	setMultiCodeInfo(multiCodeInfo);
+}
 
 const void *PDSCHCodeInfo::itemsInfo[3] = {
 	&SFPDSCH::theInfo,
@@ -19745,6 +22365,11 @@ const PDSCHCodeInfo::Info PDSCHCodeInfo::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+PDSCHCodeInfo::PDSCHCodeInfo(const SFPDSCH& spreadingFactor, const CodeNumberDSCH& codeNumber, const MultiCodeInfo& multiCodeInfo) : Sequence(&theInfo) {
+	setSpreadingFactor(spreadingFactor);
+	setCodeNumber(codeNumber);
+	setMultiCodeInfo(multiCodeInfo);
+}
 
 const void *ReplacedPDSCHCodeInfo::itemsInfo[4] = {
 	&MaxTFCIField2Value::theInfo,
@@ -19767,6 +22392,12 @@ const ReplacedPDSCHCodeInfo::Info ReplacedPDSCHCodeInfo::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+ReplacedPDSCHCodeInfo::ReplacedPDSCHCodeInfo(const MaxTFCIField2Value& tfciField2, const SFPDSCH& spreadingFactor, const CodeNumberDSCH& codeNumber, const MultiCodeInfo& multiCodeInfo) : Sequence(&theInfo) {
+	setTfciField2(tfciField2);
+	setSpreadingFactor(spreadingFactor);
+	setCodeNumber(codeNumber);
+	setMultiCodeInfo(multiCodeInfo);
+}
 
 const void *PDSCHCodeMappingSignallingMethod::choicesInfo[4] = {
 	&CodeRange::theInfo,
@@ -19800,6 +22431,9 @@ const PDSCHCodeMapping::Info PDSCHCodeMapping::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+PDSCHCodeMapping::PDSCHCodeMapping(const PDSCHCodeMappingSignallingMethod& pDSCHCodeMappingSignallingMethod) : Sequence(&theInfo) {
+	setPDSCHCodeMappingSignallingMethod(pDSCHCodeMappingSignallingMethod);
+}
 
 const void *DLInformationPerRLModeSpecificInfoFdd::itemsInfo[3] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -19820,6 +22454,9 @@ const DLInformationPerRLModeSpecificInfoFdd::Info DLInformationPerRLModeSpecific
 	itemsPres,
 	3, 2, 0
 };
+DLInformationPerRLModeSpecificInfoFdd::DLInformationPerRLModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *PrimaryCCPCHInfoFdd::itemsInfo[1] = {
 	&PrimaryCCPCHInfoFddTxDiversityIndicator::theInfo,
@@ -19836,6 +22473,9 @@ const PrimaryCCPCHInfoFdd::Info PrimaryCCPCHInfoFdd::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+PrimaryCCPCHInfoFdd::PrimaryCCPCHInfoFdd(const PrimaryCCPCHInfoFddTxDiversityIndicator& primaryCCPCHInfoFddTxDiversityIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfoFddTxDiversityIndicator(primaryCCPCHInfoFddTxDiversityIndicator);
+}
 
 const void *PrimaryCCPCHInfoTddSyncCaseSyncCase1::itemsInfo[1] = {
 	&TimeslotNumber::theInfo,
@@ -19852,6 +22492,9 @@ const PrimaryCCPCHInfoTddSyncCaseSyncCase1::Info PrimaryCCPCHInfoTddSyncCaseSync
 	itemsPres,
 	1, 0, 0
 };
+PrimaryCCPCHInfoTddSyncCaseSyncCase1::PrimaryCCPCHInfoTddSyncCaseSyncCase1(const TimeslotNumber& timeslot) : Sequence(&theInfo) {
+	setTimeslot(timeslot);
+}
 
 const void *PrimaryCCPCHInfoTddSyncCaseSyncCase2::itemsInfo[1] = {
 	&TimeslotSync2::theInfo,
@@ -19868,6 +22511,9 @@ const PrimaryCCPCHInfoTddSyncCaseSyncCase2::Info PrimaryCCPCHInfoTddSyncCaseSync
 	itemsPres,
 	1, 0, 0
 };
+PrimaryCCPCHInfoTddSyncCaseSyncCase2::PrimaryCCPCHInfoTddSyncCaseSyncCase2(const TimeslotSync2& timeslotSync2) : Sequence(&theInfo) {
+	setTimeslotSync2(timeslotSync2);
+}
 
 const void *PrimaryCCPCHInfoTddSyncCase::choicesInfo[2] = {
 	&PrimaryCCPCHInfoTddSyncCaseSyncCase1::theInfo,
@@ -19901,6 +22547,9 @@ const PrimaryCCPCHInfoTdd::Info PrimaryCCPCHInfoTdd::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+PrimaryCCPCHInfoTdd::PrimaryCCPCHInfoTdd(const PrimaryCCPCHInfoTddSctdIndicator& primaryCCPCHInfoTddSctdIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfoTddSctdIndicator(primaryCCPCHInfoTddSctdIndicator);
+}
 
 const void *PrimaryCCPCHInfo::choicesInfo[2] = {
 	&PrimaryCCPCHInfoFdd::theInfo,
@@ -19977,6 +22626,14 @@ const SecondaryCCPCHInfoModeSpecificInfoFdd::Info SecondaryCCPCHInfoModeSpecific
 	itemsPres,
 	9, 3, 0
 };
+SecondaryCCPCHInfoModeSpecificInfoFdd::SecondaryCCPCHInfoModeSpecificInfoFdd(const PCPICHUsageForChannelEst& dummy1, const SecondaryCCPCHInfoModeSpecificInfoFddSttdIndicator& secondaryCCPCHInfoModeSpecificInfoFddSttdIndicator, const SF256AndCodeNumber& sfAndCodeNumber, const SecondaryCCPCHInfoModeSpecificInfoFddPilotSymbolExistence& secondaryCCPCHInfoModeSpecificInfoFddPilotSymbolExistence, const SecondaryCCPCHInfoModeSpecificInfoFddTfciExistence& secondaryCCPCHInfoModeSpecificInfoFddTfciExistence, const PositionFixedOrFlexible& positionFixedOrFlexible) : Sequence(&theInfo) {
+	setDummy1(dummy1);
+	setSecondaryCCPCHInfoModeSpecificInfoFddSttdIndicator(secondaryCCPCHInfoModeSpecificInfoFddSttdIndicator);
+	setSfAndCodeNumber(sfAndCodeNumber);
+	setSecondaryCCPCHInfoModeSpecificInfoFddPilotSymbolExistence(secondaryCCPCHInfoModeSpecificInfoFddPilotSymbolExistence);
+	setSecondaryCCPCHInfoModeSpecificInfoFddTfciExistence(secondaryCCPCHInfoModeSpecificInfoFddTfciExistence);
+	setPositionFixedOrFlexible(positionFixedOrFlexible);
+}
 
 const void *SecondaryCCPCHInfoModeSpecificInfoTdd::itemsInfo[3] = {
 	&CommonTimeslotInfoSCCPCH::theInfo,
@@ -19997,6 +22654,11 @@ const SecondaryCCPCHInfoModeSpecificInfoTdd::Info SecondaryCCPCHInfoModeSpecific
 	itemsPres,
 	3, 0, 0
 };
+SecondaryCCPCHInfoModeSpecificInfoTdd::SecondaryCCPCHInfoModeSpecificInfoTdd(const CommonTimeslotInfoSCCPCH& commonTimeslotInfo, const IndividualTimeslotInfo& individualTimeslotInfo, const SCCPCHChannelisationCodeList& channelisationCode) : Sequence(&theInfo) {
+	setCommonTimeslotInfo(commonTimeslotInfo);
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+	setChannelisationCode(channelisationCode);
+}
 
 const void *SecondaryCCPCHInfoModeSpecificInfo::choicesInfo[2] = {
 	&SecondaryCCPCHInfoModeSpecificInfoFdd::theInfo,
@@ -20046,6 +22708,11 @@ const FACHPCHInformation::Info FACHPCHInformation::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+FACHPCHInformation::FACHPCHInformation(const TransportFormatSet& transportFormatSet, const TransportChannelIdentity& transportChannelIdentity, const FACHPCHInformationCtchIndicator& fACHPCHInformationCtchIndicator) : Sequence(&theInfo) {
+	setTransportFormatSet(transportFormatSet);
+	setTransportChannelIdentity(transportChannelIdentity);
+	setFACHPCHInformationCtchIndicator(fACHPCHInformationCtchIndicator);
+}
 
 const void *PredefinedConfigIdentityAndValueTag::itemsInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -20064,6 +22731,10 @@ const PredefinedConfigIdentityAndValueTag::Info PredefinedConfigIdentityAndValue
 	itemsPres,
 	2, 0, 0
 };
+PredefinedConfigIdentityAndValueTag::PredefinedConfigIdentityAndValueTag(const PredefinedConfigIdentity& predefinedConfigIdentity, const PredefinedConfigValueTag& predefinedConfigValueTag) : Sequence(&theInfo) {
+	setPredefinedConfigIdentity(predefinedConfigIdentity);
+	setPredefinedConfigValueTag(predefinedConfigValueTag);
+}
 
 const void *SIBOccurrenceIdentityAndValueTag::itemsInfo[2] = {
 	&SIBOccurIdentity::theInfo,
@@ -20082,6 +22753,10 @@ const SIBOccurrenceIdentityAndValueTag::Info SIBOccurrenceIdentityAndValueTag::t
 	itemsPres,
 	2, 0, 0
 };
+SIBOccurrenceIdentityAndValueTag::SIBOccurrenceIdentityAndValueTag(const SIBOccurIdentity& sibOccurIdentity, const SIBOccurValueTag& sibOccurValueTag) : Sequence(&theInfo) {
+	setSibOccurIdentity(sibOccurIdentity);
+	setSibOccurValueTag(sibOccurValueTag);
+}
 
 const void *SIBTypeAndTag::choicesInfo[32] = {
 	&PLMNValueTag::theInfo,
@@ -20167,6 +22842,9 @@ const SchedulingInformationScheduling::Info SchedulingInformationScheduling::the
 	itemsPres,
 	3, 2, 0
 };
+SchedulingInformationScheduling::SchedulingInformationScheduling(const SchedulingInformationSchedulingSibPos& schedulingInformationSchedulingSibPos) : Sequence(&theInfo) {
+	setSchedulingInformationSchedulingSibPos(schedulingInformationSchedulingSibPos);
+}
 
 const void *SchedulingInformation::itemsInfo[1] = {
 	&SchedulingInformationScheduling::theInfo,
@@ -20201,6 +22879,10 @@ const SchedulingInformationSIB::Info SchedulingInformationSIB::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SchedulingInformationSIB::SchedulingInformationSIB(const SIBTypeAndTag& sibType, const SchedulingInformation& scheduling) : Sequence(&theInfo) {
+	setSibType(sibType);
+	setScheduling(scheduling);
+}
 
 const void *SCCPCHInfoForFACHModeSpecificInfoFdd::itemsInfo[2] = {
 	&FACHPCHInformationList::theInfo,
@@ -20219,6 +22901,10 @@ const SCCPCHInfoForFACHModeSpecificInfoFdd::Info SCCPCHInfoForFACHModeSpecificIn
 	itemsPres,
 	2, 0, 0
 };
+SCCPCHInfoForFACHModeSpecificInfoFdd::SCCPCHInfoForFACHModeSpecificInfoFdd(const FACHPCHInformationList& fachPCHInformationList, const SIBReferenceListFACH& sibReferenceListFACH) : Sequence(&theInfo) {
+	setFachPCHInformationList(fachPCHInformationList);
+	setSibReferenceListFACH(sibReferenceListFACH);
+}
 
 const void *SCCPCHInfoForFACHModeSpecificInfoTdd::itemsInfo[1] = {
 	&FACHPCHInformationList::theInfo,
@@ -20235,6 +22921,9 @@ const SCCPCHInfoForFACHModeSpecificInfoTdd::Info SCCPCHInfoForFACHModeSpecificIn
 	itemsPres,
 	1, 0, 0
 };
+SCCPCHInfoForFACHModeSpecificInfoTdd::SCCPCHInfoForFACHModeSpecificInfoTdd(const FACHPCHInformationList& fachPCHInformationList) : Sequence(&theInfo) {
+	setFachPCHInformationList(fachPCHInformationList);
+}
 
 const void *SCCPCHInfoForFACHModeSpecificInfo::choicesInfo[2] = {
 	&SCCPCHInfoForFACHModeSpecificInfoFdd::theInfo,
@@ -20268,6 +22957,11 @@ const SCCPCHInfoForFACH::Info SCCPCHInfoForFACH::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+SCCPCHInfoForFACH::SCCPCHInfoForFACH(const SecondaryCCPCHInfo& secondaryCCPCHInfo, const TFCS& tfcs, const SCCPCHInfoForFACHModeSpecificInfo& sCCPCHInfoForFACHModeSpecificInfo) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfo(secondaryCCPCHInfo);
+	setTfcs(tfcs);
+	setSCCPCHInfoForFACHModeSpecificInfo(sCCPCHInfoForFACHModeSpecificInfo);
+}
 
 const void *DLInformationPerRL::itemsInfo[3] = {
 	&DLInformationPerRLModeSpecificInfo::theInfo,
@@ -20288,6 +22982,9 @@ const DLInformationPerRL::Info DLInformationPerRL::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DLInformationPerRL::DLInformationPerRL(const DLInformationPerRLModeSpecificInfo& dLInformationPerRLModeSpecificInfo) : Sequence(&theInfo) {
+	setDLInformationPerRLModeSpecificInfo(dLInformationPerRLModeSpecificInfo);
+}
 
 const void *DLInformationPerRLr4ModeSpecificInfoFdd::itemsInfo[3] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -20308,6 +23005,9 @@ const DLInformationPerRLr4ModeSpecificInfoFdd::Info DLInformationPerRLr4ModeSpec
 	itemsPres,
 	3, 2, 0
 };
+DLInformationPerRLr4ModeSpecificInfoFdd::DLInformationPerRLr4ModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *PrimaryCCPCHInfor4Fdd::itemsInfo[1] = {
 	&PrimaryCCPCHInfor4FddTxDiversityIndicator::theInfo,
@@ -20324,6 +23024,9 @@ const PrimaryCCPCHInfor4Fdd::Info PrimaryCCPCHInfor4Fdd::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+PrimaryCCPCHInfor4Fdd::PrimaryCCPCHInfor4Fdd(const PrimaryCCPCHInfor4FddTxDiversityIndicator& primaryCCPCHInfor4FddTxDiversityIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfor4FddTxDiversityIndicator(primaryCCPCHInfor4FddTxDiversityIndicator);
+}
 
 const void *PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCaseSyncCase1::itemsInfo[1] = {
 	&TimeslotNumber::theInfo,
@@ -20340,6 +23043,9 @@ const PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCaseSyncCase1::Info PrimaryC
 	itemsPres,
 	1, 0, 0
 };
+PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCaseSyncCase1::PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCaseSyncCase1(const TimeslotNumber& timeslot) : Sequence(&theInfo) {
+	setTimeslot(timeslot);
+}
 
 const void *PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCaseSyncCase2::itemsInfo[1] = {
 	&TimeslotSync2::theInfo,
@@ -20356,6 +23062,9 @@ const PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCaseSyncCase2::Info PrimaryC
 	itemsPres,
 	1, 0, 0
 };
+PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCaseSyncCase2::PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCaseSyncCase2(const TimeslotSync2& timeslotSync2) : Sequence(&theInfo) {
+	setTimeslotSync2(timeslotSync2);
+}
 
 const void *PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCase::choicesInfo[2] = {
 	&PrimaryCCPCHInfor4TddTddOptionTdd384tdd768SyncCaseSyncCase1::theInfo,
@@ -20401,6 +23110,9 @@ const PrimaryCCPCHInfor4TddTddOptionTdd128::Info PrimaryCCPCHInfor4TddTddOptionT
 	itemsPres,
 	1, 0, 0
 };
+PrimaryCCPCHInfor4TddTddOptionTdd128::PrimaryCCPCHInfor4TddTddOptionTdd128(const PrimaryCCPCHInfor4TddTddOptionTdd128TstdIndicator& primaryCCPCHInfor4TddTddOptionTdd128TstdIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfor4TddTddOptionTdd128TstdIndicator(primaryCCPCHInfor4TddTddOptionTdd128TstdIndicator);
+}
 
 const void *PrimaryCCPCHInfor4TddTddOption::choicesInfo[2] = {
 	&PrimaryCCPCHInfor4TddTddOptionTdd384tdd768::theInfo,
@@ -20434,6 +23146,10 @@ const PrimaryCCPCHInfor4Tdd::Info PrimaryCCPCHInfor4Tdd::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+PrimaryCCPCHInfor4Tdd::PrimaryCCPCHInfor4Tdd(const PrimaryCCPCHInfor4TddTddOption& primaryCCPCHInfor4TddTddOption, const PrimaryCCPCHInfor4TddSctdIndicator& primaryCCPCHInfor4TddSctdIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfor4TddTddOption(primaryCCPCHInfor4TddTddOption);
+	setPrimaryCCPCHInfor4TddSctdIndicator(primaryCCPCHInfor4TddSctdIndicator);
+}
 
 const void *PrimaryCCPCHInfor4::choicesInfo[2] = {
 	&PrimaryCCPCHInfor4Fdd::theInfo,
@@ -20488,6 +23204,13 @@ const SecondaryCCPCHInfor4ModeSpecificInfoFdd::Info SecondaryCCPCHInfor4ModeSpec
 	itemsPres,
 	7, 2, 0
 };
+SecondaryCCPCHInfor4ModeSpecificInfoFdd::SecondaryCCPCHInfor4ModeSpecificInfoFdd(const SecondaryCCPCHInfor4ModeSpecificInfoFddSttdIndicator& secondaryCCPCHInfor4ModeSpecificInfoFddSttdIndicator, const SF256AndCodeNumber& sfAndCodeNumber, const SecondaryCCPCHInfor4ModeSpecificInfoFddPilotSymbolExistence& secondaryCCPCHInfor4ModeSpecificInfoFddPilotSymbolExistence, const SecondaryCCPCHInfor4ModeSpecificInfoFddTfciExistence& secondaryCCPCHInfor4ModeSpecificInfoFddTfciExistence, const PositionFixedOrFlexible& positionFixedOrFlexible) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfor4ModeSpecificInfoFddSttdIndicator(secondaryCCPCHInfor4ModeSpecificInfoFddSttdIndicator);
+	setSfAndCodeNumber(sfAndCodeNumber);
+	setSecondaryCCPCHInfor4ModeSpecificInfoFddPilotSymbolExistence(secondaryCCPCHInfor4ModeSpecificInfoFddPilotSymbolExistence);
+	setSecondaryCCPCHInfor4ModeSpecificInfoFddTfciExistence(secondaryCCPCHInfor4ModeSpecificInfoFddTfciExistence);
+	setPositionFixedOrFlexible(positionFixedOrFlexible);
+}
 
 const void *SecondaryCCPCHInfor4ModeSpecificInfoTddTddOptionTdd384::itemsInfo[1] = {
 	&IndividualTimeslotInfo::theInfo,
@@ -20504,6 +23227,9 @@ const SecondaryCCPCHInfor4ModeSpecificInfoTddTddOptionTdd384::Info SecondaryCCPC
 	itemsPres,
 	1, 0, 0
 };
+SecondaryCCPCHInfor4ModeSpecificInfoTddTddOptionTdd384::SecondaryCCPCHInfor4ModeSpecificInfoTddTddOptionTdd384(const IndividualTimeslotInfo& individualTimeslotInfo) : Sequence(&theInfo) {
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+}
 
 const void *SecondaryCCPCHInfor4ModeSpecificInfoTddTddOptionTdd128::itemsInfo[1] = {
 	&IndividualTimeslotInfoLCRr4::theInfo,
@@ -20520,6 +23246,9 @@ const SecondaryCCPCHInfor4ModeSpecificInfoTddTddOptionTdd128::Info SecondaryCCPC
 	itemsPres,
 	1, 0, 0
 };
+SecondaryCCPCHInfor4ModeSpecificInfoTddTddOptionTdd128::SecondaryCCPCHInfor4ModeSpecificInfoTddTddOptionTdd128(const IndividualTimeslotInfoLCRr4& individualTimeslotInfo) : Sequence(&theInfo) {
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+}
 
 const void *SecondaryCCPCHInfor4ModeSpecificInfoTddTddOption::choicesInfo[2] = {
 	&SecondaryCCPCHInfor4ModeSpecificInfoTddTddOptionTdd384::theInfo,
@@ -20553,6 +23282,11 @@ const SecondaryCCPCHInfor4ModeSpecificInfoTdd::Info SecondaryCCPCHInfor4ModeSpec
 	itemsPres,
 	3, 0, 0
 };
+SecondaryCCPCHInfor4ModeSpecificInfoTdd::SecondaryCCPCHInfor4ModeSpecificInfoTdd(const CommonTimeslotInfoSCCPCH& commonTimeslotInfo, const SecondaryCCPCHInfor4ModeSpecificInfoTddTddOption& secondaryCCPCHInfor4ModeSpecificInfoTddTddOption, const SCCPCHChannelisationCodeList& channelisationCode) : Sequence(&theInfo) {
+	setCommonTimeslotInfo(commonTimeslotInfo);
+	setSecondaryCCPCHInfor4ModeSpecificInfoTddTddOption(secondaryCCPCHInfor4ModeSpecificInfoTddTddOption);
+	setChannelisationCode(channelisationCode);
+}
 
 const void *SecondaryCCPCHInfor4ModeSpecificInfo::choicesInfo[2] = {
 	&SecondaryCCPCHInfor4ModeSpecificInfoFdd::theInfo,
@@ -20598,6 +23332,9 @@ const SCCPCHInfoForFACHr4ModeSpecificInfoFdd::Info SCCPCHInfoForFACHr4ModeSpecif
 	itemsPres,
 	1, 0, 0
 };
+SCCPCHInfoForFACHr4ModeSpecificInfoFdd::SCCPCHInfoForFACHr4ModeSpecificInfoFdd(const SIBReferenceListFACH& sibReferenceListFACH) : Sequence(&theInfo) {
+	setSibReferenceListFACH(sibReferenceListFACH);
+}
 
 const void *SCCPCHInfoForFACHr4ModeSpecificInfo::choicesInfo[2] = {
 	&SCCPCHInfoForFACHr4ModeSpecificInfoFdd::theInfo,
@@ -20633,6 +23370,12 @@ const SCCPCHInfoForFACHr4::Info SCCPCHInfoForFACHr4::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+SCCPCHInfoForFACHr4::SCCPCHInfoForFACHr4(const SecondaryCCPCHInfor4& secondaryCCPCHInfo, const TFCS& tfcs, const FACHPCHInformationList& fachPCHInformationList, const SCCPCHInfoForFACHr4ModeSpecificInfo& sCCPCHInfoForFACHr4ModeSpecificInfo) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfo(secondaryCCPCHInfo);
+	setTfcs(tfcs);
+	setFachPCHInformationList(fachPCHInformationList);
+	setSCCPCHInfoForFACHr4ModeSpecificInfo(sCCPCHInfoForFACHr4ModeSpecificInfo);
+}
 
 const void *DLInformationPerRLr4::itemsInfo[4] = {
 	&DLInformationPerRLr4ModeSpecificInfo::theInfo,
@@ -20655,6 +23398,9 @@ const DLInformationPerRLr4::Info DLInformationPerRLr4::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+DLInformationPerRLr4::DLInformationPerRLr4(const DLInformationPerRLr4ModeSpecificInfo& dLInformationPerRLr4ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLInformationPerRLr4ModeSpecificInfo(dLInformationPerRLr4ModeSpecificInfo);
+}
 
 const void *DLInformationPerRLr5ModeSpecificInfoFdd::itemsInfo[4] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -20677,6 +23423,10 @@ const DLInformationPerRLr5ModeSpecificInfoFdd::Info DLInformationPerRLr5ModeSpec
 	itemsPres,
 	4, 2, 0
 };
+DLInformationPerRLr5ModeSpecificInfoFdd::DLInformationPerRLr5ModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo, const DLInformationPerRLr5ModeSpecificInfoFddServingHSDSCHRLindicator& dLInformationPerRLr5ModeSpecificInfoFddServingHSDSCHRLindicator) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setDLInformationPerRLr5ModeSpecificInfoFddServingHSDSCHRLindicator(dLInformationPerRLr5ModeSpecificInfoFddServingHSDSCHRLindicator);
+}
 
 const void *DLInformationPerRLr5ModeSpecificInfo::choicesInfo[2] = {
 	&DLInformationPerRLr5ModeSpecificInfoFdd::theInfo,
@@ -20712,6 +23462,9 @@ const DLInformationPerRLr5::Info DLInformationPerRLr5::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+DLInformationPerRLr5::DLInformationPerRLr5(const DLInformationPerRLr5ModeSpecificInfo& dLInformationPerRLr5ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLInformationPerRLr5ModeSpecificInfo(dLInformationPerRLr5ModeSpecificInfo);
+}
 
 const void *DLInformationPerRLr5bisModeSpecificInfoFdd::itemsInfo[3] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -20732,6 +23485,9 @@ const DLInformationPerRLr5bisModeSpecificInfoFdd::Info DLInformationPerRLr5bisMo
 	itemsPres,
 	3, 2, 0
 };
+DLInformationPerRLr5bisModeSpecificInfoFdd::DLInformationPerRLr5bisModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *DLInformationPerRLr5bisModeSpecificInfo::choicesInfo[2] = {
 	&DLInformationPerRLr5bisModeSpecificInfoFdd::theInfo,
@@ -20767,6 +23523,9 @@ const DLInformationPerRLr5bis::Info DLInformationPerRLr5bis::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+DLInformationPerRLr5bis::DLInformationPerRLr5bis(const DLInformationPerRLr5bisModeSpecificInfo& dLInformationPerRLr5bisModeSpecificInfo) : Sequence(&theInfo) {
+	setDLInformationPerRLr5bisModeSpecificInfo(dLInformationPerRLr5bisModeSpecificInfo);
+}
 
 const void *DLInformationPerRLr6ModeSpecificInfoFdd::itemsInfo[3] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -20787,6 +23546,11 @@ const DLInformationPerRLr6ModeSpecificInfoFdd::Info DLInformationPerRLr6ModeSpec
 	itemsPres,
 	3, 0, 0
 };
+DLInformationPerRLr6ModeSpecificInfoFdd::DLInformationPerRLr6ModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo, const DLInformationPerRLr6ModeSpecificInfoFddServingHSDSCHRLindicator& dLInformationPerRLr6ModeSpecificInfoFddServingHSDSCHRLindicator, const DLInformationPerRLr6ModeSpecificInfoFddServingEDCHRLindicator& dLInformationPerRLr6ModeSpecificInfoFddServingEDCHRLindicator) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setDLInformationPerRLr6ModeSpecificInfoFddServingHSDSCHRLindicator(dLInformationPerRLr6ModeSpecificInfoFddServingHSDSCHRLindicator);
+	setDLInformationPerRLr6ModeSpecificInfoFddServingEDCHRLindicator(dLInformationPerRLr6ModeSpecificInfoFddServingEDCHRLindicator);
+}
 
 const void *DLInformationPerRLr6ModeSpecificInfo::choicesInfo[2] = {
 	&DLInformationPerRLr6ModeSpecificInfoFdd::theInfo,
@@ -20865,6 +23629,9 @@ const DLInformationPerRLr6::Info DLInformationPerRLr6::theInfo = {
 	itemsPres,
 	6, 5, 0
 };
+DLInformationPerRLr6::DLInformationPerRLr6(const DLInformationPerRLr6ModeSpecificInfo& dLInformationPerRLr6ModeSpecificInfo) : Sequence(&theInfo) {
+	setDLInformationPerRLr6ModeSpecificInfo(dLInformationPerRLr6ModeSpecificInfo);
+}
 
 const void *DLInformationPerRLv6b0ext::itemsInfo[1] = {
 	&STTDIndication::theInfo,
@@ -20901,6 +23668,11 @@ const DLInformationPerRLr7ModeSpecificInfoFdd::Info DLInformationPerRLr7ModeSpec
 	itemsPres,
 	3, 0, 0
 };
+DLInformationPerRLr7ModeSpecificInfoFdd::DLInformationPerRLr7ModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo, const DLInformationPerRLr7ModeSpecificInfoFddServingHSDSCHRLindicator& dLInformationPerRLr7ModeSpecificInfoFddServingHSDSCHRLindicator, const DLInformationPerRLr7ModeSpecificInfoFddServingEDCHRLindicator& dLInformationPerRLr7ModeSpecificInfoFddServingEDCHRLindicator) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setDLInformationPerRLr7ModeSpecificInfoFddServingHSDSCHRLindicator(dLInformationPerRLr7ModeSpecificInfoFddServingHSDSCHRLindicator);
+	setDLInformationPerRLr7ModeSpecificInfoFddServingEDCHRLindicator(dLInformationPerRLr7ModeSpecificInfoFddServingEDCHRLindicator);
+}
 
 const void *DLInformationPerRLr7ModeSpecificInfo::choicesInfo[2] = {
 	&DLInformationPerRLr7ModeSpecificInfoFdd::theInfo,
@@ -20943,6 +23715,9 @@ const EAGCHInformationr7ModeSpecificFdd::Info EAGCHInformationr7ModeSpecificFdd:
 	itemsPres,
 	1, 0, 0
 };
+EAGCHInformationr7ModeSpecificFdd::EAGCHInformationr7ModeSpecificFdd(const EAGCHChannelisationCode& eAGCHChannelisationCode) : Sequence(&theInfo) {
+	setEAGCHChannelisationCode(eAGCHChannelisationCode);
+}
 
 const void *MidambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftLong::theInfo,
@@ -20959,6 +23734,9 @@ const MidambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationModeUeSpecifi
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationModeDefaultMidamble::theInfo,
@@ -20991,6 +23769,10 @@ const MidambleShiftAndBurstTypeEDCHBurstTypeType1::Info MidambleShiftAndBurstTyp
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeEDCHBurstTypeType1::MidambleShiftAndBurstTypeEDCHBurstTypeType1(const MidambleConfigurationBurstType1& midambleConfigurationBurstType1, const MidambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationMode& midambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType1(midambleConfigurationBurstType1);
+	setMidambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationMode(midambleShiftAndBurstTypeEDCHBurstTypeType1MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftShort::theInfo,
@@ -21007,6 +23789,9 @@ const MidambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationModeUeSpecifi
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationModeUeSpecificMidamble(const MidambleShiftShort& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationModeDefaultMidamble::theInfo,
@@ -21039,6 +23824,10 @@ const MidambleShiftAndBurstTypeEDCHBurstTypeType2::Info MidambleShiftAndBurstTyp
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeEDCHBurstTypeType2::MidambleShiftAndBurstTypeEDCHBurstTypeType2(const MidambleConfigurationBurstType2& midambleConfigurationBurstType2, const MidambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationMode& midambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType2(midambleConfigurationBurstType2);
+	setMidambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationMode(midambleShiftAndBurstTypeEDCHBurstTypeType2MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTypeEDCHBurstType::choicesInfo[2] = {
 	&MidambleShiftAndBurstTypeEDCHBurstTypeType1::theInfo,
@@ -21068,6 +23857,9 @@ const MidambleShiftAndBurstTypeEDCH::Info MidambleShiftAndBurstTypeEDCH::theInfo
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeEDCH::MidambleShiftAndBurstTypeEDCH(const MidambleShiftAndBurstTypeEDCHBurstType& midambleShiftAndBurstTypeEDCHBurstType) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstTypeEDCHBurstType(midambleShiftAndBurstTypeEDCHBurstType);
+}
 
 const void *EAGCHIndividual::itemsInfo[3] = {
 	&EAGCHIndividualTSnumber::theInfo,
@@ -21088,6 +23880,11 @@ const EAGCHIndividual::Info EAGCHIndividual::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+EAGCHIndividual::EAGCHIndividual(const EAGCHIndividualTSnumber& eAGCHIndividualTSnumber, const DLTSChannelisationCode& channelisationcode, const MidambleShiftAndBurstTypeEDCH& midambleShiftAndBurstType) : Sequence(&theInfo) {
+	setEAGCHIndividualTSnumber(eAGCHIndividualTSnumber);
+	setChannelisationcode(channelisationcode);
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+}
 
 const void *EAGCHInformationr7ModeSpecificTddTdd384::itemsInfo[4] = {
 	&EAGCHInformationr7ModeSpecificTddTdd384LongTermGrantIndicator::theInfo,
@@ -21110,6 +23907,11 @@ const EAGCHInformationr7ModeSpecificTddTdd384::Info EAGCHInformationr7ModeSpecif
 	itemsPres,
 	4, 1, 0
 };
+EAGCHInformationr7ModeSpecificTddTdd384::EAGCHInformationr7ModeSpecificTddTdd384(const EAGCHInformationr7ModeSpecificTddTdd384LengthofTTRIfield& eAGCHInformationr7ModeSpecificTddTdd384LengthofTTRIfield, const EAGCHSetConfig& eAGCHSetConfig, const BlerTarget& eAGCHBLERTarget) : Sequence(&theInfo) {
+	setEAGCHInformationr7ModeSpecificTddTdd384LengthofTTRIfield(eAGCHInformationr7ModeSpecificTddTdd384LengthofTTRIfield);
+	setEAGCHSetConfig(eAGCHSetConfig);
+	setEAGCHBLERTarget(eAGCHBLERTarget);
+}
 
 const void *EAGCHIndividualVHCR::itemsInfo[3] = {
 	&EAGCHIndividualVHCRTSnumber::theInfo,
@@ -21130,6 +23932,11 @@ const EAGCHIndividualVHCR::Info EAGCHIndividualVHCR::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+EAGCHIndividualVHCR::EAGCHIndividualVHCR(const EAGCHIndividualVHCRTSnumber& eAGCHIndividualVHCRTSnumber, const DLTSChannelisationCodeVHCR& channelisationcode, const MidambleShiftAndBurstTypeEDCH& midambleShiftAndBurstType) : Sequence(&theInfo) {
+	setEAGCHIndividualVHCRTSnumber(eAGCHIndividualVHCRTSnumber);
+	setChannelisationcode(channelisationcode);
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+}
 
 const void *EAGCHInformationr7ModeSpecificTddTdd768::itemsInfo[4] = {
 	&EAGCHInformationr7ModeSpecificTddTdd768LongTermGrantIndicator::theInfo,
@@ -21152,6 +23959,11 @@ const EAGCHInformationr7ModeSpecificTddTdd768::Info EAGCHInformationr7ModeSpecif
 	itemsPres,
 	4, 1, 0
 };
+EAGCHInformationr7ModeSpecificTddTdd768::EAGCHInformationr7ModeSpecificTddTdd768(const EAGCHInformationr7ModeSpecificTddTdd768LengthofTTRIfield& eAGCHInformationr7ModeSpecificTddTdd768LengthofTTRIfield, const EAGCHSetConfigVHCR& eAGCHSetConfig, const BlerTarget& eAGCHBLERTarget) : Sequence(&theInfo) {
+	setEAGCHInformationr7ModeSpecificTddTdd768LengthofTTRIfield(eAGCHInformationr7ModeSpecificTddTdd768LengthofTTRIfield);
+	setEAGCHSetConfig(eAGCHSetConfig);
+	setEAGCHBLERTarget(eAGCHBLERTarget);
+}
 
 const void *EAGCHInformationr7ModeSpecificTddTdd128::itemsInfo[4] = {
 	&EAGCHInformationr7ModeSpecificTddTdd128RdiIndicator::theInfo,
@@ -21174,6 +23986,12 @@ const EAGCHInformationr7ModeSpecificTddTdd128::Info EAGCHInformationr7ModeSpecif
 	itemsPres,
 	4, 0, 0
 };
+EAGCHInformationr7ModeSpecificTddTdd128::EAGCHInformationr7ModeSpecificTddTdd128(const EAGCHInformationr7ModeSpecificTddTdd128RdiIndicator& eAGCHInformationr7ModeSpecificTddTdd128RdiIndicator, const TPCStepSizeTDD& tpcStepSize, const EAGCHSetConfigLCR& eAGCHSetConfig, const BlerTarget& eAGCHBLERTarget) : Sequence(&theInfo) {
+	setEAGCHInformationr7ModeSpecificTddTdd128RdiIndicator(eAGCHInformationr7ModeSpecificTddTdd128RdiIndicator);
+	setTpcStepSize(tpcStepSize);
+	setEAGCHSetConfig(eAGCHSetConfig);
+	setEAGCHBLERTarget(eAGCHBLERTarget);
+}
 
 const void *EAGCHInformationr7ModeSpecificTdd::choicesInfo[3] = {
 	&EAGCHInformationr7ModeSpecificTddTdd384::theInfo,
@@ -21217,6 +24035,9 @@ const EAGCHInformationr7::Info EAGCHInformationr7::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EAGCHInformationr7::EAGCHInformationr7(const EAGCHInformationr7ModeSpecific& eAGCHInformationr7ModeSpecific) : Sequence(&theInfo) {
+	setEAGCHInformationr7ModeSpecific(eAGCHInformationr7ModeSpecific);
+}
 
 const void *DLInformationPerRLr7ModeSpecificInfo2FddEHICHInfo::choicesInfo[2] = {
 	&EHICHInformation::theInfo,
@@ -21298,6 +24119,13 @@ const EHICHInformationTDD384768::Info EHICHInformationTDD384768::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+EHICHInformationTDD384768::EHICHInformationTDD384768(const EHICHInformationTDD384768NEHICH& eHICHInformationTDD384768NEHICH, const EHICHInformationTDD384768TSNumber& eHICHInformationTDD384768TSNumber, const EHICHInformationTDD384768ModeSpecificInfo& eHICHInformationTDD384768ModeSpecificInfo, const EHICHInformationTDD384768burst_Type& eHICHInformationTDD384768burst_Type, const EHICHInformationTDD384768midamble_Allocation_Mode& eHICHInformationTDD384768midamble_Allocation_Mode) : Sequence(&theInfo) {
+	setEHICHInformationTDD384768NEHICH(eHICHInformationTDD384768NEHICH);
+	setEHICHInformationTDD384768TSNumber(eHICHInformationTDD384768TSNumber);
+	setEHICHInformationTDD384768ModeSpecificInfo(eHICHInformationTDD384768ModeSpecificInfo);
+	setEHICHInformationTDD384768burst_Type(eHICHInformationTDD384768burst_Type);
+	setEHICHInformationTDD384768midamble_Allocation_Mode(eHICHInformationTDD384768midamble_Allocation_Mode);
+}
 
 const void *DLInformationPerRLr7ModeSpecificInfo2TddTdd384tdd768::itemsInfo[1] = {
 	&EHICHInformationTDD384768::theInfo,
@@ -21380,6 +24208,10 @@ const DLInformationPerRLr7::Info DLInformationPerRLr7::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+DLInformationPerRLr7::DLInformationPerRLr7(const DLInformationPerRLr7ModeSpecificInfo& dLInformationPerRLr7ModeSpecificInfo, const DLInformationPerRLr7ModeSpecificInfo2& dLInformationPerRLr7ModeSpecificInfo2) : Sequence(&theInfo) {
+	setDLInformationPerRLr7ModeSpecificInfo(dLInformationPerRLr7ModeSpecificInfo);
+	setDLInformationPerRLr7ModeSpecificInfo2(dLInformationPerRLr7ModeSpecificInfo2);
+}
 
 const void *DLInformationPerRLr8ModeSpecificInfoFdd::itemsInfo[3] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -21400,6 +24232,11 @@ const DLInformationPerRLr8ModeSpecificInfoFdd::Info DLInformationPerRLr8ModeSpec
 	itemsPres,
 	3, 0, 0
 };
+DLInformationPerRLr8ModeSpecificInfoFdd::DLInformationPerRLr8ModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo, const DLInformationPerRLr8ModeSpecificInfoFddServingHSDSCHRLindicator& dLInformationPerRLr8ModeSpecificInfoFddServingHSDSCHRLindicator, const DLInformationPerRLr8ModeSpecificInfoFddServingEDCHRLindicator& dLInformationPerRLr8ModeSpecificInfoFddServingEDCHRLindicator) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setDLInformationPerRLr8ModeSpecificInfoFddServingHSDSCHRLindicator(dLInformationPerRLr8ModeSpecificInfoFddServingHSDSCHRLindicator);
+	setDLInformationPerRLr8ModeSpecificInfoFddServingEDCHRLindicator(dLInformationPerRLr8ModeSpecificInfoFddServingEDCHRLindicator);
+}
 
 const void *DLInformationPerRLr8ModeSpecificInfo::choicesInfo[2] = {
 	&DLInformationPerRLr8ModeSpecificInfoFdd::theInfo,
@@ -21442,6 +24279,9 @@ const EAGCHInformationr8ModeSpecificFdd::Info EAGCHInformationr8ModeSpecificFdd:
 	itemsPres,
 	1, 0, 0
 };
+EAGCHInformationr8ModeSpecificFdd::EAGCHInformationr8ModeSpecificFdd(const EAGCHChannelisationCode& eAGCHChannelisationCode) : Sequence(&theInfo) {
+	setEAGCHChannelisationCode(eAGCHChannelisationCode);
+}
 
 const void *EAGCHInformationr8ModeSpecificTddTdd384::itemsInfo[4] = {
 	&EAGCHInformationr8ModeSpecificTddTdd384LongTermGrantIndicator::theInfo,
@@ -21464,6 +24304,11 @@ const EAGCHInformationr8ModeSpecificTddTdd384::Info EAGCHInformationr8ModeSpecif
 	itemsPres,
 	4, 1, 0
 };
+EAGCHInformationr8ModeSpecificTddTdd384::EAGCHInformationr8ModeSpecificTddTdd384(const EAGCHInformationr8ModeSpecificTddTdd384LengthofTTRIfield& eAGCHInformationr8ModeSpecificTddTdd384LengthofTTRIfield, const EAGCHSetConfig& eAGCHSetConfig, const BlerTarget& eAGCHBLERTarget) : Sequence(&theInfo) {
+	setEAGCHInformationr8ModeSpecificTddTdd384LengthofTTRIfield(eAGCHInformationr8ModeSpecificTddTdd384LengthofTTRIfield);
+	setEAGCHSetConfig(eAGCHSetConfig);
+	setEAGCHBLERTarget(eAGCHBLERTarget);
+}
 
 const void *EAGCHInformationr8ModeSpecificTddTdd768::itemsInfo[4] = {
 	&EAGCHInformationr8ModeSpecificTddTdd768LongTermGrantIndicator::theInfo,
@@ -21486,6 +24331,11 @@ const EAGCHInformationr8ModeSpecificTddTdd768::Info EAGCHInformationr8ModeSpecif
 	itemsPres,
 	4, 1, 0
 };
+EAGCHInformationr8ModeSpecificTddTdd768::EAGCHInformationr8ModeSpecificTddTdd768(const EAGCHInformationr8ModeSpecificTddTdd768LengthofTTRIfield& eAGCHInformationr8ModeSpecificTddTdd768LengthofTTRIfield, const EAGCHSetConfigVHCR& eAGCHSetConfig, const BlerTarget& eAGCHBLERTarget) : Sequence(&theInfo) {
+	setEAGCHInformationr8ModeSpecificTddTdd768LengthofTTRIfield(eAGCHInformationr8ModeSpecificTddTdd768LengthofTTRIfield);
+	setEAGCHSetConfig(eAGCHSetConfig);
+	setEAGCHBLERTarget(eAGCHBLERTarget);
+}
 
 const void *EAGCHInformationr8ModeSpecificTddTdd128::itemsInfo[5] = {
 	&EAGCHInformationr8ModeSpecificTddTdd128RdiIndicator::theInfo,
@@ -21510,6 +24360,12 @@ const EAGCHInformationr8ModeSpecificTddTdd128::Info EAGCHInformationr8ModeSpecif
 	itemsPres,
 	5, 1, 0
 };
+EAGCHInformationr8ModeSpecificTddTdd128::EAGCHInformationr8ModeSpecificTddTdd128(const EAGCHInformationr8ModeSpecificTddTdd128RdiIndicator& eAGCHInformationr8ModeSpecificTddTdd128RdiIndicator, const TPCStepSizeTDD& tpcStepSize, const EAGCHSetConfigLCR& eAGCHSetConfig, const BlerTarget& eAGCHBLERTarget) : Sequence(&theInfo) {
+	setEAGCHInformationr8ModeSpecificTddTdd128RdiIndicator(eAGCHInformationr8ModeSpecificTddTdd128RdiIndicator);
+	setTpcStepSize(tpcStepSize);
+	setEAGCHSetConfig(eAGCHSetConfig);
+	setEAGCHBLERTarget(eAGCHBLERTarget);
+}
 
 const void *EAGCHInformationr8ModeSpecificTdd::choicesInfo[3] = {
 	&EAGCHInformationr8ModeSpecificTddTdd384::theInfo,
@@ -21553,6 +24409,9 @@ const EAGCHInformationr8::Info EAGCHInformationr8::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EAGCHInformationr8::EAGCHInformationr8(const EAGCHInformationr8ModeSpecific& eAGCHInformationr8ModeSpecific) : Sequence(&theInfo) {
+	setEAGCHInformationr8ModeSpecific(eAGCHInformationr8ModeSpecific);
+}
 
 const void *DLInformationPerRLr8ModeSpecificInfo2FddEHICHInfo::choicesInfo[2] = {
 	&EHICHInformation::theInfo,
@@ -21679,6 +24538,10 @@ const DLInformationPerRLr8::Info DLInformationPerRLr8::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+DLInformationPerRLr8::DLInformationPerRLr8(const DLInformationPerRLr8ModeSpecificInfo& dLInformationPerRLr8ModeSpecificInfo, const DLInformationPerRLr8ModeSpecificInfo2& dLInformationPerRLr8ModeSpecificInfo2) : Sequence(&theInfo) {
+	setDLInformationPerRLr8ModeSpecificInfo(dLInformationPerRLr8ModeSpecificInfo);
+	setDLInformationPerRLr8ModeSpecificInfo2(dLInformationPerRLr8ModeSpecificInfo2);
+}
 
 const void *DLInformationPerRLPostFDD::itemsInfo[2] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -21697,6 +24560,10 @@ const DLInformationPerRLPostFDD::Info DLInformationPerRLPostFDD::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+DLInformationPerRLPostFDD::DLInformationPerRLPostFDD(const PrimaryCPICHInfo& primaryCPICHInfo, const DLDPCHInfoPerRLPostFDD& dlDPCHInfoPerRL) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setDlDPCHInfoPerRL(dlDPCHInfoPerRL);
+}
 
 const void *PrimaryCCPCHInfoPostSyncCaseSyncCase1::itemsInfo[1] = {
 	&TimeslotNumber::theInfo,
@@ -21713,6 +24580,9 @@ const PrimaryCCPCHInfoPostSyncCaseSyncCase1::Info PrimaryCCPCHInfoPostSyncCaseSy
 	itemsPres,
 	1, 0, 0
 };
+PrimaryCCPCHInfoPostSyncCaseSyncCase1::PrimaryCCPCHInfoPostSyncCaseSyncCase1(const TimeslotNumber& timeslot) : Sequence(&theInfo) {
+	setTimeslot(timeslot);
+}
 
 const void *PrimaryCCPCHInfoPostSyncCaseSyncCase2::itemsInfo[1] = {
 	&TimeslotSync2::theInfo,
@@ -21729,6 +24599,9 @@ const PrimaryCCPCHInfoPostSyncCaseSyncCase2::Info PrimaryCCPCHInfoPostSyncCaseSy
 	itemsPres,
 	1, 0, 0
 };
+PrimaryCCPCHInfoPostSyncCaseSyncCase2::PrimaryCCPCHInfoPostSyncCaseSyncCase2(const TimeslotSync2& timeslotSync2) : Sequence(&theInfo) {
+	setTimeslotSync2(timeslotSync2);
+}
 
 const void *PrimaryCCPCHInfoPostSyncCase::choicesInfo[2] = {
 	&PrimaryCCPCHInfoPostSyncCaseSyncCase1::theInfo,
@@ -21762,6 +24635,11 @@ const PrimaryCCPCHInfoPost::Info PrimaryCCPCHInfoPost::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+PrimaryCCPCHInfoPost::PrimaryCCPCHInfoPost(const PrimaryCCPCHInfoPostSyncCase& primaryCCPCHInfoPostSyncCase, const CellParametersID& cellParametersID, const PrimaryCCPCHInfoPostSctdIndicator& primaryCCPCHInfoPostSctdIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfoPostSyncCase(primaryCCPCHInfoPostSyncCase);
+	setCellParametersID(cellParametersID);
+	setPrimaryCCPCHInfoPostSctdIndicator(primaryCCPCHInfoPostSctdIndicator);
+}
 
 const void *DLInformationPerRLPostTDD::itemsInfo[2] = {
 	&PrimaryCCPCHInfoPost::theInfo,
@@ -21780,6 +24658,10 @@ const DLInformationPerRLPostTDD::Info DLInformationPerRLPostTDD::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+DLInformationPerRLPostTDD::DLInformationPerRLPostTDD(const PrimaryCCPCHInfoPost& primaryCCPCHInfo, const DLDPCHInfoPerRLPostTDD& dlDPCHInfoPerRL) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setDlDPCHInfoPerRL(dlDPCHInfoPerRL);
+}
 
 const void *PrimaryCCPCHInfoPostTDDLCRr4::itemsInfo[3] = {
 	&PrimaryCCPCHInfoPostTDDLCRr4TstdIndicator::theInfo,
@@ -21800,6 +24682,11 @@ const PrimaryCCPCHInfoPostTDDLCRr4::Info PrimaryCCPCHInfoPostTDDLCRr4::theInfo =
 	itemsPres,
 	3, 0, 0
 };
+PrimaryCCPCHInfoPostTDDLCRr4::PrimaryCCPCHInfoPostTDDLCRr4(const PrimaryCCPCHInfoPostTDDLCRr4TstdIndicator& primaryCCPCHInfoPostTDDLCRr4TstdIndicator, const CellParametersID& cellParametersID, const PrimaryCCPCHInfoPostTDDLCRr4SctdIndicator& primaryCCPCHInfoPostTDDLCRr4SctdIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfoPostTDDLCRr4TstdIndicator(primaryCCPCHInfoPostTDDLCRr4TstdIndicator);
+	setCellParametersID(cellParametersID);
+	setPrimaryCCPCHInfoPostTDDLCRr4SctdIndicator(primaryCCPCHInfoPostTDDLCRr4SctdIndicator);
+}
 
 const void *DLInformationPerRLPostTDDLCRr4::itemsInfo[2] = {
 	&PrimaryCCPCHInfoPostTDDLCRr4::theInfo,
@@ -21818,6 +24705,10 @@ const DLInformationPerRLPostTDDLCRr4::Info DLInformationPerRLPostTDDLCRr4::theIn
 	itemsPres,
 	2, 0, 0
 };
+DLInformationPerRLPostTDDLCRr4::DLInformationPerRLPostTDDLCRr4(const PrimaryCCPCHInfoPostTDDLCRr4& primaryCCPCHInfo, const DLDPCHInfoPerRLPostTDDLCRr4& dlDPCHInfoPerRL) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setDlDPCHInfoPerRL(dlDPCHInfoPerRL);
+}
 
 const void *DLPDSCHInformation::itemsInfo[2] = {
 	&PDSCHSHODCHInfo::theInfo,
@@ -21866,6 +24757,13 @@ const DLSecondaryCellInfoFDDNewConfiguration::Info DLSecondaryCellInfoFDDNewConf
 	itemsPres,
 	8, 3, 0
 };
+DLSecondaryCellInfoFDDNewConfiguration::DLSecondaryCellInfoFDDNewConfiguration(const HRNTI& newHRNTI, const PrimaryCPICHInfo& primaryCPICHInfo, const DLSecondaryCellInfoFDDNewConfigurationHSSCCHChannelisationCodeInfo& dLSecondaryCellInfoFDDNewConfigurationHSSCCHChannelisationCodeInfo, const MeasurementPowerOffset& measurementPowerOffset, const UARFCN& uarfcnDL) : Sequence(&theInfo) {
+	setNewHRNTI(newHRNTI);
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setDLSecondaryCellInfoFDDNewConfigurationHSSCCHChannelisationCodeInfo(dLSecondaryCellInfoFDDNewConfigurationHSSCCHChannelisationCodeInfo);
+	setMeasurementPowerOffset(measurementPowerOffset);
+	setUarfcnDL(uarfcnDL);
+}
 
 const void *DLSecondaryCellInfoFDD::choicesInfo[2] = {
 	&DLSecondaryCellInfoFDDContinue::theInfo,
@@ -21927,6 +24825,13 @@ const DLSecondaryCellInfoFDDr9ConfigurationInfoNewConfiguration::Info DLSecondar
 	itemsPres,
 	9, 4, 0
 };
+DLSecondaryCellInfoFDDr9ConfigurationInfoNewConfiguration::DLSecondaryCellInfoFDDr9ConfigurationInfoNewConfiguration(const HRNTI& newHRNTI, const PrimaryCPICHInfo& primaryCPICHInfo, const DLSecondaryCellInfoFDDr9ConfigurationInfoNewConfigurationHSSCCHChannelisationCodeInfo& dLSecondaryCellInfoFDDr9ConfigurationInfoNewConfigurationHSSCCHChannelisationCodeInfo, const MeasurementPowerOffset& measurementPowerOffset, const UARFCN& uarfcnDL) : Sequence(&theInfo) {
+	setNewHRNTI(newHRNTI);
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setDLSecondaryCellInfoFDDr9ConfigurationInfoNewConfigurationHSSCCHChannelisationCodeInfo(dLSecondaryCellInfoFDDr9ConfigurationInfoNewConfigurationHSSCCHChannelisationCodeInfo);
+	setMeasurementPowerOffset(measurementPowerOffset);
+	setUarfcnDL(uarfcnDL);
+}
 
 const void *DLSecondaryCellInfoFDDr9ConfigurationInfo::choicesInfo[2] = {
 	&DLSecondaryCellInfoFDDr9ConfigurationInfoContinue::theInfo,
@@ -21958,6 +24863,9 @@ const MIMOPilotConfigurationr9SecondCPICHPatternDiversityPattern::Info MIMOPilot
 	itemsPres,
 	2, 1, 0
 };
+MIMOPilotConfigurationr9SecondCPICHPatternDiversityPattern::MIMOPilotConfigurationr9SecondCPICHPatternDiversityPattern(const ChannelisationCode256& channelisationCode) : Sequence(&theInfo) {
+	setChannelisationCode(channelisationCode);
+}
 
 const void *MIMOPilotConfigurationr9SecondCPICHPattern::choicesInfo[2] = {
 	&MIMOPilotConfigurationr9SecondCPICHPatternNormalPattern::theInfo,
@@ -21987,6 +24895,9 @@ const MIMOPilotConfigurationr9::Info MIMOPilotConfigurationr9::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MIMOPilotConfigurationr9::MIMOPilotConfigurationr9(const MIMOPilotConfigurationr9SecondCPICHPattern& mIMOPilotConfigurationr9SecondCPICHPattern) : Sequence(&theInfo) {
+	setMIMOPilotConfigurationr9SecondCPICHPattern(mIMOPilotConfigurationr9SecondCPICHPattern);
+}
 
 const void *SecondaryCellMIMOparametersFDDNewConfiguration::itemsInfo[2] = {
 	&MIMONMRatio::theInfo,
@@ -22036,6 +24947,9 @@ const DLSecondaryCellInfoFDDr9::Info DLSecondaryCellInfoFDDr9::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+DLSecondaryCellInfoFDDr9::DLSecondaryCellInfoFDDr9(const DLSecondaryCellInfoFDDr9ConfigurationInfo& dLSecondaryCellInfoFDDr9ConfigurationInfo) : Sequence(&theInfo) {
+	setDLSecondaryCellInfoFDDr9ConfigurationInfo(dLSecondaryCellInfoFDDr9ConfigurationInfo);
+}
 
 const void *DLTPCPowerOffsetPerRL::itemsInfo[1] = {
 	&PowerOffsetTPCpdpdch::theInfo,
@@ -22070,6 +24984,9 @@ const DLChannelCodesMBSFNIMB384::Info DLChannelCodesMBSFNIMB384::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+DLChannelCodesMBSFNIMB384::DLChannelCodesMBSFNIMB384(const DLChannelCodesMBSFNIMB384FirstChannelisationCode& dLChannelCodesMBSFNIMB384FirstChannelisationCode) : Sequence(&theInfo) {
+	setDLChannelCodesMBSFNIMB384FirstChannelisationCode(dLChannelCodesMBSFNIMB384FirstChannelisationCode);
+}
 
 const void *EDPDCHSchedulingTransmConfigurationServingGrant::itemsInfo[2] = {
 	&EDPDCHSchedulingTransmConfigurationServingGrantValue::theInfo,
@@ -22088,6 +25005,10 @@ const EDPDCHSchedulingTransmConfigurationServingGrant::Info EDPDCHSchedulingTran
 	itemsPres,
 	2, 0, 0
 };
+EDPDCHSchedulingTransmConfigurationServingGrant::EDPDCHSchedulingTransmConfigurationServingGrant(const EDPDCHSchedulingTransmConfigurationServingGrantValue& eDPDCHSchedulingTransmConfigurationServingGrantValue, const EDPDCHSchedulingTransmConfigurationServingGrantprimary_Secondary_GrantSelector& eDPDCHSchedulingTransmConfigurationServingGrantprimary_Secondary_GrantSelector) : Sequence(&theInfo) {
+	setEDPDCHSchedulingTransmConfigurationServingGrantValue(eDPDCHSchedulingTransmConfigurationServingGrantValue);
+	setEDPDCHSchedulingTransmConfigurationServingGrantprimary_Secondary_GrantSelector(eDPDCHSchedulingTransmConfigurationServingGrantprimary_Secondary_GrantSelector);
+}
 
 const void *EDPDCHSchedulingTransmConfiguration::itemsInfo[2] = {
 	&EDPDCHSchedulingTransmConfigurationMs2SchedTransmGrantHARQAlloc::theInfo,
@@ -22122,6 +25043,9 @@ const UL16QAMSettings::Info UL16QAMSettings::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+UL16QAMSettings::UL16QAMSettings(const UL16QAMSettingsBetaEdGainEAGCHTableSelection& uL16QAMSettingsBetaEdGainEAGCHTableSelection) : Sequence(&theInfo) {
+	setUL16QAMSettingsBetaEdGainEAGCHTableSelection(uL16QAMSettingsBetaEdGainEAGCHTableSelection);
+}
 
 const void *ULEDCHInformationr8ModeSpecificInfoFdd::itemsInfo[4] = {
 	&EDPCCHInfor7::theInfo,
@@ -22213,6 +25137,11 @@ const ERUCCHInfoModeSpecificInfoTdd384tdd768::Info ERUCCHInfoModeSpecificInfoTdd
 	itemsPres,
 	8, 5, 0
 };
+ERUCCHInfoModeSpecificInfoTdd384tdd768::ERUCCHInfoModeSpecificInfoTdd384tdd768(const ERUCCHInfoModeSpecificInfoTdd384tdd768ERUCCHConstantValue& eRUCCHInfoModeSpecificInfoTdd384tdd768ERUCCHConstantValue, const PersistenceScalingFactor& eRUCCHPersistenceScalingFactor, const ERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfo& eRUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfo) : Sequence(&theInfo) {
+	setERUCCHInfoModeSpecificInfoTdd384tdd768ERUCCHConstantValue(eRUCCHInfoModeSpecificInfoTdd384tdd768ERUCCHConstantValue);
+	setERUCCHPersistenceScalingFactor(eRUCCHPersistenceScalingFactor);
+	setERUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfo(eRUCCHInfoModeSpecificInfoTdd384tdd768ModeSpecificInfo);
+}
 
 const void *ERUCCHInfoModeSpecificInfoTdd128::itemsInfo[9] = {
 	&ERUCCHInfoModeSpecificInfoTdd128t_RUCCH::theInfo,
@@ -22274,6 +25203,9 @@ const ERUCCHInfo::Info ERUCCHInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+ERUCCHInfo::ERUCCHInfo(const ERUCCHInfoModeSpecificInfo& eRUCCHInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setERUCCHInfoModeSpecificInfo(eRUCCHInfoModeSpecificInfo);
+}
 
 const void *EPUCHTSSlots::itemsInfo[2] = {
 	&EPUCHTSSlotsTsNumber::theInfo,
@@ -22292,6 +25224,10 @@ const EPUCHTSSlots::Info EPUCHTSSlots::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+EPUCHTSSlots::EPUCHTSSlots(const EPUCHTSSlotsTsNumber& ePUCHTSSlotsTsNumber, const MidambleShiftAndBurstTypeEDCH& midambleShiftAndBurstType) : Sequence(&theInfo) {
+	setEPUCHTSSlotsTsNumber(ePUCHTSSlotsTsNumber);
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+}
 
 const void *EPUCHInfoModeSpecificInfoTdd348tdd768::itemsInfo[7] = {
 	&EPUCHInfoModeSpecificInfoTdd348tdd768NoSlotsForTFCIandTPC::theInfo,
@@ -22320,6 +25256,15 @@ const EPUCHInfoModeSpecificInfoTdd348tdd768::Info EPUCHInfoModeSpecificInfoTdd34
 	itemsPres,
 	7, 0, 0
 };
+EPUCHInfoModeSpecificInfoTdd348tdd768::EPUCHInfoModeSpecificInfoTdd348tdd768(const EPUCHInfoModeSpecificInfoTdd348tdd768NoSlotsForTFCIandTPC& ePUCHInfoModeSpecificInfoTdd348tdd768NoSlotsForTFCIandTPC, const EPUCHInfoModeSpecificInfoTdd348tdd768EPUCHContantValue& ePUCHInfoModeSpecificInfoTdd348tdd768EPUCHContantValue, const EPUCHInfoModeSpecificInfoTdd348tdd768EPUCHTSConfigurationList& ePUCHInfoModeSpecificInfoTdd348tdd768EPUCHTSConfigurationList, const EPUCHInfoModeSpecificInfoTdd348tdd768EPUCHCodeHopping& ePUCHInfoModeSpecificInfoTdd348tdd768EPUCHCodeHopping, const EPUCHInfoModeSpecificInfoTdd348tdd768EPUCHTPCStepSize& ePUCHInfoModeSpecificInfoTdd348tdd768EPUCHTPCStepSize, const EPUCHInfoModeSpecificInfoTdd348tdd768MinimumAllowedCodeRate& ePUCHInfoModeSpecificInfoTdd348tdd768MinimumAllowedCodeRate, const EPUCHInfoModeSpecificInfoTdd348tdd768MaximumAllowedCodeRate& ePUCHInfoModeSpecificInfoTdd348tdd768MaximumAllowedCodeRate) : Sequence(&theInfo) {
+	setEPUCHInfoModeSpecificInfoTdd348tdd768NoSlotsForTFCIandTPC(ePUCHInfoModeSpecificInfoTdd348tdd768NoSlotsForTFCIandTPC);
+	setEPUCHInfoModeSpecificInfoTdd348tdd768EPUCHContantValue(ePUCHInfoModeSpecificInfoTdd348tdd768EPUCHContantValue);
+	setEPUCHInfoModeSpecificInfoTdd348tdd768EPUCHTSConfigurationList(ePUCHInfoModeSpecificInfoTdd348tdd768EPUCHTSConfigurationList);
+	setEPUCHInfoModeSpecificInfoTdd348tdd768EPUCHCodeHopping(ePUCHInfoModeSpecificInfoTdd348tdd768EPUCHCodeHopping);
+	setEPUCHInfoModeSpecificInfoTdd348tdd768EPUCHTPCStepSize(ePUCHInfoModeSpecificInfoTdd348tdd768EPUCHTPCStepSize);
+	setEPUCHInfoModeSpecificInfoTdd348tdd768MinimumAllowedCodeRate(ePUCHInfoModeSpecificInfoTdd348tdd768MinimumAllowedCodeRate);
+	setEPUCHInfoModeSpecificInfoTdd348tdd768MaximumAllowedCodeRate(ePUCHInfoModeSpecificInfoTdd348tdd768MaximumAllowedCodeRate);
+}
 
 const void *EPUCHInfoModeSpecificInfoTdd128::itemsInfo[11] = {
 	&EPUCHInfoModeSpecificInfoTdd128snpl_ReportType::theInfo,
@@ -22356,6 +25301,15 @@ const EPUCHInfoModeSpecificInfoTdd128::Info EPUCHInfoModeSpecificInfoTdd128::the
 	itemsPres,
 	11, 4, 0
 };
+EPUCHInfoModeSpecificInfoTdd128::EPUCHInfoModeSpecificInfoTdd128(const EPUCHInfoModeSpecificInfoTdd128PrxBASEdes& ePUCHInfoModeSpecificInfoTdd128PrxBASEdes, const TPCStepSizeTDD& tpcStepSize, const EPUCHInfoModeSpecificInfoTdd128EPUCHTSConfigurationList& ePUCHInfoModeSpecificInfoTdd128EPUCHTSConfigurationList, const EPUCHInfoModeSpecificInfoTdd128MinimumAllowedCodeRate& ePUCHInfoModeSpecificInfoTdd128MinimumAllowedCodeRate, const EPUCHInfoModeSpecificInfoTdd128MaximumAllowedCodeRate& ePUCHInfoModeSpecificInfoTdd128MaximumAllowedCodeRate, const EPUCHInfoModeSpecificInfoTdd128MaximumNumOfRetransSchedInfo& ePUCHInfoModeSpecificInfoTdd128MaximumNumOfRetransSchedInfo, const EPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo& ePUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo) : Sequence(&theInfo) {
+	setEPUCHInfoModeSpecificInfoTdd128PrxBASEdes(ePUCHInfoModeSpecificInfoTdd128PrxBASEdes);
+	setTpcStepSize(tpcStepSize);
+	setEPUCHInfoModeSpecificInfoTdd128EPUCHTSConfigurationList(ePUCHInfoModeSpecificInfoTdd128EPUCHTSConfigurationList);
+	setEPUCHInfoModeSpecificInfoTdd128MinimumAllowedCodeRate(ePUCHInfoModeSpecificInfoTdd128MinimumAllowedCodeRate);
+	setEPUCHInfoModeSpecificInfoTdd128MaximumAllowedCodeRate(ePUCHInfoModeSpecificInfoTdd128MaximumAllowedCodeRate);
+	setEPUCHInfoModeSpecificInfoTdd128MaximumNumOfRetransSchedInfo(ePUCHInfoModeSpecificInfoTdd128MaximumNumOfRetransSchedInfo);
+	setEPUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo(ePUCHInfoModeSpecificInfoTdd128retransTimerForSchedInfo);
+}
 
 const void *EPUCHInfoModeSpecificInfo::choicesInfo[2] = {
 	&EPUCHInfoModeSpecificInfoTdd348tdd768::theInfo,
@@ -22389,6 +25343,10 @@ const EPUCHInfo::Info EPUCHInfo::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+EPUCHInfo::EPUCHInfo(const ETFCSInfo& eTFCSInfo, const EPUCHInfoModeSpecificInfo& ePUCHInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setETFCSInfo(eTFCSInfo);
+	setEPUCHInfoModeSpecificInfo(ePUCHInfoModeSpecificInfo);
+}
 
 const void *NonScheduledTransGrantInfoTDDTdd384768::itemsInfo[5] = {
 	&NonScheduledTransGrantInfoTDDTdd384768TimeslotResourceRelatedInfo::theInfo,
@@ -22413,6 +25371,12 @@ const NonScheduledTransGrantInfoTDDTdd384768::Info NonScheduledTransGrantInfoTDD
 	itemsPres,
 	5, 1, 0
 };
+NonScheduledTransGrantInfoTDDTdd384768::NonScheduledTransGrantInfoTDDTdd384768(const NonScheduledTransGrantInfoTDDTdd384768TimeslotResourceRelatedInfo& nonScheduledTransGrantInfoTDDTdd384768TimeslotResourceRelatedInfo, const NonScheduledTransGrantInfoTDDTdd384768PowerResourceRelatedInfo& nonScheduledTransGrantInfoTDDTdd384768PowerResourceRelatedInfo, const ActivationTime& activationTime, const ULTSChannelisationCode& codeResourceInfo) : Sequence(&theInfo) {
+	setNonScheduledTransGrantInfoTDDTdd384768TimeslotResourceRelatedInfo(nonScheduledTransGrantInfoTDDTdd384768TimeslotResourceRelatedInfo);
+	setNonScheduledTransGrantInfoTDDTdd384768PowerResourceRelatedInfo(nonScheduledTransGrantInfoTDDTdd384768PowerResourceRelatedInfo);
+	setActivationTime(activationTime);
+	setCodeResourceInfo(codeResourceInfo);
+}
 
 const void *NonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleAllocationMode::choicesInfo[2] = {
 	&NonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleAllocationModeDefaultMidamble::theInfo,
@@ -22450,6 +25414,13 @@ const NonScheduledTransGrantInfoTDDTdd128EHICHInfo::Info NonScheduledTransGrantI
 	itemsPres,
 	5, 0, 0
 };
+NonScheduledTransGrantInfoTDDTdd128EHICHInfo::NonScheduledTransGrantInfoTDDTdd128EHICHInfo(const TimeslotNumberLCRr4& timeslotNumber, const HSChannelisationCodeLCR& channelisationCode, const NonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleAllocationMode& nonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleAllocationMode, const NonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleConfiguration& nonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleConfiguration, const NonScheduledTransGrantInfoTDDTdd128EHICHInfoSignatureSequenceGroupIndex& nonScheduledTransGrantInfoTDDTdd128EHICHInfoSignatureSequenceGroupIndex) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setChannelisationCode(channelisationCode);
+	setNonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleAllocationMode(nonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleAllocationMode);
+	setNonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleConfiguration(nonScheduledTransGrantInfoTDDTdd128EHICHInfoMidambleConfiguration);
+	setNonScheduledTransGrantInfoTDDTdd128EHICHInfoSignatureSequenceGroupIndex(nonScheduledTransGrantInfoTDDTdd128EHICHInfoSignatureSequenceGroupIndex);
+}
 
 const void *NonScheduledTransGrantInfoTDDTdd128::itemsInfo[9] = {
 	&NonScheduledTransGrantInfoTDDTdd128NEUCCH::theInfo,
@@ -22482,6 +25453,14 @@ const NonScheduledTransGrantInfoTDDTdd128::Info NonScheduledTransGrantInfoTDDTdd
 	itemsPres,
 	9, 3, 0
 };
+NonScheduledTransGrantInfoTDDTdd128::NonScheduledTransGrantInfoTDDTdd128(const NonScheduledTransGrantInfoTDDTdd128TimeslotResourceRelatedInfo& nonScheduledTransGrantInfoTDDTdd128TimeslotResourceRelatedInfo, const NonScheduledTransGrantInfoTDDTdd128PowerResourceRelatedInfo& nonScheduledTransGrantInfoTDDTdd128PowerResourceRelatedInfo, const ActivationTime& activationTime, const NonScheduledTransGrantInfoTDDTdd128SfnNum& nonScheduledTransGrantInfoTDDTdd128SfnNum, const ULTSChannelisationCode& codeResourceInfo, const NonScheduledTransGrantInfoTDDTdd128EHICHInfo& nonScheduledTransGrantInfoTDDTdd128EHICHInfo) : Sequence(&theInfo) {
+	setNonScheduledTransGrantInfoTDDTdd128TimeslotResourceRelatedInfo(nonScheduledTransGrantInfoTDDTdd128TimeslotResourceRelatedInfo);
+	setNonScheduledTransGrantInfoTDDTdd128PowerResourceRelatedInfo(nonScheduledTransGrantInfoTDDTdd128PowerResourceRelatedInfo);
+	setActivationTime(activationTime);
+	setNonScheduledTransGrantInfoTDDTdd128SfnNum(nonScheduledTransGrantInfoTDDTdd128SfnNum);
+	setCodeResourceInfo(codeResourceInfo);
+	setNonScheduledTransGrantInfoTDDTdd128EHICHInfo(nonScheduledTransGrantInfoTDDTdd128EHICHInfo);
+}
 
 const void *NonScheduledTransGrantInfoTDD::choicesInfo[2] = {
 	&NonScheduledTransGrantInfoTDDTdd384768::theInfo,
@@ -22546,6 +25525,9 @@ const ULEDCHInformationr8::Info ULEDCHInformationr8::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ULEDCHInformationr8::ULEDCHInformationr8(const ULEDCHInformationr8ModeSpecificInfo& uLEDCHInformationr8ModeSpecificInfo) : Sequence(&theInfo) {
+	setULEDCHInformationr8ModeSpecificInfo(uLEDCHInformationr8ModeSpecificInfo);
+}
 
 const void *DLULHSPAInformationr8::itemsInfo[4] = {
 	&ULEDCHInformationr8::theInfo,
@@ -22568,6 +25550,12 @@ const DLULHSPAInformationr8::Info DLULHSPAInformationr8::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+DLULHSPAInformationr8::DLULHSPAInformationr8(const ULEDCHInformationr8& ulEDCHInformation, const DLCommonInformationr8& dlCommonInformation, const DLInformationPerRLListr7& dlInformationPerRLList, const DLHSPDSCHInformationr8& dlHSPDSCHInformation) : Sequence(&theInfo) {
+	setUlEDCHInformation(ulEDCHInformation);
+	setDlCommonInformation(dlCommonInformation);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setDlHSPDSCHInformation(dlHSPDSCHInformation);
+}
 
 const void *ULEDCHInformationr9ModeSpecificInfoFdd::itemsInfo[4] = {
 	&EDPCCHInfor7::theInfo,
@@ -22614,6 +25602,12 @@ const NonScheduledTransGrantInfoTDDr9Tdd384768::Info NonScheduledTransGrantInfoT
 	itemsPres,
 	5, 1, 0
 };
+NonScheduledTransGrantInfoTDDr9Tdd384768::NonScheduledTransGrantInfoTDDr9Tdd384768(const NonScheduledTransGrantInfoTDDr9Tdd384768TimeslotResourceRelatedInfo& nonScheduledTransGrantInfoTDDr9Tdd384768TimeslotResourceRelatedInfo, const NonScheduledTransGrantInfoTDDr9Tdd384768PowerResourceRelatedInfo& nonScheduledTransGrantInfoTDDr9Tdd384768PowerResourceRelatedInfo, const ActivationTime& activationTime, const ULTSChannelisationCode& codeResourceInfo) : Sequence(&theInfo) {
+	setNonScheduledTransGrantInfoTDDr9Tdd384768TimeslotResourceRelatedInfo(nonScheduledTransGrantInfoTDDr9Tdd384768TimeslotResourceRelatedInfo);
+	setNonScheduledTransGrantInfoTDDr9Tdd384768PowerResourceRelatedInfo(nonScheduledTransGrantInfoTDDr9Tdd384768PowerResourceRelatedInfo);
+	setActivationTime(activationTime);
+	setCodeResourceInfo(codeResourceInfo);
+}
 
 const void *NonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleAllocationMode::choicesInfo[2] = {
 	&NonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleAllocationModeDefaultMidamble::theInfo,
@@ -22651,6 +25645,13 @@ const NonScheduledTransGrantInfoTDDr9Tdd128EHICHInfo::Info NonScheduledTransGran
 	itemsPres,
 	5, 0, 0
 };
+NonScheduledTransGrantInfoTDDr9Tdd128EHICHInfo::NonScheduledTransGrantInfoTDDr9Tdd128EHICHInfo(const TimeslotNumberLCRr4& timeslotNumber, const HSChannelisationCodeLCR& channelisationCode, const NonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleAllocationMode& nonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleAllocationMode, const NonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleConfiguration& nonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleConfiguration, const NonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoSignatureSequenceGroupIndex& nonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoSignatureSequenceGroupIndex) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setChannelisationCode(channelisationCode);
+	setNonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleAllocationMode(nonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleAllocationMode);
+	setNonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleConfiguration(nonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoMidambleConfiguration);
+	setNonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoSignatureSequenceGroupIndex(nonScheduledTransGrantInfoTDDr9Tdd128EHICHInfoSignatureSequenceGroupIndex);
+}
 
 const void *NonScheduledTransGrantInfoTDDr9Tdd128::itemsInfo[10] = {
 	&NonScheduledTransGrantInfoTDDr9Tdd128NEUCCH::theInfo,
@@ -22685,6 +25686,14 @@ const NonScheduledTransGrantInfoTDDr9Tdd128::Info NonScheduledTransGrantInfoTDDr
 	itemsPres,
 	10, 4, 0
 };
+NonScheduledTransGrantInfoTDDr9Tdd128::NonScheduledTransGrantInfoTDDr9Tdd128(const NonScheduledTransGrantInfoTDDr9Tdd128TimeslotResourceRelatedInfo& nonScheduledTransGrantInfoTDDr9Tdd128TimeslotResourceRelatedInfo, const NonScheduledTransGrantInfoTDDr9Tdd128PowerResourceRelatedInfo& nonScheduledTransGrantInfoTDDr9Tdd128PowerResourceRelatedInfo, const ActivationTime& activationTime, const NonScheduledTransGrantInfoTDDr9Tdd128SfnNum& nonScheduledTransGrantInfoTDDr9Tdd128SfnNum, const ULTSChannelisationCode& codeResourceInfo, const NonScheduledTransGrantInfoTDDr9Tdd128EHICHInfo& nonScheduledTransGrantInfoTDDr9Tdd128EHICHInfo) : Sequence(&theInfo) {
+	setNonScheduledTransGrantInfoTDDr9Tdd128TimeslotResourceRelatedInfo(nonScheduledTransGrantInfoTDDr9Tdd128TimeslotResourceRelatedInfo);
+	setNonScheduledTransGrantInfoTDDr9Tdd128PowerResourceRelatedInfo(nonScheduledTransGrantInfoTDDr9Tdd128PowerResourceRelatedInfo);
+	setActivationTime(activationTime);
+	setNonScheduledTransGrantInfoTDDr9Tdd128SfnNum(nonScheduledTransGrantInfoTDDr9Tdd128SfnNum);
+	setCodeResourceInfo(codeResourceInfo);
+	setNonScheduledTransGrantInfoTDDr9Tdd128EHICHInfo(nonScheduledTransGrantInfoTDDr9Tdd128EHICHInfo);
+}
 
 const void *NonScheduledTransGrantInfoTDDr9::choicesInfo[2] = {
 	&NonScheduledTransGrantInfoTDDr9Tdd384768::theInfo,
@@ -22749,6 +25758,9 @@ const ULEDCHInformationr9::Info ULEDCHInformationr9::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ULEDCHInformationr9::ULEDCHInformationr9(const ULEDCHInformationr9ModeSpecificInfo& uLEDCHInformationr9ModeSpecificInfo) : Sequence(&theInfo) {
+	setULEDCHInformationr9ModeSpecificInfo(uLEDCHInformationr9ModeSpecificInfo);
+}
 
 const void *DLULHSPAInformationr9::itemsInfo[4] = {
 	&ULEDCHInformationr9::theInfo,
@@ -22771,6 +25783,12 @@ const DLULHSPAInformationr9::Info DLULHSPAInformationr9::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+DLULHSPAInformationr9::DLULHSPAInformationr9(const ULEDCHInformationr9& ulEDCHInformation, const DLCommonInformationr8& dlCommonInformation, const DLInformationPerRLListr7& dlInformationPerRLList, const DLHSPDSCHInformationr9& dlHSPDSCHInformation) : Sequence(&theInfo) {
+	setUlEDCHInformation(ulEDCHInformation);
+	setDlCommonInformation(dlCommonInformation);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setDlHSPDSCHInformation(dlHSPDSCHInformation);
+}
 
 const void *TGPSequenceShortTgpsStatusActivate::itemsInfo[1] = {
 	&TGCFN::theInfo,
@@ -22787,6 +25805,9 @@ const TGPSequenceShortTgpsStatusActivate::Info TGPSequenceShortTgpsStatusActivat
 	itemsPres,
 	1, 0, 0
 };
+TGPSequenceShortTgpsStatusActivate::TGPSequenceShortTgpsStatusActivate(const TGCFN& tgcfn) : Sequence(&theInfo) {
+	setTgcfn(tgcfn);
+}
 
 const void *TGPSequenceShortTgpsStatus::choicesInfo[2] = {
 	&TGPSequenceShortTgpsStatusActivate::theInfo,
@@ -22818,6 +25839,10 @@ const TGPSequenceShort::Info TGPSequenceShort::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+TGPSequenceShort::TGPSequenceShort(const TGPSI& tgpsi, const TGPSequenceShortTgpsStatus& tGPSequenceShortTgpsStatus) : Sequence(&theInfo) {
+	setTgpsi(tgpsi);
+	setTGPSequenceShortTgpsStatus(tGPSequenceShortTgpsStatus);
+}
 
 const void *DPCHCompressedModeStatusInfo::itemsInfo[2] = {
 	&TGPSReconfigurationCFN::theInfo,
@@ -22836,6 +25861,10 @@ const DPCHCompressedModeStatusInfo::Info DPCHCompressedModeStatusInfo::theInfo =
 	itemsPres,
 	2, 0, 0
 };
+DPCHCompressedModeStatusInfo::DPCHCompressedModeStatusInfo(const TGPSReconfigurationCFN& tgpsReconfigurationCFN, const DPCHCompressedModeStatusInfoTgpSequenceShortList& dPCHCompressedModeStatusInfoTgpSequenceShortList) : Sequence(&theInfo) {
+	setTgpsReconfigurationCFN(tgpsReconfigurationCFN);
+	setDPCHCompressedModeStatusInfoTgpSequenceShortList(dPCHCompressedModeStatusInfoTgpSequenceShortList);
+}
 
 const void *DRXInfo::itemsInfo[4] = {
 	&UEDRXCycle::theInfo,
@@ -22858,6 +25887,12 @@ const DRXInfo::Info DRXInfo::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+DRXInfo::DRXInfo(const UEDRXCycle& uedrxCycle, const UEDRXCycleInactivityThreshold& uedrxCycleInactivityThreshold, const UEGrantMonitoringInactivityThreshold& ueGrantMonitoringInactivityThreshold, const DRXInfoUedrxGrantMonitoring& dRXInfoUedrxGrantMonitoring) : Sequence(&theInfo) {
+	setUedrxCycle(uedrxCycle);
+	setUedrxCycleInactivityThreshold(uedrxCycleInactivityThreshold);
+	setUeGrantMonitoringInactivityThreshold(ueGrantMonitoringInactivityThreshold);
+	setDRXInfoUedrxGrantMonitoring(dRXInfoUedrxGrantMonitoring);
+}
 
 const void *DSCHTransportChannelsInfo::itemsInfo[0] = {
 };
@@ -22892,6 +25927,11 @@ const DTXEDCHTTI10ms::Info DTXEDCHTTI10ms::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+DTXEDCHTTI10ms::DTXEDCHTTI10ms(const UEDTXCycle110ms& uedtxCycle110ms, const UEDTXCycle210ms& uedtxCycle210ms, const MACDTXCycle10ms& macdtxCycle10ms) : Sequence(&theInfo) {
+	setUedtxCycle110ms(uedtxCycle110ms);
+	setUedtxCycle210ms(uedtxCycle210ms);
+	setMacdtxCycle10ms(macdtxCycle10ms);
+}
 
 const void *DTXEDCHTTI2ms::itemsInfo[3] = {
 	&UEDTXCycle12ms::theInfo,
@@ -22912,6 +25952,11 @@ const DTXEDCHTTI2ms::Info DTXEDCHTTI2ms::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+DTXEDCHTTI2ms::DTXEDCHTTI2ms(const UEDTXCycle12ms& uedtxCycle12ms, const UEDTXCycle22ms& uedtxCycle22ms, const MACDTXCycle2ms& macdtxCycle2ms) : Sequence(&theInfo) {
+	setUedtxCycle12ms(uedtxCycle12ms);
+	setUedtxCycle22ms(uedtxCycle22ms);
+	setMacdtxCycle2ms(macdtxCycle2ms);
+}
 
 const void *DTXInfoEdchTTILength::choicesInfo[2] = {
 	&DTXEDCHTTI10ms::theInfo,
@@ -22955,6 +26000,14 @@ const DTXInfo::Info DTXInfo::theInfo = {
 	itemsPres,
 	8, 2, 0
 };
+DTXInfo::DTXInfo(const DTXInfoEdchTTILength& dTXInfoEdchTTILength, const UEDTXCycle2InactivityThreshold& uedtxcycle2InactivityThreshold, const MACInactivityThreshold& macInactivityThreshold, const CQIDTXTimer& cqidtxTimer, const UEDPCCHBurst& uedpcchBurst1, const UEDPCCHBurst& uedpcchBurst2) : Sequence(&theInfo) {
+	setDTXInfoEdchTTILength(dTXInfoEdchTTILength);
+	setUedtxcycle2InactivityThreshold(uedtxcycle2InactivityThreshold);
+	setMacInactivityThreshold(macInactivityThreshold);
+	setCqidtxTimer(cqidtxTimer);
+	setUedpcchBurst1(uedpcchBurst1);
+	setUedpcchBurst2(uedpcchBurst2);
+}
 
 const void *DTXDRXInfor7::itemsInfo[3] = {
 	&DTXInfo::theInfo,
@@ -22975,6 +26028,9 @@ const DTXDRXInfor7::Info DTXDRXInfor7::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DTXDRXInfor7::DTXDRXInfor7(const UplinkDPCCHSlotFormatInformation& uplinkDPCCHSlotFormatInformation) : Sequence(&theInfo) {
+	setUplinkDPCCHSlotFormatInformation(uplinkDPCCHSlotFormatInformation);
+}
 
 const void *EDCHRLInfoNewServingCellServingGrant::itemsInfo[2] = {
 	&EDCHRLInfoNewServingCellServingGrantValue::theInfo,
@@ -22993,6 +26049,9 @@ const EDCHRLInfoNewServingCellServingGrant::Info EDCHRLInfoNewServingCellServing
 	itemsPres,
 	2, 1, 0
 };
+EDCHRLInfoNewServingCellServingGrant::EDCHRLInfoNewServingCellServingGrant(const EDCHRLInfoNewServingCellServingGrantprimary_Secondary_GrantSelector& eDCHRLInfoNewServingCellServingGrantprimary_Secondary_GrantSelector) : Sequence(&theInfo) {
+	setEDCHRLInfoNewServingCellServingGrantprimary_Secondary_GrantSelector(eDCHRLInfoNewServingCellServingGrantprimary_Secondary_GrantSelector);
+}
 
 const void *EDPDCHReferenceETFCI::itemsInfo[2] = {
 	&EDPDCHReferenceETFCIReferenceETFCI::theInfo,
@@ -23011,6 +26070,10 @@ const EDPDCHReferenceETFCI::Info EDPDCHReferenceETFCI::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+EDPDCHReferenceETFCI::EDPDCHReferenceETFCI(const EDPDCHReferenceETFCIReferenceETFCI& eDPDCHReferenceETFCIReferenceETFCI, const EDPDCHReferenceETFCIReferenceETFCIPO& eDPDCHReferenceETFCIReferenceETFCIPO) : Sequence(&theInfo) {
+	setEDPDCHReferenceETFCIReferenceETFCI(eDPDCHReferenceETFCIReferenceETFCI);
+	setEDPDCHReferenceETFCIReferenceETFCIPO(eDPDCHReferenceETFCIReferenceETFCIPO);
+}
 
 const void *EDCHRLInfoNewServingCellERGCHInfo::choicesInfo[2] = {
 	&ERGCHInformation::theInfo,
@@ -23058,6 +26121,10 @@ const EDCHRLInfoNewServingCell::Info EDCHRLInfoNewServingCell::theInfo = {
 	itemsPres,
 	10, 8, 0
 };
+EDCHRLInfoNewServingCell::EDCHRLInfoNewServingCell(const PrimaryCPICHInfo& primaryCPICHInfo, const EAGCHInformation& eAGCHInformation) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setEAGCHInformation(eAGCHInformation);
+}
 
 const void *EDCHRLInfoOtherCellEHICHInfo::choicesInfo[2] = {
 	&EHICHInformation::theInfo,
@@ -23104,6 +26171,9 @@ const EDCHRLInfoOtherCell::Info EDCHRLInfoOtherCell::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+EDCHRLInfoOtherCell::EDCHRLInfoOtherCell(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *EDCHReconfigurationInfo::itemsInfo[2] = {
 	&EDCHRLInfoNewServingCell::theInfo,
@@ -23140,6 +26210,9 @@ const EDCHRLInfoNewServingCellr7ServingGrant::Info EDCHRLInfoNewServingCellr7Ser
 	itemsPres,
 	2, 1, 0
 };
+EDCHRLInfoNewServingCellr7ServingGrant::EDCHRLInfoNewServingCellr7ServingGrant(const EDCHRLInfoNewServingCellr7ServingGrantprimary_Secondary_GrantSelector& eDCHRLInfoNewServingCellr7ServingGrantprimary_Secondary_GrantSelector) : Sequence(&theInfo) {
+	setEDCHRLInfoNewServingCellr7ServingGrantprimary_Secondary_GrantSelector(eDCHRLInfoNewServingCellr7ServingGrantprimary_Secondary_GrantSelector);
+}
 
 const void *EDCHRLInfoNewServingCellr7ERGCHInfo::choicesInfo[2] = {
 	&ERGCHInformation::theInfo,
@@ -23187,6 +26260,10 @@ const EDCHRLInfoNewServingCellr7::Info EDCHRLInfoNewServingCellr7::theInfo = {
 	itemsPres,
 	10, 8, 0
 };
+EDCHRLInfoNewServingCellr7::EDCHRLInfoNewServingCellr7(const PrimaryCPICHInfo& primaryCPICHInfo, const EAGCHInformation& eAGCHInformation) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setEAGCHInformation(eAGCHInformation);
+}
 
 const void *EDCHReconfigurationInfor7::itemsInfo[2] = {
 	&EDCHRLInfoNewServingCellr7::theInfo,
@@ -23238,6 +26315,9 @@ const EDCHRLInfoNewSecServingCell::Info EDCHRLInfoNewSecServingCell::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+EDCHRLInfoNewSecServingCell::EDCHRLInfoNewSecServingCell(const EAGCHInformation& eAGCHInformation) : Sequence(&theInfo) {
+	setEAGCHInformation(eAGCHInformation);
+}
 
 const void *EDCHRLInfoOtherCellSecULFreqERGCHInfo::choicesInfo[2] = {
 	&ERGCHInformation::theInfo,
@@ -23271,6 +26351,9 @@ const EDCHRLInfoOtherCellSecULFreq::Info EDCHRLInfoOtherCellSecULFreq::theInfo =
 	itemsPres,
 	3, 2, 0
 };
+EDCHRLInfoOtherCellSecULFreq::EDCHRLInfoOtherCellSecULFreq(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *EDCHReconfigurationInfoSecULFrequency::itemsInfo[2] = {
 	&EDCHRLInfoNewSecServingCell::theInfo,
@@ -23358,6 +26441,12 @@ const EHICHInformationForSPSTDD128ConfigurationmodeExplicit::Info EHICHInformati
 	itemsPres,
 	4, 0, 0
 };
+EHICHInformationForSPSTDD128ConfigurationmodeExplicit::EHICHInformationForSPSTDD128ConfigurationmodeExplicit(const TimeslotNumberLCRr4& timeslotNumber, const HSChannelisationCodeLCR& channelisationCode, const EHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleAllocationMode& eHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleAllocationMode, const EHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleConfiguration& eHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleConfiguration) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setChannelisationCode(channelisationCode);
+	setEHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleAllocationMode(eHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleAllocationMode);
+	setEHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleConfiguration(eHICHInformationForSPSTDD128ConfigurationmodeExplicitMidambleConfiguration);
+}
 
 const void *EHICHInformationForSPSTDD128Configurationmode::choicesInfo[2] = {
 	&EHICHInformationForSPSTDD128ConfigurationmodeImplicit::theInfo,
@@ -23389,6 +26478,10 @@ const EHICHInformationForSPSTDD128::Info EHICHInformationForSPSTDD128::theInfo =
 	itemsPres,
 	2, 0, 0
 };
+EHICHInformationForSPSTDD128::EHICHInformationForSPSTDD128(const EHICHInformationForSPSTDD128Configurationmode& eHICHInformationForSPSTDD128Configurationmode, const EHICHInformationForSPSTDD128SignatureSequenceGroupIndex& eHICHInformationForSPSTDD128SignatureSequenceGroupIndex) : Sequence(&theInfo) {
+	setEHICHInformationForSPSTDD128Configurationmode(eHICHInformationForSPSTDD128Configurationmode);
+	setEHICHInformationForSPSTDD128SignatureSequenceGroupIndex(eHICHInformationForSPSTDD128SignatureSequenceGroupIndex);
+}
 
 const void *EDCHTxPatternListTDD128::itemsInfo[0] = {
 };
@@ -23431,6 +26524,15 @@ const EDCHSPSNewOperationTDD128InitialSPSInfoForEDCH::Info EDCHSPSNewOperationTD
 	itemsPres,
 	7, 0, 0
 };
+EDCHSPSNewOperationTDD128InitialSPSInfoForEDCH::EDCHSPSNewOperationTDD128InitialSPSInfoForEDCH(const EDCHSPSNewOperationTDD128InitialSPSInfoForEDCHNEUCCH& eDCHSPSNewOperationTDD128InitialSPSInfoForEDCHNEUCCH, const ULTSChannelisationCode& codeResourceInfo, const EDCHSPSNewOperationTDD128InitialSPSInfoForEDCHTimeslotResourceRelatedInfo& eDCHSPSNewOperationTDD128InitialSPSInfoForEDCHTimeslotResourceRelatedInfo, const EDCHSPSNewOperationTDD128InitialSPSInfoForEDCHPowerResourceRelatedInfo& eDCHSPSNewOperationTDD128InitialSPSInfoForEDCHPowerResourceRelatedInfo, const ActivationTime& activationTime, const EDCHSPSNewOperationTDD128InitialSPSInfoForEDCHSubframeNum& eDCHSPSNewOperationTDD128InitialSPSInfoForEDCHSubframeNum, const EDCHSPSNewOperationTDD128InitialSPSInfoForEDCHInitialTxPatternIndex& eDCHSPSNewOperationTDD128InitialSPSInfoForEDCHInitialTxPatternIndex) : Sequence(&theInfo) {
+	setEDCHSPSNewOperationTDD128InitialSPSInfoForEDCHNEUCCH(eDCHSPSNewOperationTDD128InitialSPSInfoForEDCHNEUCCH);
+	setCodeResourceInfo(codeResourceInfo);
+	setEDCHSPSNewOperationTDD128InitialSPSInfoForEDCHTimeslotResourceRelatedInfo(eDCHSPSNewOperationTDD128InitialSPSInfoForEDCHTimeslotResourceRelatedInfo);
+	setEDCHSPSNewOperationTDD128InitialSPSInfoForEDCHPowerResourceRelatedInfo(eDCHSPSNewOperationTDD128InitialSPSInfoForEDCHPowerResourceRelatedInfo);
+	setActivationTime(activationTime);
+	setEDCHSPSNewOperationTDD128InitialSPSInfoForEDCHSubframeNum(eDCHSPSNewOperationTDD128InitialSPSInfoForEDCHSubframeNum);
+	setEDCHSPSNewOperationTDD128InitialSPSInfoForEDCHInitialTxPatternIndex(eDCHSPSNewOperationTDD128InitialSPSInfoForEDCHInitialTxPatternIndex);
+}
 
 const void *EDCHSPSNewOperationTDD128::itemsInfo[3] = {
 	&EHICHInformationForSPSTDD128::theInfo,
@@ -23451,6 +26553,9 @@ const EDCHSPSNewOperationTDD128::Info EDCHSPSNewOperationTDD128::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+EDCHSPSNewOperationTDD128::EDCHSPSNewOperationTDD128(const EHICHInformationForSPSTDD128& ehichInfo) : Sequence(&theInfo) {
+	setEhichInfo(ehichInfo);
+}
 
 const void *EDCHSPSInformationTDD128EdchSPSOperation::choicesInfo[2] = {
 	&EDCHSPSInformationTDD128EdchSPSOperationContinue::theInfo,
@@ -23480,6 +26585,9 @@ const EDCHSPSInformationTDD128::Info EDCHSPSInformationTDD128::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EDCHSPSInformationTDD128::EDCHSPSInformationTDD128(const EDCHSPSInformationTDD128EdchSPSOperation& eDCHSPSInformationTDD128EdchSPSOperation) : Sequence(&theInfo) {
+	setEDCHSPSInformationTDD128EdchSPSOperation(eDCHSPSInformationTDD128EdchSPSOperation);
+}
 
 const void *EDPCCHInfo::itemsInfo[2] = {
 	&EDPCCHDPCCHPowerOffset::theInfo,
@@ -23498,6 +26606,10 @@ const EDPCCHInfo::Info EDPCCHInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+EDPCCHInfo::EDPCCHInfo(const EDPCCHDPCCHPowerOffset& eDPCCHDPCCHPowerOffset, const HappyBitDelayCondition& happyBitDelayCondition) : Sequence(&theInfo) {
+	setEDPCCHDPCCHPowerOffset(eDPCCHDPCCHPowerOffset);
+	setHappyBitDelayCondition(happyBitDelayCondition);
+}
 
 const void *EDPDCHInfo::itemsInfo[8] = {
 	&ETFCITableIndex::theInfo,
@@ -23528,6 +26640,13 @@ const EDPDCHInfo::Info EDPDCHInfo::theInfo = {
 	itemsPres,
 	8, 3, 0
 };
+EDPDCHInfo::EDPDCHInfo(const ETFCITableIndex& eTFCITableIndex, const EDPDCHReferenceETFCIList& referenceETFCIs, const EDPDCHMaxChannelisationCodes& maxChannelisationCodes, const EDPDCHPLNonMax& plNonMax, const EDPDCHSchedulingInfoConfiguration& schedulingInfoConfiguration) : Sequence(&theInfo) {
+	setETFCITableIndex(eTFCITableIndex);
+	setReferenceETFCIs(referenceETFCIs);
+	setMaxChannelisationCodes(maxChannelisationCodes);
+	setPlNonMax(plNonMax);
+	setSchedulingInfoConfiguration(schedulingInfoConfiguration);
+}
 
 const void *EDPDCHInfor7::itemsInfo[8] = {
 	&ETFCITableIndex::theInfo,
@@ -23558,6 +26677,13 @@ const EDPDCHInfor7::Info EDPDCHInfor7::theInfo = {
 	itemsPres,
 	8, 3, 0
 };
+EDPDCHInfor7::EDPDCHInfor7(const ETFCITableIndex& eTFCITableIndex, const EDPDCHReferenceETFCIListr7& referenceETFCIs, const EDPDCHMaxChannelisationCodes& maxChannelisationCodes, const EDPDCHPLNonMax& plNonMax, const EDPDCHSchedulingInfoConfiguration& schedulingInfoConfiguration) : Sequence(&theInfo) {
+	setETFCITableIndex(eTFCITableIndex);
+	setReferenceETFCIs(referenceETFCIs);
+	setMaxChannelisationCodes(maxChannelisationCodes);
+	setPlNonMax(plNonMax);
+	setSchedulingInfoConfiguration(schedulingInfoConfiguration);
+}
 
 const void *EXTULTimingAdvanceModeSpecificInfoTdd384::itemsInfo[1] = {
 	&EXTULTimingAdvanceModeSpecificInfoTdd384ExulTimingAdvance::theInfo,
@@ -23574,6 +26700,9 @@ const EXTULTimingAdvanceModeSpecificInfoTdd384::Info EXTULTimingAdvanceModeSpeci
 	itemsPres,
 	1, 0, 0
 };
+EXTULTimingAdvanceModeSpecificInfoTdd384::EXTULTimingAdvanceModeSpecificInfoTdd384(const EXTULTimingAdvanceModeSpecificInfoTdd384ExulTimingAdvance& eXTULTimingAdvanceModeSpecificInfoTdd384ExulTimingAdvance) : Sequence(&theInfo) {
+	setEXTULTimingAdvanceModeSpecificInfoTdd384ExulTimingAdvance(eXTULTimingAdvanceModeSpecificInfoTdd384ExulTimingAdvance);
+}
 
 const void *EXTULTimingAdvanceModeSpecificInfoTdd768::itemsInfo[1] = {
 	&EXTULTimingAdvanceModeSpecificInfoTdd768ExulTimingAdvance::theInfo,
@@ -23590,6 +26719,9 @@ const EXTULTimingAdvanceModeSpecificInfoTdd768::Info EXTULTimingAdvanceModeSpeci
 	itemsPres,
 	1, 0, 0
 };
+EXTULTimingAdvanceModeSpecificInfoTdd768::EXTULTimingAdvanceModeSpecificInfoTdd768(const EXTULTimingAdvanceModeSpecificInfoTdd768ExulTimingAdvance& eXTULTimingAdvanceModeSpecificInfoTdd768ExulTimingAdvance) : Sequence(&theInfo) {
+	setEXTULTimingAdvanceModeSpecificInfoTdd768ExulTimingAdvance(eXTULTimingAdvanceModeSpecificInfoTdd768ExulTimingAdvance);
+}
 
 const void *EXTULTimingAdvanceModeSpecificInfo::choicesInfo[2] = {
 	&EXTULTimingAdvanceModeSpecificInfoTdd384::theInfo,
@@ -23619,6 +26751,9 @@ const EXTULTimingAdvance::Info EXTULTimingAdvance::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EXTULTimingAdvance::EXTULTimingAdvance(const EXTULTimingAdvanceModeSpecificInfo& eXTULTimingAdvanceModeSpecificInfo) : Sequence(&theInfo) {
+	setEXTULTimingAdvanceModeSpecificInfo(eXTULTimingAdvanceModeSpecificInfo);
+}
 
 const void *HSChannelisationCodeSetInfoLCR::itemsInfo[2] = {
 	&HSChannelisationCodeLCR::theInfo,
@@ -23637,6 +26772,10 @@ const HSChannelisationCodeSetInfoLCR::Info HSChannelisationCodeSetInfoLCR::theIn
 	itemsPres,
 	2, 0, 0
 };
+HSChannelisationCodeSetInfoLCR::HSChannelisationCodeSetInfoLCR(const HSChannelisationCodeLCR& startCode, const HSChannelisationCodeLCR& stopCode) : Sequence(&theInfo) {
+	setStartCode(startCode);
+	setStopCode(stopCode);
+}
 
 const void *HSSCCHSystemInfo::itemsInfo[2] = {
 	&SecondaryScramblingCode::theInfo,
@@ -23655,6 +26794,9 @@ const HSSCCHSystemInfo::Info HSSCCHSystemInfo::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+HSSCCHSystemInfo::HSSCCHSystemInfo(const HSSCCHSystemInfoHSSCCHChannelisationCodeInfo& hSSCCHSystemInfoHSSCCHChannelisationCodeInfo) : Sequence(&theInfo) {
+	setHSSCCHSystemInfoHSSCCHChannelisationCodeInfo(hSSCCHSystemInfoHSSCCHChannelisationCodeInfo);
+}
 
 const void *HSDSCHCommonSystemInformation::itemsInfo[7] = {
 	&CommonRBMappingInfo::theInfo,
@@ -23683,6 +26825,14 @@ const HSDSCHCommonSystemInformation::Info HSDSCHCommonSystemInformation::theInfo
 	itemsPres,
 	7, 1, 0
 };
+HSDSCHCommonSystemInformation::HSDSCHCommonSystemInformation(const CommonRBMappingInfo& ccchMappingInfo, const CommonMACehsReorderingQueueList& commonMACehsReorderingQueueList, const HSSCCHSystemInfo& hsscchSystemInfo, const HARQInfo& harqSystemInfo, const HSDSCHCommonSystemInformationCommonHRNTIinformation& hSDSCHCommonSystemInformationCommonHRNTIinformation, const HRNTI& bcchSpecificHRNTI) : Sequence(&theInfo) {
+	setCcchMappingInfo(ccchMappingInfo);
+	setCommonMACehsReorderingQueueList(commonMACehsReorderingQueueList);
+	setHsscchSystemInfo(hsscchSystemInfo);
+	setHarqSystemInfo(harqSystemInfo);
+	setHSDSCHCommonSystemInformationCommonHRNTIinformation(hSDSCHCommonSystemInformationCommonHRNTIinformation);
+	setBcchSpecificHRNTI(bcchSpecificHRNTI);
+}
 
 const void *HSSCCHSystemInfoTDD128::itemsInfo[7] = {
 	&HSSCCHSystemInfoTDD128HsSCCHSetConfiguration::theInfo,
@@ -23711,6 +26861,13 @@ const HSSCCHSystemInfoTDD128::Info HSSCCHSystemInfoTDD128::theInfo = {
 	itemsPres,
 	7, 2, 0
 };
+HSSCCHSystemInfoTDD128::HSSCCHSystemInfoTDD128(const HSSCCHSystemInfoTDD128HsSCCHSetConfiguration& hSSCCHSystemInfoTDD128HsSCCHSetConfiguration, const HSSCCHSystemInfoTDD128PowerlevelHSSICH& hSSCCHSystemInfoTDD128PowerlevelHSSICH, const HSSCCHSystemInfoTDD128Nackackpoweroffset& hSSCCHSystemInfoTDD128Nackackpoweroffset, const HSSCCHSystemInfoTDD128tpc_step_size& hSSCCHSystemInfoTDD128tpc_step_size, const BlerTarget& blertarget) : Sequence(&theInfo) {
+	setHSSCCHSystemInfoTDD128HsSCCHSetConfiguration(hSSCCHSystemInfoTDD128HsSCCHSetConfiguration);
+	setHSSCCHSystemInfoTDD128PowerlevelHSSICH(hSSCCHSystemInfoTDD128PowerlevelHSSICH);
+	setHSSCCHSystemInfoTDD128Nackackpoweroffset(hSSCCHSystemInfoTDD128Nackackpoweroffset);
+	setHSSCCHSystemInfoTDD128tpc_step_size(hSSCCHSystemInfoTDD128tpc_step_size);
+	setBlertarget(blertarget);
+}
 
 const void *HSDSCHCommonSystemInformationTDD128::itemsInfo[8] = {
 	&CommonRBMappingInfo::theInfo,
@@ -23741,6 +26898,15 @@ const HSDSCHCommonSystemInformationTDD128::Info HSDSCHCommonSystemInformationTDD
 	itemsPres,
 	8, 1, 0
 };
+HSDSCHCommonSystemInformationTDD128::HSDSCHCommonSystemInformationTDD128(const CommonRBMappingInfo& ccchMappingInfo, const CommonMACehsReorderingQueueList& commonMACehsReorderingQueueList, const HSSCCHSystemInfoTDD128& hsscchSystemInfotdd128, const HARQInfo& harqSystemInfo, const HSPDSCHMidambleConfigurationTDD128& hspdschMidambleConfiguration, const HSDSCHCommonSystemInformationTDD128CommonHRNTIinformation& hSDSCHCommonSystemInformationTDD128CommonHRNTIinformation, const HRNTI& bcchSpecificHRNTI) : Sequence(&theInfo) {
+	setCcchMappingInfo(ccchMappingInfo);
+	setCommonMACehsReorderingQueueList(commonMACehsReorderingQueueList);
+	setHsscchSystemInfotdd128(hsscchSystemInfotdd128);
+	setHarqSystemInfo(harqSystemInfo);
+	setHspdschMidambleConfiguration(hspdschMidambleConfiguration);
+	setHSDSCHCommonSystemInformationTDD128CommonHRNTIinformation(hSDSCHCommonSystemInformationTDD128CommonHRNTIinformation);
+	setBcchSpecificHRNTI(bcchSpecificHRNTI);
+}
 
 const void *HSDSCHDrxCellfachinfo::itemsInfo[4] = {
 	&T321::theInfo,
@@ -23763,6 +26929,12 @@ const HSDSCHDrxCellfachinfo::Info HSDSCHDrxCellfachinfo::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+HSDSCHDrxCellfachinfo::HSDSCHDrxCellfachinfo(const T321& t321, const HSDSCHDrxCycleFach& hsdschDrxCycleFach, const HSDSCHDrxBurstFach& hsdschDrxBurstFach, const HSDSCHDrxCellfachinfoDrxInterruptionhsdsch& hSDSCHDrxCellfachinfoDrxInterruptionhsdsch) : Sequence(&theInfo) {
+	setT321(t321);
+	setHsdschDrxCycleFach(hsdschDrxCycleFach);
+	setHsdschDrxBurstFach(hsdschDrxBurstFach);
+	setHSDSCHDrxCellfachinfoDrxInterruptionhsdsch(hSDSCHDrxCellfachinfoDrxInterruptionhsdsch);
+}
 
 const void *HSDSCHDrxCellfachinfoTDD128::itemsInfo[3] = {
 	&T321::theInfo,
@@ -23783,6 +26955,11 @@ const HSDSCHDrxCellfachinfoTDD128::Info HSDSCHDrxCellfachinfoTDD128::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+HSDSCHDrxCellfachinfoTDD128::HSDSCHDrxCellfachinfoTDD128(const T321& t321, const HSDSCHDrxCycleFach& hsdschDrxCycleFach, const HSDSCHDrxBurstFach& hsdschDrxBurstFach) : Sequence(&theInfo) {
+	setT321(t321);
+	setHsdschDrxCycleFach(hsdschDrxCycleFach);
+	setHsdschDrxBurstFach(hsdschDrxBurstFach);
+}
 
 const void *PICHInfoFdd::itemsInfo[3] = {
 	&ChannelisationCode256::theInfo,
@@ -23803,6 +26980,11 @@ const PICHInfoFdd::Info PICHInfoFdd::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+PICHInfoFdd::PICHInfoFdd(const ChannelisationCode256& channelisationCode256, const PICountPerFrame& piCountPerFrame, const PICHInfoFddSttdIndicator& pICHInfoFddSttdIndicator) : Sequence(&theInfo) {
+	setChannelisationCode256(channelisationCode256);
+	setPiCountPerFrame(piCountPerFrame);
+	setPICHInfoFddSttdIndicator(pICHInfoFddSttdIndicator);
+}
 
 const void *RepPerLengthOffsetPICH::choicesInfo[9] = {
 	&RepPerLengthOffsetPICHRpp42::theInfo,
@@ -23851,6 +27033,9 @@ const PICHInfoTdd::Info PICHInfoTdd::theInfo = {
 	itemsPres,
 	7, 6, 0
 };
+PICHInfoTdd::PICHInfoTdd(const MidambleShiftAndBurstType& midambleShiftAndBurstType) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+}
 
 const void *PICHInfo::choicesInfo[2] = {
 	&PICHInfoFdd::theInfo,
@@ -23882,6 +27067,10 @@ const PICHForHSDPASupportedPaging::Info PICHForHSDPASupportedPaging::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+PICHForHSDPASupportedPaging::PICHForHSDPASupportedPaging(const PICHInfo& hsdpaAssociatedPichInfo, const PICHForHSDPASupportedPagingHspdschChannelisationCode& pICHForHSDPASupportedPagingHspdschChannelisationCode) : Sequence(&theInfo) {
+	setHsdpaAssociatedPichInfo(hsdpaAssociatedPichInfo);
+	setPICHForHSDPASupportedPagingHspdschChannelisationCode(pICHForHSDPASupportedPagingHspdschChannelisationCode);
+}
 
 const void *HSDSCHPagingSystemInformation::itemsInfo[4] = {
 	&SecondaryScramblingCode::theInfo,
@@ -23904,6 +27093,11 @@ const HSDSCHPagingSystemInformation::Info HSDSCHPagingSystemInformation::theInfo
 	itemsPres,
 	4, 1, 0
 };
+HSDSCHPagingSystemInformation::HSDSCHPagingSystemInformation(const HSDSCHPagingSystemInformationPichForHSDPASupportedPagingList& hSDSCHPagingSystemInformationPichForHSDPASupportedPagingList, const HSDSCHPagingSystemInformationNumberOfPcchTransmissions& hSDSCHPagingSystemInformationNumberOfPcchTransmissions, const HSDSCHPagingSystemInformationTransportBlockSizeList& hSDSCHPagingSystemInformationTransportBlockSizeList) : Sequence(&theInfo) {
+	setHSDSCHPagingSystemInformationPichForHSDPASupportedPagingList(hSDSCHPagingSystemInformationPichForHSDPASupportedPagingList);
+	setHSDSCHPagingSystemInformationNumberOfPcchTransmissions(hSDSCHPagingSystemInformationNumberOfPcchTransmissions);
+	setHSDSCHPagingSystemInformationTransportBlockSizeList(hSDSCHPagingSystemInformationTransportBlockSizeList);
+}
 
 const void *PICHForHSDPASupportedPagingTDD128Implicit::itemsInfo[1] = {
 	&OccurrenceSequenceNumberOfPICH::theInfo,
@@ -23948,6 +27142,10 @@ const PICHInfoLCRr4::Info PICHInfoLCRr4::theInfo = {
 	itemsPres,
 	7, 5, 0
 };
+PICHInfoLCRr4::PICHInfoLCRr4(const PichChannelisationCodeListLCRr4& pichChannelisationCodeListLCRr4, const MidambleShiftAndBurstTypeLCRr4& midambleShiftAndBurstType) : Sequence(&theInfo) {
+	setPichChannelisationCodeListLCRr4(pichChannelisationCodeListLCRr4);
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+}
 
 const void *PICHForHSDPASupportedPagingTDD128::choicesInfo[2] = {
 	&PICHForHSDPASupportedPagingTDD128Implicit::theInfo,
@@ -23995,6 +27193,11 @@ const PCCHInformationList::Info PCCHInformationList::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+PCCHInformationList::PCCHInformationList(const PCCHInformationListPagingassociatedHspdschInfo& pCCHInformationListPagingassociatedHspdschInfo, const PCCHInformationListPagingsubChannelsize& pCCHInformationListPagingsubChannelsize, const PCCHInformationListTransportBlockSizeList& pCCHInformationListTransportBlockSizeList) : Sequence(&theInfo) {
+	setPCCHInformationListPagingassociatedHspdschInfo(pCCHInformationListPagingassociatedHspdschInfo);
+	setPCCHInformationListPagingsubChannelsize(pCCHInformationListPagingsubChannelsize);
+	setPCCHInformationListTransportBlockSizeList(pCCHInformationListTransportBlockSizeList);
+}
 
 const void *HSDSCHPagingSystemInformationTDD128::itemsInfo[3] = {
 	&HSDSCHPagingSystemInformationTDD128PichForHsdschList::theInfo,
@@ -24015,6 +27218,10 @@ const HSDSCHPagingSystemInformationTDD128::Info HSDSCHPagingSystemInformationTDD
 	itemsPres,
 	3, 1, 0
 };
+HSDSCHPagingSystemInformationTDD128::HSDSCHPagingSystemInformationTDD128(const HSDSCHPagingSystemInformationTDD128PichForHsdschList& hSDSCHPagingSystemInformationTDD128PichForHsdschList, const HSDSCHPagingSystemInformationTDD128DtchDCCHreceptionwindowsize& hSDSCHPagingSystemInformationTDD128DtchDCCHreceptionwindowsize) : Sequence(&theInfo) {
+	setHSDSCHPagingSystemInformationTDD128PichForHsdschList(hSDSCHPagingSystemInformationTDD128PichForHsdschList);
+	setHSDSCHPagingSystemInformationTDD128DtchDCCHreceptionwindowsize(hSDSCHPagingSystemInformationTDD128DtchDCCHreceptionwindowsize);
+}
 
 const void *HSDSCHRxPatternListTDD128::itemsInfo[0] = {
 };
@@ -24061,6 +27268,10 @@ const HSDSCHSPSNewOperationTDD128HARQInfoForSPS::Info HSDSCHSPSNewOperationTDD12
 	itemsPres,
 	2, 0, 0
 };
+HSDSCHSPSNewOperationTDD128HARQInfoForSPS::HSDSCHSPSNewOperationTDD128HARQInfoForSPS(const HSDSCHSPSNewOperationTDD128HARQInfoForSPSNumberOfProcesses& hSDSCHSPSNewOperationTDD128HARQInfoForSPSNumberOfProcesses, const HARQMemorySize& memorySize) : Sequence(&theInfo) {
+	setHSDSCHSPSNewOperationTDD128HARQInfoForSPSNumberOfProcesses(hSDSCHSPSNewOperationTDD128HARQInfoForSPSNumberOfProcesses);
+	setMemorySize(memorySize);
+}
 
 const void *HSSICHListTDD128::itemsInfo[0] = {
 };
@@ -24105,6 +27316,16 @@ const HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCH::Info HSDSCHSPSNewOpera
 	itemsPres,
 	8, 0, 0
 };
+HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCH::HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCH(const HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHTimeslotInfo& hSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHTimeslotInfo, const HSChannelisationCodeSetInfoLCR& codeResourceInfo, const ActivationTime& activationTime, const HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHSfnNum& hSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHSfnNum, const HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHInitialRxPatternIndex& hSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHInitialRxPatternIndex, const HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHInitialTfsIndex& hSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHInitialTfsIndex, const HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHmodulation& hSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHmodulation, const HSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHHssichIndex& hSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHHssichIndex) : Sequence(&theInfo) {
+	setHSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHTimeslotInfo(hSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHTimeslotInfo);
+	setCodeResourceInfo(codeResourceInfo);
+	setActivationTime(activationTime);
+	setHSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHSfnNum(hSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHSfnNum);
+	setHSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHInitialRxPatternIndex(hSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHInitialRxPatternIndex);
+	setHSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHInitialTfsIndex(hSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHInitialTfsIndex);
+	setHSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHmodulation(hSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHmodulation);
+	setHSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHHssichIndex(hSDSCHSPSNewOperationTDD128InitialSPSInfoForHSDSCHHssichIndex);
+}
 
 const void *HSDSCHSPSNewOperationTDD128::itemsInfo[5] = {
 	&HSDSCHTbsListTDD128::theInfo,
@@ -24129,6 +27350,9 @@ const HSDSCHSPSNewOperationTDD128::Info HSDSCHSPSNewOperationTDD128::theInfo = {
 	itemsPres,
 	5, 4, 0
 };
+HSDSCHSPSNewOperationTDD128::HSDSCHSPSNewOperationTDD128(const HSSICHListTDD128& hssichList) : Sequence(&theInfo) {
+	setHssichList(hssichList);
+}
 
 const void *HSDSCHSPSInformationTDD128HsdschSPSOperation::choicesInfo[2] = {
 	&HSDSCHSPSInformationTDD128HsdschSPSOperationContinue::theInfo,
@@ -24158,6 +27382,9 @@ const HSDSCHSPSInformationTDD128::Info HSDSCHSPSInformationTDD128::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+HSDSCHSPSInformationTDD128::HSDSCHSPSInformationTDD128(const HSDSCHSPSInformationTDD128HsdschSPSOperation& hSDSCHSPSInformationTDD128HsdschSPSOperation) : Sequence(&theInfo) {
+	setHSDSCHSPSInformationTDD128HsdschSPSOperation(hSDSCHSPSInformationTDD128HsdschSPSOperation);
+}
 
 const void *HSSCCHLessTFSList::itemsInfo[0] = {
 };
@@ -24190,6 +27417,10 @@ const HSSCCHLessNewOperation::Info HSSCCHLessNewOperation::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+HSSCCHLessNewOperation::HSSCCHLessNewOperation(const HSSCCHLessNewOperationHspdschCodeIndex& hSSCCHLessNewOperationHspdschCodeIndex, const HSSCCHLessTFSList& hsscchLessTFS) : Sequence(&theInfo) {
+	setHSSCCHLessNewOperationHspdschCodeIndex(hSSCCHLessNewOperationHspdschCodeIndex);
+	setHsscchLessTFS(hsscchLessTFS);
+}
 
 const void *HSSCCHLessInfor7HsscchLessOperation::choicesInfo[2] = {
 	&HSSCCHLessInfor7HsscchLessOperationContinue::theInfo,
@@ -24219,6 +27450,9 @@ const HSSCCHLessInfor7::Info HSSCCHLessInfor7::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+HSSCCHLessInfor7::HSSCCHLessInfor7(const HSSCCHLessInfor7HsscchLessOperation& hSSCCHLessInfor7HsscchLessOperation) : Sequence(&theInfo) {
+	setHSSCCHLessInfor7HsscchLessOperation(hSSCCHLessInfor7HsscchLessOperation);
+}
 
 const void *HSSCCHTDD128MultiCarrierMidambleAllocationMode::choicesInfo[3] = {
 	&HSSCCHTDD128MultiCarrierMidambleAllocationModeDefaultMidamble::theInfo,
@@ -24263,6 +27497,16 @@ const HSSCCHTDD128MultiCarrier::Info HSSCCHTDD128MultiCarrier::theInfo = {
 	itemsPres,
 	8, 0, 0
 };
+HSSCCHTDD128MultiCarrier::HSSCCHTDD128MultiCarrier(const UARFCN& uarfcnHSSCCHRx, const TimeslotNumberLCRr4& timeslotNumber, const HSChannelisationCodeLCR& firstChannelisationCode, const HSChannelisationCodeLCR& secondChannelisationCode, const HSSCCHTDD128MultiCarrierMidambleAllocationMode& hSSCCHTDD128MultiCarrierMidambleAllocationMode, const HSSCCHTDD128MultiCarrierMidambleConfiguration& hSSCCHTDD128MultiCarrierMidambleConfiguration, const BlerTarget& blertarget, const HSSICHConfigurationTDD128& hssichconfiguration) : Sequence(&theInfo) {
+	setUarfcnHSSCCHRx(uarfcnHSSCCHRx);
+	setTimeslotNumber(timeslotNumber);
+	setFirstChannelisationCode(firstChannelisationCode);
+	setSecondChannelisationCode(secondChannelisationCode);
+	setHSSCCHTDD128MultiCarrierMidambleAllocationMode(hSSCCHTDD128MultiCarrierMidambleAllocationMode);
+	setHSSCCHTDD128MultiCarrierMidambleConfiguration(hSSCCHTDD128MultiCarrierMidambleConfiguration);
+	setBlertarget(blertarget);
+	setHssichconfiguration(hssichconfiguration);
+}
 
 const void *HSSICHReferenceSignalInfoList::itemsInfo[0] = {
 };
@@ -24297,6 +27541,11 @@ const IndividualTimeslotInfoLCRr4ext::Info IndividualTimeslotInfoLCRr4ext::theIn
 	itemsPres,
 	3, 0, 0
 };
+IndividualTimeslotInfoLCRr4ext::IndividualTimeslotInfoLCRr4ext(const MidambleShiftAndBurstTypeLCRr4& midambleShiftAndBurstType, const IndividualTimeslotInfoLCRr4extmodulation& individualTimeslotInfoLCRr4extmodulation, const IndividualTimeslotInfoLCRr4extss_TPC_Symbols& individualTimeslotInfoLCRr4extss_TPC_Symbols) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+	setIndividualTimeslotInfoLCRr4extmodulation(individualTimeslotInfoLCRr4extmodulation);
+	setIndividualTimeslotInfoLCRr4extss_TPC_Symbols(individualTimeslotInfoLCRr4extss_TPC_Symbols);
+}
 
 const void *MidambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftLong::theInfo,
@@ -24313,6 +27562,9 @@ const MidambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationModeUeSpecificM
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationModeDefaultMidamble::theInfo,
@@ -24345,6 +27597,10 @@ const MidambleShiftAndBurstTypeDLBurstTypeType1::Info MidambleShiftAndBurstTypeD
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeDLBurstTypeType1::MidambleShiftAndBurstTypeDLBurstTypeType1(const MidambleConfigurationBurstType1and3& midambleConfigurationBurstType1and3, const MidambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationMode& midambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType1and3(midambleConfigurationBurstType1and3);
+	setMidambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationMode(midambleShiftAndBurstTypeDLBurstTypeType1MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftShort::theInfo,
@@ -24361,6 +27617,9 @@ const MidambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationModeUeSpecificM
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationModeUeSpecificMidamble(const MidambleShiftShort& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationModeDefaultMidamble::theInfo,
@@ -24393,6 +27652,10 @@ const MidambleShiftAndBurstTypeDLBurstTypeType2::Info MidambleShiftAndBurstTypeD
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeDLBurstTypeType2::MidambleShiftAndBurstTypeDLBurstTypeType2(const MidambleConfigurationBurstType2& midambleConfigurationBurstType2, const MidambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationMode& midambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType2(midambleConfigurationBurstType2);
+	setMidambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationMode(midambleShiftAndBurstTypeDLBurstTypeType2MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTypeDLBurstType::choicesInfo[2] = {
 	&MidambleShiftAndBurstTypeDLBurstTypeType1::theInfo,
@@ -24422,6 +27685,9 @@ const MidambleShiftAndBurstTypeDL::Info MidambleShiftAndBurstTypeDL::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeDL::MidambleShiftAndBurstTypeDL(const MidambleShiftAndBurstTypeDLBurstType& midambleShiftAndBurstTypeDLBurstType) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstTypeDLBurstType(midambleShiftAndBurstTypeDLBurstType);
+}
 
 const void *MidambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftLong::theInfo,
@@ -24438,6 +27704,9 @@ const MidambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationModeUeSpeci
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationModeUeSpecificMidamble(const MidambleShiftLong& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationModeDefaultMidamble::theInfo,
@@ -24470,6 +27739,10 @@ const MidambleShiftAndBurstTypeDLVHCRBurstTypeType1::Info MidambleShiftAndBurstT
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeDLVHCRBurstTypeType1::MidambleShiftAndBurstTypeDLVHCRBurstTypeType1(const MidambleConfigurationBurstType1and3& midambleConfigurationBurstType1and3, const MidambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationMode& midambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType1and3(midambleConfigurationBurstType1and3);
+	setMidambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationMode(midambleShiftAndBurstTypeDLVHCRBurstTypeType1MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationModeUeSpecificMidamble::itemsInfo[1] = {
 	&MidambleShiftShortVHCR::theInfo,
@@ -24486,6 +27759,9 @@ const MidambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationModeUeSpeci
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationModeUeSpecificMidamble::MidambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationModeUeSpecificMidamble(const MidambleShiftShortVHCR& midambleShift) : Sequence(&theInfo) {
+	setMidambleShift(midambleShift);
+}
 
 const void *MidambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationMode::choicesInfo[3] = {
 	&MidambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationModeDefaultMidamble::theInfo,
@@ -24518,6 +27794,10 @@ const MidambleShiftAndBurstTypeDLVHCRBurstTypeType2::Info MidambleShiftAndBurstT
 	itemsPres,
 	2, 0, 0
 };
+MidambleShiftAndBurstTypeDLVHCRBurstTypeType2::MidambleShiftAndBurstTypeDLVHCRBurstTypeType2(const MidambleConfigurationBurstType2VHCR& midambleConfigurationBurstType2, const MidambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationMode& midambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationMode) : Sequence(&theInfo) {
+	setMidambleConfigurationBurstType2(midambleConfigurationBurstType2);
+	setMidambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationMode(midambleShiftAndBurstTypeDLVHCRBurstTypeType2MidambleAllocationMode);
+}
 
 const void *MidambleShiftAndBurstTypeDLVHCRBurstType::choicesInfo[2] = {
 	&MidambleShiftAndBurstTypeDLVHCRBurstTypeType1::theInfo,
@@ -24547,6 +27827,9 @@ const MidambleShiftAndBurstTypeDLVHCR::Info MidambleShiftAndBurstTypeDLVHCR::the
 	itemsPres,
 	1, 0, 0
 };
+MidambleShiftAndBurstTypeDLVHCR::MidambleShiftAndBurstTypeDLVHCR(const MidambleShiftAndBurstTypeDLVHCRBurstType& midambleShiftAndBurstTypeDLVHCRBurstType) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstTypeDLVHCRBurstType(midambleShiftAndBurstTypeDLVHCRBurstType);
+}
 
 const void *MIMOPilotConfigurationSecondCPICHPatternDiversityPattern::itemsInfo[1] = {
 	&ChannelisationCode256::theInfo,
@@ -24563,6 +27846,9 @@ const MIMOPilotConfigurationSecondCPICHPatternDiversityPattern::Info MIMOPilotCo
 	itemsPres,
 	1, 0, 0
 };
+MIMOPilotConfigurationSecondCPICHPatternDiversityPattern::MIMOPilotConfigurationSecondCPICHPatternDiversityPattern(const ChannelisationCode256& channelisationCode) : Sequence(&theInfo) {
+	setChannelisationCode(channelisationCode);
+}
 
 const void *MIMOPilotConfigurationSecondCPICHPattern::choicesInfo[2] = {
 	&MIMOPilotConfigurationSecondCPICHPatternNormalPattern::theInfo,
@@ -24592,6 +27878,9 @@ const MIMOPilotConfiguration::Info MIMOPilotConfiguration::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MIMOPilotConfiguration::MIMOPilotConfiguration(const MIMOPilotConfigurationSecondCPICHPattern& mIMOPilotConfigurationSecondCPICHPattern) : Sequence(&theInfo) {
+	setMIMOPilotConfigurationSecondCPICHPattern(mIMOPilotConfigurationSecondCPICHPattern);
+}
 
 const void *MIMOParametersr7::itemsInfo[3] = {
 	&MIMOOperation::theInfo,
@@ -24612,6 +27901,9 @@ const MIMOParametersr7::Info MIMOParametersr7::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+MIMOParametersr7::MIMOParametersr7(const MIMOOperation& mimoOperation) : Sequence(&theInfo) {
+	setMimoOperation(mimoOperation);
+}
 
 const void *MIMOPilotConfigurationv7f0ext::itemsInfo[1] = {
 	&SCPICHPowerOffsetMIMO::theInfo,
@@ -24680,6 +27972,9 @@ const MIMOParametersr8ModeSpecificInfoTddTdd128::Info MIMOParametersr8ModeSpecif
 	itemsPres,
 	2, 1, 0
 };
+MIMOParametersr8ModeSpecificInfoTddTdd128::MIMOParametersr8ModeSpecificInfoTddTdd128(const MIMOParametersr8ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream& mIMOParametersr8ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream) : Sequence(&theInfo) {
+	setMIMOParametersr8ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream(mIMOParametersr8ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream);
+}
 
 const void *MIMOParametersr8ModeSpecificInfoTdd::choicesInfo[2] = {
 	&MIMOParametersr8ModeSpecificInfoTddTdd128::theInfo,
@@ -24724,6 +28019,10 @@ const MIMOParametersr8::Info MIMOParametersr8::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MIMOParametersr8::MIMOParametersr8(const MIMOOperation& mimoOperation, const MIMOParametersr8ModeSpecificInfo& mIMOParametersr8ModeSpecificInfo) : Sequence(&theInfo) {
+	setMimoOperation(mimoOperation);
+	setMIMOParametersr8ModeSpecificInfo(mIMOParametersr8ModeSpecificInfo);
+}
 
 const void *MIMOParametersr9ModeSpecificInfoFdd::itemsInfo[3] = {
 	&MIMONMRatio::theInfo,
@@ -24762,6 +28061,9 @@ const MIMOParametersr9ModeSpecificInfoTddTdd128::Info MIMOParametersr9ModeSpecif
 	itemsPres,
 	2, 1, 0
 };
+MIMOParametersr9ModeSpecificInfoTddTdd128::MIMOParametersr9ModeSpecificInfoTddTdd128(const MIMOParametersr9ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream& mIMOParametersr9ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream) : Sequence(&theInfo) {
+	setMIMOParametersr9ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream(mIMOParametersr9ModeSpecificInfoTddTdd128mimoSFModeForHSPDSCHDualStream);
+}
 
 const void *MIMOParametersr9ModeSpecificInfoTdd::choicesInfo[2] = {
 	&MIMOParametersr9ModeSpecificInfoTddTdd128::theInfo,
@@ -24806,6 +28108,10 @@ const MIMOParametersr9::Info MIMOParametersr9::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MIMOParametersr9::MIMOParametersr9(const MIMOOperation& mimoOperation, const MIMOParametersr9ModeSpecificInfo& mIMOParametersr9ModeSpecificInfo) : Sequence(&theInfo) {
+	setMimoOperation(mimoOperation);
+	setMIMOParametersr9ModeSpecificInfo(mIMOParametersr9ModeSpecificInfo);
+}
 
 const void *MultifrequencyInfoLCRr7::itemsInfo[3] = {
 	&FrequencyInfoTDD::theInfo,
@@ -24844,6 +28150,10 @@ const NewTiming::Info NewTiming::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+NewTiming::NewTiming(const EnablingDelay& enablingDelay, const UEDTXDRXOffset& uedtxdrxOffset) : Sequence(&theInfo) {
+	setEnablingDelay(enablingDelay);
+	setUedtxdrxOffset(uedtxdrxOffset);
+}
 
 const void *NonScheduledTransGrantInfoTDDextTdd128::itemsInfo[1] = {
 	&NonScheduledTransGrantInfoTDDextTdd128t_SI_nst::theInfo,
@@ -24897,6 +28207,11 @@ const OpenLoopPowerControlTDD::Info OpenLoopPowerControlTDD::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+OpenLoopPowerControlTDD::OpenLoopPowerControlTDD(const PrimaryCCPCHTXPower& primaryCCPCHTXPower, const ConstantValueTdd& prachConstantValue, const ConstantValueTdd& dpchConstantValue) : Sequence(&theInfo) {
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+	setPrachConstantValue(prachConstantValue);
+	setDpchConstantValue(dpchConstantValue);
+}
 
 const void *OpenLoopPowerControlIPDLTDDr4::itemsInfo[2] = {
 	&Alpha::theInfo,
@@ -24915,6 +28230,10 @@ const OpenLoopPowerControlIPDLTDDr4::Info OpenLoopPowerControlIPDLTDDr4::theInfo
 	itemsPres,
 	2, 0, 0
 };
+OpenLoopPowerControlIPDLTDDr4::OpenLoopPowerControlIPDLTDDr4(const Alpha& ipdlalpha, const MaxPowerIncreaser4& maxPowerIncrease) : Sequence(&theInfo) {
+	setIpdlalpha(ipdlalpha);
+	setMaxPowerIncrease(maxPowerIncrease);
+}
 
 const void *PDSCHPowerControlInfo::itemsInfo[2] = {
 	&TPCStepSizeTDD::theInfo,
@@ -24951,6 +28270,9 @@ const PDSCHCapacityAllocationInfoConfigurationOldConfiguration::Info PDSCHCapaci
 	itemsPres,
 	2, 1, 0
 };
+PDSCHCapacityAllocationInfoConfigurationOldConfiguration::PDSCHCapacityAllocationInfoConfigurationOldConfiguration(const PDSCHIdentity& pdschIdentity) : Sequence(&theInfo) {
+	setPdschIdentity(pdschIdentity);
+}
 
 const void *PDSCHInfo::itemsInfo[3] = {
 	&TFCSIdentityPlain::theInfo,
@@ -24989,6 +28311,9 @@ const PDSCHCapacityAllocationInfoConfigurationNewConfiguration::Info PDSCHCapaci
 	itemsPres,
 	2, 1, 0
 };
+PDSCHCapacityAllocationInfoConfigurationNewConfiguration::PDSCHCapacityAllocationInfoConfigurationNewConfiguration(const PDSCHInfo& pdschInfo) : Sequence(&theInfo) {
+	setPdschInfo(pdschInfo);
+}
 
 const void *PDSCHCapacityAllocationInfoConfiguration::choicesInfo[2] = {
 	&PDSCHCapacityAllocationInfoConfigurationOldConfiguration::theInfo,
@@ -25022,6 +28347,9 @@ const PDSCHCapacityAllocationInfo::Info PDSCHCapacityAllocationInfo::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+PDSCHCapacityAllocationInfo::PDSCHCapacityAllocationInfo(const AllocationPeriodInfo& pdschAllocationPeriodInfo) : Sequence(&theInfo) {
+	setPdschAllocationPeriodInfo(pdschAllocationPeriodInfo);
+}
 
 const void *PDSCHCapacityAllocationInfor4ConfigurationOldConfiguration::itemsInfo[2] = {
 	&TFCSIdentityPlain::theInfo,
@@ -25040,6 +28368,9 @@ const PDSCHCapacityAllocationInfor4ConfigurationOldConfiguration::Info PDSCHCapa
 	itemsPres,
 	2, 1, 0
 };
+PDSCHCapacityAllocationInfor4ConfigurationOldConfiguration::PDSCHCapacityAllocationInfor4ConfigurationOldConfiguration(const PDSCHIdentity& pdschIdentity) : Sequence(&theInfo) {
+	setPdschIdentity(pdschIdentity);
+}
 
 const void *PDSCHInfor4TddOptionTdd384::itemsInfo[1] = {
 	&DownlinkTimeslotsCodes::theInfo,
@@ -25105,6 +28436,9 @@ const PDSCHInfor4::Info PDSCHInfor4::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+PDSCHInfor4::PDSCHInfor4(const PDSCHInfor4TddOption& pDSCHInfor4TddOption) : Sequence(&theInfo) {
+	setPDSCHInfor4TddOption(pDSCHInfor4TddOption);
+}
 
 const void *PDSCHCapacityAllocationInfor4ConfigurationNewConfiguration::itemsInfo[3] = {
 	&PDSCHInfor4::theInfo,
@@ -25125,6 +28459,9 @@ const PDSCHCapacityAllocationInfor4ConfigurationNewConfiguration::Info PDSCHCapa
 	itemsPres,
 	3, 2, 0
 };
+PDSCHCapacityAllocationInfor4ConfigurationNewConfiguration::PDSCHCapacityAllocationInfor4ConfigurationNewConfiguration(const PDSCHInfor4& pdschInfo) : Sequence(&theInfo) {
+	setPdschInfo(pdschInfo);
+}
 
 const void *PDSCHCapacityAllocationInfor4Configuration::choicesInfo[2] = {
 	&PDSCHCapacityAllocationInfor4ConfigurationOldConfiguration::theInfo,
@@ -25156,6 +28493,9 @@ const PDSCHCapacityAllocationInfor4::Info PDSCHCapacityAllocationInfor4::theInfo
 	itemsPres,
 	2, 1, 0
 };
+PDSCHCapacityAllocationInfor4::PDSCHCapacityAllocationInfor4(const AllocationPeriodInfo& pdschAllocationPeriodInfo) : Sequence(&theInfo) {
+	setPdschAllocationPeriodInfo(pdschAllocationPeriodInfo);
+}
 
 const void *PDSCHCapacityAllocationInfor7ConfigurationOldConfiguration::itemsInfo[2] = {
 	&TFCSIdentityPlain::theInfo,
@@ -25174,6 +28514,9 @@ const PDSCHCapacityAllocationInfor7ConfigurationOldConfiguration::Info PDSCHCapa
 	itemsPres,
 	2, 1, 0
 };
+PDSCHCapacityAllocationInfor7ConfigurationOldConfiguration::PDSCHCapacityAllocationInfor7ConfigurationOldConfiguration(const PDSCHIdentity& pdschIdentity) : Sequence(&theInfo) {
+	setPdschIdentity(pdschIdentity);
+}
 
 const void *PDSCHInfor7TddOptionTdd384::itemsInfo[1] = {
 	&DownlinkTimeslotsCodes::theInfo,
@@ -25256,6 +28599,9 @@ const PDSCHInfor7::Info PDSCHInfor7::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+PDSCHInfor7::PDSCHInfor7(const PDSCHInfor7TddOption& pDSCHInfor7TddOption) : Sequence(&theInfo) {
+	setPDSCHInfor7TddOption(pDSCHInfor7TddOption);
+}
 
 const void *PDSCHCapacityAllocationInfor7ConfigurationNewConfiguration::itemsInfo[3] = {
 	&PDSCHInfor7::theInfo,
@@ -25276,6 +28622,9 @@ const PDSCHCapacityAllocationInfor7ConfigurationNewConfiguration::Info PDSCHCapa
 	itemsPres,
 	3, 2, 0
 };
+PDSCHCapacityAllocationInfor7ConfigurationNewConfiguration::PDSCHCapacityAllocationInfor7ConfigurationNewConfiguration(const PDSCHInfor7& pdschInfo) : Sequence(&theInfo) {
+	setPdschInfo(pdschInfo);
+}
 
 const void *PDSCHCapacityAllocationInfor7Configuration::choicesInfo[2] = {
 	&PDSCHCapacityAllocationInfor7ConfigurationOldConfiguration::theInfo,
@@ -25307,6 +28656,9 @@ const PDSCHCapacityAllocationInfor7::Info PDSCHCapacityAllocationInfor7::theInfo
 	itemsPres,
 	2, 1, 0
 };
+PDSCHCapacityAllocationInfor7::PDSCHCapacityAllocationInfor7(const AllocationPeriodInfo& pdschAllocationPeriodInfo) : Sequence(&theInfo) {
+	setPdschAllocationPeriodInfo(pdschAllocationPeriodInfo);
+}
 
 const void *PDSCHInfoLCRr4::itemsInfo[3] = {
 	&TFCSIdentityPlain::theInfo,
@@ -25349,6 +28701,10 @@ const PDSCHSysInfo::Info PDSCHSysInfo::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+PDSCHSysInfo::PDSCHSysInfo(const PDSCHIdentity& pdschIdentity, const PDSCHInfo& pdschInfo) : Sequence(&theInfo) {
+	setPdschIdentity(pdschIdentity);
+	setPdschInfo(pdschInfo);
+}
 
 const void *PDSCHSysInfoVHCRr7::itemsInfo[4] = {
 	&PDSCHIdentity::theInfo,
@@ -25371,6 +28727,10 @@ const PDSCHSysInfoVHCRr7::Info PDSCHSysInfoVHCRr7::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+PDSCHSysInfoVHCRr7::PDSCHSysInfoVHCRr7(const PDSCHIdentity& pdschIdentity, const PDSCHInfor7& pdschInfo) : Sequence(&theInfo) {
+	setPdschIdentity(pdschIdentity);
+	setPdschInfo(pdschInfo);
+}
 
 const void *PDSCHSysInfoHCRr5::itemsInfo[4] = {
 	&PDSCHIdentity::theInfo,
@@ -25393,6 +28753,10 @@ const PDSCHSysInfoHCRr5::Info PDSCHSysInfoHCRr5::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+PDSCHSysInfoHCRr5::PDSCHSysInfoHCRr5(const PDSCHIdentity& pdschIdentity, const PDSCHInfo& pdschInfo) : Sequence(&theInfo) {
+	setPdschIdentity(pdschIdentity);
+	setPdschInfo(pdschInfo);
+}
 
 const void *PDSCHSysInfoLCRr4::itemsInfo[4] = {
 	&PDSCHIdentity::theInfo,
@@ -25415,6 +28779,10 @@ const PDSCHSysInfoLCRr4::Info PDSCHSysInfoLCRr4::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+PDSCHSysInfoLCRr4::PDSCHSysInfoLCRr4(const PDSCHIdentity& pdschIdentity, const PDSCHInfoLCRr4& pdschInfo) : Sequence(&theInfo) {
+	setPdschIdentity(pdschIdentity);
+	setPdschInfo(pdschInfo);
+}
 
 const void *PDSCHSysInfoListSFN::itemsInfo[0] = {
 };
@@ -25498,6 +28866,9 @@ const PICHInfoHCRVHCRr7::Info PICHInfoHCRVHCRr7::theInfo = {
 	itemsPres,
 	7, 6, 0
 };
+PICHInfoHCRVHCRr7::PICHInfoHCRVHCRr7(const MidambleShiftAndBurstType& midambleShiftAndBurstType) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+}
 
 const void *PLCCHInfo::itemsInfo[4] = {
 	&PLCCHInfoPlcchSequenceNumber::theInfo,
@@ -25520,6 +28891,12 @@ const PLCCHInfo::Info PLCCHInfo::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+PLCCHInfo::PLCCHInfo(const PLCCHInfoPlcchSequenceNumber& pLCCHInfoPlcchSequenceNumber, const TimeslotNumberLCRr4& timeslotNumber, const DLTSChannelisationCode& channelisationCode, const TPCCommandTargetRate& tpcCommandTargetRate) : Sequence(&theInfo) {
+	setPLCCHInfoPlcchSequenceNumber(pLCCHInfoPlcchSequenceNumber);
+	setTimeslotNumber(timeslotNumber);
+	setChannelisationCode(channelisationCode);
+	setTpcCommandTargetRate(tpcCommandTargetRate);
+}
 
 const void *PRACHDefinitionLCRr4::itemsInfo[4] = {
 	&TimeslotNumberPRACHLCRr4::theInfo,
@@ -25542,6 +28919,12 @@ const PRACHDefinitionLCRr4::Info PRACHDefinitionLCRr4::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+PRACHDefinitionLCRr4::PRACHDefinitionLCRr4(const TimeslotNumberPRACHLCRr4& timeslot, const PRACHChanCodesLCRr4& prachChanCodesLCR, const MidambleShiftAndBurstTypeLCRr4& midambleShiftAndBurstType, const FPACHInfor4& fpachInfo) : Sequence(&theInfo) {
+	setTimeslot(timeslot);
+	setPrachChanCodesLCR(prachChanCodesLCR);
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+	setFpachInfo(fpachInfo);
+}
 
 const void *PRACHPartitioning::choicesInfo[2] = {
 	&PRACHPartitioningFdd::theInfo,
@@ -25579,6 +28962,13 @@ const PRACHRACHInfoModeSpecificInfoFdd::Info PRACHRACHInfoModeSpecificInfoFdd::t
 	itemsPres,
 	5, 0, 0
 };
+PRACHRACHInfoModeSpecificInfoFdd::PRACHRACHInfoModeSpecificInfoFdd(const AvailableSignatures& availableSignatures, const SFPRACH& availableSF, const PreambleScramblingCodeWordNumber& preambleScramblingCodeWordNumber, const PuncturingLimit& puncturingLimit, const AvailableSubChannelNumbers& availableSubChannelNumbers) : Sequence(&theInfo) {
+	setAvailableSignatures(availableSignatures);
+	setAvailableSF(availableSF);
+	setPreambleScramblingCodeWordNumber(preambleScramblingCodeWordNumber);
+	setPuncturingLimit(puncturingLimit);
+	setAvailableSubChannelNumbers(availableSubChannelNumbers);
+}
 
 const void *TDDPRACHCCodeList::choicesInfo[2] = {
 	&TDDPRACHCCodeListSf8::theInfo,
@@ -25612,6 +29002,11 @@ const PRACHRACHInfoModeSpecificInfoTdd::Info PRACHRACHInfoModeSpecificInfoTdd::t
 	itemsPres,
 	3, 0, 0
 };
+PRACHRACHInfoModeSpecificInfoTdd::PRACHRACHInfoModeSpecificInfoTdd(const TimeslotNumber& timeslot, const TDDPRACHCCodeList& channelisationCodeList, const PRACHMidamble& prachMidamble) : Sequence(&theInfo) {
+	setTimeslot(timeslot);
+	setChannelisationCodeList(channelisationCodeList);
+	setPrachMidamble(prachMidamble);
+}
 
 const void *PRACHRACHInfoModeSpecificInfo::choicesInfo[2] = {
 	&PRACHRACHInfoModeSpecificInfoFdd::theInfo,
@@ -25641,6 +29036,9 @@ const PRACHRACHInfo::Info PRACHRACHInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+PRACHRACHInfo::PRACHRACHInfo(const PRACHRACHInfoModeSpecificInfo& pRACHRACHInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setPRACHRACHInfoModeSpecificInfo(pRACHRACHInfoModeSpecificInfo);
+}
 
 const void *TDD768PRACHCCodeList::choicesInfo[2] = {
 	&TDD768PRACHCCodeListSf32::theInfo,
@@ -25674,6 +29072,11 @@ const PRACHRACHInfoVHCRr7::Info PRACHRACHInfoVHCRr7::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+PRACHRACHInfoVHCRr7::PRACHRACHInfoVHCRr7(const TimeslotNumber& timeslot, const TDD768PRACHCCodeList& channelisationCodeList, const PRACHMidamble& prachMidamble) : Sequence(&theInfo) {
+	setTimeslot(timeslot);
+	setChannelisationCodeList(channelisationCodeList);
+	setPrachMidamble(prachMidamble);
+}
 
 const void *PRACHRACHInfoLCRv770ext::itemsInfo[1] = {
 	&SyncULCodesBitmap::theInfo,
@@ -25690,6 +29093,9 @@ const PRACHRACHInfoLCRv770ext::Info PRACHRACHInfoLCRv770ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+PRACHRACHInfoLCRv770ext::PRACHRACHInfoLCRv770ext(const SyncULCodesBitmap& eRUCCHSyncULCodesBitmap) : Sequence(&theInfo) {
+	setERUCCHSyncULCodesBitmap(eRUCCHSyncULCodesBitmap);
+}
 
 const void *SYNCULInfor4::itemsInfo[5] = {
 	&SyncULCodesBitmap::theInfo,
@@ -25714,6 +29120,13 @@ const SYNCULInfor4::Info SYNCULInfor4::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+SYNCULInfor4::SYNCULInfor4(const SyncULCodesBitmap& syncULCodesBitmap, const SYNCULInfor4PrxUpPCHdes& sYNCULInfor4PrxUpPCHdes, const SYNCULInfor4PowerRampStep& sYNCULInfor4PowerRampStep, const SYNCULInfor4max_SYNC_UL_Transmissions& sYNCULInfor4max_SYNC_UL_Transmissions, const SYNCULInfor4Mmax& sYNCULInfor4Mmax) : Sequence(&theInfo) {
+	setSyncULCodesBitmap(syncULCodesBitmap);
+	setSYNCULInfor4PrxUpPCHdes(sYNCULInfor4PrxUpPCHdes);
+	setSYNCULInfor4PowerRampStep(sYNCULInfor4PowerRampStep);
+	setSYNCULInfor4max_SYNC_UL_Transmissions(sYNCULInfor4max_SYNC_UL_Transmissions);
+	setSYNCULInfor4Mmax(sYNCULInfor4Mmax);
+}
 
 const void *PRACHRACHInfoLCRr4::itemsInfo[2] = {
 	&SYNCULInfor4::theInfo,
@@ -25732,6 +29145,10 @@ const PRACHRACHInfoLCRr4::Info PRACHRACHInfoLCRr4::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+PRACHRACHInfoLCRr4::PRACHRACHInfoLCRr4(const SYNCULInfor4& syncULInfo, const PRACHRACHInfoLCRr4PrachDefinitionList& pRACHRACHInfoLCRr4PrachDefinitionList) : Sequence(&theInfo) {
+	setSyncULInfo(syncULInfo);
+	setPRACHRACHInfoLCRr4PrachDefinitionList(pRACHRACHInfoLCRr4PrachDefinitionList);
+}
 
 const void *PRACHSystemInformationModeSpecificInfoFdd::itemsInfo[5] = {
 	&PrimaryCPICHTXPower::theInfo,
@@ -25799,6 +29216,11 @@ const PRACHSystemInformation::Info PRACHSystemInformation::theInfo = {
 	itemsPres,
 	8, 5, 0
 };
+PRACHSystemInformation::PRACHSystemInformation(const PRACHRACHInfo& prachRACHInfo, const TransportChannelIdentity& transportChannelIdentity, const PRACHSystemInformationModeSpecificInfo& pRACHSystemInformationModeSpecificInfo) : Sequence(&theInfo) {
+	setPrachRACHInfo(prachRACHInfo);
+	setTransportChannelIdentity(transportChannelIdentity);
+	setPRACHSystemInformationModeSpecificInfo(pRACHSystemInformationModeSpecificInfo);
+}
 
 const void *PRACHSystemInformationVHCRr7::itemsInfo[2] = {
 	&PRACHRACHInfoVHCRr7::theInfo,
@@ -25817,6 +29239,9 @@ const PRACHSystemInformationVHCRr7::Info PRACHSystemInformationVHCRr7::theInfo =
 	itemsPres,
 	2, 1, 0
 };
+PRACHSystemInformationVHCRr7::PRACHSystemInformationVHCRr7(const PRACHRACHInfoVHCRr7& prachRACHInfo) : Sequence(&theInfo) {
+	setPrachRACHInfo(prachRACHInfo);
+}
 
 const void *PRACHSystemInformationLCRr4::itemsInfo[3] = {
 	&PRACHRACHInfoLCRr4::theInfo,
@@ -25837,6 +29262,9 @@ const PRACHSystemInformationLCRr4::Info PRACHSystemInformationLCRr4::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+PRACHSystemInformationLCRr4::PRACHSystemInformationLCRr4(const PRACHRACHInfoLCRr4& prachRACHInfoLCR) : Sequence(&theInfo) {
+	setPrachRACHInfoLCR(prachRACHInfoLCR);
+}
 
 const void *PRACHSystemInformationLCRv770ext::itemsInfo[1] = {
 	&PRACHRACHInfoLCRv770ext::theInfo,
@@ -25853,6 +29281,9 @@ const PRACHSystemInformationLCRv770ext::Info PRACHSystemInformationLCRv770ext::t
 	itemsPres,
 	1, 0, 0
 };
+PRACHSystemInformationLCRv770ext::PRACHSystemInformationLCRv770ext(const PRACHRACHInfoLCRv770ext& prachRACHInfoLCR) : Sequence(&theInfo) {
+	setPrachRACHInfoLCR(prachRACHInfoLCR);
+}
 
 const void *PrimaryCCPCHInfoLCRr4::itemsInfo[3] = {
 	&PrimaryCCPCHInfoLCRr4TstdIndicator::theInfo,
@@ -25873,6 +29304,10 @@ const PrimaryCCPCHInfoLCRr4::Info PrimaryCCPCHInfoLCRr4::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+PrimaryCCPCHInfoLCRr4::PrimaryCCPCHInfoLCRr4(const PrimaryCCPCHInfoLCRr4TstdIndicator& primaryCCPCHInfoLCRr4TstdIndicator, const PrimaryCCPCHInfoLCRr4SctdIndicator& primaryCCPCHInfoLCRr4SctdIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfoLCRr4TstdIndicator(primaryCCPCHInfoLCRr4TstdIndicator);
+	setPrimaryCCPCHInfoLCRr4SctdIndicator(primaryCCPCHInfoLCRr4SctdIndicator);
+}
 
 const void *PrimaryCCPCHInfoLCRr4ext::itemsInfo[1] = {
 	&PrimaryCCPCHInfoLCRr4extTstdIndicator::theInfo,
@@ -25889,6 +29324,9 @@ const PrimaryCCPCHInfoLCRr4ext::Info PrimaryCCPCHInfoLCRr4ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+PrimaryCCPCHInfoLCRr4ext::PrimaryCCPCHInfoLCRr4ext(const PrimaryCCPCHInfoLCRr4extTstdIndicator& primaryCCPCHInfoLCRr4extTstdIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfoLCRr4extTstdIndicator(primaryCCPCHInfoLCRr4extTstdIndicator);
+}
 
 const void *PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration::itemsInfo[2] = {
 	&TFCSIdentityPlain::theInfo,
@@ -25907,6 +29345,9 @@ const PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfigu
 	itemsPres,
 	2, 1, 0
 };
+PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration::PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration(const PUSCHIdentity& puschIdentity) : Sequence(&theInfo) {
+	setPuschIdentity(puschIdentity);
+}
 
 const void *UplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutive::itemsInfo[1] = {
 	&UplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots::theInfo,
@@ -25923,6 +29364,9 @@ const UplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutive::Info Upli
 	itemsPres,
 	1, 0, 0
 };
+UplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutive::UplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutive(const UplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots& uplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots) : Sequence(&theInfo) {
+	setUplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots(uplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots);
+}
 
 const void *UplinkAdditionalTimeslotsParametersSameAsLast::itemsInfo[1] = {
 	&TimeslotNumber::theInfo,
@@ -25939,6 +29383,9 @@ const UplinkAdditionalTimeslotsParametersSameAsLast::Info UplinkAdditionalTimesl
 	itemsPres,
 	1, 0, 0
 };
+UplinkAdditionalTimeslotsParametersSameAsLast::UplinkAdditionalTimeslotsParametersSameAsLast(const TimeslotNumber& timeslotNumber) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+}
 
 const void *UplinkAdditionalTimeslotsParametersNewParameters::itemsInfo[2] = {
 	&IndividualTimeslotInfo::theInfo,
@@ -25957,6 +29404,10 @@ const UplinkAdditionalTimeslotsParametersNewParameters::Info UplinkAdditionalTim
 	itemsPres,
 	2, 0, 0
 };
+UplinkAdditionalTimeslotsParametersNewParameters::UplinkAdditionalTimeslotsParametersNewParameters(const IndividualTimeslotInfo& individualTimeslotInfo, const ULTSChannelisationCodeList& ulTSChannelisationCodeList) : Sequence(&theInfo) {
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+	setUlTSChannelisationCodeList(ulTSChannelisationCodeList);
+}
 
 const void *UplinkAdditionalTimeslotsParameters::choicesInfo[2] = {
 	&UplinkAdditionalTimeslotsParametersSameAsLast::theInfo,
@@ -25986,6 +29437,9 @@ const UplinkAdditionalTimeslots::Info UplinkAdditionalTimeslots::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+UplinkAdditionalTimeslots::UplinkAdditionalTimeslots(const UplinkAdditionalTimeslotsParameters& uplinkAdditionalTimeslotsParameters) : Sequence(&theInfo) {
+	setUplinkAdditionalTimeslotsParameters(uplinkAdditionalTimeslotsParameters);
+}
 
 const void *UplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslots::choicesInfo[2] = {
 	&UplinkTimeslotsCodesMoreTimeslotsAdditionalTimeslotsConsecutive::theInfo,
@@ -26034,6 +29488,12 @@ const UplinkTimeslotsCodes::Info UplinkTimeslotsCodes::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+UplinkTimeslotsCodes::UplinkTimeslotsCodes(const UplinkTimeslotsCodesDynamicSFusage& uplinkTimeslotsCodesDynamicSFusage, const IndividualTimeslotInfo& firstIndividualTimeslotInfo, const ULTSChannelisationCodeList& ulTSChannelisationCodeList, const UplinkTimeslotsCodesMoreTimeslots& uplinkTimeslotsCodesMoreTimeslots) : Sequence(&theInfo) {
+	setUplinkTimeslotsCodesDynamicSFusage(uplinkTimeslotsCodesDynamicSFusage);
+	setFirstIndividualTimeslotInfo(firstIndividualTimeslotInfo);
+	setUlTSChannelisationCodeList(ulTSChannelisationCodeList);
+	setUplinkTimeslotsCodesMoreTimeslots(uplinkTimeslotsCodesMoreTimeslots);
+}
 
 const void *PUSCHInfo::itemsInfo[3] = {
 	&TFCSIdentityPlain::theInfo,
@@ -26072,6 +29532,9 @@ const PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfigu
 	itemsPres,
 	2, 1, 0
 };
+PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfigurationNewConfiguration::PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfigurationNewConfiguration(const PUSCHInfo& puschInfo) : Sequence(&theInfo) {
+	setPuschInfo(puschInfo);
+}
 
 const void *PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfiguration::choicesInfo[2] = {
 	&PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration::theInfo,
@@ -26105,6 +29568,9 @@ const PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignment::Info 
 	itemsPres,
 	3, 2, 0
 };
+PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignment::PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationAssignment(const AllocationPeriodInfo& puschAllocationPeriodInfo) : Sequence(&theInfo) {
+	setPuschAllocationPeriodInfo(puschAllocationPeriodInfo);
+}
 
 const void *PUSCHCapacityAllocationInfoPuschAllocation::choicesInfo[2] = {
 	&PUSCHCapacityAllocationInfoPuschAllocationPuschAllocationPending::theInfo,
@@ -26181,6 +29647,10 @@ const PUSCHPowerControlInfor4::Info PUSCHPowerControlInfor4::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+PUSCHPowerControlInfor4::PUSCHPowerControlInfor4(const ULTargetSIR& ulTargetSIR, const PUSCHPowerControlInfor4TddOption& pUSCHPowerControlInfor4TddOption) : Sequence(&theInfo) {
+	setUlTargetSIR(ulTargetSIR);
+	setPUSCHPowerControlInfor4TddOption(pUSCHPowerControlInfor4TddOption);
+}
 
 const void *PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration::itemsInfo[2] = {
 	&TFCSIdentityPlain::theInfo,
@@ -26199,6 +29669,9 @@ const PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfi
 	itemsPres,
 	2, 1, 0
 };
+PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration::PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration(const PUSCHIdentity& puschIdentity) : Sequence(&theInfo) {
+	setPuschIdentity(puschIdentity);
+}
 
 const void *PUSCHInfor4TddOptionTdd384::itemsInfo[1] = {
 	&UplinkTimeslotsCodes::theInfo,
@@ -26231,6 +29704,9 @@ const UplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsConsecutive::Info
 	itemsPres,
 	1, 0, 0
 };
+UplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsConsecutive::UplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsConsecutive(const UplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots& uplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots) : Sequence(&theInfo) {
+	setUplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots(uplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots);
+}
 
 const void *UplinkAdditionalTimeslotsLCRr4ParametersSameAsLast::itemsInfo[1] = {
 	&TimeslotNumber::theInfo,
@@ -26247,6 +29723,9 @@ const UplinkAdditionalTimeslotsLCRr4ParametersSameAsLast::Info UplinkAdditionalT
 	itemsPres,
 	1, 0, 0
 };
+UplinkAdditionalTimeslotsLCRr4ParametersSameAsLast::UplinkAdditionalTimeslotsLCRr4ParametersSameAsLast(const TimeslotNumber& timeslotNumber) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+}
 
 const void *UplinkAdditionalTimeslotsLCRr4ParametersNewParameters::itemsInfo[2] = {
 	&IndividualTimeslotInfoLCRr4::theInfo,
@@ -26265,6 +29744,10 @@ const UplinkAdditionalTimeslotsLCRr4ParametersNewParameters::Info UplinkAddition
 	itemsPres,
 	2, 0, 0
 };
+UplinkAdditionalTimeslotsLCRr4ParametersNewParameters::UplinkAdditionalTimeslotsLCRr4ParametersNewParameters(const IndividualTimeslotInfoLCRr4& individualTimeslotInfo, const ULTSChannelisationCodeList& ulTSChannelisationCodeList) : Sequence(&theInfo) {
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+	setUlTSChannelisationCodeList(ulTSChannelisationCodeList);
+}
 
 const void *UplinkAdditionalTimeslotsLCRr4Parameters::choicesInfo[2] = {
 	&UplinkAdditionalTimeslotsLCRr4ParametersSameAsLast::theInfo,
@@ -26294,6 +29777,9 @@ const UplinkAdditionalTimeslotsLCRr4::Info UplinkAdditionalTimeslotsLCRr4::theIn
 	itemsPres,
 	1, 0, 0
 };
+UplinkAdditionalTimeslotsLCRr4::UplinkAdditionalTimeslotsLCRr4(const UplinkAdditionalTimeslotsLCRr4Parameters& uplinkAdditionalTimeslotsLCRr4Parameters) : Sequence(&theInfo) {
+	setUplinkAdditionalTimeslotsLCRr4Parameters(uplinkAdditionalTimeslotsLCRr4Parameters);
+}
 
 const void *UplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslots::choicesInfo[2] = {
 	&UplinkTimeslotsCodesLCRr4MoreTimeslotsAdditionalTimeslotsConsecutive::theInfo,
@@ -26342,6 +29828,12 @@ const UplinkTimeslotsCodesLCRr4::Info UplinkTimeslotsCodesLCRr4::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+UplinkTimeslotsCodesLCRr4::UplinkTimeslotsCodesLCRr4(const UplinkTimeslotsCodesLCRr4DynamicSFusage& uplinkTimeslotsCodesLCRr4DynamicSFusage, const IndividualTimeslotInfoLCRr4& firstIndividualTimeslotInfo, const ULTSChannelisationCodeList& ulTSChannelisationCodeList, const UplinkTimeslotsCodesLCRr4MoreTimeslots& uplinkTimeslotsCodesLCRr4MoreTimeslots) : Sequence(&theInfo) {
+	setUplinkTimeslotsCodesLCRr4DynamicSFusage(uplinkTimeslotsCodesLCRr4DynamicSFusage);
+	setFirstIndividualTimeslotInfo(firstIndividualTimeslotInfo);
+	setUlTSChannelisationCodeList(ulTSChannelisationCodeList);
+	setUplinkTimeslotsCodesLCRr4MoreTimeslots(uplinkTimeslotsCodesLCRr4MoreTimeslots);
+}
 
 const void *PUSCHInfor4TddOptionTdd128::itemsInfo[1] = {
 	&UplinkTimeslotsCodesLCRr4::theInfo,
@@ -26391,6 +29883,9 @@ const PUSCHInfor4::Info PUSCHInfor4::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+PUSCHInfor4::PUSCHInfor4(const PUSCHInfor4TddOption& pUSCHInfor4TddOption) : Sequence(&theInfo) {
+	setPUSCHInfor4TddOption(pUSCHInfor4TddOption);
+}
 
 const void *PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfigurationNewConfiguration::itemsInfo[2] = {
 	&PUSCHInfor4::theInfo,
@@ -26409,6 +29904,9 @@ const PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfi
 	itemsPres,
 	2, 1, 0
 };
+PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfigurationNewConfiguration::PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfigurationNewConfiguration(const PUSCHInfor4& puschInfo) : Sequence(&theInfo) {
+	setPuschInfo(puschInfo);
+}
 
 const void *PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfiguration::choicesInfo[2] = {
 	&PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration::theInfo,
@@ -26442,6 +29940,9 @@ const PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignment::Inf
 	itemsPres,
 	3, 2, 0
 };
+PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignment::PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationAssignment(const AllocationPeriodInfo& puschAllocationPeriodInfo) : Sequence(&theInfo) {
+	setPuschAllocationPeriodInfo(puschAllocationPeriodInfo);
+}
 
 const void *PUSCHCapacityAllocationInfor4PuschAllocation::choicesInfo[2] = {
 	&PUSCHCapacityAllocationInfor4PuschAllocationPuschAllocationPending::theInfo,
@@ -26519,6 +30020,10 @@ const PUSCHPowerControlInfor7::Info PUSCHPowerControlInfor7::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+PUSCHPowerControlInfor7::PUSCHPowerControlInfor7(const ULTargetSIR& ulTargetSIR, const PUSCHPowerControlInfor7TddOption& pUSCHPowerControlInfor7TddOption) : Sequence(&theInfo) {
+	setUlTargetSIR(ulTargetSIR);
+	setPUSCHPowerControlInfor7TddOption(pUSCHPowerControlInfor7TddOption);
+}
 
 const void *PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration::itemsInfo[2] = {
 	&TFCSIdentityPlain::theInfo,
@@ -26537,6 +30042,9 @@ const PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfi
 	itemsPres,
 	2, 1, 0
 };
+PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration::PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration(const PUSCHIdentity& puschIdentity) : Sequence(&theInfo) {
+	setPuschIdentity(puschIdentity);
+}
 
 const void *UplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutive::itemsInfo[1] = {
 	&UplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots::theInfo,
@@ -26553,6 +30061,9 @@ const UplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutive::Info 
 	itemsPres,
 	1, 0, 0
 };
+UplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutive::UplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutive(const UplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots& uplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots) : Sequence(&theInfo) {
+	setUplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots(uplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots);
+}
 
 const void *UplinkAdditionalTimeslotsVHCRParametersSameAsLast::itemsInfo[1] = {
 	&TimeslotNumber::theInfo,
@@ -26569,6 +30080,9 @@ const UplinkAdditionalTimeslotsVHCRParametersSameAsLast::Info UplinkAdditionalTi
 	itemsPres,
 	1, 0, 0
 };
+UplinkAdditionalTimeslotsVHCRParametersSameAsLast::UplinkAdditionalTimeslotsVHCRParametersSameAsLast(const TimeslotNumber& timeslotNumber) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+}
 
 const void *UplinkAdditionalTimeslotsVHCRParametersNewParameters::itemsInfo[2] = {
 	&IndividualTimeslotInfoVHCR::theInfo,
@@ -26587,6 +30101,10 @@ const UplinkAdditionalTimeslotsVHCRParametersNewParameters::Info UplinkAdditiona
 	itemsPres,
 	2, 0, 0
 };
+UplinkAdditionalTimeslotsVHCRParametersNewParameters::UplinkAdditionalTimeslotsVHCRParametersNewParameters(const IndividualTimeslotInfoVHCR& individualTimeslotInfo, const ULTSChannelisationCodeList& ulTSChannelisationCodeList) : Sequence(&theInfo) {
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+	setUlTSChannelisationCodeList(ulTSChannelisationCodeList);
+}
 
 const void *UplinkAdditionalTimeslotsVHCRParameters::choicesInfo[2] = {
 	&UplinkAdditionalTimeslotsVHCRParametersSameAsLast::theInfo,
@@ -26616,6 +30134,9 @@ const UplinkAdditionalTimeslotsVHCR::Info UplinkAdditionalTimeslotsVHCR::theInfo
 	itemsPres,
 	1, 0, 0
 };
+UplinkAdditionalTimeslotsVHCR::UplinkAdditionalTimeslotsVHCR(const UplinkAdditionalTimeslotsVHCRParameters& uplinkAdditionalTimeslotsVHCRParameters) : Sequence(&theInfo) {
+	setUplinkAdditionalTimeslotsVHCRParameters(uplinkAdditionalTimeslotsVHCRParameters);
+}
 
 const void *UplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslots::choicesInfo[2] = {
 	&UplinkTimeslotsCodesVHCRMoreTimeslotsAdditionalTimeslotsConsecutive::theInfo,
@@ -26664,6 +30185,12 @@ const UplinkTimeslotsCodesVHCR::Info UplinkTimeslotsCodesVHCR::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+UplinkTimeslotsCodesVHCR::UplinkTimeslotsCodesVHCR(const UplinkTimeslotsCodesVHCRDynamicSFusage& uplinkTimeslotsCodesVHCRDynamicSFusage, const IndividualTimeslotInfoVHCR& firstIndividualTimeslotInfo, const ULTSChannelisationCodeListVHCR& ulTSChannelisationCodeList, const UplinkTimeslotsCodesVHCRMoreTimeslots& uplinkTimeslotsCodesVHCRMoreTimeslots) : Sequence(&theInfo) {
+	setUplinkTimeslotsCodesVHCRDynamicSFusage(uplinkTimeslotsCodesVHCRDynamicSFusage);
+	setFirstIndividualTimeslotInfo(firstIndividualTimeslotInfo);
+	setUlTSChannelisationCodeList(ulTSChannelisationCodeList);
+	setUplinkTimeslotsCodesVHCRMoreTimeslots(uplinkTimeslotsCodesVHCRMoreTimeslots);
+}
 
 const void *PUSCHInfoVHCR::itemsInfo[3] = {
 	&TFCSIdentityPlain::theInfo,
@@ -26702,6 +30229,9 @@ const PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfi
 	itemsPres,
 	2, 1, 0
 };
+PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfigurationNewConfiguration::PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfigurationNewConfiguration(const PUSCHInfoVHCR& puschInfo) : Sequence(&theInfo) {
+	setPuschInfo(puschInfo);
+}
 
 const void *PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfiguration::choicesInfo[2] = {
 	&PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignmentConfigurationOldConfiguration::theInfo,
@@ -26735,6 +30265,9 @@ const PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignment::Inf
 	itemsPres,
 	3, 2, 0
 };
+PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignment::PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationAssignment(const AllocationPeriodInfo& puschAllocationPeriodInfo) : Sequence(&theInfo) {
+	setPuschAllocationPeriodInfo(puschAllocationPeriodInfo);
+}
 
 const void *PUSCHCapacityAllocationInfor7PuschAllocation::choicesInfo[2] = {
 	&PUSCHCapacityAllocationInfor7PuschAllocationPuschAllocationPending::theInfo,
@@ -26806,6 +30339,10 @@ const PUSCHSysInfo::Info PUSCHSysInfo::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+PUSCHSysInfo::PUSCHSysInfo(const PUSCHIdentity& puschIdentity, const PUSCHInfo& puschInfo) : Sequence(&theInfo) {
+	setPuschIdentity(puschIdentity);
+	setPuschInfo(puschInfo);
+}
 
 const void *PUSCHSysInfoVHCR::itemsInfo[4] = {
 	&PUSCHIdentity::theInfo,
@@ -26828,6 +30365,10 @@ const PUSCHSysInfoVHCR::Info PUSCHSysInfoVHCR::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+PUSCHSysInfoVHCR::PUSCHSysInfoVHCR(const PUSCHIdentity& puschIdentity, const PUSCHInfoVHCR& puschInfoVHCR) : Sequence(&theInfo) {
+	setPuschIdentity(puschIdentity);
+	setPuschInfoVHCR(puschInfoVHCR);
+}
 
 const void *PUSCHSysInfoHCRr5::itemsInfo[4] = {
 	&PUSCHIdentity::theInfo,
@@ -26850,6 +30391,10 @@ const PUSCHSysInfoHCRr5::Info PUSCHSysInfoHCRr5::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+PUSCHSysInfoHCRr5::PUSCHSysInfoHCRr5(const PUSCHIdentity& puschIdentity, const PUSCHInfo& puschInfo) : Sequence(&theInfo) {
+	setPuschIdentity(puschIdentity);
+	setPuschInfo(puschInfo);
+}
 
 const void *PUSCHSysInfoLCRr4::itemsInfo[4] = {
 	&PUSCHIdentity::theInfo,
@@ -26872,6 +30417,10 @@ const PUSCHSysInfoLCRr4::Info PUSCHSysInfoLCRr4::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+PUSCHSysInfoLCRr4::PUSCHSysInfoLCRr4(const PUSCHIdentity& puschIdentity, const PUSCHInfoLCRr4& puschInfo) : Sequence(&theInfo) {
+	setPuschIdentity(puschIdentity);
+	setPuschInfo(puschInfo);
+}
 
 const void *PUSCHSysInfoListSFN::itemsInfo[0] = {
 };
@@ -26987,6 +30536,11 @@ const RLAdditionInformation::Info RLAdditionInformation::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+RLAdditionInformation::RLAdditionInformation(const PrimaryCPICHInfo& primaryCPICHInfo, const DLDPCHInfoPerRL& dlDPCHInfoPerRL, const RLAdditionInformationDummy& rLAdditionInformationDummy) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setDlDPCHInfoPerRL(dlDPCHInfoPerRL);
+	setRLAdditionInformationDummy(rLAdditionInformationDummy);
+}
 
 const void *RLAdditionInformationr6DldpchInfo::choicesInfo[2] = {
 	&DLDPCHInfoPerRLr5::theInfo,
@@ -27024,6 +30578,10 @@ const RLAdditionInformationr6::Info RLAdditionInformationr6::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+RLAdditionInformationr6::RLAdditionInformationr6(const PrimaryCPICHInfo& primaryCPICHInfo, const RLAdditionInformationr6DldpchInfo& rLAdditionInformationr6DldpchInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setRLAdditionInformationr6DldpchInfo(rLAdditionInformationr6DldpchInfo);
+}
 
 const void *RLAdditionInformationr7DldpchInfo::choicesInfo[2] = {
 	&DLDPCHInfoPerRLr5::theInfo,
@@ -27061,6 +30619,10 @@ const RLAdditionInformationr7::Info RLAdditionInformationr7::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+RLAdditionInformationr7::RLAdditionInformationr7(const PrimaryCPICHInfo& primaryCPICHInfo, const RLAdditionInformationr7DldpchInfo& rLAdditionInformationr7DldpchInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setRLAdditionInformationr7DldpchInfo(rLAdditionInformationr7DldpchInfo);
+}
 
 const void *RLAdditionInformationr8DldpchInfo::choicesInfo[2] = {
 	&DLDPCHInfoPerRLr5::theInfo,
@@ -27103,6 +30665,9 @@ const DTXDRXTimingInfor7::Info DTXDRXTimingInfor7::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DTXDRXTimingInfor7::DTXDRXTimingInfor7(const DTXDRXTimingInfor7Timing& dTXDRXTimingInfor7Timing) : Sequence(&theInfo) {
+	setDTXDRXTimingInfor7Timing(dTXDRXTimingInfor7Timing);
+}
 
 const void *TargetCellPreconfigInfo::itemsInfo[11] = {
 	&ActivationTimeOffset::theInfo,
@@ -27139,6 +30704,11 @@ const TargetCellPreconfigInfo::Info TargetCellPreconfigInfo::theInfo = {
 	itemsPres,
 	11, 8, 0
 };
+TargetCellPreconfigInfo::TargetCellPreconfigInfo(const HRNTI& newHRNTI, const ServingHSDSCHCellInformationr8& servingHSDSCHCellInformation, const EDCHReconfigurationInfor7& edchReconfigurationInfo) : Sequence(&theInfo) {
+	setNewHRNTI(newHRNTI);
+	setServingHSDSCHCellInformation(servingHSDSCHCellInformation);
+	setEdchReconfigurationInfo(edchReconfigurationInfo);
+}
 
 const void *RLAdditionInformationr8::itemsInfo[6] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -27165,6 +30735,10 @@ const RLAdditionInformationr8::Info RLAdditionInformationr8::theInfo = {
 	itemsPres,
 	6, 4, 0
 };
+RLAdditionInformationr8::RLAdditionInformationr8(const PrimaryCPICHInfo& primaryCPICHInfo, const RLAdditionInformationr8DldpchInfo& rLAdditionInformationr8DldpchInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setRLAdditionInformationr8DldpchInfo(rLAdditionInformationr8DldpchInfo);
+}
 
 const void *RLAdditionInformationr9DldpchInfo::choicesInfo[2] = {
 	&DLDPCHInfoPerRLr5::theInfo,
@@ -27218,6 +30792,11 @@ const TargetCellPreconfigInfor9::Info TargetCellPreconfigInfor9::theInfo = {
 	itemsPres,
 	13, 10, 0
 };
+TargetCellPreconfigInfor9::TargetCellPreconfigInfor9(const HRNTI& newHRNTI, const ServingHSDSCHCellInformationr9& servingHSDSCHCellInformation, const EDCHReconfigurationInfor7& edchReconfigurationInfo) : Sequence(&theInfo) {
+	setNewHRNTI(newHRNTI);
+	setServingHSDSCHCellInformation(servingHSDSCHCellInformation);
+	setEdchReconfigurationInfo(edchReconfigurationInfo);
+}
 
 const void *RLAdditionInformationr9::itemsInfo[6] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -27244,6 +30823,10 @@ const RLAdditionInformationr9::Info RLAdditionInformationr9::theInfo = {
 	itemsPres,
 	6, 4, 0
 };
+RLAdditionInformationr9::RLAdditionInformationr9(const PrimaryCPICHInfo& primaryCPICHInfo, const RLAdditionInformationr9DldpchInfo& rLAdditionInformationr9DldpchInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setRLAdditionInformationr9DldpchInfo(rLAdditionInformationr9DldpchInfo);
+}
 
 const void *RLAdditionInformationv6b0ext::itemsInfo[1] = {
 	&STTDIndication::theInfo,
@@ -27332,6 +30915,11 @@ const RLAdditionInformationSecULFreq::Info RLAdditionInformationSecULFreq::theIn
 	itemsPres,
 	5, 2, 0
 };
+RLAdditionInformationSecULFreq::RLAdditionInformationSecULFreq(const PrimaryCPICHInfo& primaryCPICHInfo, const DLFDPCHInfoPerRLr7& dlFDPCHInfoPerRL, const EHICHInformation& eHICHInformation) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setDlFDPCHInfoPerRL(dlFDPCHInfoPerRL);
+	setEHICHInformation(eHICHInformation);
+}
 
 const void *SCCPCHSystemInformation::itemsInfo[4] = {
 	&SecondaryCCPCHInfo::theInfo,
@@ -27354,6 +30942,9 @@ const SCCPCHSystemInformation::Info SCCPCHSystemInformation::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+SCCPCHSystemInformation::SCCPCHSystemInformation(const SecondaryCCPCHInfo& secondaryCCPCHInfo) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfo(secondaryCCPCHInfo);
+}
 
 const void *SecondaryCCPCHInfoLCRr4ext::itemsInfo[1] = {
 	&IndividualTimeslotInfoLCRr4ext::theInfo,
@@ -27370,6 +30961,9 @@ const SecondaryCCPCHInfoLCRr4ext::Info SecondaryCCPCHInfoLCRr4ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+SecondaryCCPCHInfoLCRr4ext::SecondaryCCPCHInfoLCRr4ext(const IndividualTimeslotInfoLCRr4ext& individualTimeslotLCRExt) : Sequence(&theInfo) {
+	setIndividualTimeslotLCRExt(individualTimeslotLCRExt);
+}
 
 const void *SCCPCHSystemInformationLCRr4ext::itemsInfo[2] = {
 	&SecondaryCCPCHInfoLCRr4ext::theInfo,
@@ -27388,6 +30982,9 @@ const SCCPCHSystemInformationLCRr4ext::Info SCCPCHSystemInformationLCRr4ext::the
 	itemsPres,
 	2, 1, 0
 };
+SCCPCHSystemInformationLCRr4ext::SCCPCHSystemInformationLCRr4ext(const SecondaryCCPCHInfoLCRr4ext& secondaryCCPCHLCRExtensions) : Sequence(&theInfo) {
+	setSecondaryCCPCHLCRExtensions(secondaryCCPCHLCRExtensions);
+}
 
 const void *SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfoTdd384::itemsInfo[2] = {
 	&IndividualTimeslotInfor7::theInfo,
@@ -27406,6 +31003,10 @@ const SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfoTdd384::Info SecondaryCCPCHInfo
 	itemsPres,
 	2, 0, 0
 };
+SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfoTdd384::SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfoTdd384(const IndividualTimeslotInfor7& individualTimeslotInfo, const SCCPCHChannelisationCodeList& channelisationCode) : Sequence(&theInfo) {
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+	setChannelisationCode(channelisationCode);
+}
 
 const void *SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfoTdd768::itemsInfo[2] = {
 	&IndividualTimeslotInfoVHCR::theInfo,
@@ -27424,6 +31025,10 @@ const SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfoTdd768::Info SecondaryCCPCHInfo
 	itemsPres,
 	2, 0, 0
 };
+SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfoTdd768::SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfoTdd768(const IndividualTimeslotInfoVHCR& individualTimeslotInfo, const SCCPCHChannelisationCodeListVHCR& channelisationCode) : Sequence(&theInfo) {
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+	setChannelisationCode(channelisationCode);
+}
 
 const void *SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfo::choicesInfo[2] = {
 	&SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfoTdd384::theInfo,
@@ -27453,6 +31058,9 @@ const SecondaryCCPCHInfoHCRVHCRr7::Info SecondaryCCPCHInfoHCRVHCRr7::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+SecondaryCCPCHInfoHCRVHCRr7::SecondaryCCPCHInfoHCRVHCRr7(const SecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfo& secondaryCCPCHInfoHCRVHCRr7ModeSpecificInfo) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfoHCRVHCRr7ModeSpecificInfo(secondaryCCPCHInfoHCRVHCRr7ModeSpecificInfo);
+}
 
 const void *SCCPCHSystemInformationHCRVHCRr7::itemsInfo[4] = {
 	&SecondaryCCPCHInfoHCRVHCRr7::theInfo,
@@ -27475,6 +31083,9 @@ const SCCPCHSystemInformationHCRVHCRr7::Info SCCPCHSystemInformationHCRVHCRr7::t
 	itemsPres,
 	4, 3, 0
 };
+SCCPCHSystemInformationHCRVHCRr7::SCCPCHSystemInformationHCRVHCRr7(const SecondaryCCPCHInfoHCRVHCRr7& secondaryCCPCHInfo) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfo(secondaryCCPCHInfo);
+}
 
 const void *SecondaryCCPCHInfoMBMSr6ModeSpecificInfoFdd::itemsInfo[4] = {
 	&SecondaryScramblingCode::theInfo,
@@ -27497,6 +31108,10 @@ const SecondaryCCPCHInfoMBMSr6ModeSpecificInfoFdd::Info SecondaryCCPCHInfoMBMSr6
 	itemsPres,
 	4, 2, 0
 };
+SecondaryCCPCHInfoMBMSr6ModeSpecificInfoFdd::SecondaryCCPCHInfoMBMSr6ModeSpecificInfoFdd(const SecondaryCCPCHInfoMBMSr6ModeSpecificInfoFddSttdIndicator& secondaryCCPCHInfoMBMSr6ModeSpecificInfoFddSttdIndicator, const SF256AndCodeNumber& sfAndCodeNumber) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfoMBMSr6ModeSpecificInfoFddSttdIndicator(secondaryCCPCHInfoMBMSr6ModeSpecificInfoFddSttdIndicator);
+	setSfAndCodeNumber(sfAndCodeNumber);
+}
 
 const void *SecondaryCCPCHInfoMBMSr6ModeSpecificInfoTdd384::itemsInfo[2] = {
 	&CommonTimeslotInfoMBMS::theInfo,
@@ -27515,6 +31130,10 @@ const SecondaryCCPCHInfoMBMSr6ModeSpecificInfoTdd384::Info SecondaryCCPCHInfoMBM
 	itemsPres,
 	2, 0, 0
 };
+SecondaryCCPCHInfoMBMSr6ModeSpecificInfoTdd384::SecondaryCCPCHInfoMBMSr6ModeSpecificInfoTdd384(const CommonTimeslotInfoMBMS& commonTimeslotInfoMBMS, const DownlinkTimeslotsCodes& downlinkTimeslotsCodes) : Sequence(&theInfo) {
+	setCommonTimeslotInfoMBMS(commonTimeslotInfoMBMS);
+	setDownlinkTimeslotsCodes(downlinkTimeslotsCodes);
+}
 
 const void *SecondaryCCPCHInfoMBMSr6ModeSpecificInfoTdd128::itemsInfo[2] = {
 	&CommonTimeslotInfoMBMS::theInfo,
@@ -27533,6 +31152,10 @@ const SecondaryCCPCHInfoMBMSr6ModeSpecificInfoTdd128::Info SecondaryCCPCHInfoMBM
 	itemsPres,
 	2, 0, 0
 };
+SecondaryCCPCHInfoMBMSr6ModeSpecificInfoTdd128::SecondaryCCPCHInfoMBMSr6ModeSpecificInfoTdd128(const CommonTimeslotInfoMBMS& commonTimeslotInfoMBMS, const DownlinkTimeslotsCodesLCRr4& downlinkTimeslotsCodes) : Sequence(&theInfo) {
+	setCommonTimeslotInfoMBMS(commonTimeslotInfoMBMS);
+	setDownlinkTimeslotsCodes(downlinkTimeslotsCodes);
+}
 
 const void *SecondaryCCPCHInfoMBMSr6ModeSpecificInfo::choicesInfo[3] = {
 	&SecondaryCCPCHInfoMBMSr6ModeSpecificInfoFdd::theInfo,
@@ -27587,6 +31210,12 @@ const MBMSMCCHConfigurationInfor6::Info MBMSMCCHConfigurationInfor6::theInfo = {
 	itemsPres,
 	5, 1, 0
 };
+MBMSMCCHConfigurationInfor6::MBMSMCCHConfigurationInfor6(const MBMSMCCHConfigurationInfor6AccessInfoPeriodCoefficient& mBMSMCCHConfigurationInfor6AccessInfoPeriodCoefficient, const MBMSMCCHConfigurationInfor6RepetitionPeriodCoefficient& mBMSMCCHConfigurationInfor6RepetitionPeriodCoefficient, const MBMSMCCHConfigurationInfor6ModificationPeriodCoefficient& mBMSMCCHConfigurationInfor6ModificationPeriodCoefficient, const RLCInfoMCCHr6& rlcInfo) : Sequence(&theInfo) {
+	setMBMSMCCHConfigurationInfor6AccessInfoPeriodCoefficient(mBMSMCCHConfigurationInfor6AccessInfoPeriodCoefficient);
+	setMBMSMCCHConfigurationInfor6RepetitionPeriodCoefficient(mBMSMCCHConfigurationInfor6RepetitionPeriodCoefficient);
+	setMBMSMCCHConfigurationInfor6ModificationPeriodCoefficient(mBMSMCCHConfigurationInfor6ModificationPeriodCoefficient);
+	setRlcInfo(rlcInfo);
+}
 
 const void *SCCPCHSystemInformationMBMSr6FachCarryingMCCH::itemsInfo[2] = {
 	&TransportFormatSet::theInfo,
@@ -27605,6 +31234,10 @@ const SCCPCHSystemInformationMBMSr6FachCarryingMCCH::Info SCCPCHSystemInformatio
 	itemsPres,
 	2, 0, 0
 };
+SCCPCHSystemInformationMBMSr6FachCarryingMCCH::SCCPCHSystemInformationMBMSr6FachCarryingMCCH(const TransportFormatSet& mcchtransportFormatSet, const MBMSMCCHConfigurationInfor6& mcchConfigurationInfo) : Sequence(&theInfo) {
+	setMcchtransportFormatSet(mcchtransportFormatSet);
+	setMcchConfigurationInfo(mcchConfigurationInfo);
+}
 
 const void *MBMSMSCHSchedulingInfo::choicesInfo[6] = {
 	&MBMSMSCHSchedulingInfoSchedulingPeriod32Offset::theInfo,
@@ -27660,6 +31293,10 @@ const SCCPCHSystemInformationMBMSr6FachCarryingMSCH::Info SCCPCHSystemInformatio
 	itemsPres,
 	2, 0, 0
 };
+SCCPCHSystemInformationMBMSr6FachCarryingMSCH::SCCPCHSystemInformationMBMSr6FachCarryingMSCH(const TransportFormatSet& mschtransportFormatSet, const MBMSMSCHConfigurationInfor6& dummy) : Sequence(&theInfo) {
+	setMschtransportFormatSet(mschtransportFormatSet);
+	setDummy(dummy);
+}
 
 const void *SCCPCHSystemInformationMBMSr6::itemsInfo[5] = {
 	&SecondaryCCPCHInfoMBMSr6::theInfo,
@@ -27684,6 +31321,11 @@ const SCCPCHSystemInformationMBMSr6::Info SCCPCHSystemInformationMBMSr6::theInfo
 	itemsPres,
 	5, 2, 0
 };
+SCCPCHSystemInformationMBMSr6::SCCPCHSystemInformationMBMSr6(const SecondaryCCPCHInfoMBMSr6& secondaryCCPCHInfoMBMS, const TFCS& transportFormatCombinationSet, const SCCPCHSystemInformationMBMSr6FachCarryingMCCH& sCCPCHSystemInformationMBMSr6FachCarryingMCCH) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfoMBMS(secondaryCCPCHInfoMBMS);
+	setTransportFormatCombinationSet(transportFormatCombinationSet);
+	setSCCPCHSystemInformationMBMSr6FachCarryingMCCH(sCCPCHSystemInformationMBMSr6FachCarryingMCCH);
+}
 
 const void *SecondaryCCPCHInfoMBMSr7ModeSpecificInfoFddModulation::choicesInfo[2] = {
 	&SecondaryCCPCHInfoMBMSr7ModeSpecificInfoFddModulationModQPSK::theInfo,
@@ -27721,6 +31363,10 @@ const SecondaryCCPCHInfoMBMSr7ModeSpecificInfoFdd::Info SecondaryCCPCHInfoMBMSr7
 	itemsPres,
 	5, 3, 0
 };
+SecondaryCCPCHInfoMBMSr7ModeSpecificInfoFdd::SecondaryCCPCHInfoMBMSr7ModeSpecificInfoFdd(const SecondaryCCPCHInfoMBMSr7ModeSpecificInfoFddSttdIndicator& secondaryCCPCHInfoMBMSr7ModeSpecificInfoFddSttdIndicator, const SF256AndCodeNumber& sfAndCodeNumber) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfoMBMSr7ModeSpecificInfoFddSttdIndicator(secondaryCCPCHInfoMBMSr7ModeSpecificInfoFddSttdIndicator);
+	setSfAndCodeNumber(sfAndCodeNumber);
+}
 
 const void *SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384::itemsInfo[3] = {
 	&CommonTimeslotInfoMBMS::theInfo,
@@ -27741,6 +31387,11 @@ const SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384::Info SecondaryCCPCHInfoMBM
 	itemsPres,
 	3, 0, 0
 };
+SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384::SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384(const CommonTimeslotInfoMBMS& commonTimeslotInfoMBMS, const DownlinkTimeslotsCodesr7& downlinkTimeslotsCodes, const SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384modulation& secondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384modulation) : Sequence(&theInfo) {
+	setCommonTimeslotInfoMBMS(commonTimeslotInfoMBMS);
+	setDownlinkTimeslotsCodes(downlinkTimeslotsCodes);
+	setSecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384modulation(secondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd384modulation);
+}
 
 const void *SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768::itemsInfo[3] = {
 	&CommonTimeslotInfoMBMS::theInfo,
@@ -27761,6 +31412,11 @@ const SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768::Info SecondaryCCPCHInfoMBM
 	itemsPres,
 	3, 0, 0
 };
+SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768::SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768(const CommonTimeslotInfoMBMS& commonTimeslotInfoMBMS, const DownlinkTimeslotsCodesVHCR& downlinkTimeslotsCodes, const SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768modulation& secondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768modulation) : Sequence(&theInfo) {
+	setCommonTimeslotInfoMBMS(commonTimeslotInfoMBMS);
+	setDownlinkTimeslotsCodes(downlinkTimeslotsCodes);
+	setSecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768modulation(secondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd768modulation);
+}
 
 const void *SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128::itemsInfo[4] = {
 	&CommonTimeslotInfoMBMS::theInfo,
@@ -27783,6 +31439,11 @@ const SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128::Info SecondaryCCPCHInfoMBM
 	itemsPres,
 	4, 1, 0
 };
+SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128::SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128(const CommonTimeslotInfoMBMS& commonTimeslotInfoMBMS, const DownlinkTimeslotsCodesLCRr4& downlinkTimeslotsCodes, const SecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128modulation& secondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128modulation) : Sequence(&theInfo) {
+	setCommonTimeslotInfoMBMS(commonTimeslotInfoMBMS);
+	setDownlinkTimeslotsCodes(downlinkTimeslotsCodes);
+	setSecondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128modulation(secondaryCCPCHInfoMBMSr7ModeSpecificInfoTdd128modulation);
+}
 
 const void *SecondaryCCPCHInfoMBMSr7ModeSpecificInfo::choicesInfo[4] = {
 	&SecondaryCCPCHInfoMBMSr7ModeSpecificInfoFdd::theInfo,
@@ -27832,6 +31493,10 @@ const SCCPCHSystemInformationMBMSr7FachCarryingMCCH::Info SCCPCHSystemInformatio
 	itemsPres,
 	2, 0, 0
 };
+SCCPCHSystemInformationMBMSr7FachCarryingMCCH::SCCPCHSystemInformationMBMSr7FachCarryingMCCH(const TransportFormatSet& mcchtransportFormatSet, const MBMSMCCHConfigurationInfor6& mcchConfigurationInfo) : Sequence(&theInfo) {
+	setMcchtransportFormatSet(mcchtransportFormatSet);
+	setMcchConfigurationInfo(mcchConfigurationInfo);
+}
 
 const void *SCCPCHSystemInformationMBMSr7FachCarryingMSCH::itemsInfo[1] = {
 	&TransportFormatSet::theInfo,
@@ -27848,6 +31513,9 @@ const SCCPCHSystemInformationMBMSr7FachCarryingMSCH::Info SCCPCHSystemInformatio
 	itemsPres,
 	1, 0, 0
 };
+SCCPCHSystemInformationMBMSr7FachCarryingMSCH::SCCPCHSystemInformationMBMSr7FachCarryingMSCH(const TransportFormatSet& mschtransportFormatSet) : Sequence(&theInfo) {
+	setMschtransportFormatSet(mschtransportFormatSet);
+}
 
 const void *SCCPCHSystemInformationMBMSr7::itemsInfo[5] = {
 	&SecondaryCCPCHInfoMBMSr7::theInfo,
@@ -27872,6 +31540,11 @@ const SCCPCHSystemInformationMBMSr7::Info SCCPCHSystemInformationMBMSr7::theInfo
 	itemsPres,
 	5, 2, 0
 };
+SCCPCHSystemInformationMBMSr7::SCCPCHSystemInformationMBMSr7(const SecondaryCCPCHInfoMBMSr7& secondaryCCPCHInfoMBMS, const TFCS& transportFormatCombinationSet, const SCCPCHSystemInformationMBMSr7FachCarryingMCCH& sCCPCHSystemInformationMBMSr7FachCarryingMCCH) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfoMBMS(secondaryCCPCHInfoMBMS);
+	setTransportFormatCombinationSet(transportFormatCombinationSet);
+	setSCCPCHSystemInformationMBMSr7FachCarryingMCCH(sCCPCHSystemInformationMBMSr7FachCarryingMCCH);
+}
 
 const void *SecondaryCCPCHFrameType2InfoModulationMod16QAM::itemsInfo[1] = {
 	&SecondaryCCPCHFrameType2InfoModulationMod16QAMCpichSecCCPCHPowerOffset::theInfo,
@@ -27888,6 +31561,9 @@ const SecondaryCCPCHFrameType2InfoModulationMod16QAM::Info SecondaryCCPCHFrameTy
 	itemsPres,
 	1, 0, 0
 };
+SecondaryCCPCHFrameType2InfoModulationMod16QAM::SecondaryCCPCHFrameType2InfoModulationMod16QAM(const SecondaryCCPCHFrameType2InfoModulationMod16QAMCpichSecCCPCHPowerOffset& secondaryCCPCHFrameType2InfoModulationMod16QAMCpichSecCCPCHPowerOffset) : Sequence(&theInfo) {
+	setSecondaryCCPCHFrameType2InfoModulationMod16QAMCpichSecCCPCHPowerOffset(secondaryCCPCHFrameType2InfoModulationMod16QAMCpichSecCCPCHPowerOffset);
+}
 
 const void *SecondaryCCPCHFrameType2InfoModulation::choicesInfo[2] = {
 	&SecondaryCCPCHFrameType2InfoModulationModQPSK::theInfo,
@@ -27921,6 +31597,11 @@ const SecondaryCCPCHFrameType2Info::Info SecondaryCCPCHFrameType2Info::theInfo =
 	itemsPres,
 	3, 0, 0
 };
+SecondaryCCPCHFrameType2Info::SecondaryCCPCHFrameType2Info(const SecondaryCCPCHFrameType2InfoSubFrameNumber& secondaryCCPCHFrameType2InfoSubFrameNumber, const DLChannelCodesMBSFNIMB384& dlChannelisationCodes, const SecondaryCCPCHFrameType2InfoModulation& secondaryCCPCHFrameType2InfoModulation) : Sequence(&theInfo) {
+	setSecondaryCCPCHFrameType2InfoSubFrameNumber(secondaryCCPCHFrameType2InfoSubFrameNumber);
+	setDlChannelisationCodes(dlChannelisationCodes);
+	setSecondaryCCPCHFrameType2InfoModulation(secondaryCCPCHFrameType2InfoModulation);
+}
 
 const void *SecondaryCCPCHInfoDiffMBMS::itemsInfo[4] = {
 	&SecondaryScramblingCode::theInfo,
@@ -27943,6 +31624,9 @@ const SecondaryCCPCHInfoDiffMBMS::Info SecondaryCCPCHInfoDiffMBMS::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+SecondaryCCPCHInfoDiffMBMS::SecondaryCCPCHInfoDiffMBMS(const SecondaryCCPCHInfoDiffMBMSSttdIndicator& secondaryCCPCHInfoDiffMBMSSttdIndicator) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfoDiffMBMSSttdIndicator(secondaryCCPCHInfoDiffMBMSSttdIndicator);
+}
 
 const void *ServingCellChangeParameters::itemsInfo[3] = {
 	&ServingCellChangeMACreset::theInfo,
@@ -27963,6 +31647,11 @@ const ServingCellChangeParameters::Info ServingCellChangeParameters::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+ServingCellChangeParameters::ServingCellChangeParameters(const ServingCellChangeMACreset& servingCellChangeMACreset, const ServingCellChangeMsgType& servingCellChangeMsgType, const ServingCellChangeTrId& servingCellChangeTrId) : Sequence(&theInfo) {
+	setServingCellChangeMACreset(servingCellChangeMACreset);
+	setServingCellChangeMsgType(servingCellChangeMsgType);
+	setServingCellChangeTrId(servingCellChangeTrId);
+}
 
 const void *SFNTimeInfo::itemsInfo[2] = {
 	&SFNTimeInfoActivationTimeSFN::theInfo,
@@ -27981,6 +31670,10 @@ const SFNTimeInfo::Info SFNTimeInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SFNTimeInfo::SFNTimeInfo(const SFNTimeInfoActivationTimeSFN& sFNTimeInfoActivationTimeSFN, const DurationTimeInfo& physChDuration) : Sequence(&theInfo) {
+	setSFNTimeInfoActivationTimeSFN(sFNTimeInfoActivationTimeSFN);
+	setPhysChDuration(physChDuration);
+}
 
 const void *SPSInformationTDD128r8::itemsInfo[2] = {
 	&EDCHSPSInformationTDD128::theInfo,
@@ -28017,6 +31710,10 @@ const SYNCULProcedurer4::Info SYNCULProcedurer4::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SYNCULProcedurer4::SYNCULProcedurer4(const SYNCULProcedurer4max_SYNC_UL_Transmissions& sYNCULProcedurer4max_SYNC_UL_Transmissions, const SYNCULProcedurer4PowerRampStep& sYNCULProcedurer4PowerRampStep) : Sequence(&theInfo) {
+	setSYNCULProcedurer4max_SYNC_UL_Transmissions(sYNCULProcedurer4max_SYNC_UL_Transmissions);
+	setSYNCULProcedurer4PowerRampStep(sYNCULProcedurer4PowerRampStep);
+}
 
 const void *SynchronisationParametersr4::itemsInfo[4] = {
 	&SynchronisationParametersr4SyncULCodesBitmap::theInfo,
@@ -28039,6 +31736,11 @@ const SynchronisationParametersr4::Info SynchronisationParametersr4::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+SynchronisationParametersr4::SynchronisationParametersr4(const SynchronisationParametersr4SyncULCodesBitmap& synchronisationParametersr4SyncULCodesBitmap, const FPACHInfor4& fpachInfo, const SynchronisationParametersr4PrxUpPCHdes& synchronisationParametersr4PrxUpPCHdes) : Sequence(&theInfo) {
+	setSynchronisationParametersr4SyncULCodesBitmap(synchronisationParametersr4SyncULCodesBitmap);
+	setFpachInfo(fpachInfo);
+	setSynchronisationParametersr4PrxUpPCHdes(synchronisationParametersr4PrxUpPCHdes);
+}
 
 const void *TDDMBSFNTSlotInfo::itemsInfo[2] = {
 	&TimeslotNumber::theInfo,
@@ -28057,6 +31759,10 @@ const TDDMBSFNTSlotInfo::Info TDDMBSFNTSlotInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+TDDMBSFNTSlotInfo::TDDMBSFNTSlotInfo(const TimeslotNumber& timeSlotNumber, const CellParametersID& cellParametersID) : Sequence(&theInfo) {
+	setTimeSlotNumber(timeSlotNumber);
+	setCellParametersID(cellParametersID);
+}
 
 const void *TimeslotListr4::choicesInfo[2] = {
 	&TimeslotListr4Tdd384::theInfo,
@@ -28114,6 +31820,10 @@ const ULCCTrCH::Info ULCCTrCH::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+ULCCTrCH::ULCCTrCH(const ULTargetSIR& ulTargetSIR, const TimeInfo& timeInfo) : Sequence(&theInfo) {
+	setUlTargetSIR(ulTargetSIR);
+	setTimeInfo(timeInfo);
+}
 
 const void *ULCCTrCHr4TddOptionTdd384::itemsInfo[1] = {
 	&UplinkTimeslotsCodes::theInfo,
@@ -28183,6 +31893,11 @@ const ULCCTrCHr4::Info ULCCTrCHr4::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+ULCCTrCHr4::ULCCTrCHr4(const ULTargetSIR& ulTargetSIR, const TimeInfo& timeInfo, const ULCCTrCHr4TddOption& uLCCTrCHr4TddOption) : Sequence(&theInfo) {
+	setUlTargetSIR(ulTargetSIR);
+	setTimeInfo(timeInfo);
+	setULCCTrCHr4TddOption(uLCCTrCHr4TddOption);
+}
 
 const void *ULCCTrCHr7TddOptionTdd384::itemsInfo[1] = {
 	&UplinkTimeslotsCodes::theInfo,
@@ -28245,6 +31960,9 @@ const UplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslotsConsecutive::Info
 	itemsPres,
 	1, 0, 0
 };
+UplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslotsConsecutive::UplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslotsConsecutive(const UplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots& uplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots) : Sequence(&theInfo) {
+	setUplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots(uplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslotsConsecutiveNumAdditionalTimeslots);
+}
 
 const void *UplinkAdditionalTimeslotsLCRr7ParametersSameAsLast::itemsInfo[1] = {
 	&TimeslotNumber::theInfo,
@@ -28261,6 +31979,9 @@ const UplinkAdditionalTimeslotsLCRr7ParametersSameAsLast::Info UplinkAdditionalT
 	itemsPres,
 	1, 0, 0
 };
+UplinkAdditionalTimeslotsLCRr7ParametersSameAsLast::UplinkAdditionalTimeslotsLCRr7ParametersSameAsLast(const TimeslotNumber& timeslotNumber) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+}
 
 const void *UplinkAdditionalTimeslotsLCRr7ParametersNewParameters::itemsInfo[2] = {
 	&IndividualTimeslotInfoLCRr4::theInfo,
@@ -28279,6 +32000,10 @@ const UplinkAdditionalTimeslotsLCRr7ParametersNewParameters::Info UplinkAddition
 	itemsPres,
 	2, 0, 0
 };
+UplinkAdditionalTimeslotsLCRr7ParametersNewParameters::UplinkAdditionalTimeslotsLCRr7ParametersNewParameters(const IndividualTimeslotInfoLCRr4& individualTimeslotInfo, const ULTSChannelisationCodeListr7& ulTSChannelisationCodeList) : Sequence(&theInfo) {
+	setIndividualTimeslotInfo(individualTimeslotInfo);
+	setUlTSChannelisationCodeList(ulTSChannelisationCodeList);
+}
 
 const void *UplinkAdditionalTimeslotsLCRr7Parameters::choicesInfo[2] = {
 	&UplinkAdditionalTimeslotsLCRr7ParametersSameAsLast::theInfo,
@@ -28308,6 +32033,9 @@ const UplinkAdditionalTimeslotsLCRr7::Info UplinkAdditionalTimeslotsLCRr7::theIn
 	itemsPres,
 	1, 0, 0
 };
+UplinkAdditionalTimeslotsLCRr7::UplinkAdditionalTimeslotsLCRr7(const UplinkAdditionalTimeslotsLCRr7Parameters& uplinkAdditionalTimeslotsLCRr7Parameters) : Sequence(&theInfo) {
+	setUplinkAdditionalTimeslotsLCRr7Parameters(uplinkAdditionalTimeslotsLCRr7Parameters);
+}
 
 const void *UplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslots::choicesInfo[2] = {
 	&UplinkTimeslotsCodesLCRr7MoreTimeslotsAdditionalTimeslotsConsecutive::theInfo,
@@ -28356,6 +32084,12 @@ const UplinkTimeslotsCodesLCRr7::Info UplinkTimeslotsCodesLCRr7::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+UplinkTimeslotsCodesLCRr7::UplinkTimeslotsCodesLCRr7(const UplinkTimeslotsCodesLCRr7DynamicSFusage& uplinkTimeslotsCodesLCRr7DynamicSFusage, const IndividualTimeslotInfoLCRr4& firstIndividualTimeslotInfo, const ULTSChannelisationCodeListr7& ulTSChannelisationCodeList, const UplinkTimeslotsCodesLCRr7MoreTimeslots& uplinkTimeslotsCodesLCRr7MoreTimeslots) : Sequence(&theInfo) {
+	setUplinkTimeslotsCodesLCRr7DynamicSFusage(uplinkTimeslotsCodesLCRr7DynamicSFusage);
+	setFirstIndividualTimeslotInfo(firstIndividualTimeslotInfo);
+	setUlTSChannelisationCodeList(ulTSChannelisationCodeList);
+	setUplinkTimeslotsCodesLCRr7MoreTimeslots(uplinkTimeslotsCodesLCRr7MoreTimeslots);
+}
 
 const void *ULCCTrCHr7TddOptionTdd128::itemsInfo[1] = {
 	&UplinkTimeslotsCodesLCRr7::theInfo,
@@ -28410,6 +32144,11 @@ const ULCCTrCHr7::Info ULCCTrCHr7::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+ULCCTrCHr7::ULCCTrCHr7(const ULTargetSIR& ulTargetSIR, const TimeInfo& timeInfo, const ULCCTrCHr7TddOption& uLCCTrCHr7TddOption) : Sequence(&theInfo) {
+	setUlTargetSIR(ulTargetSIR);
+	setTimeInfo(timeInfo);
+	setULCCTrCHr7TddOption(uLCCTrCHr7TddOption);
+}
 
 const void *ULDPCHInfoModeSpecificInfoFdd::itemsInfo[7] = {
 	&ScramblingCodeType::theInfo,
@@ -28438,6 +32177,13 @@ const ULDPCHInfoModeSpecificInfoFdd::Info ULDPCHInfoModeSpecificInfoFdd::theInfo
 	itemsPres,
 	7, 2, 0
 };
+ULDPCHInfoModeSpecificInfoFdd::ULDPCHInfoModeSpecificInfoFdd(const ScramblingCodeType& scramblingCodeType, const ULScramblingCode& scramblingCode, const SpreadingFactor& spreadingFactor, const ULDPCHInfoModeSpecificInfoFddTfciExistence& uLDPCHInfoModeSpecificInfoFddTfciExistence, const PuncturingLimit& puncturingLimit) : Sequence(&theInfo) {
+	setScramblingCodeType(scramblingCodeType);
+	setScramblingCode(scramblingCode);
+	setSpreadingFactor(spreadingFactor);
+	setULDPCHInfoModeSpecificInfoFddTfciExistence(uLDPCHInfoModeSpecificInfoFddTfciExistence);
+	setPuncturingLimit(puncturingLimit);
+}
 
 const void *ULTimingAdvanceControlEnabled::itemsInfo[2] = {
 	&ULTimingAdvance::theInfo,
@@ -28561,6 +32307,13 @@ const ULDPCHInfor4ModeSpecificInfoFdd::Info ULDPCHInfor4ModeSpecificInfoFdd::the
 	itemsPres,
 	7, 2, 0
 };
+ULDPCHInfor4ModeSpecificInfoFdd::ULDPCHInfor4ModeSpecificInfoFdd(const ScramblingCodeType& scramblingCodeType, const ULScramblingCode& scramblingCode, const SpreadingFactor& spreadingFactor, const ULDPCHInfor4ModeSpecificInfoFddTfciExistence& uLDPCHInfor4ModeSpecificInfoFddTfciExistence, const PuncturingLimit& puncturingLimit) : Sequence(&theInfo) {
+	setScramblingCodeType(scramblingCodeType);
+	setScramblingCode(scramblingCode);
+	setSpreadingFactor(spreadingFactor);
+	setULDPCHInfor4ModeSpecificInfoFddTfciExistence(uLDPCHInfor4ModeSpecificInfoFddTfciExistence);
+	setPuncturingLimit(puncturingLimit);
+}
 
 const void *ULTimingAdvanceControlr4EnabledTddOptionTdd384::itemsInfo[2] = {
 	&ULTimingAdvance::theInfo,
@@ -28626,6 +32379,9 @@ const ULTimingAdvanceControlr4Enabled::Info ULTimingAdvanceControlr4Enabled::the
 	itemsPres,
 	1, 0, 0
 };
+ULTimingAdvanceControlr4Enabled::ULTimingAdvanceControlr4Enabled(const ULTimingAdvanceControlr4EnabledTddOption& uLTimingAdvanceControlr4EnabledTddOption) : Sequence(&theInfo) {
+	setULTimingAdvanceControlr4EnabledTddOption(uLTimingAdvanceControlr4EnabledTddOption);
+}
 
 const void *ULTimingAdvanceControlr4::choicesInfo[2] = {
 	&ULTimingAdvanceControlr4Disabled::theInfo,
@@ -28731,6 +32487,13 @@ const ULDPCHInfor5ModeSpecificInfoFdd::Info ULDPCHInfor5ModeSpecificInfoFdd::the
 	itemsPres,
 	7, 2, 0
 };
+ULDPCHInfor5ModeSpecificInfoFdd::ULDPCHInfor5ModeSpecificInfoFdd(const ScramblingCodeType& scramblingCodeType, const ULScramblingCode& scramblingCode, const SpreadingFactor& spreadingFactor, const ULDPCHInfor5ModeSpecificInfoFddTfciExistence& uLDPCHInfor5ModeSpecificInfoFddTfciExistence, const PuncturingLimit& puncturingLimit) : Sequence(&theInfo) {
+	setScramblingCodeType(scramblingCodeType);
+	setScramblingCode(scramblingCode);
+	setSpreadingFactor(spreadingFactor);
+	setULDPCHInfor5ModeSpecificInfoFddTfciExistence(uLDPCHInfor5ModeSpecificInfoFddTfciExistence);
+	setPuncturingLimit(puncturingLimit);
+}
 
 const void *ULDPCHInfor5ModeSpecificInfoTdd::itemsInfo[3] = {
 	&ULTimingAdvanceControlr4::theInfo,
@@ -28867,6 +32630,13 @@ const ULDPCHPowerControlInfor6Fdd::Info ULDPCHPowerControlInfor6Fdd::theInfo = {
 	itemsPres,
 	8, 3, 0
 };
+ULDPCHPowerControlInfor6Fdd::ULDPCHPowerControlInfor6Fdd(const DPCCHPowerOffset& dpcchPowerOffset, const PCPreamble& pcPreamble, const SRBdelay& sRBdelay, const PowerControlAlgorithm& powerControlAlgorithm, const HARQPreambleMode& harqPreambleMode) : Sequence(&theInfo) {
+	setDpcchPowerOffset(dpcchPowerOffset);
+	setPcPreamble(pcPreamble);
+	setSRBdelay(sRBdelay);
+	setPowerControlAlgorithm(powerControlAlgorithm);
+	setHarqPreambleMode(harqPreambleMode);
+}
 
 const void *ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384::itemsInfo[2] = {
 	&IndividualTSInterferenceList::theInfo,
@@ -28885,6 +32655,10 @@ const ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOptionT
 	itemsPres,
 	2, 0, 0
 };
+ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384::ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384(const IndividualTSInterferenceList& individualTSInterferenceList, const ConstantValue& dpchConstantValue) : Sequence(&theInfo) {
+	setIndividualTSInterferenceList(individualTSInterferenceList);
+	setDpchConstantValue(dpchConstantValue);
+}
 
 const void *ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128::itemsInfo[2] = {
 	&BEACONPLEst::theInfo,
@@ -28903,6 +32677,9 @@ const ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOptionT
 	itemsPres,
 	2, 1, 0
 };
+ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128::ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOptionTdd128(const TPCStepSizeTDD& tpcStepSize) : Sequence(&theInfo) {
+	setTpcStepSize(tpcStepSize);
+}
 
 const void *ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOption::choicesInfo[2] = {
 	&ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOptionTdd384::theInfo,
@@ -28934,6 +32711,10 @@ const ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalled::Info ULD
 	itemsPres,
 	2, 0, 0
 };
+ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalled::ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalled(const ULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOption& uLDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOption, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setULDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOption(uLDPCHPowerControlInfor6TddUlOLPCSignallingIndividuallySignalledTddOption);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *ULDPCHPowerControlInfor6TddUlOLPCSignalling::choicesInfo[2] = {
 	&ULDPCHPowerControlInfor6TddUlOLPCSignallingBroadcastULOLPCinfo::theInfo,
@@ -28965,6 +32746,9 @@ const ULDPCHPowerControlInfor6Tdd::Info ULDPCHPowerControlInfor6Tdd::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ULDPCHPowerControlInfor6Tdd::ULDPCHPowerControlInfor6Tdd(const ULDPCHPowerControlInfor6TddUlOLPCSignalling& uLDPCHPowerControlInfor6TddUlOLPCSignalling) : Sequence(&theInfo) {
+	setULDPCHPowerControlInfor6TddUlOLPCSignalling(uLDPCHPowerControlInfor6TddUlOLPCSignalling);
+}
 
 const void *ULDPCHPowerControlInfor6::choicesInfo[2] = {
 	&ULDPCHPowerControlInfor6Fdd::theInfo,
@@ -29002,6 +32786,11 @@ const ULDPCHInfor6ModeSpecificInfoFddDpdchPresencePresent::Info ULDPCHInfor6Mode
 	itemsPres,
 	5, 2, 0
 };
+ULDPCHInfor6ModeSpecificInfoFddDpdchPresencePresent::ULDPCHInfor6ModeSpecificInfoFddDpdchPresencePresent(const SpreadingFactor& spreadingFactor, const ULDPCHInfor6ModeSpecificInfoFddDpdchPresencePresentTfciExistence& uLDPCHInfor6ModeSpecificInfoFddDpdchPresencePresentTfciExistence, const PuncturingLimit& puncturingLimit) : Sequence(&theInfo) {
+	setSpreadingFactor(spreadingFactor);
+	setULDPCHInfor6ModeSpecificInfoFddDpdchPresencePresentTfciExistence(uLDPCHInfor6ModeSpecificInfoFddDpdchPresencePresentTfciExistence);
+	setPuncturingLimit(puncturingLimit);
+}
 
 const void *ULDPCHInfor6ModeSpecificInfoFddDpdchPresenceNotPresent::itemsInfo[2] = {
 	&ULDPCHInfor6ModeSpecificInfoFddDpdchPresenceNotPresentTfciExistence::theInfo,
@@ -29020,6 +32809,9 @@ const ULDPCHInfor6ModeSpecificInfoFddDpdchPresenceNotPresent::Info ULDPCHInfor6M
 	itemsPres,
 	2, 1, 0
 };
+ULDPCHInfor6ModeSpecificInfoFddDpdchPresenceNotPresent::ULDPCHInfor6ModeSpecificInfoFddDpdchPresenceNotPresent(const ULDPCHInfor6ModeSpecificInfoFddDpdchPresenceNotPresentTfciExistence& uLDPCHInfor6ModeSpecificInfoFddDpdchPresenceNotPresentTfciExistence) : Sequence(&theInfo) {
+	setULDPCHInfor6ModeSpecificInfoFddDpdchPresenceNotPresentTfciExistence(uLDPCHInfor6ModeSpecificInfoFddDpdchPresenceNotPresentTfciExistence);
+}
 
 const void *ULDPCHInfor6ModeSpecificInfoFddDpdchPresence::choicesInfo[2] = {
 	&ULDPCHInfor6ModeSpecificInfoFddDpdchPresencePresent::theInfo,
@@ -29053,6 +32845,10 @@ const ULDPCHInfor6ModeSpecificInfoFdd::Info ULDPCHInfor6ModeSpecificInfoFdd::the
 	itemsPres,
 	3, 1, 0
 };
+ULDPCHInfor6ModeSpecificInfoFdd::ULDPCHInfor6ModeSpecificInfoFdd(const ScramblingCodeType& scramblingCodeType, const ULScramblingCode& scramblingCode) : Sequence(&theInfo) {
+	setScramblingCodeType(scramblingCodeType);
+	setScramblingCode(scramblingCode);
+}
 
 const void *ULDPCHInfor6ModeSpecificInfoTdd::itemsInfo[3] = {
 	&ULTimingAdvanceControlr4::theInfo,
@@ -29130,6 +32926,11 @@ const ULDPCHInfor7ModeSpecificInfoFddDpdchPresencePresent::Info ULDPCHInfor7Mode
 	itemsPres,
 	6, 3, 0
 };
+ULDPCHInfor7ModeSpecificInfoFddDpdchPresencePresent::ULDPCHInfor7ModeSpecificInfoFddDpdchPresencePresent(const SpreadingFactor& spreadingFactor, const ULDPCHInfor7ModeSpecificInfoFddDpdchPresencePresentTfciExistence& uLDPCHInfor7ModeSpecificInfoFddDpdchPresencePresentTfciExistence, const PuncturingLimit& puncturingLimit) : Sequence(&theInfo) {
+	setSpreadingFactor(spreadingFactor);
+	setULDPCHInfor7ModeSpecificInfoFddDpdchPresencePresentTfciExistence(uLDPCHInfor7ModeSpecificInfoFddDpdchPresencePresentTfciExistence);
+	setPuncturingLimit(puncturingLimit);
+}
 
 const void *ULDPCHInfor7ModeSpecificInfoFddDpdchPresenceNotPresent::itemsInfo[3] = {
 	&ULDPCHInfor7ModeSpecificInfoFddDpdchPresenceNotPresentTfciExistence::theInfo,
@@ -29150,6 +32951,9 @@ const ULDPCHInfor7ModeSpecificInfoFddDpdchPresenceNotPresent::Info ULDPCHInfor7M
 	itemsPres,
 	3, 2, 0
 };
+ULDPCHInfor7ModeSpecificInfoFddDpdchPresenceNotPresent::ULDPCHInfor7ModeSpecificInfoFddDpdchPresenceNotPresent(const ULDPCHInfor7ModeSpecificInfoFddDpdchPresenceNotPresentTfciExistence& uLDPCHInfor7ModeSpecificInfoFddDpdchPresenceNotPresentTfciExistence) : Sequence(&theInfo) {
+	setULDPCHInfor7ModeSpecificInfoFddDpdchPresenceNotPresentTfciExistence(uLDPCHInfor7ModeSpecificInfoFddDpdchPresenceNotPresentTfciExistence);
+}
 
 const void *ULDPCHInfor7ModeSpecificInfoFddDpdchPresence::choicesInfo[2] = {
 	&ULDPCHInfor7ModeSpecificInfoFddDpdchPresencePresent::theInfo,
@@ -29183,6 +32987,10 @@ const ULDPCHInfor7ModeSpecificInfoFdd::Info ULDPCHInfor7ModeSpecificInfoFdd::the
 	itemsPres,
 	3, 1, 0
 };
+ULDPCHInfor7ModeSpecificInfoFdd::ULDPCHInfor7ModeSpecificInfoFdd(const ScramblingCodeType& scramblingCodeType, const ULScramblingCode& scramblingCode) : Sequence(&theInfo) {
+	setScramblingCodeType(scramblingCodeType);
+	setScramblingCode(scramblingCode);
+}
 
 const void *ULTimingAdvanceControlr7EnabledTddOptionTdd384::itemsInfo[3] = {
 	&ULTimingAdvance::theInfo,
@@ -29269,6 +33077,9 @@ const ULTimingAdvanceControlr7Enabled::Info ULTimingAdvanceControlr7Enabled::the
 	itemsPres,
 	1, 0, 0
 };
+ULTimingAdvanceControlr7Enabled::ULTimingAdvanceControlr7Enabled(const ULTimingAdvanceControlr7EnabledTddOption& uLTimingAdvanceControlr7EnabledTddOption) : Sequence(&theInfo) {
+	setULTimingAdvanceControlr7EnabledTddOption(uLTimingAdvanceControlr7EnabledTddOption);
+}
 
 const void *ULTimingAdvanceControlr7::choicesInfo[2] = {
 	&ULTimingAdvanceControlr7Disabled::theInfo,
@@ -29353,6 +33164,11 @@ const ULDPCHPowerControlInfoPostFDD::Info ULDPCHPowerControlInfoPostFDD::theInfo
 	itemsPres,
 	3, 0, 0
 };
+ULDPCHPowerControlInfoPostFDD::ULDPCHPowerControlInfoPostFDD(const DPCCHPowerOffset2& dpcchPowerOffset, const PCPreamble& pcPreamble, const SRBdelay& sRBdelay) : Sequence(&theInfo) {
+	setDpcchPowerOffset(dpcchPowerOffset);
+	setPcPreamble(pcPreamble);
+	setSRBdelay(sRBdelay);
+}
 
 const void *ULDPCHInfoPostFDD::itemsInfo[4] = {
 	&ULDPCHPowerControlInfoPostFDD::theInfo,
@@ -29375,6 +33191,12 @@ const ULDPCHInfoPostFDD::Info ULDPCHInfoPostFDD::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+ULDPCHInfoPostFDD::ULDPCHInfoPostFDD(const ULDPCHPowerControlInfoPostFDD& ulDPCHPowerControlInfo, const ScramblingCodeType& scramblingCodeType, const ReducedScramblingCodeNumber& reducedScramblingCodeNumber, const SpreadingFactor& spreadingFactor) : Sequence(&theInfo) {
+	setUlDPCHPowerControlInfo(ulDPCHPowerControlInfo);
+	setScramblingCodeType(scramblingCodeType);
+	setReducedScramblingCodeNumber(reducedScramblingCodeNumber);
+	setSpreadingFactor(spreadingFactor);
+}
 
 const void *ULDPCHPowerControlInfoPostTDD::itemsInfo[2] = {
 	&ULTargetSIR::theInfo,
@@ -29393,6 +33215,10 @@ const ULDPCHPowerControlInfoPostTDD::Info ULDPCHPowerControlInfoPostTDD::theInfo
 	itemsPres,
 	2, 0, 0
 };
+ULDPCHPowerControlInfoPostTDD::ULDPCHPowerControlInfoPostTDD(const ULTargetSIR& ulTargetSIR, const TDDULInterference& ulTimeslotInterference) : Sequence(&theInfo) {
+	setUlTargetSIR(ulTargetSIR);
+	setUlTimeslotInterference(ulTimeslotInterference);
+}
 
 const void *ULDPCHInfoPostTDD::itemsInfo[3] = {
 	&ULDPCHPowerControlInfoPostTDD::theInfo,
@@ -29413,6 +33239,10 @@ const ULDPCHInfoPostTDD::Info ULDPCHInfoPostTDD::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+ULDPCHInfoPostTDD::ULDPCHInfoPostTDD(const ULDPCHPowerControlInfoPostTDD& ulDPCHPowerControlInfo, const UplinkTimeslotsCodes& ulCCTrCHTimeslotsCodes) : Sequence(&theInfo) {
+	setUlDPCHPowerControlInfo(ulDPCHPowerControlInfo);
+	setUlCCTrCHTimeslotsCodes(ulCCTrCHTimeslotsCodes);
+}
 
 const void *ULDPCHPowerControlInfoPostTDDLCRr4::itemsInfo[1] = {
 	&ULTargetSIR::theInfo,
@@ -29429,6 +33259,9 @@ const ULDPCHPowerControlInfoPostTDDLCRr4::Info ULDPCHPowerControlInfoPostTDDLCRr
 	itemsPres,
 	1, 0, 0
 };
+ULDPCHPowerControlInfoPostTDDLCRr4::ULDPCHPowerControlInfoPostTDDLCRr4(const ULTargetSIR& ulTargetSIR) : Sequence(&theInfo) {
+	setUlTargetSIR(ulTargetSIR);
+}
 
 const void *ULTimingAdvanceControlLCRr4Enabled::itemsInfo[2] = {
 	&ULSynchronisationParametersr4::theInfo,
@@ -29480,6 +33313,10 @@ const ULDPCHInfoPostTDDLCRr4::Info ULDPCHInfoPostTDDLCRr4::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+ULDPCHInfoPostTDDLCRr4::ULDPCHInfoPostTDDLCRr4(const ULDPCHPowerControlInfoPostTDDLCRr4& ulDPCHPowerControlInfo, const UplinkTimeslotsCodesLCRr4& ulCCTrCHTimeslotsCodes) : Sequence(&theInfo) {
+	setUlDPCHPowerControlInfo(ulDPCHPowerControlInfo);
+	setUlCCTrCHTimeslotsCodes(ulCCTrCHTimeslotsCodes);
+}
 
 const void *ULEDCHInformationextTdd::itemsInfo[1] = {
 	&NonScheduledTransGrantInfoTDDext::theInfo,
@@ -29604,6 +33441,9 @@ const ULEDCHInformationr7::Info ULEDCHInformationr7::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ULEDCHInformationr7::ULEDCHInformationr7(const ULEDCHInformationr7ModeSpecificInfo& uLEDCHInformationr7ModeSpecificInfo) : Sequence(&theInfo) {
+	setULEDCHInformationr7ModeSpecificInfo(uLEDCHInformationr7ModeSpecificInfo);
+}
 
 const void *ExtraDopplerInfo::itemsInfo[2] = {
 	&ExtraDopplerInfoDoppler1stOrder::theInfo,
@@ -29622,6 +33462,10 @@ const ExtraDopplerInfo::Info ExtraDopplerInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ExtraDopplerInfo::ExtraDopplerInfo(const ExtraDopplerInfoDoppler1stOrder& extraDopplerInfoDoppler1stOrder, const DopplerUncertainty& dopplerUncertainty) : Sequence(&theInfo) {
+	setExtraDopplerInfoDoppler1stOrder(extraDopplerInfoDoppler1stOrder);
+	setDopplerUncertainty(dopplerUncertainty);
+}
 
 const void *AzimuthAndElevation::itemsInfo[2] = {
 	&AzimuthAndElevationAzimuth::theInfo,
@@ -29640,6 +33484,10 @@ const AzimuthAndElevation::Info AzimuthAndElevation::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+AzimuthAndElevation::AzimuthAndElevation(const AzimuthAndElevationAzimuth& azimuthAndElevationAzimuth, const AzimuthAndElevationElevation& azimuthAndElevationElevation) : Sequence(&theInfo) {
+	setAzimuthAndElevationAzimuth(azimuthAndElevationAzimuth);
+	setAzimuthAndElevationElevation(azimuthAndElevationElevation);
+}
 
 const void *AcquisitionSatInfo::itemsInfo[8] = {
 	&SatID::theInfo,
@@ -29670,6 +33518,14 @@ const AcquisitionSatInfo::Info AcquisitionSatInfo::theInfo = {
 	itemsPres,
 	8, 2, 0
 };
+AcquisitionSatInfo::AcquisitionSatInfo(const SatID& satID, const AcquisitionSatInfoDoppler0thOrder& acquisitionSatInfoDoppler0thOrder, const AcquisitionSatInfoCodePhase& acquisitionSatInfoCodePhase, const AcquisitionSatInfoIntegerCodePhase& acquisitionSatInfoIntegerCodePhase, const AcquisitionSatInfoGpsBitNumber& acquisitionSatInfoGpsBitNumber, const CodePhaseSearchWindow& codePhaseSearchWindow) : Sequence(&theInfo) {
+	setSatID(satID);
+	setAcquisitionSatInfoDoppler0thOrder(acquisitionSatInfoDoppler0thOrder);
+	setAcquisitionSatInfoCodePhase(acquisitionSatInfoCodePhase);
+	setAcquisitionSatInfoIntegerCodePhase(acquisitionSatInfoIntegerCodePhase);
+	setAcquisitionSatInfoGpsBitNumber(acquisitionSatInfoGpsBitNumber);
+	setCodePhaseSearchWindow(codePhaseSearchWindow);
+}
 
 const void *AlmanacSatInfo::itemsInfo[13] = {
 	&AlmanacSatInfoDataID::theInfo,
@@ -29710,6 +33566,21 @@ const AlmanacSatInfo::Info AlmanacSatInfo::theInfo = {
 	itemsPres,
 	13, 0, 0
 };
+AlmanacSatInfo::AlmanacSatInfo(const AlmanacSatInfoDataID& almanacSatInfoDataID, const SatID& satID, const AlmanacSatInfoE& almanacSatInfoE, const AlmanacSatInfoToa& almanacSatInfoToa, const AlmanacSatInfoDeltaI& almanacSatInfoDeltaI, const AlmanacSatInfoOmegaDot& almanacSatInfoOmegaDot, const AlmanacSatInfoSatHealth& almanacSatInfoSatHealth, const AlmanacSatInfoASqrt& almanacSatInfoASqrt, const AlmanacSatInfoOmega0& almanacSatInfoOmega0, const AlmanacSatInfoM0& almanacSatInfoM0, const AlmanacSatInfoOmega& almanacSatInfoOmega, const AlmanacSatInfoAf0& almanacSatInfoAf0, const AlmanacSatInfoAf1& almanacSatInfoAf1) : Sequence(&theInfo) {
+	setAlmanacSatInfoDataID(almanacSatInfoDataID);
+	setSatID(satID);
+	setAlmanacSatInfoE(almanacSatInfoE);
+	setAlmanacSatInfoToa(almanacSatInfoToa);
+	setAlmanacSatInfoDeltaI(almanacSatInfoDeltaI);
+	setAlmanacSatInfoOmegaDot(almanacSatInfoOmegaDot);
+	setAlmanacSatInfoSatHealth(almanacSatInfoSatHealth);
+	setAlmanacSatInfoASqrt(almanacSatInfoASqrt);
+	setAlmanacSatInfoOmega0(almanacSatInfoOmega0);
+	setAlmanacSatInfoM0(almanacSatInfoM0);
+	setAlmanacSatInfoOmega(almanacSatInfoOmega);
+	setAlmanacSatInfoAf0(almanacSatInfoAf0);
+	setAlmanacSatInfoAf1(almanacSatInfoAf1);
+}
 
 const void *GANSSSATInfoAlmanacSBASecef::itemsInfo[10] = {
 	&GANSSSATInfoAlmanacSBASecefSbasAlmDataID::theInfo,
@@ -29744,6 +33615,18 @@ const GANSSSATInfoAlmanacSBASecef::Info GANSSSATInfoAlmanacSBASecef::theInfo = {
 	itemsPres,
 	10, 0, 0
 };
+GANSSSATInfoAlmanacSBASecef::GANSSSATInfoAlmanacSBASecef(const GANSSSATInfoAlmanacSBASecefSbasAlmDataID& gANSSSATInfoAlmanacSBASecefSbasAlmDataID, const GANSSSATInfoAlmanacSBASecefSvID& gANSSSATInfoAlmanacSBASecefSvID, const GANSSSATInfoAlmanacSBASecefSbasAlmHealth& gANSSSATInfoAlmanacSBASecefSbasAlmHealth, const GANSSSATInfoAlmanacSBASecefSbasAlmXg& gANSSSATInfoAlmanacSBASecefSbasAlmXg, const GANSSSATInfoAlmanacSBASecefSbasAlmYg& gANSSSATInfoAlmanacSBASecefSbasAlmYg, const GANSSSATInfoAlmanacSBASecefSbasAlmZg& gANSSSATInfoAlmanacSBASecefSbasAlmZg, const GANSSSATInfoAlmanacSBASecefSbasAlmXgdot& gANSSSATInfoAlmanacSBASecefSbasAlmXgdot, const GANSSSATInfoAlmanacSBASecefSbasAlmYgDot& gANSSSATInfoAlmanacSBASecefSbasAlmYgDot, const GANSSSATInfoAlmanacSBASecefSbasAlmZgDot& gANSSSATInfoAlmanacSBASecefSbasAlmZgDot, const GANSSSATInfoAlmanacSBASecefSbasAlmTo& gANSSSATInfoAlmanacSBASecefSbasAlmTo) : Sequence(&theInfo) {
+	setGANSSSATInfoAlmanacSBASecefSbasAlmDataID(gANSSSATInfoAlmanacSBASecefSbasAlmDataID);
+	setGANSSSATInfoAlmanacSBASecefSvID(gANSSSATInfoAlmanacSBASecefSvID);
+	setGANSSSATInfoAlmanacSBASecefSbasAlmHealth(gANSSSATInfoAlmanacSBASecefSbasAlmHealth);
+	setGANSSSATInfoAlmanacSBASecefSbasAlmXg(gANSSSATInfoAlmanacSBASecefSbasAlmXg);
+	setGANSSSATInfoAlmanacSBASecefSbasAlmYg(gANSSSATInfoAlmanacSBASecefSbasAlmYg);
+	setGANSSSATInfoAlmanacSBASecefSbasAlmZg(gANSSSATInfoAlmanacSBASecefSbasAlmZg);
+	setGANSSSATInfoAlmanacSBASecefSbasAlmXgdot(gANSSSATInfoAlmanacSBASecefSbasAlmXgdot);
+	setGANSSSATInfoAlmanacSBASecefSbasAlmYgDot(gANSSSATInfoAlmanacSBASecefSbasAlmYgDot);
+	setGANSSSATInfoAlmanacSBASecefSbasAlmZgDot(gANSSSATInfoAlmanacSBASecefSbasAlmZgDot);
+	setGANSSSATInfoAlmanacSBASecefSbasAlmTo(gANSSSATInfoAlmanacSBASecefSbasAlmTo);
+}
 
 const void *ALMECEFsbasAlmanacSet::itemsInfo[1] = {
 	&GANSSSATInfoAlmanacSBASecefList::theInfo,
@@ -29760,6 +33643,9 @@ const ALMECEFsbasAlmanacSet::Info ALMECEFsbasAlmanacSet::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+ALMECEFsbasAlmanacSet::ALMECEFsbasAlmanacSet(const GANSSSATInfoAlmanacSBASecefList& satinfoSBASecefList) : Sequence(&theInfo) {
+	setSatinfoSBASecefList(satinfoSBASecefList);
+}
 
 const void *GANSSSATInfoAlmanacGLOkp::itemsInfo[13] = {
 	&GANSSSATInfoAlmanacGLOkpGloAlmNA::theInfo,
@@ -29800,6 +33686,20 @@ const GANSSSATInfoAlmanacGLOkp::Info GANSSSATInfoAlmanacGLOkp::theInfo = {
 	itemsPres,
 	13, 1, 0
 };
+GANSSSATInfoAlmanacGLOkp::GANSSSATInfoAlmanacGLOkp(const GANSSSATInfoAlmanacGLOkpGloAlmNA& gANSSSATInfoAlmanacGLOkpGloAlmNA, const GANSSSATInfoAlmanacGLOkpGloAlmnA& gANSSSATInfoAlmanacGLOkpGloAlmnA, const GANSSSATInfoAlmanacGLOkpGloAlmHA& gANSSSATInfoAlmanacGLOkpGloAlmHA, const GANSSSATInfoAlmanacGLOkpGloAlmLambdaA& gANSSSATInfoAlmanacGLOkpGloAlmLambdaA, const GANSSSATInfoAlmanacGLOkpGloAlmTlambdaA& gANSSSATInfoAlmanacGLOkpGloAlmTlambdaA, const GANSSSATInfoAlmanacGLOkpGloAlmDeltaIA& gANSSSATInfoAlmanacGLOkpGloAlmDeltaIA, const GANSSSATInfoAlmanacGLOkpGloAkmDeltaTA& gANSSSATInfoAlmanacGLOkpGloAkmDeltaTA, const GANSSSATInfoAlmanacGLOkpGloAlmDeltaTdotA& gANSSSATInfoAlmanacGLOkpGloAlmDeltaTdotA, const GANSSSATInfoAlmanacGLOkpGloAlmEpsilonA& gANSSSATInfoAlmanacGLOkpGloAlmEpsilonA, const GANSSSATInfoAlmanacGLOkpGloAlmOmegaA& gANSSSATInfoAlmanacGLOkpGloAlmOmegaA, const GANSSSATInfoAlmanacGLOkpGloAlmTauA& gANSSSATInfoAlmanacGLOkpGloAlmTauA, const GANSSSATInfoAlmanacGLOkpGloAlmCA& gANSSSATInfoAlmanacGLOkpGloAlmCA) : Sequence(&theInfo) {
+	setGANSSSATInfoAlmanacGLOkpGloAlmNA(gANSSSATInfoAlmanacGLOkpGloAlmNA);
+	setGANSSSATInfoAlmanacGLOkpGloAlmnA(gANSSSATInfoAlmanacGLOkpGloAlmnA);
+	setGANSSSATInfoAlmanacGLOkpGloAlmHA(gANSSSATInfoAlmanacGLOkpGloAlmHA);
+	setGANSSSATInfoAlmanacGLOkpGloAlmLambdaA(gANSSSATInfoAlmanacGLOkpGloAlmLambdaA);
+	setGANSSSATInfoAlmanacGLOkpGloAlmTlambdaA(gANSSSATInfoAlmanacGLOkpGloAlmTlambdaA);
+	setGANSSSATInfoAlmanacGLOkpGloAlmDeltaIA(gANSSSATInfoAlmanacGLOkpGloAlmDeltaIA);
+	setGANSSSATInfoAlmanacGLOkpGloAkmDeltaTA(gANSSSATInfoAlmanacGLOkpGloAkmDeltaTA);
+	setGANSSSATInfoAlmanacGLOkpGloAlmDeltaTdotA(gANSSSATInfoAlmanacGLOkpGloAlmDeltaTdotA);
+	setGANSSSATInfoAlmanacGLOkpGloAlmEpsilonA(gANSSSATInfoAlmanacGLOkpGloAlmEpsilonA);
+	setGANSSSATInfoAlmanacGLOkpGloAlmOmegaA(gANSSSATInfoAlmanacGLOkpGloAlmOmegaA);
+	setGANSSSATInfoAlmanacGLOkpGloAlmTauA(gANSSSATInfoAlmanacGLOkpGloAlmTauA);
+	setGANSSSATInfoAlmanacGLOkpGloAlmCA(gANSSSATInfoAlmanacGLOkpGloAlmCA);
+}
 
 const void *ALMGlonassAlmanacSet::itemsInfo[1] = {
 	&GANSSSATInfoAlmanacGLOkpList::theInfo,
@@ -29816,6 +33716,9 @@ const ALMGlonassAlmanacSet::Info ALMGlonassAlmanacSet::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+ALMGlonassAlmanacSet::ALMGlonassAlmanacSet(const GANSSSATInfoAlmanacGLOkpList& satinfoGLOkpList) : Sequence(&theInfo) {
+	setSatinfoGLOkpList(satinfoGLOkpList);
+}
 
 const void *GANSSSATInfoAlmanacKp::itemsInfo[11] = {
 	&GANSSSATInfoAlmanacKpSvId::theInfo,
@@ -29852,6 +33755,19 @@ const GANSSSATInfoAlmanacKp::Info GANSSSATInfoAlmanacKp::theInfo = {
 	itemsPres,
 	11, 0, 0
 };
+GANSSSATInfoAlmanacKp::GANSSSATInfoAlmanacKp(const GANSSSATInfoAlmanacKpSvId& gANSSSATInfoAlmanacKpSvId, const GANSSSATInfoAlmanacKpGanssalme& gANSSSATInfoAlmanacKpGanssalme, const GANSSSATInfoAlmanacKpGanssdeltaIalm& gANSSSATInfoAlmanacKpGanssdeltaIalm, const GANSSSATInfoAlmanacKpGanssomegadotalm& gANSSSATInfoAlmanacKpGanssomegadotalm, const GANSSSATInfoAlmanacKpGansssvhealthalm& gANSSSATInfoAlmanacKpGansssvhealthalm, const GANSSSATInfoAlmanacKpGanssdeltaasqrtalm& gANSSSATInfoAlmanacKpGanssdeltaasqrtalm, const GANSSSATInfoAlmanacKpGanssomegazeroalm& gANSSSATInfoAlmanacKpGanssomegazeroalm, const GANSSSATInfoAlmanacKpGanssmzeroalm& gANSSSATInfoAlmanacKpGanssmzeroalm, const GANSSSATInfoAlmanacKpGanssomegaalm& gANSSSATInfoAlmanacKpGanssomegaalm, const GANSSSATInfoAlmanacKpGanssafzeroalm& gANSSSATInfoAlmanacKpGanssafzeroalm, const GANSSSATInfoAlmanacKpGanssafonealm& gANSSSATInfoAlmanacKpGanssafonealm) : Sequence(&theInfo) {
+	setGANSSSATInfoAlmanacKpSvId(gANSSSATInfoAlmanacKpSvId);
+	setGANSSSATInfoAlmanacKpGanssalme(gANSSSATInfoAlmanacKpGanssalme);
+	setGANSSSATInfoAlmanacKpGanssdeltaIalm(gANSSSATInfoAlmanacKpGanssdeltaIalm);
+	setGANSSSATInfoAlmanacKpGanssomegadotalm(gANSSSATInfoAlmanacKpGanssomegadotalm);
+	setGANSSSATInfoAlmanacKpGansssvhealthalm(gANSSSATInfoAlmanacKpGansssvhealthalm);
+	setGANSSSATInfoAlmanacKpGanssdeltaasqrtalm(gANSSSATInfoAlmanacKpGanssdeltaasqrtalm);
+	setGANSSSATInfoAlmanacKpGanssomegazeroalm(gANSSSATInfoAlmanacKpGanssomegazeroalm);
+	setGANSSSATInfoAlmanacKpGanssmzeroalm(gANSSSATInfoAlmanacKpGanssmzeroalm);
+	setGANSSSATInfoAlmanacKpGanssomegaalm(gANSSSATInfoAlmanacKpGanssomegaalm);
+	setGANSSSATInfoAlmanacKpGanssafzeroalm(gANSSSATInfoAlmanacKpGanssafzeroalm);
+	setGANSSSATInfoAlmanacKpGanssafonealm(gANSSSATInfoAlmanacKpGanssafonealm);
+}
 
 const void *ALMkeplerianParameters::itemsInfo[3] = {
 	&ALMkeplerianParametersToa::theInfo,
@@ -29872,6 +33788,11 @@ const ALMkeplerianParameters::Info ALMkeplerianParameters::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+ALMkeplerianParameters::ALMkeplerianParameters(const ALMkeplerianParametersToa& aLMkeplerianParametersToa, const ALMkeplerianParametersIoda& aLMkeplerianParametersIoda, const GANSSSATInfoAlmanacKpList& satinfokpList) : Sequence(&theInfo) {
+	setALMkeplerianParametersToa(aLMkeplerianParametersToa);
+	setALMkeplerianParametersIoda(aLMkeplerianParametersIoda);
+	setSatinfokpList(satinfokpList);
+}
 
 const void *GANSSSATInfoAlmanacMIDIkp::itemsInfo[13] = {
 	&GANSSSATInfoAlmanacMIDIkpSvID::theInfo,
@@ -29912,6 +33833,21 @@ const GANSSSATInfoAlmanacMIDIkp::Info GANSSSATInfoAlmanacMIDIkp::theInfo = {
 	itemsPres,
 	13, 0, 0
 };
+GANSSSATInfoAlmanacMIDIkp::GANSSSATInfoAlmanacMIDIkp(const GANSSSATInfoAlmanacMIDIkpSvID& gANSSSATInfoAlmanacMIDIkpSvID, const GANSSSATInfoAlmanacMIDIkpMidiAlmE& gANSSSATInfoAlmanacMIDIkpMidiAlmE, const GANSSSATInfoAlmanacMIDIkpMidiAlmDeltaI& gANSSSATInfoAlmanacMIDIkpMidiAlmDeltaI, const GANSSSATInfoAlmanacMIDIkpMidiAlmOmegaDot& gANSSSATInfoAlmanacMIDIkpMidiAlmOmegaDot, const GANSSSATInfoAlmanacMIDIkpMidiAlmSqrtA& gANSSSATInfoAlmanacMIDIkpMidiAlmSqrtA, const GANSSSATInfoAlmanacMIDIkpMidiAlmOmega0& gANSSSATInfoAlmanacMIDIkpMidiAlmOmega0, const GANSSSATInfoAlmanacMIDIkpMidiAlmOmega& gANSSSATInfoAlmanacMIDIkpMidiAlmOmega, const GANSSSATInfoAlmanacMIDIkpMidiAlmMo& gANSSSATInfoAlmanacMIDIkpMidiAlmMo, const GANSSSATInfoAlmanacMIDIkpMidiAlmaf0& gANSSSATInfoAlmanacMIDIkpMidiAlmaf0, const GANSSSATInfoAlmanacMIDIkpMidiAlmaf1& gANSSSATInfoAlmanacMIDIkpMidiAlmaf1, const GANSSSATInfoAlmanacMIDIkpMidiAlmL1Health& gANSSSATInfoAlmanacMIDIkpMidiAlmL1Health, const GANSSSATInfoAlmanacMIDIkpMidiAlmL2Health& gANSSSATInfoAlmanacMIDIkpMidiAlmL2Health, const GANSSSATInfoAlmanacMIDIkpMidiAlmL5Health& gANSSSATInfoAlmanacMIDIkpMidiAlmL5Health) : Sequence(&theInfo) {
+	setGANSSSATInfoAlmanacMIDIkpSvID(gANSSSATInfoAlmanacMIDIkpSvID);
+	setGANSSSATInfoAlmanacMIDIkpMidiAlmE(gANSSSATInfoAlmanacMIDIkpMidiAlmE);
+	setGANSSSATInfoAlmanacMIDIkpMidiAlmDeltaI(gANSSSATInfoAlmanacMIDIkpMidiAlmDeltaI);
+	setGANSSSATInfoAlmanacMIDIkpMidiAlmOmegaDot(gANSSSATInfoAlmanacMIDIkpMidiAlmOmegaDot);
+	setGANSSSATInfoAlmanacMIDIkpMidiAlmSqrtA(gANSSSATInfoAlmanacMIDIkpMidiAlmSqrtA);
+	setGANSSSATInfoAlmanacMIDIkpMidiAlmOmega0(gANSSSATInfoAlmanacMIDIkpMidiAlmOmega0);
+	setGANSSSATInfoAlmanacMIDIkpMidiAlmOmega(gANSSSATInfoAlmanacMIDIkpMidiAlmOmega);
+	setGANSSSATInfoAlmanacMIDIkpMidiAlmMo(gANSSSATInfoAlmanacMIDIkpMidiAlmMo);
+	setGANSSSATInfoAlmanacMIDIkpMidiAlmaf0(gANSSSATInfoAlmanacMIDIkpMidiAlmaf0);
+	setGANSSSATInfoAlmanacMIDIkpMidiAlmaf1(gANSSSATInfoAlmanacMIDIkpMidiAlmaf1);
+	setGANSSSATInfoAlmanacMIDIkpMidiAlmL1Health(gANSSSATInfoAlmanacMIDIkpMidiAlmL1Health);
+	setGANSSSATInfoAlmanacMIDIkpMidiAlmL2Health(gANSSSATInfoAlmanacMIDIkpMidiAlmL2Health);
+	setGANSSSATInfoAlmanacMIDIkpMidiAlmL5Health(gANSSSATInfoAlmanacMIDIkpMidiAlmL5Health);
+}
 
 const void *ALMMidiAlmanacSet::itemsInfo[2] = {
 	&ALMMidiAlmanacSetToa::theInfo,
@@ -29930,6 +33866,10 @@ const ALMMidiAlmanacSet::Info ALMMidiAlmanacSet::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ALMMidiAlmanacSet::ALMMidiAlmanacSet(const ALMMidiAlmanacSetToa& aLMMidiAlmanacSetToa, const GANSSSATInfoAlmanacMIDIkpList& satinfoMIDIkpList) : Sequence(&theInfo) {
+	setALMMidiAlmanacSetToa(aLMMidiAlmanacSetToa);
+	setSatinfoMIDIkpList(satinfoMIDIkpList);
+}
 
 const void *GANSSSATInfoAlmanacNAVkp::itemsInfo[11] = {
 	&GANSSSATInfoAlmanacNAVkpSvID::theInfo,
@@ -29966,6 +33906,19 @@ const GANSSSATInfoAlmanacNAVkp::Info GANSSSATInfoAlmanacNAVkp::theInfo = {
 	itemsPres,
 	11, 0, 0
 };
+GANSSSATInfoAlmanacNAVkp::GANSSSATInfoAlmanacNAVkp(const GANSSSATInfoAlmanacNAVkpSvID& gANSSSATInfoAlmanacNAVkpSvID, const GANSSSATInfoAlmanacNAVkpNavAlmE& gANSSSATInfoAlmanacNAVkpNavAlmE, const GANSSSATInfoAlmanacNAVkpNavAlmDeltaI& gANSSSATInfoAlmanacNAVkpNavAlmDeltaI, const GANSSSATInfoAlmanacNAVkpNavAlmOMEGADOT& gANSSSATInfoAlmanacNAVkpNavAlmOMEGADOT, const GANSSSATInfoAlmanacNAVkpNavAlmSVHealth& gANSSSATInfoAlmanacNAVkpNavAlmSVHealth, const GANSSSATInfoAlmanacNAVkpNavAlmSqrtA& gANSSSATInfoAlmanacNAVkpNavAlmSqrtA, const GANSSSATInfoAlmanacNAVkpNavAlmOMEGAo& gANSSSATInfoAlmanacNAVkpNavAlmOMEGAo, const GANSSSATInfoAlmanacNAVkpNavAlmOmega& gANSSSATInfoAlmanacNAVkpNavAlmOmega, const GANSSSATInfoAlmanacNAVkpNavAlmMo& gANSSSATInfoAlmanacNAVkpNavAlmMo, const GANSSSATInfoAlmanacNAVkpNavAlmaf0& gANSSSATInfoAlmanacNAVkpNavAlmaf0, const GANSSSATInfoAlmanacNAVkpNavAlmaf1& gANSSSATInfoAlmanacNAVkpNavAlmaf1) : Sequence(&theInfo) {
+	setGANSSSATInfoAlmanacNAVkpSvID(gANSSSATInfoAlmanacNAVkpSvID);
+	setGANSSSATInfoAlmanacNAVkpNavAlmE(gANSSSATInfoAlmanacNAVkpNavAlmE);
+	setGANSSSATInfoAlmanacNAVkpNavAlmDeltaI(gANSSSATInfoAlmanacNAVkpNavAlmDeltaI);
+	setGANSSSATInfoAlmanacNAVkpNavAlmOMEGADOT(gANSSSATInfoAlmanacNAVkpNavAlmOMEGADOT);
+	setGANSSSATInfoAlmanacNAVkpNavAlmSVHealth(gANSSSATInfoAlmanacNAVkpNavAlmSVHealth);
+	setGANSSSATInfoAlmanacNAVkpNavAlmSqrtA(gANSSSATInfoAlmanacNAVkpNavAlmSqrtA);
+	setGANSSSATInfoAlmanacNAVkpNavAlmOMEGAo(gANSSSATInfoAlmanacNAVkpNavAlmOMEGAo);
+	setGANSSSATInfoAlmanacNAVkpNavAlmOmega(gANSSSATInfoAlmanacNAVkpNavAlmOmega);
+	setGANSSSATInfoAlmanacNAVkpNavAlmMo(gANSSSATInfoAlmanacNAVkpNavAlmMo);
+	setGANSSSATInfoAlmanacNAVkpNavAlmaf0(gANSSSATInfoAlmanacNAVkpNavAlmaf0);
+	setGANSSSATInfoAlmanacNAVkpNavAlmaf1(gANSSSATInfoAlmanacNAVkpNavAlmaf1);
+}
 
 const void *ALMNAVKeplerianSet::itemsInfo[2] = {
 	&ALMNAVKeplerianSetToa::theInfo,
@@ -29984,6 +33937,10 @@ const ALMNAVKeplerianSet::Info ALMNAVKeplerianSet::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ALMNAVKeplerianSet::ALMNAVKeplerianSet(const ALMNAVKeplerianSetToa& aLMNAVKeplerianSetToa, const GANSSSATInfoAlmanacNAVkpList& satinfoNAVkpList) : Sequence(&theInfo) {
+	setALMNAVKeplerianSetToa(aLMNAVKeplerianSetToa);
+	setSatinfoNAVkpList(satinfoNAVkpList);
+}
 
 const void *GANSSSATInfoAlmanacREDkp::itemsInfo[7] = {
 	&GANSSSATInfoAlmanacREDkpSvID::theInfo,
@@ -30012,6 +33969,15 @@ const GANSSSATInfoAlmanacREDkp::Info GANSSSATInfoAlmanacREDkp::theInfo = {
 	itemsPres,
 	7, 0, 0
 };
+GANSSSATInfoAlmanacREDkp::GANSSSATInfoAlmanacREDkp(const GANSSSATInfoAlmanacREDkpSvID& gANSSSATInfoAlmanacREDkpSvID, const GANSSSATInfoAlmanacREDkpRedAlmDeltaA& gANSSSATInfoAlmanacREDkpRedAlmDeltaA, const GANSSSATInfoAlmanacREDkpRedAlmOmega0& gANSSSATInfoAlmanacREDkpRedAlmOmega0, const GANSSSATInfoAlmanacREDkpRedAlmPhi0& gANSSSATInfoAlmanacREDkpRedAlmPhi0, const GANSSSATInfoAlmanacREDkpRedAlmL1Health& gANSSSATInfoAlmanacREDkpRedAlmL1Health, const GANSSSATInfoAlmanacREDkpRedAlmL2Health& gANSSSATInfoAlmanacREDkpRedAlmL2Health, const GANSSSATInfoAlmanacREDkpRedAlmL5Health& gANSSSATInfoAlmanacREDkpRedAlmL5Health) : Sequence(&theInfo) {
+	setGANSSSATInfoAlmanacREDkpSvID(gANSSSATInfoAlmanacREDkpSvID);
+	setGANSSSATInfoAlmanacREDkpRedAlmDeltaA(gANSSSATInfoAlmanacREDkpRedAlmDeltaA);
+	setGANSSSATInfoAlmanacREDkpRedAlmOmega0(gANSSSATInfoAlmanacREDkpRedAlmOmega0);
+	setGANSSSATInfoAlmanacREDkpRedAlmPhi0(gANSSSATInfoAlmanacREDkpRedAlmPhi0);
+	setGANSSSATInfoAlmanacREDkpRedAlmL1Health(gANSSSATInfoAlmanacREDkpRedAlmL1Health);
+	setGANSSSATInfoAlmanacREDkpRedAlmL2Health(gANSSSATInfoAlmanacREDkpRedAlmL2Health);
+	setGANSSSATInfoAlmanacREDkpRedAlmL5Health(gANSSSATInfoAlmanacREDkpRedAlmL5Health);
+}
 
 const void *ALMReducedKeplerianSet::itemsInfo[2] = {
 	&ALMReducedKeplerianSetToa::theInfo,
@@ -30030,6 +33996,10 @@ const ALMReducedKeplerianSet::Info ALMReducedKeplerianSet::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ALMReducedKeplerianSet::ALMReducedKeplerianSet(const ALMReducedKeplerianSetToa& aLMReducedKeplerianSetToa, const GANSSSATInfoAlmanacREDkpList& satinfoREDkpList) : Sequence(&theInfo) {
+	setALMReducedKeplerianSetToa(aLMReducedKeplerianSetToa);
+	setSatinfoREDkpList(satinfoREDkpList);
+}
 
 const void *AuxInfoGANSSID1element::itemsInfo[2] = {
 	&AuxInfoGANSSID1elementSvID::theInfo,
@@ -30048,6 +34018,10 @@ const AuxInfoGANSSID1element::Info AuxInfoGANSSID1element::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+AuxInfoGANSSID1element::AuxInfoGANSSID1element(const AuxInfoGANSSID1elementSvID& auxInfoGANSSID1elementSvID, const AuxInfoGANSSID1elementSignalsAvailable& auxInfoGANSSID1elementSignalsAvailable) : Sequence(&theInfo) {
+	setAuxInfoGANSSID1elementSvID(auxInfoGANSSID1elementSvID);
+	setAuxInfoGANSSID1elementSignalsAvailable(auxInfoGANSSID1elementSignalsAvailable);
+}
 
 const void *AuxInfoGANSSID3element::itemsInfo[3] = {
 	&AuxInfoGANSSID3elementSvID::theInfo,
@@ -30068,6 +34042,11 @@ const AuxInfoGANSSID3element::Info AuxInfoGANSSID3element::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+AuxInfoGANSSID3element::AuxInfoGANSSID3element(const AuxInfoGANSSID3elementSvID& auxInfoGANSSID3elementSvID, const AuxInfoGANSSID3elementSignalsAvailable& auxInfoGANSSID3elementSignalsAvailable, const AuxInfoGANSSID3elementChannelNumber& auxInfoGANSSID3elementChannelNumber) : Sequence(&theInfo) {
+	setAuxInfoGANSSID3elementSvID(auxInfoGANSSID3elementSvID);
+	setAuxInfoGANSSID3elementSignalsAvailable(auxInfoGANSSID3elementSignalsAvailable);
+	setAuxInfoGANSSID3elementChannelNumber(auxInfoGANSSID3elementChannelNumber);
+}
 
 const void *BLERMeasurementResults::itemsInfo[2] = {
 	&TransportChannelIdentity::theInfo,
@@ -30086,6 +34065,9 @@ const BLERMeasurementResults::Info BLERMeasurementResults::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+BLERMeasurementResults::BLERMeasurementResults(const TransportChannelIdentity& transportChannelIdentity) : Sequence(&theInfo) {
+	setTransportChannelIdentity(transportChannelIdentity);
+}
 
 const void *BSICReported::choicesInfo[2] = {
 	&BSICReportedVerifiedBSIC::theInfo,
@@ -30119,6 +34101,11 @@ const BurstModeParameters::Info BurstModeParameters::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+BurstModeParameters::BurstModeParameters(const BurstModeParametersBurstStart& burstModeParametersBurstStart, const BurstModeParametersBurstLength& burstModeParametersBurstLength, const BurstModeParametersBurstFreq& burstModeParametersBurstFreq) : Sequence(&theInfo) {
+	setBurstModeParametersBurstStart(burstModeParametersBurstStart);
+	setBurstModeParametersBurstLength(burstModeParametersBurstLength);
+	setBurstModeParametersBurstFreq(burstModeParametersBurstFreq);
+}
 
 const void *ForbiddenAffectCell::choicesInfo[2] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -30160,6 +34147,14 @@ const Event1a::Info Event1a::theInfo = {
 	itemsPres,
 	7, 1, 0
 };
+Event1a::Event1a(const TriggeringCondition2& triggeringCondition, const ReportingRange& reportingRange, const W& w, const ReportDeactivationThreshold& reportDeactivationThreshold, const ReportingAmount& reportingAmount, const ReportingInterval& reportingInterval) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setReportingRange(reportingRange);
+	setW(w);
+	setReportDeactivationThreshold(reportDeactivationThreshold);
+	setReportingAmount(reportingAmount);
+	setReportingInterval(reportingInterval);
+}
 
 const void *Event1b::itemsInfo[4] = {
 	&TriggeringCondition1::theInfo,
@@ -30182,6 +34177,11 @@ const Event1b::Info Event1b::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+Event1b::Event1b(const TriggeringCondition1& triggeringCondition, const ReportingRange& reportingRange, const W& w) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setReportingRange(reportingRange);
+	setW(w);
+}
 
 const void *Event1c::itemsInfo[3] = {
 	&ReplacementActivationThreshold::theInfo,
@@ -30202,6 +34202,11 @@ const Event1c::Info Event1c::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+Event1c::Event1c(const ReplacementActivationThreshold& replacementActivationThreshold, const ReportingAmount& reportingAmount, const ReportingInterval& reportingInterval) : Sequence(&theInfo) {
+	setReplacementActivationThreshold(replacementActivationThreshold);
+	setReportingAmount(reportingAmount);
+	setReportingInterval(reportingInterval);
+}
 
 const void *Event1e::itemsInfo[2] = {
 	&TriggeringCondition2::theInfo,
@@ -30220,6 +34225,10 @@ const Event1e::Info Event1e::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+Event1e::Event1e(const TriggeringCondition2& triggeringCondition, const ThresholdUsedFrequency& thresholdUsedFrequency) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setThresholdUsedFrequency(thresholdUsedFrequency);
+}
 
 const void *Event1f::itemsInfo[2] = {
 	&TriggeringCondition1::theInfo,
@@ -30238,6 +34247,10 @@ const Event1f::Info Event1f::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+Event1f::Event1f(const TriggeringCondition1& triggeringCondition, const ThresholdUsedFrequency& thresholdUsedFrequency) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setThresholdUsedFrequency(thresholdUsedFrequency);
+}
 
 const void *IntraFreqEvent::choicesInfo[9] = {
 	&Event1a::theInfo,
@@ -30305,6 +34318,11 @@ const IntraFreqEventCriteria::Info IntraFreqEventCriteria::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+IntraFreqEventCriteria::IntraFreqEventCriteria(const IntraFreqEvent& event, const Hysteresis& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setEvent(event);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *IntraFreqReportingCriteria::itemsInfo[1] = {
 	&IntraFreqEventCriteriaList::theInfo,
@@ -30339,6 +34357,9 @@ const PeriodicalReportingCriteria::Info PeriodicalReportingCriteria::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+PeriodicalReportingCriteria::PeriodicalReportingCriteria(const ReportingIntervalLong& reportingInterval) : Sequence(&theInfo) {
+	setReportingInterval(reportingInterval);
+}
 
 const void *CellDCHReportCriteria::choicesInfo[2] = {
 	&IntraFreqReportingCriteria::theInfo,
@@ -30368,6 +34389,9 @@ const ForbiddenAffectCellLCRr4::Info ForbiddenAffectCellLCRr4::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+ForbiddenAffectCellLCRr4::ForbiddenAffectCellLCRr4(const PrimaryCCPCHInfoLCRr4& tdd) : Sequence(&theInfo) {
+	setTdd(tdd);
+}
 
 const void *Event1aLCRr4::itemsInfo[7] = {
 	&TriggeringCondition2::theInfo,
@@ -30396,6 +34420,14 @@ const Event1aLCRr4::Info Event1aLCRr4::theInfo = {
 	itemsPres,
 	7, 1, 0
 };
+Event1aLCRr4::Event1aLCRr4(const TriggeringCondition2& triggeringCondition, const ReportingRange& reportingRange, const W& w, const ReportDeactivationThreshold& reportDeactivationThreshold, const ReportingAmount& reportingAmount, const ReportingInterval& reportingInterval) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setReportingRange(reportingRange);
+	setW(w);
+	setReportDeactivationThreshold(reportDeactivationThreshold);
+	setReportingAmount(reportingAmount);
+	setReportingInterval(reportingInterval);
+}
 
 const void *Event1bLCRr4::itemsInfo[4] = {
 	&TriggeringCondition1::theInfo,
@@ -30418,6 +34450,11 @@ const Event1bLCRr4::Info Event1bLCRr4::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+Event1bLCRr4::Event1bLCRr4(const TriggeringCondition1& triggeringCondition, const ReportingRange& reportingRange, const W& w) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setReportingRange(reportingRange);
+	setW(w);
+}
 
 const void *IntraFreqEventLCRr4::choicesInfo[9] = {
 	&Event1aLCRr4::theInfo,
@@ -30460,6 +34497,11 @@ const IntraFreqEventCriteriaLCRr4::Info IntraFreqEventCriteriaLCRr4::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+IntraFreqEventCriteriaLCRr4::IntraFreqEventCriteriaLCRr4(const IntraFreqEventLCRr4& event, const Hysteresis& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setEvent(event);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *IntraFreqReportingCriteriaLCRr4::itemsInfo[1] = {
 	&IntraFreqEventCriteriaListLCRr4::theInfo,
@@ -30511,6 +34553,11 @@ const MeasurementOccasionPatternParameter::Info MeasurementOccasionPatternParame
 	itemsPres,
 	4, 1, 0
 };
+MeasurementOccasionPatternParameter::MeasurementOccasionPatternParameter(const MeasurementOccasionPatternParameterMeasurementOccasionCoeff& measurementOccasionPatternParameterMeasurementOccasionCoeff, const MeasurementOccasionPatternParameterMeasurementOccasionOffset& measurementOccasionPatternParameterMeasurementOccasionOffset, const MeasurementOccasionPatternParameterMeasurementOccasionLength& measurementOccasionPatternParameterMeasurementOccasionLength) : Sequence(&theInfo) {
+	setMeasurementOccasionPatternParameterMeasurementOccasionCoeff(measurementOccasionPatternParameterMeasurementOccasionCoeff);
+	setMeasurementOccasionPatternParameterMeasurementOccasionOffset(measurementOccasionPatternParameterMeasurementOccasionOffset);
+	setMeasurementOccasionPatternParameterMeasurementOccasionLength(measurementOccasionPatternParameterMeasurementOccasionLength);
+}
 
 const void *CellDCHMeasOccasionPatternLCR::itemsInfo[4] = {
 	&CellDCHMeasOccasionPatternLCRPatternIdentifier::theInfo,
@@ -30533,6 +34580,10 @@ const CellDCHMeasOccasionPatternLCR::Info CellDCHMeasOccasionPatternLCR::theInfo
 	itemsPres,
 	4, 2, 0
 };
+CellDCHMeasOccasionPatternLCR::CellDCHMeasOccasionPatternLCR(const CellDCHMeasOccasionPatternLCRPatternIdentifier& cellDCHMeasOccasionPatternLCRPatternIdentifier, const CellDCHMeasOccasionPatternLCRstatusFlag& cellDCHMeasOccasionPatternLCRstatusFlag) : Sequence(&theInfo) {
+	setCellDCHMeasOccasionPatternLCRPatternIdentifier(cellDCHMeasOccasionPatternLCRPatternIdentifier);
+	setCellDCHMeasOccasionPatternLCRstatusFlag(cellDCHMeasOccasionPatternLCRstatusFlag);
+}
 
 const void *CellDCHMeasOccasionInfoTDD128r9::itemsInfo[1] = {
 	&CellDCHMeasOccasionInfoTDD128r9CellDCHMeasOccasionSequenceList::theInfo,
@@ -30549,6 +34600,9 @@ const CellDCHMeasOccasionInfoTDD128r9::Info CellDCHMeasOccasionInfoTDD128r9::the
 	itemsPres,
 	1, 0, 0
 };
+CellDCHMeasOccasionInfoTDD128r9::CellDCHMeasOccasionInfoTDD128r9(const CellDCHMeasOccasionInfoTDD128r9CellDCHMeasOccasionSequenceList& cellDCHMeasOccasionInfoTDD128r9CellDCHMeasOccasionSequenceList) : Sequence(&theInfo) {
+	setCellDCHMeasOccasionInfoTDD128r9CellDCHMeasOccasionSequenceList(cellDCHMeasOccasionInfoTDD128r9CellDCHMeasOccasionSequenceList);
+}
 
 const void *ReferenceTimeDifferenceToCell::choicesInfo[3] = {
 	&ReferenceTimeDifferenceToCellAccuracy40::theInfo,
@@ -30585,6 +34639,10 @@ const CellInfoModeSpecificInfoFdd::Info CellInfoModeSpecificInfoFdd::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+CellInfoModeSpecificInfoFdd::CellInfoModeSpecificInfoFdd(const CellInfoModeSpecificInfoFddReadSFNIndicator& cellInfoModeSpecificInfoFddReadSFNIndicator, const CellInfoModeSpecificInfoFddTxDiversityIndicator& cellInfoModeSpecificInfoFddTxDiversityIndicator) : Sequence(&theInfo) {
+	setCellInfoModeSpecificInfoFddReadSFNIndicator(cellInfoModeSpecificInfoFddReadSFNIndicator);
+	setCellInfoModeSpecificInfoFddTxDiversityIndicator(cellInfoModeSpecificInfoFddTxDiversityIndicator);
+}
 
 const void *TimeslotInfo::itemsInfo[2] = {
 	&TimeslotNumber::theInfo,
@@ -30603,6 +34661,10 @@ const TimeslotInfo::Info TimeslotInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+TimeslotInfo::TimeslotInfo(const TimeslotNumber& timeslotNumber, const BurstType& burstType) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+	setBurstType(burstType);
+}
 
 const void *CellInfoModeSpecificInfoTdd::itemsInfo[4] = {
 	&PrimaryCCPCHInfo::theInfo,
@@ -30625,6 +34687,10 @@ const CellInfoModeSpecificInfoTdd::Info CellInfoModeSpecificInfoTdd::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+CellInfoModeSpecificInfoTdd::CellInfoModeSpecificInfoTdd(const PrimaryCCPCHInfo& primaryCCPCHInfo, const CellInfoModeSpecificInfoTddReadSFNIndicator& cellInfoModeSpecificInfoTddReadSFNIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setCellInfoModeSpecificInfoTddReadSFNIndicator(cellInfoModeSpecificInfoTddReadSFNIndicator);
+}
 
 const void *CellInfoModeSpecificInfo::choicesInfo[2] = {
 	&CellInfoModeSpecificInfoFdd::theInfo,
@@ -30658,6 +34724,9 @@ const CellInfo::Info CellInfo::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+CellInfo::CellInfo(const CellInfoModeSpecificInfo& cellInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setCellInfoModeSpecificInfo(cellInfoModeSpecificInfo);
+}
 
 const void *CellInfor4ModeSpecificInfoFdd::itemsInfo[4] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -30680,6 +34749,10 @@ const CellInfor4ModeSpecificInfoFdd::Info CellInfor4ModeSpecificInfoFdd::theInfo
 	itemsPres,
 	4, 2, 0
 };
+CellInfor4ModeSpecificInfoFdd::CellInfor4ModeSpecificInfoFdd(const CellInfor4ModeSpecificInfoFddReadSFNIndicator& cellInfor4ModeSpecificInfoFddReadSFNIndicator, const CellInfor4ModeSpecificInfoFddTxDiversityIndicator& cellInfor4ModeSpecificInfoFddTxDiversityIndicator) : Sequence(&theInfo) {
+	setCellInfor4ModeSpecificInfoFddReadSFNIndicator(cellInfor4ModeSpecificInfoFddReadSFNIndicator);
+	setCellInfor4ModeSpecificInfoFddTxDiversityIndicator(cellInfor4ModeSpecificInfoFddTxDiversityIndicator);
+}
 
 const void *TimeslotInfoLCRr4::itemsInfo[1] = {
 	&TimeslotNumberLCRr4::theInfo,
@@ -30696,6 +34769,9 @@ const TimeslotInfoLCRr4::Info TimeslotInfoLCRr4::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+TimeslotInfoLCRr4::TimeslotInfoLCRr4(const TimeslotNumberLCRr4& timeslotNumber) : Sequence(&theInfo) {
+	setTimeslotNumber(timeslotNumber);
+}
 
 const void *TimeslotInfoListr4::choicesInfo[2] = {
 	&TimeslotInfoListr4Tdd384::theInfo,
@@ -30731,6 +34807,10 @@ const CellInfor4ModeSpecificInfoTdd::Info CellInfor4ModeSpecificInfoTdd::theInfo
 	itemsPres,
 	4, 2, 0
 };
+CellInfor4ModeSpecificInfoTdd::CellInfor4ModeSpecificInfoTdd(const PrimaryCCPCHInfor4& primaryCCPCHInfo, const CellInfor4ModeSpecificInfoTddReadSFNIndicator& cellInfor4ModeSpecificInfoTddReadSFNIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setCellInfor4ModeSpecificInfoTddReadSFNIndicator(cellInfor4ModeSpecificInfoTddReadSFNIndicator);
+}
 
 const void *CellInfor4ModeSpecificInfo::choicesInfo[2] = {
 	&CellInfor4ModeSpecificInfoFdd::theInfo,
@@ -30764,6 +34844,9 @@ const CellInfor4::Info CellInfor4::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+CellInfor4::CellInfor4(const CellInfor4ModeSpecificInfo& cellInfor4ModeSpecificInfo) : Sequence(&theInfo) {
+	setCellInfor4ModeSpecificInfo(cellInfor4ModeSpecificInfo);
+}
 
 const void *PenaltyTimeRSCP::choicesInfo[7] = {
 	&PenaltyTimeRSCPNotUsed::theInfo,
@@ -30798,6 +34881,9 @@ const HCSCellReselectInformationRSCP::Info HCSCellReselectInformationRSCP::theIn
 	itemsPres,
 	1, 0, 0
 };
+HCSCellReselectInformationRSCP::HCSCellReselectInformationRSCP(const PenaltyTimeRSCP& penaltyTime) : Sequence(&theInfo) {
+	setPenaltyTime(penaltyTime);
+}
 
 const void *HCSNeighbouringCellInformationRSCP::itemsInfo[3] = {
 	&HCSPRIO::theInfo,
@@ -30818,6 +34904,9 @@ const HCSNeighbouringCellInformationRSCP::Info HCSNeighbouringCellInformationRSC
 	itemsPres,
 	3, 2, 0
 };
+HCSNeighbouringCellInformationRSCP::HCSNeighbouringCellInformationRSCP(const HCSCellReselectInformationRSCP& hcsCellReselectInformation) : Sequence(&theInfo) {
+	setHcsCellReselectInformation(hcsCellReselectInformation);
+}
 
 const void *CellSelectReselectInfoMCRSCPModeSpecificInfoFdd::itemsInfo[2] = {
 	&QQualMin::theInfo,
@@ -30904,6 +34993,9 @@ const CellSelectReselectInfoMCRSCP::Info CellSelectReselectInfoMCRSCP::theInfo =
 	itemsPres,
 	4, 3, 0
 };
+CellSelectReselectInfoMCRSCP::CellSelectReselectInfoMCRSCP(const CellSelectReselectInfoMCRSCPModeSpecificInfo& cellSelectReselectInfoMCRSCPModeSpecificInfo) : Sequence(&theInfo) {
+	setCellSelectReselectInfoMCRSCPModeSpecificInfo(cellSelectReselectInfoMCRSCPModeSpecificInfo);
+}
 
 const void *CellInfoLCRr8ext::itemsInfo[1] = {
 	&CellSelectReselectInfoMCRSCP::theInfo,
@@ -30942,6 +35034,10 @@ const CellInfor9ModeSpecificInfoFdd::Info CellInfor9ModeSpecificInfoFdd::theInfo
 	itemsPres,
 	4, 2, 0
 };
+CellInfor9ModeSpecificInfoFdd::CellInfor9ModeSpecificInfoFdd(const CellInfor9ModeSpecificInfoFddReadSFNIndicator& cellInfor9ModeSpecificInfoFddReadSFNIndicator, const CellInfor9ModeSpecificInfoFddTxDiversityIndicator& cellInfor9ModeSpecificInfoFddTxDiversityIndicator) : Sequence(&theInfo) {
+	setCellInfor9ModeSpecificInfoFddReadSFNIndicator(cellInfor9ModeSpecificInfoFddReadSFNIndicator);
+	setCellInfor9ModeSpecificInfoFddTxDiversityIndicator(cellInfor9ModeSpecificInfoFddTxDiversityIndicator);
+}
 
 const void *CellInfor9ModeSpecificInfoTdd::itemsInfo[4] = {
 	&PrimaryCCPCHInfor4::theInfo,
@@ -30964,6 +35060,10 @@ const CellInfor9ModeSpecificInfoTdd::Info CellInfor9ModeSpecificInfoTdd::theInfo
 	itemsPres,
 	4, 2, 0
 };
+CellInfor9ModeSpecificInfoTdd::CellInfor9ModeSpecificInfoTdd(const PrimaryCCPCHInfor4& primaryCCPCHInfo, const CellInfor9ModeSpecificInfoTddReadSFNIndicator& cellInfor9ModeSpecificInfoTddReadSFNIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setCellInfor9ModeSpecificInfoTddReadSFNIndicator(cellInfor9ModeSpecificInfoTddReadSFNIndicator);
+}
 
 const void *CellInfor9ModeSpecificInfo::choicesInfo[2] = {
 	&CellInfor9ModeSpecificInfoFdd::theInfo,
@@ -30999,6 +35099,9 @@ const CellInfor9::Info CellInfor9::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+CellInfor9::CellInfor9(const CellInfor9ModeSpecificInfo& cellInfor9ModeSpecificInfo) : Sequence(&theInfo) {
+	setCellInfor9ModeSpecificInfo(cellInfor9ModeSpecificInfo);
+}
 
 const void *CellInfoSIRSCPModeSpecificInfoFdd::itemsInfo[4] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -31021,6 +35124,10 @@ const CellInfoSIRSCPModeSpecificInfoFdd::Info CellInfoSIRSCPModeSpecificInfoFdd:
 	itemsPres,
 	4, 2, 0
 };
+CellInfoSIRSCPModeSpecificInfoFdd::CellInfoSIRSCPModeSpecificInfoFdd(const CellInfoSIRSCPModeSpecificInfoFddReadSFNIndicator& cellInfoSIRSCPModeSpecificInfoFddReadSFNIndicator, const CellInfoSIRSCPModeSpecificInfoFddTxDiversityIndicator& cellInfoSIRSCPModeSpecificInfoFddTxDiversityIndicator) : Sequence(&theInfo) {
+	setCellInfoSIRSCPModeSpecificInfoFddReadSFNIndicator(cellInfoSIRSCPModeSpecificInfoFddReadSFNIndicator);
+	setCellInfoSIRSCPModeSpecificInfoFddTxDiversityIndicator(cellInfoSIRSCPModeSpecificInfoFddTxDiversityIndicator);
+}
 
 const void *CellInfoSIRSCPModeSpecificInfoTdd::itemsInfo[4] = {
 	&PrimaryCCPCHInfo::theInfo,
@@ -31043,6 +35150,10 @@ const CellInfoSIRSCPModeSpecificInfoTdd::Info CellInfoSIRSCPModeSpecificInfoTdd:
 	itemsPres,
 	4, 2, 0
 };
+CellInfoSIRSCPModeSpecificInfoTdd::CellInfoSIRSCPModeSpecificInfoTdd(const PrimaryCCPCHInfo& primaryCCPCHInfo, const CellInfoSIRSCPModeSpecificInfoTddReadSFNIndicator& cellInfoSIRSCPModeSpecificInfoTddReadSFNIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setCellInfoSIRSCPModeSpecificInfoTddReadSFNIndicator(cellInfoSIRSCPModeSpecificInfoTddReadSFNIndicator);
+}
 
 const void *CellInfoSIRSCPModeSpecificInfo::choicesInfo[2] = {
 	&CellInfoSIRSCPModeSpecificInfoFdd::theInfo,
@@ -31140,6 +35251,9 @@ const CellSelectReselectInfoSIB1112RSCP::Info CellSelectReselectInfoSIB1112RSCP:
 	itemsPres,
 	3, 2, 0
 };
+CellSelectReselectInfoSIB1112RSCP::CellSelectReselectInfoSIB1112RSCP(const CellSelectReselectInfoSIB1112RSCPModeSpecificInfo& cellSelectReselectInfoSIB1112RSCPModeSpecificInfo) : Sequence(&theInfo) {
+	setCellSelectReselectInfoSIB1112RSCPModeSpecificInfo(cellSelectReselectInfoSIB1112RSCPModeSpecificInfo);
+}
 
 const void *CellInfoSIRSCP::itemsInfo[4] = {
 	&CellIndividualOffset::theInfo,
@@ -31162,6 +35276,9 @@ const CellInfoSIRSCP::Info CellInfoSIRSCP::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+CellInfoSIRSCP::CellInfoSIRSCP(const CellInfoSIRSCPModeSpecificInfo& cellInfoSIRSCPModeSpecificInfo) : Sequence(&theInfo) {
+	setCellInfoSIRSCPModeSpecificInfo(cellInfoSIRSCPModeSpecificInfo);
+}
 
 const void *CellInfoSIRSCPLCRr4::itemsInfo[7] = {
 	&CellIndividualOffset::theInfo,
@@ -31190,6 +35307,10 @@ const CellInfoSIRSCPLCRr4::Info CellInfoSIRSCPLCRr4::theInfo = {
 	itemsPres,
 	7, 5, 0
 };
+CellInfoSIRSCPLCRr4::CellInfoSIRSCPLCRr4(const PrimaryCCPCHInfoLCRr4& primaryCCPCHInfo, const CellInfoSIRSCPLCRr4ReadSFNIndicator& cellInfoSIRSCPLCRr4ReadSFNIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setCellInfoSIRSCPLCRr4ReadSFNIndicator(cellInfoSIRSCPLCRr4ReadSFNIndicator);
+}
 
 const void *CellInfoSIECN0ModeSpecificInfoFdd::itemsInfo[4] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -31212,6 +35333,10 @@ const CellInfoSIECN0ModeSpecificInfoFdd::Info CellInfoSIECN0ModeSpecificInfoFdd:
 	itemsPres,
 	4, 2, 0
 };
+CellInfoSIECN0ModeSpecificInfoFdd::CellInfoSIECN0ModeSpecificInfoFdd(const CellInfoSIECN0ModeSpecificInfoFddReadSFNIndicator& cellInfoSIECN0ModeSpecificInfoFddReadSFNIndicator, const CellInfoSIECN0ModeSpecificInfoFddTxDiversityIndicator& cellInfoSIECN0ModeSpecificInfoFddTxDiversityIndicator) : Sequence(&theInfo) {
+	setCellInfoSIECN0ModeSpecificInfoFddReadSFNIndicator(cellInfoSIECN0ModeSpecificInfoFddReadSFNIndicator);
+	setCellInfoSIECN0ModeSpecificInfoFddTxDiversityIndicator(cellInfoSIECN0ModeSpecificInfoFddTxDiversityIndicator);
+}
 
 const void *CellInfoSIECN0ModeSpecificInfoTdd::itemsInfo[4] = {
 	&PrimaryCCPCHInfo::theInfo,
@@ -31234,6 +35359,10 @@ const CellInfoSIECN0ModeSpecificInfoTdd::Info CellInfoSIECN0ModeSpecificInfoTdd:
 	itemsPres,
 	4, 2, 0
 };
+CellInfoSIECN0ModeSpecificInfoTdd::CellInfoSIECN0ModeSpecificInfoTdd(const PrimaryCCPCHInfo& primaryCCPCHInfo, const CellInfoSIECN0ModeSpecificInfoTddReadSFNIndicator& cellInfoSIECN0ModeSpecificInfoTddReadSFNIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setCellInfoSIECN0ModeSpecificInfoTddReadSFNIndicator(cellInfoSIECN0ModeSpecificInfoTddReadSFNIndicator);
+}
 
 const void *CellInfoSIECN0ModeSpecificInfo::choicesInfo[2] = {
 	&CellInfoSIECN0ModeSpecificInfoFdd::theInfo,
@@ -31333,6 +35462,9 @@ const CellSelectReselectInfoSIB1112ECN0::Info CellSelectReselectInfoSIB1112ECN0:
 	itemsPres,
 	4, 3, 0
 };
+CellSelectReselectInfoSIB1112ECN0::CellSelectReselectInfoSIB1112ECN0(const CellSelectReselectInfoSIB1112ECN0ModeSpecificInfo& cellSelectReselectInfoSIB1112ECN0ModeSpecificInfo) : Sequence(&theInfo) {
+	setCellSelectReselectInfoSIB1112ECN0ModeSpecificInfo(cellSelectReselectInfoSIB1112ECN0ModeSpecificInfo);
+}
 
 const void *CellInfoSIECN0::itemsInfo[4] = {
 	&CellIndividualOffset::theInfo,
@@ -31355,6 +35487,9 @@ const CellInfoSIECN0::Info CellInfoSIECN0::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+CellInfoSIECN0::CellInfoSIECN0(const CellInfoSIECN0ModeSpecificInfo& cellInfoSIECN0ModeSpecificInfo) : Sequence(&theInfo) {
+	setCellInfoSIECN0ModeSpecificInfo(cellInfoSIECN0ModeSpecificInfo);
+}
 
 const void *CellInfoSIECN0LCRr4::itemsInfo[7] = {
 	&CellIndividualOffset::theInfo,
@@ -31383,6 +35518,10 @@ const CellInfoSIECN0LCRr4::Info CellInfoSIECN0LCRr4::theInfo = {
 	itemsPres,
 	7, 5, 0
 };
+CellInfoSIECN0LCRr4::CellInfoSIECN0LCRr4(const PrimaryCCPCHInfoLCRr4& primaryCCPCHInfo, const CellInfoSIECN0LCRr4ReadSFNIndicator& cellInfoSIECN0LCRr4ReadSFNIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setCellInfoSIECN0LCRr4ReadSFNIndicator(cellInfoSIECN0LCRr4ReadSFNIndicator);
+}
 
 const void *CellInfoSIHCSRSCPModeSpecificInfoFdd::itemsInfo[4] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -31405,6 +35544,10 @@ const CellInfoSIHCSRSCPModeSpecificInfoFdd::Info CellInfoSIHCSRSCPModeSpecificIn
 	itemsPres,
 	4, 2, 0
 };
+CellInfoSIHCSRSCPModeSpecificInfoFdd::CellInfoSIHCSRSCPModeSpecificInfoFdd(const CellInfoSIHCSRSCPModeSpecificInfoFddReadSFNIndicator& cellInfoSIHCSRSCPModeSpecificInfoFddReadSFNIndicator, const CellInfoSIHCSRSCPModeSpecificInfoFddTxDiversityIndicator& cellInfoSIHCSRSCPModeSpecificInfoFddTxDiversityIndicator) : Sequence(&theInfo) {
+	setCellInfoSIHCSRSCPModeSpecificInfoFddReadSFNIndicator(cellInfoSIHCSRSCPModeSpecificInfoFddReadSFNIndicator);
+	setCellInfoSIHCSRSCPModeSpecificInfoFddTxDiversityIndicator(cellInfoSIHCSRSCPModeSpecificInfoFddTxDiversityIndicator);
+}
 
 const void *CellInfoSIHCSRSCPModeSpecificInfoTdd::itemsInfo[4] = {
 	&PrimaryCCPCHInfo::theInfo,
@@ -31427,6 +35570,10 @@ const CellInfoSIHCSRSCPModeSpecificInfoTdd::Info CellInfoSIHCSRSCPModeSpecificIn
 	itemsPres,
 	4, 2, 0
 };
+CellInfoSIHCSRSCPModeSpecificInfoTdd::CellInfoSIHCSRSCPModeSpecificInfoTdd(const PrimaryCCPCHInfo& primaryCCPCHInfo, const CellInfoSIHCSRSCPModeSpecificInfoTddReadSFNIndicator& cellInfoSIHCSRSCPModeSpecificInfoTddReadSFNIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setCellInfoSIHCSRSCPModeSpecificInfoTddReadSFNIndicator(cellInfoSIHCSRSCPModeSpecificInfoTddReadSFNIndicator);
+}
 
 const void *CellInfoSIHCSRSCPModeSpecificInfo::choicesInfo[2] = {
 	&CellInfoSIHCSRSCPModeSpecificInfoFdd::theInfo,
@@ -31526,6 +35673,9 @@ const CellSelectReselectInfoSIB1112HCSRSCP::Info CellSelectReselectInfoSIB1112HC
 	itemsPres,
 	4, 3, 0
 };
+CellSelectReselectInfoSIB1112HCSRSCP::CellSelectReselectInfoSIB1112HCSRSCP(const CellSelectReselectInfoSIB1112HCSRSCPModeSpecificInfo& cellSelectReselectInfoSIB1112HCSRSCPModeSpecificInfo) : Sequence(&theInfo) {
+	setCellSelectReselectInfoSIB1112HCSRSCPModeSpecificInfo(cellSelectReselectInfoSIB1112HCSRSCPModeSpecificInfo);
+}
 
 const void *CellInfoSIHCSRSCP::itemsInfo[4] = {
 	&CellIndividualOffset::theInfo,
@@ -31548,6 +35698,9 @@ const CellInfoSIHCSRSCP::Info CellInfoSIHCSRSCP::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+CellInfoSIHCSRSCP::CellInfoSIHCSRSCP(const CellInfoSIHCSRSCPModeSpecificInfo& cellInfoSIHCSRSCPModeSpecificInfo) : Sequence(&theInfo) {
+	setCellInfoSIHCSRSCPModeSpecificInfo(cellInfoSIHCSRSCPModeSpecificInfo);
+}
 
 const void *CellInfoSIHCSRSCPLCRr4::itemsInfo[7] = {
 	&CellIndividualOffset::theInfo,
@@ -31576,6 +35729,10 @@ const CellInfoSIHCSRSCPLCRr4::Info CellInfoSIHCSRSCPLCRr4::theInfo = {
 	itemsPres,
 	7, 5, 0
 };
+CellInfoSIHCSRSCPLCRr4::CellInfoSIHCSRSCPLCRr4(const PrimaryCCPCHInfoLCRr4& primaryCCPCHInfo, const CellInfoSIHCSRSCPLCRr4ReadSFNIndicator& cellInfoSIHCSRSCPLCRr4ReadSFNIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setCellInfoSIHCSRSCPLCRr4ReadSFNIndicator(cellInfoSIHCSRSCPLCRr4ReadSFNIndicator);
+}
 
 const void *CellInfoSIHCSECN0ModeSpecificInfoFdd::itemsInfo[4] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -31598,6 +35755,10 @@ const CellInfoSIHCSECN0ModeSpecificInfoFdd::Info CellInfoSIHCSECN0ModeSpecificIn
 	itemsPres,
 	4, 2, 0
 };
+CellInfoSIHCSECN0ModeSpecificInfoFdd::CellInfoSIHCSECN0ModeSpecificInfoFdd(const CellInfoSIHCSECN0ModeSpecificInfoFddReadSFNIndicator& cellInfoSIHCSECN0ModeSpecificInfoFddReadSFNIndicator, const CellInfoSIHCSECN0ModeSpecificInfoFddTxDiversityIndicator& cellInfoSIHCSECN0ModeSpecificInfoFddTxDiversityIndicator) : Sequence(&theInfo) {
+	setCellInfoSIHCSECN0ModeSpecificInfoFddReadSFNIndicator(cellInfoSIHCSECN0ModeSpecificInfoFddReadSFNIndicator);
+	setCellInfoSIHCSECN0ModeSpecificInfoFddTxDiversityIndicator(cellInfoSIHCSECN0ModeSpecificInfoFddTxDiversityIndicator);
+}
 
 const void *CellInfoSIHCSECN0ModeSpecificInfoTdd::itemsInfo[4] = {
 	&PrimaryCCPCHInfo::theInfo,
@@ -31620,6 +35781,10 @@ const CellInfoSIHCSECN0ModeSpecificInfoTdd::Info CellInfoSIHCSECN0ModeSpecificIn
 	itemsPres,
 	4, 2, 0
 };
+CellInfoSIHCSECN0ModeSpecificInfoTdd::CellInfoSIHCSECN0ModeSpecificInfoTdd(const PrimaryCCPCHInfo& primaryCCPCHInfo, const CellInfoSIHCSECN0ModeSpecificInfoTddReadSFNIndicator& cellInfoSIHCSECN0ModeSpecificInfoTddReadSFNIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setCellInfoSIHCSECN0ModeSpecificInfoTddReadSFNIndicator(cellInfoSIHCSECN0ModeSpecificInfoTddReadSFNIndicator);
+}
 
 const void *CellInfoSIHCSECN0ModeSpecificInfo::choicesInfo[2] = {
 	&CellInfoSIHCSECN0ModeSpecificInfoFdd::theInfo,
@@ -31651,6 +35816,10 @@ const TemporaryOffsetList::Info TemporaryOffsetList::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+TemporaryOffsetList::TemporaryOffsetList(const TemporaryOffset1& temporaryOffset1, const TemporaryOffset2& temporaryOffset2) : Sequence(&theInfo) {
+	setTemporaryOffset1(temporaryOffset1);
+	setTemporaryOffset2(temporaryOffset2);
+}
 
 const void *PenaltyTimeECN0::choicesInfo[7] = {
 	&PenaltyTimeECN0NotUsed::theInfo,
@@ -31685,6 +35854,9 @@ const HCSCellReselectInformationECN0::Info HCSCellReselectInformationECN0::theIn
 	itemsPres,
 	1, 0, 0
 };
+HCSCellReselectInformationECN0::HCSCellReselectInformationECN0(const PenaltyTimeECN0& penaltyTime) : Sequence(&theInfo) {
+	setPenaltyTime(penaltyTime);
+}
 
 const void *HCSNeighbouringCellInformationECN0::itemsInfo[3] = {
 	&HCSPRIO::theInfo,
@@ -31705,6 +35877,9 @@ const HCSNeighbouringCellInformationECN0::Info HCSNeighbouringCellInformationECN
 	itemsPres,
 	3, 2, 0
 };
+HCSNeighbouringCellInformationECN0::HCSNeighbouringCellInformationECN0(const HCSCellReselectInformationECN0& hcsCellReselectInformation) : Sequence(&theInfo) {
+	setHcsCellReselectInformation(hcsCellReselectInformation);
+}
 
 const void *CellSelectReselectInfoSIB1112HCSECN0ModeSpecificInfoFdd::itemsInfo[2] = {
 	&QQualMin::theInfo,
@@ -31793,6 +35968,9 @@ const CellSelectReselectInfoSIB1112HCSECN0::Info CellSelectReselectInfoSIB1112HC
 	itemsPres,
 	5, 4, 0
 };
+CellSelectReselectInfoSIB1112HCSECN0::CellSelectReselectInfoSIB1112HCSECN0(const CellSelectReselectInfoSIB1112HCSECN0ModeSpecificInfo& cellSelectReselectInfoSIB1112HCSECN0ModeSpecificInfo) : Sequence(&theInfo) {
+	setCellSelectReselectInfoSIB1112HCSECN0ModeSpecificInfo(cellSelectReselectInfoSIB1112HCSECN0ModeSpecificInfo);
+}
 
 const void *CellInfoSIHCSECN0::itemsInfo[4] = {
 	&CellIndividualOffset::theInfo,
@@ -31815,6 +35993,9 @@ const CellInfoSIHCSECN0::Info CellInfoSIHCSECN0::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+CellInfoSIHCSECN0::CellInfoSIHCSECN0(const CellInfoSIHCSECN0ModeSpecificInfo& cellInfoSIHCSECN0ModeSpecificInfo) : Sequence(&theInfo) {
+	setCellInfoSIHCSECN0ModeSpecificInfo(cellInfoSIHCSECN0ModeSpecificInfo);
+}
 
 const void *CellInfoSIHCSECN0LCRr4::itemsInfo[7] = {
 	&CellIndividualOffset::theInfo,
@@ -31843,6 +36024,10 @@ const CellInfoSIHCSECN0LCRr4::Info CellInfoSIHCSECN0LCRr4::theInfo = {
 	itemsPres,
 	7, 5, 0
 };
+CellInfoSIHCSECN0LCRr4::CellInfoSIHCSECN0LCRr4(const PrimaryCCPCHInfoLCRr4& primaryCCPCHInfo, const CellInfoSIHCSECN0LCRr4ReadSFNIndicator& cellInfoSIHCSECN0LCRr4ReadSFNIndicator) : Sequence(&theInfo) {
+	setPrimaryCCPCHInfo(primaryCCPCHInfo);
+	setCellInfoSIHCSECN0LCRr4ReadSFNIndicator(cellInfoSIHCSECN0LCRr4ReadSFNIndicator);
+}
 
 const void *SFNSFNObsTimeDifference::choicesInfo[2] = {
 	&SFNSFNObsTimeDifference1::theInfo,
@@ -31874,6 +36059,10 @@ const CountCSFNFramedifference::Info CountCSFNFramedifference::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CountCSFNFramedifference::CountCSFNFramedifference(const CountCSFNFramedifferenceCountCSFNHigh& countCSFNFramedifferenceCountCSFNHigh, const CountCSFNFramedifferenceOff& countCSFNFramedifferenceOff) : Sequence(&theInfo) {
+	setCountCSFNFramedifferenceCountCSFNHigh(countCSFNFramedifferenceCountCSFNHigh);
+	setCountCSFNFramedifferenceOff(countCSFNFramedifferenceOff);
+}
 
 const void *CellSynchronisationInfoModeSpecificInfoFdd::itemsInfo[2] = {
 	&CountCSFNFramedifference::theInfo,
@@ -31892,6 +36081,9 @@ const CellSynchronisationInfoModeSpecificInfoFdd::Info CellSynchronisationInfoMo
 	itemsPres,
 	2, 1, 0
 };
+CellSynchronisationInfoModeSpecificInfoFdd::CellSynchronisationInfoModeSpecificInfoFdd(const CellSynchronisationInfoModeSpecificInfoFddTm& cellSynchronisationInfoModeSpecificInfoFddTm) : Sequence(&theInfo) {
+	setCellSynchronisationInfoModeSpecificInfoFddTm(cellSynchronisationInfoModeSpecificInfoFddTm);
+}
 
 const void *CellSynchronisationInfoModeSpecificInfoTdd::itemsInfo[1] = {
 	&CountCSFNFramedifference::theInfo,
@@ -31937,6 +36129,9 @@ const CellSynchronisationInfo::Info CellSynchronisationInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+CellSynchronisationInfo::CellSynchronisationInfo(const CellSynchronisationInfoModeSpecificInfo& cellSynchronisationInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setCellSynchronisationInfoModeSpecificInfo(cellSynchronisationInfoModeSpecificInfo);
+}
 
 const void *CellMeasuredResultsModeSpecificInfoFdd::itemsInfo[4] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -31959,6 +36154,9 @@ const CellMeasuredResultsModeSpecificInfoFdd::Info CellMeasuredResultsModeSpecif
 	itemsPres,
 	4, 3, 0
 };
+CellMeasuredResultsModeSpecificInfoFdd::CellMeasuredResultsModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *CellMeasuredResultsModeSpecificInfoTdd::itemsInfo[5] = {
 	&CellParametersID::theInfo,
@@ -31983,6 +36181,9 @@ const CellMeasuredResultsModeSpecificInfoTdd::Info CellMeasuredResultsModeSpecif
 	itemsPres,
 	5, 4, 0
 };
+CellMeasuredResultsModeSpecificInfoTdd::CellMeasuredResultsModeSpecificInfoTdd(const CellParametersID& cellParametersID) : Sequence(&theInfo) {
+	setCellParametersID(cellParametersID);
+}
 
 const void *CellMeasuredResultsModeSpecificInfo::choicesInfo[2] = {
 	&CellMeasuredResultsModeSpecificInfoFdd::theInfo,
@@ -32018,6 +36219,9 @@ const CellMeasuredResults::Info CellMeasuredResults::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+CellMeasuredResults::CellMeasuredResults(const CellMeasuredResultsModeSpecificInfo& cellMeasuredResultsModeSpecificInfo) : Sequence(&theInfo) {
+	setCellMeasuredResultsModeSpecificInfo(cellMeasuredResultsModeSpecificInfo);
+}
 
 const void *DeltaRSCPPerCell::itemsInfo[1] = {
 	&DeltaRSCP::theInfo,
@@ -32058,6 +36262,9 @@ const CellMeasuredResultsr9ModeSpecificInfoFdd::Info CellMeasuredResultsr9ModeSp
 	itemsPres,
 	5, 4, 0
 };
+CellMeasuredResultsr9ModeSpecificInfoFdd::CellMeasuredResultsr9ModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *CellMeasuredResultsr9ModeSpecificInfoTdd::itemsInfo[5] = {
 	&CellParametersID::theInfo,
@@ -32082,6 +36289,9 @@ const CellMeasuredResultsr9ModeSpecificInfoTdd::Info CellMeasuredResultsr9ModeSp
 	itemsPres,
 	5, 4, 0
 };
+CellMeasuredResultsr9ModeSpecificInfoTdd::CellMeasuredResultsr9ModeSpecificInfoTdd(const CellParametersID& cellParametersID) : Sequence(&theInfo) {
+	setCellParametersID(cellParametersID);
+}
 
 const void *CellMeasuredResultsr9ModeSpecificInfo::choicesInfo[2] = {
 	&CellMeasuredResultsr9ModeSpecificInfoFdd::theInfo,
@@ -32115,6 +36325,9 @@ const CellMeasuredResultsr9::Info CellMeasuredResultsr9::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+CellMeasuredResultsr9::CellMeasuredResultsr9(const CellMeasuredResultsr9ModeSpecificInfo& cellMeasuredResultsr9ModeSpecificInfo) : Sequence(&theInfo) {
+	setCellMeasuredResultsr9ModeSpecificInfo(cellMeasuredResultsr9ModeSpecificInfo);
+}
 
 const void *CellMeasuredResultsv920ext::itemsInfo[2] = {
 	&CSGIdentity::theInfo,
@@ -32179,6 +36392,11 @@ const CellReportingQuantitiesModeSpecificInfoFdd::Info CellReportingQuantitiesMo
 	itemsPres,
 	3, 0, 0
 };
+CellReportingQuantitiesModeSpecificInfoFdd::CellReportingQuantitiesModeSpecificInfoFdd(const CellReportingQuantitiesModeSpecificInfoFddCpichEcN0reportingIndicator& cellReportingQuantitiesModeSpecificInfoFddCpichEcN0reportingIndicator, const CellReportingQuantitiesModeSpecificInfoFddCpichRSCPreportingIndicator& cellReportingQuantitiesModeSpecificInfoFddCpichRSCPreportingIndicator, const CellReportingQuantitiesModeSpecificInfoFddPathlossreportingIndicator& cellReportingQuantitiesModeSpecificInfoFddPathlossreportingIndicator) : Sequence(&theInfo) {
+	setCellReportingQuantitiesModeSpecificInfoFddCpichEcN0reportingIndicator(cellReportingQuantitiesModeSpecificInfoFddCpichEcN0reportingIndicator);
+	setCellReportingQuantitiesModeSpecificInfoFddCpichRSCPreportingIndicator(cellReportingQuantitiesModeSpecificInfoFddCpichRSCPreportingIndicator);
+	setCellReportingQuantitiesModeSpecificInfoFddPathlossreportingIndicator(cellReportingQuantitiesModeSpecificInfoFddPathlossreportingIndicator);
+}
 
 const void *CellReportingQuantitiesModeSpecificInfoTdd::itemsInfo[4] = {
 	&CellReportingQuantitiesModeSpecificInfoTddTimeslotISCPreportingIndicator::theInfo,
@@ -32201,6 +36419,12 @@ const CellReportingQuantitiesModeSpecificInfoTdd::Info CellReportingQuantitiesMo
 	itemsPres,
 	4, 0, 0
 };
+CellReportingQuantitiesModeSpecificInfoTdd::CellReportingQuantitiesModeSpecificInfoTdd(const CellReportingQuantitiesModeSpecificInfoTddTimeslotISCPreportingIndicator& cellReportingQuantitiesModeSpecificInfoTddTimeslotISCPreportingIndicator, const CellReportingQuantitiesModeSpecificInfoTddProposedTGSNReportingRequired& cellReportingQuantitiesModeSpecificInfoTddProposedTGSNReportingRequired, const CellReportingQuantitiesModeSpecificInfoTddPrimaryCCPCHRSCPreportingIndicator& cellReportingQuantitiesModeSpecificInfoTddPrimaryCCPCHRSCPreportingIndicator, const CellReportingQuantitiesModeSpecificInfoTddPathlossreportingIndicator& cellReportingQuantitiesModeSpecificInfoTddPathlossreportingIndicator) : Sequence(&theInfo) {
+	setCellReportingQuantitiesModeSpecificInfoTddTimeslotISCPreportingIndicator(cellReportingQuantitiesModeSpecificInfoTddTimeslotISCPreportingIndicator);
+	setCellReportingQuantitiesModeSpecificInfoTddProposedTGSNReportingRequired(cellReportingQuantitiesModeSpecificInfoTddProposedTGSNReportingRequired);
+	setCellReportingQuantitiesModeSpecificInfoTddPrimaryCCPCHRSCPreportingIndicator(cellReportingQuantitiesModeSpecificInfoTddPrimaryCCPCHRSCPreportingIndicator);
+	setCellReportingQuantitiesModeSpecificInfoTddPathlossreportingIndicator(cellReportingQuantitiesModeSpecificInfoTddPathlossreportingIndicator);
+}
 
 const void *CellReportingQuantitiesModeSpecificInfo::choicesInfo[2] = {
 	&CellReportingQuantitiesModeSpecificInfoFdd::theInfo,
@@ -32236,6 +36460,12 @@ const CellReportingQuantities::Info CellReportingQuantities::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+CellReportingQuantities::CellReportingQuantities(const SFNSFNOTDType& dummy, const CellReportingQuantitiesCellIdentityreportingIndicator& cellReportingQuantitiesCellIdentityreportingIndicator, const CellReportingQuantitiesCellSynchronisationInfoReportingIndicator& cellReportingQuantitiesCellSynchronisationInfoReportingIndicator, const CellReportingQuantitiesModeSpecificInfo& cellReportingQuantitiesModeSpecificInfo) : Sequence(&theInfo) {
+	setDummy(dummy);
+	setCellReportingQuantitiesCellIdentityreportingIndicator(cellReportingQuantitiesCellIdentityreportingIndicator);
+	setCellReportingQuantitiesCellSynchronisationInfoReportingIndicator(cellReportingQuantitiesCellSynchronisationInfoReportingIndicator);
+	setCellReportingQuantitiesModeSpecificInfo(cellReportingQuantitiesModeSpecificInfo);
+}
 
 const void *CellSelectReselectInfoSIB1112ModeSpecificInfoFdd::itemsInfo[2] = {
 	&QQualMin::theInfo,
@@ -32324,6 +36554,9 @@ const CellSelectReselectInfoSIB1112::Info CellSelectReselectInfoSIB1112::theInfo
 	itemsPres,
 	5, 4, 0
 };
+CellSelectReselectInfoSIB1112::CellSelectReselectInfoSIB1112(const CellSelectReselectInfoSIB1112ModeSpecificInfo& cellSelectReselectInfoSIB1112ModeSpecificInfo) : Sequence(&theInfo) {
+	setCellSelectReselectInfoSIB1112ModeSpecificInfo(cellSelectReselectInfoSIB1112ModeSpecificInfo);
+}
 
 const void *CellSelectReselectInfov590ext::itemsInfo[2] = {
 	&DeltaQrxlevmin::theInfo,
@@ -32406,6 +36639,9 @@ const CellToReport::Info CellToReport::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+CellToReport::CellToReport(const BSICReported& bsicReported) : Sequence(&theInfo) {
+	setBsicReported(bsicReported);
+}
 
 const void *CNAVclockModel::itemsInfo[15] = {
 	&CNAVclockModelCnavToc::theInfo,
@@ -32450,6 +36686,17 @@ const CNAVclockModel::Info CNAVclockModel::theInfo = {
 	itemsPres,
 	15, 6, 0
 };
+CNAVclockModel::CNAVclockModel(const CNAVclockModelCnavToc& cNAVclockModelCnavToc, const CNAVclockModelCnavTop& cNAVclockModelCnavTop, const CNAVclockModelCnavURA0& cNAVclockModelCnavURA0, const CNAVclockModelCnavURA1& cNAVclockModelCnavURA1, const CNAVclockModelCnavURA2& cNAVclockModelCnavURA2, const CNAVclockModelCnavAf2& cNAVclockModelCnavAf2, const CNAVclockModelCnavAf1& cNAVclockModelCnavAf1, const CNAVclockModelCnavAf0& cNAVclockModelCnavAf0, const CNAVclockModelCnavTgd& cNAVclockModelCnavTgd) : Sequence(&theInfo) {
+	setCNAVclockModelCnavToc(cNAVclockModelCnavToc);
+	setCNAVclockModelCnavTop(cNAVclockModelCnavTop);
+	setCNAVclockModelCnavURA0(cNAVclockModelCnavURA0);
+	setCNAVclockModelCnavURA1(cNAVclockModelCnavURA1);
+	setCNAVclockModelCnavURA2(cNAVclockModelCnavURA2);
+	setCNAVclockModelCnavAf2(cNAVclockModelCnavAf2);
+	setCNAVclockModelCnavAf1(cNAVclockModelCnavAf1);
+	setCNAVclockModelCnavAf0(cNAVclockModelCnavAf0);
+	setCNAVclockModelCnavTgd(cNAVclockModelCnavTgd);
+}
 
 const void *CSGCellInfoModeSpecificInfoFdd::itemsInfo[2] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -32468,6 +36715,10 @@ const CSGCellInfoModeSpecificInfoFdd::Info CSGCellInfoModeSpecificInfoFdd::theIn
 	itemsPres,
 	2, 0, 0
 };
+CSGCellInfoModeSpecificInfoFdd::CSGCellInfoModeSpecificInfoFdd(const PrimaryCPICHInfo& startPSC, const CSGCellInfoModeSpecificInfoFddNumberOfPSCs& cSGCellInfoModeSpecificInfoFddNumberOfPSCs) : Sequence(&theInfo) {
+	setStartPSC(startPSC);
+	setCSGCellInfoModeSpecificInfoFddNumberOfPSCs(cSGCellInfoModeSpecificInfoFddNumberOfPSCs);
+}
 
 const void *CSGCellInfoModeSpecificInfo::choicesInfo[2] = {
 	&CSGCellInfoModeSpecificInfoFdd::theInfo,
@@ -32497,6 +36748,9 @@ const CSGCellInfo::Info CSGCellInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+CSGCellInfo::CSGCellInfo(const CSGCellInfoModeSpecificInfo& cSGCellInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setCSGCellInfoModeSpecificInfo(cSGCellInfoModeSpecificInfo);
+}
 
 const void *CSGInterFreqCellInfo::itemsInfo[2] = {
 	&FrequencyInfo::theInfo,
@@ -32515,6 +36769,10 @@ const CSGInterFreqCellInfo::Info CSGInterFreqCellInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CSGInterFreqCellInfo::CSGInterFreqCellInfo(const FrequencyInfo& frequencyInfo, const CSGCellInfoList& cSGInterFreqCellInfoListperFreq) : Sequence(&theInfo) {
+	setFrequencyInfo(frequencyInfo);
+	setCSGInterFreqCellInfoListperFreq(cSGInterFreqCellInfoListperFreq);
+}
 
 const void *CSGProximityDetection::itemsInfo[2] = {
 	&CSGProximityDetectionuTRACSGProximityDetec::theInfo,
@@ -32549,6 +36807,9 @@ const CSGProximityIndicationRadioAccessTechnologyUTRA::Info CSGProximityIndicati
 	itemsPres,
 	1, 0, 0
 };
+CSGProximityIndicationRadioAccessTechnologyUTRA::CSGProximityIndicationRadioAccessTechnologyUTRA(const FrequencyInfo& cSGFrequencyInfoUTRA) : Sequence(&theInfo) {
+	setCSGFrequencyInfoUTRA(cSGFrequencyInfoUTRA);
+}
 
 const void *CSGProximityIndicationRadioAccessTechnologyEUTRA::itemsInfo[1] = {
 	&EARFCN::theInfo,
@@ -32565,6 +36826,9 @@ const CSGProximityIndicationRadioAccessTechnologyEUTRA::Info CSGProximityIndicat
 	itemsPres,
 	1, 0, 0
 };
+CSGProximityIndicationRadioAccessTechnologyEUTRA::CSGProximityIndicationRadioAccessTechnologyEUTRA(const EARFCN& cSGFrequencyInfoEUTRA) : Sequence(&theInfo) {
+	setCSGFrequencyInfoEUTRA(cSGFrequencyInfoEUTRA);
+}
 
 const void *CSGProximityIndicationRadioAccessTechnology::choicesInfo[2] = {
 	&CSGProximityIndicationRadioAccessTechnologyUTRA::theInfo,
@@ -32596,6 +36860,10 @@ const CSGProximityIndication::Info CSGProximityIndication::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CSGProximityIndication::CSGProximityIndication(const CSGProximityIndicationcSGproximityInd& cSGProximityIndicationcSGproximityInd, const CSGProximityIndicationRadioAccessTechnology& cSGProximityIndicationRadioAccessTechnology) : Sequence(&theInfo) {
+	setCSGProximityIndicationcSGproximityInd(cSGProximityIndicationcSGproximityInd);
+	setCSGProximityIndicationRadioAccessTechnology(cSGProximityIndicationRadioAccessTechnology);
+}
 
 const void *DataBitAssistance::itemsInfo[2] = {
 	&GANSSSignalId::theInfo,
@@ -32614,6 +36882,10 @@ const DataBitAssistance::Info DataBitAssistance::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+DataBitAssistance::DataBitAssistance(const GANSSSignalId& gansssignalid, const DataBitAssistanceDatabits& dataBitAssistanceDatabits) : Sequence(&theInfo) {
+	setGansssignalid(gansssignalid);
+	setDataBitAssistanceDatabits(dataBitAssistanceDatabits);
+}
 
 const void *DataBitAssistanceSat::itemsInfo[2] = {
 	&DataBitAssistanceSatSatID::theInfo,
@@ -32632,6 +36904,10 @@ const DataBitAssistanceSat::Info DataBitAssistanceSat::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+DataBitAssistanceSat::DataBitAssistanceSat(const DataBitAssistanceSatSatID& dataBitAssistanceSatSatID, const DataBitAssistanceSgnList& dataBitAssistanceSgnList) : Sequence(&theInfo) {
+	setDataBitAssistanceSatSatID(dataBitAssistanceSatSatID);
+	setDataBitAssistanceSgnList(dataBitAssistanceSgnList);
+}
 
 const void *DeltaUT1::itemsInfo[2] = {
 	&DeltaUT1B1::theInfo,
@@ -32650,6 +36926,10 @@ const DeltaUT1::Info DeltaUT1::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+DeltaUT1::DeltaUT1(const DeltaUT1B1& deltaUT1B1, const DeltaUT1B2& deltaUT1B2) : Sequence(&theInfo) {
+	setDeltaUT1B1(deltaUT1B1);
+	setDeltaUT1B2(deltaUT1B2);
+}
 
 const void *DGANSSSignalInformation::itemsInfo[3] = {
 	&DGANSSSignalInformationSatId::theInfo,
@@ -32670,6 +36950,11 @@ const DGANSSSignalInformation::Info DGANSSSignalInformation::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+DGANSSSignalInformation::DGANSSSignalInformation(const DGANSSSignalInformationSatId& dGANSSSignalInformationSatId, const DGANSSSignalInformationIodedganss& dGANSSSignalInformationIodedganss, const UDRE& udre) : Sequence(&theInfo) {
+	setDGANSSSignalInformationSatId(dGANSSSignalInformationSatId);
+	setDGANSSSignalInformationIodedganss(dGANSSSignalInformationIodedganss);
+	setUdre(udre);
+}
 
 const void *DGANSSInfo::itemsInfo[3] = {
 	&GANSSSignalId::theInfo,
@@ -32690,6 +36975,9 @@ const DGANSSInfo::Info DGANSSInfo::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DGANSSInfo::DGANSSInfo(const GANSSStatusHealth& ganssStatusHealth) : Sequence(&theInfo) {
+	setGanssStatusHealth(ganssStatusHealth);
+}
 
 const void *DGANSSSignalInformationr9::itemsInfo[5] = {
 	&DGANSSSignalInformationr9SatId::theInfo,
@@ -32714,6 +37002,11 @@ const DGANSSSignalInformationr9::Info DGANSSSignalInformationr9::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+DGANSSSignalInformationr9::DGANSSSignalInformationr9(const DGANSSSignalInformationr9SatId& dGANSSSignalInformationr9SatId, const DGANSSSignalInformationr9Iodedganss& dGANSSSignalInformationr9Iodedganss, const UDRE& udre) : Sequence(&theInfo) {
+	setDGANSSSignalInformationr9SatId(dGANSSSignalInformationr9SatId);
+	setDGANSSSignalInformationr9Iodedganss(dGANSSSignalInformationr9Iodedganss);
+	setUdre(udre);
+}
 
 const void *DGANSSInfor9::itemsInfo[3] = {
 	&GANSSSignalId::theInfo,
@@ -32734,6 +37027,9 @@ const DGANSSInfor9::Info DGANSSInfor9::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DGANSSInfor9::DGANSSInfor9(const GANSSStatusHealth& ganssStatusHealth) : Sequence(&theInfo) {
+	setGanssStatusHealth(ganssStatusHealth);
+}
 
 const void *DGANSSSignalInformationv920ext::itemsInfo[2] = {
 	&UDREGrowthRate::theInfo,
@@ -32800,6 +37096,15 @@ const DGPSCorrectionSatInfo::Info DGPSCorrectionSatInfo::theInfo = {
 	itemsPres,
 	9, 2, 0
 };
+DGPSCorrectionSatInfo::DGPSCorrectionSatInfo(const SatID& satID, const IODE& iode, const UDRE& udre, const PRC& prc, const RRC& rrc, const DeltaPRC& dummy1, const DeltaRRC& dummy2) : Sequence(&theInfo) {
+	setSatID(satID);
+	setIode(iode);
+	setUdre(udre);
+	setPrc(prc);
+	setRrc(rrc);
+	setDummy1(dummy1);
+	setDummy2(dummy2);
+}
 
 const void *DGPSCorrectionSatInfor9::itemsInfo[7] = {
 	&SatID::theInfo,
@@ -32828,6 +37133,13 @@ const DGPSCorrectionSatInfor9::Info DGPSCorrectionSatInfor9::theInfo = {
 	itemsPres,
 	7, 2, 0
 };
+DGPSCorrectionSatInfor9::DGPSCorrectionSatInfor9(const SatID& satID, const IODE& iode, const UDRE& udre, const PRC& prc, const RRC& rrc) : Sequence(&theInfo) {
+	setSatID(satID);
+	setIode(iode);
+	setUdre(udre);
+	setPrc(prc);
+	setRrc(rrc);
+}
 
 const void *DGPSCorrectionSatInfov920ext::itemsInfo[2] = {
 	&UDREGrowthRate::theInfo,
@@ -32866,6 +37178,11 @@ const EllipsoidPoint::Info EllipsoidPoint::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+EllipsoidPoint::EllipsoidPoint(const EllipsoidPointlatitudeSign& ellipsoidPointlatitudeSign, const EllipsoidPointLatitude& ellipsoidPointLatitude, const EllipsoidPointLongitude& ellipsoidPointLongitude) : Sequence(&theInfo) {
+	setEllipsoidPointlatitudeSign(ellipsoidPointlatitudeSign);
+	setEllipsoidPointLatitude(ellipsoidPointLatitude);
+	setEllipsoidPointLongitude(ellipsoidPointLongitude);
+}
 
 const void *EllipsoidPointAltitude::itemsInfo[5] = {
 	&EllipsoidPointAltitudelatitudeSign::theInfo,
@@ -32890,6 +37207,13 @@ const EllipsoidPointAltitude::Info EllipsoidPointAltitude::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+EllipsoidPointAltitude::EllipsoidPointAltitude(const EllipsoidPointAltitudelatitudeSign& ellipsoidPointAltitudelatitudeSign, const EllipsoidPointAltitudeLatitude& ellipsoidPointAltitudeLatitude, const EllipsoidPointAltitudeLongitude& ellipsoidPointAltitudeLongitude, const EllipsoidPointAltitudealtitudeDirection& ellipsoidPointAltitudealtitudeDirection, const EllipsoidPointAltitudeAltitude& ellipsoidPointAltitudeAltitude) : Sequence(&theInfo) {
+	setEllipsoidPointAltitudelatitudeSign(ellipsoidPointAltitudelatitudeSign);
+	setEllipsoidPointAltitudeLatitude(ellipsoidPointAltitudeLatitude);
+	setEllipsoidPointAltitudeLongitude(ellipsoidPointAltitudeLongitude);
+	setEllipsoidPointAltitudealtitudeDirection(ellipsoidPointAltitudealtitudeDirection);
+	setEllipsoidPointAltitudeAltitude(ellipsoidPointAltitudeAltitude);
+}
 
 const void *EllipsoidPointAltitudeEllipsoide::itemsInfo[10] = {
 	&EllipsoidPointAltitudeEllipsoidelatitudeSign::theInfo,
@@ -32924,6 +37248,18 @@ const EllipsoidPointAltitudeEllipsoide::Info EllipsoidPointAltitudeEllipsoide::t
 	itemsPres,
 	10, 0, 0
 };
+EllipsoidPointAltitudeEllipsoide::EllipsoidPointAltitudeEllipsoide(const EllipsoidPointAltitudeEllipsoidelatitudeSign& ellipsoidPointAltitudeEllipsoidelatitudeSign, const EllipsoidPointAltitudeEllipsoideLatitude& ellipsoidPointAltitudeEllipsoideLatitude, const EllipsoidPointAltitudeEllipsoideLongitude& ellipsoidPointAltitudeEllipsoideLongitude, const EllipsoidPointAltitudeEllipsoidealtitudeDirection& ellipsoidPointAltitudeEllipsoidealtitudeDirection, const EllipsoidPointAltitudeEllipsoideAltitude& ellipsoidPointAltitudeEllipsoideAltitude, const EllipsoidPointAltitudeEllipsoideUncertaintySemiMajor& ellipsoidPointAltitudeEllipsoideUncertaintySemiMajor, const EllipsoidPointAltitudeEllipsoideUncertaintySemiMinor& ellipsoidPointAltitudeEllipsoideUncertaintySemiMinor, const EllipsoidPointAltitudeEllipsoideOrientationMajorAxis& ellipsoidPointAltitudeEllipsoideOrientationMajorAxis, const EllipsoidPointAltitudeEllipsoideUncertaintyAltitude& ellipsoidPointAltitudeEllipsoideUncertaintyAltitude, const EllipsoidPointAltitudeEllipsoideConfidence& ellipsoidPointAltitudeEllipsoideConfidence) : Sequence(&theInfo) {
+	setEllipsoidPointAltitudeEllipsoidelatitudeSign(ellipsoidPointAltitudeEllipsoidelatitudeSign);
+	setEllipsoidPointAltitudeEllipsoideLatitude(ellipsoidPointAltitudeEllipsoideLatitude);
+	setEllipsoidPointAltitudeEllipsoideLongitude(ellipsoidPointAltitudeEllipsoideLongitude);
+	setEllipsoidPointAltitudeEllipsoidealtitudeDirection(ellipsoidPointAltitudeEllipsoidealtitudeDirection);
+	setEllipsoidPointAltitudeEllipsoideAltitude(ellipsoidPointAltitudeEllipsoideAltitude);
+	setEllipsoidPointAltitudeEllipsoideUncertaintySemiMajor(ellipsoidPointAltitudeEllipsoideUncertaintySemiMajor);
+	setEllipsoidPointAltitudeEllipsoideUncertaintySemiMinor(ellipsoidPointAltitudeEllipsoideUncertaintySemiMinor);
+	setEllipsoidPointAltitudeEllipsoideOrientationMajorAxis(ellipsoidPointAltitudeEllipsoideOrientationMajorAxis);
+	setEllipsoidPointAltitudeEllipsoideUncertaintyAltitude(ellipsoidPointAltitudeEllipsoideUncertaintyAltitude);
+	setEllipsoidPointAltitudeEllipsoideConfidence(ellipsoidPointAltitudeEllipsoideConfidence);
+}
 
 const void *EllipsoidPointUncertCircle::itemsInfo[4] = {
 	&EllipsoidPointUncertCirclelatitudeSign::theInfo,
@@ -32946,6 +37282,12 @@ const EllipsoidPointUncertCircle::Info EllipsoidPointUncertCircle::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+EllipsoidPointUncertCircle::EllipsoidPointUncertCircle(const EllipsoidPointUncertCirclelatitudeSign& ellipsoidPointUncertCirclelatitudeSign, const EllipsoidPointUncertCircleLatitude& ellipsoidPointUncertCircleLatitude, const EllipsoidPointUncertCircleLongitude& ellipsoidPointUncertCircleLongitude, const EllipsoidPointUncertCircleUncertaintyCode& ellipsoidPointUncertCircleUncertaintyCode) : Sequence(&theInfo) {
+	setEllipsoidPointUncertCirclelatitudeSign(ellipsoidPointUncertCirclelatitudeSign);
+	setEllipsoidPointUncertCircleLatitude(ellipsoidPointUncertCircleLatitude);
+	setEllipsoidPointUncertCircleLongitude(ellipsoidPointUncertCircleLongitude);
+	setEllipsoidPointUncertCircleUncertaintyCode(ellipsoidPointUncertCircleUncertaintyCode);
+}
 
 const void *EllipsoidPointUncertEllipse::itemsInfo[7] = {
 	&EllipsoidPointUncertEllipselatitudeSign::theInfo,
@@ -32974,6 +37316,15 @@ const EllipsoidPointUncertEllipse::Info EllipsoidPointUncertEllipse::theInfo = {
 	itemsPres,
 	7, 0, 0
 };
+EllipsoidPointUncertEllipse::EllipsoidPointUncertEllipse(const EllipsoidPointUncertEllipselatitudeSign& ellipsoidPointUncertEllipselatitudeSign, const EllipsoidPointUncertEllipseLatitude& ellipsoidPointUncertEllipseLatitude, const EllipsoidPointUncertEllipseLongitude& ellipsoidPointUncertEllipseLongitude, const EllipsoidPointUncertEllipseUncertaintySemiMajor& ellipsoidPointUncertEllipseUncertaintySemiMajor, const EllipsoidPointUncertEllipseUncertaintySemiMinor& ellipsoidPointUncertEllipseUncertaintySemiMinor, const EllipsoidPointUncertEllipseOrientationMajorAxis& ellipsoidPointUncertEllipseOrientationMajorAxis, const EllipsoidPointUncertEllipseConfidence& ellipsoidPointUncertEllipseConfidence) : Sequence(&theInfo) {
+	setEllipsoidPointUncertEllipselatitudeSign(ellipsoidPointUncertEllipselatitudeSign);
+	setEllipsoidPointUncertEllipseLatitude(ellipsoidPointUncertEllipseLatitude);
+	setEllipsoidPointUncertEllipseLongitude(ellipsoidPointUncertEllipseLongitude);
+	setEllipsoidPointUncertEllipseUncertaintySemiMajor(ellipsoidPointUncertEllipseUncertaintySemiMajor);
+	setEllipsoidPointUncertEllipseUncertaintySemiMinor(ellipsoidPointUncertEllipseUncertaintySemiMinor);
+	setEllipsoidPointUncertEllipseOrientationMajorAxis(ellipsoidPointUncertEllipseOrientationMajorAxis);
+	setEllipsoidPointUncertEllipseConfidence(ellipsoidPointUncertEllipseConfidence);
+}
 
 const void *EutraEventResult::itemsInfo[2] = {
 	&EARFCN::theInfo,
@@ -32992,6 +37343,10 @@ const EutraEventResult::Info EutraEventResult::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+EutraEventResult::EutraEventResult(const EARFCN& earfcn, const EutraEventResultReportedCells& eutraEventResultReportedCells) : Sequence(&theInfo) {
+	setEarfcn(earfcn);
+	setEutraEventResultReportedCells(eutraEventResultReportedCells);
+}
 
 const void *EUTRAEventResults::itemsInfo[2] = {
 	&EventIDInterRAT::theInfo,
@@ -33010,6 +37365,10 @@ const EUTRAEventResults::Info EUTRAEventResults::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+EUTRAEventResults::EUTRAEventResults(const EventIDInterRAT& eventID, const EutraEventResultList& eutraEventResultsList) : Sequence(&theInfo) {
+	setEventID(eventID);
+	setEutraEventResultsList(eutraEventResultsList);
+}
 
 const void *EUTRAFrequencyAndPriorityInfo::itemsInfo[8] = {
 	&EARFCN::theInfo,
@@ -33040,6 +37399,14 @@ const EUTRAFrequencyAndPriorityInfo::Info EUTRAFrequencyAndPriorityInfo::theInfo
 	itemsPres,
 	8, 2, 0
 };
+EUTRAFrequencyAndPriorityInfo::EUTRAFrequencyAndPriorityInfo(const EARFCN& earfcn, const EUTRAFrequencyAndPriorityInfoPriority& eUTRAFrequencyAndPriorityInfoPriority, const EUTRAFrequencyAndPriorityInfoQRxLevMinEUTRA& eUTRAFrequencyAndPriorityInfoQRxLevMinEUTRA, const EUTRAFrequencyAndPriorityInfoThreshXhigh& eUTRAFrequencyAndPriorityInfoThreshXhigh, const EUTRAFrequencyAndPriorityInfoThreshXlow& eUTRAFrequencyAndPriorityInfoThreshXlow, const EUTRAFrequencyAndPriorityInfoEutraDetection& eUTRAFrequencyAndPriorityInfoEutraDetection) : Sequence(&theInfo) {
+	setEarfcn(earfcn);
+	setEUTRAFrequencyAndPriorityInfoPriority(eUTRAFrequencyAndPriorityInfoPriority);
+	setEUTRAFrequencyAndPriorityInfoQRxLevMinEUTRA(eUTRAFrequencyAndPriorityInfoQRxLevMinEUTRA);
+	setEUTRAFrequencyAndPriorityInfoThreshXhigh(eUTRAFrequencyAndPriorityInfoThreshXhigh);
+	setEUTRAFrequencyAndPriorityInfoThreshXlow(eUTRAFrequencyAndPriorityInfoThreshXlow);
+	setEUTRAFrequencyAndPriorityInfoEutraDetection(eUTRAFrequencyAndPriorityInfoEutraDetection);
+}
 
 const void *EUTRAFrequencyAndPriorityInfov920ext::itemsInfo[3] = {
 	&EUTRAFrequencyAndPriorityInfov920extQqualMinEUTRA::theInfo,
@@ -33094,6 +37461,9 @@ const EUTRAFrequencyInfo::Info EUTRAFrequencyInfo::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+EUTRAFrequencyInfo::EUTRAFrequencyInfo(const EARFCN& earfcn) : Sequence(&theInfo) {
+	setEarfcn(earfcn);
+}
 
 const void *EUTRAFrequencyList::itemsInfo[2] = {
 	&EUTRAFrequencyRemoval::theInfo,
@@ -33112,6 +37482,9 @@ const EUTRAFrequencyList::Info EUTRAFrequencyList::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+EUTRAFrequencyList::EUTRAFrequencyList(const EUTRAFrequencyRemoval& eutraFrequencyRemoval) : Sequence(&theInfo) {
+	setEutraFrequencyRemoval(eutraFrequencyRemoval);
+}
 
 const void *EUTRASIAcquisition::itemsInfo[2] = {
 	&EARFCN::theInfo,
@@ -33130,6 +37503,10 @@ const EUTRASIAcquisition::Info EUTRASIAcquisition::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+EUTRASIAcquisition::EUTRASIAcquisition(const EARFCN& earfcn, const EUTRAPhysicalCellIdentity& physicalCellIdentity) : Sequence(&theInfo) {
+	setEarfcn(earfcn);
+	setPhysicalCellIdentity(physicalCellIdentity);
+}
 
 const void *EUTRAFrequencyListr9::itemsInfo[3] = {
 	&EUTRAFrequencyRemoval::theInfo,
@@ -33150,6 +37527,9 @@ const EUTRAFrequencyListr9::Info EUTRAFrequencyListr9::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+EUTRAFrequencyListr9::EUTRAFrequencyListr9(const EUTRAFrequencyRemoval& eutraFrequencyRemoval) : Sequence(&theInfo) {
+	setEutraFrequencyRemoval(eutraFrequencyRemoval);
+}
 
 const void *EUTRAMeasuredCells::itemsInfo[3] = {
 	&EUTRAPhysicalCellIdentity::theInfo,
@@ -33170,6 +37550,9 @@ const EUTRAMeasuredCells::Info EUTRAMeasuredCells::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+EUTRAMeasuredCells::EUTRAMeasuredCells(const EUTRAPhysicalCellIdentity& physicalCellIdentity) : Sequence(&theInfo) {
+	setPhysicalCellIdentity(physicalCellIdentity);
+}
 
 const void *EutraMeasuredResult::itemsInfo[2] = {
 	&EARFCN::theInfo,
@@ -33188,6 +37571,10 @@ const EutraMeasuredResult::Info EutraMeasuredResult::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+EutraMeasuredResult::EutraMeasuredResult(const EARFCN& earfcn, const EutraMeasuredResultMeasuredEUTRACells& eutraMeasuredResultMeasuredEUTRACells) : Sequence(&theInfo) {
+	setEarfcn(earfcn);
+	setEutraMeasuredResultMeasuredEUTRACells(eutraMeasuredResultMeasuredEUTRACells);
+}
 
 const void *EUTRAMeasuredResults::itemsInfo[1] = {
 	&EutraMeasuredResultList::theInfo,
@@ -33204,6 +37591,9 @@ const EUTRAMeasuredResults::Info EUTRAMeasuredResults::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EUTRAMeasuredResults::EUTRAMeasuredResults(const EutraMeasuredResultList& eutraMeasuredResultList) : Sequence(&theInfo) {
+	setEutraMeasuredResultList(eutraMeasuredResultList);
+}
 
 const void *EUTRASIacquisitionResultsCgiInfo::itemsInfo[3] = {
 	&PLMNIdentity::theInfo,
@@ -33224,6 +37614,11 @@ const EUTRASIacquisitionResultsCgiInfo::Info EUTRASIacquisitionResultsCgiInfo::t
 	itemsPres,
 	3, 0, 0
 };
+EUTRASIacquisitionResultsCgiInfo::EUTRASIacquisitionResultsCgiInfo(const PLMNIdentity& plmnIdentity, const EUTRASIacquisitionResultsCgiInfoCellIdentity& eUTRASIacquisitionResultsCgiInfoCellIdentity, const EUTRASIacquisitionResultsCgiInfoTrackingAreaCode& eUTRASIacquisitionResultsCgiInfoTrackingAreaCode) : Sequence(&theInfo) {
+	setPlmnIdentity(plmnIdentity);
+	setEUTRASIacquisitionResultsCgiInfoCellIdentity(eUTRASIacquisitionResultsCgiInfoCellIdentity);
+	setEUTRASIacquisitionResultsCgiInfoTrackingAreaCode(eUTRASIacquisitionResultsCgiInfoTrackingAreaCode);
+}
 
 const void *EUTRASIacquisitionResults::itemsInfo[3] = {
 	&EUTRASIacquisitionResultsCgiInfo::theInfo,
@@ -33244,6 +37639,9 @@ const EUTRASIacquisitionResults::Info EUTRASIacquisitionResults::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+EUTRASIacquisitionResults::EUTRASIacquisitionResults(const EUTRASIacquisitionResultsCgiInfo& eUTRASIacquisitionResultsCgiInfo) : Sequence(&theInfo) {
+	setEUTRASIacquisitionResultsCgiInfo(eUTRASIacquisitionResultsCgiInfo);
+}
 
 const void *EUTRAMeasuredCellsv920ext::itemsInfo[1] = {
 	&EUTRASIacquisitionResults::theInfo,
@@ -33260,6 +37658,9 @@ const EUTRAMeasuredCellsv920ext::Info EUTRAMeasuredCellsv920ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EUTRAMeasuredCellsv920ext::EUTRAMeasuredCellsv920ext(const EUTRASIacquisitionResults& eutraSIacquisitionResults) : Sequence(&theInfo) {
+	setEutraSIacquisitionResults(eutraSIacquisitionResults);
+}
 
 const void *EutraMeasuredResultv920ext::itemsInfo[1] = {
 	&EutraMeasuredResultv920extMeasuredEUTRACellsv920ext::theInfo,
@@ -33276,6 +37677,9 @@ const EutraMeasuredResultv920ext::Info EutraMeasuredResultv920ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EutraMeasuredResultv920ext::EutraMeasuredResultv920ext(const EutraMeasuredResultv920extMeasuredEUTRACellsv920ext& eutraMeasuredResultv920extMeasuredEUTRACellsv920ext) : Sequence(&theInfo) {
+	setEutraMeasuredResultv920extMeasuredEUTRACellsv920ext(eutraMeasuredResultv920extMeasuredEUTRACellsv920ext);
+}
 
 const void *EUTRAMeasuredResultsv920ext::itemsInfo[1] = {
 	&EutraMeasuredResultListv920ext::theInfo,
@@ -33292,6 +37696,9 @@ const EUTRAMeasuredResultsv920ext::Info EUTRAMeasuredResultsv920ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EUTRAMeasuredResultsv920ext::EUTRAMeasuredResultsv920ext(const EutraMeasuredResultListv920ext& eutraMeasuredResultListv920ext) : Sequence(&theInfo) {
+	setEutraMeasuredResultListv920ext(eutraMeasuredResultListv920ext);
+}
 
 const void *ForbiddenAffectCellr4::choicesInfo[2] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -33333,6 +37740,14 @@ const Event1ar4::Info Event1ar4::theInfo = {
 	itemsPres,
 	7, 1, 0
 };
+Event1ar4::Event1ar4(const TriggeringCondition2& triggeringCondition, const ReportingRange& reportingRange, const W& w, const ReportDeactivationThreshold& reportDeactivationThreshold, const ReportingAmount& reportingAmount, const ReportingInterval& reportingInterval) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setReportingRange(reportingRange);
+	setW(w);
+	setReportDeactivationThreshold(reportDeactivationThreshold);
+	setReportingAmount(reportingAmount);
+	setReportingInterval(reportingInterval);
+}
 
 const void *ForbiddenAffectCellOnSecULFreq::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -33349,6 +37764,9 @@ const ForbiddenAffectCellOnSecULFreq::Info ForbiddenAffectCellOnSecULFreq::theIn
 	itemsPres,
 	1, 0, 0
 };
+ForbiddenAffectCellOnSecULFreq::ForbiddenAffectCellOnSecULFreq(const PrimaryCPICHInfo& primaryCPICH) : Sequence(&theInfo) {
+	setPrimaryCPICH(primaryCPICH);
+}
 
 const void *Event1aOnSecUlFreqr9::itemsInfo[7] = {
 	&TriggeringCondition2::theInfo,
@@ -33377,6 +37795,14 @@ const Event1aOnSecUlFreqr9::Info Event1aOnSecUlFreqr9::theInfo = {
 	itemsPres,
 	7, 1, 0
 };
+Event1aOnSecUlFreqr9::Event1aOnSecUlFreqr9(const TriggeringCondition2& triggeringCondition, const ReportingRange& reportingRange, const W& w, const ReportDeactivationThreshold& reportDeactivationThreshold, const ReportingAmount& reportingAmount, const ReportingInterval& reportingInterval) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setReportingRange(reportingRange);
+	setW(w);
+	setReportDeactivationThreshold(reportDeactivationThreshold);
+	setReportingAmount(reportingAmount);
+	setReportingInterval(reportingInterval);
+}
 
 const void *Event1br4::itemsInfo[4] = {
 	&TriggeringCondition1::theInfo,
@@ -33399,6 +37825,11 @@ const Event1br4::Info Event1br4::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+Event1br4::Event1br4(const TriggeringCondition1& triggeringCondition, const ReportingRange& reportingRange, const W& w) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setReportingRange(reportingRange);
+	setW(w);
+}
 
 const void *PeriodicReportingInfo1b::itemsInfo[2] = {
 	&ReportingAmount::theInfo,
@@ -33417,6 +37848,10 @@ const PeriodicReportingInfo1b::Info PeriodicReportingInfo1b::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+PeriodicReportingInfo1b::PeriodicReportingInfo1b(const ReportingAmount& reportingAmount, const ReportingInterval& reportingInterval) : Sequence(&theInfo) {
+	setReportingAmount(reportingAmount);
+	setReportingInterval(reportingInterval);
+}
 
 const void *Event1br7::itemsInfo[5] = {
 	&TriggeringCondition1::theInfo,
@@ -33441,6 +37876,11 @@ const Event1br7::Info Event1br7::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+Event1br7::Event1br7(const TriggeringCondition1& triggeringCondition, const ReportingRange& reportingRange, const W& w) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setReportingRange(reportingRange);
+	setW(w);
+}
 
 const void *Event1bOnSecUlFreqr9::itemsInfo[5] = {
 	&TriggeringCondition1::theInfo,
@@ -33465,6 +37905,11 @@ const Event1bOnSecUlFreqr9::Info Event1bOnSecUlFreqr9::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+Event1bOnSecUlFreqr9::Event1bOnSecUlFreqr9(const TriggeringCondition1& triggeringCondition, const ReportingRange& reportingRange, const W& w) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setReportingRange(reportingRange);
+	setW(w);
+}
 
 const void *Event1d::itemsInfo[2] = {
 	&TriggeringCondition2::theInfo,
@@ -33501,6 +37946,10 @@ const Event1er6::Info Event1er6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+Event1er6::Event1er6(const TriggeringCondition2& triggeringCondition, const ThresholdUsedFrequencyr6& thresholdUsedFrequency) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setThresholdUsedFrequency(thresholdUsedFrequency);
+}
 
 const void *Event1fr6::itemsInfo[2] = {
 	&TriggeringCondition1::theInfo,
@@ -33519,6 +37968,10 @@ const Event1fr6::Info Event1fr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+Event1fr6::Event1fr6(const TriggeringCondition1& triggeringCondition, const ThresholdUsedFrequencyr6& thresholdUsedFrequency) : Sequence(&theInfo) {
+	setTriggeringCondition(triggeringCondition);
+	setThresholdUsedFrequency(thresholdUsedFrequency);
+}
 
 const void *Event1jr6::itemsInfo[3] = {
 	&ReplacementActivationThreshold::theInfo,
@@ -33539,6 +37992,11 @@ const Event1jr6::Info Event1jr6::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+Event1jr6::Event1jr6(const ReplacementActivationThreshold& replacementActivationThreshold, const ReportingAmount& reportingAmount, const ReportingInterval& reportingInterval) : Sequence(&theInfo) {
+	setReplacementActivationThreshold(replacementActivationThreshold);
+	setReportingAmount(reportingAmount);
+	setReportingInterval(reportingInterval);
+}
 
 const void *NonUsedFreqParameter::itemsInfo[2] = {
 	&Threshold::theInfo,
@@ -33557,6 +38015,10 @@ const NonUsedFreqParameter::Info NonUsedFreqParameter::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+NonUsedFreqParameter::NonUsedFreqParameter(const Threshold& nonUsedFreqThreshold, const W& nonUsedFreqW) : Sequence(&theInfo) {
+	setNonUsedFreqThreshold(nonUsedFreqThreshold);
+	setNonUsedFreqW(nonUsedFreqW);
+}
 
 const void *Event2a::itemsInfo[6] = {
 	&Threshold::theInfo,
@@ -33583,6 +38045,12 @@ const Event2a::Info Event2a::theInfo = {
 	itemsPres,
 	6, 2, 0
 };
+Event2a::Event2a(const Threshold& dummy, const W& usedFreqW, const HysteresisInterFreq& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setDummy(dummy);
+	setUsedFreqW(usedFreqW);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event2ar6::itemsInfo[5] = {
 	&W::theInfo,
@@ -33607,6 +38075,11 @@ const Event2ar6::Info Event2ar6::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+Event2ar6::Event2ar6(const W& usedFreqW, const HysteresisInterFreq& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setUsedFreqW(usedFreqW);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event2b::itemsInfo[6] = {
 	&Threshold::theInfo,
@@ -33633,6 +38106,12 @@ const Event2b::Info Event2b::theInfo = {
 	itemsPres,
 	6, 2, 0
 };
+Event2b::Event2b(const Threshold& usedFreqThreshold, const W& usedFreqW, const HysteresisInterFreq& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setUsedFreqThreshold(usedFreqThreshold);
+	setUsedFreqW(usedFreqW);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *NonUsedFreqParameterr6::itemsInfo[2] = {
 	&Thresholdr6::theInfo,
@@ -33651,6 +38130,10 @@ const NonUsedFreqParameterr6::Info NonUsedFreqParameterr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+NonUsedFreqParameterr6::NonUsedFreqParameterr6(const Thresholdr6& nonUsedFreqThreshold, const W& nonUsedFreqW) : Sequence(&theInfo) {
+	setNonUsedFreqThreshold(nonUsedFreqThreshold);
+	setNonUsedFreqW(nonUsedFreqW);
+}
 
 const void *Event2br6::itemsInfo[6] = {
 	&Thresholdr6::theInfo,
@@ -33677,6 +38160,12 @@ const Event2br6::Info Event2br6::theInfo = {
 	itemsPres,
 	6, 2, 0
 };
+Event2br6::Event2br6(const Thresholdr6& usedFreqThreshold, const W& usedFreqW, const HysteresisInterFreq& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setUsedFreqThreshold(usedFreqThreshold);
+	setUsedFreqW(usedFreqW);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event2c::itemsInfo[4] = {
 	&HysteresisInterFreq::theInfo,
@@ -33699,6 +38188,10 @@ const Event2c::Info Event2c::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+Event2c::Event2c(const HysteresisInterFreq& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event2cr6::itemsInfo[4] = {
 	&HysteresisInterFreq::theInfo,
@@ -33721,6 +38214,10 @@ const Event2cr6::Info Event2cr6::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+Event2cr6::Event2cr6(const HysteresisInterFreq& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event2d::itemsInfo[5] = {
 	&Threshold::theInfo,
@@ -33745,6 +38242,12 @@ const Event2d::Info Event2d::theInfo = {
 	itemsPres,
 	5, 1, 0
 };
+Event2d::Event2d(const Threshold& usedFreqThreshold, const W& usedFreqW, const HysteresisInterFreq& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setUsedFreqThreshold(usedFreqThreshold);
+	setUsedFreqW(usedFreqW);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event2dr6::itemsInfo[5] = {
 	&Thresholdr6::theInfo,
@@ -33769,6 +38272,12 @@ const Event2dr6::Info Event2dr6::theInfo = {
 	itemsPres,
 	5, 1, 0
 };
+Event2dr6::Event2dr6(const Thresholdr6& usedFreqThreshold, const W& usedFreqW, const HysteresisInterFreq& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setUsedFreqThreshold(usedFreqThreshold);
+	setUsedFreqW(usedFreqW);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event2e::itemsInfo[4] = {
 	&HysteresisInterFreq::theInfo,
@@ -33791,6 +38300,10 @@ const Event2e::Info Event2e::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+Event2e::Event2e(const HysteresisInterFreq& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event2er6::itemsInfo[4] = {
 	&HysteresisInterFreq::theInfo,
@@ -33813,6 +38326,10 @@ const Event2er6::Info Event2er6::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+Event2er6::Event2er6(const HysteresisInterFreq& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event2f::itemsInfo[5] = {
 	&Threshold::theInfo,
@@ -33837,6 +38354,12 @@ const Event2f::Info Event2f::theInfo = {
 	itemsPres,
 	5, 1, 0
 };
+Event2f::Event2f(const Threshold& usedFreqThreshold, const W& usedFreqW, const HysteresisInterFreq& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setUsedFreqThreshold(usedFreqThreshold);
+	setUsedFreqW(usedFreqW);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event2fr6::itemsInfo[5] = {
 	&Thresholdr6::theInfo,
@@ -33861,6 +38384,12 @@ const Event2fr6::Info Event2fr6::theInfo = {
 	itemsPres,
 	5, 1, 0
 };
+Event2fr6::Event2fr6(const Thresholdr6& usedFreqThreshold, const W& usedFreqW, const HysteresisInterFreq& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setUsedFreqThreshold(usedFreqThreshold);
+	setUsedFreqW(usedFreqW);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event3a::itemsInfo[6] = {
 	&Threshold::theInfo,
@@ -33887,6 +38416,13 @@ const Event3a::Info Event3a::theInfo = {
 	itemsPres,
 	6, 1, 0
 };
+Event3a::Event3a(const Threshold& thresholdOwnSystem, const W& w, const Threshold& thresholdOtherSystem, const Hysteresis& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setThresholdOwnSystem(thresholdOwnSystem);
+	setW(w);
+	setThresholdOtherSystem(thresholdOtherSystem);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event3b::itemsInfo[4] = {
 	&Threshold::theInfo,
@@ -33909,6 +38445,11 @@ const Event3b::Info Event3b::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+Event3b::Event3b(const Threshold& thresholdOtherSystem, const Hysteresis& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setThresholdOtherSystem(thresholdOtherSystem);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event3c::itemsInfo[4] = {
 	&Threshold::theInfo,
@@ -33931,6 +38472,11 @@ const Event3c::Info Event3c::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+Event3c::Event3c(const Threshold& thresholdOtherSystem, const Hysteresis& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setThresholdOtherSystem(thresholdOtherSystem);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *Event3d::itemsInfo[3] = {
 	&Hysteresis::theInfo,
@@ -33951,6 +38497,10 @@ const Event3d::Info Event3d::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+Event3d::Event3d(const Hysteresis& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *IntraFreqEventResults::itemsInfo[2] = {
 	&EventIDIntraFreq::theInfo,
@@ -33969,6 +38519,10 @@ const IntraFreqEventResults::Info IntraFreqEventResults::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+IntraFreqEventResults::IntraFreqEventResults(const EventIDIntraFreq& eventID, const CellMeasurementEventResults& cellMeasurementEventResults) : Sequence(&theInfo) {
+	setEventID(eventID);
+	setCellMeasurementEventResults(cellMeasurementEventResults);
+}
 
 const void *InterFreqCell::itemsInfo[2] = {
 	&FrequencyInfo::theInfo,
@@ -33987,6 +38541,10 @@ const InterFreqCell::Info InterFreqCell::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+InterFreqCell::InterFreqCell(const FrequencyInfo& frequencyInfo, const CellMeasurementEventResults& nonFreqRelatedEventResults) : Sequence(&theInfo) {
+	setFrequencyInfo(frequencyInfo);
+	setNonFreqRelatedEventResults(nonFreqRelatedEventResults);
+}
 
 const void *InterFreqEventResults::itemsInfo[2] = {
 	&EventIDInterFreq::theInfo,
@@ -34005,6 +38563,9 @@ const InterFreqEventResults::Info InterFreqEventResults::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+InterFreqEventResults::InterFreqEventResults(const EventIDInterFreq& eventID) : Sequence(&theInfo) {
+	setEventID(eventID);
+}
 
 const void *InterRATEventResults::itemsInfo[2] = {
 	&EventIDInterRAT::theInfo,
@@ -34023,6 +38584,10 @@ const InterRATEventResults::Info InterRATEventResults::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+InterRATEventResults::InterRATEventResults(const EventIDInterRAT& eventID, const CellToReportList& cellToReportList) : Sequence(&theInfo) {
+	setEventID(eventID);
+	setCellToReportList(cellToReportList);
+}
 
 const void *ULTrCHIdentity::choicesInfo[3] = {
 	&TransportChannelIdentity::theInfo,
@@ -34055,6 +38620,10 @@ const TrafficVolumeEventResults::Info TrafficVolumeEventResults::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+TrafficVolumeEventResults::TrafficVolumeEventResults(const ULTrCHIdentity& ultransportChannelCausingEvent, const TrafficVolumeEventType& trafficVolumeEventIdentity) : Sequence(&theInfo) {
+	setUltransportChannelCausingEvent(ultransportChannelCausingEvent);
+	setTrafficVolumeEventIdentity(trafficVolumeEventIdentity);
+}
 
 const void *UEInternalEventResults::choicesInfo[8] = {
 	&UEInternalEventResultsEvent6a::theInfo,
@@ -34092,6 +38661,10 @@ const UTRANGPSReferenceTimeResultUeGPSTimingOfCell::Info UTRANGPSReferenceTimeRe
 	itemsPres,
 	2, 0, 0
 };
+UTRANGPSReferenceTimeResultUeGPSTimingOfCell::UTRANGPSReferenceTimeResultUeGPSTimingOfCell(const UTRANGPSReferenceTimeResultUeGPSTimingOfCellMspart& uTRANGPSReferenceTimeResultUeGPSTimingOfCellMspart, const UTRANGPSReferenceTimeResultUeGPSTimingOfCellLspart& uTRANGPSReferenceTimeResultUeGPSTimingOfCellLspart) : Sequence(&theInfo) {
+	setUTRANGPSReferenceTimeResultUeGPSTimingOfCellMspart(uTRANGPSReferenceTimeResultUeGPSTimingOfCellMspart);
+	setUTRANGPSReferenceTimeResultUeGPSTimingOfCellLspart(uTRANGPSReferenceTimeResultUeGPSTimingOfCellLspart);
+}
 
 const void *UTRANGPSReferenceTimeResultModeSpecificInfoFdd::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -34108,6 +38681,9 @@ const UTRANGPSReferenceTimeResultModeSpecificInfoFdd::Info UTRANGPSReferenceTime
 	itemsPres,
 	1, 0, 0
 };
+UTRANGPSReferenceTimeResultModeSpecificInfoFdd::UTRANGPSReferenceTimeResultModeSpecificInfoFdd(const PrimaryCPICHInfo& referenceIdentity) : Sequence(&theInfo) {
+	setReferenceIdentity(referenceIdentity);
+}
 
 const void *UTRANGPSReferenceTimeResultModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellParametersID::theInfo,
@@ -34124,6 +38700,9 @@ const UTRANGPSReferenceTimeResultModeSpecificInfoTdd::Info UTRANGPSReferenceTime
 	itemsPres,
 	1, 0, 0
 };
+UTRANGPSReferenceTimeResultModeSpecificInfoTdd::UTRANGPSReferenceTimeResultModeSpecificInfoTdd(const CellParametersID& referenceIdentity) : Sequence(&theInfo) {
+	setReferenceIdentity(referenceIdentity);
+}
 
 const void *UTRANGPSReferenceTimeResultModeSpecificInfo::choicesInfo[2] = {
 	&UTRANGPSReferenceTimeResultModeSpecificInfoFdd::theInfo,
@@ -34157,6 +38736,11 @@ const UTRANGPSReferenceTimeResult::Info UTRANGPSReferenceTimeResult::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+UTRANGPSReferenceTimeResult::UTRANGPSReferenceTimeResult(const UTRANGPSReferenceTimeResultUeGPSTimingOfCell& uTRANGPSReferenceTimeResultUeGPSTimingOfCell, const UTRANGPSReferenceTimeResultModeSpecificInfo& uTRANGPSReferenceTimeResultModeSpecificInfo, const UTRANGPSReferenceTimeResultSfn& uTRANGPSReferenceTimeResultSfn) : Sequence(&theInfo) {
+	setUTRANGPSReferenceTimeResultUeGPSTimingOfCell(uTRANGPSReferenceTimeResultUeGPSTimingOfCell);
+	setUTRANGPSReferenceTimeResultModeSpecificInfo(uTRANGPSReferenceTimeResultModeSpecificInfo);
+	setUTRANGPSReferenceTimeResultSfn(uTRANGPSReferenceTimeResultSfn);
+}
 
 const void *UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfoFdd::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -34173,6 +38757,9 @@ const UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfoFd
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfoFdd::UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellAndChannelIdentity::theInfo,
@@ -34189,6 +38776,9 @@ const UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfoTd
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfoTdd::UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfoTdd(const CellAndChannelIdentity& cellAndChannelIdentity) : Sequence(&theInfo) {
+	setCellAndChannelIdentity(cellAndChannelIdentity);
+}
 
 const void *UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfo::choicesInfo[2] = {
 	&UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfoFdd::theInfo,
@@ -34220,6 +38810,10 @@ const UEPositioningPositionEstimateInfoReferenceTimeCellTiming::Info UEPositioni
 	itemsPres,
 	2, 0, 0
 };
+UEPositioningPositionEstimateInfoReferenceTimeCellTiming::UEPositioningPositionEstimateInfoReferenceTimeCellTiming(const UEPositioningPositionEstimateInfoReferenceTimeCellTimingSfn& uEPositioningPositionEstimateInfoReferenceTimeCellTimingSfn, const UEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfo& uEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfo) : Sequence(&theInfo) {
+	setUEPositioningPositionEstimateInfoReferenceTimeCellTimingSfn(uEPositioningPositionEstimateInfoReferenceTimeCellTimingSfn);
+	setUEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfo(uEPositioningPositionEstimateInfoReferenceTimeCellTimingModeSpecificInfo);
+}
 
 const void *UEPositioningPositionEstimateInfoReferenceTime::choicesInfo[3] = {
 	&UTRANGPSReferenceTimeResult::theInfo,
@@ -34268,6 +38862,10 @@ const UEPositioningPositionEstimateInfo::Info UEPositioningPositionEstimateInfo:
 	itemsPres,
 	2, 0, 0
 };
+UEPositioningPositionEstimateInfo::UEPositioningPositionEstimateInfo(const UEPositioningPositionEstimateInfoReferenceTime& uEPositioningPositionEstimateInfoReferenceTime, const PositionEstimate& positionEstimate) : Sequence(&theInfo) {
+	setUEPositioningPositionEstimateInfoReferenceTime(uEPositioningPositionEstimateInfoReferenceTime);
+	setPositionEstimate(positionEstimate);
+}
 
 const void *UEPositioningOTDOAQuality::itemsInfo[3] = {
 	&UEPositioningOTDOAQualityStdResolution::theInfo,
@@ -34288,6 +38886,11 @@ const UEPositioningOTDOAQuality::Info UEPositioningOTDOAQuality::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+UEPositioningOTDOAQuality::UEPositioningOTDOAQuality(const UEPositioningOTDOAQualityStdResolution& uEPositioningOTDOAQualityStdResolution, const UEPositioningOTDOAQualityNumberOfOTDOAMeasurements& uEPositioningOTDOAQualityNumberOfOTDOAMeasurements, const UEPositioningOTDOAQualityStdOfOTDOAMeasurements& uEPositioningOTDOAQualityStdOfOTDOAMeasurements) : Sequence(&theInfo) {
+	setUEPositioningOTDOAQualityStdResolution(uEPositioningOTDOAQualityStdResolution);
+	setUEPositioningOTDOAQualityNumberOfOTDOAMeasurements(uEPositioningOTDOAQualityNumberOfOTDOAMeasurements);
+	setUEPositioningOTDOAQualityStdOfOTDOAMeasurements(uEPositioningOTDOAQualityStdOfOTDOAMeasurements);
+}
 
 const void *NeighbourQuality::itemsInfo[1] = {
 	&UEPositioningOTDOAQuality::theInfo,
@@ -34304,6 +38907,9 @@ const NeighbourQuality::Info NeighbourQuality::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+NeighbourQuality::NeighbourQuality(const UEPositioningOTDOAQuality& uePositioningOTDOAQuality) : Sequence(&theInfo) {
+	setUePositioningOTDOAQuality(uePositioningOTDOAQuality);
+}
 
 const void *UERXTXTimeDifferenceType2Info::itemsInfo[2] = {
 	&UERXTXTimeDifferenceType2::theInfo,
@@ -34322,6 +38928,10 @@ const UERXTXTimeDifferenceType2Info::Info UERXTXTimeDifferenceType2Info::theInfo
 	itemsPres,
 	2, 0, 0
 };
+UERXTXTimeDifferenceType2Info::UERXTXTimeDifferenceType2Info(const UERXTXTimeDifferenceType2& ueRXTXTimeDifferenceType2, const NeighbourQuality& neighbourQuality) : Sequence(&theInfo) {
+	setUeRXTXTimeDifferenceType2(ueRXTXTimeDifferenceType2);
+	setNeighbourQuality(neighbourQuality);
+}
 
 const void *UEPositioningOTDOAMeasurementModeSpecificInfoFdd::itemsInfo[2] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -34340,6 +38950,10 @@ const UEPositioningOTDOAMeasurementModeSpecificInfoFdd::Info UEPositioningOTDOAM
 	itemsPres,
 	2, 0, 0
 };
+UEPositioningOTDOAMeasurementModeSpecificInfoFdd::UEPositioningOTDOAMeasurementModeSpecificInfoFdd(const PrimaryCPICHInfo& referenceCellIDentity, const UERXTXTimeDifferenceType2Info& ueRXTXTimeDifferenceType2Info) : Sequence(&theInfo) {
+	setReferenceCellIDentity(referenceCellIDentity);
+	setUeRXTXTimeDifferenceType2Info(ueRXTXTimeDifferenceType2Info);
+}
 
 const void *UEPositioningOTDOAMeasurementModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellParametersID::theInfo,
@@ -34356,6 +38970,9 @@ const UEPositioningOTDOAMeasurementModeSpecificInfoTdd::Info UEPositioningOTDOAM
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOAMeasurementModeSpecificInfoTdd::UEPositioningOTDOAMeasurementModeSpecificInfoTdd(const CellParametersID& referenceCellIdentity) : Sequence(&theInfo) {
+	setReferenceCellIdentity(referenceCellIdentity);
+}
 
 const void *UEPositioningOTDOAMeasurementModeSpecificInfo::choicesInfo[2] = {
 	&UEPositioningOTDOAMeasurementModeSpecificInfoFdd::theInfo,
@@ -34436,6 +39053,11 @@ const Neighbour::Info Neighbour::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+Neighbour::Neighbour(const NeighbourModeSpecificInfo& neighbourModeSpecificInfo, const NeighbourQuality& neighbourQuality, const SFNSFNObsTimeDifference2& sfnSFNObsTimeDifference2) : Sequence(&theInfo) {
+	setNeighbourModeSpecificInfo(neighbourModeSpecificInfo);
+	setNeighbourQuality(neighbourQuality);
+	setSfnSFNObsTimeDifference2(sfnSFNObsTimeDifference2);
+}
 
 const void *UEPositioningOTDOAMeasurement::itemsInfo[3] = {
 	&UEPositioningOTDOAMeasurementSfn::theInfo,
@@ -34456,6 +39078,10 @@ const UEPositioningOTDOAMeasurement::Info UEPositioningOTDOAMeasurement::theInfo
 	itemsPres,
 	3, 1, 0
 };
+UEPositioningOTDOAMeasurement::UEPositioningOTDOAMeasurement(const UEPositioningOTDOAMeasurementSfn& uEPositioningOTDOAMeasurementSfn, const UEPositioningOTDOAMeasurementModeSpecificInfo& uEPositioningOTDOAMeasurementModeSpecificInfo) : Sequence(&theInfo) {
+	setUEPositioningOTDOAMeasurementSfn(uEPositioningOTDOAMeasurementSfn);
+	setUEPositioningOTDOAMeasurementModeSpecificInfo(uEPositioningOTDOAMeasurementModeSpecificInfo);
+}
 
 const void *UEPositioningGPSMeasurementResultsReferenceTime::choicesInfo[2] = {
 	&UTRANGPSReferenceTimeResult::theInfo,
@@ -34497,6 +39123,15 @@ const GPSMeasurementParam::Info GPSMeasurementParam::theInfo = {
 	itemsPres,
 	7, 0, 0
 };
+GPSMeasurementParam::GPSMeasurementParam(const GPSMeasurementParamSatelliteID& gPSMeasurementParamSatelliteID, const GPSMeasurementParamCN0& gPSMeasurementParamCN0, const GPSMeasurementParamDoppler& gPSMeasurementParamDoppler, const GPSMeasurementParamWholeGPSChips& gPSMeasurementParamWholeGPSChips, const GPSMeasurementParamFractionalGPSChips& gPSMeasurementParamFractionalGPSChips, const MultipathIndicator& multipathIndicator, const GPSMeasurementParamPseudorangeRMSError& gPSMeasurementParamPseudorangeRMSError) : Sequence(&theInfo) {
+	setGPSMeasurementParamSatelliteID(gPSMeasurementParamSatelliteID);
+	setGPSMeasurementParamCN0(gPSMeasurementParamCN0);
+	setGPSMeasurementParamDoppler(gPSMeasurementParamDoppler);
+	setGPSMeasurementParamWholeGPSChips(gPSMeasurementParamWholeGPSChips);
+	setGPSMeasurementParamFractionalGPSChips(gPSMeasurementParamFractionalGPSChips);
+	setMultipathIndicator(multipathIndicator);
+	setGPSMeasurementParamPseudorangeRMSError(gPSMeasurementParamPseudorangeRMSError);
+}
 
 const void *UEPositioningGPSMeasurementResults::itemsInfo[2] = {
 	&UEPositioningGPSMeasurementResultsReferenceTime::theInfo,
@@ -34515,6 +39150,10 @@ const UEPositioningGPSMeasurementResults::Info UEPositioningGPSMeasurementResult
 	itemsPres,
 	2, 0, 0
 };
+UEPositioningGPSMeasurementResults::UEPositioningGPSMeasurementResults(const UEPositioningGPSMeasurementResultsReferenceTime& uEPositioningGPSMeasurementResultsReferenceTime, const GPSMeasurementParamList& gpsMeasurementParamList) : Sequence(&theInfo) {
+	setUEPositioningGPSMeasurementResultsReferenceTime(uEPositioningGPSMeasurementResultsReferenceTime);
+	setGpsMeasurementParamList(gpsMeasurementParamList);
+}
 
 const void *UEPositioningMeasurementEventResults::choicesInfo[4] = {
 	&UEPositioningPositionEstimateInfo::theInfo,
@@ -34567,6 +39206,10 @@ const UTRANGANSSReferenceTimeUeGANSSTimingOfCellFrames::Info UTRANGANSSReference
 	itemsPres,
 	2, 0, 0
 };
+UTRANGANSSReferenceTimeUeGANSSTimingOfCellFrames::UTRANGANSSReferenceTimeUeGANSSTimingOfCellFrames(const UTRANGANSSReferenceTimeUeGANSSTimingOfCellFramesMsPart& uTRANGANSSReferenceTimeUeGANSSTimingOfCellFramesMsPart, const UTRANGANSSReferenceTimeUeGANSSTimingOfCellFramesLsPart& uTRANGANSSReferenceTimeUeGANSSTimingOfCellFramesLsPart) : Sequence(&theInfo) {
+	setUTRANGANSSReferenceTimeUeGANSSTimingOfCellFramesMsPart(uTRANGANSSReferenceTimeUeGANSSTimingOfCellFramesMsPart);
+	setUTRANGANSSReferenceTimeUeGANSSTimingOfCellFramesLsPart(uTRANGANSSReferenceTimeUeGANSSTimingOfCellFramesLsPart);
+}
 
 const void *UTRANGANSSReferenceTimeModeFdd::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -34583,6 +39226,9 @@ const UTRANGANSSReferenceTimeModeFdd::Info UTRANGANSSReferenceTimeModeFdd::theIn
 	itemsPres,
 	1, 0, 0
 };
+UTRANGANSSReferenceTimeModeFdd::UTRANGANSSReferenceTimeModeFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *UTRANGANSSReferenceTimeModeTdd::itemsInfo[1] = {
 	&CellParametersID::theInfo,
@@ -34599,6 +39245,9 @@ const UTRANGANSSReferenceTimeModeTdd::Info UTRANGANSSReferenceTimeModeTdd::theIn
 	itemsPres,
 	1, 0, 0
 };
+UTRANGANSSReferenceTimeModeTdd::UTRANGANSSReferenceTimeModeTdd(const CellParametersID& cellParameters) : Sequence(&theInfo) {
+	setCellParameters(cellParameters);
+}
 
 const void *UTRANGANSSReferenceTimeMode::choicesInfo[2] = {
 	&UTRANGANSSReferenceTimeModeFdd::theInfo,
@@ -34636,6 +39285,11 @@ const UTRANGANSSReferenceTime::Info UTRANGANSSReferenceTime::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+UTRANGANSSReferenceTime::UTRANGANSSReferenceTime(const UTRANGANSSReferenceTimeUeGANSSTimingOfCellFrames& uTRANGANSSReferenceTimeUeGANSSTimingOfCellFrames, const UTRANGANSSReferenceTimeMode& uTRANGANSSReferenceTimeMode, const UTRANGANSSReferenceTimeReferenceSfn& uTRANGANSSReferenceTimeReferenceSfn) : Sequence(&theInfo) {
+	setUTRANGANSSReferenceTimeUeGANSSTimingOfCellFrames(uTRANGANSSReferenceTimeUeGANSSTimingOfCellFrames);
+	setUTRANGANSSReferenceTimeMode(uTRANGANSSReferenceTimeMode);
+	setUTRANGANSSReferenceTimeReferenceSfn(uTRANGANSSReferenceTimeReferenceSfn);
+}
 
 const void *GANSSReferenceTimeOnly::itemsInfo[3] = {
 	&GANSSReferenceTimeOnlyGANSStod::theInfo,
@@ -34656,6 +39310,9 @@ const GANSSReferenceTimeOnly::Info GANSSReferenceTimeOnly::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+GANSSReferenceTimeOnly::GANSSReferenceTimeOnly(const GANSSReferenceTimeOnlyGANSStod& gANSSReferenceTimeOnlyGANSStod) : Sequence(&theInfo) {
+	setGANSSReferenceTimeOnlyGANSStod(gANSSReferenceTimeOnlyGANSStod);
+}
 
 const void *UEPositioningPositionEstimateInfov770extReferenceTimeOptionsR7ReferenceTime::choicesInfo[2] = {
 	&UTRANGANSSReferenceTime::theInfo,
@@ -34687,6 +39344,10 @@ const UEPositioningPositionEstimateInfov770extReferenceTimeOptionsR7::Info UEPos
 	itemsPres,
 	2, 0, 0
 };
+UEPositioningPositionEstimateInfov770extReferenceTimeOptionsR7::UEPositioningPositionEstimateInfov770extReferenceTimeOptionsR7(const UEPositioningPositionEstimateInfov770extReferenceTimeOptionsR7ReferenceTime& uEPositioningPositionEstimateInfov770extReferenceTimeOptionsR7ReferenceTime, const PositionEstimate& positionEstimate) : Sequence(&theInfo) {
+	setUEPositioningPositionEstimateInfov770extReferenceTimeOptionsR7ReferenceTime(uEPositioningPositionEstimateInfov770extReferenceTimeOptionsR7ReferenceTime);
+	setPositionEstimate(positionEstimate);
+}
 
 const void *UEPositioningPositionEstimateInfov770extReferenceTimeOptions::choicesInfo[2] = {
 	&UEPositioningPositionEstimateInfov770extReferenceTimeOptionsEarlierthanr7::theInfo,
@@ -34718,6 +39379,10 @@ const HorizontalVelocity::Info HorizontalVelocity::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+HorizontalVelocity::HorizontalVelocity(const HorizontalVelocityBearing& horizontalVelocityBearing, const HorizontalVelocityHorizontalSpeed& horizontalVelocityHorizontalSpeed) : Sequence(&theInfo) {
+	setHorizontalVelocityBearing(horizontalVelocityBearing);
+	setHorizontalVelocityHorizontalSpeed(horizontalVelocityHorizontalSpeed);
+}
 
 const void *HorizontalWithVerticalVelocity::itemsInfo[4] = {
 	&HorizontalWithVerticalVelocityverticalSpeedDirection::theInfo,
@@ -34740,6 +39405,12 @@ const HorizontalWithVerticalVelocity::Info HorizontalWithVerticalVelocity::theIn
 	itemsPres,
 	4, 0, 0
 };
+HorizontalWithVerticalVelocity::HorizontalWithVerticalVelocity(const HorizontalWithVerticalVelocityverticalSpeedDirection& horizontalWithVerticalVelocityverticalSpeedDirection, const HorizontalWithVerticalVelocityBearing& horizontalWithVerticalVelocityBearing, const HorizontalWithVerticalVelocityHorizontalSpeed& horizontalWithVerticalVelocityHorizontalSpeed, const HorizontalWithVerticalVelocityVerticalSpeed& horizontalWithVerticalVelocityVerticalSpeed) : Sequence(&theInfo) {
+	setHorizontalWithVerticalVelocityverticalSpeedDirection(horizontalWithVerticalVelocityverticalSpeedDirection);
+	setHorizontalWithVerticalVelocityBearing(horizontalWithVerticalVelocityBearing);
+	setHorizontalWithVerticalVelocityHorizontalSpeed(horizontalWithVerticalVelocityHorizontalSpeed);
+	setHorizontalWithVerticalVelocityVerticalSpeed(horizontalWithVerticalVelocityVerticalSpeed);
+}
 
 const void *HorizontalVelocityWithUncertainty::itemsInfo[3] = {
 	&HorizontalVelocityWithUncertaintyBearing::theInfo,
@@ -34760,6 +39431,11 @@ const HorizontalVelocityWithUncertainty::Info HorizontalVelocityWithUncertainty:
 	itemsPres,
 	3, 0, 0
 };
+HorizontalVelocityWithUncertainty::HorizontalVelocityWithUncertainty(const HorizontalVelocityWithUncertaintyBearing& horizontalVelocityWithUncertaintyBearing, const HorizontalVelocityWithUncertaintyHorizontalSpeed& horizontalVelocityWithUncertaintyHorizontalSpeed, const HorizontalVelocityWithUncertaintyHorizontalSpeedUncertainty& horizontalVelocityWithUncertaintyHorizontalSpeedUncertainty) : Sequence(&theInfo) {
+	setHorizontalVelocityWithUncertaintyBearing(horizontalVelocityWithUncertaintyBearing);
+	setHorizontalVelocityWithUncertaintyHorizontalSpeed(horizontalVelocityWithUncertaintyHorizontalSpeed);
+	setHorizontalVelocityWithUncertaintyHorizontalSpeedUncertainty(horizontalVelocityWithUncertaintyHorizontalSpeedUncertainty);
+}
 
 const void *HorizontalWithVerticalVelocityAndUncertainty::itemsInfo[6] = {
 	&HorizontalWithVerticalVelocityAndUncertaintyverticalSpeedDirection::theInfo,
@@ -34786,6 +39462,14 @@ const HorizontalWithVerticalVelocityAndUncertainty::Info HorizontalWithVerticalV
 	itemsPres,
 	6, 0, 0
 };
+HorizontalWithVerticalVelocityAndUncertainty::HorizontalWithVerticalVelocityAndUncertainty(const HorizontalWithVerticalVelocityAndUncertaintyverticalSpeedDirection& horizontalWithVerticalVelocityAndUncertaintyverticalSpeedDirection, const HorizontalWithVerticalVelocityAndUncertaintyBearing& horizontalWithVerticalVelocityAndUncertaintyBearing, const HorizontalWithVerticalVelocityAndUncertaintyHorizontalSpeed& horizontalWithVerticalVelocityAndUncertaintyHorizontalSpeed, const HorizontalWithVerticalVelocityAndUncertaintyVerticalSpeed& horizontalWithVerticalVelocityAndUncertaintyVerticalSpeed, const HorizontalWithVerticalVelocityAndUncertaintyHorizontalUncertaintySpeed& horizontalWithVerticalVelocityAndUncertaintyHorizontalUncertaintySpeed, const HorizontalWithVerticalVelocityAndUncertaintyVerticalUncertaintySpeed& horizontalWithVerticalVelocityAndUncertaintyVerticalUncertaintySpeed) : Sequence(&theInfo) {
+	setHorizontalWithVerticalVelocityAndUncertaintyverticalSpeedDirection(horizontalWithVerticalVelocityAndUncertaintyverticalSpeedDirection);
+	setHorizontalWithVerticalVelocityAndUncertaintyBearing(horizontalWithVerticalVelocityAndUncertaintyBearing);
+	setHorizontalWithVerticalVelocityAndUncertaintyHorizontalSpeed(horizontalWithVerticalVelocityAndUncertaintyHorizontalSpeed);
+	setHorizontalWithVerticalVelocityAndUncertaintyVerticalSpeed(horizontalWithVerticalVelocityAndUncertaintyVerticalSpeed);
+	setHorizontalWithVerticalVelocityAndUncertaintyHorizontalUncertaintySpeed(horizontalWithVerticalVelocityAndUncertaintyHorizontalUncertaintySpeed);
+	setHorizontalWithVerticalVelocityAndUncertaintyVerticalUncertaintySpeed(horizontalWithVerticalVelocityAndUncertaintyVerticalUncertaintySpeed);
+}
 
 const void *VelocityEstimate::choicesInfo[4] = {
 	&HorizontalVelocity::theInfo,
@@ -34823,6 +39507,10 @@ const UEPositioningPositionEstimateInfov770ext::Info UEPositioningPositionEstima
 	itemsPres,
 	4, 2, 0
 };
+UEPositioningPositionEstimateInfov770ext::UEPositioningPositionEstimateInfov770ext(const UEPositioningPositionEstimateInfov770extReferenceTimeOptions& uEPositioningPositionEstimateInfov770extReferenceTimeOptions, const UEPositioningPositionEstimateInfov770extPositionData& uEPositioningPositionEstimateInfov770extPositionData) : Sequence(&theInfo) {
+	setUEPositioningPositionEstimateInfov770extReferenceTimeOptions(uEPositioningPositionEstimateInfov770extReferenceTimeOptions);
+	setUEPositioningPositionEstimateInfov770extPositionData(uEPositioningPositionEstimateInfov770extPositionData);
+}
 
 const void *UEPositioningGPSMeasurementResultsv770ext::itemsInfo[1] = {
 	&UEPositioningGPSReferenceTimeUncertainty::theInfo,
@@ -34884,6 +39572,10 @@ const UEPositioningGANSSMeasuredResults::Info UEPositioningGANSSMeasuredResults:
 	itemsPres,
 	2, 0, 0
 };
+UEPositioningGANSSMeasuredResults::UEPositioningGANSSMeasuredResults(const UEPositioningGANSSMeasuredResultsReferenceTime& uEPositioningGANSSMeasuredResultsReferenceTime, const GANSSGenericMeasurementInfo& ganssGenericMeasurementInfo) : Sequence(&theInfo) {
+	setUEPositioningGANSSMeasuredResultsReferenceTime(uEPositioningGANSSMeasuredResultsReferenceTime);
+	setGanssGenericMeasurementInfo(ganssGenericMeasurementInfo);
+}
 
 const void *UEPositioningMeasurementEventResultsv770ext::choicesInfo[4] = {
 	&UEPositioningPositionEstimateInfov770ext::theInfo,
@@ -34941,6 +39633,9 @@ const UEPositioningGANSSMeasuredResultsv860ext::Info UEPositioningGANSSMeasuredR
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningGANSSMeasuredResultsv860ext::UEPositioningGANSSMeasuredResultsv860ext(const GANSSGenericMeasurementInfov860ext& ganssGenericMeasurementInfo) : Sequence(&theInfo) {
+	setGanssGenericMeasurementInfo(ganssGenericMeasurementInfo);
+}
 
 const void *UEPositioningMeasurementEventResultsv860ext::choicesInfo[1] = {
 	&UEPositioningGANSSMeasuredResultsv860ext::theInfo,
@@ -34983,6 +39678,10 @@ const IntraFreqEventResultsOnSecUlFreq::Info IntraFreqEventResultsOnSecUlFreq::t
 	itemsPres,
 	2, 0, 0
 };
+IntraFreqEventResultsOnSecUlFreq::IntraFreqEventResultsOnSecUlFreq(const EventIDIntraFreq& eventID, const CellMeasurementEventResultsOnSecUlFreq& cellMeasurementEventResultsOnSecUlFreq) : Sequence(&theInfo) {
+	setEventID(eventID);
+	setCellMeasurementEventResultsOnSecUlFreq(cellMeasurementEventResultsOnSecUlFreq);
+}
 
 const void *EventResultsOnSecUlFreq::itemsInfo[1] = {
 	&IntraFreqEventResultsOnSecUlFreq::theInfo,
@@ -34999,6 +39698,9 @@ const EventResultsOnSecUlFreq::Info EventResultsOnSecUlFreq::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+EventResultsOnSecUlFreq::EventResultsOnSecUlFreq(const IntraFreqEventResultsOnSecUlFreq& intraFreqEventResults) : Sequence(&theInfo) {
+	setIntraFreqEventResults(intraFreqEventResults);
+}
 
 const void *ExtraDoppler::itemsInfo[2] = {
 	&ExtraDopplerDopplerFirstOrder::theInfo,
@@ -35017,6 +39719,10 @@ const ExtraDoppler::Info ExtraDoppler::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ExtraDoppler::ExtraDoppler(const ExtraDopplerDopplerFirstOrder& extraDopplerDopplerFirstOrder, const ExtraDopplerdopplerUncertainty& extraDopplerdopplerUncertainty) : Sequence(&theInfo) {
+	setExtraDopplerDopplerFirstOrder(extraDopplerDopplerFirstOrder);
+	setExtraDopplerdopplerUncertainty(extraDopplerdopplerUncertainty);
+}
 
 const void *FACHMeasurementOccasionInfo::itemsInfo[4] = {
 	&FACHMeasurementOccasionInfoFACHmeasoccasioncoeff::theInfo,
@@ -35039,6 +39745,10 @@ const FACHMeasurementOccasionInfo::Info FACHMeasurementOccasionInfo::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+FACHMeasurementOccasionInfo::FACHMeasurementOccasionInfo(const FACHMeasurementOccasionInfoInterfreqFDDmeasind& fACHMeasurementOccasionInfoInterfreqFDDmeasind, const FACHMeasurementOccasionInfoInterfreqTDDmeasind& fACHMeasurementOccasionInfoInterfreqTDDmeasind) : Sequence(&theInfo) {
+	setFACHMeasurementOccasionInfoInterfreqFDDmeasind(fACHMeasurementOccasionInfoInterfreqFDDmeasind);
+	setFACHMeasurementOccasionInfoInterfreqTDDmeasind(fACHMeasurementOccasionInfoInterfreqTDDmeasind);
+}
 
 const void *FACHMeasurementOccasionInfoLCRr4ext::itemsInfo[1] = {
 	&FACHMeasurementOccasionInfoLCRr4extInterfreqTDD128measind::theInfo,
@@ -35055,6 +39765,9 @@ const FACHMeasurementOccasionInfoLCRr4ext::Info FACHMeasurementOccasionInfoLCRr4
 	itemsPres,
 	1, 0, 0
 };
+FACHMeasurementOccasionInfoLCRr4ext::FACHMeasurementOccasionInfoLCRr4ext(const FACHMeasurementOccasionInfoLCRr4extInterfreqTDD128measind& fACHMeasurementOccasionInfoLCRr4extInterfreqTDD128measind) : Sequence(&theInfo) {
+	setFACHMeasurementOccasionInfoLCRr4extInterfreqTDD128measind(fACHMeasurementOccasionInfoLCRr4extInterfreqTDD128measind);
+}
 
 const void *ReqDataBitAssistance::itemsInfo[3] = {
 	&DGANSSSigIdReq::theInfo,
@@ -35075,6 +39788,10 @@ const ReqDataBitAssistance::Info ReqDataBitAssistance::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+ReqDataBitAssistance::ReqDataBitAssistance(const DGANSSSigIdReq& ganssSignalID, const ReqDataBitAssistanceGanssDataBitInterval& reqDataBitAssistanceGanssDataBitInterval) : Sequence(&theInfo) {
+	setGanssSignalID(ganssSignalID);
+	setReqDataBitAssistanceGanssDataBitInterval(reqDataBitAssistanceGanssDataBitInterval);
+}
 
 const void *GanssDataBits::itemsInfo[2] = {
 	&GanssDataBitsGanssTod::theInfo,
@@ -35093,6 +39810,10 @@ const GanssDataBits::Info GanssDataBits::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+GanssDataBits::GanssDataBits(const GanssDataBitsGanssTod& ganssDataBitsGanssTod, const ReqDataBitAssistance& dataBitAssistance) : Sequence(&theInfo) {
+	setGanssDataBitsGanssTod(ganssDataBitsGanssTod);
+	setDataBitAssistance(dataBitAssistance);
+}
 
 const void *GANSSDecipheringKeys::itemsInfo[2] = {
 	&GANSSDecipheringKeysCurrentDecipheringKey::theInfo,
@@ -35111,6 +39832,10 @@ const GANSSDecipheringKeys::Info GANSSDecipheringKeys::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+GANSSDecipheringKeys::GANSSDecipheringKeys(const GANSSDecipheringKeysCurrentDecipheringKey& gANSSDecipheringKeysCurrentDecipheringKey, const GANSSDecipheringKeysNextDecipheringKey& gANSSDecipheringKeysNextDecipheringKey) : Sequence(&theInfo) {
+	setGANSSDecipheringKeysCurrentDecipheringKey(gANSSDecipheringKeysCurrentDecipheringKey);
+	setGANSSDecipheringKeysNextDecipheringKey(gANSSDecipheringKeysNextDecipheringKey);
+}
 
 const void *UEPositioningGANSSTimeModel::itemsInfo[4] = {
 	&UEPositioningGANSSTimeModelGanssta1::theInfo,
@@ -35133,6 +39858,9 @@ const UEPositioningGANSSTimeModel::Info UEPositioningGANSSTimeModel::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+UEPositioningGANSSTimeModel::UEPositioningGANSSTimeModel(const UEPositioningGANSSTimeModelgnss_to_id& uEPositioningGANSSTimeModelgnss_to_id) : Sequence(&theInfo) {
+	setUEPositioningGANSSTimeModelgnss_to_id(uEPositioningGANSSTimeModelgnss_to_id);
+}
 
 const void *UEPositioningDGANSSCorrections::itemsInfo[1] = {
 	&DGANSSInfoList::theInfo,
@@ -35149,6 +39877,9 @@ const UEPositioningDGANSSCorrections::Info UEPositioningDGANSSCorrections::theIn
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningDGANSSCorrections::UEPositioningDGANSSCorrections(const DGANSSInfoList& dganssInfoList) : Sequence(&theInfo) {
+	setDganssInfoList(dganssInfoList);
+}
 
 const void *Satelliteclockmodel::itemsInfo[6] = {
 	&SatelliteclockmodelToc::theInfo,
@@ -35175,6 +39906,12 @@ const Satelliteclockmodel::Info Satelliteclockmodel::theInfo = {
 	itemsPres,
 	6, 2, 0
 };
+Satelliteclockmodel::Satelliteclockmodel(const SatelliteclockmodelToc& satelliteclockmodelToc, const SatelliteclockmodelAf2& satelliteclockmodelAf2, const SatelliteclockmodelAf1& satelliteclockmodelAf1, const SatelliteclockmodelAf0& satelliteclockmodelAf0) : Sequence(&theInfo) {
+	setSatelliteclockmodelToc(satelliteclockmodelToc);
+	setSatelliteclockmodelAf2(satelliteclockmodelAf2);
+	setSatelliteclockmodelAf1(satelliteclockmodelAf1);
+	setSatelliteclockmodelAf0(satelliteclockmodelAf0);
+}
 
 const void *UEPositioningGANSSClockModel::itemsInfo[1] = {
 	&SatelliteclockmodelList::theInfo,
@@ -35191,6 +39928,9 @@ const UEPositioningGANSSClockModel::Info UEPositioningGANSSClockModel::theInfo =
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningGANSSClockModel::UEPositioningGANSSClockModel(const SatelliteclockmodelList& satelliteclockmodelList) : Sequence(&theInfo) {
+	setSatelliteclockmodelList(satelliteclockmodelList);
+}
 
 const void *KeplerianParameters::itemsInfo[16] = {
 	&KeplerianParametersToenav::theInfo,
@@ -35237,6 +39977,24 @@ const KeplerianParameters::Info KeplerianParameters::theInfo = {
 	itemsPres,
 	16, 0, 0
 };
+KeplerianParameters::KeplerianParameters(const KeplerianParametersToenav& keplerianParametersToenav, const KeplerianParametersGanssomeganav& keplerianParametersGanssomeganav, const KeplerianParametersDeltannav& keplerianParametersDeltannav, const KeplerianParametersMzeronav& keplerianParametersMzeronav, const KeplerianParametersOmegadotnav& keplerianParametersOmegadotnav, const KeplerianParametersGanssenav& keplerianParametersGanssenav, const KeplerianParametersIdotnav& keplerianParametersIdotnav, const KeplerianParametersAsqrtnav& keplerianParametersAsqrtnav, const KeplerianParametersIzeronav& keplerianParametersIzeronav, const KeplerianParametersOmegazeronav& keplerianParametersOmegazeronav, const KeplerianParametersCrsnav& keplerianParametersCrsnav, const KeplerianParametersCisnav& keplerianParametersCisnav, const KeplerianParametersCusnav& keplerianParametersCusnav, const KeplerianParametersCrcnav& keplerianParametersCrcnav, const KeplerianParametersCicnav& keplerianParametersCicnav, const KeplerianParametersCucnav& keplerianParametersCucnav) : Sequence(&theInfo) {
+	setKeplerianParametersToenav(keplerianParametersToenav);
+	setKeplerianParametersGanssomeganav(keplerianParametersGanssomeganav);
+	setKeplerianParametersDeltannav(keplerianParametersDeltannav);
+	setKeplerianParametersMzeronav(keplerianParametersMzeronav);
+	setKeplerianParametersOmegadotnav(keplerianParametersOmegadotnav);
+	setKeplerianParametersGanssenav(keplerianParametersGanssenav);
+	setKeplerianParametersIdotnav(keplerianParametersIdotnav);
+	setKeplerianParametersAsqrtnav(keplerianParametersAsqrtnav);
+	setKeplerianParametersIzeronav(keplerianParametersIzeronav);
+	setKeplerianParametersOmegazeronav(keplerianParametersOmegazeronav);
+	setKeplerianParametersCrsnav(keplerianParametersCrsnav);
+	setKeplerianParametersCisnav(keplerianParametersCisnav);
+	setKeplerianParametersCusnav(keplerianParametersCusnav);
+	setKeplerianParametersCrcnav(keplerianParametersCrcnav);
+	setKeplerianParametersCicnav(keplerianParametersCicnav);
+	setKeplerianParametersCucnav(keplerianParametersCucnav);
+}
 
 const void *UEPositioningGANSSOrbitModel::itemsInfo[1] = {
 	&KeplerianParameters::theInfo,
@@ -35277,6 +40035,13 @@ const GanssSatInfoNav::Info GanssSatInfoNav::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+GanssSatInfoNav::GanssSatInfoNav(const GanssSatInfoNavSatId& ganssSatInfoNavSatId, const GanssSatInfoNavSvHealth& ganssSatInfoNavSvHealth, const GanssSatInfoNavIod& ganssSatInfoNavIod, const UEPositioningGANSSClockModel& ganssClockModel, const UEPositioningGANSSOrbitModel& ganssOrbitModel) : Sequence(&theInfo) {
+	setGanssSatInfoNavSatId(ganssSatInfoNavSatId);
+	setGanssSatInfoNavSvHealth(ganssSatInfoNavSvHealth);
+	setGanssSatInfoNavIod(ganssSatInfoNavIod);
+	setGanssClockModel(ganssClockModel);
+	setGanssOrbitModel(ganssOrbitModel);
+}
 
 const void *UEPositioningGANSSNavigationModel::itemsInfo[2] = {
 	&UEPositioningGANSSNavigationModelnon_broadcastIndication::theInfo,
@@ -35295,6 +40060,9 @@ const UEPositioningGANSSNavigationModel::Info UEPositioningGANSSNavigationModel:
 	itemsPres,
 	2, 1, 0
 };
+UEPositioningGANSSNavigationModel::UEPositioningGANSSNavigationModel(const GanssSatInfoNavList& ganssSatInfoNavList) : Sequence(&theInfo) {
+	setGanssSatInfoNavList(ganssSatInfoNavList);
+}
 
 const void *UEPositioningGANSSRealTimeIntegrity::itemsInfo[0] = {
 };
@@ -35327,6 +40095,10 @@ const UEPositioningGANSSDataBitAssistance::Info UEPositioningGANSSDataBitAssista
 	itemsPres,
 	2, 0, 0
 };
+UEPositioningGANSSDataBitAssistance::UEPositioningGANSSDataBitAssistance(const UEPositioningGANSSDataBitAssistanceGansstod& uEPositioningGANSSDataBitAssistanceGansstod, const DataBitAssistanceList& dataBitAssistanceList) : Sequence(&theInfo) {
+	setUEPositioningGANSSDataBitAssistanceGansstod(uEPositioningGANSSDataBitAssistanceGansstod);
+	setDataBitAssistanceList(dataBitAssistanceList);
+}
 
 const void *GANSSSatelliteInformation::itemsInfo[6] = {
 	&GANSSSatelliteInformationGanssSatId::theInfo,
@@ -35353,6 +40125,12 @@ const GANSSSatelliteInformation::Info GANSSSatelliteInformation::theInfo = {
 	itemsPres,
 	6, 2, 0
 };
+GANSSSatelliteInformation::GANSSSatelliteInformation(const GANSSSatelliteInformationGanssSatId& gANSSSatelliteInformationGanssSatId, const GANSSSatelliteInformationCodePhase& gANSSSatelliteInformationCodePhase, const GANSSSatelliteInformationIntegerCodePhase& gANSSSatelliteInformationIntegerCodePhase, const GANSSSatelliteInformationCodePhaseSearchWindow& gANSSSatelliteInformationCodePhaseSearchWindow) : Sequence(&theInfo) {
+	setGANSSSatelliteInformationGanssSatId(gANSSSatelliteInformationGanssSatId);
+	setGANSSSatelliteInformationCodePhase(gANSSSatelliteInformationCodePhase);
+	setGANSSSatelliteInformationIntegerCodePhase(gANSSSatelliteInformationIntegerCodePhase);
+	setGANSSSatelliteInformationCodePhaseSearchWindow(gANSSSatelliteInformationCodePhaseSearchWindow);
+}
 
 const void *UEPositioningGANSSReferenceMeasurementInfo::itemsInfo[2] = {
 	&GANSSSignalId::theInfo,
@@ -35371,6 +40149,9 @@ const UEPositioningGANSSReferenceMeasurementInfo::Info UEPositioningGANSSReferen
 	itemsPres,
 	2, 1, 0
 };
+UEPositioningGANSSReferenceMeasurementInfo::UEPositioningGANSSReferenceMeasurementInfo(const GANSSSatelliteInformationList& satelliteInformationList) : Sequence(&theInfo) {
+	setSatelliteInformationList(satelliteInformationList);
+}
 
 const void *UEPositioningGANSSAlmanac::itemsInfo[2] = {
 	&UEPositioningGANSSAlmanacGansswknumber::theInfo,
@@ -35389,6 +40170,9 @@ const UEPositioningGANSSAlmanac::Info UEPositioningGANSSAlmanac::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+UEPositioningGANSSAlmanac::UEPositioningGANSSAlmanac(const UEPositioningGANSSAlmanacGansswknumber& uEPositioningGANSSAlmanacGansswknumber) : Sequence(&theInfo) {
+	setUEPositioningGANSSAlmanacGansswknumber(uEPositioningGANSSAlmanacGansswknumber);
+}
 
 const void *UEPositioningGANSSUTCModel::itemsInfo[8] = {
 	&UEPositioningGANSSUTCModelAoneutc::theInfo,
@@ -35419,6 +40203,16 @@ const UEPositioningGANSSUTCModel::Info UEPositioningGANSSUTCModel::theInfo = {
 	itemsPres,
 	8, 0, 0
 };
+UEPositioningGANSSUTCModel::UEPositioningGANSSUTCModel(const UEPositioningGANSSUTCModelAoneutc& uEPositioningGANSSUTCModelAoneutc, const UEPositioningGANSSUTCModelAzeroutc& uEPositioningGANSSUTCModelAzeroutc, const UEPositioningGANSSUTCModelTotutc& uEPositioningGANSSUTCModelTotutc, const UEPositioningGANSSUTCModelDeltatlsutc& uEPositioningGANSSUTCModelDeltatlsutc, const UEPositioningGANSSUTCModelWntutc& uEPositioningGANSSUTCModelWntutc, const UEPositioningGANSSUTCModelWnlsfutc& uEPositioningGANSSUTCModelWnlsfutc, const UEPositioningGANSSUTCModelDnutc& uEPositioningGANSSUTCModelDnutc, const UEPositioningGANSSUTCModelDeltatlsfutc& uEPositioningGANSSUTCModelDeltatlsfutc) : Sequence(&theInfo) {
+	setUEPositioningGANSSUTCModelAoneutc(uEPositioningGANSSUTCModelAoneutc);
+	setUEPositioningGANSSUTCModelAzeroutc(uEPositioningGANSSUTCModelAzeroutc);
+	setUEPositioningGANSSUTCModelTotutc(uEPositioningGANSSUTCModelTotutc);
+	setUEPositioningGANSSUTCModelDeltatlsutc(uEPositioningGANSSUTCModelDeltatlsutc);
+	setUEPositioningGANSSUTCModelWntutc(uEPositioningGANSSUTCModelWntutc);
+	setUEPositioningGANSSUTCModelWnlsfutc(uEPositioningGANSSUTCModelWnlsfutc);
+	setUEPositioningGANSSUTCModelDnutc(uEPositioningGANSSUTCModelDnutc);
+	setUEPositioningGANSSUTCModelDeltatlsfutc(uEPositioningGANSSUTCModelDeltatlsfutc);
+}
 
 const void *GANSSGenericData::itemsInfo[9] = {
 	&GANSSGenericDataGanssId::theInfo,
@@ -35475,6 +40269,13 @@ const NAVclockModel::Info NAVclockModel::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+NAVclockModel::NAVclockModel(const NAVclockModelNavToc& nAVclockModelNavToc, const NAVclockModelNavaf2& nAVclockModelNavaf2, const NAVclockModelNavaf1& nAVclockModelNavaf1, const NAVclockModelNavaf0& nAVclockModelNavaf0, const NAVclockModelNavTgd& nAVclockModelNavTgd) : Sequence(&theInfo) {
+	setNAVclockModelNavToc(nAVclockModelNavToc);
+	setNAVclockModelNavaf2(nAVclockModelNavaf2);
+	setNAVclockModelNavaf1(nAVclockModelNavaf1);
+	setNAVclockModelNavaf0(nAVclockModelNavaf0);
+	setNAVclockModelNavTgd(nAVclockModelNavTgd);
+}
 
 const void *GLONASSclockModel::itemsInfo[3] = {
 	&GLONASSclockModelGloTau::theInfo,
@@ -35495,6 +40296,10 @@ const GLONASSclockModel::Info GLONASSclockModel::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+GLONASSclockModel::GLONASSclockModel(const GLONASSclockModelGloTau& gLONASSclockModelGloTau, const GLONASSclockModelGloGamma& gLONASSclockModelGloGamma) : Sequence(&theInfo) {
+	setGLONASSclockModelGloTau(gLONASSclockModelGloTau);
+	setGLONASSclockModelGloGamma(gLONASSclockModelGloGamma);
+}
 
 const void *SBASclockModel::itemsInfo[3] = {
 	&SBASclockModelSbasTo::theInfo,
@@ -35515,6 +40320,11 @@ const SBASclockModel::Info SBASclockModel::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+SBASclockModel::SBASclockModel(const SBASclockModelSbasTo& sBASclockModelSbasTo, const SBASclockModelSbasAgfo& sBASclockModelSbasAgfo, const SBASclockModelSbasAgf1& sBASclockModelSbasAgf1) : Sequence(&theInfo) {
+	setSBASclockModelSbasTo(sBASclockModelSbasTo);
+	setSBASclockModelSbasAgfo(sBASclockModelSbasAgfo);
+	setSBASclockModelSbasAgf1(sBASclockModelSbasAgf1);
+}
 
 const void *UEPositioningGANSSAddClockModels::itemsInfo[4] = {
 	&NAVclockModel::theInfo,
@@ -35587,6 +40397,26 @@ const NavModelNAVKeplerianSet::Info NavModelNAVKeplerianSet::theInfo = {
 	itemsPres,
 	18, 0, 0
 };
+NavModelNAVKeplerianSet::NavModelNAVKeplerianSet(const NavModelNAVKeplerianSetNavURA& navModelNAVKeplerianSetNavURA, const NavModelNAVKeplerianSetNavFitFlag& navModelNAVKeplerianSetNavFitFlag, const NavModelNAVKeplerianSetNavToe& navModelNAVKeplerianSetNavToe, const NavModelNAVKeplerianSetNavOmega& navModelNAVKeplerianSetNavOmega, const NavModelNAVKeplerianSetNavDeltaN& navModelNAVKeplerianSetNavDeltaN, const NavModelNAVKeplerianSetNavM0& navModelNAVKeplerianSetNavM0, const NavModelNAVKeplerianSetNavOmegaADot& navModelNAVKeplerianSetNavOmegaADot, const NavModelNAVKeplerianSetNavE& navModelNAVKeplerianSetNavE, const NavModelNAVKeplerianSetNavIDot& navModelNAVKeplerianSetNavIDot, const NavModelNAVKeplerianSetNavAPowerHalf& navModelNAVKeplerianSetNavAPowerHalf, const NavModelNAVKeplerianSetNavI0& navModelNAVKeplerianSetNavI0, const NavModelNAVKeplerianSetNavOmegaA0& navModelNAVKeplerianSetNavOmegaA0, const NavModelNAVKeplerianSetNavCrs& navModelNAVKeplerianSetNavCrs, const NavModelNAVKeplerianSetNavCis& navModelNAVKeplerianSetNavCis, const NavModelNAVKeplerianSetNavCus& navModelNAVKeplerianSetNavCus, const NavModelNAVKeplerianSetNavCrc& navModelNAVKeplerianSetNavCrc, const NavModelNAVKeplerianSetNavCic& navModelNAVKeplerianSetNavCic, const NavModelNAVKeplerianSetNavCuc& navModelNAVKeplerianSetNavCuc) : Sequence(&theInfo) {
+	setNavModelNAVKeplerianSetNavURA(navModelNAVKeplerianSetNavURA);
+	setNavModelNAVKeplerianSetNavFitFlag(navModelNAVKeplerianSetNavFitFlag);
+	setNavModelNAVKeplerianSetNavToe(navModelNAVKeplerianSetNavToe);
+	setNavModelNAVKeplerianSetNavOmega(navModelNAVKeplerianSetNavOmega);
+	setNavModelNAVKeplerianSetNavDeltaN(navModelNAVKeplerianSetNavDeltaN);
+	setNavModelNAVKeplerianSetNavM0(navModelNAVKeplerianSetNavM0);
+	setNavModelNAVKeplerianSetNavOmegaADot(navModelNAVKeplerianSetNavOmegaADot);
+	setNavModelNAVKeplerianSetNavE(navModelNAVKeplerianSetNavE);
+	setNavModelNAVKeplerianSetNavIDot(navModelNAVKeplerianSetNavIDot);
+	setNavModelNAVKeplerianSetNavAPowerHalf(navModelNAVKeplerianSetNavAPowerHalf);
+	setNavModelNAVKeplerianSetNavI0(navModelNAVKeplerianSetNavI0);
+	setNavModelNAVKeplerianSetNavOmegaA0(navModelNAVKeplerianSetNavOmegaA0);
+	setNavModelNAVKeplerianSetNavCrs(navModelNAVKeplerianSetNavCrs);
+	setNavModelNAVKeplerianSetNavCis(navModelNAVKeplerianSetNavCis);
+	setNavModelNAVKeplerianSetNavCus(navModelNAVKeplerianSetNavCus);
+	setNavModelNAVKeplerianSetNavCrc(navModelNAVKeplerianSetNavCrc);
+	setNavModelNAVKeplerianSetNavCic(navModelNAVKeplerianSetNavCic);
+	setNavModelNAVKeplerianSetNavCuc(navModelNAVKeplerianSetNavCuc);
+}
 
 const void *NavModelCNAVKeplerianSet::itemsInfo[19] = {
 	&NavModelCNAVKeplerianSetCnavTop::theInfo,
@@ -35639,6 +40469,27 @@ const NavModelCNAVKeplerianSet::Info NavModelCNAVKeplerianSet::theInfo = {
 	itemsPres,
 	19, 0, 0
 };
+NavModelCNAVKeplerianSet::NavModelCNAVKeplerianSet(const NavModelCNAVKeplerianSetCnavTop& navModelCNAVKeplerianSetCnavTop, const NavModelCNAVKeplerianSetCnavURAindex& navModelCNAVKeplerianSetCnavURAindex, const NavModelCNAVKeplerianSetCnavDeltaA& navModelCNAVKeplerianSetCnavDeltaA, const NavModelCNAVKeplerianSetCnavAdot& navModelCNAVKeplerianSetCnavAdot, const NavModelCNAVKeplerianSetCnavDeltaNo& navModelCNAVKeplerianSetCnavDeltaNo, const NavModelCNAVKeplerianSetCnavDeltaNoDot& navModelCNAVKeplerianSetCnavDeltaNoDot, const NavModelCNAVKeplerianSetCnavMo& navModelCNAVKeplerianSetCnavMo, const NavModelCNAVKeplerianSetCnavE& navModelCNAVKeplerianSetCnavE, const NavModelCNAVKeplerianSetCnavOmega& navModelCNAVKeplerianSetCnavOmega, const NavModelCNAVKeplerianSetCnavOMEGA0& navModelCNAVKeplerianSetCnavOMEGA0, const NavModelCNAVKeplerianSetCnavDeltaOmegaDot& navModelCNAVKeplerianSetCnavDeltaOmegaDot, const NavModelCNAVKeplerianSetCnavIo& navModelCNAVKeplerianSetCnavIo, const NavModelCNAVKeplerianSetCnavIoDot& navModelCNAVKeplerianSetCnavIoDot, const NavModelCNAVKeplerianSetCnavCis& navModelCNAVKeplerianSetCnavCis, const NavModelCNAVKeplerianSetCnavCic& navModelCNAVKeplerianSetCnavCic, const NavModelCNAVKeplerianSetCnavCrs& navModelCNAVKeplerianSetCnavCrs, const NavModelCNAVKeplerianSetCnavCrc& navModelCNAVKeplerianSetCnavCrc, const NavModelCNAVKeplerianSetCnavCus& navModelCNAVKeplerianSetCnavCus, const NavModelCNAVKeplerianSetCnavCuc& navModelCNAVKeplerianSetCnavCuc) : Sequence(&theInfo) {
+	setNavModelCNAVKeplerianSetCnavTop(navModelCNAVKeplerianSetCnavTop);
+	setNavModelCNAVKeplerianSetCnavURAindex(navModelCNAVKeplerianSetCnavURAindex);
+	setNavModelCNAVKeplerianSetCnavDeltaA(navModelCNAVKeplerianSetCnavDeltaA);
+	setNavModelCNAVKeplerianSetCnavAdot(navModelCNAVKeplerianSetCnavAdot);
+	setNavModelCNAVKeplerianSetCnavDeltaNo(navModelCNAVKeplerianSetCnavDeltaNo);
+	setNavModelCNAVKeplerianSetCnavDeltaNoDot(navModelCNAVKeplerianSetCnavDeltaNoDot);
+	setNavModelCNAVKeplerianSetCnavMo(navModelCNAVKeplerianSetCnavMo);
+	setNavModelCNAVKeplerianSetCnavE(navModelCNAVKeplerianSetCnavE);
+	setNavModelCNAVKeplerianSetCnavOmega(navModelCNAVKeplerianSetCnavOmega);
+	setNavModelCNAVKeplerianSetCnavOMEGA0(navModelCNAVKeplerianSetCnavOMEGA0);
+	setNavModelCNAVKeplerianSetCnavDeltaOmegaDot(navModelCNAVKeplerianSetCnavDeltaOmegaDot);
+	setNavModelCNAVKeplerianSetCnavIo(navModelCNAVKeplerianSetCnavIo);
+	setNavModelCNAVKeplerianSetCnavIoDot(navModelCNAVKeplerianSetCnavIoDot);
+	setNavModelCNAVKeplerianSetCnavCis(navModelCNAVKeplerianSetCnavCis);
+	setNavModelCNAVKeplerianSetCnavCic(navModelCNAVKeplerianSetCnavCic);
+	setNavModelCNAVKeplerianSetCnavCrs(navModelCNAVKeplerianSetCnavCrs);
+	setNavModelCNAVKeplerianSetCnavCrc(navModelCNAVKeplerianSetCnavCrc);
+	setNavModelCNAVKeplerianSetCnavCus(navModelCNAVKeplerianSetCnavCus);
+	setNavModelCNAVKeplerianSetCnavCuc(navModelCNAVKeplerianSetCnavCuc);
+}
 
 const void *NavModelGLONASSecef::itemsInfo[13] = {
 	&NavModelGLONASSecefGloEn::theInfo,
@@ -35679,6 +40530,20 @@ const NavModelGLONASSecef::Info NavModelGLONASSecef::theInfo = {
 	itemsPres,
 	13, 1, 0
 };
+NavModelGLONASSecef::NavModelGLONASSecef(const NavModelGLONASSecefGloEn& navModelGLONASSecefGloEn, const NavModelGLONASSecefGloP1& navModelGLONASSecefGloP1, const NavModelGLONASSecefGloP2& navModelGLONASSecefGloP2, const NavModelGLONASSecefGloX& navModelGLONASSecefGloX, const NavModelGLONASSecefGloXdot& navModelGLONASSecefGloXdot, const NavModelGLONASSecefGloXdotdot& navModelGLONASSecefGloXdotdot, const NavModelGLONASSecefGloY& navModelGLONASSecefGloY, const NavModelGLONASSecefGloYdot& navModelGLONASSecefGloYdot, const NavModelGLONASSecefGloYdotdot& navModelGLONASSecefGloYdotdot, const NavModelGLONASSecefGloZ& navModelGLONASSecefGloZ, const NavModelGLONASSecefGloZdot& navModelGLONASSecefGloZdot, const NavModelGLONASSecefGloZdotdot& navModelGLONASSecefGloZdotdot) : Sequence(&theInfo) {
+	setNavModelGLONASSecefGloEn(navModelGLONASSecefGloEn);
+	setNavModelGLONASSecefGloP1(navModelGLONASSecefGloP1);
+	setNavModelGLONASSecefGloP2(navModelGLONASSecefGloP2);
+	setNavModelGLONASSecefGloX(navModelGLONASSecefGloX);
+	setNavModelGLONASSecefGloXdot(navModelGLONASSecefGloXdot);
+	setNavModelGLONASSecefGloXdotdot(navModelGLONASSecefGloXdotdot);
+	setNavModelGLONASSecefGloY(navModelGLONASSecefGloY);
+	setNavModelGLONASSecefGloYdot(navModelGLONASSecefGloYdot);
+	setNavModelGLONASSecefGloYdotdot(navModelGLONASSecefGloYdotdot);
+	setNavModelGLONASSecefGloZ(navModelGLONASSecefGloZ);
+	setNavModelGLONASSecefGloZdot(navModelGLONASSecefGloZdot);
+	setNavModelGLONASSecefGloZdotdot(navModelGLONASSecefGloZdotdot);
+}
 
 const void *NavModelSBASecef::itemsInfo[11] = {
 	&NavModelSBASecefSbasTo::theInfo,
@@ -35715,6 +40580,18 @@ const NavModelSBASecef::Info NavModelSBASecef::theInfo = {
 	itemsPres,
 	11, 1, 0
 };
+NavModelSBASecef::NavModelSBASecef(const NavModelSBASecefSbasAccuracy& navModelSBASecefSbasAccuracy, const NavModelSBASecefSbasXg& navModelSBASecefSbasXg, const NavModelSBASecefSbasYg& navModelSBASecefSbasYg, const NavModelSBASecefSbasZg& navModelSBASecefSbasZg, const NavModelSBASecefSbasXgDot& navModelSBASecefSbasXgDot, const NavModelSBASecefSbasYgDot& navModelSBASecefSbasYgDot, const NavModelSBASecefSbasZgDot& navModelSBASecefSbasZgDot, const NavModelSBASecefSbasXgDotDot& navModelSBASecefSbasXgDotDot, const NavModelSBASecefSbagYgDotDot& navModelSBASecefSbagYgDotDot, const NavModelSBASecefSbasZgDotDot& navModelSBASecefSbasZgDotDot) : Sequence(&theInfo) {
+	setNavModelSBASecefSbasAccuracy(navModelSBASecefSbasAccuracy);
+	setNavModelSBASecefSbasXg(navModelSBASecefSbasXg);
+	setNavModelSBASecefSbasYg(navModelSBASecefSbasYg);
+	setNavModelSBASecefSbasZg(navModelSBASecefSbasZg);
+	setNavModelSBASecefSbasXgDot(navModelSBASecefSbasXgDot);
+	setNavModelSBASecefSbasYgDot(navModelSBASecefSbasYgDot);
+	setNavModelSBASecefSbasZgDot(navModelSBASecefSbasZgDot);
+	setNavModelSBASecefSbasXgDotDot(navModelSBASecefSbasXgDotDot);
+	setNavModelSBASecefSbagYgDotDot(navModelSBASecefSbagYgDotDot);
+	setNavModelSBASecefSbasZgDotDot(navModelSBASecefSbasZgDotDot);
+}
 
 const void *UEPositioningGANSSAddOrbitModels::itemsInfo[4] = {
 	&NavModelNAVKeplerianSet::theInfo,
@@ -35761,6 +40638,13 @@ const GanssSatInfoAddNav::Info GanssSatInfoAddNav::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+GanssSatInfoAddNav::GanssSatInfoAddNav(const GanssSatInfoAddNavSatId& ganssSatInfoAddNavSatId, const GanssSatInfoAddNavSvHealth& ganssSatInfoAddNavSvHealth, const GanssSatInfoAddNavIod& ganssSatInfoAddNavIod, const UEPositioningGANSSAddClockModels& ganssClockModel, const UEPositioningGANSSAddOrbitModels& ganssOrbitModel) : Sequence(&theInfo) {
+	setGanssSatInfoAddNavSatId(ganssSatInfoAddNavSatId);
+	setGanssSatInfoAddNavSvHealth(ganssSatInfoAddNavSvHealth);
+	setGanssSatInfoAddNavIod(ganssSatInfoAddNavIod);
+	setGanssClockModel(ganssClockModel);
+	setGanssOrbitModel(ganssOrbitModel);
+}
 
 const void *UEPositioningGANSSAddNavigationModels::itemsInfo[2] = {
 	&UEPositioningGANSSAddNavigationModelsnon_broadcastIndication::theInfo,
@@ -35779,6 +40663,9 @@ const UEPositioningGANSSAddNavigationModels::Info UEPositioningGANSSAddNavigatio
 	itemsPres,
 	2, 1, 0
 };
+UEPositioningGANSSAddNavigationModels::UEPositioningGANSSAddNavigationModels(const GanssSatInfoAddNavList& ganssSatInfoNavList) : Sequence(&theInfo) {
+	setGanssSatInfoNavList(ganssSatInfoNavList);
+}
 
 const void *UEPositioningGANSSAlmanacv860ext::itemsInfo[5] = {
 	&ALMNAVKeplerianSet::theInfo,
@@ -35835,6 +40722,17 @@ const UTCmodelSet1::Info UTCmodelSet1::theInfo = {
 	itemsPres,
 	9, 0, 0
 };
+UTCmodelSet1::UTCmodelSet1(const UTCmodelSet1UtcA0& uTCmodelSet1UtcA0, const UTCmodelSet1UtcA1& uTCmodelSet1UtcA1, const UTCmodelSet1UtcA2& uTCmodelSet1UtcA2, const UTCmodelSet1UtcDeltaTls& uTCmodelSet1UtcDeltaTls, const UTCmodelSet1UtcTot& uTCmodelSet1UtcTot, const UTCmodelSet1UtcWNot& uTCmodelSet1UtcWNot, const UTCmodelSet1UtcWNlsf& uTCmodelSet1UtcWNlsf, const UTCmodelSet1UtcDN& uTCmodelSet1UtcDN, const UTCmodelSet1UtcDeltaTlsf& uTCmodelSet1UtcDeltaTlsf) : Sequence(&theInfo) {
+	setUTCmodelSet1UtcA0(uTCmodelSet1UtcA0);
+	setUTCmodelSet1UtcA1(uTCmodelSet1UtcA1);
+	setUTCmodelSet1UtcA2(uTCmodelSet1UtcA2);
+	setUTCmodelSet1UtcDeltaTls(uTCmodelSet1UtcDeltaTls);
+	setUTCmodelSet1UtcTot(uTCmodelSet1UtcTot);
+	setUTCmodelSet1UtcWNot(uTCmodelSet1UtcWNot);
+	setUTCmodelSet1UtcWNlsf(uTCmodelSet1UtcWNlsf);
+	setUTCmodelSet1UtcDN(uTCmodelSet1UtcDN);
+	setUTCmodelSet1UtcDeltaTlsf(uTCmodelSet1UtcDeltaTlsf);
+}
 
 const void *UTCmodelSet2::itemsInfo[4] = {
 	&UTCmodelSet2NA::theInfo,
@@ -35857,6 +40755,10 @@ const UTCmodelSet2::Info UTCmodelSet2::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+UTCmodelSet2::UTCmodelSet2(const UTCmodelSet2NA& uTCmodelSet2NA, const UTCmodelSet2TauC& uTCmodelSet2TauC) : Sequence(&theInfo) {
+	setUTCmodelSet2NA(uTCmodelSet2NA);
+	setUTCmodelSet2TauC(uTCmodelSet2TauC);
+}
 
 const void *UTCmodelSet3::itemsInfo[9] = {
 	&UTCmodelSet3UtcA1wnt::theInfo,
@@ -35889,6 +40791,17 @@ const UTCmodelSet3::Info UTCmodelSet3::theInfo = {
 	itemsPres,
 	9, 0, 0
 };
+UTCmodelSet3::UTCmodelSet3(const UTCmodelSet3UtcA1wnt& uTCmodelSet3UtcA1wnt, const UTCmodelSet3UtcA0wnt& uTCmodelSet3UtcA0wnt, const UTCmodelSet3UtcTot& uTCmodelSet3UtcTot, const UTCmodelSet3UtcWNt& uTCmodelSet3UtcWNt, const UTCmodelSet3UtcDeltaTls& uTCmodelSet3UtcDeltaTls, const UTCmodelSet3UtcWNlsf& uTCmodelSet3UtcWNlsf, const UTCmodelSet3UtcDN& uTCmodelSet3UtcDN, const UTCmodelSet3UtcDeltaTlsf& uTCmodelSet3UtcDeltaTlsf, const UTCmodelSet3UtcStandardID& uTCmodelSet3UtcStandardID) : Sequence(&theInfo) {
+	setUTCmodelSet3UtcA1wnt(uTCmodelSet3UtcA1wnt);
+	setUTCmodelSet3UtcA0wnt(uTCmodelSet3UtcA0wnt);
+	setUTCmodelSet3UtcTot(uTCmodelSet3UtcTot);
+	setUTCmodelSet3UtcWNt(uTCmodelSet3UtcWNt);
+	setUTCmodelSet3UtcDeltaTls(uTCmodelSet3UtcDeltaTls);
+	setUTCmodelSet3UtcWNlsf(uTCmodelSet3UtcWNlsf);
+	setUTCmodelSet3UtcDN(uTCmodelSet3UtcDN);
+	setUTCmodelSet3UtcDeltaTlsf(uTCmodelSet3UtcDeltaTlsf);
+	setUTCmodelSet3UtcStandardID(uTCmodelSet3UtcStandardID);
+}
 
 const void *UEPositioningGANSSAddUTCModels::itemsInfo[3] = {
 	&UTCmodelSet1::theInfo,
@@ -35974,6 +40887,9 @@ const UEPositioningGANSSAlmanacr8::Info UEPositioningGANSSAlmanacr8::theInfo = {
 	itemsPres,
 	7, 6, 0
 };
+UEPositioningGANSSAlmanacr8::UEPositioningGANSSAlmanacr8(const UEPositioningGANSSAlmanacr8Gansswknumber& uEPositioningGANSSAlmanacr8Gansswknumber) : Sequence(&theInfo) {
+	setUEPositioningGANSSAlmanacr8Gansswknumber(uEPositioningGANSSAlmanacr8Gansswknumber);
+}
 
 const void *GANSSGenericDatar8::itemsInfo[13] = {
 	&GANSSGenericDatar8GanssId::theInfo,
@@ -36030,6 +40946,9 @@ const UEPositioningDGANSSCorrectionsr9::Info UEPositioningDGANSSCorrectionsr9::t
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningDGANSSCorrectionsr9::UEPositioningDGANSSCorrectionsr9(const DGANSSInfoListr9& dganssInfoList) : Sequence(&theInfo) {
+	setDganssInfoList(dganssInfoList);
+}
 
 const void *GANSSGenericDatar9::itemsInfo[13] = {
 	&GANSSGenericDatar9GanssId::theInfo,
@@ -36086,6 +41005,9 @@ const UEPositioningDGANSSCorrectionsv920ext::Info UEPositioningDGANSSCorrections
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningDGANSSCorrectionsv920ext::UEPositioningDGANSSCorrectionsv920ext(const DGANSSInfoListv920ext& dganssInfoList) : Sequence(&theInfo) {
+	setDganssInfoList(dganssInfoList);
+}
 
 const void *GANSSGenericDatav920ext::itemsInfo[1] = {
 	&UEPositioningDGANSSCorrectionsv920ext::theInfo,
@@ -36176,6 +41098,10 @@ const SatellitesListRelatedData::Info SatellitesListRelatedData::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SatellitesListRelatedData::SatellitesListRelatedData(const SatellitesListRelatedDataSatId& satellitesListRelatedDataSatId, const SatellitesListRelatedDataIod& satellitesListRelatedDataIod) : Sequence(&theInfo) {
+	setSatellitesListRelatedDataSatId(satellitesListRelatedDataSatId);
+	setSatellitesListRelatedDataIod(satellitesListRelatedDataIod);
+}
 
 const void *GanssNavigationModelAdditionalData::itemsInfo[4] = {
 	&GanssNavigationModelAdditionalDataGanssWeek::theInfo,
@@ -36198,6 +41124,11 @@ const GanssNavigationModelAdditionalData::Info GanssNavigationModelAdditionalDat
 	itemsPres,
 	4, 1, 0
 };
+GanssNavigationModelAdditionalData::GanssNavigationModelAdditionalData(const GanssNavigationModelAdditionalDataGanssWeek& ganssNavigationModelAdditionalDataGanssWeek, const GanssNavigationModelAdditionalDataGanssToe& ganssNavigationModelAdditionalDataGanssToe, const GanssNavigationModelAdditionalDataTtoeLimit& ganssNavigationModelAdditionalDataTtoeLimit) : Sequence(&theInfo) {
+	setGanssNavigationModelAdditionalDataGanssWeek(ganssNavigationModelAdditionalDataGanssWeek);
+	setGanssNavigationModelAdditionalDataGanssToe(ganssNavigationModelAdditionalDataGanssToe);
+	setGanssNavigationModelAdditionalDataTtoeLimit(ganssNavigationModelAdditionalDataTtoeLimit);
+}
 
 const void *GanssReqGenericData::itemsInfo[10] = {
 	&GanssReqGenericDataGanssId::theInfo,
@@ -36232,6 +41163,13 @@ const GanssReqGenericData::Info GanssReqGenericData::theInfo = {
 	itemsPres,
 	10, 5, 0
 };
+GanssReqGenericData::GanssReqGenericData(const GanssReqGenericDataGanssRealTimeIntegrity& ganssReqGenericDataGanssRealTimeIntegrity, const GanssReqGenericDataGanssAlmanac& ganssReqGenericDataGanssAlmanac, const GanssReqGenericDataGanssNavigationModel& ganssReqGenericDataGanssNavigationModel, const GanssReqGenericDataGanssReferenceMeasurementInfo& ganssReqGenericDataGanssReferenceMeasurementInfo, const GanssReqGenericDataGanssUTCModel& ganssReqGenericDataGanssUTCModel) : Sequence(&theInfo) {
+	setGanssReqGenericDataGanssRealTimeIntegrity(ganssReqGenericDataGanssRealTimeIntegrity);
+	setGanssReqGenericDataGanssAlmanac(ganssReqGenericDataGanssAlmanac);
+	setGanssReqGenericDataGanssNavigationModel(ganssReqGenericDataGanssNavigationModel);
+	setGanssReqGenericDataGanssReferenceMeasurementInfo(ganssReqGenericDataGanssReferenceMeasurementInfo);
+	setGanssReqGenericDataGanssUTCModel(ganssReqGenericDataGanssUTCModel);
+}
 
 const void *GanssReqGenericDatav860extGanssAddADchoices::itemsInfo[4] = {
 	&GanssReqGenericDatav860extGanssAddADchoicesOrbitModelID::theInfo,
@@ -36302,6 +41240,13 @@ const GANSSStormFlag::Info GANSSStormFlag::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+GANSSStormFlag::GANSSStormFlag(const GANSSStormFlagStormflagone& gANSSStormFlagStormflagone, const GANSSStormFlagStormflagtwo& gANSSStormFlagStormflagtwo, const GANSSStormFlagStormflagthree& gANSSStormFlagStormflagthree, const GANSSStormFlagStormflagfour& gANSSStormFlagStormflagfour, const GANSSStormFlagStormflagfive& gANSSStormFlagStormflagfive) : Sequence(&theInfo) {
+	setGANSSStormFlagStormflagone(gANSSStormFlagStormflagone);
+	setGANSSStormFlagStormflagtwo(gANSSStormFlagStormflagtwo);
+	setGANSSStormFlagStormflagthree(gANSSStormFlagStormflagthree);
+	setGANSSStormFlagStormflagfour(gANSSStormFlagStormflagfour);
+	setGANSSStormFlagStormflagfive(gANSSStormFlagStormflagfive);
+}
 
 const void *GSMMeasuredResults::itemsInfo[4] = {
 	&GSMCarrierRSSI::theInfo,
@@ -36324,6 +41269,9 @@ const GSMMeasuredResults::Info GSMMeasuredResults::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+GSMMeasuredResults::GSMMeasuredResults(const BSICReported& bsicReported) : Sequence(&theInfo) {
+	setBsicReported(bsicReported);
+}
 
 const void *GPSTOWAssist::itemsInfo[5] = {
 	&SatID::theInfo,
@@ -36348,6 +41296,13 @@ const GPSTOWAssist::Info GPSTOWAssist::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+GPSTOWAssist::GPSTOWAssist(const SatID& satID, const GPSTOWAssistTlmMessage& gPSTOWAssistTlmMessage, const GPSTOWAssistTlmReserved& gPSTOWAssistTlmReserved, const GPSTOWAssistAlert& gPSTOWAssistAlert, const GPSTOWAssistAntiSpoof& gPSTOWAssistAntiSpoof) : Sequence(&theInfo) {
+	setSatID(satID);
+	setGPSTOWAssistTlmMessage(gPSTOWAssistTlmMessage);
+	setGPSTOWAssistTlmReserved(gPSTOWAssistTlmReserved);
+	setGPSTOWAssistAlert(gPSTOWAssistAlert);
+	setGPSTOWAssistAntiSpoof(gPSTOWAssistAntiSpoof);
+}
 
 const void *GSMCellID::itemsInfo[1] = {
 	&GSMCellIDGsmCellID::theInfo,
@@ -36364,6 +41319,9 @@ const GSMCellID::Info GSMCellID::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+GSMCellID::GSMCellID(const GSMCellIDGsmCellID& gSMCellIDGsmCellID) : Sequence(&theInfo) {
+	setGSMCellIDGsmCellID(gSMCellIDGsmCellID);
+}
 
 const void *GSMPriorityInfo::itemsInfo[5] = {
 	&GSMCellGroup::theInfo,
@@ -36388,6 +41346,13 @@ const GSMPriorityInfo::Info GSMPriorityInfo::theInfo = {
 	itemsPres,
 	5, 0, 0
 };
+GSMPriorityInfo::GSMPriorityInfo(const GSMCellGroup& gsmCellGroup, const GSMPriorityInfoPriority& gSMPriorityInfoPriority, const GSMPriorityInfoQRxLevMinGSM& gSMPriorityInfoQRxLevMinGSM, const GSMPriorityInfoThreshXhigh& gSMPriorityInfoThreshXhigh, const GSMPriorityInfoThreshXlow& gSMPriorityInfoThreshXlow) : Sequence(&theInfo) {
+	setGsmCellGroup(gsmCellGroup);
+	setGSMPriorityInfoPriority(gSMPriorityInfoPriority);
+	setGSMPriorityInfoQRxLevMinGSM(gSMPriorityInfoQRxLevMinGSM);
+	setGSMPriorityInfoThreshXhigh(gSMPriorityInfoThreshXhigh);
+	setGSMPriorityInfoThreshXlow(gSMPriorityInfoThreshXlow);
+}
 
 const void *IdleIntervalInfo::itemsInfo[2] = {
 	&IdleIntervalInfoK::theInfo,
@@ -36424,6 +41389,10 @@ const InterFreqCellLCRr4::Info InterFreqCellLCRr4::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+InterFreqCellLCRr4::InterFreqCellLCRr4(const FrequencyInfo& frequencyInfo, const CellMeasurementEventResultsLCRr4& nonFreqRelatedEventResults) : Sequence(&theInfo) {
+	setFrequencyInfo(frequencyInfo);
+	setNonFreqRelatedEventResults(nonFreqRelatedEventResults);
+}
 
 const void *RemovedInterFreqCellList::choicesInfo[3] = {
 	&RemovedInterFreqCellListRemoveAllInterFreqCells::theInfo,
@@ -36458,6 +41427,9 @@ const NewInterFreqCell::Info NewInterFreqCell::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+NewInterFreqCell::NewInterFreqCell(const CellInfo& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *InterFreqCellInfoList::itemsInfo[3] = {
 	&RemovedInterFreqCellList::theInfo,
@@ -36498,6 +41470,9 @@ const NewInterFreqCellr4::Info NewInterFreqCellr4::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+NewInterFreqCellr4::NewInterFreqCellr4(const CellInfor4& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *InterFreqCellInfoListr4::itemsInfo[3] = {
 	&RemovedInterFreqCellList::theInfo,
@@ -36534,6 +41509,9 @@ const NewInterFreqCellr8ModeSpecificInfoTdd128::Info NewInterFreqCellr8ModeSpeci
 	itemsPres,
 	1, 0, 0
 };
+NewInterFreqCellr8ModeSpecificInfoTdd128::NewInterFreqCellr8ModeSpecificInfoTdd128(const NewInterFreqCellr8ModeSpecificInfoTdd128IntraSecondaryFreqIndicator& newInterFreqCellr8ModeSpecificInfoTdd128IntraSecondaryFreqIndicator) : Sequence(&theInfo) {
+	setNewInterFreqCellr8ModeSpecificInfoTdd128IntraSecondaryFreqIndicator(newInterFreqCellr8ModeSpecificInfoTdd128IntraSecondaryFreqIndicator);
+}
 
 const void *NewInterFreqCellr8ModeSpecificInfo::choicesInfo[2] = {
 	&NewInterFreqCellr8ModeSpecificInfoNoInfo::theInfo,
@@ -36569,6 +41547,10 @@ const NewInterFreqCellr8::Info NewInterFreqCellr8::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+NewInterFreqCellr8::NewInterFreqCellr8(const CellInfor4& cellInfo, const NewInterFreqCellr8ModeSpecificInfo& newInterFreqCellr8ModeSpecificInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+	setNewInterFreqCellr8ModeSpecificInfo(newInterFreqCellr8ModeSpecificInfo);
+}
 
 const void *InterFreqCellInfoListr8::itemsInfo[3] = {
 	&RemovedInterFreqCellList::theInfo,
@@ -36605,6 +41587,9 @@ const NewInterFreqCellr9ModeSpecificInfoTdd128::Info NewInterFreqCellr9ModeSpeci
 	itemsPres,
 	1, 0, 0
 };
+NewInterFreqCellr9ModeSpecificInfoTdd128::NewInterFreqCellr9ModeSpecificInfoTdd128(const NewInterFreqCellr9ModeSpecificInfoTdd128IntraSecondaryFreqIndicator& newInterFreqCellr9ModeSpecificInfoTdd128IntraSecondaryFreqIndicator) : Sequence(&theInfo) {
+	setNewInterFreqCellr9ModeSpecificInfoTdd128IntraSecondaryFreqIndicator(newInterFreqCellr9ModeSpecificInfoTdd128IntraSecondaryFreqIndicator);
+}
 
 const void *NewInterFreqCellr9ModeSpecificInfo::choicesInfo[2] = {
 	&NewInterFreqCellr9ModeSpecificInfoNoInfo::theInfo,
@@ -36640,6 +41625,10 @@ const NewInterFreqCellr9::Info NewInterFreqCellr9::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+NewInterFreqCellr9::NewInterFreqCellr9(const CellInfor9& cellInfo, const NewInterFreqCellr9ModeSpecificInfo& newInterFreqCellr9ModeSpecificInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+	setNewInterFreqCellr9ModeSpecificInfo(newInterFreqCellr9ModeSpecificInfo);
+}
 
 const void *InterFreqSIAcquisitionModeSpecificInfoFdd::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -36656,6 +41645,9 @@ const InterFreqSIAcquisitionModeSpecificInfoFdd::Info InterFreqSIAcquisitionMode
 	itemsPres,
 	1, 0, 0
 };
+InterFreqSIAcquisitionModeSpecificInfoFdd::InterFreqSIAcquisitionModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryScramblingCode) : Sequence(&theInfo) {
+	setPrimaryScramblingCode(primaryScramblingCode);
+}
 
 const void *InterFreqSIAcquisitionModeSpecificInfo::choicesInfo[2] = {
 	&InterFreqSIAcquisitionModeSpecificInfoFdd::theInfo,
@@ -36687,6 +41679,10 @@ const InterFreqSIAcquisition::Info InterFreqSIAcquisition::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+InterFreqSIAcquisition::InterFreqSIAcquisition(const FrequencyInfo& frequencyInfo, const InterFreqSIAcquisitionModeSpecificInfo& interFreqSIAcquisitionModeSpecificInfo) : Sequence(&theInfo) {
+	setFrequencyInfo(frequencyInfo);
+	setInterFreqSIAcquisitionModeSpecificInfo(interFreqSIAcquisitionModeSpecificInfo);
+}
 
 const void *InterFreqCellInfoListr9::itemsInfo[5] = {
 	&RemovedInterFreqCellList::theInfo,
@@ -36731,6 +41727,9 @@ const NewInterFreqCellSIRSCP::Info NewInterFreqCellSIRSCP::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+NewInterFreqCellSIRSCP::NewInterFreqCellSIRSCP(const CellInfoSIRSCP& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *InterFreqCellInfoSIListRSCP::itemsInfo[2] = {
 	&RemovedInterFreqCellList::theInfo,
@@ -36769,6 +41768,9 @@ const NewInterFreqCellSIECN0::Info NewInterFreqCellSIECN0::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+NewInterFreqCellSIECN0::NewInterFreqCellSIECN0(const CellInfoSIECN0& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *InterFreqCellInfoSIListECN0::itemsInfo[2] = {
 	&RemovedInterFreqCellList::theInfo,
@@ -36807,6 +41809,9 @@ const NewInterFreqCellSIHCSRSCP::Info NewInterFreqCellSIHCSRSCP::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+NewInterFreqCellSIHCSRSCP::NewInterFreqCellSIHCSRSCP(const CellInfoSIHCSRSCP& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *InterFreqCellInfoSIListHCSRSCP::itemsInfo[2] = {
 	&RemovedInterFreqCellList::theInfo,
@@ -36845,6 +41850,9 @@ const NewInterFreqCellSIHCSECN0::Info NewInterFreqCellSIHCSECN0::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+NewInterFreqCellSIHCSECN0::NewInterFreqCellSIHCSECN0(const CellInfoSIHCSECN0& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *InterFreqCellInfoSIListHCSECN0::itemsInfo[2] = {
 	&RemovedInterFreqCellList::theInfo,
@@ -36883,6 +41891,9 @@ const NewInterFreqCellSIRSCPLCRr4::Info NewInterFreqCellSIRSCPLCRr4::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+NewInterFreqCellSIRSCPLCRr4::NewInterFreqCellSIRSCPLCRr4(const CellInfoSIRSCPLCRr4& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *InterFreqCellInfoSIListRSCPLCR::itemsInfo[2] = {
 	&RemovedInterFreqCellList::theInfo,
@@ -36921,6 +41932,9 @@ const NewInterFreqCellSIECN0LCRr4::Info NewInterFreqCellSIECN0LCRr4::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+NewInterFreqCellSIECN0LCRr4::NewInterFreqCellSIECN0LCRr4(const CellInfoSIECN0LCRr4& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *InterFreqCellInfoSIListECN0LCR::itemsInfo[2] = {
 	&RemovedInterFreqCellList::theInfo,
@@ -36959,6 +41973,9 @@ const NewInterFreqCellSIHCSRSCPLCRr4::Info NewInterFreqCellSIHCSRSCPLCRr4::theIn
 	itemsPres,
 	3, 2, 0
 };
+NewInterFreqCellSIHCSRSCPLCRr4::NewInterFreqCellSIHCSRSCPLCRr4(const CellInfoSIHCSRSCPLCRr4& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *InterFreqCellInfoSIListHCSRSCPLCR::itemsInfo[2] = {
 	&RemovedInterFreqCellList::theInfo,
@@ -36997,6 +42014,9 @@ const NewInterFreqCellSIHCSECN0LCRr4::Info NewInterFreqCellSIHCSECN0LCRr4::theIn
 	itemsPres,
 	3, 2, 0
 };
+NewInterFreqCellSIHCSECN0LCRr4::NewInterFreqCellSIHCSECN0LCRr4(const CellInfoSIHCSECN0LCRr4& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *InterFreqCellInfoSIListHCSECN0LCR::itemsInfo[2] = {
 	&RemovedInterFreqCellList::theInfo,
@@ -37067,6 +42087,9 @@ const InterFreqEventCriteriav590ext::Info InterFreqEventCriteriav590ext::theInfo
 	itemsPres,
 	2, 1, 0
 };
+InterFreqEventCriteriav590ext::InterFreqEventCriteriav590ext(const DeltaRSCP& threholdUsedFrequencydelta) : Sequence(&theInfo) {
+	setThreholdUsedFrequencydelta(threholdUsedFrequencydelta);
+}
 
 const void *InterFreqEventResultsLCRr4ext::itemsInfo[2] = {
 	&EventIDInterFreq::theInfo,
@@ -37085,6 +42108,9 @@ const InterFreqEventResultsLCRr4ext::Info InterFreqEventResultsLCRr4ext::theInfo
 	itemsPres,
 	2, 1, 0
 };
+InterFreqEventResultsLCRr4ext::InterFreqEventResultsLCRr4ext(const EventIDInterFreq& eventID) : Sequence(&theInfo) {
+	setEventID(eventID);
+}
 
 const void *IntraFreqMeasQuantityModeSpecificInfoFdd::itemsInfo[1] = {
 	&IntraFreqMeasQuantityFDD::theInfo,
@@ -37101,6 +42127,9 @@ const IntraFreqMeasQuantityModeSpecificInfoFdd::Info IntraFreqMeasQuantityModeSp
 	itemsPres,
 	1, 0, 0
 };
+IntraFreqMeasQuantityModeSpecificInfoFdd::IntraFreqMeasQuantityModeSpecificInfoFdd(const IntraFreqMeasQuantityFDD& intraFreqMeasQuantityFDD) : Sequence(&theInfo) {
+	setIntraFreqMeasQuantityFDD(intraFreqMeasQuantityFDD);
+}
 
 const void *IntraFreqMeasQuantityModeSpecificInfoTdd::itemsInfo[1] = {
 	&IntraFreqMeasQuantityTDDList::theInfo,
@@ -37117,6 +42146,9 @@ const IntraFreqMeasQuantityModeSpecificInfoTdd::Info IntraFreqMeasQuantityModeSp
 	itemsPres,
 	1, 0, 0
 };
+IntraFreqMeasQuantityModeSpecificInfoTdd::IntraFreqMeasQuantityModeSpecificInfoTdd(const IntraFreqMeasQuantityTDDList& intraFreqMeasQuantityTDDList) : Sequence(&theInfo) {
+	setIntraFreqMeasQuantityTDDList(intraFreqMeasQuantityTDDList);
+}
 
 const void *IntraFreqMeasQuantityModeSpecificInfo::choicesInfo[2] = {
 	&IntraFreqMeasQuantityModeSpecificInfoFdd::theInfo,
@@ -37148,6 +42180,9 @@ const IntraFreqMeasQuantity::Info IntraFreqMeasQuantity::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+IntraFreqMeasQuantity::IntraFreqMeasQuantity(const IntraFreqMeasQuantityModeSpecificInfo& intraFreqMeasQuantityModeSpecificInfo) : Sequence(&theInfo) {
+	setIntraFreqMeasQuantityModeSpecificInfo(intraFreqMeasQuantityModeSpecificInfo);
+}
 
 const void *InterFreqMeasQuantityReportingCriteriaIntraFreqReportingCriteria::itemsInfo[1] = {
 	&IntraFreqMeasQuantity::theInfo,
@@ -37164,6 +42199,9 @@ const InterFreqMeasQuantityReportingCriteriaIntraFreqReportingCriteria::Info Int
 	itemsPres,
 	1, 0, 0
 };
+InterFreqMeasQuantityReportingCriteriaIntraFreqReportingCriteria::InterFreqMeasQuantityReportingCriteriaIntraFreqReportingCriteria(const IntraFreqMeasQuantity& intraFreqMeasQuantity) : Sequence(&theInfo) {
+	setIntraFreqMeasQuantity(intraFreqMeasQuantity);
+}
 
 const void *InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfoFdd::itemsInfo[1] = {
 	&FreqQualityEstimateQuantityFDD::theInfo,
@@ -37180,6 +42218,9 @@ const InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecif
 	itemsPres,
 	1, 0, 0
 };
+InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfoFdd::InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfoFdd(const FreqQualityEstimateQuantityFDD& freqQualityEstimateQuantityFDD) : Sequence(&theInfo) {
+	setFreqQualityEstimateQuantityFDD(freqQualityEstimateQuantityFDD);
+}
 
 const void *InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfoTdd::itemsInfo[1] = {
 	&FreqQualityEstimateQuantityTDD::theInfo,
@@ -37196,6 +42237,9 @@ const InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecif
 	itemsPres,
 	1, 0, 0
 };
+InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfoTdd::InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfoTdd(const FreqQualityEstimateQuantityTDD& freqQualityEstimateQuantityTDD) : Sequence(&theInfo) {
+	setFreqQualityEstimateQuantityTDD(freqQualityEstimateQuantityTDD);
+}
 
 const void *InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfo::choicesInfo[2] = {
 	&InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfoFdd::theInfo,
@@ -37227,6 +42271,9 @@ const InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteria::Info Int
 	itemsPres,
 	2, 1, 0
 };
+InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteria::InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteria(const InterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfo& interFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfo) : Sequence(&theInfo) {
+	setInterFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfo(interFreqMeasQuantityReportingCriteriaInterFreqReportingCriteriaModeSpecificInfo);
+}
 
 const void *InterFreqMeasQuantityReportingCriteria::choicesInfo[2] = {
 	&InterFreqMeasQuantityReportingCriteriaIntraFreqReportingCriteria::theInfo,
@@ -37450,6 +42497,9 @@ const DummyInterFreqRACHReportingInfoModeSpecificInfoFdd::Info DummyInterFreqRAC
 	itemsPres,
 	1, 0, 0
 };
+DummyInterFreqRACHReportingInfoModeSpecificInfoFdd::DummyInterFreqRACHReportingInfoModeSpecificInfoFdd(const InterFreqRepQuantityRACHFDD& interFreqRepQuantityRACHFDD) : Sequence(&theInfo) {
+	setInterFreqRepQuantityRACHFDD(interFreqRepQuantityRACHFDD);
+}
 
 const void *DummyInterFreqRACHReportingInfoModeSpecificInfoTdd::itemsInfo[1] = {
 	&InterFreqRepQuantityRACHTDDList::theInfo,
@@ -37466,6 +42516,9 @@ const DummyInterFreqRACHReportingInfoModeSpecificInfoTdd::Info DummyInterFreqRAC
 	itemsPres,
 	1, 0, 0
 };
+DummyInterFreqRACHReportingInfoModeSpecificInfoTdd::DummyInterFreqRACHReportingInfoModeSpecificInfoTdd(const InterFreqRepQuantityRACHTDDList& interFreqRepQuantityRACHTDDList) : Sequence(&theInfo) {
+	setInterFreqRepQuantityRACHTDDList(interFreqRepQuantityRACHTDDList);
+}
 
 const void *DummyInterFreqRACHReportingInfoModeSpecificInfo::choicesInfo[4] = {
 	&DummyInterFreqRACHReportingInfoModeSpecificInfoFdd::theInfo,
@@ -37497,6 +42550,9 @@ const DummyInterFreqRACHReportingInfo::Info DummyInterFreqRACHReportingInfo::the
 	itemsPres,
 	1, 0, 0
 };
+DummyInterFreqRACHReportingInfo::DummyInterFreqRACHReportingInfo(const DummyInterFreqRACHReportingInfoModeSpecificInfo& dummyInterFreqRACHReportingInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setDummyInterFreqRACHReportingInfoModeSpecificInfo(dummyInterFreqRACHReportingInfoModeSpecificInfo);
+}
 
 const void *InterFreqRACHReportingInfoModeSpecificInfoFdd::itemsInfo[1] = {
 	&InterFreqRepQuantityRACHFDD::theInfo,
@@ -37513,6 +42569,9 @@ const InterFreqRACHReportingInfoModeSpecificInfoFdd::Info InterFreqRACHReporting
 	itemsPres,
 	1, 0, 0
 };
+InterFreqRACHReportingInfoModeSpecificInfoFdd::InterFreqRACHReportingInfoModeSpecificInfoFdd(const InterFreqRepQuantityRACHFDD& interFreqRepQuantityRACHFDD) : Sequence(&theInfo) {
+	setInterFreqRepQuantityRACHFDD(interFreqRepQuantityRACHFDD);
+}
 
 const void *InterFreqRACHReportingInfoModeSpecificInfoTdd::itemsInfo[1] = {
 	&InterFreqRepQuantityRACHTDDList::theInfo,
@@ -37529,6 +42588,9 @@ const InterFreqRACHReportingInfoModeSpecificInfoTdd::Info InterFreqRACHReporting
 	itemsPres,
 	1, 0, 0
 };
+InterFreqRACHReportingInfoModeSpecificInfoTdd::InterFreqRACHReportingInfoModeSpecificInfoTdd(const InterFreqRepQuantityRACHTDDList& interFreqRepQuantityRACHTDDList) : Sequence(&theInfo) {
+	setInterFreqRepQuantityRACHTDDList(interFreqRepQuantityRACHTDDList);
+}
 
 const void *InterFreqRACHReportingInfoModeSpecificInfo::choicesInfo[2] = {
 	&InterFreqRACHReportingInfoModeSpecificInfoFdd::theInfo,
@@ -37562,6 +42624,11 @@ const InterFreqRACHReportingInfo::Info InterFreqRACHReportingInfo::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+InterFreqRACHReportingInfo::InterFreqRACHReportingInfo(const InterFreqRACHReportingInfoModeSpecificInfo& interFreqRACHReportingInfoModeSpecificInfo, const Threshold& interFreqRACHReportingThreshold, const MaxReportedCellsOnRACHinterFreq& maxReportedCellsOnRACHinterFreq) : Sequence(&theInfo) {
+	setInterFreqRACHReportingInfoModeSpecificInfo(interFreqRACHReportingInfoModeSpecificInfo);
+	setInterFreqRACHReportingThreshold(interFreqRACHReportingThreshold);
+	setMaxReportedCellsOnRACHinterFreq(maxReportedCellsOnRACHinterFreq);
+}
 
 const void *InterFreqReportingCriteria::itemsInfo[1] = {
 	&InterFreqEventList::theInfo,
@@ -37596,6 +42663,9 @@ const PeriodicalWithReportingCellStatus::Info PeriodicalWithReportingCellStatus:
 	itemsPres,
 	2, 1, 0
 };
+PeriodicalWithReportingCellStatus::PeriodicalWithReportingCellStatus(const PeriodicalReportingCriteria& periodicalReportingCriteria) : Sequence(&theInfo) {
+	setPeriodicalReportingCriteria(periodicalReportingCriteria);
+}
 
 const void *ReportingCellStatusOpt::itemsInfo[1] = {
 	&ReportingCellStatus::theInfo,
@@ -37669,6 +42739,11 @@ const IntraFreqEventCriteriar4::Info IntraFreqEventCriteriar4::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+IntraFreqEventCriteriar4::IntraFreqEventCriteriar4(const IntraFreqEventr4& event, const Hysteresis& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setEvent(event);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *IntraFreqReportingCriteriar4::itemsInfo[1] = {
 	&IntraFreqEventCriteriaListr4::theInfo,
@@ -37743,6 +42818,11 @@ const IntraFreqEventCriteriar6::Info IntraFreqEventCriteriar6::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+IntraFreqEventCriteriar6::IntraFreqEventCriteriar6(const IntraFreqEventr6& event, const Hysteresis& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setEvent(event);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *IntraFreqReportingCriteriar6::itemsInfo[1] = {
 	&IntraFreqEventCriteriaListr6::theInfo,
@@ -37833,6 +42913,11 @@ const IntraFreqEventCriteriar7::Info IntraFreqEventCriteriar7::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+IntraFreqEventCriteriar7::IntraFreqEventCriteriar7(const IntraFreqEventr7& event, const Hysteresis& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setEvent(event);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *IntraFreqReportingCriteriar7::itemsInfo[1] = {
 	&IntraFreqEventCriteriaListr7::theInfo,
@@ -37902,6 +42987,11 @@ const IntraFreqEventCriteriaOnSecULFreq::Info IntraFreqEventCriteriaOnSecULFreq:
 	itemsPres,
 	4, 1, 0
 };
+IntraFreqEventCriteriaOnSecULFreq::IntraFreqEventCriteriaOnSecULFreq(const IntraFreqEventOnSecULFreq& event, const Hysteresis& hysteresis, const TimeToTrigger& timeToTrigger) : Sequence(&theInfo) {
+	setEvent(event);
+	setHysteresis(hysteresis);
+	setTimeToTrigger(timeToTrigger);
+}
 
 const void *IntraFreqEventCriteriaListOnSecULFreq::itemsInfo[2] = {
 	&FrequencyInfo::theInfo,
@@ -37920,6 +43010,10 @@ const IntraFreqEventCriteriaListOnSecULFreq::Info IntraFreqEventCriteriaListOnSe
 	itemsPres,
 	2, 0, 0
 };
+IntraFreqEventCriteriaListOnSecULFreq::IntraFreqEventCriteriaListOnSecULFreq(const FrequencyInfo& frequencyInfo, const IntraFreqEventCriteriaListOnSecULFreqIntraFreqEventCriteria& intraFreqEventCriteriaListOnSecULFreqIntraFreqEventCriteria) : Sequence(&theInfo) {
+	setFrequencyInfo(frequencyInfo);
+	setIntraFreqEventCriteriaListOnSecULFreqIntraFreqEventCriteria(intraFreqEventCriteriaListOnSecULFreqIntraFreqEventCriteria);
+}
 
 const void *IntraFreqReportingCriteriar9::itemsInfo[2] = {
 	&IntraFreqEventCriteriaListr7::theInfo,
@@ -37973,6 +43067,11 @@ const InterFreqReportingQuantity::Info InterFreqReportingQuantity::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+InterFreqReportingQuantity::InterFreqReportingQuantity(const InterFreqReportingQuantityUtraCarrierRSSI& interFreqReportingQuantityUtraCarrierRSSI, const InterFreqReportingQuantityFrequencyQualityEstimate& interFreqReportingQuantityFrequencyQualityEstimate, const CellReportingQuantities& nonFreqRelatedQuantities) : Sequence(&theInfo) {
+	setInterFreqReportingQuantityUtraCarrierRSSI(interFreqReportingQuantityUtraCarrierRSSI);
+	setInterFreqReportingQuantityFrequencyQualityEstimate(interFreqReportingQuantityFrequencyQualityEstimate);
+	setNonFreqRelatedQuantities(nonFreqRelatedQuantities);
+}
 
 const void *MeasurementValidity::itemsInfo[1] = {
 	&MeasurementValidityue_State::theInfo,
@@ -37989,6 +43088,9 @@ const MeasurementValidity::Info MeasurementValidity::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MeasurementValidity::MeasurementValidity(const MeasurementValidityue_State& measurementValidityue_State) : Sequence(&theInfo) {
+	setMeasurementValidityue_State(measurementValidityue_State);
+}
 
 const void *RLInformationLists::itemsInfo[2] = {
 	&RLAdditionInfoList::theInfo,
@@ -38047,6 +43149,10 @@ const InterFrequencyMeasurement::Info InterFrequencyMeasurement::theInfo = {
 	itemsPres,
 	6, 4, 0
 };
+InterFrequencyMeasurement::InterFrequencyMeasurement(const InterFreqCellInfoList& interFreqCellInfoList, const InterFreqReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setInterFreqCellInfoList(interFreqCellInfoList);
+	setReportCriteria(reportCriteria);
+}
 
 const void *InterFrequencyMeasurementr4::itemsInfo[6] = {
 	&InterFreqCellInfoListr4::theInfo,
@@ -38073,6 +43179,10 @@ const InterFrequencyMeasurementr4::Info InterFrequencyMeasurementr4::theInfo = {
 	itemsPres,
 	6, 4, 0
 };
+InterFrequencyMeasurementr4::InterFrequencyMeasurementr4(const InterFreqCellInfoListr4& interFreqCellInfoList, const InterFreqReportCriteriar4& reportCriteria) : Sequence(&theInfo) {
+	setInterFreqCellInfoList(interFreqCellInfoList);
+	setReportCriteria(reportCriteria);
+}
 
 const void *InterFrequencyMeasurementr6::itemsInfo[6] = {
 	&InterFreqCellInfoListr4::theInfo,
@@ -38099,6 +43209,10 @@ const InterFrequencyMeasurementr6::Info InterFrequencyMeasurementr6::theInfo = {
 	itemsPres,
 	6, 4, 0
 };
+InterFrequencyMeasurementr6::InterFrequencyMeasurementr6(const InterFreqCellInfoListr4& interFreqCellInfoList, const InterFreqReportCriteriar6& reportCriteria) : Sequence(&theInfo) {
+	setInterFreqCellInfoList(interFreqCellInfoList);
+	setReportCriteria(reportCriteria);
+}
 
 const void *InterFrequencyMeasurementr7::itemsInfo[6] = {
 	&InterFreqCellInfoListr4::theInfo,
@@ -38125,6 +43239,10 @@ const InterFrequencyMeasurementr7::Info InterFrequencyMeasurementr7::theInfo = {
 	itemsPres,
 	6, 4, 0
 };
+InterFrequencyMeasurementr7::InterFrequencyMeasurementr7(const InterFreqCellInfoListr4& interFreqCellInfoList, const InterFreqReportCriteriar7& reportCriteria) : Sequence(&theInfo) {
+	setInterFreqCellInfoList(interFreqCellInfoList);
+	setReportCriteria(reportCriteria);
+}
 
 const void *InterFrequencyMeasurementr8::itemsInfo[7] = {
 	&InterFreqCellInfoListr8::theInfo,
@@ -38153,6 +43271,10 @@ const InterFrequencyMeasurementr8::Info InterFrequencyMeasurementr8::theInfo = {
 	itemsPres,
 	7, 5, 0
 };
+InterFrequencyMeasurementr8::InterFrequencyMeasurementr8(const InterFreqCellInfoListr8& interFreqCellInfoList, const InterFreqReportCriteriar7& reportCriteria) : Sequence(&theInfo) {
+	setInterFreqCellInfoList(interFreqCellInfoList);
+	setReportCriteria(reportCriteria);
+}
 
 const void *InterFrequencyMeasurementr9::itemsInfo[8] = {
 	&InterFreqCellInfoListr9::theInfo,
@@ -38183,6 +43305,10 @@ const InterFrequencyMeasurementr9::Info InterFrequencyMeasurementr9::theInfo = {
 	itemsPres,
 	8, 6, 0
 };
+InterFrequencyMeasurementr9::InterFrequencyMeasurementr9(const InterFreqCellInfoListr9& interFreqCellInfoList, const InterFreqReportCriteriar9& reportCriteria) : Sequence(&theInfo) {
+	setInterFreqCellInfoList(interFreqCellInfoList);
+	setReportCriteria(reportCriteria);
+}
 
 const void *InterRATTargetCellDescriptionTechnologySpecificInfoGsm::itemsInfo[4] = {
 	&BSIC::theInfo,
@@ -38205,6 +43331,11 @@ const InterRATTargetCellDescriptionTechnologySpecificInfoGsm::Info InterRATTarge
 	itemsPres,
 	4, 1, 0
 };
+InterRATTargetCellDescriptionTechnologySpecificInfoGsm::InterRATTargetCellDescriptionTechnologySpecificInfoGsm(const BSIC& bsic, const FrequencyBand& frequencyband, const BCCHARFCN& bcchARFCN) : Sequence(&theInfo) {
+	setBsic(bsic);
+	setFrequencyband(frequencyband);
+	setBcchARFCN(bcchARFCN);
+}
 
 const void *InterRATTargetCellDescriptionTechnologySpecificInfo::choicesInfo[4] = {
 	&InterRATTargetCellDescriptionTechnologySpecificInfoGsm::theInfo,
@@ -38236,6 +43367,9 @@ const InterRATTargetCellDescription::Info InterRATTargetCellDescription::theInfo
 	itemsPres,
 	1, 0, 0
 };
+InterRATTargetCellDescription::InterRATTargetCellDescription(const InterRATTargetCellDescriptionTechnologySpecificInfo& interRATTargetCellDescriptionTechnologySpecificInfo) : Sequence(&theInfo) {
+	setInterRATTargetCellDescriptionTechnologySpecificInfo(interRATTargetCellDescriptionTechnologySpecificInfo);
+}
 
 const void *RemovedInterRATCellList::choicesInfo[3] = {
 	&RemovedInterRATCellListRemoveAllInterRATCells::theInfo,
@@ -38276,6 +43410,12 @@ const NewInterRATCellTechnologySpecificInfoGsm::Info NewInterRATCellTechnologySp
 	itemsPres,
 	6, 2, 0
 };
+NewInterRATCellTechnologySpecificInfoGsm::NewInterRATCellTechnologySpecificInfoGsm(const InterRATCellIndividualOffset& interRATCellIndividualOffset, const BSIC& bsic, const FrequencyBand& frequencyband, const BCCHARFCN& bcchARFCN) : Sequence(&theInfo) {
+	setInterRATCellIndividualOffset(interRATCellIndividualOffset);
+	setBsic(bsic);
+	setFrequencyband(frequencyband);
+	setBcchARFCN(bcchARFCN);
+}
 
 const void *NewInterRATCellTechnologySpecificInfoIs2000::itemsInfo[1] = {
 	&IS2000SpecificMeasInfo::theInfo,
@@ -38292,6 +43432,9 @@ const NewInterRATCellTechnologySpecificInfoIs2000::Info NewInterRATCellTechnolog
 	itemsPres,
 	1, 0, 0
 };
+NewInterRATCellTechnologySpecificInfoIs2000::NewInterRATCellTechnologySpecificInfoIs2000(const IS2000SpecificMeasInfo& is2000SpecificMeasInfo) : Sequence(&theInfo) {
+	setIs2000SpecificMeasInfo(is2000SpecificMeasInfo);
+}
 
 const void *NewInterRATCellTechnologySpecificInfo::choicesInfo[4] = {
 	&NewInterRATCellTechnologySpecificInfoGsm::theInfo,
@@ -38325,6 +43468,9 @@ const NewInterRATCell::Info NewInterRATCell::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NewInterRATCell::NewInterRATCell(const NewInterRATCellTechnologySpecificInfo& newInterRATCellTechnologySpecificInfo) : Sequence(&theInfo) {
+	setNewInterRATCellTechnologySpecificInfo(newInterRATCellTechnologySpecificInfo);
+}
 
 const void *InterRATCellInfoList::itemsInfo[3] = {
 	&RemovedInterRATCellList::theInfo,
@@ -38345,6 +43491,10 @@ const InterRATCellInfoList::Info InterRATCellInfoList::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+InterRATCellInfoList::InterRATCellInfoList(const RemovedInterRATCellList& removedInterRATCellList, const NewInterRATCellList& newInterRATCellList) : Sequence(&theInfo) {
+	setRemovedInterRATCellList(removedInterRATCellList);
+	setNewInterRATCellList(newInterRATCellList);
+}
 
 const void *NewInterRATCellBTechnologySpecificInfoGsm::itemsInfo[6] = {
 	&CellSelectReselectInfoSIB1112::theInfo,
@@ -38371,6 +43521,12 @@ const NewInterRATCellBTechnologySpecificInfoGsm::Info NewInterRATCellBTechnology
 	itemsPres,
 	6, 2, 0
 };
+NewInterRATCellBTechnologySpecificInfoGsm::NewInterRATCellBTechnologySpecificInfoGsm(const InterRATCellIndividualOffset& interRATCellIndividualOffset, const BSIC& bsic, const FrequencyBand& frequencyband, const BCCHARFCN& bcchARFCN) : Sequence(&theInfo) {
+	setInterRATCellIndividualOffset(interRATCellIndividualOffset);
+	setBsic(bsic);
+	setFrequencyband(frequencyband);
+	setBcchARFCN(bcchARFCN);
+}
 
 const void *NewInterRATCellBTechnologySpecificInfoIs2000::itemsInfo[1] = {
 	&IS2000SpecificMeasInfo::theInfo,
@@ -38387,6 +43543,9 @@ const NewInterRATCellBTechnologySpecificInfoIs2000::Info NewInterRATCellBTechnol
 	itemsPres,
 	1, 0, 0
 };
+NewInterRATCellBTechnologySpecificInfoIs2000::NewInterRATCellBTechnologySpecificInfoIs2000(const IS2000SpecificMeasInfo& is2000SpecificMeasInfo) : Sequence(&theInfo) {
+	setIs2000SpecificMeasInfo(is2000SpecificMeasInfo);
+}
 
 const void *NewInterRATCellBTechnologySpecificInfo::choicesInfo[4] = {
 	&NewInterRATCellBTechnologySpecificInfoGsm::theInfo,
@@ -38420,6 +43579,9 @@ const NewInterRATCellB::Info NewInterRATCellB::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NewInterRATCellB::NewInterRATCellB(const NewInterRATCellBTechnologySpecificInfo& newInterRATCellBTechnologySpecificInfo) : Sequence(&theInfo) {
+	setNewInterRATCellBTechnologySpecificInfo(newInterRATCellBTechnologySpecificInfo);
+}
 
 const void *InterRATCellInfoListB::itemsInfo[2] = {
 	&RemovedInterRATCellList::theInfo,
@@ -38438,6 +43600,10 @@ const InterRATCellInfoListB::Info InterRATCellInfoListB::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+InterRATCellInfoListB::InterRATCellInfoListB(const RemovedInterRATCellList& removedInterRATCellList, const NewInterRATCellListB& newInterRATCellList) : Sequence(&theInfo) {
+	setRemovedInterRATCellList(removedInterRATCellList);
+	setNewInterRATCellList(newInterRATCellList);
+}
 
 const void *InterRATCellInfoListr4::itemsInfo[3] = {
 	&RemovedInterRATCellList::theInfo,
@@ -38458,6 +43624,9 @@ const InterRATCellInfoListr4::Info InterRATCellInfoListr4::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+InterRATCellInfoListr4::InterRATCellInfoListr4(const RemovedInterRATCellList& removedInterRATCellList) : Sequence(&theInfo) {
+	setRemovedInterRATCellList(removedInterRATCellList);
+}
 
 const void *InterRATCellInfoListr6::itemsInfo[4] = {
 	&RemovedInterRATCellList::theInfo,
@@ -38480,6 +43649,9 @@ const InterRATCellInfoListr6::Info InterRATCellInfoListr6::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+InterRATCellInfoListr6::InterRATCellInfoListr6(const RemovedInterRATCellList& removedInterRATCellList) : Sequence(&theInfo) {
+	setRemovedInterRATCellList(removedInterRATCellList);
+}
 
 const void *InterRATEvent::choicesInfo[4] = {
 	&Event3a::theInfo,
@@ -38515,6 +43687,10 @@ const InterRATMeasQuantityRatSpecificInfoGsm::Info InterRATMeasQuantityRatSpecif
 	itemsPres,
 	3, 1, 0
 };
+InterRATMeasQuantityRatSpecificInfoGsm::InterRATMeasQuantityRatSpecificInfoGsm(const MeasurementQuantityGSM& measurementQuantity, const BSICVerificationRequired& bsicVerificationRequired) : Sequence(&theInfo) {
+	setMeasurementQuantity(measurementQuantity);
+	setBsicVerificationRequired(bsicVerificationRequired);
+}
 
 const void *InterRATMeasQuantityRatSpecificInfoIs2000::itemsInfo[4] = {
 	&InterRATMeasQuantityRatSpecificInfoIs2000TaddEcIo::theInfo,
@@ -38537,6 +43713,10 @@ const InterRATMeasQuantityRatSpecificInfoIs2000::Info InterRATMeasQuantityRatSpe
 	itemsPres,
 	4, 2, 0
 };
+InterRATMeasQuantityRatSpecificInfoIs2000::InterRATMeasQuantityRatSpecificInfoIs2000(const InterRATMeasQuantityRatSpecificInfoIs2000TaddEcIo& interRATMeasQuantityRatSpecificInfoIs2000TaddEcIo, const InterRATMeasQuantityRatSpecificInfoIs2000TcompEcIo& interRATMeasQuantityRatSpecificInfoIs2000TcompEcIo) : Sequence(&theInfo) {
+	setInterRATMeasQuantityRatSpecificInfoIs2000TaddEcIo(interRATMeasQuantityRatSpecificInfoIs2000TaddEcIo);
+	setInterRATMeasQuantityRatSpecificInfoIs2000TcompEcIo(interRATMeasQuantityRatSpecificInfoIs2000TcompEcIo);
+}
 
 const void *InterRATMeasQuantityRatSpecificInfo::choicesInfo[2] = {
 	&InterRATMeasQuantityRatSpecificInfoGsm::theInfo,
@@ -38588,6 +43768,10 @@ const InterRATMeasQuantityr8RatSpecificInfoGsm::Info InterRATMeasQuantityr8RatSp
 	itemsPres,
 	3, 1, 0
 };
+InterRATMeasQuantityr8RatSpecificInfoGsm::InterRATMeasQuantityr8RatSpecificInfoGsm(const MeasurementQuantityGSM& measurementQuantity, const BSICVerificationRequired& bsicVerificationRequired) : Sequence(&theInfo) {
+	setMeasurementQuantity(measurementQuantity);
+	setBsicVerificationRequired(bsicVerificationRequired);
+}
 
 const void *InterRATMeasQuantityr8RatSpecificInfoIs2000::itemsInfo[4] = {
 	&InterRATMeasQuantityr8RatSpecificInfoIs2000TaddEcIo::theInfo,
@@ -38610,6 +43794,10 @@ const InterRATMeasQuantityr8RatSpecificInfoIs2000::Info InterRATMeasQuantityr8Ra
 	itemsPres,
 	4, 2, 0
 };
+InterRATMeasQuantityr8RatSpecificInfoIs2000::InterRATMeasQuantityr8RatSpecificInfoIs2000(const InterRATMeasQuantityr8RatSpecificInfoIs2000TaddEcIo& interRATMeasQuantityr8RatSpecificInfoIs2000TaddEcIo, const InterRATMeasQuantityr8RatSpecificInfoIs2000TcompEcIo& interRATMeasQuantityr8RatSpecificInfoIs2000TcompEcIo) : Sequence(&theInfo) {
+	setInterRATMeasQuantityr8RatSpecificInfoIs2000TaddEcIo(interRATMeasQuantityr8RatSpecificInfoIs2000TaddEcIo);
+	setInterRATMeasQuantityr8RatSpecificInfoIs2000TcompEcIo(interRATMeasQuantityr8RatSpecificInfoIs2000TcompEcIo);
+}
 
 const void *InterRATMeasQuantityr8RatSpecificInfoEUTRA::itemsInfo[2] = {
 	&MeasurementQuantityEUTRA::theInfo,
@@ -38628,6 +43816,9 @@ const InterRATMeasQuantityr8RatSpecificInfoEUTRA::Info InterRATMeasQuantityr8Rat
 	itemsPres,
 	2, 1, 0
 };
+InterRATMeasQuantityr8RatSpecificInfoEUTRA::InterRATMeasQuantityr8RatSpecificInfoEUTRA(const MeasurementQuantityEUTRA& measurementQuantity) : Sequence(&theInfo) {
+	setMeasurementQuantity(measurementQuantity);
+}
 
 const void *InterRATMeasQuantityr8RatSpecificInfo::choicesInfo[3] = {
 	&InterRATMeasQuantityr8RatSpecificInfoGsm::theInfo,
@@ -38693,6 +43884,11 @@ const InterRATReportingQuantityRatSpecificInfoGsm::Info InterRATReportingQuantit
 	itemsPres,
 	3, 0, 0
 };
+InterRATReportingQuantityRatSpecificInfoGsm::InterRATReportingQuantityRatSpecificInfoGsm(const InterRATReportingQuantityRatSpecificInfoGsmDummy& interRATReportingQuantityRatSpecificInfoGsmDummy, const InterRATReportingQuantityRatSpecificInfoGsmDummy2& interRATReportingQuantityRatSpecificInfoGsmDummy2, const InterRATReportingQuantityRatSpecificInfoGsmGsmCarrierRSSI& interRATReportingQuantityRatSpecificInfoGsmGsmCarrierRSSI) : Sequence(&theInfo) {
+	setInterRATReportingQuantityRatSpecificInfoGsmDummy(interRATReportingQuantityRatSpecificInfoGsmDummy);
+	setInterRATReportingQuantityRatSpecificInfoGsmDummy2(interRATReportingQuantityRatSpecificInfoGsmDummy2);
+	setInterRATReportingQuantityRatSpecificInfoGsmGsmCarrierRSSI(interRATReportingQuantityRatSpecificInfoGsmGsmCarrierRSSI);
+}
 
 const void *InterRATReportingQuantityRatSpecificInfo::choicesInfo[1] = {
 	&InterRATReportingQuantityRatSpecificInfoGsm::theInfo,
@@ -38723,6 +43919,10 @@ const InterRATReportingQuantity::Info InterRATReportingQuantity::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+InterRATReportingQuantity::InterRATReportingQuantity(const InterRATReportingQuantityUtranEstimatedQuality& interRATReportingQuantityUtranEstimatedQuality, const InterRATReportingQuantityRatSpecificInfo& interRATReportingQuantityRatSpecificInfo) : Sequence(&theInfo) {
+	setInterRATReportingQuantityUtranEstimatedQuality(interRATReportingQuantityUtranEstimatedQuality);
+	setInterRATReportingQuantityRatSpecificInfo(interRATReportingQuantityRatSpecificInfo);
+}
 
 const void *InterRATReportingCriteria::itemsInfo[1] = {
 	&InterRATEventList::theInfo,
@@ -38775,6 +43975,9 @@ const InterRATMeasurement::Info InterRATMeasurement::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+InterRATMeasurement::InterRATMeasurement(const InterRATReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setReportCriteria(reportCriteria);
+}
 
 const void *InterRATMeasurementr4::itemsInfo[4] = {
 	&InterRATCellInfoListr4::theInfo,
@@ -38797,6 +44000,9 @@ const InterRATMeasurementr4::Info InterRATMeasurementr4::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+InterRATMeasurementr4::InterRATMeasurementr4(const InterRATReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setReportCriteria(reportCriteria);
+}
 
 const void *InterRATMeasurementr6::itemsInfo[4] = {
 	&InterRATCellInfoListr6::theInfo,
@@ -38819,6 +44025,9 @@ const InterRATMeasurementr6::Info InterRATMeasurementr6::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+InterRATMeasurementr6::InterRATMeasurementr6(const InterRATReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setReportCriteria(reportCriteria);
+}
 
 const void *InterRATMeasurementr8InterRATMeasurementObjects::choicesInfo[2] = {
 	&InterRATCellInfoListr6::theInfo,
@@ -38848,6 +44057,9 @@ const InterRATReportingQuantityr8RatSpecificInfoGsm::Info InterRATReportingQuant
 	itemsPres,
 	1, 0, 0
 };
+InterRATReportingQuantityr8RatSpecificInfoGsm::InterRATReportingQuantityr8RatSpecificInfoGsm(const InterRATReportingQuantityr8RatSpecificInfoGsmGsmCarrierRSSI& interRATReportingQuantityr8RatSpecificInfoGsmGsmCarrierRSSI) : Sequence(&theInfo) {
+	setInterRATReportingQuantityr8RatSpecificInfoGsmGsmCarrierRSSI(interRATReportingQuantityr8RatSpecificInfoGsmGsmCarrierRSSI);
+}
 
 const void *InterRATReportingQuantityr8RatSpecificInfoEutra::itemsInfo[1] = {
 	&InterRATReportingQuantityr8RatSpecificInfoEutrareportingQuantity::theInfo,
@@ -38864,6 +44076,9 @@ const InterRATReportingQuantityr8RatSpecificInfoEutra::Info InterRATReportingQua
 	itemsPres,
 	1, 0, 0
 };
+InterRATReportingQuantityr8RatSpecificInfoEutra::InterRATReportingQuantityr8RatSpecificInfoEutra(const InterRATReportingQuantityr8RatSpecificInfoEutrareportingQuantity& interRATReportingQuantityr8RatSpecificInfoEutrareportingQuantity) : Sequence(&theInfo) {
+	setInterRATReportingQuantityr8RatSpecificInfoEutrareportingQuantity(interRATReportingQuantityr8RatSpecificInfoEutrareportingQuantity);
+}
 
 const void *InterRATReportingQuantityr8RatSpecificInfo::choicesInfo[2] = {
 	&InterRATReportingQuantityr8RatSpecificInfoGsm::theInfo,
@@ -38895,6 +44110,10 @@ const InterRATReportingQuantityr8::Info InterRATReportingQuantityr8::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+InterRATReportingQuantityr8::InterRATReportingQuantityr8(const InterRATReportingQuantityr8UtranEstimatedQuality& interRATReportingQuantityr8UtranEstimatedQuality, const InterRATReportingQuantityr8RatSpecificInfo& interRATReportingQuantityr8RatSpecificInfo) : Sequence(&theInfo) {
+	setInterRATReportingQuantityr8UtranEstimatedQuality(interRATReportingQuantityr8UtranEstimatedQuality);
+	setInterRATReportingQuantityr8RatSpecificInfo(interRATReportingQuantityr8RatSpecificInfo);
+}
 
 const void *InterRATMeasurementr8::itemsInfo[5] = {
 	&InterRATMeasurementr8InterRATMeasurementObjects::theInfo,
@@ -38919,6 +44138,9 @@ const InterRATMeasurementr8::Info InterRATMeasurementr8::theInfo = {
 	itemsPres,
 	5, 4, 0
 };
+InterRATMeasurementr8::InterRATMeasurementr8(const InterRATReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setReportCriteria(reportCriteria);
+}
 
 const void *InterRATMeasurementr9InterRATMeasurementObjects::choicesInfo[2] = {
 	&InterRATCellInfoListr6::theInfo,
@@ -38956,6 +44178,9 @@ const InterRATMeasurementr9::Info InterRATMeasurementr9::theInfo = {
 	itemsPres,
 	5, 4, 0
 };
+InterRATMeasurementr9::InterRATMeasurementr9(const InterRATReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setReportCriteria(reportCriteria);
+}
 
 const void *InterRATMeasurementSysInfo::itemsInfo[1] = {
 	&InterRATCellInfoList::theInfo,
@@ -39020,6 +44245,9 @@ const NewIntraFreqCell::Info NewIntraFreqCell::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NewIntraFreqCell::NewIntraFreqCell(const CellInfo& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *IntraFreqCellInfoList::itemsInfo[3] = {
 	&RemovedIntraFreqCellList::theInfo,
@@ -39058,6 +44286,9 @@ const NewIntraFreqCellr4::Info NewIntraFreqCellr4::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NewIntraFreqCellr4::NewIntraFreqCellr4(const CellInfor4& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *IntraFreqCellInfoListr4::itemsInfo[3] = {
 	&RemovedIntraFreqCellList::theInfo,
@@ -39110,6 +44341,9 @@ const NewIntraFreqCellOnSecULFreq::Info NewIntraFreqCellOnSecULFreq::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NewIntraFreqCellOnSecULFreq::NewIntraFreqCellOnSecULFreq(const CellInfor4& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *IntraFreqCellInfoListInfoOnSecULFreq::itemsInfo[3] = {
 	&RemovedIntraFreqCellListOnSecULFreq::theInfo,
@@ -39146,6 +44380,9 @@ const IntraFreqCellInfoListOnSecULFreq::Info IntraFreqCellInfoListOnSecULFreq::t
 	itemsPres,
 	1, 0, 0
 };
+IntraFreqCellInfoListOnSecULFreq::IntraFreqCellInfoListOnSecULFreq(const IntraFreqCellInfoListInfoOnSecULFreq& intraFreqCellInfoListOnSecULFreq) : Sequence(&theInfo) {
+	setIntraFreqCellInfoListOnSecULFreq(intraFreqCellInfoListOnSecULFreq);
+}
 
 const void *NewIntraFreqCellr9::itemsInfo[2] = {
 	&IntraFreqCellID::theInfo,
@@ -39164,6 +44401,9 @@ const NewIntraFreqCellr9::Info NewIntraFreqCellr9::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NewIntraFreqCellr9::NewIntraFreqCellr9(const CellInfor9& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *IntraFreqSIAcquisitionModeSpecificInfoFdd::itemsInfo[1] = {
 	&IntraFreqSIAcquisitionInfo::theInfo,
@@ -39209,6 +44449,9 @@ const IntraFreqSIAcquisition::Info IntraFreqSIAcquisition::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+IntraFreqSIAcquisition::IntraFreqSIAcquisition(const IntraFreqSIAcquisitionModeSpecificInfo& intraFreqSIAcquisitionModeSpecificInfo) : Sequence(&theInfo) {
+	setIntraFreqSIAcquisitionModeSpecificInfo(intraFreqSIAcquisitionModeSpecificInfo);
+}
 
 const void *IntraFreqCellInfoListr9::itemsInfo[5] = {
 	&RemovedIntraFreqCellList::theInfo,
@@ -39251,6 +44494,9 @@ const NewIntraFreqCellSIRSCP::Info NewIntraFreqCellSIRSCP::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NewIntraFreqCellSIRSCP::NewIntraFreqCellSIRSCP(const CellInfoSIRSCP& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *IntraFreqCellInfoSIListRSCP::itemsInfo[2] = {
 	&RemovedIntraFreqCellList::theInfo,
@@ -39269,6 +44515,9 @@ const IntraFreqCellInfoSIListRSCP::Info IntraFreqCellInfoSIListRSCP::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+IntraFreqCellInfoSIListRSCP::IntraFreqCellInfoSIListRSCP(const NewIntraFreqCellSIListRSCP& newIntraFreqCellList) : Sequence(&theInfo) {
+	setNewIntraFreqCellList(newIntraFreqCellList);
+}
 
 const void *NewIntraFreqCellSIECN0::itemsInfo[2] = {
 	&IntraFreqCellID::theInfo,
@@ -39287,6 +44536,9 @@ const NewIntraFreqCellSIECN0::Info NewIntraFreqCellSIECN0::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NewIntraFreqCellSIECN0::NewIntraFreqCellSIECN0(const CellInfoSIECN0& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *IntraFreqCellInfoSIListECN0::itemsInfo[2] = {
 	&RemovedIntraFreqCellList::theInfo,
@@ -39305,6 +44557,9 @@ const IntraFreqCellInfoSIListECN0::Info IntraFreqCellInfoSIListECN0::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+IntraFreqCellInfoSIListECN0::IntraFreqCellInfoSIListECN0(const NewIntraFreqCellSIListECN0& newIntraFreqCellList) : Sequence(&theInfo) {
+	setNewIntraFreqCellList(newIntraFreqCellList);
+}
 
 const void *NewIntraFreqCellSIHCSRSCP::itemsInfo[2] = {
 	&IntraFreqCellID::theInfo,
@@ -39323,6 +44578,9 @@ const NewIntraFreqCellSIHCSRSCP::Info NewIntraFreqCellSIHCSRSCP::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NewIntraFreqCellSIHCSRSCP::NewIntraFreqCellSIHCSRSCP(const CellInfoSIHCSRSCP& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *IntraFreqCellInfoSIListHCSRSCP::itemsInfo[2] = {
 	&RemovedIntraFreqCellList::theInfo,
@@ -39341,6 +44599,9 @@ const IntraFreqCellInfoSIListHCSRSCP::Info IntraFreqCellInfoSIListHCSRSCP::theIn
 	itemsPres,
 	2, 1, 0
 };
+IntraFreqCellInfoSIListHCSRSCP::IntraFreqCellInfoSIListHCSRSCP(const NewIntraFreqCellSIListHCSRSCP& newIntraFreqCellList) : Sequence(&theInfo) {
+	setNewIntraFreqCellList(newIntraFreqCellList);
+}
 
 const void *NewIntraFreqCellSIHCSECN0::itemsInfo[2] = {
 	&IntraFreqCellID::theInfo,
@@ -39359,6 +44620,9 @@ const NewIntraFreqCellSIHCSECN0::Info NewIntraFreqCellSIHCSECN0::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NewIntraFreqCellSIHCSECN0::NewIntraFreqCellSIHCSECN0(const CellInfoSIHCSECN0& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *IntraFreqCellInfoSIListHCSECN0::itemsInfo[2] = {
 	&RemovedIntraFreqCellList::theInfo,
@@ -39377,6 +44641,9 @@ const IntraFreqCellInfoSIListHCSECN0::Info IntraFreqCellInfoSIListHCSECN0::theIn
 	itemsPres,
 	2, 1, 0
 };
+IntraFreqCellInfoSIListHCSECN0::IntraFreqCellInfoSIListHCSECN0(const NewIntraFreqCellSIListHCSECN0& newIntraFreqCellList) : Sequence(&theInfo) {
+	setNewIntraFreqCellList(newIntraFreqCellList);
+}
 
 const void *NewIntraFreqCellSIRSCPLCRr4::itemsInfo[2] = {
 	&IntraFreqCellID::theInfo,
@@ -39395,6 +44662,9 @@ const NewIntraFreqCellSIRSCPLCRr4::Info NewIntraFreqCellSIRSCPLCRr4::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NewIntraFreqCellSIRSCPLCRr4::NewIntraFreqCellSIRSCPLCRr4(const CellInfoSIRSCPLCRr4& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *IntraFreqCellInfoSIListRSCPLCRr4::itemsInfo[2] = {
 	&RemovedIntraFreqCellList::theInfo,
@@ -39413,6 +44683,9 @@ const IntraFreqCellInfoSIListRSCPLCRr4::Info IntraFreqCellInfoSIListRSCPLCRr4::t
 	itemsPres,
 	2, 1, 0
 };
+IntraFreqCellInfoSIListRSCPLCRr4::IntraFreqCellInfoSIListRSCPLCRr4(const NewIntraFreqCellSIListRSCPLCRr4& newIntraFreqCellList) : Sequence(&theInfo) {
+	setNewIntraFreqCellList(newIntraFreqCellList);
+}
 
 const void *NewIntraFreqCellSIECN0LCRr4::itemsInfo[2] = {
 	&IntraFreqCellID::theInfo,
@@ -39431,6 +44704,9 @@ const NewIntraFreqCellSIECN0LCRr4::Info NewIntraFreqCellSIECN0LCRr4::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+NewIntraFreqCellSIECN0LCRr4::NewIntraFreqCellSIECN0LCRr4(const CellInfoSIECN0LCRr4& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *IntraFreqCellInfoSIListECN0LCRr4::itemsInfo[2] = {
 	&RemovedIntraFreqCellList::theInfo,
@@ -39449,6 +44725,9 @@ const IntraFreqCellInfoSIListECN0LCRr4::Info IntraFreqCellInfoSIListECN0LCRr4::t
 	itemsPres,
 	2, 1, 0
 };
+IntraFreqCellInfoSIListECN0LCRr4::IntraFreqCellInfoSIListECN0LCRr4(const NewIntraFreqCellSIListECN0LCRr4& newIntraFreqCellList) : Sequence(&theInfo) {
+	setNewIntraFreqCellList(newIntraFreqCellList);
+}
 
 const void *NewIntraFreqCellSIHCSRSCPLCRr4::itemsInfo[2] = {
 	&IntraFreqCellID::theInfo,
@@ -39467,6 +44746,9 @@ const NewIntraFreqCellSIHCSRSCPLCRr4::Info NewIntraFreqCellSIHCSRSCPLCRr4::theIn
 	itemsPres,
 	2, 1, 0
 };
+NewIntraFreqCellSIHCSRSCPLCRr4::NewIntraFreqCellSIHCSRSCPLCRr4(const CellInfoSIHCSRSCPLCRr4& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *IntraFreqCellInfoSIListHCSRSCPLCRr4::itemsInfo[2] = {
 	&RemovedIntraFreqCellList::theInfo,
@@ -39485,6 +44767,9 @@ const IntraFreqCellInfoSIListHCSRSCPLCRr4::Info IntraFreqCellInfoSIListHCSRSCPLC
 	itemsPres,
 	2, 1, 0
 };
+IntraFreqCellInfoSIListHCSRSCPLCRr4::IntraFreqCellInfoSIListHCSRSCPLCRr4(const NewIntraFreqCellSIListHCSRSCPLCRr4& newIntraFreqCellList) : Sequence(&theInfo) {
+	setNewIntraFreqCellList(newIntraFreqCellList);
+}
 
 const void *NewIntraFreqCellSIHCSECN0LCRr4::itemsInfo[2] = {
 	&IntraFreqCellID::theInfo,
@@ -39503,6 +44788,9 @@ const NewIntraFreqCellSIHCSECN0LCRr4::Info NewIntraFreqCellSIHCSECN0LCRr4::theIn
 	itemsPres,
 	2, 1, 0
 };
+NewIntraFreqCellSIHCSECN0LCRr4::NewIntraFreqCellSIHCSECN0LCRr4(const CellInfoSIHCSECN0LCRr4& cellInfo) : Sequence(&theInfo) {
+	setCellInfo(cellInfo);
+}
 
 const void *IntraFreqCellInfoSIListHCSECN0LCRr4::itemsInfo[2] = {
 	&RemovedIntraFreqCellList::theInfo,
@@ -39521,6 +44809,9 @@ const IntraFreqCellInfoSIListHCSECN0LCRr4::Info IntraFreqCellInfoSIListHCSECN0LC
 	itemsPres,
 	2, 1, 0
 };
+IntraFreqCellInfoSIListHCSECN0LCRr4::IntraFreqCellInfoSIListHCSECN0LCRr4(const NewIntraFreqCellSIListHCSECN0LCRr4& newIntraFreqCellList) : Sequence(&theInfo) {
+	setNewIntraFreqCellList(newIntraFreqCellList);
+}
 
 const void *IntraFreqEvent1dr5::itemsInfo[2] = {
 	&TriggeringCondition2::theInfo,
@@ -39569,6 +44860,9 @@ const IntraFreqReportingQuantityForRACHModeSpecificInfoFdd::Info IntraFreqReport
 	itemsPres,
 	1, 0, 0
 };
+IntraFreqReportingQuantityForRACHModeSpecificInfoFdd::IntraFreqReportingQuantityForRACHModeSpecificInfoFdd(const IntraFreqRepQuantityRACHFDD& intraFreqRepQuantityRACHFDD) : Sequence(&theInfo) {
+	setIntraFreqRepQuantityRACHFDD(intraFreqRepQuantityRACHFDD);
+}
 
 const void *IntraFreqReportingQuantityForRACHModeSpecificInfoTdd::itemsInfo[1] = {
 	&IntraFreqRepQuantityRACHTDDList::theInfo,
@@ -39585,6 +44879,9 @@ const IntraFreqReportingQuantityForRACHModeSpecificInfoTdd::Info IntraFreqReport
 	itemsPres,
 	1, 0, 0
 };
+IntraFreqReportingQuantityForRACHModeSpecificInfoTdd::IntraFreqReportingQuantityForRACHModeSpecificInfoTdd(const IntraFreqRepQuantityRACHTDDList& intraFreqRepQuantityRACHTDDList) : Sequence(&theInfo) {
+	setIntraFreqRepQuantityRACHTDDList(intraFreqRepQuantityRACHTDDList);
+}
 
 const void *IntraFreqReportingQuantityForRACHModeSpecificInfo::choicesInfo[2] = {
 	&IntraFreqReportingQuantityForRACHModeSpecificInfoFdd::theInfo,
@@ -39616,6 +44913,10 @@ const IntraFreqReportingQuantityForRACH::Info IntraFreqReportingQuantityForRACH:
 	itemsPres,
 	2, 0, 0
 };
+IntraFreqReportingQuantityForRACH::IntraFreqReportingQuantityForRACH(const SFNSFNOTDType& sfnSFNOTDType, const IntraFreqReportingQuantityForRACHModeSpecificInfo& intraFreqReportingQuantityForRACHModeSpecificInfo) : Sequence(&theInfo) {
+	setSfnSFNOTDType(sfnSFNOTDType);
+	setIntraFreqReportingQuantityForRACHModeSpecificInfo(intraFreqReportingQuantityForRACHModeSpecificInfo);
+}
 
 const void *IntraFreqReportingQuantity::itemsInfo[3] = {
 	&CellReportingQuantities::theInfo,
@@ -39636,6 +44937,10 @@ const IntraFreqReportingQuantity::Info IntraFreqReportingQuantity::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+IntraFreqReportingQuantity::IntraFreqReportingQuantity(const CellReportingQuantities& activeSetReportingQuantities, const CellReportingQuantities& monitoredSetReportingQuantities) : Sequence(&theInfo) {
+	setActiveSetReportingQuantities(activeSetReportingQuantities);
+	setMonitoredSetReportingQuantities(monitoredSetReportingQuantities);
+}
 
 const void *MeasurementReportingMode::itemsInfo[2] = {
 	&TransferMode::theInfo,
@@ -39654,6 +44959,10 @@ const MeasurementReportingMode::Info MeasurementReportingMode::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MeasurementReportingMode::MeasurementReportingMode(const TransferMode& measurementReportTransferMode, const PeriodicalOrEventTrigger& periodicalOrEventTrigger) : Sequence(&theInfo) {
+	setMeasurementReportTransferMode(measurementReportTransferMode);
+	setPeriodicalOrEventTrigger(periodicalOrEventTrigger);
+}
 
 const void *ReportingInfoForCellDCH::itemsInfo[3] = {
 	&IntraFreqReportingQuantity::theInfo,
@@ -39674,6 +44983,11 @@ const ReportingInfoForCellDCH::Info ReportingInfoForCellDCH::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+ReportingInfoForCellDCH::ReportingInfoForCellDCH(const IntraFreqReportingQuantity& intraFreqReportingQuantity, const MeasurementReportingMode& measurementReportingMode, const CellDCHReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setIntraFreqReportingQuantity(intraFreqReportingQuantity);
+	setMeasurementReportingMode(measurementReportingMode);
+	setReportCriteria(reportCriteria);
+}
 
 const void *IntraFreqMeasurementSysInfoRSCP::itemsInfo[6] = {
 	&MeasurementIdentity::theInfo,
@@ -39798,6 +45112,11 @@ const ReportingInfoForCellDCHLCRr4::Info ReportingInfoForCellDCHLCRr4::theInfo =
 	itemsPres,
 	3, 0, 0
 };
+ReportingInfoForCellDCHLCRr4::ReportingInfoForCellDCHLCRr4(const IntraFreqReportingQuantity& intraFreqReportingQuantity, const MeasurementReportingMode& measurementReportingMode, const CellDCHReportCriteriaLCRr4& reportCriteria) : Sequence(&theInfo) {
+	setIntraFreqReportingQuantity(intraFreqReportingQuantity);
+	setMeasurementReportingMode(measurementReportingMode);
+	setReportCriteria(reportCriteria);
+}
 
 const void *IntraFreqMeasurementSysInfoRSCPLCRr4::itemsInfo[6] = {
 	&MeasurementIdentity::theInfo,
@@ -39988,6 +45307,9 @@ const IntraFreqReportingCriteria1br5::Info IntraFreqReportingCriteria1br5::theIn
 	itemsPres,
 	1, 0, 0
 };
+IntraFreqReportingCriteria1br5::IntraFreqReportingCriteria1br5(const PeriodicReportingInfo1b& periodicReportingInfo1b) : Sequence(&theInfo) {
+	setPeriodicReportingInfo1b(periodicReportingInfo1b);
+}
 
 const void *IntraFrequencyMeasurement::itemsInfo[5] = {
 	&IntraFreqCellInfoList::theInfo,
@@ -40060,6 +45382,9 @@ const IntraFrequencyMeasurementr6::Info IntraFrequencyMeasurementr6::theInfo = {
 	itemsPres,
 	5, 4, 0
 };
+IntraFrequencyMeasurementr6::IntraFrequencyMeasurementr6(const IntraFreqReportCriteriar6& reportCriteria) : Sequence(&theInfo) {
+	setReportCriteria(reportCriteria);
+}
 
 const void *IntraFrequencyMeasurementr7::itemsInfo[5] = {
 	&IntraFreqCellInfoListr4::theInfo,
@@ -40132,6 +45457,9 @@ const TrafficVolumeMeasuredResults::Info TrafficVolumeMeasuredResults::theInfo =
 	itemsPres,
 	4, 3, 0
 };
+TrafficVolumeMeasuredResults::TrafficVolumeMeasuredResults(const RBIdentity& rbIdentity) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+}
 
 const void *SIRMeasurementResults::itemsInfo[2] = {
 	&TFCSIdentityPlain::theInfo,
@@ -40150,6 +45478,10 @@ const SIRMeasurementResults::Info SIRMeasurementResults::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SIRMeasurementResults::SIRMeasurementResults(const TFCSIdentityPlain& tfcsID, const SIRTimeslotList& sirTimeslotList) : Sequence(&theInfo) {
+	setTfcsID(tfcsID);
+	setSirTimeslotList(sirTimeslotList);
+}
 
 const void *QualityMeasuredResultsModeSpecificInfoTdd::itemsInfo[1] = {
 	&SIRMeasurementList::theInfo,
@@ -40197,6 +45529,9 @@ const QualityMeasuredResults::Info QualityMeasuredResults::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+QualityMeasuredResults::QualityMeasuredResults(const QualityMeasuredResultsModeSpecificInfo& qualityMeasuredResultsModeSpecificInfo) : Sequence(&theInfo) {
+	setQualityMeasuredResultsModeSpecificInfo(qualityMeasuredResultsModeSpecificInfo);
+}
 
 const void *UERXTXReportEntry::itemsInfo[2] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -40215,6 +45550,10 @@ const UERXTXReportEntry::Info UERXTXReportEntry::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+UERXTXReportEntry::UERXTXReportEntry(const PrimaryCPICHInfo& primaryCPICHInfo, const UERXTXTimeDifferenceType1& ueRXTXTimeDifferenceType1) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+	setUeRXTXTimeDifferenceType1(ueRXTXTimeDifferenceType1);
+}
 
 const void *UEInternalMeasuredResultsModeSpecificInfoFdd::itemsInfo[2] = {
 	&UETransmittedPower::theInfo,
@@ -40280,6 +45619,9 @@ const UEInternalMeasuredResults::Info UEInternalMeasuredResults::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+UEInternalMeasuredResults::UEInternalMeasuredResults(const UEInternalMeasuredResultsModeSpecificInfo& uEInternalMeasuredResultsModeSpecificInfo) : Sequence(&theInfo) {
+	setUEInternalMeasuredResultsModeSpecificInfo(uEInternalMeasuredResultsModeSpecificInfo);
+}
 
 const void *SatData::itemsInfo[2] = {
 	&SatID::theInfo,
@@ -40298,6 +45640,10 @@ const SatData::Info SatData::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SatData::SatData(const SatID& satID, const IODE& iode) : Sequence(&theInfo) {
+	setSatID(satID);
+	setIode(iode);
+}
 
 const void *UEPositioningGPSNavModelAddDataReq::itemsInfo[4] = {
 	&UEPositioningGPSNavModelAddDataReqGpsWeek::theInfo,
@@ -40320,6 +45666,12 @@ const UEPositioningGPSNavModelAddDataReq::Info UEPositioningGPSNavModelAddDataRe
 	itemsPres,
 	4, 0, 0
 };
+UEPositioningGPSNavModelAddDataReq::UEPositioningGPSNavModelAddDataReq(const UEPositioningGPSNavModelAddDataReqGpsWeek& uEPositioningGPSNavModelAddDataReqGpsWeek, const UEPositioningGPSNavModelAddDataReqGpsToe& uEPositioningGPSNavModelAddDataReqGpsToe, const UEPositioningGPSNavModelAddDataReqTToeLimit& uEPositioningGPSNavModelAddDataReqTToeLimit, const SatDataList& satDataList) : Sequence(&theInfo) {
+	setUEPositioningGPSNavModelAddDataReqGpsWeek(uEPositioningGPSNavModelAddDataReqGpsWeek);
+	setUEPositioningGPSNavModelAddDataReqGpsToe(uEPositioningGPSNavModelAddDataReqGpsToe);
+	setUEPositioningGPSNavModelAddDataReqTToeLimit(uEPositioningGPSNavModelAddDataReqTToeLimit);
+	setSatDataList(satDataList);
+}
 
 const void *UEPositioningGPSAdditionalAssistanceDataRequest::itemsInfo[10] = {
 	&UEPositioningGPSAdditionalAssistanceDataRequestAlmanacRequest::theInfo,
@@ -40354,6 +45706,17 @@ const UEPositioningGPSAdditionalAssistanceDataRequest::Info UEPositioningGPSAddi
 	itemsPres,
 	10, 1, 0
 };
+UEPositioningGPSAdditionalAssistanceDataRequest::UEPositioningGPSAdditionalAssistanceDataRequest(const UEPositioningGPSAdditionalAssistanceDataRequestAlmanacRequest& uEPositioningGPSAdditionalAssistanceDataRequestAlmanacRequest, const UEPositioningGPSAdditionalAssistanceDataRequestUtcModelRequest& uEPositioningGPSAdditionalAssistanceDataRequestUtcModelRequest, const UEPositioningGPSAdditionalAssistanceDataRequestIonosphericModelRequest& uEPositioningGPSAdditionalAssistanceDataRequestIonosphericModelRequest, const UEPositioningGPSAdditionalAssistanceDataRequestNavigationModelRequest& uEPositioningGPSAdditionalAssistanceDataRequestNavigationModelRequest, const UEPositioningGPSAdditionalAssistanceDataRequestDgpsCorrectionsRequest& uEPositioningGPSAdditionalAssistanceDataRequestDgpsCorrectionsRequest, const UEPositioningGPSAdditionalAssistanceDataRequestReferenceLocationRequest& uEPositioningGPSAdditionalAssistanceDataRequestReferenceLocationRequest, const UEPositioningGPSAdditionalAssistanceDataRequestReferenceTimeRequest& uEPositioningGPSAdditionalAssistanceDataRequestReferenceTimeRequest, const UEPositioningGPSAdditionalAssistanceDataRequestAquisitionAssistanceRequest& uEPositioningGPSAdditionalAssistanceDataRequestAquisitionAssistanceRequest, const UEPositioningGPSAdditionalAssistanceDataRequestRealTimeIntegrityRequest& uEPositioningGPSAdditionalAssistanceDataRequestRealTimeIntegrityRequest) : Sequence(&theInfo) {
+	setUEPositioningGPSAdditionalAssistanceDataRequestAlmanacRequest(uEPositioningGPSAdditionalAssistanceDataRequestAlmanacRequest);
+	setUEPositioningGPSAdditionalAssistanceDataRequestUtcModelRequest(uEPositioningGPSAdditionalAssistanceDataRequestUtcModelRequest);
+	setUEPositioningGPSAdditionalAssistanceDataRequestIonosphericModelRequest(uEPositioningGPSAdditionalAssistanceDataRequestIonosphericModelRequest);
+	setUEPositioningGPSAdditionalAssistanceDataRequestNavigationModelRequest(uEPositioningGPSAdditionalAssistanceDataRequestNavigationModelRequest);
+	setUEPositioningGPSAdditionalAssistanceDataRequestDgpsCorrectionsRequest(uEPositioningGPSAdditionalAssistanceDataRequestDgpsCorrectionsRequest);
+	setUEPositioningGPSAdditionalAssistanceDataRequestReferenceLocationRequest(uEPositioningGPSAdditionalAssistanceDataRequestReferenceLocationRequest);
+	setUEPositioningGPSAdditionalAssistanceDataRequestReferenceTimeRequest(uEPositioningGPSAdditionalAssistanceDataRequestReferenceTimeRequest);
+	setUEPositioningGPSAdditionalAssistanceDataRequestAquisitionAssistanceRequest(uEPositioningGPSAdditionalAssistanceDataRequestAquisitionAssistanceRequest);
+	setUEPositioningGPSAdditionalAssistanceDataRequestRealTimeIntegrityRequest(uEPositioningGPSAdditionalAssistanceDataRequestRealTimeIntegrityRequest);
+}
 
 const void *UEPositioningError::itemsInfo[2] = {
 	&UEPositioningErrorCause::theInfo,
@@ -40372,6 +45735,9 @@ const UEPositioningError::Info UEPositioningError::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+UEPositioningError::UEPositioningError(const UEPositioningErrorCause& errorReason) : Sequence(&theInfo) {
+	setErrorReason(errorReason);
+}
 
 const void *UEPositioningMeasuredResults::itemsInfo[4] = {
 	&UEPositioningOTDOAMeasurement::theInfo,
@@ -40429,6 +45795,9 @@ const MeasuredResultsOnSecUlFreq::Info MeasuredResultsOnSecUlFreq::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MeasuredResultsOnSecUlFreq::MeasuredResultsOnSecUlFreq(const IntraFrequencyMeasuredResultsListOnSecULFreq& intraFreqMeasuredResultsList) : Sequence(&theInfo) {
+	setIntraFreqMeasuredResultsList(intraFreqMeasuredResultsList);
+}
 
 const void *Neighbourv390extModeSpecificInfoFdd::itemsInfo[1] = {
 	&FrequencyInfo::theInfo,
@@ -40445,6 +45814,9 @@ const Neighbourv390extModeSpecificInfoFdd::Info Neighbourv390extModeSpecificInfo
 	itemsPres,
 	1, 0, 0
 };
+Neighbourv390extModeSpecificInfoFdd::Neighbourv390extModeSpecificInfoFdd(const FrequencyInfo& frequencyInfo) : Sequence(&theInfo) {
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *Neighbourv390extModeSpecificInfo::choicesInfo[2] = {
 	&Neighbourv390extModeSpecificInfoFdd::theInfo,
@@ -40474,6 +45846,9 @@ const Neighbourv390ext::Info Neighbourv390ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+Neighbourv390ext::Neighbourv390ext(const Neighbourv390extModeSpecificInfo& neighbourv390extModeSpecificInfo) : Sequence(&theInfo) {
+	setNeighbourv390extModeSpecificInfo(neighbourv390extModeSpecificInfo);
+}
 
 const void *UEPositioningOTDOAMeasurementv390ext::itemsInfo[1] = {
 	&NeighbourListv390ext::theInfo,
@@ -40490,6 +45865,9 @@ const UEPositioningOTDOAMeasurementv390ext::Info UEPositioningOTDOAMeasurementv3
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOAMeasurementv390ext::UEPositioningOTDOAMeasurementv390ext(const NeighbourListv390ext& neighbourListv390ext) : Sequence(&theInfo) {
+	setNeighbourListv390ext(neighbourListv390ext);
+}
 
 const void *UEPositioningMeasuredResultsv390ext::itemsInfo[1] = {
 	&UEPositioningOTDOAMeasurementv390ext::theInfo,
@@ -40506,6 +45884,9 @@ const UEPositioningMeasuredResultsv390ext::Info UEPositioningMeasuredResultsv390
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningMeasuredResultsv390ext::UEPositioningMeasuredResultsv390ext(const UEPositioningOTDOAMeasurementv390ext& uePositioningOTDOAMeasurementv390ext) : Sequence(&theInfo) {
+	setUePositioningOTDOAMeasurementv390ext(uePositioningOTDOAMeasurementv390ext);
+}
 
 const void *MeasuredResultsv390ext::itemsInfo[1] = {
 	&UEPositioningMeasuredResultsv390ext::theInfo,
@@ -40522,6 +45903,9 @@ const MeasuredResultsv390ext::Info MeasuredResultsv390ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MeasuredResultsv390ext::MeasuredResultsv390ext(const UEPositioningMeasuredResultsv390ext& uepositioningMeasuredResultsv390ext) : Sequence(&theInfo) {
+	setUepositioningMeasuredResultsv390ext(uepositioningMeasuredResultsv390ext);
+}
 
 const void *MeasuredResultsv590ext::choicesInfo[2] = {
 	&IntraFrequencyMeasuredResultsListv590ext::theInfo,
@@ -40569,6 +45953,10 @@ const TADVinfoext::Info TADVinfoext::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+TADVinfoext::TADVinfoext(const TADVinfoextTADV& tADVinfoextTADV, const TADVinfoextSfn& tADVinfoextSfn) : Sequence(&theInfo) {
+	setTADVinfoextTADV(tADVinfoextTADV);
+	setTADVinfoextSfn(tADVinfoextSfn);
+}
 
 const void *UEInternalMeasuredResultsv770extModeSpecificInfoTdd128::itemsInfo[1] = {
 	&TADVinfoext::theInfo,
@@ -40614,6 +46002,9 @@ const UEInternalMeasuredResultsv770ext::Info UEInternalMeasuredResultsv770ext::t
 	itemsPres,
 	1, 0, 0
 };
+UEInternalMeasuredResultsv770ext::UEInternalMeasuredResultsv770ext(const UEInternalMeasuredResultsv770extModeSpecificInfo& uEInternalMeasuredResultsv770extModeSpecificInfo) : Sequence(&theInfo) {
+	setUEInternalMeasuredResultsv770extModeSpecificInfo(uEInternalMeasuredResultsv770extModeSpecificInfo);
+}
 
 const void *UEPositioningGANSSAdditionalAssistanceDataRequest::itemsInfo[4] = {
 	&UEPositioningGANSSAdditionalAssistanceDataRequestGanssReferenceTime::theInfo,
@@ -40636,6 +46027,12 @@ const UEPositioningGANSSAdditionalAssistanceDataRequest::Info UEPositioningGANSS
 	itemsPres,
 	4, 0, 0
 };
+UEPositioningGANSSAdditionalAssistanceDataRequest::UEPositioningGANSSAdditionalAssistanceDataRequest(const UEPositioningGANSSAdditionalAssistanceDataRequestGanssReferenceTime& uEPositioningGANSSAdditionalAssistanceDataRequestGanssReferenceTime, const UEPositioningGANSSAdditionalAssistanceDataRequestGanssreferenceLocation& uEPositioningGANSSAdditionalAssistanceDataRequestGanssreferenceLocation, const UEPositioningGANSSAdditionalAssistanceDataRequestGanssIonosphericModel& uEPositioningGANSSAdditionalAssistanceDataRequestGanssIonosphericModel, const GanssRequestedGenericAssistanceDataList& ganssRequestedGenericAssistanceDataList) : Sequence(&theInfo) {
+	setUEPositioningGANSSAdditionalAssistanceDataRequestGanssReferenceTime(uEPositioningGANSSAdditionalAssistanceDataRequestGanssReferenceTime);
+	setUEPositioningGANSSAdditionalAssistanceDataRequestGanssreferenceLocation(uEPositioningGANSSAdditionalAssistanceDataRequestGanssreferenceLocation);
+	setUEPositioningGANSSAdditionalAssistanceDataRequestGanssIonosphericModel(uEPositioningGANSSAdditionalAssistanceDataRequestGanssIonosphericModel);
+	setGanssRequestedGenericAssistanceDataList(ganssRequestedGenericAssistanceDataList);
+}
 
 const void *UEPositioningErrorr7::itemsInfo[3] = {
 	&UEPositioningErrorCauser7::theInfo,
@@ -40656,6 +46053,9 @@ const UEPositioningErrorr7::Info UEPositioningErrorr7::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+UEPositioningErrorr7::UEPositioningErrorr7(const UEPositioningErrorCauser7& errorReason) : Sequence(&theInfo) {
+	setErrorReason(errorReason);
+}
 
 const void *UEPositioningMeasuredResultsv770ext::itemsInfo[4] = {
 	&UEPositioningPositionEstimateInfov770ext::theInfo,
@@ -40711,6 +46111,9 @@ const UEPositioningGANSSAdditionalAssistanceDataRequestv860ext::Info UEPositioni
 	itemsPres,
 	3, 2, 0
 };
+UEPositioningGANSSAdditionalAssistanceDataRequestv860ext::UEPositioningGANSSAdditionalAssistanceDataRequestv860ext(const GanssRequestedGenericAssistanceDataListv860ext& ganssRequestedGenericAssistanceDataList) : Sequence(&theInfo) {
+	setGanssRequestedGenericAssistanceDataList(ganssRequestedGenericAssistanceDataList);
+}
 
 const void *UEPositioningErrorv860ext::itemsInfo[1] = {
 	&UEPositioningGANSSAdditionalAssistanceDataRequestv860ext::theInfo,
@@ -40788,6 +46191,10 @@ const TADVinfo::Info TADVinfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+TADVinfo::TADVinfo(const TADVinfoTADV& tADVinfoTADV, const TADVinfoSfn& tADVinfoSfn) : Sequence(&theInfo) {
+	setTADVinfoTADV(tADVinfoTADV);
+	setTADVinfoSfn(tADVinfoSfn);
+}
 
 const void *UEInternalMeasuredResultsLCRr4::itemsInfo[2] = {
 	&UETransmittedPowerTDDList::theInfo,
@@ -40884,6 +46291,9 @@ const MeasuredResultsOnRACHCurrentCellModeSpecificInfoFdd::Info MeasuredResultsO
 	itemsPres,
 	1, 0, 0
 };
+MeasuredResultsOnRACHCurrentCellModeSpecificInfoFdd::MeasuredResultsOnRACHCurrentCellModeSpecificInfoFdd(const MeasuredResultsOnRACHCurrentCellModeSpecificInfoFddMeasurementQuantity& measuredResultsOnRACHCurrentCellModeSpecificInfoFddMeasurementQuantity) : Sequence(&theInfo) {
+	setMeasuredResultsOnRACHCurrentCellModeSpecificInfoFddMeasurementQuantity(measuredResultsOnRACHCurrentCellModeSpecificInfoFddMeasurementQuantity);
+}
 
 const void *MeasuredResultsOnRACHCurrentCellModeSpecificInfoTdd::itemsInfo[2] = {
 	&TimeslotISCPList::theInfo,
@@ -40931,6 +46341,9 @@ const MeasuredResultsOnRACHCurrentCell::Info MeasuredResultsOnRACHCurrentCell::t
 	itemsPres,
 	1, 0, 0
 };
+MeasuredResultsOnRACHCurrentCell::MeasuredResultsOnRACHCurrentCell(const MeasuredResultsOnRACHCurrentCellModeSpecificInfo& measuredResultsOnRACHCurrentCellModeSpecificInfo) : Sequence(&theInfo) {
+	setMeasuredResultsOnRACHCurrentCellModeSpecificInfo(measuredResultsOnRACHCurrentCellModeSpecificInfo);
+}
 
 const void *MonitoredCellRACHResultModeSpecificInfoFddMeasurementQuantity::choicesInfo[4] = {
 	&CPICHEcN0::theInfo,
@@ -40964,6 +46377,9 @@ const MonitoredCellRACHResultModeSpecificInfoFdd::Info MonitoredCellRACHResultMo
 	itemsPres,
 	2, 1, 0
 };
+MonitoredCellRACHResultModeSpecificInfoFdd::MonitoredCellRACHResultModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *MonitoredCellRACHResultModeSpecificInfoTdd::itemsInfo[2] = {
 	&CellParametersID::theInfo,
@@ -40982,6 +46398,10 @@ const MonitoredCellRACHResultModeSpecificInfoTdd::Info MonitoredCellRACHResultMo
 	itemsPres,
 	2, 0, 0
 };
+MonitoredCellRACHResultModeSpecificInfoTdd::MonitoredCellRACHResultModeSpecificInfoTdd(const CellParametersID& cellParametersID, const PrimaryCCPCHRSCP& primaryCCPCHRSCP) : Sequence(&theInfo) {
+	setCellParametersID(cellParametersID);
+	setPrimaryCCPCHRSCP(primaryCCPCHRSCP);
+}
 
 const void *MonitoredCellRACHResultModeSpecificInfo::choicesInfo[2] = {
 	&MonitoredCellRACHResultModeSpecificInfoFdd::theInfo,
@@ -41013,6 +46433,9 @@ const MonitoredCellRACHResult::Info MonitoredCellRACHResult::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MonitoredCellRACHResult::MonitoredCellRACHResult(const MonitoredCellRACHResultModeSpecificInfo& monitoredCellRACHResultModeSpecificInfo) : Sequence(&theInfo) {
+	setMonitoredCellRACHResultModeSpecificInfo(monitoredCellRACHResultModeSpecificInfo);
+}
 
 const void *MeasuredResultsOnRACH::itemsInfo[2] = {
 	&MeasuredResultsOnRACHCurrentCell::theInfo,
@@ -41031,6 +46454,9 @@ const MeasuredResultsOnRACH::Info MeasuredResultsOnRACH::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MeasuredResultsOnRACH::MeasuredResultsOnRACH(const MeasuredResultsOnRACHCurrentCell& measuredResultsOnRACHCurrentCell) : Sequence(&theInfo) {
+	setMeasuredResultsOnRACHCurrentCell(measuredResultsOnRACHCurrentCell);
+}
 
 const void *MeasuredResultsOnRACHv7g0ext::itemsInfo[2] = {
 	&DeltaRSCPPerCell::theInfo,
@@ -41069,6 +46495,11 @@ const MeasuredResultsOnRACHinterFreq::Info MeasuredResultsOnRACHinterFreq::theIn
 	itemsPres,
 	3, 0, 0
 };
+MeasuredResultsOnRACHinterFreq::MeasuredResultsOnRACHinterFreq(const MeasuredResultsOnRACHinterFreqInterFreqCellIndicationSIB11& measuredResultsOnRACHinterFreqInterFreqCellIndicationSIB11, const MeasuredResultsOnRACHinterFreqInterFreqCellIndicationSIB12& measuredResultsOnRACHinterFreqInterFreqCellIndicationSIB12, const InterFreqRACHRepCellsList& interFreqRACHRepCellsList) : Sequence(&theInfo) {
+	setMeasuredResultsOnRACHinterFreqInterFreqCellIndicationSIB11(measuredResultsOnRACHinterFreqInterFreqCellIndicationSIB11);
+	setMeasuredResultsOnRACHinterFreqInterFreqCellIndicationSIB12(measuredResultsOnRACHinterFreqInterFreqCellIndicationSIB12);
+	setInterFreqRACHRepCellsList(interFreqRACHRepCellsList);
+}
 
 const void *UEPositioningReportingQuantity::itemsInfo[8] = {
 	&UEPositioningMethodType::theInfo,
@@ -41099,6 +46530,14 @@ const UEPositioningReportingQuantity::Info UEPositioningReportingQuantity::theIn
 	itemsPres,
 	8, 2, 0
 };
+UEPositioningReportingQuantity::UEPositioningReportingQuantity(const UEPositioningMethodType& methodType, const PositioningMethod& positioningMethod, const UEPositioningResponseTime& dummy1, const UEPositioningReportingQuantityGpsTimingOfCellWanted& uEPositioningReportingQuantityGpsTimingOfCellWanted, const UEPositioningReportingQuantityDummy2& uEPositioningReportingQuantityDummy2, const UEPositioningReportingQuantityAdditionalAssistanceDataRequest& uEPositioningReportingQuantityAdditionalAssistanceDataRequest) : Sequence(&theInfo) {
+	setMethodType(methodType);
+	setPositioningMethod(positioningMethod);
+	setDummy1(dummy1);
+	setUEPositioningReportingQuantityGpsTimingOfCellWanted(uEPositioningReportingQuantityGpsTimingOfCellWanted);
+	setUEPositioningReportingQuantityDummy2(uEPositioningReportingQuantityDummy2);
+	setUEPositioningReportingQuantityAdditionalAssistanceDataRequest(uEPositioningReportingQuantityAdditionalAssistanceDataRequest);
+}
 
 const void *UEPositioningEventSpecificInfo::choicesInfo[3] = {
 	&ThresholdPositionChange::theInfo,
@@ -41135,6 +46574,12 @@ const UEPositioningEventParam::Info UEPositioningEventParam::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+UEPositioningEventParam::UEPositioningEventParam(const ReportingAmount& reportingAmount, const UEPositioningEventParamReportFirstFix& uEPositioningEventParamReportFirstFix, const UEPositioningMeasurementInterval& measurementInterval, const UEPositioningEventSpecificInfo& eventSpecificInfo) : Sequence(&theInfo) {
+	setReportingAmount(reportingAmount);
+	setUEPositioningEventParamReportFirstFix(uEPositioningEventParamReportFirstFix);
+	setMeasurementInterval(measurementInterval);
+	setEventSpecificInfo(eventSpecificInfo);
+}
 
 const void *UEPositioningReportCriteria::choicesInfo[3] = {
 	&UEPositioningEventParamList::theInfo,
@@ -41165,6 +46610,9 @@ const UEPositioningOTDOAReferenceCellInfoModeSpecificInfoFdd::Info UEPositioning
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOAReferenceCellInfoModeSpecificInfoFdd::UEPositioningOTDOAReferenceCellInfoModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *UEPositioningOTDOAReferenceCellInfoModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellAndChannelIdentity::theInfo,
@@ -41181,6 +46629,9 @@ const UEPositioningOTDOAReferenceCellInfoModeSpecificInfoTdd::Info UEPositioning
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOAReferenceCellInfoModeSpecificInfoTdd::UEPositioningOTDOAReferenceCellInfoModeSpecificInfoTdd(const CellAndChannelIdentity& cellAndChannelIdentity) : Sequence(&theInfo) {
+	setCellAndChannelIdentity(cellAndChannelIdentity);
+}
 
 const void *UEPositioningOTDOAReferenceCellInfoModeSpecificInfo::choicesInfo[2] = {
 	&UEPositioningOTDOAReferenceCellInfoModeSpecificInfoFdd::theInfo,
@@ -41259,6 +46710,12 @@ const UEPositioningIPDLParameters::Info UEPositioningIPDLParameters::theInfo = {
 	itemsPres,
 	5, 1, 0
 };
+UEPositioningIPDLParameters::UEPositioningIPDLParameters(const IPSpacing& ipSpacing, const IPLength& ipLength, const UEPositioningIPDLParametersIpOffset& uEPositioningIPDLParametersIpOffset, const UEPositioningIPDLParametersSeed& uEPositioningIPDLParametersSeed) : Sequence(&theInfo) {
+	setIpSpacing(ipSpacing);
+	setIpLength(ipLength);
+	setUEPositioningIPDLParametersIpOffset(uEPositioningIPDLParametersIpOffset);
+	setUEPositioningIPDLParametersSeed(uEPositioningIPDLParametersSeed);
+}
 
 const void *UEPositioningOTDOAReferenceCellInfo::itemsInfo[5] = {
 	&UEPositioningOTDOAReferenceCellInfoSfn::theInfo,
@@ -41283,6 +46740,10 @@ const UEPositioningOTDOAReferenceCellInfo::Info UEPositioningOTDOAReferenceCellI
 	itemsPres,
 	5, 3, 0
 };
+UEPositioningOTDOAReferenceCellInfo::UEPositioningOTDOAReferenceCellInfo(const UEPositioningOTDOAReferenceCellInfoModeSpecificInfo& uEPositioningOTDOAReferenceCellInfoModeSpecificInfo, const UEPositioningOTDOAReferenceCellInfoPositioningMode& uEPositioningOTDOAReferenceCellInfoPositioningMode) : Sequence(&theInfo) {
+	setUEPositioningOTDOAReferenceCellInfoModeSpecificInfo(uEPositioningOTDOAReferenceCellInfoModeSpecificInfo);
+	setUEPositioningOTDOAReferenceCellInfoPositioningMode(uEPositioningOTDOAReferenceCellInfoPositioningMode);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfoModeSpecificInfoFdd::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -41299,6 +46760,9 @@ const UEPositioningOTDOANeighbourCellInfoModeSpecificInfoFdd::Info UEPositioning
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOANeighbourCellInfoModeSpecificInfoFdd::UEPositioningOTDOANeighbourCellInfoModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfoModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellAndChannelIdentity::theInfo,
@@ -41315,6 +46779,9 @@ const UEPositioningOTDOANeighbourCellInfoModeSpecificInfoTdd::Info UEPositioning
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOANeighbourCellInfoModeSpecificInfoTdd::UEPositioningOTDOANeighbourCellInfoModeSpecificInfoTdd(const CellAndChannelIdentity& cellAndChannelIdentity) : Sequence(&theInfo) {
+	setCellAndChannelIdentity(cellAndChannelIdentity);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfoModeSpecificInfo::choicesInfo[2] = {
 	&UEPositioningOTDOANeighbourCellInfoModeSpecificInfoFdd::theInfo,
@@ -41346,6 +46813,10 @@ const SFNSFNRelTimeDifference1::Info SFNSFNRelTimeDifference1::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SFNSFNRelTimeDifference1::SFNSFNRelTimeDifference1(const SFNSFNRelTimeDifference1SfnOffset& sFNSFNRelTimeDifference1SfnOffset, const SFNSFNRelTimeDifference1SfnsfnReltimedifference& sFNSFNRelTimeDifference1SfnsfnReltimedifference) : Sequence(&theInfo) {
+	setSFNSFNRelTimeDifference1SfnOffset(sFNSFNRelTimeDifference1SfnOffset);
+	setSFNSFNRelTimeDifference1SfnsfnReltimedifference(sFNSFNRelTimeDifference1SfnsfnReltimedifference);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfoPositioningModeUeBased::itemsInfo[0] = {
 };
@@ -41415,6 +46886,12 @@ const UEPositioningOTDOANeighbourCellInfo::Info UEPositioningOTDOANeighbourCellI
 	itemsPres,
 	7, 3, 0
 };
+UEPositioningOTDOANeighbourCellInfo::UEPositioningOTDOANeighbourCellInfo(const UEPositioningOTDOANeighbourCellInfoModeSpecificInfo& uEPositioningOTDOANeighbourCellInfoModeSpecificInfo, const SFNSFNRelTimeDifference1& sfnSFNRelTimeDifference, const OTDOASearchWindowSize& searchWindowSize, const UEPositioningOTDOANeighbourCellInfoPositioningMode& uEPositioningOTDOANeighbourCellInfoPositioningMode) : Sequence(&theInfo) {
+	setUEPositioningOTDOANeighbourCellInfoModeSpecificInfo(uEPositioningOTDOANeighbourCellInfoModeSpecificInfo);
+	setSfnSFNRelTimeDifference(sfnSFNRelTimeDifference);
+	setSearchWindowSize(searchWindowSize);
+	setUEPositioningOTDOANeighbourCellInfoPositioningMode(uEPositioningOTDOANeighbourCellInfoPositioningMode);
+}
 
 const void *UEPositioningOTDOAAssistanceData::itemsInfo[2] = {
 	&UEPositioningOTDOAReferenceCellInfo::theInfo,
@@ -41451,6 +46928,10 @@ const UTRANGPSReferenceTimeUtranGPSTimingOfCell::Info UTRANGPSReferenceTimeUtran
 	itemsPres,
 	2, 0, 0
 };
+UTRANGPSReferenceTimeUtranGPSTimingOfCell::UTRANGPSReferenceTimeUtranGPSTimingOfCell(const UTRANGPSReferenceTimeUtranGPSTimingOfCellMspart& uTRANGPSReferenceTimeUtranGPSTimingOfCellMspart, const UTRANGPSReferenceTimeUtranGPSTimingOfCellLspart& uTRANGPSReferenceTimeUtranGPSTimingOfCellLspart) : Sequence(&theInfo) {
+	setUTRANGPSReferenceTimeUtranGPSTimingOfCellMspart(uTRANGPSReferenceTimeUtranGPSTimingOfCellMspart);
+	setUTRANGPSReferenceTimeUtranGPSTimingOfCellLspart(uTRANGPSReferenceTimeUtranGPSTimingOfCellLspart);
+}
 
 const void *UTRANGPSReferenceTimeModeSpecificInfoFdd::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -41467,6 +46948,9 @@ const UTRANGPSReferenceTimeModeSpecificInfoFdd::Info UTRANGPSReferenceTimeModeSp
 	itemsPres,
 	1, 0, 0
 };
+UTRANGPSReferenceTimeModeSpecificInfoFdd::UTRANGPSReferenceTimeModeSpecificInfoFdd(const PrimaryCPICHInfo& referenceIdentity) : Sequence(&theInfo) {
+	setReferenceIdentity(referenceIdentity);
+}
 
 const void *UTRANGPSReferenceTimeModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellParametersID::theInfo,
@@ -41483,6 +46967,9 @@ const UTRANGPSReferenceTimeModeSpecificInfoTdd::Info UTRANGPSReferenceTimeModeSp
 	itemsPres,
 	1, 0, 0
 };
+UTRANGPSReferenceTimeModeSpecificInfoTdd::UTRANGPSReferenceTimeModeSpecificInfoTdd(const CellParametersID& referenceIdentity) : Sequence(&theInfo) {
+	setReferenceIdentity(referenceIdentity);
+}
 
 const void *UTRANGPSReferenceTimeModeSpecificInfo::choicesInfo[2] = {
 	&UTRANGPSReferenceTimeModeSpecificInfoFdd::theInfo,
@@ -41516,6 +47003,10 @@ const UTRANGPSReferenceTime::Info UTRANGPSReferenceTime::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+UTRANGPSReferenceTime::UTRANGPSReferenceTime(const UTRANGPSReferenceTimeUtranGPSTimingOfCell& uTRANGPSReferenceTimeUtranGPSTimingOfCell, const UTRANGPSReferenceTimeSfn& uTRANGPSReferenceTimeSfn) : Sequence(&theInfo) {
+	setUTRANGPSReferenceTimeUtranGPSTimingOfCell(uTRANGPSReferenceTimeUtranGPSTimingOfCell);
+	setUTRANGPSReferenceTimeSfn(uTRANGPSReferenceTimeSfn);
+}
 
 const void *UEPositioningGPSReferenceTime::itemsInfo[6] = {
 	&UEPositioningGPSReferenceTimeGpsWeek::theInfo,
@@ -41542,6 +47033,10 @@ const UEPositioningGPSReferenceTime::Info UEPositioningGPSReferenceTime::theInfo
 	itemsPres,
 	6, 4, 0
 };
+UEPositioningGPSReferenceTime::UEPositioningGPSReferenceTime(const UEPositioningGPSReferenceTimeGpsWeek& uEPositioningGPSReferenceTimeGpsWeek, const GPSTOW1msec& gpstow1msec) : Sequence(&theInfo) {
+	setUEPositioningGPSReferenceTimeGpsWeek(uEPositioningGPSReferenceTimeGpsWeek);
+	setGpstow1msec(gpstow1msec);
+}
 
 const void *ReferenceLocation::itemsInfo[1] = {
 	&EllipsoidPointAltitudeEllipsoide::theInfo,
@@ -41558,6 +47053,9 @@ const ReferenceLocation::Info ReferenceLocation::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+ReferenceLocation::ReferenceLocation(const EllipsoidPointAltitudeEllipsoide& ellipsoidPointAltitudeEllipsoide) : Sequence(&theInfo) {
+	setEllipsoidPointAltitudeEllipsoide(ellipsoidPointAltitudeEllipsoide);
+}
 
 const void *UEPositioningGPSDGPSCorrections::itemsInfo[3] = {
 	&GPSTOW1sec::theInfo,
@@ -41578,6 +47076,11 @@ const UEPositioningGPSDGPSCorrections::Info UEPositioningGPSDGPSCorrections::the
 	itemsPres,
 	3, 0, 0
 };
+UEPositioningGPSDGPSCorrections::UEPositioningGPSDGPSCorrections(const GPSTOW1sec& gpsTOW, const DiffCorrectionStatus& statusHealth, const DGPSCorrectionSatInfoList& dgpsCorrectionSatInfoList) : Sequence(&theInfo) {
+	setGpsTOW(gpsTOW);
+	setStatusHealth(statusHealth);
+	setDgpsCorrectionSatInfoList(dgpsCorrectionSatInfoList);
+}
 
 const void *SubFrame1Reserved::itemsInfo[4] = {
 	&SubFrame1ReservedReserved1::theInfo,
@@ -41600,6 +47103,12 @@ const SubFrame1Reserved::Info SubFrame1Reserved::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+SubFrame1Reserved::SubFrame1Reserved(const SubFrame1ReservedReserved1& subFrame1ReservedReserved1, const SubFrame1ReservedReserved2& subFrame1ReservedReserved2, const SubFrame1ReservedReserved3& subFrame1ReservedReserved3, const SubFrame1ReservedReserved4& subFrame1ReservedReserved4) : Sequence(&theInfo) {
+	setSubFrame1ReservedReserved1(subFrame1ReservedReserved1);
+	setSubFrame1ReservedReserved2(subFrame1ReservedReserved2);
+	setSubFrame1ReservedReserved3(subFrame1ReservedReserved3);
+	setSubFrame1ReservedReserved4(subFrame1ReservedReserved4);
+}
 
 const void *EphemerisParameter::itemsInfo[29] = {
 	&EphemerisParameterCodeOnL2::theInfo,
@@ -41672,6 +47181,37 @@ const EphemerisParameter::Info EphemerisParameter::theInfo = {
 	itemsPres,
 	29, 0, 0
 };
+EphemerisParameter::EphemerisParameter(const EphemerisParameterCodeOnL2& ephemerisParameterCodeOnL2, const EphemerisParameterUraIndex& ephemerisParameterUraIndex, const EphemerisParameterSatHealth& ephemerisParameterSatHealth, const EphemerisParameterIodc& ephemerisParameterIodc, const EphemerisParameterL2Pflag& ephemerisParameterL2Pflag, const SubFrame1Reserved& sf1Revd, const EphemerisParameterTGD& ephemerisParameterTGD, const EphemerisParameterToc& ephemerisParameterToc, const EphemerisParameterAf2& ephemerisParameterAf2, const EphemerisParameterAf1& ephemerisParameterAf1, const EphemerisParameterAf0& ephemerisParameterAf0, const EphemerisParameterCrs& ephemerisParameterCrs, const EphemerisParameterDeltan& ephemerisParameterDeltan, const EphemerisParameterM0& ephemerisParameterM0, const EphemerisParameterCuc& ephemerisParameterCuc, const EphemerisParameterE& ephemerisParameterE, const EphemerisParameterCus& ephemerisParameterCus, const EphemerisParameterASqrt& ephemerisParameterASqrt, const EphemerisParameterToe& ephemerisParameterToe, const EphemerisParameterFitInterval& ephemerisParameterFitInterval, const EphemerisParameterAodo& ephemerisParameterAodo, const EphemerisParameterCic& ephemerisParameterCic, const EphemerisParameterOmega0& ephemerisParameterOmega0, const EphemerisParameterCis& ephemerisParameterCis, const EphemerisParameterI0& ephemerisParameterI0, const EphemerisParameterCrc& ephemerisParameterCrc, const EphemerisParameterOmega& ephemerisParameterOmega, const EphemerisParameterOmegaDot& ephemerisParameterOmegaDot, const EphemerisParameterIDot& ephemerisParameterIDot) : Sequence(&theInfo) {
+	setEphemerisParameterCodeOnL2(ephemerisParameterCodeOnL2);
+	setEphemerisParameterUraIndex(ephemerisParameterUraIndex);
+	setEphemerisParameterSatHealth(ephemerisParameterSatHealth);
+	setEphemerisParameterIodc(ephemerisParameterIodc);
+	setEphemerisParameterL2Pflag(ephemerisParameterL2Pflag);
+	setSf1Revd(sf1Revd);
+	setEphemerisParameterTGD(ephemerisParameterTGD);
+	setEphemerisParameterToc(ephemerisParameterToc);
+	setEphemerisParameterAf2(ephemerisParameterAf2);
+	setEphemerisParameterAf1(ephemerisParameterAf1);
+	setEphemerisParameterAf0(ephemerisParameterAf0);
+	setEphemerisParameterCrs(ephemerisParameterCrs);
+	setEphemerisParameterDeltan(ephemerisParameterDeltan);
+	setEphemerisParameterM0(ephemerisParameterM0);
+	setEphemerisParameterCuc(ephemerisParameterCuc);
+	setEphemerisParameterE(ephemerisParameterE);
+	setEphemerisParameterCus(ephemerisParameterCus);
+	setEphemerisParameterASqrt(ephemerisParameterASqrt);
+	setEphemerisParameterToe(ephemerisParameterToe);
+	setEphemerisParameterFitInterval(ephemerisParameterFitInterval);
+	setEphemerisParameterAodo(ephemerisParameterAodo);
+	setEphemerisParameterCic(ephemerisParameterCic);
+	setEphemerisParameterOmega0(ephemerisParameterOmega0);
+	setEphemerisParameterCis(ephemerisParameterCis);
+	setEphemerisParameterI0(ephemerisParameterI0);
+	setEphemerisParameterCrc(ephemerisParameterCrc);
+	setEphemerisParameterOmega(ephemerisParameterOmega);
+	setEphemerisParameterOmegaDot(ephemerisParameterOmegaDot);
+	setEphemerisParameterIDot(ephemerisParameterIDot);
+}
 
 const void *NavigationModelSatInfo::itemsInfo[3] = {
 	&SatID::theInfo,
@@ -41692,6 +47232,10 @@ const NavigationModelSatInfo::Info NavigationModelSatInfo::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+NavigationModelSatInfo::NavigationModelSatInfo(const SatID& satID, const SatelliteStatus& satelliteStatus) : Sequence(&theInfo) {
+	setSatID(satID);
+	setSatelliteStatus(satelliteStatus);
+}
 
 const void *UEPositioningGPSNavigationModel::itemsInfo[1] = {
 	&NavigationModelSatInfoList::theInfo,
@@ -41708,6 +47252,9 @@ const UEPositioningGPSNavigationModel::Info UEPositioningGPSNavigationModel::the
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningGPSNavigationModel::UEPositioningGPSNavigationModel(const NavigationModelSatInfoList& navigationModelSatInfoList) : Sequence(&theInfo) {
+	setNavigationModelSatInfoList(navigationModelSatInfoList);
+}
 
 const void *UEPositioningGPSIonosphericModel::itemsInfo[8] = {
 	&UEPositioningGPSIonosphericModelAlpha0::theInfo,
@@ -41738,6 +47285,16 @@ const UEPositioningGPSIonosphericModel::Info UEPositioningGPSIonosphericModel::t
 	itemsPres,
 	8, 0, 0
 };
+UEPositioningGPSIonosphericModel::UEPositioningGPSIonosphericModel(const UEPositioningGPSIonosphericModelAlpha0& uEPositioningGPSIonosphericModelAlpha0, const UEPositioningGPSIonosphericModelAlpha1& uEPositioningGPSIonosphericModelAlpha1, const UEPositioningGPSIonosphericModelAlpha2& uEPositioningGPSIonosphericModelAlpha2, const UEPositioningGPSIonosphericModelAlpha3& uEPositioningGPSIonosphericModelAlpha3, const UEPositioningGPSIonosphericModelBeta0& uEPositioningGPSIonosphericModelBeta0, const UEPositioningGPSIonosphericModelBeta1& uEPositioningGPSIonosphericModelBeta1, const UEPositioningGPSIonosphericModelBeta2& uEPositioningGPSIonosphericModelBeta2, const UEPositioningGPSIonosphericModelBeta3& uEPositioningGPSIonosphericModelBeta3) : Sequence(&theInfo) {
+	setUEPositioningGPSIonosphericModelAlpha0(uEPositioningGPSIonosphericModelAlpha0);
+	setUEPositioningGPSIonosphericModelAlpha1(uEPositioningGPSIonosphericModelAlpha1);
+	setUEPositioningGPSIonosphericModelAlpha2(uEPositioningGPSIonosphericModelAlpha2);
+	setUEPositioningGPSIonosphericModelAlpha3(uEPositioningGPSIonosphericModelAlpha3);
+	setUEPositioningGPSIonosphericModelBeta0(uEPositioningGPSIonosphericModelBeta0);
+	setUEPositioningGPSIonosphericModelBeta1(uEPositioningGPSIonosphericModelBeta1);
+	setUEPositioningGPSIonosphericModelBeta2(uEPositioningGPSIonosphericModelBeta2);
+	setUEPositioningGPSIonosphericModelBeta3(uEPositioningGPSIonosphericModelBeta3);
+}
 
 const void *UEPositioningGPSUTCModel::itemsInfo[8] = {
 	&UEPositioningGPSUTCModelA1::theInfo,
@@ -41768,6 +47325,16 @@ const UEPositioningGPSUTCModel::Info UEPositioningGPSUTCModel::theInfo = {
 	itemsPres,
 	8, 0, 0
 };
+UEPositioningGPSUTCModel::UEPositioningGPSUTCModel(const UEPositioningGPSUTCModelA1& uEPositioningGPSUTCModelA1, const UEPositioningGPSUTCModelA0& uEPositioningGPSUTCModelA0, const UEPositioningGPSUTCModelTot& uEPositioningGPSUTCModelTot, const UEPositioningGPSUTCModelWnt& uEPositioningGPSUTCModelWnt, const UEPositioningGPSUTCModelDeltatLS& uEPositioningGPSUTCModelDeltatLS, const UEPositioningGPSUTCModelWnlsf& uEPositioningGPSUTCModelWnlsf, const UEPositioningGPSUTCModelDn& uEPositioningGPSUTCModelDn, const UEPositioningGPSUTCModelDeltatLSF& uEPositioningGPSUTCModelDeltatLSF) : Sequence(&theInfo) {
+	setUEPositioningGPSUTCModelA1(uEPositioningGPSUTCModelA1);
+	setUEPositioningGPSUTCModelA0(uEPositioningGPSUTCModelA0);
+	setUEPositioningGPSUTCModelTot(uEPositioningGPSUTCModelTot);
+	setUEPositioningGPSUTCModelWnt(uEPositioningGPSUTCModelWnt);
+	setUEPositioningGPSUTCModelDeltatLS(uEPositioningGPSUTCModelDeltatLS);
+	setUEPositioningGPSUTCModelWnlsf(uEPositioningGPSUTCModelWnlsf);
+	setUEPositioningGPSUTCModelDn(uEPositioningGPSUTCModelDn);
+	setUEPositioningGPSUTCModelDeltatLSF(uEPositioningGPSUTCModelDeltatLSF);
+}
 
 const void *UEPositioningGPSAlmanac::itemsInfo[3] = {
 	&UEPositioningGPSAlmanacWna::theInfo,
@@ -41788,6 +47355,10 @@ const UEPositioningGPSAlmanac::Info UEPositioningGPSAlmanac::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+UEPositioningGPSAlmanac::UEPositioningGPSAlmanac(const UEPositioningGPSAlmanacWna& uEPositioningGPSAlmanacWna, const AlmanacSatInfoList& almanacSatInfoList) : Sequence(&theInfo) {
+	setUEPositioningGPSAlmanacWna(uEPositioningGPSAlmanacWna);
+	setAlmanacSatInfoList(almanacSatInfoList);
+}
 
 const void *UEPositioningGPSAcquisitionAssistance::itemsInfo[3] = {
 	&GPSTOW1msec::theInfo,
@@ -41808,6 +47379,10 @@ const UEPositioningGPSAcquisitionAssistance::Info UEPositioningGPSAcquisitionAss
 	itemsPres,
 	3, 1, 0
 };
+UEPositioningGPSAcquisitionAssistance::UEPositioningGPSAcquisitionAssistance(const GPSTOW1msec& gpsReferenceTime, const AcquisitionSatInfoList& satelliteInformationList) : Sequence(&theInfo) {
+	setGpsReferenceTime(gpsReferenceTime);
+	setSatelliteInformationList(satelliteInformationList);
+}
 
 const void *UEPositioningGPSReferenceCellInfoModeSpecificInfoFdd::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -41824,6 +47399,9 @@ const UEPositioningGPSReferenceCellInfoModeSpecificInfoFdd::Info UEPositioningGP
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningGPSReferenceCellInfoModeSpecificInfoFdd::UEPositioningGPSReferenceCellInfoModeSpecificInfoFdd(const PrimaryCPICHInfo& referenceIdentity) : Sequence(&theInfo) {
+	setReferenceIdentity(referenceIdentity);
+}
 
 const void *UEPositioningGPSReferenceCellInfoModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellParametersID::theInfo,
@@ -41840,6 +47418,9 @@ const UEPositioningGPSReferenceCellInfoModeSpecificInfoTdd::Info UEPositioningGP
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningGPSReferenceCellInfoModeSpecificInfoTdd::UEPositioningGPSReferenceCellInfoModeSpecificInfoTdd(const CellParametersID& referenceIdentity) : Sequence(&theInfo) {
+	setReferenceIdentity(referenceIdentity);
+}
 
 const void *UEPositioningGPSReferenceCellInfoModeSpecificInfo::choicesInfo[2] = {
 	&UEPositioningGPSReferenceCellInfoModeSpecificInfoFdd::theInfo,
@@ -41869,6 +47450,9 @@ const UEPositioningGPSReferenceCellInfo::Info UEPositioningGPSReferenceCellInfo:
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningGPSReferenceCellInfo::UEPositioningGPSReferenceCellInfo(const UEPositioningGPSReferenceCellInfoModeSpecificInfo& uEPositioningGPSReferenceCellInfoModeSpecificInfo) : Sequence(&theInfo) {
+	setUEPositioningGPSReferenceCellInfoModeSpecificInfo(uEPositioningGPSReferenceCellInfoModeSpecificInfo);
+}
 
 const void *UEPositioningGPSAssistanceData::itemsInfo[10] = {
 	&UEPositioningGPSReferenceTime::theInfo,
@@ -41925,6 +47509,10 @@ const UEPositioningMeasurement::Info UEPositioningMeasurement::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+UEPositioningMeasurement::UEPositioningMeasurement(const UEPositioningReportingQuantity& uepositioningReportingQuantity, const UEPositioningReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setUepositioningReportingQuantity(uepositioningReportingQuantity);
+	setReportCriteria(reportCriteria);
+}
 
 const void *TrafficVolumeMeasQuantity::choicesInfo[3] = {
 	&TrafficVolumeMeasQuantityRlcBufferPayload::theInfo,
@@ -41959,6 +47547,11 @@ const TrafficVolumeReportingQuantity::Info TrafficVolumeReportingQuantity::theIn
 	itemsPres,
 	3, 0, 0
 };
+TrafficVolumeReportingQuantity::TrafficVolumeReportingQuantity(const TrafficVolumeReportingQuantityRlcRBBufferPayload& trafficVolumeReportingQuantityRlcRBBufferPayload, const TrafficVolumeReportingQuantityRlcRBBufferPayloadAverage& trafficVolumeReportingQuantityRlcRBBufferPayloadAverage, const TrafficVolumeReportingQuantityRlcRBBufferPayloadVariance& trafficVolumeReportingQuantityRlcRBBufferPayloadVariance) : Sequence(&theInfo) {
+	setTrafficVolumeReportingQuantityRlcRBBufferPayload(trafficVolumeReportingQuantityRlcRBBufferPayload);
+	setTrafficVolumeReportingQuantityRlcRBBufferPayloadAverage(trafficVolumeReportingQuantityRlcRBBufferPayloadAverage);
+	setTrafficVolumeReportingQuantityRlcRBBufferPayloadVariance(trafficVolumeReportingQuantityRlcRBBufferPayloadVariance);
+}
 
 const void *TrafficVolumeEventParam::itemsInfo[5] = {
 	&TrafficVolumeEventType::theInfo,
@@ -41983,6 +47576,10 @@ const TrafficVolumeEventParam::Info TrafficVolumeEventParam::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+TrafficVolumeEventParam::TrafficVolumeEventParam(const TrafficVolumeEventType& eventID, const TrafficVolumeThreshold& reportingThreshold) : Sequence(&theInfo) {
+	setEventID(eventID);
+	setReportingThreshold(reportingThreshold);
+}
 
 const void *TransChCriteria::itemsInfo[2] = {
 	&ULTrCHIdentity::theInfo,
@@ -42055,6 +47652,9 @@ const TrafficVolumeMeasurement::Info TrafficVolumeMeasurement::theInfo = {
 	itemsPres,
 	5, 4, 0
 };
+TrafficVolumeMeasurement::TrafficVolumeMeasurement(const TrafficVolumeReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setReportCriteria(reportCriteria);
+}
 
 const void *QualityReportingQuantityModeSpecificInfoTdd::itemsInfo[1] = {
 	&SIRTFCSList::theInfo,
@@ -42104,6 +47704,10 @@ const QualityReportingQuantity::Info QualityReportingQuantity::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+QualityReportingQuantity::QualityReportingQuantity(const QualityReportingQuantityDlTransChBLER& qualityReportingQuantityDlTransChBLER, const QualityReportingQuantityModeSpecificInfo& qualityReportingQuantityModeSpecificInfo) : Sequence(&theInfo) {
+	setQualityReportingQuantityDlTransChBLER(qualityReportingQuantityDlTransChBLER);
+	setQualityReportingQuantityModeSpecificInfo(qualityReportingQuantityModeSpecificInfo);
+}
 
 const void *QualityReportingCriteriaSingle::itemsInfo[4] = {
 	&TransportChannelIdentity::theInfo,
@@ -42126,6 +47730,12 @@ const QualityReportingCriteriaSingle::Info QualityReportingCriteriaSingle::theIn
 	itemsPres,
 	4, 0, 0
 };
+QualityReportingCriteriaSingle::QualityReportingCriteriaSingle(const TransportChannelIdentity& transportChannelIdentity, const QualityReportingCriteriaSingleTotalCRC& qualityReportingCriteriaSingleTotalCRC, const QualityReportingCriteriaSingleBadCRC& qualityReportingCriteriaSingleBadCRC, const QualityReportingCriteriaSinglePendingAfterTrigger& qualityReportingCriteriaSinglePendingAfterTrigger) : Sequence(&theInfo) {
+	setTransportChannelIdentity(transportChannelIdentity);
+	setQualityReportingCriteriaSingleTotalCRC(qualityReportingCriteriaSingleTotalCRC);
+	setQualityReportingCriteriaSingleBadCRC(qualityReportingCriteriaSingleBadCRC);
+	setQualityReportingCriteriaSinglePendingAfterTrigger(qualityReportingCriteriaSinglePendingAfterTrigger);
+}
 
 const void *QualityReportCriteria::choicesInfo[3] = {
 	&QualityReportingCriteria::theInfo,
@@ -42158,6 +47768,9 @@ const QualityMeasurement::Info QualityMeasurement::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+QualityMeasurement::QualityMeasurement(const QualityReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setReportCriteria(reportCriteria);
+}
 
 const void *UEInternalMeasQuantity::itemsInfo[2] = {
 	&UEMeasurementQuantity::theInfo,
@@ -42176,6 +47789,9 @@ const UEInternalMeasQuantity::Info UEInternalMeasQuantity::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+UEInternalMeasQuantity::UEInternalMeasQuantity(const UEMeasurementQuantity& measurementQuantity) : Sequence(&theInfo) {
+	setMeasurementQuantity(measurementQuantity);
+}
 
 const void *UEInternalReportingQuantityModeSpecificInfoFdd::itemsInfo[1] = {
 	&UEInternalReportingQuantityModeSpecificInfoFddUeRXTXTimeDifference::theInfo,
@@ -42192,6 +47808,9 @@ const UEInternalReportingQuantityModeSpecificInfoFdd::Info UEInternalReportingQu
 	itemsPres,
 	1, 0, 0
 };
+UEInternalReportingQuantityModeSpecificInfoFdd::UEInternalReportingQuantityModeSpecificInfoFdd(const UEInternalReportingQuantityModeSpecificInfoFddUeRXTXTimeDifference& uEInternalReportingQuantityModeSpecificInfoFddUeRXTXTimeDifference) : Sequence(&theInfo) {
+	setUEInternalReportingQuantityModeSpecificInfoFddUeRXTXTimeDifference(uEInternalReportingQuantityModeSpecificInfoFddUeRXTXTimeDifference);
+}
 
 const void *UEInternalReportingQuantityModeSpecificInfoTdd::itemsInfo[1] = {
 	&UEInternalReportingQuantityModeSpecificInfoTddAppliedTA::theInfo,
@@ -42208,6 +47827,9 @@ const UEInternalReportingQuantityModeSpecificInfoTdd::Info UEInternalReportingQu
 	itemsPres,
 	1, 0, 0
 };
+UEInternalReportingQuantityModeSpecificInfoTdd::UEInternalReportingQuantityModeSpecificInfoTdd(const UEInternalReportingQuantityModeSpecificInfoTddAppliedTA& uEInternalReportingQuantityModeSpecificInfoTddAppliedTA) : Sequence(&theInfo) {
+	setUEInternalReportingQuantityModeSpecificInfoTddAppliedTA(uEInternalReportingQuantityModeSpecificInfoTddAppliedTA);
+}
 
 const void *UEInternalReportingQuantityModeSpecificInfo::choicesInfo[2] = {
 	&UEInternalReportingQuantityModeSpecificInfoFdd::theInfo,
@@ -42239,6 +47861,10 @@ const UEInternalReportingQuantity::Info UEInternalReportingQuantity::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+UEInternalReportingQuantity::UEInternalReportingQuantity(const UEInternalReportingQuantityUeTransmittedPower& uEInternalReportingQuantityUeTransmittedPower, const UEInternalReportingQuantityModeSpecificInfo& uEInternalReportingQuantityModeSpecificInfo) : Sequence(&theInfo) {
+	setUEInternalReportingQuantityUeTransmittedPower(uEInternalReportingQuantityUeTransmittedPower);
+	setUEInternalReportingQuantityModeSpecificInfo(uEInternalReportingQuantityModeSpecificInfo);
+}
 
 const void *UE6ABEvent::itemsInfo[2] = {
 	&TimeToTrigger::theInfo,
@@ -42257,6 +47883,10 @@ const UE6ABEvent::Info UE6ABEvent::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+UE6ABEvent::UE6ABEvent(const TimeToTrigger& timeToTrigger, const TransmittedPowerThreshold& transmittedPowerThreshold) : Sequence(&theInfo) {
+	setTimeToTrigger(timeToTrigger);
+	setTransmittedPowerThreshold(transmittedPowerThreshold);
+}
 
 const void *UE6FGEvent::itemsInfo[2] = {
 	&TimeToTrigger::theInfo,
@@ -42275,6 +47905,10 @@ const UE6FGEvent::Info UE6FGEvent::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+UE6FGEvent::UE6FGEvent(const TimeToTrigger& timeToTrigger, const UERXTXTimeDifferenceThreshold& ueRXTXTimeDifferenceThreshold) : Sequence(&theInfo) {
+	setTimeToTrigger(timeToTrigger);
+	setUeRXTXTimeDifferenceThreshold(ueRXTXTimeDifferenceThreshold);
+}
 
 const void *UEInternalEventParam::choicesInfo[7] = {
 	&UE6ABEvent::theInfo,
@@ -42343,6 +47977,9 @@ const UEInternalMeasurement::Info UEInternalMeasurement::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+UEInternalMeasurement::UEInternalMeasurement(const UEInternalReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setReportCriteria(reportCriteria);
+}
 
 const void *MeasurementType::choicesInfo[7] = {
 	&IntraFrequencyMeasurement::theInfo,
@@ -42419,6 +48056,12 @@ const UEPositioningReportingQuantityr4::Info UEPositioningReportingQuantityr4::t
 	itemsPres,
 	7, 3, 0
 };
+UEPositioningReportingQuantityr4::UEPositioningReportingQuantityr4(const UEPositioningMethodType& methodType, const PositioningMethod& positioningMethod, const UEPositioningReportingQuantityr4GpsTimingOfCellWanted& uEPositioningReportingQuantityr4GpsTimingOfCellWanted, const UEPositioningReportingQuantityr4AdditionalAssistanceDataReq& uEPositioningReportingQuantityr4AdditionalAssistanceDataReq) : Sequence(&theInfo) {
+	setMethodType(methodType);
+	setPositioningMethod(positioningMethod);
+	setUEPositioningReportingQuantityr4GpsTimingOfCellWanted(uEPositioningReportingQuantityr4GpsTimingOfCellWanted);
+	setUEPositioningReportingQuantityr4AdditionalAssistanceDataReq(uEPositioningReportingQuantityr4AdditionalAssistanceDataReq);
+}
 
 const void *UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfoFdd::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -42435,6 +48078,9 @@ const UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfoFdd::Info UEPositioni
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfoFdd::UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellAndChannelIdentity::theInfo,
@@ -42451,6 +48097,9 @@ const UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfoTdd::Info UEPositioni
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfoTdd::UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfoTdd(const CellAndChannelIdentity& cellAndChannelIdentity) : Sequence(&theInfo) {
+	setCellAndChannelIdentity(cellAndChannelIdentity);
+}
 
 const void *UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfo::choicesInfo[2] = {
 	&UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfoFdd::theInfo,
@@ -42544,6 +48193,12 @@ const UEPositioningIPDLParametersr4ModeSpecificInfoFdd::Info UEPositioningIPDLPa
 	itemsPres,
 	4, 0, 0
 };
+UEPositioningIPDLParametersr4ModeSpecificInfoFdd::UEPositioningIPDLParametersr4ModeSpecificInfoFdd(const IPSpacing& ipSpacing, const IPLength& ipLength, const UEPositioningIPDLParametersr4ModeSpecificInfoFddIpOffset& uEPositioningIPDLParametersr4ModeSpecificInfoFddIpOffset, const UEPositioningIPDLParametersr4ModeSpecificInfoFddSeed& uEPositioningIPDLParametersr4ModeSpecificInfoFddSeed) : Sequence(&theInfo) {
+	setIpSpacing(ipSpacing);
+	setIpLength(ipLength);
+	setUEPositioningIPDLParametersr4ModeSpecificInfoFddIpOffset(uEPositioningIPDLParametersr4ModeSpecificInfoFddIpOffset);
+	setUEPositioningIPDLParametersr4ModeSpecificInfoFddSeed(uEPositioningIPDLParametersr4ModeSpecificInfoFddSeed);
+}
 
 const void *UEPositioningIPDLParametersr4ModeSpecificInfoTdd::itemsInfo[4] = {
 	&IPSpacingTDD::theInfo,
@@ -42566,6 +48221,11 @@ const UEPositioningIPDLParametersr4ModeSpecificInfoTdd::Info UEPositioningIPDLPa
 	itemsPres,
 	4, 1, 0
 };
+UEPositioningIPDLParametersr4ModeSpecificInfoTdd::UEPositioningIPDLParametersr4ModeSpecificInfoTdd(const IPSpacingTDD& ipSpacingTDD, const UEPositioningIPDLParametersr4ModeSpecificInfoTddIpslot& uEPositioningIPDLParametersr4ModeSpecificInfoTddIpslot, const UEPositioningIPDLParametersr4ModeSpecificInfoTddIpStart& uEPositioningIPDLParametersr4ModeSpecificInfoTddIpStart) : Sequence(&theInfo) {
+	setIpSpacingTDD(ipSpacingTDD);
+	setUEPositioningIPDLParametersr4ModeSpecificInfoTddIpslot(uEPositioningIPDLParametersr4ModeSpecificInfoTddIpslot);
+	setUEPositioningIPDLParametersr4ModeSpecificInfoTddIpStart(uEPositioningIPDLParametersr4ModeSpecificInfoTddIpStart);
+}
 
 const void *UEPositioningIPDLParametersr4ModeSpecificInfo::choicesInfo[2] = {
 	&UEPositioningIPDLParametersr4ModeSpecificInfoFdd::theInfo,
@@ -42597,6 +48257,9 @@ const UEPositioningIPDLParametersr4::Info UEPositioningIPDLParametersr4::theInfo
 	itemsPres,
 	2, 1, 0
 };
+UEPositioningIPDLParametersr4::UEPositioningIPDLParametersr4(const UEPositioningIPDLParametersr4ModeSpecificInfo& uEPositioningIPDLParametersr4ModeSpecificInfo) : Sequence(&theInfo) {
+	setUEPositioningIPDLParametersr4ModeSpecificInfo(uEPositioningIPDLParametersr4ModeSpecificInfo);
+}
 
 const void *UEPositioningOTDOAReferenceCellInfor4::itemsInfo[5] = {
 	&UEPositioningOTDOAReferenceCellInfor4Sfn::theInfo,
@@ -42621,6 +48284,10 @@ const UEPositioningOTDOAReferenceCellInfor4::Info UEPositioningOTDOAReferenceCel
 	itemsPres,
 	5, 3, 0
 };
+UEPositioningOTDOAReferenceCellInfor4::UEPositioningOTDOAReferenceCellInfor4(const UEPositioningOTDOAReferenceCellInfor4ModeSpecificInfo& uEPositioningOTDOAReferenceCellInfor4ModeSpecificInfo, const UEPositioningOTDOAReferenceCellInfor4PositioningMode& uEPositioningOTDOAReferenceCellInfor4PositioningMode) : Sequence(&theInfo) {
+	setUEPositioningOTDOAReferenceCellInfor4ModeSpecificInfo(uEPositioningOTDOAReferenceCellInfor4ModeSpecificInfo);
+	setUEPositioningOTDOAReferenceCellInfor4PositioningMode(uEPositioningOTDOAReferenceCellInfor4PositioningMode);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfoFdd::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -42637,6 +48304,9 @@ const UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfoFdd::Info UEPositioni
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfoFdd::UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellAndChannelIdentity::theInfo,
@@ -42653,6 +48323,9 @@ const UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfoTdd::Info UEPositioni
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfoTdd::UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfoTdd(const CellAndChannelIdentity& cellAndChannelIdentity) : Sequence(&theInfo) {
+	setCellAndChannelIdentity(cellAndChannelIdentity);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfo::choicesInfo[2] = {
 	&UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfoFdd::theInfo,
@@ -42747,6 +48420,12 @@ const UEPositioningOTDOANeighbourCellInfor4::Info UEPositioningOTDOANeighbourCel
 	itemsPres,
 	8, 4, 0
 };
+UEPositioningOTDOANeighbourCellInfor4::UEPositioningOTDOANeighbourCellInfor4(const UEPositioningOTDOANeighbourCellInfor4ModeSpecificInfo& uEPositioningOTDOANeighbourCellInfor4ModeSpecificInfo, const SFNSFNRelTimeDifference1& sfnSFNRelTimeDifference, const OTDOASearchWindowSize& searchWindowSize, const UEPositioningOTDOANeighbourCellInfor4PositioningMode& uEPositioningOTDOANeighbourCellInfor4PositioningMode) : Sequence(&theInfo) {
+	setUEPositioningOTDOANeighbourCellInfor4ModeSpecificInfo(uEPositioningOTDOANeighbourCellInfor4ModeSpecificInfo);
+	setSfnSFNRelTimeDifference(sfnSFNRelTimeDifference);
+	setSearchWindowSize(searchWindowSize);
+	setUEPositioningOTDOANeighbourCellInfor4PositioningMode(uEPositioningOTDOANeighbourCellInfor4PositioningMode);
+}
 
 const void *UEPositioningOTDOAAssistanceDatar4::itemsInfo[2] = {
 	&UEPositioningOTDOAReferenceCellInfor4::theInfo,
@@ -42789,6 +48468,10 @@ const UEPositioningMeasurementr4::Info UEPositioningMeasurementr4::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+UEPositioningMeasurementr4::UEPositioningMeasurementr4(const UEPositioningReportingQuantityr4& uepositioningReportingQuantity, const UEPositioningReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setUepositioningReportingQuantity(uepositioningReportingQuantity);
+	setReportCriteria(reportCriteria);
+}
 
 const void *UEInternalReportingQuantityr4ModeSpecificInfoFdd::itemsInfo[1] = {
 	&UEInternalReportingQuantityr4ModeSpecificInfoFddUeRXTXTimeDifference::theInfo,
@@ -42805,6 +48488,9 @@ const UEInternalReportingQuantityr4ModeSpecificInfoFdd::Info UEInternalReporting
 	itemsPres,
 	1, 0, 0
 };
+UEInternalReportingQuantityr4ModeSpecificInfoFdd::UEInternalReportingQuantityr4ModeSpecificInfoFdd(const UEInternalReportingQuantityr4ModeSpecificInfoFddUeRXTXTimeDifference& uEInternalReportingQuantityr4ModeSpecificInfoFddUeRXTXTimeDifference) : Sequence(&theInfo) {
+	setUEInternalReportingQuantityr4ModeSpecificInfoFddUeRXTXTimeDifference(uEInternalReportingQuantityr4ModeSpecificInfoFddUeRXTXTimeDifference);
+}
 
 const void *UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd384::itemsInfo[1] = {
 	&UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd384AppliedTA::theInfo,
@@ -42821,6 +48507,9 @@ const UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd384::Info UEIn
 	itemsPres,
 	1, 0, 0
 };
+UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd384::UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd384(const UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd384AppliedTA& uEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd384AppliedTA) : Sequence(&theInfo) {
+	setUEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd384AppliedTA(uEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd384AppliedTA);
+}
 
 const void *UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd128::itemsInfo[1] = {
 	&UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd128TADVinfo::theInfo,
@@ -42837,6 +48526,9 @@ const UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd128::Info UEIn
 	itemsPres,
 	1, 0, 0
 };
+UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd128::UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd128(const UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd128TADVinfo& uEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd128TADVinfo) : Sequence(&theInfo) {
+	setUEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd128TADVinfo(uEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd128TADVinfo);
+}
 
 const void *UEInternalReportingQuantityr4ModeSpecificInfoTddTddOption::choicesInfo[2] = {
 	&UEInternalReportingQuantityr4ModeSpecificInfoTddTddOptionTdd384::theInfo,
@@ -42866,6 +48558,9 @@ const UEInternalReportingQuantityr4ModeSpecificInfoTdd::Info UEInternalReporting
 	itemsPres,
 	1, 0, 0
 };
+UEInternalReportingQuantityr4ModeSpecificInfoTdd::UEInternalReportingQuantityr4ModeSpecificInfoTdd(const UEInternalReportingQuantityr4ModeSpecificInfoTddTddOption& uEInternalReportingQuantityr4ModeSpecificInfoTddTddOption) : Sequence(&theInfo) {
+	setUEInternalReportingQuantityr4ModeSpecificInfoTddTddOption(uEInternalReportingQuantityr4ModeSpecificInfoTddTddOption);
+}
 
 const void *UEInternalReportingQuantityr4ModeSpecificInfo::choicesInfo[2] = {
 	&UEInternalReportingQuantityr4ModeSpecificInfoFdd::theInfo,
@@ -42897,6 +48592,10 @@ const UEInternalReportingQuantityr4::Info UEInternalReportingQuantityr4::theInfo
 	itemsPres,
 	2, 0, 0
 };
+UEInternalReportingQuantityr4::UEInternalReportingQuantityr4(const UEInternalReportingQuantityr4UeTransmittedPower& uEInternalReportingQuantityr4UeTransmittedPower, const UEInternalReportingQuantityr4ModeSpecificInfo& uEInternalReportingQuantityr4ModeSpecificInfo) : Sequence(&theInfo) {
+	setUEInternalReportingQuantityr4UeTransmittedPower(uEInternalReportingQuantityr4UeTransmittedPower);
+	setUEInternalReportingQuantityr4ModeSpecificInfo(uEInternalReportingQuantityr4ModeSpecificInfo);
+}
 
 const void *UEInternalMeasurementr4::itemsInfo[3] = {
 	&UEInternalMeasQuantity::theInfo,
@@ -42917,6 +48616,9 @@ const UEInternalMeasurementr4::Info UEInternalMeasurementr4::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+UEInternalMeasurementr4::UEInternalMeasurementr4(const UEInternalReportCriteria& reportCriteria) : Sequence(&theInfo) {
+	setReportCriteria(reportCriteria);
+}
 
 const void *MeasurementTyper4::choicesInfo[7] = {
 	&IntraFrequencyMeasurementr4::theInfo,
@@ -43049,6 +48751,12 @@ const UEPositioningReportingQuantityr7::Info UEPositioningReportingQuantityr7::t
 	itemsPres,
 	11, 7, 0
 };
+UEPositioningReportingQuantityr7::UEPositioningReportingQuantityr7(const UEPositioningMethodType& methodType, const PositioningMethod& positioningMethod, const UEPositioningReportingQuantityr7GpsTimingOfCellWanted& uEPositioningReportingQuantityr7GpsTimingOfCellWanted, const UEPositioningReportingQuantityr7AdditionalAssistanceDataReq& uEPositioningReportingQuantityr7AdditionalAssistanceDataReq) : Sequence(&theInfo) {
+	setMethodType(methodType);
+	setPositioningMethod(positioningMethod);
+	setUEPositioningReportingQuantityr7GpsTimingOfCellWanted(uEPositioningReportingQuantityr7GpsTimingOfCellWanted);
+	setUEPositioningReportingQuantityr7AdditionalAssistanceDataReq(uEPositioningReportingQuantityr7AdditionalAssistanceDataReq);
+}
 
 const void *UEPositioningEventSpecificInfor7::choicesInfo[4] = {
 	&ThresholdPositionChange::theInfo,
@@ -43086,6 +48794,12 @@ const UEPositioningEventParamr7::Info UEPositioningEventParamr7::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+UEPositioningEventParamr7::UEPositioningEventParamr7(const ReportingAmount& reportingAmount, const UEPositioningEventParamr7ReportFirstFix& uEPositioningEventParamr7ReportFirstFix, const UEPositioningMeasurementInterval& measurementInterval, const UEPositioningEventSpecificInfor7& eventSpecificInfo) : Sequence(&theInfo) {
+	setReportingAmount(reportingAmount);
+	setUEPositioningEventParamr7ReportFirstFix(uEPositioningEventParamr7ReportFirstFix);
+	setMeasurementInterval(measurementInterval);
+	setEventSpecificInfo(eventSpecificInfo);
+}
 
 const void *UEPositioningReportCriteriar7::choicesInfo[3] = {
 	&UEPositioningEventParamListr7::theInfo,
@@ -43116,6 +48830,9 @@ const UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfoFdd::Info UEPositioni
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfoFdd::UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellAndChannelIdentity::theInfo,
@@ -43132,6 +48849,9 @@ const UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfoTdd::Info UEPositioni
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfoTdd::UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfoTdd(const CellAndChannelIdentity& cellAndChannelIdentity) : Sequence(&theInfo) {
+	setCellAndChannelIdentity(cellAndChannelIdentity);
+}
 
 const void *UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfo::choicesInfo[2] = {
 	&UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfoFdd::theInfo,
@@ -43216,6 +48936,10 @@ const UEPositioningOTDOAReferenceCellInfor7::Info UEPositioningOTDOAReferenceCel
 	itemsPres,
 	5, 3, 0
 };
+UEPositioningOTDOAReferenceCellInfor7::UEPositioningOTDOAReferenceCellInfor7(const UEPositioningOTDOAReferenceCellInfor7ModeSpecificInfo& uEPositioningOTDOAReferenceCellInfor7ModeSpecificInfo, const UEPositioningOTDOAReferenceCellInfor7PositioningMode& uEPositioningOTDOAReferenceCellInfor7PositioningMode) : Sequence(&theInfo) {
+	setUEPositioningOTDOAReferenceCellInfor7ModeSpecificInfo(uEPositioningOTDOAReferenceCellInfor7ModeSpecificInfo);
+	setUEPositioningOTDOAReferenceCellInfor7PositioningMode(uEPositioningOTDOAReferenceCellInfor7PositioningMode);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfoFdd::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -43232,6 +48956,9 @@ const UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfoFdd::Info UEPositioni
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfoFdd::UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellAndChannelIdentity::theInfo,
@@ -43248,6 +48975,9 @@ const UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfoTdd::Info UEPositioni
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfoTdd::UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfoTdd(const CellAndChannelIdentity& cellAndChannelIdentity) : Sequence(&theInfo) {
+	setCellAndChannelIdentity(cellAndChannelIdentity);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfo::choicesInfo[2] = {
 	&UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfoFdd::theInfo,
@@ -43344,6 +49074,12 @@ const UEPositioningOTDOANeighbourCellInfor7::Info UEPositioningOTDOANeighbourCel
 	itemsPres,
 	8, 4, 0
 };
+UEPositioningOTDOANeighbourCellInfor7::UEPositioningOTDOANeighbourCellInfor7(const UEPositioningOTDOANeighbourCellInfor7ModeSpecificInfo& uEPositioningOTDOANeighbourCellInfor7ModeSpecificInfo, const SFNSFNRelTimeDifference1& sfnSFNRelTimeDifference, const OTDOASearchWindowSize& searchWindowSize, const UEPositioningOTDOANeighbourCellInfor7PositioningMode& uEPositioningOTDOANeighbourCellInfor7PositioningMode) : Sequence(&theInfo) {
+	setUEPositioningOTDOANeighbourCellInfor7ModeSpecificInfo(uEPositioningOTDOANeighbourCellInfor7ModeSpecificInfo);
+	setSfnSFNRelTimeDifference(sfnSFNRelTimeDifference);
+	setSearchWindowSize(searchWindowSize);
+	setUEPositioningOTDOANeighbourCellInfor7PositioningMode(uEPositioningOTDOANeighbourCellInfor7PositioningMode);
+}
 
 const void *UEPositioningOTDOAAssistanceDatar7::itemsInfo[2] = {
 	&UEPositioningOTDOAReferenceCellInfor7::theInfo,
@@ -43390,6 +49126,10 @@ const UEPositioningGPSReferenceTimer7::Info UEPositioningGPSReferenceTimer7::the
 	itemsPres,
 	7, 5, 0
 };
+UEPositioningGPSReferenceTimer7::UEPositioningGPSReferenceTimer7(const UEPositioningGPSReferenceTimer7GpsWeek& uEPositioningGPSReferenceTimer7GpsWeek, const GPSTOW1msec& gpstow1msec) : Sequence(&theInfo) {
+	setUEPositioningGPSReferenceTimer7GpsWeek(uEPositioningGPSReferenceTimer7GpsWeek);
+	setGpstow1msec(gpstow1msec);
+}
 
 const void *UEPositioningGPSAcquisitionAssistancer7::itemsInfo[4] = {
 	&GPSTOW1msec::theInfo,
@@ -43412,6 +49152,10 @@ const UEPositioningGPSAcquisitionAssistancer7::Info UEPositioningGPSAcquisitionA
 	itemsPres,
 	4, 2, 0
 };
+UEPositioningGPSAcquisitionAssistancer7::UEPositioningGPSAcquisitionAssistancer7(const GPSTOW1msec& gpsReferenceTime, const AcquisitionSatInfoList& satelliteInformationList) : Sequence(&theInfo) {
+	setGpsReferenceTime(gpsReferenceTime);
+	setSatelliteInformationList(satelliteInformationList);
+}
 
 const void *UEPositioningGPSAssistanceDatar7::itemsInfo[9] = {
 	&UEPositioningGPSReferenceTimer7::theInfo,
@@ -43460,6 +49204,9 @@ const UEPositioningGANSSReferenceTimeUtranganssreferenceTimeModeFdd::Info UEPosi
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningGANSSReferenceTimeUtranganssreferenceTimeModeFdd::UEPositioningGANSSReferenceTimeUtranganssreferenceTimeModeFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *UEPositioningGANSSReferenceTimeUtranganssreferenceTimeModeTdd::itemsInfo[1] = {
 	&CellParametersID::theInfo,
@@ -43476,6 +49223,9 @@ const UEPositioningGANSSReferenceTimeUtranganssreferenceTimeModeTdd::Info UEPosi
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningGANSSReferenceTimeUtranganssreferenceTimeModeTdd::UEPositioningGANSSReferenceTimeUtranganssreferenceTimeModeTdd(const CellParametersID& cellParameters) : Sequence(&theInfo) {
+	setCellParameters(cellParameters);
+}
 
 const void *UEPositioningGANSSReferenceTimeUtranganssreferenceTimeMode::choicesInfo[2] = {
 	&UEPositioningGANSSReferenceTimeUtranganssreferenceTimeModeFdd::theInfo,
@@ -43509,6 +49259,11 @@ const UEPositioningGANSSReferenceTimeUtranganssreferenceTime::Info UEPositioning
 	itemsPres,
 	3, 0, 0
 };
+UEPositioningGANSSReferenceTimeUtranganssreferenceTime::UEPositioningGANSSReferenceTimeUtranganssreferenceTime(const UEPositioningGANSSReferenceTimeUtranganssreferenceTimeTimingOfCellFrames& uEPositioningGANSSReferenceTimeUtranganssreferenceTimeTimingOfCellFrames, const UEPositioningGANSSReferenceTimeUtranganssreferenceTimeMode& uEPositioningGANSSReferenceTimeUtranganssreferenceTimeMode, const UEPositioningGANSSReferenceTimeUtranganssreferenceTimeReferenceSfn& uEPositioningGANSSReferenceTimeUtranganssreferenceTimeReferenceSfn) : Sequence(&theInfo) {
+	setUEPositioningGANSSReferenceTimeUtranganssreferenceTimeTimingOfCellFrames(uEPositioningGANSSReferenceTimeUtranganssreferenceTimeTimingOfCellFrames);
+	setUEPositioningGANSSReferenceTimeUtranganssreferenceTimeMode(uEPositioningGANSSReferenceTimeUtranganssreferenceTimeMode);
+	setUEPositioningGANSSReferenceTimeUtranganssreferenceTimeReferenceSfn(uEPositioningGANSSReferenceTimeUtranganssreferenceTimeReferenceSfn);
+}
 
 const void *UEPositioningGANSSReferenceTime::itemsInfo[6] = {
 	&UEPositioningGANSSReferenceTimeGanssDay::theInfo,
@@ -43535,6 +49290,9 @@ const UEPositioningGANSSReferenceTime::Info UEPositioningGANSSReferenceTime::the
 	itemsPres,
 	6, 5, 0
 };
+UEPositioningGANSSReferenceTime::UEPositioningGANSSReferenceTime(const UEPositioningGANSSReferenceTimeGanssTod& uEPositioningGANSSReferenceTimeGanssTod) : Sequence(&theInfo) {
+	setUEPositioningGANSSReferenceTimeGanssTod(uEPositioningGANSSReferenceTimeGanssTod);
+}
 
 const void *ReferenceLocationGANSS::itemsInfo[1] = {
 	&EllipsoidPointAltitudeEllipsoide::theInfo,
@@ -43551,6 +49309,9 @@ const ReferenceLocationGANSS::Info ReferenceLocationGANSS::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+ReferenceLocationGANSS::ReferenceLocationGANSS(const EllipsoidPointAltitudeEllipsoide& ellipsoidPointAltitudeEllipsoide) : Sequence(&theInfo) {
+	setEllipsoidPointAltitudeEllipsoide(ellipsoidPointAltitudeEllipsoide);
+}
 
 const void *UEPositioningGANSSIonosphericModel::itemsInfo[4] = {
 	&UEPositioningGANSSIonosphericModelAlphazeroionos::theInfo,
@@ -43573,6 +49334,11 @@ const UEPositioningGANSSIonosphericModel::Info UEPositioningGANSSIonosphericMode
 	itemsPres,
 	4, 1, 0
 };
+UEPositioningGANSSIonosphericModel::UEPositioningGANSSIonosphericModel(const UEPositioningGANSSIonosphericModelAlphazeroionos& uEPositioningGANSSIonosphericModelAlphazeroionos, const UEPositioningGANSSIonosphericModelAlphaoneionos& uEPositioningGANSSIonosphericModelAlphaoneionos, const UEPositioningGANSSIonosphericModelAlphatwoionos& uEPositioningGANSSIonosphericModelAlphatwoionos) : Sequence(&theInfo) {
+	setUEPositioningGANSSIonosphericModelAlphazeroionos(uEPositioningGANSSIonosphericModelAlphazeroionos);
+	setUEPositioningGANSSIonosphericModelAlphaoneionos(uEPositioningGANSSIonosphericModelAlphaoneionos);
+	setUEPositioningGANSSIonosphericModelAlphatwoionos(uEPositioningGANSSIonosphericModelAlphatwoionos);
+}
 
 const void *UEPositioningGANSSAssistanceData::itemsInfo[4] = {
 	&UEPositioningGANSSReferenceTime::theInfo,
@@ -43621,6 +49387,10 @@ const UEPositioningMeasurementr7::Info UEPositioningMeasurementr7::theInfo = {
 	itemsPres,
 	6, 4, 0
 };
+UEPositioningMeasurementr7::UEPositioningMeasurementr7(const UEPositioningReportingQuantityr7& uepositioningReportingQuantity, const UEPositioningReportCriteriar7& reportCriteria) : Sequence(&theInfo) {
+	setUepositioningReportingQuantity(uepositioningReportingQuantity);
+	setReportCriteria(reportCriteria);
+}
 
 const void *MeasurementTyper7::choicesInfo[7] = {
 	&IntraFrequencyMeasurementr7::theInfo,
@@ -43707,6 +49477,12 @@ const UEPositioningReportingQuantityr8::Info UEPositioningReportingQuantityr8::t
 	itemsPres,
 	12, 8, 0
 };
+UEPositioningReportingQuantityr8::UEPositioningReportingQuantityr8(const UEPositioningMethodType& methodType, const PositioningMethod& positioningMethod, const UEPositioningReportingQuantityr8GpsTimingOfCellWanted& uEPositioningReportingQuantityr8GpsTimingOfCellWanted, const UEPositioningReportingQuantityr8AdditionalAssistanceDataReq& uEPositioningReportingQuantityr8AdditionalAssistanceDataReq) : Sequence(&theInfo) {
+	setMethodType(methodType);
+	setPositioningMethod(positioningMethod);
+	setUEPositioningReportingQuantityr8GpsTimingOfCellWanted(uEPositioningReportingQuantityr8GpsTimingOfCellWanted);
+	setUEPositioningReportingQuantityr8AdditionalAssistanceDataReq(uEPositioningReportingQuantityr8AdditionalAssistanceDataReq);
+}
 
 const void *UEPositioningGANSSAddIonoModel::itemsInfo[2] = {
 	&UEPositioningGANSSAddIonoModelDataID::theInfo,
@@ -43725,6 +49501,10 @@ const UEPositioningGANSSAddIonoModel::Info UEPositioningGANSSAddIonoModel::theIn
 	itemsPres,
 	2, 0, 0
 };
+UEPositioningGANSSAddIonoModel::UEPositioningGANSSAddIonoModel(const UEPositioningGANSSAddIonoModelDataID& uEPositioningGANSSAddIonoModelDataID, const UEPositioningGPSIonosphericModel& alphabetaparameters) : Sequence(&theInfo) {
+	setUEPositioningGANSSAddIonoModelDataID(uEPositioningGANSSAddIonoModelDataID);
+	setAlphabetaparameters(alphabetaparameters);
+}
 
 const void *UEPositioningGANSSEarthOrientPara::itemsInfo[7] = {
 	&UEPositioningGANSSEarthOrientParaTeop::theInfo,
@@ -43753,6 +49533,15 @@ const UEPositioningGANSSEarthOrientPara::Info UEPositioningGANSSEarthOrientPara:
 	itemsPres,
 	7, 0, 0
 };
+UEPositioningGANSSEarthOrientPara::UEPositioningGANSSEarthOrientPara(const UEPositioningGANSSEarthOrientParaTeop& uEPositioningGANSSEarthOrientParaTeop, const UEPositioningGANSSEarthOrientParaPmX& uEPositioningGANSSEarthOrientParaPmX, const UEPositioningGANSSEarthOrientParaPmXdot& uEPositioningGANSSEarthOrientParaPmXdot, const UEPositioningGANSSEarthOrientParaPmY& uEPositioningGANSSEarthOrientParaPmY, const UEPositioningGANSSEarthOrientParaPmYdot& uEPositioningGANSSEarthOrientParaPmYdot, const UEPositioningGANSSEarthOrientParaDeltaUT1& uEPositioningGANSSEarthOrientParaDeltaUT1, const UEPositioningGANSSEarthOrientParaDeltaUT1dot& uEPositioningGANSSEarthOrientParaDeltaUT1dot) : Sequence(&theInfo) {
+	setUEPositioningGANSSEarthOrientParaTeop(uEPositioningGANSSEarthOrientParaTeop);
+	setUEPositioningGANSSEarthOrientParaPmX(uEPositioningGANSSEarthOrientParaPmX);
+	setUEPositioningGANSSEarthOrientParaPmXdot(uEPositioningGANSSEarthOrientParaPmXdot);
+	setUEPositioningGANSSEarthOrientParaPmY(uEPositioningGANSSEarthOrientParaPmY);
+	setUEPositioningGANSSEarthOrientParaPmYdot(uEPositioningGANSSEarthOrientParaPmYdot);
+	setUEPositioningGANSSEarthOrientParaDeltaUT1(uEPositioningGANSSEarthOrientParaDeltaUT1);
+	setUEPositioningGANSSEarthOrientParaDeltaUT1dot(uEPositioningGANSSEarthOrientParaDeltaUT1dot);
+}
 
 const void *UEPositioningGANSSAssistanceDatar8::itemsInfo[6] = {
 	&UEPositioningGANSSReferenceTime::theInfo,
@@ -43805,6 +49594,10 @@ const UEPositioningMeasurementr8::Info UEPositioningMeasurementr8::theInfo = {
 	itemsPres,
 	6, 4, 0
 };
+UEPositioningMeasurementr8::UEPositioningMeasurementr8(const UEPositioningReportingQuantityr8& uepositioningReportingQuantity, const UEPositioningReportCriteriar7& reportCriteria) : Sequence(&theInfo) {
+	setUepositioningReportingQuantity(uepositioningReportingQuantity);
+	setReportCriteria(reportCriteria);
+}
 
 const void *MeasurementTyper8::choicesInfo[7] = {
 	&IntraFrequencyMeasurementr7::theInfo,
@@ -43873,6 +49666,11 @@ const UEPositioningGPSDGPSCorrectionsr9::Info UEPositioningGPSDGPSCorrectionsr9:
 	itemsPres,
 	3, 0, 0
 };
+UEPositioningGPSDGPSCorrectionsr9::UEPositioningGPSDGPSCorrectionsr9(const GPSTOW1sec& gpsTOW, const DiffCorrectionStatus& statusHealth, const DGPSCorrectionSatInfoListr9& dgpsCorrectionSatInfoList) : Sequence(&theInfo) {
+	setGpsTOW(gpsTOW);
+	setStatusHealth(statusHealth);
+	setDgpsCorrectionSatInfoList(dgpsCorrectionSatInfoList);
+}
 
 const void *UEPositioningGPSAssistanceDatar9::itemsInfo[9] = {
 	&UEPositioningGPSReferenceTimer7::theInfo,
@@ -43957,6 +49755,10 @@ const UEPositioningMeasurementr9::Info UEPositioningMeasurementr9::theInfo = {
 	itemsPres,
 	6, 4, 0
 };
+UEPositioningMeasurementr9::UEPositioningMeasurementr9(const UEPositioningReportingQuantityr8& uepositioningReportingQuantity, const UEPositioningReportCriteriar7& reportCriteria) : Sequence(&theInfo) {
+	setUepositioningReportingQuantity(uepositioningReportingQuantity);
+	setReportCriteria(reportCriteria);
+}
 
 const void *MeasurementTyper9::choicesInfo[8] = {
 	&IntraFrequencyMeasurementr9::theInfo,
@@ -44073,6 +49875,9 @@ const MeasurementControlSysInfoUseofHCSHcsnotused::Info MeasurementControlSysInf
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlSysInfoUseofHCSHcsnotused::MeasurementControlSysInfoUseofHCSHcsnotused(const MeasurementControlSysInfoUseofHCSHcsnotusedCellSelectQualityMeasure& measurementControlSysInfoUseofHCSHcsnotusedCellSelectQualityMeasure) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoUseofHCSHcsnotusedCellSelectQualityMeasure(measurementControlSysInfoUseofHCSHcsnotusedCellSelectQualityMeasure);
+}
 
 const void *MeasurementControlSysInfoUseofHCSHcsusedCellSelectQualityMeasureCpichRSCP::itemsInfo[2] = {
 	&IntraFreqMeasurementSysInfoHCSRSCP::theInfo,
@@ -44140,6 +49945,9 @@ const MeasurementControlSysInfoUseofHCSHcsused::Info MeasurementControlSysInfoUs
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlSysInfoUseofHCSHcsused::MeasurementControlSysInfoUseofHCSHcsused(const MeasurementControlSysInfoUseofHCSHcsusedCellSelectQualityMeasure& measurementControlSysInfoUseofHCSHcsusedCellSelectQualityMeasure) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoUseofHCSHcsusedCellSelectQualityMeasure(measurementControlSysInfoUseofHCSHcsusedCellSelectQualityMeasure);
+}
 
 const void *MeasurementControlSysInfoUseofHCS::choicesInfo[2] = {
 	&MeasurementControlSysInfoUseofHCSHcsnotused::theInfo,
@@ -44196,6 +50004,10 @@ const TrafficVolumeMeasSysInfo::Info TrafficVolumeMeasSysInfo::theInfo = {
 	itemsPres,
 	8, 6, 0
 };
+TrafficVolumeMeasSysInfo::TrafficVolumeMeasSysInfo(const MeasurementReportingMode& measurementReportingMode, const TrafficVolumeReportCriteriaSysInfo& reportCriteriaSysInf) : Sequence(&theInfo) {
+	setMeasurementReportingMode(measurementReportingMode);
+	setReportCriteriaSysInf(reportCriteriaSysInf);
+}
 
 const void *UEInternalMeasurementSysInfo::itemsInfo[2] = {
 	&MeasurementIdentity::theInfo,
@@ -44214,6 +50026,9 @@ const UEInternalMeasurementSysInfo::Info UEInternalMeasurementSysInfo::theInfo =
 	itemsPres,
 	2, 1, 0
 };
+UEInternalMeasurementSysInfo::UEInternalMeasurementSysInfo(const UEInternalMeasQuantity& ueInternalMeasQuantity) : Sequence(&theInfo) {
+	setUeInternalMeasQuantity(ueInternalMeasQuantity);
+}
 
 const void *MeasurementControlSysInfo::itemsInfo[3] = {
 	&MeasurementControlSysInfoUseofHCS::theInfo,
@@ -44234,6 +50049,9 @@ const MeasurementControlSysInfo::Info MeasurementControlSysInfo::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+MeasurementControlSysInfo::MeasurementControlSysInfo(const MeasurementControlSysInfoUseofHCS& measurementControlSysInfoUseofHCS) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoUseofHCS(measurementControlSysInfoUseofHCS);
+}
 
 const void *MeasurementControlSysInfoExtensionUseofHCSHcsnotusedCellSelectQualityMeasureCpichRSCP::itemsInfo[2] = {
 	&NewIntraFreqCellSIListRSCP::theInfo,
@@ -44301,6 +50119,9 @@ const MeasurementControlSysInfoExtensionUseofHCSHcsnotused::Info MeasurementCont
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlSysInfoExtensionUseofHCSHcsnotused::MeasurementControlSysInfoExtensionUseofHCSHcsnotused(const MeasurementControlSysInfoExtensionUseofHCSHcsnotusedCellSelectQualityMeasure& measurementControlSysInfoExtensionUseofHCSHcsnotusedCellSelectQualityMeasure) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoExtensionUseofHCSHcsnotusedCellSelectQualityMeasure(measurementControlSysInfoExtensionUseofHCSHcsnotusedCellSelectQualityMeasure);
+}
 
 const void *MeasurementControlSysInfoExtensionUseofHCSHcsusedCellSelectQualityMeasureCpichRSCP::itemsInfo[2] = {
 	&NewIntraFreqCellSIListHCSRSCP::theInfo,
@@ -44368,6 +50189,9 @@ const MeasurementControlSysInfoExtensionUseofHCSHcsused::Info MeasurementControl
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlSysInfoExtensionUseofHCSHcsused::MeasurementControlSysInfoExtensionUseofHCSHcsused(const MeasurementControlSysInfoExtensionUseofHCSHcsusedCellSelectQualityMeasure& measurementControlSysInfoExtensionUseofHCSHcsusedCellSelectQualityMeasure) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoExtensionUseofHCSHcsusedCellSelectQualityMeasure(measurementControlSysInfoExtensionUseofHCSHcsusedCellSelectQualityMeasure);
+}
 
 const void *MeasurementControlSysInfoExtensionUseofHCS::choicesInfo[2] = {
 	&MeasurementControlSysInfoExtensionUseofHCSHcsnotused::theInfo,
@@ -44397,6 +50221,9 @@ const MeasurementControlSysInfoExtension::Info MeasurementControlSysInfoExtensio
 	itemsPres,
 	1, 0, 0
 };
+MeasurementControlSysInfoExtension::MeasurementControlSysInfoExtension(const MeasurementControlSysInfoExtensionUseofHCS& measurementControlSysInfoExtensionUseofHCS) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoExtensionUseofHCS(measurementControlSysInfoExtensionUseofHCS);
+}
 
 const void *MeasurementControlSysInfoExtensionAddonr5::itemsInfo[3] = {
 	&MeasurementControlSysInfoExtensionAddonr5NewIntraFrequencyCellInfoListAddonr5::theInfo,
@@ -44484,6 +50311,9 @@ const MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsnotused::Info Measuremen
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsnotused::MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsnotused(const MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsnotusedCellSelectQualityMeasure& measurementControlSysInfoExtensionLCRr4UseofHCSHcsnotusedCellSelectQualityMeasure) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoExtensionLCRr4UseofHCSHcsnotusedCellSelectQualityMeasure(measurementControlSysInfoExtensionLCRr4UseofHCSHcsnotusedCellSelectQualityMeasure);
+}
 
 const void *MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsusedCellSelectQualityMeasureCpichRSCP::itemsInfo[2] = {
 	&NewIntraFreqCellSIListHCSRSCPLCRr4::theInfo,
@@ -44551,6 +50381,9 @@ const MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsused::Info MeasurementCo
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsused::MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsused(const MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsusedCellSelectQualityMeasure& measurementControlSysInfoExtensionLCRr4UseofHCSHcsusedCellSelectQualityMeasure) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoExtensionLCRr4UseofHCSHcsusedCellSelectQualityMeasure(measurementControlSysInfoExtensionLCRr4UseofHCSHcsusedCellSelectQualityMeasure);
+}
 
 const void *MeasurementControlSysInfoExtensionLCRr4UseofHCS::choicesInfo[2] = {
 	&MeasurementControlSysInfoExtensionLCRr4UseofHCSHcsnotused::theInfo,
@@ -44580,6 +50413,9 @@ const MeasurementControlSysInfoExtensionLCRr4::Info MeasurementControlSysInfoExt
 	itemsPres,
 	1, 0, 0
 };
+MeasurementControlSysInfoExtensionLCRr4::MeasurementControlSysInfoExtensionLCRr4(const MeasurementControlSysInfoExtensionLCRr4UseofHCS& measurementControlSysInfoExtensionLCRr4UseofHCS) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoExtensionLCRr4UseofHCS(measurementControlSysInfoExtensionLCRr4UseofHCS);
+}
 
 const void *MeasurementControlSysInfoLCRr4extUseofHCSHcsnotusedCellSelectQualityMeasureCpichRSCP::itemsInfo[2] = {
 	&IntraFreqMeasurementSysInfoRSCPLCRr4::theInfo,
@@ -44645,6 +50481,9 @@ const MeasurementControlSysInfoLCRr4extUseofHCSHcsnotused::Info MeasurementContr
 	itemsPres,
 	1, 0, 0
 };
+MeasurementControlSysInfoLCRr4extUseofHCSHcsnotused::MeasurementControlSysInfoLCRr4extUseofHCSHcsnotused(const MeasurementControlSysInfoLCRr4extUseofHCSHcsnotusedCellSelectQualityMeasure& measurementControlSysInfoLCRr4extUseofHCSHcsnotusedCellSelectQualityMeasure) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoLCRr4extUseofHCSHcsnotusedCellSelectQualityMeasure(measurementControlSysInfoLCRr4extUseofHCSHcsnotusedCellSelectQualityMeasure);
+}
 
 const void *MeasurementControlSysInfoLCRr4extUseofHCSHcsusedCellSelectQualityMeasureCpichRSCP::itemsInfo[2] = {
 	&IntraFreqMeasurementSysInfoHCSRSCPLCRr4::theInfo,
@@ -44710,6 +50549,9 @@ const MeasurementControlSysInfoLCRr4extUseofHCSHcsused::Info MeasurementControlS
 	itemsPres,
 	1, 0, 0
 };
+MeasurementControlSysInfoLCRr4extUseofHCSHcsused::MeasurementControlSysInfoLCRr4extUseofHCSHcsused(const MeasurementControlSysInfoLCRr4extUseofHCSHcsusedCellSelectQualityMeasure& measurementControlSysInfoLCRr4extUseofHCSHcsusedCellSelectQualityMeasure) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoLCRr4extUseofHCSHcsusedCellSelectQualityMeasure(measurementControlSysInfoLCRr4extUseofHCSHcsusedCellSelectQualityMeasure);
+}
 
 const void *MeasurementControlSysInfoLCRr4extUseofHCS::choicesInfo[2] = {
 	&MeasurementControlSysInfoLCRr4extUseofHCSHcsnotused::theInfo,
@@ -44739,6 +50581,9 @@ const MeasurementControlSysInfoLCRr4ext::Info MeasurementControlSysInfoLCRr4ext:
 	itemsPres,
 	1, 0, 0
 };
+MeasurementControlSysInfoLCRr4ext::MeasurementControlSysInfoLCRr4ext(const MeasurementControlSysInfoLCRr4extUseofHCS& measurementControlSysInfoLCRr4extUseofHCS) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoLCRr4extUseofHCS(measurementControlSysInfoLCRr4extUseofHCS);
+}
 
 const void *NeighbourTDDr7::itemsInfo[1] = {
 	&UARFCN::theInfo,
@@ -44771,6 +50616,9 @@ const NewInterFreqCellv7b0ext::Info NewInterFreqCellv7b0ext::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+NewInterFreqCellv7b0ext::NewInterFreqCellv7b0ext(const NewInterFreqCellv7b0extIntraSecondaryFreqIndicator& newInterFreqCellv7b0extIntraSecondaryFreqIndicator) : Sequence(&theInfo) {
+	setNewInterFreqCellv7b0extIntraSecondaryFreqIndicator(newInterFreqCellv7b0extIntraSecondaryFreqIndicator);
+}
 
 const void *NewInterFreqCellLCRv8a0ext::itemsInfo[1] = {
 	&CellInfoLCRr8ext::theInfo,
@@ -44929,6 +50777,10 @@ const TimeslotWithISCP::Info TimeslotWithISCP::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+TimeslotWithISCP::TimeslotWithISCP(const TimeslotNumber& timeslot, const TimeslotISCP& timeslotISCP) : Sequence(&theInfo) {
+	setTimeslot(timeslot);
+	setTimeslotISCP(timeslotISCP);
+}
 
 const void *UEPositioningCipherParameters::itemsInfo[2] = {
 	&UEPositioningCipherParametersCipheringKeyFlag::theInfo,
@@ -44947,6 +50799,10 @@ const UEPositioningCipherParameters::Info UEPositioningCipherParameters::theInfo
 	itemsPres,
 	2, 0, 0
 };
+UEPositioningCipherParameters::UEPositioningCipherParameters(const UEPositioningCipherParametersCipheringKeyFlag& uEPositioningCipherParametersCipheringKeyFlag, const UEPositioningCipherParametersCipheringSerialNumber& uEPositioningCipherParametersCipheringSerialNumber) : Sequence(&theInfo) {
+	setUEPositioningCipherParametersCipheringKeyFlag(uEPositioningCipherParametersCipheringKeyFlag);
+	setUEPositioningCipherParametersCipheringSerialNumber(uEPositioningCipherParametersCipheringSerialNumber);
+}
 
 const void *UEPositioningGANSSAssistanceDatav860ext::itemsInfo[3] = {
 	&UEPositioningGANSSAddIonoModel::theInfo,
@@ -45075,6 +50931,9 @@ const UEPositioningGPSDGPSCorrectionsv920ext::Info UEPositioningGPSDGPSCorrectio
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningGPSDGPSCorrectionsv920ext::UEPositioningGPSDGPSCorrectionsv920ext(const DGPSCorrectionSatInfoListv920ext& dgpsCorrectionSatInfoList) : Sequence(&theInfo) {
+	setDgpsCorrectionSatInfoList(dgpsCorrectionSatInfoList);
+}
 
 const void *UEPositioningGPSAssistanceDatav920ext::itemsInfo[1] = {
 	&UEPositioningGPSDGPSCorrectionsv920ext::theInfo,
@@ -45115,6 +50974,12 @@ const UEPositioningIPDLParametersTDDr4ext::Info UEPositioningIPDLParametersTDDr4
 	itemsPres,
 	5, 1, 0
 };
+UEPositioningIPDLParametersTDDr4ext::UEPositioningIPDLParametersTDDr4ext(const IPSpacingTDD& ipSpacing, const UEPositioningIPDLParametersTDDr4extIpslot& uEPositioningIPDLParametersTDDr4extIpslot, const UEPositioningIPDLParametersTDDr4extIpStart& uEPositioningIPDLParametersTDDr4extIpStart, const BurstModeParameters& burstModeParameters) : Sequence(&theInfo) {
+	setIpSpacing(ipSpacing);
+	setUEPositioningIPDLParametersTDDr4extIpslot(uEPositioningIPDLParametersTDDr4extIpslot);
+	setUEPositioningIPDLParametersTDDr4extIpStart(uEPositioningIPDLParametersTDDr4extIpStart);
+	setBurstModeParameters(burstModeParameters);
+}
 
 const void *UEPositioningReportingQuantityv390ext::itemsInfo[1] = {
 	&UEPositioningAccuracy::theInfo,
@@ -45131,6 +50996,9 @@ const UEPositioningReportingQuantityv390ext::Info UEPositioningReportingQuantity
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningReportingQuantityv390ext::UEPositioningReportingQuantityv390ext(const UEPositioningAccuracy& verticalAccuracy) : Sequence(&theInfo) {
+	setVerticalAccuracy(verticalAccuracy);
+}
 
 const void *UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfoFdd::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -45147,6 +51015,9 @@ const UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfoFdd::Info UEPosition
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfoFdd::UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellAndChannelIdentity::theInfo,
@@ -45163,6 +51034,9 @@ const UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfoTdd::Info UEPosition
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfoTdd::UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfoTdd(const CellAndChannelIdentity& cellAndChannelIdentity) : Sequence(&theInfo) {
+	setCellAndChannelIdentity(cellAndChannelIdentity);
+}
 
 const void *UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfo::choicesInfo[2] = {
 	&UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfoFdd::theInfo,
@@ -45202,6 +51076,9 @@ const UEPositioningOTDOAReferenceCellInfoUEB::Info UEPositioningOTDOAReferenceCe
 	itemsPres,
 	6, 5, 0
 };
+UEPositioningOTDOAReferenceCellInfoUEB::UEPositioningOTDOAReferenceCellInfoUEB(const UEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfo& uEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfo) : Sequence(&theInfo) {
+	setUEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfo(uEPositioningOTDOAReferenceCellInfoUEBModeSpecificInfo);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfoFdd::itemsInfo[1] = {
 	&PrimaryCPICHInfo::theInfo,
@@ -45218,6 +51095,9 @@ const UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfoFdd::Info UEPosition
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfoFdd::UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfoFdd(const PrimaryCPICHInfo& primaryCPICHInfo) : Sequence(&theInfo) {
+	setPrimaryCPICHInfo(primaryCPICHInfo);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfoTdd::itemsInfo[1] = {
 	&CellAndChannelIdentity::theInfo,
@@ -45234,6 +51114,9 @@ const UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfoTdd::Info UEPosition
 	itemsPres,
 	1, 0, 0
 };
+UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfoTdd::UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfoTdd(const CellAndChannelIdentity& cellAndChannelIdentity) : Sequence(&theInfo) {
+	setCellAndChannelIdentity(cellAndChannelIdentity);
+}
 
 const void *UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfo::choicesInfo[2] = {
 	&UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfoFdd::theInfo,
@@ -45283,6 +51166,12 @@ const UEPositioningOTDOANeighbourCellInfoUEB::Info UEPositioningOTDOANeighbourCe
 	itemsPres,
 	11, 7, 0
 };
+UEPositioningOTDOANeighbourCellInfoUEB::UEPositioningOTDOANeighbourCellInfoUEB(const UEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfo& uEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfo, const SFNSFNRelTimeDifference1& sfnSFNRelTimeDifference, const OTDOASearchWindowSize& searchWindowSize, const FineSFNSFN& fineSFNSFN) : Sequence(&theInfo) {
+	setUEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfo(uEPositioningOTDOANeighbourCellInfoUEBModeSpecificInfo);
+	setSfnSFNRelTimeDifference(sfnSFNRelTimeDifference);
+	setSearchWindowSize(searchWindowSize);
+	setFineSFNSFN(fineSFNSFN);
+}
 
 const void *UEPositioningOTDOAAssistanceDataUEB::itemsInfo[2] = {
 	&UEPositioningOTDOAReferenceCellInfoUEB::theInfo,
@@ -45449,6 +51338,12 @@ const UTRANFDDFrequency::Info UTRANFDDFrequency::theInfo = {
 	itemsPres,
 	6, 2, 0
 };
+UTRANFDDFrequency::UTRANFDDFrequency(const UARFCN& uarfcn, const UTRANFDDFrequencyPriority& uTRANFDDFrequencyPriority, const UTRANFDDFrequencyThreshXhigh& uTRANFDDFrequencyThreshXhigh, const UTRANFDDFrequencyThreshXlow& uTRANFDDFrequencyThreshXlow) : Sequence(&theInfo) {
+	setUarfcn(uarfcn);
+	setUTRANFDDFrequencyPriority(uTRANFDDFrequencyPriority);
+	setUTRANFDDFrequencyThreshXhigh(uTRANFDDFrequencyThreshXhigh);
+	setUTRANFDDFrequencyThreshXlow(uTRANFDDFrequencyThreshXlow);
+}
 
 const void *UTRANTDDFrequency::itemsInfo[5] = {
 	&UARFCN::theInfo,
@@ -45473,6 +51368,12 @@ const UTRANTDDFrequency::Info UTRANTDDFrequency::theInfo = {
 	itemsPres,
 	5, 1, 0
 };
+UTRANTDDFrequency::UTRANTDDFrequency(const UARFCN& uarfcn, const UTRANTDDFrequencyPriority& uTRANTDDFrequencyPriority, const UTRANTDDFrequencyThreshXhigh& uTRANTDDFrequencyThreshXhigh, const UTRANTDDFrequencyThreshXlow& uTRANTDDFrequencyThreshXlow) : Sequence(&theInfo) {
+	setUarfcn(uarfcn);
+	setUTRANTDDFrequencyPriority(uTRANTDDFrequencyPriority);
+	setUTRANTDDFrequencyThreshXhigh(uTRANTDDFrequencyThreshXhigh);
+	setUTRANTDDFrequencyThreshXlow(uTRANTDDFrequencyThreshXlow);
+}
 
 const void *UTRAPriorityInfoListUtraServingCell::itemsInfo[4] = {
 	&UTRAPriorityInfoListUtraServingCellPriority::theInfo,
@@ -45495,6 +51396,11 @@ const UTRAPriorityInfoListUtraServingCell::Info UTRAPriorityInfoListUtraServingC
 	itemsPres,
 	4, 1, 0
 };
+UTRAPriorityInfoListUtraServingCell::UTRAPriorityInfoListUtraServingCell(const UTRAPriorityInfoListUtraServingCellPriority& uTRAPriorityInfoListUtraServingCellPriority, const UTRAPriorityInfoListUtraServingCellSPrioritySearch1& uTRAPriorityInfoListUtraServingCellSPrioritySearch1, const UTRAPriorityInfoListUtraServingCellThreshServingLow& uTRAPriorityInfoListUtraServingCellThreshServingLow) : Sequence(&theInfo) {
+	setUTRAPriorityInfoListUtraServingCellPriority(uTRAPriorityInfoListUtraServingCellPriority);
+	setUTRAPriorityInfoListUtraServingCellSPrioritySearch1(uTRAPriorityInfoListUtraServingCellSPrioritySearch1);
+	setUTRAPriorityInfoListUtraServingCellThreshServingLow(uTRAPriorityInfoListUtraServingCellThreshServingLow);
+}
 
 const void *UTRAPriorityInfoList::itemsInfo[3] = {
 	&UTRAPriorityInfoListUtraServingCell::theInfo,
@@ -45515,6 +51421,9 @@ const UTRAPriorityInfoList::Info UTRAPriorityInfoList::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+UTRAPriorityInfoList::UTRAPriorityInfoList(const UTRAPriorityInfoListUtraServingCell& uTRAPriorityInfoListUtraServingCell) : Sequence(&theInfo) {
+	setUTRAPriorityInfoListUtraServingCell(uTRAPriorityInfoListUtraServingCell);
+}
 
 const void *UTRAPriorityInfoListv920ext::itemsInfo[1] = {
 	&UTRAPriorityInfoListv920extThreshServingLow2::theInfo,
@@ -45549,6 +51458,9 @@ const BCCHModificationInfo::Info BCCHModificationInfo::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+BCCHModificationInfo::BCCHModificationInfo(const MIBValueTag& mibValueTag) : Sequence(&theInfo) {
+	setMibValueTag(mibValueTag);
+}
 
 const void *CBSDRXLevel1Information::itemsInfo[2] = {
 	&CBSDRXLevel1InformationCtchAllocationPeriod::theInfo,
@@ -45567,6 +51479,10 @@ const CBSDRXLevel1Information::Info CBSDRXLevel1Information::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CBSDRXLevel1Information::CBSDRXLevel1Information(const CBSDRXLevel1InformationCtchAllocationPeriod& cBSDRXLevel1InformationCtchAllocationPeriod, const CBSDRXLevel1InformationCbsFrameOffset& cBSDRXLevel1InformationCbsFrameOffset) : Sequence(&theInfo) {
+	setCBSDRXLevel1InformationCtchAllocationPeriod(cBSDRXLevel1InformationCtchAllocationPeriod);
+	setCBSDRXLevel1InformationCbsFrameOffset(cBSDRXLevel1InformationCbsFrameOffset);
+}
 
 const void *CDMA2000Message::itemsInfo[2] = {
 	&CDMA2000MessageMsgType::theInfo,
@@ -45585,6 +51501,10 @@ const CDMA2000Message::Info CDMA2000Message::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CDMA2000Message::CDMA2000Message(const CDMA2000MessageMsgType& cDMA2000MessageMsgType, const CDMA2000MessagePayload& cDMA2000MessagePayload) : Sequence(&theInfo) {
+	setCDMA2000MessageMsgType(cDMA2000MessageMsgType);
+	setCDMA2000MessagePayload(cDMA2000MessagePayload);
+}
 
 const void *FrequencyInfoCDMA2000::itemsInfo[2] = {
 	&FrequencyInfoCDMA2000BandClass::theInfo,
@@ -45603,6 +51523,10 @@ const FrequencyInfoCDMA2000::Info FrequencyInfoCDMA2000::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+FrequencyInfoCDMA2000::FrequencyInfoCDMA2000(const FrequencyInfoCDMA2000BandClass& frequencyInfoCDMA2000BandClass, const FrequencyInfoCDMA2000CdmaFreq& frequencyInfoCDMA2000CdmaFreq) : Sequence(&theInfo) {
+	setFrequencyInfoCDMA2000BandClass(frequencyInfoCDMA2000BandClass);
+	setFrequencyInfoCDMA2000CdmaFreq(frequencyInfoCDMA2000CdmaFreq);
+}
 
 const void *DataTransmFrequency::itemsInfo[2] = {
 	&DataTransmFrequencydataTransmFreqGranularity::theInfo,
@@ -45621,6 +51545,10 @@ const DataTransmFrequency::Info DataTransmFrequency::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+DataTransmFrequency::DataTransmFrequency(const DataTransmFrequencydataTransmFreqGranularity& dataTransmFrequencydataTransmFreqGranularity, const DataTransmFrequencyNumberOfDataTransmOcc& dataTransmFrequencyNumberOfDataTransmOcc) : Sequence(&theInfo) {
+	setDataTransmFrequencydataTransmFreqGranularity(dataTransmFrequencydataTransmFreqGranularity);
+	setDataTransmFrequencyNumberOfDataTransmOcc(dataTransmFrequencyNumberOfDataTransmOcc);
+}
 
 const void *DataVolumePerRB::itemsInfo[2] = {
 	&RBIdentity::theInfo,
@@ -45639,6 +51567,10 @@ const DataVolumePerRB::Info DataVolumePerRB::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+DataVolumePerRB::DataVolumePerRB(const RBIdentity& rbIdentity, const DataVolumePerRBDataVolume& dataVolumePerRBDataVolume) : Sequence(&theInfo) {
+	setRbIdentity(rbIdentity);
+	setDataVolumePerRBDataVolume(dataVolumePerRBDataVolume);
+}
 
 const void *DataVolumeHistory::itemsInfo[3] = {
 	&DataVolumeHistoryDataVolumeMontoringWindow::theInfo,
@@ -45659,6 +51591,9 @@ const DataVolumeHistory::Info DataVolumeHistory::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+DataVolumeHistory::DataVolumeHistory(const DataVolumeHistoryDataVolumeMontoringWindow& dataVolumeHistoryDataVolumeMontoringWindow) : Sequence(&theInfo) {
+	setDataVolumeHistoryDataVolumeMontoringWindow(dataVolumeHistoryDataVolumeMontoringWindow);
+}
 
 const void *DeferredMeasurementControlReadingSupportModeSpecificInfoFdd::itemsInfo[1] = {
 	&IntraFreqMeasQuantityFDDsib3::theInfo,
@@ -45675,6 +51610,9 @@ const DeferredMeasurementControlReadingSupportModeSpecificInfoFdd::Info Deferred
 	itemsPres,
 	1, 0, 0
 };
+DeferredMeasurementControlReadingSupportModeSpecificInfoFdd::DeferredMeasurementControlReadingSupportModeSpecificInfoFdd(const IntraFreqMeasQuantityFDDsib3& intraFreqMeasQuantityFDD) : Sequence(&theInfo) {
+	setIntraFreqMeasQuantityFDD(intraFreqMeasQuantityFDD);
+}
 
 const void *DeferredMeasurementControlReadingSupportModeSpecificInfoTdd::itemsInfo[1] = {
 	&IntraFreqMeasQuantityTDDsib3List::theInfo,
@@ -45691,6 +51629,9 @@ const DeferredMeasurementControlReadingSupportModeSpecificInfoTdd::Info Deferred
 	itemsPres,
 	1, 0, 0
 };
+DeferredMeasurementControlReadingSupportModeSpecificInfoTdd::DeferredMeasurementControlReadingSupportModeSpecificInfoTdd(const IntraFreqMeasQuantityTDDsib3List& intraFreqMeasQuantityTDDList) : Sequence(&theInfo) {
+	setIntraFreqMeasQuantityTDDList(intraFreqMeasQuantityTDDList);
+}
 
 const void *DeferredMeasurementControlReadingSupportModeSpecificInfo::choicesInfo[2] = {
 	&DeferredMeasurementControlReadingSupportModeSpecificInfoFdd::theInfo,
@@ -45740,6 +51681,11 @@ const ETWSInformation::Info ETWSInformation::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+ETWSInformation::ETWSInformation(const ETWSInformationWarningType& eTWSInformationWarningType, const ETWSInformationMessageIdentifier& eTWSInformationMessageIdentifier, const ETWSInformationSerialNumber& eTWSInformationSerialNumber) : Sequence(&theInfo) {
+	setETWSInformationWarningType(eTWSInformationWarningType);
+	setETWSInformationMessageIdentifier(eTWSInformationMessageIdentifier);
+	setETWSInformationSerialNumber(eTWSInformationSerialNumber);
+}
 
 const void *SIBTypeExtGANSS::choicesInfo[16] = {
 	&SIBTypeExtGANSSSystemInfoType151bis::theInfo,
@@ -45802,6 +51748,11 @@ const ExtGANSSSchedulingInfo::Info ExtGANSSSchedulingInfo::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+ExtGANSSSchedulingInfo::ExtGANSSSchedulingInfo(const SIBTypeExtGANSS& extensionGANSSSIBType, const SchedulingInformation& schedulingInfo, const ValueTagInfo& valueTagInfo) : Sequence(&theInfo) {
+	setExtensionGANSSSIBType(extensionGANSSSIBType);
+	setSchedulingInfo(schedulingInfo);
+	setValueTagInfo(valueTagInfo);
+}
 
 const void *ExtGANSSSIBTypeInfoSchedulingInfo::itemsInfo[3] = {
 	&ExtGANSSSIBTypeInfoSchedulingInfoGanssID::theInfo,
@@ -45822,6 +51773,9 @@ const ExtGANSSSIBTypeInfoSchedulingInfo::Info ExtGANSSSIBTypeInfoSchedulingInfo:
 	itemsPres,
 	3, 2, 0
 };
+ExtGANSSSIBTypeInfoSchedulingInfo::ExtGANSSSIBTypeInfoSchedulingInfo(const ExtGANSSSIBTypeInfoSchedulingInfoGanssScheduling& extGANSSSIBTypeInfoSchedulingInfoGanssScheduling) : Sequence(&theInfo) {
+	setExtGANSSSIBTypeInfoSchedulingInfoGanssScheduling(extGANSSSIBTypeInfoSchedulingInfoGanssScheduling);
+}
 
 const void *SIBTypeExt::choicesInfo[8] = {
 	&SIBTypeExtSystemInfoType11bis::theInfo,
@@ -45861,6 +51815,11 @@ const ExtSIBTypeInfoSchedulingInfo::Info ExtSIBTypeInfoSchedulingInfo::theInfo =
 	itemsPres,
 	3, 0, 0
 };
+ExtSIBTypeInfoSchedulingInfo::ExtSIBTypeInfoSchedulingInfo(const SIBTypeExt& extensionSIBType, const SchedulingInformation& schedulingInfo, const ValueTagInfo& valueTagInfo) : Sequence(&theInfo) {
+	setExtensionSIBType(extensionSIBType);
+	setSchedulingInfo(schedulingInfo);
+	setValueTagInfo(valueTagInfo);
+}
 
 const void *SIBTypeExt2::choicesInfo[8] = {
 	&SIBTypeExt2SystemInfoType19::theInfo,
@@ -45900,6 +51859,11 @@ const ExtSIBTypeInfoSchedulingInfo2::Info ExtSIBTypeInfoSchedulingInfo2::theInfo
 	itemsPres,
 	3, 0, 0
 };
+ExtSIBTypeInfoSchedulingInfo2::ExtSIBTypeInfoSchedulingInfo2(const SIBTypeExt2& extensionSIBType2, const SchedulingInformation& schedulingInfo, const ValueTagInfo& valueTagInfo) : Sequence(&theInfo) {
+	setExtensionSIBType2(extensionSIBType2);
+	setSchedulingInfo(schedulingInfo);
+	setValueTagInfo(valueTagInfo);
+}
 
 const void *GSMBARange::itemsInfo[2] = {
 	&UARFCN::theInfo,
@@ -45918,6 +51882,10 @@ const GSMBARange::Info GSMBARange::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+GSMBARange::GSMBARange(const UARFCN& gsmLowRangeUARFCN, const UARFCN& gsmUpRangeUARFCN) : Sequence(&theInfo) {
+	setGsmLowRangeUARFCN(gsmLowRangeUARFCN);
+	setGsmUpRangeUARFCN(gsmUpRangeUARFCN);
+}
 
 const void *InterRATChangeFailureCause::choicesInfo[8] = {
 	&InterRATChangeFailureCauseConfigurationUnacceptable::theInfo,
@@ -45955,6 +51923,10 @@ const InterRATUERadioAccessCapabilityGsm::Info InterRATUERadioAccessCapabilityGs
 	itemsPres,
 	2, 0, 0
 };
+InterRATUERadioAccessCapabilityGsm::InterRATUERadioAccessCapabilityGsm(const GSMClassmark2& gsmClassmark2, const GSMClassmark3& gsmClassmark3) : Sequence(&theInfo) {
+	setGsmClassmark2(gsmClassmark2);
+	setGsmClassmark3(gsmClassmark3);
+}
 
 const void *InterRATUERadioAccessCapabilityCdma2000::itemsInfo[1] = {
 	&CDMA2000MessageList::theInfo,
@@ -45971,6 +51943,9 @@ const InterRATUERadioAccessCapabilityCdma2000::Info InterRATUERadioAccessCapabil
 	itemsPres,
 	1, 0, 0
 };
+InterRATUERadioAccessCapabilityCdma2000::InterRATUERadioAccessCapabilityCdma2000(const CDMA2000MessageList& cdma2000MessageList) : Sequence(&theInfo) {
+	setCdma2000MessageList(cdma2000MessageList);
+}
 
 const void *InterRATUERadioAccessCapability::choicesInfo[2] = {
 	&InterRATUERadioAccessCapabilityGsm::theInfo,
@@ -46000,6 +51975,9 @@ const InterRATUERadioAccessCapabilityv590ext::Info InterRATUERadioAccessCapabili
 	itemsPres,
 	1, 0, 0
 };
+InterRATUERadioAccessCapabilityv590ext::InterRATUERadioAccessCapabilityv590ext(const GERANIuRadioAccessCapability& geranIuRadioAccessCapability) : Sequence(&theInfo) {
+	setGeranIuRadioAccessCapability(geranIuRadioAccessCapability);
+}
 
 const void *InterRATUESecurityCapabilityGsm::itemsInfo[1] = {
 	&GsmSecurityCapability::theInfo,
@@ -46016,6 +51994,9 @@ const InterRATUESecurityCapabilityGsm::Info InterRATUESecurityCapabilityGsm::the
 	itemsPres,
 	1, 0, 0
 };
+InterRATUESecurityCapabilityGsm::InterRATUESecurityCapabilityGsm(const GsmSecurityCapability& gsmSecurityCapability) : Sequence(&theInfo) {
+	setGsmSecurityCapability(gsmSecurityCapability);
+}
 
 const void *InterRATUESecurityCapability::choicesInfo[1] = {
 	&InterRATUESecurityCapabilityGsm::theInfo,
@@ -46116,6 +52097,10 @@ const SchedulingInformationSIBSb::Info SchedulingInformationSIBSb::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SchedulingInformationSIBSb::SchedulingInformationSIBSb(const SIBSbTypeAndTag& sibSbType, const SchedulingInformation& scheduling) : Sequence(&theInfo) {
+	setSibSbType(sibSbType);
+	setScheduling(scheduling);
+}
 
 const void *MasterInformationBlockv690ext::itemsInfo[1] = {
 	&MultiplePLMNListr6::theInfo,
@@ -46200,6 +52185,9 @@ const MasterInformationBlockV690NonCriticalExtensionsV6b0NonCriticalExtensionsV8
 	itemsPres,
 	2, 1, 0
 };
+MasterInformationBlockV690NonCriticalExtensionsV6b0NonCriticalExtensionsV860NonCriticalExtensions::MasterInformationBlockV690NonCriticalExtensionsV6b0NonCriticalExtensionsV860NonCriticalExtensions(const MasterInformationBlockv860extIEs& masterInformationBlockv860ext) : Sequence(&theInfo) {
+	setMasterInformationBlockv860ext(masterInformationBlockv860ext);
+}
 
 const void *MasterInformationBlockV690NonCriticalExtensionsV6b0NonCriticalExtensions::itemsInfo[2] = {
 	&MasterInformationBlockv6b0extIEs::theInfo,
@@ -46218,6 +52206,9 @@ const MasterInformationBlockV690NonCriticalExtensionsV6b0NonCriticalExtensions::
 	itemsPres,
 	2, 1, 0
 };
+MasterInformationBlockV690NonCriticalExtensionsV6b0NonCriticalExtensions::MasterInformationBlockV690NonCriticalExtensionsV6b0NonCriticalExtensions(const MasterInformationBlockv6b0extIEs& masterInformationBlockv6b0ext) : Sequence(&theInfo) {
+	setMasterInformationBlockv6b0ext(masterInformationBlockv6b0ext);
+}
 
 const void *MasterInformationBlockV690NonCriticalExtensions::itemsInfo[2] = {
 	&MasterInformationBlockv690ext::theInfo,
@@ -46236,6 +52227,9 @@ const MasterInformationBlockV690NonCriticalExtensions::Info MasterInformationBlo
 	itemsPres,
 	2, 1, 0
 };
+MasterInformationBlockV690NonCriticalExtensions::MasterInformationBlockV690NonCriticalExtensions(const MasterInformationBlockv690ext& masterInformationBlockv690ext) : Sequence(&theInfo) {
+	setMasterInformationBlockv690ext(masterInformationBlockv690ext);
+}
 
 const void *MasterInformationBlock::itemsInfo[4] = {
 	&MIBValueTag::theInfo,
@@ -46258,6 +52252,11 @@ const MasterInformationBlock::Info MasterInformationBlock::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+MasterInformationBlock::MasterInformationBlock(const MIBValueTag& mibValueTag, const PLMNType& plmnType, const SIBSbReferenceList& sibSbReferenceList) : Sequence(&theInfo) {
+	setMibValueTag(mibValueTag);
+	setPlmnType(plmnType);
+	setSibSbReferenceList(sibSbReferenceList);
+}
 
 const void *RplmnInformation::itemsInfo[4] = {
 	&GSMBARangeList::theInfo,
@@ -46322,6 +52321,10 @@ const SysInfoType1v3a0extIEs::Info SysInfoType1v3a0extIEs::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SysInfoType1v3a0extIEs::SysInfoType1v3a0extIEs(const UEConnTimersAndConstantsv3a0ext& ueConnTimersAndConstantsv3a0ext, const UEIdleTimersAndConstantsv3a0ext& ueIdleTimersAndConstantsv3a0ext) : Sequence(&theInfo) {
+	setUeConnTimersAndConstantsv3a0ext(ueConnTimersAndConstantsv3a0ext);
+	setUeIdleTimersAndConstantsv3a0ext(ueIdleTimersAndConstantsv3a0ext);
+}
 
 const void *SysInfoType1v860extIEs::itemsInfo[1] = {
 	&UEConnTimersAndConstantsv860ext::theInfo,
@@ -46338,6 +52341,9 @@ const SysInfoType1v860extIEs::Info SysInfoType1v860extIEs::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+SysInfoType1v860extIEs::SysInfoType1v860extIEs(const UEConnTimersAndConstantsv860ext& ueConnTimersAndConstants) : Sequence(&theInfo) {
+	setUeConnTimersAndConstants(ueConnTimersAndConstants);
+}
 
 const void *SysInfoType1V3a0NonCriticalExtensionsV860NonCriticalExtentionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -46370,6 +52376,9 @@ const SysInfoType1V3a0NonCriticalExtensionsV860NonCriticalExtentions::Info SysIn
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType1V3a0NonCriticalExtensionsV860NonCriticalExtentions::SysInfoType1V3a0NonCriticalExtensionsV860NonCriticalExtentions(const SysInfoType1v860extIEs& sysInfoType1v860ext) : Sequence(&theInfo) {
+	setSysInfoType1v860ext(sysInfoType1v860ext);
+}
 
 const void *SysInfoType1V3a0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType1v3a0extIEs::theInfo,
@@ -46388,6 +52397,9 @@ const SysInfoType1V3a0NonCriticalExtensions::Info SysInfoType1V3a0NonCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType1V3a0NonCriticalExtensions::SysInfoType1V3a0NonCriticalExtensions(const SysInfoType1v3a0extIEs& sysInfoType1v3a0ext) : Sequence(&theInfo) {
+	setSysInfoType1v3a0ext(sysInfoType1v3a0ext);
+}
 
 const void *SysInfoType1::itemsInfo[5] = {
 	&NASSystemInformationGSMMAP::theInfo,
@@ -46412,6 +52424,10 @@ const SysInfoType1::Info SysInfoType1::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+SysInfoType1::SysInfoType1(const NASSystemInformationGSMMAP& cnCommonGSMMAPNASSysInfo, const CNDomainSysInfoList& cnDomainSysInfoList) : Sequence(&theInfo) {
+	setCnCommonGSMMAPNASSysInfo(cnCommonGSMMAPNASSysInfo);
+	setCnDomainSysInfoList(cnDomainSysInfoList);
+}
 
 const void *SysInfoType2NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -46444,6 +52460,9 @@ const SysInfoType2::Info SysInfoType2::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType2::SysInfoType2(const URAIdentityList& uraIdentityList) : Sequence(&theInfo) {
+	setUraIdentityList(uraIdentityList);
+}
 
 const void *SysInfoType3v4b0extIEs::itemsInfo[1] = {
 	&MappingLCRr4::theInfo,
@@ -46632,6 +52651,9 @@ const SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0Noncritic
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtensionV830NonCriticalExtensionV860NonCriticalExtensionV870NonCriticalExtensionV900NonCriticalExtension::SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtensionV830NonCriticalExtensionV860NonCriticalExtensionV870NonCriticalExtensionV900NonCriticalExtension(const SysInfoType3v920extIEs& sysInfoType3v920ext) : Sequence(&theInfo) {
+	setSysInfoType3v920ext(sysInfoType3v920ext);
+}
 
 const void *SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtensionV830NonCriticalExtensionV860NonCriticalExtensionV870NonCriticalExtension::itemsInfo[2] = {
 	&SysInfoType3v870extIEs::theInfo,
@@ -46650,6 +52672,9 @@ const SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0Noncritic
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtensionV830NonCriticalExtensionV860NonCriticalExtensionV870NonCriticalExtension::SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtensionV830NonCriticalExtensionV860NonCriticalExtensionV870NonCriticalExtension(const SysInfoType3v870extIEs& sysInfoType3v870ext) : Sequence(&theInfo) {
+	setSysInfoType3v870ext(sysInfoType3v870ext);
+}
 
 const void *SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtensionV830NonCriticalExtensionV860NonCriticalExtension::itemsInfo[2] = {
 	&SysInfoType3v860extIEs::theInfo,
@@ -46668,6 +52693,9 @@ const SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0Noncritic
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtensionV830NonCriticalExtensionV860NonCriticalExtension::SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtensionV830NonCriticalExtensionV860NonCriticalExtension(const SysInfoType3v860extIEs& sysInfoType3v860ext) : Sequence(&theInfo) {
+	setSysInfoType3v860ext(sysInfoType3v860ext);
+}
 
 const void *SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtensionV830NonCriticalExtension::itemsInfo[2] = {
 	&SysInfoType3v830extIEs::theInfo,
@@ -46686,6 +52714,9 @@ const SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0Noncritic
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtensionV830NonCriticalExtension::SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtensionV830NonCriticalExtension(const SysInfoType3v830extIEs& sysInfoType3v830ext) : Sequence(&theInfo) {
+	setSysInfoType3v830ext(sysInfoType3v830ext);
+}
 
 const void *SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtension::itemsInfo[2] = {
 	&SysInfoType3v770extIEs::theInfo,
@@ -46704,6 +52735,9 @@ const SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0Noncritic
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtension::SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtensionV770NonCriticalExtension(const SysInfoType3v770extIEs& sysInfoType3v770ext) : Sequence(&theInfo) {
+	setSysInfoType3v770ext(sysInfoType3v770ext);
+}
 
 const void *SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtension::itemsInfo[2] = {
 	&SysInfoType3v670ext::theInfo,
@@ -46722,6 +52756,9 @@ const SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0Noncritic
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtension::SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtensionV670NonCriticalExtension(const SysInfoType3v670ext& sysInfoType3v670ext) : Sequence(&theInfo) {
+	setSysInfoType3v670ext(sysInfoType3v670ext);
+}
 
 const void *SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtension::itemsInfo[2] = {
 	&SysInfoType3v5c0extIEs::theInfo,
@@ -46740,6 +52777,9 @@ const SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0Noncritic
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtension::SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtensionV5c0NoncriticalExtension(const SysInfoType3v5c0extIEs& sysInfoType3v5c0ext) : Sequence(&theInfo) {
+	setSysInfoType3v5c0ext(sysInfoType3v5c0ext);
+}
 
 const void *SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtension::itemsInfo[2] = {
 	&SysInfoType3v590ext::theInfo,
@@ -46758,6 +52798,9 @@ const SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtension::Info SysInf
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtension::SysInfoType3V4b0NonCriticalExtensionsV590NonCriticalExtension(const SysInfoType3v590ext& sysInfoType3v590ext) : Sequence(&theInfo) {
+	setSysInfoType3v590ext(sysInfoType3v590ext);
+}
 
 const void *SysInfoType3V4b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType3v4b0extIEs::theInfo,
@@ -46776,6 +52819,9 @@ const SysInfoType3V4b0NonCriticalExtensions::Info SysInfoType3V4b0NonCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType3V4b0NonCriticalExtensions::SysInfoType3V4b0NonCriticalExtensions(const SysInfoType3v4b0extIEs& sysInfoType3v4b0ext) : Sequence(&theInfo) {
+	setSysInfoType3v4b0ext(sysInfoType3v4b0ext);
+}
 
 const void *SysInfoType3::itemsInfo[5] = {
 	&SysInfoType3Sib4indicator::theInfo,
@@ -46800,6 +52846,12 @@ const SysInfoType3::Info SysInfoType3::theInfo = {
 	itemsPres,
 	5, 1, 0
 };
+SysInfoType3::SysInfoType3(const SysInfoType3Sib4indicator& sysInfoType3Sib4indicator, const CellIdentity& cellIdentity, const CellSelectReselectInfoSIB34& cellSelectReselectInfo, const CellAccessRestriction& cellAccessRestriction) : Sequence(&theInfo) {
+	setSysInfoType3Sib4indicator(sysInfoType3Sib4indicator);
+	setCellIdentity(cellIdentity);
+	setCellSelectReselectInfo(cellSelectReselectInfo);
+	setCellAccessRestriction(cellAccessRestriction);
+}
 
 const void *SysInfoType4v4b0extIEs::itemsInfo[1] = {
 	&MappingLCRr4::theInfo,
@@ -46896,6 +52948,9 @@ const SysInfoType4V4b0NonCriticalExtensionsV590NonCriticalExtensionV5b0NonCritic
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType4V4b0NonCriticalExtensionsV590NonCriticalExtensionV5b0NonCriticalExtensionV5c0NonCriticalExtension::SysInfoType4V4b0NonCriticalExtensionsV590NonCriticalExtensionV5b0NonCriticalExtensionV5c0NonCriticalExtension(const SysInfoType4v5c0extIEs& sysInfoType4v5c0ext) : Sequence(&theInfo) {
+	setSysInfoType4v5c0ext(sysInfoType4v5c0ext);
+}
 
 const void *SysInfoType4V4b0NonCriticalExtensionsV590NonCriticalExtensionV5b0NonCriticalExtension::itemsInfo[2] = {
 	&SysInfoType4v5b0extIEs::theInfo,
@@ -46914,6 +52969,9 @@ const SysInfoType4V4b0NonCriticalExtensionsV590NonCriticalExtensionV5b0NonCritic
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType4V4b0NonCriticalExtensionsV590NonCriticalExtensionV5b0NonCriticalExtension::SysInfoType4V4b0NonCriticalExtensionsV590NonCriticalExtensionV5b0NonCriticalExtension(const SysInfoType4v5b0extIEs& sysInfoType4v5b0ext) : Sequence(&theInfo) {
+	setSysInfoType4v5b0ext(sysInfoType4v5b0ext);
+}
 
 const void *SysInfoType4V4b0NonCriticalExtensionsV590NonCriticalExtension::itemsInfo[2] = {
 	&SysInfoType4v590ext::theInfo,
@@ -46932,6 +52990,9 @@ const SysInfoType4V4b0NonCriticalExtensionsV590NonCriticalExtension::Info SysInf
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType4V4b0NonCriticalExtensionsV590NonCriticalExtension::SysInfoType4V4b0NonCriticalExtensionsV590NonCriticalExtension(const SysInfoType4v590ext& sysInfoType4v590ext) : Sequence(&theInfo) {
+	setSysInfoType4v590ext(sysInfoType4v590ext);
+}
 
 const void *SysInfoType4V4b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType4v4b0extIEs::theInfo,
@@ -46950,6 +53011,9 @@ const SysInfoType4V4b0NonCriticalExtensions::Info SysInfoType4V4b0NonCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType4V4b0NonCriticalExtensions::SysInfoType4V4b0NonCriticalExtensions(const SysInfoType4v4b0extIEs& sysInfoType4v4b0ext) : Sequence(&theInfo) {
+	setSysInfoType4v4b0ext(sysInfoType4v4b0ext);
+}
 
 const void *SysInfoType4::itemsInfo[4] = {
 	&CellIdentity::theInfo,
@@ -46972,6 +53036,11 @@ const SysInfoType4::Info SysInfoType4::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+SysInfoType4::SysInfoType4(const CellIdentity& cellIdentity, const CellSelectReselectInfoSIB34& cellSelectReselectInfo, const CellAccessRestriction& cellAccessRestriction) : Sequence(&theInfo) {
+	setCellIdentity(cellIdentity);
+	setCellSelectReselectInfo(cellSelectReselectInfo);
+	setCellAccessRestriction(cellAccessRestriction);
+}
 
 const void *SysInfoType5ModeSpecificInfoFdd::itemsInfo[1] = {
 	&AICHPowerOffset::theInfo,
@@ -46988,6 +53057,9 @@ const SysInfoType5ModeSpecificInfoFdd::Info SysInfoType5ModeSpecificInfoFdd::the
 	itemsPres,
 	1, 0, 0
 };
+SysInfoType5ModeSpecificInfoFdd::SysInfoType5ModeSpecificInfoFdd(const AICHPowerOffset& aichPowerOffset) : Sequence(&theInfo) {
+	setAichPowerOffset(aichPowerOffset);
+}
 
 const void *SysInfoType5ModeSpecificInfoTdd::itemsInfo[3] = {
 	&PUSCHSysInfoListSFN::theInfo,
@@ -47008,6 +53080,9 @@ const SysInfoType5ModeSpecificInfoTdd::Info SysInfoType5ModeSpecificInfoTdd::the
 	itemsPres,
 	3, 2, 0
 };
+SysInfoType5ModeSpecificInfoTdd::SysInfoType5ModeSpecificInfoTdd(const OpenLoopPowerControlTDD& openLoopPowerControlTDD) : Sequence(&theInfo) {
+	setOpenLoopPowerControlTDD(openLoopPowerControlTDD);
+}
 
 const void *SysInfoType5ModeSpecificInfo::choicesInfo[2] = {
 	&SysInfoType5ModeSpecificInfoFdd::theInfo,
@@ -47043,6 +53118,9 @@ const SysInfoType5v4b0extIEsTdd128SpecificInfo::Info SysInfoType5v4b0extIEsTdd12
 	itemsPres,
 	4, 3, 0
 };
+SysInfoType5v4b0extIEsTdd128SpecificInfo::SysInfoType5v4b0extIEsTdd128SpecificInfo(const SCCPCHSystemInformationListLCRr4ext& sCCPCHLCRExtensionsList) : Sequence(&theInfo) {
+	setSCCPCHLCRExtensionsList(sCCPCHLCRExtensionsList);
+}
 
 const void *SysInfoType5v4b0extIEs::itemsInfo[5] = {
 	&PNBSCHAllocationr4::theInfo,
@@ -47117,6 +53195,9 @@ const SysInfoType5v650extIEs::Info SysInfoType5v650extIEs::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+SysInfoType5v650extIEs::SysInfoType5v650extIEs(const RadioFrequencyBandFDD2& frequencyBandIndicator2) : Sequence(&theInfo) {
+	setFrequencyBandIndicator2(frequencyBandIndicator2);
+}
 
 const void *SysInfoType5v680extIEs::itemsInfo[1] = {
 	&SysInfoType5v680extIEshsdpa_CellIndicator::theInfo,
@@ -47186,6 +53267,9 @@ const SysInfoType5v770extIEsModeSpecificInfoFdd::Info SysInfoType5v770extIEsMode
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType5v770extIEsModeSpecificInfoFdd::SysInfoType5v770extIEsModeSpecificInfoFdd(const HSDSCHCommonSystemInformation& hsdschCommonSystemInformation) : Sequence(&theInfo) {
+	setHsdschCommonSystemInformation(hsdschCommonSystemInformation);
+}
 
 const void *SysInfoType5v770extIEsModeSpecificInfoTdd768::itemsInfo[3] = {
 	&PUSCHSysInfoListSFNVHCR::theInfo,
@@ -47318,6 +53402,9 @@ const SysInfoType5v860extIEsModeSpecificInfoTdd128HsdschCommonSysInfo::Info SysI
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType5v860extIEsModeSpecificInfoTdd128HsdschCommonSysInfo::SysInfoType5v860extIEsModeSpecificInfoTdd128HsdschCommonSysInfo(const HSDSCHCommonSystemInformationTDD128& hsdschCommonSystemInformation) : Sequence(&theInfo) {
+	setHsdschCommonSystemInformation(hsdschCommonSystemInformation);
+}
 
 const void *SysInfoType5v860extIEsModeSpecificInfoTdd128::itemsInfo[2] = {
 	&SysInfoType5v860extIEsModeSpecificInfoTdd128HsdschCommonSysInfo::theInfo,
@@ -47367,6 +53454,9 @@ const SysInfoType5v860extIEs::Info SysInfoType5v860extIEs::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType5v860extIEs::SysInfoType5v860extIEs(const SysInfoType5v860extIEsModeSpecificInfo& sysInfoType5v860extIEsModeSpecificInfo) : Sequence(&theInfo) {
+	setSysInfoType5v860extIEsModeSpecificInfo(sysInfoType5v860extIEsModeSpecificInfo);
+}
 
 const void *SysInfoType5v890extIEs::itemsInfo[2] = {
 	&FrequencyInfoTDD::theInfo,
@@ -47451,6 +53541,9 @@ const SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsV890NonCriticalExtensionsV8b0NonCriticalExtensionsV8d0NonCriticalExtensions::SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsV890NonCriticalExtensionsV8b0NonCriticalExtensionsV8d0NonCriticalExtensions(const SysInfoType5v8d0extIEs& sysInfoType5v8d0ext) : Sequence(&theInfo) {
+	setSysInfoType5v8d0ext(sysInfoType5v8d0ext);
+}
 
 const void *SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsV890NonCriticalExtensionsV8b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType5v8b0extIEs::theInfo,
@@ -47469,6 +53562,9 @@ const SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsV890NonCriticalExtensionsV8b0NonCriticalExtensions::SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsV890NonCriticalExtensionsV8b0NonCriticalExtensions(const SysInfoType5v8b0extIEs& sysInfoType5v8b0ext) : Sequence(&theInfo) {
+	setSysInfoType5v8b0ext(sysInfoType5v8b0ext);
+}
 
 const void *SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsV890NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType5v890extIEs::theInfo,
@@ -47487,6 +53583,9 @@ const SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsV890NonCriticalExtensions::SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsV890NonCriticalExtensions(const SysInfoType5v890extIEs& sysInfoType5v890ext) : Sequence(&theInfo) {
+	setSysInfoType5v890ext(sysInfoType5v890ext);
+}
 
 const void *SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType5v860extIEs::theInfo,
@@ -47505,6 +53604,9 @@ const SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions::SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions(const SysInfoType5v860extIEs& sysInfoType5v860ext) : Sequence(&theInfo) {
+	setSysInfoType5v860ext(sysInfoType5v860ext);
+}
 
 const void *SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType5v770extIEs::theInfo,
@@ -47523,6 +53625,9 @@ const SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions(const SysInfoType5v770extIEs& sysInfoType5v770ext) : Sequence(&theInfo) {
+	setSysInfoType5v770ext(sysInfoType5v770ext);
+}
 
 const void *SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType5v690extIEs::theInfo,
@@ -47541,6 +53646,9 @@ const SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensions::SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensionsV690NonCriticalExtensions(const SysInfoType5v690extIEs& sysInfoType5v690ext) : Sequence(&theInfo) {
+	setSysInfoType5v690ext(sysInfoType5v690ext);
+}
 
 const void *SysInfoType5V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650NonCriticalExtensionsV680NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType5v680extIEs::theInfo,
@@ -47643,6 +53751,13 @@ const SysInfoType5::Info SysInfoType5::theInfo = {
 	itemsPres,
 	8, 3, 0
 };
+SysInfoType5::SysInfoType5(const SysInfoType5Sib6indicator& sysInfoType5Sib6indicator, const PICHPowerOffset& pichPowerOffset, const SysInfoType5ModeSpecificInfo& sysInfoType5ModeSpecificInfo, const PRACHSystemInformationList& prachSystemInformationList, const SCCPCHSystemInformationList& sCCPCHSystemInformationList) : Sequence(&theInfo) {
+	setSysInfoType5Sib6indicator(sysInfoType5Sib6indicator);
+	setPichPowerOffset(pichPowerOffset);
+	setSysInfoType5ModeSpecificInfo(sysInfoType5ModeSpecificInfo);
+	setPrachSystemInformationList(prachSystemInformationList);
+	setSCCPCHSystemInformationList(sCCPCHSystemInformationList);
+}
 
 const void *SysInfoType6ModeSpecificInfoFdd::itemsInfo[2] = {
 	&AICHPowerOffset::theInfo,
@@ -47661,6 +53776,9 @@ const SysInfoType6ModeSpecificInfoFdd::Info SysInfoType6ModeSpecificInfoFdd::the
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType6ModeSpecificInfoFdd::SysInfoType6ModeSpecificInfoFdd(const AICHPowerOffset& aichPowerOffset) : Sequence(&theInfo) {
+	setAichPowerOffset(aichPowerOffset);
+}
 
 const void *SysInfoType6ModeSpecificInfoTdd::itemsInfo[3] = {
 	&PUSCHSysInfoListSFN::theInfo,
@@ -47681,6 +53799,9 @@ const SysInfoType6ModeSpecificInfoTdd::Info SysInfoType6ModeSpecificInfoTdd::the
 	itemsPres,
 	3, 2, 0
 };
+SysInfoType6ModeSpecificInfoTdd::SysInfoType6ModeSpecificInfoTdd(const OpenLoopPowerControlTDD& openLoopPowerControlTDD) : Sequence(&theInfo) {
+	setOpenLoopPowerControlTDD(openLoopPowerControlTDD);
+}
 
 const void *SysInfoType6ModeSpecificInfo::choicesInfo[2] = {
 	&SysInfoType6ModeSpecificInfoFdd::theInfo,
@@ -47788,6 +53909,9 @@ const SysInfoType6v650extIEs::Info SysInfoType6v650extIEs::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+SysInfoType6v650extIEs::SysInfoType6v650extIEs(const RadioFrequencyBandFDD2& frequencyBandIndicator2) : Sequence(&theInfo) {
+	setFrequencyBandIndicator2(frequencyBandIndicator2);
+}
 
 const void *SysInfoType6v690extIEs::itemsInfo[1] = {
 	&AdditionalPRACHTFandTFCSCCCHList::theInfo,
@@ -47874,6 +53998,9 @@ const SysInfoType6V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650nonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType6V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650nonCriticalExtensionsV690nonCriticalExtensionsV770NonCriticalExtensions::SysInfoType6V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650nonCriticalExtensionsV690nonCriticalExtensionsV770NonCriticalExtensions(const SysInfoType6v770extIEs& sysInfoType6v770ext) : Sequence(&theInfo) {
+	setSysInfoType6v770ext(sysInfoType6v770ext);
+}
 
 const void *SysInfoType6V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650nonCriticalExtensionsV690nonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType6v690extIEs::theInfo,
@@ -47892,6 +54019,9 @@ const SysInfoType6V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650nonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType6V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650nonCriticalExtensionsV690nonCriticalExtensions::SysInfoType6V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650nonCriticalExtensionsV690nonCriticalExtensions(const SysInfoType6v690extIEs& sysInfoType6v690ext) : Sequence(&theInfo) {
+	setSysInfoType6v690ext(sysInfoType6v690ext);
+}
 
 const void *SysInfoType6V4b0NonCriticalExtensionsV590NonCriticalExtensionsV650nonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType6v650extIEs::theInfo,
@@ -47974,6 +54104,10 @@ const SysInfoType6::Info SysInfoType6::theInfo = {
 	itemsPres,
 	7, 5, 0
 };
+SysInfoType6::SysInfoType6(const PICHPowerOffset& pichPowerOffset, const SysInfoType6ModeSpecificInfo& sysInfoType6ModeSpecificInfo) : Sequence(&theInfo) {
+	setPichPowerOffset(pichPowerOffset);
+	setSysInfoType6ModeSpecificInfo(sysInfoType6ModeSpecificInfo);
+}
 
 const void *SysInfoType7ModeSpecificInfoFdd::itemsInfo[1] = {
 	&ULInterference::theInfo,
@@ -47990,6 +54124,9 @@ const SysInfoType7ModeSpecificInfoFdd::Info SysInfoType7ModeSpecificInfoFdd::the
 	itemsPres,
 	1, 0, 0
 };
+SysInfoType7ModeSpecificInfoFdd::SysInfoType7ModeSpecificInfoFdd(const ULInterference& ulInterference) : Sequence(&theInfo) {
+	setUlInterference(ulInterference);
+}
 
 const void *SysInfoType7ModeSpecificInfo::choicesInfo[2] = {
 	&SysInfoType7ModeSpecificInfoFdd::theInfo,
@@ -48041,6 +54178,10 @@ const SysInfoType7::Info SysInfoType7::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+SysInfoType7::SysInfoType7(const SysInfoType7ModeSpecificInfo& sysInfoType7ModeSpecificInfo, const DynamicPersistenceLevelList& prachInformationSIB5List) : Sequence(&theInfo) {
+	setSysInfoType7ModeSpecificInfo(sysInfoType7ModeSpecificInfo);
+	setPrachInformationSIB5List(prachInformationSIB5List);
+}
 
 const void *SysInfoType8NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -48077,6 +54218,11 @@ const SysInfoType8::Info SysInfoType8::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+SysInfoType8::SysInfoType8(const CPCHParameters& dummy1, const CPCHSetInfoList& dummy2, const CSICHPowerOffset& dummy3) : Sequence(&theInfo) {
+	setDummy1(dummy1);
+	setDummy2(dummy2);
+	setDummy3(dummy3);
+}
 
 const void *SysInfoType9NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -48109,6 +54255,9 @@ const SysInfoType9::Info SysInfoType9::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType9::SysInfoType9(const CPCHPersistenceLevelsList& dummy) : Sequence(&theInfo) {
+	setDummy(dummy);
+}
 
 const void *SysInfoType10NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -48141,6 +54290,9 @@ const SysInfoType10::Info SysInfoType10::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType10::SysInfoType10(const DRACSysInfoList& dummy) : Sequence(&theInfo) {
+	setDummy(dummy);
+}
 
 const void *SysInfoType11v4b0extIEs::itemsInfo[2] = {
 	&FACHMeasurementOccasionInfoLCRr4ext::theInfo,
@@ -48159,6 +54311,9 @@ const SysInfoType11v4b0extIEs::Info SysInfoType11v4b0extIEs::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType11v4b0extIEs::SysInfoType11v4b0extIEs(const MeasurementControlSysInfoLCRr4ext& measurementControlSysInfoLCR) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoLCR(measurementControlSysInfoLCR);
+}
 
 const void *SysInfoType11v590extIEs::itemsInfo[6] = {
 	&SysInfoType11v590extIEsNewIntraFrequencyCellInfoListv590ext::theInfo,
@@ -48235,6 +54390,9 @@ const MBSFNFrequency::Info MBSFNFrequency::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MBSFNFrequency::MBSFNFrequency(const FrequencyInfo& frequencyInfo) : Sequence(&theInfo) {
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *SysInfoType11v770extIEs::itemsInfo[1] = {
 	&MBSFNFrequencyList::theInfo,
@@ -48331,6 +54489,9 @@ const SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensions::SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensions(const SysInfoType11v860extIEs& sysInfoType11v860ext) : Sequence(&theInfo) {
+	setSysInfoType11v860ext(sysInfoType11v860ext);
+}
 
 const void *SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType11v7b0extIEs::theInfo,
@@ -48349,6 +54510,9 @@ const SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensions::SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensions(const SysInfoType11v7b0extIEs& sysInfoType11v7b0ext) : Sequence(&theInfo) {
+	setSysInfoType11v7b0ext(sysInfoType11v7b0ext);
+}
 
 const void *SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType11v770extIEs::theInfo,
@@ -48367,6 +54531,9 @@ const SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensions::SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensions(const SysInfoType11v770extIEs& sysInfoType11v770ext) : Sequence(&theInfo) {
+	setSysInfoType11v770ext(sysInfoType11v770ext);
+}
 
 const void *SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType11v6b0extIEs::theInfo,
@@ -48385,6 +54552,9 @@ const SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensions::SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensions(const SysInfoType11v6b0extIEs& sysInfoType11v6b0ext) : Sequence(&theInfo) {
+	setSysInfoType11v6b0ext(sysInfoType11v6b0ext);
+}
 
 const void *SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType11v690extIEs::theInfo,
@@ -48403,6 +54573,9 @@ const SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensions::SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensions(const SysInfoType11v690extIEs& sysInfoType11v690ext) : Sequence(&theInfo) {
+	setSysInfoType11v690ext(sysInfoType11v690ext);
+}
 
 const void *SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtension::itemsInfo[2] = {
 	&SysInfoType11v590extIEs::theInfo,
@@ -48421,6 +54594,9 @@ const SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtension::Info SysIn
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtension::SysInfoType11V4b0NonCriticalExtensionsV590NonCriticalExtension(const SysInfoType11v590extIEs& sysInfoType11v590ext) : Sequence(&theInfo) {
+	setSysInfoType11v590ext(sysInfoType11v590ext);
+}
 
 const void *SysInfoType11V4b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType11v4b0extIEs::theInfo,
@@ -48461,6 +54637,10 @@ const SysInfoType11::Info SysInfoType11::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+SysInfoType11::SysInfoType11(const SysInfoType11Sib12indicator& sysInfoType11Sib12indicator, const MeasurementControlSysInfo& measurementControlSysInfo) : Sequence(&theInfo) {
+	setSysInfoType11Sib12indicator(sysInfoType11Sib12indicator);
+	setMeasurementControlSysInfo(measurementControlSysInfo);
+}
 
 const void *SysInfoType11bisv7b0extIEs::itemsInfo[1] = {
 	&NewInterFreqCellListv7b0ext::theInfo,
@@ -48527,6 +54707,9 @@ const SysInfoType11bisV7b0NonCriticalExtensionsV860NonCriticalExtensions::Info S
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType11bisV7b0NonCriticalExtensionsV860NonCriticalExtensions::SysInfoType11bisV7b0NonCriticalExtensionsV860NonCriticalExtensions(const SysInfoType11bisv860extIEs& sysInfoType11bisv860ext) : Sequence(&theInfo) {
+	setSysInfoType11bisv860ext(sysInfoType11bisv860ext);
+}
 
 const void *SysInfoType11bisV7b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType11bisv7b0extIEs::theInfo,
@@ -48545,6 +54728,9 @@ const SysInfoType11bisV7b0NonCriticalExtensions::Info SysInfoType11bisV7b0NonCri
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType11bisV7b0NonCriticalExtensions::SysInfoType11bisV7b0NonCriticalExtensions(const SysInfoType11bisv7b0extIEs& sysInfoType11bisv7b0ext) : Sequence(&theInfo) {
+	setSysInfoType11bisv7b0ext(sysInfoType11bisv7b0ext);
+}
 
 const void *SysInfoType11bis::itemsInfo[4] = {
 	&MeasurementControlSysInfoExtension::theInfo,
@@ -48585,6 +54771,9 @@ const SysInfoType12v4b0extIEs::Info SysInfoType12v4b0extIEs::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType12v4b0extIEs::SysInfoType12v4b0extIEs(const MeasurementControlSysInfoLCRr4ext& measurementControlSysInfoLCR) : Sequence(&theInfo) {
+	setMeasurementControlSysInfoLCR(measurementControlSysInfoLCR);
+}
 
 const void *SysInfoType12v590extIEs::itemsInfo[6] = {
 	&SysInfoType12v590extIEsNewIntraFrequencyCellInfoListv590ext::theInfo,
@@ -48691,6 +54880,9 @@ const SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensionsV7b0NonCriticalExtensions::SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensionsV7b0NonCriticalExtensions(const SysInfoType12v7b0extIEs& sysInfoType12v7b0ext) : Sequence(&theInfo) {
+	setSysInfoType12v7b0ext(sysInfoType12v7b0ext);
+}
 
 const void *SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType12v6b0extIEs::theInfo,
@@ -48709,6 +54901,9 @@ const SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensions::SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensionsV6b0NonCriticalExtensions(const SysInfoType12v6b0extIEs& sysInfoType12v6b0ext) : Sequence(&theInfo) {
+	setSysInfoType12v6b0ext(sysInfoType12v6b0ext);
+}
 
 const void *SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType12v690extIEs::theInfo,
@@ -48727,6 +54922,9 @@ const SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriti
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensions::SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtensionV690NonCriticalExtensions(const SysInfoType12v690extIEs& sysInfoType12v690ext) : Sequence(&theInfo) {
+	setSysInfoType12v690ext(sysInfoType12v690ext);
+}
 
 const void *SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtension::itemsInfo[2] = {
 	&SysInfoType12v590extIEs::theInfo,
@@ -48745,6 +54943,9 @@ const SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtension::Info SysIn
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtension::SysInfoType12V4b0NonCriticalExtensionsV590NonCriticalExtension(const SysInfoType12v590extIEs& sysInfoType12v590ext) : Sequence(&theInfo) {
+	setSysInfoType12v590ext(sysInfoType12v590ext);
+}
 
 const void *SysInfoType12V4b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType12v4b0extIEs::theInfo,
@@ -48783,6 +54984,9 @@ const SysInfoType12::Info SysInfoType12::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+SysInfoType12::SysInfoType12(const MeasurementControlSysInfo& measurementControlSysInfo) : Sequence(&theInfo) {
+	setMeasurementControlSysInfo(measurementControlSysInfo);
+}
 
 const void *SysInfoType13v3a0extIEs::itemsInfo[1] = {
 	&UEIdleTimersAndConstantsv3a0ext::theInfo,
@@ -48799,6 +55003,9 @@ const SysInfoType13v3a0extIEs::Info SysInfoType13v3a0extIEs::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+SysInfoType13v3a0extIEs::SysInfoType13v3a0extIEs(const UEIdleTimersAndConstantsv3a0ext& ueIdleTimersAndConstantsv3a0ext) : Sequence(&theInfo) {
+	setUeIdleTimersAndConstantsv3a0ext(ueIdleTimersAndConstantsv3a0ext);
+}
 
 const void *SysInfoType13v4b0extIEs::itemsInfo[1] = {
 	&CapabilityUpdateRequirementr4ext::theInfo,
@@ -48863,6 +55070,9 @@ const SysInfoType13V3a0NonCriticalExtensionsV4b0NonCriticalExtensionsV770NonCrit
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType13V3a0NonCriticalExtensionsV4b0NonCriticalExtensionsV770NonCriticalExtensions::SysInfoType13V3a0NonCriticalExtensionsV4b0NonCriticalExtensionsV770NonCriticalExtensions(const SysInfoType13v770extIEs& sysInfoType13v770ext) : Sequence(&theInfo) {
+	setSysInfoType13v770ext(sysInfoType13v770ext);
+}
 
 const void *SysInfoType13V3a0NonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType13v4b0extIEs::theInfo,
@@ -48881,6 +55091,9 @@ const SysInfoType13V3a0NonCriticalExtensionsV4b0NonCriticalExtensions::Info SysI
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType13V3a0NonCriticalExtensionsV4b0NonCriticalExtensions::SysInfoType13V3a0NonCriticalExtensionsV4b0NonCriticalExtensions(const SysInfoType13v4b0extIEs& sysInfoType13v4b0ext) : Sequence(&theInfo) {
+	setSysInfoType13v4b0ext(sysInfoType13v4b0ext);
+}
 
 const void *SysInfoType13V3a0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType13v3a0extIEs::theInfo,
@@ -48899,6 +55112,9 @@ const SysInfoType13V3a0NonCriticalExtensions::Info SysInfoType13V3a0NonCriticalE
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType13V3a0NonCriticalExtensions::SysInfoType13V3a0NonCriticalExtensions(const SysInfoType13v3a0extIEs& sysInfoType13v3a0ext) : Sequence(&theInfo) {
+	setSysInfoType13v3a0ext(sysInfoType13v3a0ext);
+}
 
 const void *SysInfoType13::itemsInfo[4] = {
 	&CNDomainSysInfoList::theInfo,
@@ -48921,6 +55137,9 @@ const SysInfoType13::Info SysInfoType13::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+SysInfoType13::SysInfoType13(const CNDomainSysInfoList& cnDomainSysInfoList) : Sequence(&theInfo) {
+	setCnDomainSysInfoList(cnDomainSysInfoList);
+}
 
 const void *SysInfoType131NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -48953,6 +55172,9 @@ const SysInfoType131::Info SysInfoType131::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType131::SysInfoType131(const ANSI41RANDInformation& ansi41RANDInformation) : Sequence(&theInfo) {
+	setAnsi41RANDInformation(ansi41RANDInformation);
+}
 
 const void *SysInfoType132NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -48985,6 +55207,9 @@ const SysInfoType132::Info SysInfoType132::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType132::SysInfoType132(const ANSI41UserZoneIDInformation& ansi41UserZoneIDInformation) : Sequence(&theInfo) {
+	setAnsi41UserZoneIDInformation(ansi41UserZoneIDInformation);
+}
 
 const void *SysInfoType133NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49017,6 +55242,9 @@ const SysInfoType133::Info SysInfoType133::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType133::SysInfoType133(const ANSI41PrivateNeighbourListInfo& ansi41PrivateNeighbourListInfo) : Sequence(&theInfo) {
+	setAnsi41PrivateNeighbourListInfo(ansi41PrivateNeighbourListInfo);
+}
 
 const void *SysInfoType134NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49049,6 +55277,9 @@ const SysInfoType134::Info SysInfoType134::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType134::SysInfoType134(const ANSI41GlobalServiceRedirectInfo& ansi41GlobalServiceRedirectInfo) : Sequence(&theInfo) {
+	setAnsi41GlobalServiceRedirectInfo(ansi41GlobalServiceRedirectInfo);
+}
 
 const void *SysInfoType14NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49083,6 +55314,9 @@ const SysInfoType14::Info SysInfoType14::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+SysInfoType14::SysInfoType14(const IndividualTSInterferenceList& individualTSInterferenceList) : Sequence(&theInfo) {
+	setIndividualTSInterferenceList(individualTSInterferenceList);
+}
 
 const void *SysInfoType15v4b0extIEs::itemsInfo[1] = {
 	&UEPositioningIPDLParametersTDDr4ext::theInfo,
@@ -49115,6 +55349,9 @@ const SysInfoType15v770extIEs::Info SysInfoType15v770extIEs::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+SysInfoType15v770extIEs::SysInfoType15v770extIEs(const UEPositioningGPSReferenceTimev770ext& uePositioningGPSReferenceTime) : Sequence(&theInfo) {
+	setUePositioningGPSReferenceTime(uePositioningGPSReferenceTime);
+}
 
 const void *SysInfoType15V4b0NonCriticalExtensionsV770NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49147,6 +55384,9 @@ const SysInfoType15V4b0NonCriticalExtensionsV770NonCriticalExtensions::Info SysI
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType15V4b0NonCriticalExtensionsV770NonCriticalExtensions::SysInfoType15V4b0NonCriticalExtensionsV770NonCriticalExtensions(const SysInfoType15v770extIEs& sysInfoType15v770ext) : Sequence(&theInfo) {
+	setSysInfoType15v770ext(sysInfoType15v770ext);
+}
 
 const void *SysInfoType15V4b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType15v4b0extIEs::theInfo,
@@ -49165,6 +55405,9 @@ const SysInfoType15V4b0NonCriticalExtensions::Info SysInfoType15V4b0NonCriticalE
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType15V4b0NonCriticalExtensions::SysInfoType15V4b0NonCriticalExtensions(const SysInfoType15v4b0extIEs& sysInfoType15v4b0ext) : Sequence(&theInfo) {
+	setSysInfoType15v4b0ext(sysInfoType15v4b0ext);
+}
 
 const void *SysInfoType15::itemsInfo[5] = {
 	&UEPositioningCipherParameters::theInfo,
@@ -49189,6 +55432,10 @@ const SysInfoType15::Info SysInfoType15::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+SysInfoType15::SysInfoType15(const ReferenceLocation& uepositioningGPSReferenceLocation, const UEPositioningGPSReferenceTime& uepositioningGPSReferenceTime) : Sequence(&theInfo) {
+	setUepositioningGPSReferenceLocation(uepositioningGPSReferenceLocation);
+	setUepositioningGPSReferenceTime(uepositioningGPSReferenceTime);
+}
 
 const void *SysInfoType15bisv860extIEs::itemsInfo[2] = {
 	&UEPositioningGANSSAddIonoModel::theInfo,
@@ -49239,6 +55486,9 @@ const SysInfoType15bisV860NonCriticalExtensions::Info SysInfoType15bisV860NonCri
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType15bisV860NonCriticalExtensions::SysInfoType15bisV860NonCriticalExtensions(const SysInfoType15bisv860extIEs& sysInfoType15bisv860ext) : Sequence(&theInfo) {
+	setSysInfoType15bisv860ext(sysInfoType15bisv860ext);
+}
 
 const void *SysInfoType15bis::itemsInfo[4] = {
 	&ReferenceLocationGANSS::theInfo,
@@ -49261,6 +55511,10 @@ const SysInfoType15bis::Info SysInfoType15bis::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+SysInfoType15bis::SysInfoType15bis(const ReferenceLocationGANSS& uepositioningGANSSReferencePosition, const UEPositioningGANSSReferenceTime& uepositioningGANSSReferenceTime) : Sequence(&theInfo) {
+	setUepositioningGANSSReferencePosition(uepositioningGANSSReferencePosition);
+	setUepositioningGANSSReferenceTime(uepositioningGANSSReferenceTime);
+}
 
 const void *SysInfoType151v920extIEs::itemsInfo[1] = {
 	&UEPositioningGPSDGPSCorrectionsv920ext::theInfo,
@@ -49277,6 +55531,9 @@ const SysInfoType151v920extIEs::Info SysInfoType151v920extIEs::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+SysInfoType151v920extIEs::SysInfoType151v920extIEs(const UEPositioningGPSDGPSCorrectionsv920ext& uepositioningGPSDGPSCorrections) : Sequence(&theInfo) {
+	setUepositioningGPSDGPSCorrections(uepositioningGPSDGPSCorrections);
+}
 
 const void *SysInfoType151V920NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49309,6 +55566,9 @@ const SysInfoType151V920NonCriticalExtensions::Info SysInfoType151V920NonCritica
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType151V920NonCriticalExtensions::SysInfoType151V920NonCriticalExtensions(const SysInfoType151v920extIEs& sysInfoType151v920ext) : Sequence(&theInfo) {
+	setSysInfoType151v920ext(sysInfoType151v920ext);
+}
 
 const void *SysInfoType151::itemsInfo[2] = {
 	&UEPositioningGPSDGPSCorrections::theInfo,
@@ -49327,6 +55587,9 @@ const SysInfoType151::Info SysInfoType151::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType151::SysInfoType151(const UEPositioningGPSDGPSCorrections& uepositioningGPSDGPSCorrections) : Sequence(&theInfo) {
+	setUepositioningGPSDGPSCorrections(uepositioningGPSDGPSCorrections);
+}
 
 const void *SysInfoType151bisv920extIEs::itemsInfo[1] = {
 	&UEPositioningDGANSSCorrectionsv920ext::theInfo,
@@ -49343,6 +55606,9 @@ const SysInfoType151bisv920extIEs::Info SysInfoType151bisv920extIEs::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+SysInfoType151bisv920extIEs::SysInfoType151bisv920extIEs(const UEPositioningDGANSSCorrectionsv920ext& uepositioningGANSSDGANSSCorrections) : Sequence(&theInfo) {
+	setUepositioningGANSSDGANSSCorrections(uepositioningGANSSDGANSSCorrections);
+}
 
 const void *SysInfoType151bisV920NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49375,6 +55641,9 @@ const SysInfoType151bisV920NonCriticalExtensions::Info SysInfoType151bisV920NonC
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType151bisV920NonCriticalExtensions::SysInfoType151bisV920NonCriticalExtensions(const SysInfoType151bisv920extIEs& sysInfoType151bisv920ext) : Sequence(&theInfo) {
+	setSysInfoType151bisv920ext(sysInfoType151bisv920ext);
+}
 
 const void *SysInfoType151bis::itemsInfo[2] = {
 	&UEPositioningDGANSSCorrections::theInfo,
@@ -49393,6 +55662,9 @@ const SysInfoType151bis::Info SysInfoType151bis::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType151bis::SysInfoType151bis(const UEPositioningDGANSSCorrections& uepositioningGANSSDGANSSCorrections) : Sequence(&theInfo) {
+	setUepositioningGANSSDGANSSCorrections(uepositioningGANSSDGANSSCorrections);
+}
 
 const void *SysInfoType152NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49429,6 +55701,11 @@ const SysInfoType152::Info SysInfoType152::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+SysInfoType152::SysInfoType152(const GPSTOW1sec& transmissionTOW, const SatID& satID, const EphemerisParameter& ephemerisParameter) : Sequence(&theInfo) {
+	setTransmissionTOW(transmissionTOW);
+	setSatID(satID);
+	setEphemerisParameter(ephemerisParameter);
+}
 
 const void *SysInfoType152bisNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49461,6 +55738,9 @@ const SysInfoType152bis::Info SysInfoType152bis::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType152bis::SysInfoType152bis(const UEPositioningGANSSNavigationModel& uepositioningGANSSnavigationModel) : Sequence(&theInfo) {
+	setUepositioningGANSSnavigationModel(uepositioningGANSSnavigationModel);
+}
 
 const void *SysInfoType152terNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49493,6 +55773,9 @@ const SysInfoType152ter::Info SysInfoType152ter::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType152ter::SysInfoType152ter(const UEPositioningGANSSAddNavigationModels& uepositioningGANSSAddNavigationModels) : Sequence(&theInfo) {
+	setUepositioningGANSSAddNavigationModels(uepositioningGANSSAddNavigationModels);
+}
 
 const void *SysInfoType153NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49535,6 +55818,9 @@ const SysInfoType153::Info SysInfoType153::theInfo = {
 	itemsPres,
 	7, 6, 0
 };
+SysInfoType153::SysInfoType153(const GPSTOW1sec& transmissionTOW) : Sequence(&theInfo) {
+	setTransmissionTOW(transmissionTOW);
+}
 
 const void *SysInfoType153bisv860extIEs::itemsInfo[3] = {
 	&UEPositioningGANSSAlmanacv860ext::theInfo,
@@ -49587,6 +55873,9 @@ const SysInfoType153bisV860NonCriticalExtensions::Info SysInfoType153bisV860NonC
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType153bisV860NonCriticalExtensions::SysInfoType153bisV860NonCriticalExtensions(const SysInfoType153bisv860extIEs& sysInfoType153bisv860ext) : Sequence(&theInfo) {
+	setSysInfoType153bisv860ext(sysInfoType153bisv860ext);
+}
 
 const void *SysInfoType153bis::itemsInfo[4] = {
 	&UEPositioningGANSSAlmanac::theInfo,
@@ -49673,6 +55962,9 @@ const SysInfoType154V3a0NonCriticalExtensionsV4b0NonCriticalExtensions::Info Sys
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType154V3a0NonCriticalExtensionsV4b0NonCriticalExtensions::SysInfoType154V3a0NonCriticalExtensionsV4b0NonCriticalExtensions(const SysInfoType154v4b0ext& sysInfoType154v4b0ext) : Sequence(&theInfo) {
+	setSysInfoType154v4b0ext(sysInfoType154v4b0ext);
+}
 
 const void *SysInfoType154V3a0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType154v3a0ext::theInfo,
@@ -49691,6 +55983,9 @@ const SysInfoType154V3a0NonCriticalExtensions::Info SysInfoType154V3a0NonCritica
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType154V3a0NonCriticalExtensions::SysInfoType154V3a0NonCriticalExtensions(const SysInfoType154v3a0ext& sysInfoType154v3a0ext) : Sequence(&theInfo) {
+	setSysInfoType154v3a0ext(sysInfoType154v3a0ext);
+}
 
 const void *SysInfoType154::itemsInfo[3] = {
 	&UEPositioningCipherParameters::theInfo,
@@ -49711,6 +56006,9 @@ const SysInfoType154::Info SysInfoType154::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+SysInfoType154::SysInfoType154(const UEPositioningOTDOAAssistanceData& uepositioningOTDOAAssistanceData) : Sequence(&theInfo) {
+	setUepositioningOTDOAAssistanceData(uepositioningOTDOAAssistanceData);
+}
 
 const void *SysInfoType155v3a0ext::itemsInfo[1] = {
 	&SFNOffsetValidity::theInfo,
@@ -49775,6 +56073,9 @@ const SysInfoType155V3a0NonCriticalExtensionsV770NonCriticalExtensions::Info Sys
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType155V3a0NonCriticalExtensionsV770NonCriticalExtensions::SysInfoType155V3a0NonCriticalExtensionsV770NonCriticalExtensions(const SysInfoType155v770extIEs& sysInfoType155v770ext) : Sequence(&theInfo) {
+	setSysInfoType155v770ext(sysInfoType155v770ext);
+}
 
 const void *SysInfoType155V3a0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType155v3a0ext::theInfo,
@@ -49793,6 +56094,9 @@ const SysInfoType155V3a0NonCriticalExtensions::Info SysInfoType155V3a0NonCritica
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType155V3a0NonCriticalExtensions::SysInfoType155V3a0NonCriticalExtensions(const SysInfoType155v3a0ext& sysInfoType155v3a0ext) : Sequence(&theInfo) {
+	setSysInfoType155v3a0ext(sysInfoType155v3a0ext);
+}
 
 const void *SysInfoType155::itemsInfo[2] = {
 	&UEPositioningOTDOAAssistanceDataUEB::theInfo,
@@ -49811,6 +56115,9 @@ const SysInfoType155::Info SysInfoType155::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType155::SysInfoType155(const UEPositioningOTDOAAssistanceDataUEB& uepositioningOTDOAAssistanceDataUEB) : Sequence(&theInfo) {
+	setUepositioningOTDOAAssistanceDataUEB(uepositioningOTDOAAssistanceDataUEB);
+}
 
 const void *SysInfoType156NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49845,6 +56152,10 @@ const SysInfoType156::Info SysInfoType156::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+SysInfoType156::SysInfoType156(const SysInfoType156UepositioningGANSSTOD& sysInfoType156UepositioningGANSSTOD, const UEPositioningGANSSReferenceMeasurementInfo& uepositioningGANSSReferenceMeasurementInformation) : Sequence(&theInfo) {
+	setSysInfoType156UepositioningGANSSTOD(sysInfoType156UepositioningGANSSTOD);
+	setUepositioningGANSSReferenceMeasurementInformation(uepositioningGANSSReferenceMeasurementInformation);
+}
 
 const void *SysInfoType157NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49877,6 +56188,9 @@ const SysInfoType157::Info SysInfoType157::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType157::SysInfoType157(const UEPositioningGANSSDataBitAssistance& uepositioningGANSSDataBitAssistance) : Sequence(&theInfo) {
+	setUepositioningGANSSDataBitAssistance(uepositioningGANSSDataBitAssistance);
+}
 
 const void *SysInfoType158NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49927,6 +56241,9 @@ const SysInfoType16v770extIEs::Info SysInfoType16v770extIEs::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+SysInfoType16v770extIEs::SysInfoType16v770extIEs(const PreDefRadioConfigurationv770ext& preDefinedRadioConfiguration) : Sequence(&theInfo) {
+	setPreDefinedRadioConfiguration(preDefinedRadioConfiguration);
+}
 
 const void *SysInfoType16v920extIEs::itemsInfo[1] = {
 	&PreDefRadioConfigurationv920ext::theInfo,
@@ -49943,6 +56260,9 @@ const SysInfoType16v920extIEs::Info SysInfoType16v920extIEs::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+SysInfoType16v920extIEs::SysInfoType16v920extIEs(const PreDefRadioConfigurationv920ext& preDefinedRadioConfiguration) : Sequence(&theInfo) {
+	setPreDefinedRadioConfiguration(preDefinedRadioConfiguration);
+}
 
 const void *SysInfoType16V770NonCriticalExtensionsV920NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -49975,6 +56295,9 @@ const SysInfoType16V770NonCriticalExtensionsV920NonCriticalExtensions::Info SysI
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType16V770NonCriticalExtensionsV920NonCriticalExtensions::SysInfoType16V770NonCriticalExtensionsV920NonCriticalExtensions(const SysInfoType16v920extIEs& sysInfoType16v920ext) : Sequence(&theInfo) {
+	setSysInfoType16v920ext(sysInfoType16v920ext);
+}
 
 const void *SysInfoType16V770NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType16v770extIEs::theInfo,
@@ -49993,6 +56316,9 @@ const SysInfoType16V770NonCriticalExtensions::Info SysInfoType16V770NonCriticalE
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType16V770NonCriticalExtensions::SysInfoType16V770NonCriticalExtensions(const SysInfoType16v770extIEs& sysInfoType16v770ext) : Sequence(&theInfo) {
+	setSysInfoType16v770ext(sysInfoType16v770ext);
+}
 
 const void *SysInfoType16::itemsInfo[2] = {
 	&PreDefRadioConfiguration::theInfo,
@@ -50011,6 +56337,9 @@ const SysInfoType16::Info SysInfoType16::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType16::SysInfoType16(const PreDefRadioConfiguration& preDefinedRadioConfiguration) : Sequence(&theInfo) {
+	setPreDefinedRadioConfiguration(preDefinedRadioConfiguration);
+}
 
 const void *SysInfoType17v4b0extIEsTdd128SpecificInfo::itemsInfo[2] = {
 	&PUSCHSysInfoListLCRr4::theInfo,
@@ -50145,6 +56474,9 @@ const SysInfoType17V4b0NonCriticalExtensionsV590NonCriticalExtensionsV770NonCrit
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType17V4b0NonCriticalExtensionsV590NonCriticalExtensionsV770NonCriticalExtensions::SysInfoType17V4b0NonCriticalExtensionsV590NonCriticalExtensionsV770NonCriticalExtensions(const SysInfoType17v770extIEs& sysInfoType17v770ext) : Sequence(&theInfo) {
+	setSysInfoType17v770ext(sysInfoType17v770ext);
+}
 
 const void *SysInfoType17V4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType17v590extIEs::theInfo,
@@ -50181,6 +56513,9 @@ const SysInfoType17V4b0NonCriticalExtensions::Info SysInfoType17V4b0NonCriticalE
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType17V4b0NonCriticalExtensions::SysInfoType17V4b0NonCriticalExtensions(const SysInfoType17v4b0extIEs& sysInfoType17v4b0ext) : Sequence(&theInfo) {
+	setSysInfoType17v4b0ext(sysInfoType17v4b0ext);
+}
 
 const void *SysInfoType17::itemsInfo[3] = {
 	&PUSCHSysInfoList::theInfo,
@@ -50269,6 +56604,9 @@ const SysInfoType18V6b0NonCriticalExtensionsV860NonCriticalExtensions::Info SysI
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType18V6b0NonCriticalExtensionsV860NonCriticalExtensions::SysInfoType18V6b0NonCriticalExtensionsV860NonCriticalExtensions(const SysInfoType18v860ext& sysInfoType18v860ext) : Sequence(&theInfo) {
+	setSysInfoType18v860ext(sysInfoType18v860ext);
+}
 
 const void *SysInfoType18V6b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoType18v6b0ext::theInfo,
@@ -50287,6 +56625,9 @@ const SysInfoType18V6b0NonCriticalExtensions::Info SysInfoType18V6b0NonCriticalE
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType18V6b0NonCriticalExtensions::SysInfoType18V6b0NonCriticalExtensions(const SysInfoType18v6b0ext& sysInfoType18v6b0ext) : Sequence(&theInfo) {
+	setSysInfoType18v6b0ext(sysInfoType18v6b0ext);
+}
 
 const void *SysInfoType18::itemsInfo[3] = {
 	&PLMNIdentitiesOfNeighbourCells::theInfo,
@@ -50325,6 +56666,10 @@ const SysInfoType19v920ext::Info SysInfoType19v920ext::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SysInfoType19v920ext::SysInfoType19v920ext(const UTRAPriorityInfoListv920ext& utraPriorityInfoListv920ext, const EUTRAFrequencyAndPriorityInfoListv920ext& eutraFrequencyAndPriorityInfoListv920ext) : Sequence(&theInfo) {
+	setUtraPriorityInfoListv920ext(utraPriorityInfoListv920ext);
+	setEutraFrequencyAndPriorityInfoListv920ext(eutraFrequencyAndPriorityInfoListv920ext);
+}
 
 const void *SysInfoType19V920NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -50357,6 +56702,9 @@ const SysInfoType19V920NonCriticalExtensions::Info SysInfoType19V920NonCriticalE
 	itemsPres,
 	2, 1, 0
 };
+SysInfoType19V920NonCriticalExtensions::SysInfoType19V920NonCriticalExtensions(const SysInfoType19v920ext& sysInfoType19v920ext) : Sequence(&theInfo) {
+	setSysInfoType19v920ext(sysInfoType19v920ext);
+}
 
 const void *SysInfoType19::itemsInfo[4] = {
 	&UTRAPriorityInfoList::theInfo,
@@ -50379,6 +56727,9 @@ const SysInfoType19::Info SysInfoType19::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+SysInfoType19::SysInfoType19(const UTRAPriorityInfoList& utraPriorityInfoList) : Sequence(&theInfo) {
+	setUtraPriorityInfoList(utraPriorityInfoList);
+}
 
 const void *SysInfoType20NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -50477,6 +56828,9 @@ const SysInfoTypeSB1V6b0NonCriticalExtensionsV860NonCriticalExtensions::Info Sys
 	itemsPres,
 	2, 1, 0
 };
+SysInfoTypeSB1V6b0NonCriticalExtensionsV860NonCriticalExtensions::SysInfoTypeSB1V6b0NonCriticalExtensionsV860NonCriticalExtensions(const SysInfoTypeSB1v860ext& sysInfoTypeSB1v860ext) : Sequence(&theInfo) {
+	setSysInfoTypeSB1v860ext(sysInfoTypeSB1v860ext);
+}
 
 const void *SysInfoTypeSB1V6b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoTypeSB1v6b0ext::theInfo,
@@ -50495,6 +56849,9 @@ const SysInfoTypeSB1V6b0NonCriticalExtensions::Info SysInfoTypeSB1V6b0NonCritica
 	itemsPres,
 	2, 1, 0
 };
+SysInfoTypeSB1V6b0NonCriticalExtensions::SysInfoTypeSB1V6b0NonCriticalExtensions(const SysInfoTypeSB1v6b0ext& sysInfoTypeSB1v6b0ext) : Sequence(&theInfo) {
+	setSysInfoTypeSB1v6b0ext(sysInfoTypeSB1v6b0ext);
+}
 
 const void *SysInfoTypeSB1::itemsInfo[2] = {
 	&SIBReferenceList::theInfo,
@@ -50513,6 +56870,9 @@ const SysInfoTypeSB1::Info SysInfoTypeSB1::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoTypeSB1::SysInfoTypeSB1(const SIBReferenceList& sibReferenceList) : Sequence(&theInfo) {
+	setSibReferenceList(sibReferenceList);
+}
 
 const void *SysInfoTypeSB2v6b0ext::itemsInfo[1] = {
 	&ExtSIBTypeInfoSchedulingInfoList::theInfo,
@@ -50579,6 +56939,9 @@ const SysInfoTypeSB2V6b0NonCriticalExtensionsV860NonCriticalExtensions::Info Sys
 	itemsPres,
 	2, 1, 0
 };
+SysInfoTypeSB2V6b0NonCriticalExtensionsV860NonCriticalExtensions::SysInfoTypeSB2V6b0NonCriticalExtensionsV860NonCriticalExtensions(const SysInfoTypeSB2v860ext& sysInfoTypeSB2v860ext) : Sequence(&theInfo) {
+	setSysInfoTypeSB2v860ext(sysInfoTypeSB2v860ext);
+}
 
 const void *SysInfoTypeSB2V6b0NonCriticalExtensions::itemsInfo[2] = {
 	&SysInfoTypeSB2v6b0ext::theInfo,
@@ -50597,6 +56960,9 @@ const SysInfoTypeSB2V6b0NonCriticalExtensions::Info SysInfoTypeSB2V6b0NonCritica
 	itemsPres,
 	2, 1, 0
 };
+SysInfoTypeSB2V6b0NonCriticalExtensions::SysInfoTypeSB2V6b0NonCriticalExtensions(const SysInfoTypeSB2v6b0ext& sysInfoTypeSB2v6b0ext) : Sequence(&theInfo) {
+	setSysInfoTypeSB2v6b0ext(sysInfoTypeSB2v6b0ext);
+}
 
 const void *SysInfoTypeSB2::itemsInfo[2] = {
 	&SIBReferenceList::theInfo,
@@ -50615,6 +56981,9 @@ const SysInfoTypeSB2::Info SysInfoTypeSB2::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SysInfoTypeSB2::SysInfoTypeSB2(const SIBReferenceList& sibReferenceList) : Sequence(&theInfo) {
+	setSibReferenceList(sibReferenceList);
+}
 
 const void *UEHistoryInformation::itemsInfo[4] = {
 	&UEHistoryInformationUeInactivityPeriod::theInfo,
@@ -50637,6 +57006,9 @@ const UEHistoryInformation::Info UEHistoryInformation::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+UEHistoryInformation::UEHistoryInformation(const UEHistoryInformationUeInactivityPeriod& uEHistoryInformationUeInactivityPeriod) : Sequence(&theInfo) {
+	setUEHistoryInformationUeInactivityPeriod(uEHistoryInformationUeInactivityPeriod);
+}
 
 const void *MBMSCommonRBInformationr6::itemsInfo[3] = {
 	&MBMSCommonRBIdentity::theInfo,
@@ -50657,6 +57029,11 @@ const MBMSCommonRBInformationr6::Info MBMSCommonRBInformationr6::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+MBMSCommonRBInformationr6::MBMSCommonRBInformationr6(const MBMSCommonRBIdentity& commonRBIdentity, const PDCPInfor4& pdcpInfo, const RLCInfoMTCHr6& rlcInfo) : Sequence(&theInfo) {
+	setCommonRBIdentity(commonRBIdentity);
+	setPdcpInfo(pdcpInfo);
+	setRlcInfo(rlcInfo);
+}
 
 const void *MBMSConnectedModeCountingScope::itemsInfo[3] = {
 	&MBMSConnectedModeCountingScopeCountingForUraPCH::theInfo,
@@ -50677,6 +57054,11 @@ const MBMSConnectedModeCountingScope::Info MBMSConnectedModeCountingScope::theIn
 	itemsPres,
 	3, 0, 0
 };
+MBMSConnectedModeCountingScope::MBMSConnectedModeCountingScope(const MBMSConnectedModeCountingScopeCountingForUraPCH& mBMSConnectedModeCountingScopeCountingForUraPCH, const MBMSConnectedModeCountingScopeCountingForCellPCH& mBMSConnectedModeCountingScopeCountingForCellPCH, const MBMSConnectedModeCountingScopeCountingForCellFACH& mBMSConnectedModeCountingScopeCountingForCellFACH) : Sequence(&theInfo) {
+	setMBMSConnectedModeCountingScopeCountingForUraPCH(mBMSConnectedModeCountingScopeCountingForUraPCH);
+	setMBMSConnectedModeCountingScopeCountingForCellPCH(mBMSConnectedModeCountingScopeCountingForCellPCH);
+	setMBMSConnectedModeCountingScopeCountingForCellFACH(mBMSConnectedModeCountingScopeCountingForCellFACH);
+}
 
 const void *MBMSPTMRBInformationC::itemsInfo[3] = {
 	&MBMSCommonRBIdentity::theInfo,
@@ -50697,6 +57079,11 @@ const MBMSPTMRBInformationC::Info MBMSPTMRBInformationC::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+MBMSPTMRBInformationC::MBMSPTMRBInformationC(const MBMSCommonRBIdentity& rbInformation, const MBMSShortTransmissionID& shortTransmissionID, const MBMSLogicalChIdentity& logicalChIdentity) : Sequence(&theInfo) {
+	setRbInformation(rbInformation);
+	setShortTransmissionID(shortTransmissionID);
+	setLogicalChIdentity(logicalChIdentity);
+}
 
 const void *MBMSTrCHInformationCurr::itemsInfo[3] = {
 	&MBMSCommonTrChIdentity::theInfo,
@@ -50717,6 +57104,9 @@ const MBMSTrCHInformationCurr::Info MBMSTrCHInformationCurr::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+MBMSTrCHInformationCurr::MBMSTrCHInformationCurr(const MBMSCommonTrChIdentity& transpChInfo) : Sequence(&theInfo) {
+	setTranspChInfo(transpChInfo);
+}
 
 const void *MBMSCurrentCellSCCPCHr6::itemsInfo[5] = {
 	&MBMSSCCPCHIdentity::theInfo,
@@ -50741,6 +57131,10 @@ const MBMSCurrentCellSCCPCHr6::Info MBMSCurrentCellSCCPCHr6::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+MBMSCurrentCellSCCPCHr6::MBMSCurrentCellSCCPCHr6(const MBMSCommonPhyChIdentity& secondaryCCPCHInfo, const MBMSTrCHInformationCurrList& transpCHInformation) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfo(secondaryCCPCHInfo);
+	setTranspCHInformation(transpCHInformation);
+}
 
 const void *MBMSJoinedInformationr6::itemsInfo[1] = {
 	&PTMSIGSMMAP::theInfo,
@@ -50789,6 +57183,9 @@ const MBMSL1CombiningSchedule32::Info MBMSL1CombiningSchedule32::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MBMSL1CombiningSchedule32::MBMSL1CombiningSchedule32(const MBMSL1CombiningSchedule32MtchL1CombiningPeriodList& mBMSL1CombiningSchedule32MtchL1CombiningPeriodList) : Sequence(&theInfo) {
+	setMBMSL1CombiningSchedule32MtchL1CombiningPeriodList(mBMSL1CombiningSchedule32MtchL1CombiningPeriodList);
+}
 
 const void *MBMSL1CombiningSchedule64MtchL1CombiningPeriodList::itemsInfo[0] = {
 };
@@ -50821,6 +57218,9 @@ const MBMSL1CombiningSchedule64::Info MBMSL1CombiningSchedule64::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MBMSL1CombiningSchedule64::MBMSL1CombiningSchedule64(const MBMSL1CombiningSchedule64MtchL1CombiningPeriodList& mBMSL1CombiningSchedule64MtchL1CombiningPeriodList) : Sequence(&theInfo) {
+	setMBMSL1CombiningSchedule64MtchL1CombiningPeriodList(mBMSL1CombiningSchedule64MtchL1CombiningPeriodList);
+}
 
 const void *MBMSL1CombiningSchedule128MtchL1CombiningPeriodList::itemsInfo[0] = {
 };
@@ -50853,6 +57253,9 @@ const MBMSL1CombiningSchedule128::Info MBMSL1CombiningSchedule128::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MBMSL1CombiningSchedule128::MBMSL1CombiningSchedule128(const MBMSL1CombiningSchedule128MtchL1CombiningPeriodList& mBMSL1CombiningSchedule128MtchL1CombiningPeriodList) : Sequence(&theInfo) {
+	setMBMSL1CombiningSchedule128MtchL1CombiningPeriodList(mBMSL1CombiningSchedule128MtchL1CombiningPeriodList);
+}
 
 const void *MBMSL1CombiningSchedule256MtchL1CombiningPeriodList::itemsInfo[0] = {
 };
@@ -50885,6 +57288,9 @@ const MBMSL1CombiningSchedule256::Info MBMSL1CombiningSchedule256::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MBMSL1CombiningSchedule256::MBMSL1CombiningSchedule256(const MBMSL1CombiningSchedule256MtchL1CombiningPeriodList& mBMSL1CombiningSchedule256MtchL1CombiningPeriodList) : Sequence(&theInfo) {
+	setMBMSL1CombiningSchedule256MtchL1CombiningPeriodList(mBMSL1CombiningSchedule256MtchL1CombiningPeriodList);
+}
 
 const void *MBMSL1CombiningSchedule512MtchL1CombiningPeriodList::itemsInfo[0] = {
 };
@@ -50917,6 +57323,9 @@ const MBMSL1CombiningSchedule512::Info MBMSL1CombiningSchedule512::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MBMSL1CombiningSchedule512::MBMSL1CombiningSchedule512(const MBMSL1CombiningSchedule512MtchL1CombiningPeriodList& mBMSL1CombiningSchedule512MtchL1CombiningPeriodList) : Sequence(&theInfo) {
+	setMBMSL1CombiningSchedule512MtchL1CombiningPeriodList(mBMSL1CombiningSchedule512MtchL1CombiningPeriodList);
+}
 
 const void *MBMSL1CombiningSchedule1024MtchL1CombiningPeriodList::itemsInfo[0] = {
 };
@@ -50949,6 +57358,9 @@ const MBMSL1CombiningSchedule1024::Info MBMSL1CombiningSchedule1024::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MBMSL1CombiningSchedule1024::MBMSL1CombiningSchedule1024(const MBMSL1CombiningSchedule1024MtchL1CombiningPeriodList& mBMSL1CombiningSchedule1024MtchL1CombiningPeriodList) : Sequence(&theInfo) {
+	setMBMSL1CombiningSchedule1024MtchL1CombiningPeriodList(mBMSL1CombiningSchedule1024MtchL1CombiningPeriodList);
+}
 
 const void *MBMSL1CombiningSchedule::choicesInfo[6] = {
 	&MBMSL1CombiningSchedule32::theInfo,
@@ -50984,6 +57396,9 @@ const MBMSL23ConfigurationSameAsCurrent::Info MBMSL23ConfigurationSameAsCurrent:
 	itemsPres,
 	2, 1, 0
 };
+MBMSL23ConfigurationSameAsCurrent::MBMSL23ConfigurationSameAsCurrent(const MBMSSCCPCHIdentity& currentCellSCCPCH) : Sequence(&theInfo) {
+	setCurrentCellSCCPCH(currentCellSCCPCH);
+}
 
 const void *MBMSPTMRBInformationN::itemsInfo[3] = {
 	&MBMSShortTransmissionID::theInfo,
@@ -51004,6 +57419,11 @@ const MBMSPTMRBInformationN::Info MBMSPTMRBInformationN::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+MBMSPTMRBInformationN::MBMSPTMRBInformationN(const MBMSShortTransmissionID& shortTransmissionID, const MBMSLogicalChIdentity& logicalChIdentity, const MBMSPTMRBInformationNLayer1CombiningStatus& mBMSPTMRBInformationNLayer1CombiningStatus) : Sequence(&theInfo) {
+	setShortTransmissionID(shortTransmissionID);
+	setLogicalChIdentity(logicalChIdentity);
+	setMBMSPTMRBInformationNLayer1CombiningStatus(mBMSPTMRBInformationNLayer1CombiningStatus);
+}
 
 const void *MBMSTrCHInformationNeighb::itemsInfo[4] = {
 	&MBMSCommonTrChIdentity::theInfo,
@@ -51026,6 +57446,10 @@ const MBMSTrCHInformationNeighb::Info MBMSTrCHInformationNeighb::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+MBMSTrCHInformationNeighb::MBMSTrCHInformationNeighb(const MBMSCommonTrChIdentity& transpChInfo, const MBMSTrCHInformationNeighbTranspChCombiningStatus& mBMSTrCHInformationNeighbTranspChCombiningStatus) : Sequence(&theInfo) {
+	setTranspChInfo(transpChInfo);
+	setMBMSTrCHInformationNeighbTranspChCombiningStatus(mBMSTrCHInformationNeighbTranspChCombiningStatus);
+}
 
 const void *MBMSL23ConfigurationDifferent::itemsInfo[2] = {
 	&MBMSCommonCCTrChIdentity::theInfo,
@@ -51044,6 +57468,9 @@ const MBMSL23ConfigurationDifferent::Info MBMSL23ConfigurationDifferent::theInfo
 	itemsPres,
 	2, 1, 0
 };
+MBMSL23ConfigurationDifferent::MBMSL23ConfigurationDifferent(const MBMSTrCHInformationNeighbList& transpCHInformation) : Sequence(&theInfo) {
+	setTranspCHInformation(transpCHInformation);
+}
 
 const void *MBMSL23Configuration::choicesInfo[2] = {
 	&MBMSL23ConfigurationSameAsCurrent::theInfo,
@@ -51077,6 +57504,11 @@ const MBMSMICHConfigurationInfor6ModeFdd::Info MBMSMICHConfigurationInfor6ModeFd
 	itemsPres,
 	3, 0, 0
 };
+MBMSMICHConfigurationInfor6ModeFdd::MBMSMICHConfigurationInfor6ModeFdd(const ChannelisationCode256& channelisationCode256, const MBMSNICountPerFrame& niCountPerFrame, const MBMSMICHConfigurationInfor6ModeFddSttdIndicator& mBMSMICHConfigurationInfor6ModeFddSttdIndicator) : Sequence(&theInfo) {
+	setChannelisationCode256(channelisationCode256);
+	setNiCountPerFrame(niCountPerFrame);
+	setMBMSMICHConfigurationInfor6ModeFddSttdIndicator(mBMSMICHConfigurationInfor6ModeFddSttdIndicator);
+}
 
 const void *MBMSMICHConfigurationInfor6ModeTdd384::itemsInfo[5] = {
 	&TimeslotNumber::theInfo,
@@ -51101,6 +57533,11 @@ const MBMSMICHConfigurationInfor6ModeTdd384::Info MBMSMICHConfigurationInfor6Mod
 	itemsPres,
 	5, 2, 0
 };
+MBMSMICHConfigurationInfor6ModeTdd384::MBMSMICHConfigurationInfor6ModeTdd384(const TimeslotNumber& timeslot, const MidambleShiftAndBurstType& midambleShiftAndBurstType, const DLTSChannelisationCode& channelisationCode) : Sequence(&theInfo) {
+	setTimeslot(timeslot);
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+	setChannelisationCode(channelisationCode);
+}
 
 const void *MBMSMICHConfigurationInfor6ModeTdd128::itemsInfo[5] = {
 	&TimeslotNumberLCRr4::theInfo,
@@ -51125,6 +57562,11 @@ const MBMSMICHConfigurationInfor6ModeTdd128::Info MBMSMICHConfigurationInfor6Mod
 	itemsPres,
 	5, 2, 0
 };
+MBMSMICHConfigurationInfor6ModeTdd128::MBMSMICHConfigurationInfor6ModeTdd128(const TimeslotNumberLCRr4& timeslot, const MidambleShiftAndBurstTypeLCRr4& midambleShiftAndBurstType, const MBMSMICHConfigurationInfor6ModeTdd128ChannelisationCodeList& mBMSMICHConfigurationInfor6ModeTdd128ChannelisationCodeList) : Sequence(&theInfo) {
+	setTimeslot(timeslot);
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+	setMBMSMICHConfigurationInfor6ModeTdd128ChannelisationCodeList(mBMSMICHConfigurationInfor6ModeTdd128ChannelisationCodeList);
+}
 
 const void *MBMSMICHConfigurationInfor6Mode::choicesInfo[3] = {
 	&MBMSMICHConfigurationInfor6ModeFdd::theInfo,
@@ -51157,6 +57599,9 @@ const MBMSMICHConfigurationInfor6::Info MBMSMICHConfigurationInfor6::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MBMSMICHConfigurationInfor6::MBMSMICHConfigurationInfor6(const MBMSMICHPowerOffset& michPowerOffset) : Sequence(&theInfo) {
+	setMichPowerOffset(michPowerOffset);
+}
 
 const void *MBMSMICHConfigurationInfov770extModeTdd384::itemsInfo[1] = {
 	&MidambleShiftAndBurstTyper7::theInfo,
@@ -51173,6 +57618,9 @@ const MBMSMICHConfigurationInfov770extModeTdd384::Info MBMSMICHConfigurationInfo
 	itemsPres,
 	1, 0, 0
 };
+MBMSMICHConfigurationInfov770extModeTdd384::MBMSMICHConfigurationInfov770extModeTdd384(const MidambleShiftAndBurstTyper7& midambleShiftAndBurstType) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+}
 
 const void *MBMSMICHConfigurationInfov770extModeTdd768::itemsInfo[1] = {
 	&MidambleShiftAndBurstTypeVHCR::theInfo,
@@ -51189,6 +57637,9 @@ const MBMSMICHConfigurationInfov770extModeTdd768::Info MBMSMICHConfigurationInfo
 	itemsPres,
 	1, 0, 0
 };
+MBMSMICHConfigurationInfov770extModeTdd768::MBMSMICHConfigurationInfov770extModeTdd768(const MidambleShiftAndBurstTypeVHCR& midambleShiftAndBurstType) : Sequence(&theInfo) {
+	setMidambleShiftAndBurstType(midambleShiftAndBurstType);
+}
 
 const void *MBMSMICHConfigurationInfov770extModeTdd128::itemsInfo[1] = {
 	&TimeSlotLCRext::theInfo,
@@ -51235,6 +57686,9 @@ const MBMSMICHConfigurationInfov770ext::Info MBMSMICHConfigurationInfov770ext::t
 	itemsPres,
 	1, 0, 0
 };
+MBMSMICHConfigurationInfov770ext::MBMSMICHConfigurationInfov770ext(const MBMSMICHConfigurationInfov770extMode& mBMSMICHConfigurationInfov770extMode) : Sequence(&theInfo) {
+	setMBMSMICHConfigurationInfov770extMode(mBMSMICHConfigurationInfov770extMode);
+}
 
 const void *MBMSMICHConfigurationInfov890extModeImb384::itemsInfo[2] = {
 	&ChannelisationCode256::theInfo,
@@ -51253,6 +57707,10 @@ const MBMSMICHConfigurationInfov890extModeImb384::Info MBMSMICHConfigurationInfo
 	itemsPres,
 	2, 0, 0
 };
+MBMSMICHConfigurationInfov890extModeImb384::MBMSMICHConfigurationInfov890extModeImb384(const ChannelisationCode256& channelisationCode256, const MBMSNICountPerFrameIMB384& niCountPerFrame) : Sequence(&theInfo) {
+	setChannelisationCode256(channelisationCode256);
+	setNiCountPerFrame(niCountPerFrame);
+}
 
 const void *MBMSMICHConfigurationInfov890extMode::choicesInfo[1] = {
 	&MBMSMICHConfigurationInfov890extModeImb384::theInfo,
@@ -51281,6 +57739,9 @@ const MBMSMICHConfigurationInfov890ext::Info MBMSMICHConfigurationInfov890ext::t
 	itemsPres,
 	1, 0, 0
 };
+MBMSMICHConfigurationInfov890ext::MBMSMICHConfigurationInfov890ext(const MBMSMICHConfigurationInfov890extMode& mBMSMICHConfigurationInfov890extMode) : Sequence(&theInfo) {
+	setMBMSMICHConfigurationInfov890extMode(mBMSMICHConfigurationInfov890extMode);
+}
 
 const void *MBMSServiceIdentityr6PlmnIdentityOther::choicesInfo[2] = {
 	&MBMSServiceIdentityr6PlmnIdentityOtherSameAsMIBMultiPLMNId::theInfo,
@@ -51325,6 +57786,10 @@ const MBMSServiceIdentityr6::Info MBMSServiceIdentityr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MBMSServiceIdentityr6::MBMSServiceIdentityr6(const MBMSServiceIdentityr6ServiceIdentity& mBMSServiceIdentityr6ServiceIdentity, const MBMSServiceIdentityr6PlmnIdentity& mBMSServiceIdentityr6PlmnIdentity) : Sequence(&theInfo) {
+	setMBMSServiceIdentityr6ServiceIdentity(mBMSServiceIdentityr6ServiceIdentity);
+	setMBMSServiceIdentityr6PlmnIdentity(mBMSServiceIdentityr6PlmnIdentity);
+}
 
 const void *MBMSTransmissionIdentity::itemsInfo[2] = {
 	&MBMSServiceIdentityr6::theInfo,
@@ -51343,6 +57808,9 @@ const MBMSTransmissionIdentity::Info MBMSTransmissionIdentity::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MBMSTransmissionIdentity::MBMSTransmissionIdentity(const MBMSServiceIdentityr6& mbmsServiceIdentity) : Sequence(&theInfo) {
+	setMbmsServiceIdentity(mbmsServiceIdentity);
+}
 
 const void *MBMSModifedServicer6MbmsPreferredFrequency::choicesInfo[2] = {
 	&MBMSPFLIndex::theInfo,
@@ -51380,6 +57848,11 @@ const MBMSModifedServicer6::Info MBMSModifedServicer6::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+MBMSModifedServicer6::MBMSModifedServicer6(const MBMSTransmissionIdentity& mbmsTransmissionIdentity, const MBMSRequiredUEActionMod& mbmsRequiredUEAction, const MBMSModifedServicer6ContinueMCCHReading& mBMSModifedServicer6ContinueMCCHReading) : Sequence(&theInfo) {
+	setMbmsTransmissionIdentity(mbmsTransmissionIdentity);
+	setMbmsRequiredUEAction(mbmsRequiredUEAction);
+	setMBMSModifedServicer6ContinueMCCHReading(mBMSModifedServicer6ContinueMCCHReading);
+}
 
 const void *MBMSModifiedServicev770ext::itemsInfo[1] = {
 	&MBSFNClusterFrequencyr7::theInfo,
@@ -51432,6 +57905,10 @@ const MBMSNeighbouringCellSCCPCHr6Layer1CombiningFdd::Info MBMSNeighbouringCellS
 	itemsPres,
 	3, 1, 0
 };
+MBMSNeighbouringCellSCCPCHr6Layer1CombiningFdd::MBMSNeighbouringCellSCCPCHr6Layer1CombiningFdd(const MBMSSoftCombTimingOffset& softCombTimingOffset, const MBMSL1CombiningTransmTimeDiff& mbmsL1CombiningTransmTimeDiff) : Sequence(&theInfo) {
+	setSoftCombTimingOffset(softCombTimingOffset);
+	setMbmsL1CombiningTransmTimeDiff(mbmsL1CombiningTransmTimeDiff);
+}
 
 const void *MBMSNeighbouringCellSCCPCHr6Layer1Combining::choicesInfo[2] = {
 	&MBMSNeighbouringCellSCCPCHr6Layer1CombiningFdd::theInfo,
@@ -51467,6 +57944,10 @@ const MBMSNeighbouringCellSCCPCHr6::Info MBMSNeighbouringCellSCCPCHr6::theInfo =
 	itemsPres,
 	4, 2, 0
 };
+MBMSNeighbouringCellSCCPCHr6::MBMSNeighbouringCellSCCPCHr6(const MBMSCommonPhyChIdentity& secondaryCCPCHInfo, const MBMSL23Configuration& mbmsL23Configuration) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfo(secondaryCCPCHInfo);
+	setMbmsL23Configuration(mbmsL23Configuration);
+}
 
 const void *MBMSNeighbouringCellSCCPCHv770extLayer1CombiningFdd::itemsInfo[3] = {
 	&MBMSSoftCombTimingOffset::theInfo,
@@ -51487,6 +57968,10 @@ const MBMSNeighbouringCellSCCPCHv770extLayer1CombiningFdd::Info MBMSNeighbouring
 	itemsPres,
 	3, 1, 0
 };
+MBMSNeighbouringCellSCCPCHv770extLayer1CombiningFdd::MBMSNeighbouringCellSCCPCHv770extLayer1CombiningFdd(const MBMSSoftCombTimingOffset& softCombTimingOffset, const MBMSL1CombiningTransmTimeDiff& mbmsL1CombiningTransmTimeDiff) : Sequence(&theInfo) {
+	setSoftCombTimingOffset(softCombTimingOffset);
+	setMbmsL1CombiningTransmTimeDiff(mbmsL1CombiningTransmTimeDiff);
+}
 
 const void *MBMSNeighbouringCellSCCPCHv770extLayer1Combining::choicesInfo[2] = {
 	&MBMSNeighbouringCellSCCPCHv770extLayer1CombiningFdd::theInfo,
@@ -51524,6 +58009,10 @@ const MBMSNeighbouringCellSCCPCHv770ext::Info MBMSNeighbouringCellSCCPCHv770ext:
 	itemsPres,
 	5, 3, 0
 };
+MBMSNeighbouringCellSCCPCHv770ext::MBMSNeighbouringCellSCCPCHv770ext(const SecondaryCCPCHInfoDiffMBMS& secondaryCCPCHInfoDiff, const MBMSL23Configuration& mbmsL23Configuration) : Sequence(&theInfo) {
+	setSecondaryCCPCHInfoDiff(secondaryCCPCHInfoDiff);
+	setMbmsL23Configuration(mbmsL23Configuration);
+}
 
 const void *MBMSNetworkStandardTimeInformationLCRv890ext::itemsInfo[2] = {
 	&MBMSNetworkStandardTimeInformationLCRv890extNetworkStandardTime::theInfo,
@@ -51542,6 +58031,9 @@ const MBMSNetworkStandardTimeInformationLCRv890ext::Info MBMSNetworkStandardTime
 	itemsPres,
 	2, 1, 0
 };
+MBMSNetworkStandardTimeInformationLCRv890ext::MBMSNetworkStandardTimeInformationLCRv890ext(const MBMSNetworkStandardTimeInformationLCRv890extNetworkStandardTime& mBMSNetworkStandardTimeInformationLCRv890extNetworkStandardTime) : Sequence(&theInfo) {
+	setMBMSNetworkStandardTimeInformationLCRv890extNetworkStandardTime(mBMSNetworkStandardTimeInformationLCRv890extNetworkStandardTime);
+}
 
 const void *MBMSPhyChInformationIMB384::itemsInfo[2] = {
 	&MBMSCommonPhyChIdentity::theInfo,
@@ -51560,6 +58052,10 @@ const MBMSPhyChInformationIMB384::Info MBMSPhyChInformationIMB384::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MBMSPhyChInformationIMB384::MBMSPhyChInformationIMB384(const MBMSCommonPhyChIdentity& mbmsCommonPhyChIdentity, const SecondaryCCPCHFrameType2Info& secondaryCCPCHInfoMBMS) : Sequence(&theInfo) {
+	setMbmsCommonPhyChIdentity(mbmsCommonPhyChIdentity);
+	setSecondaryCCPCHInfoMBMS(secondaryCCPCHInfoMBMS);
+}
 
 const void *MBMSPhyChInformationr6::itemsInfo[2] = {
 	&MBMSCommonPhyChIdentity::theInfo,
@@ -51578,6 +58074,10 @@ const MBMSPhyChInformationr6::Info MBMSPhyChInformationr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MBMSPhyChInformationr6::MBMSPhyChInformationr6(const MBMSCommonPhyChIdentity& mbmsCommonPhyChIdentity, const SecondaryCCPCHInfoMBMSr6& secondaryCCPCHInfoMBMS) : Sequence(&theInfo) {
+	setMbmsCommonPhyChIdentity(mbmsCommonPhyChIdentity);
+	setSecondaryCCPCHInfoMBMS(secondaryCCPCHInfoMBMS);
+}
 
 const void *MBMSPhyChInformationr7::itemsInfo[2] = {
 	&MBMSCommonPhyChIdentity::theInfo,
@@ -51596,6 +58096,10 @@ const MBMSPhyChInformationr7::Info MBMSPhyChInformationr7::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MBMSPhyChInformationr7::MBMSPhyChInformationr7(const MBMSCommonPhyChIdentity& mbmsCommonPhyChIdentity, const SecondaryCCPCHInfoMBMSr7& secondaryCCPCHInfoMBMS) : Sequence(&theInfo) {
+	setMbmsCommonPhyChIdentity(mbmsCommonPhyChIdentity);
+	setSecondaryCCPCHInfoMBMS(secondaryCCPCHInfoMBMS);
+}
 
 const void *MBMSPreferredFrequencyInfor6LayerConvergenceInformation::choicesInfo[2] = {
 	&MBMSQoffset::theInfo,
@@ -51629,6 +58133,9 @@ const MBMSPreferredFrequencyInfor6::Info MBMSPreferredFrequencyInfor6::theInfo =
 	itemsPres,
 	3, 2, 0
 };
+MBMSPreferredFrequencyInfor6::MBMSPreferredFrequencyInfor6(const MBMSPreferredFrequencyInfor6LayerConvergenceInformation& mBMSPreferredFrequencyInfor6LayerConvergenceInformation) : Sequence(&theInfo) {
+	setMBMSPreferredFrequencyInfor6LayerConvergenceInformation(mBMSPreferredFrequencyInfor6LayerConvergenceInformation);
+}
 
 const void *MBMSSelectedServiceInfoStatus::choicesInfo[2] = {
 	&MBMSSelectedServiceInfoStatusNone::theInfo,
@@ -51658,6 +58165,9 @@ const MBMSSelectedServiceInfo::Info MBMSSelectedServiceInfo::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MBMSSelectedServiceInfo::MBMSSelectedServiceInfo(const MBMSSelectedServiceInfoStatus& mBMSSelectedServiceInfoStatus) : Sequence(&theInfo) {
+	setMBMSSelectedServiceInfoStatus(mBMSSelectedServiceInfoStatus);
+}
 
 const void *MBMSSelectedServicesShort::itemsInfo[2] = {
 	&MBMSSelectedServicesListShort::theInfo,
@@ -51676,6 +58186,10 @@ const MBMSSelectedServicesShort::Info MBMSSelectedServicesShort::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MBMSSelectedServicesShort::MBMSSelectedServicesShort(const MBMSSelectedServicesListShort& mbmsSelectedServicesList, const MBMSSelectedServicesShortModificationPeriodIdentity& mBMSSelectedServicesShortModificationPeriodIdentity) : Sequence(&theInfo) {
+	setMbmsSelectedServicesList(mbmsSelectedServicesList);
+	setMBMSSelectedServicesShortModificationPeriodIdentity(mBMSSelectedServicesShortModificationPeriodIdentity);
+}
 
 const void *MBMSServiceAccessInfor6::itemsInfo[4] = {
 	&MBMSShortTransmissionID::theInfo,
@@ -51698,6 +58212,11 @@ const MBMSServiceAccessInfor6::Info MBMSServiceAccessInfor6::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+MBMSServiceAccessInfor6::MBMSServiceAccessInfor6(const MBMSShortTransmissionID& shortTransmissionID, const MBMSAccessProbabilityFactor& accessprobabilityFactorIdle, const MBMSConnectedModeCountingScope& mbmsConnectedModeCountingScope) : Sequence(&theInfo) {
+	setShortTransmissionID(shortTransmissionID);
+	setAccessprobabilityFactorIdle(accessprobabilityFactorIdle);
+	setMbmsConnectedModeCountingScope(mbmsConnectedModeCountingScope);
+}
 
 const void *MBMSServiceTransmInfo::itemsInfo[2] = {
 	&MBMSServiceTransmInfoStart::theInfo,
@@ -51716,6 +58235,10 @@ const MBMSServiceTransmInfo::Info MBMSServiceTransmInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MBMSServiceTransmInfo::MBMSServiceTransmInfo(const MBMSServiceTransmInfoStart& mBMSServiceTransmInfoStart, const MBMSServiceTransmInfoDuration& mBMSServiceTransmInfoDuration) : Sequence(&theInfo) {
+	setMBMSServiceTransmInfoStart(mBMSServiceTransmInfoStart);
+	setMBMSServiceTransmInfoDuration(mBMSServiceTransmInfoDuration);
+}
 
 const void *MBMSServiceSchedulingInfor6::itemsInfo[3] = {
 	&MBMSTransmissionIdentity::theInfo,
@@ -51736,6 +58259,10 @@ const MBMSServiceSchedulingInfor6::Info MBMSServiceSchedulingInfor6::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+MBMSServiceSchedulingInfor6::MBMSServiceSchedulingInfor6(const MBMSTransmissionIdentity& mbmsTransmissionIdentity, const MBMSServiceSchedulingInfor6NextSchedulingperiod& mBMSServiceSchedulingInfor6NextSchedulingperiod) : Sequence(&theInfo) {
+	setMbmsTransmissionIdentity(mbmsTransmissionIdentity);
+	setMBMSServiceSchedulingInfor6NextSchedulingperiod(mBMSServiceSchedulingInfor6NextSchedulingperiod);
+}
 
 const void *MBMSTrCHInformationSIB5::itemsInfo[3] = {
 	&MBMSTrCHInformationSIB5TranspChIdentity::theInfo,
@@ -51756,6 +58283,9 @@ const MBMSTrCHInformationSIB5::Info MBMSTrCHInformationSIB5::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+MBMSTrCHInformationSIB5::MBMSTrCHInformationSIB5(const MBMSTrCHInformationSIB5TranspChIdentity& mBMSTrCHInformationSIB5TranspChIdentity) : Sequence(&theInfo) {
+	setMBMSTrCHInformationSIB5TranspChIdentity(mBMSTrCHInformationSIB5TranspChIdentity);
+}
 
 const void *MBMSSIBType5SCCPCHr6::itemsInfo[2] = {
 	&MBMSSCCPCHIdentity::theInfo,
@@ -51774,6 +58304,10 @@ const MBMSSIBType5SCCPCHr6::Info MBMSSIBType5SCCPCHr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MBMSSIBType5SCCPCHr6::MBMSSIBType5SCCPCHr6(const MBMSSCCPCHIdentity& sccpchIdentity, const MBMSTrCHInformationSIB5List& transpCHInformation) : Sequence(&theInfo) {
+	setSccpchIdentity(sccpchIdentity);
+	setTranspCHInformation(transpCHInformation);
+}
 
 const void *MBMSTimersAndCountersr6::itemsInfo[1] = {
 	&T318::theInfo,
@@ -51808,6 +58342,10 @@ const MBMSTranspChInfoForCCTrChr6::Info MBMSTranspChInfoForCCTrChr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MBMSTranspChInfoForCCTrChr6::MBMSTranspChInfoForCCTrChr6(const MBMSCommonCCTrChIdentity& commonCCTrChIdentity, const TFCS& transportFormatCombinationSet) : Sequence(&theInfo) {
+	setCommonCCTrChIdentity(commonCCTrChIdentity);
+	setTransportFormatCombinationSet(transportFormatCombinationSet);
+}
 
 const void *MBMSTranspChInfoForTrChr6::itemsInfo[2] = {
 	&MBMSCommonTrChIdentity::theInfo,
@@ -51826,6 +58364,10 @@ const MBMSTranspChInfoForTrChr6::Info MBMSTranspChInfoForTrChr6::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MBMSTranspChInfoForTrChr6::MBMSTranspChInfoForTrChr6(const MBMSCommonTrChIdentity& commonTrChIdentity, const TransportFormatSet& transportFormatSet) : Sequence(&theInfo) {
+	setCommonTrChIdentity(commonTrChIdentity);
+	setTransportFormatSet(transportFormatSet);
+}
 
 const void *MBMSUnmodifiedServicer6::itemsInfo[3] = {
 	&MBMSTransmissionIdentity::theInfo,
@@ -51846,6 +58388,10 @@ const MBMSUnmodifiedServicer6::Info MBMSUnmodifiedServicer6::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+MBMSUnmodifiedServicer6::MBMSUnmodifiedServicer6(const MBMSTransmissionIdentity& mbmsTransmissionIdentity, const MBMSRequiredUEActionUMod& mbmsRequiredUEAction) : Sequence(&theInfo) {
+	setMbmsTransmissionIdentity(mbmsTransmissionIdentity);
+	setMbmsRequiredUEAction(mbmsRequiredUEAction);
+}
 
 const void *MBMSUnmodifiedServicev770ext::itemsInfo[1] = {
 	&MBSFNClusterFrequencyr7::theInfo,
@@ -51909,6 +58455,10 @@ const MBSFNInterFrequencyNeighbourr7::Info MBSFNInterFrequencyNeighbourr7::theIn
 	itemsPres,
 	2, 0, 0
 };
+MBSFNInterFrequencyNeighbourr7::MBSFNInterFrequencyNeighbourr7(const FrequencyInfo& mbsfnFrequency, const MBSFNInterFrequencyNeighbourr7MbsfnServicesNotification& mBSFNInterFrequencyNeighbourr7MbsfnServicesNotification) : Sequence(&theInfo) {
+	setMbsfnFrequency(mbsfnFrequency);
+	setMBSFNInterFrequencyNeighbourr7MbsfnServicesNotification(mBSFNInterFrequencyNeighbourr7MbsfnServicesNotification);
+}
 
 const void *MBSFNInterFrequencyNeighbourv860ext::itemsInfo[1] = {
 	&MBSFNInterFrequencyNeighbourv860extimb_Indication::theInfo,
@@ -51943,6 +58493,10 @@ const MBSFNTDDTimeSlotInfo::Info MBSFNTDDTimeSlotInfo::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MBSFNTDDTimeSlotInfo::MBSFNTDDTimeSlotInfo(const TimeslotNumberLCRr4& timeSlotNumber, const CellParametersID& cellParametersID) : Sequence(&theInfo) {
+	setTimeSlotNumber(timeSlotNumber);
+	setCellParametersID(cellParametersID);
+}
 
 const void *MBSFNTDDTimeSlotInfoLCR::itemsInfo[2] = {
 	&MBSFNTDDTimeSlotInfoLCRFrequencyIndex::theInfo,
@@ -51961,6 +58515,10 @@ const MBSFNTDDTimeSlotInfoLCR::Info MBSFNTDDTimeSlotInfoLCR::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+MBSFNTDDTimeSlotInfoLCR::MBSFNTDDTimeSlotInfoLCR(const MBSFNTDDTimeSlotInfoLCRFrequencyIndex& mBSFNTDDTimeSlotInfoLCRFrequencyIndex, const MBSFNTDDInformation& timeSlotList) : Sequence(&theInfo) {
+	setMBSFNTDDTimeSlotInfoLCRFrequencyIndex(mBSFNTDDTimeSlotInfoLCRFrequencyIndex);
+	setTimeSlotList(timeSlotList);
+}
 
 const void *MBSFNTDMInfo::itemsInfo[4] = {
 	&MBMSShortTransmissionID::theInfo,
@@ -51983,5 +58541,11 @@ const MBSFNTDMInfo::Info MBSFNTDMInfo::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+MBSFNTDMInfo::MBSFNTDMInfo(const MBMSShortTransmissionID& shortTransmissionID, const MBSFNTDMInfoTDMPeriod& mBSFNTDMInfoTDMPeriod, const MBSFNTDMInfoTDMOffset& mBSFNTDMInfoTDMOffset, const MBSFNTDMInfoTDMLength& mBSFNTDMInfoTDMLength) : Sequence(&theInfo) {
+	setShortTransmissionID(shortTransmissionID);
+	setMBSFNTDMInfoTDMPeriod(mBSFNTDMInfoTDMPeriod);
+	setMBSFNTDMInfoTDMOffset(mBSFNTDMInfoTDMOffset);
+	setMBSFNTDMInfoTDMLength(mBSFNTDMInfoTDMLength);
+}
 
 }

@@ -17,10 +17,12 @@
 
 package inet.nodes._4gsim;
 
+import inet.linklayer.lte.rrc.RRC;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.networklayer.common.InterfaceTable;
 import inet.applications.pingapp.PingApp;
 import inet.nodes.inet.NetworkLayer;
+import inet.util.DCTDump;
 import inet.util.subscriber.SubscriberTable;
 import inet.base.NotificationBoard;
 import inet.applications.nas.NAS;
@@ -71,6 +73,12 @@ module UE
         routingTable: RoutingTable {
             @display("p=266,54");
         }
+        rrc: RRC {
+            @display("p=381,281");
+        }
+        dctDump: DCTDump {
+            @display("p=381,398");
+        }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
 
@@ -80,4 +88,8 @@ module UE
         networkLayer.ifOut++ --> lteRadio.netIN;
         networkLayer.pingOut --> pingApp.pingIn;
         pingApp.pingOut --> networkLayer.pingIn;
+        rrc.rlcOut --> dctDump.netIn++;
+        dctDump.netOut++ --> rrc.rlcIn;
+        dctDump.ifOut++ --> rrc.nasIn;
+        rrc.nasOut --> dctDump.ifIn++;
 }

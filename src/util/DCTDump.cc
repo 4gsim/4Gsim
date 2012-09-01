@@ -18,6 +18,7 @@
 #include <errno.h>
 #include "DCTDump.h"
 #include "IPSerializer.h"
+#include "RRCMessage_m.h"
 
 #define MAXBUFLENGTH 65536
 #define MAXDCTLENGTH 100
@@ -61,7 +62,7 @@ void DCTDump::handleMessage(cMessage *msg) {
     if (dumpfile != NULL) {
         const simtime_t stime = simulation.getSimTime();
         std::stringstream vers;
-        const char *time = timestamp(stime);
+        std::string time = timestamp(stime);
         uint8 buf[MAXBUFLENGTH];
         int32 buf_len = 0;
         std::string ascii_buf;
@@ -86,6 +87,16 @@ void DCTDump::handleMessage(cMessage *msg) {
 
             buf_len = IPSerializer().serialize(ipPacket, buf, sizeof(buf));
         }
+        RRCMessage *rrcMsg = dynamic_cast<RRCMessage*>(msg);
+        if (rrcMsg) {
+            strncpy(p, "NAS_RRC_LTE.", 12);
+            p += 12;
+            write = true;
+            buf_len = rrcMsg->getValueArraySize();
+            for (int32 i = 0; i < buf_len; i++) {
+                buf[i] = rrcMsg->getValue(i);
+            }
+        }
 
         // context port number - always 1
         strncpy(p, "1/", 5);
@@ -103,6 +114,14 @@ void DCTDump::handleMessage(cMessage *msg) {
             *p = '/';
             p++;
         }
+        if (rrcMsg) {
+            // protocol name
+            strncpy(p, "nas_rrc_r8_lte/", 15);
+            p += 15;
+            // protocol version
+            strncpy(p, "1/", 2);
+            p += 2;
+        }
 
         // direction
         if (msg->getArrivalGate()->isName("ifIn")) {
@@ -114,8 +133,8 @@ void DCTDump::handleMessage(cMessage *msg) {
         // timestamp
         strncpy(p, " tm ", 4);
         p += 4;
-        strncpy(p, time, strlen(time));
-        p += strlen(time);
+        strncpy(p, time.c_str(), strlen(time.c_str()));
+        p += strlen(time.c_str());
 
         if (write) {
             fwrite(&dh, p - dh, 1, dumpfile);
@@ -133,12 +152,12 @@ void DCTDump::handleMessage(cMessage *msg) {
     send(msg, id);
 }
 
-const char *DCTDump::timestamp(simtime_t stime) {
+std::string DCTDump::timestamp(simtime_t stime) {
     std::stringstream out;
     out << (int32)stime.dbl();
     out << ".";
     out << (uint32)((stime.dbl() - (int32)stime.dbl())*1000000);
-    return out.str().c_str();
+    return out.str();
 }
 
 void DCTDump::finish() {

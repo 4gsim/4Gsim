@@ -56,6 +56,9 @@ const ActiveSetUpdater3IEs::Info ActiveSetUpdater3IEs::theInfo = {
 	itemsPres,
 	12, 11, 0
 };
+ActiveSetUpdater3IEs::ActiveSetUpdater3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *ActiveSetUpdatev4b0extIEs::itemsInfo[2] = {
 	&SSDTUL::theInfo,
@@ -92,6 +95,9 @@ const ActiveSetUpdatev590extIEs::Info ActiveSetUpdatev590extIEs::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ActiveSetUpdatev590extIEs::ActiveSetUpdatev590extIEs(const DPCMode& dpcMode) : Sequence(&theInfo) {
+	setDpcMode(dpcMode);
+}
 
 const void *ActiveSetUpdatev690extIEs::itemsInfo[1] = {
 	&PLMNIdentity::theInfo,
@@ -140,6 +146,9 @@ const ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590No
 	itemsPres,
 	2, 1, 0
 };
+ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions(const ActiveSetUpdatev690extIEs& activeSetUpdatev690ext) : Sequence(&theInfo) {
+	setActiveSetUpdatev690ext(activeSetUpdatev690ext);
+}
 
 const void *ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&ActiveSetUpdatev590extIEs::theInfo,
@@ -158,6 +167,9 @@ const ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590No
 	itemsPres,
 	2, 1, 0
 };
+ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const ActiveSetUpdatev590extIEs& activeSetUpdatev590ext) : Sequence(&theInfo) {
+	setActiveSetUpdatev590ext(activeSetUpdatev590ext);
+}
 
 const void *ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&ActiveSetUpdatev4b0extIEs::theInfo,
@@ -176,6 +188,9 @@ const ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::Info
 	itemsPres,
 	2, 1, 0
 };
+ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::ActiveSetUpdateR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions(const ActiveSetUpdatev4b0extIEs& activeSetUpdatev4b0ext) : Sequence(&theInfo) {
+	setActiveSetUpdatev4b0ext(activeSetUpdatev4b0ext);
+}
 
 const void *ActiveSetUpdateR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&ActiveSetUpdateR3LaterNonCriticalExtensionsActiveSetUpdater3addext::theInfo,
@@ -212,6 +227,9 @@ const ActiveSetUpdateR3::Info ActiveSetUpdateR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ActiveSetUpdateR3::ActiveSetUpdateR3(const ActiveSetUpdater3IEs& activeSetUpdater3) : Sequence(&theInfo) {
+	setActiveSetUpdater3(activeSetUpdater3);
+}
 
 const void *ActiveSetUpdater6IEs::itemsInfo[13] = {
 	&ActivationTime::theInfo,
@@ -300,6 +318,9 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsR6V6b0NonCriticalExtensions::I
 	itemsPres,
 	2, 1, 0
 };
+ActiveSetUpdateLaterthanr3CriticalExtensionsR6V6b0NonCriticalExtensions::ActiveSetUpdateLaterthanr3CriticalExtensionsR6V6b0NonCriticalExtensions(const ActiveSetUpdatev6b0extIEs& activeSetUpdatev6b0ext) : Sequence(&theInfo) {
+	setActiveSetUpdatev6b0ext(activeSetUpdatev6b0ext);
+}
 
 const void *ActiveSetUpdateLaterthanr3CriticalExtensionsR6::itemsInfo[3] = {
 	&ActiveSetUpdater6IEs::theInfo,
@@ -320,6 +341,9 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsR6::Info ActiveSetUpdateLatert
 	itemsPres,
 	3, 2, 0
 };
+ActiveSetUpdateLaterthanr3CriticalExtensionsR6::ActiveSetUpdateLaterthanr3CriticalExtensionsR6(const ActiveSetUpdater6IEs& activeSetUpdater6) : Sequence(&theInfo) {
+	setActiveSetUpdater6(activeSetUpdater6);
+}
 
 const void *ActiveSetUpdater7IEs::itemsInfo[21] = {
 	&ActivationTime::theInfo,
@@ -456,6 +480,9 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCri
 	itemsPres,
 	2, 1, 0
 };
+ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions::ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions(const ActiveSetUpdatev7g0extIEs& activeSetUdpatev7g0ext) : Sequence(&theInfo) {
+	setActiveSetUdpatev7g0ext(activeSetUdpatev7g0ext);
+}
 
 const void *ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&ActiveSetUpdatev7f0extIEs::theInfo,
@@ -474,6 +501,9 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCri
 	itemsPres,
 	2, 1, 0
 };
+ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7f0NonCriticalExtensions::ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7f0NonCriticalExtensions(const ActiveSetUpdatev7f0extIEs& activeSetUdpatev7f0ext) : Sequence(&theInfo) {
+	setActiveSetUdpatev7f0ext(activeSetUdpatev7f0ext);
+}
 
 const void *ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::itemsInfo[2] = {
 	&ActiveSetUpdatev780extIEs::theInfo,
@@ -492,6 +522,9 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCri
 	itemsPres,
 	2, 1, 0
 };
+ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions(const ActiveSetUpdatev780extIEs& activeSetUpdatev780ext) : Sequence(&theInfo) {
+	setActiveSetUpdatev780ext(activeSetUpdatev780ext);
+}
 
 const void *ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&ActiveSetUpdater7IEs::theInfo,
@@ -512,6 +545,9 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7::Info Act
 	itemsPres,
 	3, 2, 0
 };
+ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7::ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsR7(const ActiveSetUpdater7IEs& activeSetUpdater7) : Sequence(&theInfo) {
+	setActiveSetUpdater7(activeSetUpdater7);
+}
 
 const void *ActiveSetUpdater8IEs::itemsInfo[23] = {
 	&ActivationTime::theInfo,
@@ -624,6 +660,9 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExte
 	itemsPres,
 	2, 1, 0
 };
+ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR8V890NonCriticalExtensionsV7g0NonCriticalExtensions::ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR8V890NonCriticalExtensionsV7g0NonCriticalExtensions(const ActiveSetUpdatev7g0extIEs& activeSetUpdatev7g0ext) : Sequence(&theInfo) {
+	setActiveSetUpdatev7g0ext(activeSetUpdatev7g0ext);
+}
 
 const void *ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR8V890NonCriticalExtensions::itemsInfo[2] = {
 	&ActiveSetUpdatev890extIEs::theInfo,
@@ -642,6 +681,9 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExte
 	itemsPres,
 	2, 1, 0
 };
+ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR8V890NonCriticalExtensions::ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR8V890NonCriticalExtensions(const ActiveSetUpdatev890extIEs& activeSetUpdatev890ext) : Sequence(&theInfo) {
+	setActiveSetUpdatev890ext(activeSetUpdatev890ext);
+}
 
 const void *ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&ActiveSetUpdater8IEs::theInfo,
@@ -662,6 +704,9 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExte
 	itemsPres,
 	3, 2, 0
 };
+ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR8::ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR8(const ActiveSetUpdater8IEs& activeSetUpdater8) : Sequence(&theInfo) {
+	setActiveSetUpdater8(activeSetUpdater8);
+}
 
 const void *ActiveSetUpdater9IEs::itemsInfo[27] = {
 	&ActivationTime::theInfo,
@@ -780,6 +825,9 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExte
 	itemsPres,
 	2, 1, 0
 };
+ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions(const ActiveSetUpdatev950extIEs& activeSetUpdatev950ext) : Sequence(&theInfo) {
+	setActiveSetUpdatev950ext(activeSetUpdatev950ext);
+}
 
 const void *ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&ActiveSetUpdater9IEs::theInfo,
@@ -800,6 +848,9 @@ const ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExte
 	itemsPres,
 	3, 2, 0
 };
+ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9(const ActiveSetUpdater9IEs& activeSetUpdater9) : Sequence(&theInfo) {
+	setActiveSetUpdater9(activeSetUpdater9);
+}
 
 const void *ActiveSetUpdateLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -884,6 +935,10 @@ const ActiveSetUpdateLaterthanr3::Info ActiveSetUpdateLaterthanr3::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+ActiveSetUpdateLaterthanr3::ActiveSetUpdateLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const ActiveSetUpdateLaterthanr3CriticalExtensions& activeSetUpdateLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setActiveSetUpdateLaterthanr3CriticalExtensions(activeSetUpdateLaterthanr3CriticalExtensions);
+}
 
 const void *ActiveSetUpdate::choicesInfo[2] = {
 	&ActiveSetUpdateR3::theInfo,
@@ -953,6 +1008,9 @@ const ActiveSetUpdateComplete::Info ActiveSetUpdateComplete::theInfo = {
 	itemsPres,
 	5, 4, 0
 };
+ActiveSetUpdateComplete::ActiveSetUpdateComplete(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *ActiveSetUpdateFailureLaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -1005,6 +1063,10 @@ const ActiveSetUpdateFailure::Info ActiveSetUpdateFailure::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+ActiveSetUpdateFailure::ActiveSetUpdateFailure(const RRCTransactionIdentifier& rrcTransactionIdentifier, const FailureCauseWithProtErr& failureCause) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setFailureCause(failureCause);
+}
 
 const void *AssistanceDataDeliveryr3IEs::itemsInfo[3] = {
 	&RRCTransactionIdentifier::theInfo,
@@ -1025,6 +1087,9 @@ const AssistanceDataDeliveryr3IEs::Info AssistanceDataDeliveryr3IEs::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+AssistanceDataDeliveryr3IEs::AssistanceDataDeliveryr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *AssistanceDataDeliveryv3a0ext::itemsInfo[1] = {
 	&SFNOffsetValidity::theInfo,
@@ -1143,6 +1208,9 @@ const AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtension
 	itemsPres,
 	2, 1, 0
 };
+AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV770NonCriticalExtensionV860NonCriticalExtensionV920NonCriticalExtension::AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV770NonCriticalExtensionV860NonCriticalExtensionV920NonCriticalExtension(const AssistanceDataDeliveryv920extIEs& assistanceDataDeliveryv920ext) : Sequence(&theInfo) {
+	setAssistanceDataDeliveryv920ext(assistanceDataDeliveryv920ext);
+}
 
 const void *AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV770NonCriticalExtensionV860NonCriticalExtension::itemsInfo[2] = {
 	&AssistanceDataDeliveryv860extIEs::theInfo,
@@ -1161,6 +1229,9 @@ const AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtension
 	itemsPres,
 	2, 1, 0
 };
+AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV770NonCriticalExtensionV860NonCriticalExtension::AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV770NonCriticalExtensionV860NonCriticalExtension(const AssistanceDataDeliveryv860extIEs& assistanceDataDeliveryv860ext) : Sequence(&theInfo) {
+	setAssistanceDataDeliveryv860ext(assistanceDataDeliveryv860ext);
+}
 
 const void *AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV770NonCriticalExtension::itemsInfo[2] = {
 	&AssistanceDataDeliveryv770extIEs::theInfo,
@@ -1179,6 +1250,9 @@ const AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtension
 	itemsPres,
 	2, 1, 0
 };
+AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV770NonCriticalExtension::AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV770NonCriticalExtension(const AssistanceDataDeliveryv770extIEs& assistanceDataDeliveryv770ext) : Sequence(&theInfo) {
+	setAssistanceDataDeliveryv770ext(assistanceDataDeliveryv770ext);
+}
 
 const void *AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&AssistanceDataDeliveryv4b0extIEs::theInfo,
@@ -1197,6 +1271,9 @@ const AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtension
 	itemsPres,
 	2, 1, 0
 };
+AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions(const AssistanceDataDeliveryv4b0extIEs& assistanceDataDeliveryv4b0ext) : Sequence(&theInfo) {
+	setAssistanceDataDeliveryv4b0ext(assistanceDataDeliveryv4b0ext);
+}
 
 const void *AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
 	&AssistanceDataDeliveryR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsAssistanceDataDeliveryr3addext::theInfo,
@@ -1233,6 +1310,9 @@ const AssistanceDataDeliveryR3V3a0NonCriticalExtensions::Info AssistanceDataDeli
 	itemsPres,
 	2, 1, 0
 };
+AssistanceDataDeliveryR3V3a0NonCriticalExtensions::AssistanceDataDeliveryR3V3a0NonCriticalExtensions(const AssistanceDataDeliveryv3a0ext& assistanceDataDeliveryv3a0ext) : Sequence(&theInfo) {
+	setAssistanceDataDeliveryv3a0ext(assistanceDataDeliveryv3a0ext);
+}
 
 const void *AssistanceDataDeliveryR3::itemsInfo[2] = {
 	&AssistanceDataDeliveryr3IEs::theInfo,
@@ -1251,6 +1331,9 @@ const AssistanceDataDeliveryR3::Info AssistanceDataDeliveryR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+AssistanceDataDeliveryR3::AssistanceDataDeliveryR3(const AssistanceDataDeliveryr3IEs& assistanceDataDeliveryr3) : Sequence(&theInfo) {
+	setAssistanceDataDeliveryr3(assistanceDataDeliveryr3);
+}
 
 const void *AssistanceDataDeliveryLaterthanr3CriticalExtensions::itemsInfo[0] = {
 };
@@ -1283,6 +1366,10 @@ const AssistanceDataDeliveryLaterthanr3::Info AssistanceDataDeliveryLaterthanr3:
 	itemsPres,
 	2, 0, 0
 };
+AssistanceDataDeliveryLaterthanr3::AssistanceDataDeliveryLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const AssistanceDataDeliveryLaterthanr3CriticalExtensions& assistanceDataDeliveryLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setAssistanceDataDeliveryLaterthanr3CriticalExtensions(assistanceDataDeliveryLaterthanr3CriticalExtensions);
+}
 
 const void *AssistanceDataDelivery::choicesInfo[2] = {
 	&AssistanceDataDeliveryR3::theInfo,
@@ -1320,6 +1407,10 @@ const CellChangeOrderFromUTRANr3IEs::Info CellChangeOrderFromUTRANr3IEs::theInfo
 	itemsPres,
 	5, 3, 0
 };
+CellChangeOrderFromUTRANr3IEs::CellChangeOrderFromUTRANr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const InterRATTargetCellDescription& interRATTargetCellDescription) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setInterRATTargetCellDescription(interRATTargetCellDescription);
+}
 
 const void *CellChangeOrderFromUTRANv590extIEsGeranSystemInfoType::choicesInfo[2] = {
 	&GERANSystemInformation::theInfo,
@@ -1381,6 +1472,9 @@ const CellChangeOrderFromUTRANR3LaterNonCriticalExtensionsV590NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+CellChangeOrderFromUTRANR3LaterNonCriticalExtensionsV590NonCriticalExtensions::CellChangeOrderFromUTRANR3LaterNonCriticalExtensionsV590NonCriticalExtensions(const CellChangeOrderFromUTRANv590extIEs& cellChangeOrderFromUTRANv590ext) : Sequence(&theInfo) {
+	setCellChangeOrderFromUTRANv590ext(cellChangeOrderFromUTRANv590ext);
+}
 
 const void *CellChangeOrderFromUTRANR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&CellChangeOrderFromUTRANR3LaterNonCriticalExtensionsCellChangeOrderFromUTRANr3addext::theInfo,
@@ -1417,6 +1511,9 @@ const CellChangeOrderFromUTRANR3::Info CellChangeOrderFromUTRANR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+CellChangeOrderFromUTRANR3::CellChangeOrderFromUTRANR3(const CellChangeOrderFromUTRANr3IEs& cellChangeOrderFromUTRANIEs) : Sequence(&theInfo) {
+	setCellChangeOrderFromUTRANIEs(cellChangeOrderFromUTRANIEs);
+}
 
 const void *CellChangeOrderFromUTRANLaterthanr3CriticalExtensions::itemsInfo[0] = {
 };
@@ -1449,6 +1546,10 @@ const CellChangeOrderFromUTRANLaterthanr3::Info CellChangeOrderFromUTRANLatertha
 	itemsPres,
 	2, 0, 0
 };
+CellChangeOrderFromUTRANLaterthanr3::CellChangeOrderFromUTRANLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const CellChangeOrderFromUTRANLaterthanr3CriticalExtensions& cellChangeOrderFromUTRANLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setCellChangeOrderFromUTRANLaterthanr3CriticalExtensions(cellChangeOrderFromUTRANLaterthanr3CriticalExtensions);
+}
 
 const void *CellChangeOrderFromUTRAN::choicesInfo[2] = {
 	&CellChangeOrderFromUTRANR3::theInfo,
@@ -1482,6 +1583,10 @@ const CellChangeOrderFromUTRANFailurer3IEs::Info CellChangeOrderFromUTRANFailure
 	itemsPres,
 	3, 1, 0
 };
+CellChangeOrderFromUTRANFailurer3IEs::CellChangeOrderFromUTRANFailurer3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const InterRATChangeFailureCause& interRATChangeFailureCause) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setInterRATChangeFailureCause(interRATChangeFailureCause);
+}
 
 const void *CellChangeOrderFromUTRANFailureR3LaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -1532,6 +1637,9 @@ const CellChangeOrderFromUTRANFailureR3::Info CellChangeOrderFromUTRANFailureR3:
 	itemsPres,
 	2, 1, 0
 };
+CellChangeOrderFromUTRANFailureR3::CellChangeOrderFromUTRANFailureR3(const CellChangeOrderFromUTRANFailurer3IEs& cellChangeOrderFromUTRANFailurer3) : Sequence(&theInfo) {
+	setCellChangeOrderFromUTRANFailurer3(cellChangeOrderFromUTRANFailurer3);
+}
 
 const void *CellChangeOrderFromUTRANFailureDummyCriticalExtensions::itemsInfo[0] = {
 };
@@ -1564,6 +1672,10 @@ const CellChangeOrderFromUTRANFailureDummy::Info CellChangeOrderFromUTRANFailure
 	itemsPres,
 	2, 0, 0
 };
+CellChangeOrderFromUTRANFailureDummy::CellChangeOrderFromUTRANFailureDummy(const RRCTransactionIdentifier& rrcTransactionIdentifier, const CellChangeOrderFromUTRANFailureDummyCriticalExtensions& cellChangeOrderFromUTRANFailureDummyCriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setCellChangeOrderFromUTRANFailureDummyCriticalExtensions(cellChangeOrderFromUTRANFailureDummyCriticalExtensions);
+}
 
 const void *CellChangeOrderFromUTRANFailure::choicesInfo[2] = {
 	&CellChangeOrderFromUTRANFailureR3::theInfo,
@@ -1709,6 +1821,9 @@ const CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCritic
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions::CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions(const CellUpdatev860extIEs& cellUpdatev860ext) : Sequence(&theInfo) {
+	setCellUpdatev860ext(cellUpdatev860ext);
+}
 
 const void *CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdatev770extIEs::theInfo,
@@ -1727,6 +1842,9 @@ const CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCritic
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensions::CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV770NonCriticalExtensions(const CellUpdatev770extIEs& cellUpdatev770ext) : Sequence(&theInfo) {
+	setCellUpdatev770ext(cellUpdatev770ext);
+}
 
 const void *CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdatev6b0extIEs::theInfo,
@@ -1745,6 +1863,9 @@ const CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCritic
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensions::CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensions(const CellUpdatev6b0extIEs& cellUpdatev6b0ext) : Sequence(&theInfo) {
+	setCellUpdatev6b0ext(cellUpdatev6b0ext);
+}
 
 const void *CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdatev690extIEs::theInfo,
@@ -1763,6 +1884,9 @@ const CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCritic
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions(const CellUpdatev690extIEs& cellUpdatev690ext) : Sequence(&theInfo) {
+	setCellUpdatev690ext(cellUpdatev690ext);
+}
 
 const void *CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdatev590ext::theInfo,
@@ -1781,6 +1905,9 @@ const CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensions::Info CellUp
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensions::CellUpdateLaterNonCriticalExtensionsV590NonCriticalExtensions(const CellUpdatev590ext& cellUpdatev590ext) : Sequence(&theInfo) {
+	setCellUpdatev590ext(cellUpdatev590ext);
+}
 
 const void *CellUpdateLaterNonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateLaterNonCriticalExtensionsCellUpdater3addext::theInfo,
@@ -1831,6 +1958,14 @@ const CellUpdate::Info CellUpdate::theInfo = {
 	itemsPres,
 	9, 3, 0
 };
+CellUpdate::CellUpdate(const URNTI& uRNTI, const STARTList& startList, const CellUpdateAmRLCErrorIndicationRb23or4& cellUpdateAmRLCErrorIndicationRb23or4, const CellUpdateAmRLCErrorIndicationRb5orAbove& cellUpdateAmRLCErrorIndicationRb5orAbove, const CellUpdateCause& cellUpdateCause, const Rbtimerindicator& rbtimerindicator) : Sequence(&theInfo) {
+	setURNTI(uRNTI);
+	setStartList(startList);
+	setCellUpdateAmRLCErrorIndicationRb23or4(cellUpdateAmRLCErrorIndicationRb23or4);
+	setCellUpdateAmRLCErrorIndicationRb5orAbove(cellUpdateAmRLCErrorIndicationRb5orAbove);
+	setCellUpdateCause(cellUpdateCause);
+	setRbtimerindicator(rbtimerindicator);
+}
 
 const void *CellUpdatev7e0extIEs::itemsInfo[1] = {
 	&CellUpdatev7e0extIEssupportForTwoDRXSchemesInPCH::theInfo,
@@ -1895,6 +2030,9 @@ const CellUpdater3addextIEsV7g0NonCriticalExtensions::Info CellUpdater3addextIEs
 	itemsPres,
 	2, 1, 0
 };
+CellUpdater3addextIEsV7g0NonCriticalExtensions::CellUpdater3addextIEsV7g0NonCriticalExtensions(const CellUpdatev7g0extIEs& cellUpdatev7g0ext) : Sequence(&theInfo) {
+	setCellUpdatev7g0ext(cellUpdatev7g0ext);
+}
 
 const void *CellUpdater3addextIEs::itemsInfo[2] = {
 	&CellUpdatev7e0extIEs::theInfo,
@@ -1913,6 +2051,9 @@ const CellUpdater3addextIEs::Info CellUpdater3addextIEs::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+CellUpdater3addextIEs::CellUpdater3addextIEs(const CellUpdatev7e0extIEs& cellUpdatev7e0ext) : Sequence(&theInfo) {
+	setCellUpdatev7e0ext(cellUpdatev7e0ext);
+}
 
 const void *CellUpdateConfirmr3IEsModeSpecificTransChInfoFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -2045,6 +2186,14 @@ const CellUpdateConfirmr3IEs::Info CellUpdateConfirmr3IEs::theInfo = {
 	itemsPres,
 	29, 23, 0
 };
+CellUpdateConfirmr3IEs::CellUpdateConfirmr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const RRCStateIndicator& rrcStateIndicator, const CellUpdateConfirmr3IEsRlcReestablishIndicatorRb23or4& cellUpdateConfirmr3IEsRlcReestablishIndicatorRb23or4, const CellUpdateConfirmr3IEsRlcReestablishIndicatorRb5orAbove& cellUpdateConfirmr3IEsRlcReestablishIndicatorRb5orAbove, const CellUpdateConfirmr3IEsModeSpecificTransChInfo& cellUpdateConfirmr3IEsModeSpecificTransChInfo, const CellUpdateConfirmr3IEsModeSpecificPhysChInfo& cellUpdateConfirmr3IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRrcStateIndicator(rrcStateIndicator);
+	setCellUpdateConfirmr3IEsRlcReestablishIndicatorRb23or4(cellUpdateConfirmr3IEsRlcReestablishIndicatorRb23or4);
+	setCellUpdateConfirmr3IEsRlcReestablishIndicatorRb5orAbove(cellUpdateConfirmr3IEsRlcReestablishIndicatorRb5orAbove);
+	setCellUpdateConfirmr3IEsModeSpecificTransChInfo(cellUpdateConfirmr3IEsModeSpecificTransChInfo);
+	setCellUpdateConfirmr3IEsModeSpecificPhysChInfo(cellUpdateConfirmr3IEsModeSpecificPhysChInfo);
+}
 
 const void *CellUpdateConfirmv3a0ext::itemsInfo[1] = {
 	&DSCHRNTI::theInfo,
@@ -2169,6 +2318,9 @@ const CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtenstionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions::CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtenstionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions(const CellUpdateConfirmv690extIEs& cellUpdateConfirmv690ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv690ext(cellUpdateConfirmv690ext);
+}
 
 const void *CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtenstionsV5d0NonCriticalExtenstions::itemsInfo[2] = {
 	&CellUpdateConfirmv5d0extIEs::theInfo,
@@ -2187,6 +2339,9 @@ const CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtenstionsV5d0NonCriticalExtenstions::CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtenstionsV5d0NonCriticalExtenstions(const CellUpdateConfirmv5d0extIEs& cellUpdateConfirmv5d0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv5d0ext(cellUpdateConfirmv5d0ext);
+}
 
 const void *CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtenstions::itemsInfo[2] = {
 	&CellUpdateConfirmv590extIEs::theInfo,
@@ -2205,6 +2360,9 @@ const CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtenstions::CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtenstions(const CellUpdateConfirmv590extIEs& cellUpdateConfirmv590ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv590ext(cellUpdateConfirmv590ext);
+}
 
 const void *CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv4b0extIEs::theInfo,
@@ -2223,6 +2381,9 @@ const CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions(const CellUpdateConfirmv4b0extIEs& cellUpdateConfirmv4b0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv4b0ext(cellUpdateConfirmv4b0ext);
+}
 
 const void *CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsCellUpdateConfirmr3addext::theInfo,
@@ -2259,6 +2420,9 @@ const CellUpdateConfirmR3V3a0NonCriticalExtensions::Info CellUpdateConfirmR3V3a0
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmR3V3a0NonCriticalExtensions::CellUpdateConfirmR3V3a0NonCriticalExtensions(const CellUpdateConfirmv3a0ext& cellUpdateConfirmv3a0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv3a0ext(cellUpdateConfirmv3a0ext);
+}
 
 const void *CellUpdateConfirmR3::itemsInfo[2] = {
 	&CellUpdateConfirmr3IEs::theInfo,
@@ -2277,6 +2441,9 @@ const CellUpdateConfirmR3::Info CellUpdateConfirmR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmR3::CellUpdateConfirmR3(const CellUpdateConfirmr3IEs& cellUpdateConfirmr3) : Sequence(&theInfo) {
+	setCellUpdateConfirmr3(cellUpdateConfirmr3);
+}
 
 const void *CellUpdateConfirmr4IEsModeSpecificTransChInfoFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -2409,6 +2576,13 @@ const CellUpdateConfirmr4IEs::Info CellUpdateConfirmr4IEs::theInfo = {
 	itemsPres,
 	29, 24, 0
 };
+CellUpdateConfirmr4IEs::CellUpdateConfirmr4IEs(const RRCStateIndicator& rrcStateIndicator, const CellUpdateConfirmr4IEsRlcReestablishIndicatorRb23or4& cellUpdateConfirmr4IEsRlcReestablishIndicatorRb23or4, const CellUpdateConfirmr4IEsRlcReestablishIndicatorRb5orAbove& cellUpdateConfirmr4IEsRlcReestablishIndicatorRb5orAbove, const CellUpdateConfirmr4IEsModeSpecificTransChInfo& cellUpdateConfirmr4IEsModeSpecificTransChInfo, const CellUpdateConfirmr4IEsModeSpecificPhysChInfo& cellUpdateConfirmr4IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setCellUpdateConfirmr4IEsRlcReestablishIndicatorRb23or4(cellUpdateConfirmr4IEsRlcReestablishIndicatorRb23or4);
+	setCellUpdateConfirmr4IEsRlcReestablishIndicatorRb5orAbove(cellUpdateConfirmr4IEsRlcReestablishIndicatorRb5orAbove);
+	setCellUpdateConfirmr4IEsModeSpecificTransChInfo(cellUpdateConfirmr4IEsModeSpecificTransChInfo);
+	setCellUpdateConfirmr4IEsModeSpecificPhysChInfo(cellUpdateConfirmr4IEsModeSpecificPhysChInfo);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstionsV5d0NonCriticalExtenstionsV690NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -2441,6 +2615,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions::CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions(const CellUpdateConfirmv690extIEs& cellUpdateConfirmv690ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv690ext(cellUpdateConfirmv690ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstionsV5d0NonCriticalExtenstions::itemsInfo[2] = {
 	&CellUpdateConfirmv5d0extIEs::theInfo,
@@ -2459,6 +2636,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstionsV5d0NonCriticalExtenstions::CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstionsV5d0NonCriticalExtenstions(const CellUpdateConfirmv5d0extIEs& cellUpdateConfirmv5d0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv5d0ext(cellUpdateConfirmv5d0ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstions::itemsInfo[2] = {
 	&CellUpdateConfirmv590extIEs::theInfo,
@@ -2477,6 +2657,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstions::CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstions(const CellUpdateConfirmv590extIEs& cellUpdateConfirmv590ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv590ext(cellUpdateConfirmv590ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsCellUpdateConfirmr4addext::theInfo,
@@ -2513,6 +2696,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsR4::Info CellUpdateConfirmLa
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsR4::CellUpdateConfirmLaterthanr3CriticalExtensionsR4(const CellUpdateConfirmr4IEs& cellUpdateConfirmr4) : Sequence(&theInfo) {
+	setCellUpdateConfirmr4(cellUpdateConfirmr4);
+}
 
 const void *CellUpdateConfirmr5IEsModeSpecificTransChInfoFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -2649,6 +2835,13 @@ const CellUpdateConfirmr5IEs::Info CellUpdateConfirmr5IEs::theInfo = {
 	itemsPres,
 	31, 26, 0
 };
+CellUpdateConfirmr5IEs::CellUpdateConfirmr5IEs(const RRCStateIndicator& rrcStateIndicator, const CellUpdateConfirmr5IEsRlcReestablishIndicatorRb23or4& cellUpdateConfirmr5IEsRlcReestablishIndicatorRb23or4, const CellUpdateConfirmr5IEsRlcReestablishIndicatorRb5orAbove& cellUpdateConfirmr5IEsRlcReestablishIndicatorRb5orAbove, const CellUpdateConfirmr5IEsModeSpecificTransChInfo& cellUpdateConfirmr5IEsModeSpecificTransChInfo, const CellUpdateConfirmr5IEsModeSpecificPhysChInfo& cellUpdateConfirmr5IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setCellUpdateConfirmr5IEsRlcReestablishIndicatorRb23or4(cellUpdateConfirmr5IEsRlcReestablishIndicatorRb23or4);
+	setCellUpdateConfirmr5IEsRlcReestablishIndicatorRb5orAbove(cellUpdateConfirmr5IEsRlcReestablishIndicatorRb5orAbove);
+	setCellUpdateConfirmr5IEsModeSpecificTransChInfo(cellUpdateConfirmr5IEsModeSpecificTransChInfo);
+	setCellUpdateConfirmr5IEsModeSpecificPhysChInfo(cellUpdateConfirmr5IEsModeSpecificPhysChInfo);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -2681,6 +2874,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonC
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensions::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensions(const CellUpdateConfirmv690extIEs& cellUpdateConfirmv690ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv690ext(cellUpdateConfirmv690ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions::itemsInfo[2] = {
 	&CellUpdateConfirmv5d0extIEs::theInfo,
@@ -2699,6 +2895,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonC
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions(const CellUpdateConfirmv5d0extIEs& cellUpdateConfirmv5d0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv5d0ext(cellUpdateConfirmv5d0ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&CellUpdateConfirmr5IEs::theInfo,
@@ -2719,6 +2918,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5::Info C
 	itemsPres,
 	3, 2, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR5(const CellUpdateConfirmr5IEs& cellUpdateConfirmr5) : Sequence(&theInfo) {
+	setCellUpdateConfirmr5(cellUpdateConfirmr5);
+}
 
 const void *CellUpdateConfirmr6IEs::itemsInfo[34] = {
 	&IntegrityProtectionModeInfo::theInfo,
@@ -2801,6 +3003,11 @@ const CellUpdateConfirmr6IEs::Info CellUpdateConfirmr6IEs::theInfo = {
 	itemsPres,
 	34, 31, 0
 };
+CellUpdateConfirmr6IEs::CellUpdateConfirmr6IEs(const RRCStateIndicator& rrcStateIndicator, const CellUpdateConfirmr6IEsRlcReestablishIndicatorRb23or4& cellUpdateConfirmr6IEsRlcReestablishIndicatorRb23or4, const CellUpdateConfirmr6IEsRlcReestablishIndicatorRb5orAbove& cellUpdateConfirmr6IEsRlcReestablishIndicatorRb5orAbove) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setCellUpdateConfirmr6IEsRlcReestablishIndicatorRb23or4(cellUpdateConfirmr6IEsRlcReestablishIndicatorRb23or4);
+	setCellUpdateConfirmr6IEsRlcReestablishIndicatorRb5orAbove(cellUpdateConfirmr6IEsRlcReestablishIndicatorRb5orAbove);
+}
 
 const void *CellUpdateConfirmv6b0extIEs::itemsInfo[1] = {
 	&DLInformationPerRLListv6b0ext::theInfo,
@@ -2849,6 +3056,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions(const CellUpdateConfirmv6b0extIEs& cellUpdateConfirmv6b0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv6b0ext(cellUpdateConfirmv6b0ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&CellUpdateConfirmr6IEs::theInfo,
@@ -2869,6 +3079,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	3, 2, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6(const CellUpdateConfirmr6IEs& cellUpdateConfirmr6) : Sequence(&theInfo) {
+	setCellUpdateConfirmr6(cellUpdateConfirmr6);
+}
 
 const void *CellUpdateConfirmr7IEs::itemsInfo[41] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -2965,6 +3178,11 @@ const CellUpdateConfirmr7IEs::Info CellUpdateConfirmr7IEs::theInfo = {
 	itemsPres,
 	41, 38, 0
 };
+CellUpdateConfirmr7IEs::CellUpdateConfirmr7IEs(const RRCStateIndicator& rrcStateIndicator, const CellUpdateConfirmr7IEsRlcReestablishIndicatorRb23or4& cellUpdateConfirmr7IEsRlcReestablishIndicatorRb23or4, const CellUpdateConfirmr7IEsRlcReestablishIndicatorRb5orAbove& cellUpdateConfirmr7IEsRlcReestablishIndicatorRb5orAbove) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setCellUpdateConfirmr7IEsRlcReestablishIndicatorRb23or4(cellUpdateConfirmr7IEsRlcReestablishIndicatorRb23or4);
+	setCellUpdateConfirmr7IEsRlcReestablishIndicatorRb5orAbove(cellUpdateConfirmr7IEsRlcReestablishIndicatorRb5orAbove);
+}
 
 const void *CellUpdateConfirmv780extIEs::itemsInfo[1] = {
 	&HSDSCHTBSizeTable::theInfo,
@@ -2999,6 +3217,10 @@ const CellUpdateConfirmv860extIEsRabInformationSetup::Info CellUpdateConfirmv860
 	itemsPres,
 	2, 0, 0
 };
+CellUpdateConfirmv860extIEsRabInformationSetup::CellUpdateConfirmv860extIEsRabInformationSetup(const RABInformationSetupr7& rabInformationSetupr7, const RABInformationSetupv820ext& rabInformationSetupv820ext) : Sequence(&theInfo) {
+	setRabInformationSetupr7(rabInformationSetupr7);
+	setRabInformationSetupv820ext(rabInformationSetupv820ext);
+}
 
 const void *CellUpdateConfirmv860extIEs::itemsInfo[1] = {
 	&CellUpdateConfirmv860extIEsRabInformationSetup::theInfo,
@@ -3047,6 +3269,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV860NonCriticalExtensions::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV860NonCriticalExtensions(const CellUpdateConfirmv860extIEs& cellUpdateConfirmv860ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv860ext(cellUpdateConfirmv860ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv780extIEs::theInfo,
@@ -3065,6 +3290,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions(const CellUpdateConfirmv780extIEs& cellUpdateConfirmv780ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv780ext(cellUpdateConfirmv780ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&CellUpdateConfirmr7IEs::theInfo,
@@ -3085,6 +3313,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	3, 2, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7(const CellUpdateConfirmr7IEs& cellUpdateConfirmr7) : Sequence(&theInfo) {
+	setCellUpdateConfirmr7(cellUpdateConfirmr7);
+}
 
 const void *CellUpdateConfirmr8IEs::itemsInfo[46] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -3191,6 +3422,11 @@ const CellUpdateConfirmr8IEs::Info CellUpdateConfirmr8IEs::theInfo = {
 	itemsPres,
 	46, 43, 0
 };
+CellUpdateConfirmr8IEs::CellUpdateConfirmr8IEs(const RRCStateIndicator& rrcStateIndicator, const CellUpdateConfirmr8IEsRlcReestablishIndicatorRb23or4& cellUpdateConfirmr8IEsRlcReestablishIndicatorRb23or4, const CellUpdateConfirmr8IEsRlcReestablishIndicatorRb5orAbove& cellUpdateConfirmr8IEsRlcReestablishIndicatorRb5orAbove) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setCellUpdateConfirmr8IEsRlcReestablishIndicatorRb23or4(cellUpdateConfirmr8IEsRlcReestablishIndicatorRb23or4);
+	setCellUpdateConfirmr8IEsRlcReestablishIndicatorRb5orAbove(cellUpdateConfirmr8IEsRlcReestablishIndicatorRb5orAbove);
+}
 
 const void *CellUpdateConfirmv7d0extIEs::itemsInfo[1] = {
 	&ULEDCHInformationext::theInfo,
@@ -3305,6 +3541,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensionsV8a0NonCriticalExtensions::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensionsV8a0NonCriticalExtensions(const CellUpdateConfirmv8a0extIEs& cellUpdateConfirmv8a0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv8a0ext(cellUpdateConfirmv8a0ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv7g0extIEs::theInfo,
@@ -3323,6 +3562,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions(const CellUpdateConfirmv7g0extIEs& cellUpdateConfirmv7g0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv7g0ext(cellUpdateConfirmv7g0ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv890extIEs::theInfo,
@@ -3341,6 +3583,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions(const CellUpdateConfirmv890extIEs& cellUpdateConfirmv890ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv890ext(cellUpdateConfirmv890ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv7f0extIEs::theInfo,
@@ -3359,6 +3604,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions(const CellUpdateConfirmv7f0extIEs& cellUpdateConfirmv7f0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv7f0ext(cellUpdateConfirmv7f0ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv7d0extIEs::theInfo,
@@ -3377,6 +3625,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions(const CellUpdateConfirmv7d0extIEs& cellUpdateConfirmv7d0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv7d0ext(cellUpdateConfirmv7d0ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&CellUpdateConfirmr8IEs::theInfo,
@@ -3397,6 +3648,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	3, 2, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8(const CellUpdateConfirmr8IEs& cellUpdateConfirmr8) : Sequence(&theInfo) {
+	setCellUpdateConfirmr8(cellUpdateConfirmr8);
+}
 
 const void *CellUpdateConfirmr9IEs::itemsInfo[48] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -3507,6 +3761,11 @@ const CellUpdateConfirmr9IEs::Info CellUpdateConfirmr9IEs::theInfo = {
 	itemsPres,
 	48, 45, 0
 };
+CellUpdateConfirmr9IEs::CellUpdateConfirmr9IEs(const RRCStateIndicator& rrcStateIndicator, const CellUpdateConfirmr9IEsRlcReestablishIndicatorRb23or4& cellUpdateConfirmr9IEsRlcReestablishIndicatorRb23or4, const CellUpdateConfirmr9IEsRlcReestablishIndicatorRb5orAbove& cellUpdateConfirmr9IEsRlcReestablishIndicatorRb5orAbove) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setCellUpdateConfirmr9IEsRlcReestablishIndicatorRb23or4(cellUpdateConfirmr9IEsRlcReestablishIndicatorRb23or4);
+	setCellUpdateConfirmr9IEsRlcReestablishIndicatorRb5orAbove(cellUpdateConfirmr9IEsRlcReestablishIndicatorRb5orAbove);
+}
 
 const void *CellUpdateConfirmv950extIEs::itemsInfo[1] = {
 	&SecondaryCellMIMOparametersFDDv950ext::theInfo,
@@ -3555,6 +3814,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions(const CellUpdateConfirmv950extIEs& cellUpdateConfirmv950ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv950ext(cellUpdateConfirmv950ext);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&CellUpdateConfirmr9IEs::theInfo,
@@ -3575,6 +3837,9 @@ const CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalEx
 	itemsPres,
 	3, 2, 0
 };
+CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9(const CellUpdateConfirmr9IEs& cellUpdateConfirmr9) : Sequence(&theInfo) {
+	setCellUpdateConfirmr9(cellUpdateConfirmr9);
+}
 
 const void *CellUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -3685,6 +3950,10 @@ const CellUpdateConfirmLaterthanr3::Info CellUpdateConfirmLaterthanr3::theInfo =
 	itemsPres,
 	2, 0, 0
 };
+CellUpdateConfirmLaterthanr3::CellUpdateConfirmLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const CellUpdateConfirmLaterthanr3CriticalExtensions& cellUpdateConfirmLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setCellUpdateConfirmLaterthanr3CriticalExtensions(cellUpdateConfirmLaterthanr3CriticalExtensions);
+}
 
 const void *CellUpdateConfirm::choicesInfo[2] = {
 	&CellUpdateConfirmR3::theInfo,
@@ -3730,6 +3999,9 @@ const CellUpdateConfirmr7addextIEsV7f0NonCriticalExtensionsV7g0NonCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmr7addextIEsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions::CellUpdateConfirmr7addextIEsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions(const CellUpdateConfirmv7g0extIEs& cellUpdateConfirmv7g0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv7g0ext(cellUpdateConfirmv7g0ext);
+}
 
 const void *CellUpdateConfirmr7addextIEsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv7f0extIEs::theInfo,
@@ -3748,6 +4020,9 @@ const CellUpdateConfirmr7addextIEsV7f0NonCriticalExtensions::Info CellUpdateConf
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmr7addextIEsV7f0NonCriticalExtensions::CellUpdateConfirmr7addextIEsV7f0NonCriticalExtensions(const CellUpdateConfirmv7f0extIEs& cellUpdateConfirmv7f0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv7f0ext(cellUpdateConfirmv7f0ext);
+}
 
 const void *CellUpdateConfirmr7addextIEs::itemsInfo[2] = {
 	&CellUpdateConfirmv7d0extIEs::theInfo,
@@ -3798,6 +4073,9 @@ const CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions::CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions(const CellUpdateConfirmv690extIEs& cellUpdateConfirmv690ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv690ext(cellUpdateConfirmv690ext);
+}
 
 const void *CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions::itemsInfo[2] = {
 	&CellUpdateConfirmv5d0extIEs::theInfo,
@@ -3816,6 +4094,9 @@ const CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions::CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions(const CellUpdateConfirmv5d0extIEs& cellUpdateConfirmv5d0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv5d0ext(cellUpdateConfirmv5d0ext);
+}
 
 const void *CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv590extIEs::theInfo,
@@ -3834,6 +4115,9 @@ const CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const CellUpdateConfirmv590extIEs& cellUpdateConfirmv590ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv590ext(cellUpdateConfirmv590ext);
+}
 
 const void *CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv4b0extIEs::theInfo,
@@ -3852,6 +4136,9 @@ const CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions(const CellUpdateConfirmv4b0extIEs& cellUpdateConfirmv4b0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv4b0ext(cellUpdateConfirmv4b0ext);
+}
 
 const void *CellUpdateConfirmCCCHR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmCCCHR3LaterNonCriticalExtensionsCellUpdateConfirmCCCHr3addext::theInfo,
@@ -3890,6 +4177,10 @@ const CellUpdateConfirmCCCHR3::Info CellUpdateConfirmCCCHR3::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+CellUpdateConfirmCCCHR3::CellUpdateConfirmCCCHR3(const URNTI& uRNTI, const CellUpdateConfirmr3IEs& cellUpdateConfirmr3) : Sequence(&theInfo) {
+	setURNTI(uRNTI);
+	setCellUpdateConfirmr3(cellUpdateConfirmr3);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -3922,6 +4213,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions(const CellUpdateConfirmv690extIEs& cellUpdateConfirmv690ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv690ext(cellUpdateConfirmv690ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions::itemsInfo[2] = {
 	&CellUpdateConfirmv5d0extIEs::theInfo,
@@ -3940,6 +4234,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions(const CellUpdateConfirmv5d0extIEs& cellUpdateConfirmv5d0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv5d0ext(cellUpdateConfirmv5d0ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv590extIEs::theInfo,
@@ -3958,6 +4255,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions(const CellUpdateConfirmv590extIEs& cellUpdateConfirmv590ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv590ext(cellUpdateConfirmv590ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsCellUpdateConfirmCCCHr4addext::theInfo,
@@ -3994,6 +4294,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4::Info CellUpdateConfi
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsR4(const CellUpdateConfirmr4IEs& cellUpdateConfirmr4) : Sequence(&theInfo) {
+	setCellUpdateConfirmr4(cellUpdateConfirmr4);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -4026,6 +4329,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensions(const CellUpdateConfirmv690extIEs& cellUpdateConfirmv690ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv690ext(cellUpdateConfirmv690ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions::itemsInfo[2] = {
 	&CellUpdateConfirmv5d0extIEs::theInfo,
@@ -4044,6 +4350,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions(const CellUpdateConfirmv5d0extIEs& cellUpdateConfirmv5d0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv5d0ext(cellUpdateConfirmv5d0ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&CellUpdateConfirmr5IEs::theInfo,
@@ -4064,6 +4373,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5::In
 	itemsPres,
 	3, 2, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsR5(const CellUpdateConfirmr5IEs& cellUpdateConfirmr5) : Sequence(&theInfo) {
+	setCellUpdateConfirmr5(cellUpdateConfirmr5);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -4096,6 +4408,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions(const CellUpdateConfirmv6b0extIEs& cellUpdateConfirmv6b0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv6b0ext(cellUpdateConfirmv6b0ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&CellUpdateConfirmr6IEs::theInfo,
@@ -4116,6 +4431,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 	itemsPres,
 	3, 2, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6(const CellUpdateConfirmr6IEs& cellUpdateConfirmr6) : Sequence(&theInfo) {
+	setCellUpdateConfirmr6(cellUpdateConfirmr6);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV860NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -4148,6 +4466,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV860NonCriticalExtensions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV860NonCriticalExtensions(const CellUpdateConfirmv860extIEs& cellUpdateConfirmv860ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv860ext(cellUpdateConfirmv860ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv780extIEs::theInfo,
@@ -4166,6 +4487,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions(const CellUpdateConfirmv780extIEs& cellUpdateConfirmv780ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv780ext(cellUpdateConfirmv780ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&CellUpdateConfirmr7IEs::theInfo,
@@ -4186,6 +4510,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 	itemsPres,
 	3, 2, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7(const CellUpdateConfirmr7IEs& cellUpdateConfirmr7) : Sequence(&theInfo) {
+	setCellUpdateConfirmr7(cellUpdateConfirmr7);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -4218,6 +4545,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions(const CellUpdateConfirmv7g0extIEs& cellUpdateConfirmv7g0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv7g0ext(cellUpdateConfirmv7g0ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensionsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv7f0extIEs::theInfo,
@@ -4236,6 +4566,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensionsV7f0NonCriticalExtensions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensionsV7f0NonCriticalExtensions(const CellUpdateConfirmv7f0extIEs& cellUpdateConfirmv7f0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv7f0ext(cellUpdateConfirmv7f0ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv8a0extIEs::theInfo,
@@ -4254,6 +4587,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensions(const CellUpdateConfirmv8a0extIEs& cellUpdateConfirmv8a0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv8a0ext(cellUpdateConfirmv8a0ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv890extIEs::theInfo,
@@ -4272,6 +4608,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensions(const CellUpdateConfirmv890extIEs& cellUpdateConfirmv890ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv890ext(cellUpdateConfirmv890ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::itemsInfo[2] = {
 	&CellUpdateConfirmv7d0extIEs::theInfo,
@@ -4290,6 +4629,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 	itemsPres,
 	2, 1, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions(const CellUpdateConfirmv7d0extIEs& cellUpdateConfirmv7d0ext) : Sequence(&theInfo) {
+	setCellUpdateConfirmv7d0ext(cellUpdateConfirmv7d0ext);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&CellUpdateConfirmr8IEs::theInfo,
@@ -4310,6 +4652,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 	itemsPres,
 	3, 2, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8(const CellUpdateConfirmr8IEs& cellUpdateConfirmr8) : Sequence(&theInfo) {
+	setCellUpdateConfirmr8(cellUpdateConfirmr8);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -4344,6 +4689,9 @@ const CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCritic
 	itemsPres,
 	3, 2, 0
 };
+CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9(const CellUpdateConfirmr9IEs& cellUpdateConfirmr9) : Sequence(&theInfo) {
+	setCellUpdateConfirmr9(cellUpdateConfirmr9);
+}
 
 const void *CellUpdateConfirmCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -4456,6 +4804,11 @@ const CellUpdateConfirmCCCHLaterthanr3::Info CellUpdateConfirmCCCHLaterthanr3::t
 	itemsPres,
 	3, 0, 0
 };
+CellUpdateConfirmCCCHLaterthanr3::CellUpdateConfirmCCCHLaterthanr3(const URNTI& uRNTI, const RRCTransactionIdentifier& rrcTransactionIdentifier, const CellUpdateConfirmCCCHLaterthanr3CriticalExtensions& cellUpdateConfirmCCCHLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setURNTI(uRNTI);
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setCellUpdateConfirmCCCHLaterthanr3CriticalExtensions(cellUpdateConfirmCCCHLaterthanr3CriticalExtensions);
+}
 
 const void *CellUpdateConfirmCCCH::choicesInfo[2] = {
 	&CellUpdateConfirmCCCHR3::theInfo,
@@ -4487,6 +4840,10 @@ const CounterCheckr3IEs::Info CounterCheckr3IEs::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CounterCheckr3IEs::CounterCheckr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const RBCOUNTCMSBInformationList& rbCOUNTCMSBInformationList) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRbCOUNTCMSBInformationList(rbCOUNTCMSBInformationList);
+}
 
 const void *CounterCheckR3LaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -4537,6 +4894,9 @@ const CounterCheckR3::Info CounterCheckR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+CounterCheckR3::CounterCheckR3(const CounterCheckr3IEs& counterCheckr3) : Sequence(&theInfo) {
+	setCounterCheckr3(counterCheckr3);
+}
 
 const void *CounterCheckLaterthanr3CriticalExtensions::itemsInfo[0] = {
 };
@@ -4569,6 +4929,10 @@ const CounterCheckLaterthanr3::Info CounterCheckLaterthanr3::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CounterCheckLaterthanr3::CounterCheckLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const CounterCheckLaterthanr3CriticalExtensions& counterCheckLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setCounterCheckLaterthanr3CriticalExtensions(counterCheckLaterthanr3CriticalExtensions);
+}
 
 const void *CounterCheck::choicesInfo[2] = {
 	&CounterCheckR3::theInfo,
@@ -4634,6 +4998,9 @@ const CounterCheckResponse::Info CounterCheckResponse::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+CounterCheckResponse::CounterCheckResponse(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *DownlinkDirectTransferr3IEs::itemsInfo[3] = {
 	&RRCTransactionIdentifier::theInfo,
@@ -4654,6 +5021,11 @@ const DownlinkDirectTransferr3IEs::Info DownlinkDirectTransferr3IEs::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+DownlinkDirectTransferr3IEs::DownlinkDirectTransferr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const CNDomainIdentity& cnDomainIdentity, const NASMessage& nasMessage) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setCnDomainIdentity(cnDomainIdentity);
+	setNasMessage(nasMessage);
+}
 
 const void *DownlinkDirectTransferR3LaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -4704,6 +5076,9 @@ const DownlinkDirectTransferR3::Info DownlinkDirectTransferR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+DownlinkDirectTransferR3::DownlinkDirectTransferR3(const DownlinkDirectTransferr3IEs& downlinkDirectTransferr3) : Sequence(&theInfo) {
+	setDownlinkDirectTransferr3(downlinkDirectTransferr3);
+}
 
 const void *DownlinkDirectTransferLaterthanr3CriticalExtensions::itemsInfo[0] = {
 };
@@ -4736,6 +5111,10 @@ const DownlinkDirectTransferLaterthanr3::Info DownlinkDirectTransferLaterthanr3:
 	itemsPres,
 	2, 0, 0
 };
+DownlinkDirectTransferLaterthanr3::DownlinkDirectTransferLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const DownlinkDirectTransferLaterthanr3CriticalExtensions& downlinkDirectTransferLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setDownlinkDirectTransferLaterthanr3CriticalExtensions(downlinkDirectTransferLaterthanr3CriticalExtensions);
+}
 
 const void *DownlinkDirectTransfer::choicesInfo[2] = {
 	&DownlinkDirectTransferR3::theInfo,
@@ -4783,6 +5162,9 @@ const ETWSPrimaryNotificationWithSecurity::Info ETWSPrimaryNotificationWithSecur
 	itemsPres,
 	3, 2, 0
 };
+ETWSPrimaryNotificationWithSecurity::ETWSPrimaryNotificationWithSecurity(const ETWSInformation& etwsInformation) : Sequence(&theInfo) {
+	setEtwsInformation(etwsInformation);
+}
 
 const void *HandoverToUTRANCommandr3IEsSpecificationModeCompleteModeSpecificInfoFdd::itemsInfo[2] = {
 	&DLPDSCHInformation::theInfo,
@@ -4850,6 +5232,18 @@ const HandoverToUTRANCommandr3IEsSpecificationModeComplete::Info HandoverToUTRAN
 	itemsPres,
 	11, 1, 0
 };
+HandoverToUTRANCommandr3IEsSpecificationModeComplete::HandoverToUTRANCommandr3IEsSpecificationModeComplete(const SRBInformationSetupList& srbInformationSetupList, const ULCommonTransChInfo& ulCommonTransChInfo, const ULAddReconfTransChInfoList& ulAddReconfTransChInfoList, const DLCommonTransChInfo& dlCommonTransChInfo, const DLAddReconfTransChInfoList& dlAddReconfTransChInfoList, const ULDPCHInfo& ulDPCHInfo, const HandoverToUTRANCommandr3IEsSpecificationModeCompleteModeSpecificInfo& handoverToUTRANCommandr3IEsSpecificationModeCompleteModeSpecificInfo, const DLCommonInformation& dlCommonInformation, const DLInformationPerRLList& dlInformationPerRLList, const FrequencyInfo& frequencyInfo) : Sequence(&theInfo) {
+	setSrbInformationSetupList(srbInformationSetupList);
+	setUlCommonTransChInfo(ulCommonTransChInfo);
+	setUlAddReconfTransChInfoList(ulAddReconfTransChInfoList);
+	setDlCommonTransChInfo(dlCommonTransChInfo);
+	setDlAddReconfTransChInfoList(dlAddReconfTransChInfoList);
+	setUlDPCHInfo(ulDPCHInfo);
+	setHandoverToUTRANCommandr3IEsSpecificationModeCompleteModeSpecificInfo(handoverToUTRANCommandr3IEsSpecificationModeCompleteModeSpecificInfo);
+	setDlCommonInformation(dlCommonInformation);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::itemsInfo[2] = {
 	&DefaultConfigMode::theInfo,
@@ -4868,6 +5262,10 @@ const HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationPreConfigModeD
 	itemsPres,
 	2, 0, 0
 };
+HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentity& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -4903,6 +5301,12 @@ const HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificInfoFdd::HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificInfoFdd(const ULDPCHInfoPostFDD& ulDPCHInfo, const DLCommonInformationPost& dlCommonInformationPost, const DLInformationPerRLListPostFDD& dlInformationPerRLList, const FrequencyInfoFDD& frequencyInfo) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlCommonInformationPost(dlCommonInformationPost);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificInfoTdd::itemsInfo[5] = {
 	&ULDPCHInfoPostTDD::theInfo,
@@ -4927,6 +5331,13 @@ const HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	5, 0, 0
 };
+HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificInfoTdd::HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificInfoTdd(const ULDPCHInfoPostTDD& ulDPCHInfo, const DLCommonInformationPost& dlCommonInformationPost, const DLInformationPerRLPostTDD& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlCommonInformationPost(dlCommonInformationPost);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificInfo::choicesInfo[2] = {
 	&HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificInfoFdd::theInfo,
@@ -4960,6 +5371,10 @@ const HandoverToUTRANCommandr3IEsSpecificationModePreconfiguration::Info Handove
 	itemsPres,
 	3, 1, 0
 };
+HandoverToUTRANCommandr3IEsSpecificationModePreconfiguration::HandoverToUTRANCommandr3IEsSpecificationModePreconfiguration(const HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationPreConfigMode& handoverToUTRANCommandr3IEsSpecificationModePreconfigurationPreConfigMode, const HandoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificInfo& handoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificInfo) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr3IEsSpecificationModePreconfigurationPreConfigMode(handoverToUTRANCommandr3IEsSpecificationModePreconfigurationPreConfigMode);
+	setHandoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificInfo(handoverToUTRANCommandr3IEsSpecificationModePreconfigurationModeSpecificInfo);
+}
 
 const void *HandoverToUTRANCommandr3IEsSpecificationMode::choicesInfo[2] = {
 	&HandoverToUTRANCommandr3IEsSpecificationModeComplete::theInfo,
@@ -4997,6 +5412,11 @@ const HandoverToUTRANCommandr3IEs::Info HandoverToUTRANCommandr3IEs::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+HandoverToUTRANCommandr3IEs::HandoverToUTRANCommandr3IEs(const URNTIShort& newURNTI, const HandoverToUTRANCommandr3IEsSpecificationMode& handoverToUTRANCommandr3IEsSpecificationMode, const MaxAllowedULTXPower& maxAllowedULTXPower) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setHandoverToUTRANCommandr3IEsSpecificationMode(handoverToUTRANCommandr3IEsSpecificationMode);
+	setMaxAllowedULTXPower(maxAllowedULTXPower);
+}
 
 const void *HandoverToUTRANCommandR3NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -5029,6 +5449,9 @@ const HandoverToUTRANCommandR3::Info HandoverToUTRANCommandR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandR3::HandoverToUTRANCommandR3(const HandoverToUTRANCommandr3IEs& handoverToUTRANCommandr3) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr3(handoverToUTRANCommandr3);
+}
 
 const void *HandoverToUTRANCommandr4IEsSpecificationModeCompleteModeSpecificInfoFdd::itemsInfo[2] = {
 	&DLPDSCHInformation::theInfo,
@@ -5096,6 +5519,18 @@ const HandoverToUTRANCommandr4IEsSpecificationModeComplete::Info HandoverToUTRAN
 	itemsPres,
 	11, 1, 0
 };
+HandoverToUTRANCommandr4IEsSpecificationModeComplete::HandoverToUTRANCommandr4IEsSpecificationModeComplete(const SRBInformationSetupList& srbInformationSetupList, const ULCommonTransChInfor4& ulCommonTransChInfo, const ULAddReconfTransChInfoList& ulAddReconfTransChInfoList, const DLCommonTransChInfor4& dlCommonTransChInfo, const DLAddReconfTransChInfoListr4& dlAddReconfTransChInfoList, const ULDPCHInfor4& ulDPCHInfo, const HandoverToUTRANCommandr4IEsSpecificationModeCompleteModeSpecificInfo& handoverToUTRANCommandr4IEsSpecificationModeCompleteModeSpecificInfo, const DLCommonInformationr4& dlCommonInformation, const DLInformationPerRLListr4& dlInformationPerRLList, const FrequencyInfo& frequencyInfo) : Sequence(&theInfo) {
+	setSrbInformationSetupList(srbInformationSetupList);
+	setUlCommonTransChInfo(ulCommonTransChInfo);
+	setUlAddReconfTransChInfoList(ulAddReconfTransChInfoList);
+	setDlCommonTransChInfo(dlCommonTransChInfo);
+	setDlAddReconfTransChInfoList(dlAddReconfTransChInfoList);
+	setUlDPCHInfo(ulDPCHInfo);
+	setHandoverToUTRANCommandr4IEsSpecificationModeCompleteModeSpecificInfo(handoverToUTRANCommandr4IEsSpecificationModeCompleteModeSpecificInfo);
+	setDlCommonInformation(dlCommonInformation);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::itemsInfo[2] = {
 	&DefaultConfigMode::theInfo,
@@ -5114,6 +5549,10 @@ const HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationPreConfigModeD
 	itemsPres,
 	2, 0, 0
 };
+HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr4& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -5149,6 +5588,12 @@ const HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfoFdd::HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfoFdd(const ULDPCHInfoPostFDD& ulDPCHInfo, const DLCommonInformationPost& dlCommonInformationPost, const DLInformationPerRLListPostFDD& dlInformationPerRLList, const FrequencyInfoFDD& frequencyInfo) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlCommonInformationPost(dlCommonInformationPost);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::itemsInfo[4] = {
 	&ULDPCHInfoPostTDD::theInfo,
@@ -5171,6 +5616,12 @@ const HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384(const ULDPCHInfoPostTDD& ulDPCHInfo, const DLInformationPerRLPostTDD& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128::itemsInfo[4] = {
 	&ULDPCHInfoPostTDDLCRr4::theInfo,
@@ -5193,6 +5644,12 @@ const HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128::HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128(const ULDPCHInfoPostTDDLCRr4& ulDPCHInfo, const DLInformationPerRLPostTDDLCRr4& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfoTdd::choicesInfo[2] = {
 	&HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::theInfo,
@@ -5239,6 +5696,10 @@ const HandoverToUTRANCommandr4IEsSpecificationModePreconfiguration::Info Handove
 	itemsPres,
 	3, 1, 0
 };
+HandoverToUTRANCommandr4IEsSpecificationModePreconfiguration::HandoverToUTRANCommandr4IEsSpecificationModePreconfiguration(const HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationPreConfigMode& handoverToUTRANCommandr4IEsSpecificationModePreconfigurationPreConfigMode, const HandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfo& handoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfo) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr4IEsSpecificationModePreconfigurationPreConfigMode(handoverToUTRANCommandr4IEsSpecificationModePreconfigurationPreConfigMode);
+	setHandoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfo(handoverToUTRANCommandr4IEsSpecificationModePreconfigurationModeSpecificInfo);
+}
 
 const void *HandoverToUTRANCommandr4IEsSpecificationMode::choicesInfo[2] = {
 	&HandoverToUTRANCommandr4IEsSpecificationModeComplete::theInfo,
@@ -5274,6 +5735,11 @@ const HandoverToUTRANCommandr4IEs::Info HandoverToUTRANCommandr4IEs::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+HandoverToUTRANCommandr4IEs::HandoverToUTRANCommandr4IEs(const URNTIShort& newURNTI, const HandoverToUTRANCommandr4IEsSpecificationMode& handoverToUTRANCommandr4IEsSpecificationMode, const MaxAllowedULTXPower& maxAllowedULTXPower) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setHandoverToUTRANCommandr4IEsSpecificationMode(handoverToUTRANCommandr4IEsSpecificationMode);
+	setMaxAllowedULTXPower(maxAllowedULTXPower);
+}
 
 const void *HandoverToUTRANCommandCriticalExtensionsR4NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -5306,6 +5772,9 @@ const HandoverToUTRANCommandCriticalExtensionsR4::Info HandoverToUTRANCommandCri
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsR4::HandoverToUTRANCommandCriticalExtensionsR4(const HandoverToUTRANCommandr4IEs& handoverToUTRANCommandr4) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr4(handoverToUTRANCommandr4);
+}
 
 const void *HandoverToUTRANCommandr5IEsSpecificationModeCompleteModeSpecificInfoFdd::itemsInfo[2] = {
 	&DLPDSCHInformation::theInfo,
@@ -5373,6 +5842,18 @@ const HandoverToUTRANCommandr5IEsSpecificationModeComplete::Info HandoverToUTRAN
 	itemsPres,
 	11, 1, 0
 };
+HandoverToUTRANCommandr5IEsSpecificationModeComplete::HandoverToUTRANCommandr5IEsSpecificationModeComplete(const SRBInformationSetupListr5& srbInformationSetupList, const ULCommonTransChInfor4& ulCommonTransChInfo, const ULAddReconfTransChInfoList& ulAddReconfTransChInfoList, const DLCommonTransChInfor4& dlCommonTransChInfo, const DLAddReconfTransChInfoListr5& dlAddReconfTransChInfoList, const ULDPCHInfor5& ulDPCHInfo, const HandoverToUTRANCommandr5IEsSpecificationModeCompleteModeSpecificInfo& handoverToUTRANCommandr5IEsSpecificationModeCompleteModeSpecificInfo, const DLCommonInformationr4& dlCommonInformation, const DLInformationPerRLListr5& dlInformationPerRLList, const FrequencyInfo& frequencyInfo) : Sequence(&theInfo) {
+	setSrbInformationSetupList(srbInformationSetupList);
+	setUlCommonTransChInfo(ulCommonTransChInfo);
+	setUlAddReconfTransChInfoList(ulAddReconfTransChInfoList);
+	setDlCommonTransChInfo(dlCommonTransChInfo);
+	setDlAddReconfTransChInfoList(dlAddReconfTransChInfoList);
+	setUlDPCHInfo(ulDPCHInfo);
+	setHandoverToUTRANCommandr5IEsSpecificationModeCompleteModeSpecificInfo(handoverToUTRANCommandr5IEsSpecificationModeCompleteModeSpecificInfo);
+	setDlCommonInformation(dlCommonInformation);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::itemsInfo[2] = {
 	&DefaultConfigMode::theInfo,
@@ -5391,6 +5872,10 @@ const HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationPreConfigModeD
 	itemsPres,
 	2, 0, 0
 };
+HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr5& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -5426,6 +5911,12 @@ const HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfoFdd::HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfoFdd(const ULDPCHInfoPostFDD& ulDPCHInfo, const DLCommonInformationPost& dlCommonInformationPost, const DLInformationPerRLListPostFDD& dlInformationPerRLList, const FrequencyInfoFDD& frequencyInfo) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlCommonInformationPost(dlCommonInformationPost);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::itemsInfo[4] = {
 	&ULDPCHInfoPostTDD::theInfo,
@@ -5448,6 +5939,12 @@ const HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384(const ULDPCHInfoPostTDD& ulDPCHInfo, const DLInformationPerRLPostTDD& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128::itemsInfo[4] = {
 	&ULDPCHInfoPostTDDLCRr4::theInfo,
@@ -5470,6 +5967,12 @@ const HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128::HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128(const ULDPCHInfoPostTDDLCRr4& ulDPCHInfo, const DLInformationPerRLPostTDDLCRr4& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfoTdd::choicesInfo[2] = {
 	&HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::theInfo,
@@ -5516,6 +6019,10 @@ const HandoverToUTRANCommandr5IEsSpecificationModePreconfiguration::Info Handove
 	itemsPres,
 	3, 1, 0
 };
+HandoverToUTRANCommandr5IEsSpecificationModePreconfiguration::HandoverToUTRANCommandr5IEsSpecificationModePreconfiguration(const HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationPreConfigMode& handoverToUTRANCommandr5IEsSpecificationModePreconfigurationPreConfigMode, const HandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfo& handoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfo) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr5IEsSpecificationModePreconfigurationPreConfigMode(handoverToUTRANCommandr5IEsSpecificationModePreconfigurationPreConfigMode);
+	setHandoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfo(handoverToUTRANCommandr5IEsSpecificationModePreconfigurationModeSpecificInfo);
+}
 
 const void *HandoverToUTRANCommandr5IEsSpecificationMode::choicesInfo[2] = {
 	&HandoverToUTRANCommandr5IEsSpecificationModeComplete::theInfo,
@@ -5551,6 +6058,11 @@ const HandoverToUTRANCommandr5IEs::Info HandoverToUTRANCommandr5IEs::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+HandoverToUTRANCommandr5IEs::HandoverToUTRANCommandr5IEs(const URNTIShort& newURNTI, const HandoverToUTRANCommandr5IEsSpecificationMode& handoverToUTRANCommandr5IEsSpecificationMode, const MaxAllowedULTXPower& maxAllowedULTXPower) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setHandoverToUTRANCommandr5IEsSpecificationMode(handoverToUTRANCommandr5IEsSpecificationMode);
+	setMaxAllowedULTXPower(maxAllowedULTXPower);
+}
 
 const void *HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsR5NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -5583,6 +6095,9 @@ const HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsR5::Info Handove
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsR5::HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsR5(const HandoverToUTRANCommandr5IEs& handoverToUTRANCommandr5) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr5(handoverToUTRANCommandr5);
+}
 
 const void *HandoverToUTRANCommandr6IEsSpecificationModeComplete::itemsInfo[12] = {
 	&SRBInformationSetupListr6::theInfo,
@@ -5621,6 +6136,17 @@ const HandoverToUTRANCommandr6IEsSpecificationModeComplete::Info HandoverToUTRAN
 	itemsPres,
 	12, 3, 0
 };
+HandoverToUTRANCommandr6IEsSpecificationModeComplete::HandoverToUTRANCommandr6IEsSpecificationModeComplete(const SRBInformationSetupListr6& srbInformationSetupList, const ULCommonTransChInfor4& ulCommonTransChInfo, const ULAddReconfTransChInfoListr6& ulAddReconfTransChInfoList, const DLCommonTransChInfor4& dlCommonTransChInfo, const DLAddReconfTransChInfoListr5& dlAddReconfTransChInfoList, const ULDPCHInfor6& ulDPCHInfo, const DLCommonInformationr6& dlCommonInformation, const DLInformationPerRLListr6& dlInformationPerRLList, const FrequencyInfo& frequencyInfo) : Sequence(&theInfo) {
+	setSrbInformationSetupList(srbInformationSetupList);
+	setUlCommonTransChInfo(ulCommonTransChInfo);
+	setUlAddReconfTransChInfoList(ulAddReconfTransChInfoList);
+	setDlCommonTransChInfo(dlCommonTransChInfo);
+	setDlAddReconfTransChInfoList(dlAddReconfTransChInfoList);
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlCommonInformation(dlCommonInformation);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::itemsInfo[2] = {
 	&DefaultConfigMode::theInfo,
@@ -5639,6 +6165,10 @@ const HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationPreConfigModeD
 	itemsPres,
 	2, 0, 0
 };
+HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -5674,6 +6204,12 @@ const HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfoFdd::HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfoFdd(const ULDPCHInfoPostFDD& ulDPCHInfo, const DLCommonInformationPost& dlCommonInformationPost, const DLInformationPerRLListPostFDD& dlInformationPerRLList, const FrequencyInfoFDD& frequencyInfo) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlCommonInformationPost(dlCommonInformationPost);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::itemsInfo[4] = {
 	&ULDPCHInfoPostTDD::theInfo,
@@ -5696,6 +6232,12 @@ const HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384(const ULDPCHInfoPostTDD& ulDPCHInfo, const DLInformationPerRLPostTDD& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128::itemsInfo[4] = {
 	&ULDPCHInfoPostTDDLCRr4::theInfo,
@@ -5718,6 +6260,12 @@ const HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128::HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128(const ULDPCHInfoPostTDDLCRr4& ulDPCHInfo, const DLInformationPerRLPostTDDLCRr4& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfoTdd::choicesInfo[2] = {
 	&HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::theInfo,
@@ -5764,6 +6312,10 @@ const HandoverToUTRANCommandr6IEsSpecificationModePreconfiguration::Info Handove
 	itemsPres,
 	3, 1, 0
 };
+HandoverToUTRANCommandr6IEsSpecificationModePreconfiguration::HandoverToUTRANCommandr6IEsSpecificationModePreconfiguration(const HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationPreConfigMode& handoverToUTRANCommandr6IEsSpecificationModePreconfigurationPreConfigMode, const HandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfo& handoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfo) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr6IEsSpecificationModePreconfigurationPreConfigMode(handoverToUTRANCommandr6IEsSpecificationModePreconfigurationPreConfigMode);
+	setHandoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfo(handoverToUTRANCommandr6IEsSpecificationModePreconfigurationModeSpecificInfo);
+}
 
 const void *HandoverToUTRANCommandr6IEsSpecificationMode::choicesInfo[2] = {
 	&HandoverToUTRANCommandr6IEsSpecificationModeComplete::theInfo,
@@ -5799,6 +6351,11 @@ const HandoverToUTRANCommandr6IEs::Info HandoverToUTRANCommandr6IEs::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+HandoverToUTRANCommandr6IEs::HandoverToUTRANCommandr6IEs(const URNTIShort& newURNTI, const HandoverToUTRANCommandr6IEsSpecificationMode& handoverToUTRANCommandr6IEsSpecificationMode, const MaxAllowedULTXPower& maxAllowedULTXPower) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setHandoverToUTRANCommandr6IEsSpecificationMode(handoverToUTRANCommandr6IEsSpecificationMode);
+	setMaxAllowedULTXPower(maxAllowedULTXPower);
+}
 
 const void *HandoverToUTRANCommandv6b0extIEs::itemsInfo[1] = {
 	&UEHSPAIdentitiesr6::theInfo,
@@ -5847,6 +6404,9 @@ const HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions(const HandoverToUTRANCommandv6b0extIEs& handoverToUTRANCommandv6b0ext) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandv6b0ext(handoverToUTRANCommandv6b0ext);
+}
 
 const void *HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[2] = {
 	&HandoverToUTRANCommandr6IEs::theInfo,
@@ -5865,6 +6425,9 @@ const HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsR6::HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsR6(const HandoverToUTRANCommandr6IEs& handoverToUTRANCommandr6) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr6(handoverToUTRANCommandr6);
+}
 
 const void *HandoverToUTRANCommandr7IEsSpecificationModeComplete::itemsInfo[13] = {
 	&SRBInformationSetupListr7::theInfo,
@@ -5905,6 +6468,17 @@ const HandoverToUTRANCommandr7IEsSpecificationModeComplete::Info HandoverToUTRAN
 	itemsPres,
 	13, 4, 0
 };
+HandoverToUTRANCommandr7IEsSpecificationModeComplete::HandoverToUTRANCommandr7IEsSpecificationModeComplete(const SRBInformationSetupListr7& srbInformationSetupList, const ULCommonTransChInfor4& ulCommonTransChInfo, const ULAddReconfTransChInfoListr7& ulAddReconfTransChInfoList, const DLCommonTransChInfor4& dlCommonTransChInfo, const DLAddReconfTransChInfoListr7& dlAddReconfTransChInfoList, const ULDPCHInfor7& ulDPCHInfo, const DLCommonInformationr7& dlCommonInformation, const DLInformationPerRLListr7& dlInformationPerRLList, const FrequencyInfo& frequencyInfo) : Sequence(&theInfo) {
+	setSrbInformationSetupList(srbInformationSetupList);
+	setUlCommonTransChInfo(ulCommonTransChInfo);
+	setUlAddReconfTransChInfoList(ulAddReconfTransChInfoList);
+	setDlCommonTransChInfo(dlCommonTransChInfo);
+	setDlAddReconfTransChInfoList(dlAddReconfTransChInfoList);
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlCommonInformation(dlCommonInformation);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::itemsInfo[2] = {
 	&DefaultConfigMode::theInfo,
@@ -5923,6 +6497,10 @@ const HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationPreConfigModeD
 	itemsPres,
 	2, 0, 0
 };
+HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -5958,6 +6536,12 @@ const HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoFdd::HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoFdd(const ULDPCHInfoPostFDD& ulDPCHInfo, const DLCommonInformationPost& dlCommonInformationPost, const DLInformationPerRLListPostFDD& dlInformationPerRLList, const FrequencyInfoFDD& frequencyInfo) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlCommonInformationPost(dlCommonInformationPost);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::itemsInfo[4] = {
 	&ULDPCHInfoPostTDD::theInfo,
@@ -5980,6 +6564,12 @@ const HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384(const ULDPCHInfoPostTDD& ulDPCHInfo, const DLInformationPerRLPostTDD& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128::itemsInfo[5] = {
 	&ULDPCHInfor7::theInfo,
@@ -6004,6 +6594,12 @@ const HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	5, 1, 0
 };
+HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128::HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128(const ULDPCHInfor7& ulDPCHInfo, const DLInformationPerRLPostTDDLCRr4& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd768::itemsInfo[4] = {
 	&ULDPCHInfor7::theInfo,
@@ -6026,6 +6622,12 @@ const HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd768::HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd768(const ULDPCHInfor7& ulDPCHInfo, const DLInformationPerRLListr7& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoTdd::choicesInfo[3] = {
 	&HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::theInfo,
@@ -6073,6 +6675,10 @@ const HandoverToUTRANCommandr7IEsSpecificationModePreconfiguration::Info Handove
 	itemsPres,
 	3, 1, 0
 };
+HandoverToUTRANCommandr7IEsSpecificationModePreconfiguration::HandoverToUTRANCommandr7IEsSpecificationModePreconfiguration(const HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationPreConfigMode& handoverToUTRANCommandr7IEsSpecificationModePreconfigurationPreConfigMode, const HandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfo& handoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfo) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr7IEsSpecificationModePreconfigurationPreConfigMode(handoverToUTRANCommandr7IEsSpecificationModePreconfigurationPreConfigMode);
+	setHandoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfo(handoverToUTRANCommandr7IEsSpecificationModePreconfigurationModeSpecificInfo);
+}
 
 const void *HandoverToUTRANCommandr7IEsSpecificationMode::choicesInfo[2] = {
 	&HandoverToUTRANCommandr7IEsSpecificationModeComplete::theInfo,
@@ -6116,6 +6722,12 @@ const HandoverToUTRANCommandr7IEs::Info HandoverToUTRANCommandr7IEs::theInfo = {
 	itemsPres,
 	8, 4, 0
 };
+HandoverToUTRANCommandr7IEs::HandoverToUTRANCommandr7IEs(const URNTIShort& newURNTI, const HandoverToUTRANCommandr7IEsSupportForChangeOfUECapability& handoverToUTRANCommandr7IEsSupportForChangeOfUECapability, const HandoverToUTRANCommandr7IEsSpecificationMode& handoverToUTRANCommandr7IEsSpecificationMode, const MaxAllowedULTXPower& maxAllowedULTXPower) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setHandoverToUTRANCommandr7IEsSupportForChangeOfUECapability(handoverToUTRANCommandr7IEsSupportForChangeOfUECapability);
+	setHandoverToUTRANCommandr7IEsSpecificationMode(handoverToUTRANCommandr7IEsSpecificationMode);
+	setMaxAllowedULTXPower(maxAllowedULTXPower);
+}
 
 const void *HandoverToUTRANCommandv780extIEs::itemsInfo[1] = {
 	&HSDSCHTBSizeTable::theInfo,
@@ -6196,6 +6808,9 @@ const HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV820NonCriticalExtensionsV7d0NonCriticalExtensions::HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV820NonCriticalExtensionsV7d0NonCriticalExtensions(const HandoverToUTRANCommandv7d0extIEs& handoverToUTRANCommandv7d0ext) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandv7d0ext(handoverToUTRANCommandv7d0ext);
+}
 
 const void *HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV820NonCriticalExtensions::itemsInfo[2] = {
 	&HandoverToUTRANCommandv820extIEs::theInfo,
@@ -6214,6 +6829,9 @@ const HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV820NonCriticalExtensions::HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV820NonCriticalExtensions(const HandoverToUTRANCommandv820extIEs& handoverToUTRANCommandv820ext) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandv820ext(handoverToUTRANCommandv820ext);
+}
 
 const void *HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::itemsInfo[2] = {
 	&HandoverToUTRANCommandv780extIEs::theInfo,
@@ -6232,6 +6850,9 @@ const HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions(const HandoverToUTRANCommandv780extIEs& handoverToUTRANCommandv780ext) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandv780ext(handoverToUTRANCommandv780ext);
+}
 
 const void *HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[2] = {
 	&HandoverToUTRANCommandr7IEs::theInfo,
@@ -6250,6 +6871,9 @@ const HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7(const HandoverToUTRANCommandr7IEs& handoverToUTRANCommandr7) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr7(handoverToUTRANCommandr7);
+}
 
 const void *HandoverToUTRANCommandr8IEsSpecificationModeComplete::itemsInfo[13] = {
 	&SRBInformationSetupListr8::theInfo,
@@ -6290,6 +6914,17 @@ const HandoverToUTRANCommandr8IEsSpecificationModeComplete::Info HandoverToUTRAN
 	itemsPres,
 	13, 4, 0
 };
+HandoverToUTRANCommandr8IEsSpecificationModeComplete::HandoverToUTRANCommandr8IEsSpecificationModeComplete(const SRBInformationSetupListr8& srbInformationSetupList, const ULCommonTransChInfor4& ulCommonTransChInfo, const ULAddReconfTransChInfoListr8& ulAddReconfTransChInfoList, const DLCommonTransChInfor4& dlCommonTransChInfo, const DLAddReconfTransChInfoListr7& dlAddReconfTransChInfoList, const ULDPCHInfor7& ulDPCHInfo, const DLCommonInformationr8& dlCommonInformation, const DLInformationPerRLListr7& dlInformationPerRLList, const FrequencyInfo& frequencyInfo) : Sequence(&theInfo) {
+	setSrbInformationSetupList(srbInformationSetupList);
+	setUlCommonTransChInfo(ulCommonTransChInfo);
+	setUlAddReconfTransChInfoList(ulAddReconfTransChInfoList);
+	setDlCommonTransChInfo(dlCommonTransChInfo);
+	setDlAddReconfTransChInfoList(dlAddReconfTransChInfoList);
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlCommonInformation(dlCommonInformation);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::itemsInfo[3] = {
 	&DefaultConfigMode::theInfo,
@@ -6310,6 +6945,10 @@ const HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationPreConfigModeD
 	itemsPres,
 	3, 1, 0
 };
+HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -6345,6 +6984,12 @@ const HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoFdd::HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoFdd(const ULDPCHInfoPostFDD& ulDPCHInfo, const DLCommonInformationPost& dlCommonInformationPost, const DLInformationPerRLListPostFDD& dlInformationPerRLList, const FrequencyInfoFDD& frequencyInfo) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlCommonInformationPost(dlCommonInformationPost);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::itemsInfo[4] = {
 	&ULDPCHInfoPostTDD::theInfo,
@@ -6367,6 +7012,12 @@ const HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384(const ULDPCHInfoPostTDD& ulDPCHInfo, const DLInformationPerRLPostTDD& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128::itemsInfo[5] = {
 	&ULDPCHInfor7::theInfo,
@@ -6391,6 +7042,12 @@ const HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	5, 1, 0
 };
+HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128::HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128(const ULDPCHInfor7& ulDPCHInfo, const DLInformationPerRLPostTDDLCRr4& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd768::itemsInfo[4] = {
 	&ULDPCHInfor7::theInfo,
@@ -6413,6 +7070,12 @@ const HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd768::HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd768(const ULDPCHInfor7& ulDPCHInfo, const DLInformationPerRLListr7& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoTdd::choicesInfo[3] = {
 	&HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::theInfo,
@@ -6460,6 +7123,10 @@ const HandoverToUTRANCommandr8IEsSpecificationModePreconfiguration::Info Handove
 	itemsPres,
 	3, 1, 0
 };
+HandoverToUTRANCommandr8IEsSpecificationModePreconfiguration::HandoverToUTRANCommandr8IEsSpecificationModePreconfiguration(const HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationPreConfigMode& handoverToUTRANCommandr8IEsSpecificationModePreconfigurationPreConfigMode, const HandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfo& handoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfo) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr8IEsSpecificationModePreconfigurationPreConfigMode(handoverToUTRANCommandr8IEsSpecificationModePreconfigurationPreConfigMode);
+	setHandoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfo(handoverToUTRANCommandr8IEsSpecificationModePreconfigurationModeSpecificInfo);
+}
 
 const void *HandoverToUTRANCommandr8IEsSpecificationMode::choicesInfo[2] = {
 	&HandoverToUTRANCommandr8IEsSpecificationModeComplete::theInfo,
@@ -6505,6 +7172,12 @@ const HandoverToUTRANCommandr8IEs::Info HandoverToUTRANCommandr8IEs::theInfo = {
 	itemsPres,
 	9, 5, 0
 };
+HandoverToUTRANCommandr8IEs::HandoverToUTRANCommandr8IEs(const URNTIShort& newURNTI, const HandoverToUTRANCommandr8IEsSupportForChangeOfUECapability& handoverToUTRANCommandr8IEsSupportForChangeOfUECapability, const HandoverToUTRANCommandr8IEsSpecificationMode& handoverToUTRANCommandr8IEsSpecificationMode, const MaxAllowedULTXPower& maxAllowedULTXPower) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setHandoverToUTRANCommandr8IEsSupportForChangeOfUECapability(handoverToUTRANCommandr8IEsSupportForChangeOfUECapability);
+	setHandoverToUTRANCommandr8IEsSpecificationMode(handoverToUTRANCommandr8IEsSpecificationMode);
+	setMaxAllowedULTXPower(maxAllowedULTXPower);
+}
 
 const void *HandoverToUTRANCommandv890extIEs::itemsInfo[1] = {
 	&DLHSPDSCHInformationr8ext::theInfo,
@@ -6569,6 +7242,9 @@ const HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensions::HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensions(const HandoverToUTRANCommandv8a0extIEs& handoverToUTRANCommandv8a0ext) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandv8a0ext(handoverToUTRANCommandv8a0ext);
+}
 
 const void *HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensions::itemsInfo[2] = {
 	&HandoverToUTRANCommandv890extIEs::theInfo,
@@ -6587,6 +7263,9 @@ const HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensions::HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensions(const HandoverToUTRANCommandv890extIEs& handoverToUTRANCommandv890ext) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandv890ext(handoverToUTRANCommandv890ext);
+}
 
 const void *HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::itemsInfo[2] = {
 	&HandoverToUTRANCommandv7d0extIEs::theInfo,
@@ -6605,6 +7284,9 @@ const HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions(const HandoverToUTRANCommandv7d0extIEs& handoverToUTRANCommandv7d0ext) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandv7d0ext(handoverToUTRANCommandv7d0ext);
+}
 
 const void *HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[2] = {
 	&HandoverToUTRANCommandr8IEs::theInfo,
@@ -6623,6 +7305,9 @@ const HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8(const HandoverToUTRANCommandr8IEs& handoverToUTRANCommandr8) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr8(handoverToUTRANCommandr8);
+}
 
 const void *HandoverToUTRANCommandr9IEsSpecificationModeComplete::itemsInfo[13] = {
 	&SRBInformationSetupListr8::theInfo,
@@ -6663,6 +7348,17 @@ const HandoverToUTRANCommandr9IEsSpecificationModeComplete::Info HandoverToUTRAN
 	itemsPres,
 	13, 4, 0
 };
+HandoverToUTRANCommandr9IEsSpecificationModeComplete::HandoverToUTRANCommandr9IEsSpecificationModeComplete(const SRBInformationSetupListr8& srbInformationSetupList, const ULCommonTransChInfor4& ulCommonTransChInfo, const ULAddReconfTransChInfoListr8& ulAddReconfTransChInfoList, const DLCommonTransChInfor4& dlCommonTransChInfo, const DLAddReconfTransChInfoListr9& dlAddReconfTransChInfoList, const ULDPCHInfor7& ulDPCHInfo, const DLCommonInformationr8& dlCommonInformation, const DLInformationPerRLListr7& dlInformationPerRLList, const FrequencyInfo& frequencyInfo) : Sequence(&theInfo) {
+	setSrbInformationSetupList(srbInformationSetupList);
+	setUlCommonTransChInfo(ulCommonTransChInfo);
+	setUlAddReconfTransChInfoList(ulAddReconfTransChInfoList);
+	setDlCommonTransChInfo(dlCommonTransChInfo);
+	setDlAddReconfTransChInfoList(dlAddReconfTransChInfoList);
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlCommonInformation(dlCommonInformation);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::itemsInfo[3] = {
 	&DefaultConfigMode::theInfo,
@@ -6683,6 +7379,10 @@ const HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationPreConfigModeD
 	itemsPres,
 	3, 1, 0
 };
+HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -6718,6 +7418,12 @@ const HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoFdd::HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoFdd(const ULDPCHInfoPostFDD& ulDPCHInfo, const DLCommonInformationPost& dlCommonInformationPost, const DLInformationPerRLListPostFDD& dlInformationPerRLList, const FrequencyInfoFDD& frequencyInfo) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlCommonInformationPost(dlCommonInformationPost);
+	setDlInformationPerRLList(dlInformationPerRLList);
+	setFrequencyInfo(frequencyInfo);
+}
 
 const void *HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::itemsInfo[4] = {
 	&ULDPCHInfoPostTDD::theInfo,
@@ -6740,6 +7446,12 @@ const HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384(const ULDPCHInfoPostTDD& ulDPCHInfo, const DLInformationPerRLPostTDD& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128::itemsInfo[5] = {
 	&ULDPCHInfor7::theInfo,
@@ -6764,6 +7476,12 @@ const HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	5, 1, 0
 };
+HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128::HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd128(const ULDPCHInfor7& ulDPCHInfo, const DLInformationPerRLPostTDDLCRr4& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd768::itemsInfo[4] = {
 	&ULDPCHInfor7::theInfo,
@@ -6786,6 +7504,12 @@ const HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificIn
 	itemsPres,
 	4, 0, 0
 };
+HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd768::HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd768(const ULDPCHInfor7& ulDPCHInfo, const DLInformationPerRLListr7& dlInformationPerRL, const FrequencyInfoTDD& frequencyInfo, const PrimaryCCPCHTXPower& primaryCCPCHTXPower) : Sequence(&theInfo) {
+	setUlDPCHInfo(ulDPCHInfo);
+	setDlInformationPerRL(dlInformationPerRL);
+	setFrequencyInfo(frequencyInfo);
+	setPrimaryCCPCHTXPower(primaryCCPCHTXPower);
+}
 
 const void *HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoTdd::choicesInfo[3] = {
 	&HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfoTddTdd384::theInfo,
@@ -6833,6 +7557,10 @@ const HandoverToUTRANCommandr9IEsSpecificationModePreconfiguration::Info Handove
 	itemsPres,
 	3, 1, 0
 };
+HandoverToUTRANCommandr9IEsSpecificationModePreconfiguration::HandoverToUTRANCommandr9IEsSpecificationModePreconfiguration(const HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationPreConfigMode& handoverToUTRANCommandr9IEsSpecificationModePreconfigurationPreConfigMode, const HandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfo& handoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfo) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr9IEsSpecificationModePreconfigurationPreConfigMode(handoverToUTRANCommandr9IEsSpecificationModePreconfigurationPreConfigMode);
+	setHandoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfo(handoverToUTRANCommandr9IEsSpecificationModePreconfigurationModeSpecificInfo);
+}
 
 const void *HandoverToUTRANCommandr9IEsSpecificationMode::choicesInfo[2] = {
 	&HandoverToUTRANCommandr9IEsSpecificationModeComplete::theInfo,
@@ -6878,6 +7606,12 @@ const HandoverToUTRANCommandr9IEs::Info HandoverToUTRANCommandr9IEs::theInfo = {
 	itemsPres,
 	9, 5, 0
 };
+HandoverToUTRANCommandr9IEs::HandoverToUTRANCommandr9IEs(const URNTIShort& newURNTI, const HandoverToUTRANCommandr9IEsSupportForChangeOfUECapability& handoverToUTRANCommandr9IEsSupportForChangeOfUECapability, const HandoverToUTRANCommandr9IEsSpecificationMode& handoverToUTRANCommandr9IEsSpecificationMode, const MaxAllowedULTXPower& maxAllowedULTXPower) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setHandoverToUTRANCommandr9IEsSupportForChangeOfUECapability(handoverToUTRANCommandr9IEsSupportForChangeOfUECapability);
+	setHandoverToUTRANCommandr9IEsSpecificationMode(handoverToUTRANCommandr9IEsSpecificationMode);
+	setMaxAllowedULTXPower(maxAllowedULTXPower);
+}
 
 const void *HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -6910,6 +7644,9 @@ const HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9(const HandoverToUTRANCommandr9IEs& handoverToUTRANCommandr9) : Sequence(&theInfo) {
+	setHandoverToUTRANCommandr9(handoverToUTRANCommandr9);
+}
 
 const void *HandoverToUTRANCommandCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -7183,6 +7920,9 @@ const InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV5
 	itemsPres,
 	2, 1, 0
 };
+InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions::InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions(const InitialDirectTransferv860extIEs& initialDirectTransferv860ext) : Sequence(&theInfo) {
+	setInitialDirectTransferv860ext(initialDirectTransferv860ext);
+}
 
 const void *InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&InitialDirectTransferv770extIEs::theInfo,
@@ -7201,6 +7941,9 @@ const InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV5
 	itemsPres,
 	2, 1, 0
 };
+InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions(const InitialDirectTransferv770extIEs& initialDirectTransferv770ext) : Sequence(&theInfo) {
+	setInitialDirectTransferv770ext(initialDirectTransferv770ext);
+}
 
 const void *InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&InitialDirectTransferv690extIEs::theInfo,
@@ -7219,6 +7962,9 @@ const InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV5
 	itemsPres,
 	2, 1, 0
 };
+InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions(const InitialDirectTransferv690extIEs& initialDirectTransferv690ext) : Sequence(&theInfo) {
+	setInitialDirectTransferv690ext(initialDirectTransferv690ext);
+}
 
 const void *InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&InitialDirectTransferv590ext::theInfo,
@@ -7237,6 +7983,9 @@ const InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV5
 	itemsPres,
 	2, 1, 0
 };
+InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV590NonCriticalExtensions::InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV590NonCriticalExtensions(const InitialDirectTransferv590ext& initialDirectTransferv590ext) : Sequence(&theInfo) {
+	setInitialDirectTransferv590ext(initialDirectTransferv590ext);
+}
 
 const void *InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
 	&InitialDirectTransferV3a0NonCriticalExtensionsLaterNonCriticalExtensionsInitialDirectTransferr3addext::theInfo,
@@ -7273,6 +8022,9 @@ const InitialDirectTransferV3a0NonCriticalExtensions::Info InitialDirectTransfer
 	itemsPres,
 	2, 1, 0
 };
+InitialDirectTransferV3a0NonCriticalExtensions::InitialDirectTransferV3a0NonCriticalExtensions(const InitialDirectTransferv3a0ext& initialDirectTransferv3a0ext) : Sequence(&theInfo) {
+	setInitialDirectTransferv3a0ext(initialDirectTransferv3a0ext);
+}
 
 const void *InitialDirectTransfer::itemsInfo[5] = {
 	&CNDomainIdentity::theInfo,
@@ -7297,6 +8049,11 @@ const InitialDirectTransfer::Info InitialDirectTransfer::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+InitialDirectTransfer::InitialDirectTransfer(const CNDomainIdentity& cnDomainIdentity, const IntraDomainNasNodeSelector& intraDomainNasNodeSelector, const NASMessage& nasMessage) : Sequence(&theInfo) {
+	setCnDomainIdentity(cnDomainIdentity);
+	setIntraDomainNasNodeSelector(intraDomainNasNodeSelector);
+	setNasMessage(nasMessage);
+}
 
 const void *InitialDirectTransferv7g0extIEs::itemsInfo[1] = {
 	&MeasuredResultsOnRACHv7g0ext::theInfo,
@@ -7345,6 +8102,9 @@ const InitialDirectTransferr3addextIEs::Info InitialDirectTransferr3addextIEs::t
 	itemsPres,
 	2, 1, 0
 };
+InitialDirectTransferr3addextIEs::InitialDirectTransferr3addextIEs(const InitialDirectTransferv7g0extIEs& initialDirectTransferv7g0ext) : Sequence(&theInfo) {
+	setInitialDirectTransferv7g0ext(initialDirectTransferv7g0ext);
+}
 
 const void *HandoverFromUTRANCommandGSMr3IEsGsmmessageSingleGSMMessage::itemsInfo[0] = {
 };
@@ -7375,6 +8135,9 @@ const HandoverFromUTRANCommandGSMr3IEsGsmmessageGsmMessageList::Info HandoverFro
 	itemsPres,
 	1, 0, 0
 };
+HandoverFromUTRANCommandGSMr3IEsGsmmessageGsmMessageList::HandoverFromUTRANCommandGSMr3IEsGsmmessageGsmMessageList(const GSMMessageList& gsmMessages) : Sequence(&theInfo) {
+	setGsmMessages(gsmMessages);
+}
 
 const void *HandoverFromUTRANCommandGSMr3IEsGsmmessage::choicesInfo[2] = {
 	&HandoverFromUTRANCommandGSMr3IEsGsmmessageSingleGSMMessage::theInfo,
@@ -7412,6 +8175,11 @@ const HandoverFromUTRANCommandGSMr3IEs::Info HandoverFromUTRANCommandGSMr3IEs::t
 	itemsPres,
 	5, 2, 0
 };
+HandoverFromUTRANCommandGSMr3IEs::HandoverFromUTRANCommandGSMr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const FrequencyBand& frequencyband, const HandoverFromUTRANCommandGSMr3IEsGsmmessage& handoverFromUTRANCommandGSMr3IEsGsmmessage) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setFrequencyband(frequencyband);
+	setHandoverFromUTRANCommandGSMr3IEsGsmmessage(handoverFromUTRANCommandGSMr3IEsGsmmessage);
+}
 
 const void *HandoverFromUTRANCommandGSMv690extIEsGeranSystemInfoType::choicesInfo[2] = {
 	&GERANSystemInformation::theInfo,
@@ -7489,6 +8257,9 @@ const HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensionsV690NonCriticalExte
 	itemsPres,
 	2, 1, 0
 };
+HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtensions::HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtensions(const HandoverFromUTRANCommandGSMv860extIEs& handoverFromUTRANCommandGSMv860ext) : Sequence(&theInfo) {
+	setHandoverFromUTRANCommandGSMv860ext(handoverFromUTRANCommandGSMv860ext);
+}
 
 const void *HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&HandoverFromUTRANCommandGSMv690extIEs::theInfo,
@@ -7507,6 +8278,9 @@ const HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensionsV690NonCriticalExte
 	itemsPres,
 	2, 1, 0
 };
+HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensionsV690NonCriticalExtensions::HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensionsV690NonCriticalExtensions(const HandoverFromUTRANCommandGSMv690extIEs& handoverFromUTRANCommandGSMv690ext) : Sequence(&theInfo) {
+	setHandoverFromUTRANCommandGSMv690ext(handoverFromUTRANCommandGSMv690ext);
+}
 
 const void *HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&HandoverFromUTRANCommandGSMR3LaterNonCriticalExtensionsHandoverFromUTRANCommandGSMr3addext::theInfo,
@@ -7543,6 +8317,9 @@ const HandoverFromUTRANCommandGSMR3::Info HandoverFromUTRANCommandGSMR3::theInfo
 	itemsPres,
 	2, 1, 0
 };
+HandoverFromUTRANCommandGSMR3::HandoverFromUTRANCommandGSMR3(const HandoverFromUTRANCommandGSMr3IEs& handoverFromUTRANCommandGSMr3) : Sequence(&theInfo) {
+	setHandoverFromUTRANCommandGSMr3(handoverFromUTRANCommandGSMr3);
+}
 
 const void *HandoverFromUTRANCommandGSMr6IEsGsmmessageSingleGSMMessage::itemsInfo[0] = {
 };
@@ -7573,6 +8350,9 @@ const HandoverFromUTRANCommandGSMr6IEsGsmmessageGsmMessageList::Info HandoverFro
 	itemsPres,
 	1, 0, 0
 };
+HandoverFromUTRANCommandGSMr6IEsGsmmessageGsmMessageList::HandoverFromUTRANCommandGSMr6IEsGsmmessageGsmMessageList(const GSMMessageList& gsmMessages) : Sequence(&theInfo) {
+	setGsmMessages(gsmMessages);
+}
 
 const void *HandoverFromUTRANCommandGSMr6IEsGsmmessage::choicesInfo[2] = {
 	&HandoverFromUTRANCommandGSMr6IEsGsmmessageSingleGSMMessage::theInfo,
@@ -7623,6 +8403,10 @@ const HandoverFromUTRANCommandGSMr6IEs::Info HandoverFromUTRANCommandGSMr6IEs::t
 	itemsPres,
 	5, 3, 0
 };
+HandoverFromUTRANCommandGSMr6IEs::HandoverFromUTRANCommandGSMr6IEs(const FrequencyBand& frequencyband, const HandoverFromUTRANCommandGSMr6IEsGsmmessage& handoverFromUTRANCommandGSMr6IEsGsmmessage) : Sequence(&theInfo) {
+	setFrequencyband(frequencyband);
+	setHandoverFromUTRANCommandGSMr6IEsGsmmessage(handoverFromUTRANCommandGSMr6IEsGsmmessage);
+}
 
 const void *HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6V860NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -7655,6 +8439,9 @@ const HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6V860NonCriticalE
 	itemsPres,
 	2, 1, 0
 };
+HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6V860NonCriticalExtensions::HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6V860NonCriticalExtensions(const HandoverFromUTRANCommandGSMv860extIEs& handoverFromUTRANCommandGSMv860ext) : Sequence(&theInfo) {
+	setHandoverFromUTRANCommandGSMv860ext(handoverFromUTRANCommandGSMv860ext);
+}
 
 const void *HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6::itemsInfo[3] = {
 	&HandoverFromUTRANCommandGSMr6IEs::theInfo,
@@ -7675,6 +8462,9 @@ const HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6::Info HandoverF
 	itemsPres,
 	3, 2, 0
 };
+HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6::HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsR6(const HandoverFromUTRANCommandGSMr6IEs& handoverFromUTRANCommandGSMr6) : Sequence(&theInfo) {
+	setHandoverFromUTRANCommandGSMr6(handoverFromUTRANCommandGSMr6);
+}
 
 const void *HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -7720,6 +8510,10 @@ const HandoverFromUTRANCommandGSMLaterthanr3::Info HandoverFromUTRANCommandGSMLa
 	itemsPres,
 	2, 0, 0
 };
+HandoverFromUTRANCommandGSMLaterthanr3::HandoverFromUTRANCommandGSMLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const HandoverFromUTRANCommandGSMLaterthanr3CriticalExtensions& handoverFromUTRANCommandGSMLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setHandoverFromUTRANCommandGSMLaterthanr3CriticalExtensions(handoverFromUTRANCommandGSMLaterthanr3CriticalExtensions);
+}
 
 const void *HandoverFromUTRANCommandGSM::choicesInfo[2] = {
 	&HandoverFromUTRANCommandGSMR3::theInfo,
@@ -7763,6 +8557,9 @@ const HandoverFromUTRANCommandGERANIur5IEsGeranIuMessageGeranIuMessageList::Info
 	itemsPres,
 	1, 0, 0
 };
+HandoverFromUTRANCommandGERANIur5IEsGeranIuMessageGeranIuMessageList::HandoverFromUTRANCommandGERANIur5IEsGeranIuMessageGeranIuMessageList(const GERANIuMessageList& geranIuMessages) : Sequence(&theInfo) {
+	setGeranIuMessages(geranIuMessages);
+}
 
 const void *HandoverFromUTRANCommandGERANIur5IEsGeranIuMessage::choicesInfo[2] = {
 	&HandoverFromUTRANCommandGERANIur5IEsGeranIuMessageSingleGERANIuMessage::theInfo,
@@ -7796,6 +8593,10 @@ const HandoverFromUTRANCommandGERANIur5IEs::Info HandoverFromUTRANCommandGERANIu
 	itemsPres,
 	3, 1, 0
 };
+HandoverFromUTRANCommandGERANIur5IEs::HandoverFromUTRANCommandGERANIur5IEs(const FrequencyBand& frequencyBand, const HandoverFromUTRANCommandGERANIur5IEsGeranIuMessage& handoverFromUTRANCommandGERANIur5IEsGeranIuMessage) : Sequence(&theInfo) {
+	setFrequencyBand(frequencyBand);
+	setHandoverFromUTRANCommandGERANIur5IEsGeranIuMessage(handoverFromUTRANCommandGERANIur5IEsGeranIuMessage);
+}
 
 const void *HandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuR5NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -7828,6 +8629,9 @@ const HandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuR5::Info Han
 	itemsPres,
 	2, 1, 0
 };
+HandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuR5::HandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuR5(const HandoverFromUTRANCommandGERANIur5IEs& handoverFromUTRANCommandGERANIur5) : Sequence(&theInfo) {
+	setHandoverFromUTRANCommandGERANIur5(handoverFromUTRANCommandGERANIur5);
+}
 
 const void *HandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuLaterthanr5CriticalExtensions::itemsInfo[0] = {
 };
@@ -7858,6 +8662,9 @@ const HandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuLaterthanr5:
 	itemsPres,
 	1, 0, 0
 };
+HandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuLaterthanr5::HandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuLaterthanr5(const HandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuLaterthanr5CriticalExtensions& handoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuLaterthanr5CriticalExtensions) : Sequence(&theInfo) {
+	setHandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuLaterthanr5CriticalExtensions(handoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuLaterthanr5CriticalExtensions);
+}
 
 const void *HandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIu::choicesInfo[2] = {
 	&HandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIuR5::theInfo,
@@ -7889,6 +8696,10 @@ const HandoverFromUTRANCommandGERANIu::Info HandoverFromUTRANCommandGERANIu::the
 	itemsPres,
 	2, 0, 0
 };
+HandoverFromUTRANCommandGERANIu::HandoverFromUTRANCommandGERANIu(const RRCTransactionIdentifier& rrcTransactionIdentifier, const HandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIu& handoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIu) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setHandoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIu(handoverFromUTRANCommandGERANIuHandoverFromUTRANCommandGERANIu);
+}
 
 const void *HandoverFromUTRANCommandCDMA2000r3IEs::itemsInfo[4] = {
 	&RRCTransactionIdentifier::theInfo,
@@ -7911,6 +8722,10 @@ const HandoverFromUTRANCommandCDMA2000r3IEs::Info HandoverFromUTRANCommandCDMA20
 	itemsPres,
 	4, 2, 0
 };
+HandoverFromUTRANCommandCDMA2000r3IEs::HandoverFromUTRANCommandCDMA2000r3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const CDMA2000MessageList& cdma2000MessageList) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setCdma2000MessageList(cdma2000MessageList);
+}
 
 const void *HandoverFromUTRANCommandCDMA2000R3LaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -7961,6 +8776,9 @@ const HandoverFromUTRANCommandCDMA2000R3::Info HandoverFromUTRANCommandCDMA2000R
 	itemsPres,
 	2, 1, 0
 };
+HandoverFromUTRANCommandCDMA2000R3::HandoverFromUTRANCommandCDMA2000R3(const HandoverFromUTRANCommandCDMA2000r3IEs& handoverFromUTRANCommandCDMA2000r3) : Sequence(&theInfo) {
+	setHandoverFromUTRANCommandCDMA2000r3(handoverFromUTRANCommandCDMA2000r3);
+}
 
 const void *HandoverFromUTRANCommandCDMA2000Laterthanr3CriticalExtensions::itemsInfo[0] = {
 };
@@ -7993,6 +8811,10 @@ const HandoverFromUTRANCommandCDMA2000Laterthanr3::Info HandoverFromUTRANCommand
 	itemsPres,
 	2, 0, 0
 };
+HandoverFromUTRANCommandCDMA2000Laterthanr3::HandoverFromUTRANCommandCDMA2000Laterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const HandoverFromUTRANCommandCDMA2000Laterthanr3CriticalExtensions& handoverFromUTRANCommandCDMA2000Laterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setHandoverFromUTRANCommandCDMA2000Laterthanr3CriticalExtensions(handoverFromUTRANCommandCDMA2000Laterthanr3CriticalExtensions);
+}
 
 const void *HandoverFromUTRANCommandCDMA2000::choicesInfo[2] = {
 	&HandoverFromUTRANCommandCDMA2000R3::theInfo,
@@ -8026,6 +8848,9 @@ const HandoverFromUTRANCommandEUTRAr8IEs::Info HandoverFromUTRANCommandEUTRAr8IE
 	itemsPres,
 	3, 2, 0
 };
+HandoverFromUTRANCommandEUTRAr8IEs::HandoverFromUTRANCommandEUTRAr8IEs(const HandoverFromUTRANCommandEUTRAr8IEsEutraMessage& handoverFromUTRANCommandEUTRAr8IEsEutraMessage) : Sequence(&theInfo) {
+	setHandoverFromUTRANCommandEUTRAr8IEsEutraMessage(handoverFromUTRANCommandEUTRAr8IEsEutraMessage);
+}
 
 const void *HandoverFromUTRANCommandEUTRACriticalExtensionsR8NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -8060,6 +8885,9 @@ const HandoverFromUTRANCommandEUTRACriticalExtensionsR8::Info HandoverFromUTRANC
 	itemsPres,
 	3, 2, 0
 };
+HandoverFromUTRANCommandEUTRACriticalExtensionsR8::HandoverFromUTRANCommandEUTRACriticalExtensionsR8(const HandoverFromUTRANCommandEUTRAr8IEs& handoverFromUTRANCommandEUTRAr8) : Sequence(&theInfo) {
+	setHandoverFromUTRANCommandEUTRAr8(handoverFromUTRANCommandEUTRAr8);
+}
 
 const void *HandoverFromUTRANCommandEUTRACriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -8105,6 +8933,10 @@ const HandoverFromUTRANCommandEUTRA::Info HandoverFromUTRANCommandEUTRA::theInfo
 	itemsPres,
 	2, 0, 0
 };
+HandoverFromUTRANCommandEUTRA::HandoverFromUTRANCommandEUTRA(const RRCTransactionIdentifier& rrcTransactionIdentifier, const HandoverFromUTRANCommandEUTRACriticalExtensions& handoverFromUTRANCommandEUTRACriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setHandoverFromUTRANCommandEUTRACriticalExtensions(handoverFromUTRANCommandEUTRACriticalExtensions);
+}
 
 const void *HandoverFromUTRANFailureInterRATMessageGsm::itemsInfo[1] = {
 	&GSMMessageList::theInfo,
@@ -8121,6 +8953,9 @@ const HandoverFromUTRANFailureInterRATMessageGsm::Info HandoverFromUTRANFailureI
 	itemsPres,
 	1, 0, 0
 };
+HandoverFromUTRANFailureInterRATMessageGsm::HandoverFromUTRANFailureInterRATMessageGsm(const GSMMessageList& gsmMessageList) : Sequence(&theInfo) {
+	setGsmMessageList(gsmMessageList);
+}
 
 const void *HandoverFromUTRANFailureInterRATMessageCdma2000::itemsInfo[1] = {
 	&CDMA2000MessageList::theInfo,
@@ -8137,6 +8972,9 @@ const HandoverFromUTRANFailureInterRATMessageCdma2000::Info HandoverFromUTRANFai
 	itemsPres,
 	1, 0, 0
 };
+HandoverFromUTRANFailureInterRATMessageCdma2000::HandoverFromUTRANFailureInterRATMessageCdma2000(const CDMA2000MessageList& cdma2000MessageList) : Sequence(&theInfo) {
+	setCdma2000MessageList(cdma2000MessageList);
+}
 
 const void *HandoverFromUTRANFailureInterRATMessage::choicesInfo[2] = {
 	&HandoverFromUTRANFailureInterRATMessageGsm::theInfo,
@@ -8214,6 +9052,9 @@ const HandoverFromUTRANFailureLaterNonCriticalExtensionsV590NonCriticalExtension
 	itemsPres,
 	2, 1, 0
 };
+HandoverFromUTRANFailureLaterNonCriticalExtensionsV590NonCriticalExtensionsV860NonCriticalExtensions::HandoverFromUTRANFailureLaterNonCriticalExtensionsV590NonCriticalExtensionsV860NonCriticalExtensions(const HandoverFromUtranFailurev860extIEs& handoverFromUTRANFailurev860ext) : Sequence(&theInfo) {
+	setHandoverFromUTRANFailurev860ext(handoverFromUTRANFailurev860ext);
+}
 
 const void *HandoverFromUTRANFailureLaterNonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&HandoverFromUtranFailurev590extIEs::theInfo,
@@ -8232,6 +9073,9 @@ const HandoverFromUTRANFailureLaterNonCriticalExtensionsV590NonCriticalExtension
 	itemsPres,
 	2, 1, 0
 };
+HandoverFromUTRANFailureLaterNonCriticalExtensionsV590NonCriticalExtensions::HandoverFromUTRANFailureLaterNonCriticalExtensionsV590NonCriticalExtensions(const HandoverFromUtranFailurev590extIEs& handoverFromUTRANFailurev590ext) : Sequence(&theInfo) {
+	setHandoverFromUTRANFailurev590ext(handoverFromUTRANFailurev590ext);
+}
 
 const void *HandoverFromUTRANFailureLaterNonCriticalExtensions::itemsInfo[2] = {
 	&HandoverFromUTRANFailureLaterNonCriticalExtensionsHandoverFromUTRANFailurer3addext::theInfo,
@@ -8272,6 +9116,9 @@ const HandoverFromUTRANFailure::Info HandoverFromUTRANFailure::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+HandoverFromUTRANFailure::HandoverFromUTRANFailure(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *InterRATHandoverInfoPredefinedConfigStatusList::choicesInfo[2] = {
 	&InterRATHandoverInfoPredefinedConfigStatusListAbsent::theInfo,
@@ -8329,6 +9176,9 @@ const InterRATHandoverInfov390extIEs::Info InterRATHandoverInfov390extIEs::theIn
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfov390extIEs::InterRATHandoverInfov390extIEs(const DLPhysChCapabilityFDDv380ext& dlPhysChCapabilityFDDv380ext) : Sequence(&theInfo) {
+	setDlPhysChCapabilityFDDv380ext(dlPhysChCapabilityFDDv380ext);
+}
 
 const void *InterRATHandoverInfov3a0extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv3a0ext::theInfo,
@@ -8393,6 +9243,9 @@ const InterRATHandoverInfov4b0extIEs::Info InterRATHandoverInfov4b0extIEs::theIn
 	itemsPres,
 	1, 0, 0
 };
+InterRATHandoverInfov4b0extIEs::InterRATHandoverInfov4b0extIEs(const AccessStratumReleaseIndicator& accessStratumReleaseIndicator) : Sequence(&theInfo) {
+	setAccessStratumReleaseIndicator(accessStratumReleaseIndicator);
+}
 
 const void *InterRATHandoverInfov4d0extIEs::itemsInfo[1] = {
 	&RadioFrequencyBandTDDList::theInfo,
@@ -8447,6 +9300,9 @@ const InterRATHandoverInfov690extIEs::Info InterRATHandoverInfov690extIEs::theIn
 	itemsPres,
 	3, 2, 0
 };
+InterRATHandoverInfov690extIEs::InterRATHandoverInfov690extIEs(const UERadioAccessCapabilityComp2& ueRadioAccessCapabilityComp2) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityComp2(ueRadioAccessCapabilityComp2);
+}
 
 const void *InterRATHandoverInfov6b0extIEs::itemsInfo[1] = {
 	&InterRATHandoverInfov6b0extIEssupportForSIB11bis::theInfo,
@@ -8633,6 +9489,9 @@ const InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV7
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV920NonCriticalExtensionsV8b0NonCriticalExtensionsV950NonCriticalExtensions::InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV920NonCriticalExtensionsV8b0NonCriticalExtensionsV950NonCriticalExtensions(const InterRATHandoverInfov950extIEs& interRATHandoverInfov950ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov950ext(interRATHandoverInfov950ext);
+}
 
 const void *InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV920NonCriticalExtensionsV8b0NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov8b0extIEs::theInfo,
@@ -8651,6 +9510,9 @@ const InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV7
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV920NonCriticalExtensionsV8b0NonCriticalExtensions::InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV920NonCriticalExtensionsV8b0NonCriticalExtensions(const InterRATHandoverInfov8b0extIEs& interRATHandoverInfov8b0ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov8b0ext(interRATHandoverInfov8b0ext);
+}
 
 const void *InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV920NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov920extIEs::theInfo,
@@ -8669,6 +9531,9 @@ const InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV7
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV920NonCriticalExtensions::InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensionsV920NonCriticalExtensions(const InterRATHandoverInfov920extIEs& interRATHandoverInfov920ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov920ext(interRATHandoverInfov920ext);
+}
 
 const void *InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov880extIEs::theInfo,
@@ -8687,6 +9552,9 @@ const InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV7
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensions::InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensionsV880NonCriticalExtensions(const InterRATHandoverInfov880extIEs& interRATHandoverInfov880ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov880ext(interRATHandoverInfov880ext);
+}
 
 const void *InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov860extIEs::theInfo,
@@ -8705,6 +9573,9 @@ const InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV7
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensions::InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensionsV860NonCriticalExtensions(const InterRATHandoverInfov860extIEs& interRATHandoverInfov860ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov860ext(interRATHandoverInfov860ext);
+}
 
 const void *InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov790extIEs::theInfo,
@@ -8723,6 +9594,9 @@ const InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV7
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensions::InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV790nonCriticalExtensions(const InterRATHandoverInfov790extIEs& interRATHandoverInfov790ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov790ext(interRATHandoverInfov790ext);
+}
 
 const void *InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov770extIEs::theInfo,
@@ -8741,6 +9615,9 @@ const InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV7
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensions::InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensionsV770NonCriticalExtensions(const InterRATHandoverInfov770extIEs& interRATHandoverInfov770ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov770ext(interRATHandoverInfov770ext);
+}
 
 const void *InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov6e0extIEs::theInfo,
@@ -8759,6 +9636,9 @@ const InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensions::
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensions::InterRATHandoverInfoNonCriticalExtensionv6b0IEsV6e0NonCriticalExtensions(const InterRATHandoverInfov6e0extIEs& interRATHandoverInfov6e0ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov6e0ext(interRATHandoverInfov6e0ext);
+}
 
 const void *InterRATHandoverInfoNonCriticalExtensionv6b0IEs::itemsInfo[2] = {
 	&InterRATHandoverInfov6b0extIEs::theInfo,
@@ -8777,6 +9657,9 @@ const InterRATHandoverInfoNonCriticalExtensionv6b0IEs::Info InterRATHandoverInfo
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoNonCriticalExtensionv6b0IEs::InterRATHandoverInfoNonCriticalExtensionv6b0IEs(const InterRATHandoverInfov6b0extIEs& interRATHandoverInfov6b0ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov6b0ext(interRATHandoverInfov6b0ext);
+}
 
 const void *InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov690extIEs::theInfo,
@@ -8795,6 +9678,9 @@ const InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions(const InterRATHandoverInfov690extIEs& interRATHandoverInfov690ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov690ext(interRATHandoverInfov690ext);
+}
 
 const void *InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV4d0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov590extIEs::theInfo,
@@ -8813,6 +9699,9 @@ const InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV4d0NonCriticalExtensionsV590NonCriticalExtensions::InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV4d0NonCriticalExtensionsV590NonCriticalExtensions(const InterRATHandoverInfov590extIEs& interRATHandoverInfov590ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov590ext(interRATHandoverInfov590ext);
+}
 
 const void *InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV4d0NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov4d0extIEs::theInfo,
@@ -8831,6 +9720,9 @@ const InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV4d0NonCriticalExtensions::InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV4d0NonCriticalExtensions(const InterRATHandoverInfov4d0extIEs& interRATHandoverInfov4d0ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov4d0ext(interRATHandoverInfov4d0ext);
+}
 
 const void *InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov4b0extIEs::theInfo,
@@ -8849,6 +9741,9 @@ const InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensions::InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensions(const InterRATHandoverInfov4b0extIEs& interRATHandoverInfov4b0ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov4b0ext(interRATHandoverInfov4b0ext);
+}
 
 const void *InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov3g0extIEs::theInfo,
@@ -8867,6 +9762,9 @@ const InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensions::InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensions(const InterRATHandoverInfov3g0extIEs& interRATHandoverInfov3g0ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov3g0ext(interRATHandoverInfov3g0ext);
+}
 
 const void *InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[3] = {
 	&InterRATHandoverInfov3d0extIEs::theInfo,
@@ -8887,6 +9785,9 @@ const InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensi
 	itemsPres,
 	3, 2, 0
 };
+InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensions::InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensionsLaterNonCriticalExtensions(const InterRATHandoverInfov3d0extIEs& interRATHandoverInfov3d0ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov3d0ext(interRATHandoverInfov3d0ext);
+}
 
 const void *InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov3a0extIEs::theInfo,
@@ -8905,6 +9806,9 @@ const InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensions::InterRATHandoverInfoV390NonCriticalExtensionsPresentV3a0NonCriticalExtensions(const InterRATHandoverInfov3a0extIEs& interRATHandoverInfov3a0ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov3a0ext(interRATHandoverInfov3a0ext);
+}
 
 const void *InterRATHandoverInfoV390NonCriticalExtensionsPresent::itemsInfo[2] = {
 	&InterRATHandoverInfov390extIEs::theInfo,
@@ -8923,6 +9827,9 @@ const InterRATHandoverInfoV390NonCriticalExtensionsPresent::Info InterRATHandove
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfoV390NonCriticalExtensionsPresent::InterRATHandoverInfoV390NonCriticalExtensionsPresent(const InterRATHandoverInfov390extIEs& interRATHandoverInfov390ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov390ext(interRATHandoverInfov390ext);
+}
 
 const void *InterRATHandoverInfoV390NonCriticalExtensions::choicesInfo[2] = {
 	&InterRATHandoverInfoV390NonCriticalExtensionsAbsent::theInfo,
@@ -8958,6 +9865,12 @@ const InterRATHandoverInfo::Info InterRATHandoverInfo::theInfo = {
 	itemsPres,
 	4, 0, 0
 };
+InterRATHandoverInfo::InterRATHandoverInfo(const InterRATHandoverInfoPredefinedConfigStatusList& interRATHandoverInfoPredefinedConfigStatusList, const InterRATHandoverInfoUESecurityInformation& interRATHandoverInfoUESecurityInformation, const InterRATHandoverInfoUeCapabilityContainer& interRATHandoverInfoUeCapabilityContainer, const InterRATHandoverInfoV390NonCriticalExtensions& interRATHandoverInfoV390NonCriticalExtensions) : Sequence(&theInfo) {
+	setInterRATHandoverInfoPredefinedConfigStatusList(interRATHandoverInfoPredefinedConfigStatusList);
+	setInterRATHandoverInfoUESecurityInformation(interRATHandoverInfoUESecurityInformation);
+	setInterRATHandoverInfoUeCapabilityContainer(interRATHandoverInfoUeCapabilityContainer);
+	setInterRATHandoverInfoV390NonCriticalExtensions(interRATHandoverInfoV390NonCriticalExtensions);
+}
 
 const void *InterRATHandoverInfov690ext1IEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv650ext::theInfo,
@@ -9040,6 +9953,9 @@ const InterRATHandoverInfor3addextIEsV7e0NonCriticalExtensionsV7f0NonCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfor3addextIEsV7e0NonCriticalExtensionsV7f0NonCriticalExtensions::InterRATHandoverInfor3addextIEsV7e0NonCriticalExtensionsV7f0NonCriticalExtensions(const InterRATHandoverInfov7f0extIEs& interRATHandoverInfov7f0ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov7f0ext(interRATHandoverInfov7f0ext);
+}
 
 const void *InterRATHandoverInfor3addextIEsV7e0NonCriticalExtensions::itemsInfo[2] = {
 	&InterRATHandoverInfov7e0extIEs::theInfo,
@@ -9058,6 +9974,9 @@ const InterRATHandoverInfor3addextIEsV7e0NonCriticalExtensions::Info InterRATHan
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfor3addextIEsV7e0NonCriticalExtensions::InterRATHandoverInfor3addextIEsV7e0NonCriticalExtensions(const InterRATHandoverInfov7e0extIEs& interRATHandoverInfov7e0ext) : Sequence(&theInfo) {
+	setInterRATHandoverInfov7e0ext(interRATHandoverInfov7e0ext);
+}
 
 const void *InterRATHandoverInfor3addextIEs::itemsInfo[2] = {
 	&InterRATHandoverInfov690ext1IEs::theInfo,
@@ -9076,6 +9995,9 @@ const InterRATHandoverInfor3addextIEs::Info InterRATHandoverInfor3addextIEs::the
 	itemsPres,
 	2, 1, 0
 };
+InterRATHandoverInfor3addextIEs::InterRATHandoverInfor3addextIEs(const InterRATHandoverInfov690ext1IEs& interRATHandoverInfov690ext1) : Sequence(&theInfo) {
+	setInterRATHandoverInfov690ext1(interRATHandoverInfov690ext1);
+}
 
 const void *MeasurementControlr3IEs::itemsInfo[6] = {
 	&RRCTransactionIdentifier::theInfo,
@@ -9102,6 +10024,11 @@ const MeasurementControlr3IEs::Info MeasurementControlr3IEs::theInfo = {
 	itemsPres,
 	6, 3, 0
 };
+MeasurementControlr3IEs::MeasurementControlr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const MeasurementIdentity& measurementIdentity, const MeasurementCommand& measurementCommand) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setMeasurementIdentity(measurementIdentity);
+	setMeasurementCommand(measurementCommand);
+}
 
 const void *MeasurementControlv390ext::itemsInfo[1] = {
 	&UEPositioningMeasurementv390ext::theInfo,
@@ -9169,6 +10096,9 @@ const MeasurementControlv590extIEs::Info MeasurementControlv590extIEs::theInfo =
 	itemsPres,
 	4, 3, 0
 };
+MeasurementControlv590extIEs::MeasurementControlv590extIEs(const RRCTransactionIdentifier& rrcTransactionIdentifierMSPv590ext) : Sequence(&theInfo) {
+	setRrcTransactionIdentifierMSPv590ext(rrcTransactionIdentifierMSPv590ext);
+}
 
 const void *MeasurementControlv5b0extIEs::itemsInfo[1] = {
 	&InterRATCellInfoIndication::theInfo,
@@ -9217,6 +10147,9 @@ const MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLate
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensions::MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensions(const MeasurementControlv5b0extIEs& measurementControlv5b0ext) : Sequence(&theInfo) {
+	setMeasurementControlv5b0ext(measurementControlv5b0ext);
+}
 
 const void *MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&MeasurementControlv590extIEs::theInfo,
@@ -9235,6 +10168,9 @@ const MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLate
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const MeasurementControlv590extIEs& measurementControlv590ext) : Sequence(&theInfo) {
+	setMeasurementControlv590ext(measurementControlv590ext);
+}
 
 const void *MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[1] = {
 	&MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::theInfo,
@@ -9287,6 +10223,9 @@ const MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensions::In
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensions::MeasurementControlR3V390nonCriticalExtensionsV3a0NonCriticalExtensions(const MeasurementControlv3a0ext& measurementControlv3a0ext) : Sequence(&theInfo) {
+	setMeasurementControlv3a0ext(measurementControlv3a0ext);
+}
 
 const void *MeasurementControlR3V390nonCriticalExtensions::itemsInfo[2] = {
 	&MeasurementControlv390ext::theInfo,
@@ -9305,6 +10244,9 @@ const MeasurementControlR3V390nonCriticalExtensions::Info MeasurementControlR3V3
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlR3V390nonCriticalExtensions::MeasurementControlR3V390nonCriticalExtensions(const MeasurementControlv390ext& measurementControlv390ext) : Sequence(&theInfo) {
+	setMeasurementControlv390ext(measurementControlv390ext);
+}
 
 const void *MeasurementControlR3::itemsInfo[2] = {
 	&MeasurementControlr3IEs::theInfo,
@@ -9323,6 +10265,9 @@ const MeasurementControlR3::Info MeasurementControlR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlR3::MeasurementControlR3(const MeasurementControlr3IEs& measurementControlr3) : Sequence(&theInfo) {
+	setMeasurementControlr3(measurementControlr3);
+}
 
 const void *MeasurementControlr4IEs::itemsInfo[5] = {
 	&MeasurementIdentity::theInfo,
@@ -9347,6 +10292,10 @@ const MeasurementControlr4IEs::Info MeasurementControlr4IEs::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+MeasurementControlr4IEs::MeasurementControlr4IEs(const MeasurementIdentity& measurementIdentity, const MeasurementCommandr4& measurementCommand) : Sequence(&theInfo) {
+	setMeasurementIdentity(measurementIdentity);
+	setMeasurementCommand(measurementCommand);
+}
 
 const void *MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -9379,6 +10328,9 @@ const MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensions::MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensions(const MeasurementControlv5b0extIEs& measurementControlv5b0ext) : Sequence(&theInfo) {
+	setMeasurementControlv5b0ext(measurementControlv5b0ext);
+}
 
 const void *MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&MeasurementControlv590extIEs::theInfo,
@@ -9397,6 +10349,9 @@ const MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions(const MeasurementControlv590extIEs& measurementControlv590ext) : Sequence(&theInfo) {
+	setMeasurementControlv590ext(measurementControlv590ext);
+}
 
 const void *MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&MeasurementControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsMeasurementControlr4addext::theInfo,
@@ -9433,6 +10388,9 @@ const MeasurementControlLaterthanr3CriticalExtensionsR4::Info MeasurementControl
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlLaterthanr3CriticalExtensionsR4::MeasurementControlLaterthanr3CriticalExtensionsR4(const MeasurementControlr4IEs& measurementControlr4) : Sequence(&theInfo) {
+	setMeasurementControlr4(measurementControlr4);
+}
 
 const void *MeasurementControlr6IEs::itemsInfo[5] = {
 	&MeasurementIdentity::theInfo,
@@ -9457,6 +10415,10 @@ const MeasurementControlr6IEs::Info MeasurementControlr6IEs::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+MeasurementControlr6IEs::MeasurementControlr6IEs(const MeasurementIdentity& measurementIdentity, const MeasurementCommandr6& measurementCommand) : Sequence(&theInfo) {
+	setMeasurementIdentity(measurementIdentity);
+	setMeasurementCommand(measurementCommand);
+}
 
 const void *MeasurementControlv6a0extIEs::itemsInfo[1] = {
 	&IntraFreqReportingCriteria1br5::theInfo,
@@ -9505,6 +10467,9 @@ const MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsR6V6a0NonCriticalExtensions::MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsR6V6a0NonCriticalExtensions(const MeasurementControlv6a0extIEs& measurementControlv6a0ext) : Sequence(&theInfo) {
+	setMeasurementControlv6a0ext(measurementControlv6a0ext);
+}
 
 const void *MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsR6::itemsInfo[2] = {
 	&MeasurementControlr6IEs::theInfo,
@@ -9523,6 +10488,9 @@ const MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsR6::MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsR6(const MeasurementControlr6IEs& measurementControlr6) : Sequence(&theInfo) {
+	setMeasurementControlr6(measurementControlr6);
+}
 
 const void *MeasurementControlr7IEs::itemsInfo[5] = {
 	&MeasurementIdentity::theInfo,
@@ -9547,6 +10515,10 @@ const MeasurementControlr7IEs::Info MeasurementControlr7IEs::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+MeasurementControlr7IEs::MeasurementControlr7IEs(const MeasurementIdentity& measurementIdentity, const MeasurementCommandr7& measurementCommand) : Sequence(&theInfo) {
+	setMeasurementIdentity(measurementIdentity);
+	setMeasurementCommand(measurementCommand);
+}
 
 const void *MeasurementControlv7b0extIEs::itemsInfo[1] = {
 	&NewInterFreqCellListv7b0ext::theInfo,
@@ -9595,6 +10567,9 @@ const MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsR7V7b0NonCriticalExtensions::MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsR7V7b0NonCriticalExtensions(const MeasurementControlv7b0extIEs& measurementControlv7b0ext) : Sequence(&theInfo) {
+	setMeasurementControlv7b0ext(measurementControlv7b0ext);
+}
 
 const void *MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&MeasurementControlr7IEs::theInfo,
@@ -9615,6 +10590,9 @@ const MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensio
 	itemsPres,
 	3, 2, 0
 };
+MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsR7::MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsR7(const MeasurementControlr7IEs& measurementControlr7) : Sequence(&theInfo) {
+	setMeasurementControlr7(measurementControlr7);
+}
 
 const void *MeasurementControlr8IEs::itemsInfo[5] = {
 	&MeasurementIdentity::theInfo,
@@ -9639,6 +10617,10 @@ const MeasurementControlr8IEs::Info MeasurementControlr8IEs::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+MeasurementControlr8IEs::MeasurementControlr8IEs(const MeasurementIdentity& measurementIdentity, const MeasurementCommandr8& measurementCommand) : Sequence(&theInfo) {
+	setMeasurementIdentity(measurementIdentity);
+	setMeasurementCommand(measurementCommand);
+}
 
 const void *MeasurementControlv8a0extIEs::itemsInfo[2] = {
 	&NewIntraFreqCellListLCRv8a0ext::theInfo,
@@ -9689,6 +10671,9 @@ const MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsR8V8a0NonCriticalExtensions::MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsR8V8a0NonCriticalExtensions(const MeasurementControlv8a0extIEs& measurementControlv8a0ext) : Sequence(&theInfo) {
+	setMeasurementControlv8a0ext(measurementControlv8a0ext);
+}
 
 const void *MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&MeasurementControlr8IEs::theInfo,
@@ -9709,6 +10694,9 @@ const MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensio
 	itemsPres,
 	3, 2, 0
 };
+MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsR8::MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsR8(const MeasurementControlr8IEs& measurementControlr8) : Sequence(&theInfo) {
+	setMeasurementControlr8(measurementControlr8);
+}
 
 const void *MeasurementControlr9IEs::itemsInfo[6] = {
 	&MeasurementIdentity::theInfo,
@@ -9735,6 +10723,10 @@ const MeasurementControlr9IEs::Info MeasurementControlr9IEs::theInfo = {
 	itemsPres,
 	6, 4, 0
 };
+MeasurementControlr9IEs::MeasurementControlr9IEs(const MeasurementIdentity& measurementIdentity, const MeasurementCommandr9& measurementCommand) : Sequence(&theInfo) {
+	setMeasurementIdentity(measurementIdentity);
+	setMeasurementCommand(measurementCommand);
+}
 
 const void *MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -9769,6 +10761,9 @@ const MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensio
 	itemsPres,
 	3, 2, 0
 };
+MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9(const MeasurementControlr9IEs& measurementControlr9) : Sequence(&theInfo) {
+	setMeasurementControlr9(measurementControlr9);
+}
 
 const void *MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -9853,6 +10848,10 @@ const MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4::Info Measureme
 	itemsPres,
 	2, 0, 0
 };
+MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4::MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4(const RRCTransactionIdentifier& rrcTransactionIdentifierMSP, const MeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensions& measurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifierMSP(rrcTransactionIdentifierMSP);
+	setMeasurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensions(measurementControlLaterthanr3CriticalExtensionsLaterthanr4CriticalExtensions);
+}
 
 const void *MeasurementControlLaterthanr3CriticalExtensions::choicesInfo[2] = {
 	&MeasurementControlLaterthanr3CriticalExtensionsR4::theInfo,
@@ -9884,6 +10883,10 @@ const MeasurementControlLaterthanr3::Info MeasurementControlLaterthanr3::theInfo
 	itemsPres,
 	2, 0, 0
 };
+MeasurementControlLaterthanr3::MeasurementControlLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const MeasurementControlLaterthanr3CriticalExtensions& measurementControlLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setMeasurementControlLaterthanr3CriticalExtensions(measurementControlLaterthanr3CriticalExtensions);
+}
 
 const void *MeasurementControl::choicesInfo[2] = {
 	&MeasurementControlR3::theInfo,
@@ -9913,6 +10916,9 @@ const MeasurementControlFailurev590extIEs::Info MeasurementControlFailurev590ext
 	itemsPres,
 	1, 0, 0
 };
+MeasurementControlFailurev590extIEs::MeasurementControlFailurev590extIEs(const RRCTransactionIdentifier& rrcTransactionIdentifierMSPv590ext) : Sequence(&theInfo) {
+	setRrcTransactionIdentifierMSPv590ext(rrcTransactionIdentifierMSPv590ext);
+}
 
 const void *MeasurementControlFailureLaterNonCriticalExtensionsV590NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -9945,6 +10951,9 @@ const MeasurementControlFailureLaterNonCriticalExtensionsV590NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+MeasurementControlFailureLaterNonCriticalExtensionsV590NonCriticalExtensions::MeasurementControlFailureLaterNonCriticalExtensionsV590NonCriticalExtensions(const MeasurementControlFailurev590extIEs& measurementControlFailurev590ext) : Sequence(&theInfo) {
+	setMeasurementControlFailurev590ext(measurementControlFailurev590ext);
+}
 
 const void *MeasurementControlFailureLaterNonCriticalExtensions::itemsInfo[2] = {
 	&MeasurementControlFailureLaterNonCriticalExtensionsMeasurementControlFailurer3addext::theInfo,
@@ -9983,6 +10992,10 @@ const MeasurementControlFailure::Info MeasurementControlFailure::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+MeasurementControlFailure::MeasurementControlFailure(const RRCTransactionIdentifier& rrcTransactionIdentifier, const FailureCauseWithProtErr& failureCause) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setFailureCause(failureCause);
+}
 
 const void *MeasurementReportv390ext::itemsInfo[1] = {
 	&MeasuredResultsv390ext::theInfo,
@@ -10175,6 +11188,9 @@ const MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0No
 	itemsPres,
 	2, 1, 0
 };
+MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsV920NonCriticalExtensions::MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsV920NonCriticalExtensions(const MeasurementReportv920extIEs& measurementReportv920ext) : Sequence(&theInfo) {
+	setMeasurementReportv920ext(measurementReportv920ext);
+}
 
 const void *MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions::itemsInfo[2] = {
 	&MeasurementReportv860extIEs::theInfo,
@@ -10193,6 +11209,9 @@ const MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0No
 	itemsPres,
 	2, 1, 0
 };
+MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions::MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions(const MeasurementReportv860extIEs& measurementReportv860ext) : Sequence(&theInfo) {
+	setMeasurementReportv860ext(measurementReportv860ext);
+}
 
 const void *MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&MeasurementReportv770extIEs::theInfo,
@@ -10211,6 +11230,9 @@ const MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0No
 	itemsPres,
 	2, 1, 0
 };
+MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions(const MeasurementReportv770extIEs& measurementReportv770ext) : Sequence(&theInfo) {
+	setMeasurementReportv770ext(measurementReportv770ext);
+}
 
 const void *MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&MeasurementReportv690extIEs::theInfo,
@@ -10229,6 +11251,9 @@ const MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0No
 	itemsPres,
 	2, 1, 0
 };
+MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensionsV690NonCriticalExtensions::MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensionsV690NonCriticalExtensions(const MeasurementReportv690extIEs& measurementReportv690ext) : Sequence(&theInfo) {
+	setMeasurementReportv690ext(measurementReportv690ext);
+}
 
 const void *MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensions::itemsInfo[2] = {
 	&MeasurementReportv5b0extIEs::theInfo,
@@ -10247,6 +11272,9 @@ const MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0No
 	itemsPres,
 	2, 1, 0
 };
+MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensions::MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5b0NonCriticalExtensions(const MeasurementReportv5b0extIEs& measurementReportv5b0ext) : Sequence(&theInfo) {
+	setMeasurementReportv5b0ext(measurementReportv5b0ext);
+}
 
 const void *MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&MeasurementReportv590extIEs::theInfo,
@@ -10265,6 +11293,9 @@ const MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0No
 	itemsPres,
 	2, 1, 0
 };
+MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const MeasurementReportv590extIEs& measurementReportv590ext) : Sequence(&theInfo) {
+	setMeasurementReportv590ext(measurementReportv590ext);
+}
 
 const void *MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&MeasurementReportv4b0extIEs::theInfo,
@@ -10283,6 +11314,9 @@ const MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0No
 	itemsPres,
 	2, 1, 0
 };
+MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions(const MeasurementReportv4b0extIEs& measurementReportv4b0ext) : Sequence(&theInfo) {
+	setMeasurementReportv4b0ext(measurementReportv4b0ext);
+}
 
 const void *MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
 	&MeasurementReportV390nonCriticalExtensionsLaterNonCriticalExtensionsMeasurementReportr3addext::theInfo,
@@ -10319,6 +11353,9 @@ const MeasurementReportV390nonCriticalExtensions::Info MeasurementReportV390nonC
 	itemsPres,
 	2, 1, 0
 };
+MeasurementReportV390nonCriticalExtensions::MeasurementReportV390nonCriticalExtensions(const MeasurementReportv390ext& measurementReportv390ext) : Sequence(&theInfo) {
+	setMeasurementReportv390ext(measurementReportv390ext);
+}
 
 const void *MeasurementReport::itemsInfo[6] = {
 	&MeasurementIdentity::theInfo,
@@ -10345,6 +11382,9 @@ const MeasurementReport::Info MeasurementReport::theInfo = {
 	itemsPres,
 	6, 5, 0
 };
+MeasurementReport::MeasurementReport(const MeasurementIdentity& measurementIdentity) : Sequence(&theInfo) {
+	setMeasurementIdentity(measurementIdentity);
+}
 
 const void *PagingType1v590extIEs::itemsInfo[1] = {
 	&PagingRecord2Listr5::theInfo,
@@ -10409,6 +11449,9 @@ const PagingType1LaterNonCriticalExtensionsV590NonCriticalExtensionsV860NonCriti
 	itemsPres,
 	2, 1, 0
 };
+PagingType1LaterNonCriticalExtensionsV590NonCriticalExtensionsV860NonCriticalExtensions::PagingType1LaterNonCriticalExtensionsV590NonCriticalExtensionsV860NonCriticalExtensions(const PagingType1v860extIEs& pagingType1v860ext) : Sequence(&theInfo) {
+	setPagingType1v860ext(pagingType1v860ext);
+}
 
 const void *PagingType1LaterNonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&PagingType1v590extIEs::theInfo,
@@ -10427,6 +11470,9 @@ const PagingType1LaterNonCriticalExtensionsV590NonCriticalExtensions::Info Pagin
 	itemsPres,
 	2, 1, 0
 };
+PagingType1LaterNonCriticalExtensionsV590NonCriticalExtensions::PagingType1LaterNonCriticalExtensionsV590NonCriticalExtensions(const PagingType1v590extIEs& pagingType1v590ext) : Sequence(&theInfo) {
+	setPagingType1v590ext(pagingType1v590ext);
+}
 
 const void *PagingType1LaterNonCriticalExtensions::itemsInfo[2] = {
 	&PagingType1LaterNonCriticalExtensionsPagingType1r3addext::theInfo,
@@ -10521,6 +11567,12 @@ const PagingType2::Info PagingType2::theInfo = {
 	itemsPres,
 	5, 1, 0
 };
+PagingType2::PagingType2(const RRCTransactionIdentifier& rrcTransactionIdentifier, const PagingCause& pagingCause, const CNDomainIdentity& cnDomainIdentity, const PagingRecordTypeID& pagingRecordTypeID) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setPagingCause(pagingCause);
+	setCnDomainIdentity(cnDomainIdentity);
+	setPagingRecordTypeID(pagingRecordTypeID);
+}
 
 const void *PhysicalChannelReconfigurationr3IEsModeSpecificInfoFdd::itemsInfo[1] = {
 	&DLPDSCHInformation::theInfo,
@@ -10598,6 +11650,11 @@ const PhysicalChannelReconfigurationr3IEs::Info PhysicalChannelReconfigurationr3
 	itemsPres,
 	17, 14, 0
 };
+PhysicalChannelReconfigurationr3IEs::PhysicalChannelReconfigurationr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const RRCStateIndicator& rrcStateIndicator, const PhysicalChannelReconfigurationr3IEsModeSpecificInfo& physicalChannelReconfigurationr3IEsModeSpecificInfo) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRrcStateIndicator(rrcStateIndicator);
+	setPhysicalChannelReconfigurationr3IEsModeSpecificInfo(physicalChannelReconfigurationr3IEsModeSpecificInfo);
+}
 
 const void *PhysicalChannelReconfigurationv3a0ext::itemsInfo[1] = {
 	&DSCHRNTI::theInfo,
@@ -10726,6 +11783,9 @@ const PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalE
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtenstionsV590NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensions::PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtenstionsV590NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensions(const PhysicalChannelReconfigurationv770extIEs& physicalChannelReconfigurationv770ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv770ext(physicalChannelReconfigurationv770ext);
+}
 
 const void *PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtenstionsV590NonCriticalExtenstionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv690extIEs::theInfo,
@@ -10744,6 +11804,9 @@ const PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalE
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtenstionsV590NonCriticalExtenstionsV690NonCriticalExtensions::PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtenstionsV590NonCriticalExtenstionsV690NonCriticalExtensions(const PhysicalChannelReconfigurationv690extIEs& physicalChannelReconfigurationv690ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv690ext(physicalChannelReconfigurationv690ext);
+}
 
 const void *PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtenstionsV590NonCriticalExtenstions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv590extIEs::theInfo,
@@ -10762,6 +11825,9 @@ const PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalE
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtenstionsV590NonCriticalExtenstions::PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtenstionsV590NonCriticalExtenstions(const PhysicalChannelReconfigurationv590extIEs& physicalChannelReconfigurationv590ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv590ext(physicalChannelReconfigurationv590ext);
+}
 
 const void *PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtenstions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv4b0extIEs::theInfo,
@@ -10780,6 +11846,9 @@ const PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalE
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtenstions::PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtenstions(const PhysicalChannelReconfigurationv4b0extIEs& physicalChannelReconfigurationv4b0ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv4b0ext(physicalChannelReconfigurationv4b0ext);
+}
 
 const void *PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsPhysicalChannelReconfigurationr3addext::theInfo,
@@ -10816,6 +11885,9 @@ const PhysicalChannelReconfigurationR3V3a0NonCriticalExtensions::Info PhysicalCh
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationR3V3a0NonCriticalExtensions::PhysicalChannelReconfigurationR3V3a0NonCriticalExtensions(const PhysicalChannelReconfigurationv3a0ext& physicalChannelReconfigurationv3a0ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv3a0ext(physicalChannelReconfigurationv3a0ext);
+}
 
 const void *PhysicalChannelReconfigurationR3::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationr3IEs::theInfo,
@@ -10834,6 +11906,9 @@ const PhysicalChannelReconfigurationR3::Info PhysicalChannelReconfigurationR3::t
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationR3::PhysicalChannelReconfigurationR3(const PhysicalChannelReconfigurationr3IEs& physicalChannelReconfigurationr3) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationr3(physicalChannelReconfigurationr3);
+}
 
 const void *PhysicalChannelReconfigurationr4IEsModeSpecificInfoFdd::itemsInfo[1] = {
 	&DLPDSCHInformation::theInfo,
@@ -10911,6 +11986,10 @@ const PhysicalChannelReconfigurationr4IEs::Info PhysicalChannelReconfigurationr4
 	itemsPres,
 	17, 15, 0
 };
+PhysicalChannelReconfigurationr4IEs::PhysicalChannelReconfigurationr4IEs(const RRCStateIndicator& rrcStateIndicator, const PhysicalChannelReconfigurationr4IEsModeSpecificInfo& physicalChannelReconfigurationr4IEsModeSpecificInfo) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setPhysicalChannelReconfigurationr4IEsModeSpecificInfo(physicalChannelReconfigurationr4IEsModeSpecificInfo);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -10943,6 +12022,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCritic
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensions(const PhysicalChannelReconfigurationv770extIEs& physicalChannelReconfigurationv770ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv770ext(physicalChannelReconfigurationv770ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv690extIEs::theInfo,
@@ -10961,6 +12043,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCritic
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstionsV690NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstionsV690NonCriticalExtensions(const PhysicalChannelReconfigurationv690extIEs& physicalChannelReconfigurationv690ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv690ext(physicalChannelReconfigurationv690ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv590extIEs::theInfo,
@@ -10979,6 +12064,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCritic
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtenstions(const PhysicalChannelReconfigurationv590extIEs& physicalChannelReconfigurationv590ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv590ext(physicalChannelReconfigurationv590ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsPhysicalChannelReconfigurationr4addext::theInfo,
@@ -11015,6 +12103,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4::Info Physic
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsR4(const PhysicalChannelReconfigurationr4IEs& physicalChannelReconfigurationr4) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationr4(physicalChannelReconfigurationr4);
+}
 
 const void *PhysicalChannelReconfigurationr5IEsModeSpecificInfoFdd::itemsInfo[1] = {
 	&DLPDSCHInformation::theInfo,
@@ -11096,6 +12187,10 @@ const PhysicalChannelReconfigurationr5IEs::Info PhysicalChannelReconfigurationr5
 	itemsPres,
 	19, 17, 0
 };
+PhysicalChannelReconfigurationr5IEs::PhysicalChannelReconfigurationr5IEs(const RRCStateIndicator& rrcStateIndicator, const PhysicalChannelReconfigurationr5IEsModeSpecificInfo& physicalChannelReconfigurationr5IEsModeSpecificInfo) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setPhysicalChannelReconfigurationr5IEsModeSpecificInfo(physicalChannelReconfigurationr5IEsModeSpecificInfo);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV770NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -11128,6 +12223,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV770NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV770NonCriticalExtensions(const PhysicalChannelReconfigurationv770extIEs& physicalChannelReconfigurationv770ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv770ext(physicalChannelReconfigurationv770ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv690extIEs::theInfo,
@@ -11146,6 +12244,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions(const PhysicalChannelReconfigurationv690extIEs& physicalChannelReconfigurationv690ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv690ext(physicalChannelReconfigurationv690ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&PhysicalChannelReconfigurationr5IEs::theInfo,
@@ -11166,6 +12267,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	3, 2, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5(const PhysicalChannelReconfigurationr5IEs& physicalChannelReconfigurationr5) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationr5(physicalChannelReconfigurationr5);
+}
 
 const void *PhysicalChannelReconfigurationr6IEs::itemsInfo[23] = {
 	&IntegrityProtectionModeInfo::theInfo,
@@ -11226,6 +12330,9 @@ const PhysicalChannelReconfigurationr6IEs::Info PhysicalChannelReconfigurationr6
 	itemsPres,
 	23, 22, 0
 };
+PhysicalChannelReconfigurationr6IEs::PhysicalChannelReconfigurationr6IEs(const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *PhysicalChannelReconfigurationv6b0extIEs::itemsInfo[1] = {
 	&DLInformationPerRLListv6b0ext::theInfo,
@@ -11274,6 +12381,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsV770NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsV770NonCriticalExtensions(const PhysicalChannelReconfigurationv770extIEs& physicalChannelReconfigurationv770ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv770ext(physicalChannelReconfigurationv770ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv6b0extIEs::theInfo,
@@ -11292,6 +12402,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions(const PhysicalChannelReconfigurationv6b0extIEs& physicalChannelReconfigurationv6b0ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv6b0ext(physicalChannelReconfigurationv6b0ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&PhysicalChannelReconfigurationr6IEs::theInfo,
@@ -11312,6 +12425,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	3, 2, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6(const PhysicalChannelReconfigurationr6IEs& physicalChannelReconfigurationr6) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationr6(physicalChannelReconfigurationr6);
+}
 
 const void *PhysicalChannelReconfigurationr7IEs::itemsInfo[31] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -11388,6 +12504,9 @@ const PhysicalChannelReconfigurationr7IEs::Info PhysicalChannelReconfigurationr7
 	itemsPres,
 	31, 30, 0
 };
+PhysicalChannelReconfigurationr7IEs::PhysicalChannelReconfigurationr7IEs(const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *PhysicalChannelReconfigurationv780extIEs::itemsInfo[2] = {
 	&HARQInfor7::theInfo,
@@ -11486,6 +12605,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions(const PhysicalChannelReconfigurationv7g0extIEs& physicalChannelReconfigurationv7g0ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv7g0ext(physicalChannelReconfigurationv7g0ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv7f0extIEs::theInfo,
@@ -11504,6 +12626,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensions(const PhysicalChannelReconfigurationv7f0extIEs& physicalChannelReconfigurationv7f0ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv7f0ext(physicalChannelReconfigurationv7f0ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv7d0extIEs::theInfo,
@@ -11522,6 +12647,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensions(const PhysicalChannelReconfigurationv7d0extIEs& physicalChannelReconfigurationv7d0ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv7d0ext(physicalChannelReconfigurationv7d0ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv780extIEs::theInfo,
@@ -11540,6 +12668,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions(const PhysicalChannelReconfigurationv780extIEs& physicalChannelReconfigurationv780ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv780ext(physicalChannelReconfigurationv780ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&PhysicalChannelReconfigurationr7IEs::theInfo,
@@ -11560,6 +12691,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	3, 2, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7(const PhysicalChannelReconfigurationr7IEs& physicalChannelReconfigurationr7) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationr7(physicalChannelReconfigurationr7);
+}
 
 const void *PhysicalChannelReconfigurationr8IEs::itemsInfo[35] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -11644,6 +12778,9 @@ const PhysicalChannelReconfigurationr8IEs::Info PhysicalChannelReconfigurationr8
 	itemsPres,
 	35, 34, 0
 };
+PhysicalChannelReconfigurationr8IEs::PhysicalChannelReconfigurationr8IEs(const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *PhysicalChannelReconfigurationv890extIEs::itemsInfo[2] = {
 	&DLSecondaryCellInfoFDDv890ext::theInfo,
@@ -11710,6 +12847,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensionsV8a0NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensionsV8a0NonCriticalExtensions(const PhysicalChannelReconfigurationv8a0extIEs& physicalChannelReconfigurationv8a0ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv8a0ext(physicalChannelReconfigurationv8a0ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv7g0extIEs::theInfo,
@@ -11728,6 +12868,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions(const PhysicalChannelReconfigurationv7g0extIEs& physicalChannelReconfigurationv7g0ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv7g0ext(physicalChannelReconfigurationv7g0ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv890extIEs::theInfo,
@@ -11746,6 +12889,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions(const PhysicalChannelReconfigurationv890extIEs& physicalChannelReconfigurationv890ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv890ext(physicalChannelReconfigurationv890ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv7f0extIEs::theInfo,
@@ -11764,6 +12910,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions(const PhysicalChannelReconfigurationv7f0extIEs& physicalChannelReconfigurationv7f0ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv7f0ext(physicalChannelReconfigurationv7f0ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationv7d0extIEs::theInfo,
@@ -11782,6 +12931,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions(const PhysicalChannelReconfigurationv7d0extIEs& physicalChannelReconfigurationv7d0ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv7d0ext(physicalChannelReconfigurationv7d0ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&PhysicalChannelReconfigurationr8IEs::theInfo,
@@ -11802,6 +12954,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	3, 2, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8(const PhysicalChannelReconfigurationr8IEs& physicalChannelReconfigurationr8) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationr8(physicalChannelReconfigurationr8);
+}
 
 const void *PhysicalChannelReconfigurationr9IEs::itemsInfo[37] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -11890,6 +13045,9 @@ const PhysicalChannelReconfigurationr9IEs::Info PhysicalChannelReconfigurationr9
 	itemsPres,
 	37, 36, 0
 };
+PhysicalChannelReconfigurationr9IEs::PhysicalChannelReconfigurationr9IEs(const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *PhysicalChannelReconfigurationv950extIEs::itemsInfo[1] = {
 	&SecondaryCellMIMOparametersFDDv950ext::theInfo,
@@ -11938,6 +13096,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions(const PhysicalChannelReconfigurationv950extIEs& physicalChannelReconfigurationv950ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationv950ext(physicalChannelReconfigurationv950ext);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&PhysicalChannelReconfigurationr9IEs::theInfo,
@@ -11958,6 +13119,9 @@ const PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensi
 	itemsPres,
 	3, 2, 0
 };
+PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9(const PhysicalChannelReconfigurationr9IEs& physicalChannelReconfigurationr9) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationr9(physicalChannelReconfigurationr9);
+}
 
 const void *PhysicalChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -12068,6 +13232,10 @@ const PhysicalChannelReconfigurationLaterthanr3::Info PhysicalChannelReconfigura
 	itemsPres,
 	2, 0, 0
 };
+PhysicalChannelReconfigurationLaterthanr3::PhysicalChannelReconfigurationLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const PhysicalChannelReconfigurationLaterthanr3CriticalExtensions& physicalChannelReconfigurationLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setPhysicalChannelReconfigurationLaterthanr3CriticalExtensions(physicalChannelReconfigurationLaterthanr3CriticalExtensions);
+}
 
 const void *PhysicalChannelReconfiguration::choicesInfo[2] = {
 	&PhysicalChannelReconfigurationR3::theInfo,
@@ -12131,6 +13299,9 @@ const PhysicalChannelReconfigurationCompleteLaterNonCriticalExtensionsV770NonCri
 	itemsPres,
 	2, 1, 0
 };
+PhysicalChannelReconfigurationCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions::PhysicalChannelReconfigurationCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions(const PhysicalChannelReconfigurationCompletev770extIEs& physicalChannelReconfigurationCompletev770ext) : Sequence(&theInfo) {
+	setPhysicalChannelReconfigurationCompletev770ext(physicalChannelReconfigurationCompletev770ext);
+}
 
 const void *PhysicalChannelReconfigurationCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalChannelReconfigurationCompleteLaterNonCriticalExtensionsPhysicalChannelReconfigurationCompleter3addext::theInfo,
@@ -12177,6 +13348,9 @@ const PhysicalChannelReconfigurationComplete::Info PhysicalChannelReconfiguratio
 	itemsPres,
 	7, 6, 0
 };
+PhysicalChannelReconfigurationComplete::PhysicalChannelReconfigurationComplete(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *PhysicalChannelReconfigurationFailureLaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -12229,6 +13403,9 @@ const PhysicalChannelReconfigurationFailure::Info PhysicalChannelReconfiguration
 	itemsPres,
 	3, 2, 0
 };
+PhysicalChannelReconfigurationFailure::PhysicalChannelReconfigurationFailure(const FailureCauseWithProtErr& failureCause) : Sequence(&theInfo) {
+	setFailureCause(failureCause);
+}
 
 const void *PhysicalSharedChannelAllocationr3IEs::itemsInfo[9] = {
 	&DSCHRNTI::theInfo,
@@ -12261,6 +13438,10 @@ const PhysicalSharedChannelAllocationr3IEs::Info PhysicalSharedChannelAllocation
 	itemsPres,
 	9, 7, 0
 };
+PhysicalSharedChannelAllocationr3IEs::PhysicalSharedChannelAllocationr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const PhysicalSharedChannelAllocationr3IEsRequestPCCPCHRSCP& physicalSharedChannelAllocationr3IEsRequestPCCPCHRSCP) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setPhysicalSharedChannelAllocationr3IEsRequestPCCPCHRSCP(physicalSharedChannelAllocationr3IEsRequestPCCPCHRSCP);
+}
 
 const void *PhysicalSharedChannelAllocationR3LaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -12311,6 +13492,9 @@ const PhysicalSharedChannelAllocationR3::Info PhysicalSharedChannelAllocationR3:
 	itemsPres,
 	2, 1, 0
 };
+PhysicalSharedChannelAllocationR3::PhysicalSharedChannelAllocationR3(const PhysicalSharedChannelAllocationr3IEs& physicalSharedChannelAllocationr3) : Sequence(&theInfo) {
+	setPhysicalSharedChannelAllocationr3(physicalSharedChannelAllocationr3);
+}
 
 const void *PhysicalSharedChannelAllocationr4IEs::itemsInfo[7] = {
 	&ULTimingAdvanceControlr4::theInfo,
@@ -12339,6 +13523,9 @@ const PhysicalSharedChannelAllocationr4IEs::Info PhysicalSharedChannelAllocation
 	itemsPres,
 	7, 6, 0
 };
+PhysicalSharedChannelAllocationr4IEs::PhysicalSharedChannelAllocationr4IEs(const PhysicalSharedChannelAllocationr4IEsRequestPCCPCHRSCP& physicalSharedChannelAllocationr4IEsRequestPCCPCHRSCP) : Sequence(&theInfo) {
+	setPhysicalSharedChannelAllocationr4IEsRequestPCCPCHRSCP(physicalSharedChannelAllocationr4IEsRequestPCCPCHRSCP);
+}
 
 const void *PhysicalSharedChannelAllocationv690extIEs::itemsInfo[1] = {
 	&BEACONPLEst::theInfo,
@@ -12407,6 +13594,9 @@ const PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriti
 	itemsPres,
 	2, 1, 0
 };
+PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions(const PhysicalSharedChannelAllocationv770extIEs& physicalSharedChannelAllocationv770ext) : Sequence(&theInfo) {
+	setPhysicalSharedChannelAllocationv770ext(physicalSharedChannelAllocationv770ext);
+}
 
 const void *PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalSharedChannelAllocationv690extIEs::theInfo,
@@ -12425,6 +13615,9 @@ const PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriti
 	itemsPres,
 	2, 1, 0
 };
+PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions::PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions(const PhysicalSharedChannelAllocationv690extIEs& physicalSharedChannelAllocationv690ext) : Sequence(&theInfo) {
+	setPhysicalSharedChannelAllocationv690ext(physicalSharedChannelAllocationv690ext);
+}
 
 const void *PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsPhysicalSharedChannelAllocationr4addext::theInfo,
@@ -12461,6 +13654,9 @@ const PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4::Info Physi
 	itemsPres,
 	2, 1, 0
 };
+PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4::PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsR4(const PhysicalSharedChannelAllocationr4IEs& physicalSharedChannelAllocationr4) : Sequence(&theInfo) {
+	setPhysicalSharedChannelAllocationr4(physicalSharedChannelAllocationr4);
+}
 
 const void *PhysicalSharedChannelAllocationLaterthanr3CriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -12508,6 +13704,10 @@ const PhysicalSharedChannelAllocationLaterthanr3::Info PhysicalSharedChannelAllo
 	itemsPres,
 	3, 1, 0
 };
+PhysicalSharedChannelAllocationLaterthanr3::PhysicalSharedChannelAllocationLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const PhysicalSharedChannelAllocationLaterthanr3CriticalExtensions& physicalSharedChannelAllocationLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setPhysicalSharedChannelAllocationLaterthanr3CriticalExtensions(physicalSharedChannelAllocationLaterthanr3CriticalExtensions);
+}
 
 const void *PhysicalSharedChannelAllocation::choicesInfo[2] = {
 	&PhysicalSharedChannelAllocationR3::theInfo,
@@ -12582,6 +13782,9 @@ const PUSCHCapacityRequestLaterNonCriticalExtensionsV590NonCriticalExtensions::I
 	itemsPres,
 	2, 1, 0
 };
+PUSCHCapacityRequestLaterNonCriticalExtensionsV590NonCriticalExtensions::PUSCHCapacityRequestLaterNonCriticalExtensionsV590NonCriticalExtensions(const PUSCHCapacityRequestv590ext& puschCapacityRequestv590ext) : Sequence(&theInfo) {
+	setPuschCapacityRequestv590ext(puschCapacityRequestv590ext);
+}
 
 const void *PUSCHCapacityRequestLaterNonCriticalExtensions::itemsInfo[2] = {
 	&PUSCHCapacityRequestLaterNonCriticalExtensionsPuschCapacityRequestr3addext::theInfo,
@@ -12628,6 +13831,9 @@ const PUSCHCapacityRequest::Info PUSCHCapacityRequest::theInfo = {
 	itemsPres,
 	7, 6, 0
 };
+PUSCHCapacityRequest::PUSCHCapacityRequest(const ProtocolErrorIndicatorWithMoreInfo& protocolErrorIndicator) : Sequence(&theInfo) {
+	setProtocolErrorIndicator(protocolErrorIndicator);
+}
 
 const void *RadioBearerReconfigurationr3IEsDummyFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -12754,6 +13960,13 @@ const RadioBearerReconfigurationr3IEs::Info RadioBearerReconfigurationr3IEs::the
 	itemsPres,
 	26, 21, 0
 };
+RadioBearerReconfigurationr3IEs::RadioBearerReconfigurationr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const RRCStateIndicator& rrcStateIndicator, const RBInformationReconfigList& rbInformationReconfigList, const RadioBearerReconfigurationr3IEsModeSpecificPhysChInfo& radioBearerReconfigurationr3IEsModeSpecificPhysChInfo, const DLInformationPerRLList& dlInformationPerRLList) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRrcStateIndicator(rrcStateIndicator);
+	setRbInformationReconfigList(rbInformationReconfigList);
+	setRadioBearerReconfigurationr3IEsModeSpecificPhysChInfo(radioBearerReconfigurationr3IEsModeSpecificPhysChInfo);
+	setDlInformationPerRLList(dlInformationPerRLList);
+}
 
 const void *RadioBearerReconfigurationv3a0ext::itemsInfo[1] = {
 	&DSCHRNTI::theInfo,
@@ -12898,6 +14111,9 @@ const RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExten
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensions::RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensions(const RadioBearerReconfigurationv770extIEs& radioBearerReconfigurationv770ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv770ext(radioBearerReconfigurationv770ext);
+}
 
 const void *RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv690extIEs::theInfo,
@@ -12916,6 +14132,9 @@ const RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExten
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions::RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions(const RadioBearerReconfigurationv690extIEs& radioBearerReconfigurationv690ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv690ext(radioBearerReconfigurationv690ext);
+}
 
 const void *RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv5d0extIEs::theInfo,
@@ -12934,6 +14153,9 @@ const RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExten
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions::RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions(const RadioBearerReconfigurationv5d0extIEs& radioBearerReconfigurationv5d0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv5d0ext(radioBearerReconfigurationv5d0ext);
+}
 
 const void *RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv590extIEs::theInfo,
@@ -12952,6 +14174,9 @@ const RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExten
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const RadioBearerReconfigurationv590extIEs& radioBearerReconfigurationv590ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv590ext(radioBearerReconfigurationv590ext);
+}
 
 const void *RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv4b0extIEs::theInfo,
@@ -12970,6 +14195,9 @@ const RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExten
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions(const RadioBearerReconfigurationv4b0extIEs& radioBearerReconfigurationv4b0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv4b0ext(radioBearerReconfigurationv4b0ext);
+}
 
 const void *RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationR3V3aoNonCriticalExtensionsLaterNonCriticalExtensionsRadioBearerReconfigurationr3addext::theInfo,
@@ -13006,6 +14234,9 @@ const RadioBearerReconfigurationR3V3aoNonCriticalExtensions::Info RadioBearerRec
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationR3V3aoNonCriticalExtensions::RadioBearerReconfigurationR3V3aoNonCriticalExtensions(const RadioBearerReconfigurationv3a0ext& radioBearerReconfigurationv3a0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv3a0ext(radioBearerReconfigurationv3a0ext);
+}
 
 const void *RadioBearerReconfigurationR3::itemsInfo[2] = {
 	&RadioBearerReconfigurationr3IEs::theInfo,
@@ -13024,6 +14255,9 @@ const RadioBearerReconfigurationR3::Info RadioBearerReconfigurationR3::theInfo =
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationR3::RadioBearerReconfigurationR3(const RadioBearerReconfigurationr3IEs& radioBearerReconfigurationr3) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationr3(radioBearerReconfigurationr3);
+}
 
 const void *RadioBearerReconfigurationr4IEsDummyFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -13150,6 +14384,10 @@ const RadioBearerReconfigurationr4IEs::Info RadioBearerReconfigurationr4IEs::the
 	itemsPres,
 	26, 24, 0
 };
+RadioBearerReconfigurationr4IEs::RadioBearerReconfigurationr4IEs(const RRCStateIndicator& rrcStateIndicator, const RadioBearerReconfigurationr4IEsModeSpecificPhysChInfo& radioBearerReconfigurationr4IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRadioBearerReconfigurationr4IEsModeSpecificPhysChInfo(radioBearerReconfigurationr4IEsModeSpecificPhysChInfo);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -13182,6 +14420,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensions(const RadioBearerReconfigurationv770extIEs& radioBearerReconfigurationv770ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv770ext(radioBearerReconfigurationv770ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv690extIEs::theInfo,
@@ -13200,6 +14441,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions(const RadioBearerReconfigurationv690extIEs& radioBearerReconfigurationv690ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv690ext(radioBearerReconfigurationv690ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv5d0extIEs::theInfo,
@@ -13218,6 +14462,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions(const RadioBearerReconfigurationv5d0extIEs& radioBearerReconfigurationv5d0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv5d0ext(radioBearerReconfigurationv5d0ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv590extIEs::theInfo,
@@ -13236,6 +14483,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions(const RadioBearerReconfigurationv590extIEs& radioBearerReconfigurationv590ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv590ext(radioBearerReconfigurationv590ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsRadioBearerReconfigurationr4addext::theInfo,
@@ -13272,6 +14522,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4::Info RadioBeare
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4::RadioBearerReconfigurationLaterthanr3CriticalExtensionsR4(const RadioBearerReconfigurationr4IEs& radioBearerReconfigurationr4) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationr4(radioBearerReconfigurationr4);
+}
 
 const void *RadioBearerReconfigurationr5IEsSpecificationModeCompleteDummyFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -13357,6 +14610,10 @@ const RadioBearerReconfigurationr5IEsSpecificationModePreconfigurationPreConfigM
 	itemsPres,
 	2, 0, 0
 };
+RadioBearerReconfigurationr5IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::RadioBearerReconfigurationr5IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr5& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *RadioBearerReconfigurationr5IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -13386,6 +14643,9 @@ const RadioBearerReconfigurationr5IEsSpecificationModePreconfiguration::Info Rad
 	itemsPres,
 	1, 0, 0
 };
+RadioBearerReconfigurationr5IEsSpecificationModePreconfiguration::RadioBearerReconfigurationr5IEsSpecificationModePreconfiguration(const RadioBearerReconfigurationr5IEsSpecificationModePreconfigurationPreConfigMode& radioBearerReconfigurationr5IEsSpecificationModePreconfigurationPreConfigMode) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationr5IEsSpecificationModePreconfigurationPreConfigMode(radioBearerReconfigurationr5IEsSpecificationModePreconfigurationPreConfigMode);
+}
 
 const void *RadioBearerReconfigurationr5IEsSpecificationMode::choicesInfo[2] = {
 	&RadioBearerReconfigurationr5IEsSpecificationModeComplete::theInfo,
@@ -13480,6 +14740,11 @@ const RadioBearerReconfigurationr5IEs::Info RadioBearerReconfigurationr5IEs::the
 	itemsPres,
 	19, 16, 0
 };
+RadioBearerReconfigurationr5IEs::RadioBearerReconfigurationr5IEs(const RRCStateIndicator& rrcStateIndicator, const RadioBearerReconfigurationr5IEsSpecificationMode& radioBearerReconfigurationr5IEsSpecificationMode, const RadioBearerReconfigurationr5IEsModeSpecificPhysChInfo& radioBearerReconfigurationr5IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRadioBearerReconfigurationr5IEsSpecificationMode(radioBearerReconfigurationr5IEsSpecificationMode);
+	setRadioBearerReconfigurationr5IEsModeSpecificPhysChInfo(radioBearerReconfigurationr5IEsModeSpecificPhysChInfo);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -13512,6 +14777,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensionsV770NonCriticalExtensions(const RadioBearerReconfigurationv770extIEs& radioBearerReconfigurationv770ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv770ext(radioBearerReconfigurationv770ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv690extIEs::theInfo,
@@ -13530,6 +14798,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensions(const RadioBearerReconfigurationv690extIEs& radioBearerReconfigurationv690ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv690ext(radioBearerReconfigurationv690ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv5d0extIEs::theInfo,
@@ -13548,6 +14819,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions(const RadioBearerReconfigurationv5d0extIEs& radioBearerReconfigurationv5d0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv5d0ext(radioBearerReconfigurationv5d0ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&RadioBearerReconfigurationr5IEs::theInfo,
@@ -13568,6 +14842,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5(const RadioBearerReconfigurationr5IEs& radioBearerReconfigurationr5) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationr5(radioBearerReconfigurationr5);
+}
 
 const void *RadioBearerReconfigurationr6IEsSpecificationModeComplete::itemsInfo[11] = {
 	&RABInformationReconfigList::theInfo,
@@ -13622,6 +14899,10 @@ const RadioBearerReconfigurationr6IEsSpecificationModePreconfigurationPreConfigM
 	itemsPres,
 	2, 0, 0
 };
+RadioBearerReconfigurationr6IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::RadioBearerReconfigurationr6IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *RadioBearerReconfigurationr6IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -13651,6 +14932,9 @@ const RadioBearerReconfigurationr6IEsSpecificationModePreconfiguration::Info Rad
 	itemsPres,
 	1, 0, 0
 };
+RadioBearerReconfigurationr6IEsSpecificationModePreconfiguration::RadioBearerReconfigurationr6IEsSpecificationModePreconfiguration(const RadioBearerReconfigurationr6IEsSpecificationModePreconfigurationPreConfigMode& radioBearerReconfigurationr6IEsSpecificationModePreconfigurationPreConfigMode) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationr6IEsSpecificationModePreconfigurationPreConfigMode(radioBearerReconfigurationr6IEsSpecificationModePreconfigurationPreConfigMode);
+}
 
 const void *RadioBearerReconfigurationr6IEsSpecificationMode::choicesInfo[2] = {
 	&RadioBearerReconfigurationr6IEsSpecificationModeComplete::theInfo,
@@ -13724,6 +15008,10 @@ const RadioBearerReconfigurationr6IEs::Info RadioBearerReconfigurationr6IEs::the
 	itemsPres,
 	23, 21, 0
 };
+RadioBearerReconfigurationr6IEs::RadioBearerReconfigurationr6IEs(const RRCStateIndicator& rrcStateIndicator, const RadioBearerReconfigurationr6IEsSpecificationMode& radioBearerReconfigurationr6IEsSpecificationMode) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRadioBearerReconfigurationr6IEsSpecificationMode(radioBearerReconfigurationr6IEsSpecificationMode);
+}
 
 const void *RadioBearerReconfigurationv6b0extIEs::itemsInfo[1] = {
 	&DLInformationPerRLListv6b0ext::theInfo,
@@ -13784,6 +15072,9 @@ const RadioBearerReconfigurationv6f0extIEs::Info RadioBearerReconfigurationv6f0e
 	itemsPres,
 	1, 0, 0
 };
+RadioBearerReconfigurationv6f0extIEs::RadioBearerReconfigurationv6f0extIEs(const RadioBearerReconfigurationv6f0extIEsSpecificationMode& radioBearerReconfigurationv6f0extIEsSpecificationMode) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv6f0extIEsSpecificationMode(radioBearerReconfigurationv6f0extIEsSpecificationMode);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsV6f0NonCriticalExtensionsV770NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -13816,6 +15107,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsV6f0NonCriticalExtensionsV770NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsV6f0NonCriticalExtensionsV770NonCriticalExtensions(const RadioBearerReconfigurationv770extIEs& radioBearerReconfigurationv770ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv770ext(radioBearerReconfigurationv770ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsV6f0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv6f0extIEs::theInfo,
@@ -13834,6 +15128,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsV6f0NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsV6f0NonCriticalExtensions(const RadioBearerReconfigurationv6f0extIEs& radioBearerRconfigurationv6f0ext) : Sequence(&theInfo) {
+	setRadioBearerRconfigurationv6f0ext(radioBearerRconfigurationv6f0ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv6b0extIEs::theInfo,
@@ -13852,6 +15149,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions(const RadioBearerReconfigurationv6b0extIEs& radioBearerReconfigurationv6b0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv6b0ext(radioBearerReconfigurationv6b0ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&RadioBearerReconfigurationr6IEs::theInfo,
@@ -13872,6 +15172,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6(const RadioBearerReconfigurationr6IEs& radioBearerReconfigurationr6) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationr6(radioBearerReconfigurationr6);
+}
 
 const void *RadioBearerReconfigurationr7IEsSpecificationModeComplete::itemsInfo[12] = {
 	&RABInformationReconfigList::theInfo,
@@ -13928,6 +15231,10 @@ const RadioBearerReconfigurationr7IEsSpecificationModePreconfigurationPreConfigM
 	itemsPres,
 	2, 0, 0
 };
+RadioBearerReconfigurationr7IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::RadioBearerReconfigurationr7IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *RadioBearerReconfigurationr7IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -13957,6 +15264,9 @@ const RadioBearerReconfigurationr7IEsSpecificationModePreconfiguration::Info Rad
 	itemsPres,
 	1, 0, 0
 };
+RadioBearerReconfigurationr7IEsSpecificationModePreconfiguration::RadioBearerReconfigurationr7IEsSpecificationModePreconfiguration(const RadioBearerReconfigurationr7IEsSpecificationModePreconfigurationPreConfigMode& radioBearerReconfigurationr7IEsSpecificationModePreconfigurationPreConfigMode) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationr7IEsSpecificationModePreconfigurationPreConfigMode(radioBearerReconfigurationr7IEsSpecificationModePreconfigurationPreConfigMode);
+}
 
 const void *RadioBearerReconfigurationr7IEsSpecificationMode::choicesInfo[2] = {
 	&RadioBearerReconfigurationr7IEsSpecificationModeComplete::theInfo,
@@ -14046,6 +15356,10 @@ const RadioBearerReconfigurationr7IEs::Info RadioBearerReconfigurationr7IEs::the
 	itemsPres,
 	31, 29, 0
 };
+RadioBearerReconfigurationr7IEs::RadioBearerReconfigurationr7IEs(const RRCStateIndicator& rrcStateIndicator, const RadioBearerReconfigurationr7IEsSpecificationMode& radioBearerReconfigurationr7IEsSpecificationMode) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRadioBearerReconfigurationr7IEsSpecificationMode(radioBearerReconfigurationr7IEsSpecificationMode);
+}
 
 const void *RadioBearerReconfigurationv780extIEs::itemsInfo[1] = {
 	&HSDSCHTBSizeTable::theInfo,
@@ -14158,6 +15472,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV790NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV790NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions(const RadioBearerReconfigurationv7g0extIEs& radioBearerReconfigurationv7g0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv7g0ext(radioBearerReconfigurationv7g0ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV790NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv7f0extIEs::theInfo,
@@ -14176,6 +15493,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV790NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV790NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensions(const RadioBearerReconfigurationv7f0extIEs& radioBearerReconfigurationv7f0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv7f0ext(radioBearerReconfigurationv7f0ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV790NonCriticalExtensionsV7d0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv7d0extIEs::theInfo,
@@ -14194,6 +15514,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV790NonCriticalExtensionsV7d0NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV790NonCriticalExtensionsV7d0NonCriticalExtensions(const RadioBearerReconfigurationv7d0extIEs& radioBearerReconfigurationv7d0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv7d0ext(radioBearerReconfigurationv7d0ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV790NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv790extIEs::theInfo,
@@ -14212,6 +15535,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV790NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV790NonCriticalExtensions(const RadioBearerReconfigurationv790extIEs& radioBearerReconfigurationv790ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv790ext(radioBearerReconfigurationv790ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv780extIEs::theInfo,
@@ -14230,6 +15556,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions(const RadioBearerReconfigurationv780extIEs& radioBearerReconfigurationv780ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv780ext(radioBearerReconfigurationv780ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[2] = {
 	&RadioBearerReconfigurationr7IEs::theInfo,
@@ -14248,6 +15577,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7(const RadioBearerReconfigurationr7IEs& radioBearerReconfigurationr7) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationr7(radioBearerReconfigurationr7);
+}
 
 const void *RadioBearerReconfigurationr8IEsSpecificationModeComplete::itemsInfo[12] = {
 	&RABInformationReconfigListr8::theInfo,
@@ -14304,6 +15636,10 @@ const RadioBearerReconfigurationr8IEsSpecificationModePreconfigurationPreConfigM
 	itemsPres,
 	2, 0, 0
 };
+RadioBearerReconfigurationr8IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::RadioBearerReconfigurationr8IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *RadioBearerReconfigurationr8IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -14333,6 +15669,9 @@ const RadioBearerReconfigurationr8IEsSpecificationModePreconfiguration::Info Rad
 	itemsPres,
 	1, 0, 0
 };
+RadioBearerReconfigurationr8IEsSpecificationModePreconfiguration::RadioBearerReconfigurationr8IEsSpecificationModePreconfiguration(const RadioBearerReconfigurationr8IEsSpecificationModePreconfigurationPreConfigMode& radioBearerReconfigurationr8IEsSpecificationModePreconfigurationPreConfigMode) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationr8IEsSpecificationModePreconfigurationPreConfigMode(radioBearerReconfigurationr8IEsSpecificationModePreconfigurationPreConfigMode);
+}
 
 const void *RadioBearerReconfigurationr8IEsSpecificationMode::choicesInfo[2] = {
 	&RadioBearerReconfigurationr8IEsSpecificationModeComplete::theInfo,
@@ -14430,6 +15769,10 @@ const RadioBearerReconfigurationr8IEs::Info RadioBearerReconfigurationr8IEs::the
 	itemsPres,
 	35, 33, 0
 };
+RadioBearerReconfigurationr8IEs::RadioBearerReconfigurationr8IEs(const RRCStateIndicator& rrcStateIndicator, const RadioBearerReconfigurationr8IEsSpecificationMode& radioBearerReconfigurationr8IEsSpecificationMode) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRadioBearerReconfigurationr8IEsSpecificationMode(radioBearerReconfigurationr8IEsSpecificationMode);
+}
 
 const void *RadioBearerReconfigurationv890extIEs::itemsInfo[2] = {
 	&DLSecondaryCellInfoFDDv890ext::theInfo,
@@ -14496,6 +15839,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensionsV8a0NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensionsV8a0NonCriticalExtensions(const RadioBearerReconfigurationv8a0extIEs& radioBearerReconfigurationv8a0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv8a0ext(radioBearerReconfigurationv8a0ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv7g0extIEs::theInfo,
@@ -14514,6 +15860,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions(const RadioBearerReconfigurationv7g0extIEs& radioBearerReconfigurationv7g0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv7g0ext(radioBearerReconfigurationv7g0ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv890extIEs::theInfo,
@@ -14532,6 +15881,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions(const RadioBearerReconfigurationv890extIEs& radioBearerReconfigurationv890ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv890ext(radioBearerReconfigurationv890ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv7f0extIEs::theInfo,
@@ -14550,6 +15902,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions(const RadioBearerReconfigurationv7f0extIEs& radioBearerReconfigurationv7f0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv7f0ext(radioBearerReconfigurationv7f0ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationv7d0extIEs::theInfo,
@@ -14568,6 +15923,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions(const RadioBearerReconfigurationv7d0extIEs& radioBearerReconfigurationv7d0ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv7d0ext(radioBearerReconfigurationv7d0ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&RadioBearerReconfigurationr8IEs::theInfo,
@@ -14588,6 +15946,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8(const RadioBearerReconfigurationr8IEs& radioBearerReconfigurationr8) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationr8(radioBearerReconfigurationr8);
+}
 
 const void *RadioBearerReconfigurationr9IEsSpecificationModeComplete::itemsInfo[12] = {
 	&RABInformationReconfigListr8::theInfo,
@@ -14644,6 +16005,10 @@ const RadioBearerReconfigurationr9IEsSpecificationModePreconfigurationPreConfigM
 	itemsPres,
 	2, 0, 0
 };
+RadioBearerReconfigurationr9IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::RadioBearerReconfigurationr9IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *RadioBearerReconfigurationr9IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -14673,6 +16038,9 @@ const RadioBearerReconfigurationr9IEsSpecificationModePreconfiguration::Info Rad
 	itemsPres,
 	1, 0, 0
 };
+RadioBearerReconfigurationr9IEsSpecificationModePreconfiguration::RadioBearerReconfigurationr9IEsSpecificationModePreconfiguration(const RadioBearerReconfigurationr9IEsSpecificationModePreconfigurationPreConfigMode& radioBearerReconfigurationr9IEsSpecificationModePreconfigurationPreConfigMode) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationr9IEsSpecificationModePreconfigurationPreConfigMode(radioBearerReconfigurationr9IEsSpecificationModePreconfigurationPreConfigMode);
+}
 
 const void *RadioBearerReconfigurationr9IEsSpecificationMode::choicesInfo[2] = {
 	&RadioBearerReconfigurationr9IEsSpecificationModeComplete::theInfo,
@@ -14774,6 +16142,10 @@ const RadioBearerReconfigurationr9IEs::Info RadioBearerReconfigurationr9IEs::the
 	itemsPres,
 	37, 35, 0
 };
+RadioBearerReconfigurationr9IEs::RadioBearerReconfigurationr9IEs(const RRCStateIndicator& rrcStateIndicator, const RadioBearerReconfigurationr9IEsSpecificationMode& radioBearerReconfigurationr9IEsSpecificationMode) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRadioBearerReconfigurationr9IEsSpecificationMode(radioBearerReconfigurationr9IEsSpecificationMode);
+}
 
 const void *RadioBearerReconfigurationv950extIEs::itemsInfo[1] = {
 	&SecondaryCellMIMOparametersFDDv950ext::theInfo,
@@ -14822,6 +16194,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions(const RadioBearerReconfigurationv950extIEs& radioBearerReconfigurationv950ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationv950ext(radioBearerReconfigurationv950ext);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&RadioBearerReconfigurationr9IEs::theInfo,
@@ -14842,6 +16217,9 @@ const RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsC
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9(const RadioBearerReconfigurationr9IEs& radioBearerReconfigurationr9) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationr9(radioBearerReconfigurationr9);
+}
 
 const void *RadioBearerReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -14952,6 +16330,10 @@ const RadioBearerReconfigurationLaterthanr3::Info RadioBearerReconfigurationLate
 	itemsPres,
 	2, 0, 0
 };
+RadioBearerReconfigurationLaterthanr3::RadioBearerReconfigurationLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const RadioBearerReconfigurationLaterthanr3CriticalExtensions& radioBearerReconfigurationLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRadioBearerReconfigurationLaterthanr3CriticalExtensions(radioBearerReconfigurationLaterthanr3CriticalExtensions);
+}
 
 const void *RadioBearerReconfiguration::choicesInfo[2] = {
 	&RadioBearerReconfigurationR3::theInfo,
@@ -15015,6 +16397,9 @@ const RadioBearerReconfigurationCompleteLaterNonCriticalExtensionsV770NonCritica
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReconfigurationCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions::RadioBearerReconfigurationCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions(const RadioBearerReconfigurationCompletev770extIEs& radioBearerReconfigurationCompletev770ext) : Sequence(&theInfo) {
+	setRadioBearerReconfigurationCompletev770ext(radioBearerReconfigurationCompletev770ext);
+}
 
 const void *RadioBearerReconfigurationCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReconfigurationCompleteLaterNonCriticalExtensionsRadioBearerReconfigurationCompleter3addext::theInfo,
@@ -15061,6 +16446,9 @@ const RadioBearerReconfigurationComplete::Info RadioBearerReconfigurationComplet
 	itemsPres,
 	7, 6, 0
 };
+RadioBearerReconfigurationComplete::RadioBearerReconfigurationComplete(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *RadioBearerReconfigurationFailureLaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -15115,6 +16503,10 @@ const RadioBearerReconfigurationFailure::Info RadioBearerReconfigurationFailure:
 	itemsPres,
 	4, 2, 0
 };
+RadioBearerReconfigurationFailure::RadioBearerReconfigurationFailure(const RRCTransactionIdentifier& rrcTransactionIdentifier, const FailureCauseWithProtErr& failureCause) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setFailureCause(failureCause);
+}
 
 const void *RadioBearerReleaser3IEsDummyFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -15245,6 +16637,12 @@ const RadioBearerReleaser3IEs::Info RadioBearerReleaser3IEs::theInfo = {
 	itemsPres,
 	28, 24, 0
 };
+RadioBearerReleaser3IEs::RadioBearerReleaser3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const RRCStateIndicator& rrcStateIndicator, const RBInformationReleaseList& rbInformationReleaseList, const RadioBearerReleaser3IEsModeSpecificPhysChInfo& radioBearerReleaser3IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRrcStateIndicator(rrcStateIndicator);
+	setRbInformationReleaseList(rbInformationReleaseList);
+	setRadioBearerReleaser3IEsModeSpecificPhysChInfo(radioBearerReleaser3IEsModeSpecificPhysChInfo);
+}
 
 const void *RadioBearerReleasev3a0ext::itemsInfo[1] = {
 	&DSCHRNTI::theInfo,
@@ -15373,6 +16771,9 @@ const RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions(const RadioBearerReleasev770extIEs& radioBearerReleasev770ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev770ext(radioBearerReleasev770ext);
+}
 
 const void *RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev690extIEs::theInfo,
@@ -15391,6 +16792,9 @@ const RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions(const RadioBearerReleasev690extIEs& radioBearerReleasev690ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev690ext(radioBearerReleasev690ext);
+}
 
 const void *RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev590extIEs::theInfo,
@@ -15409,6 +16813,9 @@ const RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const RadioBearerReleasev590extIEs& radioBearerReleasev590ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev590ext(radioBearerReleasev590ext);
+}
 
 const void *RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev4b0extIEs::theInfo,
@@ -15427,6 +16834,9 @@ const RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions(const RadioBearerReleasev4b0extIEs& radioBearerReleasev4b0ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev4b0ext(radioBearerReleasev4b0ext);
+}
 
 const void *RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleaseR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsRadioBearerReleaser3addext::theInfo,
@@ -15463,6 +16873,9 @@ const RadioBearerReleaseR3V3a0NonCriticalExtensions::Info RadioBearerReleaseR3V3
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseR3V3a0NonCriticalExtensions::RadioBearerReleaseR3V3a0NonCriticalExtensions(const RadioBearerReleasev3a0ext& radioBearerReleasev3a0ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev3a0ext(radioBearerReleasev3a0ext);
+}
 
 const void *RadioBearerReleaseR3::itemsInfo[2] = {
 	&RadioBearerReleaser3IEs::theInfo,
@@ -15481,6 +16894,9 @@ const RadioBearerReleaseR3::Info RadioBearerReleaseR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseR3::RadioBearerReleaseR3(const RadioBearerReleaser3IEs& radioBearerReleaser3) : Sequence(&theInfo) {
+	setRadioBearerReleaser3(radioBearerReleaser3);
+}
 
 const void *RadioBearerReleaser4IEsDummyFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -15611,6 +17027,11 @@ const RadioBearerReleaser4IEs::Info RadioBearerReleaser4IEs::theInfo = {
 	itemsPres,
 	28, 25, 0
 };
+RadioBearerReleaser4IEs::RadioBearerReleaser4IEs(const RRCStateIndicator& rrcStateIndicator, const RBInformationReleaseList& rbInformationReleaseList, const RadioBearerReleaser4IEsModeSpecificPhysChInfo& radioBearerReleaser4IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRbInformationReleaseList(rbInformationReleaseList);
+	setRadioBearerReleaser4IEsModeSpecificPhysChInfo(radioBearerReleaser4IEsModeSpecificPhysChInfo);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -15643,6 +17064,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions(const RadioBearerReleasev770extIEs& radioBearerReleasev770ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev770ext(radioBearerReleasev770ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev690extIEs::theInfo,
@@ -15661,6 +17085,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions(const RadioBearerReleasev690extIEs& radioBearerReleasev690ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev690ext(radioBearerReleasev690ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev590extIEs::theInfo,
@@ -15679,6 +17106,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions(const RadioBearerReleasev590extIEs& radioBearerReleasev590ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev590ext(radioBearerReleasev590ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsRadioBearerReleaser4addext::theInfo,
@@ -15715,6 +17145,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsR4::Info RadioBearerRelease
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsR4::RadioBearerReleaseLaterthanr3CriticalExtensionsR4(const RadioBearerReleaser4IEs& radioBearerReleaser4) : Sequence(&theInfo) {
+	setRadioBearerReleaser4(radioBearerReleaser4);
+}
 
 const void *RadioBearerReleaser5IEsDummyFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -15849,6 +17282,11 @@ const RadioBearerReleaser5IEs::Info RadioBearerReleaser5IEs::theInfo = {
 	itemsPres,
 	30, 27, 0
 };
+RadioBearerReleaser5IEs::RadioBearerReleaser5IEs(const RRCStateIndicator& rrcStateIndicator, const RBInformationReleaseList& rbInformationReleaseList, const RadioBearerReleaser5IEsModeSpecificPhysChInfo& radioBearerReleaser5IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRbInformationReleaseList(rbInformationReleaseList);
+	setRadioBearerReleaser5IEsModeSpecificPhysChInfo(radioBearerReleaser5IEsModeSpecificPhysChInfo);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV770NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -15881,6 +17319,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5V690Non
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV770NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV770NonCriticalExtensions(const RadioBearerReleasev770extIEs& radioBearerReleasev770ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev770ext(radioBearerReleasev770ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev690extIEs::theInfo,
@@ -15899,6 +17340,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5V690Non
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions(const RadioBearerReleasev690extIEs& radioBearerReleasev690ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev690ext(radioBearerReleasev690ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&RadioBearerReleaser5IEs::theInfo,
@@ -15919,6 +17363,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5::Info 
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsR5(const RadioBearerReleaser5IEs& radioBearerReleaser5) : Sequence(&theInfo) {
+	setRadioBearerReleaser5(radioBearerReleaser5);
+}
 
 const void *RadioBearerReleaser6IEs::itemsInfo[34] = {
 	&IntegrityProtectionModeInfo::theInfo,
@@ -16001,6 +17448,10 @@ const RadioBearerReleaser6IEs::Info RadioBearerReleaser6IEs::theInfo = {
 	itemsPres,
 	34, 32, 0
 };
+RadioBearerReleaser6IEs::RadioBearerReleaser6IEs(const RRCStateIndicator& rrcStateIndicator, const RBInformationReleaseList& rbInformationReleaseList) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRbInformationReleaseList(rbInformationReleaseList);
+}
 
 const void *RadioBearerReleasev6b0extIEs::itemsInfo[1] = {
 	&DLInformationPerRLListv6b0ext::theInfo,
@@ -16049,6 +17500,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsV770NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsV770NonCriticalExtensions(const RadioBearerReleasev770extIEs& radioBearerReleasev770ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev770ext(radioBearerReleasev770ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev6b0extIEs::theInfo,
@@ -16067,6 +17521,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions(const RadioBearerReleasev6b0extIEs& radioBearerReleasev6b0ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev6b0ext(radioBearerReleasev6b0ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&RadioBearerReleaser6IEs::theInfo,
@@ -16087,6 +17544,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6(const RadioBearerReleaser6IEs& radioBearerReleaser6) : Sequence(&theInfo) {
+	setRadioBearerReleaser6(radioBearerReleaser6);
+}
 
 const void *RadioBearerReleaser7IEs::itemsInfo[41] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -16183,6 +17643,10 @@ const RadioBearerReleaser7IEs::Info RadioBearerReleaser7IEs::theInfo = {
 	itemsPres,
 	41, 39, 0
 };
+RadioBearerReleaser7IEs::RadioBearerReleaser7IEs(const RRCStateIndicator& rrcStateIndicator, const RBInformationReleaseList& rbInformationReleaseList) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRbInformationReleaseList(rbInformationReleaseList);
+}
 
 const void *RadioBearerReleasev780extIEs::itemsInfo[1] = {
 	&HSDSCHTBSizeTable::theInfo,
@@ -16279,6 +17743,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions(const RadioBearerReleasev7g0extIEs& radioBearerReleasev7g0ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev7g0ext(radioBearerReleasev7g0ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev7f0extIEs::theInfo,
@@ -16297,6 +17764,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensions(const RadioBearerReleasev7f0extIEs& radioBearerReleasev7f0ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev7f0ext(radioBearerReleasev7f0ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev7d0extIEs::theInfo,
@@ -16315,6 +17785,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensions(const RadioBearerReleasev7d0extIEs& radioBearerReleasev7d0ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev7d0ext(radioBearerReleasev7d0ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev780extIEs::theInfo,
@@ -16333,6 +17806,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions(const RadioBearerReleasev780extIEs& radioBearerReleasev780ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev780ext(radioBearerReleasev780ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&RadioBearerReleaser7IEs::theInfo,
@@ -16353,6 +17829,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7(const RadioBearerReleaser7IEs& radioBearerReleaser7) : Sequence(&theInfo) {
+	setRadioBearerReleaser7(radioBearerReleaser7);
+}
 
 const void *RadioBearerReleaser8IEs::itemsInfo[44] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -16455,6 +17934,10 @@ const RadioBearerReleaser8IEs::Info RadioBearerReleaser8IEs::theInfo = {
 	itemsPres,
 	44, 42, 0
 };
+RadioBearerReleaser8IEs::RadioBearerReleaser8IEs(const RRCStateIndicator& rrcStateIndicator, const RBInformationReleaseList& rbInformationReleaseList) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRbInformationReleaseList(rbInformationReleaseList);
+}
 
 const void *RadioBearerReleasev890extIEs::itemsInfo[2] = {
 	&DLSecondaryCellInfoFDDv890ext::theInfo,
@@ -16521,6 +18004,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensionsV8a0NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensionsV8a0NonCriticalExtensions(const RadioBearerReleasev8a0extIEs& radioBearerReleasev8a0ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev8a0ext(radioBearerReleasev8a0ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev7g0extIEs::theInfo,
@@ -16539,6 +18025,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions(const RadioBearerReleasev7g0extIEs& radioBearerReleasev7g0ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev7g0ext(radioBearerReleasev7g0ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev890extIEs::theInfo,
@@ -16557,6 +18046,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions(const RadioBearerReleasev890extIEs& radioBearerReleasev890ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev890ext(radioBearerReleasev890ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev7f0extIEs::theInfo,
@@ -16575,6 +18067,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions(const RadioBearerReleasev7f0extIEs& radioBearerReleasev7f0ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev7f0ext(radioBearerReleasev7f0ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleasev7d0extIEs::theInfo,
@@ -16593,6 +18088,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions(const RadioBearerReleasev7d0extIEs& radioBearerReleasev7d0ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev7d0ext(radioBearerReleasev7d0ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&RadioBearerReleaser8IEs::theInfo,
@@ -16613,6 +18111,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8(const RadioBearerReleaser8IEs& radioBearerReleaser8) : Sequence(&theInfo) {
+	setRadioBearerReleaser8(radioBearerReleaser8);
+}
 
 const void *RadioBearerReleaser9IEs::itemsInfo[45] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -16717,6 +18218,10 @@ const RadioBearerReleaser9IEs::Info RadioBearerReleaser9IEs::theInfo = {
 	itemsPres,
 	45, 43, 0
 };
+RadioBearerReleaser9IEs::RadioBearerReleaser9IEs(const RRCStateIndicator& rrcStateIndicator, const RBInformationReleaseList& rbInformationReleaseList) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRbInformationReleaseList(rbInformationReleaseList);
+}
 
 const void *RadioBearerReleasev950extIEs::itemsInfo[1] = {
 	&SecondaryCellMIMOparametersFDDv950ext::theInfo,
@@ -16765,6 +18270,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions(const RadioBearerReleasev950extIEs& radioBearerReleasev950ext) : Sequence(&theInfo) {
+	setRadioBearerReleasev950ext(radioBearerReleasev950ext);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&RadioBearerReleaser9IEs::theInfo,
@@ -16785,6 +18293,9 @@ const RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9(const RadioBearerReleaser9IEs& radioBearerReleaser9) : Sequence(&theInfo) {
+	setRadioBearerReleaser9(radioBearerReleaser9);
+}
 
 const void *RadioBearerReleaseLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -16895,6 +18406,10 @@ const RadioBearerReleaseLaterthanr3::Info RadioBearerReleaseLaterthanr3::theInfo
 	itemsPres,
 	2, 0, 0
 };
+RadioBearerReleaseLaterthanr3::RadioBearerReleaseLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const RadioBearerReleaseLaterthanr3CriticalExtensions& radioBearerReleaseLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRadioBearerReleaseLaterthanr3CriticalExtensions(radioBearerReleaseLaterthanr3CriticalExtensions);
+}
 
 const void *RadioBearerRelease::choicesInfo[2] = {
 	&RadioBearerReleaseR3::theInfo,
@@ -16958,6 +18473,9 @@ const RadioBearerReleaseCompleteLaterNonCriticalExtensionsV770NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerReleaseCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions::RadioBearerReleaseCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions(const RadioBearerReleaseCompletev770extIEs& radioBearerReleaseCompletev770ext) : Sequence(&theInfo) {
+	setRadioBearerReleaseCompletev770ext(radioBearerReleaseCompletev770ext);
+}
 
 const void *RadioBearerReleaseCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerReleaseCompleteLaterNonCriticalExtensionsRadioBearerReleaseCompleter3addext::theInfo,
@@ -17004,6 +18522,9 @@ const RadioBearerReleaseComplete::Info RadioBearerReleaseComplete::theInfo = {
 	itemsPres,
 	7, 6, 0
 };
+RadioBearerReleaseComplete::RadioBearerReleaseComplete(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *RadioBearerReleaseFailureLaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -17058,6 +18579,10 @@ const RadioBearerReleaseFailure::Info RadioBearerReleaseFailure::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+RadioBearerReleaseFailure::RadioBearerReleaseFailure(const RRCTransactionIdentifier& rrcTransactionIdentifier, const FailureCauseWithProtErr& failureCause) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setFailureCause(failureCause);
+}
 
 const void *RadioBearerSetupr3IEsDummyFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -17186,6 +18711,11 @@ const RadioBearerSetupr3IEs::Info RadioBearerSetupr3IEs::theInfo = {
 	itemsPres,
 	27, 24, 0
 };
+RadioBearerSetupr3IEs::RadioBearerSetupr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const RRCStateIndicator& rrcStateIndicator, const RadioBearerSetupr3IEsModeSpecificPhysChInfo& radioBearerSetupr3IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRrcStateIndicator(rrcStateIndicator);
+	setRadioBearerSetupr3IEsModeSpecificPhysChInfo(radioBearerSetupr3IEsModeSpecificPhysChInfo);
+}
 
 const void *RadioBearerSetupv3a0ext::itemsInfo[1] = {
 	&DSCHRNTI::theInfo,
@@ -17314,6 +18844,9 @@ const RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0N
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions::RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions(const RadioBearerSetupv690extIEs& radioBearerSetupv690ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv690ext(radioBearerSetupv690ext);
+}
 
 const void *RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions::itemsInfo[2] = {
 	&RadioBearerSetupv5d0extIEs::theInfo,
@@ -17332,6 +18865,9 @@ const RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0N
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions::RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions(const RadioBearerSetupv5d0extIEs& radioBearerSetupv5d0ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv5d0ext(radioBearerSetupv5d0ext);
+}
 
 const void *RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerSetupv590extIEs::theInfo,
@@ -17350,6 +18886,9 @@ const RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0N
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const RadioBearerSetupv590extIEs& radioBearerSetupv590ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv590ext(radioBearerSetupv590ext);
+}
 
 const void *RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerSetupv4b0extIEs::theInfo,
@@ -17368,6 +18907,9 @@ const RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0N
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions(const RadioBearerSetupv4b0extIEs& radioBearerSetupv4b0ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv4b0ext(radioBearerSetupv4b0ext);
+}
 
 const void *RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerSetupR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsRadioBearerSetupr3addext::theInfo,
@@ -17404,6 +18946,9 @@ const RadioBearerSetupR3V3a0NonCriticalExtensions::Info RadioBearerSetupR3V3a0No
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupR3V3a0NonCriticalExtensions::RadioBearerSetupR3V3a0NonCriticalExtensions(const RadioBearerSetupv3a0ext& radioBearerSetupv3a0ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv3a0ext(radioBearerSetupv3a0ext);
+}
 
 const void *RadioBearerSetupR3::itemsInfo[2] = {
 	&RadioBearerSetupr3IEs::theInfo,
@@ -17422,6 +18967,9 @@ const RadioBearerSetupR3::Info RadioBearerSetupR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupR3::RadioBearerSetupR3(const RadioBearerSetupr3IEs& radioBearerSetupr3) : Sequence(&theInfo) {
+	setRadioBearerSetupr3(radioBearerSetupr3);
+}
 
 const void *RadioBearerSetupr4IEsDummyFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -17550,6 +19098,10 @@ const RadioBearerSetupr4IEs::Info RadioBearerSetupr4IEs::theInfo = {
 	itemsPres,
 	27, 25, 0
 };
+RadioBearerSetupr4IEs::RadioBearerSetupr4IEs(const RRCStateIndicator& rrcStateIndicator, const RadioBearerSetupr4IEsModeSpecificPhysChInfo& radioBearerSetupr4IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRadioBearerSetupr4IEsModeSpecificPhysChInfo(radioBearerSetupr4IEsModeSpecificPhysChInfo);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -17582,6 +19134,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV5
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions::RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstionsV690NonCriticalExtensions(const RadioBearerSetupv690extIEs& radioBearerSetupv690ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv690ext(radioBearerSetupv690ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions::itemsInfo[2] = {
 	&RadioBearerSetupv5d0extIEs::theInfo,
@@ -17600,6 +19155,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV5
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions::RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV5d0NonCriticalExtenstions(const RadioBearerSetupv5d0extIEs& radioBearerSetupv5d0ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv5d0ext(radioBearerSetupv5d0ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerSetupv590extIEs::theInfo,
@@ -17618,6 +19176,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV5
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions(const RadioBearerSetupv590extIEs& radioBearerSetupv590ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv590ext(radioBearerSetupv590ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsRadioBearerSetupr4addext::theInfo,
@@ -17654,6 +19215,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsR4::Info RadioBearerSetupLate
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsR4::RadioBearerSetupLaterthanr3CriticalExtensionsR4(const RadioBearerSetupr4IEs& radioBearerSetupr4) : Sequence(&theInfo) {
+	setRadioBearerSetupr4(radioBearerSetupr4);
+}
 
 const void *RadioBearerSetupr5IEsDummyFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -17786,6 +19350,10 @@ const RadioBearerSetupr5IEs::Info RadioBearerSetupr5IEs::theInfo = {
 	itemsPres,
 	29, 27, 0
 };
+RadioBearerSetupr5IEs::RadioBearerSetupr5IEs(const RRCStateIndicator& rrcStateIndicator, const RadioBearerSetupr5IEsModeSpecificPhysChInfo& radioBearerSetupr5IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRadioBearerSetupr5IEsModeSpecificPhysChInfo(radioBearerSetupr5IEsModeSpecificPhysChInfo);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -17818,6 +19386,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCr
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensions::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstionsV690NonCriticalExtensions(const RadioBearerSetupv690extIEs& radioBearerSetupv690ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv690ext(radioBearerSetupv690ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions::itemsInfo[2] = {
 	&RadioBearerSetupv5d0extIEs::theInfo,
@@ -17836,6 +19407,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCr
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V5d0NonCriticalExtenstions(const RadioBearerSetupv5d0extIEs& radioBearerSetupv5d0ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv5d0ext(radioBearerSetupv5d0ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&RadioBearerSetupr5IEs::theInfo,
@@ -17856,6 +19430,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5::Info Ra
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5(const RadioBearerSetupr5IEs& radioBearerSetupr5) : Sequence(&theInfo) {
+	setRadioBearerSetupr5(radioBearerSetupr5);
+}
 
 const void *RadioBearerSetupr6IEsSpecificationModeComplete::itemsInfo[13] = {
 	&SRBInformationSetupListr6::theInfo,
@@ -17920,6 +19497,12 @@ const RadioBearerSetupr6IEsSpecificationModeDummy::Info RadioBearerSetupr6IEsSpe
 	itemsPres,
 	5, 1, 0
 };
+RadioBearerSetupr6IEsSpecificationModeDummy::RadioBearerSetupr6IEsSpecificationModeDummy(const RABInfor6& rabInfo, const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity, const PowerOffsetInfoShort& powerOffsetInfoShort) : Sequence(&theInfo) {
+	setRabInfo(rabInfo);
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+	setPowerOffsetInfoShort(powerOffsetInfoShort);
+}
 
 const void *RadioBearerSetupr6IEsSpecificationMode::choicesInfo[2] = {
 	&RadioBearerSetupr6IEsSpecificationModeComplete::theInfo,
@@ -17991,6 +19574,10 @@ const RadioBearerSetupr6IEs::Info RadioBearerSetupr6IEs::theInfo = {
 	itemsPres,
 	22, 20, 0
 };
+RadioBearerSetupr6IEs::RadioBearerSetupr6IEs(const RRCStateIndicator& rrcStateIndicator, const RadioBearerSetupr6IEsSpecificationMode& radioBearerSetupr6IEsSpecificationMode) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRadioBearerSetupr6IEsSpecificationMode(radioBearerSetupr6IEsSpecificationMode);
+}
 
 const void *RadioBearerSetupv6b0extIEs::itemsInfo[2] = {
 	&DLInformationPerRLListv6b0ext::theInfo,
@@ -18041,6 +19628,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions(const RadioBearerSetupv6b0extIEs& radioBearerSetupv6b0ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv6b0ext(radioBearerSetupv6b0ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&RadioBearerSetupr6IEs::theInfo,
@@ -18061,6 +19651,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6(const RadioBearerSetupr6IEs& radioBearerSetupr6) : Sequence(&theInfo) {
+	setRadioBearerSetupr6(radioBearerSetupr6);
+}
 
 const void *RadioBearerSetupr7IEsSpecificationModeComplete::itemsInfo[13] = {
 	&SRBInformationSetupListr7::theInfo,
@@ -18184,6 +19777,10 @@ const RadioBearerSetupr7IEs::Info RadioBearerSetupr7IEs::theInfo = {
 	itemsPres,
 	28, 26, 0
 };
+RadioBearerSetupr7IEs::RadioBearerSetupr7IEs(const RRCStateIndicator& rrcStateIndicator, const RadioBearerSetupr7IEsSpecificationMode& radioBearerSetupr7IEsSpecificationMode) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setRadioBearerSetupr7IEsSpecificationMode(radioBearerSetupr7IEsSpecificationMode);
+}
 
 const void *RadioBearerSetupv780extIEs::itemsInfo[1] = {
 	&HSDSCHTBSizeTable::theInfo,
@@ -18248,6 +19845,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV820NonCriticalExtensions::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV820NonCriticalExtensions(const RadioBearerSetupv820extIEs& radioBearerSetupv820ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv820ext(radioBearerSetupv820ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerSetupv780extIEs::theInfo,
@@ -18266,6 +19866,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions(const RadioBearerSetupv780extIEs& radioBearerSetupv780ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv780ext(radioBearerSetupv780ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&RadioBearerSetupr7IEs::theInfo,
@@ -18286,6 +19889,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7(const RadioBearerSetupr7IEs& radioBearerSetupr7) : Sequence(&theInfo) {
+	setRadioBearerSetupr7(radioBearerSetupr7);
+}
 
 const void *RadioBearerSetupr8IEs::itemsInfo[44] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -18388,6 +19994,9 @@ const RadioBearerSetupr8IEs::Info RadioBearerSetupr8IEs::theInfo = {
 	itemsPres,
 	44, 43, 0
 };
+RadioBearerSetupr8IEs::RadioBearerSetupr8IEs(const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *RadioBearerSetupv7d0extIEs::itemsInfo[1] = {
 	&ULEDCHInformationext::theInfo,
@@ -18502,6 +20111,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensionsV8a0NonCriticalExtensions::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensionsV8a0NonCriticalExtensions(const RadioBearerSetupv8a0extIEs& radioBearerSetupv8a0ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv8a0ext(radioBearerSetupv8a0ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerSetupv7g0extIEs::theInfo,
@@ -18520,6 +20132,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions(const RadioBearerSetupv7g0extIEs& radioBearerSetupv7g0ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv7g0ext(radioBearerSetupv7g0ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerSetupv890extIEs::theInfo,
@@ -18538,6 +20153,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions(const RadioBearerSetupv890extIEs& radioBearerSetupv890ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv890ext(radioBearerSetupv890ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerSetupv7f0extIEs::theInfo,
@@ -18556,6 +20174,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions(const RadioBearerSetupv7f0extIEs& radioBearerSetupv7f0ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv7f0ext(radioBearerSetupv7f0ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerSetupv7d0extIEs::theInfo,
@@ -18574,6 +20195,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions(const RadioBearerSetupv7d0extIEs& radioBearerSetupv7d0ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv7d0ext(radioBearerSetupv7d0ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&RadioBearerSetupr8IEs::theInfo,
@@ -18594,6 +20218,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8(const RadioBearerSetupr8IEs& radioBearerSetupr8) : Sequence(&theInfo) {
+	setRadioBearerSetupr8(radioBearerSetupr8);
+}
 
 const void *RadioBearerSetupr9IEs::itemsInfo[46] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -18700,6 +20327,9 @@ const RadioBearerSetupr9IEs::Info RadioBearerSetupr9IEs::theInfo = {
 	itemsPres,
 	46, 45, 0
 };
+RadioBearerSetupr9IEs::RadioBearerSetupr9IEs(const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *RadioBearerSetupv950extIEs::itemsInfo[1] = {
 	&SecondaryCellMIMOparametersFDDv950ext::theInfo,
@@ -18748,6 +20378,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions(const RadioBearerSetupv950extIEs& radioBearerSetupv950ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv950ext(radioBearerSetupv950ext);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&RadioBearerSetupr9IEs::theInfo,
@@ -18768,6 +20401,9 @@ const RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExt
 	itemsPres,
 	3, 2, 0
 };
+RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9(const RadioBearerSetupr9IEs& radioBearerSetupr9) : Sequence(&theInfo) {
+	setRadioBearerSetupr9(radioBearerSetupr9);
+}
 
 const void *RadioBearerSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -18878,6 +20514,10 @@ const RadioBearerSetupLaterthanr3::Info RadioBearerSetupLaterthanr3::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+RadioBearerSetupLaterthanr3::RadioBearerSetupLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const RadioBearerSetupLaterthanr3CriticalExtensions& radioBearerSetupLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRadioBearerSetupLaterthanr3CriticalExtensions(radioBearerSetupLaterthanr3CriticalExtensions);
+}
 
 const void *RadioBearerSetup::choicesInfo[2] = {
 	&RadioBearerSetupR3::theInfo,
@@ -18923,6 +20563,9 @@ const RadioBearerSetupr7addextIEsV7f0NonCriticalExtensionsV7g0NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupr7addextIEsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions::RadioBearerSetupr7addextIEsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions(const RadioBearerSetupv7g0extIEs& radioBearerSetupv7g0ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv7g0ext(radioBearerSetupv7g0ext);
+}
 
 const void *RadioBearerSetupr7addextIEsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerSetupv7f0extIEs::theInfo,
@@ -18941,6 +20584,9 @@ const RadioBearerSetupr7addextIEsV7f0NonCriticalExtensions::Info RadioBearerSetu
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupr7addextIEsV7f0NonCriticalExtensions::RadioBearerSetupr7addextIEsV7f0NonCriticalExtensions(const RadioBearerSetupv7f0extIEs& radioBearerSetupv7f0ext) : Sequence(&theInfo) {
+	setRadioBearerSetupv7f0ext(radioBearerSetupv7f0ext);
+}
 
 const void *RadioBearerSetupr7addextIEs::itemsInfo[2] = {
 	&RadioBearerSetupv7d0extIEs::theInfo,
@@ -19009,6 +20655,9 @@ const RadioBearerSetupCompleteLaterNonCriticalExtensionsV770NonCriticalExtension
 	itemsPres,
 	2, 1, 0
 };
+RadioBearerSetupCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions::RadioBearerSetupCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions(const RadioBearerSetupCompletev770extIEs& radioBearerSetupCompletev770ext) : Sequence(&theInfo) {
+	setRadioBearerSetupCompletev770ext(radioBearerSetupCompletev770ext);
+}
 
 const void *RadioBearerSetupCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
 	&RadioBearerSetupCompleteLaterNonCriticalExtensionsRadioBearerSetupCompleter3addext::theInfo,
@@ -19057,6 +20706,9 @@ const RadioBearerSetupComplete::Info RadioBearerSetupComplete::theInfo = {
 	itemsPres,
 	8, 7, 0
 };
+RadioBearerSetupComplete::RadioBearerSetupComplete(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *RadioBearerSetupFailureLaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -19111,6 +20763,10 @@ const RadioBearerSetupFailure::Info RadioBearerSetupFailure::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+RadioBearerSetupFailure::RadioBearerSetupFailure(const RRCTransactionIdentifier& rrcTransactionIdentifier, const FailureCauseWithProtErr& failureCause) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setFailureCause(failureCause);
+}
 
 const void *RRCConnectionRejectr3IEs::itemsInfo[5] = {
 	&InitialUEIdentity::theInfo,
@@ -19135,6 +20791,12 @@ const RRCConnectionRejectr3IEs::Info RRCConnectionRejectr3IEs::theInfo = {
 	itemsPres,
 	5, 1, 0
 };
+RRCConnectionRejectr3IEs::RRCConnectionRejectr3IEs(const InitialUEIdentity& initialUEIdentity, const RRCTransactionIdentifier& rrcTransactionIdentifier, const RejectionCause& rejectionCause, const WaitTime& waitTime) : Sequence(&theInfo) {
+	setInitialUEIdentity(initialUEIdentity);
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRejectionCause(rejectionCause);
+	setWaitTime(waitTime);
+}
 
 const void *RRCConnectionRejectv690extIEs::itemsInfo[1] = {
 	&GSMTargetCellInfoList::theInfo,
@@ -19215,6 +20877,9 @@ const RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV6
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV6f0NonCriticalExtensionsV860NonCriticalExtensions::RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV6f0NonCriticalExtensionsV860NonCriticalExtensions(const RRCConnectionRejectv860extIEs& rrcConnectionRejectv860ext) : Sequence(&theInfo) {
+	setRrcConnectionRejectv860ext(rrcConnectionRejectv860ext);
+}
 
 const void *RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV6f0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRejectv6f0extIEs::theInfo,
@@ -19233,6 +20898,9 @@ const RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV6
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV6f0NonCriticalExtensions::RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV6f0NonCriticalExtensions(const RRCConnectionRejectv6f0extIEs& rrcConnectionRejectv6f0ext) : Sequence(&theInfo) {
+	setRrcConnectionRejectv6f0ext(rrcConnectionRejectv6f0ext);
+}
 
 const void *RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRejectv690extIEs::theInfo,
@@ -19251,6 +20919,9 @@ const RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensions::
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensions::RRCConnectionRejectR3LaterNonCriticalExtensionsV690NonCriticalExtensions(const RRCConnectionRejectv690extIEs& rrcConnectionRejectv690ext) : Sequence(&theInfo) {
+	setRrcConnectionRejectv690ext(rrcConnectionRejectv690ext);
+}
 
 const void *RRCConnectionRejectR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRejectR3LaterNonCriticalExtensionsRrcConnectionRejectr3addext::theInfo,
@@ -19287,6 +20958,9 @@ const RRCConnectionRejectR3::Info RRCConnectionRejectR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRejectR3::RRCConnectionRejectR3(const RRCConnectionRejectr3IEs& rrcConnectionRejectr3) : Sequence(&theInfo) {
+	setRrcConnectionRejectr3(rrcConnectionRejectr3);
+}
 
 const void *RRCConnectionRejectLaterthanr3CriticalExtensions::itemsInfo[0] = {
 };
@@ -19321,6 +20995,11 @@ const RRCConnectionRejectLaterthanr3::Info RRCConnectionRejectLaterthanr3::theIn
 	itemsPres,
 	3, 0, 0
 };
+RRCConnectionRejectLaterthanr3::RRCConnectionRejectLaterthanr3(const InitialUEIdentity& initialUEIdentity, const RRCTransactionIdentifier& rrcTransactionIdentifier, const RRCConnectionRejectLaterthanr3CriticalExtensions& rRCConnectionRejectLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setInitialUEIdentity(initialUEIdentity);
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRRCConnectionRejectLaterthanr3CriticalExtensions(rRCConnectionRejectLaterthanr3CriticalExtensions);
+}
 
 const void *RRCConnectionReject::choicesInfo[2] = {
 	&RRCConnectionRejectR3::theInfo,
@@ -19356,6 +21035,10 @@ const RRCConnectionReleaser3IEs::Info RRCConnectionReleaser3IEs::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+RRCConnectionReleaser3IEs::RRCConnectionReleaser3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const ReleaseCause& releaseCause) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setReleaseCause(releaseCause);
+}
 
 const void *RRCConnectionReleasev690extIEs::itemsInfo[1] = {
 	&RedirectionInfor6::theInfo,
@@ -19436,6 +21119,9 @@ const RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions::RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions(const RRCConnectionReleasev860extIEs& rrcConnectionReleasev860ext) : Sequence(&theInfo) {
+	setRrcConnectionReleasev860ext(rrcConnectionReleasev860ext);
+}
 
 const void *RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionReleasev770extIEs::theInfo,
@@ -19454,6 +21140,9 @@ const RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions(const RRCConnectionReleasev770extIEs& rrcConnectionReleasev770ext) : Sequence(&theInfo) {
+	setRrcConnectionReleasev770ext(rrcConnectionReleasev770ext);
+}
 
 const void *RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionReleasev690extIEs::theInfo,
@@ -19472,6 +21161,9 @@ const RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensions:
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensions::RRCConnectionReleaseR3LaterNonCriticalExtensionsV690NonCriticalExtensions(const RRCConnectionReleasev690extIEs& rrcConnectionReleasev690ext) : Sequence(&theInfo) {
+	setRrcConnectionReleasev690ext(rrcConnectionReleasev690ext);
+}
 
 const void *RRCConnectionReleaseR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionReleaseR3LaterNonCriticalExtensionsRrcConnectionReleaser3addext::theInfo,
@@ -19508,6 +21200,9 @@ const RRCConnectionReleaseR3::Info RRCConnectionReleaseR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseR3::RRCConnectionReleaseR3(const RRCConnectionReleaser3IEs& rrcConnectionReleaser3) : Sequence(&theInfo) {
+	setRrcConnectionReleaser3(rrcConnectionReleaser3);
+}
 
 const void *RRCConnectionReleaser4IEs::itemsInfo[3] = {
 	&N308::theInfo,
@@ -19528,6 +21223,9 @@ const RRCConnectionReleaser4IEs::Info RRCConnectionReleaser4IEs::theInfo = {
 	itemsPres,
 	3, 2, 0
 };
+RRCConnectionReleaser4IEs::RRCConnectionReleaser4IEs(const ReleaseCause& releaseCause) : Sequence(&theInfo) {
+	setReleaseCause(releaseCause);
+}
 
 const void *RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -19560,6 +21258,9 @@ const RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions::RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions(const RRCConnectionReleasev860extIEs& rrcConnectionReleasev860ext) : Sequence(&theInfo) {
+	setRrcConnectionReleasev860ext(rrcConnectionReleasev860ext);
+}
 
 const void *RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionReleasev770extIEs::theInfo,
@@ -19578,6 +21279,9 @@ const RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions(const RRCConnectionReleasev770extIEs& rrcConnectionReleasev770ext) : Sequence(&theInfo) {
+	setRrcConnectionReleasev770ext(rrcConnectionReleasev770ext);
+}
 
 const void *RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionReleasev690extIEs::theInfo,
@@ -19596,6 +21300,9 @@ const RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions::RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions(const RRCConnectionReleasev690extIEs& rrcConnectionReleasev690ext) : Sequence(&theInfo) {
+	setRrcConnectionReleasev690ext(rrcConnectionReleasev690ext);
+}
 
 const void *RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionReleaseLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsRrcConnectionReleaser4addext::theInfo,
@@ -19632,6 +21339,9 @@ const RRCConnectionReleaseLaterthanr3CriticalExtensionsR4::Info RRCConnectionRel
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseLaterthanr3CriticalExtensionsR4::RRCConnectionReleaseLaterthanr3CriticalExtensionsR4(const RRCConnectionReleaser4IEs& rrcConnectionReleaser4) : Sequence(&theInfo) {
+	setRrcConnectionReleaser4(rrcConnectionReleaser4);
+}
 
 const void *RRCConnectionReleaseLaterthanr3CriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -19677,6 +21387,10 @@ const RRCConnectionReleaseLaterthanr3::Info RRCConnectionReleaseLaterthanr3::the
 	itemsPres,
 	2, 0, 0
 };
+RRCConnectionReleaseLaterthanr3::RRCConnectionReleaseLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const RRCConnectionReleaseLaterthanr3CriticalExtensions& rRCConnectionReleaseLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRRCConnectionReleaseLaterthanr3CriticalExtensions(rRCConnectionReleaseLaterthanr3CriticalExtensions);
+}
 
 const void *RRCConnectionRelease::choicesInfo[2] = {
 	&RRCConnectionReleaseR3::theInfo,
@@ -19708,6 +21422,10 @@ const RRCConnectionReleaseCCCHr3IEs::Info RRCConnectionReleaseCCCHr3IEs::theInfo
 	itemsPres,
 	2, 0, 0
 };
+RRCConnectionReleaseCCCHr3IEs::RRCConnectionReleaseCCCHr3IEs(const URNTI& uRNTI, const RRCConnectionReleaser3IEs& rrcConnectionRelease) : Sequence(&theInfo) {
+	setURNTI(uRNTI);
+	setRrcConnectionRelease(rrcConnectionRelease);
+}
 
 const void *RRCConnectionReleaseCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -19740,6 +21458,9 @@ const RRCConnectionReleaseCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtensions::RRCConnectionReleaseCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtensions(const RRCConnectionReleaseCCCHv860extIEs& rrcConnectionReleasev860ext) : Sequence(&theInfo) {
+	setRrcConnectionReleasev860ext(rrcConnectionReleasev860ext);
+}
 
 const void *RRCConnectionReleaseCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionReleaseCCCHv690extIEs::theInfo,
@@ -19758,6 +21479,9 @@ const RRCConnectionReleaseCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensions::RRCConnectionReleaseCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensions(const RRCConnectionReleaseCCCHv690extIEs& rrcConnectionReleasev690ext) : Sequence(&theInfo) {
+	setRrcConnectionReleasev690ext(rrcConnectionReleasev690ext);
+}
 
 const void *RRCConnectionReleaseCCCHR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionReleaseCCCHR3LaterNonCriticalExtensionsRrcConnectionReleaseCCCHr3addext::theInfo,
@@ -19794,6 +21518,9 @@ const RRCConnectionReleaseCCCHR3::Info RRCConnectionReleaseCCCHR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseCCCHR3::RRCConnectionReleaseCCCHR3(const RRCConnectionReleaseCCCHr3IEs& rrcConnectionReleaseCCCHr3) : Sequence(&theInfo) {
+	setRrcConnectionReleaseCCCHr3(rrcConnectionReleaseCCCHr3);
+}
 
 const void *RRCConnectionReleaseCCCHr4IEs::itemsInfo[1] = {
 	&RRCConnectionReleaser4IEs::theInfo,
@@ -19810,6 +21537,9 @@ const RRCConnectionReleaseCCCHr4IEs::Info RRCConnectionReleaseCCCHr4IEs::theInfo
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionReleaseCCCHr4IEs::RRCConnectionReleaseCCCHr4IEs(const RRCConnectionReleaser4IEs& rrcConnectionRelease) : Sequence(&theInfo) {
+	setRrcConnectionRelease(rrcConnectionRelease);
+}
 
 const void *RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -19842,6 +21572,9 @@ const RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExte
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtensions::RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtensions(const RRCConnectionReleaseCCCHv860extIEs& rrcConnectionReleasev860ext) : Sequence(&theInfo) {
+	setRrcConnectionReleasev860ext(rrcConnectionReleasev860ext);
+}
 
 const void *RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionReleaseCCCHv690extIEs::theInfo,
@@ -19860,6 +21593,9 @@ const RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExte
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions::RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions(const RRCConnectionReleaseCCCHv690extIEs& rrcConnectionReleasev690ext) : Sequence(&theInfo) {
+	setRrcConnectionReleasev690ext(rrcConnectionReleasev690ext);
+}
 
 const void *RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsRrcConnectionReleaseCCCHr4addext::theInfo,
@@ -19896,6 +21632,9 @@ const RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4::Info RRCConnectio
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4::RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4(const RRCConnectionReleaseCCCHr4IEs& rrcConnectionReleaseCCCHr4) : Sequence(&theInfo) {
+	setRrcConnectionReleaseCCCHr4(rrcConnectionReleaseCCCHr4);
+}
 
 const void *RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV860NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -19928,6 +21667,9 @@ const RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCri
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV860NonCriticalExtensions::RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV860NonCriticalExtensions(const RRCConnectionReleaseCCCHv860extIEs& rrcConnectionReleasev860ext) : Sequence(&theInfo) {
+	setRrcConnectionReleasev860ext(rrcConnectionReleasev860ext);
+}
 
 const void *RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionReleaseCCCHv690extIEs::theInfo,
@@ -19946,6 +21688,9 @@ const RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCri
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions(const RRCConnectionReleaseCCCHv690extIEs& rrcConnectionReleasev690ext) : Sequence(&theInfo) {
+	setRrcConnectionReleasev690ext(rrcConnectionReleasev690ext);
+}
 
 const void *RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&RRCConnectionReleaseCCCHr5IEs::theInfo,
@@ -19966,6 +21711,9 @@ const RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCri
 	itemsPres,
 	3, 2, 0
 };
+RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5::RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR5(const RRCConnectionReleaseCCCHr5IEs& rrcConnectionReleaseCCCHr5) : Sequence(&theInfo) {
+	setRrcConnectionReleaseCCCHr5(rrcConnectionReleaseCCCHr5);
+}
 
 const void *RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -20011,6 +21759,9 @@ const RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensions::I
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensions::RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensions(const RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensions& rRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensions) : Sequence(&theInfo) {
+	setRRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensions(rRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensions);
+}
 
 const void *RRCConnectionReleaseCCCHLaterthanr3CriticalExtensions::choicesInfo[2] = {
 	&RRCConnectionReleaseCCCHLaterthanr3CriticalExtensionsR4::theInfo,
@@ -20044,6 +21795,11 @@ const RRCConnectionReleaseCCCHLaterthanr3::Info RRCConnectionReleaseCCCHLatertha
 	itemsPres,
 	3, 0, 0
 };
+RRCConnectionReleaseCCCHLaterthanr3::RRCConnectionReleaseCCCHLaterthanr3(const URNTI& uRNTI, const RRCTransactionIdentifier& rrcTransactionIdentifier, const RRCConnectionReleaseCCCHLaterthanr3CriticalExtensions& rRCConnectionReleaseCCCHLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setURNTI(uRNTI);
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRRCConnectionReleaseCCCHLaterthanr3CriticalExtensions(rRCConnectionReleaseCCCHLaterthanr3CriticalExtensions);
+}
 
 const void *RRCConnectionReleaseCCCH::choicesInfo[2] = {
 	&RRCConnectionReleaseCCCHR3::theInfo,
@@ -20109,6 +21865,9 @@ const RRCConnectionReleaseComplete::Info RRCConnectionReleaseComplete::theInfo =
 	itemsPres,
 	3, 2, 0
 };
+RRCConnectionReleaseComplete::RRCConnectionReleaseComplete(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *RRCConnectionRequestv3d0extIEs::itemsInfo[1] = {
 	&UESpecificBehaviourInformation1idle::theInfo,
@@ -20141,6 +21900,9 @@ const RRCConnectionRequestv4b0extIEs::Info RRCConnectionRequestv4b0extIEs::theIn
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionRequestv4b0extIEs::RRCConnectionRequestv4b0extIEs(const AccessStratumReleaseIndicator& accessStratumReleaseIndicator) : Sequence(&theInfo) {
+	setAccessStratumReleaseIndicator(accessStratumReleaseIndicator);
+}
 
 const void *RRCConnectionRequestv590extIEs::itemsInfo[1] = {
 	&RRCConnectionRequestv590extIEsPredefinedConfigStatusInfo::theInfo,
@@ -20157,6 +21919,9 @@ const RRCConnectionRequestv590extIEs::Info RRCConnectionRequestv590extIEs::theIn
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionRequestv590extIEs::RRCConnectionRequestv590extIEs(const RRCConnectionRequestv590extIEsPredefinedConfigStatusInfo& rRCConnectionRequestv590extIEsPredefinedConfigStatusInfo) : Sequence(&theInfo) {
+	setRRCConnectionRequestv590extIEsPredefinedConfigStatusInfo(rRCConnectionRequestv590extIEsPredefinedConfigStatusInfo);
+}
 
 const void *RRCConnectionRequestv690extIEsDomainIndicatorCsdomain::itemsInfo[1] = {
 	&RRCConnectionRequestv690extIEsDomainIndicatorCsdomaincsCallType::theInfo,
@@ -20173,6 +21938,9 @@ const RRCConnectionRequestv690extIEsDomainIndicatorCsdomain::Info RRCConnectionR
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionRequestv690extIEsDomainIndicatorCsdomain::RRCConnectionRequestv690extIEsDomainIndicatorCsdomain(const RRCConnectionRequestv690extIEsDomainIndicatorCsdomaincsCallType& rRCConnectionRequestv690extIEsDomainIndicatorCsdomaincsCallType) : Sequence(&theInfo) {
+	setRRCConnectionRequestv690extIEsDomainIndicatorCsdomaincsCallType(rRCConnectionRequestv690extIEsDomainIndicatorCsdomaincsCallType);
+}
 
 const void *RRCConnectionRequestv690extIEsDomainIndicator::choicesInfo[2] = {
 	&RRCConnectionRequestv690extIEsDomainIndicatorCsdomain::theInfo,
@@ -20206,6 +21974,9 @@ const RRCConnectionRequestv690extIEs::Info RRCConnectionRequestv690extIEs::theIn
 	itemsPres,
 	3, 2, 0
 };
+RRCConnectionRequestv690extIEs::RRCConnectionRequestv690extIEs(const RRCConnectionRequestv690extIEsDomainIndicator& rRCConnectionRequestv690extIEsDomainIndicator) : Sequence(&theInfo) {
+	setRRCConnectionRequestv690extIEsDomainIndicator(rRCConnectionRequestv690extIEsDomainIndicator);
+}
 
 const void *RRCConnectionRequestv6b0extIEs::itemsInfo[1] = {
 	&MBMSSelectedServicesShort::theInfo,
@@ -20396,6 +22167,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensionsV7e0NonCriticalExtensionsV7g0NonCriticalExtensionsV920NonCriticalExtensionsV940NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensionsV7e0NonCriticalExtensionsV7g0NonCriticalExtensionsV920NonCriticalExtensionsV940NonCriticalExtensions(const RRCConnectionRequestv940extIEs& rrcConnectionRequestv940ext) : Sequence(&theInfo) {
+	setRrcConnectionRequestv940ext(rrcConnectionRequestv940ext);
+}
 
 const void *RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensionsV7e0NonCriticalExtensionsV7g0NonCriticalExtensionsV920NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRequestv920extIEs::theInfo,
@@ -20414,6 +22188,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensionsV7e0NonCriticalExtensionsV7g0NonCriticalExtensionsV920NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensionsV7e0NonCriticalExtensionsV7g0NonCriticalExtensionsV920NonCriticalExtensions(const RRCConnectionRequestv920extIEs& rrcConnectionRequestv920ext) : Sequence(&theInfo) {
+	setRrcConnectionRequestv920ext(rrcConnectionRequestv920ext);
+}
 
 const void *RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensionsV7e0NonCriticalExtensionsV7g0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRequestv7g0extIEs::theInfo,
@@ -20432,6 +22209,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensionsV7e0NonCriticalExtensionsV7g0NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensionsV7e0NonCriticalExtensionsV7g0NonCriticalExtensions(const RRCConnectionRequestv7g0extIEs& rrcConnectionRequestv7g0ext) : Sequence(&theInfo) {
+	setRrcConnectionRequestv7g0ext(rrcConnectionRequestv7g0ext);
+}
 
 const void *RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensionsV7e0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRequestv7e0extIEs::theInfo,
@@ -20450,6 +22230,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensionsV7e0NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensionsV7e0NonCriticalExtensions(const RRCConnectionRequestv7e0extIEs& rrcConnectionRequestv7e0ext) : Sequence(&theInfo) {
+	setRrcConnectionRequestv7e0ext(rrcConnectionRequestv7e0ext);
+}
 
 const void *RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRequestv860extIEs::theInfo,
@@ -20468,6 +22251,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensionsV860NonCriticalExtensions(const RRCConnectionRequestv860extIEs& rrcConnectionRequestv860ext) : Sequence(&theInfo) {
+	setRrcConnectionRequestv860ext(rrcConnectionRequestv860ext);
+}
 
 const void *RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRequestv7b0extIEs::theInfo,
@@ -20486,6 +22272,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensionsV7b0NonCriticalExtensions(const RRCConnectionRequestv7b0extIEs& rrcConnectionRequestv7b0ext) : Sequence(&theInfo) {
+	setRrcConnectionRequestv7b0ext(rrcConnectionRequestv7b0ext);
+}
 
 const void *RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRequestv770extIEs::theInfo,
@@ -20504,6 +22293,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensionsV770NonCriticalExtensions(const RRCConnectionRequestv770extIEs& rrcConnectionRequestv770ext) : Sequence(&theInfo) {
+	setRrcConnectionRequestv770ext(rrcConnectionRequestv770ext);
+}
 
 const void *RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRequestv6e0extIEs::theInfo,
@@ -20522,6 +22314,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensionsV6e0NonCriticalExtensions(const RRCConnectionRequestv6e0extIEs& rrcConnectionRequestv6e0ext) : Sequence(&theInfo) {
+	setRrcConnectionRequestv6e0ext(rrcConnectionRequestv6e0ext);
+}
 
 const void *RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRequestv6b0extIEs::theInfo,
@@ -20540,6 +22335,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV6b0NonCriticalExtensions(const RRCConnectionRequestv6b0extIEs& rrcConnectionRequestv6b0ext) : Sequence(&theInfo) {
+	setRrcConnectionRequestv6b0ext(rrcConnectionRequestv6b0ext);
+}
 
 const void *RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRequestv690extIEs::theInfo,
@@ -20558,6 +22356,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions(const RRCConnectionRequestv690extIEs& rrcConnectionRequestv690ext) : Sequence(&theInfo) {
+	setRrcConnectionRequestv690ext(rrcConnectionRequestv690ext);
+}
 
 const void *RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRequestv590extIEs::theInfo,
@@ -20576,6 +22377,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const RRCConnectionRequestv590extIEs& rrcConnectionRequestv590ext) : Sequence(&theInfo) {
+	setRrcConnectionRequestv590ext(rrcConnectionRequestv590ext);
+}
 
 const void *RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRequestv4b0extIEs::theInfo,
@@ -20594,6 +22398,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensions::In
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensionsV4b0NonCriticalExtensions(const RRCConnectionRequestv4b0extIEs& rrcConnectionRequestv4b0ext) : Sequence(&theInfo) {
+	setRrcConnectionRequestv4b0ext(rrcConnectionRequestv4b0ext);
+}
 
 const void *RRCConnectionRequestV3d0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionRequestv3d0extIEs::theInfo,
@@ -20612,6 +22419,9 @@ const RRCConnectionRequestV3d0NonCriticalExtensions::Info RRCConnectionRequestV3
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionRequestV3d0NonCriticalExtensions::RRCConnectionRequestV3d0NonCriticalExtensions(const RRCConnectionRequestv3d0extIEs& rRCConnectionRequestv3d0ext) : Sequence(&theInfo) {
+	setRRCConnectionRequestv3d0ext(rRCConnectionRequestv3d0ext);
+}
 
 const void *RRCConnectionRequest::itemsInfo[5] = {
 	&InitialUEIdentity::theInfo,
@@ -20636,6 +22446,11 @@ const RRCConnectionRequest::Info RRCConnectionRequest::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+RRCConnectionRequest::RRCConnectionRequest(const InitialUEIdentity& initialUEIdentity, const EstablishmentCause& establishmentCause, const ProtocolErrorIndicator& protocolErrorIndicator) : Sequence(&theInfo) {
+	setInitialUEIdentity(initialUEIdentity);
+	setEstablishmentCause(establishmentCause);
+	setProtocolErrorIndicator(protocolErrorIndicator);
+}
 
 const void *RRCConnectionSetupr3IEs::itemsInfo[18] = {
 	&InitialUEIdentity::theInfo,
@@ -20686,6 +22501,16 @@ const RRCConnectionSetupr3IEs::Info RRCConnectionSetupr3IEs::theInfo = {
 	itemsPres,
 	18, 10, 0
 };
+RRCConnectionSetupr3IEs::RRCConnectionSetupr3IEs(const InitialUEIdentity& initialUEIdentity, const RRCTransactionIdentifier& rrcTransactionIdentifier, const URNTI& newURNTI, const RRCStateIndicator& rrcStateIndicator, const UTRANDRXCycleLengthCoefficient& utranDRXCycleLengthCoeff, const SRBInformationSetupList2& srbInformationSetupList, const ULAddReconfTransChInfoList& ulAddReconfTransChInfoList, const DLAddReconfTransChInfoList& dlAddReconfTransChInfoList) : Sequence(&theInfo) {
+	setInitialUEIdentity(initialUEIdentity);
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setNewURNTI(newURNTI);
+	setRrcStateIndicator(rrcStateIndicator);
+	setUtranDRXCycleLengthCoeff(utranDRXCycleLengthCoeff);
+	setSrbInformationSetupList(srbInformationSetupList);
+	setUlAddReconfTransChInfoList(ulAddReconfTransChInfoList);
+	setDlAddReconfTransChInfoList(dlAddReconfTransChInfoList);
+}
 
 const void *RRCConnectionSetupv4b0extIEs::itemsInfo[3] = {
 	&CapabilityUpdateRequirementr4ext::theInfo,
@@ -20774,6 +22599,9 @@ const RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV59
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions(const RRCConnectionSetupv690extIEs& rrcConnectionSetupv690ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv690ext(rrcConnectionSetupv690ext);
+}
 
 const void *RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupv590extIEs::theInfo,
@@ -20792,6 +22620,9 @@ const RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV59
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const RRCConnectionSetupv590extIEs& rrcConnectionSetupv590ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv590ext(rrcConnectionSetupv590ext);
+}
 
 const void *RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupv4b0extIEs::theInfo,
@@ -20810,6 +22641,9 @@ const RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::I
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::RRCConnectionSetupR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions(const RRCConnectionSetupv4b0extIEs& rrcConnectionSetupv4b0ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv4b0ext(rrcConnectionSetupv4b0ext);
+}
 
 const void *RRCConnectionSetupR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupR3LaterNonCriticalExtensionsRrcConnectionSetupr3addext::theInfo,
@@ -20846,6 +22680,9 @@ const RRCConnectionSetupR3::Info RRCConnectionSetupR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupR3::RRCConnectionSetupR3(const RRCConnectionSetupr3IEs& rrcConnectionSetupr3) : Sequence(&theInfo) {
+	setRrcConnectionSetupr3(rrcConnectionSetupr3);
+}
 
 const void *RRCConnectionSetupr4IEs::itemsInfo[16] = {
 	&ActivationTime::theInfo,
@@ -20892,6 +22729,12 @@ const RRCConnectionSetupr4IEs::Info RRCConnectionSetupr4IEs::theInfo = {
 	itemsPres,
 	16, 12, 0
 };
+RRCConnectionSetupr4IEs::RRCConnectionSetupr4IEs(const URNTI& newURNTI, const RRCStateIndicator& rrcStateIndicator, const UTRANDRXCycleLengthCoefficient& utranDRXCycleLengthCoeff, const SRBInformationSetupList2& srbInformationSetupList) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setRrcStateIndicator(rrcStateIndicator);
+	setUtranDRXCycleLengthCoeff(utranDRXCycleLengthCoeff);
+	setSrbInformationSetupList(srbInformationSetupList);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -20924,6 +22767,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions(const RRCConnectionSetupv690extIEs& rrcConnectionSetupv690ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv690ext(rrcConnectionSetupv690ext);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupv590extIEs::theInfo,
@@ -20942,6 +22788,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions(const RRCConnectionSetupv590extIEs& rrcConnectionSetupv590ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv590ext(rrcConnectionSetupv590ext);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsRrcConnectionSetupr4addext::theInfo,
@@ -20978,6 +22827,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsR4::Info RRCConnectionSetup
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsR4::RRCConnectionSetupLaterthanr3CriticalExtensionsR4(const RRCConnectionSetupr4IEs& rrcConnectionSetupr4) : Sequence(&theInfo) {
+	setRrcConnectionSetupr4(rrcConnectionSetupr4);
+}
 
 const void *RRCConnectionSetupr5IEsSpecificationModeComplete::itemsInfo[5] = {
 	&SRBInformationSetupList2::theInfo,
@@ -21002,6 +22854,9 @@ const RRCConnectionSetupr5IEsSpecificationModeComplete::Info RRCConnectionSetupr
 	itemsPres,
 	5, 4, 0
 };
+RRCConnectionSetupr5IEsSpecificationModeComplete::RRCConnectionSetupr5IEsSpecificationModeComplete(const SRBInformationSetupList2& srbInformationSetupList) : Sequence(&theInfo) {
+	setSrbInformationSetupList(srbInformationSetupList);
+}
 
 const void *RRCConnectionSetupr5IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::itemsInfo[2] = {
 	&DefaultConfigMode::theInfo,
@@ -21020,6 +22875,10 @@ const RRCConnectionSetupr5IEsSpecificationModePreconfigurationPreConfigModeDefau
 	itemsPres,
 	2, 0, 0
 };
+RRCConnectionSetupr5IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::RRCConnectionSetupr5IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr5& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *RRCConnectionSetupr5IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -21049,6 +22908,9 @@ const RRCConnectionSetupr5IEsSpecificationModePreconfiguration::Info RRCConnecti
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionSetupr5IEsSpecificationModePreconfiguration::RRCConnectionSetupr5IEsSpecificationModePreconfiguration(const RRCConnectionSetupr5IEsSpecificationModePreconfigurationPreConfigMode& rRCConnectionSetupr5IEsSpecificationModePreconfigurationPreConfigMode) : Sequence(&theInfo) {
+	setRRCConnectionSetupr5IEsSpecificationModePreconfigurationPreConfigMode(rRCConnectionSetupr5IEsSpecificationModePreconfigurationPreConfigMode);
+}
 
 const void *RRCConnectionSetupr5IEsSpecificationMode::choicesInfo[2] = {
 	&RRCConnectionSetupr5IEsSpecificationModeComplete::theInfo,
@@ -21100,6 +22962,12 @@ const RRCConnectionSetupr5IEs::Info RRCConnectionSetupr5IEs::theInfo = {
 	itemsPres,
 	12, 8, 0
 };
+RRCConnectionSetupr5IEs::RRCConnectionSetupr5IEs(const URNTI& newURNTI, const RRCStateIndicator& rrcStateIndicator, const UTRANDRXCycleLengthCoefficient& utranDRXCycleLengthCoeff, const RRCConnectionSetupr5IEsSpecificationMode& rRCConnectionSetupr5IEsSpecificationMode) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setRrcStateIndicator(rrcStateIndicator);
+	setUtranDRXCycleLengthCoeff(utranDRXCycleLengthCoeff);
+	setRRCConnectionSetupr5IEsSpecificationMode(rRCConnectionSetupr5IEsSpecificationMode);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -21132,6 +23000,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V690Non
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions(const RRCConnectionSetupv690extIEs& rrcConnectionSetupv690ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv690ext(rrcConnectionSetupv690ext);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&RRCConnectionSetupr5IEs::theInfo,
@@ -21152,6 +23023,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5::Info 
 	itemsPres,
 	3, 2, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsR5(const RRCConnectionSetupr5IEs& rrcConnectionSetupr5) : Sequence(&theInfo) {
+	setRrcConnectionSetupr5(rrcConnectionSetupr5);
+}
 
 const void *RRCConnectionSetupr6IEsSpecificationModeComplete::itemsInfo[5] = {
 	&SRBInformationSetupList2r6::theInfo,
@@ -21176,6 +23050,9 @@ const RRCConnectionSetupr6IEsSpecificationModeComplete::Info RRCConnectionSetupr
 	itemsPres,
 	5, 4, 0
 };
+RRCConnectionSetupr6IEsSpecificationModeComplete::RRCConnectionSetupr6IEsSpecificationModeComplete(const SRBInformationSetupList2r6& srbInformationSetupList) : Sequence(&theInfo) {
+	setSrbInformationSetupList(srbInformationSetupList);
+}
 
 const void *RRCConnectionSetupr6IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::itemsInfo[2] = {
 	&DefaultConfigMode::theInfo,
@@ -21194,6 +23071,10 @@ const RRCConnectionSetupr6IEsSpecificationModePreconfigurationPreConfigModeDefau
 	itemsPres,
 	2, 0, 0
 };
+RRCConnectionSetupr6IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::RRCConnectionSetupr6IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *RRCConnectionSetupr6IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -21223,6 +23104,9 @@ const RRCConnectionSetupr6IEsSpecificationModePreconfiguration::Info RRCConnecti
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionSetupr6IEsSpecificationModePreconfiguration::RRCConnectionSetupr6IEsSpecificationModePreconfiguration(const RRCConnectionSetupr6IEsSpecificationModePreconfigurationPreConfigMode& rRCConnectionSetupr6IEsSpecificationModePreconfigurationPreConfigMode) : Sequence(&theInfo) {
+	setRRCConnectionSetupr6IEsSpecificationModePreconfigurationPreConfigMode(rRCConnectionSetupr6IEsSpecificationModePreconfigurationPreConfigMode);
+}
 
 const void *RRCConnectionSetupr6IEsSpecificationMode::choicesInfo[2] = {
 	&RRCConnectionSetupr6IEsSpecificationModeComplete::theInfo,
@@ -21284,6 +23168,12 @@ const RRCConnectionSetupr6IEs::Info RRCConnectionSetupr6IEs::theInfo = {
 	itemsPres,
 	17, 13, 0
 };
+RRCConnectionSetupr6IEs::RRCConnectionSetupr6IEs(const URNTI& newURNTI, const RRCStateIndicator& rrcStateIndicator, const UTRANDRXCycleLengthCoefficient& utranDRXCycleLengthCoeff, const RRCConnectionSetupr6IEsSpecificationMode& rRCConnectionSetupr6IEsSpecificationMode) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setRrcStateIndicator(rrcStateIndicator);
+	setUtranDRXCycleLengthCoeff(utranDRXCycleLengthCoeff);
+	setRRCConnectionSetupr6IEsSpecificationMode(rRCConnectionSetupr6IEsSpecificationMode);
+}
 
 const void *RRCConnectionSetupv6b0extIEs::itemsInfo[1] = {
 	&DLInformationPerRLListv6b0ext::theInfo,
@@ -21332,6 +23222,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions(const RRCConnectionSetupv6b0extIEs& rrcConnectionSetupv6b0ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv6b0ext(rrcConnectionSetupv6b0ext);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&RRCConnectionSetupr6IEs::theInfo,
@@ -21352,6 +23245,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	3, 2, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6(const RRCConnectionSetupr6IEs& rrcConnectionSetupr6) : Sequence(&theInfo) {
+	setRrcConnectionSetupr6(rrcConnectionSetupr6);
+}
 
 const void *RRCConnectionSetupr7IEsSpecificationModeComplete::itemsInfo[5] = {
 	&SRBInformationSetupList2r7::theInfo,
@@ -21376,6 +23272,9 @@ const RRCConnectionSetupr7IEsSpecificationModeComplete::Info RRCConnectionSetupr
 	itemsPres,
 	5, 4, 0
 };
+RRCConnectionSetupr7IEsSpecificationModeComplete::RRCConnectionSetupr7IEsSpecificationModeComplete(const SRBInformationSetupList2r7& srbInformationSetupList) : Sequence(&theInfo) {
+	setSrbInformationSetupList(srbInformationSetupList);
+}
 
 const void *RRCConnectionSetupr7IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::itemsInfo[2] = {
 	&DefaultConfigMode::theInfo,
@@ -21394,6 +23293,10 @@ const RRCConnectionSetupr7IEsSpecificationModePreconfigurationPreConfigModeDefau
 	itemsPres,
 	2, 0, 0
 };
+RRCConnectionSetupr7IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::RRCConnectionSetupr7IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *RRCConnectionSetupr7IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -21423,6 +23326,9 @@ const RRCConnectionSetupr7IEsSpecificationModePreconfiguration::Info RRCConnecti
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionSetupr7IEsSpecificationModePreconfiguration::RRCConnectionSetupr7IEsSpecificationModePreconfiguration(const RRCConnectionSetupr7IEsSpecificationModePreconfigurationPreConfigMode& rRCConnectionSetupr7IEsSpecificationModePreconfigurationPreConfigMode) : Sequence(&theInfo) {
+	setRRCConnectionSetupr7IEsSpecificationModePreconfigurationPreConfigMode(rRCConnectionSetupr7IEsSpecificationModePreconfigurationPreConfigMode);
+}
 
 const void *RRCConnectionSetupr7IEsSpecificationMode::choicesInfo[2] = {
 	&RRCConnectionSetupr7IEsSpecificationModeComplete::theInfo,
@@ -21494,6 +23400,13 @@ const RRCConnectionSetupr7IEs::Info RRCConnectionSetupr7IEs::theInfo = {
 	itemsPres,
 	22, 17, 0
 };
+RRCConnectionSetupr7IEs::RRCConnectionSetupr7IEs(const URNTI& newURNTI, const RRCStateIndicator& rrcStateIndicator, const UTRANDRXCycleLengthCoefficientr7& utranDRXCycleLengthCoeff, const RRCConnectionSetupr7IEsSupportForChangeOfUECapability& rRCConnectionSetupr7IEsSupportForChangeOfUECapability, const RRCConnectionSetupr7IEsSpecificationMode& rRCConnectionSetupr7IEsSpecificationMode) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setRrcStateIndicator(rrcStateIndicator);
+	setUtranDRXCycleLengthCoeff(utranDRXCycleLengthCoeff);
+	setRRCConnectionSetupr7IEsSupportForChangeOfUECapability(rRCConnectionSetupr7IEsSupportForChangeOfUECapability);
+	setRRCConnectionSetupr7IEsSpecificationMode(rRCConnectionSetupr7IEsSpecificationMode);
+}
 
 const void *RRCConnectionSetupv780extIEs::itemsInfo[1] = {
 	&HSDSCHTBSizeTable::theInfo,
@@ -21558,6 +23471,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensions::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensions(const RRCConnectionSetupv7d0extIEs& rrcConnectionSetupv7d0ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv7d0ext(rrcConnectionSetupv7d0ext);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupv780extIEs::theInfo,
@@ -21576,6 +23492,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions(const RRCConnectionSetupv780extIEs& rrcConnectionSetupv780ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv780ext(rrcConnectionSetupv780ext);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&RRCConnectionSetupr7IEs::theInfo,
@@ -21596,6 +23515,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	3, 2, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7(const RRCConnectionSetupr7IEs& rrcConnectionSetupr7) : Sequence(&theInfo) {
+	setRrcConnectionSetupr7(rrcConnectionSetupr7);
+}
 
 const void *RRCConnectionSetupr8IEsSpecificationModeComplete::itemsInfo[5] = {
 	&SRBInformationSetupList2r8::theInfo,
@@ -21620,6 +23542,9 @@ const RRCConnectionSetupr8IEsSpecificationModeComplete::Info RRCConnectionSetupr
 	itemsPres,
 	5, 4, 0
 };
+RRCConnectionSetupr8IEsSpecificationModeComplete::RRCConnectionSetupr8IEsSpecificationModeComplete(const SRBInformationSetupList2r8& srbInformationSetupList) : Sequence(&theInfo) {
+	setSrbInformationSetupList(srbInformationSetupList);
+}
 
 const void *RRCConnectionSetupr8IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::itemsInfo[2] = {
 	&DefaultConfigMode::theInfo,
@@ -21638,6 +23563,10 @@ const RRCConnectionSetupr8IEsSpecificationModePreconfigurationPreConfigModeDefau
 	itemsPres,
 	2, 0, 0
 };
+RRCConnectionSetupr8IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::RRCConnectionSetupr8IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *RRCConnectionSetupr8IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -21667,6 +23596,9 @@ const RRCConnectionSetupr8IEsSpecificationModePreconfiguration::Info RRCConnecti
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionSetupr8IEsSpecificationModePreconfiguration::RRCConnectionSetupr8IEsSpecificationModePreconfiguration(const RRCConnectionSetupr8IEsSpecificationModePreconfigurationPreConfigMode& rRCConnectionSetupr8IEsSpecificationModePreconfigurationPreConfigMode) : Sequence(&theInfo) {
+	setRRCConnectionSetupr8IEsSpecificationModePreconfigurationPreConfigMode(rRCConnectionSetupr8IEsSpecificationModePreconfigurationPreConfigMode);
+}
 
 const void *RRCConnectionSetupr8IEsSpecificationMode::choicesInfo[2] = {
 	&RRCConnectionSetupr8IEsSpecificationModeComplete::theInfo,
@@ -21744,6 +23676,13 @@ const RRCConnectionSetupr8IEs::Info RRCConnectionSetupr8IEs::theInfo = {
 	itemsPres,
 	25, 20, 0
 };
+RRCConnectionSetupr8IEs::RRCConnectionSetupr8IEs(const URNTI& newURNTI, const RRCStateIndicator& rrcStateIndicator, const UTRANDRXCycleLengthCoefficientr7& utranDRXCycleLengthCoeff, const RRCConnectionSetupr8IEsSupportForChangeOfUECapability& rRCConnectionSetupr8IEsSupportForChangeOfUECapability, const RRCConnectionSetupr8IEsSpecificationMode& rRCConnectionSetupr8IEsSpecificationMode) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setRrcStateIndicator(rrcStateIndicator);
+	setUtranDRXCycleLengthCoeff(utranDRXCycleLengthCoeff);
+	setRRCConnectionSetupr8IEsSupportForChangeOfUECapability(rRCConnectionSetupr8IEsSupportForChangeOfUECapability);
+	setRRCConnectionSetupr8IEsSpecificationMode(rRCConnectionSetupr8IEsSpecificationMode);
+}
 
 const void *RRCConnectionSetupv890extIEs::itemsInfo[2] = {
 	&DLSecondaryCellInfoFDDv890ext::theInfo,
@@ -21810,6 +23749,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensions::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensionsV8a0NonCriticalExtensions(const RRCConnectionSetupv8a0extIEs& rrcConnectionSetupv8a0ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv8a0ext(rrcConnectionSetupv8a0ext);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupv890extIEs::theInfo,
@@ -21828,6 +23770,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensions::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV890NonCriticalExtensions(const RRCConnectionSetupv890extIEs& rrcConnectionSetupv890ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv890ext(rrcConnectionSetupv890ext);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupv7d0extIEs::theInfo,
@@ -21846,6 +23791,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions(const RRCConnectionSetupv7d0extIEs& rrcConnectionSetupv7d0ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv7d0ext(rrcConnectionSetupv7d0ext);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&RRCConnectionSetupr8IEs::theInfo,
@@ -21866,6 +23814,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	3, 2, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8(const RRCConnectionSetupr8IEs& rrcConnectionSetupr8) : Sequence(&theInfo) {
+	setRrcConnectionSetupr8(rrcConnectionSetupr8);
+}
 
 const void *RRCConnectionSetupr9IEsSpecificationModeComplete::itemsInfo[5] = {
 	&SRBInformationSetupList2r8::theInfo,
@@ -21890,6 +23841,9 @@ const RRCConnectionSetupr9IEsSpecificationModeComplete::Info RRCConnectionSetupr
 	itemsPres,
 	5, 4, 0
 };
+RRCConnectionSetupr9IEsSpecificationModeComplete::RRCConnectionSetupr9IEsSpecificationModeComplete(const SRBInformationSetupList2r8& srbInformationSetupList) : Sequence(&theInfo) {
+	setSrbInformationSetupList(srbInformationSetupList);
+}
 
 const void *RRCConnectionSetupr9IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::itemsInfo[2] = {
 	&DefaultConfigMode::theInfo,
@@ -21908,6 +23862,10 @@ const RRCConnectionSetupr9IEsSpecificationModePreconfigurationPreConfigModeDefau
 	itemsPres,
 	2, 0, 0
 };
+RRCConnectionSetupr9IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig::RRCConnectionSetupr9IEsSpecificationModePreconfigurationPreConfigModeDefaultConfig(const DefaultConfigMode& defaultConfigMode, const DefaultConfigIdentityr6& defaultConfigIdentity) : Sequence(&theInfo) {
+	setDefaultConfigMode(defaultConfigMode);
+	setDefaultConfigIdentity(defaultConfigIdentity);
+}
 
 const void *RRCConnectionSetupr9IEsSpecificationModePreconfigurationPreConfigMode::choicesInfo[2] = {
 	&PredefinedConfigIdentity::theInfo,
@@ -21937,6 +23895,9 @@ const RRCConnectionSetupr9IEsSpecificationModePreconfiguration::Info RRCConnecti
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionSetupr9IEsSpecificationModePreconfiguration::RRCConnectionSetupr9IEsSpecificationModePreconfiguration(const RRCConnectionSetupr9IEsSpecificationModePreconfigurationPreConfigMode& rRCConnectionSetupr9IEsSpecificationModePreconfigurationPreConfigMode) : Sequence(&theInfo) {
+	setRRCConnectionSetupr9IEsSpecificationModePreconfigurationPreConfigMode(rRCConnectionSetupr9IEsSpecificationModePreconfigurationPreConfigMode);
+}
 
 const void *RRCConnectionSetupr9IEsSpecificationMode::choicesInfo[2] = {
 	&RRCConnectionSetupr9IEsSpecificationModeComplete::theInfo,
@@ -22014,6 +23975,13 @@ const RRCConnectionSetupr9IEs::Info RRCConnectionSetupr9IEs::theInfo = {
 	itemsPres,
 	25, 20, 0
 };
+RRCConnectionSetupr9IEs::RRCConnectionSetupr9IEs(const URNTI& newURNTI, const RRCStateIndicator& rrcStateIndicator, const UTRANDRXCycleLengthCoefficientr7& utranDRXCycleLengthCoeff, const RRCConnectionSetupr9IEsSupportForChangeOfUECapability& rRCConnectionSetupr9IEsSupportForChangeOfUECapability, const RRCConnectionSetupr9IEsSpecificationMode& rRCConnectionSetupr9IEsSpecificationMode) : Sequence(&theInfo) {
+	setNewURNTI(newURNTI);
+	setRrcStateIndicator(rrcStateIndicator);
+	setUtranDRXCycleLengthCoeff(utranDRXCycleLengthCoeff);
+	setRRCConnectionSetupr9IEsSupportForChangeOfUECapability(rRCConnectionSetupr9IEsSupportForChangeOfUECapability);
+	setRRCConnectionSetupr9IEsSpecificationMode(rRCConnectionSetupr9IEsSpecificationMode);
+}
 
 const void *RRCConnectionSetupv950extIEs::itemsInfo[1] = {
 	&SecondaryCellMIMOparametersFDDv950ext::theInfo,
@@ -22062,6 +24030,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions(const RRCConnectionSetupv950extIEs& rrcConnectionSetupv950ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupv950ext(rrcConnectionSetupv950ext);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&RRCConnectionSetupr9IEs::theInfo,
@@ -22082,6 +24053,9 @@ const RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalE
 	itemsPres,
 	3, 2, 0
 };
+RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9(const RRCConnectionSetupr9IEs& rrcConnectionSetupr9) : Sequence(&theInfo) {
+	setRrcConnectionSetupr9(rrcConnectionSetupr9);
+}
 
 const void *RRCConnectionSetupLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -22194,6 +24168,11 @@ const RRCConnectionSetupLaterthanr3::Info RRCConnectionSetupLaterthanr3::theInfo
 	itemsPres,
 	3, 0, 0
 };
+RRCConnectionSetupLaterthanr3::RRCConnectionSetupLaterthanr3(const InitialUEIdentity& initialUEIdentity, const RRCTransactionIdentifier& rrcTransactionIdentifier, const RRCConnectionSetupLaterthanr3CriticalExtensions& rRCConnectionSetupLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setInitialUEIdentity(initialUEIdentity);
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRRCConnectionSetupLaterthanr3CriticalExtensions(rRCConnectionSetupLaterthanr3CriticalExtensions);
+}
 
 const void *RRCConnectionSetup::choicesInfo[2] = {
 	&RRCConnectionSetupR3::theInfo,
@@ -22241,6 +24220,9 @@ const RRCConnectionSetupCompletev380extIEs::Info RRCConnectionSetupCompletev380e
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompletev380extIEs::RRCConnectionSetupCompletev380extIEs(const DLPhysChCapabilityFDDv380ext& dlPhysChCapabilityFDDv380ext) : Sequence(&theInfo) {
+	setDlPhysChCapabilityFDDv380ext(dlPhysChCapabilityFDDv380ext);
+}
 
 const void *RRCConnectionSetupCompletev3a0extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv3a0ext::theInfo,
@@ -22387,6 +24369,9 @@ const RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions(const RRCConnectionSetupCompletev770extIEs& rrcConectionSetupCompletev770ext) : Sequence(&theInfo) {
+	setRrcConectionSetupCompletev770ext(rrcConectionSetupCompletev770ext);
+}
 
 const void *RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupCompletev690extIEs::theInfo,
@@ -22405,6 +24390,9 @@ const RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensionsV690NonCriticalExtensions::RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensionsV690NonCriticalExtensions(const RRCConnectionSetupCompletev690extIEs& rrcConnectionSetupCompletev690ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupCompletev690ext(rrcConnectionSetupCompletev690ext);
+}
 
 const void *RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupCompletev5c0extIEs::theInfo,
@@ -22423,6 +24411,9 @@ const RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensions::RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensions(const RRCConnectionSetupCompletev5c0extIEs& rrcConnectionSetupCompletev5c0ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupCompletev5c0ext(rrcConnectionSetupCompletev5c0ext);
+}
 
 const void *RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupCompletev590extIEs::theInfo,
@@ -22441,6 +24432,9 @@ const RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const RRCConnectionSetupCompletev590extIEs& rrcConnectionSetupCompletev590ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupCompletev590ext(rrcConnectionSetupCompletev590ext);
+}
 
 const void *RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupCompletev4b0extIEs::theInfo,
@@ -22459,6 +24453,9 @@ const RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensions::RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensionsV4b0NonCriticalExtensions(const RRCConnectionSetupCompletev4b0extIEs& rrcConnectionSetupCompletev4b0ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupCompletev4b0ext(rrcConnectionSetupCompletev4b0ext);
+}
 
 const void *RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupCompletev3g0extIEs::theInfo,
@@ -22477,6 +24474,9 @@ const RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensions::RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV3g0NonCriticalExtensions(const RRCConnectionSetupCompletev3g0extIEs& rrcConnectionSetupCompletev3g0ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupCompletev3g0ext(rrcConnectionSetupCompletev3g0ext);
+}
 
 const void *RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsRrcConnectionSetupCompleter3addext::theInfo,
@@ -22513,6 +24513,9 @@ const RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensions::RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensions(const RRCConnectionSetupCompletev3a0extIEs& rrcConnectionSetupCompletev3a0ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupCompletev3a0ext(rrcConnectionSetupCompletev3a0ext);
+}
 
 const void *RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupCompletev380extIEs::theInfo,
@@ -22531,6 +24534,9 @@ const RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensions::RRCConnectionSetupCompleteV370NonCriticalExtensionsV380NonCriticalExtensions(const RRCConnectionSetupCompletev380extIEs& rrcConnectionSetupCompletev380ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupCompletev380ext(rrcConnectionSetupCompletev380ext);
+}
 
 const void *RRCConnectionSetupCompleteV370NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupCompletev370ext::theInfo,
@@ -22549,6 +24555,9 @@ const RRCConnectionSetupCompleteV370NonCriticalExtensions::Info RRCConnectionSet
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompleteV370NonCriticalExtensions::RRCConnectionSetupCompleteV370NonCriticalExtensions(const RRCConnectionSetupCompletev370ext& rrcConnectionSetupCompletev370ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupCompletev370ext(rrcConnectionSetupCompletev370ext);
+}
 
 const void *RRCConnectionSetupComplete::itemsInfo[5] = {
 	&RRCTransactionIdentifier::theInfo,
@@ -22573,6 +24582,10 @@ const RRCConnectionSetupComplete::Info RRCConnectionSetupComplete::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+RRCConnectionSetupComplete::RRCConnectionSetupComplete(const RRCTransactionIdentifier& rrcTransactionIdentifier, const STARTList& startList) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setStartList(startList);
+}
 
 const void *RRCConnectionSetupCompletev650extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv650ext::theInfo,
@@ -22589,6 +24602,9 @@ const RRCConnectionSetupCompletev650extIEs::Info RRCConnectionSetupCompletev650e
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionSetupCompletev650extIEs::RRCConnectionSetupCompletev650extIEs(const UERadioAccessCapabilityv650ext& ueRadioAccessCapabilityv650ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv650ext(ueRadioAccessCapabilityv650ext);
+}
 
 const void *RRCConnectionSetupCompletev680extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv680ext::theInfo,
@@ -22605,6 +24621,9 @@ const RRCConnectionSetupCompletev680extIEs::Info RRCConnectionSetupCompletev680e
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionSetupCompletev680extIEs::RRCConnectionSetupCompletev680extIEs(const UERadioAccessCapabilityv680ext& ueRadioAccessCapabilityv680ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv680ext(ueRadioAccessCapabilityv680ext);
+}
 
 const void *RRCConnectionSetupCompletev7e0extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv7e0ext::theInfo,
@@ -22621,6 +24640,9 @@ const RRCConnectionSetupCompletev7e0extIEs::Info RRCConnectionSetupCompletev7e0e
 	itemsPres,
 	1, 0, 0
 };
+RRCConnectionSetupCompletev7e0extIEs::RRCConnectionSetupCompletev7e0extIEs(const UERadioAccessCapabilityv7e0ext& ueRadioAccessCapability) : Sequence(&theInfo) {
+	setUeRadioAccessCapability(ueRadioAccessCapability);
+}
 
 const void *RRCConnectionSetupCompletev7f0extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv7f0ext::theInfo,
@@ -22669,6 +24691,9 @@ const RRCConnectionSetupCompleter3addextIEsV680NonCriticalExtensionsV7e0NonCriti
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompleter3addextIEsV680NonCriticalExtensionsV7e0NonCriticalExtensionsV7f0NonCriticalExtensions::RRCConnectionSetupCompleter3addextIEsV680NonCriticalExtensionsV7e0NonCriticalExtensionsV7f0NonCriticalExtensions(const RRCConnectionSetupCompletev7f0extIEs& rrcConnectionSetupCompletev7f0ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupCompletev7f0ext(rrcConnectionSetupCompletev7f0ext);
+}
 
 const void *RRCConnectionSetupCompleter3addextIEsV680NonCriticalExtensionsV7e0NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupCompletev7e0extIEs::theInfo,
@@ -22687,6 +24712,9 @@ const RRCConnectionSetupCompleter3addextIEsV680NonCriticalExtensionsV7e0NonCriti
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompleter3addextIEsV680NonCriticalExtensionsV7e0NonCriticalExtensions::RRCConnectionSetupCompleter3addextIEsV680NonCriticalExtensionsV7e0NonCriticalExtensions(const RRCConnectionSetupCompletev7e0extIEs& rrcConnectionSetupCompletev7e0ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupCompletev7e0ext(rrcConnectionSetupCompletev7e0ext);
+}
 
 const void *RRCConnectionSetupCompleter3addextIEsV680NonCriticalExtensions::itemsInfo[2] = {
 	&RRCConnectionSetupCompletev680extIEs::theInfo,
@@ -22705,6 +24733,9 @@ const RRCConnectionSetupCompleter3addextIEsV680NonCriticalExtensions::Info RRCCo
 	itemsPres,
 	2, 1, 0
 };
+RRCConnectionSetupCompleter3addextIEsV680NonCriticalExtensions::RRCConnectionSetupCompleter3addextIEsV680NonCriticalExtensions(const RRCConnectionSetupCompletev680extIEs& rrcConnectionSetupCompletev680ext) : Sequence(&theInfo) {
+	setRrcConnectionSetupCompletev680ext(rrcConnectionSetupCompletev680ext);
+}
 
 const void *RRCConnectionSetupCompleter3addextIEs::itemsInfo[2] = {
 	&RRCConnectionSetupCompletev650extIEs::theInfo,
@@ -22739,6 +24770,9 @@ const RRCFailureInfor3IEs::Info RRCFailureInfor3IEs::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+RRCFailureInfor3IEs::RRCFailureInfor3IEs(const FailureCauseWithProtErr& failureCauseWithProtErr) : Sequence(&theInfo) {
+	setFailureCauseWithProtErr(failureCauseWithProtErr);
+}
 
 const void *RRCFailureInfoR3LaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -22789,6 +24823,9 @@ const RRCFailureInfoR3::Info RRCFailureInfoR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+RRCFailureInfoR3::RRCFailureInfoR3(const RRCFailureInfor3IEs& rRCFailureInfor3) : Sequence(&theInfo) {
+	setRRCFailureInfor3(rRCFailureInfor3);
+}
 
 const void *RRCFailureInfoCriticalExtensions::itemsInfo[0] = {
 };
@@ -22866,6 +24903,9 @@ const RRCStatus::Info RRCStatus::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+RRCStatus::RRCStatus(const ProtocolErrorMoreInformation& protocolErrorInformation) : Sequence(&theInfo) {
+	setProtocolErrorInformation(protocolErrorInformation);
+}
 
 const void *SecurityModeCommandr3IEs::itemsInfo[6] = {
 	&RRCTransactionIdentifier::theInfo,
@@ -22892,6 +24932,11 @@ const SecurityModeCommandr3IEs::Info SecurityModeCommandr3IEs::theInfo = {
 	itemsPres,
 	6, 3, 0
 };
+SecurityModeCommandr3IEs::SecurityModeCommandr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const SecurityCapability& securityCapability, const CNDomainIdentity& cnDomainIdentity) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setSecurityCapability(securityCapability);
+	setCnDomainIdentity(cnDomainIdentity);
+}
 
 const void *SecurityModeCommandR3LaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -22942,6 +24987,9 @@ const SecurityModeCommandR3::Info SecurityModeCommandR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+SecurityModeCommandR3::SecurityModeCommandR3(const SecurityModeCommandr3IEs& securityModeCommandr3) : Sequence(&theInfo) {
+	setSecurityModeCommandr3(securityModeCommandr3);
+}
 
 const void *SecurityModeCommandr7IEs::itemsInfo[5] = {
 	&SecurityCapability::theInfo,
@@ -22966,6 +25014,10 @@ const SecurityModeCommandr7IEs::Info SecurityModeCommandr7IEs::theInfo = {
 	itemsPres,
 	5, 3, 0
 };
+SecurityModeCommandr7IEs::SecurityModeCommandr7IEs(const SecurityCapability& securityCapability, const CNDomainIdentity& cnDomainIdentity) : Sequence(&theInfo) {
+	setSecurityCapability(securityCapability);
+	setCnDomainIdentity(cnDomainIdentity);
+}
 
 const void *SecurityModeCommandLaterthanr3CriticalExtensionsR7NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -23000,6 +25052,9 @@ const SecurityModeCommandLaterthanr3CriticalExtensionsR7::Info SecurityModeComma
 	itemsPres,
 	3, 2, 0
 };
+SecurityModeCommandLaterthanr3CriticalExtensionsR7::SecurityModeCommandLaterthanr3CriticalExtensionsR7(const SecurityModeCommandr7IEs& securityModeCommandr7) : Sequence(&theInfo) {
+	setSecurityModeCommandr7(securityModeCommandr7);
+}
 
 const void *SecurityModeCommandLaterthanr3CriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -23045,6 +25100,10 @@ const SecurityModeCommandLaterthanr3::Info SecurityModeCommandLaterthanr3::theIn
 	itemsPres,
 	2, 0, 0
 };
+SecurityModeCommandLaterthanr3::SecurityModeCommandLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const SecurityModeCommandLaterthanr3CriticalExtensions& securityModeCommandLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setSecurityModeCommandLaterthanr3CriticalExtensions(securityModeCommandLaterthanr3CriticalExtensions);
+}
 
 const void *SecurityModeCommand::choicesInfo[2] = {
 	&SecurityModeCommandR3::theInfo,
@@ -23112,6 +25171,9 @@ const SecurityModeComplete::Info SecurityModeComplete::theInfo = {
 	itemsPres,
 	4, 3, 0
 };
+SecurityModeComplete::SecurityModeComplete(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *SecurityModeFailureLaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -23164,6 +25226,10 @@ const SecurityModeFailure::Info SecurityModeFailure::theInfo = {
 	itemsPres,
 	3, 1, 0
 };
+SecurityModeFailure::SecurityModeFailure(const RRCTransactionIdentifier& rrcTransactionIdentifier, const FailureCauseWithProtErr& failureCause) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setFailureCause(failureCause);
+}
 
 const void *SignallingConnectionReleaser3IEs::itemsInfo[2] = {
 	&RRCTransactionIdentifier::theInfo,
@@ -23182,6 +25248,10 @@ const SignallingConnectionReleaser3IEs::Info SignallingConnectionReleaser3IEs::t
 	itemsPres,
 	2, 0, 0
 };
+SignallingConnectionReleaser3IEs::SignallingConnectionReleaser3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const CNDomainIdentity& cnDomainIdentity) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setCnDomainIdentity(cnDomainIdentity);
+}
 
 const void *SignallingConnectionReleaseR3LaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -23232,6 +25302,9 @@ const SignallingConnectionReleaseR3::Info SignallingConnectionReleaseR3::theInfo
 	itemsPres,
 	2, 1, 0
 };
+SignallingConnectionReleaseR3::SignallingConnectionReleaseR3(const SignallingConnectionReleaser3IEs& signallingConnectionReleaser3) : Sequence(&theInfo) {
+	setSignallingConnectionReleaser3(signallingConnectionReleaser3);
+}
 
 const void *SignallingConnectionReleaseLaterthanr3CriticalExtensions::itemsInfo[0] = {
 };
@@ -23264,6 +25337,10 @@ const SignallingConnectionReleaseLaterthanr3::Info SignallingConnectionReleaseLa
 	itemsPres,
 	2, 0, 0
 };
+SignallingConnectionReleaseLaterthanr3::SignallingConnectionReleaseLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const SignallingConnectionReleaseLaterthanr3CriticalExtensions& signallingConnectionReleaseLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setSignallingConnectionReleaseLaterthanr3CriticalExtensions(signallingConnectionReleaseLaterthanr3CriticalExtensions);
+}
 
 const void *SignallingConnectionRelease::choicesInfo[2] = {
 	&SignallingConnectionReleaseR3::theInfo,
@@ -23293,6 +25370,9 @@ const SignallingConnectionReleaseIndicationv860ext::Info SignallingConnectionRel
 	itemsPres,
 	1, 0, 0
 };
+SignallingConnectionReleaseIndicationv860ext::SignallingConnectionReleaseIndicationv860ext(const SignallingConnectionReleaseIndicationv860extsignallingConnectionReleaseIndicationCause& signallingConnectionReleaseIndicationv860extsignallingConnectionReleaseIndicationCause) : Sequence(&theInfo) {
+	setSignallingConnectionReleaseIndicationv860extsignallingConnectionReleaseIndicationCause(signallingConnectionReleaseIndicationv860extsignallingConnectionReleaseIndicationCause);
+}
 
 const void *SignallingConnectionReleaseIndicationLaterNonCriticalExtensionsV860nonCriticalExtentionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -23325,6 +25405,9 @@ const SignallingConnectionReleaseIndicationLaterNonCriticalExtensionsV860nonCrit
 	itemsPres,
 	2, 1, 0
 };
+SignallingConnectionReleaseIndicationLaterNonCriticalExtensionsV860nonCriticalExtentions::SignallingConnectionReleaseIndicationLaterNonCriticalExtensionsV860nonCriticalExtentions(const SignallingConnectionReleaseIndicationv860ext& signallingConnectionReleaseIndicationv860ext) : Sequence(&theInfo) {
+	setSignallingConnectionReleaseIndicationv860ext(signallingConnectionReleaseIndicationv860ext);
+}
 
 const void *SignallingConnectionReleaseIndicationLaterNonCriticalExtensions::itemsInfo[2] = {
 	&SignallingConnectionReleaseIndicationLaterNonCriticalExtensionsSignallingConnectionReleaseIndicationr3addext::theInfo,
@@ -23361,6 +25444,9 @@ const SignallingConnectionReleaseIndication::Info SignallingConnectionReleaseInd
 	itemsPres,
 	2, 1, 0
 };
+SignallingConnectionReleaseIndication::SignallingConnectionReleaseIndication(const CNDomainIdentity& cnDomainIdentity) : Sequence(&theInfo) {
+	setCnDomainIdentity(cnDomainIdentity);
+}
 
 const void *FirstSegment::itemsInfo[3] = {
 	&SIBType::theInfo,
@@ -23381,6 +25467,11 @@ const FirstSegment::Info FirstSegment::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+FirstSegment::FirstSegment(const SIBType& sibType, const SegCount& segCount, const SIBDatafixed& sibDatafixed) : Sequence(&theInfo) {
+	setSibType(sibType);
+	setSegCount(segCount);
+	setSibDatafixed(sibDatafixed);
+}
 
 const void *SubsequentSegment::itemsInfo[3] = {
 	&SIBType::theInfo,
@@ -23401,6 +25492,11 @@ const SubsequentSegment::Info SubsequentSegment::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+SubsequentSegment::SubsequentSegment(const SIBType& sibType, const SegmentIndex& segmentIndex, const SIBDatafixed& sibDatafixed) : Sequence(&theInfo) {
+	setSibType(sibType);
+	setSegmentIndex(segmentIndex);
+	setSibDatafixed(sibDatafixed);
+}
 
 const void *LastSegmentShort::itemsInfo[3] = {
 	&SIBType::theInfo,
@@ -23421,6 +25517,11 @@ const LastSegmentShort::Info LastSegmentShort::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+LastSegmentShort::LastSegmentShort(const SIBType& sibType, const SegmentIndex& segmentIndex, const SIBDatavariable& sibDatavariable) : Sequence(&theInfo) {
+	setSibType(sibType);
+	setSegmentIndex(segmentIndex);
+	setSibDatavariable(sibDatavariable);
+}
 
 const void *FirstSegmentShort::itemsInfo[3] = {
 	&SIBType::theInfo,
@@ -23441,6 +25542,11 @@ const FirstSegmentShort::Info FirstSegmentShort::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+FirstSegmentShort::FirstSegmentShort(const SIBType& sibType, const SegCount& segCount, const SIBDatavariable& sibDatavariable) : Sequence(&theInfo) {
+	setSibType(sibType);
+	setSegCount(segCount);
+	setSibDatavariable(sibDatavariable);
+}
 
 const void *SystemInformationBCHPayloadLastAndFirst::itemsInfo[2] = {
 	&LastSegmentShort::theInfo,
@@ -23459,6 +25565,10 @@ const SystemInformationBCHPayloadLastAndFirst::Info SystemInformationBCHPayloadL
 	itemsPres,
 	2, 0, 0
 };
+SystemInformationBCHPayloadLastAndFirst::SystemInformationBCHPayloadLastAndFirst(const LastSegmentShort& lastSegmentShort, const FirstSegmentShort& firstSegment) : Sequence(&theInfo) {
+	setLastSegmentShort(lastSegmentShort);
+	setFirstSegment(firstSegment);
+}
 
 const void *CompleteSIBshort::itemsInfo[2] = {
 	&SIBType::theInfo,
@@ -23477,6 +25587,10 @@ const CompleteSIBshort::Info CompleteSIBshort::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CompleteSIBshort::CompleteSIBshort(const SIBType& sibType, const SIBDatavariable& sibDatavariable) : Sequence(&theInfo) {
+	setSibType(sibType);
+	setSibDatavariable(sibDatavariable);
+}
 
 const void *SystemInformationBCHPayloadLastAndComplete::itemsInfo[2] = {
 	&LastSegmentShort::theInfo,
@@ -23495,6 +25609,10 @@ const SystemInformationBCHPayloadLastAndComplete::Info SystemInformationBCHPaylo
 	itemsPres,
 	2, 0, 0
 };
+SystemInformationBCHPayloadLastAndComplete::SystemInformationBCHPayloadLastAndComplete(const LastSegmentShort& lastSegmentShort, const CompleteSIBList& completeSIBList) : Sequence(&theInfo) {
+	setLastSegmentShort(lastSegmentShort);
+	setCompleteSIBList(completeSIBList);
+}
 
 const void *SystemInformationBCHPayloadLastAndCompleteAndFirst::itemsInfo[3] = {
 	&LastSegmentShort::theInfo,
@@ -23515,6 +25633,11 @@ const SystemInformationBCHPayloadLastAndCompleteAndFirst::Info SystemInformation
 	itemsPres,
 	3, 0, 0
 };
+SystemInformationBCHPayloadLastAndCompleteAndFirst::SystemInformationBCHPayloadLastAndCompleteAndFirst(const LastSegmentShort& lastSegmentShort, const CompleteSIBList& completeSIBList, const FirstSegmentShort& firstSegment) : Sequence(&theInfo) {
+	setLastSegmentShort(lastSegmentShort);
+	setCompleteSIBList(completeSIBList);
+	setFirstSegment(firstSegment);
+}
 
 const void *SystemInformationBCHPayloadCompleteAndFirst::itemsInfo[2] = {
 	&CompleteSIBList::theInfo,
@@ -23533,6 +25656,10 @@ const SystemInformationBCHPayloadCompleteAndFirst::Info SystemInformationBCHPayl
 	itemsPres,
 	2, 0, 0
 };
+SystemInformationBCHPayloadCompleteAndFirst::SystemInformationBCHPayloadCompleteAndFirst(const CompleteSIBList& completeSIBList, const FirstSegmentShort& firstSegment) : Sequence(&theInfo) {
+	setCompleteSIBList(completeSIBList);
+	setFirstSegment(firstSegment);
+}
 
 const void *CompleteSIB::itemsInfo[2] = {
 	&SIBType::theInfo,
@@ -23551,6 +25678,10 @@ const CompleteSIB::Info CompleteSIB::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+CompleteSIB::CompleteSIB(const SIBType& sibType, const CompleteSIBSibDatafixed& completeSIBSibDatafixed) : Sequence(&theInfo) {
+	setSibType(sibType);
+	setCompleteSIBSibDatafixed(completeSIBSibDatafixed);
+}
 
 const void *LastSegment::itemsInfo[3] = {
 	&SIBType::theInfo,
@@ -23571,6 +25702,11 @@ const LastSegment::Info LastSegment::theInfo = {
 	itemsPres,
 	3, 0, 0
 };
+LastSegment::LastSegment(const SIBType& sibType, const SegmentIndex& segmentIndex, const SIBDatafixed& sibDatafixed) : Sequence(&theInfo) {
+	setSibType(sibType);
+	setSegmentIndex(segmentIndex);
+	setSibDatafixed(sibDatafixed);
+}
 
 const void *SystemInformationBCHPayload::choicesInfo[16] = {
 	&SystemInformationBCHPayloadNoSegment::theInfo,
@@ -23616,6 +25752,10 @@ const SystemInformationBCH::Info SystemInformationBCH::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+SystemInformationBCH::SystemInformationBCH(const SFNPrime& sfnPrime, const SystemInformationBCHPayload& systemInformationBCHPayload) : Sequence(&theInfo) {
+	setSfnPrime(sfnPrime);
+	setSystemInformationBCHPayload(systemInformationBCHPayload);
+}
 
 const void *SystemInformationFACHPayloadLastAndFirst::itemsInfo[2] = {
 	&LastSegmentShort::theInfo,
@@ -23634,6 +25774,10 @@ const SystemInformationFACHPayloadLastAndFirst::Info SystemInformationFACHPayloa
 	itemsPres,
 	2, 0, 0
 };
+SystemInformationFACHPayloadLastAndFirst::SystemInformationFACHPayloadLastAndFirst(const LastSegmentShort& lastSegmentShort, const FirstSegmentShort& firstSegment) : Sequence(&theInfo) {
+	setLastSegmentShort(lastSegmentShort);
+	setFirstSegment(firstSegment);
+}
 
 const void *SystemInformationFACHPayloadLastAndComplete::itemsInfo[2] = {
 	&LastSegmentShort::theInfo,
@@ -23652,6 +25796,10 @@ const SystemInformationFACHPayloadLastAndComplete::Info SystemInformationFACHPay
 	itemsPres,
 	2, 0, 0
 };
+SystemInformationFACHPayloadLastAndComplete::SystemInformationFACHPayloadLastAndComplete(const LastSegmentShort& lastSegmentShort, const CompleteSIBList& completeSIBList) : Sequence(&theInfo) {
+	setLastSegmentShort(lastSegmentShort);
+	setCompleteSIBList(completeSIBList);
+}
 
 const void *SystemInformationFACHPayloadLastAndCompleteAndFirst::itemsInfo[3] = {
 	&LastSegmentShort::theInfo,
@@ -23672,6 +25820,11 @@ const SystemInformationFACHPayloadLastAndCompleteAndFirst::Info SystemInformatio
 	itemsPres,
 	3, 0, 0
 };
+SystemInformationFACHPayloadLastAndCompleteAndFirst::SystemInformationFACHPayloadLastAndCompleteAndFirst(const LastSegmentShort& lastSegmentShort, const CompleteSIBList& completeSIBList, const FirstSegmentShort& firstSegment) : Sequence(&theInfo) {
+	setLastSegmentShort(lastSegmentShort);
+	setCompleteSIBList(completeSIBList);
+	setFirstSegment(firstSegment);
+}
 
 const void *SystemInformationFACHPayloadCompleteAndFirst::itemsInfo[2] = {
 	&CompleteSIBList::theInfo,
@@ -23690,6 +25843,10 @@ const SystemInformationFACHPayloadCompleteAndFirst::Info SystemInformationFACHPa
 	itemsPres,
 	2, 0, 0
 };
+SystemInformationFACHPayloadCompleteAndFirst::SystemInformationFACHPayloadCompleteAndFirst(const CompleteSIBList& completeSIBList, const FirstSegmentShort& firstSegment) : Sequence(&theInfo) {
+	setCompleteSIBList(completeSIBList);
+	setFirstSegment(firstSegment);
+}
 
 const void *SystemInformationFACHPayload::choicesInfo[16] = {
 	&SystemInformationFACHPayloadNoSegment::theInfo,
@@ -23733,6 +25890,9 @@ const SystemInformationFACH::Info SystemInformationFACH::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+SystemInformationFACH::SystemInformationFACH(const SystemInformationFACHPayload& systemInformationFACHPayload) : Sequence(&theInfo) {
+	setSystemInformationFACHPayload(systemInformationFACHPayload);
+}
 
 const void *SystemInformationChangeIndicationv860extIEs::itemsInfo[1] = {
 	&ETWSInformation::theInfo,
@@ -23781,6 +25941,9 @@ const SystemInformationChangeIndicationLaterNonCriticalExtensionsV860NonCritical
 	itemsPres,
 	2, 1, 0
 };
+SystemInformationChangeIndicationLaterNonCriticalExtensionsV860NonCriticalExtensions::SystemInformationChangeIndicationLaterNonCriticalExtensionsV860NonCriticalExtensions(const SystemInformationChangeIndicationv860extIEs& systemInformationChangeIndicationv860ext) : Sequence(&theInfo) {
+	setSystemInformationChangeIndicationv860ext(systemInformationChangeIndicationv860ext);
+}
 
 const void *SystemInformationChangeIndicationLaterNonCriticalExtensions::itemsInfo[2] = {
 	&SystemInformationChangeIndicationLaterNonCriticalExtensionsSystemInformationChangeIndicationr3addext::theInfo,
@@ -23817,6 +25980,9 @@ const SystemInformationChangeIndication::Info SystemInformationChangeIndication:
 	itemsPres,
 	2, 1, 0
 };
+SystemInformationChangeIndication::SystemInformationChangeIndication(const BCCHModificationInfo& bcchModificationInfo) : Sequence(&theInfo) {
+	setBcchModificationInfo(bcchModificationInfo);
+}
 
 const void *TransportChannelReconfigurationr3IEsDummyFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -23935,6 +26101,11 @@ const TransportChannelReconfigurationr3IEs::Info TransportChannelReconfiguration
 	itemsPres,
 	22, 19, 0
 };
+TransportChannelReconfigurationr3IEs::TransportChannelReconfigurationr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const RRCStateIndicator& rrcStateIndicator, const TransportChannelReconfigurationr3IEsModeSpecificPhysChInfo& transportChannelReconfigurationr3IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRrcStateIndicator(rrcStateIndicator);
+	setTransportChannelReconfigurationr3IEsModeSpecificPhysChInfo(transportChannelReconfigurationr3IEsModeSpecificPhysChInfo);
+}
 
 const void *TransportChannelReconfigurationv3a0ext::itemsInfo[1] = {
 	&DSCHRNTI::theInfo,
@@ -24063,6 +26234,9 @@ const TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCritical
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions(const TransportChannelReconfigurationv770extIEs& transportChannelReconfigurationv770ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv770ext(transportChannelReconfigurationv770ext);
+}
 
 const void *TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv690extIEs::theInfo,
@@ -24081,6 +26255,9 @@ const TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCritical
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions(const TransportChannelReconfigurationv690extIEs& transportChannelReconfigurationv690ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv690ext(transportChannelReconfigurationv690ext);
+}
 
 const void *TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv590extIEs::theInfo,
@@ -24099,6 +26276,9 @@ const TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCritical
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const TransportChannelReconfigurationv590extIEs& transportChannelReconfigurationv590ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv590ext(transportChannelReconfigurationv590ext);
+}
 
 const void *TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv4b0extIEs::theInfo,
@@ -24117,6 +26297,9 @@ const TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCritical
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions(const TransportChannelReconfigurationv4b0extIEs& transportChannelReconfigurationv4b0ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv4b0ext(transportChannelReconfigurationv4b0ext);
+}
 
 const void *TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsTransportChannelReconfigurationr3addext::theInfo,
@@ -24153,6 +26336,9 @@ const TransportChannelReconfigurationR3V3a0NonCriticalExtensions::Info Transport
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationR3V3a0NonCriticalExtensions::TransportChannelReconfigurationR3V3a0NonCriticalExtensions(const TransportChannelReconfigurationv3a0ext& transportChannelReconfigurationv3a0ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv3a0ext(transportChannelReconfigurationv3a0ext);
+}
 
 const void *TransportChannelReconfigurationR3::itemsInfo[2] = {
 	&TransportChannelReconfigurationr3IEs::theInfo,
@@ -24171,6 +26357,9 @@ const TransportChannelReconfigurationR3::Info TransportChannelReconfigurationR3:
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationR3::TransportChannelReconfigurationR3(const TransportChannelReconfigurationr3IEs& transportChannelReconfigurationr3) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationr3(transportChannelReconfigurationr3);
+}
 
 const void *TransportChannelReconfigurationr4IEsDummyFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -24289,6 +26478,10 @@ const TransportChannelReconfigurationr4IEs::Info TransportChannelReconfiguration
 	itemsPres,
 	22, 20, 0
 };
+TransportChannelReconfigurationr4IEs::TransportChannelReconfigurationr4IEs(const RRCStateIndicator& rrcStateIndicator, const TransportChannelReconfigurationr4IEsModeSpecificPhysChInfo& transportChannelReconfigurationr4IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setTransportChannelReconfigurationr4IEsModeSpecificPhysChInfo(transportChannelReconfigurationr4IEsModeSpecificPhysChInfo);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -24321,6 +26514,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriti
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensionsV770NonCriticalExtensions(const TransportChannelReconfigurationv770extIEs& transportChannelReconfigurationv770ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv770ext(transportChannelReconfigurationv770ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv690extIEs::theInfo,
@@ -24339,6 +26535,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriti
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensionsV690NonCriticalExtensions(const TransportChannelReconfigurationv690extIEs& transportChannelReconfigurationv690ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv690ext(transportChannelReconfigurationv690ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv590extIEs::theInfo,
@@ -24357,6 +26556,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriti
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV590NonCriticalExtensions(const TransportChannelReconfigurationv590extIEs& transportChannelReconfigurationv590ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv590ext(transportChannelReconfigurationv590ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsTransportChannelReconfigurationr4addext::theInfo,
@@ -24393,6 +26595,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4::Info Trans
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4::TransportChannelReconfigurationLaterthanr3CriticalExtensionsR4(const TransportChannelReconfigurationr4IEs& transportChannelReconfigurationr4) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationr4(transportChannelReconfigurationr4);
+}
 
 const void *TransportChannelReconfigurationr5IEsDummyFdd::itemsInfo[2] = {
 	&CPCHSetID::theInfo,
@@ -24515,6 +26720,10 @@ const TransportChannelReconfigurationr5IEs::Info TransportChannelReconfiguration
 	itemsPres,
 	24, 22, 0
 };
+TransportChannelReconfigurationr5IEs::TransportChannelReconfigurationr5IEs(const RRCStateIndicator& rrcStateIndicator, const TransportChannelReconfigurationr5IEsModeSpecificPhysChInfo& transportChannelReconfigurationr5IEsModeSpecificPhysChInfo) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+	setTransportChannelReconfigurationr5IEsModeSpecificPhysChInfo(transportChannelReconfigurationr5IEsModeSpecificPhysChInfo);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV770NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -24547,6 +26756,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV770NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV770NonCriticalExtensions(const TransportChannelReconfigurationv770extIEs& transportChannelReconfigurationv770ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv770ext(transportChannelReconfigurationv770ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv690extIEs::theInfo,
@@ -24565,6 +26777,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions(const TransportChannelReconfigurationv690extIEs& transportChannelReconfigurationv690ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv690ext(transportChannelReconfigurationv690ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&TransportChannelReconfigurationr5IEs::theInfo,
@@ -24585,6 +26800,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	3, 2, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsR5(const TransportChannelReconfigurationr5IEs& transportChannelReconfigurationr5) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationr5(transportChannelReconfigurationr5);
+}
 
 const void *TransportChannelReconfigurationr6IEs::itemsInfo[27] = {
 	&IntegrityProtectionModeInfo::theInfo,
@@ -24653,6 +26871,9 @@ const TransportChannelReconfigurationr6IEs::Info TransportChannelReconfiguration
 	itemsPres,
 	27, 26, 0
 };
+TransportChannelReconfigurationr6IEs::TransportChannelReconfigurationr6IEs(const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *TransportChannelReconfigurationv6b0extIEs::itemsInfo[1] = {
 	&DLInformationPerRLListv6b0ext::theInfo,
@@ -24701,6 +26922,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsV770NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensionsV770NonCriticalExtensions(const TransportChannelReconfigurationv770extIEs& transportChannelReconfigurationv770ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv770ext(transportChannelReconfigurationv770ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv6b0extIEs::theInfo,
@@ -24719,6 +26943,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6V6b0NonCriticalExtensions(const TransportChannelReconfigurationv6b0extIEs& transportChannelReconfigurationv6b0ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv6b0ext(transportChannelReconfigurationv6b0ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::itemsInfo[3] = {
 	&TransportChannelReconfigurationr6IEs::theInfo,
@@ -24739,6 +26966,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	3, 2, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR6(const TransportChannelReconfigurationr6IEs& transportChannelReconfigurationr6) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationr6(transportChannelReconfigurationr6);
+}
 
 const void *TransportChannelReconfigurationr7IEs::itemsInfo[35] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -24823,6 +27053,9 @@ const TransportChannelReconfigurationr7IEs::Info TransportChannelReconfiguration
 	itemsPres,
 	35, 34, 0
 };
+TransportChannelReconfigurationr7IEs::TransportChannelReconfigurationr7IEs(const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *TransportChannelReconfigurationv780extIEs::itemsInfo[1] = {
 	&HSDSCHTBSizeTable::theInfo,
@@ -24919,6 +27152,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV7g0NonCriticalExtensions(const TransportChannelReconfigurationv7g0extIEs& transportChannelReconfigurationv7g0ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv7g0ext(transportChannelReconfigurationv7g0ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv7f0extIEs::theInfo,
@@ -24937,6 +27173,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensionsV7f0NonCriticalExtensions(const TransportChannelReconfigurationv7f0extIEs& transportChannelReconfigurationv7f0ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv7f0ext(transportChannelReconfigurationv7f0ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv7d0extIEs::theInfo,
@@ -24955,6 +27194,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensionsV7d0NonCriticalExtensions(const TransportChannelReconfigurationv7d0extIEs& transportChannelReconfigurationv7d0ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv7d0ext(transportChannelReconfigurationv7d0ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv780extIEs::theInfo,
@@ -24973,6 +27215,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7V780NonCriticalExtensions(const TransportChannelReconfigurationv780extIEs& transportChannelReconfigurationv780ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv780ext(transportChannelReconfigurationv780ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&TransportChannelReconfigurationr7IEs::theInfo,
@@ -24993,6 +27238,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	3, 2, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR7(const TransportChannelReconfigurationr7IEs& transportChannelReconfigurationr7) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationr7(transportChannelReconfigurationr7);
+}
 
 const void *TransportChannelReconfigurationr8IEs::itemsInfo[38] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -25083,6 +27331,9 @@ const TransportChannelReconfigurationr8IEs::Info TransportChannelReconfiguration
 	itemsPres,
 	38, 37, 0
 };
+TransportChannelReconfigurationr8IEs::TransportChannelReconfigurationr8IEs(const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *TransportChannelReconfigurationv890extIEs::itemsInfo[2] = {
 	&DLSecondaryCellInfoFDDv890ext::theInfo,
@@ -25149,6 +27400,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensionsV8a0NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensionsV8a0NonCriticalExtensions(const TransportChannelReconfigurationv8a0extIEs& transportChannelReconfigurationv8a0ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv8a0ext(transportChannelReconfigurationv8a0ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv7g0extIEs::theInfo,
@@ -25167,6 +27421,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensionsV7g0NonCriticalExtensions(const TransportChannelReconfigurationv7g0extIEs& transportChannelReconfigurationv7g0ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv7g0ext(transportChannelReconfigurationv7g0ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv890extIEs::theInfo,
@@ -25185,6 +27442,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensionsV890NonCriticalExtensions(const TransportChannelReconfigurationv890extIEs& transportChannelReconfigurationv890ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv890ext(transportChannelReconfigurationv890ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv7f0extIEs::theInfo,
@@ -25203,6 +27463,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensionsV7f0NonCriticalExtensions(const TransportChannelReconfigurationv7f0extIEs& transportChannelReconfigurationv7f0ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv7f0ext(transportChannelReconfigurationv7f0ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationv7d0extIEs::theInfo,
@@ -25221,6 +27484,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8V7d0NonCriticalExtensions(const TransportChannelReconfigurationv7d0extIEs& transportChannelReconfigurationv7d0ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv7d0ext(transportChannelReconfigurationv7d0ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::itemsInfo[3] = {
 	&TransportChannelReconfigurationr8IEs::theInfo,
@@ -25241,6 +27507,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	3, 2, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR8(const TransportChannelReconfigurationr8IEs& transportChannelReconfigurationr8) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationr8(transportChannelReconfigurationr8);
+}
 
 const void *TransportChannelReconfigurationr9IEs::itemsInfo[40] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -25335,6 +27604,9 @@ const TransportChannelReconfigurationr9IEs::Info TransportChannelReconfiguration
 	itemsPres,
 	40, 39, 0
 };
+TransportChannelReconfigurationr9IEs::TransportChannelReconfigurationr9IEs(const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *TransportChannelReconfigurationv950extIEs::itemsInfo[1] = {
 	&SecondaryCellMIMOparametersFDDv950ext::theInfo,
@@ -25383,6 +27655,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9V950NonCriticalExtensions(const TransportChannelReconfigurationv950extIEs& transportChannelReconfigurationv950ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationv950ext(transportChannelReconfigurationv950ext);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::itemsInfo[3] = {
 	&TransportChannelReconfigurationr9IEs::theInfo,
@@ -25403,6 +27678,9 @@ const TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtens
 	itemsPres,
 	3, 2, 0
 };
+TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9::TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsR9(const TransportChannelReconfigurationr9IEs& transportChannelReconfigurationr9) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationr9(transportChannelReconfigurationr9);
+}
 
 const void *TransportChannelReconfigurationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -25513,6 +27791,10 @@ const TransportChannelReconfigurationLaterthanr3::Info TransportChannelReconfigu
 	itemsPres,
 	2, 0, 0
 };
+TransportChannelReconfigurationLaterthanr3::TransportChannelReconfigurationLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const TransportChannelReconfigurationLaterthanr3CriticalExtensions& transportChannelReconfigurationLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setTransportChannelReconfigurationLaterthanr3CriticalExtensions(transportChannelReconfigurationLaterthanr3CriticalExtensions);
+}
 
 const void *TransportChannelReconfiguration::choicesInfo[2] = {
 	&TransportChannelReconfigurationR3::theInfo,
@@ -25576,6 +27858,9 @@ const TransportChannelReconfigurationCompleteLaterNonCriticalExtensionsV770NonCr
 	itemsPres,
 	2, 1, 0
 };
+TransportChannelReconfigurationCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions::TransportChannelReconfigurationCompleteLaterNonCriticalExtensionsV770NonCriticalExtensions(const TransportChannelReconfigurationCompletev770extIEs& transportChannelReconfigurationCompletev770ext) : Sequence(&theInfo) {
+	setTransportChannelReconfigurationCompletev770ext(transportChannelReconfigurationCompletev770ext);
+}
 
 const void *TransportChannelReconfigurationCompleteLaterNonCriticalExtensions::itemsInfo[2] = {
 	&TransportChannelReconfigurationCompleteLaterNonCriticalExtensionsTransportChannelReconfigurationCompleter3addext::theInfo,
@@ -25622,6 +27907,9 @@ const TransportChannelReconfigurationComplete::Info TransportChannelReconfigurat
 	itemsPres,
 	7, 6, 0
 };
+TransportChannelReconfigurationComplete::TransportChannelReconfigurationComplete(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *TransportChannelReconfigurationFailureLaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -25674,6 +27962,10 @@ const TransportChannelReconfigurationFailure::Info TransportChannelReconfigurati
 	itemsPres,
 	3, 1, 0
 };
+TransportChannelReconfigurationFailure::TransportChannelReconfigurationFailure(const RRCTransactionIdentifier& rrcTransactionIdentifier, const FailureCauseWithProtErr& failureCause) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setFailureCause(failureCause);
+}
 
 const void *TransportFormatCombinationControlModeSpecificInfoTdd::itemsInfo[1] = {
 	&TFCSIdentity::theInfo,
@@ -25751,6 +28043,9 @@ const TransportFormatCombinationControlLaterNonCriticalExtensionsV820NonCritical
 	itemsPres,
 	2, 1, 0
 };
+TransportFormatCombinationControlLaterNonCriticalExtensionsV820NonCriticalExtensions::TransportFormatCombinationControlLaterNonCriticalExtensionsV820NonCriticalExtensions(const TransportFormatCombinationControlv820extIEs& transportformatcombinationcontrolv820ext) : Sequence(&theInfo) {
+	setTransportformatcombinationcontrolv820ext(transportformatcombinationcontrolv820ext);
+}
 
 const void *TransportFormatCombinationControlLaterNonCriticalExtensions::itemsInfo[2] = {
 	&TransportFormatCombinationControlLaterNonCriticalExtensionsTransportFormatCombinationControlr3addext::theInfo,
@@ -25795,6 +28090,10 @@ const TransportFormatCombinationControl::Info TransportFormatCombinationControl:
 	itemsPres,
 	6, 4, 0
 };
+TransportFormatCombinationControl::TransportFormatCombinationControl(const TransportFormatCombinationControlModeSpecificInfo& transportFormatCombinationControlModeSpecificInfo, const TFCSubset& dpchTFCSInUplink) : Sequence(&theInfo) {
+	setTransportFormatCombinationControlModeSpecificInfo(transportFormatCombinationControlModeSpecificInfo);
+	setDpchTFCSInUplink(dpchTFCSInUplink);
+}
 
 const void *TransportFormatCombinationControlFailureLaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -25847,6 +28146,10 @@ const TransportFormatCombinationControlFailure::Info TransportFormatCombinationC
 	itemsPres,
 	3, 1, 0
 };
+TransportFormatCombinationControlFailure::TransportFormatCombinationControlFailure(const RRCTransactionIdentifier& rrcTransactionIdentifier, const FailureCauseWithProtErr& failureCause) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setFailureCause(failureCause);
+}
 
 const void *UECapabilityEnquiryr3IEs::itemsInfo[2] = {
 	&RRCTransactionIdentifier::theInfo,
@@ -25865,6 +28168,10 @@ const UECapabilityEnquiryr3IEs::Info UECapabilityEnquiryr3IEs::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+UECapabilityEnquiryr3IEs::UECapabilityEnquiryr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const CapabilityUpdateRequirement& capabilityUpdateRequirement) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setCapabilityUpdateRequirement(capabilityUpdateRequirement);
+}
 
 const void *UECapabilityEnquiryv4b0extIEs::itemsInfo[1] = {
 	&CapabilityUpdateRequirementr4ext::theInfo,
@@ -25881,6 +28188,9 @@ const UECapabilityEnquiryv4b0extIEs::Info UECapabilityEnquiryv4b0extIEs::theInfo
 	itemsPres,
 	1, 0, 0
 };
+UECapabilityEnquiryv4b0extIEs::UECapabilityEnquiryv4b0extIEs(const CapabilityUpdateRequirementr4ext& capabilityUpdateRequirementr4ext) : Sequence(&theInfo) {
+	setCapabilityUpdateRequirementr4ext(capabilityUpdateRequirementr4ext);
+}
 
 const void *UECapabilityEnquiryv590extIEs::itemsInfo[1] = {
 	&SystemSpecificCapUpdateReqv590ext::theInfo,
@@ -25897,6 +28207,9 @@ const UECapabilityEnquiryv590extIEs::Info UECapabilityEnquiryv590extIEs::theInfo
 	itemsPres,
 	1, 0, 0
 };
+UECapabilityEnquiryv590extIEs::UECapabilityEnquiryv590extIEs(const SystemSpecificCapUpdateReqv590ext& systemSpecificCapUpdateReq) : Sequence(&theInfo) {
+	setSystemSpecificCapUpdateReq(systemSpecificCapUpdateReq);
+}
 
 const void *UECapabilityEnquiryv770extIEs::itemsInfo[1] = {
 	&CapabilityUpdateRequirementv770ext::theInfo,
@@ -25961,6 +28274,9 @@ const UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV5
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions::UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions(const UECapabilityEnquiryv860extIEs& ueCapabilityEnquiryv860ext) : Sequence(&theInfo) {
+	setUeCapabilityEnquiryv860ext(ueCapabilityEnquiryv860ext);
+}
 
 const void *UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityEnquiryv770extIEs::theInfo,
@@ -25979,6 +28295,9 @@ const UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV5
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV770NonCriticalExtensions::UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV770NonCriticalExtensions(const UECapabilityEnquiryv770extIEs& ueCapabilityEnquiryv770ext) : Sequence(&theInfo) {
+	setUeCapabilityEnquiryv770ext(ueCapabilityEnquiryv770ext);
+}
 
 const void *UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityEnquiryv590extIEs::theInfo,
@@ -25997,6 +28316,9 @@ const UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV5
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const UECapabilityEnquiryv590extIEs& ueCapabilityEnquiryv590ext) : Sequence(&theInfo) {
+	setUeCapabilityEnquiryv590ext(ueCapabilityEnquiryv590ext);
+}
 
 const void *UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityEnquiryv4b0extIEs::theInfo,
@@ -26015,6 +28337,9 @@ const UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::UECapabilityEnquiryR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions(const UECapabilityEnquiryv4b0extIEs& ueCapabilityEnquiryv4b0ext) : Sequence(&theInfo) {
+	setUeCapabilityEnquiryv4b0ext(ueCapabilityEnquiryv4b0ext);
+}
 
 const void *UECapabilityEnquiryR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityEnquiryR3LaterNonCriticalExtensionsUeCapabilityEnquiryr3addext::theInfo,
@@ -26051,6 +28376,9 @@ const UECapabilityEnquiryR3::Info UECapabilityEnquiryR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityEnquiryR3::UECapabilityEnquiryR3(const UECapabilityEnquiryr3IEs& ueCapabilityEnquiryr3) : Sequence(&theInfo) {
+	setUeCapabilityEnquiryr3(ueCapabilityEnquiryr3);
+}
 
 const void *UECapabilityEnquiryLaterthanr3CriticalExtensions::itemsInfo[0] = {
 };
@@ -26083,6 +28411,10 @@ const UECapabilityEnquiryLaterthanr3::Info UECapabilityEnquiryLaterthanr3::theIn
 	itemsPres,
 	2, 0, 0
 };
+UECapabilityEnquiryLaterthanr3::UECapabilityEnquiryLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const UECapabilityEnquiryLaterthanr3CriticalExtensions& uECapabilityEnquiryLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setUECapabilityEnquiryLaterthanr3CriticalExtensions(uECapabilityEnquiryLaterthanr3CriticalExtensions);
+}
 
 const void *UECapabilityEnquiry::choicesInfo[2] = {
 	&UECapabilityEnquiryR3::theInfo,
@@ -26130,6 +28462,9 @@ const UECapabilityInformationv380extIEs::Info UECapabilityInformationv380extIEs:
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationv380extIEs::UECapabilityInformationv380extIEs(const DLPhysChCapabilityFDDv380ext& dlPhysChCapabilityFDDv380ext) : Sequence(&theInfo) {
+	setDlPhysChCapabilityFDDv380ext(dlPhysChCapabilityFDDv380ext);
+}
 
 const void *UECapabilityInformationv3a0extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv3a0ext::theInfo,
@@ -26246,6 +28581,9 @@ const UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensionsV690NonCriticalExtensions::UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensionsV690NonCriticalExtensions(const UECapabilityInformationv690extIEs& ueCapabilityInformationv690ext) : Sequence(&theInfo) {
+	setUeCapabilityInformationv690ext(ueCapabilityInformationv690ext);
+}
 
 const void *UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityInformationv5c0ext::theInfo,
@@ -26264,6 +28602,9 @@ const UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensions::UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensionsV5c0NonCriticalExtensions(const UECapabilityInformationv5c0ext& ueCapabilityInformationv5c0ext) : Sequence(&theInfo) {
+	setUeCapabilityInformationv5c0ext(ueCapabilityInformationv5c0ext);
+}
 
 const void *UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityInformationv590ext::theInfo,
@@ -26282,6 +28623,9 @@ const UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions::UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensionsV590NonCriticalExtensions(const UECapabilityInformationv590ext& ueCapabilityInformationv590ext) : Sequence(&theInfo) {
+	setUeCapabilityInformationv590ext(ueCapabilityInformationv590ext);
+}
 
 const void *UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityInformationv4b0ext::theInfo,
@@ -26300,6 +28644,9 @@ const UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions::UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsV4b0NonCriticalExtensions(const UECapabilityInformationv4b0ext& ueCapabilityInformationv4b0ext) : Sequence(&theInfo) {
+	setUeCapabilityInformationv4b0ext(ueCapabilityInformationv4b0ext);
+}
 
 const void *UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensionsLaterNonCriticalExtensionsUeCapabilityInformationr3addext::theInfo,
@@ -26336,6 +28683,9 @@ const UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensions::UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensionsV3a0NonCriticalExtensions(const UECapabilityInformationv3a0extIEs& ueCapabilityInformationv3a0ext) : Sequence(&theInfo) {
+	setUeCapabilityInformationv3a0ext(ueCapabilityInformationv3a0ext);
+}
 
 const void *UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityInformationv380extIEs::theInfo,
@@ -26354,6 +28704,9 @@ const UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensions:
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensions::UECapabilityInformationV370NonCriticalExtensionsV380NonCriticalExtensions(const UECapabilityInformationv380extIEs& ueCapabilityInformationv380ext) : Sequence(&theInfo) {
+	setUeCapabilityInformationv380ext(ueCapabilityInformationv380ext);
+}
 
 const void *UECapabilityInformationV370NonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityInformationv370ext::theInfo,
@@ -26372,6 +28725,9 @@ const UECapabilityInformationV370NonCriticalExtensions::Info UECapabilityInforma
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationV370NonCriticalExtensions::UECapabilityInformationV370NonCriticalExtensions(const UECapabilityInformationv370ext& ueCapabilityInformationv370ext) : Sequence(&theInfo) {
+	setUeCapabilityInformationv370ext(ueCapabilityInformationv370ext);
+}
 
 const void *UECapabilityInformation::itemsInfo[4] = {
 	&RRCTransactionIdentifier::theInfo,
@@ -26410,6 +28766,9 @@ const UECapabilityInformationv650extIEs::Info UECapabilityInformationv650extIEs:
 	itemsPres,
 	1, 0, 0
 };
+UECapabilityInformationv650extIEs::UECapabilityInformationv650extIEs(const UERadioAccessCapabilityv650ext& ueRadioAccessCapabilityv650ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv650ext(ueRadioAccessCapabilityv650ext);
+}
 
 const void *UECapabilityInformationv680extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv680ext::theInfo,
@@ -26426,6 +28785,9 @@ const UECapabilityInformationv680extIEs::Info UECapabilityInformationv680extIEs:
 	itemsPres,
 	1, 0, 0
 };
+UECapabilityInformationv680extIEs::UECapabilityInformationv680extIEs(const UERadioAccessCapabilityv680ext& ueRadioAccessCapabilityv680ext) : Sequence(&theInfo) {
+	setUeRadioAccessCapabilityv680ext(ueRadioAccessCapabilityv680ext);
+}
 
 const void *UECapabilityInformationv7e0extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv7e0ext::theInfo,
@@ -26442,6 +28804,9 @@ const UECapabilityInformationv7e0extIEs::Info UECapabilityInformationv7e0extIEs:
 	itemsPres,
 	1, 0, 0
 };
+UECapabilityInformationv7e0extIEs::UECapabilityInformationv7e0extIEs(const UERadioAccessCapabilityv7e0ext& ueRadioAccessCapability) : Sequence(&theInfo) {
+	setUeRadioAccessCapability(ueRadioAccessCapability);
+}
 
 const void *UECapabilityInformationv7f0extIEs::itemsInfo[1] = {
 	&UERadioAccessCapabilityv7f0ext::theInfo,
@@ -26490,6 +28855,9 @@ const UECapabilityInformationr3addextIEsV680NonCriticalExtensionsV7e0NonCritical
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationr3addextIEsV680NonCriticalExtensionsV7e0NonCriticalExtensionsV7f0NonCriticalExtensions::UECapabilityInformationr3addextIEsV680NonCriticalExtensionsV7e0NonCriticalExtensionsV7f0NonCriticalExtensions(const UECapabilityInformationv7f0extIEs& ueCapabilityInformationv7f0ext) : Sequence(&theInfo) {
+	setUeCapabilityInformationv7f0ext(ueCapabilityInformationv7f0ext);
+}
 
 const void *UECapabilityInformationr3addextIEsV680NonCriticalExtensionsV7e0NonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityInformationv7e0extIEs::theInfo,
@@ -26508,6 +28876,9 @@ const UECapabilityInformationr3addextIEsV680NonCriticalExtensionsV7e0NonCritical
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationr3addextIEsV680NonCriticalExtensionsV7e0NonCriticalExtensions::UECapabilityInformationr3addextIEsV680NonCriticalExtensionsV7e0NonCriticalExtensions(const UECapabilityInformationv7e0extIEs& ueCapabilityInformationv7e0ext) : Sequence(&theInfo) {
+	setUeCapabilityInformationv7e0ext(ueCapabilityInformationv7e0ext);
+}
 
 const void *UECapabilityInformationr3addextIEsV680NonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityInformationv680extIEs::theInfo,
@@ -26526,6 +28897,9 @@ const UECapabilityInformationr3addextIEsV680NonCriticalExtensions::Info UECapabi
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationr3addextIEsV680NonCriticalExtensions::UECapabilityInformationr3addextIEsV680NonCriticalExtensions(const UECapabilityInformationv680extIEs& ueCapabilityInformationv680ext) : Sequence(&theInfo) {
+	setUeCapabilityInformationv680ext(ueCapabilityInformationv680ext);
+}
 
 const void *UECapabilityInformationr3addextIEs::itemsInfo[2] = {
 	&UECapabilityInformationv650extIEs::theInfo,
@@ -26560,6 +28934,9 @@ const UECapabilityInformationConfirmr3IEs::Info UECapabilityInformationConfirmr3
 	itemsPres,
 	1, 0, 0
 };
+UECapabilityInformationConfirmr3IEs::UECapabilityInformationConfirmr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *UECapabilityInformationConfirmv770extIEs::itemsInfo[1] = {
 	&UECapabilityInformationConfirmv770extIEsacceptanceOfChangeOfCapability::theInfo,
@@ -26608,6 +28985,9 @@ const UECapabilityInformationConfirmR3LaterNonCriticalExtensionsV770NonCriticalE
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationConfirmR3LaterNonCriticalExtensionsV770NonCriticalExtensions::UECapabilityInformationConfirmR3LaterNonCriticalExtensionsV770NonCriticalExtensions(const UECapabilityInformationConfirmv770extIEs& ueCapabilityInformationConfirmv770ext) : Sequence(&theInfo) {
+	setUeCapabilityInformationConfirmv770ext(ueCapabilityInformationConfirmv770ext);
+}
 
 const void *UECapabilityInformationConfirmR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&UECapabilityInformationConfirmR3LaterNonCriticalExtensionsUeCapabilityInformationConfirmr3addext::theInfo,
@@ -26644,6 +29024,9 @@ const UECapabilityInformationConfirmR3::Info UECapabilityInformationConfirmR3::t
 	itemsPres,
 	2, 1, 0
 };
+UECapabilityInformationConfirmR3::UECapabilityInformationConfirmR3(const UECapabilityInformationConfirmr3IEs& ueCapabilityInformationConfirmr3) : Sequence(&theInfo) {
+	setUeCapabilityInformationConfirmr3(ueCapabilityInformationConfirmr3);
+}
 
 const void *UECapabilityInformationConfirmLaterthanr3CriticalExtensions::itemsInfo[0] = {
 };
@@ -26676,6 +29059,10 @@ const UECapabilityInformationConfirmLaterthanr3::Info UECapabilityInformationCon
 	itemsPres,
 	2, 0, 0
 };
+UECapabilityInformationConfirmLaterthanr3::UECapabilityInformationConfirmLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const UECapabilityInformationConfirmLaterthanr3CriticalExtensions& uECapabilityInformationConfirmLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setUECapabilityInformationConfirmLaterthanr3CriticalExtensions(uECapabilityInformationConfirmLaterthanr3CriticalExtensions);
+}
 
 const void *UECapabilityInformationConfirm::choicesInfo[2] = {
 	&UECapabilityInformationConfirmR3::theInfo,
@@ -26753,6 +29140,9 @@ const UplinkDirectTransferLaterNonCriticalExtensionsV690NonCriticalExtensionsV7g
 	itemsPres,
 	2, 1, 0
 };
+UplinkDirectTransferLaterNonCriticalExtensionsV690NonCriticalExtensionsV7g0NonCriticalExtensions::UplinkDirectTransferLaterNonCriticalExtensionsV690NonCriticalExtensionsV7g0NonCriticalExtensions(const UplinkDirectTransferv7g0extIEs& uplinkDirectTransferv7g0ext) : Sequence(&theInfo) {
+	setUplinkDirectTransferv7g0ext(uplinkDirectTransferv7g0ext);
+}
 
 const void *UplinkDirectTransferLaterNonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&UplinkDirectTransferv690extIEs::theInfo,
@@ -26771,6 +29161,9 @@ const UplinkDirectTransferLaterNonCriticalExtensionsV690NonCriticalExtensions::I
 	itemsPres,
 	2, 1, 0
 };
+UplinkDirectTransferLaterNonCriticalExtensionsV690NonCriticalExtensions::UplinkDirectTransferLaterNonCriticalExtensionsV690NonCriticalExtensions(const UplinkDirectTransferv690extIEs& uplinkDirectTransferv690ext) : Sequence(&theInfo) {
+	setUplinkDirectTransferv690ext(uplinkDirectTransferv690ext);
+}
 
 const void *UplinkDirectTransferLaterNonCriticalExtensions::itemsInfo[2] = {
 	&UplinkDirectTransferLaterNonCriticalExtensionsUplinkDirectTransferr3addext::theInfo,
@@ -26811,6 +29204,10 @@ const UplinkDirectTransfer::Info UplinkDirectTransfer::theInfo = {
 	itemsPres,
 	4, 2, 0
 };
+UplinkDirectTransfer::UplinkDirectTransfer(const CNDomainIdentity& cnDomainIdentity, const NASMessage& nasMessage) : Sequence(&theInfo) {
+	setCnDomainIdentity(cnDomainIdentity);
+	setNasMessage(nasMessage);
+}
 
 const void *UplinkPhysicalChannelControlr3IEs::itemsInfo[7] = {
 	&RRCTransactionIdentifier::theInfo,
@@ -26839,6 +29236,9 @@ const UplinkPhysicalChannelControlr3IEs::Info UplinkPhysicalChannelControlr3IEs:
 	itemsPres,
 	7, 6, 0
 };
+UplinkPhysicalChannelControlr3IEs::UplinkPhysicalChannelControlr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *UplinkPhysicalChannelControlv4b0extIEs::itemsInfo[1] = {
 	&OpenLoopPowerControlIPDLTDDr4::theInfo,
@@ -26887,6 +29287,9 @@ const UplinkPhysicalChannelControlR3LaterNonCriticalExtensionsV4b0NonCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+UplinkPhysicalChannelControlR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions::UplinkPhysicalChannelControlR3LaterNonCriticalExtensionsV4b0NonCriticalExtensions(const UplinkPhysicalChannelControlv4b0extIEs& uplinkPysicalChannelControlv4b0ext) : Sequence(&theInfo) {
+	setUplinkPysicalChannelControlv4b0ext(uplinkPysicalChannelControlv4b0ext);
+}
 
 const void *UplinkPhysicalChannelControlR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&UplinkPhysicalChannelControlR3LaterNonCriticalExtensionsUplinkPhysicalChannelControlr3addext::theInfo,
@@ -26923,6 +29326,9 @@ const UplinkPhysicalChannelControlR3::Info UplinkPhysicalChannelControlR3::theIn
 	itemsPres,
 	2, 1, 0
 };
+UplinkPhysicalChannelControlR3::UplinkPhysicalChannelControlR3(const UplinkPhysicalChannelControlr3IEs& uplinkPhysicalChannelControlr3) : Sequence(&theInfo) {
+	setUplinkPhysicalChannelControlr3(uplinkPhysicalChannelControlr3);
+}
 
 const void *UplinkPhysicalChannelControlr4IEsTddOptionTdd384::itemsInfo[5] = {
 	&ULTimingAdvanceControlr4::theInfo,
@@ -26996,6 +29402,9 @@ const UplinkPhysicalChannelControlr4IEs::Info UplinkPhysicalChannelControlr4IEs:
 	itemsPres,
 	3, 2, 0
 };
+UplinkPhysicalChannelControlr4IEs::UplinkPhysicalChannelControlr4IEs(const UplinkPhysicalChannelControlr4IEsTddOption& uplinkPhysicalChannelControlr4IEsTddOption) : Sequence(&theInfo) {
+	setUplinkPhysicalChannelControlr4IEsTddOption(uplinkPhysicalChannelControlr4IEsTddOption);
+}
 
 const void *UplinkPhysicalChannelControlv690extIEs::itemsInfo[1] = {
 	&BEACONPLEst::theInfo,
@@ -27044,6 +29453,9 @@ const UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4V4d0NonCritical
 	itemsPres,
 	2, 1, 0
 };
+UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions::UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsV690NonCriticalExtensions(const UplinkPhysicalChannelControlv690extIEs& uplinkPhysicalChannelControlv690ext) : Sequence(&theInfo) {
+	setUplinkPhysicalChannelControlv690ext(uplinkPhysicalChannelControlv690ext);
+}
 
 const void *UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensions::itemsInfo[2] = {
 	&UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4V4d0NonCriticalExtensionsUplinkPhysicalChannelControlr4addext::theInfo,
@@ -27080,6 +29492,9 @@ const UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4::Info UplinkPh
 	itemsPres,
 	2, 1, 0
 };
+UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4::UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsR4(const UplinkPhysicalChannelControlr4IEs& uplinkPhysicalChannelControlr4) : Sequence(&theInfo) {
+	setUplinkPhysicalChannelControlr4(uplinkPhysicalChannelControlr4);
+}
 
 const void *UplinkPhysicalChannelControlr5IEsTddOptionTdd384::itemsInfo[6] = {
 	&ULTimingAdvanceControlr4::theInfo,
@@ -27155,6 +29570,9 @@ const UplinkPhysicalChannelControlr5IEs::Info UplinkPhysicalChannelControlr5IEs:
 	itemsPres,
 	3, 2, 0
 };
+UplinkPhysicalChannelControlr5IEs::UplinkPhysicalChannelControlr5IEs(const UplinkPhysicalChannelControlr5IEsTddOption& uplinkPhysicalChannelControlr5IEsTddOption) : Sequence(&theInfo) {
+	setUplinkPhysicalChannelControlr5IEsTddOption(uplinkPhysicalChannelControlr5IEsTddOption);
+}
 
 const void *UplinkPhysicalChannelControlv6a0extIEs::itemsInfo[2] = {
 	&UplinkPhysicalChannelControlv6a0extIEsDesiredHSSICHPowerLevel::theInfo,
@@ -27205,6 +29623,9 @@ const UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtension
 	itemsPres,
 	2, 1, 0
 };
+UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV6a0NonCriticalExtensions::UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensionsV6a0NonCriticalExtensions(const UplinkPhysicalChannelControlv6a0extIEs& uplinkPhysicalChannelControlv6a0ext) : Sequence(&theInfo) {
+	setUplinkPhysicalChannelControlv6a0ext(uplinkPhysicalChannelControlv6a0ext);
+}
 
 const void *UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::itemsInfo[2] = {
 	&UplinkPhysicalChannelControlv690extIEs::theInfo,
@@ -27223,6 +29644,9 @@ const UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtension
 	itemsPres,
 	2, 1, 0
 };
+UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions::UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsR5V690NonCriticalExtensions(const UplinkPhysicalChannelControlv690extIEs& uplinkPhysicalChannelControlv690ext) : Sequence(&theInfo) {
+	setUplinkPhysicalChannelControlv690ext(uplinkPhysicalChannelControlv690ext);
+}
 
 const void *UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsR5::itemsInfo[3] = {
 	&UplinkPhysicalChannelControlr5IEs::theInfo,
@@ -27243,6 +29667,9 @@ const UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtension
 	itemsPres,
 	3, 2, 0
 };
+UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsR5::UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsR5(const UplinkPhysicalChannelControlr5IEs& uplinkPhysicalChannelControlr5) : Sequence(&theInfo) {
+	setUplinkPhysicalChannelControlr5(uplinkPhysicalChannelControlr5);
+}
 
 const void *UplinkPhysicalChannelControlr7IEsTddOptionTdd384::itemsInfo[6] = {
 	&ULTimingAdvanceControlr4::theInfo,
@@ -27349,6 +29776,9 @@ const UplinkPhysicalChannelControlr7IEs::Info UplinkPhysicalChannelControlr7IEs:
 	itemsPres,
 	3, 2, 0
 };
+UplinkPhysicalChannelControlr7IEs::UplinkPhysicalChannelControlr7IEs(const UplinkPhysicalChannelControlr7IEsTddOption& uplinkPhysicalChannelControlr7IEsTddOption) : Sequence(&theInfo) {
+	setUplinkPhysicalChannelControlr7IEsTddOption(uplinkPhysicalChannelControlr7IEsTddOption);
+}
 
 const void *UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR7NonCriticalExtensions::itemsInfo[0] = {
 };
@@ -27383,6 +29813,9 @@ const UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtension
 	itemsPres,
 	3, 2, 0
 };
+UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR7::UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsR7(const UplinkPhysicalChannelControlr7IEs& uplinkPhysicalChannelControlr7) : Sequence(&theInfo) {
+	setUplinkPhysicalChannelControlr7(uplinkPhysicalChannelControlr7);
+}
 
 const void *UplinkPhysicalChannelControlLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -27454,6 +29887,10 @@ const UplinkPhysicalChannelControlLaterthanr3::Info UplinkPhysicalChannelControl
 	itemsPres,
 	2, 0, 0
 };
+UplinkPhysicalChannelControlLaterthanr3::UplinkPhysicalChannelControlLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const UplinkPhysicalChannelControlLaterthanr3CriticalExtensions& uplinkPhysicalChannelControlLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setUplinkPhysicalChannelControlLaterthanr3CriticalExtensions(uplinkPhysicalChannelControlLaterthanr3CriticalExtensions);
+}
 
 const void *UplinkPhysicalChannelControl::choicesInfo[2] = {
 	&UplinkPhysicalChannelControlR3::theInfo,
@@ -27537,6 +29974,9 @@ const URAUpdateLaterNonCriticalExtensionsV770NonCriticalExtensionsV860NonCritica
 	itemsPres,
 	2, 1, 0
 };
+URAUpdateLaterNonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions::URAUpdateLaterNonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions(const URAUpdatev860extIEs& uraUpdatev860ext) : Sequence(&theInfo) {
+	setUraUpdatev860ext(uraUpdatev860ext);
+}
 
 const void *URAUpdateLaterNonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&UraUpdatev770extIEs::theInfo,
@@ -27555,6 +29995,9 @@ const URAUpdateLaterNonCriticalExtensionsV770NonCriticalExtensions::Info URAUpda
 	itemsPres,
 	2, 1, 0
 };
+URAUpdateLaterNonCriticalExtensionsV770NonCriticalExtensions::URAUpdateLaterNonCriticalExtensionsV770NonCriticalExtensions(const UraUpdatev770extIEs& uraUpdatev770ext) : Sequence(&theInfo) {
+	setUraUpdatev770ext(uraUpdatev770ext);
+}
 
 const void *URAUpdateLaterNonCriticalExtensions::itemsInfo[2] = {
 	&URAUpdateLaterNonCriticalExtensionsUraUpdater3addext::theInfo,
@@ -27595,6 +30038,11 @@ const URAUpdate::Info URAUpdate::theInfo = {
 	itemsPres,
 	4, 1, 0
 };
+URAUpdate::URAUpdate(const URNTI& uRNTI, const URAUpdateCause& uraUpdateCause, const ProtocolErrorIndicatorWithMoreInfo& protocolErrorIndicator) : Sequence(&theInfo) {
+	setURNTI(uRNTI);
+	setUraUpdateCause(uraUpdateCause);
+	setProtocolErrorIndicator(protocolErrorIndicator);
+}
 
 const void *URAUpdatev7e0extIEs::itemsInfo[1] = {
 	&URAUpdatev7e0extIEssupportForTwoDRXSchemesInPCH::theInfo,
@@ -27643,6 +30091,9 @@ const URAUpdater3addextIEs::Info URAUpdater3addextIEs::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+URAUpdater3addextIEs::URAUpdater3addextIEs(const URAUpdatev7e0extIEs& uraUpdatev7e0ext) : Sequence(&theInfo) {
+	setUraUpdatev7e0ext(uraUpdatev7e0ext);
+}
 
 const void *URAUpdateConfirmr3IEs::itemsInfo[10] = {
 	&RRCTransactionIdentifier::theInfo,
@@ -27677,6 +30128,10 @@ const URAUpdateConfirmr3IEs::Info URAUpdateConfirmr3IEs::theInfo = {
 	itemsPres,
 	10, 8, 0
 };
+URAUpdateConfirmr3IEs::URAUpdateConfirmr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier, const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *URAUpdateConfirmv690extIEs::itemsInfo[1] = {
 	&PLMNIdentity::theInfo,
@@ -27725,6 +30180,9 @@ const URAUpdateConfirmR3LaterNonCriticalExtensionsV690NonCriticalExtensions::Inf
 	itemsPres,
 	2, 1, 0
 };
+URAUpdateConfirmR3LaterNonCriticalExtensionsV690NonCriticalExtensions::URAUpdateConfirmR3LaterNonCriticalExtensionsV690NonCriticalExtensions(const URAUpdateConfirmv690extIEs& uraUpdateConfirmv690ext) : Sequence(&theInfo) {
+	setUraUpdateConfirmv690ext(uraUpdateConfirmv690ext);
+}
 
 const void *URAUpdateConfirmR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&URAUpdateConfirmR3LaterNonCriticalExtensionsUraUpdateConfirmr3addext::theInfo,
@@ -27761,6 +30219,9 @@ const URAUpdateConfirmR3::Info URAUpdateConfirmR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+URAUpdateConfirmR3::URAUpdateConfirmR3(const URAUpdateConfirmr3IEs& uraUpdateConfirmr3) : Sequence(&theInfo) {
+	setUraUpdateConfirmr3(uraUpdateConfirmr3);
+}
 
 const void *URAUpdateConfirmr5IEs::itemsInfo[9] = {
 	&IntegrityProtectionModeInfo::theInfo,
@@ -27793,6 +30254,9 @@ const URAUpdateConfirmr5IEs::Info URAUpdateConfirmr5IEs::theInfo = {
 	itemsPres,
 	9, 8, 0
 };
+URAUpdateConfirmr5IEs::URAUpdateConfirmr5IEs(const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *URAUpdateConfirmLaterthanr3CriticalExtensionsR5V690NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -27825,6 +30289,9 @@ const URAUpdateConfirmLaterthanr3CriticalExtensionsR5V690NonCriticalExtensions::
 	itemsPres,
 	2, 1, 0
 };
+URAUpdateConfirmLaterthanr3CriticalExtensionsR5V690NonCriticalExtensions::URAUpdateConfirmLaterthanr3CriticalExtensionsR5V690NonCriticalExtensions(const URAUpdateConfirmv690extIEs& uraUpdateConfirmv690ext) : Sequence(&theInfo) {
+	setUraUpdateConfirmv690ext(uraUpdateConfirmv690ext);
+}
 
 const void *URAUpdateConfirmLaterthanr3CriticalExtensionsR5::itemsInfo[2] = {
 	&URAUpdateConfirmr5IEs::theInfo,
@@ -27843,6 +30310,9 @@ const URAUpdateConfirmLaterthanr3CriticalExtensionsR5::Info URAUpdateConfirmLate
 	itemsPres,
 	2, 1, 0
 };
+URAUpdateConfirmLaterthanr3CriticalExtensionsR5::URAUpdateConfirmLaterthanr3CriticalExtensionsR5(const URAUpdateConfirmr5IEs& uraUpdateConfirmr5) : Sequence(&theInfo) {
+	setUraUpdateConfirmr5(uraUpdateConfirmr5);
+}
 
 const void *URAUpdateConfirmr7IEs::itemsInfo[11] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -27879,6 +30349,9 @@ const URAUpdateConfirmr7IEs::Info URAUpdateConfirmr7IEs::theInfo = {
 	itemsPres,
 	11, 10, 0
 };
+URAUpdateConfirmr7IEs::URAUpdateConfirmr7IEs(const RRCStateIndicator& rrcStateIndicator) : Sequence(&theInfo) {
+	setRrcStateIndicator(rrcStateIndicator);
+}
 
 const void *URAUpdateConfirmv860extIEs::itemsInfo[3] = {
 	&HRNTI::theInfo,
@@ -27931,6 +30404,9 @@ const URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR7V860NonCr
 	itemsPres,
 	2, 1, 0
 };
+URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR7V860NonCriticalExtensions::URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR7V860NonCriticalExtensions(const URAUpdateConfirmv860extIEs& uraUpdateConfirmv860ext) : Sequence(&theInfo) {
+	setUraUpdateConfirmv860ext(uraUpdateConfirmv860ext);
+}
 
 const void *URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&URAUpdateConfirmr7IEs::theInfo,
@@ -27951,6 +30427,9 @@ const URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR7::Info UR
 	itemsPres,
 	3, 2, 0
 };
+URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR7::URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsR7(const URAUpdateConfirmr7IEs& uraUpdateConfirmr7) : Sequence(&theInfo) {
+	setUraUpdateConfirmr7(uraUpdateConfirmr7);
+}
 
 const void *URAUpdateConfirmLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -28009,6 +30488,10 @@ const URAUpdateConfirmLaterthanr3::Info URAUpdateConfirmLaterthanr3::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+URAUpdateConfirmLaterthanr3::URAUpdateConfirmLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const URAUpdateConfirmLaterthanr3CriticalExtensions& uRAUpdateConfirmLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setURAUpdateConfirmLaterthanr3CriticalExtensions(uRAUpdateConfirmLaterthanr3CriticalExtensions);
+}
 
 const void *URAUpdateConfirm::choicesInfo[2] = {
 	&URAUpdateConfirmR3::theInfo,
@@ -28040,6 +30523,10 @@ const URAUpdateConfirmCCCHr3IEs::Info URAUpdateConfirmCCCHr3IEs::theInfo = {
 	itemsPres,
 	2, 0, 0
 };
+URAUpdateConfirmCCCHr3IEs::URAUpdateConfirmCCCHr3IEs(const URNTI& uRNTI, const URAUpdateConfirmr3IEs& uraUpdateConfirm) : Sequence(&theInfo) {
+	setURNTI(uRNTI);
+	setUraUpdateConfirm(uraUpdateConfirm);
+}
 
 const void *URAUpdateConfirmCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -28072,6 +30559,9 @@ const URAUpdateConfirmCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV
 	itemsPres,
 	2, 1, 0
 };
+URAUpdateConfirmCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtensions::URAUpdateConfirmCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtensions(const URAUpdateConfirmv860extIEs& uraUpdateConfirmv860ext) : Sequence(&theInfo) {
+	setUraUpdateConfirmv860ext(uraUpdateConfirmv860ext);
+}
 
 const void *URAUpdateConfirmCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&URAUpdateConfirmv690extIEs::theInfo,
@@ -28090,6 +30580,9 @@ const URAUpdateConfirmCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensions:
 	itemsPres,
 	2, 1, 0
 };
+URAUpdateConfirmCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensions::URAUpdateConfirmCCCHR3LaterNonCriticalExtensionsV690NonCriticalExtensions(const URAUpdateConfirmv690extIEs& uraUpdateConfirmv690ext) : Sequence(&theInfo) {
+	setUraUpdateConfirmv690ext(uraUpdateConfirmv690ext);
+}
 
 const void *URAUpdateConfirmCCCHR3LaterNonCriticalExtensions::itemsInfo[2] = {
 	&URAUpdateConfirmCCCHR3LaterNonCriticalExtensionsUraUpdateConfirmCCCHr3addext::theInfo,
@@ -28126,6 +30619,9 @@ const URAUpdateConfirmCCCHR3::Info URAUpdateConfirmCCCHR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+URAUpdateConfirmCCCHR3::URAUpdateConfirmCCCHR3(const URAUpdateConfirmCCCHr3IEs& uraUpdateConfirmCCCHr3) : Sequence(&theInfo) {
+	setUraUpdateConfirmCCCHr3(uraUpdateConfirmCCCHr3);
+}
 
 const void *URAUpdateConfirmCCCHLaterthanr3CriticalExtensions::itemsInfo[0] = {
 };
@@ -28160,6 +30656,11 @@ const URAUpdateConfirmCCCHLaterthanr3::Info URAUpdateConfirmCCCHLaterthanr3::the
 	itemsPres,
 	3, 0, 0
 };
+URAUpdateConfirmCCCHLaterthanr3::URAUpdateConfirmCCCHLaterthanr3(const URNTI& uRNTI, const RRCTransactionIdentifier& rrcTransactionIdentifier, const URAUpdateConfirmCCCHLaterthanr3CriticalExtensions& uRAUpdateConfirmCCCHLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setURNTI(uRNTI);
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setURAUpdateConfirmCCCHLaterthanr3CriticalExtensions(uRAUpdateConfirmCCCHLaterthanr3CriticalExtensions);
+}
 
 const void *URAUpdateConfirmCCCH::choicesInfo[2] = {
 	&URAUpdateConfirmCCCHR3::theInfo,
@@ -28221,6 +30722,9 @@ const UTRANMobilityInformationr3IEs::Info UTRANMobilityInformationr3IEs::theInfo
 	itemsPres,
 	10, 9, 0
 };
+UTRANMobilityInformationr3IEs::UTRANMobilityInformationr3IEs(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *UTRANMobilityInformationv3a0extIEs::itemsInfo[1] = {
 	&UEConnTimersAndConstantsv3a0ext::theInfo,
@@ -28237,6 +30741,9 @@ const UTRANMobilityInformationv3a0extIEs::Info UTRANMobilityInformationv3a0extIE
 	itemsPres,
 	1, 0, 0
 };
+UTRANMobilityInformationv3a0extIEs::UTRANMobilityInformationv3a0extIEs(const UEConnTimersAndConstantsv3a0ext& ueConnTimersAndConstantsv3a0ext) : Sequence(&theInfo) {
+	setUeConnTimersAndConstantsv3a0ext(ueConnTimersAndConstantsv3a0ext);
+}
 
 const void *UtranMobilityInformationv690extIEs::itemsInfo[1] = {
 	&PLMNIdentity::theInfo,
@@ -28269,6 +30776,9 @@ const UTRANMobilityInformationv860ext1IEs::Info UTRANMobilityInformationv860ext1
 	itemsPres,
 	1, 0, 0
 };
+UTRANMobilityInformationv860ext1IEs::UTRANMobilityInformationv860ext1IEs(const UEConnTimersAndConstantsv860ext& ueConnTimersAndConstants) : Sequence(&theInfo) {
+	setUeConnTimersAndConstants(ueConnTimersAndConstants);
+}
 
 const void *UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtentionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -28301,6 +30811,9 @@ const UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtentions::UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV690NonCriticalExtensionsV860NonCriticalExtentions(const UTRANMobilityInformationv860ext1IEs& utranMobilityInformationv860ext) : Sequence(&theInfo) {
+	setUtranMobilityInformationv860ext(utranMobilityInformationv860ext);
+}
 
 const void *UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV690NonCriticalExtensions::itemsInfo[2] = {
 	&UtranMobilityInformationv690extIEs::theInfo,
@@ -28319,6 +30832,9 @@ const UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensi
 	itemsPres,
 	2, 1, 0
 };
+UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV690NonCriticalExtensions::UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsV690NonCriticalExtensions(const UtranMobilityInformationv690extIEs& utranMobilityInformationv690ext) : Sequence(&theInfo) {
+	setUtranMobilityInformationv690ext(utranMobilityInformationv690ext);
+}
 
 const void *UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensions::itemsInfo[2] = {
 	&UTRANMobilityInformationR3V3a0NonCriticalExtensionsLaterNonCriticalExtensionsUtranMobilityInformationr3addext::theInfo,
@@ -28355,6 +30871,9 @@ const UTRANMobilityInformationR3V3a0NonCriticalExtensions::Info UTRANMobilityInf
 	itemsPres,
 	2, 1, 0
 };
+UTRANMobilityInformationR3V3a0NonCriticalExtensions::UTRANMobilityInformationR3V3a0NonCriticalExtensions(const UTRANMobilityInformationv3a0extIEs& utranMobilityInformationv3a0ext) : Sequence(&theInfo) {
+	setUtranMobilityInformationv3a0ext(utranMobilityInformationv3a0ext);
+}
 
 const void *UTRANMobilityInformationR3::itemsInfo[2] = {
 	&UTRANMobilityInformationr3IEs::theInfo,
@@ -28373,6 +30892,9 @@ const UTRANMobilityInformationR3::Info UTRANMobilityInformationR3::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+UTRANMobilityInformationR3::UTRANMobilityInformationR3(const UTRANMobilityInformationr3IEs& utranMobilityInformationr3) : Sequence(&theInfo) {
+	setUtranMobilityInformationr3(utranMobilityInformationr3);
+}
 
 const void *UTRANMobilityInformationr5IEs::itemsInfo[8] = {
 	&IntegrityProtectionModeInfo::theInfo,
@@ -28435,6 +30957,9 @@ const UTRANMobilityInformationLaterthanr3CriticalExtensionsR5V690NonCriticalExte
 	itemsPres,
 	2, 1, 0
 };
+UTRANMobilityInformationLaterthanr3CriticalExtensionsR5V690NonCriticalExtensionsV860NonCriticalExtentions::UTRANMobilityInformationLaterthanr3CriticalExtensionsR5V690NonCriticalExtensionsV860NonCriticalExtentions(const UTRANMobilityInformationv860ext1IEs& utranMobilityInformationv860ext) : Sequence(&theInfo) {
+	setUtranMobilityInformationv860ext(utranMobilityInformationv860ext);
+}
 
 const void *UTRANMobilityInformationLaterthanr3CriticalExtensionsR5V690NonCriticalExtensions::itemsInfo[2] = {
 	&UtranMobilityInformationv690extIEs::theInfo,
@@ -28453,6 +30978,9 @@ const UTRANMobilityInformationLaterthanr3CriticalExtensionsR5V690NonCriticalExte
 	itemsPres,
 	2, 1, 0
 };
+UTRANMobilityInformationLaterthanr3CriticalExtensionsR5V690NonCriticalExtensions::UTRANMobilityInformationLaterthanr3CriticalExtensionsR5V690NonCriticalExtensions(const UtranMobilityInformationv690extIEs& utranMobilityInformationv690ext) : Sequence(&theInfo) {
+	setUtranMobilityInformationv690ext(utranMobilityInformationv690ext);
+}
 
 const void *UTRANMobilityInformationLaterthanr3CriticalExtensionsR5::itemsInfo[2] = {
 	&UTRANMobilityInformationr5IEs::theInfo,
@@ -28471,6 +30999,9 @@ const UTRANMobilityInformationLaterthanr3CriticalExtensionsR5::Info UTRANMobilit
 	itemsPres,
 	2, 1, 0
 };
+UTRANMobilityInformationLaterthanr3CriticalExtensionsR5::UTRANMobilityInformationLaterthanr3CriticalExtensionsR5(const UTRANMobilityInformationr5IEs& utranMobilityInformationr5) : Sequence(&theInfo) {
+	setUtranMobilityInformationr5(utranMobilityInformationr5);
+}
 
 const void *UTRANMobilityInformationr7IEs::itemsInfo[11] = {
 	&IntegrityProtectionModeInfor7::theInfo,
@@ -28527,6 +31058,9 @@ const UTRANMobilityInformationv860ext2IEs::Info UTRANMobilityInformationv860ext2
 	itemsPres,
 	3, 2, 0
 };
+UTRANMobilityInformationv860ext2IEs::UTRANMobilityInformationv860ext2IEs(const UEConnTimersAndConstantsv860ext& ueConnTimersAndConstants) : Sequence(&theInfo) {
+	setUeConnTimersAndConstants(ueConnTimersAndConstants);
+}
 
 const void *UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7V860NonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -28559,6 +31093,9 @@ const UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7V
 	itemsPres,
 	2, 1, 0
 };
+UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7V860NonCriticalExtensions::UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7V860NonCriticalExtensions(const UTRANMobilityInformationv860ext2IEs& utranMobilityInformationv860ext) : Sequence(&theInfo) {
+	setUtranMobilityInformationv860ext(utranMobilityInformationv860ext);
+}
 
 const void *UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7::itemsInfo[3] = {
 	&UTRANMobilityInformationr7IEs::theInfo,
@@ -28579,6 +31116,9 @@ const UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7:
 	itemsPres,
 	3, 2, 0
 };
+UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7::UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsR7(const UTRANMobilityInformationr7IEs& utranMobilityInformationr7) : Sequence(&theInfo) {
+	setUtranMobilityInformationr7(utranMobilityInformationr7);
+}
 
 const void *UTRANMobilityInformationLaterthanr3CriticalExtensionsCriticalExtensionsCriticalExtensions::itemsInfo[0] = {
 };
@@ -28637,6 +31177,10 @@ const UTRANMobilityInformationLaterthanr3::Info UTRANMobilityInformationLatertha
 	itemsPres,
 	2, 0, 0
 };
+UTRANMobilityInformationLaterthanr3::UTRANMobilityInformationLaterthanr3(const RRCTransactionIdentifier& rrcTransactionIdentifier, const UTRANMobilityInformationLaterthanr3CriticalExtensions& uTRANMobilityInformationLaterthanr3CriticalExtensions) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setUTRANMobilityInformationLaterthanr3CriticalExtensions(uTRANMobilityInformationLaterthanr3CriticalExtensions);
+}
 
 const void *UTRANMobilityInformation::choicesInfo[2] = {
 	&UTRANMobilityInformationR3::theInfo,
@@ -28698,6 +31242,9 @@ const UTRANMobilityInformationConfirmLaterNonCriticalExtensionsV770NonCriticalEx
 	itemsPres,
 	2, 1, 0
 };
+UTRANMobilityInformationConfirmLaterNonCriticalExtensionsV770NonCriticalExtension::UTRANMobilityInformationConfirmLaterNonCriticalExtensionsV770NonCriticalExtension(const UTRANMobilityInformationConfirmv770extIEs& utranMobilityInformationConfirmv770ext) : Sequence(&theInfo) {
+	setUtranMobilityInformationConfirmv770ext(utranMobilityInformationConfirmv770ext);
+}
 
 const void *UTRANMobilityInformationConfirmLaterNonCriticalExtensions::itemsInfo[2] = {
 	&UTRANMobilityInformationConfirmLaterNonCriticalExtensionsUtranMobilityInformationConfirmr3addext::theInfo,
@@ -28742,6 +31289,9 @@ const UTRANMobilityInformationConfirm::Info UTRANMobilityInformationConfirm::the
 	itemsPres,
 	6, 5, 0
 };
+UTRANMobilityInformationConfirm::UTRANMobilityInformationConfirm(const RRCTransactionIdentifier& rrcTransactionIdentifier) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+}
 
 const void *UTRANMobilityInformationFailureLaterNonCriticalExtensionsNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -28794,6 +31344,10 @@ const UTRANMobilityInformationFailure::Info UTRANMobilityInformationFailure::the
 	itemsPres,
 	3, 1, 0
 };
+UTRANMobilityInformationFailure::UTRANMobilityInformationFailure(const RRCTransactionIdentifier& rrcTransactionIdentifier, const FailureCauseWithProtErr& failureCause) : Sequence(&theInfo) {
+	setRrcTransactionIdentifier(rrcTransactionIdentifier);
+	setFailureCause(failureCause);
+}
 
 const void *MBMSAccessInformationNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -28826,6 +31380,9 @@ const MBMSAccessInformation::Info MBMSAccessInformation::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MBMSAccessInformation::MBMSAccessInformation(const MBMSServiceAccessInfoListr6& mbmsServiceAccessInfoList) : Sequence(&theInfo) {
+	setMbmsServiceAccessInfoList(mbmsServiceAccessInfoList);
+}
 
 const void *MBMSCommonPTMRBInformationv770extIEs::itemsInfo[1] = {
 	&MBMSPhyChInformationListr7::theInfo,
@@ -28906,6 +31463,9 @@ const MBMSCommonPTMRBInformationV770NonCriticalExtensionsV780NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+MBMSCommonPTMRBInformationV770NonCriticalExtensionsV780NonCriticalExtensionsV860NonCriticalExtensions::MBMSCommonPTMRBInformationV770NonCriticalExtensionsV780NonCriticalExtensionsV860NonCriticalExtensions(const MBMSCommonPTMRBInformationv860extIEs& mbmsCommonPTMRBInformationv860ext) : Sequence(&theInfo) {
+	setMbmsCommonPTMRBInformationv860ext(mbmsCommonPTMRBInformationv860ext);
+}
 
 const void *MBMSCommonPTMRBInformationV770NonCriticalExtensionsV780NonCriticalExtensions::itemsInfo[2] = {
 	&MBMSCommonPTMRBInformationv780extIEs::theInfo,
@@ -28924,6 +31484,9 @@ const MBMSCommonPTMRBInformationV770NonCriticalExtensionsV780NonCriticalExtensio
 	itemsPres,
 	2, 1, 0
 };
+MBMSCommonPTMRBInformationV770NonCriticalExtensionsV780NonCriticalExtensions::MBMSCommonPTMRBInformationV770NonCriticalExtensionsV780NonCriticalExtensions(const MBMSCommonPTMRBInformationv780extIEs& mbmsCommonPTMRBInformationv780ext) : Sequence(&theInfo) {
+	setMbmsCommonPTMRBInformationv780ext(mbmsCommonPTMRBInformationv780ext);
+}
 
 const void *MBMSCommonPTMRBInformationV770NonCriticalExtensions::itemsInfo[2] = {
 	&MBMSCommonPTMRBInformationv770extIEs::theInfo,
@@ -28942,6 +31505,9 @@ const MBMSCommonPTMRBInformationV770NonCriticalExtensions::Info MBMSCommonPTMRBI
 	itemsPres,
 	2, 1, 0
 };
+MBMSCommonPTMRBInformationV770NonCriticalExtensions::MBMSCommonPTMRBInformationV770NonCriticalExtensions(const MBMSCommonPTMRBInformationv770extIEs& mbmsCommonPTMRBInformationv770ext) : Sequence(&theInfo) {
+	setMbmsCommonPTMRBInformationv770ext(mbmsCommonPTMRBInformationv770ext);
+}
 
 const void *MBMSCommonPTMRBInformation::itemsInfo[5] = {
 	&MBMSCommonRBInformationListr6::theInfo,
@@ -28966,6 +31532,11 @@ const MBMSCommonPTMRBInformation::Info MBMSCommonPTMRBInformation::theInfo = {
 	itemsPres,
 	5, 2, 0
 };
+MBMSCommonPTMRBInformation::MBMSCommonPTMRBInformation(const MBMSCommonRBInformationListr6& mbmsCommonRBInformationList, const MBMSTranspChInfoForEachTrChr6& mbmsTranspChInfoForEachTrCh, const MBMSPhyChInformationListr6& mbmsPhyChInformationList) : Sequence(&theInfo) {
+	setMbmsCommonRBInformationList(mbmsCommonRBInformationList);
+	setMbmsTranspChInfoForEachTrCh(mbmsTranspChInfoForEachTrCh);
+	setMbmsPhyChInformationList(mbmsPhyChInformationList);
+}
 
 const void *MBMSCurrentCellPTMRBInfov770extIEs::itemsInfo[1] = {
 	&MBSFNTDMInfoList::theInfo,
@@ -29014,6 +31585,9 @@ const MBMSCurrentCellPTMRBInformationV770NonCriticalExtensions::Info MBMSCurrent
 	itemsPres,
 	2, 1, 0
 };
+MBMSCurrentCellPTMRBInformationV770NonCriticalExtensions::MBMSCurrentCellPTMRBInformationV770NonCriticalExtensions(const MBMSCurrentCellPTMRBInfov770extIEs& mbmsCurrentCellPTMRBInfov770ext) : Sequence(&theInfo) {
+	setMbmsCurrentCellPTMRBInfov770ext(mbmsCurrentCellPTMRBInfov770ext);
+}
 
 const void *MBMSCurrentCellPTMRBInformation::itemsInfo[3] = {
 	&MBMSCurrentCellSCCPCHListr6::theInfo,
@@ -29050,6 +31624,9 @@ const MBMSGeneralInformationv6b0extIEs::Info MBMSGeneralInformationv6b0extIEs::t
 	itemsPres,
 	1, 0, 0
 };
+MBMSGeneralInformationv6b0extIEs::MBMSGeneralInformationv6b0extIEs(const MBMSGeneralInformationv6b0extIEsIndicateChangeInSelectedServices& mBMSGeneralInformationv6b0extIEsIndicateChangeInSelectedServices) : Sequence(&theInfo) {
+	setMBMSGeneralInformationv6b0extIEsIndicateChangeInSelectedServices(mBMSGeneralInformationv6b0extIEsIndicateChangeInSelectedServices);
+}
 
 const void *MBMSGeneralInformationv770extIEs::itemsInfo[2] = {
 	&MBMSMICHConfigurationInfov770ext::theInfo,
@@ -29134,6 +31711,9 @@ const MBMSGeneralInformationV6b0NonCriticalExtensionsV770NonCriticalExtensionsV8
 	itemsPres,
 	2, 1, 0
 };
+MBMSGeneralInformationV6b0NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsV890NoncriticalExtensions::MBMSGeneralInformationV6b0NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensionsV890NoncriticalExtensions(const MBMSGeneralInformationv890extIEs& mbmsGeneralInformationv890ext) : Sequence(&theInfo) {
+	setMbmsGeneralInformationv890ext(mbmsGeneralInformationv890ext);
+}
 
 const void *MBMSGeneralInformationV6b0NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions::itemsInfo[2] = {
 	&MBMSGeneralInformationv860extIEs::theInfo,
@@ -29152,6 +31732,9 @@ const MBMSGeneralInformationV6b0NonCriticalExtensionsV770NonCriticalExtensionsV8
 	itemsPres,
 	2, 1, 0
 };
+MBMSGeneralInformationV6b0NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions::MBMSGeneralInformationV6b0NonCriticalExtensionsV770NonCriticalExtensionsV860NonCriticalExtensions(const MBMSGeneralInformationv860extIEs& mbmsGeneralInformationv860ext) : Sequence(&theInfo) {
+	setMbmsGeneralInformationv860ext(mbmsGeneralInformationv860ext);
+}
 
 const void *MBMSGeneralInformationV6b0NonCriticalExtensionsV770NonCriticalExtensions::itemsInfo[2] = {
 	&MBMSGeneralInformationv770extIEs::theInfo,
@@ -29170,6 +31753,9 @@ const MBMSGeneralInformationV6b0NonCriticalExtensionsV770NonCriticalExtensions::
 	itemsPres,
 	2, 1, 0
 };
+MBMSGeneralInformationV6b0NonCriticalExtensionsV770NonCriticalExtensions::MBMSGeneralInformationV6b0NonCriticalExtensionsV770NonCriticalExtensions(const MBMSGeneralInformationv770extIEs& mbmsGeneralInformationv770ext) : Sequence(&theInfo) {
+	setMbmsGeneralInformationv770ext(mbmsGeneralInformationv770ext);
+}
 
 const void *MBMSGeneralInformationV6b0NonCriticalExtensions::itemsInfo[2] = {
 	&MBMSGeneralInformationv6b0extIEs::theInfo,
@@ -29188,6 +31774,9 @@ const MBMSGeneralInformationV6b0NonCriticalExtensions::Info MBMSGeneralInformati
 	itemsPres,
 	2, 1, 0
 };
+MBMSGeneralInformationV6b0NonCriticalExtensions::MBMSGeneralInformationV6b0NonCriticalExtensions(const MBMSGeneralInformationv6b0extIEs& mbmsGeneralInformationv6b0ext) : Sequence(&theInfo) {
+	setMbmsGeneralInformationv6b0ext(mbmsGeneralInformationv6b0ext);
+}
 
 const void *MBMSGeneralInformation::itemsInfo[6] = {
 	&MBMSPreferredFrequencyListr6::theInfo,
@@ -29214,6 +31803,11 @@ const MBMSGeneralInformation::Info MBMSGeneralInformation::theInfo = {
 	itemsPres,
 	6, 3, 0
 };
+MBMSGeneralInformation::MBMSGeneralInformation(const MBMSTimersAndCountersr6& mbmsTimersAndCounters, const MBMSMICHConfigurationInfor6& michConfigurationInfo, const MBMSCellGroupIdentityr6& cellGroupIdentity) : Sequence(&theInfo) {
+	setMbmsTimersAndCounters(mbmsTimersAndCounters);
+	setMichConfigurationInfo(michConfigurationInfo);
+	setCellGroupIdentity(cellGroupIdentity);
+}
 
 const void *MBMSModificationRequestv6b0extIEs::itemsInfo[1] = {
 	&MBMSSelectedServiceInfo::theInfo,
@@ -29230,6 +31824,9 @@ const MBMSModificationRequestv6b0extIEs::Info MBMSModificationRequestv6b0extIEs:
 	itemsPres,
 	1, 0, 0
 };
+MBMSModificationRequestv6b0extIEs::MBMSModificationRequestv6b0extIEs(const MBMSSelectedServiceInfo& mbmsSelectedServiceInfo) : Sequence(&theInfo) {
+	setMbmsSelectedServiceInfo(mbmsSelectedServiceInfo);
+}
 
 const void *MBMSModificationRequestv6f0extIEs::itemsInfo[1] = {
 	&MBMSModificationRequestv6f0extIEsmbmsSupportOfServiceChangeForAPtpRB::theInfo,
@@ -29278,6 +31875,9 @@ const MBMSModificationRequestV6b0NonCriticalExtensionsV6f0NonCriticalExtensions:
 	itemsPres,
 	2, 1, 0
 };
+MBMSModificationRequestV6b0NonCriticalExtensionsV6f0NonCriticalExtensions::MBMSModificationRequestV6b0NonCriticalExtensionsV6f0NonCriticalExtensions(const MBMSModificationRequestv6f0extIEs& mbmsModificationRequestv6f0ext) : Sequence(&theInfo) {
+	setMbmsModificationRequestv6f0ext(mbmsModificationRequestv6f0ext);
+}
 
 const void *MBMSModificationRequestV6b0NonCriticalExtensions::itemsInfo[2] = {
 	&MBMSModificationRequestv6b0extIEs::theInfo,
@@ -29296,6 +31896,9 @@ const MBMSModificationRequestV6b0NonCriticalExtensions::Info MBMSModificationReq
 	itemsPres,
 	2, 1, 0
 };
+MBMSModificationRequestV6b0NonCriticalExtensions::MBMSModificationRequestV6b0NonCriticalExtensions(const MBMSModificationRequestv6b0extIEs& mbmsModificationRequestv6b0ext) : Sequence(&theInfo) {
+	setMbmsModificationRequestv6b0ext(mbmsModificationRequestv6b0ext);
+}
 
 const void *MBMSModificationRequest::itemsInfo[3] = {
 	&MBMSServiceIdentityr6::theInfo,
@@ -29382,6 +31985,9 @@ const MBMSModifiedServicesInformationV770NonCriticalExtensionsV7c0NonCriticalExt
 	itemsPres,
 	2, 1, 0
 };
+MBMSModifiedServicesInformationV770NonCriticalExtensionsV7c0NonCriticalExtensions::MBMSModifiedServicesInformationV770NonCriticalExtensionsV7c0NonCriticalExtensions(const MBMSModifiedServicesInformationv7c0extIEs& mbmsModifiedServicesInformationv7c0ext) : Sequence(&theInfo) {
+	setMbmsModifiedServicesInformationv7c0ext(mbmsModifiedServicesInformationv7c0ext);
+}
 
 const void *MBMSModifiedServicesInformationV770NonCriticalExtensions::itemsInfo[2] = {
 	&MBMSModifiedServicesInformationv770extIEs::theInfo,
@@ -29400,6 +32006,9 @@ const MBMSModifiedServicesInformationV770NonCriticalExtensions::Info MBMSModifie
 	itemsPres,
 	2, 1, 0
 };
+MBMSModifiedServicesInformationV770NonCriticalExtensions::MBMSModifiedServicesInformationV770NonCriticalExtensions(const MBMSModifiedServicesInformationv770extIEs& mbmsModifiedServicesInformationv770ext) : Sequence(&theInfo) {
+	setMbmsModifiedServicesInformationv770ext(mbmsModifiedServicesInformationv770ext);
+}
 
 const void *MBMSModifiedServicesInformation::itemsInfo[8] = {
 	&MBMSModifedServiceListr6::theInfo,
@@ -29430,6 +32039,9 @@ const MBMSModifiedServicesInformation::Info MBMSModifiedServicesInformation::the
 	itemsPres,
 	8, 7, 0
 };
+MBMSModifiedServicesInformation::MBMSModifiedServicesInformation(const MBMSNumberOfNeighbourCellsr6& mbmsNumberOfNeighbourCells) : Sequence(&theInfo) {
+	setMbmsNumberOfNeighbourCells(mbmsNumberOfNeighbourCells);
+}
 
 const void *MBMSNeighbouringCellPTMRBInformationv770extIEs::itemsInfo[1] = {
 	&MBMSNeighbouringCellSCCPCHListv770ext::theInfo,
@@ -29478,6 +32090,9 @@ const MBMSNeighbouringCellPTMRBInformationV770NonCriticalExtensions::Info MBMSNe
 	itemsPres,
 	2, 1, 0
 };
+MBMSNeighbouringCellPTMRBInformationV770NonCriticalExtensions::MBMSNeighbouringCellPTMRBInformationV770NonCriticalExtensions(const MBMSNeighbouringCellPTMRBInformationv770extIEs& mbmsNeighbouringCellPTMRBInformationv770ext) : Sequence(&theInfo) {
+	setMbmsNeighbouringCellPTMRBInformationv770ext(mbmsNeighbouringCellPTMRBInformationv770ext);
+}
 
 const void *MBMSNeighbouringCellPTMRBInformation::itemsInfo[3] = {
 	&IntraFreqCellID::theInfo,
@@ -29498,6 +32113,10 @@ const MBMSNeighbouringCellPTMRBInformation::Info MBMSNeighbouringCellPTMRBInform
 	itemsPres,
 	3, 1, 0
 };
+MBMSNeighbouringCellPTMRBInformation::MBMSNeighbouringCellPTMRBInformation(const IntraFreqCellID& neighbouringCellIdentity, const MBMSNeighbouringCellSCCPCHListr6& neighbouringCellSCCPCHList) : Sequence(&theInfo) {
+	setNeighbouringCellIdentity(neighbouringCellIdentity);
+	setNeighbouringCellSCCPCHList(neighbouringCellSCCPCHList);
+}
 
 const void *MBMSSchedulingInformationNonCriticalExtensions::itemsInfo[0] = {
 };
@@ -29530,6 +32149,9 @@ const MBMSSchedulingInformation::Info MBMSSchedulingInformation::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+MBMSSchedulingInformation::MBMSSchedulingInformation(const MBMSServiceSchedulingInfoListr6& serviceSchedulingInfoList) : Sequence(&theInfo) {
+	setServiceSchedulingInfoList(serviceSchedulingInfoList);
+}
 
 const void *MBMSUnmodifiedServicesInformationv770extIEs::itemsInfo[1] = {
 	&MBMSUnmodifiedServiceListv770ext::theInfo,
@@ -29578,6 +32200,9 @@ const MBMSUnmodifiedServicesInformationV770NonCriticalExtensions::Info MBMSUnmod
 	itemsPres,
 	2, 1, 0
 };
+MBMSUnmodifiedServicesInformationV770NonCriticalExtensions::MBMSUnmodifiedServicesInformationV770NonCriticalExtensions(const MBMSUnmodifiedServicesInformationv770extIEs& mbmsUnmodifiedServicesInformationv770ext) : Sequence(&theInfo) {
+	setMbmsUnmodifiedServicesInformationv770ext(mbmsUnmodifiedServicesInformationv770ext);
+}
 
 const void *MBMSUnmodifiedServicesInformation::itemsInfo[2] = {
 	&MBMSUnmodifiedServiceListr6::theInfo,
@@ -29646,5 +32271,12 @@ const SystemInformationContainer::Info SystemInformationContainer::theInfo = {
 	itemsPres,
 	11, 6, 0
 };
+SystemInformationContainer::SystemInformationContainer(const SystemInformationContainerMib& systemInformationContainerMib, const SystemInformationContainerSysInfoType1& systemInformationContainerSysInfoType1, const SystemInformationContainerSysInfoType3& systemInformationContainerSysInfoType3, const SystemInformationContainerSysInfoType5& systemInformationContainerSysInfoType5, const SystemInformationContainerSysInfoType7& systemInformationContainerSysInfoType7) : Sequence(&theInfo) {
+	setSystemInformationContainerMib(systemInformationContainerMib);
+	setSystemInformationContainerSysInfoType1(systemInformationContainerSysInfoType1);
+	setSystemInformationContainerSysInfoType3(systemInformationContainerSysInfoType3);
+	setSystemInformationContainerSysInfoType5(systemInformationContainerSysInfoType5);
+	setSystemInformationContainerSysInfoType7(systemInformationContainerSysInfoType7);
+}
 
 }

@@ -79,6 +79,9 @@ const DLDCCHMessage::Info DLDCCHMessage::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+DLDCCHMessage::DLDCCHMessage(const DLDCCHMessageType& message) : Sequence(&theInfo) {
+	setMessage(message);
+}
 
 const void *ULDCCHMessageType::choicesInfo[32] = {
 	&ActiveSetUpdateComplete::theInfo,
@@ -140,6 +143,9 @@ const ULDCCHMessage::Info ULDCCHMessage::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ULDCCHMessage::ULDCCHMessage(const ULDCCHMessageType& message) : Sequence(&theInfo) {
+	setMessage(message);
+}
 
 const void *DLCCCHMessageType::choicesInfo[8] = {
 	&CellUpdateConfirmCCCH::theInfo,
@@ -177,6 +183,9 @@ const DLCCCHMessage::Info DLCCCHMessage::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+DLCCCHMessage::DLCCCHMessage(const DLCCCHMessageType& message) : Sequence(&theInfo) {
+	setMessage(message);
+}
 
 const void *ULCCCHMessageType::choicesInfo[4] = {
 	&CellUpdate::theInfo,
@@ -210,6 +219,9 @@ const ULCCCHMessage::Info ULCCCHMessage::theInfo = {
 	itemsPres,
 	2, 1, 0
 };
+ULCCCHMessage::ULCCCHMessage(const ULCCCHMessageType& message) : Sequence(&theInfo) {
+	setMessage(message);
+}
 
 const void *PCCHMessageType::choicesInfo[2] = {
 	&PagingType1::theInfo,
@@ -239,6 +251,9 @@ const PCCHMessage::Info PCCHMessage::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+PCCHMessage::PCCHMessage(const PCCHMessageType& message) : Sequence(&theInfo) {
+	setMessage(message);
+}
 
 const void *DLSHCCHMessageType::choicesInfo[2] = {
 	&PhysicalSharedChannelAllocation::theInfo,
@@ -268,6 +283,9 @@ const DLSHCCHMessage::Info DLSHCCHMessage::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+DLSHCCHMessage::DLSHCCHMessage(const DLSHCCHMessageType& message) : Sequence(&theInfo) {
+	setMessage(message);
+}
 
 const void *ULSHCCHMessageType::choicesInfo[2] = {
 	&PUSCHCapacityRequest::theInfo,
@@ -297,6 +315,9 @@ const ULSHCCHMessage::Info ULSHCCHMessage::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+ULSHCCHMessage::ULSHCCHMessage(const ULSHCCHMessageType& message) : Sequence(&theInfo) {
+	setMessage(message);
+}
 
 const void *BCCHFACHMessageType::choicesInfo[4] = {
 	&SystemInformationFACH::theInfo,
@@ -328,6 +349,9 @@ const BCCHFACHMessage::Info BCCHFACHMessage::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+BCCHFACHMessage::BCCHFACHMessage(const BCCHFACHMessageType& message) : Sequence(&theInfo) {
+	setMessage(message);
+}
 
 const void *BCCHBCHMessage::itemsInfo[1] = {
 	&SystemInformationBCH::theInfo,
@@ -344,6 +368,9 @@ const BCCHBCHMessage::Info BCCHBCHMessage::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+BCCHBCHMessage::BCCHBCHMessage(const SystemInformationBCH& message) : Sequence(&theInfo) {
+	setMessage(message);
+}
 
 const void *MCCHMessageType::choicesInfo[16] = {
 	&MBMSAccessInformation::theInfo,
@@ -387,6 +414,9 @@ const MCCHMessage::Info MCCHMessage::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MCCHMessage::MCCHMessage(const MCCHMessageType& message) : Sequence(&theInfo) {
+	setMessage(message);
+}
 
 const void *MSCHMessageType::choicesInfo[4] = {
 	&MBMSSchedulingInformation::theInfo,
@@ -418,5 +448,8 @@ const MSCHMessage::Info MSCHMessage::theInfo = {
 	itemsPres,
 	1, 0, 0
 };
+MSCHMessage::MSCHMessage(const MSCHMessageType& message) : Sequence(&theInfo) {
+	setMessage(message);
+}
 
 }

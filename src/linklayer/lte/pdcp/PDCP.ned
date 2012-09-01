@@ -15,13 +15,9 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package inet.linklayer.lte.rrc;
+package inet.linklayer.lte.pdcp;
 
-simple RRC
+simple PDCP
 {
-    gates:
-        input nasIn;
-        output nasOut;
-    	input rlcIn;
-        output rlcOut;
+    
 }

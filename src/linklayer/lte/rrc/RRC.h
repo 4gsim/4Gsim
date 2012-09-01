@@ -27,6 +27,7 @@ public:
 	virtual ~RRC();
 
 	void initialize(int stage);
+	void handleMessage(cMessage *msg);
 };
 
 #endif /* RRC_H_ */

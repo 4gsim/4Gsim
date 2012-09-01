@@ -15,13 +15,15 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package inet.linklayer.lte.rrc;
+#ifndef PDCP_H_
+#define PDCP_H_
 
-simple RRC
-{
-    gates:
-        input nasIn;
-        output nasOut;
-    	input rlcIn;
-        output rlcOut;
-}
+#include <omnetpp.h>
+
+class PDCP : public cSimpleModule {
+public:
+    PDCP();
+    virtual ~PDCP();
+};
+
+#endif /* PDCP_H_ */
