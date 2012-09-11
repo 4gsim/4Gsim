@@ -56,9 +56,9 @@ def writeobject(asnobj, hdrfile, srcfile):
 		# Constraint types
 		
 		if asnobj.type in constrainttypes:
-			if asnobj.constrainttype == "CONSTANT":
-				hdrfile.write("#define " + asnobj.name + " " + str(asnobj.value) + "\n")
-			elif asnobj.constrainttype == "UNCONSTRAINED":
+##			if asnobj.constrainttype == "CONSTANT":
+##				hdrfile.write("#define " + asnobj.name + " " + str(asnobj.value) + "\n")
+			if asnobj.constrainttype == "UNCONSTRAINED":
 				hdrfile.write("typedef " + asnobj.type + " " + asnobj.name + ";\n")
 			else:
 				hdrfile.write("typedef " + asnobj.type + "<" + asnobj.constrainttype)
@@ -248,6 +248,15 @@ def writefile(directory, filename, objs, module):
 
 	srcfile.write("namespace " + module.lower() + " {\n\n")
 	hdrfile.write("namespace " + module.lower() + " {\n\n")
+
+        for i in range(0, len(asnobjs)):
+                asnobj = asnobjs[i]
+                if asnobj.written == 0 and asnobj.name != '':
+                        if asnobj.type in constrainttypes:
+                                if asnobj.constrainttype == "CONSTANT":
+                                        hdrfile.write("#define " + asnobj.name + " " + str(asnobj.value) + "\n")
+                                        hdrfile.write("\n")
+                                        asnobj.written = 1
 
 	for i in range (0, len(asnobjs)):
 		asnobj = asnobjs[i]

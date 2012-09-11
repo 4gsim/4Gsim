@@ -393,6 +393,8 @@ class BitString : public BitStringBase {
 public:
 	static const Info theInfo;
 	BitString(char *value = NULL) : BitStringBase(&theInfo) { setValue(value); }
+
+	BitString<type, lowerBound, upperBound>& operator=(const BitString<type, lowerBound, upperBound>& other);
 };
 
 template <ConstraintType type, int64_t lowerBound, int64_t upperBound>
