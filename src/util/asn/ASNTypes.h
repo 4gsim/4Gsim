@@ -272,7 +272,8 @@ template <ConstraintType type, int64_t lowerBound, int64_t upperBound>
 class Integer : public IntegerBase {
 public:
 	static const Info theInfo;
-	Integer(int64_t value = 0) : IntegerBase(&theInfo) { setValue(value); }
+	Integer(const void *info = &theInfo) : IntegerBase(info) {}
+	Integer(int64_t value) : IntegerBase(&theInfo) { setValue(value); }
 };
 
 template <ConstraintType type, int64_t lowerBound, int64_t upperBound>
@@ -332,7 +333,8 @@ template <bool ext, int64_t upperBound>
 class Enumerated : public EnumeratedBase {
 public:
 	static const Info theInfo;
-	Enumerated(int64_t value = 0) : EnumeratedBase(&theInfo) { setValue(value); }
+	Enumerated(const void *info = &theInfo) : Enumerated(info) {}
+	Enumerated(int64_t value) : EnumeratedBase(&theInfo) { setValue(value); }
 
 //	Enumerated<ext, upperBound> &operator=(int64_t val) { setValue(val); return *this; }
 };
@@ -392,9 +394,10 @@ template <ConstraintType type, int64_t lowerBound, int64_t upperBound>
 class BitString : public BitStringBase {
 public:
 	static const Info theInfo;
-	BitString(char *value = NULL) : BitStringBase(&theInfo) { setValue(value); }
+	BitString(const void *info = &theInfo) : BitStringBase(info) {}
+	BitString(char *value) : BitStringBase(&theInfo) { setValue(value); }
 
-	BitString<type, lowerBound, upperBound>& operator=(const BitString<type, lowerBound, upperBound>& other);
+//	BitString<type, lowerBound, upperBound>& operator=(const BitString<type, lowerBound, upperBound>& other);
 };
 
 template <ConstraintType type, int64_t lowerBound, int64_t upperBound>
@@ -448,7 +451,8 @@ template <ConstraintType type, int64_t lowerBound, int64_t upperBound>
 class OctetString : public OctetStringBase {
 public:
 	static const Info theInfo;
-	OctetString(char *value = NULL) : OctetStringBase(&theInfo) { setValue(value); }
+	OctetString(const void *info = &theInfo) : OctetStringBase(info) {}
+	OctetString(char *value) : OctetStringBase(&theInfo) { setValue(value); }
 };
 
 template <ConstraintType type, int64_t lowerBound, int64_t upperBound>
@@ -504,6 +508,7 @@ template <ConstraintType type, int64_t lowerBound, int64_t upperBound>
 class PrintableString : public PrintableStringBase {
 public:
 	static const Info theInfo;
+	PrintableString(const void *info = &theInfo) : PrintableStringBase(info) {}
 	PrintableString(std::string value) : PrintableStringBase(value, &theInfo) {}
 	PrintableString(const char *value) : PrintableStringBase(value, &theInfo) {}
 };
