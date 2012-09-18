@@ -1,0 +1,10 @@
+rrc dctdump: 	- 00 - opcode
+				- 06 - length
+				- 1a - tag
+				- 06 - length
+				- 00ff - cell id
+				- 03 - rlc channel type
+				- 06 - length
+				- 00ee - ue id
+				- aa - tag (always this value)
+				- 06 - length 
