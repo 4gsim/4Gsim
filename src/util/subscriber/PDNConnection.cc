@@ -286,7 +286,7 @@ void PDNConnection::processActDefBearerRequest(NASPlainMessage *msg) {
 	char *val = NASUtils().processIE(msg->getIes(2));
 	char *p = val;
 	if (*((char*)p++) == GTP_IPv4)
-		subAddr = IPvXAddress(ntohl(*((unsigned*)p)));
+		subAddr = IPvXAddress(IPv4Address(ntohl(*((unsigned*)p))));
 
 	BearerContext *bearer = findBearerContextForProcId(msg->getHdr().getProcTransId());
 	if (bearer == NULL)

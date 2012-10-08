@@ -16,7 +16,6 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#if !defined(_WIN32) && !defined(__WIN32__) && !defined(WIN32) && !defined(__CYGWIN__) && !defined(_WIN64)
 #include "VoIPSinkApp.h"
 
 #include "INETEndians.h"
@@ -272,4 +271,3 @@ void VoIPSinkApp::finish()
     closeConnection();
 }
 
-#endif

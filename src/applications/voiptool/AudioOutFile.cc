@@ -18,7 +18,6 @@
 
 // for INT64_C(x), UINT64_C(x):
 
-#if !defined(_WIN32) && !defined(__WIN32__) && !defined(WIN32) && !defined(__CYGWIN__) && !defined(_WIN64)
 #define __STDC_CONSTANT_MACROS
 #include <stdint.h>
 
@@ -203,4 +202,4 @@ AudioOutFile::~AudioOutFile()
 {
     close();
 }
-#endif
+

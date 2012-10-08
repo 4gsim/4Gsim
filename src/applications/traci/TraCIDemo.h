@@ -26,7 +26,7 @@
 
 #include "mobility/models/TraCIMobility.h"
 
-#ifdef WITH_TRACI
+
 /**
  * Small IVC Demo
  */
@@ -56,4 +56,4 @@ class TraCIDemo : public cSimpleModule, protected cListener {
 };
 
 #endif
-#endif
+

@@ -29,7 +29,6 @@
 
 #include "INETDefs.h"
 
-#if !defined(_WIN32) && !defined(__WIN32__) && !defined(WIN32) && !defined(__CYGWIN__) && !defined(_WIN64)
 extern "C" {
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
@@ -114,4 +113,3 @@ class VoIPSinkApp : public cSimpleModule
 };
 
 #endif // VOIPTOOL_VOIPSINKAPP_H
-#endif

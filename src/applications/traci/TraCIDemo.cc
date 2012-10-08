@@ -18,7 +18,6 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 //
 
-#ifdef WITH_TRACI
 #include "applications/traci/TraCIDemo.h"
 
 #include "NotificationBoard.h"
@@ -85,4 +84,3 @@ void TraCIDemo::handlePositionUpdate() {
 	}
 }
 
-#endif

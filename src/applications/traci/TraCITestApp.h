@@ -28,7 +28,6 @@
 
 #include "mobility/models/TraCIMobility.h"
 
-#ifdef WITH_TRACI
 
 /**
  * FIXME
@@ -58,5 +57,4 @@ class TraCITestApp : public cSimpleModule, protected cListener {
 		void handlePositionUpdate();
 };
 
-#endif
 #endif

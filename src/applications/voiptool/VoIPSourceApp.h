@@ -24,7 +24,6 @@
 #error Please install libavcodec, libavformat, libavutil or disable 'VoIPTool' feature
 #endif
 
-#if !defined(_WIN32) && !defined(__WIN32__) && !defined(WIN32) && !defined(__CYGWIN__) && !defined(_WIN64)
 #include <fnmatch.h>
 #include <vector>
 
@@ -126,4 +125,4 @@ class INET_API VoIPSourceApp : public cSimpleModule
 };
 
 #endif //VOIPTOOL_VOIPSOURCEAPP_H
-#endif
+

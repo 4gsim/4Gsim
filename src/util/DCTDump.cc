@@ -17,7 +17,7 @@
 
 #include <errno.h>
 #include "DCTDump.h"
-#include "IPSerializer.h"
+#include "IPv4Serializer.h"
 #include "RRCMessage_m.h"
 
 #define MAXBUFLENGTH 65536
@@ -77,7 +77,7 @@ void DCTDump::handleMessage(cMessage *msg) {
         memset((void*)&dh, 0, sizeof(dh));
 
         // context name
-        IPDatagram *ipPacket = dynamic_cast<IPDatagram*>(msg);
+        IPv4Datagram *ipPacket = dynamic_cast<IPv4Datagram*>(msg);
         if (ipPacket) {
             if (ipPacket->getTransportProtocol()==IP_PROT_SCTP) {
                 strncpy(p, "SCTP.", 5);
@@ -85,7 +85,7 @@ void DCTDump::handleMessage(cMessage *msg) {
             }
             write = true;
 
-            buf_len = IPSerializer().serialize(ipPacket, buf, sizeof(buf));
+            buf_len = IPv4Serializer().serialize(ipPacket, buf, sizeof(buf));
         }
         RRCMessage *rrcMsg = dynamic_cast<RRCMessage*>(msg);
         if (rrcMsg) {
