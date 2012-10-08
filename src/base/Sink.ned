@@ -20,13 +20,14 @@
 package inet.base;
 
 //
-// Silently discards all input messages.
+// Silently discards all received packets.
 //
 simple Sink
 {
     parameters:
         @display("i=block/sink");
+        @signal[rcvdPk](type=cPacket);
+        @statistic[rcvdPk](title="packets received"; source=rcvdPk; record=count,"sum(packetBytes)","vector(packetBytes)"; interpolationmode=none);
     gates:
         input in[];
 }
-

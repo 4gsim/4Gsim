@@ -18,12 +18,13 @@
 
 //  Cleanup and rewrite: Andras Varga, 2004
 
-#include <omnetpp.h>
 #include <string.h>
 
-#include "IPDatagram.h"
-#include "IPControlInfo.h"
 #include "ICMP.h"
+
+#include "IPv4Datagram.h"
+#include "IPv4ControlInfo.h"
+#include "PingPayload_m.h"
 
 Define_Module(ICMP);
 
@@ -42,13 +43,13 @@ void ICMP::handleMessage(cMessage *msg)
     // request from application
     if (!strcmp(arrivalGate->getName(), "pingIn"))
     {
-        sendEchoRequest(PK(msg));
+        sendEchoRequest(check_and_cast<PingPayload *>(msg));
         return;
     }
 }
 
 
-void ICMP::sendErrorMessage(IPDatagram *origDatagram, ICMPType type, ICMPCode code)
+void ICMP::sendErrorMessage(IPv4Datagram *origDatagram, ICMPType type, ICMPCode code)
 {
     Enter_Method("sendErrorMessage(datagram, type=%d, code=%d)", type, code);
 
@@ -105,9 +106,9 @@ void ICMP::sendErrorMessage(IPDatagram *origDatagram, ICMPType type, ICMPCode co
     // process the ICMP message locally, right away
     if (origDatagram->getSrcAddress().isUnspecified())
     {
-        // pretend it came from the IP layer
-        IPControlInfo *controlInfo = new IPControlInfo();
-        controlInfo->setSrcAddr(IPAddress::LOOPBACK_ADDRESS); // FIXME maybe use configured loopback address
+        // pretend it came from the IPv4 layer
+        IPv4ControlInfo *controlInfo = new IPv4ControlInfo();
+        controlInfo->setSrcAddr(IPv4Address::LOOPBACK_ADDRESS); // FIXME maybe use configured loopback address
         controlInfo->setProtocol(IP_PROT_ICMP);
         errorMessage->setControlInfo(controlInfo);
 
@@ -120,11 +121,11 @@ void ICMP::sendErrorMessage(IPDatagram *origDatagram, ICMPType type, ICMPCode co
     }
 }
 
-void ICMP::sendErrorMessage(cPacket *transportPacket, IPControlInfo *ctrl, ICMPType type, ICMPCode code)
+void ICMP::sendErrorMessage(cPacket *transportPacket, IPv4ControlInfo *ctrl, ICMPType type, ICMPCode code)
 {
     Enter_Method("sendErrorMessage(transportPacket, ctrl, type=%d, code=%d)", type, code);
 
-    IPDatagram *datagram = ctrl->removeOrigDatagram();
+    IPv4Datagram *datagram = ctrl->removeOrigDatagram();
     take(transportPacket);
     take(datagram);
     datagram->encapsulate(transportPacket);
@@ -160,7 +161,7 @@ void ICMP::processICMPMessage(ICMPMessage *icmpmsg)
             processEchoReply(icmpmsg);
             break;
         default:
-            opp_error("Unknown ICMP type %d", icmpmsg->getType());
+            throw cRuntimeError("Unknown ICMP type %d", icmpmsg->getType());
     }
 }
 
@@ -178,9 +179,11 @@ void ICMP::processEchoRequest(ICMPMessage *request)
 
     // swap src and dest
     // TBD check what to do if dest was multicast etc?
-    IPControlInfo *ctrl = check_and_cast<IPControlInfo *>(reply->getControlInfo());
-    IPAddress src = ctrl->getSrcAddr();
-    IPAddress dest = ctrl->getDestAddr();
+    IPv4ControlInfo *ctrl = check_and_cast<IPv4ControlInfo *>(reply->getControlInfo());
+    IPv4Address src = ctrl->getSrcAddr();
+    IPv4Address dest = ctrl->getDestAddr();
+    // A. Ariza Modification 5/1/2011 clean the interface id, this forces the use of routing table in the IPv4 layer
+    ctrl->setInterfaceId(-1);
     ctrl->setSrcAddr(dest);
     ctrl->setDestAddr(src);
 
@@ -189,16 +192,28 @@ void ICMP::processEchoRequest(ICMPMessage *request)
 
 void ICMP::processEchoReply(ICMPMessage *reply)
 {
-    IPControlInfo *ctrl = check_and_cast<IPControlInfo*>(reply->removeControlInfo());
-    cPacket *payload = reply->decapsulate();
+    IPv4ControlInfo *ctrl = check_and_cast<IPv4ControlInfo*>(reply->removeControlInfo());
+    PingPayload *payload = check_and_cast<PingPayload *>(reply->decapsulate());
     payload->setControlInfo(ctrl);
     delete reply;
-    send(payload, "pingOut");
+    long originatorId = payload->getOriginatorId();
+    PingMap::iterator i = pingMap.find(originatorId);
+    if (i != pingMap.end())
+        send(payload, "pingOut", i->second);
+    else
+    {
+        EV << "Received ECHO REPLY has an unknown originator ID: " << originatorId << ", packet dropped." << endl;
+        delete payload;
+    }
 }
 
-void ICMP::sendEchoRequest(cPacket *msg)
+void ICMP::sendEchoRequest(PingPayload *msg)
 {
-    IPControlInfo *ctrl = check_and_cast<IPControlInfo*>(msg->removeControlInfo());
+    cGate *arrivalGate = msg->getArrivalGate();
+    int i = arrivalGate->getIndex();
+    pingMap[msg->getOriginatorId()] = i;
+
+    IPv4ControlInfo *ctrl = check_and_cast<IPv4ControlInfo*>(msg->removeControlInfo());
     ctrl->setProtocol(IP_PROT_ICMP);
     ICMPMessage *request = new ICMPMessage(msg->getName());
     request->setType(ICMP_ECHO_REQUEST);
@@ -207,9 +222,9 @@ void ICMP::sendEchoRequest(cPacket *msg)
     sendToIP(request);
 }
 
-void ICMP::sendToIP(ICMPMessage *msg, const IPAddress& dest)
+void ICMP::sendToIP(ICMPMessage *msg, const IPv4Address& dest)
 {
-    IPControlInfo *controlInfo = new IPControlInfo();
+    IPv4ControlInfo *controlInfo = new IPv4ControlInfo();
     controlInfo->setDestAddr(dest);
     controlInfo->setProtocol(IP_PROT_ICMP);
     msg->setControlInfo(controlInfo);
@@ -219,7 +234,7 @@ void ICMP::sendToIP(ICMPMessage *msg, const IPAddress& dest)
 
 void ICMP::sendToIP(ICMPMessage *msg)
 {
-    // assumes IPControlInfo is already attached
+    // assumes IPv4ControlInfo is already attached
     send(msg, "sendOut");
 }
 

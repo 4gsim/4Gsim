@@ -13,12 +13,15 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#include <omnetpp.h>
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-#include "ConstType.h"
+
+#include "INETDefs.h"
+
 #include "LDP.h"
+
+//#include "ConstType.h"
 #include "LIBTable.h"
 #include "InterfaceTableAccess.h"
 #include "IPv4InterfaceData.h"
@@ -26,6 +29,7 @@
 #include "LIBTableAccess.h"
 #include "TEDAccess.h"
 #include "NotifierConsts.h"
+#include "UDPControlInfo_m.h"
 #include "UDPPacket.h"
 #include "TCPSegment.h"
 
@@ -125,10 +129,22 @@ void LDP::initialize(int stage)
     // bind UDP socket
     udpSocket.setOutputGate(gate("udpOut"));
     udpSocket.bind(LDP_PORT);
+    for (int i = 0; i < ift->getNumInterfaces(); ++i)
+    {
+        InterfaceEntry *ie = ift->getInterface(i);
+        if (ie->isMulticast())
+        {
+            udpSockets.push_back(UDPSocket());
+            udpSockets.back().setOutputGate(gate("udpOut"));
+            udpSockets.back().setMulticastLoop(false);
+            udpSockets.back().setMulticastOutputInterface(ie->getInterfaceId());
+        }
+    }
 
     // start listening for incoming TCP conns
     EV << "Starting to listen on port " << LDP_PORT << " for incoming LDP sessions\n";
     serverSocket.setOutputGate(gate("tcpOut"));
+    serverSocket.readDataTransferModePar(*this);
     serverSocket.bind(LDP_PORT);
     serverSocket.listen();
 
@@ -148,7 +164,7 @@ void LDP::handleMessage(cMessage *msg)
         // every LDP capable router periodically sends HELLO messages to the
         // "all routers in the sub-network" multicast address
         EV << "Multicasting LDP Hello to neighboring routers\n";
-        sendHelloTo(IPAddress::ALL_ROUTERS_MCAST);
+        sendHelloTo(IPv4Address::ALL_ROUTERS_MCAST);
 
         // schedule next hello
         scheduleAt(simTime() + helloInterval, sendHelloMsg);
@@ -176,12 +192,12 @@ void LDP::handleMessage(cMessage *msg)
     }
 }
 
-void LDP::sendToPeer(IPAddress dest, cMessage *msg)
+void LDP::sendToPeer(IPv4Address dest, cMessage *msg)
 {
     getPeerSocket(dest)->send(msg);
 }
 
-void LDP::sendMappingRequest(IPAddress dest, IPAddress addr, int length)
+void LDP::sendMappingRequest(IPv4Address dest, IPv4Address addr, int length)
 {
     LDPLabelRequest *requestMsg = new LDPLabelRequest("Lb-Req");
     requestMsg->setByteLength(LDP_HEADER_BYTES); // FIXME find out actual length
@@ -270,26 +286,26 @@ void LDP::rebuildFecList()
     {
         // every entry in the routing table
 
-        const IPRoute *re = rt->getRoute(i);
+        const IPv4Route *re = rt->getRoute(i);
 
         // ignore multicast routes
-        if (re->getHost().isMulticast())
+        if (re->getDestination().isMulticast())
             continue;
 
         // find out current next hop according to routing table
-        IPAddress nextHop = (re->getType() == IPRoute::DIRECT) ? re->getHost() : re->getGateway();
+        IPv4Address nextHop = (re->getGateway().isUnspecified()) ? re->getDestination() : re->getGateway();
         ASSERT(!nextHop.isUnspecified());
 
         EV << "nextHop <-- " << nextHop << endl;
 
-        FecVector::iterator it = findFecEntry(oldList, re->getHost(), re->getNetmask().getNetmaskLength());
+        FecVector::iterator it = findFecEntry(oldList, re->getDestination(), re->getNetmask().getNetmaskLength());
 
         if (it == oldList.end())
         {
             // fec didn't exist, it was just created
             fec_t newItem;
             newItem.fecid = ++maxFecid;
-            newItem.addr = re->getHost();
+            newItem.addr = re->getDestination();
             newItem.length = re->getNetmask().getNetmaskLength();
             newItem.nextHop = nextHop;
             updateFecListEntry(newItem);
@@ -315,7 +331,7 @@ void LDP::rebuildFecList()
 
     // our own addresses (XXX is it needed?)
 
-    for (int i = 0; i< ift->getNumInterfaces(); ++i)
+    for (int i = 0; i < ift->getNumInterfaces(); ++i)
     {
         InterfaceEntry *ie = ift->getInterface(i);
         if (ie->getNetworkLayerGateIndex() < 0)
@@ -381,7 +397,7 @@ void LDP::rebuildFecList()
     std::sort(fecList.begin(), fecList.end(), fecPrefixCompare);
 }
 
-void LDP::updateFecList(IPAddress nextHop)
+void LDP::updateFecList(IPv4Address nextHop)
 {
     FecVector::iterator it;
     for (it = fecList.begin(); it != fecList.end(); it++)
@@ -393,7 +409,7 @@ void LDP::updateFecList(IPAddress nextHop)
     }
 }
 
-void LDP::sendHelloTo(IPAddress dest)
+void LDP::sendHelloTo(IPv4Address dest)
 {
     LDPHello *hello = new LDPHello("LDP-Hello");
     hello->setByteLength(LDP_HEADER_BYTES);
@@ -405,7 +421,16 @@ void LDP::sendHelloTo(IPAddress dest)
     //hello->setTbit(...);
     hello->addPar("color") = LDP_HELLO_TRAFFIC;
 
-    udpSocket.sendTo(hello, dest, LDP_PORT);
+    if (dest.isMulticast())
+    {
+        for (int i = 0; i < (int)udpSockets.size(); ++i)
+        {
+            LDPHello *msg = i== (int)udpSockets.size() - 1 ? hello : hello->dup();
+            udpSockets[i].sendTo(msg, dest, LDP_PORT);
+        }
+    }
+    else
+        udpSocket.sendTo(hello, dest, LDP_PORT);
 }
 
 void LDP::processHelloTimeout(cMessage *msg)
@@ -418,7 +443,7 @@ void LDP::processHelloTimeout(cMessage *msg)
             break;
     ASSERT(i < myPeers.size());
 
-    IPAddress peerIP = myPeers[i].peerIP;
+    IPv4Address peerIP = myPeers[i].peerIP;
 
     EV << "peer=" << peerIP << " is gone, removing adjacency" << endl;
 
@@ -483,9 +508,9 @@ void LDP::processHelloTimeout(cMessage *msg)
 
 void LDP::processLDPHello(LDPHello *msg)
 {
-    UDPControlInfo *controlInfo = check_and_cast<UDPControlInfo *>(msg->getControlInfo());
-    //IPAddress peerAddr = controlInfo->getSrcAddr().get4();
-    IPAddress peerAddr = msg->getSenderAddress();
+    UDPDataIndication *controlInfo = check_and_cast<UDPDataIndication *>(msg->getControlInfo());
+    //IPv4Address peerAddr = controlInfo->getSrcAddr().get4();
+    IPv4Address peerAddr = msg->getSenderAddress();
     int interfaceId = controlInfo->getInterfaceId();
     delete msg;
 
@@ -546,6 +571,7 @@ void LDP::openTCPConnectionToPeer(int peerIndex)
     TCPSocket *socket = new TCPSocket();
     socket->setOutputGate(gate("tcpOut"));
     socket->setCallbackObject(this, (void*)peerIndex);
+    socket->readDataTransferModePar(*this);
     socket->bind(rt->getRouterId(), 0);
     socketMap.addSocket(socket);
     myPeers[peerIndex].socket = socket;
@@ -562,11 +588,12 @@ void LDP::processMessageFromTCP(cMessage *msg)
         // find which peer it is and register connection
         socket = new TCPSocket(msg);
         socket->setOutputGate(gate("tcpOut"));
+        socket->readDataTransferModePar(*this);
 
         // FIXME there seems to be some confusion here. Is it sure that
         // routerIds we use as peerAddrs are the same as IP addresses
         // the routing is based on? --Andras
-        IPAddress peerAddr = socket->getRemoteAddress().get4();
+        IPv4Address peerAddr = socket->getRemoteAddress().get4();
 
         int i = findPeer(peerAddr);
         if (i==-1 || myPeers[i].socket)
@@ -650,6 +677,7 @@ void LDP::processLDPPacketFromTCP(LDPPacket *ldpPacket)
     {
     case HELLO:
         error("Received LDP HELLO over TCP (should arrive over UDP)");
+        break;
 
     case ADDRESS:
         // processADDRESS(ldpPacket);
@@ -683,10 +711,11 @@ void LDP::processLDPPacketFromTCP(LDPPacket *ldpPacket)
 
     default:
         error("LDP PROC DEBUG: Unrecognized LDP Message Type, type is %d", ldpPacket->getType());
+        break;
     }
 }
 
-IPAddress LDP::locateNextHop(IPAddress dest)
+IPv4Address LDP::locateNextHop(IPv4Address dest)
 {
     // Mapping L3 IP-host of next hop to L2 peer address.
 
@@ -708,11 +737,11 @@ IPAddress LDP::locateNextHop(IPAddress dest)
     //        break;
     //
     //if (i == rt->getNumRoutes())
-    //    return IPAddress();  // Signal an NOTIFICATION of NO ROUTE
+    //    return IPv4Address();  // Signal an NOTIFICATION of NO ROUTE
     //
     InterfaceEntry *ie = rt->getInterfaceForDestAddr(dest);
     if (!ie)
-        return IPAddress();  // no route
+        return IPv4Address();  // no route
 
     std::string iName = ie->getName(); // FIXME why use name for lookup?
     return findPeerAddrFromInterface(iName);
@@ -720,20 +749,20 @@ IPAddress LDP::locateNextHop(IPAddress dest)
 
 // FIXME To allow this to work, make sure there are entries of hosts for all peers
 
-IPAddress LDP::findPeerAddrFromInterface(std::string interfaceName)
+IPv4Address LDP::findPeerAddrFromInterface(std::string interfaceName)
 {
     int i = 0;
     int k = 0;
     InterfaceEntry *ie = ift->getInterfaceByName(interfaceName.c_str());
 
-    const IPRoute *anEntry;
+    const IPv4Route *anEntry;
 
     for (i = 0; i < rt->getNumRoutes(); i++)
     {
         for (k = 0; k < (int)myPeers.size(); k++)
         {
             anEntry = rt->getRoute(i);
-            if (anEntry->getHost()==myPeers[k].peerIP && anEntry->getInterface()==ie)
+            if (anEntry->getDestination()==myPeers[k].peerIP && anEntry->getInterface()==ie)
             {
                 return myPeers[k].peerIP;
             }
@@ -747,7 +776,7 @@ IPAddress LDP::findPeerAddrFromInterface(std::string interfaceName)
         for (k = 0; k < rt->getNumRoutes(); k++)
         {
             anEntry = rt->getRoute(i);
-            if (anEntry->getHost() == myPeers[i].peerIP)
+            if (anEntry->getDestination() == myPeers[i].peerIP)
                 break;
         }
         if (k == rt->getNumRoutes())
@@ -755,11 +784,11 @@ IPAddress LDP::findPeerAddrFromInterface(std::string interfaceName)
     }
 
     // return the peer's address if found, unspecified address otherwise
-    return i==(int)myPeers.size() ? IPAddress() : myPeers[i].peerIP;
+    return i==(int)myPeers.size() ? IPv4Address() : myPeers[i].peerIP;
 }
 
 // Pre-condition: myPeers vector is finalized
-std::string LDP::findInterfaceFromPeerAddr(IPAddress peerIP)
+std::string LDP::findInterfaceFromPeerAddr(IPv4Address peerIP)
 {
 /*
     int i;
@@ -787,7 +816,7 @@ std::string LDP::findInterfaceFromPeerAddr(IPAddress peerIP)
 //  return b.addr.prefixMatches(a, b.length);
 //}
 
-LDP::FecBindVector::iterator LDP::findFecEntry(FecBindVector& fecs, int fecid, IPAddress peer)
+LDP::FecBindVector::iterator LDP::findFecEntry(FecBindVector& fecs, int fecid, IPv4Address peer)
 {
     FecBindVector::iterator it;
     for (it = fecs.begin(); it != fecs.end(); it++)
@@ -803,7 +832,7 @@ LDP::FecBindVector::iterator LDP::findFecEntry(FecBindVector& fecs, int fecid, I
     return it;
 }
 
-LDP::FecVector::iterator LDP::findFecEntry(FecVector& fecs, IPAddress addr, int length)
+LDP::FecVector::iterator LDP::findFecEntry(FecVector& fecs, IPv4Address addr, int length)
 {
     FecVector::iterator it;
     for (it = fecs.begin(); it != fecs.end(); it++)
@@ -819,7 +848,7 @@ LDP::FecVector::iterator LDP::findFecEntry(FecVector& fecs, IPAddress addr, int 
     return it;
 }
 
-void LDP::sendNotify(int status, IPAddress dest, IPAddress addr, int length)
+void LDP::sendNotify(int status, IPv4Address dest, IPv4Address addr, int length)
 {
     // Send NOTIFY message
     LDPNotify *lnMessage = new LDPNotify("Lb-Notify");
@@ -838,7 +867,7 @@ void LDP::sendNotify(int status, IPAddress dest, IPAddress addr, int length)
     sendToPeer(dest, lnMessage);
 }
 
-void LDP::sendMapping(int type, IPAddress dest, int label, IPAddress addr, int length)
+void LDP::sendMapping(int type, IPv4Address dest, int label, IPv4Address addr, int length)
 {
     // Send LABEL MAPPING downstream
     LDPLabelMapping *lmMessage = new LDPLabelMapping("Lb-Mapping");
@@ -860,7 +889,7 @@ void LDP::sendMapping(int type, IPAddress dest, int label, IPAddress addr, int l
 void LDP::processNOTIFICATION(LDPNotify *packet)
 {
     FEC_TLV fec = packet->getFec();
-    IPAddress srcAddr = packet->getSenderAddress();
+    IPv4Address srcAddr = packet->getSenderAddress();
     int status = packet->getStatus();
 
     // XXX FIXME NO_ROUTE processing should probably be split into two functions,
@@ -877,7 +906,7 @@ void LDP::processNOTIFICATION(LDPNotify *packet)
         EV << "notification received from=" << srcAddr << " fec=" << fec << " status=" << status << endl;
     }
 
-    switch(status)
+    switch (status)
     {
         case NO_ROUTE:
         {
@@ -913,6 +942,7 @@ void LDP::processNOTIFICATION(LDPNotify *packet)
 
         default:
             ASSERT(false);
+            break;
     }
 
     delete packet;
@@ -921,7 +951,7 @@ void LDP::processNOTIFICATION(LDPNotify *packet)
 void LDP::processLABEL_REQUEST(LDPLabelRequest *packet)
 {
     FEC_TLV fec = packet->getFec();
-    IPAddress srcAddr = packet->getSenderAddress();
+    IPv4Address srcAddr = packet->getSenderAddress();
 
     EV << "Label Request from LSR " << srcAddr << " for FEC " << fec << endl;
 
@@ -1018,7 +1048,7 @@ void LDP::processLABEL_RELEASE(LDPLabelMapping *packet)
 {
     FEC_TLV fec = packet->getFec();
     int label = packet->getLabel();
-    IPAddress fromIP = packet->getSenderAddress();
+    IPv4Address fromIP = packet->getSenderAddress();
 
     EV << "Mapping release received for label=" << label << " fec=" << fec << " from " << fromIP << endl;
 
@@ -1058,7 +1088,7 @@ void LDP::processLABEL_WITHDRAW(LDPLabelMapping *packet)
 {
     FEC_TLV fec = packet->getFec();
     int label = packet->getLabel();
-    IPAddress fromIP = packet->getSenderAddress();
+    IPv4Address fromIP = packet->getSenderAddress();
 
     EV << "Mapping withdraw received for label=" << label << " fec=" << fec << " from " << fromIP << endl;
 
@@ -1102,7 +1132,7 @@ void LDP::processLABEL_MAPPING(LDPLabelMapping *packet)
 {
     FEC_TLV fec = packet->getFec();
     int label = packet->getLabel();
-    IPAddress fromIP = packet->getSenderAddress();
+    IPv4Address fromIP = packet->getSenderAddress();
 
     EV << "Label mapping label=" << label << " received for fec=" << fec << " from " << fromIP << endl;
 
@@ -1157,7 +1187,7 @@ void LDP::processLABEL_MAPPING(LDPLabelMapping *packet)
     delete packet;
 }
 
-int LDP::findPeer(IPAddress peerAddr)
+int LDP::findPeer(IPv4Address peerAddr)
 {
     for (PeerVector::iterator i=myPeers.begin(); i!=myPeers.end(); ++i)
         if (i->peerIP==peerAddr)
@@ -1165,7 +1195,7 @@ int LDP::findPeer(IPAddress peerAddr)
     return -1;
 }
 
-TCPSocket *LDP::findPeerSocket(IPAddress peerAddr)
+TCPSocket *LDP::findPeerSocket(IPv4Address peerAddr)
 {
     // find peer in table and return its socket
     int i = findPeer(peerAddr);
@@ -1174,7 +1204,7 @@ TCPSocket *LDP::findPeerSocket(IPAddress peerAddr)
     return myPeers[i].socket;
 }
 
-TCPSocket *LDP::getPeerSocket(IPAddress peerAddr)
+TCPSocket *LDP::getPeerSocket(IPv4Address peerAddr)
 {
     TCPSocket *sock = findPeerSocket(peerAddr);
     ASSERT(sock);
@@ -1183,9 +1213,9 @@ TCPSocket *LDP::getPeerSocket(IPAddress peerAddr)
     return sock;
 }
 
-bool LDP::lookupLabel(IPDatagram *ipdatagram, LabelOpVector& outLabel, std::string& outInterface, int& color)
+bool LDP::lookupLabel(IPv4Datagram *ipdatagram, LabelOpVector& outLabel, std::string& outInterface, int& color)
 {
-    IPAddress destAddr = ipdatagram->getDestAddress();
+    IPv4Address destAddr = ipdatagram->getDestAddress();
     int protocol = ipdatagram->getTransportProtocol();
 
     // never match and always route via L3 if:
@@ -1232,7 +1262,7 @@ bool LDP::lookupLabel(IPDatagram *ipdatagram, LabelOpVector& outLabel, std::stri
     return false;
 }
 
-void LDP::receiveChangeNotification(int category, const cPolymorphic *details)
+void LDP::receiveChangeNotification(int category, const cObject *details)
 {
     Enter_Method_Silent();
     printNotificationBanner(category, details);

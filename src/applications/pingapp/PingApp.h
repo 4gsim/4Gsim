@@ -16,11 +16,14 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include <omnetpp.h>
+#include "INETDefs.h"
+
 #include "IPvXAddress.h"
 
 class PingPayload;
 
+// how many ping request's send time is stored
+#define PING_HISTORY_SIZE 10
 
 /**
  * Generates ping requests and calculates the packet loss and round trip
@@ -31,7 +34,8 @@ class PingPayload;
 class INET_API PingApp : public cSimpleModule
 {
   protected:
-    virtual void initialize();
+    virtual void initialize(int stage);
+    virtual int numInitStages() const { return 4; }
     virtual void handleMessage(cMessage *msg);
     virtual void finish();
 
@@ -47,7 +51,7 @@ class INET_API PingApp : public cSimpleModule
     IPvXAddress destAddr;
     IPvXAddress srcAddr;
     int packetSize;
-    cPar *intervalp;
+    cPar *sendIntervalp;
     int hopLimit;
     int count;
     simtime_t startTime;
@@ -57,12 +61,16 @@ class INET_API PingApp : public cSimpleModule
     // state
     long sendSeqNo;
     long expectedReplySeqNo;
+    simtime_t sendTimeHistory[PING_HISTORY_SIZE];
 
     // statistics
-    cStdDev delayStat;
-    cOutVector delayVector;
-    cOutVector dropVector;
-    long dropCount;
+    cStdDev rttStat;
+    static simsignal_t rttSignal;
+    static simsignal_t numLostSignal;
+    static simsignal_t outOfOrderArrivalsSignal;
+    static simsignal_t pingTxSeqSignal;
+    static simsignal_t pingRxSeqSignal;
+    long lossCount;
     long outOfOrderArrivalCount;
     long numPongs;
 };

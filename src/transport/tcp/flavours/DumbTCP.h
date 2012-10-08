@@ -18,7 +18,8 @@
 #ifndef __INET_DUMBTCP_H
 #define __INET_DUMBTCP_H
 
-#include <omnetpp.h>
+#include "INETDefs.h"
+
 #include "TCPAlgorithm.h"
 
 
@@ -89,5 +90,3 @@ class INET_API DumbTCP : public TCPAlgorithm
 };
 
 #endif
-
-

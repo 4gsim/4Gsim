@@ -19,10 +19,12 @@
 // Required for MACAddress declarations
 //
 cplusplus {{
-//FIXME use consts for frame lengths!!! account for LLC(3)+SNAP(5) headers in data frames!!! +add SNAP orgcode, localcode into the msg?
+#include "Ieee80211Consts.h"
 #include "MACAddress.h"
+#include "Ieee802Ctrl_m.h" // for ~EtherType
 }}
 
+enum EtherType;
 class noncobject MACAddress;
 
 //
@@ -44,15 +46,22 @@ enum Ieee80211FrameType
     ST_DISASSOCIATION = 0x0a;
     ST_AUTHENTICATION = 0x0b;
     ST_DEAUTHENTICATION = 0x0c;
+    ST_ACTION = 0x0d;
+    ST_NOACKACTION = 0x0e;
 
     // control (CFEND/CFEND_CFACK omitted):
     ST_PSPOLL = 0x1a;
     ST_RTS = 0x1b;
     ST_CTS = 0x1c;
     ST_ACK = 0x1d;
+    ST_BLOCKACK_REQ = 0x18;
+    ST_BLOCKACK     = 0x19;
 
     // data (CFPOLL/CFACK subtypes omitted):
     ST_DATA = 0x20;
+    //Feedback frame for multicast tramsmission
+    ST_LBMS_REQUEST = 0x30;
+    ST_LBMS_REPORT = 0x31;
 }
 
 //
@@ -65,7 +74,7 @@ enum Ieee80211FrameType
 //
 packet Ieee80211Frame
 {
-    byteLength = 14;
+    byteLength = LENGTH_ACK / 8;
     short type enum(Ieee80211FrameType); // type and subtype
     bool toDS;
     bool fromDS;
@@ -74,6 +83,7 @@ packet Ieee80211Frame
     simtime_t duration = -1; // "duration" in the Duration/ID field (-1=no duration)
     short AID = -1;          // "id" (Association ID) in the Duration/ID field (-1=no ID)
     MACAddress receiverAddress; // aka address1
+    simtime_t MACArrive;
 }
 
 //
@@ -88,6 +98,7 @@ packet Ieee80211OneAddressFrame extends Ieee80211Frame
 //
 packet Ieee80211ACKFrame extends Ieee80211OneAddressFrame
 {
+    byteLength = LENGTH_ACK / 8;
     type = ST_ACK;
 }
 
@@ -96,7 +107,7 @@ packet Ieee80211ACKFrame extends Ieee80211OneAddressFrame
 //
 packet Ieee80211TwoAddressFrame extends Ieee80211OneAddressFrame
 {
-    byteLength = 20;
+    byteLength = LENGTH_RTS / 8;
     MACAddress transmitterAddress; // aka address2
 }
 
@@ -105,6 +116,7 @@ packet Ieee80211TwoAddressFrame extends Ieee80211OneAddressFrame
 //
 packet Ieee80211RTSFrame extends Ieee80211TwoAddressFrame
 {
+    byteLength = LENGTH_RTS / 8;
     type = ST_RTS;
 }
 
@@ -113,6 +125,7 @@ packet Ieee80211RTSFrame extends Ieee80211TwoAddressFrame
 //
 packet Ieee80211CTSFrame extends Ieee80211OneAddressFrame
 {
+    byteLength = LENGTH_CTS / 8;
     type = ST_CTS;
 }
 
@@ -121,10 +134,10 @@ packet Ieee80211CTSFrame extends Ieee80211OneAddressFrame
 //
 packet Ieee80211DataOrMgmtFrame extends Ieee80211TwoAddressFrame
 {
-    byteLength = 28;
+    byteLength = LENGTH_MGMT / 8;
     MACAddress address3;
     short fragmentNumber;
-    short sequenceNumber;
+    uint16 sequenceNumber;
 }
 
 //
@@ -132,9 +145,18 @@ packet Ieee80211DataOrMgmtFrame extends Ieee80211TwoAddressFrame
 //
 packet Ieee80211DataFrame extends Ieee80211DataOrMgmtFrame
 {
+    byteLength = LENGTH_DATAHDR / 8;
     type = ST_DATA;
-    byteLength = 34;
     MACAddress address4;
+}
+
+//
+// 802.11 data frame with the 8-byte SNAP header (AA AA 03, 00 00 00, <2-byte ~EtherType>)
+//
+packet Ieee80211DataFrameWithSNAP extends Ieee80211DataFrame
+{
+    byteLength = LENGTH_DATAHDR / 8 + SNAP_HEADER_BYTES;
+    int etherType enum (EtherType);
 }
 
 //
@@ -142,5 +164,6 @@ packet Ieee80211DataFrame extends Ieee80211DataOrMgmtFrame
 //
 packet Ieee80211ManagementFrame extends Ieee80211DataOrMgmtFrame
 {
+    short Category;
+    //short action enum(WirelessNetworkManagementAction); // action
 }
-

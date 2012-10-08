@@ -21,7 +21,8 @@
 #include "NotifierConsts.h"
 #include "PhyControlInfo_m.h"
 #include "RadioState.h"
-#include "ChannelControl.h"
+#include "ChannelAccess.h"
+#include "Radio80211aControlInfo_m.h"
 
 //TBD supportedRates!
 //TBD use command msg kinds?
@@ -96,17 +97,19 @@ void Ieee80211MgmtSTA::initialize(int stage)
 
         nb = NotificationBoardAccess().get();
 
-        // determine numChannels (needed when we're told to scan "all" channels)
-        //XXX find a better way than directly accessing channelControl
-        cModule *cc = ChannelControl::get();
-        numChannels = cc->par("numChannels");
-
         WATCH(isScanning);
         WATCH(isAssociated);
 
         WATCH(scanning);
         WATCH(assocAP);
         WATCH_LIST(apList);
+    }
+    else if (stage == 1)
+    {
+        // determine numChannels (needed when we're told to scan "all" channels)
+        IChannelControl *cc = ChannelAccess::getChannelControl();
+        numChannels = cc->getNumChannels();
+        nb->subscribe(this, NF_LINK_FULL_PROMISCUOUS);
     }
 }
 
@@ -177,11 +180,18 @@ void Ieee80211MgmtSTA::handleTimer(cMessage *msg)
 
 void Ieee80211MgmtSTA::handleUpperMessage(cPacket *msg)
 {
+    if (!isAssociated || assocAP.address.isUnspecified())
+    {
+        EV << "STA is not associated with an access point, discarding packet" << msg << "\n";
+        delete msg;
+        return;
+    }
+
     Ieee80211DataFrame *frame = encapsulate(msg);
     sendOrEnqueue(frame);
 }
 
-void Ieee80211MgmtSTA::handleCommand(int msgkind, cPolymorphic *ctrl)
+void Ieee80211MgmtSTA::handleCommand(int msgkind, cObject *ctrl)
 {
     if (dynamic_cast<Ieee80211Prim_ScanRequest *>(ctrl))
         processScanCommand((Ieee80211Prim_ScanRequest *)ctrl);
@@ -204,7 +214,7 @@ void Ieee80211MgmtSTA::handleCommand(int msgkind, cPolymorphic *ctrl)
 
 Ieee80211DataFrame *Ieee80211MgmtSTA::encapsulate(cPacket *msg)
 {
-    Ieee80211DataFrame *frame = new Ieee80211DataFrame(msg->getName());
+    Ieee80211DataFrameWithSNAP *frame = new Ieee80211DataFrameWithSNAP(msg->getName());
 
     // frame goes to the AP
     frame->setToDS(true);
@@ -215,6 +225,7 @@ Ieee80211DataFrame *Ieee80211MgmtSTA::encapsulate(cPacket *msg)
     // destination address is in address3
     Ieee802Ctrl *ctrl = check_and_cast<Ieee802Ctrl *>(msg->removeControlInfo());
     frame->setAddress3(ctrl->getDest());
+    frame->setEtherType(ctrl->getEtherType());
     delete ctrl;
 
     frame->encapsulate(msg);
@@ -317,7 +328,7 @@ void Ieee80211MgmtSTA::startAssociation(APInfo *ap, simtime_t timeout)
     scheduleAt(simTime()+timeout, assocTimeoutMsg);
 }
 
-void Ieee80211MgmtSTA::receiveChangeNotification(int category, const cPolymorphic *details)
+void Ieee80211MgmtSTA::receiveChangeNotification(int category, const cObject *details)
 {
     Enter_Method_Silent();
     printNotificationBanner(category, details);
@@ -331,6 +342,21 @@ void Ieee80211MgmtSTA::receiveChangeNotification(int category, const cPolymorphi
             EV << "busy radio channel detected during scanning\n";
             scanning.busyChannelDetected = true;
         }
+    }
+    else if (category==NF_LINK_FULL_PROMISCUOUS)
+    {
+        Ieee80211DataOrMgmtFrame *frame = dynamic_cast<Ieee80211DataOrMgmtFrame*>(const_cast<cPolymorphic*>(details));
+        if (!frame || frame->getControlInfo()==NULL)
+            return;
+        if (frame->getType()!=ST_BEACON)
+            return;
+        if (dynamic_cast <Radio80211aControlInfo*> (frame->getControlInfo())==NULL)
+            return;
+        Radio80211aControlInfo *ctl= dynamic_cast <Radio80211aControlInfo*> (frame->getControlInfo());
+        Ieee80211BeaconFrame *beacon= (check_and_cast<Ieee80211BeaconFrame *>(frame));
+        APInfo *ap = lookupAP(beacon->getTransmitterAddress());
+        if (ap)
+            ap->rxPower=ctl->getRecPow();
     }
 }
 
@@ -554,7 +580,15 @@ int Ieee80211MgmtSTA::statusCodeToPrimResultCode(int statusCode)
 
 void Ieee80211MgmtSTA::handleDataFrame(Ieee80211DataFrame *frame)
 {
-    sendUp(decapsulate(frame));
+    // Only send the Data frame up to the higher layer if the STA is associated with an AP,
+    // else delete the frame
+    if (isAssociated)
+        sendUp(decapsulate(frame));
+    else
+    {
+        EV << "Rejecting data frame as STA is not associated with an AP" << endl;
+        delete frame;
+    }
 }
 
 void Ieee80211MgmtSTA::handleAuthenticationFrame(Ieee80211AuthenticationFrame *frame)
@@ -658,6 +692,7 @@ void Ieee80211MgmtSTA::handleDeauthenticationFrame(Ieee80211DeauthenticationFram
 
     EV << "Setting isAuthenticated flag for that AP to false\n";
     ap->isAuthenticated = false;
+    delete frame;
 }
 
 void Ieee80211MgmtSTA::handleAssociationRequestFrame(Ieee80211AssociationRequestFrame *frame)

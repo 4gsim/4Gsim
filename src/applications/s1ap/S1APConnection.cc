@@ -17,6 +17,8 @@
 #include "S1AP.h"
 #include "PerEncoder.h"
 #include "LTEUtils.h"
+#include "SCTPCommand_m.h"
+#include "SCTPAssociation.h"
 
 S1APConnection::S1APConnection(S1AP *module) {
 	// TODO Auto-generated constructor stub

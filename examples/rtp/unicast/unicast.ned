@@ -1,6 +1,9 @@
 package inet.examples.rtp.unicast;
 
+import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
+import inet.networklayer.extras.Dummy;
 import inet.transport.rtp.RTPHost;
+
 
 network RTPNetwork
 {
@@ -16,26 +19,19 @@ network RTPNetwork
     submodules:
         sender: RTPHost {
             parameters:
-                IPForward = false;
                 profileName = "inet.transport.rtp.RTPAVProfile";
-                destinationAddress = "10.0.0.2";
+                destinationAddress = "receiver";
                 portNumber = 5004;
                 bandwidth = 8000;
-                fileName = "../Data/moving.mpg.gdf";
-                payloadType = 32;
-                routingFile = "server.irt";
         }
         receiver: RTPHost {
             parameters:
-                IPForward = false;
                 profileName = "inet.transport.rtp.RTPAVProfile";
-                destinationAddress = "10.0.0.1";
+                destinationAddress = "sender";
                 portNumber = 5004;
                 bandwidth = 8000;
-                fileName = "";
-                payloadType = 32;
-                routingFile = "client.irt";
         }
+        configurator: IPv4NetworkConfigurator;
     connections:
         sender.pppg++ <--> ethernet <--> receiver.pppg++;
 }

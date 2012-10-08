@@ -198,7 +198,7 @@ void NAS::handleMessageFromRadio(cMessage *msg) {
 					entry->ipv4Data()->setIPAddress(esm->getDefPDNConnection()->getSubscriberAddress().get4());
 					entry->setMACAddress(MACAddress::generateAutoAddress());
 					entry->setMtu(1500);
-					IPRoute *route=new IPRoute();
+					IPv4Route *route=new IPv4Route();
 					route->setInterface(entry);
 					rt->addRoute(route);
 				}

@@ -17,7 +17,6 @@
 
 #include "DiameterBase.h"
 #include "IPvXAddress.h"
-#include "IPAddressResolver.h"
 #include "DiameterApplication.h"
 #include <algorithm>
 
@@ -208,11 +207,11 @@ DiameterSession *DiameterBase::createSession(bool stType) {
 AddressVector DiameterBase::findLocalAddresses(AddressVector remoteAddrs) {
 	AddressVector localAddrs;
 	for (unsigned i = 0; i < remoteAddrs.size(); i++) {
-		IPAddress addr = (remoteAddrs.at(i)).get4();
-		const IPRoute *route = rT->findBestMatchingRoute(addr);
+		IPv4Address addr = (remoteAddrs.at(i)).get4();
+		const IPv4Route *route = rT->findBestMatchingRoute(addr);
 		if (route == NULL)
 			error("DiameterBase: No route for remote address");
-		localAddrs.push_back(IPvXAddress(route->getHost()));
+		localAddrs.push_back(IPvXAddress(route->getDestination()));
 	}
 	return localAddrs;
 }

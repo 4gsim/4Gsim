@@ -19,6 +19,7 @@
 #include "PhyControlInfo_m.h"
 #include "InterfaceTableAccess.h"
 #include "IPv4InterfaceData.h"
+
 Define_Module(LTERadio);
 
 LTERadio::LTERadio() : rs(this->getId()) {
@@ -43,20 +44,20 @@ void LTERadio::initialize(int stage) {
 
     	receptionModel = createReceptionModel();
     	radioModel = createRadioModel();
-    } else if (stage == 2)
-        cc->updateHostChannel(myHostRef, rs.getChannelNumber());
+    } else if (stage == 2) {
+        //cc->updateHostChannel(myHostRef, rs.getChannelNumber());
 
-    else  if(stage == 4)
+    } else  if(stage == 4)
 	{
     	if(rs.getChannelNumber()!=10)
     	{
-    	ift = InterfaceTableAccess().get();
-	InterfaceEntry *entry = new InterfaceEntry();
-	IPv4InterfaceData *ipv4data = new IPv4InterfaceData();
-	entry->setIPv4Data(ipv4data);
-	entry->setName("UERadioInterface");
-	entry->setMACAddress(MACAddress::generateAutoAddress());
-	ift->addInterface(entry,this);
+			ift = InterfaceTableAccess().get();
+			InterfaceEntry *entry = new InterfaceEntry(this);
+			IPv4InterfaceData *ipv4data = new IPv4InterfaceData();
+			entry->setIPv4Data(ipv4data);
+			entry->setName("UERadioInterface");
+			entry->setMACAddress(MACAddress::generateAutoAddress());
+			ift->addInterface(entry);
     	}
 	}
 

@@ -20,6 +20,8 @@
 #include "DiameterBase.h"
 #include "DiameterUtils.h"
 #include "DiameterSerializer.h"
+#include "SCTPAssociation.h"
+#include "SCTPCommand_m.h"
 
 DiameterConnection::DiameterConnection(DiameterBase *module) {
 	// TODO Auto-generated constructor stub
@@ -133,7 +135,7 @@ void DiameterConnection::socketDataArrived(int32 connId, void *yourPtr, cPacket 
 }
 
 void DiameterConnection::socketDataNotificationArrived(int32 connId, void *yourPtr, cPacket *msg) {
-    SCTPCommand *ind = check_and_cast<SCTPCommand *>(msg->removeControlInfo());
+	SCTPCommand *ind = check_and_cast<SCTPCommand *>(msg->removeControlInfo());
     cPacket* cmsg = new cPacket();
     SCTPSendCommand *cmd = new SCTPSendCommand();
     cmd->setAssocId(ind->getAssocId());
@@ -205,7 +207,7 @@ void DiameterConnection::send(DiameterMessage *msg, unsigned fqdnPos, unsigned r
     SCTPSimpleMessage* smsg = DiameterSerializer().serialize(msg);
 
     cmsg->encapsulate(smsg);
-    cmsg->setKind(SCTP_C_SEND);
+    cmsg->setKind(SCTP_C_SEND_ORDERED);
 
     EV << "Sending message "<< msg->getName() << " on Assoc with Id = " << socket->getConnectionId() << endl;
     delete msg;		// all its content is in SCTPSimpleMessage

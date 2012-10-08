@@ -26,15 +26,19 @@ import inet.nodes.ethernet.EtherSwitch;
 import ned.DatarateChannel;
 
 
+//
+// A 100Mb/s Ethernet cable. Part of ~LargeNet.
+//
 channel cable extends DatarateChannel
 {
     parameters:
         delay = 0.1us;
+        datarate = 100Mbps;
 }
 
 
 //
-// Several hosts on an Ethernet hub
+// Several hosts on an Ethernet hub; part of ~LargeNet.
 //
 module SmallLAN
 {
@@ -59,7 +63,7 @@ module SmallLAN
 
 
 //
-// Several hosts and an Ethernet hub on a switch
+// Several hosts and an Ethernet hub on a switch; part of ~LargeNet.
 //
 module MediumLAN
 {
@@ -100,7 +104,7 @@ module MediumLAN
 
 //
 // Several hosts and an Ethernet hub on a switch. One port of the hub
-// connect to a 10Base2 segment.
+// connect to a 10Base2 segment. Part of ~LargeNet.
 //
 module LargeLAN
 {
@@ -111,6 +115,13 @@ module LargeLAN
         @display("i=cloud");
     gates:
         inout ethg;
+    types:
+        channel cabletobus extends DatarateChannel
+        {
+            parameters:
+                delay = 0;
+                datarate = 10Mbps;
+        }
     submodules:
         switch: EtherSwitch {
             @display("is=s");
@@ -132,7 +143,7 @@ module LargeLAN
         }
         bhost[b]: EtherHost {
             parameters:
-                @display("is=s;p=,,r");
+                @display("is=s;p=,r");
         }
     connections:
         for i=0..n-1 {
@@ -142,17 +153,16 @@ module LargeLAN
         switch.ethg++ <--> ethg;
 
         for i=0..h-1 {
-            hub.ethg++ <--> cable <--> hhost[i].ethg;
+            hub.ethg++ <--> cabletobus <--> hhost[i].ethg;
         }
 
-        switch.ethg++ <--> cable <--> hub.ethg++;
+        switch.ethg++ <--> cabletobus <--> hub.ethg++;
 
         for i=0..b-1 {
-            bus.ethg++ <--> bhost[i].ethg;
+            bus.ethg++ <--> cabletobus <--> bhost[i].ethg;
         }
 
-        bus.ethg++ <--> hub.ethg++;
-
+        bus.ethg++ <--> cabletobus <--> hub.ethg++;
 }
 
 //
@@ -178,6 +188,13 @@ network LargeNet
         int ds;  // number of small LANs on switch D
         int dm;  // number of medium LANs on switch D
         int dl;  // number of large LANs on switch D
+    types:
+        channel cabletoserver extends DatarateChannel
+        {
+            parameters:
+                delay = 0;
+                datarate = 1Gbps;
+        }
     submodules:
         switchBB[n]: EtherSwitch {
             @display("is=s");
@@ -230,7 +247,7 @@ network LargeNet
         for i=0..al-1 {
             switchA.ethg++ <--> cable <--> llanA[i].ethg;
         }
-        switchA.ethg++ <--> cable <--> serverA.ethg;
+        switchA.ethg++ <--> cabletoserver <--> serverA.ethg;
 
         // switch B
         for i=0..bs-1 {
@@ -242,7 +259,7 @@ network LargeNet
         for i=0..bl-1 {
             switchB.ethg++ <--> cable <--> llanB[i].ethg;
         }
-        switchB.ethg++ <--> cable <--> serverB.ethg;
+        switchB.ethg++ <--> cabletoserver <--> serverB.ethg;
 
         // switch C
         for i=0..cs-1 {
@@ -254,7 +271,7 @@ network LargeNet
         for i=0..cl-1 {
             switchC.ethg++ <--> cable <--> llanC[i].ethg;
         }
-        switchC.ethg++ <--> cable <--> serverC.ethg;
+        switchC.ethg++ <--> cabletoserver <--> serverC.ethg;
 
         // switch D
         for i=0..ds-1 {
@@ -266,7 +283,7 @@ network LargeNet
         for i=0..dl-1 {
             switchD.ethg++ <--> cable <--> llanD[i].ethg;
         }
-        switchD.ethg++ <--> cable <--> serverD.ethg;
+        switchD.ethg++ <--> cabletoserver <--> serverD.ethg;
 
         // connect switches
         switchA.ethg++ <--> cable <--> switchB.ethg++;

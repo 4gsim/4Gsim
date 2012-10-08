@@ -19,12 +19,16 @@
 #include "Ieee80211AgentSTA.h"
 #include "Ieee80211Primitives_m.h"
 #include "NotifierConsts.h"
-
+#include "InterfaceTableAccess.h"
 
 
 Define_Module(Ieee80211AgentSTA);
 
 #define MK_STARTUP  1
+
+simsignal_t Ieee80211AgentSTA::sentRequestSignal = SIMSIGNAL_NULL;
+simsignal_t Ieee80211AgentSTA::acceptConfirmSignal = SIMSIGNAL_NULL;
+simsignal_t Ieee80211AgentSTA::dropConfirmSignal = SIMSIGNAL_NULL;
 
 void Ieee80211AgentSTA::initialize(int stage)
 {
@@ -42,11 +46,29 @@ void Ieee80211AgentSTA::initialize(int stage)
         while ((token = tokenizer.nextToken())!=NULL)
             channelsToScan.push_back(atoi(token));
 
-        NotificationBoard *nb = NotificationBoardAccess().get();
+        nb = NotificationBoardAccess().get();
         nb->subscribe(this, NF_L2_BEACON_LOST);
 
+        InterfaceTable *ift = (InterfaceTable*)InterfaceTableAccess().getIfExists();
+        myIface = NULL;
+        if (!ift)
+        {
+            myIface = ift->getInterfaceByName(getParentModule()->getFullName());
+        }
+
+        // JcM add: get the default ssid, if there is one.
+        default_ssid = par("default_ssid").stringValue();
+
+        //Statistics:
+        sentRequestSignal = registerSignal("sentRequest");
+        acceptConfirmSignal = registerSignal("acceptConfirm");
+        dropConfirmSignal = registerSignal("dropConfirm");
+
         // start up: send scan request
-        scheduleAt(simTime()+uniform(0,maxChannelTime), new cMessage("startUp", MK_STARTUP));
+        if (par("startingTime").doubleValue()>0)
+            scheduleAt(simTime()+par("startingTime").doubleValue(), new cMessage("startUp", MK_STARTUP));
+        else
+            scheduleAt(simTime()+uniform(0, maxChannelTime), new cMessage("startUp", MK_STARTUP));
     }
 }
 
@@ -74,7 +96,7 @@ void Ieee80211AgentSTA::handleTimer(cMessage *msg)
 
 void Ieee80211AgentSTA::handleResponse(cMessage *msg)
 {
-    cPolymorphic *ctrl = msg->removeControlInfo();
+    cObject *ctrl = msg->removeControlInfo();
     delete msg;
 
     EV << "Processing confirmation from mgmt: " << ctrl->getClassName() << "\n";
@@ -94,7 +116,7 @@ void Ieee80211AgentSTA::handleResponse(cMessage *msg)
     delete ctrl;
 }
 
-void Ieee80211AgentSTA::receiveChangeNotification(int category, const cPolymorphic *details)
+void Ieee80211AgentSTA::receiveChangeNotification(int category, const cObject *details)
 {
     Enter_Method_Silent();
     printNotificationBanner(category, details);
@@ -106,6 +128,7 @@ void Ieee80211AgentSTA::receiveChangeNotification(int category, const cPolymorph
         getParentModule()->getParentModule()->bubble("Beacon lost!");
         //sendDisassociateRequest();
         sendScanRequest();
+        nb->fireChangeNotification(NF_L2_DISASSOCIATED, myIface);
     }
 }
 
@@ -131,6 +154,7 @@ void Ieee80211AgentSTA::sendScanRequest()
         req->setChannelList(i, channelsToScan[i]);
     //XXX BSSID, SSID are left at default ("any")
 
+    emit(sentRequestSignal, PR_SCAN_REQUEST);
     sendRequest(req);
 }
 
@@ -140,6 +164,7 @@ void Ieee80211AgentSTA::sendAuthenticateRequest(const MACAddress& address)
     Ieee80211Prim_AuthenticateRequest *req = new Ieee80211Prim_AuthenticateRequest();
     req->setAddress(address);
     req->setTimeout(authenticationTimeout);
+    emit(sentRequestSignal, PR_AUTHENTICATE_REQUEST);
     sendRequest(req);
 }
 
@@ -149,6 +174,7 @@ void Ieee80211AgentSTA::sendDeauthenticateRequest(const MACAddress& address, int
     Ieee80211Prim_DeauthenticateRequest *req = new Ieee80211Prim_DeauthenticateRequest();
     req->setAddress(address);
     req->setReasonCode(reasonCode);
+    emit(sentRequestSignal, PR_DEAUTHENTICATE_REQUEST);
     sendRequest(req);
 }
 
@@ -158,6 +184,7 @@ void Ieee80211AgentSTA::sendAssociateRequest(const MACAddress& address)
     Ieee80211Prim_AssociateRequest *req = new Ieee80211Prim_AssociateRequest();
     req->setAddress(address);
     req->setTimeout(associationTimeout);
+    emit(sentRequestSignal, PR_ASSOCIATE_REQUEST);
     sendRequest(req);
 }
 
@@ -167,6 +194,7 @@ void Ieee80211AgentSTA::sendReassociateRequest(const MACAddress& address)
     Ieee80211Prim_ReassociateRequest *req = new Ieee80211Prim_ReassociateRequest();
     req->setAddress(address);
     req->setTimeout(associationTimeout);
+    emit(sentRequestSignal, PR_REASSOCIATE_REQUEST);
     sendRequest(req);
 }
 
@@ -176,21 +204,46 @@ void Ieee80211AgentSTA::sendDisassociateRequest(const MACAddress& address, int r
     Ieee80211Prim_DisassociateRequest *req = new Ieee80211Prim_DisassociateRequest();
     req->setAddress(address);
     req->setReasonCode(reasonCode);
+    emit(sentRequestSignal, PR_DISASSOCIATE_REQUEST);
     sendRequest(req);
 }
 
 void Ieee80211AgentSTA::processScanConfirm(Ieee80211Prim_ScanConfirm *resp)
 {
     // choose best AP
-    int bssIndex = chooseBSS(resp);
+
+    int bssIndex;
+    if (this->default_ssid=="")
+    {
+            // no default ssid, so pick the best one
+            bssIndex = chooseBSS(resp);
+    }
+    else
+    {
+        // search if the default_ssid is in the list, otherwise
+        // keep searching.
+        for (int i=0; i<(int)resp->getBssListArraySize(); i++)
+        {
+            std::string resp_ssid = resp->getBssList(i).getSSID();
+            if (resp_ssid == this->default_ssid)
+            {
+                EV << "found default SSID " << resp_ssid << endl;
+                bssIndex = i;
+                break;
+            }
+        }
+    }
+
     if (bssIndex==-1)
     {
         EV << "No (suitable) AP found, continue scanning\n";
+        emit(dropConfirmSignal, PR_SCAN_CONFIRM);
         sendScanRequest();
         return;
     }
 
     dumpAPList(resp);
+    emit(acceptConfirmSignal, PR_SCAN_CONFIRM);
 
     Ieee80211Prim_BSSDescription& bssDesc = resp->getBssList(bssIndex);
     EV << "Chosen AP address=" << bssDesc.getBSSID() << " from list, starting authentication\n";
@@ -233,6 +286,7 @@ void Ieee80211AgentSTA::processAuthenticateConfirm(Ieee80211Prim_AuthenticateCon
     if (resp->getResultCode()!=PRC_SUCCESS)
     {
         EV << "Authentication error\n";
+        emit(dropConfirmSignal, PR_AUTHENTICATE_CONFIRM);
 
         // try scanning again, maybe we'll have better luck next time, possibly with a different AP
         EV << "Going back to scanning\n";
@@ -241,6 +295,7 @@ void Ieee80211AgentSTA::processAuthenticateConfirm(Ieee80211Prim_AuthenticateCon
     else
     {
         EV << "Authentication successful, let's try to associate\n";
+        emit(acceptConfirmSignal, PR_AUTHENTICATE_CONFIRM);
         sendAssociateRequest(resp->getAddress());
     }
 }
@@ -250,6 +305,7 @@ void Ieee80211AgentSTA::processAssociateConfirm(Ieee80211Prim_AssociateConfirm *
     if (resp->getResultCode()!=PRC_SUCCESS)
     {
         EV << "Association error\n";
+        emit(dropConfirmSignal, PR_ASSOCIATE_CONFIRM);
 
         // try scanning again, maybe we'll have better luck next time, possibly with a different AP
         EV << "Going back to scanning\n";
@@ -258,8 +314,16 @@ void Ieee80211AgentSTA::processAssociateConfirm(Ieee80211Prim_AssociateConfirm *
     else
     {
         EV << "Association successful\n";
+        emit(acceptConfirmSignal, PR_ASSOCIATE_CONFIRM);
         // we are happy!
         getParentModule()->getParentModule()->bubble("Associated with AP");
+        if(prevAP.isUnspecified() || prevAP != resp->getAddress())
+        {
+            nb->fireChangeNotification(NF_L2_ASSOCIATED_NEWAP, myIface); //XXX detail: InterfaceEntry?
+            prevAP = resp->getAddress();
+        }
+        else
+            nb->fireChangeNotification(NF_L2_ASSOCIATED_OLDAP, myIface);
     }
 }
 
@@ -269,12 +333,15 @@ void Ieee80211AgentSTA::processReassociateConfirm(Ieee80211Prim_ReassociateConfi
     if (resp->getResultCode()!=PRC_SUCCESS)
     {
         EV << "Reassociation error\n";
+        emit(dropConfirmSignal, PR_REASSOCIATE_CONFIRM);
         EV << "Going back to scanning\n";
         sendScanRequest();
     }
     else
     {
         EV << "Reassociation successful\n";
+        nb->fireChangeNotification(NF_L2_ASSOCIATED_OLDAP, myIface); //XXX detail: InterfaceEntry?
+        emit(acceptConfirmSignal, PR_REASSOCIATE_CONFIRM);
         // we are happy!
     }
 }

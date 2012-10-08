@@ -25,8 +25,6 @@
 /**
  * Category constants for NotificationBoard
  */
-// TODO consider: use allocated IDs, like: const int NF_FOO = registerCategory("FOO");
-// or maybe use structs and dynamic_cast? so we can have a hierarchy of notifications
 // TODO document associated notification detail structs
 enum
 {
@@ -34,13 +32,13 @@ enum
     NF_SUBSCRIBERLIST_CHANGED,
 
     // - host
-    NF_HOSTPOSITION_UPDATED,
     NF_NODE_FAILURE,
     NF_NODE_RECOVERY,
 
     // - layer 1 (physical)
     NF_RADIOSTATE_CHANGED,
     NF_RADIO_CHANNEL_CHANGED,
+    NF_RADIO_CHANGE_NOISE,
 
     // - layer 2 (data-link)
     //XXX generalize constants (remove "PP"?) - could be used by 80211 and ethernet as well
@@ -53,6 +51,16 @@ enum
     NF_MAC_BECAME_IDLE,
     NF_L2_BEACON_LOST,   // missed several consecutive beacons (currently Ieee80211)
     NF_L2_ASSOCIATED,    // successfully associated with an AP (currently Ieee80211)
+    NF_L2_ASSOCIATED_NEWAP,   // successfully associated with an AP (currently Ieee80211)
+    NF_L2_ASSOCIATED_OLDAP,
+    NF_L2_DISASSOCIATED,  // same as BEACON_LOST but used in higher layers
+    NF_L2_AP_ASSOCIATED,  // emitted by the AP, successfully associated with this AP (currently Ieee80211)
+    NF_L2_AP_DISASSOCIATED, // emitted by the AP, successfully disassociated from this AP (currently Ieee80211)
+
+    NF_LINK_BREAK, // used for manet link layer feedback
+    NF_LINK_PROMISCUOUS, // used for manet promiscuous mode, the packets that have this node how destination are no promiscuous send
+    NF_LINK_FULL_PROMISCUOUS, // Used for manet promiscuous mode, all packets are promiscuous
+    NF_LINK_REFRESH,     // used for refreshing a neigbour adjacency
 
     // - layer 3 (network)
     NF_INTERFACE_CREATED,
@@ -66,11 +74,21 @@ enum
     // layer 3 - IPv4
     NF_IPv4_ROUTE_ADDED,
     NF_IPv4_ROUTE_DELETED,
-    NF_IPv6_ROUTE_ADDED,
-    NF_IPv6_ROUTE_DELETED,
+    NF_IPv4_ROUTE_CHANGED,
+    NF_IPv4_MROUTE_ADDED,
+    NF_IPv4_MROUTE_DELETED,
+    NF_IPv4_MROUTE_CHANGED,
+    NF_IPv4_MCAST_JOIN,
+    NF_IPv4_MCAST_LEAVE,
+    NF_IPv4_MCAST_REGISTERED,
+    NF_IPv4_MCAST_UNREGISTERED,
 
     // layer 3 - IPv6
+    NF_IPv6_ROUTE_ADDED,
+    NF_IPv6_ROUTE_DELETED,
+    NF_IPv6_ROUTE_CHANGED,
     NF_IPv6_HANDOVER_OCCURRED,
+    NF_MIPv6_RO_COMPLETED,
 
     // - layer 4 (transport)
     //...
@@ -83,6 +101,9 @@ enum
 
     // - layer 7 (application)
     //...
+    // - battery
+    NF_BATTERY_CHANGED,
+    NF_BATTERY_CPUTIME_CONSUMED,
 
     // 4Gsim notifications
     NF_SUB_NEEDS_AUTH,

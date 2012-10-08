@@ -153,7 +153,7 @@ IPvXAddress DiameterUtils::processAddressAVP(AVP *addressAVP) {
 	unsigned short type = ntohs(*((unsigned short*)(p)));
 	p += 2;
 	if (type == IPV4_ADDRESS_TYPE) {
-		address = IPvXAddress(IPAddress(ntohl(*((unsigned*)(p)))));
+		address = IPvXAddress(IPv4Address(ntohl(*((unsigned*)(p)))));
 //		p += 4;
 	} else {
 

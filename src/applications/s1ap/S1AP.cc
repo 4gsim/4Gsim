@@ -22,6 +22,7 @@
 #include "RoutingTableAccess.h"
 #include "PerEncoder.h"
 #include "PerDecoder.h"
+#include "SCTPCommand_m.h"
 
 Define_Module(S1AP)
 
@@ -239,11 +240,11 @@ void S1AP::loadConnectorsFromXML(const cXMLElement& s1apNode) {
 					error("S1AP: Connector has no address attribute");
 	        	IPvXAddress remoteAddr = IPvXAddress((*connIt)->getAttribute("address"));
 	        	remoteAddrs.push_back(remoteAddr);
-	        	const IPRoute *route = rT->findBestMatchingRoute(remoteAddr.get4());
+	        	const IPv4Route *route = rT->findBestMatchingRoute(remoteAddr.get4());
 	        	if (route == NULL) {
 	        		error("S1AP: No route to host");
 	        	}
-	        	localAddrs.push_back(route->getHost());
+	        	localAddrs.push_back(route->getDestination());
 	        	if (!(*connIt)->getAttribute("port"))
 	        		error("S1AP: Connector has no port attribute");
 	        	port = atoi((*connIt)->getAttribute("port"));
