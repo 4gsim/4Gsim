@@ -68,7 +68,7 @@ GTPPath *GTPPathTable::findPath(char type) {
 }
 
 GTPPath *GTPPathTable::findPath(cMessage *msg) {
-	UDPControlInfo *ctrl = dynamic_cast<UDPControlInfo*>(msg->getControlInfo());
+	UDPDataIndication *ctrl = dynamic_cast<UDPDataIndication*>(msg->getControlInfo());
 	for (unsigned i = 0; i < paths.size(); i++) {
 		GTPPath *path = paths[i];
 		if ((path->getRemoteAddr() == ctrl->getSrcAddr()) &&

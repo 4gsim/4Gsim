@@ -43,8 +43,8 @@ class GTP;
 
 /*
  * Class for GTP path. GTP path is the logical connection between two adjacent GTP
- * nodes. GTP path is based upon a UDP connection, it has a local IP address, remote
- * IP address, control IP address for GTP user paths and GTP specific UDP ports.
+ * nodes. GTP path is based upon a UDP connection, local IP address, remote IP address,
+ * control IP address for GTP user paths and GTP specific UDP ports.
  * GTP path can be of more than one type, based on the logical interface, on which GTP
  * is used as a tunneling protocol and on the network node type (S11 for MME or S-GW,
  * S5/S8 for S-GW or P-GW etc.).
@@ -57,7 +57,7 @@ private:
     unsigned char remoteCounter;
     unsigned char type;
 
-	IPvXAddress localAddr;
+    IPvXAddress localAddr;
 	IPvXAddress remoteAddr;
 	IPvXAddress ctrlAddr;
 
@@ -81,8 +81,8 @@ public:
 	/*
 	 * Setter methods.
 	 */
-	void setRemoteAddr(IPvXAddress remoteAddr) { this->remoteAddr = remoteAddr; }
 	void setLocalAddr(IPvXAddress localAddr) { this->localAddr = localAddr; }
+	void setRemoteAddr(IPvXAddress remoteAddr) { this->remoteAddr = remoteAddr; }
 	void setCtrlAddr(IPvXAddress ctrlAddr) { this->ctrlAddr = ctrlAddr; }
 	void setModule(GTP *module);
 	void setType(unsigned char type) { this->type = type; }
@@ -90,8 +90,8 @@ public:
 	/*
 	 * Getter methods.
 	 */
-	IPvXAddress getRemoteAddr() { return remoteAddr; }
 	IPvXAddress getLocalAddr() { return localAddr; }
+	IPvXAddress getRemoteAddr() { return remoteAddr; }
 	unsigned char getType() { return type; }
 	IPvXAddress getCtrlAddr() { return ctrlAddr; }
 	bool getPlane();

@@ -206,7 +206,7 @@ void DYMO::rescheduleTimer()
 void DYMO::handleMessage(cMessage* apMsg)
 {
 
-    cMessage * msg_aux = NULL;
+	cMessage * msg_aux = NULL;
     UDPPacket* udpPacket = NULL;
 
     if (apMsg->isSelfMessage())
@@ -215,6 +215,7 @@ void DYMO::handleMessage(cMessage* apMsg)
     }
     else
     {
+
         if (dynamic_cast<ControlManetRouting *>(apMsg))
         {
             ControlManetRouting * control = check_and_cast <ControlManetRouting *> (apMsg);
