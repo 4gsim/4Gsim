@@ -18,7 +18,6 @@
 package inet.applications.diameter;
 
 import inet.applications.pingapp.PingApp;
-import inet.applications.sctpapp.SCTPApp;
 import inet.applications.diameter.DiameterBase;
 import inet.base.NotificationBoard;
 import inet.linklayer.ethernet.EthernetInterface;
@@ -27,7 +26,6 @@ import inet.linklayer.ppp.PPPInterface;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.transport.sctp.SCTP;
-import inet.util.NAMTraceWriter;
 import inet.util.DCTDump;
 import inet.nodes.inet.NetworkLayer;
 
@@ -116,30 +114,30 @@ module DiameterNode
         sctp.to_ip --> networkLayer.sctpIn;
         networkLayer.sctpOut --> sctp.from_ip;
 
-        networkLayer.pingOut --> pingApp.pingIn;
-        networkLayer.pingIn <-- pingApp.pingOut;
+        networkLayer.pingOut++ --> pingApp.pingIn;
+        networkLayer.pingIn++ <-- pingApp.pingOut;
 
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].netwOut --> dctdump.ifIn[i];
+            ppp[i].upperLayerOut --> dctdump.ifIn[i];
             dctdump.netOut[i] --> networkLayer.ifIn[i];
-            ppp[i].netwIn <-- dctdump.ifOut[i];
+            ppp[i].upperLayerIn <-- dctdump.ifOut[i];
             dctdump.netIn[i] <-- networkLayer.ifOut[i];
         }
 
         for i=0..sizeof(ethg)-1 {
             ethg[i] <--> eth[i].phys;
-            eth[i].netwOut --> dctdump.ifIn[sizeof(pppg)+i];
+            eth[i].upperLayerOut --> dctdump.ifIn[sizeof(pppg)+i];
             dctdump.netOut[sizeof(pppg)+i] --> networkLayer.ifIn[sizeof(pppg)+i];
-            eth[i].netwIn <-- dctdump.ifOut[sizeof(pppg)+i];
+            eth[i].upperLayerIn <-- dctdump.ifOut[sizeof(pppg)+i];
             dctdump.netIn[sizeof(pppg)+i] <-- networkLayer.ifOut[sizeof(pppg)+i];
         }
 
         for i=0..numExtInterfaces-1 {
-            ext[i].netwOut --> dctdump.ifIn[sizeof(pppg)+sizeof(ethg)+i];
+            ext[i].upperLayerOut --> dctdump.ifIn[sizeof(pppg)+sizeof(ethg)+i];
             dctdump.netOut[sizeof(pppg)+sizeof(ethg)+i] --> networkLayer.ifIn[sizeof(pppg)+sizeof(ethg)+i];
-            ext[i].netwIn <-- dctdump.ifOut[sizeof(pppg)+sizeof(ethg)+i];
+            ext[i].upperLayerIn <-- dctdump.ifOut[sizeof(pppg)+sizeof(ethg)+i];
             dctdump.netIn[sizeof(pppg)+sizeof(ethg)+i] <-- networkLayer.ifOut[sizeof(pppg)+sizeof(ethg)+i];
         }
 }

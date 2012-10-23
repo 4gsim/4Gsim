@@ -44,7 +44,7 @@
     </Gateways>
     <GTP mcc="558" mnc="71">
 		<Paths>
-			<Path remoteAddr="192.168.5.1" type="10"/> <!-- 10 = S11 MME GTP-C interface -->
+			<Path localAddr="192.168.5.2" remoteAddr="192.168.5.1" type="10"/> <!-- 10 = S11 MME GTP-C interface -->
 		</Paths>
 	</GTP>
 </MMEConfig>

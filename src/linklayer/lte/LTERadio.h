@@ -40,7 +40,7 @@ protected:
     IReceptionModel *receptionModel;
     IInterfaceTable *ift;
 
-	virtual IReceptionModel *createReceptionModel() {return (IReceptionModel *)createOne("PathLossReceptionModel");}
+	virtual IReceptionModel *createReceptionModel() {return (IReceptionModel *)createOne("FreeSpaceModel");}
     virtual IRadioModel *createRadioModel() {return (IRadioModel *)createOne("LTERadioModel");}
 	virtual int numInitStages() const {
 		return 5;

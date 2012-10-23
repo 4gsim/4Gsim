@@ -24,9 +24,8 @@ import inet.transport.udp.UDP;
 import inet.util.subscriber.SubscriberTable;
 import inet.base.NotificationBoard;
 import inet.applications.nas.NAS;
-import inet.mobility.NullMobility;
+import inet.mobility.models.StationaryMobility;
 import inet.linklayer.lte.LTERadio;
-import inet.util.NAMTraceWriter;
 import inet.base.NotificationBoard;
 import inet.linklayer.ethernet.EthernetInterface;
 import inet.linklayer.ext.ExtInterface;
@@ -34,7 +33,7 @@ import inet.linklayer.ppp.PPPInterface;
 import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.applications.pingapp.PingApp;
-import inet.util.TCPDump;
+import inet.util.DCTDump;
 import inet.nodes.inet.NetworkLayer;
 import inet.transport.sctp.SCTP;
 import inet.applications.s1ap.S1AP;
@@ -42,6 +41,7 @@ import inet.applications.s1ap.S1AP;
 module ENB
 {
     parameters:
+        @node();
         @display("i=device/antennatower_l;bgb=559,396");
         int numSctpApps = default(0);
         string sctpAppType = default("n/a");
@@ -59,7 +59,7 @@ module ENB
         notificationBoard: NotificationBoard {
             @display("p=497,33");
         }
-        mobility: NullMobility {
+        mobility: StationaryMobility {
             parameters:
                 @display("p=37,25");
         }
@@ -70,11 +70,6 @@ module ENB
         interfaceTable: InterfaceTable {
             parameters:
                 @display("p=497,101");
-        }
-        namTrace: NAMTraceWriter {
-            parameters:
-                namid = namid;
-                @display("p=497,261");
         }
         eth[sizeof(ethg)]: EthernetInterface {
             parameters:
@@ -115,15 +110,15 @@ module ENB
                 configFile = configFile;
                 @display("p=338,41");
         }
-        tcpdump: TCPDump {
+        dctdump: DCTDump {
             parameters:
-                @display("p=239,269;i=abstract/cache_s");
+                @display("p=206,264;i=abstract/cache_s");
                 dumpFile = dumpFile;
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                in2[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+                netIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
                 ifOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                out2[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+                netOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
         }
         nas: NAS {
             @display("p=169,41");
@@ -148,39 +143,39 @@ module ENB
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
 
-        lteRadio.uppergateIn <-- nas.radioOut;
-        lteRadio.uppergateOut --> nas.radioIn;
+        lteRadio.upperLayerIn <-- nas.radioOut;
+        lteRadio.upperLayerOut --> nas.radioIn;
         sctp.to_appl++ --> s1ap.sctpIn;
         s1ap.sctpOut --> sctp.from_appl++;
 
         sctp.to_ip --> networkLayer.sctpIn;
         networkLayer.sctpOut --> sctp.from_ip;
 
-        networkLayer.pingOut --> pingApp.pingIn;
-        networkLayer.pingIn <-- pingApp.pingOut;
+        networkLayer.pingOut++ --> pingApp.pingIn;
+        networkLayer.pingIn++ <-- pingApp.pingOut;
 
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].netwOut --> tcpdump.ifIn[i];
-            tcpdump.out2[i] --> networkLayer.ifIn[i];
-            ppp[i].netwIn <-- tcpdump.ifOut[i];
-            tcpdump.in2[i] <-- networkLayer.ifOut[i];
+            ppp[i].upperLayerOut --> dctdump.ifIn[i];
+            dctdump.netOut[i] --> networkLayer.ifIn[i];
+            ppp[i].upperLayerIn <-- dctdump.ifOut[i];
+            dctdump.netIn[i] <-- networkLayer.ifOut[i];
         }
 
         for i=0..sizeof(ethg)-1 {
             ethg[i] <--> eth[i].phys;
-            eth[i].netwOut --> tcpdump.ifIn[sizeof(pppg)+i];
-            tcpdump.out2[sizeof(pppg)+i] --> networkLayer.ifIn[sizeof(pppg)+i];
-            eth[i].netwIn <-- tcpdump.ifOut[sizeof(pppg)+i];
-            tcpdump.in2[sizeof(pppg)+i] <-- networkLayer.ifOut[sizeof(pppg)+i];
+            eth[i].upperLayerOut --> dctdump.ifIn[sizeof(pppg)+i];
+            dctdump.netOut[sizeof(pppg)+i] --> networkLayer.ifIn[sizeof(pppg)+i];
+            eth[i].upperLayerIn <-- dctdump.ifOut[sizeof(pppg)+i];
+            dctdump.netIn[sizeof(pppg)+i] <-- networkLayer.ifOut[sizeof(pppg)+i];
         }
 
         for i=0..numExtInterfaces-1 {
-            ext[i].netwOut --> tcpdump.ifIn[sizeof(pppg)+sizeof(ethg)+i];
-            tcpdump.out2[sizeof(pppg)+sizeof(ethg)+i] --> networkLayer.ifIn[sizeof(pppg)+sizeof(ethg)+i];
-            ext[i].netwIn <-- tcpdump.ifOut[sizeof(pppg)+sizeof(ethg)+i];
-            tcpdump.in2[sizeof(pppg)+sizeof(ethg)+i] <-- networkLayer.ifOut[sizeof(pppg)+sizeof(ethg)+i];
+            ext[i].upperLayerOut --> dctdump.ifIn[sizeof(pppg)+sizeof(ethg)+i];
+            dctdump.netOut[sizeof(pppg)+sizeof(ethg)+i] --> networkLayer.ifIn[sizeof(pppg)+sizeof(ethg)+i];
+            ext[i].upperLayerIn <-- dctdump.ifOut[sizeof(pppg)+sizeof(ethg)+i];
+            dctdump.netIn[sizeof(pppg)+sizeof(ethg)+i] <-- networkLayer.ifOut[sizeof(pppg)+sizeof(ethg)+i];
         }
         nas.s1apOut --> s1ap.nasIn;
         s1ap.nasOut --> nas.s1apIn;

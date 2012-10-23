@@ -27,13 +27,14 @@ import inet.util.subscriber.SubscriberTable;
 import inet.base.NotificationBoard;
 import inet.applications.nas.NAS;
 import inet.linklayer.lte.LTERadio;
-import inet.mobility.BasicMobility;
+import inet.mobility.IMobility;
 
 module UE
 {
     parameters:
+        @node();
         @display("i=device/cellphone;bgb=512,472");
-        string mobilityType = default("NullMobility");
+        string mobilityType = default("StationaryMobility");
         string destAddr = default("");
         volatile double interval @unit("s") = default(1s);
         int channelNumber;
@@ -41,7 +42,7 @@ module UE
     gates:
         input radioIn @directIn;
     submodules:
-        mobility: <mobilityType> like BasicMobility {
+        mobility: <mobilityType> like IMobility {
             parameters:
                 @display("p=50,61");
         }
@@ -82,12 +83,12 @@ module UE
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
 
-        lteRadio.uppergateIn <-- nas.radioOut;
-        lteRadio.uppergateOut --> nas.radioIn;
+        lteRadio.upperLayerIn <-- nas.radioOut;
+        lteRadio.upperLayerOut --> nas.radioIn;
         lteRadio.netOUT --> networkLayer.ifIn++;
         networkLayer.ifOut++ --> lteRadio.netIN;
-        networkLayer.pingOut --> pingApp.pingIn;
-        pingApp.pingOut --> networkLayer.pingIn;
+        networkLayer.pingOut++ --> pingApp.pingIn;
+        pingApp.pingOut --> networkLayer.pingIn++;
         rrc.rlcOut --> dctDump.netIn++;
         dctDump.netOut++ --> rrc.rlcIn;
         dctDump.ifOut++ --> rrc.nasIn;

@@ -3,10 +3,10 @@
               xsi:schemaLocation="SGW.xsd">
 	<GTP mcc="558" mnc="71">
 		<Paths>
-			<Path remoteAddr="192.168.4.2" type="6"/> <!-- 6 = S5/S8 SGW GTP-C interface -->
-			<Path remoteAddr="192.168.5.2" type="11"/> <!-- 11 = S11/S4 SGW GTP-C interface -->
-			<Path remoteAddr="192.168.6.2" ctrlAddr="192.168.4.2" type="4"/> <!-- 4 = S5/S8 SGW GTP-U interface -->
-			<Path remoteAddr="192.168.7.2" ctrlAddr="192.168.5.2" type="1"/> <!-- 1 = S1-U SGW GTP-U interface -->
+			<Path localAddr="192.168.4.1" remoteAddr="192.168.4.2" type="6"/> <!-- 6 = S5/S8 SGW GTP-C interface -->
+			<Path localAddr="192.168.5.1" remoteAddr="192.168.5.2" type="11"/> <!-- 11 = S11/S4 SGW GTP-C interface -->
+			<Path localAddr="192.168.6.1" remoteAddr="192.168.6.2" ctrlAddr="192.168.4.2" type="4"/> <!-- 4 = S5/S8 SGW GTP-U interface -->
+			<Path localAddr="192.168.7.1" remoteAddr="192.168.7.2" ctrlAddr="192.168.5.2" type="1"/> <!-- 1 = S1-U SGW GTP-U interface -->
 		</Paths>
 	</GTP>  
 </SGWConfig>

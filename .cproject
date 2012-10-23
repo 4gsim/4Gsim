@@ -34,20 +34,11 @@
 									<listOptionValue builtIn="false" value="WITH_TCP_COMMON"/>
 									<listOptionValue builtIn="false" value="WITH_TCP_INET"/>
 									<listOptionValue builtIn="false" value="WITH_IPv4"/>
-									<listOptionValue builtIn="false" value="WITH_IPv6"/>
-									<listOptionValue builtIn="false" value="WITH_xMIPv6"/>
 									<listOptionValue builtIn="false" value="WITH_UDP"/>
-									<listOptionValue builtIn="false" value="WITH_RTP"/>
-									<listOptionValue builtIn="false" value="WITH_SCTP"/>
-									<listOptionValue builtIn="false" value="WITH_DHCP"/>
 									<listOptionValue builtIn="false" value="WITH_ETHERNET"/>
 									<listOptionValue builtIn="false" value="WITH_PPP"/>
+									<listOptionValue builtIn="false" value="WITH_SCTP"/>
 									<listOptionValue builtIn="false" value="WITH_EXT_IF"/>
-									<listOptionValue builtIn="false" value="WITH_MPLS"/>
-									<listOptionValue builtIn="false" value="WITH_OSPFv2"/>
-									<listOptionValue builtIn="false" value="WITH_BGPv4"/>
-									<listOptionValue builtIn="false" value="WITH_MANET"/>
-									<listOptionValue builtIn="false" value="WITH_TRACI"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1025668895" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -56,20 +47,11 @@
 									<listOptionValue builtIn="false" value="WITH_TCP_COMMON"/>
 									<listOptionValue builtIn="false" value="WITH_TCP_INET"/>
 									<listOptionValue builtIn="false" value="WITH_IPv4"/>
-									<listOptionValue builtIn="false" value="WITH_IPv6"/>
-									<listOptionValue builtIn="false" value="WITH_xMIPv6"/>
 									<listOptionValue builtIn="false" value="WITH_UDP"/>
-									<listOptionValue builtIn="false" value="WITH_RTP"/>
-									<listOptionValue builtIn="false" value="WITH_SCTP"/>
-									<listOptionValue builtIn="false" value="WITH_DHCP"/>
 									<listOptionValue builtIn="false" value="WITH_ETHERNET"/>
 									<listOptionValue builtIn="false" value="WITH_PPP"/>
+									<listOptionValue builtIn="false" value="WITH_SCTP"/>
 									<listOptionValue builtIn="false" value="WITH_EXT_IF"/>
-									<listOptionValue builtIn="false" value="WITH_MPLS"/>
-									<listOptionValue builtIn="false" value="WITH_OSPFv2"/>
-									<listOptionValue builtIn="false" value="WITH_BGPv4"/>
-									<listOptionValue builtIn="false" value="WITH_MANET"/>
-									<listOptionValue builtIn="false" value="WITH_TRACI"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.2145858446" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -86,7 +68,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="src/applications/voiptool|src/transport/tcp_nsc|src/transport/tcp_lwip" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="src/transport/tcp_lwip|src/transport/tcp_nsc|src/networklayer/diffserv|src/world/httptools|src/nodes/httptools|src/applications/httptools|src/linklayer/ieee80211|src/world/traci|src/applications/traci|src/networklayer/manetrouting|src/nodes/bgp|src/networklayer/bgpv4|src/nodes/ospfv2|src/networklayer/ospfv2|src/networklayer/ted|src/networklayer/rsvp_te|src/networklayer/ldp|src/nodes/mpls|src/networklayer/mpls|src/applications/dhcp|src/transport/rtp|src/applications/rtpapp|src/nodes/xmipv6|src/networklayer/xmipv6|src/nodes/ipv6|src/networklayer/ipv6tunneling|src/networklayer/icmpv6|src/networklayer/autorouting/ipv6|src/networklayer/ipv6|src/applications/voiptool" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -118,20 +100,11 @@
 									<listOptionValue builtIn="false" value="WITH_TCP_COMMON"/>
 									<listOptionValue builtIn="false" value="WITH_TCP_INET"/>
 									<listOptionValue builtIn="false" value="WITH_IPv4"/>
-									<listOptionValue builtIn="false" value="WITH_IPv6"/>
-									<listOptionValue builtIn="false" value="WITH_xMIPv6"/>
 									<listOptionValue builtIn="false" value="WITH_UDP"/>
-									<listOptionValue builtIn="false" value="WITH_RTP"/>
-									<listOptionValue builtIn="false" value="WITH_SCTP"/>
-									<listOptionValue builtIn="false" value="WITH_DHCP"/>
 									<listOptionValue builtIn="false" value="WITH_ETHERNET"/>
 									<listOptionValue builtIn="false" value="WITH_PPP"/>
+									<listOptionValue builtIn="false" value="WITH_SCTP"/>
 									<listOptionValue builtIn="false" value="WITH_EXT_IF"/>
-									<listOptionValue builtIn="false" value="WITH_MPLS"/>
-									<listOptionValue builtIn="false" value="WITH_OSPFv2"/>
-									<listOptionValue builtIn="false" value="WITH_BGPv4"/>
-									<listOptionValue builtIn="false" value="WITH_MANET"/>
-									<listOptionValue builtIn="false" value="WITH_TRACI"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1927185804" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -140,20 +113,11 @@
 									<listOptionValue builtIn="false" value="WITH_TCP_COMMON"/>
 									<listOptionValue builtIn="false" value="WITH_TCP_INET"/>
 									<listOptionValue builtIn="false" value="WITH_IPv4"/>
-									<listOptionValue builtIn="false" value="WITH_IPv6"/>
-									<listOptionValue builtIn="false" value="WITH_xMIPv6"/>
 									<listOptionValue builtIn="false" value="WITH_UDP"/>
-									<listOptionValue builtIn="false" value="WITH_RTP"/>
-									<listOptionValue builtIn="false" value="WITH_SCTP"/>
-									<listOptionValue builtIn="false" value="WITH_DHCP"/>
 									<listOptionValue builtIn="false" value="WITH_ETHERNET"/>
 									<listOptionValue builtIn="false" value="WITH_PPP"/>
+									<listOptionValue builtIn="false" value="WITH_SCTP"/>
 									<listOptionValue builtIn="false" value="WITH_EXT_IF"/>
-									<listOptionValue builtIn="false" value="WITH_MPLS"/>
-									<listOptionValue builtIn="false" value="WITH_OSPFv2"/>
-									<listOptionValue builtIn="false" value="WITH_BGPv4"/>
-									<listOptionValue builtIn="false" value="WITH_MANET"/>
-									<listOptionValue builtIn="false" value="WITH_TRACI"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1109376446" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -178,20 +142,11 @@
 									<listOptionValue builtIn="false" value="WITH_TCP_COMMON"/>
 									<listOptionValue builtIn="false" value="WITH_TCP_INET"/>
 									<listOptionValue builtIn="false" value="WITH_IPv4"/>
-									<listOptionValue builtIn="false" value="WITH_IPv6"/>
-									<listOptionValue builtIn="false" value="WITH_xMIPv6"/>
 									<listOptionValue builtIn="false" value="WITH_UDP"/>
-									<listOptionValue builtIn="false" value="WITH_RTP"/>
-									<listOptionValue builtIn="false" value="WITH_SCTP"/>
-									<listOptionValue builtIn="false" value="WITH_DHCP"/>
 									<listOptionValue builtIn="false" value="WITH_ETHERNET"/>
 									<listOptionValue builtIn="false" value="WITH_PPP"/>
+									<listOptionValue builtIn="false" value="WITH_SCTP"/>
 									<listOptionValue builtIn="false" value="WITH_EXT_IF"/>
-									<listOptionValue builtIn="false" value="WITH_MPLS"/>
-									<listOptionValue builtIn="false" value="WITH_OSPFv2"/>
-									<listOptionValue builtIn="false" value="WITH_BGPv4"/>
-									<listOptionValue builtIn="false" value="WITH_MANET"/>
-									<listOptionValue builtIn="false" value="WITH_TRACI"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1559108710" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -200,20 +155,11 @@
 									<listOptionValue builtIn="false" value="WITH_TCP_COMMON"/>
 									<listOptionValue builtIn="false" value="WITH_TCP_INET"/>
 									<listOptionValue builtIn="false" value="WITH_IPv4"/>
-									<listOptionValue builtIn="false" value="WITH_IPv6"/>
-									<listOptionValue builtIn="false" value="WITH_xMIPv6"/>
 									<listOptionValue builtIn="false" value="WITH_UDP"/>
-									<listOptionValue builtIn="false" value="WITH_RTP"/>
-									<listOptionValue builtIn="false" value="WITH_SCTP"/>
-									<listOptionValue builtIn="false" value="WITH_DHCP"/>
 									<listOptionValue builtIn="false" value="WITH_ETHERNET"/>
 									<listOptionValue builtIn="false" value="WITH_PPP"/>
+									<listOptionValue builtIn="false" value="WITH_SCTP"/>
 									<listOptionValue builtIn="false" value="WITH_EXT_IF"/>
-									<listOptionValue builtIn="false" value="WITH_MPLS"/>
-									<listOptionValue builtIn="false" value="WITH_OSPFv2"/>
-									<listOptionValue builtIn="false" value="WITH_BGPv4"/>
-									<listOptionValue builtIn="false" value="WITH_MANET"/>
-									<listOptionValue builtIn="false" value="WITH_TRACI"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1498240344" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -225,7 +171,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="applications/voiptool|transport/tcp_nsc|transport/tcp_lwip" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
+						<entry excluding="transport/tcp_lwip|transport/tcp_nsc|networklayer/diffserv|world/httptools|nodes/httptools|applications/httptools|linklayer/ieee80211|world/traci|applications/traci|networklayer/manetrouting|nodes/bgp|networklayer/bgpv4|nodes/ospfv2|networklayer/ospfv2|networklayer/ted|networklayer/rsvp_te|networklayer/ldp|nodes/mpls|networklayer/mpls|applications/dhcp|transport/rtp|applications/rtpapp|nodes/xmipv6|networklayer/xmipv6|nodes/ipv6|networklayer/ipv6tunneling|networklayer/icmpv6|networklayer/autorouting/ipv6|networklayer/ipv6|applications/voiptool" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
