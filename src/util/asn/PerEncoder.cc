@@ -153,7 +153,6 @@ void PerEncoder::encodeBits(char value, unsigned char length) {
     if (usedBits == 8) {
         memcpy(this->buffer + this->length++, &value, 1);
         usedBits = length;
-        return;
 
     // if there are not enough bits in the last byte split the value
     } else if (usedBits + length > 8) {

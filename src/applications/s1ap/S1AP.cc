@@ -23,6 +23,7 @@
 #include "PerEncoder.h"
 #include "PerDecoder.h"
 #include "SCTPCommand_m.h"
+#include "IPv4InterfaceData.h"
 
 Define_Module(S1AP)
 
@@ -244,7 +245,7 @@ void S1AP::loadConnectorsFromXML(const cXMLElement& s1apNode) {
 	        	if (route == NULL) {
 	        		error("S1AP: No route to host");
 	        	}
-	        	localAddrs.push_back(route->getDestination());
+	        	localAddrs.push_back(route->getInterface()->ipv4Data()->getIPAddress());
 	        	if (!(*connIt)->getAttribute("port"))
 	        		error("S1AP: Connector has no port attribute");
 	        	port = atoi((*connIt)->getAttribute("port"));

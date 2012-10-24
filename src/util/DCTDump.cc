@@ -85,7 +85,7 @@ void DCTDump::handleMessage(cMessage *msg) {
             }
             write = true;
 
-            buf_len = IPv4Serializer().serialize(ipPacket, buf, sizeof(buf));
+            buf_len = IPv4Serializer().serialize(ipPacket, buf, sizeof(buf), true);
         }
         RRCMessage *rrcMsg = dynamic_cast<RRCMessage*>(msg);
         if (rrcMsg) {

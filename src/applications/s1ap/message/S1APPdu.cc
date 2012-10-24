@@ -81,10 +81,6 @@ const InitiatingMessage::Info InitiatingMessage::theInfo = {
 InitiatingMessage::InitiatingMessage(unsigned char code, unsigned char crit, AbstractType *val) : Sequence(&theInfo) {
 	static_cast<IntegerBase*>(items.at(0))->setValue(code);
 	static_cast<EnumeratedBase*>(items.at(1))->setValue(crit);
-	setValue(new OpenType(val));
-}
-
-void InitiatingMessage::setValue(OpenType *val)  {
-	static_cast<OpenType*>(items.at(2))->setLength(val->getLength());
-	static_cast<OpenType*>(items.at(2))->setValue(val->getValue());
+	OpenType openType = OpenType(val);
+	*static_cast<OpenType*>(items.at(2)) = openType;
 }

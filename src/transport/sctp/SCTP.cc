@@ -98,6 +98,7 @@ void SCTP::initialize()
     cModule *netw = simulation.getSystemModule();
 
     testing = netw->hasPar("testing") && netw->par("testing").boolValue();
+    //testing = true;
     if (testing) {
     }
     if (netw->hasPar("testTimeout"))

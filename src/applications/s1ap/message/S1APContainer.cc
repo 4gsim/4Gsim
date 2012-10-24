@@ -43,7 +43,8 @@ const ProtocolIeField::Info ProtocolIeField::theInfo = {
 ProtocolIeField::ProtocolIeField(unsigned short id, unsigned char crit, AbstractType *val) : Sequence(&theInfo) {
 	static_cast<IntegerBase*>(items.at(0))->setValue(id);
 	static_cast<EnumeratedBase*>(items.at(1))->setValue(crit);
-	setValue(new OpenType(val));
+	OpenType openType = OpenType(val);
+	*static_cast<OpenType*>(items.at(2)) = openType;
 }
 
 OpenType *findValue(ProtocolIeContainer *container, unsigned short id) {
@@ -53,9 +54,4 @@ OpenType *findValue(ProtocolIeContainer *container, unsigned short id) {
 			return static_cast<const ProtocolIeField>(container->at(i)).getValue();
 	}
 	return NULL;
-}
-
-void ProtocolIeField::setValue(OpenType *val)  {
-	static_cast<OpenType*>(items.at(2))->setLength(val->getLength());
-	static_cast<OpenType*>(items.at(2))->setValue(val->getValue());
 }

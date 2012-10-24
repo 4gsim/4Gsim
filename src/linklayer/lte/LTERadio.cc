@@ -130,7 +130,7 @@ void LTERadio::sendUp(AirFrame *airframe) {
 
     EV << "sending up frame " << frame->getName() << endl;
     if(airframe->getKind()==control)
-    	send(frame, gate("uppergateOut"));
+    	send(frame, gate("upperLayerOut"));
     else
     	send(frame,gate("netOUT"));
     delete airframe;
