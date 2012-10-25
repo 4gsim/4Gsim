@@ -76,13 +76,16 @@ void GTP::handleMessage(cMessage *msg) {
 		path = (GTPPath*)msg->getContextPointer();
 		path->processEchoTimer();
 	} else if (msg->getKind() == UDP_I_DATA) {
-		EV << "network message.\n";
+		EV << "network message.";
 		path = pT->findPath(msg);
-		if (path != NULL)
-			path->processMessage(msg);
+		if (path != NULL) {
+		    EV << "Passing the message to the correct path.\n";
+		    path->processMessage(msg);
+		} else
+		    EV << "Unknown path, dropping the message.\n";
 		delete msg;
 	} else {
-		EV << "unrecognized network message. Dropping.\n";
+		EV << "Unrecognized network message, dropping the message.\n";
 	}
 }
 

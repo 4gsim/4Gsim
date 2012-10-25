@@ -184,6 +184,7 @@ void NAS::handleMessageFromRadio(cMessage *msg) {
 		sendToS1AP(nmsg, sub->getEnbId(), sub->getMmeId());
 	} else {
 		if (sub == NULL) {
+		    EV << "NAS-UE: Incorrect message. Dropping the message.\n";
 			delete nmsg;
 			return;
 		}
@@ -210,6 +211,7 @@ void NAS::handleMessageFromRadio(cMessage *msg) {
 				break;
 			}
 			default:
+			    EV << "NAS-UE: Unexpected message type. Dropping the message.\n";
 				delete nmsg;
 				break;
 		}

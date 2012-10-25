@@ -16,7 +16,10 @@
 // 
 
 #include "LTERadio.h"
+#include "FWMath.h"
 #include "PhyControlInfo_m.h"
+#include "Radio80211aControlInfo_m.h"
+#include "BasicBattery.h"
 #include "InterfaceTableAccess.h"
 #include "IPv4InterfaceData.h"
 
@@ -45,7 +48,7 @@ void LTERadio::initialize(int stage) {
     	receptionModel = createReceptionModel();
     	radioModel = createRadioModel();
     } else if (stage == 2) {
-        //cc->updateHostChannel(myHostRef, rs.getChannelNumber());
+        cc->setRadioChannel(myRadioRef, rs.getChannelNumber());
 
     } else  if(stage == 4)
 	{

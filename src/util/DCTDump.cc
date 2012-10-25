@@ -79,9 +79,12 @@ void DCTDump::handleMessage(cMessage *msg) {
         // context name
         IPv4Datagram *ipPacket = dynamic_cast<IPv4Datagram*>(msg);
         if (ipPacket) {
-            if (ipPacket->getTransportProtocol()==IP_PROT_SCTP) {
+            if (ipPacket->getTransportProtocol() == IP_PROT_SCTP) {
                 strncpy(p, "SCTP.", 5);
                 p += 5;
+            } else if (ipPacket->getTransportProtocol() == IP_PROT_UDP) {
+                strncpy(p, "UDP.", 4);
+                p += 4;
             }
             write = true;
 
@@ -153,11 +156,25 @@ void DCTDump::handleMessage(cMessage *msg) {
 }
 
 std::string DCTDump::timestamp(simtime_t stime) {
-    std::stringstream out;
-    out << (int32)stime.dbl();
-    out << ".";
-    out << (uint32)((stime.dbl() - (int32)stime.dbl())*1000000);
-    return out.str();
+    std::stringstream seconds;
+    std::stringstream subseconds;
+    std::string out;
+    seconds << (int32)stime.dbl();
+    subseconds << (uint32)((stime.dbl() - (int32)stime.dbl())*1000000);
+    for (unsigned i = 0; i < strlen(seconds.str().c_str()); i++) {
+        if (i > 3)
+            break;
+        const char *tmp = seconds.str().c_str();
+        out += tmp[i];
+    }
+    out += ".";
+    for (unsigned i = 0; i < strlen(subseconds.str().c_str()); i++) {
+        if (i > 3)
+            break;
+        const char *tmp = subseconds.str().c_str();
+        out += tmp[i];
+    }
+    return out;
 }
 
 void DCTDump::finish() {

@@ -27,6 +27,7 @@ GTPPath::GTPPath() {
 
 GTPPath::GTPPath(GTP *module, IPvXAddress localAddr, IPvXAddress remoteAddr, unsigned char type) {
 	// TODO Auto-generated constructor stub
+    this->localAddr = localAddr;
 	this->remoteAddr = remoteAddr;
 	this->module = module;
 	this->remoteCounter = 0;

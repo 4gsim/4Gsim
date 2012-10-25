@@ -19,11 +19,16 @@
 #define LTERADIO_H_
 
 #include "ChannelAccess.h"
+#include "RadioState.h"
 #include "AirFrame_m.h"
 #include "IRadioModel.h"
 #include "IReceptionModel.h"
-#include "IInterfaceTable.h"
-#include "RadioState.h"
+#include "SnrList.h"
+#include "ObstacleControl.h"
+#include "IPowerControl.h"
+#include "INoiseGenerator.h"
+#include "InterfaceTable.h"
+
 enum kind{
 	control = 0,
 	user = 1
