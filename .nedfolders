@@ -8,8 +8,8 @@ src
 -inet.applications.dhcp
 -inet.networklayer.rsvp_te
 -inet.transport.tcp_lwip
--inet.networklayer.autorouting.ipv6
 -inet.transport.tcp_nsc
+-inet.networklayer.autorouting.ipv6
 -inet.networklayer.diffserv
 -inet.transport.rtp
 -inet.examples.dhcp
@@ -24,11 +24,9 @@ src
 -inet.examples.ospfv2
 -inet.networklayer.xmipv6
 -inet.examples.traci_launchd
--inet.mobility.models
 -inet.examples.rtp
 -inet.networklayer.ospfv2
 -inet.examples.httptools.socket
--inet.examples.mobility
 -inet.examples.manetrouting
 -inet.networklayer.bgpv4
 -inet.applications.traci
