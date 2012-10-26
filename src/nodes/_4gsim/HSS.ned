@@ -27,9 +27,8 @@ import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.nodes.inet.NetworkLayer;
 import inet.transport.sctp.SCTP;
-import inet.util.TCPDump;
+import inet.util.DCTDump;
 import inet.applications.pingapp.PingApp;
-import inet.util.NAMTraceWriter;
 
 module HSS
 {
@@ -56,11 +55,6 @@ module HSS
         interfaceTable: InterfaceTable {
             parameters:
                 @display("p=57,134");
-        }
-        namTrace: NAMTraceWriter {
-            parameters:
-                namid = namid;
-                @display("p=57,294");
         }
         eth[sizeof(ethg)]: EthernetInterface {
             parameters:
@@ -104,22 +98,22 @@ module HSS
         sctp: SCTP {
             @display("p=501,141;i=block/wheelbarrow");
         }
-        tcpdump: TCPDump {
+        dctdump: DCTDump {
             parameters:
-                @display("p=336,302;i=abstract/cache_s");
+                @display("p=206,264;i=abstract/cache_s");
                 dumpFile = dumpFile;
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                in2[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+                netIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
                 ifOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                out2[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-        }        
+                netOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+        }       
     connections allowunconnected:
         sctp.to_ip --> networkLayer.sctpIn;
         networkLayer.sctpOut --> sctp.from_ip;
 
-        networkLayer.pingOut --> pingApp.pingIn;
-        networkLayer.pingIn <-- pingApp.pingOut;
+        networkLayer.pingOut++ --> pingApp.pingIn;
+        networkLayer.pingIn++ <-- pingApp.pingOut;
 
         diameterBase.sctpOut --> sctp.from_appl++;
         sctp.to_appl++ --> diameterBase.sctpIn;
@@ -127,25 +121,25 @@ module HSS
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].netwOut --> tcpdump.ifIn[i];
-            tcpdump.out2[i] --> networkLayer.ifIn[i];
-            ppp[i].netwIn <-- tcpdump.ifOut[i];
-            tcpdump.in2[i] <-- networkLayer.ifOut[i];
+            ppp[i].upperLayerOut --> dctdump.ifIn[i];
+            dctdump.netOut[i] --> networkLayer.ifIn[i];
+            ppp[i].upperLayerIn <-- dctdump.ifOut[i];
+            dctdump.netIn[i] <-- networkLayer.ifOut[i];
         }
 
         for i=0..sizeof(ethg)-1 {
             ethg[i] <--> eth[i].phys;
-            eth[i].netwOut --> tcpdump.ifIn[sizeof(pppg)+i];
-            tcpdump.out2[sizeof(pppg)+i] --> networkLayer.ifIn[sizeof(pppg)+i];
-            eth[i].netwIn <-- tcpdump.ifOut[sizeof(pppg)+i];
-            tcpdump.in2[sizeof(pppg)+i] <-- networkLayer.ifOut[sizeof(pppg)+i];
+            eth[i].upperLayerOut --> dctdump.ifIn[sizeof(pppg)+i];
+            dctdump.netOut[sizeof(pppg)+i] --> networkLayer.ifIn[sizeof(pppg)+i];
+            eth[i].upperLayerIn <-- dctdump.ifOut[sizeof(pppg)+i];
+            dctdump.netIn[sizeof(pppg)+i] <-- networkLayer.ifOut[sizeof(pppg)+i];
         }
 
         for i=0..numExtInterfaces-1 {
-            ext[i].netwOut --> tcpdump.ifIn[sizeof(pppg)+sizeof(ethg)+i];
-            tcpdump.out2[sizeof(pppg)+sizeof(ethg)+i] --> networkLayer.ifIn[sizeof(pppg)+sizeof(ethg)+i];
-            ext[i].netwIn <-- tcpdump.ifOut[sizeof(pppg)+sizeof(ethg)+i];
-            tcpdump.in2[sizeof(pppg)+sizeof(ethg)+i] <-- networkLayer.ifOut[sizeof(pppg)+sizeof(ethg)+i];
+            ext[i].upperLayerOut --> dctdump.ifIn[sizeof(pppg)+sizeof(ethg)+i];
+            dctdump.netOut[sizeof(pppg)+sizeof(ethg)+i] --> networkLayer.ifIn[sizeof(pppg)+sizeof(ethg)+i];
+            ext[i].upperLayerIn <-- dctdump.ifOut[sizeof(pppg)+sizeof(ethg)+i];
+            dctdump.netIn[sizeof(pppg)+sizeof(ethg)+i] <-- networkLayer.ifOut[sizeof(pppg)+sizeof(ethg)+i];
         }
 }
 

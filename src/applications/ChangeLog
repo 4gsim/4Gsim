@@ -1,0 +1,7 @@
+2012-10-06	Calin Cerchez
+
+	Modified TraCIDemo and TraCITestApp in order to build the project. Added #ifdef WITH_TRACI and #endif
+	to each source and header file.
+	
+	!!!!Modified VoIPTool source code to be build only on Linux systems:
+	#if !defined(_WIN32) && !defined(__WIN32__) && !defined(WIN32) && !defined(__CYGWIN__) && !defined(_WIN64)

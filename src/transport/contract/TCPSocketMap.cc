@@ -15,7 +15,8 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-#include <omnetpp.h>
+#include "INETDefs.h"
+
 #include "TCPSocketMap.h"
 
 
@@ -23,7 +24,8 @@ TCPSocket *TCPSocketMap::findSocketFor(cMessage *msg)
 {
     TCPCommand *ind = dynamic_cast<TCPCommand *>(msg->getControlInfo());
     if (!ind)
-        opp_error("TCPSocketMap: findSocketFor(): no TCPCommand control info in message (not from TCP?)");
+        throw cRuntimeError("TCPSocketMap: findSocketFor(): no TCPCommand control info in message (not from TCP?)");
+
     int connId = ind->getConnId();
     SocketMap::iterator i = socketMap.find(connId);
     ASSERT(i==socketMap.end() || i->first==i->second->getConnectionId());
@@ -48,4 +50,5 @@ void TCPSocketMap::deleteSockets()
 {
     for (SocketMap::iterator i=socketMap.begin(); i!=socketMap.end(); ++i)
        delete i->second;
+    socketMap.clear();
 }

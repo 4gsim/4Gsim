@@ -15,17 +15,20 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
+
 #include "OSPFInterfaceStateLoopback.h"
+
 #include "OSPFInterfaceStateDown.h"
 
-void OSPF::InterfaceStateLoopback::ProcessEvent(OSPF::Interface* intf, OSPF::Interface::InterfaceEventType event)
+
+void OSPF::InterfaceStateLoopback::processEvent(OSPF::Interface* intf, OSPF::Interface::InterfaceEventType event)
 {
-    if (event == OSPF::Interface::InterfaceDown) {
-        intf->Reset();
-        ChangeState(intf, new OSPF::InterfaceStateDown, this);
+    if (event == OSPF::Interface::INTERFACE_DOWN) {
+        intf->reset();
+        changeState(intf, new OSPF::InterfaceStateDown, this);
     }
-    if (event == OSPF::Interface::UnloopIndication) {
-        ChangeState(intf, new OSPF::InterfaceStateDown, this);
+    if (event == OSPF::Interface::UNLOOP_INDICATION) {
+        changeState(intf, new OSPF::InterfaceStateDown, this);
     }
 }
 

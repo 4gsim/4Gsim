@@ -17,10 +17,11 @@
 #define __INET_MPLSMODULE_H
 
 #include <vector>
-#include <omnetpp.h>
+
+#include "INETDefs.h"
 
 #include "MPLSPacket.h"
-#include "IPDatagram.h"
+#include "IPv4Datagram.h"
 #include "ConstType.h"
 
 #include "LIBTable.h"
@@ -54,8 +55,8 @@ class INET_API MPLS : public cSimpleModule
         virtual void processPacketFromL2(cMessage *msg);
         virtual void processMPLSPacketFromL2(MPLSPacket *mplsPacket);
 
-        virtual bool tryLabelAndForwardIPDatagram(IPDatagram *ipdatagram);
-        virtual void labelAndForwardIPDatagram(IPDatagram *ipdatagram);
+        virtual bool tryLabelAndForwardIPv4Datagram(IPv4Datagram *ipdatagram);
+        virtual void labelAndForwardIPv4Datagram(IPv4Datagram *ipdatagram);
 
         virtual void sendToL2(cMessage *msg, int gateIndex);
         virtual void doStackOps(MPLSPacket *mplsPacket, const LabelOpVector& outLabel);

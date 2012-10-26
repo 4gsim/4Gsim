@@ -33,7 +33,6 @@ public:
 	unsigned short getProtocolId() const { return static_cast<IntegerBase*>(items.at(0))->getValue(); }
 	OpenType *getValue() const { return static_cast<OpenType*>(items.at(2)); }
 
-	void setValue(OpenType *val);
 };
 
 typedef ProtocolIeField ProtocolIeSingleContainer;

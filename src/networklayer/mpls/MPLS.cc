@@ -13,8 +13,9 @@
 // See the GNU Lesser General Public License for more details.
 //
 
-#include <omnetpp.h>
 #include <string.h>
+
+#include "INETDefs.h"
 
 #include "MPLS.h"
 #include "Utils.h"
@@ -44,7 +45,7 @@ void MPLS::initialize(int stage)
     pct = check_and_cast<IClassifier*>(getParentModule()->getSubmodule(par("classifier")));
 
     /*
-     * we now send plain IPDatagrams instead of packets with label=-1
+     * we now send plain IPv4Datagrams instead of packets with label=-1
      * and we thus do not need this extra configuration
      *
     labelIf.resize(ift->getNumInterfaces());
@@ -85,10 +86,10 @@ void MPLS::sendToL2(cMessage *msg, int gateIndex)
 
 void MPLS::processPacketFromL3(cMessage * msg)
 {
-    IPDatagram *ipdatagram = check_and_cast<IPDatagram *>(msg);
+    IPv4Datagram *ipdatagram = check_and_cast<IPv4Datagram *>(msg);
     //int gateIndex = msg->getArrivalGate()->getIndex();
 
-    // XXX temporary solution, until TCPSocket and IP are extended to support nam tracing
+    // XXX temporary solution, until TCPSocket and IPv4 are extended to support nam tracing
     if (ipdatagram->getTransportProtocol() == IP_PROT_TCP)
     {
         TCPSegment *seg = check_and_cast<TCPSegment*>(ipdatagram->getEncapsulatedPacket());
@@ -106,10 +107,10 @@ void MPLS::processPacketFromL3(cMessage * msg)
     }
     // XXX end of temporary area
 
-    labelAndForwardIPDatagram(ipdatagram);
+    labelAndForwardIPv4Datagram(ipdatagram);
 }
 
-bool MPLS::tryLabelAndForwardIPDatagram(IPDatagram *ipdatagram)
+bool MPLS::tryLabelAndForwardIPv4Datagram(IPv4Datagram *ipdatagram)
 {
     LabelOpVector outLabel;
     std::string outInterface;
@@ -136,7 +137,7 @@ bool MPLS::tryLabelAndForwardIPDatagram(IPDatagram *ipdatagram)
     if (!mplsPacket->hasLabel())
     {
         // yes, this may happen - if we'are both ingress and egress
-        ipdatagram = check_and_cast<IPDatagram*>(mplsPacket->decapsulate()); // XXX FIXME superfluous encaps/decaps
+        ipdatagram = check_and_cast<IPv4Datagram*>(mplsPacket->decapsulate()); // XXX FIXME superfluous encaps/decaps
         delete mplsPacket;
         sendToL2(ipdatagram, outgoingPort);
     }
@@ -146,13 +147,13 @@ bool MPLS::tryLabelAndForwardIPDatagram(IPDatagram *ipdatagram)
     return true;
 }
 
-void MPLS::labelAndForwardIPDatagram(IPDatagram *ipdatagram)
+void MPLS::labelAndForwardIPv4Datagram(IPv4Datagram *ipdatagram)
 {
-    if (tryLabelAndForwardIPDatagram(ipdatagram))
+    if (tryLabelAndForwardIPv4Datagram(ipdatagram))
         return;
 
-    // handling our outgoing IP traffic that didn't match any FEC/LSP
-    // do not use labelAndForwardIPDatagram for packets arriving to ingress!
+    // handling our outgoing IPv4 traffic that didn't match any FEC/LSP
+    // do not use labelAndForwardIPv4Datagram for packets arriving to ingress!
 
     EV << "FEC not resolved, doing regular L3 routing" << endl;
 
@@ -169,7 +170,7 @@ void MPLS::doStackOps(MPLSPacket *mplsPacket, const LabelOpVector& outLabel)
 
     ASSERT(n >= 0);
 
-    for (unsigned int i = 0; i <  n; i++)
+    for (unsigned int i = 0; i < n; i++)
     {
         switch (outLabel[i].optcode)
         {
@@ -189,13 +190,14 @@ void MPLS::doStackOps(MPLSPacket *mplsPacket, const LabelOpVector& outLabel)
 
             default:
                 error("Unknown MPLS OptCode %d", outLabel[i].optcode);
+                break;
         }
     }
 }
 
 void MPLS::processPacketFromL2(cMessage *msg)
 {
-    IPDatagram *ipdatagram = dynamic_cast<IPDatagram *>(msg);
+    IPv4Datagram *ipdatagram = dynamic_cast<IPv4Datagram *>(msg);
     MPLSPacket *mplsPacket = dynamic_cast<MPLSPacket *>(msg);
 
     if (mplsPacket)
@@ -204,10 +206,10 @@ void MPLS::processPacketFromL2(cMessage *msg)
     }
     else if (ipdatagram)
     {
-        // IP datagram arrives at Ingress router. We'll try to classify it
+        // IPv4 datagram arrives at Ingress router. We'll try to classify it
         // and add an MPLS header
 
-        if (!tryLabelAndForwardIPDatagram(ipdatagram))
+        if (!tryLabelAndForwardIPv4Datagram(ipdatagram))
         {
             int gateIndex = ipdatagram->getArrivalGate()->getIndex();
             send(ipdatagram, "netwOut", gateIndex);
@@ -231,11 +233,11 @@ void MPLS::processMPLSPacketFromL2(MPLSPacket *mplsPacket)
 
     if (oldLabel==-1)
     {
-        // This is a IP native packet (RSVP/TED traffic)
+        // This is a IPv4 native packet (RSVP/TED traffic)
         // Decapsulate the message and pass up to L3
         EV << ": decapsulating and sending up\n";
 
-        IPDatagram *ipdatagram = check_and_cast<IPDatagram *>(mplsPacket->decapsulate());
+        IPv4Datagram *ipdatagram = check_and_cast<IPv4Datagram *>(mplsPacket->decapsulate());
         delete mplsPacket;
         send(ipdatagram, "netwOut", gateIndex);
         return;
@@ -279,11 +281,11 @@ void MPLS::processMPLSPacketFromL2(MPLSPacket *mplsPacket)
     }
     else
     {
-        // last label popped, decapsulate and send out IP datagram
+        // last label popped, decapsulate and send out IPv4 datagram
 
-        EV << "decapsulating IP datagram" << endl;
+        EV << "decapsulating IPv4 datagram" << endl;
 
-        IPDatagram *nativeIP = check_and_cast<IPDatagram *>(mplsPacket->decapsulate());
+        IPv4Datagram *nativeIP = check_and_cast<IPv4Datagram *>(mplsPacket->decapsulate());
         delete mplsPacket;
 
         if (outgoingPort != -1)

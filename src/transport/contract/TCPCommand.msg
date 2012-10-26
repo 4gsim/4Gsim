@@ -24,16 +24,15 @@ cplusplus {{
 class noncobject IPvXAddress;
 
 //
-// \TCP command codes, sent by the application to TCP. These constants
+// TCP command codes, sent by the application to TCP. These constants
 // should be set as message kind on a message sent to the TCP entity.
 //
-// @see TCPCommand, TCPOpenCommand, TCP
+// @see ~TCPCommand, ~TCPOpenCommand, ~ITCP
 //
 enum TcpCommandCode
 {
-
-    TCP_C_OPEN_ACTIVE = 1;   // active open (must carry TCPOpenCommand)
-    TCP_C_OPEN_PASSIVE = 2;  // passive open (must carry TCPOpenCommand)
+    TCP_C_OPEN_ACTIVE = 1;   // active open (must carry ~TCPOpenCommand)
+    TCP_C_OPEN_PASSIVE = 2;  // passive open (must carry ~TCPOpenCommand)
     TCP_C_SEND = 3;          // send data (set on data packet)
     TCP_C_CLOSE = 5;         // "I have no more data to send"
     TCP_C_ABORT = 6;         // abort connection
@@ -42,14 +41,13 @@ enum TcpCommandCode
 
 
 //
-// \TCP indications, sent by TCP to the application. TCP will set these
+// TCP indications, sent by TCP to the application. TCP will set these
 // constants as message kind on messages it sends to the application.
 //
-// @see TCPCommand, TCPStatusInfo, TCP
+// @see ~TCPCommand, ~TCPStatusInfo, ~ITCP
 //
 enum TcpStatusInd
 {
-
     TCP_I_DATA = 1;              // data packet (set on data packet)
     TCP_I_URGENT_DATA = 2;       // urgent data (set on data packet)
     TCP_I_ESTABLISHED = 3;       // connection established
@@ -58,7 +56,7 @@ enum TcpStatusInd
     TCP_I_CONNECTION_REFUSED = 6; // connection refused
     TCP_I_CONNECTION_RESET = 7;  // connection reset
     TCP_I_TIMED_OUT = 8;         // conn-estab timer went off, or max retransm. count reached
-    TCP_I_STATUS = 9;            // status info (will carry TCPStatusInfo)
+    TCP_I_STATUS = 9;            // status info (will carry ~TCPStatusInfo)
 }
 
 
@@ -67,12 +65,11 @@ enum TcpStatusInd
 //
 enum TCPErrorCode
 {
-
 }
 
 
 //
-// Control info for \TCP connections. This class is to be set as control info
+// Control info for TCP connections. This class is to be set as control info
 // (see cMessage::setControlInfo()) on all messages exchanged between TCP and
 // application, in both directions. Some commands and indications
 // (TCP_C_OPEN_xxx, TCP_I_STATUS) use subclasses.
@@ -83,7 +80,7 @@ enum TCPErrorCode
 //
 //# TODO explain userId
 //
-// @see TcpCommandCode, TcpStatusInd, TCPOpenCommand, TCPStatusInfo, TCP
+// @see ~TcpCommandCode, ~TcpStatusInd, ~TCPOpenCommand, ~TCPStatusInfo, ~ITCP
 //
 class TCPCommand
 {
@@ -101,6 +98,26 @@ class TCPErrorInfo extends TCPCommand
     string messageText;
 }
 
+//
+// Defines what to transmit as payload in TCP segments
+//
+// Currently you have the following choices:
+//   - TCP_TRANSFER_BYTECOUNT:
+//      TCP layer will transmit byte counts only.
+//   - TCP_TRANSFER_OBJECT:
+//      TCP layer will transmit the copy of application packet C++ objects
+//   - TCP_TRANSFER_BYTESTREAM:
+//      TCP layer will transmit bytes of the application packet.
+//
+// See ~ITCP (the TCP layer interface) for details.
+//
+enum TCPDataTransferMode
+{
+    TCP_TRANSFER_UNDEFINED = 0;         // Invalid value
+    TCP_TRANSFER_BYTECOUNT = 1;         // Transmit byte counts only
+    TCP_TRANSFER_OBJECT = 2;            // Transmit the application packet C++ objects
+    TCP_TRANSFER_BYTESTREAM = 3;        // Transmit raw bytes
+}
 
 //
 // Control info to be used for active or passive TCP open.
@@ -110,22 +127,23 @@ class TCPErrorInfo extends TCPCommand
 // is received from the peer; localPort is optional because TCP supports
 // ephemeral ports.
 //
-// The sendQueueClass, receiveQueueClass and tcpAlgorithmClass fields
-// allow per-connection TCP configuration. These fields may contain
-// names of classes subclassed from TCPSendQueue, TCPReceiveQueue
-// and TCPAlgorithm, respectively. If not set, module parameters with
-// similar names are used.
-//
 // The fork parameter is used with passive open, and controls what happens
 // when an incoming connection is received. With fork=true, it emulates
 // the Unix accept(2) syscall semantics: a new connection structure
-// is created for the connection (with a new connId, see in TCPCommand),
+// is created for the connection (with a new connId, see in ~TCPCommand),
 // and the connection structure with the old connId remains listening.
 // With fork=false, all the above does not happen: the first connection
 // is accepted (with the original connId), and further incoming connections
 // will be refused by TCP by sending an RST segment.
 //
-// @see TcpCommandCode, TCP
+// The dataTransferMode and tcpAlgorithmClass fields
+// allow per-connection TCP configuration.
+// The dataTransferMode field set the 
+// The tcpAlgorithmClass field may contain name of class subclassed from
+// TCPAlgorithm, respectively.
+// If not set, module parameters with similar names are used.
+//
+// @see ~TcpCommandCode, ~ITCP
 //
 class TCPOpenCommand extends TCPCommand
 {
@@ -134,16 +152,15 @@ class TCPOpenCommand extends TCPCommand
     int localPort = -1;       // required for passive open
     int remotePort = -1;      // required for active open
     bool fork = false;        // used only for passive open
-    string sendQueueClass;    // may be left empty
-    string receiveQueueClass; // may be left empty
-    string tcpAlgorithmClass; // may be left empty
+    int dataTransferMode enum(TCPDataTransferMode); // whether to transmit C++ objects, real bytes or just byte counts. See ~TCPDataTransferMode.
+    string tcpAlgorithmClass; // TCP congestion control algorithm; leave empty for default
 }
 
 
 //
 // Control info to be used with the SEND command.
 //
-// @see TcpCommandCode, TCP
+// @see ~TcpCommandCode, ~ITCP
 //
 class TCPSendCommand extends TCPCommand
 {
@@ -154,7 +171,7 @@ class TCPSendCommand extends TCPCommand
 // Sent with message kind TCP_I_ESTABLISHED, to let the app know
 // about the local and remote IP address and port.
 //
-// @see TcpCommandCode, TCP
+// @see ~TcpCommandCode, ~ITCP
 //
 class TCPConnectInfo extends TCPCommand
 {
@@ -170,7 +187,7 @@ class TCPConnectInfo extends TCPCommand
 // For explanation of variables, see RFC 793 or TCPStateVariables in
 // TCPConnection.h.
 //
-// @see TcpStatusInd, TcpCommandCode, TCP
+// @see ~TcpStatusInd, ~TcpCommandCode, ~ITCP
 //
 class TCPStatusInfo extends TCPCommand
 {

@@ -18,7 +18,11 @@
 
 #include "Ieee80211MgmtAPSimplified.h"
 #include "Ieee802Ctrl_m.h"
+
+#ifdef WITH_ETHERNET
 #include "EtherFrame_m.h"
+#endif
+
 
 Define_Module(Ieee80211MgmtAPSimplified);
 
@@ -37,18 +41,16 @@ void Ieee80211MgmtAPSimplified::handleTimer(cMessage *msg)
 
 void Ieee80211MgmtAPSimplified::handleUpperMessage(cPacket *msg)
 {
-    // convert Ethernet frames arriving from MACRelayUnit (i.e. from
-    // the AP's other Ethernet or wireless interfaces)
-    Ieee80211DataFrame *frame = convertFromEtherFrame(check_and_cast<EtherFrame *>(msg));
+    Ieee80211DataFrame *frame = encapsulate(msg);
     sendOrEnqueue(frame);
 }
 
-void Ieee80211MgmtAPSimplified::handleCommand(int msgkind, cPolymorphic *ctrl)
+void Ieee80211MgmtAPSimplified::handleCommand(int msgkind, cObject *ctrl)
 {
     error("handleCommand(): no commands supported");
 }
 
-void Ieee80211MgmtAPSimplified::receiveChangeNotification(int category, const cPolymorphic *details)
+void Ieee80211MgmtAPSimplified::receiveChangeNotification(int category, const cObject *details)
 {
     Enter_Method_Silent();
     printNotificationBanner(category, details);
@@ -64,19 +66,11 @@ void Ieee80211MgmtAPSimplified::handleDataFrame(Ieee80211DataFrame *frame)
         return;
     }
 
-    if (hasRelayUnit)
-    {
-        // LAN bridging: if we have a relayUnit, send up the frame to it.
-        // We don't need to call distributeReceivedDataFrame() here, because
-        // if the frame needs to be distributed onto the wireless LAN too,
-        // then relayUnit will send a copy back to us.
-        send(convertToEtherFrame(frame), "uppergateOut");
-    }
-    else
-    {
-        // send it out to the destination STA
-        distributeReceivedDataFrame(frame);
-    }
+    if (isConnectedToHL)
+        sendToUpperLayer(frame->dup());
+
+    // send it out to the destination STA
+    distributeReceivedDataFrame(frame);
 }
 
 void Ieee80211MgmtAPSimplified::handleAuthenticationFrame(Ieee80211AuthenticationFrame *frame)
@@ -128,5 +122,4 @@ void Ieee80211MgmtAPSimplified::handleProbeResponseFrame(Ieee80211ProbeResponseF
 {
     dropManagementFrame(frame);
 }
-
 

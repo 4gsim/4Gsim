@@ -27,7 +27,7 @@ GTPPath::GTPPath() {
 
 GTPPath::GTPPath(GTP *module, IPvXAddress localAddr, IPvXAddress remoteAddr, unsigned char type) {
 	// TODO Auto-generated constructor stub
-	this->localAddr = localAddr;
+    this->localAddr = localAddr;
 	this->remoteAddr = remoteAddr;
 	this->module = module;
 	this->remoteCounter = 0;
@@ -37,18 +37,6 @@ GTPPath::GTPPath(GTP *module, IPvXAddress localAddr, IPvXAddress remoteAddr, uns
 	module->scheduleAt(simTime() + ECHO_TIMER_TIMEOUT + uniform(-2, 2), echoTimer);
 	echoTimer->setContextPointer(this);
 
-	cMessage *msg = new cMessage("UDP_C_BIND", UDP_C_BIND);
-	UDPControlInfo *ctrl = new UDPControlInfo();
-
-	EV <<"GTP: Initialized listen address = " << localAddr.str() << endl;
-	ctrl->setSrcAddr(localAddr);
-	if (module->getPlane() == GTP_CONTROL)
-		ctrl->setSrcPort(GTP_CONTROL_PORT);
-	else if (module->getPlane() == GTP_USER)
-		ctrl->setSrcPort(GTP_USER_PORT);
-	ctrl->setSockId(UDPSocket::generateSocketId());
-	msg->setControlInfo(ctrl);
-	module->send(msg, "udpOut");
 	if (module->getPlane() == GTP_USER)
 		localCounter = 0;
 	else
@@ -112,18 +100,10 @@ void GTPPath::processEchoTimer() {
 
 void GTPPath::send(GTPMessage *msg) {
 
-    UDPControlInfo *ctrl = new UDPControlInfo();
-
-    ctrl->setSrcAddr(localAddr);
-    ctrl->setSrcPort(EPHEMERAL_PORT);
-    ctrl->setDestAddr(remoteAddr);
 	if (module->getPlane() == GTP_CONTROL)
-		ctrl->setDestPort(GTP_CONTROL_PORT);
+		module->sendTo(msg, remoteAddr, GTP_CONTROL_PORT);
 	else if (module->getPlane() == GTP_USER)
-		ctrl->setDestPort(GTP_USER_PORT);
-    msg->setControlInfo(ctrl);
-
-    module->send(msg, "udpOut");
+		module->sendTo(msg, remoteAddr, GTP_USER_PORT);
 }
 
 void GTPPath::sendEchoRequest() {

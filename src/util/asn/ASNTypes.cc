@@ -43,6 +43,11 @@ const OpenType::Info OpenType::theInfo = {
 		0,
 };
 
+OpenType::OpenType(const void *info) : AbstractType(info) {
+    this->value = NULL;
+    this->length = 0;
+}
+
 OpenType::OpenType(char *value, int64_t length, const void *info) : AbstractType(info) {
 	this->value = value;
 	this->length = length;
@@ -57,7 +62,7 @@ OpenType::OpenType(AbstractType *val, const void *info) : AbstractType(info) {
 
 OpenType& OpenType::operator=(const OpenType& other)  {
 	this->length = other.length;
-	if (length) {
+	if (length > 0) {
 		value = (char*)calloc(sizeof(char), length);
 		memcpy(value, other.value, length);
 	} else

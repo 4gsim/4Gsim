@@ -18,7 +18,8 @@
 #ifndef __INET_TCPTAHOERENOFAMILY_H
 #define __INET_TCPTAHOERENOFAMILY_H
 
-#include <omnetpp.h>
+#include "INETDefs.h"
+
 #include "TCPBaseAlg.h"
 
 
@@ -51,5 +52,3 @@ class INET_API TCPTahoeRenoFamily : public TCPBaseAlg
 };
 
 #endif
-
-

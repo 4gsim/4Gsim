@@ -17,7 +17,8 @@
 
 #include <errno.h>
 #include "DCTDump.h"
-#include "IPSerializer.h"
+#include "IPv4Serializer.h"
+#include "RRCMessage_m.h"
 
 #define MAXBUFLENGTH 65536
 #define MAXDCTLENGTH 100
@@ -61,7 +62,7 @@ void DCTDump::handleMessage(cMessage *msg) {
     if (dumpfile != NULL) {
         const simtime_t stime = simulation.getSimTime();
         std::stringstream vers;
-        const char *time = timestamp(stime);
+        std::string time = timestamp(stime);
         uint8 buf[MAXBUFLENGTH];
         int32 buf_len = 0;
         std::string ascii_buf;
@@ -76,15 +77,28 @@ void DCTDump::handleMessage(cMessage *msg) {
         memset((void*)&dh, 0, sizeof(dh));
 
         // context name
-        IPDatagram *ipPacket = dynamic_cast<IPDatagram*>(msg);
+        IPv4Datagram *ipPacket = dynamic_cast<IPv4Datagram*>(msg);
         if (ipPacket) {
-            if (ipPacket->getTransportProtocol()==IP_PROT_SCTP) {
+            if (ipPacket->getTransportProtocol() == IP_PROT_SCTP) {
                 strncpy(p, "SCTP.", 5);
                 p += 5;
+            } else if (ipPacket->getTransportProtocol() == IP_PROT_UDP) {
+                strncpy(p, "UDP.", 4);
+                p += 4;
             }
             write = true;
 
-            buf_len = IPSerializer().serialize(ipPacket, buf, sizeof(buf));
+            buf_len = IPv4Serializer().serialize(ipPacket, buf, sizeof(buf), true);
+        }
+        RRCMessage *rrcMsg = dynamic_cast<RRCMessage*>(msg);
+        if (rrcMsg) {
+            strncpy(p, "NAS_RRC_LTE.", 12);
+            p += 12;
+            write = true;
+            buf_len = rrcMsg->getValueArraySize();
+            for (int32 i = 0; i < buf_len; i++) {
+                buf[i] = rrcMsg->getValue(i);
+            }
         }
 
         // context port number - always 1
@@ -103,6 +117,14 @@ void DCTDump::handleMessage(cMessage *msg) {
             *p = '/';
             p++;
         }
+        if (rrcMsg) {
+            // protocol name
+            strncpy(p, "nas_rrc_r8_lte/", 15);
+            p += 15;
+            // protocol version
+            strncpy(p, "1/", 2);
+            p += 2;
+        }
 
         // direction
         if (msg->getArrivalGate()->isName("ifIn")) {
@@ -114,8 +136,8 @@ void DCTDump::handleMessage(cMessage *msg) {
         // timestamp
         strncpy(p, " tm ", 4);
         p += 4;
-        strncpy(p, time, strlen(time));
-        p += strlen(time);
+        strncpy(p, time.c_str(), strlen(time.c_str()));
+        p += strlen(time.c_str());
 
         if (write) {
             fwrite(&dh, p - dh, 1, dumpfile);
@@ -133,12 +155,26 @@ void DCTDump::handleMessage(cMessage *msg) {
     send(msg, id);
 }
 
-const char *DCTDump::timestamp(simtime_t stime) {
-    std::stringstream out;
-    out << (int32)stime.dbl();
-    out << ".";
-    out << (uint32)((stime.dbl() - (int32)stime.dbl())*1000000);
-    return out.str().c_str();
+std::string DCTDump::timestamp(simtime_t stime) {
+    std::stringstream seconds;
+    std::stringstream subseconds;
+    std::string out;
+    seconds << (int32)stime.dbl();
+    subseconds << (uint32)((stime.dbl() - (int32)stime.dbl())*1000000);
+    for (unsigned i = 0; i < strlen(seconds.str().c_str()); i++) {
+        if (i > 3)
+            break;
+        const char *tmp = seconds.str().c_str();
+        out += tmp[i];
+    }
+    out += ".";
+    for (unsigned i = 0; i < strlen(subseconds.str().c_str()); i++) {
+        if (i > 3)
+            break;
+        const char *tmp = subseconds.str().c_str();
+        out += tmp[i];
+    }
+    return out;
 }
 
 void DCTDump::finish() {

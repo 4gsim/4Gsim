@@ -555,7 +555,7 @@ bool TunnelEndpoint::processFteidIE(GTPInfoElem *fteid) {
 		unsigned addr = ntohl(*((unsigned*)(p)));
 		p += 4;
 		if (path == NULL) {
-			GTPPath *path = module->findPath(IPvXAddress(addr), type);
+			GTPPath *path = module->findPath(IPvXAddress(IPv4Address(addr)), type);
 			if (path == NULL)
 				return false;
 			this->path = path;

@@ -16,65 +16,187 @@
 */
 
 #include "EtherHub.h"
-#include "EtherFrame_m.h"  // for EtherAutoconfig only
 
 
 Define_Module(EtherHub);
 
 
-static cEnvir& operator<< (cEnvir& out, cMessage *msg)
+simsignal_t EtherHub::pkSignal = SIMSIGNAL_NULL;
+
+static cEnvir& operator<<(cEnvir& out, cMessage *msg)
 {
-    out.printf("(%s)%s",msg->getClassName(),msg->getFullName());
+    out.printf("(%s)%s", msg->getClassName(), msg->getFullName());
     return out;
 }
 
 void EtherHub::initialize()
 {
+    numPorts = gateSize("ethg");
+    inputGateBaseId = gateBaseId("ethg$i");
+    outputGateBaseId = gateBaseId("ethg$o");
+    pkSignal = registerSignal("pk");
+
     numMessages = 0;
     WATCH(numMessages);
 
-    ports = gateSize("ethg");
+    // ensure we receive frames when their first bits arrive
+    for (int i = 0; i < numPorts; i++)
+        gate(inputGateBaseId + i)->setDeliverOnReceptionStart(true);
+    subscribe(POST_MODEL_CHANGE, this);  // we'll need to do the same for dynamically added gates as well
 
-    // autoconfig: tell everyone that full duplex is not possible over shared media
-    EV << "Autoconfig: advertising that we only support half-duplex operation\n";
-    for (int i=0; i<ports; i++)
+    checkConnections(true);
+}
+
+void EtherHub::checkConnections(bool errorWhenAsymmetric)
+{
+    int numActivePorts = 0;
+    double datarate = 0.0;
+    dataratesDiffer = false;
+
+    for (int i = 0; i < numPorts; i++)
     {
-        EtherAutoconfig *autoconf = new EtherAutoconfig("autoconf-halfduplex");
-        autoconf->setHalfDuplex(true);
-        send(autoconf,"ethg$o",i);
+        cGate *igate = gate(inputGateBaseId + i);
+        cGate *ogate = gate(outputGateBaseId + i);
+        if (!igate->isConnected() && !ogate->isConnected())
+            continue;
+
+        if (!igate->isConnected() || !ogate->isConnected())
+        {
+            // half connected gate
+            if (errorWhenAsymmetric)
+                throw cRuntimeError("The input or output gate not connected at port %i", i);
+            dataratesDiffer = true;
+            EV << "The input or output gate not connected at port " << i << ".\n";
+            continue;
+        }
+
+        numActivePorts++;
+        double drate = igate->getIncomingTransmissionChannel()->getNominalDatarate();
+
+        if (numActivePorts == 1)
+            datarate = drate;
+        else if (datarate != drate)
+        {
+            if (errorWhenAsymmetric)
+                throw cRuntimeError("The input datarate at port %i differs from datarates of previous ports", i);
+            dataratesDiffer = true;
+            EV << "The input datarate at port " << i << " differs from datarates of previous ports.\n";
+        }
+
+        cChannel *outTrChannel = ogate->getTransmissionChannel();
+        drate = outTrChannel->getNominalDatarate();
+
+        if (datarate != drate)
+        {
+            if (errorWhenAsymmetric)
+                throw cRuntimeError("The output datarate at port %i differs from datarates of previous ports", i);
+            dataratesDiffer = true;
+            EV << "The output datarate at port " << i << " differs from datarates of previous ports.\n";
+        }
+
+        if (!outTrChannel->isSubscribed(POST_MODEL_CHANGE, this))
+            outTrChannel->subscribe(POST_MODEL_CHANGE, this);
+    }
+}
+
+void EtherHub::receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj)
+{
+    Enter_Method_Silent();
+
+    ASSERT(signalID == POST_MODEL_CHANGE);
+
+    // if new gates have been added, we need to call setDeliverOnReceptionStart(true) on them
+    cPostGateVectorResizeNotification *notif = dynamic_cast<cPostGateVectorResizeNotification*>(obj);
+    if (notif)
+    {
+        if (strcmp(notif->gateName, "ethg") == 0)
+        {
+            int newSize = gateSize("ethg");
+            for (int i = notif->oldSize; i < newSize; i++)
+                gate(inputGateBaseId + i)->setDeliverOnReceptionStart(true);
+        }
+        return;
+    }
+
+    cPostPathCreateNotification *connNotif = dynamic_cast<cPostPathCreateNotification *>(obj);
+    if (connNotif)
+    {
+        if ((this == connNotif->pathStartGate->getOwnerModule()) || (this == connNotif->pathEndGate->getOwnerModule()))
+            checkConnections(false);
+        return;
+    }
+
+    cPostPathCutNotification *cutNotif = dynamic_cast<cPostPathCutNotification *>(obj);
+    if (cutNotif)
+    {
+        if ((this == cutNotif->pathStartGate->getOwnerModule()) || (this == cutNotif->pathEndGate->getOwnerModule()))
+            checkConnections(false);
+        return;
+    }
+
+    // note: we are subscribed to the channel object too
+    cPostParameterChangeNotification *parNotif = dynamic_cast<cPostParameterChangeNotification *>(obj);
+    if (parNotif)
+    {
+        cChannel *channel = dynamic_cast<cDatarateChannel *>(parNotif->par->getOwner());
+        if (channel)
+        {
+            cGate *gate = channel->getSourceGate();
+            if (gate->pathContains(this))
+                checkConnections(false);
+        }
+        return;
     }
 }
 
 void EtherHub::handleMessage(cMessage *msg)
 {
+    if (dataratesDiffer)
+        checkConnections(true);
+
     // Handle frame sent down from the network entity: send out on every other port
     int arrivalPort = msg->getArrivalGate()->getIndex();
     EV << "Frame " << msg << " arrived on port " << arrivalPort << ", broadcasting on all other ports\n";
 
     numMessages++;
+    emit(pkSignal, msg);
 
-    if (ports<=1)
+    if (numPorts <= 1)
     {
         delete msg;
         return;
     }
-    for (int i=0; i<ports; i++)
+
+    for (int i = 0; i < numPorts; i++)
     {
-        if (i!=arrivalPort)
+        if (i != arrivalPort)
         {
-            bool isLast = (arrivalPort==ports-1) ? (i==ports-2) : (i==ports-1);
-            cMessage *msg2 = isLast ? msg : (cMessage*) msg->dup();
-            send(msg2,"ethg$o",i);
+            cGate *ogate = gate(outputGateBaseId + i);
+            if (!ogate->isConnected())
+                continue;
+
+            bool isLast = (arrivalPort == numPorts-1) ? (i == numPorts-2) : (i == numPorts-1);
+            cMessage *msg2 = isLast ? msg : msg->dup();
+
+            // stop current transmission
+            ogate->getTransmissionChannel()->forceTransmissionFinishTime(SIMTIME_ZERO);
+
+            // send
+            send(msg2, ogate);
+
+            if (isLast)
+                msg = NULL;  // msg sent, do not delete it.
         }
     }
+    delete msg;
 }
 
-void EtherHub::finish ()
+void EtherHub::finish()
 {
     simtime_t t = simTime();
     recordScalar("simulated time", t);
-    recordScalar("messages handled", numMessages);
-    if (t>0)
-        recordScalar("messages/sec", numMessages/t);
+
+    if (t > 0)
+        recordScalar("messages/sec", numMessages / t);
 }
 

@@ -18,18 +18,18 @@
 #ifndef __INET_IINTERFACETABLE_H
 #define __INET_IINTERFACETABLE_H
 
-#include <omnetpp.h>
 #include "INETDefs.h"
+
 #include "InterfaceEntry.h"  // not strictly required, but clients will need it anyway
 
 
 /**
- * A C++ interface to abstract the functionality of IInterfaceTable.
- * Referring to IInterfaceTable via this interface makes it possible to
- * transparently replace IInterfaceTable with a different implementation,
+ * A C++ interface to abstract the functionality of InterfaceTable.
+ * Referring to InterfaceTable via this interface makes it possible to
+ * transparently replace InterfaceTable with a different implementation,
  * without any change to the base INET.
  *
- * @see IInterfaceTable, InterfaceEntry
+ * @see InterfaceTable, InterfaceEntry
  */
 class INET_API IInterfaceTable
 {
@@ -48,13 +48,17 @@ class INET_API IInterfaceTable
     virtual std::string getFullPath() const = 0;
 
     /**
-     * Adds an interface. The second argument should be a module which belongs
-     * to the physical interface (e.g. PPP or EtherMac) -- it will be used
+     * Returns the host or router this interface table lives in.
+     */
+    virtual cModule *getHostModule() = 0;
+
+    /**
+     * Adds an interface. The entry->getInterfaceModule() will be used
      * to discover and fill in getNetworkLayerGateIndex(), getNodeOutputGateId(),
      * and getNodeInputGateId() in InterfaceEntry. It should be NULL if this is
      * a virtual interface (e.g. loopback).
      */
-    virtual void addInterface(InterfaceEntry *entry, cModule *ifmod) = 0;
+    virtual void addInterface(InterfaceEntry *entry) = 0;
 
     /**
      * Deletes the given interface from the table. Indices of existing
@@ -105,6 +109,12 @@ class INET_API IInterfaceTable
     virtual InterfaceEntry *getInterfaceByNetworkLayerGateIndex(int index) = 0;
 
     /**
+     * Returns an interface by one of its component module (e.g. PPP).
+     * Returns NULL if not found.
+     */
+    virtual InterfaceEntry *getInterfaceByInterfaceModule(cModule *ifmod) = 0;
+
+    /**
      * Returns an interface given by its name. Returns NULL if not found.
      */
     virtual InterfaceEntry *getInterfaceByName(const char *name) = 0;
@@ -112,10 +122,16 @@ class INET_API IInterfaceTable
     /**
      * Returns the first interface with the isLoopback flag set.
      * (If there's no loopback, it returns NULL -- but this
-     * should never happen because IInterfaceTable itself registers a
+     * should never happen because InterfaceTable itself registers a
      * loopback interface on startup.)
      */
     virtual InterfaceEntry *getFirstLoopbackInterface() = 0;
+
+    /**
+     * Returns the first multicast capable interface.
+     * If there is no such interface, then returns NULL.
+     */
+    virtual InterfaceEntry *getFirstMulticastInterface() = 0;
 };
 
 #endif

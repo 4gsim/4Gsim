@@ -16,7 +16,6 @@
 package inet.examples.diameter;
 
 import inet.applications.diameter.DiameterNode;
-import inet.nodes.inet.StandardHostWithDLThruputMeter;
 import ned.DatarateChannel;
 
 

@@ -71,7 +71,6 @@ public:
 	unsigned char getProcedureCode() { return static_cast<IntegerBase*>(items.at(0))->getValue(); }
 	OpenType *getValue() { return static_cast<OpenType*>(items.at(2)); }
 
-	void setValue(OpenType *val);
 };
 
 typedef InitiatingMessage SuccessfulOutcome;

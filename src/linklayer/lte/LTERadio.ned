@@ -17,9 +17,9 @@
 
 package inet.linklayer.lte;
 
-import inet.linklayer.radio.Radio;
+import inet.linklayer.radio.IRadio;
 
-simple LTERadio like Radio
+simple LTERadio like IRadio
 {
     parameters:
         @display("i=block/wrxtx");
@@ -37,7 +37,7 @@ simple LTERadio like Radio
     gates:
         input netIN;
         output netOUT;
-        input uppergateIn @labels(PhyControlInfo/down); // from higher layer protocol (NAS)
-        output uppergateOut @labels(PhyControlInfo/up); // to decider (decider connects to NAS)
+        input upperLayerIn @labels(PhyControlInfo/down); // from higher layer protocol (NAS)
+        output upperLayerOut @labels(PhyControlInfo/up); // to decider (decider connects to NAS)
         input radioIn @labels(AirFrame); // to receive frames (AirFrame) on the radio channel
 }

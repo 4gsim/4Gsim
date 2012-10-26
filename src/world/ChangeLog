@@ -1,6 +1,0 @@
-2012-07-24  Calin Cerchez
-
-    * modified the channel send method (ChannelControl.cc). All messages from
-      UE's will be sent to eNB.
-    	if (h->channel == channel || h->channel == 10)
-    

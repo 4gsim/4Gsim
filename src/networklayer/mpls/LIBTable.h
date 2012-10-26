@@ -16,12 +16,14 @@
 #ifndef __INET_LIBTABLE_H
 #define __INET_LIBTABLE_H
 
-#include <omnetpp.h>
 #include <vector>
 #include <string>
+
+#include "INETDefs.h"
+
 #include "ConstType.h"
-#include "IPAddress.h"
-#include "IPDatagram.h"
+#include "IPv4Address.h"
+#include "IPv4Datagram.h"
 
 // label operations
 #define PUSH_OPER              0
@@ -58,7 +60,7 @@ class INET_API LIBTable: public cSimpleModule
         };
 
     protected:
-        IPAddress routerId;
+        IPv4Address routerId;
         int maxLabel;
         std::vector<LIBEntry> lib;
 

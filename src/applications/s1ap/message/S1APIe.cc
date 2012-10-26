@@ -319,7 +319,7 @@ ERabToBeSetupItemCtxtSuReq::ERabToBeSetupItemCtxtSuReq(unsigned char erabId, ERa
 IPvXAddress ERabToBeSetupItemCtxtSuReq::getTransportLayerAddress() {
 	if (static_cast<TransportLayerAddress*>(items[2])->getLength() == 32) {	// IPv4
 		char *val = static_cast<TransportLayerAddress*>(items[2])->getValue();
-		return IPvXAddress(ntohl(*((unsigned*)(val))));
+		return IPvXAddress(IPv4Address(ntohl(*((unsigned*)(val)))));
 	} else {
 		return IPvXAddress();
 	}
@@ -437,7 +437,7 @@ ERABSetupItemCtxtSURes::ERABSetupItemCtxtSURes(unsigned char erabId, IPvXAddress
 IPvXAddress ERABSetupItemCtxtSURes::getTransportLayerAddress() {
 	if (static_cast<TransportLayerAddress*>(items[1])->getLength() == 32) {	// IPv4
 		char *val = static_cast<TransportLayerAddress*>(items[1])->getValue();
-		return IPvXAddress(ntohl(*((unsigned*)(val))));
+		return IPvXAddress(IPv4Address(ntohl(*((unsigned*)(val)))));
 	} else {
 		return IPvXAddress();
 	}

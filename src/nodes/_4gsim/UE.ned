@@ -17,21 +17,24 @@
 
 package inet.nodes._4gsim;
 
+import inet.linklayer.lte.rrc.RRC;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.networklayer.common.InterfaceTable;
 import inet.applications.pingapp.PingApp;
 import inet.nodes.inet.NetworkLayer;
+import inet.util.DCTDump;
 import inet.util.subscriber.SubscriberTable;
 import inet.base.NotificationBoard;
 import inet.applications.nas.NAS;
 import inet.linklayer.lte.LTERadio;
-import inet.mobility.BasicMobility;
+import inet.mobility.IMobility;
 
 module UE
 {
     parameters:
+        @node();
         @display("i=device/cellphone;bgb=512,472");
-        string mobilityType = default("NullMobility");
+        string mobilityType = default("StationaryMobility");
         string destAddr = default("");
         volatile double interval @unit("s") = default(1s);
         int channelNumber;
@@ -39,7 +42,7 @@ module UE
     gates:
         input radioIn @directIn;
     submodules:
-        mobility: <mobilityType> like BasicMobility {
+        mobility: <mobilityType> like IMobility {
             parameters:
                 @display("p=50,61");
         }
@@ -71,13 +74,23 @@ module UE
         routingTable: RoutingTable {
             @display("p=266,54");
         }
+        rrc: RRC {
+            @display("p=381,281");
+        }
+        dctDump: DCTDump {
+            @display("p=381,398");
+        }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
 
-        lteRadio.uppergateIn <-- nas.radioOut;
-        lteRadio.uppergateOut --> nas.radioIn;
+        lteRadio.upperLayerIn <-- nas.radioOut;
+        lteRadio.upperLayerOut --> nas.radioIn;
         lteRadio.netOUT --> networkLayer.ifIn++;
         networkLayer.ifOut++ --> lteRadio.netIN;
-        networkLayer.pingOut --> pingApp.pingIn;
-        pingApp.pingOut --> networkLayer.pingIn;
+        networkLayer.pingOut++ --> pingApp.pingIn;
+        pingApp.pingOut --> networkLayer.pingIn++;
+        rrc.rlcOut --> dctDump.netIn++;
+        dctDump.netOut++ --> rrc.rlcIn;
+        dctDump.ifOut++ --> rrc.nasIn;
+        rrc.nasOut --> dctDump.ifIn++;
 }

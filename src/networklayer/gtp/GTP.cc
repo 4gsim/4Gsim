@@ -59,6 +59,12 @@ void GTP::initialize(int stage) {
 		error("GTP: Module has no mnc attribute");
 	this->plmnId = LTEUtils().toPLMNId(mcc, mnc);
 
+    socket.setOutputGate(gate("udpOut"));
+	if (plane == GTP_CONTROL)
+		socket.bind(GTP_CONTROL_PORT);
+	else if (plane == GTP_USER)
+		socket.bind(GTP_USER_PORT);
+
 	loadPathsFromXML(*gtpNode);
 }
 
@@ -69,12 +75,17 @@ void GTP::handleMessage(cMessage *msg) {
 		EV << "self message.\n";
 		path = (GTPPath*)msg->getContextPointer();
 		path->processEchoTimer();
-	} else {
-		EV << "network message.\n";
+	} else if (msg->getKind() == UDP_I_DATA) {
+		EV << "network message.";
 		path = pT->findPath(msg);
-		if (path != NULL)
-			path->processMessage(msg);
+		if (path != NULL) {
+		    EV << "Passing the message to the correct path.\n";
+		    path->processMessage(msg);
+		} else
+		    EV << "Unknown path, dropping the message.\n";
 		delete msg;
+	} else {
+		EV << "Unrecognized network message, dropping the message.\n";
 	}
 }
 

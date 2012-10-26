@@ -15,10 +15,15 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
+#include <algorithm>
 
-#include <omnetpp.h>
 #include "PassiveQueueBase.h"
 
+simsignal_t PassiveQueueBase::rcvdPkSignal = SIMSIGNAL_NULL;
+simsignal_t PassiveQueueBase::enqueuePkSignal = SIMSIGNAL_NULL;
+simsignal_t PassiveQueueBase::dequeuePkSignal = SIMSIGNAL_NULL;
+simsignal_t PassiveQueueBase::dropPkByQueueSignal = SIMSIGNAL_NULL;
+simsignal_t PassiveQueueBase::queueingTimeSignal = SIMSIGNAL_NULL;
 
 void PassiveQueueBase::initialize()
 {
@@ -31,28 +36,53 @@ void PassiveQueueBase::initialize()
     numQueueDropped = 0;
     WATCH(numQueueReceived);
     WATCH(numQueueDropped);
+
+    rcvdPkSignal = registerSignal("rcvdPk");
+    enqueuePkSignal = registerSignal("enqueuePk");
+    dequeuePkSignal = registerSignal("dequeuePk");
+    dropPkByQueueSignal = registerSignal("dropPkByQueue");
+    queueingTimeSignal = registerSignal("queueingTime");
+
+    msgId2TimeMap.clear();
 }
 
 void PassiveQueueBase::handleMessage(cMessage *msg)
 {
     numQueueReceived++;
-    if (packetRequested>0)
+
+    emit(rcvdPkSignal, msg);
+
+    if (packetRequested > 0)
     {
         packetRequested--;
+        emit(enqueuePkSignal, msg);
+        emit(dequeuePkSignal, msg);
+        emit(queueingTimeSignal, 0L);
         sendOut(msg);
     }
     else
     {
-        bool dropped = enqueue(msg);
-        if (dropped)
+        msgId2TimeMap[msg->getId()] = simTime();
+        cMessage *droppedMsg = enqueue(msg);
+        if (msg != droppedMsg)
+            emit(enqueuePkSignal, msg);
+
+        if (droppedMsg)
+        {
             numQueueDropped++;
+            emit(dropPkByQueueSignal, droppedMsg);
+            msgId2TimeMap.erase(droppedMsg->getId());
+            delete droppedMsg;
+        }
+        else
+            notifyListeners();
     }
 
     if (ev.isGUI())
     {
         char buf[40];
         sprintf(buf, "q rcvd: %d\nq dropped: %d", numQueueReceived, numQueueDropped);
-        getDisplayString().setTagArg("t",0,buf);
+        getDisplayString().setTagArg("t", 0, buf);
     }
 }
 
@@ -61,19 +91,51 @@ void PassiveQueueBase::requestPacket()
     Enter_Method("requestPacket()");
 
     cMessage *msg = dequeue();
-    if (msg==NULL)
+    if (msg == NULL)
     {
         packetRequested++;
     }
     else
     {
+        emit(dequeuePkSignal, msg);
+        emit(queueingTimeSignal, simTime() - msgId2TimeMap[msg->getId()]);
+        msgId2TimeMap.erase(msg->getId());
         sendOut(msg);
     }
 }
 
+void PassiveQueueBase::clear()
+{
+    cMessage *msg;
+
+    while (NULL != (msg = dequeue()))
+        delete msg;
+
+    packetRequested = 0;
+}
+
 void PassiveQueueBase::finish()
 {
-    recordScalar("packets received by queue", numQueueReceived);
-    recordScalar("packets dropped by queue", numQueueDropped);
+    msgId2TimeMap.clear();
+}
+
+void PassiveQueueBase::addListener(IPassiveQueueListener *listener)
+{
+    std::list<IPassiveQueueListener*>::iterator it = find(listeners.begin(), listeners.end(), listener);
+    if (it == listeners.end())
+        listeners.push_back(listener);
+}
+
+void PassiveQueueBase::removeListener(IPassiveQueueListener *listener)
+{
+    std::list<IPassiveQueueListener*>::iterator it = find(listeners.begin(), listeners.end(), listener);
+    if (it != listeners.end())
+        listeners.erase(it);
+}
+
+void PassiveQueueBase::notifyListeners()
+{
+    for (std::list<IPassiveQueueListener*>::iterator it = listeners.begin(); it != listeners.end(); ++it)
+        (*it)->packetEnqueued(this);
 }
 

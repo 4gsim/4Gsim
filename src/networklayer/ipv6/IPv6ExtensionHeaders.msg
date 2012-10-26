@@ -20,6 +20,9 @@
 cplusplus {{
 #include "IPv6Address.h"
 #include "IPv6Datagram.h"
+#include "IPProtocolId_m.h"
+
+#define IPv6_FRAGMENT_HEADER_LENGTH 8
 }}
 
 
@@ -34,6 +37,8 @@ class noncobject IPv6ExtensionHeader;
 //
 class IPv6HopByHopOptionsHeader extends IPv6ExtensionHeader
 {
+    extensionType = IP_PROT_IPv6EXT_HOP;
+    byteLength = 8; // FIXME verify
 }
 
 //
@@ -43,8 +48,12 @@ class IPv6HopByHopOptionsHeader extends IPv6ExtensionHeader
 //
 class IPv6RoutingHeader extends IPv6ExtensionHeader
 {
-    unsigned char routingType;
-    unsigned char segmentsLeft;
+    @customize(true);
+    extensionType = IP_PROT_IPv6EXT_ROUTING;
+    byteLength = 8;
+    //byteLength = 8+16*getAddressArraySize() when routingType == 0
+    uint8 routingType;
+    uint8 segmentsLeft;
     IPv6Address address[];
 }
 
@@ -55,6 +64,8 @@ class IPv6RoutingHeader extends IPv6ExtensionHeader
 //
 class IPv6FragmentHeader extends IPv6ExtensionHeader
 {
+    extensionType = IP_PROT_IPv6EXT_FRAGMENT;
+    byteLength = IPv6_FRAGMENT_HEADER_LENGTH; // FIXME verify
     unsigned short fragmentOffset;
     unsigned int identification;  // datagram ID: identifies which datagram this fragment belongs to.
     bool moreFragments; //Is this the last fragment?
@@ -67,6 +78,9 @@ class IPv6FragmentHeader extends IPv6ExtensionHeader
 //
 class IPv6DestinationOptionsHeader extends IPv6ExtensionHeader
 {
+    extensionType = IP_PROT_IPv6EXT_DEST;
+    byteLength = 8; // FIXME verify
+    // byteLength = 20; // FIXME only valid for Home Address Option!
 }
 
 //
@@ -76,6 +90,8 @@ class IPv6DestinationOptionsHeader extends IPv6ExtensionHeader
 //
 class IPv6AuthenticationHeader extends IPv6ExtensionHeader
 {
+    extensionType = IP_PROT_IPv6EXT_AUTH;
+    byteLength = 8; // FIXME verify
 }
 
 //
@@ -85,4 +101,6 @@ class IPv6AuthenticationHeader extends IPv6ExtensionHeader
 //
 class IPv6EncapsulatingSecurityPayloadHeader extends IPv6ExtensionHeader
 {
+    extensionType = IP_PROT_IPv6EXT_ESP;
+    byteLength = 8; // FIXME verify
 }

@@ -20,12 +20,16 @@
 #ifndef __ICMPv6_H__
 #define __ICMPv6_H__
 
-#include <omnetpp.h>
-#include "RoutingTable6Access.h"
-#include "IPv6Datagram.h"
-#include "ICMPv6Message_m.h"
-#include "IPv6ControlInfo.h"
+#include "INETDefs.h"
 
+#include "ICMPv6Message_m.h"
+
+
+//foreign declarations:
+class IPv6Address;
+class IPv6ControlInfo;
+class IPv6Datagram;
+class PingPayload;
 
 /**
  * ICMPv6 implementation.
@@ -53,7 +57,7 @@ class INET_API ICMPv6 : public cSimpleModule
      * in response to a received bogus packet from the transport layer (like UDP).
      * The ICMP error packet needs to include (part of) the original IP datagram,
      * so this function will wrap back the transport packet into the IP datagram
-     * based on its IPControlInfo.
+     * based on its IPv4ControlInfo.
      */
     virtual void sendErrorMessage(cPacket *transportPacket, IPv6ControlInfo *ctrl, ICMPv6Type type, int code);
 
@@ -65,7 +69,7 @@ class INET_API ICMPv6 : public cSimpleModule
     virtual ICMPv6Message *createDestUnreachableMsg(int code);
     virtual ICMPv6Message *createPacketTooBigMsg(int mtu);
     virtual ICMPv6Message *createTimeExceededMsg(int code);
-    virtual ICMPv6Message *createParamProblemMsg(int code);//TODO:Section 3.4 describes a pointer. What is it?
+    virtual ICMPv6Message *createParamProblemMsg(int code); //TODO:Section 3.4 describes a pointer. What is it?
 
   protected:
     /**
@@ -94,7 +98,7 @@ class INET_API ICMPv6 : public cSimpleModule
      *  Ping a machine. The information needed to do this is in the cMessage
      *  parameter.  TODO where in cMessage? document!!!
      */
-    virtual void sendEchoRequest(cPacket *);
+    virtual void sendEchoRequest(PingPayload *);
 
     /**
      * Validate the received IPv6 datagram before responding with error message.
@@ -102,6 +106,10 @@ class INET_API ICMPv6 : public cSimpleModule
     virtual bool validateDatagramPromptingError(IPv6Datagram *datagram);
 
     virtual void errorOut(ICMPv6Message *);
+
+  protected:
+    typedef std::map<long,int> PingMap;
+    PingMap pingMap;
 };
 
 

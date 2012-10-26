@@ -15,24 +15,27 @@
 
 package inet.examples._4gsim;
 
-import inet.examples.ethernet.lans.LargeLAN;
 import inet.nodes._4gsim.SGW;
 import inet.nodes._4gsim.PGW;
 import inet.nodes._4gsim.HSS;
 import inet.nodes._4gsim.MME;
-import inet.networklayer.autorouting.FlatNetworkConfigurator;
 import inet.nodes._4gsim.UE;
 import inet.nodes._4gsim.ENB;
-import inet.world.ChannelControl;
+import inet.world.radio.ChannelControl;
 import ned.DatarateChannel;
+import inet.util.ThruputMeteringChannel;
 
 network Test
 {
     parameters:
-        double playgroundSizeX;
-        double playgroundSizeY;
         @display("p=10,10;b=712,152;bgb=540,367");
     types:
+        channel ethernetline extends ThruputMeteringChannel
+        {
+            delay = 0.1us;
+            datarate = 10Mbps;
+            thruputDisplayFormat = "u";
+        }
     submodules:
         enb: ENB {
             @display("p=110,218");
@@ -40,9 +43,7 @@ network Test
         ue2: UE {
             @display("p=30,200");
         }
-        channelcontrol: ChannelControl {
-            playgroundSizeX = playgroundSizeX;
-            playgroundSizeY = playgroundSizeY;
+        channelControl: ChannelControl {
             @display("p=110,36");
         }
         mme: MME {
@@ -61,11 +62,11 @@ network Test
             @display("p=220,322");
         }
     connections:
-        enb.ethg++ <--> mme.ethg++;
-        hss.ethg++ <--> mme.ethg++;
-        sgw.ethg++ <--> pgw.ethg++;
-        mme.ethg++ <--> sgw.ethg++;
-        sgw.ethg++ <--> pgw.ethg++;
-        enb.ethg++ <--> sgw.ethg++;
+        enb.ethg++ <--> ethernetline <--> mme.ethg++;
+        hss.ethg++ <--> ethernetline <--> mme.ethg++;
+        sgw.ethg++ <--> ethernetline <--> pgw.ethg++;
+        mme.ethg++ <--> ethernetline <--> sgw.ethg++;
+        sgw.ethg++ <--> ethernetline <--> pgw.ethg++;
+        enb.ethg++ <--> ethernetline <--> sgw.ethg++;
 }
 

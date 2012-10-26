@@ -184,6 +184,7 @@ void NAS::handleMessageFromRadio(cMessage *msg) {
 		sendToS1AP(nmsg, sub->getEnbId(), sub->getMmeId());
 	} else {
 		if (sub == NULL) {
+		    EV << "NAS-UE: Incorrect message. Dropping the message.\n";
 			delete nmsg;
 			return;
 		}
@@ -198,7 +199,7 @@ void NAS::handleMessageFromRadio(cMessage *msg) {
 					entry->ipv4Data()->setIPAddress(esm->getDefPDNConnection()->getSubscriberAddress().get4());
 					entry->setMACAddress(MACAddress::generateAutoAddress());
 					entry->setMtu(1500);
-					IPRoute *route=new IPRoute();
+					IPv4Route *route=new IPv4Route();
 					route->setInterface(entry);
 					rt->addRoute(route);
 				}
@@ -210,6 +211,7 @@ void NAS::handleMessageFromRadio(cMessage *msg) {
 				break;
 			}
 			default:
+			    EV << "NAS-UE: Unexpected message type. Dropping the message.\n";
 				delete nmsg;
 				break;
 		}

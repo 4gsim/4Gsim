@@ -39,7 +39,7 @@ class PerEncoder {
 private:
     short usedBits;
     int64_t length;
-    char *buffer;
+    char buffer[65536];
     bool alignmentFlag;
 
     /* Utility methods for encoding */
@@ -78,7 +78,7 @@ public:
     int64_t getLength() { return length; }
 
 	/* Setter methods */
-	void setBuffer(char *buffer) { this->buffer = buffer; }
+//	void setBuffer(char *buffer) { this->buffer = buffer; }
 	void setLength(int64_t length) { this->length = length; }
 
 };

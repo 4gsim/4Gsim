@@ -18,34 +18,31 @@
 
 package inet.examples.wireless.lan80211;
 
-import inet.networklayer.autorouting.FlatNetworkConfigurator;
-import inet.nodes.wireless.WirelessAPSimplified;
-import inet.nodes.wireless.WirelessHostSimplified;
-import inet.world.ChannelControl;
+import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
+import inet.nodes.inet.WirelessHost;
+import inet.nodes.wireless.AccessPoint;
+import inet.world.radio.ChannelControl;
 
 
 network Lan80211
 {
     parameters:
         int numHosts;
-        int playgroundSizeX;
-        int playgroundSizeY;
     submodules:
-        host[numHosts]: WirelessHostSimplified {
+        host[numHosts]: WirelessHost {
             @display("r=,,#707070");
+            wlan[*].mgmtType = "Ieee80211MgmtSTASimplified";
         }
-        ap: WirelessAPSimplified {
+        ap: AccessPoint {
             @display("p=213,174;r=,,#707070");
+            wlan[*].mgmtType = "Ieee80211MgmtAPSimplified";
         }
-        channelcontrol: ChannelControl {
-            playgroundSizeX = playgroundSizeX;
-            playgroundSizeY = playgroundSizeY;
+        channelControl: ChannelControl {
             numChannels = 2;
             @display("p=61,46");
         }
-        configurator: FlatNetworkConfigurator {
-            networkAddress = "145.236.0.0";
-            netmask = "255.255.0.0";
+        configurator: IPv4NetworkConfigurator {
+            config=xml("<config><interface hosts='*' address='145.236.x.x' netmask='255.255.0.0'/></config>");
             @display("p=140,50");
         }
 }

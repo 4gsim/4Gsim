@@ -15,12 +15,14 @@
 #ifndef __INET_SIMPLECLASSIFIER_H
 #define __INET_SIMPLECLASSIFIER_H
 
-#include <omnetpp.h>
 #include <vector>
 #include <string>
+
+#include "INETDefs.h"
+
 #include "ConstType.h"
-#include "IPAddress.h"
-#include "IPDatagram.h"
+#include "IPv4Address.h"
+#include "IPv4Datagram.h"
 #include "IScriptable.h"
 #include "IRSVPClassifier.h"
 #include "LIBTable.h"
@@ -38,8 +40,8 @@ class INET_API SimpleClassifier: public cSimpleModule, public IScriptable, publi
     {
         int id;
 
-        IPAddress src;
-        IPAddress dest;
+        IPv4Address src;
+        IPv4Address dest;
 
         SessionObj_t session;
         SenderTemplateObj_t sender;
@@ -48,7 +50,7 @@ class INET_API SimpleClassifier: public cSimpleModule, public IScriptable, publi
     };
 
   protected:
-    IPAddress routerId;
+    IPv4Address routerId;
     int maxLabel;
 
     std::vector<FECEntry> bindings;
@@ -67,7 +69,7 @@ class INET_API SimpleClassifier: public cSimpleModule, public IScriptable, publi
     virtual void processCommand(const cXMLElement& node);
 
     // IRSVPClassifier implementation
-    virtual bool lookupLabel(IPDatagram *ipdatagram, LabelOpVector& outLabel, std::string& outInterface, int& color);
+    virtual bool lookupLabel(IPv4Datagram *ipdatagram, LabelOpVector& outLabel, std::string& outInterface, int& color);
     virtual void bind(const SessionObj_t& session, const SenderTemplateObj_t& sender, int inLabel);
 
   protected:

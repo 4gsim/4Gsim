@@ -16,20 +16,19 @@
 //
 
 cplusplus {{
-#include "IPAddress.h"
+#include "IPv4Address.h"
 }}
 
 
-class noncobject IPAddress;
+class noncobject IPv4Address;
 
 enum OSPFPacketType
 {
-
-    HelloPacket = 1;
-    DatabaseDescriptionPacket = 2;
-    LinkStateRequestPacket = 3;
-    LinkStateUpdatePacket = 4;
-    LinkStateAcknowledgementPacket = 5;
+    HELLO_PACKET = 1;
+    DATABASE_DESCRIPTION_PACKET = 2;
+    LINKSTATE_REQUEST_PACKET = 3;
+    LINKSTATE_UPDATE_PACKET = 4;
+    LINKSTATE_ACKNOWLEDGEMENT_PACKET = 5;
 }
 
 // should be a byte long bitfield
@@ -51,13 +50,11 @@ struct OSPFOptions
 packet OSPFPacket
 {
     char version = 2;
-    char type enum(OSPFPacketType) = HelloPacket;
-    short packetLength = 0;
+    char type enum(OSPFPacketType) = HELLO_PACKET;
 
-    IPAddress routerID;
-    IPAddress areaID;
+    IPv4Address routerID;
+    IPv4Address areaID;
 
-    short checksum = 0;
     short authenticationType = 0;
     char authentication[8];
 }
@@ -67,7 +64,7 @@ packet OSPFPacket
 //
 packet OSPFHelloPacket extends OSPFPacket
 {
-    IPAddress networkMask;
+    IPv4Address networkMask;
 
     short helloInterval = 5;
 
@@ -76,42 +73,38 @@ packet OSPFHelloPacket extends OSPFPacket
     char routerPriority = 0;
     long routerDeadInterval = 0;
 
-    IPAddress designatedRouter;
-    IPAddress backupDesignatedRouter;
-    IPAddress neighbor[];
+    IPv4Address designatedRouter;
+    IPv4Address backupDesignatedRouter;
+    IPv4Address neighbor[];
 }
 
 
 enum LSAType
 {
-
-    RouterLSAType = 1;
-    NetworkLSAType = 2;
-    SummaryLSA_NetworksType = 3;
-    SummaryLSA_ASBoundaryRoutersType = 4;
-    ASExternalLSAType = 5;
+    ROUTERLSA_TYPE = 1;
+    NETWORKLSA_TYPE = 2;
+    SUMMARYLSA_NETWORKS_TYPE = 3;
+    SUMMARYLSA_ASBOUNDARYROUTERS_TYPE = 4;
+    AS_EXTERNAL_LSA_TYPE = 5;
 }
 
 //
 // Represents an OSPF LSA header
 //
-//class OSPFLSAHeader extends cObject
 class OSPFLSAHeader
 {
     unsigned short lsAge = 0;
     OSPFOptions lsOptions;
-    char lsType enum(LSAType) = RouterLSAType;
-    unsigned long linkStateID;
-    IPAddress advertisingRouter;
+    char lsType enum(LSAType) = ROUTERLSA_TYPE;
+    IPv4Address linkStateID;
+    IPv4Address advertisingRouter;
     long lsSequenceNumber = 0;
-    short lsChecksum = 0;
     unsigned short lsaLength = 0;
 }
 
 //
 // common ancestor type for all LSAs
 //
-//class OSPFLSA extends cObject
 class OSPFLSA
 {
     OSPFLSAHeader header;
@@ -119,11 +112,10 @@ class OSPFLSA
 
 enum LinkType
 {
-
-    PointToPointLink = 1;
-    TransitLink = 2;
-    StubLink = 3;
-    VirtualLink = 4;
+    POINTTOPOINT_LINK = 1;
+    TRANSIT_LINK = 2;
+    STUB_LINK = 3;
+    VIRTUAL_LINK = 4;
 }
 
 struct TOSData
@@ -132,12 +124,11 @@ struct TOSData
     unsigned char tosMetric[3];
 }
 
-//class Link extends cObject
 class Link
 {
-    IPAddress linkID;
+    IPv4Address linkID;
     unsigned long linkData = 0;
-    unsigned char type enum(LinkType) = PointToPointLink;
+    unsigned char type enum(LinkType) = POINTTOPOINT_LINK;
     unsigned char numberOfTOS = 0;
     unsigned long linkCost = 1;
     TOSData tosData[];
@@ -160,8 +151,8 @@ class OSPFRouterLSA extends OSPFLSA
 //
 class OSPFNetworkLSA extends OSPFLSA
 {
-    IPAddress networkMask;
-    IPAddress attachedRouters[];
+    IPv4Address networkMask;
+    IPv4Address attachedRouters[];
 }
 
 //
@@ -169,7 +160,7 @@ class OSPFNetworkLSA extends OSPFLSA
 //
 class OSPFSummaryLSA extends OSPFLSA
 {
-    IPAddress networkMask;
+    IPv4Address networkMask;
     unsigned long routeCost = 1;
     TOSData tosData[];
 }
@@ -178,7 +169,7 @@ struct ExternalTOSInfo
 {
     TOSData tosData;
     bool E_ExternalMetricType;
-    IPAddress forwardingAddress;
+    IPv4Address forwardingAddress;
     long externalRouteTag;
 }
 
@@ -187,10 +178,10 @@ struct ExternalTOSInfo
 //
 class OSPFASExternalLSAContents
 {
-    IPAddress networkMask;
+    IPv4Address networkMask;
     bool E_ExternalMetricType = false;
     unsigned long routeCost = 1;
-    IPAddress forwardingAddress;
+    IPv4Address forwardingAddress;
     long externalRouteTag = 0;
     ExternalTOSInfo externalTOSInfo[];
 }
@@ -232,8 +223,8 @@ packet OSPFDatabaseDescriptionPacket extends OSPFPacket
 struct LSARequest
 {
     unsigned long lsType;
-    unsigned long linkStateID;
-    IPAddress advertisingRouter;
+    IPv4Address linkStateID;
+    IPv4Address advertisingRouter;
 }
 
 //

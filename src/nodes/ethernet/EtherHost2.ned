@@ -15,62 +15,58 @@
 // along with this program; if not, see <http://www.gnu.org/licenses/>.
 //
 
-
-
 package inet.nodes.ethernet;
 
-import inet.applications.ethernet.EtherAppCli;
-import inet.applications.ethernet.EtherAppSrv;
+import inet.linklayer.ethernet.EtherEncap;
+import inet.applications.ethernet.EtherTrafGen;
 import inet.linklayer.ethernet.EtherLLC;
-import inet.linklayer.ethernet.EtherMAC2;
+import inet.linklayer.ethernet.EtherQoSQueue;
+import inet.linklayer.IEtherMAC;
+import inet.applications.ethernet.EtherAppSrv;
+import inet.applications.ethernet.EtherAppCli;
 
 
 //
-// Example host model with one Ethernet port and several traffic generators
-// to create traffic in the test network.
+// An example host with one Ethernet interface and an Ethernet traffic
+// generator directly connected to it. This host model does not contain
+// higher layer protocols (IP, TCP). By default is configured to use
+// half-duplex MAC (CSMA/CD).
 //
 module EtherHost2
 {
     parameters:
+        bool csmacdSupport = default(true);  // by default use CSMA/CD
+        string macType = default(csmacdSupport ? "EtherMAC" : "EtherMACFullDuplex"); // ~EtherMAC or ~EtherMACFullDuplex
+        string queueType = default(""); // DropTailQueue, DiffServQueue, or "" to use the internal queue
         @node();
         @labels(node,ethernet-node);
-        @display("b=271,262;i=device/pc2");
+        @display("i=device/pc2");
     gates:
         inout ethg @labels(EtherFrame-conn);
-
     submodules:
-        cli: EtherAppCli {
-            parameters:
-                registerSAP = true;
-                @display("p=60,60,col");
+        app: EtherTrafGen {
+            @display("p=155,59");
         }
-        srv: EtherAppSrv {
-            parameters:
-                registerSAP = true;
-                @display("p=250,60,col");
+        encap: EtherEncap {
+            @display("p=155,146");
         }
-        llc: EtherLLC {
+        queue: EtherQoSQueue if queueType != "" {
             parameters:
-                @display("p=155,120");
-            gates:
-                upperLayerIn[2];
-                upperLayerOut[2];
+                dataQueueType = queueType;
+                @display("p=87,207;q=l2queue");
         }
-        mac: EtherMAC2 {
-            parameters:
-                queueModule = "";
-                @display("p=155,200;q=queue");
+        mac: <macType> like IEtherMAC {
+            queueModule = (queueType == "" ? "" : "queue");
+            @display("p=155,272;q=txQueue");
         }
     connections:
-        llc.lowerLayerIn <-- mac.upperLayerOut;
-        llc.lowerLayerOut --> mac.upperLayerIn;
+        app.out --> encap.upperLayerIn;
+        app.in <-- encap.upperLayerOut;
+
+        encap.lowerLayerOut --> queue.in if queueType != "";
+        queue.out --> mac.upperLayerIn if queueType != "";
+        encap.lowerLayerOut --> mac.upperLayerIn if queueType == "";
+        mac.upperLayerOut --> encap.lowerLayerIn;
 
         mac.phys <--> ethg;
-
-        cli.out --> llc.upperLayerIn[0];
-        cli.in <-- llc.upperLayerOut[0];
-
-        srv.out --> llc.upperLayerIn[1];
-        srv.in <-- llc.upperLayerOut[1];
 }
-

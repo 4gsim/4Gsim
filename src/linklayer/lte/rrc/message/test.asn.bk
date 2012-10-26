@@ -1,0 +1,61 @@
+-- 3GPP TS 36.331 V10.5.0 (2012-03)���
+-- $Id: EUTRA-RRC-Definitions.asn 41917 2012-04-04 07:47:54Z etxrab $
+--
+Class-Definitions DEFINITIONS AUTOMATIC TAGS ::=
+
+BEGIN
+
+
+ReportConfigInterRAT ::=			SEQUENCE {
+	triggerType							CHOICE {
+		event								SEQUENCE {
+			eventId								CHOICE {
+				eventB1								SEQUENCE {
+					b1-Threshold						CHOICE {
+						b1-ThresholdUTRA					ThresholdUTRA,
+						b1-ThresholdGERAN					ThresholdGERAN,
+						b1-ThresholdCDMA2000				ThresholdCDMA2000
+					}
+				},
+				eventB2								SEQUENCE {
+					b2-Threshold1						ThresholdEUTRA,
+					b2-Threshold2						CHOICE {
+						b2-Threshold2UTRA					ThresholdUTRA,
+						b2-Threshold2GERAN					ThresholdGERAN,
+						b2-Threshold2CDMA2000				ThresholdCDMA2000
+					}
+				},
+				...
+			},
+			hysteresis						Hysteresis,
+			timeToTrigger					TimeToTrigger
+		},
+		periodical								SEQUENCE {
+			purpose									ENUMERATED {
+														reportStrongestCells,
+														reportStrongestCellsForSON,
+														reportCGI}
+		}
+	},
+	maxReportCells						INTEGER (1..maxCellReport),
+	reportInterval						ReportInterval,	
+	reportAmount						ENUMERATED {r1, r2, r4, r8, r16, r32, r64, infinity},
+	...,
+	[[	si-RequestForHO-r9					ENUMERATED {setup}		OPTIONAL	-- Cond reportCGI
+	]],
+	[[	reportQuantityUTRA-FDD-r10			ENUMERATED {both}		OPTIONAL	-- Need OR
+	]]
+}
+
+MeasSubframePattern-r10 ::= CHOICE {
+	subframePatternFDD-r10				BIT STRING (SIZE (40)),
+	subframePatternTDD-r10				CHOICE {
+		subframeConfig1-5-r10					BIT STRING (SIZE (20)),
+		subframeConfig0-r10						BIT STRING (SIZE (70)),
+		subframeConfig6-r10						BIT STRING (SIZE (60)),
+		...
+	},
+	...
+}
+
+END

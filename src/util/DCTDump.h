@@ -47,7 +47,7 @@
 class DCTDump : public cSimpleModule {
 private:
     FILE *dumpfile;
-    const char *timestamp(simtime_t stime);
+    std::string timestamp(simtime_t stime);
     void dumpPacket(uint8 *buf, int32 len);
 public:
     DCTDump();

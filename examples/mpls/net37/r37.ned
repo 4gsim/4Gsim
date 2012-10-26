@@ -12,36 +12,25 @@
 
 package inet.examples.mpls.net37;
 
-import inet.networklayer.autorouting.NetworkConfigurator;
+import inet.networklayer.autorouting.ipv4.IPv4NetworkConfigurator;
 import inet.nodes.inet.StandardHost;
 import inet.nodes.mpls.RSVP_LSR;
-import inet.world.ChannelInstaller;
-import inet.world.NAMTrace;
-import ned.DatarateChannel;
+import inet.util.ThruputMeteringChannel;
 
 
 network R37
 {
     types:
-        channel line extends DatarateChannel
+        channel line extends ThruputMeteringChannel
         {
             delay = 15ms;
             datarate = 128kbps;
+            thruputDisplayFormat = "u";
         }
     submodules:
-        configurator: NetworkConfigurator {
+        configurator: IPv4NetworkConfigurator {
             parameters:
                 @display("p=100,100");
-        }
-        channelInstaller: ChannelInstaller {
-            parameters:
-                channelClass = "ThruputMeteringChannel";
-                channelAttrs = "format=u";
-                @display("p=100,160");
-        }
-        nam: NAMTrace {
-            parameters:
-                @display("p=100,220");
         }
         LSR0: RSVP_LSR {
             parameters:

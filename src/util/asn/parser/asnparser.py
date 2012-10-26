@@ -38,6 +38,18 @@ class ASNObject:
         includes = list()
         imports = list()
 
+def iscomment(line):
+        line = line.strip()
+        line = line.strip('\t')
+
+        if len(line) > 1:
+                if line[0] == '-' and line[1] == '-':
+                        return True
+                else:
+                        return False
+        else:
+                return False
+
 def parsebracket(asnobj, string, cursor):
 	#print string
 	objstring = ""
@@ -46,10 +58,16 @@ def parsebracket(asnobj, string, cursor):
 	objs = list()
 	for i in range(0, len(string)):
 		if string[i] == ',' and openbrackets == 0 and len(objstring) > 0:
-			childobj = parsestring(objstring.strip())
-			objs.append(childobj)
-			childobj.parent = asnobj
-			objstring = ""
+                        objstring = objstring.strip()
+##                        print objstring + '\n'
+                        if objstring == '...':
+                                asnobj.constrainttype = "EXTCONSTRAINED"
+                                objstring = ""
+                        else:
+                                childobj = parsestring(objstring)
+                                objs.append(childobj)
+                                childobj.parent = asnobj
+                                objstring = ""
 		else:
 			if string[i] == '{':
 				openbrackets += 1
@@ -57,11 +75,13 @@ def parsebracket(asnobj, string, cursor):
 				if openbrackets != 0:
 					openbrackets -= 1
 			objstring += string[i]
-	if '...' in objstring:
+	objstring = objstring.strip()
+##	print objstring + '\n'
+        if objstring == '...':
 		asnobj.constrainttype = "EXTCONSTRAINED"
 	else:
 		if len(objstring) > 0:
-			childobj = parsestring(objstring.strip())
+			childobj = parsestring(objstring)
 			objs.append(childobj)
 			childobj.parent = asnobj
 			asnobj.constrainttype = "CONSTRAINED"
@@ -167,6 +187,7 @@ def parseheader(asnobj, string):
         imports = list()
 	filename = string.split()[0]
 	asnobj.outfilename = mod + findfilename(filename)
+	
 	words = string.split("\n")
 	for i in range(0, len(words)):
 		if 'FROM' in words[i]:
@@ -183,16 +204,20 @@ def parseheader(asnobj, string):
                         #print imp
 	asnobj.includes = includes
 	asnobj.imports = imports
-
+        
 
 def parsestring(string):
 	asnobj = ASNObject()
 	words = list()
-	
+##	print string + '\n'
 	if 'IMPORTS' in string or 'DEFINITIONS' in string:
 		parseheader(asnobj, string)
 		return asnobj
 	if '::=' in string:
+                while '--' in string:
+                        pos = string.find('--')
+                        while string[pos] != '\n':
+                                string = string[:pos] + string[(pos + 1):]
 		string = string.replace("\t", ' ')
 		string = string.replace("\n", '')
 		string = re.sub('\s+', ' ', string)
@@ -203,9 +228,17 @@ def parsestring(string):
 		else:
 			asnobj.name = words[0].replace("-", "").strip()
 	else:
+                if '[[' in string:
+                        pos = string.find('[[')
+                        string = string[:pos] + string[(pos + 2):]
+                if ']]' in string:
+                        pos = string.find(']]')
+                        string = string[:pos] + string[(pos + 2):]
+                string = string.strip()
 		words = string.split(' ', 1)
 		asnobj.name = words[0].replace("-", "_").strip()
-	#print string + "\n"
+##        print asnobj.name
+##	print string + "\n"
 	if len(words) > 1:
 		parsetype(asnobj, words[1])
 		if asnobj.type != "Enumerated" and asnobj.constrainttype != "CONSTANT":
@@ -279,7 +312,7 @@ def parsefile(directory, filename, module):
 			if len(objectstring) > 0: 
 				asnobjs.append(parsestring(objectstring))
 			objectstring = line
-		elif '--' not in line and line != "\n" and line[:-1] != 'END':
+		elif iscomment(line) != True and line != "\n" and line[:-1] != 'END':
 			objectstring += line
 
 	asnobjs.append(parsestring(objectstring))

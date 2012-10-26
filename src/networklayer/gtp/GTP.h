@@ -54,6 +54,8 @@ protected:
 	unsigned char localCounter;
 	unsigned tunnIds;
 
+	UDPSocket socket;
+
 	GTPPathTable *pT;
 	TunnelEndpointTable *teT;
 	NotificationBoard *nb;
@@ -63,7 +65,7 @@ protected:
      * ex.
      * <GTP mcc="558" mnc="71">
      *   <Paths>
-     *       <Path localAddr="192.168.5.2" remoteAddr="192.168.5.1" type="10"/> <!-- 10 = S11 MME GTP-C interface -->
+     *       <Path remoteAddr="192.168.5.1" type="10"/> <!-- 10 = S11 MME GTP-C interface -->
      *   </Paths>
      * </GTP>
      */
@@ -106,7 +108,7 @@ public:
     GTPPath *findPath(IPvXAddress addr, unsigned char type) { return pT->findPath(addr, type); }
     GTPPath *findPath(IPvXAddress ctrlAddr) { return pT->findPath(ctrlAddr); }
     void addTunnelEndpoint(TunnelEndpoint *te) { teT->push_back(te); }
-
+    void sendTo(GTPMessage *msg, IPvXAddress addr, int port) { socket.sendTo(msg, addr, port); }
 };
 
 #endif /* GTP_H_ */

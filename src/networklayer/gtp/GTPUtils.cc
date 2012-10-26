@@ -174,7 +174,7 @@ IPvXAddress GTPUtils::processAddrIE(GTPInfoElem *addr) {
 		p++;
 		unsigned addr = ntohl(*((unsigned*)(p)));
 		p += 4;
-		return IPvXAddress(IPAddress(addr));
+		return IPvXAddress(IPv4Address(addr));
 	} else if ((*p & 0x02)) {	// ipv6 not supported
 
 	}
@@ -195,7 +195,7 @@ TunnelEndpoint *GTPUtils::processFteidIE(GTPInfoElem *fteid) {
 		unsigned addr = ntohl(*((unsigned*)(p)));
 		p += 4;
 		GTPPath *path = new GTPPath();
-		path->setRemoteAddr(IPvXAddress(addr));
+		path->setRemoteAddr(IPvXAddress(IPv4Address(addr)));
 		path->setType(type);
 		TunnelEndpoint *te = new TunnelEndpoint();
 		te->setPath(path);

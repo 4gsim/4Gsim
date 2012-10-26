@@ -18,7 +18,8 @@
 #ifndef __INET_TCPRENO_H
 #define __INET_TCPRENO_H
 
-#include <omnetpp.h>
+#include "INETDefs.h"
+
 #include "TCPTahoeRenoFamily.h"
 
 
@@ -59,5 +60,3 @@ class INET_API TCPReno : public TCPTahoeRenoFamily
 };
 
 #endif
-
-
