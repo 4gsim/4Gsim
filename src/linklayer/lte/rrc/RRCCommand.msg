@@ -13,28 +13,4 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-// 
-
-#ifndef RRC_H_
-#define RRC_H_
-
-#include <omnetpp.h>
-#include "RRCClassDefinitions.h"
-
-enum RRCStates {
-    RRC_IDLE,
-    RRC_CONNECTED
-};
-
-class RRC : public cSimpleModule {
-public:
-	RRC();
-	virtual ~RRC();
-
-	cFSM fsm;
-
-	void initialize(int stage);
-	void handleMessage(cMessage *msg);
-};
-
-#endif /* RRC_H_ */
+//
