@@ -39,7 +39,7 @@ void LTERadio::initialize(int stage) {
 
     ChannelAccess::initialize(stage);
 
-    EV << "Initializing LTERadio, stage=" << stage << endl;
+    EV << "Initializing LTERadio, stage = " << stage << endl;
 
     if (stage == 0) {
     	rs.setChannelNumber((int)par("channelNumber"));
@@ -50,28 +50,28 @@ void LTERadio::initialize(int stage) {
     } else if (stage == 2) {
         cc->setRadioChannel(myRadioRef, rs.getChannelNumber());
 
-    } else  if(stage == 4)
-	{
-    	if(rs.getChannelNumber()!=10)
-    	{
-			ift = InterfaceTableAccess().get();
-			InterfaceEntry *entry = new InterfaceEntry(this);
-			IPv4InterfaceData *ipv4data = new IPv4InterfaceData();
-			entry->setIPv4Data(ipv4data);
-			entry->setName("UERadioInterface");
-			entry->setMACAddress(MACAddress::generateAutoAddress());
-			ift->addInterface(entry);
-    	}
-	}
+    }
+//    else  if(stage == 4)
+//	{
+//    	if(rs.getChannelNumber()!=10)
+//    	{
+//			ift = InterfaceTableAccess().get();
+//			InterfaceEntry *entry = new InterfaceEntry(this);
+//			IPv4InterfaceData *ipv4data = new IPv4InterfaceData();
+//			entry->setIPv4Data(ipv4data);
+//			entry->setName("UERadioInterface");
+//			entry->setMACAddress(MACAddress::generateAutoAddress());
+//			ift->addInterface(entry);
+//    	}
+//	}
 
 
 }
 
 void LTERadio::handleMessage(cMessage *msg) {
 
-    	if(msg->arrivedOn("radioIn"))
-    	{
-    		// must be an AirFrame
+    if(msg->arrivedOn("radioIn")) {
+    	// must be an AirFrame
         AirFrame *airframe = (AirFrame*)msg;
         handleLowerMsg(airframe);
 
@@ -84,61 +84,61 @@ void LTERadio::handleMessage(cMessage *msg) {
 
 }
 
-AirFrame *LTERadio::encapsulatePacket(cPacket *frame) {
-   PhyControlInfo *ctrl = dynamic_cast<PhyControlInfo *>(frame->removeControlInfo());
-
-    // Note: we don't set length() of the AirFrame, because duration will be used everywhere instead
-    AirFrame *airframe = new AirFrame();
-    airframe->setName(frame->getName());
-//    airframe->setPSend(transmitterPower);
-    if (ctrl == NULL) {
-    	airframe->setChannelNumber(rs.getChannelNumber());
-    } else {
-    	airframe->setChannelNumber(ctrl->getChannelNumber());
-    	delete ctrl;
-    }
-    airframe->encapsulate(frame);
-//    airframe->setBitrate(ctrl ? ctrl->getBitrate() : rs.getBitrate());
-//    airframe->setDuration(radioModel->calculateDuration(airframe));
-//    airframe->setSenderPos(getMyPosition());
-
-
-//    EV << "Frame (" << frame->getClassName() << ")" << frame->getName()
-//       << " will be transmitted at " << (airframe->getBitrate()/1e6) << "Mbps\n";
-    return airframe;
-}
-
-void LTERadio::handleUpperMsg(AirFrame* airframe) {
-    // change radio status
-//    EV << "sending, changing RadioState to TRANSMIT\n";
-//    rs.setState(RadioState::TRANSMIT);
-if(airframe->arrivedOn("netIN"))
-	airframe->setKind(user);
-else
-	airframe->setKind(control);
-    sendDown(airframe);
-}
-
-void LTERadio::handleLowerMsg(AirFrame *airframe) {
-	EV << "receiving frame " << airframe->getName() << endl;
-	EV << "reception of frame over, preparing to send packet to upper layer\n";
-	sendUp(airframe);
-}
-
-void LTERadio::sendUp(AirFrame *airframe) {
-    cPacket *frame = airframe->decapsulate();
-    PhyControlInfo *ctrl = new PhyControlInfo();
-    ctrl->setChannelNumber(airframe->getChannelNumber());
-    frame->setControlInfo(ctrl);
-
-    EV << "sending up frame " << frame->getName() << endl;
-    if(airframe->getKind()==control)
-    	send(frame, gate("upperLayerOut"));
-    else
-    	send(frame,gate("netOUT"));
-    delete airframe;
-}
-
-void LTERadio::sendDown(AirFrame *airframe) {
-	sendToChannel(airframe);
-}
+//AirFrame *LTERadio::encapsulatePacket(cPacket *frame) {
+//   PhyControlInfo *ctrl = dynamic_cast<PhyControlInfo *>(frame->removeControlInfo());
+//
+//    // Note: we don't set length() of the AirFrame, because duration will be used everywhere instead
+//    AirFrame *airframe = new AirFrame();
+//    airframe->setName(frame->getName());
+////    airframe->setPSend(transmitterPower);
+//    if (ctrl == NULL) {
+//    	airframe->setChannelNumber(rs.getChannelNumber());
+//    } else {
+//    	airframe->setChannelNumber(ctrl->getChannelNumber());
+//    	delete ctrl;
+//    }
+//    airframe->encapsulate(frame);
+////    airframe->setBitrate(ctrl ? ctrl->getBitrate() : rs.getBitrate());
+////    airframe->setDuration(radioModel->calculateDuration(airframe));
+////    airframe->setSenderPos(getMyPosition());
+//
+//
+////    EV << "Frame (" << frame->getClassName() << ")" << frame->getName()
+////       << " will be transmitted at " << (airframe->getBitrate()/1e6) << "Mbps\n";
+//    return airframe;
+//}
+//
+//void LTERadio::handleUpperMsg(AirFrame* airframe) {
+//    // change radio status
+////    EV << "sending, changing RadioState to TRANSMIT\n";
+////    rs.setState(RadioState::TRANSMIT);
+//if(airframe->arrivedOn("netIN"))
+//	airframe->setKind(user);
+//else
+//	airframe->setKind(control);
+//    sendDown(airframe);
+//}
+//
+//void LTERadio::handleLowerMsg(AirFrame *airframe) {
+//	EV << "receiving frame " << airframe->getName() << endl;
+//	EV << "reception of frame over, preparing to send packet to upper layer\n";
+//	sendUp(airframe);
+//}
+//
+//void LTERadio::sendUp(AirFrame *airframe) {
+//    cPacket *frame = airframe->decapsulate();
+//    PhyControlInfo *ctrl = new PhyControlInfo();
+//    ctrl->setChannelNumber(airframe->getChannelNumber());
+//    frame->setControlInfo(ctrl);
+//
+//    EV << "sending up frame " << frame->getName() << endl;
+//    if(airframe->getKind()==control)
+//    	send(frame, gate("upperLayerOut"));
+//    else
+//    	send(frame,gate("netOUT"));
+//    delete airframe;
+//}
+//
+//void LTERadio::sendDown(AirFrame *airframe) {
+//	sendToChannel(airframe);
+//}

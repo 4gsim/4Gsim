@@ -35,8 +35,6 @@ simple LTERadio like IRadio
         double pathLossAlpha = default(2);
         double shadowingDeviation @unit("dB") = default(0dB);
     gates:
-        input netIN;
-        output netOUT;
         input upperLayerIn @labels(PhyControlInfo/down); // from higher layer protocol (NAS)
         output upperLayerOut @labels(PhyControlInfo/up); // to decider (decider connects to NAS)
         input radioIn @labels(AirFrame); // to receive frames (AirFrame) on the radio channel

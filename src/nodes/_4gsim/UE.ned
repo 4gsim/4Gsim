@@ -17,6 +17,7 @@
 
 package inet.nodes._4gsim;
 
+import inet.linklayer.lte.mac.MAC;
 import inet.linklayer.lte.rrc.RRC;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.networklayer.common.InterfaceTable;
@@ -48,7 +49,7 @@ module UE
         }
         lteRadio: LTERadio {
             channelNumber = channelNumber;
-            @display("p=227,287");
+            @display("p=273,369");
         }
         notificationBoard: NotificationBoard {
             @display("p=55,223");
@@ -56,41 +57,18 @@ module UE
         subscriberTable: SubscriberTable {
             @display("p=55,135");
         }
-        nas: NAS {
-            @display("p=342,174");
-            configFile = configFile;
-            channelNumber = channelNumber;
-        }
-        networkLayer: NetworkLayer {
-            @display("p=173,182");
-        }
-        pingApp: PingApp {
-            destAddr = destAddr;
-            @display("p=173,108");
-        }
         interfaceTable: InterfaceTable {
             @display("p=61,302");
         }
         routingTable: RoutingTable {
             @display("p=266,54");
         }
-        rrc: RRC {
-            @display("p=381,281");
-        }
-        dctDump: DCTDump {
-            @display("p=381,398");
+        mac: MAC {
+            @display("p=273,280");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
 
-        lteRadio.upperLayerIn <-- nas.radioOut;
-        lteRadio.upperLayerOut --> nas.radioIn;
-        lteRadio.netOUT --> networkLayer.ifIn++;
-        networkLayer.ifOut++ --> lteRadio.netIN;
-        networkLayer.pingOut++ --> pingApp.pingIn;
-        pingApp.pingOut --> networkLayer.pingIn++;
-        rrc.rlcOut --> dctDump.netIn++;
-        dctDump.netOut++ --> rrc.rlcIn;
-        dctDump.ifOut++ --> rrc.nasIn;
-        rrc.nasOut --> dctDump.ifIn++;
+        lteRadio.upperLayerOut --> mac.lowerLayerIn;
+        mac.upperLayerOut --> lteRadio.upperLayerIn;
 }
