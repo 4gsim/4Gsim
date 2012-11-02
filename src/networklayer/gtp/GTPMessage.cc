@@ -44,15 +44,15 @@ GTPMessage::~GTPMessage() {
 }
 
 void GTPMessage::setIesArraySize(unsigned int size) {
-     throw new cException(this, "setIesArraySize() not supported, use pushAVP()");
+     throw new cException(this, "setIesArraySize() not supported, use pushIe()");
 }
 
 unsigned int GTPMessage::getIesArraySize() const {
      return ies.size();
 }
 
-void GTPMessage::setIes(unsigned int k, const GTPInfoElemPtr& avps_var) {
-     throw new cException(this, "setIes() not supported, use use pushAVP()");
+void GTPMessage::setIes(unsigned int k, const GTPInfoElemPtr& ies_var) {
+     throw new cException(this, "setIes() not supported, use use pushIe()");
 }
 
 GTPInfoElemPtr& GTPMessage::getIes(unsigned int k) {
