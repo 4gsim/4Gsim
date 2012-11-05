@@ -64,11 +64,14 @@ module UE
             @display("p=266,54");
         }
         mac: MAC {
-            @display("p=273,280");
+            @display("p=273,193");
+        }
+        dctDump: DCTDump {
+            @display("p=271,277");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
 
-        lteRadio.upperLayerOut --> mac.lowerLayerIn;
-        mac.upperLayerOut --> lteRadio.upperLayerIn;
+        mac.lowerLayerOut --> dctDump.netIn++;
+        dctDump.netOut++ --> mac.lowerLayerIn;
 }

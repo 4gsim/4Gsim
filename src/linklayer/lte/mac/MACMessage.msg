@@ -27,13 +27,22 @@ class noncobject MACServiceDataUnitPtr;
 
 class MACSubHeader
 {
+
+}
+
+class MACSubHeaderUlDl extends MACSubHeader
+{
     bool e;
     unsigned char lcid;
-    unsigned char rapid;
-    unsigned char bi;
     bool f;
-    bool t;
     unsigned short l;
+}
+
+class MACSubHeaderRar extends MACSubHeader
+{
+    bool e;
+    bool t;
+    unsigned char rapidOrBi;
 }
 
 class MACServiceDataUnit
