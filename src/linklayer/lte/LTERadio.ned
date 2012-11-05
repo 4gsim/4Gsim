@@ -25,7 +25,6 @@ simple LTERadio like IRadio
         @display("i=block/wrxtx");
         double transmitterPower @unit("mW") = default(20mW);
         double bitrate @unit("bps") = default(2Mbps);
-        int channelNumber = default(0);
         double snirThreshold @unit("dB") = default(4dB);
         double thermalNoise @unit("dBm") = default(-110dBm);
         string modulation = default("16-QAM");
@@ -34,6 +33,7 @@ simple LTERadio like IRadio
         double sensitivity @unit("mW") = default(-85mW);
         double pathLossAlpha = default(2);
         double shadowingDeviation @unit("dB") = default(0dB);
+        int type = default(0); // ENB - 0, UE - 1
     gates:
         input upperLayerIn @labels(PhyControlInfo/down); // from higher layer protocol (NAS)
         output upperLayerOut @labels(PhyControlInfo/up); // to decider (decider connects to NAS)

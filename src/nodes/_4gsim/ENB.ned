@@ -64,7 +64,7 @@ module ENB
                 @display("p=37,25");
         }
         lteRadio: LTERadio {
-            channelNumber = 10;
+            type = 0;
             @display("p=103,140");
         }
         interfaceTable: InterfaceTable {

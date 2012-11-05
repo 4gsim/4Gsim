@@ -3,24 +3,30 @@
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU Lesser General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Lesser General Public License
-// along with this program.  If not, see http://www.gnu.org/licenses/.
-// 
+// along with this program. If not, see http://www.gnu.org/licenses/.
+//
 
 #ifndef LTECHANNELCONTROL_H_
 #define LTECHANNELCONTROL_H_
 
 #include "IChannelControl.h"
 
+// Forward declarations
+class AirFrame;
+
+#define LIGHT_SPEED 3.0E+8
+#define TRANSMISSION_PURGE_INTERVAL 1.0
+
 struct IChannelControl::RadioEntry {
-    cModule *radioModule;  // the module that registered this radio interface
-    cGate *radioInGate;  // gate on host module used to receive airframes
+    cModule *radioModule; // the module that registered this radio interface
+    cGate *radioInGate; // gate on host module used to receive airframes
     std::vector<int> channels;
     Coord pos; // cached radio position
 
@@ -46,11 +52,42 @@ protected:
 
     RadioList radios;
 
+    /** keeps track of ongoing transmissions; this is needed when a radio
+     * switches to another channel (then it needs to know whether the target channel
+     * is empty or busy)
+     */
+    typedef std::vector<TransmissionList> ChannelTransmissionLists;
+    ChannelTransmissionLists transmissions; // indexed by channel number (size=numChannels)
+
+    /** used to clear the transmission list from time to time */
+    simtime_t lastOngoingTransmissionsUpdate;
+
+    /** the biggest interference distance in the network.*/
+    double maxInterferenceDistance;
+
     /** the number of controlled channels */
     int numChannels;
 
+    /** Notifies the channel control with an ongoing transmission */
+    virtual void addOngoingTransmission(RadioRef h, AirFrame *frame);
+
+    /** Get the list of modules in range of the given host */
+    virtual const RadioRefVector& getNeighbors(RadioRef h);
+
+    /** Throws away expired transmissions. */
+    virtual void purgeOngoingTransmissions();
+
+    /** Validate the channel identifier */
+    virtual void checkChannel(int channel);
+
     /** Returns the "handle" of a previously registered radio. The pointer to the registering (radio) module must be provided */
     virtual RadioRef lookupRadio(cModule *radioModule);
+
+    /** Calculate interference distance*/
+    virtual double calcInterfDist();
+
+    /** Reads init parameters and calculates a maximal interference distance*/
+    virtual void initialize();
 public:
     LTEChannelControl();
     virtual ~LTEChannelControl();
@@ -73,11 +110,26 @@ public:
     /** To be called when the host moved; updates proximity info */
     virtual void setRadioPosition(RadioRef r, const Coord& pos);
 
-    /** Called when host switches channel - dummy */
-    virtual void setRadioChannel(RadioRef r, int channel) {}
+    /** Called to add a new channel to host */
+    virtual void setRadioChannel(RadioRef r, int channel);
 
     /** Returns the number of radio channels (frequencies) simulated */
     virtual int getNumChannels() { return numChannels; }
+
+    /** Provides a list of transmissions currently on the air */
+    virtual const TransmissionList& getOngoingTransmissions(int channel);
+
+    /** Called from ChannelAccess, to transmit a frame to the radios in range, on the frame's channel */
+    virtual void sendToChannel(RadioRef srcRadio, AirFrame *airFrame);
+
+    /** Returns the maximal interference distance*/
+    virtual double getInterferenceRange(RadioRef r) { return maxInterferenceDistance; }
+
+    /** Disable the reception in the reference module */
+    virtual void disableReception(RadioRef r) { r->isActive = false; };
+
+    /** Enable the reception in the reference module */
+    virtual void enableReception(RadioRef r) { r->isActive = true; };
 
 };
 

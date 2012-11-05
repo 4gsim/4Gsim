@@ -29,9 +29,18 @@
 #include "INoiseGenerator.h"
 #include "InterfaceTable.h"
 
-enum kind{
+enum kind {
 	control = 0,
 	user = 1
+};
+
+enum LTEChannels {
+    PRACH,
+};
+
+enum LTEDevices {
+    ENB = 0,
+    UE = 1
 };
 
 class LTERadio : public ChannelAccess {

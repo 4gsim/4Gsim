@@ -303,7 +303,7 @@ void ChannelControl::sendToChannel(RadioRef srcRadio, AirFrame *airFrame)
             coreEV << "skipping disabled radio interface \n";
             continue;
         }
-        if (r->channel == channel || r->channel == 10)
+        if (r->channel == channel)
         {
             coreEV << "sending message to radio listening on the same channel\n";
             // account for propagation delay, based on distance in meters

@@ -38,7 +38,6 @@ module UE
         string mobilityType = default("StationaryMobility");
         string destAddr = default("");
         volatile double interval @unit("s") = default(1s);
-        int channelNumber;
         string configFile;
     gates:
         input radioIn @directIn;
@@ -48,7 +47,7 @@ module UE
                 @display("p=50,61");
         }
         lteRadio: LTERadio {
-            channelNumber = channelNumber;
+            type = 1;
             @display("p=273,369");
         }
         notificationBoard: NotificationBoard {

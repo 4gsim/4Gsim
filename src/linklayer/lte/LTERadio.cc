@@ -39,17 +39,20 @@ void LTERadio::initialize(int stage) {
 
     ChannelAccess::initialize(stage);
 
-    EV << "Initializing LTERadio, stage = " << stage << endl;
+    EV << "LTERadio: Initializing LTERadio.\n";
 
     if (stage == 0) {
-    	rs.setChannelNumber((int)par("channelNumber"));
-    	rs.setState(RadioState::IDLE);
+//    	rs.setChannelNumber((int)par("channelNumber"));
+//    	rs.setState(RadioState::IDLE);
 
     	receptionModel = createReceptionModel();
     	radioModel = createRadioModel();
     } else if (stage == 2) {
-        cc->setRadioChannel(myRadioRef, rs.getChannelNumber());
-
+        //cc->setRadioChannel(myRadioRef, rs.getChannelNumber());
+        int type = (int)par("type");
+        if (type == ENB) {
+            cc->setRadioChannel(myRadioRef, PRACH);
+        }
     }
 //    else  if(stage == 4)
 //	{
