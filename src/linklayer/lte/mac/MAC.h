@@ -21,9 +21,18 @@
 #include <omnetpp.h>
 
 class MAC : public cSimpleModule {
+protected:
+    unsigned raRnti;
+
+    void startRandomAccess();
 public:
     MAC();
     virtual ~MAC();
+
+    virtual int numInitStages() const  { return 5; }
+
+    virtual void initialize(int stage);
+    virtual void handleMessage(cMessage *msg);
 };
 
 #endif /* MAC_H_ */

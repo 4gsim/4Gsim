@@ -25,7 +25,7 @@ import inet.util.subscriber.SubscriberTable;
 import inet.base.NotificationBoard;
 import inet.applications.nas.NAS;
 import inet.mobility.models.StationaryMobility;
-import inet.linklayer.lte.LTERadio;
+import inet.linklayer.lte.phy.LTERadio;
 import inet.base.NotificationBoard;
 import inet.linklayer.ethernet.EthernetInterface;
 import inet.linklayer.ext.ExtInterface;

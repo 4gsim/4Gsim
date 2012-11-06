@@ -16,6 +16,8 @@
 // 
 
 #include "MAC.h"
+#include "LTEPhyCommand_m.h"
+#include "LTERadio.h"
 
 Define_Module(MAC);
 
@@ -26,5 +28,30 @@ MAC::MAC() {
 
 MAC::~MAC() {
     // TODO Auto-generated destructor stub
+}
+
+void MAC::initialize(int stage) {
+    raRnti = uniform(1, 71);
+
+    if (stage == 4) {
+        startRandomAccess();
+    }
+}
+
+void MAC::startRandomAccess() {
+    cMessage *msg = new cMessage("RandomAccessRequest");
+
+    LTEPhyCommand *cmd = new LTEPhyCommand();
+    cmd->setChannelNumber(PRACH);
+    cmd->setRaRnti(raRnti);
+    cmd->setCommandCode(RandomAccessRequest);
+
+    msg->setControlInfo(cmd);
+
+    send(msg, gate("lowerLayerOut"));
+}
+
+void MAC::handleMessage(cMessage *msg) {
+
 }
 

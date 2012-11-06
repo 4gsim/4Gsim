@@ -27,7 +27,7 @@ import inet.util.DCTDump;
 import inet.util.subscriber.SubscriberTable;
 import inet.base.NotificationBoard;
 import inet.applications.nas.NAS;
-import inet.linklayer.lte.LTERadio;
+import inet.linklayer.lte.phy.LTERadio;
 import inet.mobility.IMobility;
 
 module UE
@@ -63,14 +63,11 @@ module UE
             @display("p=266,54");
         }
         mac: MAC {
-            @display("p=273,193");
-        }
-        dctDump: DCTDump {
-            @display("p=271,277");
+            @display("p=273,262");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
 
-        mac.lowerLayerOut --> dctDump.netIn++;
-        dctDump.netOut++ --> mac.lowerLayerIn;
+        mac.lowerLayerOut --> lteRadio.upperLayerIn;
+        lteRadio.upperLayerOut --> mac.lowerLayerIn;
 }

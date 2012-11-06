@@ -21,7 +21,7 @@ import inet.nodes._4gsim.HSS;
 import inet.nodes._4gsim.MME;
 import inet.nodes._4gsim.UE;
 import inet.nodes._4gsim.ENB;
-import inet.world.radio.ChannelControl;
+import inet.linklayer.lte.phy.LTEChannelControl;
 import ned.DatarateChannel;
 import inet.util.ThruputMeteringChannel;
 
@@ -43,7 +43,7 @@ network Test
         ue2: UE {
             @display("p=30,200");
         }
-        channelControl: ChannelControl {
+        channelControl: LTEChannelControl {
             @display("p=110,36");
         }
         mme: MME {
