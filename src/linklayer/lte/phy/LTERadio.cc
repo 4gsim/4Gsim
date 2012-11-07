@@ -74,7 +74,7 @@ void LTERadio::handleMessage(cMessage *msg) {
     if (msg->arrivedOn("radioIn")) {    // from radio interface
         handleRadioMessage(msg);
     } else { // from upper layer
-        handleUpperMsg(msg);
+        handleUpperMessage(msg);
     }
 }
 
@@ -109,28 +109,42 @@ void LTERadio::sendToRadio(cMessage *msg, int channel) {
 ////    return airframe;
 //}
 
-void LTERadio::handleUpperMsg(cMessage* msg) {
-    LTEPhyCommand *cmd = check_and_cast<LTEPhyCommand*>(msg->getControlInfo());
+void LTERadio::handleUpperMessage(cMessage* msg) {
+    LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
 
-    switch(cmd->getCommandCode()) {
+    switch(ctrl->getType()) {
     case RandomAccessRequest: {
         RandomAccessFrame *frame = new RandomAccessFrame();
-        frame->setChannelNumber(cmd->getChannelNumber());
-        frame->setRaRnti(cmd->getRaRnti());
+        frame->setChannelNumber(ctrl->getChannelNumber());
+        frame->setRaRnti(ctrl->getRRnti());
         sendToChannel(frame);
         break;
     }
     default:
-        EV << "LTERadio: Unknown LTEPhyCommand.\n";
+        EV << "LTERadio: Unknown LTEPhyControlInfo type. Discarding message.\n";
         break;
     }
-    delete cmd;
+    delete msg;
 }
 
-void LTERadio::handleRadioMsg(cMessage *msg) {
+void LTERadio::handleRadioMessage(cMessage *msg) {
+
+    if (dynamic_cast<RandomAccessFrame*>(msg)) {
+        RandomAccessFrame *frame = dynamic_cast<RandomAccessFrame*>(msg);
+
+        LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
+        ctrl->setRRnti(frame->getRaRnti());
+        ctrl->setType(RandomAccessRequest);
+
+        cMessage *upMsg = new cMessage("RandomAccessRequest");
+        upMsg->setControlInfo(ctrl);
+
+        send(upMsg, gate("upperLayerOut"));
+    }
 //	EV << "receiving frame " << airframe->getName() << endl;
 //	EV << "reception of frame over, preparing to send packet to upper layer\n";
 //	sendUp(airframe);
+    delete msg;
 }
 
 void LTERadio::sendUp(AirFrame *airframe) {

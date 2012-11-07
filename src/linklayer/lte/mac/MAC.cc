@@ -16,8 +16,10 @@
 // 
 
 #include "MAC.h"
-#include "LTEPhyCommand_m.h"
+#include "LTEPhyControlInfo_m.h"
 #include "LTERadio.h"
+#include "MACUtils.h"
+#include "MACSerializer.h"
 
 Define_Module(MAC);
 
@@ -41,17 +43,39 @@ void MAC::initialize(int stage) {
 void MAC::startRandomAccess() {
     cMessage *msg = new cMessage("RandomAccessRequest");
 
-    LTEPhyCommand *cmd = new LTEPhyCommand();
-    cmd->setChannelNumber(PRACH);
-    cmd->setRaRnti(raRnti);
-    cmd->setCommandCode(RandomAccessRequest);
+    LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
+    ctrl->setChannelNumber(PRACH);
+    ctrl->setRRnti(raRnti);
+    ctrl->setType(RandomAccessRequest);
 
-    msg->setControlInfo(cmd);
+    msg->setControlInfo(ctrl);
 
     send(msg, gate("lowerLayerOut"));
 }
 
 void MAC::handleMessage(cMessage *msg) {
+    if (msg->arrivedOn("lowerLayerIn")) {
+        handleLowerMessage(msg);
+    }
+}
 
+void MAC::handleLowerMessage(cMessage *msg) {
+    LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
+    switch(ctrl->getType()) {
+    case RandomAccessRequest: {
+        uint8 buf[255];
+        int32 buf_len = 0;
+        MACSubHeaderRar *header = MACUtils().createHeaderRar(false, true, 1);
+        MACServiceDataUnit *sdu = MACUtils().createRAR(1111, 11111111, 1111);
+        MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
+        pdu->pushSubHdr(header);
+        pdu->pushSdu(sdu);
+        buf_len = MACSerializer().serialize(pdu, buf, sizeof(buf));
+        break;
+    }
+    default:
+        EV << "LTE-MAC: Unknown LTEPhyControlInfo type. Discarding message.\n";
+        break;
+    }
 }
 

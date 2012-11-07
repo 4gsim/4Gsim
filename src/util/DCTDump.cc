@@ -19,6 +19,8 @@
 #include "DCTDump.h"
 #include "IPv4Serializer.h"
 #include "RRCMessage_m.h"
+#include "MACSerializer.h"
+#include "LTEPhyControlInfo_m.h"
 
 #define MAXBUFLENGTH 65536
 #define MAXDCTLENGTH 100
@@ -62,6 +64,7 @@ void DCTDump::handleMessage(cMessage *msg) {
     if (dumpfile != NULL) {
         const simtime_t stime = simulation.getSimTime();
         std::stringstream vers;
+        std::stringstream outHdr;
         std::string time = timestamp(stime);
         uint8 buf[MAXBUFLENGTH];
         int32 buf_len = 0;
@@ -69,6 +72,7 @@ void DCTDump::handleMessage(cMessage *msg) {
         char dh[MAXDCTLENGTH];
         char *p = dh;
         bool write = false;
+        bool hasOutHdr = false;
 
         // Write dump
         memset((void*)&buf, 0, sizeof(buf));
@@ -76,7 +80,7 @@ void DCTDump::handleMessage(cMessage *msg) {
         // Write dct2000 header
         memset((void*)&dh, 0, sizeof(dh));
 
-        // context name
+        // context name - IPv4Datagram
         IPv4Datagram *ipPacket = dynamic_cast<IPv4Datagram*>(msg);
         if (ipPacket) {
             if (ipPacket->getTransportProtocol() == IP_PROT_SCTP) {
@@ -90,22 +94,24 @@ void DCTDump::handleMessage(cMessage *msg) {
 
             buf_len = IPv4Serializer().serialize(ipPacket, buf, sizeof(buf), true);
         }
-        RRCMessage *rrcMsg = dynamic_cast<RRCMessage*>(msg);
-        if (rrcMsg) {
-            strncpy(p, "NAS_RRC_LTE.", 12);
-            p += 12;
+
+        // context name - MACProtocolDataUnit
+        MACProtocolDataUnit *macPdu = dynamic_cast<MACProtocolDataUnit*>(msg);
+        if (macPdu) {
+            strncpy(p, "MAC-LTE.", 8);
+            p += 8;
+
             write = true;
-            buf_len = rrcMsg->getValueArraySize();
-            for (int32 i = 0; i < buf_len; i++) {
-                buf[i] = rrcMsg->getValue(i);
-            }
+            hasOutHdr = true;
+
+            buf_len = MACSerializer().serialize(macPdu, buf, sizeof(buf));
         }
 
         // context port number - always 1
         strncpy(p, "1/", 5);
         p += 2;
 
-        // protocol
+        // protocol - IPv4Datagram
         if (ipPacket) {
             vers << ipPacket->getVersion();
             // protocol name
@@ -117,17 +123,39 @@ void DCTDump::handleMessage(cMessage *msg) {
             *p = '/';
             p++;
         }
-        if (rrcMsg) {
-            // protocol name
-            strncpy(p, "nas_rrc_r8_lte/", 15);
-            p += 15;
-            // protocol version
-            strncpy(p, "1/", 2);
-            p += 2;
+
+        // protocol - MACProtocolDataUnit
+        if (macPdu) {
+            vers << 1;
+            strncpy(p, "mac_r9_lte/", 11);
+            p += 11;
+            //protocol version
+            strncpy(p, vers.str().c_str(), strlen(vers.str().c_str()));
+            p += strlen(vers.str().c_str());
+            *p = '/';
+            p++;
+        }
+
+        // out-header
+        if (hasOutHdr) {
+            if (macPdu) {
+                LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
+                outHdr  << ","
+                        << ctrl->getRadioType() + 1 << ","
+                        << ctrl->getRntiType() << ","
+                        << ctrl->getDirection() << ","
+                        << "1," // Subframe number
+                        << "0," // is predefined data
+                        << ctrl->getRRnti() << ","
+                        << "1," // UEId
+                        << buf_len << ",";
+            }
+            strncpy(p, outHdr.str().c_str(), strlen(outHdr.str().c_str()));
+            p += strlen(outHdr.str().c_str());
         }
 
         // direction
-        if (msg->getArrivalGate()->isName("ifIn")) {
+        if (msg->arrivedOn("lowerLayerIn")) {
             strncpy(p, " r", 2);
         } else
             strncpy(p, " s", 2);

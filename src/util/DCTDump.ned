@@ -22,15 +22,16 @@ package inet.util;
 //
 simple DCTDump {
     parameters:
+        @display("p=286,275;i=abstract/cache_s");
         string dumpFile = default("");
         bool threadEnable = default(false);
         int snaplen = default(65535);
         int verbosity = default(0);
     gates:
-        input ifIn[];
-        input netIn[];
-        output ifOut[];
-        output netOut[];
+        input lowerLayerIn[];
+        input upperLayerIn[];
+        output lowerLayerOut[];
+        output upperLayerOut[];
 }
 
 

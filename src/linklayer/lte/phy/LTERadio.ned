@@ -35,7 +35,7 @@ simple LTERadio like IRadio
         double shadowingDeviation @unit("dB") = default(0dB);
         int type = default(0); // ENB - 0, UE - 1
     gates:
-        input upperLayerIn @labels(PhyControlInfo/down); // from higher layer protocol (NAS)
-        output upperLayerOut @labels(PhyControlInfo/up); // to decider (decider connects to NAS)
+        input upperLayerIn @labels(PhyControlInfo/down); 
+        output upperLayerOut @labels(PhyControlInfo/up); 
         input radioIn @labels(AirFrame); // to receive frames (AirFrame) on the radio channel
 }

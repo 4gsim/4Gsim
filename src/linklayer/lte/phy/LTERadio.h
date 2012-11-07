@@ -28,7 +28,7 @@
 #include "IPowerControl.h"
 #include "INoiseGenerator.h"
 #include "InterfaceTable.h"
-#include "LTEPhyCommand_m.h"
+#include "LTEPhyControlInfo_m.h"
 
 enum kind {
 	control = 0,
@@ -63,8 +63,8 @@ protected:
     virtual void initialize(int stage);
     virtual void handleMessage(cMessage *msg);
 
-    virtual void handleUpperMsg(cMessage *msg);
-    virtual void handleRadioMsg(cMessage *msg);
+    virtual void handleUpperMessage(cMessage *msg);
+    virtual void handleRadioMessage(cMessage *msg);
 
     //virtual AirFrame *encapsulatePacket(cPacket *frame);
 

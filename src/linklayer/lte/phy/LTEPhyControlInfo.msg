@@ -13,15 +13,41 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-enum LTEPhyCommandCodes
+enum LTEPhyControlInfoTypes
 {
 	RandomAccessRequest = 0;
 	RandomAccessGrant = 1;
 }
 
-class LTEPhyCommand
+enum LTERadioTypes
+{
+    TDDRadioType = 0;
+	FDDRadioType = 1;
+}
+
+enum LTEDirections
+{
+	UplinkDirection = 0;
+	DownlinkDirection = 1;   
+}
+
+enum LTERntiTypes
+{
+ 	NoRnti = 0; 
+ 	PRnti = 1;
+ 	RaRnti = 2;
+ 	CRnti = 3;
+ 	SiRnti = 4;
+ 	SpsRnti = 5;
+ 	MRnti = 6;	
+}
+
+class LTEPhyControlInfo
 {
 	int channelNumber;
-	int commandCode;   
-	unsigned int raRnti;
+	int type;   
+	unsigned int rntiType;
+	unsigned int rRnti;
+	unsigned char radioType;
+	unsigned char direction;
 }

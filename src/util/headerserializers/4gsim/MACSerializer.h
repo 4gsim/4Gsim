@@ -1,6 +1,4 @@
 //
-// Copyright (C) 2012 Calin Cerchez
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -15,26 +13,21 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef MAC_H_
-#define MAC_H_
+#ifndef MACSERIALIZER_H_
+#define MACSERIALIZER_H_
 
-#include <omnetpp.h>
+#include "MACMessage.h"
 
-class MAC : public cSimpleModule {
-protected:
-    unsigned raRnti;
-
-    void startRandomAccess();
+class MACSerializer {
 public:
-    MAC();
-    virtual ~MAC();
+    MACSerializer();
+    virtual ~MACSerializer();
 
-    virtual int numInitStages() const  { return 5; }
+    unsigned serializeHeader(MACSubHeader *header, unsigned char *buf);
 
-    virtual void initialize(int stage);
-    virtual void handleMessage(cMessage *msg);
+    unsigned serializeServiceDataUnit(MACServiceDataUnit *sdu, unsigned char *buf);
 
-    void handleLowerMessage(cMessage *msg);
+    unsigned serialize(MACProtocolDataUnit *pdu, unsigned char *buf, unsigned bufsize);
 };
 
-#endif /* MAC_H_ */
+#endif /* MACSERIALIZER_H_ */

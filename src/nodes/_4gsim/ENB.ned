@@ -17,6 +17,7 @@
 
 package inet.nodes._4gsim;
 
+import inet.linklayer.lte.mac.MAC;
 import inet.networklayer.gtp.path.GTPPathTable;
 import inet.networklayer.gtp.tunnel.TunnelEndpointTable;
 import inet.networklayer.gtp.GTPUser;
@@ -65,7 +66,7 @@ module ENB
         }
         lteRadio: LTERadio {
             type = 0;
-            @display("p=103,140");
+            @display("p=66,283");
         }
         interfaceTable: InterfaceTable {
             parameters:
@@ -73,15 +74,15 @@ module ENB
         }
         eth[sizeof(ethg)]: EthernetInterface {
             parameters:
-                @display("p=193,360,row,90;q=txQueue");
+                @display("p=286,360,row,90;q=txQueue");
         }
         ext[numExtInterfaces]: ExtInterface {
             parameters:
-                @display("p=323,360,row,90;q=txQueue;i=block/ifcard");
+                @display("p=409,360,row,90;q=txQueue;i=block/ifcard");
         }
         ppp[sizeof(pppg)]: PPPInterface {
             parameters:
-                @display("p=68,360,row,90;q=txQueue");
+                @display("p=193,360,row,90;q=txQueue");
         }
         routingTable: RoutingTable {
             parameters:
@@ -93,14 +94,14 @@ module ENB
         networkLayer: NetworkLayer {
             parameters:
                 proxyARP = false;
-                @display("p=239,197;q=queue");
+                @display("p=294,200;q=queue");
             gates:
                 ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
                 ifOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
         }
         pingApp: PingApp {
             parameters:
-                @display("p=396,200");
+                @display("p=409,200");
         }
         sctp: SCTP {
             @display("p=396,111;i=block/wheelbarrow");
@@ -112,20 +113,19 @@ module ENB
         }
         dctdump: DCTDump {
             parameters:
-                @display("p=206,264;i=abstract/cache_s");
                 dumpFile = dumpFile;
             gates:
-                ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                netIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                ifOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                netOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+                lowerLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+                upperLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+                lowerLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+                upperLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
         }
         nas: NAS {
             @display("p=169,41");
             configFile = configFile;
         }
         subscriberTable: SubscriberTable {
-            @display("p=487,329");
+            @display("p=497,329");
         }
         udp: UDP {
             @display("p=179,140");
@@ -135,16 +135,20 @@ module ENB
             @display("p=239,80");
         }
         tunnelEndpointTable: TunnelEndpointTable {
-            @display("p=86,220");
+            @display("p=409,275");
         }
         pathTable: GTPPathTable {
-            @display("p=74,283");
+            @display("p=497,255");
+        }
+        mac: MAC {
+            @display("p=66,140");
+        }
+        dctDump: DCTDump {
+            @display("p=66,216");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
 
-        lteRadio.upperLayerIn <-- nas.radioOut;
-        lteRadio.upperLayerOut --> nas.radioIn;
         sctp.to_appl++ --> s1ap.sctpIn;
         s1ap.sctpOut --> sctp.from_appl++;
 
@@ -157,25 +161,25 @@ module ENB
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].upperLayerOut --> dctdump.ifIn[i];
-            dctdump.netOut[i] --> networkLayer.ifIn[i];
-            ppp[i].upperLayerIn <-- dctdump.ifOut[i];
-            dctdump.netIn[i] <-- networkLayer.ifOut[i];
+            ppp[i].upperLayerOut --> dctdump.lowerLayerIn[i];
+            dctdump.upperLayerOut[i] --> networkLayer.ifIn[i];
+            ppp[i].upperLayerIn <-- dctdump.lowerLayerOut[i];
+            dctdump.upperLayerIn[i] <-- networkLayer.ifOut[i];
         }
 
         for i=0..sizeof(ethg)-1 {
             ethg[i] <--> eth[i].phys;
-            eth[i].upperLayerOut --> dctdump.ifIn[sizeof(pppg)+i];
-            dctdump.netOut[sizeof(pppg)+i] --> networkLayer.ifIn[sizeof(pppg)+i];
-            eth[i].upperLayerIn <-- dctdump.ifOut[sizeof(pppg)+i];
-            dctdump.netIn[sizeof(pppg)+i] <-- networkLayer.ifOut[sizeof(pppg)+i];
+            eth[i].upperLayerOut --> dctdump.lowerLayerIn[sizeof(pppg)+i];
+            dctdump.upperLayerOut[sizeof(pppg)+i] --> networkLayer.ifIn[sizeof(pppg)+i];
+            eth[i].upperLayerIn <-- dctdump.lowerLayerOut[sizeof(pppg)+i];
+            dctdump.upperLayerIn[sizeof(pppg)+i] <-- networkLayer.ifOut[sizeof(pppg)+i];
         }
 
         for i=0..numExtInterfaces-1 {
-            ext[i].upperLayerOut --> dctdump.ifIn[sizeof(pppg)+sizeof(ethg)+i];
-            dctdump.netOut[sizeof(pppg)+sizeof(ethg)+i] --> networkLayer.ifIn[sizeof(pppg)+sizeof(ethg)+i];
-            ext[i].upperLayerIn <-- dctdump.ifOut[sizeof(pppg)+sizeof(ethg)+i];
-            dctdump.netIn[sizeof(pppg)+sizeof(ethg)+i] <-- networkLayer.ifOut[sizeof(pppg)+sizeof(ethg)+i];
+            ext[i].upperLayerOut --> dctdump.lowerLayerIn[sizeof(pppg)+sizeof(ethg)+i];
+            dctdump.upperLayerOut[sizeof(pppg)+sizeof(ethg)+i] --> networkLayer.ifIn[sizeof(pppg)+sizeof(ethg)+i];
+            ext[i].upperLayerIn <-- dctdump.lowerLayerOut[sizeof(pppg)+sizeof(ethg)+i];
+            dctdump.upperLayerIn[sizeof(pppg)+sizeof(ethg)+i] <-- networkLayer.ifOut[sizeof(pppg)+sizeof(ethg)+i];
         }
         nas.s1apOut --> s1ap.nasIn;
         s1ap.nasOut --> nas.s1apIn;
@@ -183,4 +187,9 @@ module ENB
         networkLayer.udpOut --> udp.ipIn;
         gtpu.udpOut --> udp.appIn++;
         udp.appOut++ --> gtpu.udpIn;
+
+        mac.lowerLayerOut --> dctDump.lowerLayerIn++;
+        dctDump.lowerLayerOut++ --> mac.lowerLayerIn;
+        dctDump.lowerLayerOut++ --> lteRadio.upperLayerIn;
+        lteRadio.upperLayerOut --> dctDump.lowerLayerIn++;
 }

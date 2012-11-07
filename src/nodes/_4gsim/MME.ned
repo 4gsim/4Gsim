@@ -107,13 +107,12 @@ module MME
         }
         dctdump: DCTDump {
             parameters:
-                @display("p=206,264;i=abstract/cache_s");
                 dumpFile = dumpFile;
             gates:
-                ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                netIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                ifOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                netOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+                lowerLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+                upperLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+                lowerLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+                upperLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
         }
         subscriberTable: SubscriberTable {
             @display("p=642,41");
@@ -152,25 +151,25 @@ module MME
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].upperLayerOut --> dctdump.ifIn[i];
-            dctdump.netOut[i] --> networkLayer.ifIn[i];
-            ppp[i].upperLayerIn <-- dctdump.ifOut[i];
-            dctdump.netIn[i] <-- networkLayer.ifOut[i];
+            ppp[i].upperLayerOut --> dctdump.lowerLayerIn[i];
+            dctdump.upperLayerOut[i] --> networkLayer.ifIn[i];
+            ppp[i].upperLayerIn <-- dctdump.lowerLayerOut[i];
+            dctdump.upperLayerIn[i] <-- networkLayer.ifOut[i];
         }
 
         for i=0..sizeof(ethg)-1 {
             ethg[i] <--> eth[i].phys;
-            eth[i].upperLayerOut --> dctdump.ifIn[sizeof(pppg)+i];
-            dctdump.netOut[sizeof(pppg)+i] --> networkLayer.ifIn[sizeof(pppg)+i];
-            eth[i].upperLayerIn <-- dctdump.ifOut[sizeof(pppg)+i];
-            dctdump.netIn[sizeof(pppg)+i] <-- networkLayer.ifOut[sizeof(pppg)+i];
+            eth[i].upperLayerOut --> dctdump.lowerLayerIn[sizeof(pppg)+i];
+            dctdump.upperLayerOut[sizeof(pppg)+i] --> networkLayer.ifIn[sizeof(pppg)+i];
+            eth[i].upperLayerIn <-- dctdump.lowerLayerOut[sizeof(pppg)+i];
+            dctdump.upperLayerIn[sizeof(pppg)+i] <-- networkLayer.ifOut[sizeof(pppg)+i];
         }
 
         for i=0..numExtInterfaces-1 {
-            ext[i].upperLayerOut --> dctdump.ifIn[sizeof(pppg)+sizeof(ethg)+i];
-            dctdump.netOut[sizeof(pppg)+sizeof(ethg)+i] --> networkLayer.ifIn[sizeof(pppg)+sizeof(ethg)+i];
-            ext[i].upperLayerIn <-- dctdump.ifOut[sizeof(pppg)+sizeof(ethg)+i];
-            dctdump.netIn[sizeof(pppg)+sizeof(ethg)+i] <-- networkLayer.ifOut[sizeof(pppg)+sizeof(ethg)+i];
+            ext[i].upperLayerOut --> dctdump.lowerLayerIn[sizeof(pppg)+sizeof(ethg)+i];
+            dctdump.upperLayerOut[sizeof(pppg)+sizeof(ethg)+i] --> networkLayer.ifIn[sizeof(pppg)+sizeof(ethg)+i];
+            ext[i].upperLayerIn <-- dctdump.lowerLayerOut[sizeof(pppg)+sizeof(ethg)+i];
+            dctdump.upperLayerIn[sizeof(pppg)+sizeof(ethg)+i] <-- networkLayer.ifOut[sizeof(pppg)+sizeof(ethg)+i];
         }
         nas.s1apOut --> s1ap.nasIn;
         s1ap.nasOut --> nas.s1apIn;
