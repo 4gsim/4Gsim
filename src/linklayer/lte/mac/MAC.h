@@ -22,9 +22,8 @@
 
 class MAC : public cSimpleModule {
 protected:
-    unsigned raRnti;
+    unsigned rnti;
 
-    void startRandomAccess();
 public:
     MAC();
     virtual ~MAC();
@@ -35,6 +34,8 @@ public:
     virtual void handleMessage(cMessage *msg);
 
     void handleLowerMessage(cMessage *msg);
+
+    void sendDown(cMessage *msg, int channelNumber, int ctrlType, unsigned rntiType, unsigned rnti, unsigned direction);
 };
 
 #endif /* MAC_H_ */

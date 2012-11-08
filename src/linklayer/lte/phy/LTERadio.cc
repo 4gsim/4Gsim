@@ -116,7 +116,7 @@ void LTERadio::handleUpperMessage(cMessage* msg) {
     case RandomAccessRequest: {
         RandomAccessFrame *frame = new RandomAccessFrame();
         frame->setChannelNumber(ctrl->getChannelNumber());
-        frame->setRaRnti(ctrl->getRRnti());
+        frame->setRaRnti(ctrl->getRnti());
         sendToChannel(frame);
         break;
     }
@@ -133,7 +133,7 @@ void LTERadio::handleRadioMessage(cMessage *msg) {
         RandomAccessFrame *frame = dynamic_cast<RandomAccessFrame*>(msg);
 
         LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
-        ctrl->setRRnti(frame->getRaRnti());
+        ctrl->setRnti(frame->getRaRnti());
         ctrl->setType(RandomAccessRequest);
 
         cMessage *upMsg = new cMessage("RandomAccessRequest");

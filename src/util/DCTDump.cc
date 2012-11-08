@@ -132,8 +132,6 @@ void DCTDump::handleMessage(cMessage *msg) {
             //protocol version
             strncpy(p, vers.str().c_str(), strlen(vers.str().c_str()));
             p += strlen(vers.str().c_str());
-            *p = '/';
-            p++;
         }
 
         // out-header
@@ -146,9 +144,10 @@ void DCTDump::handleMessage(cMessage *msg) {
                         << ctrl->getDirection() << ","
                         << "1," // Subframe number
                         << "0," // is predefined data
-                        << ctrl->getRRnti() << ","
+                        << ctrl->getRnti() << ","
                         << "1," // UEId
                         << buf_len << ",";
+
             }
             strncpy(p, outHdr.str().c_str(), strlen(outHdr.str().c_str()));
             p += strlen(outHdr.str().c_str());
@@ -175,10 +174,10 @@ void DCTDump::handleMessage(cMessage *msg) {
     // forward
     int index = msg->getArrivalGate()->getIndex();
     int32 id = -1;
-    if (msg->getArrivalGate()->isName("ifIn"))
-        id = findGate("netOut",index);
+    if (msg->getArrivalGate()->isName("lowerLayerIn"))
+        id = findGate("upperLayerOut", index);
     else
-        id = findGate("ifOut",index);
+        id = findGate("lowerLayerOut", index);
 
     send(msg, id);
 }

@@ -33,24 +33,11 @@ MAC::~MAC() {
 }
 
 void MAC::initialize(int stage) {
-    raRnti = uniform(1, 71);
 
     if (stage == 4) {
-        startRandomAccess();
+        rnti = uniform(1, 71);
+        sendDown(new cMessage("RandomAccessRequest"), PRACH, RandomAccessRequest, RaRnti, rnti, UplinkDirection);
     }
-}
-
-void MAC::startRandomAccess() {
-    cMessage *msg = new cMessage("RandomAccessRequest");
-
-    LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
-    ctrl->setChannelNumber(PRACH);
-    ctrl->setRRnti(raRnti);
-    ctrl->setType(RandomAccessRequest);
-
-    msg->setControlInfo(ctrl);
-
-    send(msg, gate("lowerLayerOut"));
 }
 
 void MAC::handleMessage(cMessage *msg) {
@@ -63,19 +50,30 @@ void MAC::handleLowerMessage(cMessage *msg) {
     LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
     switch(ctrl->getType()) {
     case RandomAccessRequest: {
-        uint8 buf[255];
-        int32 buf_len = 0;
         MACSubHeaderRar *header = MACUtils().createHeaderRar(false, true, 1);
-        MACServiceDataUnit *sdu = MACUtils().createRAR(1111, 11111111, 1111);
+        MACServiceDataUnit *sdu = MACUtils().createRAR(0, 0, uniform(0, 65535));  /* TODO UL grant split into bits */
         MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
         pdu->pushSubHdr(header);
         pdu->pushSdu(sdu);
-        buf_len = MACSerializer().serialize(pdu, buf, sizeof(buf));
+        sendDown(pdu, PDCCH, RandomAccessGrant, RaRnti, ctrl->getRnti(), DownlinkDirection);
         break;
     }
     default:
         EV << "LTE-MAC: Unknown LTEPhyControlInfo type. Discarding message.\n";
         break;
     }
+}
+
+void MAC::sendDown(cMessage *msg, int channelNumber, int ctrlType, unsigned rntiType, unsigned rnti, unsigned direction) {
+    LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
+    ctrl->setChannelNumber(channelNumber);
+    ctrl->setType(ctrlType);
+    ctrl->setRadioType(TDDRadioType);
+    ctrl->setRntiType(rntiType);
+    ctrl->setRnti(rnti);
+    ctrl->setDirection(direction);
+
+    msg->setControlInfo(ctrl);
+    send(msg, gate("lowerLayerOut"));
 }
 

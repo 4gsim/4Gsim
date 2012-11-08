@@ -47,7 +47,7 @@ class LTEPhyControlInfo
 	int channelNumber;
 	int type;   
 	unsigned int rntiType;
-	unsigned int rRnti;
-	unsigned char radioType;
-	unsigned char direction;
+	unsigned int rnti;
+	unsigned int radioType;
+	unsigned int direction;
 }

@@ -66,7 +66,7 @@ module ENB
         }
         lteRadio: LTERadio {
             type = 0;
-            @display("p=66,283");
+            @display("p=76,360");
         }
         interfaceTable: InterfaceTable {
             parameters:
@@ -115,10 +115,10 @@ module ENB
             parameters:
                 dumpFile = dumpFile;
             gates:
-                lowerLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                upperLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                lowerLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                upperLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+                lowerLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces+1];
+                upperLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces+1];
+                lowerLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces+1];
+                upperLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces+1];
         }
         nas: NAS {
             @display("p=169,41");
@@ -141,10 +141,7 @@ module ENB
             @display("p=497,255");
         }
         mac: MAC {
-            @display("p=66,140");
-        }
-        dctDump: DCTDump {
-            @display("p=66,216");
+            @display("p=76,200");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
@@ -188,8 +185,8 @@ module ENB
         gtpu.udpOut --> udp.appIn++;
         udp.appOut++ --> gtpu.udpIn;
 
-        mac.lowerLayerOut --> dctDump.lowerLayerIn++;
-        dctDump.lowerLayerOut++ --> mac.lowerLayerIn;
-        dctDump.lowerLayerOut++ --> lteRadio.upperLayerIn;
-        lteRadio.upperLayerOut --> dctDump.lowerLayerIn++;
+        lteRadio.upperLayerOut --> dctdump.lowerLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+        dctdump.upperLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces] --> mac.lowerLayerIn;
+        lteRadio.upperLayerIn <-- dctdump.lowerLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
+        dctdump.upperLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces] <-- mac.lowerLayerOut;
 }

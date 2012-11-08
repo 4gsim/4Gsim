@@ -37,6 +37,7 @@ enum kind {
 
 enum LTEChannels {
     PRACH,
+    PDCCH,
 };
 
 enum LTEDevices {
