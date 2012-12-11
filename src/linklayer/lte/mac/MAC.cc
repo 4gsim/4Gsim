@@ -25,7 +25,6 @@ Define_Module(MAC);
 
 MAC::MAC() {
     // TODO Auto-generated constructor stub
-
 }
 
 MAC::~MAC() {
@@ -35,8 +34,10 @@ MAC::~MAC() {
 void MAC::initialize(int stage) {
 
     if (stage == 4) {
-        rnti = uniform(1, 71);
-        sendDown(new cMessage("RandomAccessRequest"), PRACH, RandomAccessRequest, RaRnti, rnti, UplinkDirection);
+        if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
+            rnti = uniform(RA_RNTI_MIN_VALUE, RA_RNTI_MAX_VALUE);
+            sendDown(new cMessage("RandomAccessRequest"), PRACH, RandomAccessRequest, RaRnti, rnti, UplinkDirection, 1);
+        }
     }
 }
 
@@ -50,7 +51,7 @@ void MAC::handleLowerMessage(cMessage *msg) {
     LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
     switch(ctrl->getType()) {
     case RandomAccessRequest: {
-        MACSubHeaderRar *header = MACUtils().createHeaderRar(false, true, 1);
+        MACSubHeaderRar *header = MACUtils().createHeaderRar(false, true, ctrl->getRapid());
         MACServiceDataUnit *sdu = MACUtils().createRAR(0, 0, uniform(0, 65535));  /* TODO UL grant split into bits */
         MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
         pdu->pushSubHdr(header);
@@ -64,14 +65,16 @@ void MAC::handleLowerMessage(cMessage *msg) {
     }
 }
 
-void MAC::sendDown(cMessage *msg, int channelNumber, int ctrlType, unsigned rntiType, unsigned rnti, unsigned direction) {
+void MAC::sendDown(cMessage *msg, int channelNumber, int ctrlType, unsigned rntiType, unsigned rnti, unsigned direction, unsigned rapid) {
     LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
     ctrl->setChannelNumber(channelNumber);
     ctrl->setType(ctrlType);
-    ctrl->setRadioType(TDDRadioType);
+    ctrl->setRadioType(FDDRadioType);
     ctrl->setRntiType(rntiType);
     ctrl->setRnti(rnti);
+    ctrl->setUeId(this->getParentModule()->getId());
     ctrl->setDirection(direction);
+    ctrl->setRapid(rapid);
 
     msg->setControlInfo(ctrl);
     send(msg, gate("lowerLayerOut"));

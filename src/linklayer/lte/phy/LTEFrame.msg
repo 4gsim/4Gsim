@@ -19,7 +19,7 @@ cplusplus {{
 
 class noncobject AirFrame;
 
-message RandomAccessFrame extends AirFrame
+message LTEFrame extends AirFrame
 {
 	unsigned int raRnti;    
 }

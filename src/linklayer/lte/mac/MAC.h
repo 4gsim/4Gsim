@@ -20,6 +20,9 @@
 
 #include <omnetpp.h>
 
+#define RA_RNTI_MIN_VALUE   1
+#define RA_RNTI_MAX_VALUE   60
+
 class MAC : public cSimpleModule {
 protected:
     unsigned rnti;
@@ -35,7 +38,7 @@ public:
 
     void handleLowerMessage(cMessage *msg);
 
-    void sendDown(cMessage *msg, int channelNumber, int ctrlType, unsigned rntiType, unsigned rnti, unsigned direction);
+    void sendDown(cMessage *msg, int channelNumber, int ctrlType, unsigned rntiType, unsigned rnti, unsigned direction, unsigned rapid = 0);
 };
 
 #endif /* MAC_H_ */

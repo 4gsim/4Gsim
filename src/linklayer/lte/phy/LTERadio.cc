@@ -110,37 +110,39 @@ void LTERadio::sendToRadio(cMessage *msg, int channel) {
 //}
 
 void LTERadio::handleUpperMessage(cMessage* msg) {
-    LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
 
-    switch(ctrl->getType()) {
-    case RandomAccessRequest: {
-        RandomAccessFrame *frame = new RandomAccessFrame();
-        frame->setChannelNumber(ctrl->getChannelNumber());
-        frame->setRaRnti(ctrl->getRnti());
-        sendToChannel(frame);
-        break;
-    }
-    default:
-        EV << "LTERadio: Unknown LTEPhyControlInfo type. Discarding message.\n";
-        break;
-    }
-    delete msg;
+    LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
+    sendToRadio(msg, ctrl->getChannelNumber());
+
+//    switch(ctrl->getType()) {
+//    case RandomAccessRequest: {
+//        AirFrame *frame = new AirFrame(msg->getName());
+//        frame->setChannelNumber(ctrl->getChannelNumber());
+//        frame->setControlInfo(ctrl);
+//        //frame->setRaRnti(ctrl->getRnti());
+//        sendToChannel(frame);
+//        break;
+//    }
+//    default:
+//        EV << "LTERadio: Unknown LTEPhyControlInfo type. Discarding message.\n";
+//        break;
+//    }
+//    delete msg;
 }
 
 void LTERadio::handleRadioMessage(cMessage *msg) {
 
-    if (dynamic_cast<RandomAccessFrame*>(msg)) {
-        RandomAccessFrame *frame = dynamic_cast<RandomAccessFrame*>(msg);
+//    if (dynamic_cast<RandomAccessFrame*>(msg)) {
+//        RandomAccessFrame *frame = dynamic_cast<RandomAccessFrame*>(msg);
+//
+//        LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
+//        ctrl->setRnti(frame->getRaRnti());
+//        ctrl->setType(RandomAccessRequest);
 
-        LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
-        ctrl->setRnti(frame->getRaRnti());
-        ctrl->setType(RandomAccessRequest);
+//    }
+    cMessage *upMsg = PK(msg)->decapsulate();
+    send(upMsg, gate("upperLayerOut"));
 
-        cMessage *upMsg = new cMessage("RandomAccessRequest");
-        upMsg->setControlInfo(ctrl);
-
-        send(upMsg, gate("upperLayerOut"));
-    }
 //	EV << "receiving frame " << airframe->getName() << endl;
 //	EV << "reception of frame over, preparing to send packet to upper layer\n";
 //	sendUp(airframe);

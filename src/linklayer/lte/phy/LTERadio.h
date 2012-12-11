@@ -69,6 +69,7 @@ protected:
 
     //virtual AirFrame *encapsulatePacket(cPacket *frame);
 
+    // implements function from ChannelAccess
     void sendToRadio(cMessage *msg, int channel);
 
     //virtual void sendDown(AirFrame *airframe);

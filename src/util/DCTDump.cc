@@ -65,6 +65,7 @@ void DCTDump::handleMessage(cMessage *msg) {
         const simtime_t stime = simulation.getSimTime();
         std::stringstream vers;
         std::stringstream outHdr;
+        std::stringstream comment;
         std::string time = timestamp(stime);
         uint8 buf[MAXBUFLENGTH];
         int32 buf_len = 0;
@@ -73,6 +74,7 @@ void DCTDump::handleMessage(cMessage *msg) {
         char *p = dh;
         bool write = false;
         bool hasOutHdr = false;
+        bool hasComment = false;
 
         // Write dump
         memset((void*)&buf, 0, sizeof(buf));
@@ -102,9 +104,21 @@ void DCTDump::handleMessage(cMessage *msg) {
             p += 8;
 
             write = true;
-            hasOutHdr = true;
 
             buf_len = MACSerializer().serialize(macPdu, buf, sizeof(buf));
+        }
+
+        // context name - MAC Random Access Preamble
+        if (dynamic_cast<LTEPhyControlInfo*>(msg->getControlInfo())) {
+            LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
+            if (ctrl->getType() == RandomAccessRequest) {
+                strncpy(p, "MAC-LTE.", 8);
+                p += 8;
+
+                write = true;
+
+                hasComment = true;
+            }
         }
 
         // context port number - always 1
@@ -127,11 +141,32 @@ void DCTDump::handleMessage(cMessage *msg) {
         // protocol - MACProtocolDataUnit
         if (macPdu) {
             vers << 1;
+
             strncpy(p, "mac_r9_lte/", 11);
+            hasOutHdr = true;
             p += 11;
+
             //protocol version
             strncpy(p, vers.str().c_str(), strlen(vers.str().c_str()));
             p += strlen(vers.str().c_str());
+        }
+
+        if (hasComment) {
+            vers << 1;
+
+            strncpy(p, "comment/", 8);
+            p += 8;
+
+            //protocol version
+            strncpy(p, vers.str().c_str(), strlen(vers.str().c_str()));
+            p += strlen(vers.str().c_str());
+
+            LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
+            comment << ">> RACH Preamble Request[UE =  "
+                    << ctrl->getUeId() << "]    [RAPID =  "
+                    << ctrl->getRapid() << "]    [Attempt = 1]";
+            strncpy((char*)buf, comment.str().c_str(), strlen(comment.str().c_str()));
+            buf_len = strlen(comment.str().c_str());
         }
 
         // out-header
@@ -145,7 +180,7 @@ void DCTDump::handleMessage(cMessage *msg) {
                         << "1," // Subframe number
                         << "0," // is predefined data
                         << ctrl->getRnti() << ","
-                        << "1," // UEId
+                        << ctrl->getUeId() << ","
                         << buf_len << ",";
 
             }
