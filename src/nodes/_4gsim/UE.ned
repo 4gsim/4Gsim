@@ -39,6 +39,7 @@ module UE
         string destAddr = default("");
         volatile double interval @unit("s") = default(1s);
         string configFile;
+        string dumpFile = default("");
     gates:
         input radioIn @directIn;
     submodules:
@@ -47,7 +48,6 @@ module UE
                 @display("p=50,61");
         }
         lteRadio: LTERadio {
-            type = 1;
             @display("p=273,369");
         }
         notificationBoard: NotificationBoard {
@@ -63,11 +63,18 @@ module UE
             @display("p=266,54");
         }
         mac: MAC {
-            @display("p=273,262");
+            @display("p=273,212");
+        }
+        dctDump: DCTDump {
+            parameters:
+                dumpFile = dumpFile;
+            	@display("p=273,294");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
 
-        mac.lowerLayerOut --> lteRadio.upperLayerIn;
-        lteRadio.upperLayerOut --> mac.lowerLayerIn;
+        mac.lowerLayerOut --> dctDump.upperLayerIn++;
+        dctDump.upperLayerOut++ --> mac.lowerLayerIn;
+        lteRadio.upperLayerOut --> dctDump.lowerLayerIn++;
+        dctDump.lowerLayerOut++ --> lteRadio.upperLayerIn;
 }

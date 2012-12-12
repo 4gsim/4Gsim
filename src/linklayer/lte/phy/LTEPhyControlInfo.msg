@@ -21,8 +21,8 @@ enum LTEPhyControlInfoTypes
 
 enum LTERadioTypes
 {
-    TDDRadioType = 0;
-	FDDRadioType = 1;
+    FDDRadioType = 0;
+	TDDRadioType = 1;
 }
 
 enum LTEDirections

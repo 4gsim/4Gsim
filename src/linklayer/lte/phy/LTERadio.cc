@@ -48,9 +48,11 @@ void LTERadio::initialize(int stage) {
     	radioModel = createRadioModel();
     } else if (stage == 2) {
         //cc->setRadioChannel(myRadioRef, rs.getChannelNumber());
-        int type = (int)par("type");
-        if (type == ENB) {
+
+        if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
             cc->setRadioChannel(myRadioRef, PRACH);
+        } else if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
+            cc->setRadioChannel(myRadioRef, PDCCH);
         }
     }
 //    else  if(stage == 4)
@@ -79,10 +81,7 @@ void LTERadio::handleMessage(cMessage *msg) {
 }
 
 void LTERadio::sendToRadio(cMessage *msg, int channel) {
-    AirFrame *airFrame = new AirFrame(msg->getName());
-    airFrame->setChannelNumber(channel);
-    airFrame->encapsulate(PK(msg));
-    sendToChannel(airFrame);
+
 }
 
 //AirFrame *LTERadio::encapsulatePacket(cPacket *frame) {
@@ -111,8 +110,19 @@ void LTERadio::sendToRadio(cMessage *msg, int channel) {
 
 void LTERadio::handleUpperMessage(cMessage* msg) {
 
-    LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
-    sendToRadio(msg, ctrl->getChannelNumber());
+    LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->removeControlInfo());
+    LTEFrame *lteFrame = new LTEFrame();
+    lteFrame->setChannelNumber(ctrl->getChannelNumber());
+    lteFrame->setType(ctrl->getType());
+    lteFrame->setRntiType(ctrl->getRntiType());
+    lteFrame->setRnti(ctrl->getRnti());
+    lteFrame->setRadioType(ctrl->getRadioType());
+    lteFrame->setDirection(ctrl->getDirection());
+    lteFrame->setUeId(ctrl->getUeId());
+    lteFrame->setRapid(ctrl->getRapid());
+    lteFrame->encapsulate(PK(msg));
+    lteFrame->setName(msg->getName());
+    sendToChannel(lteFrame);
 
 //    switch(ctrl->getType()) {
 //    case RandomAccessRequest: {
@@ -140,13 +150,24 @@ void LTERadio::handleRadioMessage(cMessage *msg) {
 //        ctrl->setType(RandomAccessRequest);
 
 //    }
-    cMessage *upMsg = PK(msg)->decapsulate();
+    LTEFrame *lteFrame = check_and_cast<LTEFrame*>(msg);
+    LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
+    ctrl->setChannelNumber(lteFrame->getChannelNumber());
+    ctrl->setType(lteFrame->getType());
+    ctrl->setRntiType(lteFrame->getRntiType());
+    ctrl->setRnti(lteFrame->getRnti());
+    ctrl->setRadioType(lteFrame->getRadioType());
+    ctrl->setDirection(lteFrame->getDirection());
+    ctrl->setUeId(lteFrame->getUeId());
+    ctrl->setRapid(lteFrame->getRapid());
+    cMessage *upMsg = lteFrame->decapsulate();
+    upMsg->setControlInfo(ctrl);
     send(upMsg, gate("upperLayerOut"));
 
 //	EV << "receiving frame " << airframe->getName() << endl;
 //	EV << "reception of frame over, preparing to send packet to upper layer\n";
 //	sendUp(airframe);
-    delete msg;
+//    delete msg;
 }
 
 void LTERadio::sendUp(AirFrame *airframe) {
