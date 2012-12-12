@@ -55,7 +55,7 @@ class MACControlElement extends MACServiceDataUnit
 
 }
 
-message MACProtocolDataUnit
+packet MACProtocolDataUnit
 {
     @customize(true);
     abstract MACSubHeaderPtr subHdrs[];

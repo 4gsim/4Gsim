@@ -174,7 +174,7 @@ void DCTDump::handleMessage(cMessage *msg) {
             if (macPdu) {
                 LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
                 outHdr  << ","
-                        << ctrl->getRadioType() + 1 << ","
+                        << ctrl->getRadioType() << ","
                         << ctrl->getRntiType() << ","
                         << ctrl->getDirection() << ","
                         << "1," // Subframe number

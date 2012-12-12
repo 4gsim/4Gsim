@@ -33,7 +33,6 @@ simple LTERadio like IRadio
         double sensitivity @unit("mW") = default(-85mW);
         double pathLossAlpha = default(2);
         double shadowingDeviation @unit("dB") = default(0dB);
-        int type = default(0); // ENB - 0, UE - 1
     gates:
         input upperLayerIn @labels(PhyControlInfo/down); 
         output upperLayerOut @labels(PhyControlInfo/up); 

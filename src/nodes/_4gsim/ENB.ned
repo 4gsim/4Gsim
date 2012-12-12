@@ -65,7 +65,6 @@ module ENB
                 @display("p=37,25");
         }
         lteRadio: LTERadio {
-            type = 0;
             @display("p=76,360");
         }
         interfaceTable: InterfaceTable {

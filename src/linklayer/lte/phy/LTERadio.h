@@ -40,11 +40,6 @@ enum LTEChannels {
     PDCCH,
 };
 
-enum LTEDevices {
-    ENB = 0,
-    UE = 1
-};
-
 class LTERadio : public ChannelAccess {
 public:
 	LTERadio();

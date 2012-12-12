@@ -36,7 +36,7 @@ void MAC::initialize(int stage) {
     if (stage == 4) {
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
             rnti = uniform(RA_RNTI_MIN_VALUE, RA_RNTI_MAX_VALUE);
-            sendDown(new cMessage("RandomAccessRequest"), PRACH, RandomAccessRequest, RaRnti, rnti, UplinkDirection, 1);
+            sendDown(new cPacket("RandomAccessRequest"), PRACH, RandomAccessRequest, RaRnti, rnti, UplinkDirection, this->getParentModule()->getId(), 1);
         }
     }
 }
@@ -56,7 +56,7 @@ void MAC::handleLowerMessage(cMessage *msg) {
         MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
         pdu->pushSubHdr(header);
         pdu->pushSdu(sdu);
-        sendDown(pdu, PDCCH, RandomAccessGrant, RaRnti, ctrl->getRnti(), DownlinkDirection);
+        sendDown(pdu, PDCCH, RandomAccessGrant, RaRnti, ctrl->getRnti(), DownlinkDirection, ctrl->getUeId());
         break;
     }
     default:
@@ -65,14 +65,14 @@ void MAC::handleLowerMessage(cMessage *msg) {
     }
 }
 
-void MAC::sendDown(cMessage *msg, int channelNumber, int ctrlType, unsigned rntiType, unsigned rnti, unsigned direction, unsigned rapid) {
+void MAC::sendDown(cMessage *msg, int channelNumber, int ctrlType, unsigned rntiType, unsigned rnti, unsigned direction, unsigned ueId, unsigned rapid) {
     LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
     ctrl->setChannelNumber(channelNumber);
     ctrl->setType(ctrlType);
     ctrl->setRadioType(FDDRadioType);
     ctrl->setRntiType(rntiType);
     ctrl->setRnti(rnti);
-    ctrl->setUeId(this->getParentModule()->getId());
+    ctrl->setUeId(ueId);
     ctrl->setDirection(direction);
     ctrl->setRapid(rapid);
 
