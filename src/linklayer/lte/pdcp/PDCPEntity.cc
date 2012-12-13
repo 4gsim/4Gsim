@@ -13,26 +13,14 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef RLC_H_
-#define RLC_H_
+#include "PDCPEntity.h"
 
-#include <omnetpp.h>
-#include "RLCTMEntity.h"
+PDCPEntity::PDCPEntity() {
+    // TODO Auto-generated constructor stub
 
-/**
- * TODO - Generated class
- */
-class RLC: public cSimpleModule {
-private:
-    RLCTMEntity *rTM;
-    RLCTMEntity *tTM;
-public:
-	RLC();
-	virtual ~RLC();
-	virtual void initialize();
-	virtual void handleMessage(cMessage *msg);
-};
+}
 
-#endif /* RLC_H_ */
-
+PDCPEntity::~PDCPEntity() {
+    // TODO Auto-generated destructor stub
+}
 

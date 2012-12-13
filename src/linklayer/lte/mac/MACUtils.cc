@@ -13,7 +13,6 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#include <platdep/sockets.h>
 #include "MACUtils.h"
 
 MACUtils::MACUtils() {
@@ -24,29 +23,24 @@ MACUtils::~MACUtils() {
 
 }
 
-MACSubHeaderRar *MACUtils::createHeaderRar(bool e, bool t, unsigned char rapidOrBi) {
-    MACSubHeaderRar *header = new MACSubHeaderRar();
-    header->setE(e);
-    header->setT(t);
-    header->setRapidOrBi(rapidOrBi);
-
+MACSubHeaderUlDl *MACUtils::createHeaderUlDl(unsigned char lcid) {
+    MACSubHeaderUlDl *header = new MACSubHeaderUlDl();
+    header->setLcid(lcid);
     return header;
 }
 
-MACServiceDataUnit *MACUtils::createRAR(unsigned short timingAdvCmd, unsigned ulGrant, unsigned short tempCRnti) {
-    MACServiceDataUnit *sdu = new MACServiceDataUnit();
-    unsigned sduLen = 6;
-    char *rar = (char*)calloc(sduLen, sizeof(char));
-    char *p = rar;
+MACSubHeaderRar *MACUtils::createHeaderRar(bool t, unsigned char rapidOrBi) {
+    MACSubHeaderRar *header = new MACSubHeaderRar();
+    header->setT(t);
+    header->setRapidOrBi(rapidOrBi);
+    return header;
+}
 
-    *((unsigned short*)p) = htons((timingAdvCmd & 0x07ff) << 4);
-    *((unsigned*)p) += ntohl(ulGrant & 0x000fffff);
-    p += 4;
-    *((unsigned short*)p) = htons(tempCRnti);
-
-    sdu->setValueArraySize(sduLen);
-    for (unsigned i = 0; i < sduLen; i++)
-        sdu->setValue(i, rar[i]);
-
-    return sdu;
+MACRandomAccessResponse *MACUtils::createRAR(unsigned short timingAdvCmd, unsigned ulGrant, unsigned short tempCRnti) {
+    MACRandomAccessResponse *rar = new MACRandomAccessResponse();
+    rar->setTmAdvCmd(timingAdvCmd);
+    rar->setUlGrant(ulGrant);
+    rar->setTmpCRnti(tempCRnti);
+    rar->setByteLength(6);
+    return rar;
 }

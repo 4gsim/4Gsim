@@ -23,7 +23,7 @@ public:
     MACSerializer();
     virtual ~MACSerializer();
 
-    unsigned serializeHeader(MACSubHeader *header, unsigned char *buf);
+    unsigned serializeHeader(MACSubHeader *header, bool isExt, bool isFixed, unsigned short sduLen, unsigned char *buf);
 
     unsigned serializeServiceDataUnit(MACServiceDataUnit *sdu, unsigned char *buf);
 

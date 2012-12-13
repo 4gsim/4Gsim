@@ -17,6 +17,9 @@ enum LTEPhyControlInfoTypes
 {
 	RandomAccessRequest = 0;
 	RandomAccessGrant = 1;
+	DLSCHDataTransfer = 2;
+	ULSCHDataTransfer = 3;
+	
 }
 
 enum LTERadioTypes

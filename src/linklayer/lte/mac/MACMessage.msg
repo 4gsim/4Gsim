@@ -32,32 +32,35 @@ class MACSubHeader
 
 class MACSubHeaderUlDl extends MACSubHeader
 {
-    bool e;
     unsigned char lcid;
-    bool f;
-    unsigned short l;
 }
 
 class MACSubHeaderRar extends MACSubHeader
 {
-    bool e;
     bool t;
     unsigned char rapidOrBi;
 }
 
-class MACServiceDataUnit
+packet MACServiceDataUnit
 {
-    char value[];
+
 }
 
-class MACControlElement extends MACServiceDataUnit
+packet MACControlElement extends MACServiceDataUnit
 {
 
+}
+
+packet MACRandomAccessResponse extends MACServiceDataUnit
+{
+    unsigned short tmAdvCmd;
+    unsigned int ulGrant;
+    unsigned short tmpCRnti;
 }
 
 packet MACProtocolDataUnit
 {
     @customize(true);
     abstract MACSubHeaderPtr subHdrs[];
-    abstract MACServiceDataUnitPtr sdus[];	// controlelements go in the same vector
+    abstract MACServiceDataUnitPtr sdus[];	// control elements go in the same vector
 }

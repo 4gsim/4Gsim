@@ -51,6 +51,7 @@ void LTERadio::initialize(int stage) {
 
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
             cc->setRadioChannel(myRadioRef, PRACH);
+            cc->setRadioChannel(myRadioRef, PUSCH);
         } else if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
             cc->setRadioChannel(myRadioRef, PDCCH);
         }

@@ -36,7 +36,8 @@ void MAC::initialize(int stage) {
     if (stage == 4) {
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
             rnti = uniform(RA_RNTI_MIN_VALUE, RA_RNTI_MAX_VALUE);
-            sendDown(new cPacket("RandomAccessRequest"), PRACH, RandomAccessRequest, RaRnti, rnti, UplinkDirection, this->getParentModule()->getId(), 1);
+            ueId = this->getParentModule()->getId();
+            sendDown(new cPacket("RandomAccessRequest"), PRACH, RandomAccessRequest, RaRnti, rnti, UplinkDirection, ueId, 1);
         }
     }
 }
@@ -51,12 +52,21 @@ void MAC::handleLowerMessage(cMessage *msg) {
     LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
     switch(ctrl->getType()) {
     case RandomAccessRequest: {
-        MACSubHeaderRar *header = MACUtils().createHeaderRar(false, true, ctrl->getRapid());
+        MACSubHeaderRar *header = MACUtils().createHeaderRar(true, ctrl->getRapid());
         MACServiceDataUnit *sdu = MACUtils().createRAR(0, 0, uniform(0, 65535));  /* TODO UL grant split into bits */
         MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
         pdu->pushSubHdr(header);
         pdu->pushSdu(sdu);
         sendDown(pdu, PDCCH, RandomAccessGrant, RaRnti, ctrl->getRnti(), DownlinkDirection, ctrl->getUeId());
+        break;
+    }
+    case RandomAccessGrant: {
+//        MACSubHeaderUlDl *header = MACUtils().createHeaderUlDl(0);
+//        MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
+//        MACServiceDataUnit *sdu = new MACServiceDataUnit();
+//        pdu->pushSubHdr(header);
+//        pdu->pushSdu(sdu);
+//        sendDown(pdu, PUSCH, ULSCHDataTransfer, CRnti, uniform(C_RNTI_MIN_VALUE, C_RNTI_MAX_VALUE), UplinkDirection, ueId, 1);
         break;
     }
     default:

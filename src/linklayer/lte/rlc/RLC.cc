@@ -18,7 +18,8 @@
 Define_Module(RLC);
 
 RLC::RLC() {
-
+    tTM = new RLCTMEntity();
+    rTM = new RLCTMEntity();
 }
 
 RLC::~RLC() {
@@ -31,4 +32,7 @@ void RLC::initialize() {
 
 void RLC::handleMessage(cMessage *msg) {
 	// TODO - Generated method body
+    if (msg->arrivedOn("upperLayerIn")) {
+
+    }
 }

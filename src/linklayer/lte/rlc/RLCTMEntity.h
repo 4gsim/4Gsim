@@ -16,11 +16,9 @@
 #ifndef RLCTMENTITY_H_
 #define RLCTMENTITY_H_
 
-class RLC;
+#include "RLCEntity.h"
 
-class RLCTMEntity {
-private:
-	RLC *module;
+class RLCTMEntity : public RLCEntity {
 public:
 	RLCTMEntity();
 	virtual ~RLCTMEntity();

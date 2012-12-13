@@ -1,14 +1,14 @@
 version 2
-run General-0-20121212-16:30:40-1192
+run General-0-20121213-16:06:15-3188
 attr configname General
-attr datetime 20121212-16:30:40
+attr datetime 20121213-16:06:15
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvars2 $repetition=0
 attr measurement ""
 attr network Test
-attr processid 1192
+attr processid 3188
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -408,12 +408,12 @@ attr source  encapPk
 attr title  "packets encapsulated, sum(packetBytes)"
 scalar Test.mme.eth[1].mac 	"simulated time" 	30
 scalar Test.mme.eth[1].mac 	full-duplex 	1
-scalar Test.mme.eth[1].mac 	"frames/sec sent" 	0.43333333333333
-scalar Test.mme.eth[1].mac 	"frames/sec rcvd" 	0.43333333333333
-scalar Test.mme.eth[1].mac 	"bits/sec sent" 	339.2
-scalar Test.mme.eth[1].mac 	"bits/sec rcvd" 	348.26666666667
-scalar Test.mme.eth[1].mac 	"rx channel idle (%)" 	99.99624
-scalar Test.mme.eth[1].mac 	"rx channel utilization (%)" 	0.00376
+scalar Test.mme.eth[1].mac 	"frames/sec sent" 	0.36666666666667
+scalar Test.mme.eth[1].mac 	"frames/sec rcvd" 	0.36666666666667
+scalar Test.mme.eth[1].mac 	"bits/sec sent" 	292.26666666667
+scalar Test.mme.eth[1].mac 	"bits/sec rcvd" 	291.73333333333
+scalar Test.mme.eth[1].mac 	"rx channel idle (%)" 	99.996848
+scalar Test.mme.eth[1].mac 	"rx channel utilization (%)" 	0.003152
 scalar Test.mme.eth[1].mac 	droppedPkNotForUs:count 	0
 attr interpolationmode  none
 attr source  dropPkNotForUs
@@ -438,11 +438,11 @@ scalar Test.mme.eth[1].mac 	droppedPkIfaceDown:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  dropPkIfaceDown
 attr title  "packets dropped/interface down, sum(packetBytes)"
-scalar Test.mme.eth[1].mac 	rxPkFromHL:count 	13
+scalar Test.mme.eth[1].mac 	rxPkFromHL:count 	11
 attr interpolationmode  none
 attr source  rxPkFromHL
 attr title  "packet bytes from higher layer, count"
-scalar Test.mme.eth[1].mac 	rxPkFromHL:sum(packetBytes) 	1272
+scalar Test.mme.eth[1].mac 	rxPkFromHL:sum(packetBytes) 	1096
 attr interpolationmode  none
 attr source  rxPkFromHL
 attr title  "packet bytes from higher layer, sum(packetBytes)"
@@ -458,27 +458,27 @@ attr title  "pause units sent, count"
 scalar Test.mme.eth[1].mac 	txPausePkUnits:sum 	0
 attr interpolationmode  none
 attr title  "pause units sent, sum"
-scalar Test.mme.eth[1].mac 	passedUpPk:count 	13
+scalar Test.mme.eth[1].mac 	passedUpPk:count 	11
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar Test.mme.eth[1].mac 	passedUpPk:sum(packetBytes) 	1306
+scalar Test.mme.eth[1].mac 	passedUpPk:sum(packetBytes) 	1094
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar Test.mme.eth[1].mac 	rxPkOk:count 	13
+scalar Test.mme.eth[1].mac 	rxPkOk:count 	11
 attr interpolationmode  none
 attr source  rxPkOk
 attr title  "packets received OK, count"
-scalar Test.mme.eth[1].mac 	rxPkOk:sum(packetBytes) 	1306
+scalar Test.mme.eth[1].mac 	rxPkOk:sum(packetBytes) 	1094
 attr interpolationmode  none
 attr source  rxPkOk
 attr title  "packets received OK, sum(packetBytes)"
-scalar Test.mme.eth[1].mac 	txPk:count 	13
+scalar Test.mme.eth[1].mac 	txPk:count 	11
 attr interpolationmode  none
 attr source  txPk
 attr title  "packets transmitted, count"
-scalar Test.mme.eth[1].mac 	txPk:sum(packetBytes) 	1272
+scalar Test.mme.eth[1].mac 	txPk:sum(packetBytes) 	1096
 attr interpolationmode  none
 attr source  txPk
 attr title  "packets transmitted, sum(packetBytes)"
@@ -486,19 +486,19 @@ scalar Test.mme.eth[1].encap 	pauseSent:count 	0
 attr title  "pause sent, count"
 scalar Test.mme.eth[1].encap 	pauseSent:sum 	0
 attr title  "pause sent, sum"
-scalar Test.mme.eth[1].encap 	decapPk:count 	13
+scalar Test.mme.eth[1].encap 	decapPk:count 	11
 attr interpolationmode  none
 attr source  decapPk
 attr title  "packets decapsulated, count"
-scalar Test.mme.eth[1].encap 	decapPk:sum(packetBytes) 	1044
+scalar Test.mme.eth[1].encap 	decapPk:sum(packetBytes) 	868
 attr interpolationmode  none
 attr source  decapPk
 attr title  "packets decapsulated, sum(packetBytes)"
-scalar Test.mme.eth[1].encap 	encapPk:count 	13
+scalar Test.mme.eth[1].encap 	encapPk:count 	11
 attr interpolationmode  none
 attr source  encapPk
 attr title  "packets encapsulated, count"
-scalar Test.mme.eth[1].encap 	encapPk:sum(packetBytes) 	1020
+scalar Test.mme.eth[1].encap 	encapPk:sum(packetBytes) 	880
 attr interpolationmode  none
 attr source  encapPk
 attr title  "packets encapsulated, sum(packetBytes)"
@@ -674,13 +674,13 @@ scalar Test.mme.sctp 	"Number of Heartbeats Received 8:192.168.3.1" 	1
 scalar Test.mme.sctp 	"Number of Heartbeat ACKs Sent 8:192.168.3.1" 	1
 scalar Test.mme.sctp 	"Number of Heartbeat ACKs Received 8:192.168.3.1" 	1
 scalar Test.mme.sctp 	"Association Lifetime" 	28.9993914
-scalar Test.mme.sctp 	"Acked Bytes" 	340
-scalar Test.mme.sctp 	"Throughput [bit/s]" 	93.79507185106
-scalar Test.mme.sctp 	"Transmitted Bytes" 	340
+scalar Test.mme.sctp 	"Acked Bytes" 	296
+scalar Test.mme.sctp 	"Throughput [bit/s]" 	81.656886082099
+scalar Test.mme.sctp 	"Transmitted Bytes" 	296
 scalar Test.mme.sctp 	"Fast RTX" 	0
 scalar Test.mme.sctp 	"Timer-Based RTX" 	0
 scalar Test.mme.sctp 	"Duplicate Acks" 	0
-scalar Test.mme.sctp 	"Packets Received" 	18
+scalar Test.mme.sctp 	"Packets Received" 	16
 scalar Test.mme.sctp 	"Packets Dropped" 	0
 scalar Test.mme.sctp 	"Association Lifetime" 	29.9995275
 scalar Test.mme.sctp 	"Acked Bytes" 	37
@@ -689,7 +689,7 @@ scalar Test.mme.sctp 	"Transmitted Bytes" 	37
 scalar Test.mme.sctp 	"Fast RTX" 	0
 scalar Test.mme.sctp 	"Timer-Based RTX" 	0
 scalar Test.mme.sctp 	"Duplicate Acks" 	0
-scalar Test.mme.sctp 	"Packets Received" 	18
+scalar Test.mme.sctp 	"Packets Received" 	16
 scalar Test.mme.sctp 	"Packets Dropped" 	0
 scalar Test.mme.udp 	droppedPkBadChecksum:count 	0
 attr interpolationmode  none
@@ -718,12 +718,12 @@ attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
 scalar Test.hss.eth[0].mac 	"simulated time" 	30
 scalar Test.hss.eth[0].mac 	full-duplex 	1
-scalar Test.hss.eth[0].mac 	"frames/sec sent" 	0.43333333333333
-scalar Test.hss.eth[0].mac 	"frames/sec rcvd" 	0.43333333333333
-scalar Test.hss.eth[0].mac 	"bits/sec sent" 	348.26666666667
-scalar Test.hss.eth[0].mac 	"bits/sec rcvd" 	339.2
-scalar Test.hss.eth[0].mac 	"rx channel idle (%)" 	99.996330666667
-scalar Test.hss.eth[0].mac 	"rx channel utilization (%)" 	0.0036693333333333
+scalar Test.hss.eth[0].mac 	"frames/sec sent" 	0.36666666666667
+scalar Test.hss.eth[0].mac 	"frames/sec rcvd" 	0.36666666666667
+scalar Test.hss.eth[0].mac 	"bits/sec sent" 	291.73333333333
+scalar Test.hss.eth[0].mac 	"bits/sec rcvd" 	292.26666666667
+scalar Test.hss.eth[0].mac 	"rx channel idle (%)" 	99.996842666667
+scalar Test.hss.eth[0].mac 	"rx channel utilization (%)" 	0.0031573333333333
 scalar Test.hss.eth[0].mac 	droppedPkNotForUs:count 	0
 attr interpolationmode  none
 attr source  dropPkNotForUs
@@ -748,11 +748,11 @@ scalar Test.hss.eth[0].mac 	droppedPkIfaceDown:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  dropPkIfaceDown
 attr title  "packets dropped/interface down, sum(packetBytes)"
-scalar Test.hss.eth[0].mac 	rxPkFromHL:count 	13
+scalar Test.hss.eth[0].mac 	rxPkFromHL:count 	11
 attr interpolationmode  none
 attr source  rxPkFromHL
 attr title  "packet bytes from higher layer, count"
-scalar Test.hss.eth[0].mac 	rxPkFromHL:sum(packetBytes) 	1306
+scalar Test.hss.eth[0].mac 	rxPkFromHL:sum(packetBytes) 	1094
 attr interpolationmode  none
 attr source  rxPkFromHL
 attr title  "packet bytes from higher layer, sum(packetBytes)"
@@ -768,27 +768,27 @@ attr title  "pause units sent, count"
 scalar Test.hss.eth[0].mac 	txPausePkUnits:sum 	0
 attr interpolationmode  none
 attr title  "pause units sent, sum"
-scalar Test.hss.eth[0].mac 	passedUpPk:count 	13
+scalar Test.hss.eth[0].mac 	passedUpPk:count 	11
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar Test.hss.eth[0].mac 	passedUpPk:sum(packetBytes) 	1272
+scalar Test.hss.eth[0].mac 	passedUpPk:sum(packetBytes) 	1096
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar Test.hss.eth[0].mac 	rxPkOk:count 	13
+scalar Test.hss.eth[0].mac 	rxPkOk:count 	11
 attr interpolationmode  none
 attr source  rxPkOk
 attr title  "packets received OK, count"
-scalar Test.hss.eth[0].mac 	rxPkOk:sum(packetBytes) 	1272
+scalar Test.hss.eth[0].mac 	rxPkOk:sum(packetBytes) 	1096
 attr interpolationmode  none
 attr source  rxPkOk
 attr title  "packets received OK, sum(packetBytes)"
-scalar Test.hss.eth[0].mac 	txPk:count 	13
+scalar Test.hss.eth[0].mac 	txPk:count 	11
 attr interpolationmode  none
 attr source  txPk
 attr title  "packets transmitted, count"
-scalar Test.hss.eth[0].mac 	txPk:sum(packetBytes) 	1306
+scalar Test.hss.eth[0].mac 	txPk:sum(packetBytes) 	1094
 attr interpolationmode  none
 attr source  txPk
 attr title  "packets transmitted, sum(packetBytes)"
@@ -796,19 +796,19 @@ scalar Test.hss.eth[0].encap 	pauseSent:count 	0
 attr title  "pause sent, count"
 scalar Test.hss.eth[0].encap 	pauseSent:sum 	0
 attr title  "pause sent, sum"
-scalar Test.hss.eth[0].encap 	decapPk:count 	13
+scalar Test.hss.eth[0].encap 	decapPk:count 	11
 attr interpolationmode  none
 attr source  decapPk
 attr title  "packets decapsulated, count"
-scalar Test.hss.eth[0].encap 	decapPk:sum(packetBytes) 	1020
+scalar Test.hss.eth[0].encap 	decapPk:sum(packetBytes) 	880
 attr interpolationmode  none
 attr source  decapPk
 attr title  "packets decapsulated, sum(packetBytes)"
-scalar Test.hss.eth[0].encap 	encapPk:count 	13
+scalar Test.hss.eth[0].encap 	encapPk:count 	11
 attr interpolationmode  none
 attr source  encapPk
 attr title  "packets encapsulated, count"
-scalar Test.hss.eth[0].encap 	encapPk:sum(packetBytes) 	1044
+scalar Test.hss.eth[0].encap 	encapPk:sum(packetBytes) 	868
 attr interpolationmode  none
 attr source  encapPk
 attr title  "packets encapsulated, sum(packetBytes)"
@@ -882,13 +882,13 @@ scalar Test.hss.sctp 	"Number of Heartbeats Received 14:192.168.3.2" 	1
 scalar Test.hss.sctp 	"Number of Heartbeat ACKs Sent 14:192.168.3.2" 	1
 scalar Test.hss.sctp 	"Number of Heartbeat ACKs Received 14:192.168.3.2" 	1
 scalar Test.hss.sctp 	"Association Lifetime" 	28.9995275
-scalar Test.hss.sctp 	"Acked Bytes" 	364
-scalar Test.hss.sctp 	"Throughput [bit/s]" 	100.41542918242
-scalar Test.hss.sctp 	"Transmitted Bytes" 	364
+scalar Test.hss.sctp 	"Acked Bytes" 	284
+scalar Test.hss.sctp 	"Throughput [bit/s]" 	78.346104087386
+scalar Test.hss.sctp 	"Transmitted Bytes" 	284
 scalar Test.hss.sctp 	"Fast RTX" 	0
 scalar Test.hss.sctp 	"Timer-Based RTX" 	0
 scalar Test.hss.sctp 	"Duplicate Acks" 	0
-scalar Test.hss.sctp 	"Packets Received" 	12
+scalar Test.hss.sctp 	"Packets Received" 	10
 scalar Test.hss.sctp 	"Packets Dropped" 	0
 scalar Test.pgw.udp 	droppedPkBadChecksum:count 	0
 attr interpolationmode  none
@@ -896,22 +896,22 @@ attr title  "packets dropped (checksum error), count"
 scalar Test.pgw.udp 	droppedPkWrongPort:count 	0
 attr interpolationmode  none
 attr title  "packets dropped (wrong port), count"
-scalar Test.pgw.udp 	passedUpPk:count 	6
+scalar Test.pgw.udp 	passedUpPk:count 	5
 attr interpolationmode  none
 attr title  "packets passed up, count"
-scalar Test.pgw.udp 	rcvdPk:count 	6
+scalar Test.pgw.udp 	rcvdPk:count 	5
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar Test.pgw.udp 	rcvdPk:sum(packetBytes) 	48
+scalar Test.pgw.udp 	rcvdPk:sum(packetBytes) 	40
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
-scalar Test.pgw.udp 	sentPk:count 	6
+scalar Test.pgw.udp 	sentPk:count 	5
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar Test.pgw.udp 	sentPk:sum(packetBytes) 	48
+scalar Test.pgw.udp 	sentPk:sum(packetBytes) 	40
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
@@ -1076,12 +1076,12 @@ attr source  encapPk
 attr title  "packets encapsulated, sum(packetBytes)"
 scalar Test.pgw.eth[1].mac 	"simulated time" 	30
 scalar Test.pgw.eth[1].mac 	full-duplex 	1
-scalar Test.pgw.eth[1].mac 	"frames/sec sent" 	0.13333333333333
-scalar Test.pgw.eth[1].mac 	"frames/sec rcvd" 	0.13333333333333
-scalar Test.pgw.eth[1].mac 	"bits/sec sent" 	68.266666666667
-scalar Test.pgw.eth[1].mac 	"bits/sec rcvd" 	68.266666666667
-scalar Test.pgw.eth[1].mac 	"rx channel idle (%)" 	99.999232
-scalar Test.pgw.eth[1].mac 	"rx channel utilization (%)" 	0.000768
+scalar Test.pgw.eth[1].mac 	"frames/sec sent" 	0.1
+scalar Test.pgw.eth[1].mac 	"frames/sec rcvd" 	0.1
+scalar Test.pgw.eth[1].mac 	"bits/sec sent" 	51.2
+scalar Test.pgw.eth[1].mac 	"bits/sec rcvd" 	51.2
+scalar Test.pgw.eth[1].mac 	"rx channel idle (%)" 	99.999424
+scalar Test.pgw.eth[1].mac 	"rx channel utilization (%)" 	0.000576
 scalar Test.pgw.eth[1].mac 	droppedPkNotForUs:count 	0
 attr interpolationmode  none
 attr source  dropPkNotForUs
@@ -1106,11 +1106,11 @@ scalar Test.pgw.eth[1].mac 	droppedPkIfaceDown:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  dropPkIfaceDown
 attr title  "packets dropped/interface down, sum(packetBytes)"
-scalar Test.pgw.eth[1].mac 	rxPkFromHL:count 	4
+scalar Test.pgw.eth[1].mac 	rxPkFromHL:count 	3
 attr interpolationmode  none
 attr source  rxPkFromHL
 attr title  "packet bytes from higher layer, count"
-scalar Test.pgw.eth[1].mac 	rxPkFromHL:sum(packetBytes) 	256
+scalar Test.pgw.eth[1].mac 	rxPkFromHL:sum(packetBytes) 	192
 attr interpolationmode  none
 attr source  rxPkFromHL
 attr title  "packet bytes from higher layer, sum(packetBytes)"
@@ -1126,27 +1126,27 @@ attr title  "pause units sent, count"
 scalar Test.pgw.eth[1].mac 	txPausePkUnits:sum 	0
 attr interpolationmode  none
 attr title  "pause units sent, sum"
-scalar Test.pgw.eth[1].mac 	passedUpPk:count 	4
+scalar Test.pgw.eth[1].mac 	passedUpPk:count 	3
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar Test.pgw.eth[1].mac 	passedUpPk:sum(packetBytes) 	256
+scalar Test.pgw.eth[1].mac 	passedUpPk:sum(packetBytes) 	192
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar Test.pgw.eth[1].mac 	rxPkOk:count 	4
+scalar Test.pgw.eth[1].mac 	rxPkOk:count 	3
 attr interpolationmode  none
 attr source  rxPkOk
 attr title  "packets received OK, count"
-scalar Test.pgw.eth[1].mac 	rxPkOk:sum(packetBytes) 	256
+scalar Test.pgw.eth[1].mac 	rxPkOk:sum(packetBytes) 	192
 attr interpolationmode  none
 attr source  rxPkOk
 attr title  "packets received OK, sum(packetBytes)"
-scalar Test.pgw.eth[1].mac 	txPk:count 	4
+scalar Test.pgw.eth[1].mac 	txPk:count 	3
 attr interpolationmode  none
 attr source  txPk
 attr title  "packets transmitted, count"
-scalar Test.pgw.eth[1].mac 	txPk:sum(packetBytes) 	256
+scalar Test.pgw.eth[1].mac 	txPk:sum(packetBytes) 	192
 attr interpolationmode  none
 attr source  txPk
 attr title  "packets transmitted, sum(packetBytes)"
@@ -1154,19 +1154,19 @@ scalar Test.pgw.eth[1].encap 	pauseSent:count 	0
 attr title  "pause sent, count"
 scalar Test.pgw.eth[1].encap 	pauseSent:sum 	0
 attr title  "pause sent, sum"
-scalar Test.pgw.eth[1].encap 	decapPk:count 	4
+scalar Test.pgw.eth[1].encap 	decapPk:count 	3
 attr interpolationmode  none
 attr source  decapPk
 attr title  "packets decapsulated, count"
-scalar Test.pgw.eth[1].encap 	decapPk:sum(packetBytes) 	112
+scalar Test.pgw.eth[1].encap 	decapPk:sum(packetBytes) 	84
 attr interpolationmode  none
 attr source  decapPk
 attr title  "packets decapsulated, sum(packetBytes)"
-scalar Test.pgw.eth[1].encap 	encapPk:count 	4
+scalar Test.pgw.eth[1].encap 	encapPk:count 	3
 attr interpolationmode  none
 attr source  encapPk
 attr title  "packets encapsulated, count"
-scalar Test.pgw.eth[1].encap 	encapPk:sum(packetBytes) 	112
+scalar Test.pgw.eth[1].encap 	encapPk:sum(packetBytes) 	84
 attr interpolationmode  none
 attr source  encapPk
 attr title  "packets encapsulated, sum(packetBytes)"
@@ -1176,22 +1176,22 @@ attr title  "packets dropped (checksum error), count"
 scalar Test.sgw.udp 	droppedPkWrongPort:count 	0
 attr interpolationmode  none
 attr title  "packets dropped (wrong port), count"
-scalar Test.sgw.udp 	passedUpPk:count 	12
+scalar Test.sgw.udp 	passedUpPk:count 	11
 attr interpolationmode  none
 attr title  "packets passed up, count"
-scalar Test.sgw.udp 	rcvdPk:count 	12
+scalar Test.sgw.udp 	rcvdPk:count 	11
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, count"
-scalar Test.sgw.udp 	rcvdPk:sum(packetBytes) 	96
+scalar Test.sgw.udp 	rcvdPk:sum(packetBytes) 	88
 attr interpolationmode  none
 attr source  rcvdPk
 attr title  "packets received, sum(packetBytes)"
-scalar Test.sgw.udp 	sentPk:count 	12
+scalar Test.sgw.udp 	sentPk:count 	11
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, count"
-scalar Test.sgw.udp 	sentPk:sum(packetBytes) 	96
+scalar Test.sgw.udp 	sentPk:sum(packetBytes) 	88
 attr interpolationmode  none
 attr source  sentPk
 attr title  "packets sent, sum(packetBytes)"
@@ -1452,12 +1452,12 @@ attr source  encapPk
 attr title  "packets encapsulated, sum(packetBytes)"
 scalar Test.sgw.eth[2].mac 	"simulated time" 	30
 scalar Test.sgw.eth[2].mac 	full-duplex 	1
-scalar Test.sgw.eth[2].mac 	"frames/sec sent" 	0.13333333333333
-scalar Test.sgw.eth[2].mac 	"frames/sec rcvd" 	0.13333333333333
-scalar Test.sgw.eth[2].mac 	"bits/sec sent" 	68.266666666667
-scalar Test.sgw.eth[2].mac 	"bits/sec rcvd" 	68.266666666667
-scalar Test.sgw.eth[2].mac 	"rx channel idle (%)" 	99.999232
-scalar Test.sgw.eth[2].mac 	"rx channel utilization (%)" 	0.000768
+scalar Test.sgw.eth[2].mac 	"frames/sec sent" 	0.1
+scalar Test.sgw.eth[2].mac 	"frames/sec rcvd" 	0.1
+scalar Test.sgw.eth[2].mac 	"bits/sec sent" 	51.2
+scalar Test.sgw.eth[2].mac 	"bits/sec rcvd" 	51.2
+scalar Test.sgw.eth[2].mac 	"rx channel idle (%)" 	99.999424
+scalar Test.sgw.eth[2].mac 	"rx channel utilization (%)" 	0.000576
 scalar Test.sgw.eth[2].mac 	droppedPkNotForUs:count 	0
 attr interpolationmode  none
 attr source  dropPkNotForUs
@@ -1482,11 +1482,11 @@ scalar Test.sgw.eth[2].mac 	droppedPkIfaceDown:sum(packetBytes) 	0
 attr interpolationmode  none
 attr source  dropPkIfaceDown
 attr title  "packets dropped/interface down, sum(packetBytes)"
-scalar Test.sgw.eth[2].mac 	rxPkFromHL:count 	4
+scalar Test.sgw.eth[2].mac 	rxPkFromHL:count 	3
 attr interpolationmode  none
 attr source  rxPkFromHL
 attr title  "packet bytes from higher layer, count"
-scalar Test.sgw.eth[2].mac 	rxPkFromHL:sum(packetBytes) 	256
+scalar Test.sgw.eth[2].mac 	rxPkFromHL:sum(packetBytes) 	192
 attr interpolationmode  none
 attr source  rxPkFromHL
 attr title  "packet bytes from higher layer, sum(packetBytes)"
@@ -1502,27 +1502,27 @@ attr title  "pause units sent, count"
 scalar Test.sgw.eth[2].mac 	txPausePkUnits:sum 	0
 attr interpolationmode  none
 attr title  "pause units sent, sum"
-scalar Test.sgw.eth[2].mac 	passedUpPk:count 	4
+scalar Test.sgw.eth[2].mac 	passedUpPk:count 	3
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, count"
-scalar Test.sgw.eth[2].mac 	passedUpPk:sum(packetBytes) 	256
+scalar Test.sgw.eth[2].mac 	passedUpPk:sum(packetBytes) 	192
 attr interpolationmode  none
 attr source  packetSentToUpper
 attr title  "packets passed to higher layer, sum(packetBytes)"
-scalar Test.sgw.eth[2].mac 	rxPkOk:count 	4
+scalar Test.sgw.eth[2].mac 	rxPkOk:count 	3
 attr interpolationmode  none
 attr source  rxPkOk
 attr title  "packets received OK, count"
-scalar Test.sgw.eth[2].mac 	rxPkOk:sum(packetBytes) 	256
+scalar Test.sgw.eth[2].mac 	rxPkOk:sum(packetBytes) 	192
 attr interpolationmode  none
 attr source  rxPkOk
 attr title  "packets received OK, sum(packetBytes)"
-scalar Test.sgw.eth[2].mac 	txPk:count 	4
+scalar Test.sgw.eth[2].mac 	txPk:count 	3
 attr interpolationmode  none
 attr source  txPk
 attr title  "packets transmitted, count"
-scalar Test.sgw.eth[2].mac 	txPk:sum(packetBytes) 	256
+scalar Test.sgw.eth[2].mac 	txPk:sum(packetBytes) 	192
 attr interpolationmode  none
 attr source  txPk
 attr title  "packets transmitted, sum(packetBytes)"
@@ -1530,19 +1530,19 @@ scalar Test.sgw.eth[2].encap 	pauseSent:count 	0
 attr title  "pause sent, count"
 scalar Test.sgw.eth[2].encap 	pauseSent:sum 	0
 attr title  "pause sent, sum"
-scalar Test.sgw.eth[2].encap 	decapPk:count 	4
+scalar Test.sgw.eth[2].encap 	decapPk:count 	3
 attr interpolationmode  none
 attr source  decapPk
 attr title  "packets decapsulated, count"
-scalar Test.sgw.eth[2].encap 	decapPk:sum(packetBytes) 	112
+scalar Test.sgw.eth[2].encap 	decapPk:sum(packetBytes) 	84
 attr interpolationmode  none
 attr source  decapPk
 attr title  "packets decapsulated, sum(packetBytes)"
-scalar Test.sgw.eth[2].encap 	encapPk:count 	4
+scalar Test.sgw.eth[2].encap 	encapPk:count 	3
 attr interpolationmode  none
 attr source  encapPk
 attr title  "packets encapsulated, count"
-scalar Test.sgw.eth[2].encap 	encapPk:sum(packetBytes) 	112
+scalar Test.sgw.eth[2].encap 	encapPk:sum(packetBytes) 	84
 attr interpolationmode  none
 attr source  encapPk
 attr title  "packets encapsulated, sum(packetBytes)"

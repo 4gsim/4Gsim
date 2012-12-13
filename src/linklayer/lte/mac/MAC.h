@@ -22,11 +22,13 @@
 
 #define RA_RNTI_MIN_VALUE   1
 #define RA_RNTI_MAX_VALUE   60
+#define C_RNTI_MIN_VALUE    1
+#define C_RNTI_MAX_VALUE    65523
 
 class MAC : public cSimpleModule {
 protected:
     unsigned rnti;
-
+    unsigned ueId;
 public:
     MAC();
     virtual ~MAC();

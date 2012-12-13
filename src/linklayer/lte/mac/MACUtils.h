@@ -23,8 +23,9 @@ public:
     MACUtils();
     virtual ~MACUtils();
 
-    MACSubHeaderRar *createHeaderRar(bool e, bool t, unsigned char rapidOrBi);
-    MACServiceDataUnit *createRAR(unsigned short timingAdvCmd, unsigned ulGrant, unsigned short tempCRnti);
+    MACSubHeaderRar *createHeaderRar(bool t, unsigned char rapidOrBi);
+    MACSubHeaderUlDl *createHeaderUlDl(unsigned char lcid);
+    MACRandomAccessResponse *createRAR(unsigned short timingAdvCmd, unsigned ulGrant, unsigned short tempCRnti);
 };
 
 #endif /* MACUTILS_H_ */

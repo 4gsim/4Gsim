@@ -30,14 +30,15 @@
 #include "InterfaceTable.h"
 #include "LTEPhyControlInfo_m.h"
 
-enum kind {
-	control = 0,
-	user = 1
-};
+//enum kind {
+//	control = 0,
+//	user = 1
+//};
 
 enum LTEChannels {
     PRACH,
     PDCCH,
+    PUSCH,
 };
 
 class LTERadio : public ChannelAccess {

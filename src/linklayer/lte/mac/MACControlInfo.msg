@@ -11,28 +11,4 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-// 
-
-#ifndef RLC_H_
-#define RLC_H_
-
-#include <omnetpp.h>
-#include "RLCTMEntity.h"
-
-/**
- * TODO - Generated class
- */
-class RLC: public cSimpleModule {
-private:
-    RLCTMEntity *rTM;
-    RLCTMEntity *tTM;
-public:
-	RLC();
-	virtual ~RLC();
-	virtual void initialize();
-	virtual void handleMessage(cMessage *msg);
-};
-
-#endif /* RLC_H_ */
-
-
+//
