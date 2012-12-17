@@ -14,6 +14,7 @@
 // 
 
 #include "RLCEntity.h"
+#include "RLC.h"
 
 RLCEntity::RLCEntity() {
 
@@ -21,4 +22,8 @@ RLCEntity::RLCEntity() {
 
 RLCEntity::~RLCEntity() {
 
+}
+
+void RLCEntity::setModule(RLC *module) {
+    this->module = module;
 }

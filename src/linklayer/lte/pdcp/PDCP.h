@@ -24,6 +24,11 @@ class PDCP : public cSimpleModule {
 public:
     PDCP();
     virtual ~PDCP();
+
+    virtual int numInitStages() const  { return 5; }
+
+    virtual void initialize(int stage);
+    virtual void handleMessage(cMessage *msg);
 };
 
 #endif /* PDCP_H_ */

@@ -35,12 +35,6 @@
 //	user = 1
 //};
 
-enum LTEChannels {
-    PRACH,
-    PDCCH,
-    PUSCH,
-};
-
 class LTERadio : public ChannelAccess {
 public:
 	LTERadio();
@@ -51,6 +45,8 @@ protected:
     IRadioModel *radioModel;
     IReceptionModel *receptionModel;
     IInterfaceTable *ift;
+
+    unsigned ueId;
 
 	virtual IReceptionModel *createReceptionModel() {return (IReceptionModel *)createOne("FreeSpaceModel");}
     virtual IRadioModel *createRadioModel() {return (IRadioModel *)createOne("LTERadioModel");}

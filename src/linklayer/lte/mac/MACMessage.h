@@ -20,8 +20,8 @@
 #include "INETDefs.h"
 
 /*
- * Class for GTP message. This class inherits the message base class from .msg file
- * and adds the vector with the GTP information elements.
+ * Class for MAC message. This class inherits the message base class from .msg file
+ * and adds the vectors with the MAC sub headers and MAC service data units.
  */
 class MACProtocolDataUnit : public MACProtocolDataUnit_Base {
 private:

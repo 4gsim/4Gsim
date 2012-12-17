@@ -22,6 +22,8 @@ class RLCTMEntity : public RLCEntity {
 public:
 	RLCTMEntity();
 	virtual ~RLCTMEntity();
+
+	virtual void processMessage(cMessage *msg);
 };
 
 #endif /* RLCTMENTITY_H_ */

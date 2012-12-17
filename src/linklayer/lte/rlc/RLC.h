@@ -31,6 +31,8 @@ public:
 	virtual ~RLC();
 	virtual void initialize();
 	virtual void handleMessage(cMessage *msg);
+
+//	void sendMessage(cMessage *msg) { this->send(msg, gate("lowerLayerOut")); }
 };
 
 #endif /* RLC_H_ */

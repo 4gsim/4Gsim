@@ -14,6 +14,9 @@
 // 
 
 #include "RLCTMEntity.h"
+#include "RLCMessage_m.h"
+#include "RLC.h"
+#include "INETDefs.h"
 
 RLCTMEntity::RLCTMEntity() {
 	// TODO Auto-generated constructor stub
@@ -22,5 +25,12 @@ RLCTMEntity::RLCTMEntity() {
 
 RLCTMEntity::~RLCTMEntity() {
 	// TODO Auto-generated destructor stub
+}
+
+void RLCTMEntity::processMessage(cMessage *msg) {
+    // TODO implement transmission buffer
+    TMDProtocolDataUnit *pdu = new TMDProtocolDataUnit();
+    pdu->encapsulate(PK(msg));
+    module->send(pdu, module->gate("lowerLayerOut"));
 }
 

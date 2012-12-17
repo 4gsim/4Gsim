@@ -16,14 +16,20 @@
 #ifndef RLCENTITY_H_
 #define RLCENTITY_H_
 
+#include <omnetpp.h>
+
 class RLC;
 
 class RLCEntity {
-private:
+protected:
     RLC *module;
 public:
     RLCEntity();
     virtual ~RLCEntity();
+
+    void setModule(RLC *module);
+
+    virtual void processMessage(cMessage *msg) = 0;
 };
 
 #endif /* RLCENTITY_H_ */

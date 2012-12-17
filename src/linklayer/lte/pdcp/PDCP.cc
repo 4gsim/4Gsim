@@ -28,3 +28,13 @@ PDCP::~PDCP() {
     // TODO Auto-generated destructor stub
 }
 
+void PDCP::initialize(int stage) {
+    if (stage == 4) {
+
+    }
+}
+
+void PDCP::handleMessage(cMessage *msg) {
+
+}
+

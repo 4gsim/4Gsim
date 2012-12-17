@@ -45,14 +45,20 @@ enum LTERntiTypes
  	MRnti = 6;	
 }
 
+enum LTEPhyChannels {
+    PRACH = 1;
+    PDCCH = 2;
+    PUSCH = 3;
+};
+
 class LTEPhyControlInfo
 {
-	int channelNumber;
+	int phyChannel;
 	int type;   
 	unsigned int rntiType;
 	unsigned int rnti;			// RA-RNTI (1...60)
-	unsigned int radioType;
-	unsigned int direction;
-	unsigned int ueId;
+//	unsigned int radioType;
+//	unsigned int direction;
+//	unsigned int ueId;
 	unsigned int rapid;  		// RACH preamble id (0...63)
 }

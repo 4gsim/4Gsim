@@ -14,6 +14,7 @@
 // 
 
 #include "RLC.h"
+#include "LTEMacControlInfo_m.h"
 
 Define_Module(RLC);
 
@@ -33,6 +34,13 @@ void RLC::initialize() {
 void RLC::handleMessage(cMessage *msg) {
 	// TODO - Generated method body
     if (msg->arrivedOn("upperLayerIn")) {
-
+        LTEMacControlInfo *ctrl = check_and_cast<LTEMacControlInfo*>(msg->getControlInfo());
+        switch (ctrl->getLogChannel()) {
+        case ULCCCH:
+            tTM->processMessage(msg);
+            break;
+        default:
+            break;
+        }
     }
 }
