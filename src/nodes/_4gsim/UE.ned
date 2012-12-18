@@ -18,6 +18,7 @@
 package inet.nodes._4gsim;
 
 import inet.linklayer.lte.mac.MAC;
+import inet.linklayer.lte.pdcp.PDCP;
 import inet.linklayer.lte.rrc.RRC;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.networklayer.common.InterfaceTable;
@@ -68,7 +69,10 @@ module UE
         dctDump: DCTDump {
             parameters:
                 dumpFile = dumpFile;
-            	@display("p=273,294");
+                @display("p=273,294");
+        }
+        pdcp: PDCP {
+            @display("p=414,149");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
