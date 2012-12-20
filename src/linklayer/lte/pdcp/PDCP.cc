@@ -29,7 +29,7 @@ PDCP::~PDCP() {
     // TODO Auto-generated destructor stub
 }
 
-unsigned subword(unsigned w) {
+unsigned subWord(unsigned w) {
     unsigned r = w;
     unsigned char *s = (unsigned char*)&r;
     for (unsigned i = 0; i < sizeof(w); i++)
@@ -37,12 +37,16 @@ unsigned subword(unsigned w) {
     return r;
 }
 
-unsigned rotword(unsigned w) {
+unsigned rotWord(unsigned w, unsigned n) {
+
     unsigned r = w;
-    unsigned char *s = (unsigned char*)&r;
-    unsigned char *t = (unsigned char*)&w;
-    for (unsigned i = 0; i < sizeof(w); i++)
-        s[i] = t[(i + 1) % sizeof(w)];
+    for (unsigned i = 0; i < n; i++) {
+        unsigned char *s = (unsigned char*)&r;
+        unsigned char *t = (unsigned char*)&w;
+        for (unsigned j = 0; j < sizeof(w); j++)
+            s[j] = t[(j + 1) % sizeof(w)];
+        w = r;
+    }
     return r;
 }
 
@@ -61,14 +65,95 @@ void keyExp(unsigned char key[4 * NK], unsigned w[NB * (NR + 1)]) {
 
     while (i < NB * (NR + 1)) {
         temp = w[i - 1];
-        unsigned rcon = htonl((2 ^ (0)) * 0x01000000);
+        unsigned rcon = htonl(pow(2, i/NK - 1) * 0x01000000);
         if ((i % NK) == 0)
-            temp = subword(rotword(temp)) ^ rcon;
+            temp = subWord(rotWord(temp, 1)) ^ rcon;
         else if ((NK > 6) && ((i % NK) == 4))
-            temp = subword(temp);
+            temp = subWord(temp);
         w[i] = w[i - NK] ^ temp;
         i += 1;
     }
+}
+
+void addRoundKey(unsigned state[NB], unsigned w[NB], unsigned round) {
+    unsigned i = 0;
+    while (i < NB) {
+        state[i] = state[i] ^ w[round * NB + i];
+        i += 1;
+    }
+}
+
+void subBytes(unsigned state[NB]) {
+    unsigned i = 0;
+    while (i < NB) {
+        state[i] = subWord(state[i]);
+        i += 1;
+    }
+}
+
+void shiftRows(unsigned state[NB]) {
+    unsigned i = 0;
+    unsigned temp[NB];
+    while (i < NB) {
+        unsigned j = 0;
+        temp[i] = 0;
+        while (j < NB) {
+            temp[i] += state[(j + i) % NB] & (0x000000ff << (j * 8));
+            j += 1;
+        }
+        i += 1;
+    }
+    i = 0;
+    while (i < NB) {
+        state[i] = temp[i];
+        i += 1;
+    }
+}
+
+unsigned char multiply(unsigned char a, unsigned char b) {
+    unsigned char r = 0;
+    unsigned char counter;
+    bool hi_bit_set;
+    for (counter = 0; counter < 8; counter++) {
+            if (b & 1)
+                    r ^= a;
+            hi_bit_set = (a & 0x80);
+            a <<= 1;
+            if (hi_bit_set)
+                    a ^= 0x1b; /* x^8 + x^4 + x^3 + x + 1 */
+            b >>= 1;
+    }
+    return r;
+}
+
+void mixColumns(unsigned state[NB]) {
+    unsigned char *bytes = (unsigned char*)&state[0];
+    unsigned i = 0;
+    unsigned temp[NB];
+    while (i < NB) {
+        unsigned char m1 = multiply(0x02, bytes[i]);
+        unsigned char m2 = multiply(0x03, bytes[i + 1]);
+        unsigned char s1 = m1 ^ m2 ^ bytes[i + 2] ^ bytes[i + 3];
+        i += 1;
+    }
+}
+
+void cipher(unsigned char in[4 * NB], unsigned char out[4 * NB], unsigned w[NB * (NR + 1)]) {
+    unsigned state[NB];
+    unsigned i = 0;
+    while (i < NB) {
+        memcpy(&state[i], in + (4 * i), 4);
+        i += 1;
+    }
+
+    addRoundKey(state, w, 0);
+
+    for (unsigned round = 1; round < NR - 1; round++) {
+        subBytes(state);
+        shiftRows(state);
+        mixColumns(state);
+    }
+    EV << "xxx";
 }
 
 void PDCP::initialize(int stage) {
@@ -79,17 +164,16 @@ void PDCP::initialize(int stage) {
         unsigned char bearer = 18;
         bool direction = 0;
         char message[] = {0x33, 0x32, 0x34, 0x62, 0x63, 0x39, 0x38, 0x40};
-        unsigned char key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
+//        unsigned char key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
+        unsigned char in[] = { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff};
+  unsigned char key[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f};
+//        unsigned char in[] = { 0x32, 0x43, 0xf6, 0xa8, 0x88, 0x5a, 0x30, 0x8d, 0x31, 0x31, 0x98, 0xa2, 0xe0, 0x37, 0x07, 0x34};
         unsigned w[NB * (NR + 1)];
+        unsigned char out[4 * NB];
 //        unsigned char key[] = { 0xd6, 0x45, 0x9f, 0x82, 0xc5, 0xb3, 0x00, 0x95, 0x2c, 0x49, 0x10, 0x48, 0x81, 0xff, 0x48 };
         keyExp(key, w);
-        subword(countI);
+        cipher(in, out, w);
     }
-}
-
-void cipher(unsigned char *in, unsigned char *out, unsigned *w) {
-    unsigned char state[4 * NB];
-    memcpy(state, in, 4 * NB);
 }
 
 void PDCP::handleMessage(cMessage *msg) {
