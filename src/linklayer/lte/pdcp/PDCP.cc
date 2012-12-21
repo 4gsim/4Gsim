@@ -65,9 +65,8 @@ void keyExp(unsigned char key[4 * NK], unsigned w[NB * (NR + 1)]) {
 
     while (i < NB * (NR + 1)) {
         temp = w[i - 1];
-        unsigned rcon = htonl(pow(2, i/NK - 1) * 0x01000000);
         if ((i % NK) == 0)
-            temp = subWord(rotWord(temp, 1)) ^ rcon;
+            temp = subWord(rotWord(temp, 1)) ^ RCON[i / NK - 1];
         else if ((NK > 6) && ((i % NK) == 4))
             temp = subWord(temp);
         w[i] = w[i - NK] ^ temp;
@@ -75,10 +74,10 @@ void keyExp(unsigned char key[4 * NK], unsigned w[NB * (NR + 1)]) {
     }
 }
 
-void addRoundKey(unsigned state[NB], unsigned w[NB], unsigned round) {
+void addRoundKey(unsigned state[NB], unsigned w[NB]) {
     unsigned i = 0;
     while (i < NB) {
-        state[i] = state[i] ^ w[round * NB + i];
+        state[i] = state[i] ^ w[i];
         i += 1;
     }
 }
@@ -129,11 +128,15 @@ unsigned char multiply(unsigned char a, unsigned char b) {
 void mixColumns(unsigned state[NB]) {
     unsigned char *bytes = (unsigned char*)&state[0];
     unsigned i = 0;
-    unsigned temp[NB];
     while (i < NB) {
-        unsigned char m1 = multiply(0x02, bytes[i]);
-        unsigned char m2 = multiply(0x03, bytes[i + 1]);
-        unsigned char s1 = m1 ^ m2 ^ bytes[i + 2] ^ bytes[i + 3];
+        unsigned char s0 = multiply(0x02, bytes[4 * i]) ^ multiply(0x03, bytes[4 * i + 1]) ^ bytes[4 * i + 2] ^ bytes[4 * i + 3];
+        unsigned char s1 = bytes[4 * i] ^ multiply(0x02, bytes[4 * i + 1]) ^ multiply(0x03, bytes[4 * i + 2]) ^ bytes[4 * i + 3];
+        unsigned char s2 = bytes[4 * i] ^ bytes[4 * i + 1] ^ multiply(0x02, bytes[4 * i + 2]) ^ multiply(0x03, bytes[4 * i + 3]);
+        unsigned char s3 = multiply(0x03, bytes[4 * i]) ^ bytes[4 * i + 1] ^ bytes[4 * i + 2] ^ multiply(0x02, bytes[4 * i + 3]);
+        state[i] = htonl((((s0) << 24) & 0xff000000) +
+                        (((s1) << 16) & 0x00ff0000) +
+                        (((s2) << 8) & 0x0000ff00) +
+                        (((s3)) & 0x000000ff));
         i += 1;
     }
 }
@@ -146,14 +149,20 @@ void cipher(unsigned char in[4 * NB], unsigned char out[4 * NB], unsigned w[NB *
         i += 1;
     }
 
-    addRoundKey(state, w, 0);
+    addRoundKey(state, w);
 
-    for (unsigned round = 1; round < NR - 1; round++) {
+    for (unsigned round = 1; round < NR; round++) {
         subBytes(state);
         shiftRows(state);
         mixColumns(state);
+        addRoundKey(state, w + round * NB);
     }
-    EV << "xxx";
+
+    subBytes(state);
+    shiftRows(state);
+    addRoundKey(state, w + NR * NB);
+
+    memcpy(out, state, 4 * NB);
 }
 
 void PDCP::initialize(int stage) {
@@ -164,15 +173,16 @@ void PDCP::initialize(int stage) {
         unsigned char bearer = 18;
         bool direction = 0;
         char message[] = {0x33, 0x32, 0x34, 0x62, 0x63, 0x39, 0x38, 0x40};
-//        unsigned char key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
-        unsigned char in[] = { 0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77, 0x88, 0x99, 0xaa, 0xbb, 0xcc, 0xdd, 0xee, 0xff};
-  unsigned char key[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f};
+        unsigned char key[] = { 0x2b, 0x7e, 0x15, 0x16, 0x28, 0xae, 0xd2, 0xa6, 0xab, 0xf7, 0x15, 0x88, 0x09, 0xcf, 0x4f, 0x3c};
+        unsigned char in[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+//        unsigned char key[] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f};
 //        unsigned char in[] = { 0x32, 0x43, 0xf6, 0xa8, 0x88, 0x5a, 0x30, 0x8d, 0x31, 0x31, 0x98, 0xa2, 0xe0, 0x37, 0x07, 0x34};
         unsigned w[NB * (NR + 1)];
         unsigned char out[4 * NB];
 //        unsigned char key[] = { 0xd6, 0x45, 0x9f, 0x82, 0xc5, 0xb3, 0x00, 0x95, 0x2c, 0x49, 0x10, 0x48, 0x81, 0xff, 0x48 };
         keyExp(key, w);
         cipher(in, out, w);
+        EV << "fsds";
     }
 }
 
