@@ -19,6 +19,7 @@ package inet.nodes._4gsim;
 
 import inet.linklayer.lte.mac.MAC;
 import inet.linklayer.lte.pdcp.PDCP;
+import inet.linklayer.lte.rlc.RLC;
 import inet.linklayer.lte.rrc.RRC;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.networklayer.common.InterfaceTable;
@@ -49,7 +50,7 @@ module UE
                 @display("p=50,61");
         }
         lteRadio: LTERadio {
-            @display("p=273,369");
+            @display("p=273,420");
         }
         notificationBoard: NotificationBoard {
             @display("p=55,223");
@@ -64,15 +65,21 @@ module UE
             @display("p=266,54");
         }
         mac: MAC {
-            @display("p=273,212");
+            @display("p=273,302");
         }
         dctDump: DCTDump {
             parameters:
                 dumpFile = dumpFile;
-                @display("p=273,294");
+                @display("p=194,360");
         }
         pdcp: PDCP {
-            @display("p=414,149");
+            @display("p=273,184");
+        }
+        rlc: RLC {
+            @display("p=194,244");
+        }
+        rrc: RRC {
+            @display("p=213,121");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
@@ -81,4 +88,10 @@ module UE
         dctDump.upperLayerOut++ --> mac.lowerLayerIn;
         lteRadio.upperLayerOut --> dctDump.lowerLayerIn++;
         dctDump.lowerLayerOut++ --> lteRadio.upperLayerIn;
+        mac.upperLayerOut --> rlc.lowerLayerIn;
+        rlc.lowerLayerOut --> mac.upperLayerIn;
+        rlc.upperLayerOut --> pdcp.lowerLayerIn;
+        pdcp.lowerLayerOut --> rlc.upperLayerIn;
+        rrc.lowerLayerOut --> pdcp.upperLayerIn;
+        pdcp.upperLayerOut --> rrc.lowerLayerIn;
 }

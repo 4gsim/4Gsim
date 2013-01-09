@@ -30,5 +30,5 @@ packet PDCPDataPduCPlane
     @customize(true);
 	unsigned char sn; 
     abstract PDCPSduPtr sdu;
-	unsigned int maci;
+	unsigned int macI = 0;
 }

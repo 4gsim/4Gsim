@@ -21,7 +21,7 @@ package inet.linklayer.lte.rlc;
 simple RLC
 {
     parameters:
-        @display("i=block/layer");
+        @display("i=block/downarrow");
     gates:
         input upperLayerIn;
         output upperLayerOut;

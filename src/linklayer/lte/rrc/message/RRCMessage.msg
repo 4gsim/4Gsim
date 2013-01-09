@@ -15,7 +15,17 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-message RRCMessage
+cplusplus {{
+    #include "ASNTypes.h"
+    
+    class Sequence;
+    typedef Sequence *SequencePtr; 
+}}
+
+class noncobject SequencePtr;
+
+packet RRCMessage
 {
-    char value[];
+    @customize(true);
+    SequencePtr sdu;
 }

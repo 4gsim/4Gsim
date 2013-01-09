@@ -17,6 +17,12 @@
 #define PDCPENTITY_H_
 
 class PDCPEntity {
+private:
+    unsigned short nxtTxSn;
+    unsigned txHfn;
+    unsigned short nxtRxSn;
+    unsigned rxHfn;
+
 public:
     PDCPEntity();
     virtual ~PDCPEntity();

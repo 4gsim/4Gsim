@@ -30,7 +30,7 @@ PDCPDataPduCPlane::~PDCPDataPduCPlane() {
 }
 
 void PDCPDataPduCPlane::setSdu(const PDCPSduPtr& sdu) {
-    throw new cException(this, "setSdu(const PDCPSduPtr&) not supported, use use setSdu(PDCPSduPtr&)");
+    throw new cException(this, "setSdu(const PDCPSduPtr&) not supported, use setSdu(PDCPSduPtr&)");
 }
 
 void PDCPDataPduCPlane::setSdu(PDCPSduPtr& sdu) {

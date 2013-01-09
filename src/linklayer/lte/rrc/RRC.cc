@@ -16,9 +16,8 @@
 // 
 
 #include "RRC.h"
-#include "RRCMessage_m.h"
-#include "PerEncoder.h"
-#include "LTEUtils.h"
+#include "MACControlInfo_m.h"
+#include "RRCClassDefinitions.h"
 
 Define_Module(RRC);
 
@@ -32,19 +31,18 @@ RRC::~RRC() {
 }
 
 void RRC::initialize(int stage) {
-    using namespace rrc;
-    char mmeCode = 0x77;
-    MMEC mmec = MMEC(&mmeCode);
-//    char lac[2] = {0x5b, 0x10};
-    char tmsi[4] = {0x19, 0x02, 0x2c, 0xba};
-    STMSIMTMSI mtmsi = STMSIMTMSI(tmsi);
-    STMSI *stmsi = new STMSI(mmec, mtmsi);
-    InitialUEIdentity initUeId = InitialUEIdentity();
-    initUeId.setValue(stmsi, InitialUEIdentity::sTMSI);
-    RRCConnectionRequestr8IEs *rrcConnReqIes = new RRCConnectionRequestr8IEs(initUeId, EstablishmentCause(mo_Signalling_EstablishmentCause), RRCConnectionRequestr8IEsSpare());
-    RRCConnectionRequestCriticalExtensions critExt = RRCConnectionRequestCriticalExtensions();
-    critExt.setValue(rrcConnReqIes, RRCConnectionRequestCriticalExtensions::rrcConnectionRequestr8);
-    RRCConnectionRequest *rrcConnReq = new RRCConnectionRequest(critExt);
+    nb = NotificationBoardAccess().get();
+    nb->subscribe(this, NF_RAND_ACCESS_COMPL);
+
+    fsm.setState(RRC_IDLE);
+
+
+////    char lac[2] = {0x5b, 0x10};
+
+//    RRCConnectionRequestr8IEs *rrcConnReqIes = new RRCConnectionRequestr8IEs(initUeId, EstablishmentCause(mo_Signalling_EstablishmentCause), RRCConnectionRequestr8IEsSpare());
+//    RRCConnectionRequestCriticalExtensions critExt = RRCConnectionRequestCriticalExtensions();
+//    critExt.setValue(rrcConnReqIes, RRCConnectionRequestCriticalExtensions::rrcConnectionRequestr8);
+//    RRCConnectionRequest *rrcConnReq = new RRCConnectionRequest(critExt);
 //
 //    MNC mnc = MNC();
 //    MCC mcc = MCC();
@@ -82,15 +80,10 @@ void RRC::initialize(int stage) {
 ////    measResOnRach.setMeasuredResultsOnRACHCurrentCell(measResOnRachCurrCell);
 ////    rrcConnReq->setMeasuredResultsOnRACH(measResOnRach);
 ////    rrcConnReq->setOptFlag(0, true);
-    ULCCCHMessageTypeC1 *c1 = new ULCCCHMessageTypeC1();
-    c1->setValue(rrcConnReq, ULCCCHMessageTypeC1::rrcConnectionRequest);
-    ULCCCHMessageType ulccchMessageType = ULCCCHMessageType();
-    ulccchMessageType.setValue(c1, ULCCCHMessageType::uLCCCHMessageTypeC1);
-    ULCCCHMessage ulccchMessage = ULCCCHMessage();
-    ulccchMessage.setMessage(ulccchMessageType);
-    PerEncoder perEnc = PerEncoder(UNALIGNED);
-    perEnc.encodeSequence(ulccchMessage);
-    LTEUtils().printBytes(perEnc.getBuffer(), perEnc.getLength());
+
+//    PerEncoder perEnc = PerEncoder(UNALIGNED);
+//    perEnc.encodeSequence(ulccchMessage);
+//    LTEUtils().printBytes(perEnc.getBuffer(), perEnc.getLength());
 //    RRCMessage *rrcMsg = new RRCMessage();
 //    rrcMsg->setValueArraySize(perEnc.getLength());
 //    for (unsigned i = 0; i < rrcMsg->getValueArraySize(); i++) {
@@ -102,4 +95,64 @@ void RRC::initialize(int stage) {
 void RRC::handleMessage(cMessage *msg) {
 
 }
+
+void RRC::sendDown(int logChannel, int choice, AbstractType *payload) {
+    using namespace rrc;
+
+    switch(logChannel) {
+        case ULCCCH: {
+//            ULCCCHMessageTypeC1 *c1 = new ULCCCHMessageTypeC1();
+//            c1->setValue(rrcConnReq, ULCCCHMessageTypeC1::rrcConnectionRequest);
+            ULCCCHMessageType ulccchMessageType = ULCCCHMessageType();
+            ULCCCHMessageTypeC1 *c1 = dynamic_cast<ULCCCHMessageTypeC1*>(payload);
+            ulccchMessageType.setValue(c1, ULCCCHMessageType::uLCCCHMessageTypeC1);
+            ULCCCHMessage *ulccchMessage = new ULCCCHMessage();
+            ulccchMessage->setMessage(ulccchMessageType);
+            RRCMessage *msg = new RRCMessage();
+            msg->setSdu(ulccchMessage);
+            this->send(msg, gate("lowerLayerOut"));
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+void RRC::performStateTransition(RRCEvent &event) {
+    int oldState = fsm.getState();
+
+    switch(oldState) {
+        case RRC_IDLE:
+            switch(event) {
+                case RRC_CONN_EST: {
+                    using namespace rrc;
+                    char mmeCode = 0x77;
+                    MMEC mmec = MMEC(&mmeCode);
+                    char tmsi[4] = {0x19, 0x02, 0x2c, 0xba};
+                    STMSIMTMSI mtmsi = STMSIMTMSI(tmsi);
+                    STMSI *stmsi = new STMSI(mmec, mtmsi);
+                    InitialUEIdentity initUeId = InitialUEIdentity();
+                    initUeId.setValue(stmsi, InitialUEIdentity::sTMSI);
+                    break;
+                }
+                default:
+                    EV << "RRC: Received unexpected event\n";
+                    break;
+            }
+            break;
+        default:
+            EV << "RRC: Unknown state\n";
+            break;
+    }
+
+}
+
+void RRC::receiveChangeNotification(int category, const cPolymorphic *details) {
+    if (category == NF_RAND_ACCESS_COMPL) {
+        EV << "RRC: Received NF_RAND_ACCESS_COMPL notification. Processing notification.\n";
+        RRCEvent event = RRC_CONN_EST;
+        performStateTransition(event);
+    }
+}
+
 

@@ -19,9 +19,11 @@ package inet.linklayer.lte.rrc;
 
 simple RRC
 {
+    parameters:
+        @display("i=block/control");
     gates:
-        input nasIn;
-        output nasOut;
-    	input rlcIn;
-        output rlcOut;
+        input upperLayerIn;
+        output upperLayerOut;
+    	input lowerLayerIn;
+        output lowerLayerOut;
 }

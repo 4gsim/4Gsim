@@ -19,15 +19,20 @@
 #define MAC_H_
 
 #include <omnetpp.h>
+#include "NotificationBoard.h"
 
 #define RA_RNTI_MIN_VALUE   1
 #define RA_RNTI_MAX_VALUE   60
 #define C_RNTI_MIN_VALUE    1
 #define C_RNTI_MAX_VALUE    65523
 
-class MAC : public cSimpleModule {
+class MAC : public cSimpleModule, public INotifiable {
 protected:
     unsigned rnti;
+
+    NotificationBoard *nb;
+
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
 public:
     MAC();
     virtual ~MAC();

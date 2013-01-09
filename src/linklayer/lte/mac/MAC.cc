@@ -34,6 +34,8 @@ MAC::~MAC() {
 void MAC::initialize(int stage) {
 
     if (stage == 4) {
+        nb = NotificationBoardAccess().get();
+
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
             rnti = uniform(RA_RNTI_MIN_VALUE, RA_RNTI_MAX_VALUE);
             sendDown(new cPacket("RandomAccessRequest"), PRACH, RandomAccessRequest, RaRnti, rnti, 1);
@@ -60,12 +62,7 @@ void MAC::handleLowerMessage(cMessage *msg) {
         break;
     }
     case RandomAccessGrant: {
-//        MACSubHeaderUlDl *header = MACUtils().createHeaderUlDl(0);
-//        MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
-//        MACServiceDataUnit *sdu = new MACServiceDataUnit();
-//        pdu->pushSubHdr(header);
-//        pdu->pushSdu(sdu);
-//        sendDown(pdu, PUSCH, ULSCHDataTransfer, CRnti, uniform(C_RNTI_MIN_VALUE, C_RNTI_MAX_VALUE), UplinkDirection, ueId, 1);
+        nb->fireChangeNotification(NF_RAND_ACCESS_COMPL, NULL);
         break;
     }
     default:

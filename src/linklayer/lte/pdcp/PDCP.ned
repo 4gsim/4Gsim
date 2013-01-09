@@ -19,5 +19,11 @@ package inet.linklayer.lte.pdcp;
 
 simple PDCP
 {
-    
+    parameters:
+        @display("i=block/encrypt");
+    gates:
+        input upperLayerIn;
+        output upperLayerOut;
+        input lowerLayerIn;
+        output lowerLayerOut;
 }

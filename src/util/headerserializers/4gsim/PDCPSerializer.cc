@@ -11,13 +11,29 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-//
+// 
 
-enum LTELogChannels {
-	ULCCCH = 1;
-};
+#include <platdep/sockets.h>
+#include "PDCPSerializer.h"
 
-class LTEMacControlInfo
-{
-    int logChannel;
+PDCPSerializer::PDCPSerializer() {
+    // TODO Auto-generated constructor stub
+
 }
+
+PDCPSerializer::~PDCPSerializer() {
+    // TODO Auto-generated destructor stub
+}
+
+unsigned PDCPSerializer::serialize(PDCPDataPduCPlane *pdu, unsigned char *buf, unsigned bufsize) {
+    unsigned msgLen = 0;
+    unsigned char *p = buf;
+
+    *((unsigned char*)p++) = pdu->getSn() & 0xe0;
+    // TODO serialize data
+    *((unsigned*)p) = htonl(pdu->getMacI());
+
+    msgLen = p - buf;
+    return msgLen;
+}
+
