@@ -132,7 +132,7 @@ void NAS::handleMessageFromS1AP(cMessage *msg) {
 					goto end;
 				}
 				sub->setStatus(SUB_ACTIVE);
-				sendToRadio(nmsg, sub->getChannelNr());
+				sendToRRC(nmsg, sub->getChannelNr());
 				break;
 			}
 			case AttachReject: {
@@ -142,7 +142,7 @@ void NAS::handleMessageFromS1AP(cMessage *msg) {
 					goto end;
 				}
 				sub->setStatus(SUB_INACTIVE);
-				sendToRadio(nmsg, sub->getChannelNr());
+				sendToRRC(nmsg, sub->getChannelNr());
 				break;
 			}
 			case AttachComplete: {
@@ -251,12 +251,12 @@ void NAS::sendToS1AP(NASPlainMessage *nmsg, unsigned subEnbId, unsigned subMmeId
 	send(msg, gate("s1apOut"));
 }
 
-void NAS::sendToRadio(NASPlainMessage *nmsg, int channelNr) {
-	PhyControlInfo *ctrl = new PhyControlInfo();
-	ctrl->setChannelNumber(channelNr);
-	ctrl->setBitrate(2e6);
-	nmsg->setControlInfo(ctrl);
-	send(nmsg, gate("radioOut"));
+void NAS::sendToRRC(NASPlainMessage *nmsg, int channelNr) {
+//	PhyControlInfo *ctrl = new PhyControlInfo();
+//	ctrl->setChannelNumber(channelNr);
+//	ctrl->setBitrate(2e6);
+//	nmsg->setControlInfo(ctrl);
+//	send(nmsg, gate("rrcOut"));
 }
 
 void NAS::loadConfigFromXML(const char *filename) {

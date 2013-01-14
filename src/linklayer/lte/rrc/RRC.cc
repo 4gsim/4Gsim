@@ -17,7 +17,8 @@
 
 #include "RRC.h"
 #include "MACControlInfo_m.h"
-#include "RRCClassDefinitions.h"
+#include "RRCUtils.h"
+#include "RRCMessage.h"
 
 Define_Module(RRC);
 
@@ -36,20 +37,17 @@ void RRC::initialize(int stage) {
 
     fsm.setState(RRC_IDLE);
 
-
+    using namespace rrc;
 ////    char lac[2] = {0x5b, 0x10};
 
-//    RRCConnectionRequestr8IEs *rrcConnReqIes = new RRCConnectionRequestr8IEs(initUeId, EstablishmentCause(mo_Signalling_EstablishmentCause), RRCConnectionRequestr8IEsSpare());
-//    RRCConnectionRequestCriticalExtensions critExt = RRCConnectionRequestCriticalExtensions();
-//    critExt.setValue(rrcConnReqIes, RRCConnectionRequestCriticalExtensions::rrcConnectionRequestr8);
-//    RRCConnectionRequest *rrcConnReq = new RRCConnectionRequest(critExt);
+
 //
 //    MNC mnc = MNC();
 //    MCC mcc = MCC();
 //    mcc.push_back(new MCCMNCDigit(2));
 //    mcc.push_back(new MCCMNCDigit(6));
-//    mcc.push_back(new MCCMNCDigit(0));
-//    mnc.push_back(new MCCMNCDigit(0));
+//    mcc.push_back(new MCCMNCDigit((int64_t)0));
+//    mnc.push_back(new MCCMNCDigit((int64_t)0));
 //    mnc.push_back(new MCCMNCDigit(2));
 //    PLMNIdentity plmnId = PLMNIdentity(mnc);
 //    plmnId.setMcc(mcc);
@@ -101,11 +99,9 @@ void RRC::sendDown(int logChannel, int choice, AbstractType *payload) {
 
     switch(logChannel) {
         case ULCCCH: {
-//            ULCCCHMessageTypeC1 *c1 = new ULCCCHMessageTypeC1();
-//            c1->setValue(rrcConnReq, ULCCCHMessageTypeC1::rrcConnectionRequest);
             ULCCCHMessageType ulccchMessageType = ULCCCHMessageType();
             ULCCCHMessageTypeC1 *c1 = dynamic_cast<ULCCCHMessageTypeC1*>(payload);
-            ulccchMessageType.setValue(c1, ULCCCHMessageType::uLCCCHMessageTypeC1);
+            ulccchMessageType.setValue(c1, choice);
             ULCCCHMessage *ulccchMessage = new ULCCCHMessage();
             ulccchMessage->setMessage(ulccchMessageType);
             RRCMessage *msg = new RRCMessage();
@@ -118,6 +114,24 @@ void RRC::sendDown(int logChannel, int choice, AbstractType *payload) {
     }
 }
 
+void RRC::sendRRCConnectionRequest() {
+    using namespace rrc;
+    char mmeCode = 0x77;
+    char tmsi[4] = {0x19, 0x02, 0x2c, 0xba};
+    InitialUEIdentity initUeId = RRCUtils().createInitialUEIdentity(mmeCode, tmsi);
+
+    RRCConnectionRequestr8IEs *rrcConnReqIes = new RRCConnectionRequestr8IEs(initUeId, EstablishmentCause(mo_Signalling_EstablishmentCause), RRCConnectionRequestr8IEsSpare());
+    RRCConnectionRequestCriticalExtensions critExt = RRCConnectionRequestCriticalExtensions();
+    critExt.setValue(rrcConnReqIes, RRCConnectionRequestCriticalExtensions::rrcConnectionRequestr8);
+
+    RRCConnectionRequest *rrcConnReq = new RRCConnectionRequest(critExt);
+
+    ULCCCHMessageTypeC1 *c1 = new ULCCCHMessageTypeC1();
+    c1->setValue(rrcConnReq, ULCCCHMessageTypeC1::rrcConnectionRequest);
+
+    sendDown(ULCCCH, ULCCCHMessageType::uLCCCHMessageTypeC1, c1);
+}
+
 void RRC::performStateTransition(RRCEvent &event) {
     int oldState = fsm.getState();
 
@@ -125,14 +139,7 @@ void RRC::performStateTransition(RRCEvent &event) {
         case RRC_IDLE:
             switch(event) {
                 case RRC_CONN_EST: {
-                    using namespace rrc;
-                    char mmeCode = 0x77;
-                    MMEC mmec = MMEC(&mmeCode);
-                    char tmsi[4] = {0x19, 0x02, 0x2c, 0xba};
-                    STMSIMTMSI mtmsi = STMSIMTMSI(tmsi);
-                    STMSI *stmsi = new STMSI(mmec, mtmsi);
-                    InitialUEIdentity initUeId = InitialUEIdentity();
-                    initUeId.setValue(stmsi, InitialUEIdentity::sTMSI);
+                    sendRRCConnectionRequest();
                     break;
                 }
                 default:

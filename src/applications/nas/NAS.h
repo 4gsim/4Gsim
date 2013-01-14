@@ -110,10 +110,11 @@ public:
 	void sendToS1AP(NASPlainMessage *nmsg, unsigned subEnbId, unsigned subMmeId);
 
     /*
-     * Method for sending messages to radio layer. The method adds radio specific
+     * Method for sending messages to RRC layer. The method adds RRC specific
      * information in PhyControlInfo additional to the NAS message.
+     * TODO
      */
-	void sendToRadio(NASPlainMessage *nmsg, int channelNr);
+	void sendToRRC(NASPlainMessage *nmsg, int channelNr);
 
 	/*
 	 * Wrapper methods.

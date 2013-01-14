@@ -62,7 +62,7 @@ module UE
             @display("p=61,302");
         }
         routingTable: RoutingTable {
-            @display("p=266,54");
+            @display("p=453,61");
         }
         mac: MAC {
             @display("p=273,302");
@@ -80,6 +80,11 @@ module UE
         }
         rrc: RRC {
             @display("p=213,121");
+        }
+        nas: NAS {
+            parameters:
+                configFile = configFile;
+            	@display("p=329,46");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;

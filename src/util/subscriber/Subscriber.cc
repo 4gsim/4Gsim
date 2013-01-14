@@ -31,7 +31,7 @@ Subscriber::Subscriber() {
 	cellId = NULL;
 	tac = NULL;
 	emm = NULL;
-	mmeCode = NULL;
+	mmeCode = (char*)calloc(1, sizeof(char));
 	mmeGrId = NULL;
 	status = SUB_INACTIVE;
 	gtpProc = NoProcedure;

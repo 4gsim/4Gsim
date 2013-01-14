@@ -104,6 +104,7 @@ void EMMEntity::performStateTransition(EMMSublayerEvent event) {
 		case EMM_NULL:
 			switch(event) {
 				case SwitchOn:	// switch on
+				    tmsi = uniform(0, 1000);
 					FSM_Goto(*fsm, EMM_DEREGISTERED_PLMN_SEARCH);
 					break;
 				default:
@@ -169,7 +170,7 @@ void EMMEntity::performStateTransition(EMMSublayerEvent event) {
 					module->cancelEvent(t3410);
 					epsUpdSt = EU1_UPDATED;
 					NASPlainMessage *msg = createAttachComplete();
-					module->sendToRadio(msg, module->getChannelNumber());
+					module->sendToRRC(msg, module->getChannelNumber());
 					FSM_Goto(*fsm, EMM_REGISTERED_U);
 					break;
 				}
@@ -215,7 +216,7 @@ void EMMEntity::stateEntered() {
 			attCounter = 0;
 			// send attach request with default pdn connection
 			NASPlainMessage *msg = createAttachRequest();
-			module->sendToRadio(msg, module->getChannelNumber());
+			module->sendToRRC(msg, module->getChannelNumber());
 			// start t3410, reset t3402 and t3411
 			startT3410();
 			// go to EMM_REGISTERED_INITIATED
@@ -492,6 +493,7 @@ std::string EMMEntity::info(int tabs) const {
     	for (int i = 0; i < tabs; i++) out << "\t";
     	out << "emmSt:" << stateName(fsm->getState()) << "\n";
     }
+    out << "tmsi:" << tmsi << "\n";
 
     return out.str();
 }

@@ -20,12 +20,12 @@ package inet.applications.nas;
 simple NAS
 {
     parameters:
-        @display("i=block/control");
+        @display("i=block/app");
         string configFile = default("");
         int channelNumber = default(0);
 	gates:
-        input radioIn;
-        output radioOut;
+        input rrcIn;
+        output rrcOut;
         input s1apIn;
         output s1apOut;
 }
