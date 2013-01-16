@@ -22,6 +22,7 @@
 #include "RRCClassDefinitions.h"
 #include "NotificationBoard.h"
 #include "ASNTypes.h"
+#include "SubscriberTable.h"
 
 enum RRCStates {
     RRC_IDLE,
@@ -37,6 +38,8 @@ class RRC : public cSimpleModule, public INotifiable {
 private:
     NotificationBoard *nb;
 
+    SubscriberTable *subT;
+
     virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 
     void performStateTransition(RRCEvent &event);
@@ -50,7 +53,7 @@ public:
 	void handleMessage(cMessage *msg);
 
 	void sendRRCConnectionRequest();
-	void sendDown(int logChannel, int choice, AbstractType *payload);
+	void sendDown(int logChannel, int choice, const char *name, AbstractType *payload);
 };
 
 #endif /* RRC_H_ */

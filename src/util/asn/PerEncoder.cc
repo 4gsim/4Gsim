@@ -21,7 +21,7 @@
 PerEncoder::PerEncoder(bool alignment) {
 	usedBits = 8;
 	length = 0;
-	memset(buffer, '\0', 65536);
+	memset(buffer, '\0', sizeof(buffer));
 	alignmentFlag = alignment;
 }
 

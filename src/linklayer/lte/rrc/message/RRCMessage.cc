@@ -14,6 +14,7 @@
 // 
 
 #include "RRCMessage.h"
+#include "PerEncoder.h"
 
 Register_Class(RRCMessage);
 
@@ -29,12 +30,14 @@ RRCMessage::~RRCMessage() {
     delete sdu;
 }
 
-void RRCMessage::setSdu(const SequencePtr& sdu) {
-    throw new cException(this, "setSdu(const SequencePtr&) not supported, use setSdu(SequencePtr&)");
-}
-
-void RRCMessage::setSdu(SequencePtr& sdu) {
+void RRCMessage::setSdu(SequencePtr sdu) {
     this->sdu = sdu;
+
+    PerEncoder perEnc = PerEncoder(UNALIGNED);
+    perEnc.encodeSequence(*sdu);
+
+    this->setByteLength(perEnc.getLength());
+
 }
 
 SequencePtr& RRCMessage::getSdu() {

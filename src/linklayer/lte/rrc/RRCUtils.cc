@@ -24,8 +24,8 @@ RRCUtils::~RRCUtils() {
     // TODO Auto-generated destructor stub
 }
 
-InitialUEIdentity RRCUtils::createInitialUEIdentity(char mmeCode, char tmsi[4]) {
-    MMEC mmec = MMEC(&mmeCode);
+InitialUEIdentity RRCUtils::createInitialUEIdentity(char *mmeCode, char tmsi[4]) {
+    MMEC mmec = MMEC(mmeCode);
     STMSIMTMSI mtmsi = STMSIMTMSI(tmsi);
     STMSI *stmsi = new STMSI(mmec, mtmsi);
     InitialUEIdentity initUeId = InitialUEIdentity();

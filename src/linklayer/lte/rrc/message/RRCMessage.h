@@ -38,8 +38,7 @@ public:
     /*
      * Setter methods.
      */
-    virtual void setSdu(const SequencePtr& sdu);
-    virtual void setSdu(SequencePtr& sdu);
+    virtual void setSdu(SequencePtr sdu);
 
     /*
      * Getter methods.

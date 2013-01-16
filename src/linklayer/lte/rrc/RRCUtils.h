@@ -25,7 +25,7 @@ public:
     RRCUtils();
     virtual ~RRCUtils();
 
-    InitialUEIdentity createInitialUEIdentity(char mmeCode, char tmsi[4]);
+    InitialUEIdentity createInitialUEIdentity(char *mmeCode, char tmsi[4]);
 };
 
 #endif /* RRCUTILS_H_ */
