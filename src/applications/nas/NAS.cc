@@ -46,8 +46,8 @@ void NAS::initialize(int stage) {
 		const char *fileName = par("configFile");
 		if (fileName != NULL && (strcmp(fileName, "")))
 			this->loadConfigFromXML(fileName);
-		ift=InterfaceTableAccess().get();
-		rt=RoutingTableAccess().get();
+		ift = InterfaceTableAccess().get();
+		rt = RoutingTableAccess().get();
     	nb = NotificationBoardAccess().get();
     	nb->subscribe(this, NF_SUB_AUTH_ACK);
     	nb->subscribe(this, NF_SUB_AUTH_NACK);

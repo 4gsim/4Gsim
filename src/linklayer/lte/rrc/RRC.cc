@@ -17,7 +17,7 @@
 
 #include <platdep/sockets.h>
 #include "RRC.h"
-#include "MACControlInfo_m.h"
+#include "LTEControlInfo_m.h"
 #include "RRCUtils.h"
 #include "RRCMessage.h"
 #include "SubscriberTableAccess.h"
@@ -51,6 +51,7 @@ void RRC::sendDown(int logChannel, int choice, const char *name, AbstractType *p
     using namespace rrc;
 
     RRCMessage *msg = new RRCMessage(name);
+    LTEControlInfo *ctrl = new LTEControlInfo();
 
     switch(logChannel) {
         case ULCCCH: {
@@ -65,6 +66,8 @@ void RRC::sendDown(int logChannel, int choice, const char *name, AbstractType *p
         default:
             break;
     }
+    ctrl->setChannel(logChannel);
+    msg->setControlInfo(ctrl);
     this->send(msg, gate("lowerLayerOut"));
 }
 

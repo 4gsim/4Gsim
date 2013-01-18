@@ -11,38 +11,15 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-// 
+//
 
-#include "RLC.h"
-#include "LTEControlInfo_m.h"
-
-Define_Module(RLC);
-
-RLC::RLC() {
-    tTM = new RLCTMEntity();
-    tTM->setModule(this);
-    rTM = new RLCTMEntity();
-    rTM->setModule(this);
+enum LTELogChannels
+{
+	ULCCCH = 1;    
 }
 
-RLC::~RLC() {
 
-}
-
-void RLC::initialize() {
-	// TODO - Generated method body
-}
-
-void RLC::handleMessage(cMessage *msg) {
-	// TODO - Generated method body
-    if (msg->arrivedOn("upperLayerIn")) {
-        LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
-        switch (ctrl->getChannel()) {
-        case ULCCCH:
-            tTM->processMessage(msg);
-            break;
-        default:
-            break;
-        }
-    }
-}
+class LTEControlInfo
+{
+	int channel; // physical, logical or transport channels    
+} 

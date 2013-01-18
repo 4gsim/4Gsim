@@ -16,6 +16,9 @@
 // 
 
 #include "PDCP.h"
+#include "RRCMessage.h"
+#include "RRCClassDefinitions.h"
+#include "LTEControlInfo_m.h"
 
 Define_Module(PDCP);
 
@@ -42,6 +45,15 @@ void PDCP::initialize(int stage) {
 }
 
 void PDCP::handleMessage(cMessage *msg) {
-
+    /*
+     * PDCP is used for SRBs and DRBs mapped on DCCH and DTCH type of logical channels.
+     * PDCP is not used for any other type of logical channels.
+     */
+    if (msg->arrivedOn("upperLayerIn")) {
+        LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
+        if (ctrl->getChannel() == ULCCCH) {
+            this->send(msg, gate("lowerLayerOut"));
+        }
+    }
 }
 
