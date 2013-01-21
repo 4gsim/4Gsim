@@ -43,6 +43,7 @@ public:
     virtual void handleMessage(cMessage *msg);
 
     void handleLowerMessage(cMessage *msg);
+    void handleUpperMessage(cMessage *msg);
 
     void sendDown(cMessage *msg, int channelNumber, int ctrlType, unsigned rntiType, unsigned rnti, unsigned rapid = 0);
 };

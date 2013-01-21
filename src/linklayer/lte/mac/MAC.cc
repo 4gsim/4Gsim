@@ -46,6 +46,8 @@ void MAC::initialize(int stage) {
 void MAC::handleMessage(cMessage *msg) {
     if (msg->arrivedOn("lowerLayerIn")) {
         handleLowerMessage(msg);
+    } else {
+        handleUpperMessage(msg);
     }
 }
 
@@ -69,6 +71,10 @@ void MAC::handleLowerMessage(cMessage *msg) {
         EV << "LTE-MAC: Unknown LTEPhyControlInfo type. Discarding message.\n";
         break;
     }
+}
+
+void MAC::handleUpperMessage(cMessage *msg) {
+
 }
 
 void MAC::sendDown(cMessage *msg, int channelNumber, int ctrlType, unsigned rntiType, unsigned rnti, unsigned rapid) {

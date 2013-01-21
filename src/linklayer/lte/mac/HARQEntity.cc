@@ -11,20 +11,16 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-//
+// 
 
-enum LTELogicalChannels
-{
-	ULCCCH = 1;    
+#include "HARQEntity.h"
+
+HARQEntity::HARQEntity() {
+    // TODO Auto-generated constructor stub
+
 }
 
-enum LTETransportChannels
-{
-    ULSCH = 20;
+HARQEntity::~HARQEntity() {
+    // TODO Auto-generated destructor stub
 }
 
-
-class LTEControlInfo
-{
-	int channel; // physical, logical or transport channels    
-} 

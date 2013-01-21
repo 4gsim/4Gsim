@@ -11,20 +11,15 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-//
+// 
 
-enum LTELogicalChannels
-{
-	ULCCCH = 1;    
-}
+#ifndef HARQPROCESS_H_
+#define HARQPROCESS_H_
 
-enum LTETransportChannels
-{
-    ULSCH = 20;
-}
+class HARQProcess {
+public:
+    HARQProcess();
+    virtual ~HARQProcess();
+};
 
-
-class LTEControlInfo
-{
-	int channel; // physical, logical or transport channels    
-} 
+#endif /* HARQPROCESS_H_ */

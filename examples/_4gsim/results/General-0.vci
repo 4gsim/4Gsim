@@ -1,0 +1,64 @@
+file 2213 1358770178                                            
+version 2
+run General-0-20130121-14:08:56-5132
+attr configname General
+attr datetime 20130121-14:08:56
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvars2 $repetition=0
+attr measurement ""
+attr network Test
+attr processid 5132
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+
+vector 34  Test.enb.networkLayer.arp  sentReq:vector  ETV
+attr title  "ARP request sent, vector"
+vector 36  Test.enb.networkLayer.arp  initiatedResolution:vector  ETV
+attr title  "ARP initiated resolutions, vector"
+vector 19  Test.enb.eth[0].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 15  Test.enb.eth[0].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 10  Test.enb.eth[0].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 49  Test.mme.eth[0].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 50  Test.mme.eth[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 58  Test.mme.eth[0].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 57  Test.mme.eth[0].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 53  Test.mme.eth[0].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+10	2047 20 55 55 0.0000672 0.0000672 1 64 64 64 4096
+15	2067 12 19 19 0 0 1 64 64 64 4096
+19	2079 12 18 18 0 0 1 28 28 28 784
+34	2091 11 16 16 0 0 1 1 1 1 1
+36	2102 11 16 16 0 0 1 1 1 1 1
+49	2113 20 56 56 0.0000673 0.0000673 1 64 64 64 4096
+50	2133 20 56 56 0.0000673 0.0000673 1 64 64 64 4096
+53	2153 20 63 63 0.0000673 0.0000673 1 64 64 64 4096
+57	2173 20 62 62 0.0000673 0.0000673 1 28 28 28 784
+58	2193 20 57 57 0.0000673 0.0000673 1 28 28 28 784
