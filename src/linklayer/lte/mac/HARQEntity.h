@@ -20,7 +20,7 @@
 
 class HARQEntity {
 private:
-    std::vector<HARQProcess*> procs;
+    std::map<unsigned, HARQProcess*> procs;
 public:
     HARQEntity();
     virtual ~HARQEntity();

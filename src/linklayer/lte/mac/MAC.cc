@@ -25,6 +25,7 @@ Define_Module(MAC);
 
 MAC::MAC() {
     // TODO Auto-generated constructor stub
+    ttiId = 0;
 }
 
 MAC::~MAC() {
@@ -40,14 +41,22 @@ void MAC::initialize(int stage) {
             rnti = uniform(RA_RNTI_MIN_VALUE, RA_RNTI_MAX_VALUE);
             sendDown(new cPacket("RandomAccessRequest"), PRACH, RandomAccessRequest, RaRnti, rnti, 1);
         }
+
+        ttiTimer = new cMessage("TTI-TIMER");
+        this->scheduleAt(simTime() + TTI_TIMER_TIMEOUT, ttiTimer);
+        ttiTimer->setContextPointer(this);
     }
 }
 
 void MAC::handleMessage(cMessage *msg) {
-    if (msg->arrivedOn("lowerLayerIn")) {
-        handleLowerMessage(msg);
+    if (msg->isSelfMessage()) {
+
     } else {
-        handleUpperMessage(msg);
+        if (msg->arrivedOn("lowerLayerIn")) {
+            handleLowerMessage(msg);
+        } else {
+            handleUpperMessage(msg);
+        }
     }
 }
 
