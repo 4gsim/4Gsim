@@ -16,7 +16,11 @@
 #ifndef HARQPROCESS_H_
 #define HARQPROCESS_H_
 
+#include "MACMessage.h"
+
 class HARQProcess {
+private:
+    std::list<MACProtocolDataUnit*> buffer;
 public:
     HARQProcess();
     virtual ~HARQProcess();

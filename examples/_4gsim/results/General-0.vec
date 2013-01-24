@@ -1,14 +1,14 @@
 version 2
-run General-0-20130121-14:08:56-5132
+run General-0-20130124-15:03:33-4956
 attr configname General
-attr datetime 20130121-14:08:56
+attr datetime 20130124-15:03:33
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvars2 $repetition=0
 attr measurement ""
 attr network Test
-attr processid 5132
+attr processid 4956
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -51,13 +51,21 @@ vector 53  Test.mme.eth[0].mac  rxPkFromHL:vector(packetBytes)  ETV
 attr interpolationmode  none
 attr source  rxPkFromHL
 attr title  "packet bytes from higher layer, vector(packetBytes)"
-10	55	0.0000672	64
-15	19	0	64
-19	18	0	28
-34	16	0	1
-36	16	0	1
-49	56	0.0000673	64
-50	56	0.0000673	64
-53	63	0.0000673	64
-57	62	0.0000673	28
-58	57	0.0000673	28
+vector 212  Test.enb.sctp  "Slow Start Threshold 5:192.168.2.2"  ETV
+vector 213  Test.enb.sctp  "Congestion Window 5:192.168.2.2"  ETV
+212	59	0.0000769	0
+213	59	0.0000769	0
+vector 210  Test.enb.sctp  "RTO 5:192.168.2.2"  ETV
+vector 211  Test.enb.sctp  "RTT 5:192.168.2.2"  ETV
+210	59	0.0000769	0
+211	59	0.0000769	0
+10	49	0.0000672	64
+15	25	0	64
+19	24	0	28
+34	20	0	1
+36	20	0	1
+49	50	0.0000673	64
+50	50	0.0000673	64
+53	57	0.0000673	64
+57	56	0.0000673	28
+58	51	0.0000673	28

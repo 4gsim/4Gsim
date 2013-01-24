@@ -24,3 +24,9 @@ HARQEntity::~HARQEntity() {
     // TODO Auto-generated destructor stub
 }
 
+void HARQEntity::init() {
+    for (unsigned i = 0; i < HARQ_MAX_PROCS; i++) {
+        procs[i] = new HARQProcess();
+    }
+}
+

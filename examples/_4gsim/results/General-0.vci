@@ -1,15 +1,15 @@
-file 2213 1358770178                                            
+file 2536 1359032638                                            
 version 2
-run General-0-20130121-14:08:56-5132
+run General-0-20130124-15:03:33-4956
 attr configname General
-attr datetime 20130121-14:08:56
+attr datetime 20130124-15:03:33
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvars2 $repetition=0
 attr measurement ""
 attr network Test
-attr processid 5132
+attr processid 4956
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -52,13 +52,21 @@ vector 53  Test.mme.eth[0].mac  rxPkFromHL:vector(packetBytes)  ETV
 attr interpolationmode  none
 attr source  rxPkFromHL
 attr title  "packet bytes from higher layer, vector(packetBytes)"
-10	2047 20 55 55 0.0000672 0.0000672 1 64 64 64 4096
-15	2067 12 19 19 0 0 1 64 64 64 4096
-19	2079 12 18 18 0 0 1 28 28 28 784
-34	2091 11 16 16 0 0 1 1 1 1 1
-36	2102 11 16 16 0 0 1 1 1 1 1
-49	2113 20 56 56 0.0000673 0.0000673 1 64 64 64 4096
-50	2133 20 56 56 0.0000673 0.0000673 1 64 64 64 4096
-53	2153 20 63 63 0.0000673 0.0000673 1 64 64 64 4096
-57	2173 20 62 62 0.0000673 0.0000673 1 28 28 28 784
-58	2193 20 57 57 0.0000673 0.0000673 1 28 28 28 784
+vector 212  Test.enb.sctp  "Slow Start Threshold 5:192.168.2.2"  ETV
+vector 213  Test.enb.sctp  "Congestion Window 5:192.168.2.2"  ETV
+212	2184 20 59 59 0.0000769 0.0000769 1 0 0 0 0
+213	2204 20 59 59 0.0000769 0.0000769 1 0 0 0 0
+vector 210  Test.enb.sctp  "RTO 5:192.168.2.2"  ETV
+vector 211  Test.enb.sctp  "RTT 5:192.168.2.2"  ETV
+210	2330 20 59 59 0.0000769 0.0000769 1 0 0 0 0
+211	2350 20 59 59 0.0000769 0.0000769 1 0 0 0 0
+10	2370 20 49 49 0.0000672 0.0000672 1 64 64 64 4096
+15	2390 12 25 25 0 0 1 64 64 64 4096
+19	2402 12 24 24 0 0 1 28 28 28 784
+34	2414 11 20 20 0 0 1 1 1 1 1
+36	2425 11 20 20 0 0 1 1 1 1 1
+49	2436 20 50 50 0.0000673 0.0000673 1 64 64 64 4096
+50	2456 20 50 50 0.0000673 0.0000673 1 64 64 64 4096
+53	2476 20 57 57 0.0000673 0.0000673 1 64 64 64 4096
+57	2496 20 56 56 0.0000673 0.0000673 1 28 28 28 784
+58	2516 20 51 51 0.0000673 0.0000673 1 28 28 28 784

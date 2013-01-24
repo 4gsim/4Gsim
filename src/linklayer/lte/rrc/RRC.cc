@@ -35,12 +35,19 @@ RRC::~RRC() {
 }
 
 void RRC::initialize(int stage) {
-    nb = NotificationBoardAccess().get();
-    nb->subscribe(this, NF_RAND_ACCESS_COMPL);
+    if (stage == 4) {
+        nb = NotificationBoardAccess().get();
+        nb->subscribe(this, NF_RAND_ACCESS_COMPL);
 
-    subT = SubscriberTableAccess().get();
+        subT = SubscriberTableAccess().get();
 
-    fsm.setState(RRC_IDLE);
+        fsm.setState(RRC_IDLE);
+
+        if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
+            RRCEvent event = RRC_CONN_EST;
+            performStateTransition(event);
+        }
+    }
 }
 
 void RRC::handleMessage(cMessage *msg) {
@@ -111,12 +118,12 @@ void RRC::performStateTransition(RRCEvent &event) {
 }
 
 void RRC::receiveChangeNotification(int category, const cPolymorphic *details) {
-    Enter_Method_Silent();
-    if (category == NF_RAND_ACCESS_COMPL) {
-        EV << "RRC: Received NF_RAND_ACCESS_COMPL notification. Processing notification.\n";
-        RRCEvent event = RRC_CONN_EST;
-        performStateTransition(event);
-    }
+//    Enter_Method_Silent();
+//    if (category == NF_RAND_ACCESS_COMPL) {
+//        EV << "RRC: Received NF_RAND_ACCESS_COMPL notification. Processing notification.\n";
+//        RRCEvent event = RRC_CONN_EST;
+//        performStateTransition(event);
+//    }
 }
 
 

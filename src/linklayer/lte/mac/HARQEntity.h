@@ -18,12 +18,17 @@
 
 #include "HARQProcess.h"
 
+#define HARQ_MAX_PROCS  10
+
 class HARQEntity {
 private:
+    std::list<MACProtocolDataUnit*> msg3;
     std::map<unsigned, HARQProcess*> procs;
 public:
     HARQEntity();
     virtual ~HARQEntity();
+
+    void init();
 };
 
 #endif /* HARQENTITY_H_ */

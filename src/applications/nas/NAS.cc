@@ -41,7 +41,7 @@ NAS::~NAS() {
 }
 
 void NAS::initialize(int stage) {
-	if (stage == 4) {
+	if (stage == 3) {
 		subT = SubscriberTableAccess().get();
 		const char *fileName = par("configFile");
 		if (fileName != NULL && (strcmp(fileName, "")))

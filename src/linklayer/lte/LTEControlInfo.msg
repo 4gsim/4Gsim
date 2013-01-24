@@ -23,6 +23,12 @@ enum LTETransportChannels
     ULSCH = 20;
 }
 
+enum LTEPhyChannels {
+    PRACH = 30;
+    PDCCH = 31;
+    PUSCH = 32;
+};
+
 
 class LTEControlInfo
 {

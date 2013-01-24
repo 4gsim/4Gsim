@@ -49,6 +49,8 @@ public:
 
 	cFSM fsm;
 
+	virtual int numInitStages() const  { return 5; }
+
 	void initialize(int stage);
 	void handleMessage(cMessage *msg);
 

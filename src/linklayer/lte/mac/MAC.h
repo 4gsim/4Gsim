@@ -20,6 +20,7 @@
 
 #include <omnetpp.h>
 #include "NotificationBoard.h"
+#include "HARQEntity.h"
 
 #define RA_RNTI_MIN_VALUE   1
 #define RA_RNTI_MAX_VALUE   60
@@ -37,6 +38,8 @@ protected:
 
     cMessage *ttiTimer;
     unsigned ttiId;
+
+    HARQEntity *entity;
 public:
     MAC();
     virtual ~MAC();
@@ -49,7 +52,7 @@ public:
     void handleLowerMessage(cMessage *msg);
     void handleUpperMessage(cMessage *msg);
 
-    void sendDown(cMessage *msg, int channelNumber, int ctrlType, unsigned rntiType, unsigned rnti, unsigned rapid = 0);
+    void sendDown(cMessage *msg, int channelNumber, unsigned rntiType, unsigned rnti, unsigned rapid = 0);
 };
 
 #endif /* MAC_H_ */

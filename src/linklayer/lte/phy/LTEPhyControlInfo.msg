@@ -13,14 +13,20 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-enum LTEPhyControlInfoTypes
-{
-	RandomAccessRequest = 0;
-	RandomAccessGrant = 1;
-	DLSCHDataTransfer = 2;
-	ULSCHDataTransfer = 3;
-	
-}
+cplusplus {{ 
+	#include "LTEControlInfo_m.h"    
+}}
+
+class noncobject LTEControlInfo;
+
+//enum LTEPhyControlInfoTypes
+//{
+//	RandomAccessRequest = 0;
+//	RandomAccessGrant = 1;
+//	DLSCHDataTransfer = 2;
+//	ULSCHDataTransfer = 3;
+//	
+//}
 
 enum LTERadioTypes
 {
@@ -45,16 +51,10 @@ enum LTERntiTypes
  	MRnti = 6;	
 }
 
-enum LTEPhyChannels {
-    PRACH = 1;
-    PDCCH = 2;
-    PUSCH = 3;
-};
-
-class LTEPhyControlInfo
+class LTEPhyControlInfo extends LTEControlInfo
 {
-	int phyChannel;
-	int type;   
+//	int phyChannel;
+//	int type;   
 	unsigned int rntiType;
 	unsigned int rnti;			// RA-RNTI (1...60)
 //	unsigned int radioType;

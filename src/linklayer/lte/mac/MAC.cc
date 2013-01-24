@@ -33,24 +33,28 @@ MAC::~MAC() {
 }
 
 void MAC::initialize(int stage) {
-
     if (stage == 4) {
         nb = NotificationBoardAccess().get();
 
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
             rnti = uniform(RA_RNTI_MIN_VALUE, RA_RNTI_MAX_VALUE);
-            sendDown(new cPacket("RandomAccessRequest"), PRACH, RandomAccessRequest, RaRnti, rnti, 1);
+            sendDown(new cPacket("RandomAccessRequest"), RACH, RaRnti, rnti, 1);
         }
 
         ttiTimer = new cMessage("TTI-TIMER");
         this->scheduleAt(simTime() + TTI_TIMER_TIMEOUT, ttiTimer);
         ttiTimer->setContextPointer(this);
+
+        entity = new HARQEntity();
+        entity->init();
     }
 }
 
 void MAC::handleMessage(cMessage *msg) {
     if (msg->isSelfMessage()) {
-
+        this->cancelEvent(ttiTimer);
+        ttiId++;
+        this->scheduleAt(simTime() + TTI_TIMER_TIMEOUT, ttiTimer);
     } else {
         if (msg->arrivedOn("lowerLayerIn")) {
             handleLowerMessage(msg);
@@ -62,20 +66,21 @@ void MAC::handleMessage(cMessage *msg) {
 
 void MAC::handleLowerMessage(cMessage *msg) {
     LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
-    switch(ctrl->getType()) {
-    case RandomAccessRequest: {
+    switch(ctrl->getChannel()) {
+    case RACH: {
         MACSubHeaderRar *header = MACUtils().createHeaderRar(true, ctrl->getRapid());
         MACServiceDataUnit *sdu = MACUtils().createRAR(0, 0, uniform(0, 65535));  /* TODO UL grant split into bits */
         MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
         pdu->pushSubHdr(header);
         pdu->pushSdu(sdu);
-        sendDown(pdu, PDCCH, RandomAccessGrant, RaRnti, ctrl->getRnti());
+        sendDown(pdu, PDCCH, RaRnti, ctrl->getRnti());
         break;
     }
-    case RandomAccessGrant: {
-        nb->fireChangeNotification(NF_RAND_ACCESS_COMPL, NULL);
-        break;
-    }
+//    case RandomAccessGrant: {
+//
+////        nb->fireChangeNotification(NF_RAND_ACCESS_COMPL, NULL);
+//        break;
+//    }
     default:
         EV << "LTE-MAC: Unknown LTEPhyControlInfo type. Discarding message.\n";
         break;
@@ -86,10 +91,10 @@ void MAC::handleUpperMessage(cMessage *msg) {
 
 }
 
-void MAC::sendDown(cMessage *msg, int channelNumber, int ctrlType, unsigned rntiType, unsigned rnti, unsigned rapid) {
+void MAC::sendDown(cMessage *msg, int channelNumber, unsigned rntiType, unsigned rnti, unsigned rapid) {
     LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
-    ctrl->setPhyChannel(channelNumber);
-    ctrl->setType(ctrlType);
+    ctrl->setChannel(channelNumber);
+//    ctrl->setType(ctrlType);
     ctrl->setRntiType(rntiType);
     ctrl->setRnti(rnti);
     ctrl->setRapid(rapid);
