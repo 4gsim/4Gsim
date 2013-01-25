@@ -21,11 +21,14 @@ enum LTELogicalChannels
 enum LTETransportChannels
 {
     ULSCH = 20;
+    RACH = 21;
+    DLSCH = 22;
 }
 
-enum LTEPhyChannels {
+enum LTEPhyChannels 
+{
     PRACH = 30;
-    PDCCH = 31;
+    PDSCH = 31;
     PUSCH = 32;
 };
 

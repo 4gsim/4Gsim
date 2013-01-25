@@ -14,6 +14,7 @@
 // 
 
 #include "HARQEntity.h"
+#include "MAC.h"
 
 HARQEntity::HARQEntity() {
     // TODO Auto-generated constructor stub
@@ -24,9 +25,18 @@ HARQEntity::~HARQEntity() {
     // TODO Auto-generated destructor stub
 }
 
-void HARQEntity::init() {
+void HARQEntity::init(MAC *module) {
     for (unsigned i = 0; i < HARQ_MAX_PROCS; i++) {
-        procs[i] = new HARQProcess();
+        procs[i] = new HARQProcess(module);
+    }
+}
+
+void HARQEntity::processUplinkGrant(unsigned ulGrant, unsigned ttiId) {
+    HARQProcess *proc = procs[ttiId % HARQ_MAX_PROCS];
+    if (msg3.size()) {
+        MACProtocolDataUnit *pdu = msg3.back();
+        msg3.pop_back();
+        proc->send(ulGrant, pdu);
     }
 }
 

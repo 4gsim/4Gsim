@@ -54,7 +54,7 @@ void LTERadio::initialize(int stage) {
             cc->setRadioChannel(myRadioRef, PRACH);
             cc->setRadioChannel(myRadioRef, PUSCH);
         } else if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
-            cc->setRadioChannel(myRadioRef, PDCCH);
+            cc->setRadioChannel(myRadioRef, PDSCH);
         }
     }
 //    else  if(stage == 4)
@@ -114,8 +114,11 @@ void LTERadio::handleUpperMessage(cMessage* msg) {
 
     LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->removeControlInfo());
     LTEFrame *lteFrame = new LTEFrame();
-    lteFrame->setChannelNumber(ctrl->getPhyChannel());
-    lteFrame->setType(ctrl->getType());
+    if (ctrl->getChannel() == RACH)
+        lteFrame->setChannelNumber(PRACH);
+    if (ctrl->getChannel() == DLSCH)
+        lteFrame->setChannelNumber(PDSCH);
+//    lteFrame->setType(ctrl->getType());
     lteFrame->setRntiType(ctrl->getRntiType());
     lteFrame->setRnti(ctrl->getRnti());
 //    lteFrame->setRadioType(FDDRadioType);
@@ -157,8 +160,11 @@ void LTERadio::handleRadioMessage(cMessage *msg) {
 //    }
     LTEFrame *lteFrame = check_and_cast<LTEFrame*>(msg);
     LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
-    ctrl->setPhyChannel(lteFrame->getChannelNumber());
-    ctrl->setType(lteFrame->getType());
+    if (lteFrame->getChannelNumber() == PRACH)
+        ctrl->setChannel(RACH);
+    if (lteFrame->getChannelNumber() == PDSCH)
+        ctrl->setChannel(DLSCH);
+//    ctrl->setType(lteFrame->getType());
     ctrl->setRntiType(lteFrame->getRntiType());
     ctrl->setRnti(lteFrame->getRnti());
     ctrl->setRapid(lteFrame->getRapid());

@@ -30,16 +30,17 @@
 
 class MAC : public cSimpleModule, public INotifiable {
 protected:
+    unsigned rntiType;
     unsigned rnti;
-
-    NotificationBoard *nb;
-
-    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
 
     cMessage *ttiTimer;
     unsigned ttiId;
 
     HARQEntity *entity;
+
+    NotificationBoard *nb;
+
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
 public:
     MAC();
     virtual ~MAC();
@@ -53,6 +54,7 @@ public:
     void handleUpperMessage(cMessage *msg);
 
     void sendDown(cMessage *msg, int channelNumber, unsigned rntiType, unsigned rnti, unsigned rapid = 0);
+
 };
 
 #endif /* MAC_H_ */

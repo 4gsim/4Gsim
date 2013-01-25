@@ -18,12 +18,25 @@
 
 #include "MACMessage.h"
 
+#define HARQ_FEEDBACK_ACK   0
+#define HARQ_FEEDBACK_NACK  1
+
+class MAC;
+
 class HARQProcess {
 private:
     std::list<MACProtocolDataUnit*> buffer;
+
+    unsigned currTxNb;
+    bool harqFeedback;
+    unsigned maxTrans;
+
+    MAC *module;
 public:
-    HARQProcess();
+    HARQProcess(MAC *module);
     virtual ~HARQProcess();
+
+    void send(unsigned ulGrant, MACProtocolDataUnit *pdu);
 };
 
 #endif /* HARQPROCESS_H_ */

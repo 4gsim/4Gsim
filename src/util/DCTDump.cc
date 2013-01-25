@@ -111,7 +111,7 @@ void DCTDump::handleMessage(cMessage *msg) {
         // context name - MAC Random Access Preamble
         if (dynamic_cast<LTEPhyControlInfo*>(msg->getControlInfo())) {
             LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
-            if (ctrl->getType() == RandomAccessRequest) {
+            if (ctrl->getChannel() == RACH) {
                 strncpy(p, "MAC-LTE.", 8);
                 p += 8;
 

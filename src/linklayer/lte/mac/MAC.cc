@@ -46,7 +46,7 @@ void MAC::initialize(int stage) {
         ttiTimer->setContextPointer(this);
 
         entity = new HARQEntity();
-        entity->init();
+        entity->init(this);
     }
 }
 
@@ -70,17 +70,19 @@ void MAC::handleLowerMessage(cMessage *msg) {
     case RACH: {
         MACSubHeaderRar *header = MACUtils().createHeaderRar(true, ctrl->getRapid());
         MACServiceDataUnit *sdu = MACUtils().createRAR(0, 0, uniform(0, 65535));  /* TODO UL grant split into bits */
-        MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
+        MACProtocolDataUnit *pdu = new MACProtocolDataUnit("RandomAccessResponse");
         pdu->pushSubHdr(header);
         pdu->pushSdu(sdu);
-        sendDown(pdu, PDCCH, RaRnti, ctrl->getRnti());
+        sendDown(pdu, DLSCH, RaRnti, ctrl->getRnti());
         break;
     }
-//    case RandomAccessGrant: {
-//
-////        nb->fireChangeNotification(NF_RAND_ACCESS_COMPL, NULL);
-//        break;
-//    }
+    case DLSCH: {
+        if (ctrl->getRnti() == rnti) {
+
+        }
+//        nb->fireChangeNotification(NF_RAND_ACCESS_COMPL, NULL);
+        break;
+    }
     default:
         EV << "LTE-MAC: Unknown LTEPhyControlInfo type. Discarding message.\n";
         break;
@@ -88,7 +90,20 @@ void MAC::handleLowerMessage(cMessage *msg) {
 }
 
 void MAC::handleUpperMessage(cMessage *msg) {
+    unsigned char lcid;
+    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
 
+    if (ctrl->getChannel() == ULCCCH)
+        lcid = 0;
+
+    MACSubHeaderUlDl *header = MACUtils().createHeaderUlDl(lcid);
+    MACServiceDataUnit *sdu = new MACServiceDataUnit();
+    sdu->encapsulate(PK(msg));
+    MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
+    pdu->pushSubHdr(header);
+    pdu->pushSdu(sdu);
+
+    entity->pushMsg3(pdu);
 }
 
 void MAC::sendDown(cMessage *msg, int channelNumber, unsigned rntiType, unsigned rnti, unsigned rapid) {

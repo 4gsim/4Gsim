@@ -14,13 +14,32 @@
 // 
 
 #include "HARQProcess.h"
+#include "MAC.h"
 
-HARQProcess::HARQProcess() {
+HARQProcess::HARQProcess(MAC *module) {
     // TODO Auto-generated constructor stub
-
+    currTxNb = 0;
+    maxTrans = 3;
+    this->module = module;
 }
 
 HARQProcess::~HARQProcess() {
     // TODO Auto-generated destructor stub
+}
+
+void HARQProcess::send(unsigned ulGrant, MACProtocolDataUnit *pdu) {
+    currTxNb = 0;
+    buffer.push_back(pdu);
+    // TODO store ulGrant
+    harqFeedback = HARQ_FEEDBACK_NACK;
+
+    module->sendDown(pdu, ULSCH, )
+
+    if (currTxNb == maxTrans - 1) {
+        while(!buffer.empty()) {
+            delete buffer.front();
+            buffer.pop_front();
+        }
+    }
 }
 

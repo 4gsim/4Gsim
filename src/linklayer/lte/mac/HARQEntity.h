@@ -17,18 +17,26 @@
 #define HARQENTITY_H_
 
 #include "HARQProcess.h"
+#include "MACMessage.h"
 
 #define HARQ_MAX_PROCS  10
 
+class MAC;
+
 class HARQEntity {
 private:
-    std::list<MACProtocolDataUnit*> msg3;
     std::map<unsigned, HARQProcess*> procs;
+    std::list<MACProtocolDataUnit*> msg3;
+
 public:
     HARQEntity();
     virtual ~HARQEntity();
 
-    void init();
+    void init(MAC *module);
+
+    void processUplinkGrant(unsigned ulGrant, unsigned ttiId);
+
+    void pushMsg3(MACProtocolDataUnit *pdu) { msg3.push_back(pdu); }
 };
 
 #endif /* HARQENTITY_H_ */

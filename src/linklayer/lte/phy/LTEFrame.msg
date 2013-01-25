@@ -21,7 +21,7 @@ class noncobject AirFrame;
 
 message LTEFrame extends AirFrame
 {
-	int type;   
+//	int type;   
 	unsigned int rntiType;
 	unsigned int rnti;			// RA-RNTI (1...60)
 //	unsigned int radioType;
