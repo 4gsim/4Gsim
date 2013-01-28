@@ -18,6 +18,9 @@
 package inet.nodes._4gsim;
 
 import inet.linklayer.lte.mac.MAC;
+import inet.linklayer.lte.pdcp.PDCP;
+import inet.linklayer.lte.rlc.RLC;
+import inet.linklayer.lte.rrc.RRC;
 import inet.networklayer.gtp.path.GTPPathTable;
 import inet.networklayer.gtp.tunnel.TunnelEndpointTable;
 import inet.networklayer.gtp.GTPUser;
@@ -140,7 +143,16 @@ module ENB
             @display("p=497,255");
         }
         mac: MAC {
-            @display("p=76,200");
+            @display("p=76,255");
+        }
+        rlc: RLC {
+            @display("p=37,189");
+        }
+        pdcp: PDCP {
+            @display("p=115,140");
+        }
+        rrc: RRC {
+            @display("p=37,94");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;
@@ -188,4 +200,10 @@ module ENB
         dctdump.upperLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces] --> mac.lowerLayerIn;
         lteRadio.upperLayerIn <-- dctdump.lowerLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
         dctdump.upperLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces] <-- mac.lowerLayerOut;
+        mac.upperLayerOut --> rlc.lowerLayerIn;
+        rlc.lowerLayerOut --> mac.upperLayerIn;
+        rlc.upperLayerOut --> pdcp.lowerLayerIn;
+        pdcp.lowerLayerOut --> rlc.upperLayerIn;
+        pdcp.upperLayerOut --> rrc.lowerLayerIn;
+        rrc.lowerLayerOut --> pdcp.upperLayerIn;
 }

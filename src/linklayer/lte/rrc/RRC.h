@@ -53,6 +53,7 @@ public:
 
 	void initialize(int stage);
 	void handleMessage(cMessage *msg);
+	void handleLowerMessage(cMessage *msg);
 
 	void sendRRCConnectionRequest();
 	void sendDown(int logChannel, int choice, const char *name, AbstractType *payload);

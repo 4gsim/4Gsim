@@ -15,6 +15,7 @@
 
 #include <platdep/sockets.h>
 #include "MACSerializer.h"
+#include "RLCSerializer.h"
 
 MACSerializer::MACSerializer() {
     // TODO Auto-generated constructor stub
@@ -67,7 +68,8 @@ unsigned MACSerializer::serializeServiceDataUnit(MACServiceDataUnit *sdu, unsign
         p += 4;
         *((unsigned short*)p) = htons(rar->getTmpCRnti());
     } else {
-
+        RLCProtocolDataUnit *pdu = check_and_cast<RLCProtocolDataUnit*>(sdu->getEncapsulatedPacket());
+        p += RLCSerializer().serialize(pdu, p, pdu->getByteLength());
     }
     return sdu->getByteLength();
 }

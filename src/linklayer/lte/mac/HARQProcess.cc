@@ -15,6 +15,7 @@
 
 #include "HARQProcess.h"
 #include "MAC.h"
+#include "LTEControlInfo_m.h"
 
 HARQProcess::HARQProcess(MAC *module) {
     // TODO Auto-generated constructor stub
@@ -33,7 +34,7 @@ void HARQProcess::send(unsigned ulGrant, MACProtocolDataUnit *pdu) {
     // TODO store ulGrant
     harqFeedback = HARQ_FEEDBACK_NACK;
 
-    module->sendDown(pdu, ULSCH, )
+    module->sendDown(pdu, ULSCH);
 
     if (currTxNb == maxTrans - 1) {
         while(!buffer.empty()) {

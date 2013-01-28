@@ -13,17 +13,26 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef RLCTMENTITY_H_
-#define RLCTMENTITY_H_
+#include "RLCSerializer.h"
+#include "RRCMessage.h"
+#include "RRCSerializer.h"
 
-#include "RLCEntity.h"
+RLCSerializer::RLCSerializer() {
+    // TODO Auto-generated constructor stub
 
-class RLCTMEntity : public RLCEntity {
-public:
-	RLCTMEntity();
-	virtual ~RLCTMEntity();
+}
 
-	virtual void processMessage(cMessage *msg);
-};
+RLCSerializer::~RLCSerializer() {
+    // TODO Auto-generated destructor stub
+}
 
-#endif /* RLCTMENTITY_H_ */
+unsigned RLCSerializer::serialize(RLCProtocolDataUnit *pdu, unsigned char *buf, unsigned bufsize) {
+    if (dynamic_cast<TMDProtocolDataUnit*>(pdu)) {
+        RRCMessage *rrcMsg = dynamic_cast<RRCMessage*>(pdu->getEncapsulatedPacket());
+        if (rrcMsg) {
+            RRCSerializer().serialize(rrcMsg, buf, rrcMsg->getByteLength());
+        }
+    }
+
+    return bufsize;
+}

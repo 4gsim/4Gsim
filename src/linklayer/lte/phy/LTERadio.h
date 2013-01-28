@@ -46,7 +46,7 @@ protected:
     IReceptionModel *receptionModel;
     IInterfaceTable *ift;
 
-    unsigned ueId;
+//    unsigned ueId;
 
 	virtual IReceptionModel *createReceptionModel() {return (IReceptionModel *)createOne("FreeSpaceModel");}
     virtual IRadioModel *createRadioModel() {return (IRadioModel *)createOne("LTERadioModel");}

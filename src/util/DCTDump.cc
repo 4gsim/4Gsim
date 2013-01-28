@@ -163,7 +163,7 @@ void DCTDump::handleMessage(cMessage *msg) {
 
             LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
             comment << ">> RACH Preamble Request[UE =  "
-                    << this->getParentModule()->getId() << "]    [RAPID =  "
+                    << ctrl->getUeId() << "]    [RAPID =  "
                     << ctrl->getRapid() << "]    [Attempt = 1]";
             strncpy((char*)buf, comment.str().c_str(), strlen(comment.str().c_str()));
             buf_len = strlen(comment.str().c_str());
@@ -175,9 +175,15 @@ void DCTDump::handleMessage(cMessage *msg) {
                 LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
                 unsigned direction;
                 if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2))
-                    direction = UplinkDirection;
+                    if (msg->getArrivalGate()->isName("lowerLayerIn"))
+                        direction = DownlinkDirection;
+                    else
+                        direction = UplinkDirection;
                 else
-                    direction = DownlinkDirection;
+                    if (msg->getArrivalGate()->isName("lowerLayerIn"))
+                        direction = UplinkDirection;
+                    else
+                        direction = DownlinkDirection;
                 outHdr  << ","
                         << FDDRadioType << ","
                         << ctrl->getRntiType() << ","
@@ -185,7 +191,7 @@ void DCTDump::handleMessage(cMessage *msg) {
                         << "1," // Subframe number
                         << "0," // is predefined data
                         << ctrl->getRnti() << ","
-                        << this->getParentModule()->getId() << ","
+                        << ctrl->getUeId() << ","
                         << buf_len << ",";
 
             }

@@ -49,11 +49,12 @@ void PDCP::handleMessage(cMessage *msg) {
      * PDCP is used for SRBs and DRBs mapped on DCCH and DTCH type of logical channels.
      * PDCP is not used for any other type of logical channels.
      */
-    if (msg->arrivedOn("upperLayerIn")) {
-        LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
-        if (ctrl->getChannel() == ULCCCH) {
+    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
+    if (ctrl->getChannel() == ULCCCH) {
+        if (msg->arrivedOn("upperLayerIn"))
             this->send(msg, gate("lowerLayerOut"));
-        }
+        else
+            this->send(msg, gate("upperLayerOut"));
     }
 }
 

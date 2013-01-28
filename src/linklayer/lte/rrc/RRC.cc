@@ -51,7 +51,23 @@ void RRC::initialize(int stage) {
 }
 
 void RRC::handleMessage(cMessage *msg) {
+    if (msg->arrivedOn("lowerLayerIn")) {
+        handleLowerMessage(msg);
+    }
+}
 
+void RRC::handleLowerMessage(cMessage *msg) {
+    using namespace rrc;
+    RRCMessage *rrcMsg = check_and_cast<RRCMessage*>(msg);
+    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
+    switch(ctrl->getChannel()) {
+    case ULCCCH:
+        ULCCCHMessage *ulccchMessage = dynamic_cast<ULCCCHMessage*>(rrcMsg->getSdu());
+        ULCCCHMessageType ulccchMessageType = ulccchMessage->getM
+        break;
+    default:
+        break;
+    }
 }
 
 void RRC::sendDown(int logChannel, int choice, const char *name, AbstractType *payload) {

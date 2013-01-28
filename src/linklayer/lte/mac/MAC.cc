@@ -26,6 +26,7 @@ Define_Module(MAC);
 MAC::MAC() {
     // TODO Auto-generated constructor stub
     ttiId = 0;
+    ueId = 0;
 }
 
 MAC::~MAC() {
@@ -38,7 +39,9 @@ void MAC::initialize(int stage) {
 
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
             rnti = uniform(RA_RNTI_MIN_VALUE, RA_RNTI_MAX_VALUE);
-            sendDown(new cPacket("RandomAccessRequest"), RACH, RaRnti, rnti, 1);
+            rntiType = RaRnti;
+            ueId = this->getParentModule()->getId();
+            sendDown(new cPacket("RandomAccessRequest"), RACH, 1);
         }
 
         ttiTimer = new cMessage("TTI-TIMER");
@@ -73,14 +76,34 @@ void MAC::handleLowerMessage(cMessage *msg) {
         MACProtocolDataUnit *pdu = new MACProtocolDataUnit("RandomAccessResponse");
         pdu->pushSubHdr(header);
         pdu->pushSdu(sdu);
-        sendDown(pdu, DLSCH, RaRnti, ctrl->getRnti());
+        rnti = ctrl->getRnti();
+        rntiType = ctrl->getRntiType();
+        ueId = ctrl->getUeId();
+        sendDown(pdu, DLSCH);
         break;
     }
     case DLSCH: {
-        if (ctrl->getRnti() == rnti) {
-
+        if (ueId == ctrl->getUeId()) {
+            MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(msg);
+            if (ctrl->getRntiType() == RaRnti) {
+                rntiType = CRnti;
+                MACRandomAccessResponse *rar = check_and_cast<MACRandomAccessResponse*>(pdu->getSdus(0));
+                rnti = rar->getTmpCRnti();
+                entity->processUplinkGrant(rar->getUlGrant(), ttiId);
+            }
+        } else {
+            EV << "LTE-MAC: Message received for incorrect UeId = " << ctrl->getUeId() << ". Discarding message.\n";
         }
 //        nb->fireChangeNotification(NF_RAND_ACCESS_COMPL, NULL);
+        break;
+    }
+    case ULSCH: {
+        MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(msg);
+        MACSubHeaderUlDl *header = check_and_cast<MACSubHeaderUlDl*>(pdu->getSubHdrs(0));
+        MACServiceDataUnit *sdu = pdu->getSdus(0);
+        cMessage *msg = sdu->decapsulate();
+        if (header->getLcid() == 0)
+            sendUp(msg, ULCCCH);
         break;
     }
     default:
@@ -91,7 +114,7 @@ void MAC::handleLowerMessage(cMessage *msg) {
 
 void MAC::handleUpperMessage(cMessage *msg) {
     unsigned char lcid;
-    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
+    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
 
     if (ctrl->getChannel() == ULCCCH)
         lcid = 0;
@@ -99,22 +122,30 @@ void MAC::handleUpperMessage(cMessage *msg) {
     MACSubHeaderUlDl *header = MACUtils().createHeaderUlDl(lcid);
     MACServiceDataUnit *sdu = new MACServiceDataUnit();
     sdu->encapsulate(PK(msg));
-    MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
+    MACProtocolDataUnit *pdu = new MACProtocolDataUnit(msg->getName());
     pdu->pushSubHdr(header);
     pdu->pushSdu(sdu);
 
     entity->pushMsg3(pdu);
 }
 
-void MAC::sendDown(cMessage *msg, int channelNumber, unsigned rntiType, unsigned rnti, unsigned rapid) {
+void MAC::sendDown(cMessage *msg, int channelNumber, unsigned rapid) {
     LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
     ctrl->setChannel(channelNumber);
 //    ctrl->setType(ctrlType);
     ctrl->setRntiType(rntiType);
     ctrl->setRnti(rnti);
     ctrl->setRapid(rapid);
+    ctrl->setUeId(ueId);
 
     msg->setControlInfo(ctrl);
     send(msg, gate("lowerLayerOut"));
+}
+
+void MAC::sendUp(cMessage *msg, int channelNumber) {
+    LTEControlInfo *ctrl = new LTEControlInfo();
+    ctrl->setChannel(channelNumber);
+    msg->setControlInfo(ctrl);
+    this->send(msg, gate("upperLayerOut"));
 }
 

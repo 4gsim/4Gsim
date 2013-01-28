@@ -22,6 +22,10 @@
 /**
  * TODO - Generated class
  */
+
+#define RLC_DOWN    0
+#define RLC_UP      1
+
 class RLC: public cSimpleModule {
 private:
     RLCTMEntity *rTM;

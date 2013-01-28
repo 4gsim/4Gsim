@@ -56,9 +56,9 @@ class LTEPhyControlInfo extends LTEControlInfo
 //	int phyChannel;
 //	int type;   
 	unsigned int rntiType;
-	unsigned int rnti;			// RA-RNTI (1...60)
+	unsigned short rnti;			// RA-RNTI (1...60)
 //	unsigned int radioType;
 //	unsigned int direction;
-//	unsigned int ueId;
+	unsigned int ueId;
 	unsigned int rapid;  		// RACH preamble id (0...63)
 }

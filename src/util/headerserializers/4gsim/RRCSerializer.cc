@@ -13,17 +13,24 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef RLCTMENTITY_H_
-#define RLCTMENTITY_H_
+#include "RRCSerializer.h"
+#include "PerEncoder.h"
 
-#include "RLCEntity.h"
+RRCSerializer::RRCSerializer() {
+    // TODO Auto-generated constructor stub
 
-class RLCTMEntity : public RLCEntity {
-public:
-	RLCTMEntity();
-	virtual ~RLCTMEntity();
+}
 
-	virtual void processMessage(cMessage *msg);
-};
+RRCSerializer::~RRCSerializer() {
+    // TODO Auto-generated destructor stub
+}
 
-#endif /* RLCTMENTITY_H_ */
+unsigned RRCSerializer::serialize(RRCMessage *pdu, unsigned char *buf, unsigned bufsize) {
+    PerEncoder perEnc = PerEncoder(UNALIGNED);
+    SequencePtr sdu = pdu->getSdu();
+    perEnc.encodeSequence(*sdu);
+    memcpy(buf, perEnc.getBuffer(), bufsize);
+
+    return bufsize;
+}
+

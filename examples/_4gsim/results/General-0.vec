@@ -1,14 +1,14 @@
 version 2
-run General-0-20130124-15:03:33-4956
+run General-0-20130128-17:01:02-7088
 attr configname General
-attr datetime 20130124-15:03:33
+attr datetime 20130128-17:01:02
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvars2 $repetition=0
 attr measurement ""
 attr network Test
-attr processid 4956
+attr processid 7088
 attr repetition 0
 attr replication #0
 attr resultdir results
@@ -51,21 +51,41 @@ vector 53  Test.mme.eth[0].mac  rxPkFromHL:vector(packetBytes)  ETV
 attr interpolationmode  none
 attr source  rxPkFromHL
 attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 48  Test.mme.eth[0].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 11  Test.enb.eth[0].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 12  Test.enb.eth[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 20  Test.enb.eth[0].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
 vector 212  Test.enb.sctp  "Slow Start Threshold 5:192.168.2.2"  ETV
 vector 213  Test.enb.sctp  "Congestion Window 5:192.168.2.2"  ETV
-212	59	0.0000769	0
-213	59	0.0000769	0
+212	81	0.0001346	0
+213	81	0.0001346	0
 vector 210  Test.enb.sctp  "RTO 5:192.168.2.2"  ETV
 vector 211  Test.enb.sctp  "RTT 5:192.168.2.2"  ETV
-210	59	0.0000769	0
-211	59	0.0000769	0
-10	49	0.0000672	64
+210	81	0.0001346	0
+211	81	0.0001346	0
+10	65	0.0000672	64
+11	76	0.0001346	64
+12	76	0.0001346	64
 15	25	0	64
 19	24	0	28
+20	77	0.0001346	28
 34	20	0	1
 36	20	0	1
-49	50	0.0000673	64
-50	50	0.0000673	64
-53	57	0.0000673	64
-57	56	0.0000673	28
-58	51	0.0000673	28
+48	75	0.0001345	64
+49	66	0.0000673	64
+50	66	0.0000673	64
+53	73	0.0000673	64
+57	72	0.0000673	28
+58	67	0.0000673	28

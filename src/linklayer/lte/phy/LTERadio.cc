@@ -46,7 +46,7 @@ void LTERadio::initialize(int stage) {
 
     	receptionModel = createReceptionModel();
     	radioModel = createRadioModel();
-    	ueId = this->getParentModule()->getId();
+//    	ueId = this->getParentModule()->getId();
     } else if (stage == 2) {
         //cc->setRadioChannel(myRadioRef, rs.getChannelNumber());
 
@@ -116,8 +116,10 @@ void LTERadio::handleUpperMessage(cMessage* msg) {
     LTEFrame *lteFrame = new LTEFrame();
     if (ctrl->getChannel() == RACH)
         lteFrame->setChannelNumber(PRACH);
-    if (ctrl->getChannel() == DLSCH)
+    else if (ctrl->getChannel() == DLSCH)
         lteFrame->setChannelNumber(PDSCH);
+    else if (ctrl->getChannel() == ULSCH)
+        lteFrame->setChannelNumber(PUSCH);
 //    lteFrame->setType(ctrl->getType());
     lteFrame->setRntiType(ctrl->getRntiType());
     lteFrame->setRnti(ctrl->getRnti());
@@ -126,7 +128,7 @@ void LTERadio::handleUpperMessage(cMessage* msg) {
 //        lteFrame->setDirection(UplinkDirection);
 //    else
 //        lteFrame->setDirection(DownlinkDirection);
-    lteFrame->setUeId(ueId);
+    lteFrame->setUeId(ctrl->getUeId());
     lteFrame->setRapid(ctrl->getRapid());
     lteFrame->encapsulate(PK(msg));
     lteFrame->setName(msg->getName());
@@ -162,12 +164,15 @@ void LTERadio::handleRadioMessage(cMessage *msg) {
     LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
     if (lteFrame->getChannelNumber() == PRACH)
         ctrl->setChannel(RACH);
-    if (lteFrame->getChannelNumber() == PDSCH)
+    else if (lteFrame->getChannelNumber() == PDSCH)
         ctrl->setChannel(DLSCH);
+    else if (lteFrame->getChannelNumber() == PUSCH)
+        ctrl->setChannel(ULSCH);
 //    ctrl->setType(lteFrame->getType());
     ctrl->setRntiType(lteFrame->getRntiType());
     ctrl->setRnti(lteFrame->getRnti());
     ctrl->setRapid(lteFrame->getRapid());
+    ctrl->setUeId(lteFrame->getUeId());
     cMessage *upMsg = lteFrame->decapsulate();
     upMsg->setControlInfo(ctrl);
     send(upMsg, gate("upperLayerOut"));

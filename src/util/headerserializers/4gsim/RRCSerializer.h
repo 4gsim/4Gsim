@@ -13,17 +13,17 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef RLCTMENTITY_H_
-#define RLCTMENTITY_H_
+#ifndef RRCSERIALIZER_H_
+#define RRCSERIALIZER_H_
 
-#include "RLCEntity.h"
+#include "RRCMessage.h"
 
-class RLCTMEntity : public RLCEntity {
+class RRCSerializer {
 public:
-	RLCTMEntity();
-	virtual ~RLCTMEntity();
+    RRCSerializer();
+    virtual ~RRCSerializer();
 
-	virtual void processMessage(cMessage *msg);
+    unsigned serialize(RRCMessage *pdu, unsigned char *buf, unsigned bufsize);
 };
 
-#endif /* RLCTMENTITY_H_ */
+#endif /* RRCSERIALIZER_H_ */
