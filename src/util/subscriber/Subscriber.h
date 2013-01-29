@@ -22,6 +22,7 @@
 #include "TunnelEndpoint.h"
 #include "EMMEntity.h"
 #include "ESMEntity.h"
+#include "RRCEntity.h"
 
 enum SubscriberStatus {
 	SUB_INACTIVE,
@@ -98,6 +99,9 @@ private:
 	EMMEntity *emm;
 	ESMEntity *esm;
 
+	// rrc entity
+	RRCEntity *rrc;
+
     // message sequence numbers (multiple protocols)
     std::list<unsigned> seqNrs;
 
@@ -113,7 +117,12 @@ public:
 	/*
 	 * Method for initiating NAS entities for the subscriber.
 	 */
-	void initEntities(unsigned char appType);
+	void initNasEntities(unsigned char appType);
+
+    /*
+     * Method for initiating RRC entity for the subscriber.
+     */
+	void initRrcEntity(bool nodeType);
 
 	/*
 	 * Setter methods.
@@ -131,6 +140,7 @@ public:
 	void setS11TunnEnd(TunnelEndpoint *s11Tunn) { s11Tunn->setOwner(this); this->s11Tunn = s11Tunn; }
 	void setEmmEntity(EMMEntity *emm) { this->emm = emm; }
 	void setEsmEntity(ESMEntity *esm) { this->esm = esm; }
+	void setRrcEntity(RRCEntity *rrc) { this->rrc = rrc; }
 	void setStatus(char status) { this->status = status; }
 	void setGTPProcedure(unsigned gtpProc) { this->gtpProc = gtpProc; }
 
@@ -150,6 +160,7 @@ public:
 	TunnelEndpoint *getS11TunnEnd() { return s11Tunn; }
 	EMMEntity *getEmmEntity() { return emm; }
 	ESMEntity *getEsmEntity() { return esm; }
+	RRCEntity *getRrcEntity() { return rrc; }
 	virtual const char *getName() const  {return "Sub";}
 	PDNConnection *getDefaultPDNConn() { return esm->getDefPDNConnection(); }
 	char getStatus() { return status; }

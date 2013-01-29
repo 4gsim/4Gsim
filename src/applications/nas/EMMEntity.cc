@@ -493,7 +493,10 @@ std::string EMMEntity::info(int tabs) const {
     	for (int i = 0; i < tabs; i++) out << "\t";
     	out << "emmSt:" << stateName(fsm->getState()) << "\n";
     }
-    out << "tmsi:" << tmsi << "\n";
+    if (tmsi != 0) {
+        for (int i = 0; i < tabs; i++) out << "\t";
+        out << "tmsi:" << tmsi << "\n";
+    }
 
     return out.str();
 }

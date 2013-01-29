@@ -43,18 +43,23 @@ SubscriberTable::~SubscriberTable() {
 }
 
 void SubscriberTable::initialize(int stage) {
-	if (findPar("configFile") != -1) {
-		const char *fileName = par("configFile");
-		if ((fileName != NULL) && (strcmp(fileName, ""))) {
-			EV << "SubscriberTable:	Initializing subscribers.\n";
+    if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
+        Subscriber *sub = new Subscriber();
+        this->push_back(sub);
+    } else {
+        if (findPar("configFile") != -1) {
+            const char *fileName = par("configFile");
+            if ((fileName != NULL) && (strcmp(fileName, ""))) {
+                EV << "SubscriberTable:	Initializing subscribers.\n";
 
-			cXMLElement* config = ev.getXMLDocument(fileName);
-			if (config == NULL)
-				error("SubscriberTable: Cannot read configuration from file: %s", fileName);
+                cXMLElement* config = ev.getXMLDocument(fileName);
+                if (config == NULL)
+                    error("SubscriberTable: Cannot read configuration from file: %s", fileName);
 
-			loadSubscribersFromXML(*config);
-		}
-	}
+                loadSubscribersFromXML(*config);
+            }
+        }
+    }
 	WATCH_PTRVECTOR(subs);
 
 	cleanTimer = new cMessage("INACTIVE-TIMER");

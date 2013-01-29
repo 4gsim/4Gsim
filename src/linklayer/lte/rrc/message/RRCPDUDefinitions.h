@@ -34,6 +34,8 @@ private:
 public:
 	static const Info theInfo;
 	HandoverCommandr8IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class HandoverCommandr8IEs : public Sequence {
@@ -47,6 +49,9 @@ public:
 
 	void setHandoverCommandr8IEsHandoverCommandMessage(const HandoverCommandr8IEsHandoverCommandMessage& handoverCommandr8IEsHandoverCommandMessage) { *static_cast<HandoverCommandr8IEsHandoverCommandMessage*>(items[0]) = handoverCommandr8IEsHandoverCommandMessage; }
 	void setHandoverCommandr8IEsNonCriticalExtension(const HandoverCommandr8IEsNonCriticalExtension& handoverCommandr8IEsNonCriticalExtension) { *static_cast<HandoverCommandr8IEsNonCriticalExtension*>(items[1]) = handoverCommandr8IEsNonCriticalExtension; }
+
+	HandoverCommandr8IEsHandoverCommandMessage& getHandoverCommandr8IEsHandoverCommandMessage() { return *static_cast<HandoverCommandr8IEsHandoverCommandMessage*>(items[0]); }
+	HandoverCommandr8IEsNonCriticalExtension& getHandoverCommandr8IEsNonCriticalExtension() { return *static_cast<HandoverCommandr8IEsNonCriticalExtension*>(items[1]); }
 };
 
 typedef Null HandoverCommandCriticalExtensionsC1Spare7;
@@ -88,6 +93,8 @@ private:
 public:
 	static const Info theInfo;
 	HandoverCommandCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class HandoverCommandCriticalExtensions : public Choice {
@@ -112,6 +119,8 @@ public:
 	HandoverCommand(const HandoverCommandCriticalExtensions& handoverCommandCriticalExtensions);
 
 	void setHandoverCommandCriticalExtensions(const HandoverCommandCriticalExtensions& handoverCommandCriticalExtensions) { *static_cast<HandoverCommandCriticalExtensions*>(items[0]) = handoverCommandCriticalExtensions; }
+
+	HandoverCommandCriticalExtensions& getHandoverCommandCriticalExtensions() { return *static_cast<HandoverCommandCriticalExtensions*>(items[0]); }
 };
 
 typedef OctetStringBase ASConfigSourceSystemInformationBlockType1Ext;
@@ -137,6 +146,19 @@ public:
 	void setASConfigSourceSystemInformationBlockType1Ext(const ASConfigSourceSystemInformationBlockType1Ext& aSConfigSourceSystemInformationBlockType1Ext) { *static_cast<ASConfigSourceSystemInformationBlockType1Ext*>(items[9]) = aSConfigSourceSystemInformationBlockType1Ext; }
 	void setSourceOtherConfigr9(const OtherConfigr9& sourceOtherConfigr9) { *static_cast<OtherConfigr9*>(items[10]) = sourceOtherConfigr9; }
 	void setSourceSCellConfigListr10(const SCellToAddModListr10& sourceSCellConfigListr10) { *static_cast<SCellToAddModListr10*>(items[11]) = sourceSCellConfigListr10; }
+
+	MeasConfig& getSourceMeasConfig() { return *static_cast<MeasConfig*>(items[0]); }
+	RadioResourceConfigDedicated& getSourceRadioResourceConfig() { return *static_cast<RadioResourceConfigDedicated*>(items[1]); }
+	SecurityAlgorithmConfig& getSourceSecurityAlgorithmConfig() { return *static_cast<SecurityAlgorithmConfig*>(items[2]); }
+	CRNTI& getSourceUEIdentity() { return *static_cast<CRNTI*>(items[3]); }
+	MasterInformationBlock& getSourceMasterInformationBlock() { return *static_cast<MasterInformationBlock*>(items[4]); }
+	SystemInformationBlockType1& getSourceSystemInformationBlockType1() { return *static_cast<SystemInformationBlockType1*>(items[5]); }
+	SystemInformationBlockType2& getSourceSystemInformationBlockType2() { return *static_cast<SystemInformationBlockType2*>(items[6]); }
+	AntennaInfoCommon& getAntennaInfoCommon() { return *static_cast<AntennaInfoCommon*>(items[7]); }
+	ARFCNValueEUTRA& getSourceDlCarrierFreq() { return *static_cast<ARFCNValueEUTRA*>(items[8]); }
+	ASConfigSourceSystemInformationBlockType1Ext& getASConfigSourceSystemInformationBlockType1Ext() { return *static_cast<ASConfigSourceSystemInformationBlockType1Ext*>(items[9]); }
+	OtherConfigr9& getSourceOtherConfigr9() { return *static_cast<OtherConfigr9*>(items[10]); }
+	SCellToAddModListr10& getSourceSCellConfigListr10() { return *static_cast<SCellToAddModListr10*>(items[11]); }
 };
 
 enum RRMConfigue_InactiveTimeValues {
@@ -220,6 +242,11 @@ public:
 	void setDlCarrierFreqr10(const ARFCNValueEUTRA& dlCarrierFreqr10) { *static_cast<ARFCNValueEUTRA*>(items[1]) = dlCarrierFreqr10; }
 	void setRsrpResultr10(const RSRPRange& rsrpResultr10) { *static_cast<RSRPRange*>(items[2]) = rsrpResultr10; }
 	void setRsrqResultr10(const RSRQRange& rsrqResultr10) { *static_cast<RSRQRange*>(items[3]) = rsrqResultr10; }
+
+	PhysCellId& getPhysCellIdr10() { return *static_cast<PhysCellId*>(items[0]); }
+	ARFCNValueEUTRA& getDlCarrierFreqr10() { return *static_cast<ARFCNValueEUTRA*>(items[1]); }
+	RSRPRange& getRsrpResultr10() { return *static_cast<RSRPRange*>(items[2]); }
+	RSRQRange& getRsrqResultr10() { return *static_cast<RSRQRange*>(items[3]); }
 };
 
 typedef SequenceOf<CandidateCellInfor10, CONSTRAINED, 1, maxFreq> CandidateCellInfoListr10;
@@ -231,8 +258,12 @@ private:
 public:
 	static const Info theInfo;
 	RRMConfig(): Sequence(&theInfo) {}
+
 	void setRRMConfigue_InactiveTime(const RRMConfigue_InactiveTime& rRMConfigue_InactiveTime) { *static_cast<RRMConfigue_InactiveTime*>(items[0]) = rRMConfigue_InactiveTime; }
 	void setCandidateCellInfoListr10(const CandidateCellInfoListr10& candidateCellInfoListr10) { *static_cast<CandidateCellInfoListr10*>(items[1]) = candidateCellInfoListr10; }
+
+	RRMConfigue_InactiveTime& getRRMConfigue_InactiveTime() { return *static_cast<RRMConfigue_InactiveTime*>(items[0]); }
+	CandidateCellInfoListr10& getCandidateCellInfoListr10() { return *static_cast<CandidateCellInfoListr10*>(items[1]); }
 };
 
 typedef BitString<CONSTRAINED, 256, 256> KeyeNodeBStar;
@@ -249,6 +280,10 @@ public:
 	void setCellIdentity(const CellIdentity& cellIdentity) { *static_cast<CellIdentity*>(items[0]) = cellIdentity; }
 	void setKeyeNodeBStar(const KeyeNodeBStar& keyeNodeBStar) { *static_cast<KeyeNodeBStar*>(items[1]) = keyeNodeBStar; }
 	void setShortMACI(const ShortMACI& shortMACI) { *static_cast<ShortMACI*>(items[2]) = shortMACI; }
+
+	CellIdentity& getCellIdentity() { return *static_cast<CellIdentity*>(items[0]); }
+	KeyeNodeBStar& getKeyeNodeBStar() { return *static_cast<KeyeNodeBStar*>(items[1]); }
+	ShortMACI& getShortMACI() { return *static_cast<ShortMACI*>(items[2]); }
 };
 
 typedef SequenceOf<AdditionalReestabInfo, CONSTRAINED, 1, maxReestabInfo> AdditionalReestabInfoList;
@@ -265,6 +300,10 @@ public:
 	void setSourcePhysCellId(const PhysCellId& sourcePhysCellId) { *static_cast<PhysCellId*>(items[0]) = sourcePhysCellId; }
 	void setTargetCellShortMACI(const ShortMACI& targetCellShortMACI) { *static_cast<ShortMACI*>(items[1]) = targetCellShortMACI; }
 	void setAdditionalReestabInfoList(const AdditionalReestabInfoList& additionalReestabInfoList) { *static_cast<AdditionalReestabInfoList*>(items[2]) = additionalReestabInfoList; }
+
+	PhysCellId& getSourcePhysCellId() { return *static_cast<PhysCellId*>(items[0]); }
+	ShortMACI& getTargetCellShortMACI() { return *static_cast<ShortMACI*>(items[1]); }
+	AdditionalReestabInfoList& getAdditionalReestabInfoList() { return *static_cast<AdditionalReestabInfoList*>(items[2]); }
 };
 
 class ASContext : public Sequence {
@@ -274,7 +313,10 @@ private:
 public:
 	static const Info theInfo;
 	ASContext(): Sequence(&theInfo) {}
+
 	void setReestablishmentInfo(const ReestablishmentInfo& reestablishmentInfo) { *static_cast<ReestablishmentInfo*>(items[0]) = reestablishmentInfo; }
+
+	ReestablishmentInfo& getReestablishmentInfo() { return *static_cast<ReestablishmentInfo*>(items[0]); }
 };
 
 enum HandoverPreparationInformationv920IEsue_ConfigRelease_r9Values {
@@ -296,6 +338,8 @@ private:
 public:
 	static const Info theInfo;
 	HandoverPreparationInformationv920IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class HandoverPreparationInformationv920IEs : public Sequence {
@@ -305,8 +349,12 @@ private:
 public:
 	static const Info theInfo;
 	HandoverPreparationInformationv920IEs(): Sequence(&theInfo) {}
+
 	void setHandoverPreparationInformationv920IEsue_ConfigRelease_r9(const HandoverPreparationInformationv920IEsue_ConfigRelease_r9& handoverPreparationInformationv920IEsue_ConfigRelease_r9) { *static_cast<HandoverPreparationInformationv920IEsue_ConfigRelease_r9*>(items[0]) = handoverPreparationInformationv920IEsue_ConfigRelease_r9; }
 	void setHandoverPreparationInformationv920IEsNonCriticalExtension(const HandoverPreparationInformationv920IEsNonCriticalExtension& handoverPreparationInformationv920IEsNonCriticalExtension) { *static_cast<HandoverPreparationInformationv920IEsNonCriticalExtension*>(items[1]) = handoverPreparationInformationv920IEsNonCriticalExtension; }
+
+	HandoverPreparationInformationv920IEsue_ConfigRelease_r9& getHandoverPreparationInformationv920IEsue_ConfigRelease_r9() { return *static_cast<HandoverPreparationInformationv920IEsue_ConfigRelease_r9*>(items[0]); }
+	HandoverPreparationInformationv920IEsNonCriticalExtension& getHandoverPreparationInformationv920IEsNonCriticalExtension() { return *static_cast<HandoverPreparationInformationv920IEsNonCriticalExtension*>(items[1]); }
 };
 
 class HandoverPreparationInformationr8IEs : public Sequence {
@@ -323,6 +371,12 @@ public:
 	void setRrmConfig(const RRMConfig& rrmConfig) { *static_cast<RRMConfig*>(items[2]) = rrmConfig; }
 	void setAsContext(const ASContext& asContext) { *static_cast<ASContext*>(items[3]) = asContext; }
 	void setNonCriticalExtension(const HandoverPreparationInformationv920IEs& nonCriticalExtension) { *static_cast<HandoverPreparationInformationv920IEs*>(items[4]) = nonCriticalExtension; }
+
+	UECapabilityRATContainerList& getUeRadioAccessCapabilityInfo() { return *static_cast<UECapabilityRATContainerList*>(items[0]); }
+	ASConfig& getAsConfig() { return *static_cast<ASConfig*>(items[1]); }
+	RRMConfig& getRrmConfig() { return *static_cast<RRMConfig*>(items[2]); }
+	ASContext& getAsContext() { return *static_cast<ASContext*>(items[3]); }
+	HandoverPreparationInformationv920IEs& getNonCriticalExtension() { return *static_cast<HandoverPreparationInformationv920IEs*>(items[4]); }
 };
 
 typedef Null HandoverPreparationInformationCriticalExtensionsC1Spare7;
@@ -364,6 +418,8 @@ private:
 public:
 	static const Info theInfo;
 	HandoverPreparationInformationCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class HandoverPreparationInformationCriticalExtensions : public Choice {
@@ -388,6 +444,8 @@ public:
 	HandoverPreparationInformation(const HandoverPreparationInformationCriticalExtensions& handoverPreparationInformationCriticalExtensions);
 
 	void setHandoverPreparationInformationCriticalExtensions(const HandoverPreparationInformationCriticalExtensions& handoverPreparationInformationCriticalExtensions) { *static_cast<HandoverPreparationInformationCriticalExtensions*>(items[0]) = handoverPreparationInformationCriticalExtensions; }
+
+	HandoverPreparationInformationCriticalExtensions& getHandoverPreparationInformationCriticalExtensions() { return *static_cast<HandoverPreparationInformationCriticalExtensions*>(items[0]); }
 };
 
 typedef OctetStringBase UERadioAccessCapabilityInformationr8IEsUeRadioAccessCapabilityInfo;
@@ -399,6 +457,8 @@ private:
 public:
 	static const Info theInfo;
 	UERadioAccessCapabilityInformationr8IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class UERadioAccessCapabilityInformationr8IEs : public Sequence {
@@ -412,6 +472,9 @@ public:
 
 	void setUERadioAccessCapabilityInformationr8IEsUeRadioAccessCapabilityInfo(const UERadioAccessCapabilityInformationr8IEsUeRadioAccessCapabilityInfo& uERadioAccessCapabilityInformationr8IEsUeRadioAccessCapabilityInfo) { *static_cast<UERadioAccessCapabilityInformationr8IEsUeRadioAccessCapabilityInfo*>(items[0]) = uERadioAccessCapabilityInformationr8IEsUeRadioAccessCapabilityInfo; }
 	void setUERadioAccessCapabilityInformationr8IEsNonCriticalExtension(const UERadioAccessCapabilityInformationr8IEsNonCriticalExtension& uERadioAccessCapabilityInformationr8IEsNonCriticalExtension) { *static_cast<UERadioAccessCapabilityInformationr8IEsNonCriticalExtension*>(items[1]) = uERadioAccessCapabilityInformationr8IEsNonCriticalExtension; }
+
+	UERadioAccessCapabilityInformationr8IEsUeRadioAccessCapabilityInfo& getUERadioAccessCapabilityInformationr8IEsUeRadioAccessCapabilityInfo() { return *static_cast<UERadioAccessCapabilityInformationr8IEsUeRadioAccessCapabilityInfo*>(items[0]); }
+	UERadioAccessCapabilityInformationr8IEsNonCriticalExtension& getUERadioAccessCapabilityInformationr8IEsNonCriticalExtension() { return *static_cast<UERadioAccessCapabilityInformationr8IEsNonCriticalExtension*>(items[1]); }
 };
 
 typedef Null UERadioAccessCapabilityInformationCriticalExtensionsC1Spare7;
@@ -453,6 +516,8 @@ private:
 public:
 	static const Info theInfo;
 	UERadioAccessCapabilityInformationCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class UERadioAccessCapabilityInformationCriticalExtensions : public Choice {
@@ -477,6 +542,8 @@ public:
 	UERadioAccessCapabilityInformation(const UERadioAccessCapabilityInformationCriticalExtensions& uERadioAccessCapabilityInformationCriticalExtensions);
 
 	void setUERadioAccessCapabilityInformationCriticalExtensions(const UERadioAccessCapabilityInformationCriticalExtensions& uERadioAccessCapabilityInformationCriticalExtensions) { *static_cast<UERadioAccessCapabilityInformationCriticalExtensions*>(items[0]) = uERadioAccessCapabilityInformationCriticalExtensions; }
+
+	UERadioAccessCapabilityInformationCriticalExtensions& getUERadioAccessCapabilityInformationCriticalExtensions() { return *static_cast<UERadioAccessCapabilityInformationCriticalExtensions*>(items[0]); }
 };
 
 }

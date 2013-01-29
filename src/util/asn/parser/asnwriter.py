@@ -107,10 +107,15 @@ def writeobject(asnobj, hdrfile, srcfile):
                                         obj = objs[j]
                                         hdrfile.write("const " + obj.type + "& " + firstlower(obj.name) + ", ")
                                 obj = objs[len(objs) - 1]
-                                hdrfile.write("const " + obj.type + "& " + firstlower(obj.name) + ");\n\n")
+                                hdrfile.write("const " + obj.type + "& " + firstlower(obj.name) + ");\n")
+                        hdrfile.write("\n")
 			for j in range(0, len(asnobj.objs)):
                                 obj = asnobj.objs[j]
                                 hdrfile.write("\tvoid set" + obj.name + "(const " + obj.type + "& " + firstlower(obj.name) + ") { *static_cast<" + obj.type + "*>(items[" + str(j) + "]) = " + firstlower(obj.name) + "; }\n")
+                        hdrfile.write("\n")
+			for j in range(0, len(asnobj.objs)):
+                                obj = asnobj.objs[j]
+                                hdrfile.write("\t" + obj.type + "& get" + obj.name + "() { return *static_cast<" + obj.type + "*>(items[" + str(j) + "]); }\n")
 			hdrfile.write("};\n")
 			srcfile.write("const void *" + asnobj.name + "::itemsInfo[" + str(len(asnobj.objs)) + "] = {\n")
 			for j in range(0, len(asnobj.objs)):

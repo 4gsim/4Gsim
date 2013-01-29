@@ -143,6 +143,9 @@ public:
 
 	void setPHICHConfigphich_Duration(const PHICHConfigphich_Duration& pHICHConfigphich_Duration) { *static_cast<PHICHConfigphich_Duration*>(items[0]) = pHICHConfigphich_Duration; }
 	void setPHICHConfigphich_Resource(const PHICHConfigphich_Resource& pHICHConfigphich_Resource) { *static_cast<PHICHConfigphich_Resource*>(items[1]) = pHICHConfigphich_Resource; }
+
+	PHICHConfigphich_Duration& getPHICHConfigphich_Duration() { return *static_cast<PHICHConfigphich_Duration*>(items[0]); }
+	PHICHConfigphich_Resource& getPHICHConfigphich_Resource() { return *static_cast<PHICHConfigphich_Resource*>(items[1]); }
 };
 
 typedef BitString<CONSTRAINED, 8, 8> MasterInformationBlockSystemFrameNumber;
@@ -162,6 +165,11 @@ public:
 	void setPhichConfig(const PHICHConfig& phichConfig) { *static_cast<PHICHConfig*>(items[1]) = phichConfig; }
 	void setMasterInformationBlockSystemFrameNumber(const MasterInformationBlockSystemFrameNumber& masterInformationBlockSystemFrameNumber) { *static_cast<MasterInformationBlockSystemFrameNumber*>(items[2]) = masterInformationBlockSystemFrameNumber; }
 	void setMasterInformationBlockSpare(const MasterInformationBlockSpare& masterInformationBlockSpare) { *static_cast<MasterInformationBlockSpare*>(items[3]) = masterInformationBlockSpare; }
+
+	MasterInformationBlockdl_Bandwidth& getMasterInformationBlockdl_Bandwidth() { return *static_cast<MasterInformationBlockdl_Bandwidth*>(items[0]); }
+	PHICHConfig& getPhichConfig() { return *static_cast<PHICHConfig*>(items[1]); }
+	MasterInformationBlockSystemFrameNumber& getMasterInformationBlockSystemFrameNumber() { return *static_cast<MasterInformationBlockSystemFrameNumber*>(items[2]); }
+	MasterInformationBlockSpare& getMasterInformationBlockSpare() { return *static_cast<MasterInformationBlockSpare*>(items[3]); }
 };
 
 typedef MasterInformationBlock BCCHBCHMessageType;
@@ -176,6 +184,8 @@ public:
 	BCCHBCHMessage(const BCCHBCHMessageType& message);
 
 	void setMessage(const BCCHBCHMessageType& message) { *static_cast<BCCHBCHMessageType*>(items[0]) = message; }
+
+	BCCHBCHMessageType& getMessage() { return *static_cast<BCCHBCHMessageType*>(items[0]); }
 };
 
 class SystemInformationr8IEsSibTypeAndInfo : public Sequence {
@@ -185,6 +195,8 @@ private:
 public:
 	static const Info theInfo;
 	SystemInformationr8IEsSibTypeAndInfo(): Sequence(&theInfo) {}
+
+
 };
 
 typedef OctetStringBase SystemInformationv8a0IEsLateNonCriticalExtension;
@@ -196,6 +208,8 @@ private:
 public:
 	static const Info theInfo;
 	SystemInformationv8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class SystemInformationv8a0IEs : public Sequence {
@@ -205,8 +219,12 @@ private:
 public:
 	static const Info theInfo;
 	SystemInformationv8a0IEs(): Sequence(&theInfo) {}
+
 	void setSystemInformationv8a0IEsLateNonCriticalExtension(const SystemInformationv8a0IEsLateNonCriticalExtension& systemInformationv8a0IEsLateNonCriticalExtension) { *static_cast<SystemInformationv8a0IEsLateNonCriticalExtension*>(items[0]) = systemInformationv8a0IEsLateNonCriticalExtension; }
 	void setSystemInformationv8a0IEsNonCriticalExtension(const SystemInformationv8a0IEsNonCriticalExtension& systemInformationv8a0IEsNonCriticalExtension) { *static_cast<SystemInformationv8a0IEsNonCriticalExtension*>(items[1]) = systemInformationv8a0IEsNonCriticalExtension; }
+
+	SystemInformationv8a0IEsLateNonCriticalExtension& getSystemInformationv8a0IEsLateNonCriticalExtension() { return *static_cast<SystemInformationv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	SystemInformationv8a0IEsNonCriticalExtension& getSystemInformationv8a0IEsNonCriticalExtension() { return *static_cast<SystemInformationv8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class SystemInformationr8IEs : public Sequence {
@@ -220,6 +238,9 @@ public:
 
 	void setSystemInformationr8IEsSibTypeAndInfo(const SystemInformationr8IEsSibTypeAndInfo& systemInformationr8IEsSibTypeAndInfo) { *static_cast<SystemInformationr8IEsSibTypeAndInfo*>(items[0]) = systemInformationr8IEsSibTypeAndInfo; }
 	void setNonCriticalExtension(const SystemInformationv8a0IEs& nonCriticalExtension) { *static_cast<SystemInformationv8a0IEs*>(items[1]) = nonCriticalExtension; }
+
+	SystemInformationr8IEsSibTypeAndInfo& getSystemInformationr8IEsSibTypeAndInfo() { return *static_cast<SystemInformationr8IEsSibTypeAndInfo*>(items[0]); }
+	SystemInformationv8a0IEs& getNonCriticalExtension() { return *static_cast<SystemInformationv8a0IEs*>(items[1]); }
 };
 
 class SystemInformationCriticalExtensionsCriticalExtensionsFuture : public Sequence {
@@ -229,6 +250,8 @@ private:
 public:
 	static const Info theInfo;
 	SystemInformationCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class SystemInformationCriticalExtensions : public Choice {
@@ -253,6 +276,8 @@ public:
 	SystemInformation(const SystemInformationCriticalExtensions& systemInformationCriticalExtensions);
 
 	void setSystemInformationCriticalExtensions(const SystemInformationCriticalExtensions& systemInformationCriticalExtensions) { *static_cast<SystemInformationCriticalExtensions*>(items[0]) = systemInformationCriticalExtensions; }
+
+	SystemInformationCriticalExtensions& getSystemInformationCriticalExtensions() { return *static_cast<SystemInformationCriticalExtensions*>(items[0]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 9> MCCMNCDigit;
@@ -272,6 +297,9 @@ public:
 
 	void setMcc(const MCC& mcc) { *static_cast<MCC*>(items[0]) = mcc; }
 	void setMnc(const MNC& mnc) { *static_cast<MNC*>(items[1]) = mnc; }
+
+	MCC& getMcc() { return *static_cast<MCC*>(items[0]); }
+	MNC& getMnc() { return *static_cast<MNC*>(items[1]); }
 };
 
 enum PLMNIdentityInfocellReservedForOperatorUseValues {
@@ -291,6 +319,9 @@ public:
 
 	void setPlmnIdentity(const PLMNIdentity& plmnIdentity) { *static_cast<PLMNIdentity*>(items[0]) = plmnIdentity; }
 	void setPLMNIdentityInfocellReservedForOperatorUse(const PLMNIdentityInfocellReservedForOperatorUse& pLMNIdentityInfocellReservedForOperatorUse) { *static_cast<PLMNIdentityInfocellReservedForOperatorUse*>(items[1]) = pLMNIdentityInfocellReservedForOperatorUse; }
+
+	PLMNIdentity& getPlmnIdentity() { return *static_cast<PLMNIdentity*>(items[0]); }
+	PLMNIdentityInfocellReservedForOperatorUse& getPLMNIdentityInfocellReservedForOperatorUse() { return *static_cast<PLMNIdentityInfocellReservedForOperatorUse*>(items[1]); }
 };
 
 typedef SequenceOf<PLMNIdentityInfo, CONSTRAINED, 1, 6> PLMNIdentityList;
@@ -331,6 +362,14 @@ public:
 	void setSystemInformationBlockType1CellAccessRelatedInfointraFreqReselection(const SystemInformationBlockType1CellAccessRelatedInfointraFreqReselection& systemInformationBlockType1CellAccessRelatedInfointraFreqReselection) { *static_cast<SystemInformationBlockType1CellAccessRelatedInfointraFreqReselection*>(items[4]) = systemInformationBlockType1CellAccessRelatedInfointraFreqReselection; }
 	void setSystemInformationBlockType1CellAccessRelatedInfoCsgIndication(const SystemInformationBlockType1CellAccessRelatedInfoCsgIndication& systemInformationBlockType1CellAccessRelatedInfoCsgIndication) { *static_cast<SystemInformationBlockType1CellAccessRelatedInfoCsgIndication*>(items[5]) = systemInformationBlockType1CellAccessRelatedInfoCsgIndication; }
 	void setCsgIdentity(const CSGIdentity& csgIdentity) { *static_cast<CSGIdentity*>(items[6]) = csgIdentity; }
+
+	PLMNIdentityList& getPlmnIdentityList() { return *static_cast<PLMNIdentityList*>(items[0]); }
+	TrackingAreaCode& getTrackingAreaCode() { return *static_cast<TrackingAreaCode*>(items[1]); }
+	CellIdentity& getCellIdentity() { return *static_cast<CellIdentity*>(items[2]); }
+	SystemInformationBlockType1CellAccessRelatedInfocellBarred& getSystemInformationBlockType1CellAccessRelatedInfocellBarred() { return *static_cast<SystemInformationBlockType1CellAccessRelatedInfocellBarred*>(items[3]); }
+	SystemInformationBlockType1CellAccessRelatedInfointraFreqReselection& getSystemInformationBlockType1CellAccessRelatedInfointraFreqReselection() { return *static_cast<SystemInformationBlockType1CellAccessRelatedInfointraFreqReselection*>(items[4]); }
+	SystemInformationBlockType1CellAccessRelatedInfoCsgIndication& getSystemInformationBlockType1CellAccessRelatedInfoCsgIndication() { return *static_cast<SystemInformationBlockType1CellAccessRelatedInfoCsgIndication*>(items[5]); }
+	CSGIdentity& getCsgIdentity() { return *static_cast<CSGIdentity*>(items[6]); }
 };
 
 typedef Integer<CONSTRAINED, -70, -22> QRxLevMin;
@@ -348,6 +387,9 @@ public:
 
 	void setQRxLevMin(const QRxLevMin& qRxLevMin) { *static_cast<QRxLevMin*>(items[0]) = qRxLevMin; }
 	void setSystemInformationBlockType1CellSelectionInfoQRxLevMinOffset(const SystemInformationBlockType1CellSelectionInfoQRxLevMinOffset& systemInformationBlockType1CellSelectionInfoQRxLevMinOffset) { *static_cast<SystemInformationBlockType1CellSelectionInfoQRxLevMinOffset*>(items[1]) = systemInformationBlockType1CellSelectionInfoQRxLevMinOffset; }
+
+	QRxLevMin& getQRxLevMin() { return *static_cast<QRxLevMin*>(items[0]); }
+	SystemInformationBlockType1CellSelectionInfoQRxLevMinOffset& getSystemInformationBlockType1CellSelectionInfoQRxLevMinOffset() { return *static_cast<SystemInformationBlockType1CellSelectionInfoQRxLevMinOffset*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, -30, 33> PMax;
@@ -398,6 +440,9 @@ public:
 
 	void setSchedulingInfosi_Periodicity(const SchedulingInfosi_Periodicity& schedulingInfosi_Periodicity) { *static_cast<SchedulingInfosi_Periodicity*>(items[0]) = schedulingInfosi_Periodicity; }
 	void setSibMappingInfo(const SIBMappingInfo& sibMappingInfo) { *static_cast<SIBMappingInfo*>(items[1]) = sibMappingInfo; }
+
+	SchedulingInfosi_Periodicity& getSchedulingInfosi_Periodicity() { return *static_cast<SchedulingInfosi_Periodicity*>(items[0]); }
+	SIBMappingInfo& getSibMappingInfo() { return *static_cast<SIBMappingInfo*>(items[1]); }
 };
 
 typedef SequenceOf<SchedulingInfo, CONSTRAINED, 1, maxSI_Message> SchedulingInfoList;
@@ -437,6 +482,9 @@ public:
 
 	void setTDDConfigsubframeAssignment(const TDDConfigsubframeAssignment& tDDConfigsubframeAssignment) { *static_cast<TDDConfigsubframeAssignment*>(items[0]) = tDDConfigsubframeAssignment; }
 	void setTDDConfigspecialSubframePatterns(const TDDConfigspecialSubframePatterns& tDDConfigspecialSubframePatterns) { *static_cast<TDDConfigspecialSubframePatterns*>(items[1]) = tDDConfigspecialSubframePatterns; }
+
+	TDDConfigsubframeAssignment& getTDDConfigsubframeAssignment() { return *static_cast<TDDConfigsubframeAssignment*>(items[0]); }
+	TDDConfigspecialSubframePatterns& getTDDConfigspecialSubframePatterns() { return *static_cast<TDDConfigspecialSubframePatterns*>(items[1]); }
 };
 
 enum SystemInformationBlockType1si_WindowLengthValues {
@@ -474,6 +522,9 @@ public:
 
 	void setQQualMinr9(const QQualMinr9& qQualMinr9) { *static_cast<QQualMinr9*>(items[0]) = qQualMinr9; }
 	void setCellSelectionInfov920QQualMinOffsetr9(const CellSelectionInfov920QQualMinOffsetr9& cellSelectionInfov920QQualMinOffsetr9) { *static_cast<CellSelectionInfov920QQualMinOffsetr9*>(items[1]) = cellSelectionInfov920QQualMinOffsetr9; }
+
+	QQualMinr9& getQQualMinr9() { return *static_cast<QQualMinr9*>(items[0]); }
+	CellSelectionInfov920QQualMinOffsetr9& getCellSelectionInfov920QQualMinOffsetr9() { return *static_cast<CellSelectionInfov920QQualMinOffsetr9*>(items[1]); }
 };
 
 class SystemInformationBlockType1v920IEsNonCriticalExtension : public Sequence {
@@ -483,6 +534,8 @@ private:
 public:
 	static const Info theInfo;
 	SystemInformationBlockType1v920IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class SystemInformationBlockType1v920IEs : public Sequence {
@@ -492,9 +545,14 @@ private:
 public:
 	static const Info theInfo;
 	SystemInformationBlockType1v920IEs(): Sequence(&theInfo) {}
+
 	void setSystemInformationBlockType1v920IEsims_EmergencySupport_r9(const SystemInformationBlockType1v920IEsims_EmergencySupport_r9& systemInformationBlockType1v920IEsims_EmergencySupport_r9) { *static_cast<SystemInformationBlockType1v920IEsims_EmergencySupport_r9*>(items[0]) = systemInformationBlockType1v920IEsims_EmergencySupport_r9; }
 	void setCellSelectionInfov920(const CellSelectionInfov920& cellSelectionInfov920) { *static_cast<CellSelectionInfov920*>(items[1]) = cellSelectionInfov920; }
 	void setSystemInformationBlockType1v920IEsNonCriticalExtension(const SystemInformationBlockType1v920IEsNonCriticalExtension& systemInformationBlockType1v920IEsNonCriticalExtension) { *static_cast<SystemInformationBlockType1v920IEsNonCriticalExtension*>(items[2]) = systemInformationBlockType1v920IEsNonCriticalExtension; }
+
+	SystemInformationBlockType1v920IEsims_EmergencySupport_r9& getSystemInformationBlockType1v920IEsims_EmergencySupport_r9() { return *static_cast<SystemInformationBlockType1v920IEsims_EmergencySupport_r9*>(items[0]); }
+	CellSelectionInfov920& getCellSelectionInfov920() { return *static_cast<CellSelectionInfov920*>(items[1]); }
+	SystemInformationBlockType1v920IEsNonCriticalExtension& getSystemInformationBlockType1v920IEsNonCriticalExtension() { return *static_cast<SystemInformationBlockType1v920IEsNonCriticalExtension*>(items[2]); }
 };
 
 class SystemInformationBlockType1v890IEs : public Sequence {
@@ -504,8 +562,12 @@ private:
 public:
 	static const Info theInfo;
 	SystemInformationBlockType1v890IEs(): Sequence(&theInfo) {}
+
 	void setSystemInformationBlockType1v890IEsLateNonCriticalExtension(const SystemInformationBlockType1v890IEsLateNonCriticalExtension& systemInformationBlockType1v890IEsLateNonCriticalExtension) { *static_cast<SystemInformationBlockType1v890IEsLateNonCriticalExtension*>(items[0]) = systemInformationBlockType1v890IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const SystemInformationBlockType1v920IEs& nonCriticalExtension) { *static_cast<SystemInformationBlockType1v920IEs*>(items[1]) = nonCriticalExtension; }
+
+	SystemInformationBlockType1v890IEsLateNonCriticalExtension& getSystemInformationBlockType1v890IEsLateNonCriticalExtension() { return *static_cast<SystemInformationBlockType1v890IEsLateNonCriticalExtension*>(items[0]); }
+	SystemInformationBlockType1v920IEs& getNonCriticalExtension() { return *static_cast<SystemInformationBlockType1v920IEs*>(items[1]); }
 };
 
 class SystemInformationBlockType1 : public Sequence {
@@ -526,6 +588,16 @@ public:
 	void setSystemInformationBlockType1si_WindowLength(const SystemInformationBlockType1si_WindowLength& systemInformationBlockType1si_WindowLength) { *static_cast<SystemInformationBlockType1si_WindowLength*>(items[6]) = systemInformationBlockType1si_WindowLength; }
 	void setSystemInformationBlockType1SystemInfoValueTag(const SystemInformationBlockType1SystemInfoValueTag& systemInformationBlockType1SystemInfoValueTag) { *static_cast<SystemInformationBlockType1SystemInfoValueTag*>(items[7]) = systemInformationBlockType1SystemInfoValueTag; }
 	void setNonCriticalExtension(const SystemInformationBlockType1v890IEs& nonCriticalExtension) { *static_cast<SystemInformationBlockType1v890IEs*>(items[8]) = nonCriticalExtension; }
+
+	SystemInformationBlockType1CellAccessRelatedInfo& getSystemInformationBlockType1CellAccessRelatedInfo() { return *static_cast<SystemInformationBlockType1CellAccessRelatedInfo*>(items[0]); }
+	SystemInformationBlockType1CellSelectionInfo& getSystemInformationBlockType1CellSelectionInfo() { return *static_cast<SystemInformationBlockType1CellSelectionInfo*>(items[1]); }
+	PMax& getPMax() { return *static_cast<PMax*>(items[2]); }
+	SystemInformationBlockType1FreqBandIndicator& getSystemInformationBlockType1FreqBandIndicator() { return *static_cast<SystemInformationBlockType1FreqBandIndicator*>(items[3]); }
+	SchedulingInfoList& getSchedulingInfoList() { return *static_cast<SchedulingInfoList*>(items[4]); }
+	TDDConfig& getTddConfig() { return *static_cast<TDDConfig*>(items[5]); }
+	SystemInformationBlockType1si_WindowLength& getSystemInformationBlockType1si_WindowLength() { return *static_cast<SystemInformationBlockType1si_WindowLength*>(items[6]); }
+	SystemInformationBlockType1SystemInfoValueTag& getSystemInformationBlockType1SystemInfoValueTag() { return *static_cast<SystemInformationBlockType1SystemInfoValueTag*>(items[7]); }
+	SystemInformationBlockType1v890IEs& getNonCriticalExtension() { return *static_cast<SystemInformationBlockType1v890IEs*>(items[8]); }
 };
 
 class BCCHDLSCHMessageTypeC1 : public Choice {
@@ -547,6 +619,8 @@ private:
 public:
 	static const Info theInfo;
 	BCCHDLSCHMessageTypeMessageClassExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class BCCHDLSCHMessageType : public Choice {
@@ -571,6 +645,8 @@ public:
 	BCCHDLSCHMessage(const BCCHDLSCHMessageType& message);
 
 	void setMessage(const BCCHDLSCHMessageType& message) { *static_cast<BCCHDLSCHMessageType*>(items[0]) = message; }
+
+	BCCHDLSCHMessageType& getMessage() { return *static_cast<BCCHDLSCHMessageType*>(items[0]); }
 };
 
 enum MBSFNSubframeConfigradioframeAllocationPeriodValues {
@@ -613,6 +689,10 @@ public:
 	void setMBSFNSubframeConfigradioframeAllocationPeriod(const MBSFNSubframeConfigradioframeAllocationPeriod& mBSFNSubframeConfigradioframeAllocationPeriod) { *static_cast<MBSFNSubframeConfigradioframeAllocationPeriod*>(items[0]) = mBSFNSubframeConfigradioframeAllocationPeriod; }
 	void setMBSFNSubframeConfigRadioframeAllocationOffset(const MBSFNSubframeConfigRadioframeAllocationOffset& mBSFNSubframeConfigRadioframeAllocationOffset) { *static_cast<MBSFNSubframeConfigRadioframeAllocationOffset*>(items[1]) = mBSFNSubframeConfigRadioframeAllocationOffset; }
 	void setMBSFNSubframeConfigSubframeAllocation(const MBSFNSubframeConfigSubframeAllocation& mBSFNSubframeConfigSubframeAllocation) { *static_cast<MBSFNSubframeConfigSubframeAllocation*>(items[2]) = mBSFNSubframeConfigSubframeAllocation; }
+
+	MBSFNSubframeConfigradioframeAllocationPeriod& getMBSFNSubframeConfigradioframeAllocationPeriod() { return *static_cast<MBSFNSubframeConfigradioframeAllocationPeriod*>(items[0]); }
+	MBSFNSubframeConfigRadioframeAllocationOffset& getMBSFNSubframeConfigRadioframeAllocationOffset() { return *static_cast<MBSFNSubframeConfigRadioframeAllocationOffset*>(items[1]); }
+	MBSFNSubframeConfigSubframeAllocation& getMBSFNSubframeConfigSubframeAllocation() { return *static_cast<MBSFNSubframeConfigSubframeAllocation*>(items[2]); }
 };
 
 typedef SequenceOf<MBSFNSubframeConfig, CONSTRAINED, 1, maxMBSFN_Allocations> CommonSFAllocPatternListr9;
@@ -656,6 +736,10 @@ public:
 	void setPMCHConfigr9SfAllocEndr9(const PMCHConfigr9SfAllocEndr9& pMCHConfigr9SfAllocEndr9) { *static_cast<PMCHConfigr9SfAllocEndr9*>(items[0]) = pMCHConfigr9SfAllocEndr9; }
 	void setPMCHConfigr9DataMCSr9(const PMCHConfigr9DataMCSr9& pMCHConfigr9DataMCSr9) { *static_cast<PMCHConfigr9DataMCSr9*>(items[1]) = pMCHConfigr9DataMCSr9; }
 	void setPMCHConfigr9mch_SchedulingPeriod_r9(const PMCHConfigr9mch_SchedulingPeriod_r9& pMCHConfigr9mch_SchedulingPeriod_r9) { *static_cast<PMCHConfigr9mch_SchedulingPeriod_r9*>(items[2]) = pMCHConfigr9mch_SchedulingPeriod_r9; }
+
+	PMCHConfigr9SfAllocEndr9& getPMCHConfigr9SfAllocEndr9() { return *static_cast<PMCHConfigr9SfAllocEndr9*>(items[0]); }
+	PMCHConfigr9DataMCSr9& getPMCHConfigr9DataMCSr9() { return *static_cast<PMCHConfigr9DataMCSr9*>(items[1]); }
+	PMCHConfigr9mch_SchedulingPeriod_r9& getPMCHConfigr9mch_SchedulingPeriod_r9() { return *static_cast<PMCHConfigr9mch_SchedulingPeriod_r9*>(items[2]); }
 };
 
 typedef Integer<CONSTRAINED, 1, 6> TMGIr9PlmnIdr9PlmnIndexr9;
@@ -685,6 +769,9 @@ public:
 
 	void setTMGIr9PlmnIdr9(const TMGIr9PlmnIdr9& tMGIr9PlmnIdr9) { *static_cast<TMGIr9PlmnIdr9*>(items[0]) = tMGIr9PlmnIdr9; }
 	void setTMGIr9ServiceIdr9(const TMGIr9ServiceIdr9& tMGIr9ServiceIdr9) { *static_cast<TMGIr9ServiceIdr9*>(items[1]) = tMGIr9ServiceIdr9; }
+
+	TMGIr9PlmnIdr9& getTMGIr9PlmnIdr9() { return *static_cast<TMGIr9PlmnIdr9*>(items[0]); }
+	TMGIr9ServiceIdr9& getTMGIr9ServiceIdr9() { return *static_cast<TMGIr9ServiceIdr9*>(items[1]); }
 };
 
 typedef OctetString<CONSTRAINED, 1, 1> MBMSSessionInfor9SessionIdr9;
@@ -703,6 +790,10 @@ public:
 	void setTmgir9(const TMGIr9& tmgir9) { *static_cast<TMGIr9*>(items[0]) = tmgir9; }
 	void setMBMSSessionInfor9SessionIdr9(const MBMSSessionInfor9SessionIdr9& mBMSSessionInfor9SessionIdr9) { *static_cast<MBMSSessionInfor9SessionIdr9*>(items[1]) = mBMSSessionInfor9SessionIdr9; }
 	void setMBMSSessionInfor9LogicalChannelIdentityr9(const MBMSSessionInfor9LogicalChannelIdentityr9& mBMSSessionInfor9LogicalChannelIdentityr9) { *static_cast<MBMSSessionInfor9LogicalChannelIdentityr9*>(items[2]) = mBMSSessionInfor9LogicalChannelIdentityr9; }
+
+	TMGIr9& getTmgir9() { return *static_cast<TMGIr9*>(items[0]); }
+	MBMSSessionInfor9SessionIdr9& getMBMSSessionInfor9SessionIdr9() { return *static_cast<MBMSSessionInfor9SessionIdr9*>(items[1]); }
+	MBMSSessionInfor9LogicalChannelIdentityr9& getMBMSSessionInfor9LogicalChannelIdentityr9() { return *static_cast<MBMSSessionInfor9LogicalChannelIdentityr9*>(items[2]); }
 };
 
 typedef SequenceOf<MBMSSessionInfor9, CONSTRAINED, 0, maxSessionPerPMCH> MBMSSessionInfoListr9;
@@ -718,6 +809,9 @@ public:
 
 	void setPmchConfigr9(const PMCHConfigr9& pmchConfigr9) { *static_cast<PMCHConfigr9*>(items[0]) = pmchConfigr9; }
 	void setMbmsSessionInfoListr9(const MBMSSessionInfoListr9& mbmsSessionInfoListr9) { *static_cast<MBMSSessionInfoListr9*>(items[1]) = mbmsSessionInfoListr9; }
+
+	PMCHConfigr9& getPmchConfigr9() { return *static_cast<PMCHConfigr9*>(items[0]); }
+	MBMSSessionInfoListr9& getMbmsSessionInfoListr9() { return *static_cast<MBMSSessionInfoListr9*>(items[1]); }
 };
 
 typedef SequenceOf<PMCHInfor9, CONSTRAINED, 0, maxPMCH_PerMBSFN> PMCHInfoListr9;
@@ -731,6 +825,8 @@ private:
 public:
 	static const Info theInfo;
 	MBSFNAreaConfigurationv930IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class MBSFNAreaConfigurationv930IEs : public Sequence {
@@ -740,8 +836,12 @@ private:
 public:
 	static const Info theInfo;
 	MBSFNAreaConfigurationv930IEs(): Sequence(&theInfo) {}
+
 	void setMBSFNAreaConfigurationv930IEsLateNonCriticalExtension(const MBSFNAreaConfigurationv930IEsLateNonCriticalExtension& mBSFNAreaConfigurationv930IEsLateNonCriticalExtension) { *static_cast<MBSFNAreaConfigurationv930IEsLateNonCriticalExtension*>(items[0]) = mBSFNAreaConfigurationv930IEsLateNonCriticalExtension; }
 	void setMBSFNAreaConfigurationv930IEsNonCriticalExtension(const MBSFNAreaConfigurationv930IEsNonCriticalExtension& mBSFNAreaConfigurationv930IEsNonCriticalExtension) { *static_cast<MBSFNAreaConfigurationv930IEsNonCriticalExtension*>(items[1]) = mBSFNAreaConfigurationv930IEsNonCriticalExtension; }
+
+	MBSFNAreaConfigurationv930IEsLateNonCriticalExtension& getMBSFNAreaConfigurationv930IEsLateNonCriticalExtension() { return *static_cast<MBSFNAreaConfigurationv930IEsLateNonCriticalExtension*>(items[0]); }
+	MBSFNAreaConfigurationv930IEsNonCriticalExtension& getMBSFNAreaConfigurationv930IEsNonCriticalExtension() { return *static_cast<MBSFNAreaConfigurationv930IEsNonCriticalExtension*>(items[1]); }
 };
 
 class MBSFNAreaConfigurationr9 : public Sequence {
@@ -757,6 +857,11 @@ public:
 	void setMBSFNAreaConfigurationr9commonSF_AllocPeriod_r9(const MBSFNAreaConfigurationr9commonSF_AllocPeriod_r9& mBSFNAreaConfigurationr9commonSF_AllocPeriod_r9) { *static_cast<MBSFNAreaConfigurationr9commonSF_AllocPeriod_r9*>(items[1]) = mBSFNAreaConfigurationr9commonSF_AllocPeriod_r9; }
 	void setPmchInfoListr9(const PMCHInfoListr9& pmchInfoListr9) { *static_cast<PMCHInfoListr9*>(items[2]) = pmchInfoListr9; }
 	void setNonCriticalExtension(const MBSFNAreaConfigurationv930IEs& nonCriticalExtension) { *static_cast<MBSFNAreaConfigurationv930IEs*>(items[3]) = nonCriticalExtension; }
+
+	CommonSFAllocPatternListr9& getCommonSFAllocr9() { return *static_cast<CommonSFAllocPatternListr9*>(items[0]); }
+	MBSFNAreaConfigurationr9commonSF_AllocPeriod_r9& getMBSFNAreaConfigurationr9commonSF_AllocPeriod_r9() { return *static_cast<MBSFNAreaConfigurationr9commonSF_AllocPeriod_r9*>(items[1]); }
+	PMCHInfoListr9& getPmchInfoListr9() { return *static_cast<PMCHInfoListr9*>(items[2]); }
+	MBSFNAreaConfigurationv930IEs& getNonCriticalExtension() { return *static_cast<MBSFNAreaConfigurationv930IEs*>(items[3]); }
 };
 
 class MCCHMessageTypeC1 : public Choice {
@@ -780,6 +885,8 @@ public:
 	CountingRequestInfor10(const TMGIr9& tmgir10);
 
 	void setTmgir10(const TMGIr9& tmgir10) { *static_cast<TMGIr9*>(items[0]) = tmgir10; }
+
+	TMGIr9& getTmgir10() { return *static_cast<TMGIr9*>(items[0]); }
 };
 
 typedef SequenceOf<CountingRequestInfor10, CONSTRAINED, 1, maxServiceCount> CountingRequestListr10;
@@ -793,6 +900,8 @@ private:
 public:
 	static const Info theInfo;
 	MBMSCountingRequestr10NonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class MBMSCountingRequestr10 : public Sequence {
@@ -807,6 +916,10 @@ public:
 	void setCountingRequestListr10(const CountingRequestListr10& countingRequestListr10) { *static_cast<CountingRequestListr10*>(items[0]) = countingRequestListr10; }
 	void setMBMSCountingRequestr10LateNonCriticalExtension(const MBMSCountingRequestr10LateNonCriticalExtension& mBMSCountingRequestr10LateNonCriticalExtension) { *static_cast<MBMSCountingRequestr10LateNonCriticalExtension*>(items[1]) = mBMSCountingRequestr10LateNonCriticalExtension; }
 	void setMBMSCountingRequestr10NonCriticalExtension(const MBMSCountingRequestr10NonCriticalExtension& mBMSCountingRequestr10NonCriticalExtension) { *static_cast<MBMSCountingRequestr10NonCriticalExtension*>(items[2]) = mBMSCountingRequestr10NonCriticalExtension; }
+
+	CountingRequestListr10& getCountingRequestListr10() { return *static_cast<CountingRequestListr10*>(items[0]); }
+	MBMSCountingRequestr10LateNonCriticalExtension& getMBMSCountingRequestr10LateNonCriticalExtension() { return *static_cast<MBMSCountingRequestr10LateNonCriticalExtension*>(items[1]); }
+	MBMSCountingRequestr10NonCriticalExtension& getMBMSCountingRequestr10NonCriticalExtension() { return *static_cast<MBMSCountingRequestr10NonCriticalExtension*>(items[2]); }
 };
 
 class MCCHMessageTypeLaterC2 : public Choice {
@@ -827,6 +940,8 @@ private:
 public:
 	static const Info theInfo;
 	MCCHMessageTypeLaterMessageClassExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class MCCHMessageTypeLater : public Choice {
@@ -863,6 +978,8 @@ public:
 	MCCHMessage(const MCCHMessageType& message);
 
 	void setMessage(const MCCHMessageType& message) { *static_cast<MCCHMessageType*>(items[0]) = message; }
+
+	MCCHMessageType& getMessage() { return *static_cast<MCCHMessageType*>(items[0]); }
 };
 
 typedef BitString<CONSTRAINED, 8, 8> MMEC;
@@ -880,6 +997,9 @@ public:
 
 	void setMmec(const MMEC& mmec) { *static_cast<MMEC*>(items[0]) = mmec; }
 	void setSTMSIMTMSI(const STMSIMTMSI& sTMSIMTMSI) { *static_cast<STMSIMTMSI*>(items[1]) = sTMSIMTMSI; }
+
+	MMEC& getMmec() { return *static_cast<MMEC*>(items[0]); }
+	STMSIMTMSI& getSTMSIMTMSI() { return *static_cast<STMSIMTMSI*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 9> IMSIDigit;
@@ -915,6 +1035,9 @@ public:
 
 	void setUeIdentity(const PagingUEIdentity& ueIdentity) { *static_cast<PagingUEIdentity*>(items[0]) = ueIdentity; }
 	void setPagingRecordcn_Domain(const PagingRecordcn_Domain& pagingRecordcn_Domain) { *static_cast<PagingRecordcn_Domain*>(items[1]) = pagingRecordcn_Domain; }
+
+	PagingUEIdentity& getUeIdentity() { return *static_cast<PagingUEIdentity*>(items[0]); }
+	PagingRecordcn_Domain& getPagingRecordcn_Domain() { return *static_cast<PagingRecordcn_Domain*>(items[1]); }
 };
 
 typedef SequenceOf<PagingRecord, CONSTRAINED, 1, maxPageRec> PagingRecordList;
@@ -943,6 +1066,8 @@ private:
 public:
 	static const Info theInfo;
 	Pagingv920IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class Pagingv920IEs : public Sequence {
@@ -952,8 +1077,12 @@ private:
 public:
 	static const Info theInfo;
 	Pagingv920IEs(): Sequence(&theInfo) {}
+
 	void setPagingv920IEscmas_Indication_r9(const Pagingv920IEscmas_Indication_r9& pagingv920IEscmas_Indication_r9) { *static_cast<Pagingv920IEscmas_Indication_r9*>(items[0]) = pagingv920IEscmas_Indication_r9; }
 	void setPagingv920IEsNonCriticalExtension(const Pagingv920IEsNonCriticalExtension& pagingv920IEsNonCriticalExtension) { *static_cast<Pagingv920IEsNonCriticalExtension*>(items[1]) = pagingv920IEsNonCriticalExtension; }
+
+	Pagingv920IEscmas_Indication_r9& getPagingv920IEscmas_Indication_r9() { return *static_cast<Pagingv920IEscmas_Indication_r9*>(items[0]); }
+	Pagingv920IEsNonCriticalExtension& getPagingv920IEsNonCriticalExtension() { return *static_cast<Pagingv920IEsNonCriticalExtension*>(items[1]); }
 };
 
 class Pagingv890IEs : public Sequence {
@@ -963,8 +1092,12 @@ private:
 public:
 	static const Info theInfo;
 	Pagingv890IEs(): Sequence(&theInfo) {}
+
 	void setPagingv890IEsLateNonCriticalExtension(const Pagingv890IEsLateNonCriticalExtension& pagingv890IEsLateNonCriticalExtension) { *static_cast<Pagingv890IEsLateNonCriticalExtension*>(items[0]) = pagingv890IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const Pagingv920IEs& nonCriticalExtension) { *static_cast<Pagingv920IEs*>(items[1]) = nonCriticalExtension; }
+
+	Pagingv890IEsLateNonCriticalExtension& getPagingv890IEsLateNonCriticalExtension() { return *static_cast<Pagingv890IEsLateNonCriticalExtension*>(items[0]); }
+	Pagingv920IEs& getNonCriticalExtension() { return *static_cast<Pagingv920IEs*>(items[1]); }
 };
 
 class Paging : public Sequence {
@@ -974,10 +1107,16 @@ private:
 public:
 	static const Info theInfo;
 	Paging(): Sequence(&theInfo) {}
+
 	void setPagingRecordList(const PagingRecordList& pagingRecordList) { *static_cast<PagingRecordList*>(items[0]) = pagingRecordList; }
 	void setPagingsystemInfoModification(const PagingsystemInfoModification& pagingsystemInfoModification) { *static_cast<PagingsystemInfoModification*>(items[1]) = pagingsystemInfoModification; }
 	void setPagingetws_Indication(const Pagingetws_Indication& pagingetws_Indication) { *static_cast<Pagingetws_Indication*>(items[2]) = pagingetws_Indication; }
 	void setNonCriticalExtension(const Pagingv890IEs& nonCriticalExtension) { *static_cast<Pagingv890IEs*>(items[3]) = nonCriticalExtension; }
+
+	PagingRecordList& getPagingRecordList() { return *static_cast<PagingRecordList*>(items[0]); }
+	PagingsystemInfoModification& getPagingsystemInfoModification() { return *static_cast<PagingsystemInfoModification*>(items[1]); }
+	Pagingetws_Indication& getPagingetws_Indication() { return *static_cast<Pagingetws_Indication*>(items[2]); }
+	Pagingv890IEs& getNonCriticalExtension() { return *static_cast<Pagingv890IEs*>(items[3]); }
 };
 
 class PCCHMessageTypeC1 : public Choice {
@@ -998,6 +1137,8 @@ private:
 public:
 	static const Info theInfo;
 	PCCHMessageTypeMessageClassExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class PCCHMessageType : public Choice {
@@ -1022,6 +1163,8 @@ public:
 	PCCHMessage(const PCCHMessageType& message);
 
 	void setMessage(const PCCHMessageType& message) { *static_cast<PCCHMessageType*>(items[0]) = message; }
+
+	PCCHMessageType& getMessage() { return *static_cast<PCCHMessageType*>(items[0]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 3> RRCTransactionIdentifier;
@@ -1153,6 +1296,11 @@ public:
 	void setPollPDU(const PollPDU& pollPDU) { *static_cast<PollPDU*>(items[1]) = pollPDU; }
 	void setPollByte(const PollByte& pollByte) { *static_cast<PollByte*>(items[2]) = pollByte; }
 	void setULAMRLCmaxRetxThreshold(const ULAMRLCmaxRetxThreshold& uLAMRLCmaxRetxThreshold) { *static_cast<ULAMRLCmaxRetxThreshold*>(items[3]) = uLAMRLCmaxRetxThreshold; }
+
+	TPollRetransmit& getTPollRetransmit() { return *static_cast<TPollRetransmit*>(items[0]); }
+	PollPDU& getPollPDU() { return *static_cast<PollPDU*>(items[1]); }
+	PollByte& getPollByte() { return *static_cast<PollByte*>(items[2]); }
+	ULAMRLCmaxRetxThreshold& getULAMRLCmaxRetxThreshold() { return *static_cast<ULAMRLCmaxRetxThreshold*>(items[3]); }
 };
 
 enum TReorderingValues {
@@ -1270,6 +1418,9 @@ public:
 
 	void setTReordering(const TReordering& tReordering) { *static_cast<TReordering*>(items[0]) = tReordering; }
 	void setTStatusProhibit(const TStatusProhibit& tStatusProhibit) { *static_cast<TStatusProhibit*>(items[1]) = tStatusProhibit; }
+
+	TReordering& getTReordering() { return *static_cast<TReordering*>(items[0]); }
+	TStatusProhibit& getTStatusProhibit() { return *static_cast<TStatusProhibit*>(items[1]); }
 };
 
 class RLCConfigAm : public Sequence {
@@ -1283,6 +1434,9 @@ public:
 
 	void setUlAMRLC(const ULAMRLC& ulAMRLC) { *static_cast<ULAMRLC*>(items[0]) = ulAMRLC; }
 	void setDlAMRLC(const DLAMRLC& dlAMRLC) { *static_cast<DLAMRLC*>(items[1]) = dlAMRLC; }
+
+	ULAMRLC& getUlAMRLC() { return *static_cast<ULAMRLC*>(items[0]); }
+	DLAMRLC& getDlAMRLC() { return *static_cast<DLAMRLC*>(items[1]); }
 };
 
 enum SNFieldLengthValues {
@@ -1301,6 +1455,8 @@ public:
 	ULUMRLC(const SNFieldLength& snFieldLength);
 
 	void setSnFieldLength(const SNFieldLength& snFieldLength) { *static_cast<SNFieldLength*>(items[0]) = snFieldLength; }
+
+	SNFieldLength& getSnFieldLength() { return *static_cast<SNFieldLength*>(items[0]); }
 };
 
 class DLUMRLC : public Sequence {
@@ -1314,6 +1470,9 @@ public:
 
 	void setSnFieldLength(const SNFieldLength& snFieldLength) { *static_cast<SNFieldLength*>(items[0]) = snFieldLength; }
 	void setTReordering(const TReordering& tReordering) { *static_cast<TReordering*>(items[1]) = tReordering; }
+
+	SNFieldLength& getSnFieldLength() { return *static_cast<SNFieldLength*>(items[0]); }
+	TReordering& getTReordering() { return *static_cast<TReordering*>(items[1]); }
 };
 
 class RLCConfigUmBiDirectional : public Sequence {
@@ -1327,6 +1486,9 @@ public:
 
 	void setUlUMRLC(const ULUMRLC& ulUMRLC) { *static_cast<ULUMRLC*>(items[0]) = ulUMRLC; }
 	void setDlUMRLC(const DLUMRLC& dlUMRLC) { *static_cast<DLUMRLC*>(items[1]) = dlUMRLC; }
+
+	ULUMRLC& getUlUMRLC() { return *static_cast<ULUMRLC*>(items[0]); }
+	DLUMRLC& getDlUMRLC() { return *static_cast<DLUMRLC*>(items[1]); }
 };
 
 class RLCConfigUmUniDirectionalUL : public Sequence {
@@ -1339,6 +1501,8 @@ public:
 	RLCConfigUmUniDirectionalUL(const ULUMRLC& ulUMRLC);
 
 	void setUlUMRLC(const ULUMRLC& ulUMRLC) { *static_cast<ULUMRLC*>(items[0]) = ulUMRLC; }
+
+	ULUMRLC& getUlUMRLC() { return *static_cast<ULUMRLC*>(items[0]); }
 };
 
 class RLCConfigUmUniDirectionalDL : public Sequence {
@@ -1351,6 +1515,8 @@ public:
 	RLCConfigUmUniDirectionalDL(const DLUMRLC& dlUMRLC);
 
 	void setDlUMRLC(const DLUMRLC& dlUMRLC) { *static_cast<DLUMRLC*>(items[0]) = dlUMRLC; }
+
+	DLUMRLC& getDlUMRLC() { return *static_cast<DLUMRLC*>(items[0]); }
 };
 
 class RLCConfig : public Choice {
@@ -1430,6 +1596,11 @@ public:
 	void setLogicalChannelConfigUlSpecificParametersprioritisedBitRate(const LogicalChannelConfigUlSpecificParametersprioritisedBitRate& logicalChannelConfigUlSpecificParametersprioritisedBitRate) { *static_cast<LogicalChannelConfigUlSpecificParametersprioritisedBitRate*>(items[1]) = logicalChannelConfigUlSpecificParametersprioritisedBitRate; }
 	void setLogicalChannelConfigUlSpecificParametersbucketSizeDuration(const LogicalChannelConfigUlSpecificParametersbucketSizeDuration& logicalChannelConfigUlSpecificParametersbucketSizeDuration) { *static_cast<LogicalChannelConfigUlSpecificParametersbucketSizeDuration*>(items[2]) = logicalChannelConfigUlSpecificParametersbucketSizeDuration; }
 	void setLogicalChannelConfigUlSpecificParametersLogicalChannelGroup(const LogicalChannelConfigUlSpecificParametersLogicalChannelGroup& logicalChannelConfigUlSpecificParametersLogicalChannelGroup) { *static_cast<LogicalChannelConfigUlSpecificParametersLogicalChannelGroup*>(items[3]) = logicalChannelConfigUlSpecificParametersLogicalChannelGroup; }
+
+	LogicalChannelConfigUlSpecificParametersPriority& getLogicalChannelConfigUlSpecificParametersPriority() { return *static_cast<LogicalChannelConfigUlSpecificParametersPriority*>(items[0]); }
+	LogicalChannelConfigUlSpecificParametersprioritisedBitRate& getLogicalChannelConfigUlSpecificParametersprioritisedBitRate() { return *static_cast<LogicalChannelConfigUlSpecificParametersprioritisedBitRate*>(items[1]); }
+	LogicalChannelConfigUlSpecificParametersbucketSizeDuration& getLogicalChannelConfigUlSpecificParametersbucketSizeDuration() { return *static_cast<LogicalChannelConfigUlSpecificParametersbucketSizeDuration*>(items[2]); }
+	LogicalChannelConfigUlSpecificParametersLogicalChannelGroup& getLogicalChannelConfigUlSpecificParametersLogicalChannelGroup() { return *static_cast<LogicalChannelConfigUlSpecificParametersLogicalChannelGroup*>(items[3]); }
 };
 
 enum LogicalChannelConfiglogicalChannelSR_Mask_r9Values {
@@ -1444,8 +1615,12 @@ private:
 public:
 	static const Info theInfo;
 	LogicalChannelConfig(): Sequence(&theInfo) {}
+
 	void setLogicalChannelConfigUlSpecificParameters(const LogicalChannelConfigUlSpecificParameters& logicalChannelConfigUlSpecificParameters) { *static_cast<LogicalChannelConfigUlSpecificParameters*>(items[0]) = logicalChannelConfigUlSpecificParameters; }
 	void setLogicalChannelConfiglogicalChannelSR_Mask_r9(const LogicalChannelConfiglogicalChannelSR_Mask_r9& logicalChannelConfiglogicalChannelSR_Mask_r9) { *static_cast<LogicalChannelConfiglogicalChannelSR_Mask_r9*>(items[1]) = logicalChannelConfiglogicalChannelSR_Mask_r9; }
+
+	LogicalChannelConfigUlSpecificParameters& getLogicalChannelConfigUlSpecificParameters() { return *static_cast<LogicalChannelConfigUlSpecificParameters*>(items[0]); }
+	LogicalChannelConfiglogicalChannelSR_Mask_r9& getLogicalChannelConfiglogicalChannelSR_Mask_r9() { return *static_cast<LogicalChannelConfiglogicalChannelSR_Mask_r9*>(items[1]); }
 };
 
 typedef Null SRBToAddModLogicalChannelConfigDefaultValue;
@@ -1474,6 +1649,10 @@ public:
 	void setSRBToAddModSrbIdentity(const SRBToAddModSrbIdentity& sRBToAddModSrbIdentity) { *static_cast<SRBToAddModSrbIdentity*>(items[0]) = sRBToAddModSrbIdentity; }
 	void setSRBToAddModRlcConfig(const SRBToAddModRlcConfig& sRBToAddModRlcConfig) { *static_cast<SRBToAddModRlcConfig*>(items[1]) = sRBToAddModRlcConfig; }
 	void setSRBToAddModLogicalChannelConfig(const SRBToAddModLogicalChannelConfig& sRBToAddModLogicalChannelConfig) { *static_cast<SRBToAddModLogicalChannelConfig*>(items[2]) = sRBToAddModLogicalChannelConfig; }
+
+	SRBToAddModSrbIdentity& getSRBToAddModSrbIdentity() { return *static_cast<SRBToAddModSrbIdentity*>(items[0]); }
+	SRBToAddModRlcConfig& getSRBToAddModRlcConfig() { return *static_cast<SRBToAddModRlcConfig*>(items[1]); }
+	SRBToAddModLogicalChannelConfig& getSRBToAddModLogicalChannelConfig() { return *static_cast<SRBToAddModLogicalChannelConfig*>(items[2]); }
 };
 
 typedef SequenceOf<SRBToAddMod, CONSTRAINED, 1, 2> SRBToAddModList;
@@ -1506,6 +1685,8 @@ public:
 	PDCPConfigRlcAM(const PDCPConfigRlcAMStatusReportRequired& pDCPConfigRlcAMStatusReportRequired);
 
 	void setPDCPConfigRlcAMStatusReportRequired(const PDCPConfigRlcAMStatusReportRequired& pDCPConfigRlcAMStatusReportRequired) { *static_cast<PDCPConfigRlcAMStatusReportRequired*>(items[0]) = pDCPConfigRlcAMStatusReportRequired; }
+
+	PDCPConfigRlcAMStatusReportRequired& getPDCPConfigRlcAMStatusReportRequired() { return *static_cast<PDCPConfigRlcAMStatusReportRequired*>(items[0]); }
 };
 
 enum PDCPConfigRlcUMpdcp_SN_SizeValues {
@@ -1524,6 +1705,8 @@ public:
 	PDCPConfigRlcUM(const PDCPConfigRlcUMpdcp_SN_Size& pDCPConfigRlcUMpdcp_SN_Size);
 
 	void setPDCPConfigRlcUMpdcp_SN_Size(const PDCPConfigRlcUMpdcp_SN_Size& pDCPConfigRlcUMpdcp_SN_Size) { *static_cast<PDCPConfigRlcUMpdcp_SN_Size*>(items[0]) = pDCPConfigRlcUMpdcp_SN_Size; }
+
+	PDCPConfigRlcUMpdcp_SN_Size& getPDCPConfigRlcUMpdcp_SN_Size() { return *static_cast<PDCPConfigRlcUMpdcp_SN_Size*>(items[0]); }
 };
 
 typedef Null PDCPConfigHeaderCompressionNotUsed;
@@ -1566,6 +1749,16 @@ public:
 	void setPDCPConfigHeaderCompressionRohcProfilesProfile0x0102(const PDCPConfigHeaderCompressionRohcProfilesProfile0x0102& pDCPConfigHeaderCompressionRohcProfilesProfile0x0102) { *static_cast<PDCPConfigHeaderCompressionRohcProfilesProfile0x0102*>(items[6]) = pDCPConfigHeaderCompressionRohcProfilesProfile0x0102; }
 	void setPDCPConfigHeaderCompressionRohcProfilesProfile0x0103(const PDCPConfigHeaderCompressionRohcProfilesProfile0x0103& pDCPConfigHeaderCompressionRohcProfilesProfile0x0103) { *static_cast<PDCPConfigHeaderCompressionRohcProfilesProfile0x0103*>(items[7]) = pDCPConfigHeaderCompressionRohcProfilesProfile0x0103; }
 	void setPDCPConfigHeaderCompressionRohcProfilesProfile0x0104(const PDCPConfigHeaderCompressionRohcProfilesProfile0x0104& pDCPConfigHeaderCompressionRohcProfilesProfile0x0104) { *static_cast<PDCPConfigHeaderCompressionRohcProfilesProfile0x0104*>(items[8]) = pDCPConfigHeaderCompressionRohcProfilesProfile0x0104; }
+
+	PDCPConfigHeaderCompressionRohcProfilesProfile0x0001& getPDCPConfigHeaderCompressionRohcProfilesProfile0x0001() { return *static_cast<PDCPConfigHeaderCompressionRohcProfilesProfile0x0001*>(items[0]); }
+	PDCPConfigHeaderCompressionRohcProfilesProfile0x0002& getPDCPConfigHeaderCompressionRohcProfilesProfile0x0002() { return *static_cast<PDCPConfigHeaderCompressionRohcProfilesProfile0x0002*>(items[1]); }
+	PDCPConfigHeaderCompressionRohcProfilesProfile0x0003& getPDCPConfigHeaderCompressionRohcProfilesProfile0x0003() { return *static_cast<PDCPConfigHeaderCompressionRohcProfilesProfile0x0003*>(items[2]); }
+	PDCPConfigHeaderCompressionRohcProfilesProfile0x0004& getPDCPConfigHeaderCompressionRohcProfilesProfile0x0004() { return *static_cast<PDCPConfigHeaderCompressionRohcProfilesProfile0x0004*>(items[3]); }
+	PDCPConfigHeaderCompressionRohcProfilesProfile0x0006& getPDCPConfigHeaderCompressionRohcProfilesProfile0x0006() { return *static_cast<PDCPConfigHeaderCompressionRohcProfilesProfile0x0006*>(items[4]); }
+	PDCPConfigHeaderCompressionRohcProfilesProfile0x0101& getPDCPConfigHeaderCompressionRohcProfilesProfile0x0101() { return *static_cast<PDCPConfigHeaderCompressionRohcProfilesProfile0x0101*>(items[5]); }
+	PDCPConfigHeaderCompressionRohcProfilesProfile0x0102& getPDCPConfigHeaderCompressionRohcProfilesProfile0x0102() { return *static_cast<PDCPConfigHeaderCompressionRohcProfilesProfile0x0102*>(items[6]); }
+	PDCPConfigHeaderCompressionRohcProfilesProfile0x0103& getPDCPConfigHeaderCompressionRohcProfilesProfile0x0103() { return *static_cast<PDCPConfigHeaderCompressionRohcProfilesProfile0x0103*>(items[7]); }
+	PDCPConfigHeaderCompressionRohcProfilesProfile0x0104& getPDCPConfigHeaderCompressionRohcProfilesProfile0x0104() { return *static_cast<PDCPConfigHeaderCompressionRohcProfilesProfile0x0104*>(items[8]); }
 };
 
 class PDCPConfigHeaderCompressionRohc : public Sequence {
@@ -1579,6 +1772,9 @@ public:
 
 	void setPDCPConfigHeaderCompressionRohcMaxCID(const PDCPConfigHeaderCompressionRohcMaxCID& pDCPConfigHeaderCompressionRohcMaxCID) { *static_cast<PDCPConfigHeaderCompressionRohcMaxCID*>(items[0]) = pDCPConfigHeaderCompressionRohcMaxCID; }
 	void setPDCPConfigHeaderCompressionRohcProfiles(const PDCPConfigHeaderCompressionRohcProfiles& pDCPConfigHeaderCompressionRohcProfiles) { *static_cast<PDCPConfigHeaderCompressionRohcProfiles*>(items[1]) = pDCPConfigHeaderCompressionRohcProfiles; }
+
+	PDCPConfigHeaderCompressionRohcMaxCID& getPDCPConfigHeaderCompressionRohcMaxCID() { return *static_cast<PDCPConfigHeaderCompressionRohcMaxCID*>(items[0]); }
+	PDCPConfigHeaderCompressionRohcProfiles& getPDCPConfigHeaderCompressionRohcProfiles() { return *static_cast<PDCPConfigHeaderCompressionRohcProfiles*>(items[1]); }
 };
 
 class PDCPConfigHeaderCompression : public Choice {
@@ -1605,11 +1801,18 @@ private:
 public:
 	static const Info theInfo;
 	PDCPConfig(): Sequence(&theInfo) {}
+
 	void setPDCPConfigdiscardTimer(const PDCPConfigdiscardTimer& pDCPConfigdiscardTimer) { *static_cast<PDCPConfigdiscardTimer*>(items[0]) = pDCPConfigdiscardTimer; }
 	void setPDCPConfigRlcAM(const PDCPConfigRlcAM& pDCPConfigRlcAM) { *static_cast<PDCPConfigRlcAM*>(items[1]) = pDCPConfigRlcAM; }
 	void setPDCPConfigRlcUM(const PDCPConfigRlcUM& pDCPConfigRlcUM) { *static_cast<PDCPConfigRlcUM*>(items[2]) = pDCPConfigRlcUM; }
 	void setPDCPConfigHeaderCompression(const PDCPConfigHeaderCompression& pDCPConfigHeaderCompression) { *static_cast<PDCPConfigHeaderCompression*>(items[3]) = pDCPConfigHeaderCompression; }
 	void setPDCPConfigrn_IntegrityProtection_r10(const PDCPConfigrn_IntegrityProtection_r10& pDCPConfigrn_IntegrityProtection_r10) { *static_cast<PDCPConfigrn_IntegrityProtection_r10*>(items[4]) = pDCPConfigrn_IntegrityProtection_r10; }
+
+	PDCPConfigdiscardTimer& getPDCPConfigdiscardTimer() { return *static_cast<PDCPConfigdiscardTimer*>(items[0]); }
+	PDCPConfigRlcAM& getPDCPConfigRlcAM() { return *static_cast<PDCPConfigRlcAM*>(items[1]); }
+	PDCPConfigRlcUM& getPDCPConfigRlcUM() { return *static_cast<PDCPConfigRlcUM*>(items[2]); }
+	PDCPConfigHeaderCompression& getPDCPConfigHeaderCompression() { return *static_cast<PDCPConfigHeaderCompression*>(items[3]); }
+	PDCPConfigrn_IntegrityProtection_r10& getPDCPConfigrn_IntegrityProtection_r10() { return *static_cast<PDCPConfigrn_IntegrityProtection_r10*>(items[4]); }
 };
 
 typedef Integer<CONSTRAINED, 3, 10> DRBToAddModLogicalChannelIdentity;
@@ -1629,6 +1832,13 @@ public:
 	void setRlcConfig(const RLCConfig& rlcConfig) { *static_cast<RLCConfig*>(items[3]) = rlcConfig; }
 	void setDRBToAddModLogicalChannelIdentity(const DRBToAddModLogicalChannelIdentity& dRBToAddModLogicalChannelIdentity) { *static_cast<DRBToAddModLogicalChannelIdentity*>(items[4]) = dRBToAddModLogicalChannelIdentity; }
 	void setLogicalChannelConfig(const LogicalChannelConfig& logicalChannelConfig) { *static_cast<LogicalChannelConfig*>(items[5]) = logicalChannelConfig; }
+
+	DRBToAddModEpsBearerIdentity& getDRBToAddModEpsBearerIdentity() { return *static_cast<DRBToAddModEpsBearerIdentity*>(items[0]); }
+	DRBIdentity& getDrbIdentity() { return *static_cast<DRBIdentity*>(items[1]); }
+	PDCPConfig& getPdcpConfig() { return *static_cast<PDCPConfig*>(items[2]); }
+	RLCConfig& getRlcConfig() { return *static_cast<RLCConfig*>(items[3]); }
+	DRBToAddModLogicalChannelIdentity& getDRBToAddModLogicalChannelIdentity() { return *static_cast<DRBToAddModLogicalChannelIdentity*>(items[4]); }
+	LogicalChannelConfig& getLogicalChannelConfig() { return *static_cast<LogicalChannelConfig*>(items[5]); }
 };
 
 typedef SequenceOf<DRBToAddMod, CONSTRAINED, 1, maxDRB> DRBToAddModList;
@@ -1702,6 +1912,11 @@ public:
 	void setMACMainConfigUlSCHConfigperiodicBSR_Timer(const MACMainConfigUlSCHConfigperiodicBSR_Timer& mACMainConfigUlSCHConfigperiodicBSR_Timer) { *static_cast<MACMainConfigUlSCHConfigperiodicBSR_Timer*>(items[1]) = mACMainConfigUlSCHConfigperiodicBSR_Timer; }
 	void setMACMainConfigUlSCHConfigretxBSR_Timer(const MACMainConfigUlSCHConfigretxBSR_Timer& mACMainConfigUlSCHConfigretxBSR_Timer) { *static_cast<MACMainConfigUlSCHConfigretxBSR_Timer*>(items[2]) = mACMainConfigUlSCHConfigretxBSR_Timer; }
 	void setMACMainConfigUlSCHConfigTtiBundling(const MACMainConfigUlSCHConfigTtiBundling& mACMainConfigUlSCHConfigTtiBundling) { *static_cast<MACMainConfigUlSCHConfigTtiBundling*>(items[3]) = mACMainConfigUlSCHConfigTtiBundling; }
+
+	MACMainConfigUlSCHConfigmaxHARQ_Tx& getMACMainConfigUlSCHConfigmaxHARQ_Tx() { return *static_cast<MACMainConfigUlSCHConfigmaxHARQ_Tx*>(items[0]); }
+	MACMainConfigUlSCHConfigperiodicBSR_Timer& getMACMainConfigUlSCHConfigperiodicBSR_Timer() { return *static_cast<MACMainConfigUlSCHConfigperiodicBSR_Timer*>(items[1]); }
+	MACMainConfigUlSCHConfigretxBSR_Timer& getMACMainConfigUlSCHConfigretxBSR_Timer() { return *static_cast<MACMainConfigUlSCHConfigretxBSR_Timer*>(items[2]); }
+	MACMainConfigUlSCHConfigTtiBundling& getMACMainConfigUlSCHConfigTtiBundling() { return *static_cast<MACMainConfigUlSCHConfigTtiBundling*>(items[3]); }
 };
 
 typedef Null DRXConfigRelease;
@@ -1865,6 +2080,9 @@ public:
 
 	void setDRXConfigSetupShortDRXshortDRX_Cycle(const DRXConfigSetupShortDRXshortDRX_Cycle& dRXConfigSetupShortDRXshortDRX_Cycle) { *static_cast<DRXConfigSetupShortDRXshortDRX_Cycle*>(items[0]) = dRXConfigSetupShortDRXshortDRX_Cycle; }
 	void setDRXConfigSetupShortDRXDrxShortCycleTimer(const DRXConfigSetupShortDRXDrxShortCycleTimer& dRXConfigSetupShortDRXDrxShortCycleTimer) { *static_cast<DRXConfigSetupShortDRXDrxShortCycleTimer*>(items[1]) = dRXConfigSetupShortDRXDrxShortCycleTimer; }
+
+	DRXConfigSetupShortDRXshortDRX_Cycle& getDRXConfigSetupShortDRXshortDRX_Cycle() { return *static_cast<DRXConfigSetupShortDRXshortDRX_Cycle*>(items[0]); }
+	DRXConfigSetupShortDRXDrxShortCycleTimer& getDRXConfigSetupShortDRXDrxShortCycleTimer() { return *static_cast<DRXConfigSetupShortDRXDrxShortCycleTimer*>(items[1]); }
 };
 
 class DRXConfigSetup : public Sequence {
@@ -1881,6 +2099,12 @@ public:
 	void setDRXConfigSetupdrx_RetransmissionTimer(const DRXConfigSetupdrx_RetransmissionTimer& dRXConfigSetupdrx_RetransmissionTimer) { *static_cast<DRXConfigSetupdrx_RetransmissionTimer*>(items[2]) = dRXConfigSetupdrx_RetransmissionTimer; }
 	void setDRXConfigSetupLongDRXCycleStartOffset(const DRXConfigSetupLongDRXCycleStartOffset& dRXConfigSetupLongDRXCycleStartOffset) { *static_cast<DRXConfigSetupLongDRXCycleStartOffset*>(items[3]) = dRXConfigSetupLongDRXCycleStartOffset; }
 	void setDRXConfigSetupShortDRX(const DRXConfigSetupShortDRX& dRXConfigSetupShortDRX) { *static_cast<DRXConfigSetupShortDRX*>(items[4]) = dRXConfigSetupShortDRX; }
+
+	DRXConfigSetuponDurationTimer& getDRXConfigSetuponDurationTimer() { return *static_cast<DRXConfigSetuponDurationTimer*>(items[0]); }
+	DRXConfigSetupdrx_InactivityTimer& getDRXConfigSetupdrx_InactivityTimer() { return *static_cast<DRXConfigSetupdrx_InactivityTimer*>(items[1]); }
+	DRXConfigSetupdrx_RetransmissionTimer& getDRXConfigSetupdrx_RetransmissionTimer() { return *static_cast<DRXConfigSetupdrx_RetransmissionTimer*>(items[2]); }
+	DRXConfigSetupLongDRXCycleStartOffset& getDRXConfigSetupLongDRXCycleStartOffset() { return *static_cast<DRXConfigSetupLongDRXCycleStartOffset*>(items[3]); }
+	DRXConfigSetupShortDRX& getDRXConfigSetupShortDRX() { return *static_cast<DRXConfigSetupShortDRX*>(items[4]); }
 };
 
 class DRXConfig : public Choice {
@@ -1953,6 +2177,10 @@ public:
 	void setMACMainConfigPhrConfigSetupperiodicPHR_Timer(const MACMainConfigPhrConfigSetupperiodicPHR_Timer& mACMainConfigPhrConfigSetupperiodicPHR_Timer) { *static_cast<MACMainConfigPhrConfigSetupperiodicPHR_Timer*>(items[0]) = mACMainConfigPhrConfigSetupperiodicPHR_Timer; }
 	void setMACMainConfigPhrConfigSetupprohibitPHR_Timer(const MACMainConfigPhrConfigSetupprohibitPHR_Timer& mACMainConfigPhrConfigSetupprohibitPHR_Timer) { *static_cast<MACMainConfigPhrConfigSetupprohibitPHR_Timer*>(items[1]) = mACMainConfigPhrConfigSetupprohibitPHR_Timer; }
 	void setMACMainConfigPhrConfigSetupdl_PathlossChange(const MACMainConfigPhrConfigSetupdl_PathlossChange& mACMainConfigPhrConfigSetupdl_PathlossChange) { *static_cast<MACMainConfigPhrConfigSetupdl_PathlossChange*>(items[2]) = mACMainConfigPhrConfigSetupdl_PathlossChange; }
+
+	MACMainConfigPhrConfigSetupperiodicPHR_Timer& getMACMainConfigPhrConfigSetupperiodicPHR_Timer() { return *static_cast<MACMainConfigPhrConfigSetupperiodicPHR_Timer*>(items[0]); }
+	MACMainConfigPhrConfigSetupprohibitPHR_Timer& getMACMainConfigPhrConfigSetupprohibitPHR_Timer() { return *static_cast<MACMainConfigPhrConfigSetupprohibitPHR_Timer*>(items[1]); }
+	MACMainConfigPhrConfigSetupdl_PathlossChange& getMACMainConfigPhrConfigSetupdl_PathlossChange() { return *static_cast<MACMainConfigPhrConfigSetupdl_PathlossChange*>(items[2]); }
 };
 
 class MACMainConfigPhrConfig : public Choice {
@@ -1998,9 +2226,14 @@ private:
 public:
 	static const Info theInfo;
 	MACMainConfigMacMainConfigv1020(): Sequence(&theInfo) {}
+
 	void setMACMainConfigMacMainConfigv1020sCellDeactivationTimer_r10(const MACMainConfigMacMainConfigv1020sCellDeactivationTimer_r10& mACMainConfigMacMainConfigv1020sCellDeactivationTimer_r10) { *static_cast<MACMainConfigMacMainConfigv1020sCellDeactivationTimer_r10*>(items[0]) = mACMainConfigMacMainConfigv1020sCellDeactivationTimer_r10; }
 	void setMACMainConfigMacMainConfigv1020extendedBSR_Sizes_r10(const MACMainConfigMacMainConfigv1020extendedBSR_Sizes_r10& mACMainConfigMacMainConfigv1020extendedBSR_Sizes_r10) { *static_cast<MACMainConfigMacMainConfigv1020extendedBSR_Sizes_r10*>(items[1]) = mACMainConfigMacMainConfigv1020extendedBSR_Sizes_r10; }
 	void setMACMainConfigMacMainConfigv1020extendedPHR_r10(const MACMainConfigMacMainConfigv1020extendedPHR_r10& mACMainConfigMacMainConfigv1020extendedPHR_r10) { *static_cast<MACMainConfigMacMainConfigv1020extendedPHR_r10*>(items[2]) = mACMainConfigMacMainConfigv1020extendedPHR_r10; }
+
+	MACMainConfigMacMainConfigv1020sCellDeactivationTimer_r10& getMACMainConfigMacMainConfigv1020sCellDeactivationTimer_r10() { return *static_cast<MACMainConfigMacMainConfigv1020sCellDeactivationTimer_r10*>(items[0]); }
+	MACMainConfigMacMainConfigv1020extendedBSR_Sizes_r10& getMACMainConfigMacMainConfigv1020extendedBSR_Sizes_r10() { return *static_cast<MACMainConfigMacMainConfigv1020extendedBSR_Sizes_r10*>(items[1]); }
+	MACMainConfigMacMainConfigv1020extendedPHR_r10& getMACMainConfigMacMainConfigv1020extendedPHR_r10() { return *static_cast<MACMainConfigMacMainConfigv1020extendedPHR_r10*>(items[2]); }
 };
 
 class MACMainConfig : public Sequence {
@@ -2018,6 +2251,13 @@ public:
 	void setMACMainConfigPhrConfig(const MACMainConfigPhrConfig& mACMainConfigPhrConfig) { *static_cast<MACMainConfigPhrConfig*>(items[3]) = mACMainConfigPhrConfig; }
 	void setMACMainConfigSrProhibitTimerr9(const MACMainConfigSrProhibitTimerr9& mACMainConfigSrProhibitTimerr9) { *static_cast<MACMainConfigSrProhibitTimerr9*>(items[4]) = mACMainConfigSrProhibitTimerr9; }
 	void setMACMainConfigMacMainConfigv1020(const MACMainConfigMacMainConfigv1020& mACMainConfigMacMainConfigv1020) { *static_cast<MACMainConfigMacMainConfigv1020*>(items[5]) = mACMainConfigMacMainConfigv1020; }
+
+	MACMainConfigUlSCHConfig& getMACMainConfigUlSCHConfig() { return *static_cast<MACMainConfigUlSCHConfig*>(items[0]); }
+	DRXConfig& getDrxConfig() { return *static_cast<DRXConfig*>(items[1]); }
+	TimeAlignmentTimer& getTimeAlignmentTimerDedicated() { return *static_cast<TimeAlignmentTimer*>(items[2]); }
+	MACMainConfigPhrConfig& getMACMainConfigPhrConfig() { return *static_cast<MACMainConfigPhrConfig*>(items[3]); }
+	MACMainConfigSrProhibitTimerr9& getMACMainConfigSrProhibitTimerr9() { return *static_cast<MACMainConfigSrProhibitTimerr9*>(items[4]); }
+	MACMainConfigMacMainConfigv1020& getMACMainConfigMacMainConfigv1020() { return *static_cast<MACMainConfigMacMainConfigv1020*>(items[5]); }
 };
 
 typedef Null RadioResourceConfigDedicatedMacMainConfigDefaultValue;
@@ -2076,6 +2316,8 @@ public:
 	SPSConfigDLSetupTwoAntennaPortActivatedr10Setup(const N1PUCCHANPersistentList& n1PUCCHANPersistentListP1r10);
 
 	void setN1PUCCHANPersistentListP1r10(const N1PUCCHANPersistentList& n1PUCCHANPersistentListP1r10) { *static_cast<N1PUCCHANPersistentList*>(items[0]) = n1PUCCHANPersistentListP1r10; }
+
+	N1PUCCHANPersistentList& getN1PUCCHANPersistentListP1r10() { return *static_cast<N1PUCCHANPersistentList*>(items[0]); }
 };
 
 class SPSConfigDLSetupTwoAntennaPortActivatedr10 : public Choice {
@@ -2103,6 +2345,11 @@ public:
 	void setSPSConfigDLSetupNumberOfConfSPSProcesses(const SPSConfigDLSetupNumberOfConfSPSProcesses& sPSConfigDLSetupNumberOfConfSPSProcesses) { *static_cast<SPSConfigDLSetupNumberOfConfSPSProcesses*>(items[1]) = sPSConfigDLSetupNumberOfConfSPSProcesses; }
 	void setN1PUCCHANPersistentList(const N1PUCCHANPersistentList& n1PUCCHANPersistentList) { *static_cast<N1PUCCHANPersistentList*>(items[2]) = n1PUCCHANPersistentList; }
 	void setSPSConfigDLSetupTwoAntennaPortActivatedr10(const SPSConfigDLSetupTwoAntennaPortActivatedr10& sPSConfigDLSetupTwoAntennaPortActivatedr10) { *static_cast<SPSConfigDLSetupTwoAntennaPortActivatedr10*>(items[3]) = sPSConfigDLSetupTwoAntennaPortActivatedr10; }
+
+	SPSConfigDLSetupsemiPersistSchedIntervalDL& getSPSConfigDLSetupsemiPersistSchedIntervalDL() { return *static_cast<SPSConfigDLSetupsemiPersistSchedIntervalDL*>(items[0]); }
+	SPSConfigDLSetupNumberOfConfSPSProcesses& getSPSConfigDLSetupNumberOfConfSPSProcesses() { return *static_cast<SPSConfigDLSetupNumberOfConfSPSProcesses*>(items[1]); }
+	N1PUCCHANPersistentList& getN1PUCCHANPersistentList() { return *static_cast<N1PUCCHANPersistentList*>(items[2]); }
+	SPSConfigDLSetupTwoAntennaPortActivatedr10& getSPSConfigDLSetupTwoAntennaPortActivatedr10() { return *static_cast<SPSConfigDLSetupTwoAntennaPortActivatedr10*>(items[3]); }
 };
 
 class SPSConfigDL : public Choice {
@@ -2162,6 +2409,9 @@ public:
 
 	void setSPSConfigULSetupP0PersistentP0NominalPUSCHPersistent(const SPSConfigULSetupP0PersistentP0NominalPUSCHPersistent& sPSConfigULSetupP0PersistentP0NominalPUSCHPersistent) { *static_cast<SPSConfigULSetupP0PersistentP0NominalPUSCHPersistent*>(items[0]) = sPSConfigULSetupP0PersistentP0NominalPUSCHPersistent; }
 	void setSPSConfigULSetupP0PersistentP0UEPUSCHPersistent(const SPSConfigULSetupP0PersistentP0UEPUSCHPersistent& sPSConfigULSetupP0PersistentP0UEPUSCHPersistent) { *static_cast<SPSConfigULSetupP0PersistentP0UEPUSCHPersistent*>(items[1]) = sPSConfigULSetupP0PersistentP0UEPUSCHPersistent; }
+
+	SPSConfigULSetupP0PersistentP0NominalPUSCHPersistent& getSPSConfigULSetupP0PersistentP0NominalPUSCHPersistent() { return *static_cast<SPSConfigULSetupP0PersistentP0NominalPUSCHPersistent*>(items[0]); }
+	SPSConfigULSetupP0PersistentP0UEPUSCHPersistent& getSPSConfigULSetupP0PersistentP0UEPUSCHPersistent() { return *static_cast<SPSConfigULSetupP0PersistentP0UEPUSCHPersistent*>(items[1]); }
 };
 
 enum SPSConfigULSetuptwoIntervalsConfigValues {
@@ -2182,6 +2432,11 @@ public:
 	void setSPSConfigULSetupimplicitReleaseAfter(const SPSConfigULSetupimplicitReleaseAfter& sPSConfigULSetupimplicitReleaseAfter) { *static_cast<SPSConfigULSetupimplicitReleaseAfter*>(items[1]) = sPSConfigULSetupimplicitReleaseAfter; }
 	void setSPSConfigULSetupP0Persistent(const SPSConfigULSetupP0Persistent& sPSConfigULSetupP0Persistent) { *static_cast<SPSConfigULSetupP0Persistent*>(items[2]) = sPSConfigULSetupP0Persistent; }
 	void setSPSConfigULSetuptwoIntervalsConfig(const SPSConfigULSetuptwoIntervalsConfig& sPSConfigULSetuptwoIntervalsConfig) { *static_cast<SPSConfigULSetuptwoIntervalsConfig*>(items[3]) = sPSConfigULSetuptwoIntervalsConfig; }
+
+	SPSConfigULSetupsemiPersistSchedIntervalUL& getSPSConfigULSetupsemiPersistSchedIntervalUL() { return *static_cast<SPSConfigULSetupsemiPersistSchedIntervalUL*>(items[0]); }
+	SPSConfigULSetupimplicitReleaseAfter& getSPSConfigULSetupimplicitReleaseAfter() { return *static_cast<SPSConfigULSetupimplicitReleaseAfter*>(items[1]); }
+	SPSConfigULSetupP0Persistent& getSPSConfigULSetupP0Persistent() { return *static_cast<SPSConfigULSetupP0Persistent*>(items[2]); }
+	SPSConfigULSetuptwoIntervalsConfig& getSPSConfigULSetuptwoIntervalsConfig() { return *static_cast<SPSConfigULSetuptwoIntervalsConfig*>(items[3]); }
 };
 
 class SPSConfigUL : public Choice {
@@ -2203,9 +2458,14 @@ private:
 public:
 	static const Info theInfo;
 	SPSConfig(): Sequence(&theInfo) {}
+
 	void setSemiPersistSchedCRNTI(const CRNTI& semiPersistSchedCRNTI) { *static_cast<CRNTI*>(items[0]) = semiPersistSchedCRNTI; }
 	void setSpsConfigDL(const SPSConfigDL& spsConfigDL) { *static_cast<SPSConfigDL*>(items[1]) = spsConfigDL; }
 	void setSpsConfigUL(const SPSConfigUL& spsConfigUL) { *static_cast<SPSConfigUL*>(items[2]) = spsConfigUL; }
+
+	CRNTI& getSemiPersistSchedCRNTI() { return *static_cast<CRNTI*>(items[0]); }
+	SPSConfigDL& getSpsConfigDL() { return *static_cast<SPSConfigDL*>(items[1]); }
+	SPSConfigUL& getSpsConfigUL() { return *static_cast<SPSConfigUL*>(items[2]); }
 };
 
 enum PDSCHConfigDedicatedp_aValues {
@@ -2230,6 +2490,8 @@ public:
 	PDSCHConfigDedicated(const PDSCHConfigDedicatedp_a& pDSCHConfigDedicatedp_a);
 
 	void setPDSCHConfigDedicatedp_a(const PDSCHConfigDedicatedp_a& pDSCHConfigDedicatedp_a) { *static_cast<PDSCHConfigDedicatedp_a*>(items[0]) = pDSCHConfigDedicatedp_a; }
+
+	PDSCHConfigDedicatedp_a& getPDSCHConfigDedicatedp_a() { return *static_cast<PDSCHConfigDedicatedp_a*>(items[0]); }
 };
 
 typedef Null PUCCHConfigDedicatedAckNackRepetitionRelease;
@@ -2255,6 +2517,9 @@ public:
 
 	void setPUCCHConfigDedicatedAckNackRepetitionSetuprepetitionFactor(const PUCCHConfigDedicatedAckNackRepetitionSetuprepetitionFactor& pUCCHConfigDedicatedAckNackRepetitionSetuprepetitionFactor) { *static_cast<PUCCHConfigDedicatedAckNackRepetitionSetuprepetitionFactor*>(items[0]) = pUCCHConfigDedicatedAckNackRepetitionSetuprepetitionFactor; }
 	void setPUCCHConfigDedicatedAckNackRepetitionSetupN1PUCCHANRep(const PUCCHConfigDedicatedAckNackRepetitionSetupN1PUCCHANRep& pUCCHConfigDedicatedAckNackRepetitionSetupN1PUCCHANRep) { *static_cast<PUCCHConfigDedicatedAckNackRepetitionSetupN1PUCCHANRep*>(items[1]) = pUCCHConfigDedicatedAckNackRepetitionSetupN1PUCCHANRep; }
+
+	PUCCHConfigDedicatedAckNackRepetitionSetuprepetitionFactor& getPUCCHConfigDedicatedAckNackRepetitionSetuprepetitionFactor() { return *static_cast<PUCCHConfigDedicatedAckNackRepetitionSetuprepetitionFactor*>(items[0]); }
+	PUCCHConfigDedicatedAckNackRepetitionSetupN1PUCCHANRep& getPUCCHConfigDedicatedAckNackRepetitionSetupN1PUCCHANRep() { return *static_cast<PUCCHConfigDedicatedAckNackRepetitionSetupN1PUCCHANRep*>(items[1]); }
 };
 
 class PUCCHConfigDedicatedAckNackRepetition : public Choice {
@@ -2286,6 +2551,9 @@ public:
 
 	void setPUCCHConfigDedicatedAckNackRepetition(const PUCCHConfigDedicatedAckNackRepetition& pUCCHConfigDedicatedAckNackRepetition) { *static_cast<PUCCHConfigDedicatedAckNackRepetition*>(items[0]) = pUCCHConfigDedicatedAckNackRepetition; }
 	void setPUCCHConfigDedicatedtdd_AckNackFeedbackMode(const PUCCHConfigDedicatedtdd_AckNackFeedbackMode& pUCCHConfigDedicatedtdd_AckNackFeedbackMode) { *static_cast<PUCCHConfigDedicatedtdd_AckNackFeedbackMode*>(items[1]) = pUCCHConfigDedicatedtdd_AckNackFeedbackMode; }
+
+	PUCCHConfigDedicatedAckNackRepetition& getPUCCHConfigDedicatedAckNackRepetition() { return *static_cast<PUCCHConfigDedicatedAckNackRepetition*>(items[0]); }
+	PUCCHConfigDedicatedtdd_AckNackFeedbackMode& getPUCCHConfigDedicatedtdd_AckNackFeedbackMode() { return *static_cast<PUCCHConfigDedicatedtdd_AckNackFeedbackMode*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 15> PUSCHConfigDedicatedBetaOffsetACKIndex;
@@ -2306,6 +2574,10 @@ public:
 	void setPUSCHConfigDedicatedBetaOffsetACKIndex(const PUSCHConfigDedicatedBetaOffsetACKIndex& pUSCHConfigDedicatedBetaOffsetACKIndex) { *static_cast<PUSCHConfigDedicatedBetaOffsetACKIndex*>(items[0]) = pUSCHConfigDedicatedBetaOffsetACKIndex; }
 	void setPUSCHConfigDedicatedBetaOffsetRIIndex(const PUSCHConfigDedicatedBetaOffsetRIIndex& pUSCHConfigDedicatedBetaOffsetRIIndex) { *static_cast<PUSCHConfigDedicatedBetaOffsetRIIndex*>(items[1]) = pUSCHConfigDedicatedBetaOffsetRIIndex; }
 	void setPUSCHConfigDedicatedBetaOffsetCQIIndex(const PUSCHConfigDedicatedBetaOffsetCQIIndex& pUSCHConfigDedicatedBetaOffsetCQIIndex) { *static_cast<PUSCHConfigDedicatedBetaOffsetCQIIndex*>(items[2]) = pUSCHConfigDedicatedBetaOffsetCQIIndex; }
+
+	PUSCHConfigDedicatedBetaOffsetACKIndex& getPUSCHConfigDedicatedBetaOffsetACKIndex() { return *static_cast<PUSCHConfigDedicatedBetaOffsetACKIndex*>(items[0]); }
+	PUSCHConfigDedicatedBetaOffsetRIIndex& getPUSCHConfigDedicatedBetaOffsetRIIndex() { return *static_cast<PUSCHConfigDedicatedBetaOffsetRIIndex*>(items[1]); }
+	PUSCHConfigDedicatedBetaOffsetCQIIndex& getPUSCHConfigDedicatedBetaOffsetCQIIndex() { return *static_cast<PUSCHConfigDedicatedBetaOffsetCQIIndex*>(items[2]); }
 };
 
 typedef Integer<CONSTRAINED, -8, 7> UplinkPowerControlDedicatedP0UEPUSCH;
@@ -2357,6 +2629,13 @@ public:
 	void setUplinkPowerControlDedicatedP0UEPUCCH(const UplinkPowerControlDedicatedP0UEPUCCH& uplinkPowerControlDedicatedP0UEPUCCH) { *static_cast<UplinkPowerControlDedicatedP0UEPUCCH*>(items[3]) = uplinkPowerControlDedicatedP0UEPUCCH; }
 	void setUplinkPowerControlDedicatedPSRSOffset(const UplinkPowerControlDedicatedPSRSOffset& uplinkPowerControlDedicatedPSRSOffset) { *static_cast<UplinkPowerControlDedicatedPSRSOffset*>(items[4]) = uplinkPowerControlDedicatedPSRSOffset; }
 	void setFilterCoefficient(const FilterCoefficient& filterCoefficient) { *static_cast<FilterCoefficient*>(items[5]) = filterCoefficient; }
+
+	UplinkPowerControlDedicatedP0UEPUSCH& getUplinkPowerControlDedicatedP0UEPUSCH() { return *static_cast<UplinkPowerControlDedicatedP0UEPUSCH*>(items[0]); }
+	UplinkPowerControlDedicateddeltaMCS_Enabled& getUplinkPowerControlDedicateddeltaMCS_Enabled() { return *static_cast<UplinkPowerControlDedicateddeltaMCS_Enabled*>(items[1]); }
+	UplinkPowerControlDedicatedAccumulationEnabled& getUplinkPowerControlDedicatedAccumulationEnabled() { return *static_cast<UplinkPowerControlDedicatedAccumulationEnabled*>(items[2]); }
+	UplinkPowerControlDedicatedP0UEPUCCH& getUplinkPowerControlDedicatedP0UEPUCCH() { return *static_cast<UplinkPowerControlDedicatedP0UEPUCCH*>(items[3]); }
+	UplinkPowerControlDedicatedPSRSOffset& getUplinkPowerControlDedicatedPSRSOffset() { return *static_cast<UplinkPowerControlDedicatedPSRSOffset*>(items[4]); }
+	FilterCoefficient& getFilterCoefficient() { return *static_cast<FilterCoefficient*>(items[5]); }
 };
 
 typedef Null TPCPDCCHConfigRelease;
@@ -2390,6 +2669,9 @@ public:
 
 	void setTPCPDCCHConfigSetupTpcRNTI(const TPCPDCCHConfigSetupTpcRNTI& tPCPDCCHConfigSetupTpcRNTI) { *static_cast<TPCPDCCHConfigSetupTpcRNTI*>(items[0]) = tPCPDCCHConfigSetupTpcRNTI; }
 	void setTpcIndex(const TPCIndex& tpcIndex) { *static_cast<TPCIndex*>(items[1]) = tpcIndex; }
+
+	TPCPDCCHConfigSetupTpcRNTI& getTPCPDCCHConfigSetupTpcRNTI() { return *static_cast<TPCPDCCHConfigSetupTpcRNTI*>(items[0]); }
+	TPCIndex& getTpcIndex() { return *static_cast<TPCIndex*>(items[1]); }
 };
 
 class TPCPDCCHConfig : public Choice {
@@ -2438,6 +2720,8 @@ public:
 	CQIReportPeriodicSetupCqiFormatIndicatorPeriodicSubbandCQI(const CQIReportPeriodicSetupCqiFormatIndicatorPeriodicSubbandCQIK& cQIReportPeriodicSetupCqiFormatIndicatorPeriodicSubbandCQIK);
 
 	void setCQIReportPeriodicSetupCqiFormatIndicatorPeriodicSubbandCQIK(const CQIReportPeriodicSetupCqiFormatIndicatorPeriodicSubbandCQIK& cQIReportPeriodicSetupCqiFormatIndicatorPeriodicSubbandCQIK) { *static_cast<CQIReportPeriodicSetupCqiFormatIndicatorPeriodicSubbandCQIK*>(items[0]) = cQIReportPeriodicSetupCqiFormatIndicatorPeriodicSubbandCQIK; }
+
+	CQIReportPeriodicSetupCqiFormatIndicatorPeriodicSubbandCQIK& getCQIReportPeriodicSetupCqiFormatIndicatorPeriodicSubbandCQIK() { return *static_cast<CQIReportPeriodicSetupCqiFormatIndicatorPeriodicSubbandCQIK*>(items[0]); }
 };
 
 class CQIReportPeriodicSetupCqiFormatIndicatorPeriodic : public Choice {
@@ -2470,6 +2754,12 @@ public:
 	void setCQIReportPeriodicSetupCqiFormatIndicatorPeriodic(const CQIReportPeriodicSetupCqiFormatIndicatorPeriodic& cQIReportPeriodicSetupCqiFormatIndicatorPeriodic) { *static_cast<CQIReportPeriodicSetupCqiFormatIndicatorPeriodic*>(items[2]) = cQIReportPeriodicSetupCqiFormatIndicatorPeriodic; }
 	void setCQIReportPeriodicSetupRiConfigIndex(const CQIReportPeriodicSetupRiConfigIndex& cQIReportPeriodicSetupRiConfigIndex) { *static_cast<CQIReportPeriodicSetupRiConfigIndex*>(items[3]) = cQIReportPeriodicSetupRiConfigIndex; }
 	void setCQIReportPeriodicSetupSimultaneousAckNackAndCQI(const CQIReportPeriodicSetupSimultaneousAckNackAndCQI& cQIReportPeriodicSetupSimultaneousAckNackAndCQI) { *static_cast<CQIReportPeriodicSetupSimultaneousAckNackAndCQI*>(items[4]) = cQIReportPeriodicSetupSimultaneousAckNackAndCQI; }
+
+	CQIReportPeriodicSetupCqiPUCCHResourceIndex& getCQIReportPeriodicSetupCqiPUCCHResourceIndex() { return *static_cast<CQIReportPeriodicSetupCqiPUCCHResourceIndex*>(items[0]); }
+	CQIReportPeriodicSetupCqipmiConfigIndex& getCQIReportPeriodicSetupCqipmiConfigIndex() { return *static_cast<CQIReportPeriodicSetupCqipmiConfigIndex*>(items[1]); }
+	CQIReportPeriodicSetupCqiFormatIndicatorPeriodic& getCQIReportPeriodicSetupCqiFormatIndicatorPeriodic() { return *static_cast<CQIReportPeriodicSetupCqiFormatIndicatorPeriodic*>(items[2]); }
+	CQIReportPeriodicSetupRiConfigIndex& getCQIReportPeriodicSetupRiConfigIndex() { return *static_cast<CQIReportPeriodicSetupRiConfigIndex*>(items[3]); }
+	CQIReportPeriodicSetupSimultaneousAckNackAndCQI& getCQIReportPeriodicSetupSimultaneousAckNackAndCQI() { return *static_cast<CQIReportPeriodicSetupSimultaneousAckNackAndCQI*>(items[4]); }
 };
 
 class CQIReportPeriodic : public Choice {
@@ -2496,6 +2786,10 @@ public:
 	void setCqiReportModeAperiodic(const CQIReportModeAperiodic& cqiReportModeAperiodic) { *static_cast<CQIReportModeAperiodic*>(items[0]) = cqiReportModeAperiodic; }
 	void setCQIReportConfigNomPDSCHRSEPREOffset(const CQIReportConfigNomPDSCHRSEPREOffset& cQIReportConfigNomPDSCHRSEPREOffset) { *static_cast<CQIReportConfigNomPDSCHRSEPREOffset*>(items[1]) = cQIReportConfigNomPDSCHRSEPREOffset; }
 	void setCqiReportPeriodic(const CQIReportPeriodic& cqiReportPeriodic) { *static_cast<CQIReportPeriodic*>(items[2]) = cqiReportPeriodic; }
+
+	CQIReportModeAperiodic& getCqiReportModeAperiodic() { return *static_cast<CQIReportModeAperiodic*>(items[0]); }
+	CQIReportConfigNomPDSCHRSEPREOffset& getCQIReportConfigNomPDSCHRSEPREOffset() { return *static_cast<CQIReportConfigNomPDSCHRSEPREOffset*>(items[1]); }
+	CQIReportPeriodic& getCqiReportPeriodic() { return *static_cast<CQIReportPeriodic*>(items[2]); }
 };
 
 typedef Null SoundingRSULConfigDedicatedRelease;
@@ -2552,6 +2846,14 @@ public:
 	void setSoundingRSULConfigDedicatedSetupSrsConfigIndex(const SoundingRSULConfigDedicatedSetupSrsConfigIndex& soundingRSULConfigDedicatedSetupSrsConfigIndex) { *static_cast<SoundingRSULConfigDedicatedSetupSrsConfigIndex*>(items[4]) = soundingRSULConfigDedicatedSetupSrsConfigIndex; }
 	void setSoundingRSULConfigDedicatedSetupTransmissionComb(const SoundingRSULConfigDedicatedSetupTransmissionComb& soundingRSULConfigDedicatedSetupTransmissionComb) { *static_cast<SoundingRSULConfigDedicatedSetupTransmissionComb*>(items[5]) = soundingRSULConfigDedicatedSetupTransmissionComb; }
 	void setSoundingRSULConfigDedicatedSetupcyclicShift(const SoundingRSULConfigDedicatedSetupcyclicShift& soundingRSULConfigDedicatedSetupcyclicShift) { *static_cast<SoundingRSULConfigDedicatedSetupcyclicShift*>(items[6]) = soundingRSULConfigDedicatedSetupcyclicShift; }
+
+	SoundingRSULConfigDedicatedSetupsrs_Bandwidth& getSoundingRSULConfigDedicatedSetupsrs_Bandwidth() { return *static_cast<SoundingRSULConfigDedicatedSetupsrs_Bandwidth*>(items[0]); }
+	SoundingRSULConfigDedicatedSetupsrs_HoppingBandwidth& getSoundingRSULConfigDedicatedSetupsrs_HoppingBandwidth() { return *static_cast<SoundingRSULConfigDedicatedSetupsrs_HoppingBandwidth*>(items[1]); }
+	SoundingRSULConfigDedicatedSetupFreqDomainPosition& getSoundingRSULConfigDedicatedSetupFreqDomainPosition() { return *static_cast<SoundingRSULConfigDedicatedSetupFreqDomainPosition*>(items[2]); }
+	SoundingRSULConfigDedicatedSetupDuration& getSoundingRSULConfigDedicatedSetupDuration() { return *static_cast<SoundingRSULConfigDedicatedSetupDuration*>(items[3]); }
+	SoundingRSULConfigDedicatedSetupSrsConfigIndex& getSoundingRSULConfigDedicatedSetupSrsConfigIndex() { return *static_cast<SoundingRSULConfigDedicatedSetupSrsConfigIndex*>(items[4]); }
+	SoundingRSULConfigDedicatedSetupTransmissionComb& getSoundingRSULConfigDedicatedSetupTransmissionComb() { return *static_cast<SoundingRSULConfigDedicatedSetupTransmissionComb*>(items[5]); }
+	SoundingRSULConfigDedicatedSetupcyclicShift& getSoundingRSULConfigDedicatedSetupcyclicShift() { return *static_cast<SoundingRSULConfigDedicatedSetupcyclicShift*>(items[6]); }
 };
 
 class SoundingRSULConfigDedicated : public Choice {
@@ -2644,6 +2946,10 @@ public:
 	void setAntennaInfoDedicatedtransmissionMode(const AntennaInfoDedicatedtransmissionMode& antennaInfoDedicatedtransmissionMode) { *static_cast<AntennaInfoDedicatedtransmissionMode*>(items[0]) = antennaInfoDedicatedtransmissionMode; }
 	void setAntennaInfoDedicatedCodebookSubsetRestriction(const AntennaInfoDedicatedCodebookSubsetRestriction& antennaInfoDedicatedCodebookSubsetRestriction) { *static_cast<AntennaInfoDedicatedCodebookSubsetRestriction*>(items[1]) = antennaInfoDedicatedCodebookSubsetRestriction; }
 	void setAntennaInfoDedicatedUeTransmitAntennaSelection(const AntennaInfoDedicatedUeTransmitAntennaSelection& antennaInfoDedicatedUeTransmitAntennaSelection) { *static_cast<AntennaInfoDedicatedUeTransmitAntennaSelection*>(items[2]) = antennaInfoDedicatedUeTransmitAntennaSelection; }
+
+	AntennaInfoDedicatedtransmissionMode& getAntennaInfoDedicatedtransmissionMode() { return *static_cast<AntennaInfoDedicatedtransmissionMode*>(items[0]); }
+	AntennaInfoDedicatedCodebookSubsetRestriction& getAntennaInfoDedicatedCodebookSubsetRestriction() { return *static_cast<AntennaInfoDedicatedCodebookSubsetRestriction*>(items[1]); }
+	AntennaInfoDedicatedUeTransmitAntennaSelection& getAntennaInfoDedicatedUeTransmitAntennaSelection() { return *static_cast<AntennaInfoDedicatedUeTransmitAntennaSelection*>(items[2]); }
 };
 
 typedef Null PhysicalConfigDedicatedAntennaInfoDefaultValue;
@@ -2690,6 +2996,10 @@ public:
 	void setSchedulingRequestConfigSetupSrPUCCHResourceIndex(const SchedulingRequestConfigSetupSrPUCCHResourceIndex& schedulingRequestConfigSetupSrPUCCHResourceIndex) { *static_cast<SchedulingRequestConfigSetupSrPUCCHResourceIndex*>(items[0]) = schedulingRequestConfigSetupSrPUCCHResourceIndex; }
 	void setSchedulingRequestConfigSetupSrConfigIndex(const SchedulingRequestConfigSetupSrConfigIndex& schedulingRequestConfigSetupSrConfigIndex) { *static_cast<SchedulingRequestConfigSetupSrConfigIndex*>(items[1]) = schedulingRequestConfigSetupSrConfigIndex; }
 	void setSchedulingRequestConfigSetupdsr_TransMax(const SchedulingRequestConfigSetupdsr_TransMax& schedulingRequestConfigSetupdsr_TransMax) { *static_cast<SchedulingRequestConfigSetupdsr_TransMax*>(items[2]) = schedulingRequestConfigSetupdsr_TransMax; }
+
+	SchedulingRequestConfigSetupSrPUCCHResourceIndex& getSchedulingRequestConfigSetupSrPUCCHResourceIndex() { return *static_cast<SchedulingRequestConfigSetupSrPUCCHResourceIndex*>(items[0]); }
+	SchedulingRequestConfigSetupSrConfigIndex& getSchedulingRequestConfigSetupSrConfigIndex() { return *static_cast<SchedulingRequestConfigSetupSrConfigIndex*>(items[1]); }
+	SchedulingRequestConfigSetupdsr_TransMax& getSchedulingRequestConfigSetupdsr_TransMax() { return *static_cast<SchedulingRequestConfigSetupdsr_TransMax*>(items[2]); }
 };
 
 class SchedulingRequestConfig : public Choice {
@@ -2721,8 +3031,12 @@ private:
 public:
 	static const Info theInfo;
 	CQIReportConfigv920(): Sequence(&theInfo) {}
+
 	void setCQIReportConfigv920cqi_Mask_r9(const CQIReportConfigv920cqi_Mask_r9& cQIReportConfigv920cqi_Mask_r9) { *static_cast<CQIReportConfigv920cqi_Mask_r9*>(items[0]) = cQIReportConfigv920cqi_Mask_r9; }
 	void setCQIReportConfigv920pmi_RI_Report_r9(const CQIReportConfigv920pmi_RI_Report_r9& cQIReportConfigv920pmi_RI_Report_r9) { *static_cast<CQIReportConfigv920pmi_RI_Report_r9*>(items[1]) = cQIReportConfigv920pmi_RI_Report_r9; }
+
+	CQIReportConfigv920cqi_Mask_r9& getCQIReportConfigv920cqi_Mask_r9() { return *static_cast<CQIReportConfigv920cqi_Mask_r9*>(items[0]); }
+	CQIReportConfigv920pmi_RI_Report_r9& getCQIReportConfigv920pmi_RI_Report_r9() { return *static_cast<CQIReportConfigv920pmi_RI_Report_r9*>(items[1]); }
 };
 
 typedef BitString<CONSTRAINED, 6, 6> AntennaInfoDedicatedv920CodebookSubsetRestrictionv920N2TxAntennatm8r9;
@@ -2748,7 +3062,10 @@ private:
 public:
 	static const Info theInfo;
 	AntennaInfoDedicatedv920(): Sequence(&theInfo) {}
+
 	void setAntennaInfoDedicatedv920CodebookSubsetRestrictionv920(const AntennaInfoDedicatedv920CodebookSubsetRestrictionv920& antennaInfoDedicatedv920CodebookSubsetRestrictionv920) { *static_cast<AntennaInfoDedicatedv920CodebookSubsetRestrictionv920*>(items[0]) = antennaInfoDedicatedv920CodebookSubsetRestrictionv920; }
+
+	AntennaInfoDedicatedv920CodebookSubsetRestrictionv920& getAntennaInfoDedicatedv920CodebookSubsetRestrictionv920() { return *static_cast<AntennaInfoDedicatedv920CodebookSubsetRestrictionv920*>(items[0]); }
 };
 
 enum AntennaInfoDedicatedr10transmissionMode_r10Values {
@@ -2805,6 +3122,10 @@ public:
 	void setAntennaInfoDedicatedr10transmissionMode_r10(const AntennaInfoDedicatedr10transmissionMode_r10& antennaInfoDedicatedr10transmissionMode_r10) { *static_cast<AntennaInfoDedicatedr10transmissionMode_r10*>(items[0]) = antennaInfoDedicatedr10transmissionMode_r10; }
 	void setAntennaInfoDedicatedr10CodebookSubsetRestrictionr10(const AntennaInfoDedicatedr10CodebookSubsetRestrictionr10& antennaInfoDedicatedr10CodebookSubsetRestrictionr10) { *static_cast<AntennaInfoDedicatedr10CodebookSubsetRestrictionr10*>(items[1]) = antennaInfoDedicatedr10CodebookSubsetRestrictionr10; }
 	void setAntennaInfoDedicatedr10UeTransmitAntennaSelection(const AntennaInfoDedicatedr10UeTransmitAntennaSelection& antennaInfoDedicatedr10UeTransmitAntennaSelection) { *static_cast<AntennaInfoDedicatedr10UeTransmitAntennaSelection*>(items[2]) = antennaInfoDedicatedr10UeTransmitAntennaSelection; }
+
+	AntennaInfoDedicatedr10transmissionMode_r10& getAntennaInfoDedicatedr10transmissionMode_r10() { return *static_cast<AntennaInfoDedicatedr10transmissionMode_r10*>(items[0]); }
+	AntennaInfoDedicatedr10CodebookSubsetRestrictionr10& getAntennaInfoDedicatedr10CodebookSubsetRestrictionr10() { return *static_cast<AntennaInfoDedicatedr10CodebookSubsetRestrictionr10*>(items[1]); }
+	AntennaInfoDedicatedr10UeTransmitAntennaSelection& getAntennaInfoDedicatedr10UeTransmitAntennaSelection() { return *static_cast<AntennaInfoDedicatedr10UeTransmitAntennaSelection*>(items[2]); }
 };
 
 typedef Null PhysicalConfigDedicatedAntennaInfor10DefaultValue;
@@ -2845,8 +3166,12 @@ private:
 public:
 	static const Info theInfo;
 	AntennaInfoULr10(): Sequence(&theInfo) {}
+
 	void setAntennaInfoULr10transmissionModeUL_r10(const AntennaInfoULr10transmissionModeUL_r10& antennaInfoULr10transmissionModeUL_r10) { *static_cast<AntennaInfoULr10transmissionModeUL_r10*>(items[0]) = antennaInfoULr10transmissionModeUL_r10; }
 	void setAntennaInfoULr10fourAntennaPortActivated_r10(const AntennaInfoULr10fourAntennaPortActivated_r10& antennaInfoULr10fourAntennaPortActivated_r10) { *static_cast<AntennaInfoULr10fourAntennaPortActivated_r10*>(items[1]) = antennaInfoULr10fourAntennaPortActivated_r10; }
+
+	AntennaInfoULr10transmissionModeUL_r10& getAntennaInfoULr10transmissionModeUL_r10() { return *static_cast<AntennaInfoULr10transmissionModeUL_r10*>(items[0]); }
+	AntennaInfoULr10fourAntennaPortActivated_r10& getAntennaInfoULr10fourAntennaPortActivated_r10() { return *static_cast<AntennaInfoULr10fourAntennaPortActivated_r10*>(items[1]); }
 };
 
 typedef Boolean PhysicalConfigDedicatedCifPresencer10;
@@ -2868,6 +3193,9 @@ public:
 
 	void setCQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger1r10(const CQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger1r10& cQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger1r10) { *static_cast<CQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger1r10*>(items[0]) = cQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger1r10; }
 	void setCQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger2r10(const CQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger2r10& cQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger2r10) { *static_cast<CQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger2r10*>(items[1]) = cQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger2r10; }
+
+	CQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger1r10& getCQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger1r10() { return *static_cast<CQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger1r10*>(items[0]); }
+	CQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger2r10& getCQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger2r10() { return *static_cast<CQIReportAperiodicr10SetupAperiodicCSITriggerr10Trigger2r10*>(items[1]); }
 };
 
 class CQIReportAperiodicr10Setup : public Sequence {
@@ -2881,6 +3209,9 @@ public:
 
 	void setCqiReportModeAperiodicr10(const CQIReportModeAperiodic& cqiReportModeAperiodicr10) { *static_cast<CQIReportModeAperiodic*>(items[0]) = cqiReportModeAperiodicr10; }
 	void setCQIReportAperiodicr10SetupAperiodicCSITriggerr10(const CQIReportAperiodicr10SetupAperiodicCSITriggerr10& cQIReportAperiodicr10SetupAperiodicCSITriggerr10) { *static_cast<CQIReportAperiodicr10SetupAperiodicCSITriggerr10*>(items[1]) = cQIReportAperiodicr10SetupAperiodicCSITriggerr10; }
+
+	CQIReportModeAperiodic& getCqiReportModeAperiodicr10() { return *static_cast<CQIReportModeAperiodic*>(items[0]); }
+	CQIReportAperiodicr10SetupAperiodicCSITriggerr10& getCQIReportAperiodicr10SetupAperiodicCSITriggerr10() { return *static_cast<CQIReportAperiodicr10SetupAperiodicCSITriggerr10*>(items[1]); }
 };
 
 class CQIReportAperiodicr10 : public Choice {
@@ -2918,7 +3249,10 @@ private:
 public:
 	static const Info theInfo;
 	CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10WidebandCQIr10(): Sequence(&theInfo) {}
+
 	void setCQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10WidebandCQIr10csi_ReportMode_r10(const CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10WidebandCQIr10csi_ReportMode_r10& cQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10WidebandCQIr10csi_ReportMode_r10) { *static_cast<CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10WidebandCQIr10csi_ReportMode_r10*>(items[0]) = cQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10WidebandCQIr10csi_ReportMode_r10; }
+
+	CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10WidebandCQIr10csi_ReportMode_r10& getCQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10WidebandCQIr10csi_ReportMode_r10() { return *static_cast<CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10WidebandCQIr10csi_ReportMode_r10*>(items[0]); }
 };
 
 typedef Integer<CONSTRAINED, 1, 4> CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10K;
@@ -2940,6 +3274,9 @@ public:
 
 	void setCQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10K(const CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10K& cQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10K) { *static_cast<CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10K*>(items[0]) = cQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10K; }
 	void setCQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10periodicityFactor_r10(const CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10periodicityFactor_r10& cQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10periodicityFactor_r10) { *static_cast<CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10periodicityFactor_r10*>(items[1]) = cQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10periodicityFactor_r10; }
+
+	CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10K& getCQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10K() { return *static_cast<CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10K*>(items[0]); }
+	CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10periodicityFactor_r10& getCQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10periodicityFactor_r10() { return *static_cast<CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10SubbandCQIr10periodicityFactor_r10*>(items[1]); }
 };
 
 class CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10 : public Choice {
@@ -2980,6 +3317,9 @@ public:
 
 	void setCQIReportPeriodicr10SetupCsiConfigIndexr10SetupCqipmiConfigIndex2r10(const CQIReportPeriodicr10SetupCsiConfigIndexr10SetupCqipmiConfigIndex2r10& cQIReportPeriodicr10SetupCsiConfigIndexr10SetupCqipmiConfigIndex2r10) { *static_cast<CQIReportPeriodicr10SetupCsiConfigIndexr10SetupCqipmiConfigIndex2r10*>(items[0]) = cQIReportPeriodicr10SetupCsiConfigIndexr10SetupCqipmiConfigIndex2r10; }
 	void setCQIReportPeriodicr10SetupCsiConfigIndexr10SetupRiConfigIndex2r10(const CQIReportPeriodicr10SetupCsiConfigIndexr10SetupRiConfigIndex2r10& cQIReportPeriodicr10SetupCsiConfigIndexr10SetupRiConfigIndex2r10) { *static_cast<CQIReportPeriodicr10SetupCsiConfigIndexr10SetupRiConfigIndex2r10*>(items[1]) = cQIReportPeriodicr10SetupCsiConfigIndexr10SetupRiConfigIndex2r10; }
+
+	CQIReportPeriodicr10SetupCsiConfigIndexr10SetupCqipmiConfigIndex2r10& getCQIReportPeriodicr10SetupCsiConfigIndexr10SetupCqipmiConfigIndex2r10() { return *static_cast<CQIReportPeriodicr10SetupCsiConfigIndexr10SetupCqipmiConfigIndex2r10*>(items[0]); }
+	CQIReportPeriodicr10SetupCsiConfigIndexr10SetupRiConfigIndex2r10& getCQIReportPeriodicr10SetupCsiConfigIndexr10SetupRiConfigIndex2r10() { return *static_cast<CQIReportPeriodicr10SetupCsiConfigIndexr10SetupRiConfigIndex2r10*>(items[1]); }
 };
 
 class CQIReportPeriodicr10SetupCsiConfigIndexr10 : public Choice {
@@ -3011,6 +3351,15 @@ public:
 	void setCQIReportPeriodicr10SetupSimultaneousAckNackAndCQI(const CQIReportPeriodicr10SetupSimultaneousAckNackAndCQI& cQIReportPeriodicr10SetupSimultaneousAckNackAndCQI) { *static_cast<CQIReportPeriodicr10SetupSimultaneousAckNackAndCQI*>(items[5]) = cQIReportPeriodicr10SetupSimultaneousAckNackAndCQI; }
 	void setCQIReportPeriodicr10Setupcqi_Mask_r9(const CQIReportPeriodicr10Setupcqi_Mask_r9& cQIReportPeriodicr10Setupcqi_Mask_r9) { *static_cast<CQIReportPeriodicr10Setupcqi_Mask_r9*>(items[6]) = cQIReportPeriodicr10Setupcqi_Mask_r9; }
 	void setCQIReportPeriodicr10SetupCsiConfigIndexr10(const CQIReportPeriodicr10SetupCsiConfigIndexr10& cQIReportPeriodicr10SetupCsiConfigIndexr10) { *static_cast<CQIReportPeriodicr10SetupCsiConfigIndexr10*>(items[7]) = cQIReportPeriodicr10SetupCsiConfigIndexr10; }
+
+	CQIReportPeriodicr10SetupCqiPUCCHResourceIndexr10& getCQIReportPeriodicr10SetupCqiPUCCHResourceIndexr10() { return *static_cast<CQIReportPeriodicr10SetupCqiPUCCHResourceIndexr10*>(items[0]); }
+	CQIReportPeriodicr10SetupCqiPUCCHResourceIndexP1r10& getCQIReportPeriodicr10SetupCqiPUCCHResourceIndexP1r10() { return *static_cast<CQIReportPeriodicr10SetupCqiPUCCHResourceIndexP1r10*>(items[1]); }
+	CQIReportPeriodicr10SetupCqipmiConfigIndex& getCQIReportPeriodicr10SetupCqipmiConfigIndex() { return *static_cast<CQIReportPeriodicr10SetupCqipmiConfigIndex*>(items[2]); }
+	CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10& getCQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10() { return *static_cast<CQIReportPeriodicr10SetupCqiFormatIndicatorPeriodicr10*>(items[3]); }
+	CQIReportPeriodicr10SetupRiConfigIndex& getCQIReportPeriodicr10SetupRiConfigIndex() { return *static_cast<CQIReportPeriodicr10SetupRiConfigIndex*>(items[4]); }
+	CQIReportPeriodicr10SetupSimultaneousAckNackAndCQI& getCQIReportPeriodicr10SetupSimultaneousAckNackAndCQI() { return *static_cast<CQIReportPeriodicr10SetupSimultaneousAckNackAndCQI*>(items[5]); }
+	CQIReportPeriodicr10Setupcqi_Mask_r9& getCQIReportPeriodicr10Setupcqi_Mask_r9() { return *static_cast<CQIReportPeriodicr10Setupcqi_Mask_r9*>(items[6]); }
+	CQIReportPeriodicr10SetupCsiConfigIndexr10& getCQIReportPeriodicr10SetupCsiConfigIndexr10() { return *static_cast<CQIReportPeriodicr10SetupCsiConfigIndexr10*>(items[7]); }
 };
 
 class CQIReportPeriodicr10 : public Choice {
@@ -3076,6 +3425,9 @@ public:
 
 	void setCsiMeasSubframeSet1r10(const MeasSubframePatternr10& csiMeasSubframeSet1r10) { *static_cast<MeasSubframePatternr10*>(items[0]) = csiMeasSubframeSet1r10; }
 	void setCsiMeasSubframeSet2r10(const MeasSubframePatternr10& csiMeasSubframeSet2r10) { *static_cast<MeasSubframePatternr10*>(items[1]) = csiMeasSubframeSet2r10; }
+
+	MeasSubframePatternr10& getCsiMeasSubframeSet1r10() { return *static_cast<MeasSubframePatternr10*>(items[0]); }
+	MeasSubframePatternr10& getCsiMeasSubframeSet2r10() { return *static_cast<MeasSubframePatternr10*>(items[1]); }
 };
 
 class CQIReportConfigr10CsiSubframePatternConfigr10 : public Choice {
@@ -3104,6 +3456,12 @@ public:
 	void setCqiReportPeriodicr10(const CQIReportPeriodicr10& cqiReportPeriodicr10) { *static_cast<CQIReportPeriodicr10*>(items[2]) = cqiReportPeriodicr10; }
 	void setCQIReportConfigr10pmi_RI_Report_r9(const CQIReportConfigr10pmi_RI_Report_r9& cQIReportConfigr10pmi_RI_Report_r9) { *static_cast<CQIReportConfigr10pmi_RI_Report_r9*>(items[3]) = cQIReportConfigr10pmi_RI_Report_r9; }
 	void setCQIReportConfigr10CsiSubframePatternConfigr10(const CQIReportConfigr10CsiSubframePatternConfigr10& cQIReportConfigr10CsiSubframePatternConfigr10) { *static_cast<CQIReportConfigr10CsiSubframePatternConfigr10*>(items[4]) = cQIReportConfigr10CsiSubframePatternConfigr10; }
+
+	CQIReportAperiodicr10& getCqiReportAperiodicr10() { return *static_cast<CQIReportAperiodicr10*>(items[0]); }
+	CQIReportConfigr10NomPDSCHRSEPREOffset& getCQIReportConfigr10NomPDSCHRSEPREOffset() { return *static_cast<CQIReportConfigr10NomPDSCHRSEPREOffset*>(items[1]); }
+	CQIReportPeriodicr10& getCqiReportPeriodicr10() { return *static_cast<CQIReportPeriodicr10*>(items[2]); }
+	CQIReportConfigr10pmi_RI_Report_r9& getCQIReportConfigr10pmi_RI_Report_r9() { return *static_cast<CQIReportConfigr10pmi_RI_Report_r9*>(items[3]); }
+	CQIReportConfigr10CsiSubframePatternConfigr10& getCQIReportConfigr10CsiSubframePatternConfigr10() { return *static_cast<CQIReportConfigr10CsiSubframePatternConfigr10*>(items[4]); }
 };
 
 typedef Null CSIRSConfigr10CsiRSr10Release;
@@ -3135,6 +3493,11 @@ public:
 	void setCSIRSConfigr10CsiRSr10SetupResourceConfigr10(const CSIRSConfigr10CsiRSr10SetupResourceConfigr10& cSIRSConfigr10CsiRSr10SetupResourceConfigr10) { *static_cast<CSIRSConfigr10CsiRSr10SetupResourceConfigr10*>(items[1]) = cSIRSConfigr10CsiRSr10SetupResourceConfigr10; }
 	void setCSIRSConfigr10CsiRSr10SetupSubframeConfigr10(const CSIRSConfigr10CsiRSr10SetupSubframeConfigr10& cSIRSConfigr10CsiRSr10SetupSubframeConfigr10) { *static_cast<CSIRSConfigr10CsiRSr10SetupSubframeConfigr10*>(items[2]) = cSIRSConfigr10CsiRSr10SetupSubframeConfigr10; }
 	void setCSIRSConfigr10CsiRSr10SetupPCr10(const CSIRSConfigr10CsiRSr10SetupPCr10& cSIRSConfigr10CsiRSr10SetupPCr10) { *static_cast<CSIRSConfigr10CsiRSr10SetupPCr10*>(items[3]) = cSIRSConfigr10CsiRSr10SetupPCr10; }
+
+	CSIRSConfigr10CsiRSr10SetupantennaPortsCount_r10& getCSIRSConfigr10CsiRSr10SetupantennaPortsCount_r10() { return *static_cast<CSIRSConfigr10CsiRSr10SetupantennaPortsCount_r10*>(items[0]); }
+	CSIRSConfigr10CsiRSr10SetupResourceConfigr10& getCSIRSConfigr10CsiRSr10SetupResourceConfigr10() { return *static_cast<CSIRSConfigr10CsiRSr10SetupResourceConfigr10*>(items[1]); }
+	CSIRSConfigr10CsiRSr10SetupSubframeConfigr10& getCSIRSConfigr10CsiRSr10SetupSubframeConfigr10() { return *static_cast<CSIRSConfigr10CsiRSr10SetupSubframeConfigr10*>(items[2]); }
+	CSIRSConfigr10CsiRSr10SetupPCr10& getCSIRSConfigr10CsiRSr10SetupPCr10() { return *static_cast<CSIRSConfigr10CsiRSr10SetupPCr10*>(items[3]); }
 };
 
 class CSIRSConfigr10CsiRSr10 : public Choice {
@@ -3166,6 +3529,9 @@ public:
 
 	void setCSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerResourceConfigListr10(const CSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerResourceConfigListr10& cSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerResourceConfigListr10) { *static_cast<CSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerResourceConfigListr10*>(items[0]) = cSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerResourceConfigListr10; }
 	void setCSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerSubframeConfigr10(const CSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerSubframeConfigr10& cSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerSubframeConfigr10) { *static_cast<CSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerSubframeConfigr10*>(items[1]) = cSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerSubframeConfigr10; }
+
+	CSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerResourceConfigListr10& getCSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerResourceConfigListr10() { return *static_cast<CSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerResourceConfigListr10*>(items[0]); }
+	CSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerSubframeConfigr10& getCSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerSubframeConfigr10() { return *static_cast<CSIRSConfigr10ZeroTxPowerCSIRSr10SetupZeroTxPowerSubframeConfigr10*>(items[1]); }
 };
 
 class CSIRSConfigr10ZeroTxPowerCSIRSr10 : public Choice {
@@ -3187,8 +3553,12 @@ private:
 public:
 	static const Info theInfo;
 	CSIRSConfigr10(): Sequence(&theInfo) {}
+
 	void setCSIRSConfigr10CsiRSr10(const CSIRSConfigr10CsiRSr10& cSIRSConfigr10CsiRSr10) { *static_cast<CSIRSConfigr10CsiRSr10*>(items[0]) = cSIRSConfigr10CsiRSr10; }
 	void setCSIRSConfigr10ZeroTxPowerCSIRSr10(const CSIRSConfigr10ZeroTxPowerCSIRSr10& cSIRSConfigr10ZeroTxPowerCSIRSr10) { *static_cast<CSIRSConfigr10ZeroTxPowerCSIRSr10*>(items[1]) = cSIRSConfigr10ZeroTxPowerCSIRSr10; }
+
+	CSIRSConfigr10CsiRSr10& getCSIRSConfigr10CsiRSr10() { return *static_cast<CSIRSConfigr10CsiRSr10*>(items[0]); }
+	CSIRSConfigr10ZeroTxPowerCSIRSr10& getCSIRSConfigr10ZeroTxPowerCSIRSr10() { return *static_cast<CSIRSConfigr10ZeroTxPowerCSIRSr10*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 549> N3PUCCHANListr10Item;
@@ -3211,6 +3581,8 @@ public:
 	PUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10Setup(const PUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10SetupN3PUCCHANListP1r10& pUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10SetupN3PUCCHANListP1r10);
 
 	void setPUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10SetupN3PUCCHANListP1r10(const PUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10SetupN3PUCCHANListP1r10& pUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10SetupN3PUCCHANListP1r10) { *static_cast<PUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10SetupN3PUCCHANListP1r10*>(items[0]) = pUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10SetupN3PUCCHANListP1r10; }
+
+	PUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10SetupN3PUCCHANListP1r10& getPUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10SetupN3PUCCHANListP1r10() { return *static_cast<PUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10SetupN3PUCCHANListP1r10*>(items[0]); }
 };
 
 class PUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10 : public Choice {
@@ -3232,8 +3604,12 @@ private:
 public:
 	static const Info theInfo;
 	PUCCHConfigDedicatedv1020PucchFormatr10Format3r10(): Sequence(&theInfo) {}
+
 	void setPUCCHConfigDedicatedv1020PucchFormatr10Format3r10N3PUCCHANListr10(const PUCCHConfigDedicatedv1020PucchFormatr10Format3r10N3PUCCHANListr10& pUCCHConfigDedicatedv1020PucchFormatr10Format3r10N3PUCCHANListr10) { *static_cast<PUCCHConfigDedicatedv1020PucchFormatr10Format3r10N3PUCCHANListr10*>(items[0]) = pUCCHConfigDedicatedv1020PucchFormatr10Format3r10N3PUCCHANListr10; }
 	void setPUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10(const PUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10& pUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10) { *static_cast<PUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10*>(items[1]) = pUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10; }
+
+	PUCCHConfigDedicatedv1020PucchFormatr10Format3r10N3PUCCHANListr10& getPUCCHConfigDedicatedv1020PucchFormatr10Format3r10N3PUCCHANListr10() { return *static_cast<PUCCHConfigDedicatedv1020PucchFormatr10Format3r10N3PUCCHANListr10*>(items[0]); }
+	PUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10& getPUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10() { return *static_cast<PUCCHConfigDedicatedv1020PucchFormatr10Format3r10TwoAntennaPortActivatedPUCCHFormat3r10*>(items[1]); }
 };
 
 typedef Null PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10Release;
@@ -3254,6 +3630,8 @@ public:
 	PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10Setup(const PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10SetupN1PUCCHANCSListr10& pUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10SetupN1PUCCHANCSListr10);
 
 	void setPUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10SetupN1PUCCHANCSListr10(const PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10SetupN1PUCCHANCSListr10& pUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10SetupN1PUCCHANCSListr10) { *static_cast<PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10SetupN1PUCCHANCSListr10*>(items[0]) = pUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10SetupN1PUCCHANCSListr10; }
+
+	PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10SetupN1PUCCHANCSListr10& getPUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10SetupN1PUCCHANCSListr10() { return *static_cast<PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10SetupN1PUCCHANCSListr10*>(items[0]); }
 };
 
 class PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10 : public Choice {
@@ -3275,7 +3653,10 @@ private:
 public:
 	static const Info theInfo;
 	PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10(): Sequence(&theInfo) {}
+
 	void setPUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10(const PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10& pUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10) { *static_cast<PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10*>(items[0]) = pUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10; }
+
+	PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10& getPUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10() { return *static_cast<PUCCHConfigDedicatedv1020PucchFormatr10ChannelSelectionr10N1PUCCHANCSr10*>(items[0]); }
 };
 
 class PUCCHConfigDedicatedv1020PucchFormatr10 : public Choice {
@@ -3309,10 +3690,16 @@ private:
 public:
 	static const Info theInfo;
 	PUCCHConfigDedicatedv1020(): Sequence(&theInfo) {}
+
 	void setPUCCHConfigDedicatedv1020PucchFormatr10(const PUCCHConfigDedicatedv1020PucchFormatr10& pUCCHConfigDedicatedv1020PucchFormatr10) { *static_cast<PUCCHConfigDedicatedv1020PucchFormatr10*>(items[0]) = pUCCHConfigDedicatedv1020PucchFormatr10; }
 	void setPUCCHConfigDedicatedv1020twoAntennaPortActivatedPUCCH_Format1a1b_r10(const PUCCHConfigDedicatedv1020twoAntennaPortActivatedPUCCH_Format1a1b_r10& pUCCHConfigDedicatedv1020twoAntennaPortActivatedPUCCH_Format1a1b_r10) { *static_cast<PUCCHConfigDedicatedv1020twoAntennaPortActivatedPUCCH_Format1a1b_r10*>(items[1]) = pUCCHConfigDedicatedv1020twoAntennaPortActivatedPUCCH_Format1a1b_r10; }
 	void setPUCCHConfigDedicatedv1020simultaneousPUCCH_PUSCH_r10(const PUCCHConfigDedicatedv1020simultaneousPUCCH_PUSCH_r10& pUCCHConfigDedicatedv1020simultaneousPUCCH_PUSCH_r10) { *static_cast<PUCCHConfigDedicatedv1020simultaneousPUCCH_PUSCH_r10*>(items[2]) = pUCCHConfigDedicatedv1020simultaneousPUCCH_PUSCH_r10; }
 	void setPUCCHConfigDedicatedv1020N1PUCCHANRepP1r10(const PUCCHConfigDedicatedv1020N1PUCCHANRepP1r10& pUCCHConfigDedicatedv1020N1PUCCHANRepP1r10) { *static_cast<PUCCHConfigDedicatedv1020N1PUCCHANRepP1r10*>(items[3]) = pUCCHConfigDedicatedv1020N1PUCCHANRepP1r10; }
+
+	PUCCHConfigDedicatedv1020PucchFormatr10& getPUCCHConfigDedicatedv1020PucchFormatr10() { return *static_cast<PUCCHConfigDedicatedv1020PucchFormatr10*>(items[0]); }
+	PUCCHConfigDedicatedv1020twoAntennaPortActivatedPUCCH_Format1a1b_r10& getPUCCHConfigDedicatedv1020twoAntennaPortActivatedPUCCH_Format1a1b_r10() { return *static_cast<PUCCHConfigDedicatedv1020twoAntennaPortActivatedPUCCH_Format1a1b_r10*>(items[1]); }
+	PUCCHConfigDedicatedv1020simultaneousPUCCH_PUSCH_r10& getPUCCHConfigDedicatedv1020simultaneousPUCCH_PUSCH_r10() { return *static_cast<PUCCHConfigDedicatedv1020simultaneousPUCCH_PUSCH_r10*>(items[2]); }
+	PUCCHConfigDedicatedv1020N1PUCCHANRepP1r10& getPUCCHConfigDedicatedv1020N1PUCCHANRepP1r10() { return *static_cast<PUCCHConfigDedicatedv1020N1PUCCHANRepP1r10*>(items[3]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 15> PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetACKIndexMCr10;
@@ -3333,6 +3720,10 @@ public:
 	void setPUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetACKIndexMCr10(const PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetACKIndexMCr10& pUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetACKIndexMCr10) { *static_cast<PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetACKIndexMCr10*>(items[0]) = pUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetACKIndexMCr10; }
 	void setPUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetRIIndexMCr10(const PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetRIIndexMCr10& pUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetRIIndexMCr10) { *static_cast<PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetRIIndexMCr10*>(items[1]) = pUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetRIIndexMCr10; }
 	void setPUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetCQIIndexMCr10(const PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetCQIIndexMCr10& pUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetCQIIndexMCr10) { *static_cast<PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetCQIIndexMCr10*>(items[2]) = pUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetCQIIndexMCr10; }
+
+	PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetACKIndexMCr10& getPUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetACKIndexMCr10() { return *static_cast<PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetACKIndexMCr10*>(items[0]); }
+	PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetRIIndexMCr10& getPUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetRIIndexMCr10() { return *static_cast<PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetRIIndexMCr10*>(items[1]); }
+	PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetCQIIndexMCr10& getPUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetCQIIndexMCr10() { return *static_cast<PUSCHConfigDedicatedv1020BetaOffsetMCr10BetaOffsetCQIIndexMCr10*>(items[2]); }
 };
 
 enum PUSCHConfigDedicatedv1020groupHoppingDisabled_r10Values {
@@ -3352,9 +3743,14 @@ private:
 public:
 	static const Info theInfo;
 	PUSCHConfigDedicatedv1020(): Sequence(&theInfo) {}
+
 	void setPUSCHConfigDedicatedv1020BetaOffsetMCr10(const PUSCHConfigDedicatedv1020BetaOffsetMCr10& pUSCHConfigDedicatedv1020BetaOffsetMCr10) { *static_cast<PUSCHConfigDedicatedv1020BetaOffsetMCr10*>(items[0]) = pUSCHConfigDedicatedv1020BetaOffsetMCr10; }
 	void setPUSCHConfigDedicatedv1020groupHoppingDisabled_r10(const PUSCHConfigDedicatedv1020groupHoppingDisabled_r10& pUSCHConfigDedicatedv1020groupHoppingDisabled_r10) { *static_cast<PUSCHConfigDedicatedv1020groupHoppingDisabled_r10*>(items[1]) = pUSCHConfigDedicatedv1020groupHoppingDisabled_r10; }
 	void setPUSCHConfigDedicatedv1020dmrs_WithOCC_Activated_r10(const PUSCHConfigDedicatedv1020dmrs_WithOCC_Activated_r10& pUSCHConfigDedicatedv1020dmrs_WithOCC_Activated_r10) { *static_cast<PUSCHConfigDedicatedv1020dmrs_WithOCC_Activated_r10*>(items[2]) = pUSCHConfigDedicatedv1020dmrs_WithOCC_Activated_r10; }
+
+	PUSCHConfigDedicatedv1020BetaOffsetMCr10& getPUSCHConfigDedicatedv1020BetaOffsetMCr10() { return *static_cast<PUSCHConfigDedicatedv1020BetaOffsetMCr10*>(items[0]); }
+	PUSCHConfigDedicatedv1020groupHoppingDisabled_r10& getPUSCHConfigDedicatedv1020groupHoppingDisabled_r10() { return *static_cast<PUSCHConfigDedicatedv1020groupHoppingDisabled_r10*>(items[1]); }
+	PUSCHConfigDedicatedv1020dmrs_WithOCC_Activated_r10& getPUSCHConfigDedicatedv1020dmrs_WithOCC_Activated_r10() { return *static_cast<PUSCHConfigDedicatedv1020dmrs_WithOCC_Activated_r10*>(items[2]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 2047> SchedulingRequestConfigv1020SrPUCCHResourceIndexP1r10;
@@ -3366,7 +3762,10 @@ private:
 public:
 	static const Info theInfo;
 	SchedulingRequestConfigv1020(): Sequence(&theInfo) {}
+
 	void setSchedulingRequestConfigv1020SrPUCCHResourceIndexP1r10(const SchedulingRequestConfigv1020SrPUCCHResourceIndexP1r10& schedulingRequestConfigv1020SrPUCCHResourceIndexP1r10) { *static_cast<SchedulingRequestConfigv1020SrPUCCHResourceIndexP1r10*>(items[0]) = schedulingRequestConfigv1020SrPUCCHResourceIndexP1r10; }
+
+	SchedulingRequestConfigv1020SrPUCCHResourceIndexP1r10& getSchedulingRequestConfigv1020SrPUCCHResourceIndexP1r10() { return *static_cast<SchedulingRequestConfigv1020SrPUCCHResourceIndexP1r10*>(items[0]); }
 };
 
 enum SRSAntennaPortValues {
@@ -3387,6 +3786,8 @@ public:
 	SoundingRSULConfigDedicatedv1020(const SRSAntennaPort& srsAntennaPortr10);
 
 	void setSrsAntennaPortr10(const SRSAntennaPort& srsAntennaPortr10) { *static_cast<SRSAntennaPort*>(items[0]) = srsAntennaPortr10; }
+
+	SRSAntennaPort& getSrsAntennaPortr10() { return *static_cast<SRSAntennaPort*>(items[0]); }
 };
 
 typedef Null SoundingRSULConfigDedicatedAperiodicr10Release;
@@ -3431,6 +3832,12 @@ public:
 	void setSRSConfigApr10FreqDomainPositionApr10(const SRSConfigApr10FreqDomainPositionApr10& sRSConfigApr10FreqDomainPositionApr10) { *static_cast<SRSConfigApr10FreqDomainPositionApr10*>(items[2]) = sRSConfigApr10FreqDomainPositionApr10; }
 	void setSRSConfigApr10TransmissionCombApr10(const SRSConfigApr10TransmissionCombApr10& sRSConfigApr10TransmissionCombApr10) { *static_cast<SRSConfigApr10TransmissionCombApr10*>(items[3]) = sRSConfigApr10TransmissionCombApr10; }
 	void setSRSConfigApr10cyclicShiftAp_r10(const SRSConfigApr10cyclicShiftAp_r10& sRSConfigApr10cyclicShiftAp_r10) { *static_cast<SRSConfigApr10cyclicShiftAp_r10*>(items[4]) = sRSConfigApr10cyclicShiftAp_r10; }
+
+	SRSAntennaPort& getSrsAntennaPortApr10() { return *static_cast<SRSAntennaPort*>(items[0]); }
+	SRSConfigApr10srs_BandwidthAp_r10& getSRSConfigApr10srs_BandwidthAp_r10() { return *static_cast<SRSConfigApr10srs_BandwidthAp_r10*>(items[1]); }
+	SRSConfigApr10FreqDomainPositionApr10& getSRSConfigApr10FreqDomainPositionApr10() { return *static_cast<SRSConfigApr10FreqDomainPositionApr10*>(items[2]); }
+	SRSConfigApr10TransmissionCombApr10& getSRSConfigApr10TransmissionCombApr10() { return *static_cast<SRSConfigApr10TransmissionCombApr10*>(items[3]); }
+	SRSConfigApr10cyclicShiftAp_r10& getSRSConfigApr10cyclicShiftAp_r10() { return *static_cast<SRSConfigApr10cyclicShiftAp_r10*>(items[4]); }
 };
 
 typedef SequenceOf<SRSConfigApr10, CONSTRAINED, 1, 3> SoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigApDCIFormat4r10;
@@ -3448,6 +3855,9 @@ public:
 
 	void setSrsConfigApDCIFormat0r10(const SRSConfigApr10& srsConfigApDCIFormat0r10) { *static_cast<SRSConfigApr10*>(items[0]) = srsConfigApDCIFormat0r10; }
 	void setSrsConfigApDCIFormat1a2b2cr10(const SRSConfigApr10& srsConfigApDCIFormat1a2b2cr10) { *static_cast<SRSConfigApr10*>(items[1]) = srsConfigApDCIFormat1a2b2cr10; }
+
+	SRSConfigApr10& getSrsConfigApDCIFormat0r10() { return *static_cast<SRSConfigApr10*>(items[0]); }
+	SRSConfigApr10& getSrsConfigApDCIFormat1a2b2cr10() { return *static_cast<SRSConfigApr10*>(items[1]); }
 };
 
 class SoundingRSULConfigDedicatedAperiodicr10SetupSrsActivateApr10 : public Choice {
@@ -3474,6 +3884,10 @@ public:
 	void setSoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigIndexApr10(const SoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigIndexApr10& soundingRSULConfigDedicatedAperiodicr10SetupSrsConfigIndexApr10) { *static_cast<SoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigIndexApr10*>(items[0]) = soundingRSULConfigDedicatedAperiodicr10SetupSrsConfigIndexApr10; }
 	void setSoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigApDCIFormat4r10(const SoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigApDCIFormat4r10& soundingRSULConfigDedicatedAperiodicr10SetupSrsConfigApDCIFormat4r10) { *static_cast<SoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigApDCIFormat4r10*>(items[1]) = soundingRSULConfigDedicatedAperiodicr10SetupSrsConfigApDCIFormat4r10; }
 	void setSoundingRSULConfigDedicatedAperiodicr10SetupSrsActivateApr10(const SoundingRSULConfigDedicatedAperiodicr10SetupSrsActivateApr10& soundingRSULConfigDedicatedAperiodicr10SetupSrsActivateApr10) { *static_cast<SoundingRSULConfigDedicatedAperiodicr10SetupSrsActivateApr10*>(items[2]) = soundingRSULConfigDedicatedAperiodicr10SetupSrsActivateApr10; }
+
+	SoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigIndexApr10& getSoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigIndexApr10() { return *static_cast<SoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigIndexApr10*>(items[0]); }
+	SoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigApDCIFormat4r10& getSoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigApDCIFormat4r10() { return *static_cast<SoundingRSULConfigDedicatedAperiodicr10SetupSrsConfigApDCIFormat4r10*>(items[1]); }
+	SoundingRSULConfigDedicatedAperiodicr10SetupSrsActivateApr10& getSoundingRSULConfigDedicatedAperiodicr10SetupSrsActivateApr10() { return *static_cast<SoundingRSULConfigDedicatedAperiodicr10SetupSrsActivateApr10*>(items[2]); }
 };
 
 class SoundingRSULConfigDedicatedAperiodicr10 : public Choice {
@@ -3525,6 +3939,11 @@ public:
 	void setDeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format1a1b_r10(const DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format1a1b_r10& deltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format1a1b_r10) { *static_cast<DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format1a1b_r10*>(items[1]) = deltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format1a1b_r10; }
 	void setDeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format22a2b_r10(const DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format22a2b_r10& deltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format22a2b_r10) { *static_cast<DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format22a2b_r10*>(items[2]) = deltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format22a2b_r10; }
 	void setDeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format3_r10(const DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format3_r10& deltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format3_r10) { *static_cast<DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format3_r10*>(items[3]) = deltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format3_r10; }
+
+	DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format1_r10& getDeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format1_r10() { return *static_cast<DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format1_r10*>(items[0]); }
+	DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format1a1b_r10& getDeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format1a1b_r10() { return *static_cast<DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format1a1b_r10*>(items[1]); }
+	DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format22a2b_r10& getDeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format22a2b_r10() { return *static_cast<DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format22a2b_r10*>(items[2]); }
+	DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format3_r10& getDeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format3_r10() { return *static_cast<DeltaTxDOffsetListPUCCHr10deltaTxD_OffsetPUCCH_Format3_r10*>(items[3]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 15> UplinkPowerControlDedicatedv1020PSRSOffsetApr10;
@@ -3536,8 +3955,12 @@ private:
 public:
 	static const Info theInfo;
 	UplinkPowerControlDedicatedv1020(): Sequence(&theInfo) {}
+
 	void setDeltaTxDOffsetListPUCCHr10(const DeltaTxDOffsetListPUCCHr10& deltaTxDOffsetListPUCCHr10) { *static_cast<DeltaTxDOffsetListPUCCHr10*>(items[0]) = deltaTxDOffsetListPUCCHr10; }
 	void setUplinkPowerControlDedicatedv1020PSRSOffsetApr10(const UplinkPowerControlDedicatedv1020PSRSOffsetApr10& uplinkPowerControlDedicatedv1020PSRSOffsetApr10) { *static_cast<UplinkPowerControlDedicatedv1020PSRSOffsetApr10*>(items[1]) = uplinkPowerControlDedicatedv1020PSRSOffsetApr10; }
+
+	DeltaTxDOffsetListPUCCHr10& getDeltaTxDOffsetListPUCCHr10() { return *static_cast<DeltaTxDOffsetListPUCCHr10*>(items[0]); }
+	UplinkPowerControlDedicatedv1020PSRSOffsetApr10& getUplinkPowerControlDedicatedv1020PSRSOffsetApr10() { return *static_cast<UplinkPowerControlDedicatedv1020PSRSOffsetApr10*>(items[1]); }
 };
 
 typedef Null PhysicalConfigDedicatedAdditionalSpectrumEmissionCAr10Release;
@@ -3554,6 +3977,8 @@ public:
 	PhysicalConfigDedicatedAdditionalSpectrumEmissionCAr10Setup(const AdditionalSpectrumEmission& additionalSpectrumEmissionPCellr10);
 
 	void setAdditionalSpectrumEmissionPCellr10(const AdditionalSpectrumEmission& additionalSpectrumEmissionPCellr10) { *static_cast<AdditionalSpectrumEmission*>(items[0]) = additionalSpectrumEmissionPCellr10; }
+
+	AdditionalSpectrumEmission& getAdditionalSpectrumEmissionPCellr10() { return *static_cast<AdditionalSpectrumEmission*>(items[0]); }
 };
 
 class PhysicalConfigDedicatedAdditionalSpectrumEmissionCAr10 : public Choice {
@@ -3575,6 +4000,7 @@ private:
 public:
 	static const Info theInfo;
 	PhysicalConfigDedicated(): Sequence(&theInfo) {}
+
 	void setPdschConfigDedicated(const PDSCHConfigDedicated& pdschConfigDedicated) { *static_cast<PDSCHConfigDedicated*>(items[0]) = pdschConfigDedicated; }
 	void setPucchConfigDedicated(const PUCCHConfigDedicated& pucchConfigDedicated) { *static_cast<PUCCHConfigDedicated*>(items[1]) = pucchConfigDedicated; }
 	void setPuschConfigDedicated(const PUSCHConfigDedicated& puschConfigDedicated) { *static_cast<PUSCHConfigDedicated*>(items[2]) = puschConfigDedicated; }
@@ -3599,6 +4025,31 @@ public:
 	void setSoundingRSULConfigDedicatedAperiodicr10(const SoundingRSULConfigDedicatedAperiodicr10& soundingRSULConfigDedicatedAperiodicr10) { *static_cast<SoundingRSULConfigDedicatedAperiodicr10*>(items[21]) = soundingRSULConfigDedicatedAperiodicr10; }
 	void setUplinkPowerControlDedicatedv1020(const UplinkPowerControlDedicatedv1020& uplinkPowerControlDedicatedv1020) { *static_cast<UplinkPowerControlDedicatedv1020*>(items[22]) = uplinkPowerControlDedicatedv1020; }
 	void setPhysicalConfigDedicatedAdditionalSpectrumEmissionCAr10(const PhysicalConfigDedicatedAdditionalSpectrumEmissionCAr10& physicalConfigDedicatedAdditionalSpectrumEmissionCAr10) { *static_cast<PhysicalConfigDedicatedAdditionalSpectrumEmissionCAr10*>(items[23]) = physicalConfigDedicatedAdditionalSpectrumEmissionCAr10; }
+
+	PDSCHConfigDedicated& getPdschConfigDedicated() { return *static_cast<PDSCHConfigDedicated*>(items[0]); }
+	PUCCHConfigDedicated& getPucchConfigDedicated() { return *static_cast<PUCCHConfigDedicated*>(items[1]); }
+	PUSCHConfigDedicated& getPuschConfigDedicated() { return *static_cast<PUSCHConfigDedicated*>(items[2]); }
+	UplinkPowerControlDedicated& getUplinkPowerControlDedicated() { return *static_cast<UplinkPowerControlDedicated*>(items[3]); }
+	TPCPDCCHConfig& getTpcPDCCHConfigPUCCH() { return *static_cast<TPCPDCCHConfig*>(items[4]); }
+	TPCPDCCHConfig& getTpcPDCCHConfigPUSCH() { return *static_cast<TPCPDCCHConfig*>(items[5]); }
+	CQIReportConfig& getCqiReportConfig() { return *static_cast<CQIReportConfig*>(items[6]); }
+	SoundingRSULConfigDedicated& getSoundingRSULConfigDedicated() { return *static_cast<SoundingRSULConfigDedicated*>(items[7]); }
+	PhysicalConfigDedicatedAntennaInfo& getPhysicalConfigDedicatedAntennaInfo() { return *static_cast<PhysicalConfigDedicatedAntennaInfo*>(items[8]); }
+	SchedulingRequestConfig& getSchedulingRequestConfig() { return *static_cast<SchedulingRequestConfig*>(items[9]); }
+	CQIReportConfigv920& getCqiReportConfigv920() { return *static_cast<CQIReportConfigv920*>(items[10]); }
+	AntennaInfoDedicatedv920& getAntennaInfov920() { return *static_cast<AntennaInfoDedicatedv920*>(items[11]); }
+	PhysicalConfigDedicatedAntennaInfor10& getPhysicalConfigDedicatedAntennaInfor10() { return *static_cast<PhysicalConfigDedicatedAntennaInfor10*>(items[12]); }
+	AntennaInfoULr10& getAntennaInfoULr10() { return *static_cast<AntennaInfoULr10*>(items[13]); }
+	PhysicalConfigDedicatedCifPresencer10& getPhysicalConfigDedicatedCifPresencer10() { return *static_cast<PhysicalConfigDedicatedCifPresencer10*>(items[14]); }
+	CQIReportConfigr10& getCqiReportConfigr10() { return *static_cast<CQIReportConfigr10*>(items[15]); }
+	CSIRSConfigr10& getCsiRSConfigr10() { return *static_cast<CSIRSConfigr10*>(items[16]); }
+	PUCCHConfigDedicatedv1020& getPucchConfigDedicatedv1020() { return *static_cast<PUCCHConfigDedicatedv1020*>(items[17]); }
+	PUSCHConfigDedicatedv1020& getPuschConfigDedicatedv1020() { return *static_cast<PUSCHConfigDedicatedv1020*>(items[18]); }
+	SchedulingRequestConfigv1020& getSchedulingRequestConfigv1020() { return *static_cast<SchedulingRequestConfigv1020*>(items[19]); }
+	SoundingRSULConfigDedicatedv1020& getSoundingRSULConfigDedicatedv1020() { return *static_cast<SoundingRSULConfigDedicatedv1020*>(items[20]); }
+	SoundingRSULConfigDedicatedAperiodicr10& getSoundingRSULConfigDedicatedAperiodicr10() { return *static_cast<SoundingRSULConfigDedicatedAperiodicr10*>(items[21]); }
+	UplinkPowerControlDedicatedv1020& getUplinkPowerControlDedicatedv1020() { return *static_cast<UplinkPowerControlDedicatedv1020*>(items[22]); }
+	PhysicalConfigDedicatedAdditionalSpectrumEmissionCAr10& getPhysicalConfigDedicatedAdditionalSpectrumEmissionCAr10() { return *static_cast<PhysicalConfigDedicatedAdditionalSpectrumEmissionCAr10*>(items[23]); }
 };
 
 typedef Null RLFTimersAndConstantsr9Release;
@@ -3675,6 +4126,12 @@ public:
 	void setRLFTimersAndConstantsr9Setupn310_r9(const RLFTimersAndConstantsr9Setupn310_r9& rLFTimersAndConstantsr9Setupn310_r9) { *static_cast<RLFTimersAndConstantsr9Setupn310_r9*>(items[2]) = rLFTimersAndConstantsr9Setupn310_r9; }
 	void setRLFTimersAndConstantsr9Setupt311_r9(const RLFTimersAndConstantsr9Setupt311_r9& rLFTimersAndConstantsr9Setupt311_r9) { *static_cast<RLFTimersAndConstantsr9Setupt311_r9*>(items[3]) = rLFTimersAndConstantsr9Setupt311_r9; }
 	void setRLFTimersAndConstantsr9Setupn311_r9(const RLFTimersAndConstantsr9Setupn311_r9& rLFTimersAndConstantsr9Setupn311_r9) { *static_cast<RLFTimersAndConstantsr9Setupn311_r9*>(items[4]) = rLFTimersAndConstantsr9Setupn311_r9; }
+
+	RLFTimersAndConstantsr9Setupt301_r9& getRLFTimersAndConstantsr9Setupt301_r9() { return *static_cast<RLFTimersAndConstantsr9Setupt301_r9*>(items[0]); }
+	RLFTimersAndConstantsr9Setupt310_r9& getRLFTimersAndConstantsr9Setupt310_r9() { return *static_cast<RLFTimersAndConstantsr9Setupt310_r9*>(items[1]); }
+	RLFTimersAndConstantsr9Setupn310_r9& getRLFTimersAndConstantsr9Setupn310_r9() { return *static_cast<RLFTimersAndConstantsr9Setupn310_r9*>(items[2]); }
+	RLFTimersAndConstantsr9Setupt311_r9& getRLFTimersAndConstantsr9Setupt311_r9() { return *static_cast<RLFTimersAndConstantsr9Setupt311_r9*>(items[3]); }
+	RLFTimersAndConstantsr9Setupn311_r9& getRLFTimersAndConstantsr9Setupn311_r9() { return *static_cast<RLFTimersAndConstantsr9Setupn311_r9*>(items[4]); }
 };
 
 class RLFTimersAndConstantsr9 : public Choice {
@@ -3710,6 +4167,7 @@ private:
 public:
 	static const Info theInfo;
 	RadioResourceConfigDedicated(): Sequence(&theInfo) {}
+
 	void setSrbToAddModList(const SRBToAddModList& srbToAddModList) { *static_cast<SRBToAddModList*>(items[0]) = srbToAddModList; }
 	void setDrbToAddModList(const DRBToAddModList& drbToAddModList) { *static_cast<DRBToAddModList*>(items[1]) = drbToAddModList; }
 	void setDrbToReleaseList(const DRBToReleaseList& drbToReleaseList) { *static_cast<DRBToReleaseList*>(items[2]) = drbToReleaseList; }
@@ -3718,6 +4176,15 @@ public:
 	void setPhysicalConfigDedicated(const PhysicalConfigDedicated& physicalConfigDedicated) { *static_cast<PhysicalConfigDedicated*>(items[5]) = physicalConfigDedicated; }
 	void setRlfTimersAndConstantsr9(const RLFTimersAndConstantsr9& rlfTimersAndConstantsr9) { *static_cast<RLFTimersAndConstantsr9*>(items[6]) = rlfTimersAndConstantsr9; }
 	void setMeasSubframePatternPCellr10(const MeasSubframePatternPCellr10& measSubframePatternPCellr10) { *static_cast<MeasSubframePatternPCellr10*>(items[7]) = measSubframePatternPCellr10; }
+
+	SRBToAddModList& getSrbToAddModList() { return *static_cast<SRBToAddModList*>(items[0]); }
+	DRBToAddModList& getDrbToAddModList() { return *static_cast<DRBToAddModList*>(items[1]); }
+	DRBToReleaseList& getDrbToReleaseList() { return *static_cast<DRBToReleaseList*>(items[2]); }
+	RadioResourceConfigDedicatedMacMainConfig& getRadioResourceConfigDedicatedMacMainConfig() { return *static_cast<RadioResourceConfigDedicatedMacMainConfig*>(items[3]); }
+	SPSConfig& getSpsConfig() { return *static_cast<SPSConfig*>(items[4]); }
+	PhysicalConfigDedicated& getPhysicalConfigDedicated() { return *static_cast<PhysicalConfigDedicated*>(items[5]); }
+	RLFTimersAndConstantsr9& getRlfTimersAndConstantsr9() { return *static_cast<RLFTimersAndConstantsr9*>(items[6]); }
+	MeasSubframePatternPCellr10& getMeasSubframePatternPCellr10() { return *static_cast<MeasSubframePatternPCellr10*>(items[7]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 7> NextHopChainingCount;
@@ -3731,6 +4198,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentv8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReestablishmentv8a0IEs : public Sequence {
@@ -3740,8 +4209,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentv8a0IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionReestablishmentv8a0IEsLateNonCriticalExtension(const RRCConnectionReestablishmentv8a0IEsLateNonCriticalExtension& rRCConnectionReestablishmentv8a0IEsLateNonCriticalExtension) { *static_cast<RRCConnectionReestablishmentv8a0IEsLateNonCriticalExtension*>(items[0]) = rRCConnectionReestablishmentv8a0IEsLateNonCriticalExtension; }
 	void setRRCConnectionReestablishmentv8a0IEsNonCriticalExtension(const RRCConnectionReestablishmentv8a0IEsNonCriticalExtension& rRCConnectionReestablishmentv8a0IEsNonCriticalExtension) { *static_cast<RRCConnectionReestablishmentv8a0IEsNonCriticalExtension*>(items[1]) = rRCConnectionReestablishmentv8a0IEsNonCriticalExtension; }
+
+	RRCConnectionReestablishmentv8a0IEsLateNonCriticalExtension& getRRCConnectionReestablishmentv8a0IEsLateNonCriticalExtension() { return *static_cast<RRCConnectionReestablishmentv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	RRCConnectionReestablishmentv8a0IEsNonCriticalExtension& getRRCConnectionReestablishmentv8a0IEsNonCriticalExtension() { return *static_cast<RRCConnectionReestablishmentv8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class RRCConnectionReestablishmentr8IEs : public Sequence {
@@ -3756,6 +4229,10 @@ public:
 	void setRadioResourceConfigDedicated(const RadioResourceConfigDedicated& radioResourceConfigDedicated) { *static_cast<RadioResourceConfigDedicated*>(items[0]) = radioResourceConfigDedicated; }
 	void setNextHopChainingCount(const NextHopChainingCount& nextHopChainingCount) { *static_cast<NextHopChainingCount*>(items[1]) = nextHopChainingCount; }
 	void setNonCriticalExtension(const RRCConnectionReestablishmentv8a0IEs& nonCriticalExtension) { *static_cast<RRCConnectionReestablishmentv8a0IEs*>(items[2]) = nonCriticalExtension; }
+
+	RadioResourceConfigDedicated& getRadioResourceConfigDedicated() { return *static_cast<RadioResourceConfigDedicated*>(items[0]); }
+	NextHopChainingCount& getNextHopChainingCount() { return *static_cast<NextHopChainingCount*>(items[1]); }
+	RRCConnectionReestablishmentv8a0IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReestablishmentv8a0IEs*>(items[2]); }
 };
 
 typedef Null RRCConnectionReestablishmentCriticalExtensionsC1Spare7;
@@ -3797,6 +4274,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReestablishmentCriticalExtensions : public Choice {
@@ -3822,6 +4301,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setRRCConnectionReestablishmentCriticalExtensions(const RRCConnectionReestablishmentCriticalExtensions& rRCConnectionReestablishmentCriticalExtensions) { *static_cast<RRCConnectionReestablishmentCriticalExtensions*>(items[1]) = rRCConnectionReestablishmentCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	RRCConnectionReestablishmentCriticalExtensions& getRRCConnectionReestablishmentCriticalExtensions() { return *static_cast<RRCConnectionReestablishmentCriticalExtensions*>(items[1]); }
 };
 
 typedef OctetStringBase RRCConnectionReestablishmentRejectv8a0IEsLateNonCriticalExtension;
@@ -3833,6 +4315,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentRejectv8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReestablishmentRejectv8a0IEs : public Sequence {
@@ -3842,8 +4326,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentRejectv8a0IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionReestablishmentRejectv8a0IEsLateNonCriticalExtension(const RRCConnectionReestablishmentRejectv8a0IEsLateNonCriticalExtension& rRCConnectionReestablishmentRejectv8a0IEsLateNonCriticalExtension) { *static_cast<RRCConnectionReestablishmentRejectv8a0IEsLateNonCriticalExtension*>(items[0]) = rRCConnectionReestablishmentRejectv8a0IEsLateNonCriticalExtension; }
 	void setRRCConnectionReestablishmentRejectv8a0IEsNonCriticalExtension(const RRCConnectionReestablishmentRejectv8a0IEsNonCriticalExtension& rRCConnectionReestablishmentRejectv8a0IEsNonCriticalExtension) { *static_cast<RRCConnectionReestablishmentRejectv8a0IEsNonCriticalExtension*>(items[1]) = rRCConnectionReestablishmentRejectv8a0IEsNonCriticalExtension; }
+
+	RRCConnectionReestablishmentRejectv8a0IEsLateNonCriticalExtension& getRRCConnectionReestablishmentRejectv8a0IEsLateNonCriticalExtension() { return *static_cast<RRCConnectionReestablishmentRejectv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	RRCConnectionReestablishmentRejectv8a0IEsNonCriticalExtension& getRRCConnectionReestablishmentRejectv8a0IEsNonCriticalExtension() { return *static_cast<RRCConnectionReestablishmentRejectv8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class RRCConnectionReestablishmentRejectr8IEs : public Sequence {
@@ -3853,7 +4341,10 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentRejectr8IEs(): Sequence(&theInfo) {}
+
 	void setNonCriticalExtension(const RRCConnectionReestablishmentRejectv8a0IEs& nonCriticalExtension) { *static_cast<RRCConnectionReestablishmentRejectv8a0IEs*>(items[0]) = nonCriticalExtension; }
+
+	RRCConnectionReestablishmentRejectv8a0IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReestablishmentRejectv8a0IEs*>(items[0]); }
 };
 
 class RRCConnectionReestablishmentRejectCriticalExtensionsCriticalExtensionsFuture : public Sequence {
@@ -3863,6 +4354,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentRejectCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReestablishmentRejectCriticalExtensions : public Choice {
@@ -3887,6 +4380,8 @@ public:
 	RRCConnectionReestablishmentReject(const RRCConnectionReestablishmentRejectCriticalExtensions& rRCConnectionReestablishmentRejectCriticalExtensions);
 
 	void setRRCConnectionReestablishmentRejectCriticalExtensions(const RRCConnectionReestablishmentRejectCriticalExtensions& rRCConnectionReestablishmentRejectCriticalExtensions) { *static_cast<RRCConnectionReestablishmentRejectCriticalExtensions*>(items[0]) = rRCConnectionReestablishmentRejectCriticalExtensions; }
+
+	RRCConnectionReestablishmentRejectCriticalExtensions& getRRCConnectionReestablishmentRejectCriticalExtensions() { return *static_cast<RRCConnectionReestablishmentRejectCriticalExtensions*>(items[0]); }
 };
 
 typedef Integer<CONSTRAINED, 1, 16> RRCConnectionRejectr8IEsWaitTime;
@@ -3902,6 +4397,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionRejectv1020IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionRejectv1020IEs : public Sequence {
@@ -3911,8 +4408,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionRejectv1020IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionRejectv1020IEsExtendedWaitTimer10(const RRCConnectionRejectv1020IEsExtendedWaitTimer10& rRCConnectionRejectv1020IEsExtendedWaitTimer10) { *static_cast<RRCConnectionRejectv1020IEsExtendedWaitTimer10*>(items[0]) = rRCConnectionRejectv1020IEsExtendedWaitTimer10; }
 	void setRRCConnectionRejectv1020IEsNonCriticalExtension(const RRCConnectionRejectv1020IEsNonCriticalExtension& rRCConnectionRejectv1020IEsNonCriticalExtension) { *static_cast<RRCConnectionRejectv1020IEsNonCriticalExtension*>(items[1]) = rRCConnectionRejectv1020IEsNonCriticalExtension; }
+
+	RRCConnectionRejectv1020IEsExtendedWaitTimer10& getRRCConnectionRejectv1020IEsExtendedWaitTimer10() { return *static_cast<RRCConnectionRejectv1020IEsExtendedWaitTimer10*>(items[0]); }
+	RRCConnectionRejectv1020IEsNonCriticalExtension& getRRCConnectionRejectv1020IEsNonCriticalExtension() { return *static_cast<RRCConnectionRejectv1020IEsNonCriticalExtension*>(items[1]); }
 };
 
 class RRCConnectionRejectv8a0IEs : public Sequence {
@@ -3922,8 +4423,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionRejectv8a0IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionRejectv8a0IEsLateNonCriticalExtension(const RRCConnectionRejectv8a0IEsLateNonCriticalExtension& rRCConnectionRejectv8a0IEsLateNonCriticalExtension) { *static_cast<RRCConnectionRejectv8a0IEsLateNonCriticalExtension*>(items[0]) = rRCConnectionRejectv8a0IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const RRCConnectionRejectv1020IEs& nonCriticalExtension) { *static_cast<RRCConnectionRejectv1020IEs*>(items[1]) = nonCriticalExtension; }
+
+	RRCConnectionRejectv8a0IEsLateNonCriticalExtension& getRRCConnectionRejectv8a0IEsLateNonCriticalExtension() { return *static_cast<RRCConnectionRejectv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	RRCConnectionRejectv1020IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionRejectv1020IEs*>(items[1]); }
 };
 
 class RRCConnectionRejectr8IEs : public Sequence {
@@ -3937,6 +4442,9 @@ public:
 
 	void setRRCConnectionRejectr8IEsWaitTime(const RRCConnectionRejectr8IEsWaitTime& rRCConnectionRejectr8IEsWaitTime) { *static_cast<RRCConnectionRejectr8IEsWaitTime*>(items[0]) = rRCConnectionRejectr8IEsWaitTime; }
 	void setNonCriticalExtension(const RRCConnectionRejectv8a0IEs& nonCriticalExtension) { *static_cast<RRCConnectionRejectv8a0IEs*>(items[1]) = nonCriticalExtension; }
+
+	RRCConnectionRejectr8IEsWaitTime& getRRCConnectionRejectr8IEsWaitTime() { return *static_cast<RRCConnectionRejectr8IEsWaitTime*>(items[0]); }
+	RRCConnectionRejectv8a0IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionRejectv8a0IEs*>(items[1]); }
 };
 
 typedef Null RRCConnectionRejectCriticalExtensionsC1Spare3;
@@ -3966,6 +4474,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionRejectCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionRejectCriticalExtensions : public Choice {
@@ -3990,6 +4500,8 @@ public:
 	RRCConnectionReject(const RRCConnectionRejectCriticalExtensions& rRCConnectionRejectCriticalExtensions);
 
 	void setRRCConnectionRejectCriticalExtensions(const RRCConnectionRejectCriticalExtensions& rRCConnectionRejectCriticalExtensions) { *static_cast<RRCConnectionRejectCriticalExtensions*>(items[0]) = rRCConnectionRejectCriticalExtensions; }
+
+	RRCConnectionRejectCriticalExtensions& getRRCConnectionRejectCriticalExtensions() { return *static_cast<RRCConnectionRejectCriticalExtensions*>(items[0]); }
 };
 
 typedef OctetStringBase RRCConnectionSetupv8a0IEsLateNonCriticalExtension;
@@ -4001,6 +4513,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionSetupv8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionSetupv8a0IEs : public Sequence {
@@ -4010,8 +4524,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionSetupv8a0IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionSetupv8a0IEsLateNonCriticalExtension(const RRCConnectionSetupv8a0IEsLateNonCriticalExtension& rRCConnectionSetupv8a0IEsLateNonCriticalExtension) { *static_cast<RRCConnectionSetupv8a0IEsLateNonCriticalExtension*>(items[0]) = rRCConnectionSetupv8a0IEsLateNonCriticalExtension; }
 	void setRRCConnectionSetupv8a0IEsNonCriticalExtension(const RRCConnectionSetupv8a0IEsNonCriticalExtension& rRCConnectionSetupv8a0IEsNonCriticalExtension) { *static_cast<RRCConnectionSetupv8a0IEsNonCriticalExtension*>(items[1]) = rRCConnectionSetupv8a0IEsNonCriticalExtension; }
+
+	RRCConnectionSetupv8a0IEsLateNonCriticalExtension& getRRCConnectionSetupv8a0IEsLateNonCriticalExtension() { return *static_cast<RRCConnectionSetupv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	RRCConnectionSetupv8a0IEsNonCriticalExtension& getRRCConnectionSetupv8a0IEsNonCriticalExtension() { return *static_cast<RRCConnectionSetupv8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class RRCConnectionSetupr8IEs : public Sequence {
@@ -4025,6 +4543,9 @@ public:
 
 	void setRadioResourceConfigDedicated(const RadioResourceConfigDedicated& radioResourceConfigDedicated) { *static_cast<RadioResourceConfigDedicated*>(items[0]) = radioResourceConfigDedicated; }
 	void setNonCriticalExtension(const RRCConnectionSetupv8a0IEs& nonCriticalExtension) { *static_cast<RRCConnectionSetupv8a0IEs*>(items[1]) = nonCriticalExtension; }
+
+	RadioResourceConfigDedicated& getRadioResourceConfigDedicated() { return *static_cast<RadioResourceConfigDedicated*>(items[0]); }
+	RRCConnectionSetupv8a0IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionSetupv8a0IEs*>(items[1]); }
 };
 
 typedef Null RRCConnectionSetupCriticalExtensionsC1Spare7;
@@ -4066,6 +4587,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionSetupCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionSetupCriticalExtensions : public Choice {
@@ -4091,6 +4614,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setRRCConnectionSetupCriticalExtensions(const RRCConnectionSetupCriticalExtensions& rRCConnectionSetupCriticalExtensions) { *static_cast<RRCConnectionSetupCriticalExtensions*>(items[1]) = rRCConnectionSetupCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	RRCConnectionSetupCriticalExtensions& getRRCConnectionSetupCriticalExtensions() { return *static_cast<RRCConnectionSetupCriticalExtensions*>(items[1]); }
 };
 
 class DLCCCHMessageTypeC1 : public Choice {
@@ -4114,6 +4640,8 @@ private:
 public:
 	static const Info theInfo;
 	DLCCCHMessageTypeMessageClassExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class DLCCCHMessageType : public Choice {
@@ -4138,6 +4666,8 @@ public:
 	DLCCCHMessage(const DLCCCHMessageType& message);
 
 	void setMessage(const DLCCCHMessageType& message) { *static_cast<DLCCCHMessageType*>(items[0]) = message; }
+
+	DLCCCHMessageType& getMessage() { return *static_cast<DLCCCHMessageType*>(items[0]); }
 };
 
 typedef BitString<CONSTRAINED, 32, 32> RANDCDMA2000;
@@ -4153,6 +4683,8 @@ private:
 public:
 	static const Info theInfo;
 	CSFBParametersResponseCDMA2000v8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class CSFBParametersResponseCDMA2000v8a0IEs : public Sequence {
@@ -4162,8 +4694,12 @@ private:
 public:
 	static const Info theInfo;
 	CSFBParametersResponseCDMA2000v8a0IEs(): Sequence(&theInfo) {}
+
 	void setCSFBParametersResponseCDMA2000v8a0IEsLateNonCriticalExtension(const CSFBParametersResponseCDMA2000v8a0IEsLateNonCriticalExtension& cSFBParametersResponseCDMA2000v8a0IEsLateNonCriticalExtension) { *static_cast<CSFBParametersResponseCDMA2000v8a0IEsLateNonCriticalExtension*>(items[0]) = cSFBParametersResponseCDMA2000v8a0IEsLateNonCriticalExtension; }
 	void setCSFBParametersResponseCDMA2000v8a0IEsNonCriticalExtension(const CSFBParametersResponseCDMA2000v8a0IEsNonCriticalExtension& cSFBParametersResponseCDMA2000v8a0IEsNonCriticalExtension) { *static_cast<CSFBParametersResponseCDMA2000v8a0IEsNonCriticalExtension*>(items[1]) = cSFBParametersResponseCDMA2000v8a0IEsNonCriticalExtension; }
+
+	CSFBParametersResponseCDMA2000v8a0IEsLateNonCriticalExtension& getCSFBParametersResponseCDMA2000v8a0IEsLateNonCriticalExtension() { return *static_cast<CSFBParametersResponseCDMA2000v8a0IEsLateNonCriticalExtension*>(items[0]); }
+	CSFBParametersResponseCDMA2000v8a0IEsNonCriticalExtension& getCSFBParametersResponseCDMA2000v8a0IEsNonCriticalExtension() { return *static_cast<CSFBParametersResponseCDMA2000v8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class CSFBParametersResponseCDMA2000r8IEs : public Sequence {
@@ -4178,6 +4714,10 @@ public:
 	void setRand(const RANDCDMA2000& rand) { *static_cast<RANDCDMA2000*>(items[0]) = rand; }
 	void setMobilityParameters(const MobilityParametersCDMA2000& mobilityParameters) { *static_cast<MobilityParametersCDMA2000*>(items[1]) = mobilityParameters; }
 	void setNonCriticalExtension(const CSFBParametersResponseCDMA2000v8a0IEs& nonCriticalExtension) { *static_cast<CSFBParametersResponseCDMA2000v8a0IEs*>(items[2]) = nonCriticalExtension; }
+
+	RANDCDMA2000& getRand() { return *static_cast<RANDCDMA2000*>(items[0]); }
+	MobilityParametersCDMA2000& getMobilityParameters() { return *static_cast<MobilityParametersCDMA2000*>(items[1]); }
+	CSFBParametersResponseCDMA2000v8a0IEs& getNonCriticalExtension() { return *static_cast<CSFBParametersResponseCDMA2000v8a0IEs*>(items[2]); }
 };
 
 class CSFBParametersResponseCDMA2000CriticalExtensionsCriticalExtensionsFuture : public Sequence {
@@ -4187,6 +4727,8 @@ private:
 public:
 	static const Info theInfo;
 	CSFBParametersResponseCDMA2000CriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class CSFBParametersResponseCDMA2000CriticalExtensions : public Choice {
@@ -4212,6 +4754,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setCSFBParametersResponseCDMA2000CriticalExtensions(const CSFBParametersResponseCDMA2000CriticalExtensions& cSFBParametersResponseCDMA2000CriticalExtensions) { *static_cast<CSFBParametersResponseCDMA2000CriticalExtensions*>(items[1]) = cSFBParametersResponseCDMA2000CriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	CSFBParametersResponseCDMA2000CriticalExtensions& getCSFBParametersResponseCDMA2000CriticalExtensions() { return *static_cast<CSFBParametersResponseCDMA2000CriticalExtensions*>(items[1]); }
 };
 
 typedef OctetStringBase DedicatedInfoNAS;
@@ -4240,6 +4785,8 @@ private:
 public:
 	static const Info theInfo;
 	DLInformationTransferv8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class DLInformationTransferv8a0IEs : public Sequence {
@@ -4249,8 +4796,12 @@ private:
 public:
 	static const Info theInfo;
 	DLInformationTransferv8a0IEs(): Sequence(&theInfo) {}
+
 	void setDLInformationTransferv8a0IEsLateNonCriticalExtension(const DLInformationTransferv8a0IEsLateNonCriticalExtension& dLInformationTransferv8a0IEsLateNonCriticalExtension) { *static_cast<DLInformationTransferv8a0IEsLateNonCriticalExtension*>(items[0]) = dLInformationTransferv8a0IEsLateNonCriticalExtension; }
 	void setDLInformationTransferv8a0IEsNonCriticalExtension(const DLInformationTransferv8a0IEsNonCriticalExtension& dLInformationTransferv8a0IEsNonCriticalExtension) { *static_cast<DLInformationTransferv8a0IEsNonCriticalExtension*>(items[1]) = dLInformationTransferv8a0IEsNonCriticalExtension; }
+
+	DLInformationTransferv8a0IEsLateNonCriticalExtension& getDLInformationTransferv8a0IEsLateNonCriticalExtension() { return *static_cast<DLInformationTransferv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	DLInformationTransferv8a0IEsNonCriticalExtension& getDLInformationTransferv8a0IEsNonCriticalExtension() { return *static_cast<DLInformationTransferv8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class DLInformationTransferr8IEs : public Sequence {
@@ -4264,6 +4815,9 @@ public:
 
 	void setDLInformationTransferr8IEsDedicatedInfoType(const DLInformationTransferr8IEsDedicatedInfoType& dLInformationTransferr8IEsDedicatedInfoType) { *static_cast<DLInformationTransferr8IEsDedicatedInfoType*>(items[0]) = dLInformationTransferr8IEsDedicatedInfoType; }
 	void setNonCriticalExtension(const DLInformationTransferv8a0IEs& nonCriticalExtension) { *static_cast<DLInformationTransferv8a0IEs*>(items[1]) = nonCriticalExtension; }
+
+	DLInformationTransferr8IEsDedicatedInfoType& getDLInformationTransferr8IEsDedicatedInfoType() { return *static_cast<DLInformationTransferr8IEsDedicatedInfoType*>(items[0]); }
+	DLInformationTransferv8a0IEs& getNonCriticalExtension() { return *static_cast<DLInformationTransferv8a0IEs*>(items[1]); }
 };
 
 typedef Null DLInformationTransferCriticalExtensionsC1Spare3;
@@ -4293,6 +4847,8 @@ private:
 public:
 	static const Info theInfo;
 	DLInformationTransferCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class DLInformationTransferCriticalExtensions : public Choice {
@@ -4318,6 +4874,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setDLInformationTransferCriticalExtensions(const DLInformationTransferCriticalExtensions& dLInformationTransferCriticalExtensions) { *static_cast<DLInformationTransferCriticalExtensions*>(items[1]) = dLInformationTransferCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	DLInformationTransferCriticalExtensions& getDLInformationTransferCriticalExtensions() { return *static_cast<DLInformationTransferCriticalExtensions*>(items[1]); }
 };
 
 enum CDMA2000TypeValues {
@@ -4384,6 +4943,9 @@ public:
 
 	void setBandClass(const BandclassCDMA2000& bandClass) { *static_cast<BandclassCDMA2000*>(items[0]) = bandClass; }
 	void setArfcn(const ARFCNValueCDMA2000& arfcn) { *static_cast<ARFCNValueCDMA2000*>(items[1]) = arfcn; }
+
+	BandclassCDMA2000& getBandClass() { return *static_cast<BandclassCDMA2000*>(items[0]); }
+	ARFCNValueCDMA2000& getArfcn() { return *static_cast<ARFCNValueCDMA2000*>(items[1]); }
 };
 
 class HandoverFromEUTRAPreparationRequestv1020IEsNonCriticalExtension : public Sequence {
@@ -4393,6 +4955,8 @@ private:
 public:
 	static const Info theInfo;
 	HandoverFromEUTRAPreparationRequestv1020IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class HandoverFromEUTRAPreparationRequestv1020IEs : public Sequence {
@@ -4402,9 +4966,14 @@ private:
 public:
 	static const Info theInfo;
 	HandoverFromEUTRAPreparationRequestv1020IEs(): Sequence(&theInfo) {}
+
 	void setHandoverFromEUTRAPreparationRequestv1020IEsdualRxTxRedirectIndicator_r10(const HandoverFromEUTRAPreparationRequestv1020IEsdualRxTxRedirectIndicator_r10& handoverFromEUTRAPreparationRequestv1020IEsdualRxTxRedirectIndicator_r10) { *static_cast<HandoverFromEUTRAPreparationRequestv1020IEsdualRxTxRedirectIndicator_r10*>(items[0]) = handoverFromEUTRAPreparationRequestv1020IEsdualRxTxRedirectIndicator_r10; }
 	void setRedirectCarrierCDMA20001XRTTr10(const CarrierFreqCDMA2000& redirectCarrierCDMA20001XRTTr10) { *static_cast<CarrierFreqCDMA2000*>(items[1]) = redirectCarrierCDMA20001XRTTr10; }
 	void setHandoverFromEUTRAPreparationRequestv1020IEsNonCriticalExtension(const HandoverFromEUTRAPreparationRequestv1020IEsNonCriticalExtension& handoverFromEUTRAPreparationRequestv1020IEsNonCriticalExtension) { *static_cast<HandoverFromEUTRAPreparationRequestv1020IEsNonCriticalExtension*>(items[2]) = handoverFromEUTRAPreparationRequestv1020IEsNonCriticalExtension; }
+
+	HandoverFromEUTRAPreparationRequestv1020IEsdualRxTxRedirectIndicator_r10& getHandoverFromEUTRAPreparationRequestv1020IEsdualRxTxRedirectIndicator_r10() { return *static_cast<HandoverFromEUTRAPreparationRequestv1020IEsdualRxTxRedirectIndicator_r10*>(items[0]); }
+	CarrierFreqCDMA2000& getRedirectCarrierCDMA20001XRTTr10() { return *static_cast<CarrierFreqCDMA2000*>(items[1]); }
+	HandoverFromEUTRAPreparationRequestv1020IEsNonCriticalExtension& getHandoverFromEUTRAPreparationRequestv1020IEsNonCriticalExtension() { return *static_cast<HandoverFromEUTRAPreparationRequestv1020IEsNonCriticalExtension*>(items[2]); }
 };
 
 class HandoverFromEUTRAPreparationRequestv920IEs : public Sequence {
@@ -4414,8 +4983,12 @@ private:
 public:
 	static const Info theInfo;
 	HandoverFromEUTRAPreparationRequestv920IEs(): Sequence(&theInfo) {}
+
 	void setHandoverFromEUTRAPreparationRequestv920IEsConcurrPrepCDMA2000HRPDr9(const HandoverFromEUTRAPreparationRequestv920IEsConcurrPrepCDMA2000HRPDr9& handoverFromEUTRAPreparationRequestv920IEsConcurrPrepCDMA2000HRPDr9) { *static_cast<HandoverFromEUTRAPreparationRequestv920IEsConcurrPrepCDMA2000HRPDr9*>(items[0]) = handoverFromEUTRAPreparationRequestv920IEsConcurrPrepCDMA2000HRPDr9; }
 	void setNonCriticalExtension(const HandoverFromEUTRAPreparationRequestv1020IEs& nonCriticalExtension) { *static_cast<HandoverFromEUTRAPreparationRequestv1020IEs*>(items[1]) = nonCriticalExtension; }
+
+	HandoverFromEUTRAPreparationRequestv920IEsConcurrPrepCDMA2000HRPDr9& getHandoverFromEUTRAPreparationRequestv920IEsConcurrPrepCDMA2000HRPDr9() { return *static_cast<HandoverFromEUTRAPreparationRequestv920IEsConcurrPrepCDMA2000HRPDr9*>(items[0]); }
+	HandoverFromEUTRAPreparationRequestv1020IEs& getNonCriticalExtension() { return *static_cast<HandoverFromEUTRAPreparationRequestv1020IEs*>(items[1]); }
 };
 
 class HandoverFromEUTRAPreparationRequestv890IEs : public Sequence {
@@ -4425,8 +4998,12 @@ private:
 public:
 	static const Info theInfo;
 	HandoverFromEUTRAPreparationRequestv890IEs(): Sequence(&theInfo) {}
+
 	void setHandoverFromEUTRAPreparationRequestv890IEsLateNonCriticalExtension(const HandoverFromEUTRAPreparationRequestv890IEsLateNonCriticalExtension& handoverFromEUTRAPreparationRequestv890IEsLateNonCriticalExtension) { *static_cast<HandoverFromEUTRAPreparationRequestv890IEsLateNonCriticalExtension*>(items[0]) = handoverFromEUTRAPreparationRequestv890IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const HandoverFromEUTRAPreparationRequestv920IEs& nonCriticalExtension) { *static_cast<HandoverFromEUTRAPreparationRequestv920IEs*>(items[1]) = nonCriticalExtension; }
+
+	HandoverFromEUTRAPreparationRequestv890IEsLateNonCriticalExtension& getHandoverFromEUTRAPreparationRequestv890IEsLateNonCriticalExtension() { return *static_cast<HandoverFromEUTRAPreparationRequestv890IEsLateNonCriticalExtension*>(items[0]); }
+	HandoverFromEUTRAPreparationRequestv920IEs& getNonCriticalExtension() { return *static_cast<HandoverFromEUTRAPreparationRequestv920IEs*>(items[1]); }
 };
 
 class HandoverFromEUTRAPreparationRequestr8IEs : public Sequence {
@@ -4442,6 +5019,11 @@ public:
 	void setRand(const RANDCDMA2000& rand) { *static_cast<RANDCDMA2000*>(items[1]) = rand; }
 	void setMobilityParameters(const MobilityParametersCDMA2000& mobilityParameters) { *static_cast<MobilityParametersCDMA2000*>(items[2]) = mobilityParameters; }
 	void setNonCriticalExtension(const HandoverFromEUTRAPreparationRequestv890IEs& nonCriticalExtension) { *static_cast<HandoverFromEUTRAPreparationRequestv890IEs*>(items[3]) = nonCriticalExtension; }
+
+	CDMA2000Type& getCdma2000Type() { return *static_cast<CDMA2000Type*>(items[0]); }
+	RANDCDMA2000& getRand() { return *static_cast<RANDCDMA2000*>(items[1]); }
+	MobilityParametersCDMA2000& getMobilityParameters() { return *static_cast<MobilityParametersCDMA2000*>(items[2]); }
+	HandoverFromEUTRAPreparationRequestv890IEs& getNonCriticalExtension() { return *static_cast<HandoverFromEUTRAPreparationRequestv890IEs*>(items[3]); }
 };
 
 typedef Null HandoverFromEUTRAPreparationRequestCriticalExtensionsC1Spare3;
@@ -4471,6 +5053,8 @@ private:
 public:
 	static const Info theInfo;
 	HandoverFromEUTRAPreparationRequestCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class HandoverFromEUTRAPreparationRequestCriticalExtensions : public Choice {
@@ -4496,6 +5080,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setHandoverFromEUTRAPreparationRequestCriticalExtensions(const HandoverFromEUTRAPreparationRequestCriticalExtensions& handoverFromEUTRAPreparationRequestCriticalExtensions) { *static_cast<HandoverFromEUTRAPreparationRequestCriticalExtensions*>(items[1]) = handoverFromEUTRAPreparationRequestCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	HandoverFromEUTRAPreparationRequestCriticalExtensions& getHandoverFromEUTRAPreparationRequestCriticalExtensions() { return *static_cast<HandoverFromEUTRAPreparationRequestCriticalExtensions*>(items[1]); }
 };
 
 typedef Boolean MobilityFromEUTRACommandr8IEsCsFallbackIndicator;
@@ -4545,6 +5132,11 @@ public:
 	void setHandoverTargetRATMessageContainer(const HandoverTargetRATMessageContainer& handoverTargetRATMessageContainer) { *static_cast<HandoverTargetRATMessageContainer*>(items[1]) = handoverTargetRATMessageContainer; }
 	void setHandoverNasSecurityParamFromEUTRA(const HandoverNasSecurityParamFromEUTRA& handoverNasSecurityParamFromEUTRA) { *static_cast<HandoverNasSecurityParamFromEUTRA*>(items[2]) = handoverNasSecurityParamFromEUTRA; }
 	void setSystemInformation(const SIOrPSIGERAN& systemInformation) { *static_cast<SIOrPSIGERAN*>(items[3]) = systemInformation; }
+
+	HandovertargetRAT_Type& getHandovertargetRAT_Type() { return *static_cast<HandovertargetRAT_Type*>(items[0]); }
+	HandoverTargetRATMessageContainer& getHandoverTargetRATMessageContainer() { return *static_cast<HandoverTargetRATMessageContainer*>(items[1]); }
+	HandoverNasSecurityParamFromEUTRA& getHandoverNasSecurityParamFromEUTRA() { return *static_cast<HandoverNasSecurityParamFromEUTRA*>(items[2]); }
+	SIOrPSIGERAN& getSystemInformation() { return *static_cast<SIOrPSIGERAN*>(items[3]); }
 };
 
 enum CellChangeOrdert304Values {
@@ -4574,6 +5166,9 @@ public:
 
 	void setPhysCellIdGERANNetworkColourCode(const PhysCellIdGERANNetworkColourCode& physCellIdGERANNetworkColourCode) { *static_cast<PhysCellIdGERANNetworkColourCode*>(items[0]) = physCellIdGERANNetworkColourCode; }
 	void setPhysCellIdGERANBaseStationColourCode(const PhysCellIdGERANBaseStationColourCode& physCellIdGERANBaseStationColourCode) { *static_cast<PhysCellIdGERANBaseStationColourCode*>(items[1]) = physCellIdGERANBaseStationColourCode; }
+
+	PhysCellIdGERANNetworkColourCode& getPhysCellIdGERANNetworkColourCode() { return *static_cast<PhysCellIdGERANNetworkColourCode*>(items[0]); }
+	PhysCellIdGERANBaseStationColourCode& getPhysCellIdGERANBaseStationColourCode() { return *static_cast<PhysCellIdGERANBaseStationColourCode*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 1023> ARFCNValueGERAN;
@@ -4595,6 +5190,9 @@ public:
 
 	void setArfcn(const ARFCNValueGERAN& arfcn) { *static_cast<ARFCNValueGERAN*>(items[0]) = arfcn; }
 	void setBandIndicator(const BandIndicatorGERAN& bandIndicator) { *static_cast<BandIndicatorGERAN*>(items[1]) = bandIndicator; }
+
+	ARFCNValueGERAN& getArfcn() { return *static_cast<ARFCNValueGERAN*>(items[0]); }
+	BandIndicatorGERAN& getBandIndicator() { return *static_cast<BandIndicatorGERAN*>(items[1]); }
 };
 
 typedef BitString<CONSTRAINED, 2, 2> CellChangeOrderTargetRATTypeGeranNetworkControlOrder;
@@ -4612,6 +5210,11 @@ public:
 	void setCarrierFreq(const CarrierFreqGERAN& carrierFreq) { *static_cast<CarrierFreqGERAN*>(items[1]) = carrierFreq; }
 	void setCellChangeOrderTargetRATTypeGeranNetworkControlOrder(const CellChangeOrderTargetRATTypeGeranNetworkControlOrder& cellChangeOrderTargetRATTypeGeranNetworkControlOrder) { *static_cast<CellChangeOrderTargetRATTypeGeranNetworkControlOrder*>(items[2]) = cellChangeOrderTargetRATTypeGeranNetworkControlOrder; }
 	void setSystemInformation(const SIOrPSIGERAN& systemInformation) { *static_cast<SIOrPSIGERAN*>(items[3]) = systemInformation; }
+
+	PhysCellIdGERAN& getPhysCellId() { return *static_cast<PhysCellIdGERAN*>(items[0]); }
+	CarrierFreqGERAN& getCarrierFreq() { return *static_cast<CarrierFreqGERAN*>(items[1]); }
+	CellChangeOrderTargetRATTypeGeranNetworkControlOrder& getCellChangeOrderTargetRATTypeGeranNetworkControlOrder() { return *static_cast<CellChangeOrderTargetRATTypeGeranNetworkControlOrder*>(items[2]); }
+	SIOrPSIGERAN& getSystemInformation() { return *static_cast<SIOrPSIGERAN*>(items[3]); }
 };
 
 class CellChangeOrderTargetRATType : public Choice {
@@ -4636,6 +5239,9 @@ public:
 
 	void setCellChangeOrdert304(const CellChangeOrdert304& cellChangeOrdert304) { *static_cast<CellChangeOrdert304*>(items[0]) = cellChangeOrdert304; }
 	void setCellChangeOrderTargetRATType(const CellChangeOrderTargetRATType& cellChangeOrderTargetRATType) { *static_cast<CellChangeOrderTargetRATType*>(items[1]) = cellChangeOrderTargetRATType; }
+
+	CellChangeOrdert304& getCellChangeOrdert304() { return *static_cast<CellChangeOrdert304*>(items[0]); }
+	CellChangeOrderTargetRATType& getCellChangeOrderTargetRATType() { return *static_cast<CellChangeOrderTargetRATType*>(items[1]); }
 };
 
 class MobilityFromEUTRACommandr8IEsPurpose : public Choice {
@@ -4659,6 +5265,8 @@ private:
 public:
 	static const Info theInfo;
 	MobilityFromEUTRACommandv8d0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class MobilityFromEUTRACommandv8d0IEs : public Sequence {
@@ -4668,8 +5276,12 @@ private:
 public:
 	static const Info theInfo;
 	MobilityFromEUTRACommandv8d0IEs(): Sequence(&theInfo) {}
+
 	void setBandIndicator(const BandIndicatorGERAN& bandIndicator) { *static_cast<BandIndicatorGERAN*>(items[0]) = bandIndicator; }
 	void setMobilityFromEUTRACommandv8d0IEsNonCriticalExtension(const MobilityFromEUTRACommandv8d0IEsNonCriticalExtension& mobilityFromEUTRACommandv8d0IEsNonCriticalExtension) { *static_cast<MobilityFromEUTRACommandv8d0IEsNonCriticalExtension*>(items[1]) = mobilityFromEUTRACommandv8d0IEsNonCriticalExtension; }
+
+	BandIndicatorGERAN& getBandIndicator() { return *static_cast<BandIndicatorGERAN*>(items[0]); }
+	MobilityFromEUTRACommandv8d0IEsNonCriticalExtension& getMobilityFromEUTRACommandv8d0IEsNonCriticalExtension() { return *static_cast<MobilityFromEUTRACommandv8d0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class MobilityFromEUTRACommandv8a0IEs : public Sequence {
@@ -4679,8 +5291,12 @@ private:
 public:
 	static const Info theInfo;
 	MobilityFromEUTRACommandv8a0IEs(): Sequence(&theInfo) {}
+
 	void setMobilityFromEUTRACommandv8a0IEsLateNonCriticalExtension(const MobilityFromEUTRACommandv8a0IEsLateNonCriticalExtension& mobilityFromEUTRACommandv8a0IEsLateNonCriticalExtension) { *static_cast<MobilityFromEUTRACommandv8a0IEsLateNonCriticalExtension*>(items[0]) = mobilityFromEUTRACommandv8a0IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const MobilityFromEUTRACommandv8d0IEs& nonCriticalExtension) { *static_cast<MobilityFromEUTRACommandv8d0IEs*>(items[1]) = nonCriticalExtension; }
+
+	MobilityFromEUTRACommandv8a0IEsLateNonCriticalExtension& getMobilityFromEUTRACommandv8a0IEsLateNonCriticalExtension() { return *static_cast<MobilityFromEUTRACommandv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	MobilityFromEUTRACommandv8d0IEs& getNonCriticalExtension() { return *static_cast<MobilityFromEUTRACommandv8d0IEs*>(items[1]); }
 };
 
 class MobilityFromEUTRACommandr8IEs : public Sequence {
@@ -4695,6 +5311,10 @@ public:
 	void setMobilityFromEUTRACommandr8IEsCsFallbackIndicator(const MobilityFromEUTRACommandr8IEsCsFallbackIndicator& mobilityFromEUTRACommandr8IEsCsFallbackIndicator) { *static_cast<MobilityFromEUTRACommandr8IEsCsFallbackIndicator*>(items[0]) = mobilityFromEUTRACommandr8IEsCsFallbackIndicator; }
 	void setMobilityFromEUTRACommandr8IEsPurpose(const MobilityFromEUTRACommandr8IEsPurpose& mobilityFromEUTRACommandr8IEsPurpose) { *static_cast<MobilityFromEUTRACommandr8IEsPurpose*>(items[1]) = mobilityFromEUTRACommandr8IEsPurpose; }
 	void setNonCriticalExtension(const MobilityFromEUTRACommandv8a0IEs& nonCriticalExtension) { *static_cast<MobilityFromEUTRACommandv8a0IEs*>(items[2]) = nonCriticalExtension; }
+
+	MobilityFromEUTRACommandr8IEsCsFallbackIndicator& getMobilityFromEUTRACommandr8IEsCsFallbackIndicator() { return *static_cast<MobilityFromEUTRACommandr8IEsCsFallbackIndicator*>(items[0]); }
+	MobilityFromEUTRACommandr8IEsPurpose& getMobilityFromEUTRACommandr8IEsPurpose() { return *static_cast<MobilityFromEUTRACommandr8IEsPurpose*>(items[1]); }
+	MobilityFromEUTRACommandv8a0IEs& getNonCriticalExtension() { return *static_cast<MobilityFromEUTRACommandv8a0IEs*>(items[2]); }
 };
 
 typedef Boolean MobilityFromEUTRACommandr9IEsCsFallbackIndicator;
@@ -4716,10 +5336,16 @@ private:
 public:
 	static const Info theInfo;
 	ECSFBr9(): Sequence(&theInfo) {}
+
 	void setECSFBr9MessageContCDMA20001XRTTr9(const ECSFBr9MessageContCDMA20001XRTTr9& eCSFBr9MessageContCDMA20001XRTTr9) { *static_cast<ECSFBr9MessageContCDMA20001XRTTr9*>(items[0]) = eCSFBr9MessageContCDMA20001XRTTr9; }
 	void setECSFBr9mobilityCDMA2000_HRPD_r9(const ECSFBr9mobilityCDMA2000_HRPD_r9& eCSFBr9mobilityCDMA2000_HRPD_r9) { *static_cast<ECSFBr9mobilityCDMA2000_HRPD_r9*>(items[1]) = eCSFBr9mobilityCDMA2000_HRPD_r9; }
 	void setECSFBr9MessageContCDMA2000HRPDr9(const ECSFBr9MessageContCDMA2000HRPDr9& eCSFBr9MessageContCDMA2000HRPDr9) { *static_cast<ECSFBr9MessageContCDMA2000HRPDr9*>(items[2]) = eCSFBr9MessageContCDMA2000HRPDr9; }
 	void setRedirectCarrierCDMA2000HRPDr9(const CarrierFreqCDMA2000& redirectCarrierCDMA2000HRPDr9) { *static_cast<CarrierFreqCDMA2000*>(items[3]) = redirectCarrierCDMA2000HRPDr9; }
+
+	ECSFBr9MessageContCDMA20001XRTTr9& getECSFBr9MessageContCDMA20001XRTTr9() { return *static_cast<ECSFBr9MessageContCDMA20001XRTTr9*>(items[0]); }
+	ECSFBr9mobilityCDMA2000_HRPD_r9& getECSFBr9mobilityCDMA2000_HRPD_r9() { return *static_cast<ECSFBr9mobilityCDMA2000_HRPD_r9*>(items[1]); }
+	ECSFBr9MessageContCDMA2000HRPDr9& getECSFBr9MessageContCDMA2000HRPDr9() { return *static_cast<ECSFBr9MessageContCDMA2000HRPDr9*>(items[2]); }
+	CarrierFreqCDMA2000& getRedirectCarrierCDMA2000HRPDr9() { return *static_cast<CarrierFreqCDMA2000*>(items[3]); }
 };
 
 class MobilityFromEUTRACommandr9IEsPurpose : public Choice {
@@ -4744,6 +5370,8 @@ private:
 public:
 	static const Info theInfo;
 	MobilityFromEUTRACommandv960IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class MobilityFromEUTRACommandv960IEs : public Sequence {
@@ -4753,8 +5381,12 @@ private:
 public:
 	static const Info theInfo;
 	MobilityFromEUTRACommandv960IEs(): Sequence(&theInfo) {}
+
 	void setBandIndicator(const BandIndicatorGERAN& bandIndicator) { *static_cast<BandIndicatorGERAN*>(items[0]) = bandIndicator; }
 	void setMobilityFromEUTRACommandv960IEsNonCriticalExtension(const MobilityFromEUTRACommandv960IEsNonCriticalExtension& mobilityFromEUTRACommandv960IEsNonCriticalExtension) { *static_cast<MobilityFromEUTRACommandv960IEsNonCriticalExtension*>(items[1]) = mobilityFromEUTRACommandv960IEsNonCriticalExtension; }
+
+	BandIndicatorGERAN& getBandIndicator() { return *static_cast<BandIndicatorGERAN*>(items[0]); }
+	MobilityFromEUTRACommandv960IEsNonCriticalExtension& getMobilityFromEUTRACommandv960IEsNonCriticalExtension() { return *static_cast<MobilityFromEUTRACommandv960IEsNonCriticalExtension*>(items[1]); }
 };
 
 class MobilityFromEUTRACommandv930IEs : public Sequence {
@@ -4764,8 +5396,12 @@ private:
 public:
 	static const Info theInfo;
 	MobilityFromEUTRACommandv930IEs(): Sequence(&theInfo) {}
+
 	void setMobilityFromEUTRACommandv930IEsLateNonCriticalExtension(const MobilityFromEUTRACommandv930IEsLateNonCriticalExtension& mobilityFromEUTRACommandv930IEsLateNonCriticalExtension) { *static_cast<MobilityFromEUTRACommandv930IEsLateNonCriticalExtension*>(items[0]) = mobilityFromEUTRACommandv930IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const MobilityFromEUTRACommandv960IEs& nonCriticalExtension) { *static_cast<MobilityFromEUTRACommandv960IEs*>(items[1]) = nonCriticalExtension; }
+
+	MobilityFromEUTRACommandv930IEsLateNonCriticalExtension& getMobilityFromEUTRACommandv930IEsLateNonCriticalExtension() { return *static_cast<MobilityFromEUTRACommandv930IEsLateNonCriticalExtension*>(items[0]); }
+	MobilityFromEUTRACommandv960IEs& getNonCriticalExtension() { return *static_cast<MobilityFromEUTRACommandv960IEs*>(items[1]); }
 };
 
 class MobilityFromEUTRACommandr9IEs : public Sequence {
@@ -4780,6 +5416,10 @@ public:
 	void setMobilityFromEUTRACommandr9IEsCsFallbackIndicator(const MobilityFromEUTRACommandr9IEsCsFallbackIndicator& mobilityFromEUTRACommandr9IEsCsFallbackIndicator) { *static_cast<MobilityFromEUTRACommandr9IEsCsFallbackIndicator*>(items[0]) = mobilityFromEUTRACommandr9IEsCsFallbackIndicator; }
 	void setMobilityFromEUTRACommandr9IEsPurpose(const MobilityFromEUTRACommandr9IEsPurpose& mobilityFromEUTRACommandr9IEsPurpose) { *static_cast<MobilityFromEUTRACommandr9IEsPurpose*>(items[1]) = mobilityFromEUTRACommandr9IEsPurpose; }
 	void setNonCriticalExtension(const MobilityFromEUTRACommandv930IEs& nonCriticalExtension) { *static_cast<MobilityFromEUTRACommandv930IEs*>(items[2]) = nonCriticalExtension; }
+
+	MobilityFromEUTRACommandr9IEsCsFallbackIndicator& getMobilityFromEUTRACommandr9IEsCsFallbackIndicator() { return *static_cast<MobilityFromEUTRACommandr9IEsCsFallbackIndicator*>(items[0]); }
+	MobilityFromEUTRACommandr9IEsPurpose& getMobilityFromEUTRACommandr9IEsPurpose() { return *static_cast<MobilityFromEUTRACommandr9IEsPurpose*>(items[1]); }
+	MobilityFromEUTRACommandv930IEs& getNonCriticalExtension() { return *static_cast<MobilityFromEUTRACommandv930IEs*>(items[2]); }
 };
 
 typedef Null MobilityFromEUTRACommandCriticalExtensionsC1Spare2;
@@ -4807,6 +5447,8 @@ private:
 public:
 	static const Info theInfo;
 	MobilityFromEUTRACommandCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class MobilityFromEUTRACommandCriticalExtensions : public Choice {
@@ -4832,6 +5474,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setMobilityFromEUTRACommandCriticalExtensions(const MobilityFromEUTRACommandCriticalExtensions& mobilityFromEUTRACommandCriticalExtensions) { *static_cast<MobilityFromEUTRACommandCriticalExtensions*>(items[1]) = mobilityFromEUTRACommandCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	MobilityFromEUTRACommandCriticalExtensions& getMobilityFromEUTRACommandCriticalExtensions() { return *static_cast<MobilityFromEUTRACommandCriticalExtensions*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 1, maxObjectId> MeasObjectId;
@@ -4909,6 +5554,10 @@ public:
 	void setCellsToAddModCellIndex(const CellsToAddModCellIndex& cellsToAddModCellIndex) { *static_cast<CellsToAddModCellIndex*>(items[0]) = cellsToAddModCellIndex; }
 	void setPhysCellId(const PhysCellId& physCellId) { *static_cast<PhysCellId*>(items[1]) = physCellId; }
 	void setCellIndividualOffset(const QOffsetRange& cellIndividualOffset) { *static_cast<QOffsetRange*>(items[2]) = cellIndividualOffset; }
+
+	CellsToAddModCellIndex& getCellsToAddModCellIndex() { return *static_cast<CellsToAddModCellIndex*>(items[0]); }
+	PhysCellId& getPhysCellId() { return *static_cast<PhysCellId*>(items[1]); }
+	QOffsetRange& getCellIndividualOffset() { return *static_cast<QOffsetRange*>(items[2]); }
 };
 
 typedef SequenceOf<CellsToAddMod, CONSTRAINED, 1, maxCellMeas> CellsToAddModList;
@@ -4946,6 +5595,9 @@ public:
 
 	void setStart(const PhysCellId& start) { *static_cast<PhysCellId*>(items[0]) = start; }
 	void setPhysCellIdRangerange(const PhysCellIdRangerange& physCellIdRangerange) { *static_cast<PhysCellIdRangerange*>(items[1]) = physCellIdRangerange; }
+
+	PhysCellId& getStart() { return *static_cast<PhysCellId*>(items[0]); }
+	PhysCellIdRangerange& getPhysCellIdRangerange() { return *static_cast<PhysCellIdRangerange*>(items[1]); }
 };
 
 class BlackCellsToAddMod : public Sequence {
@@ -4959,6 +5611,9 @@ public:
 
 	void setBlackCellsToAddModCellIndex(const BlackCellsToAddModCellIndex& blackCellsToAddModCellIndex) { *static_cast<BlackCellsToAddModCellIndex*>(items[0]) = blackCellsToAddModCellIndex; }
 	void setPhysCellIdRange(const PhysCellIdRange& physCellIdRange) { *static_cast<PhysCellIdRange*>(items[1]) = physCellIdRange; }
+
+	BlackCellsToAddModCellIndex& getBlackCellsToAddModCellIndex() { return *static_cast<BlackCellsToAddModCellIndex*>(items[0]); }
+	PhysCellIdRange& getPhysCellIdRange() { return *static_cast<PhysCellIdRange*>(items[1]); }
 };
 
 typedef SequenceOf<BlackCellsToAddMod, CONSTRAINED, 1, maxCellMeas> BlackCellsToAddModList;
@@ -4990,6 +5645,9 @@ public:
 
 	void setMeasSubframePatternNeighr10(const MeasSubframePatternr10& measSubframePatternNeighr10) { *static_cast<MeasSubframePatternr10*>(items[0]) = measSubframePatternNeighr10; }
 	void setMeasSubframeCellListr10(const MeasSubframeCellListr10& measSubframeCellListr10) { *static_cast<MeasSubframeCellListr10*>(items[1]) = measSubframeCellListr10; }
+
+	MeasSubframePatternr10& getMeasSubframePatternNeighr10() { return *static_cast<MeasSubframePatternr10*>(items[0]); }
+	MeasSubframeCellListr10& getMeasSubframeCellListr10() { return *static_cast<MeasSubframeCellListr10*>(items[1]); }
 };
 
 class MeasSubframePatternConfigNeighr10 : public Choice {
@@ -5025,6 +5683,19 @@ public:
 	void setCellForWhichToReportCGI(const PhysCellId& cellForWhichToReportCGI) { *static_cast<PhysCellId*>(items[9]) = cellForWhichToReportCGI; }
 	void setMeasCycleSCellr10(const MeasCycleSCellr10& measCycleSCellr10) { *static_cast<MeasCycleSCellr10*>(items[10]) = measCycleSCellr10; }
 	void setMeasSubframePatternConfigNeighr10(const MeasSubframePatternConfigNeighr10& measSubframePatternConfigNeighr10) { *static_cast<MeasSubframePatternConfigNeighr10*>(items[11]) = measSubframePatternConfigNeighr10; }
+
+	ARFCNValueEUTRA& getCarrierFreq() { return *static_cast<ARFCNValueEUTRA*>(items[0]); }
+	AllowedMeasBandwidth& getAllowedMeasBandwidth() { return *static_cast<AllowedMeasBandwidth*>(items[1]); }
+	PresenceAntennaPort1& getPresenceAntennaPort1() { return *static_cast<PresenceAntennaPort1*>(items[2]); }
+	NeighCellConfig& getNeighCellConfig() { return *static_cast<NeighCellConfig*>(items[3]); }
+	QOffsetRange& getOffsetFreq() { return *static_cast<QOffsetRange*>(items[4]); }
+	CellIndexList& getCellsToRemoveList() { return *static_cast<CellIndexList*>(items[5]); }
+	CellsToAddModList& getCellsToAddModList() { return *static_cast<CellsToAddModList*>(items[6]); }
+	CellIndexList& getBlackCellsToRemoveList() { return *static_cast<CellIndexList*>(items[7]); }
+	BlackCellsToAddModList& getBlackCellsToAddModList() { return *static_cast<BlackCellsToAddModList*>(items[8]); }
+	PhysCellId& getCellForWhichToReportCGI() { return *static_cast<PhysCellId*>(items[9]); }
+	MeasCycleSCellr10& getMeasCycleSCellr10() { return *static_cast<MeasCycleSCellr10*>(items[10]); }
+	MeasSubframePatternConfigNeighr10& getMeasSubframePatternConfigNeighr10() { return *static_cast<MeasSubframePatternConfigNeighr10*>(items[11]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 16383> ARFCNValueUTRA;
@@ -5046,6 +5717,9 @@ public:
 
 	void setCellsToAddModUTRAFDDCellIndex(const CellsToAddModUTRAFDDCellIndex& cellsToAddModUTRAFDDCellIndex) { *static_cast<CellsToAddModUTRAFDDCellIndex*>(items[0]) = cellsToAddModUTRAFDDCellIndex; }
 	void setPhysCellId(const PhysCellIdUTRAFDD& physCellId) { *static_cast<PhysCellIdUTRAFDD*>(items[1]) = physCellId; }
+
+	CellsToAddModUTRAFDDCellIndex& getCellsToAddModUTRAFDDCellIndex() { return *static_cast<CellsToAddModUTRAFDDCellIndex*>(items[0]); }
+	PhysCellIdUTRAFDD& getPhysCellId() { return *static_cast<PhysCellIdUTRAFDD*>(items[1]); }
 };
 
 typedef SequenceOf<CellsToAddModUTRAFDD, CONSTRAINED, 1, maxCellMeas> CellsToAddModListUTRAFDD;
@@ -5065,6 +5739,9 @@ public:
 
 	void setCellsToAddModUTRATDDCellIndex(const CellsToAddModUTRATDDCellIndex& cellsToAddModUTRATDDCellIndex) { *static_cast<CellsToAddModUTRATDDCellIndex*>(items[0]) = cellsToAddModUTRATDDCellIndex; }
 	void setPhysCellId(const PhysCellIdUTRATDD& physCellId) { *static_cast<PhysCellIdUTRATDD*>(items[1]) = physCellId; }
+
+	CellsToAddModUTRATDDCellIndex& getCellsToAddModUTRATDDCellIndex() { return *static_cast<CellsToAddModUTRATDDCellIndex*>(items[0]); }
+	PhysCellIdUTRATDD& getPhysCellId() { return *static_cast<PhysCellIdUTRATDD*>(items[1]); }
 };
 
 typedef SequenceOf<CellsToAddModUTRATDD, CONSTRAINED, 1, maxCellMeas> CellsToAddModListUTRATDD;
@@ -5106,6 +5783,9 @@ public:
 
 	void setStartr9(const PhysCellIdUTRAFDD& startr9) { *static_cast<PhysCellIdUTRAFDD*>(items[0]) = startr9; }
 	void setPhysCellIdRangeUTRAFDDr9Ranger9(const PhysCellIdRangeUTRAFDDr9Ranger9& physCellIdRangeUTRAFDDr9Ranger9) { *static_cast<PhysCellIdRangeUTRAFDDr9Ranger9*>(items[1]) = physCellIdRangeUTRAFDDr9Ranger9; }
+
+	PhysCellIdUTRAFDD& getStartr9() { return *static_cast<PhysCellIdUTRAFDD*>(items[0]); }
+	PhysCellIdRangeUTRAFDDr9Ranger9& getPhysCellIdRangeUTRAFDDr9Ranger9() { return *static_cast<PhysCellIdRangeUTRAFDDr9Ranger9*>(items[1]); }
 };
 
 typedef SequenceOf<PhysCellIdRangeUTRAFDDr9, CONSTRAINED, 1,  maxPhysCellIdRange_r9> PhysCellIdRangeUTRAFDDListr9;
@@ -5117,7 +5797,10 @@ private:
 public:
 	static const Info theInfo;
 	CSGAllowedReportingCellsr9(): Sequence(&theInfo) {}
+
 	void setPhysCellIdRangeUTRAFDDListr9(const PhysCellIdRangeUTRAFDDListr9& physCellIdRangeUTRAFDDListr9) { *static_cast<PhysCellIdRangeUTRAFDDListr9*>(items[0]) = physCellIdRangeUTRAFDDListr9; }
+
+	PhysCellIdRangeUTRAFDDListr9& getPhysCellIdRangeUTRAFDDListr9() { return *static_cast<PhysCellIdRangeUTRAFDDListr9*>(items[0]); }
 };
 
 class MeasObjectUTRA : public Sequence {
@@ -5135,6 +5818,13 @@ public:
 	void setMeasObjectUTRACellsToAddModList(const MeasObjectUTRACellsToAddModList& measObjectUTRACellsToAddModList) { *static_cast<MeasObjectUTRACellsToAddModList*>(items[3]) = measObjectUTRACellsToAddModList; }
 	void setMeasObjectUTRACellForWhichToReportCGI(const MeasObjectUTRACellForWhichToReportCGI& measObjectUTRACellForWhichToReportCGI) { *static_cast<MeasObjectUTRACellForWhichToReportCGI*>(items[4]) = measObjectUTRACellForWhichToReportCGI; }
 	void setCsgallowedReportingCellsv930(const CSGAllowedReportingCellsr9& csgallowedReportingCellsv930) { *static_cast<CSGAllowedReportingCellsr9*>(items[5]) = csgallowedReportingCellsv930; }
+
+	ARFCNValueUTRA& getCarrierFreq() { return *static_cast<ARFCNValueUTRA*>(items[0]); }
+	QOffsetRangeInterRAT& getOffsetFreq() { return *static_cast<QOffsetRangeInterRAT*>(items[1]); }
+	CellIndexList& getCellsToRemoveList() { return *static_cast<CellIndexList*>(items[2]); }
+	MeasObjectUTRACellsToAddModList& getMeasObjectUTRACellsToAddModList() { return *static_cast<MeasObjectUTRACellsToAddModList*>(items[3]); }
+	MeasObjectUTRACellForWhichToReportCGI& getMeasObjectUTRACellForWhichToReportCGI() { return *static_cast<MeasObjectUTRACellForWhichToReportCGI*>(items[4]); }
+	CSGAllowedReportingCellsr9& getCsgallowedReportingCellsv930() { return *static_cast<CSGAllowedReportingCellsr9*>(items[5]); }
 };
 
 typedef SequenceOf<ARFCNValueGERAN, CONSTRAINED, 0, 31> ExplicitListOfARFCNs;
@@ -5154,6 +5844,9 @@ public:
 
 	void setCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing(const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing) { *static_cast<CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing*>(items[0]) = carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing; }
 	void setCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs(const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs) { *static_cast<CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs*>(items[1]) = carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs; }
+
+	CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing& getCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing() { return *static_cast<CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing*>(items[0]); }
+	CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs& getCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs() { return *static_cast<CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs*>(items[1]); }
 };
 
 typedef OctetString<CONSTRAINED, 1, 16> CarrierFreqsGERANFollowingARFCNsVariableBitMapOfARFCNs;
@@ -5183,6 +5876,10 @@ public:
 	void setStartingARFCN(const ARFCNValueGERAN& startingARFCN) { *static_cast<ARFCNValueGERAN*>(items[0]) = startingARFCN; }
 	void setBandIndicator(const BandIndicatorGERAN& bandIndicator) { *static_cast<BandIndicatorGERAN*>(items[1]) = bandIndicator; }
 	void setCarrierFreqsGERANFollowingARFCNs(const CarrierFreqsGERANFollowingARFCNs& carrierFreqsGERANFollowingARFCNs) { *static_cast<CarrierFreqsGERANFollowingARFCNs*>(items[2]) = carrierFreqsGERANFollowingARFCNs; }
+
+	ARFCNValueGERAN& getStartingARFCN() { return *static_cast<ARFCNValueGERAN*>(items[0]); }
+	BandIndicatorGERAN& getBandIndicator() { return *static_cast<BandIndicatorGERAN*>(items[1]); }
+	CarrierFreqsGERANFollowingARFCNs& getCarrierFreqsGERANFollowingARFCNs() { return *static_cast<CarrierFreqsGERANFollowingARFCNs*>(items[2]); }
 };
 
 typedef BitString<CONSTRAINED, 8, 8> MeasObjectGERANNccPermitted;
@@ -5200,6 +5897,11 @@ public:
 	void setOffsetFreq(const QOffsetRangeInterRAT& offsetFreq) { *static_cast<QOffsetRangeInterRAT*>(items[1]) = offsetFreq; }
 	void setMeasObjectGERANNccPermitted(const MeasObjectGERANNccPermitted& measObjectGERANNccPermitted) { *static_cast<MeasObjectGERANNccPermitted*>(items[2]) = measObjectGERANNccPermitted; }
 	void setCellForWhichToReportCGI(const PhysCellIdGERAN& cellForWhichToReportCGI) { *static_cast<PhysCellIdGERAN*>(items[3]) = cellForWhichToReportCGI; }
+
+	CarrierFreqsGERAN& getCarrierFreqs() { return *static_cast<CarrierFreqsGERAN*>(items[0]); }
+	QOffsetRangeInterRAT& getOffsetFreq() { return *static_cast<QOffsetRangeInterRAT*>(items[1]); }
+	MeasObjectGERANNccPermitted& getMeasObjectGERANNccPermitted() { return *static_cast<MeasObjectGERANNccPermitted*>(items[2]); }
+	PhysCellIdGERAN& getCellForWhichToReportCGI() { return *static_cast<PhysCellIdGERAN*>(items[3]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 15> MeasObjectCDMA2000SearchWindowSize;
@@ -5219,6 +5921,9 @@ public:
 
 	void setCellsToAddModCDMA2000CellIndex(const CellsToAddModCDMA2000CellIndex& cellsToAddModCDMA2000CellIndex) { *static_cast<CellsToAddModCDMA2000CellIndex*>(items[0]) = cellsToAddModCDMA2000CellIndex; }
 	void setPhysCellId(const PhysCellIdCDMA2000& physCellId) { *static_cast<PhysCellIdCDMA2000*>(items[1]) = physCellId; }
+
+	CellsToAddModCDMA2000CellIndex& getCellsToAddModCDMA2000CellIndex() { return *static_cast<CellsToAddModCDMA2000CellIndex*>(items[0]); }
+	PhysCellIdCDMA2000& getPhysCellId() { return *static_cast<PhysCellIdCDMA2000*>(items[1]); }
 };
 
 typedef SequenceOf<CellsToAddModCDMA2000, CONSTRAINED, 1, maxCellMeas> CellsToAddModListCDMA2000;
@@ -5239,6 +5944,14 @@ public:
 	void setCellsToRemoveList(const CellIndexList& cellsToRemoveList) { *static_cast<CellIndexList*>(items[4]) = cellsToRemoveList; }
 	void setCellsToAddModList(const CellsToAddModListCDMA2000& cellsToAddModList) { *static_cast<CellsToAddModListCDMA2000*>(items[5]) = cellsToAddModList; }
 	void setCellForWhichToReportCGI(const PhysCellIdCDMA2000& cellForWhichToReportCGI) { *static_cast<PhysCellIdCDMA2000*>(items[6]) = cellForWhichToReportCGI; }
+
+	CDMA2000Type& getCdma2000Type() { return *static_cast<CDMA2000Type*>(items[0]); }
+	CarrierFreqCDMA2000& getCarrierFreq() { return *static_cast<CarrierFreqCDMA2000*>(items[1]); }
+	MeasObjectCDMA2000SearchWindowSize& getMeasObjectCDMA2000SearchWindowSize() { return *static_cast<MeasObjectCDMA2000SearchWindowSize*>(items[2]); }
+	QOffsetRangeInterRAT& getOffsetFreq() { return *static_cast<QOffsetRangeInterRAT*>(items[3]); }
+	CellIndexList& getCellsToRemoveList() { return *static_cast<CellIndexList*>(items[4]); }
+	CellsToAddModListCDMA2000& getCellsToAddModList() { return *static_cast<CellsToAddModListCDMA2000*>(items[5]); }
+	PhysCellIdCDMA2000& getCellForWhichToReportCGI() { return *static_cast<PhysCellIdCDMA2000*>(items[6]); }
 };
 
 class MeasObjectToAddModMeasObject : public Choice {
@@ -5266,6 +5979,9 @@ public:
 
 	void setMeasObjectId(const MeasObjectId& measObjectId) { *static_cast<MeasObjectId*>(items[0]) = measObjectId; }
 	void setMeasObjectToAddModMeasObject(const MeasObjectToAddModMeasObject& measObjectToAddModMeasObject) { *static_cast<MeasObjectToAddModMeasObject*>(items[1]) = measObjectToAddModMeasObject; }
+
+	MeasObjectId& getMeasObjectId() { return *static_cast<MeasObjectId*>(items[0]); }
+	MeasObjectToAddModMeasObject& getMeasObjectToAddModMeasObject() { return *static_cast<MeasObjectToAddModMeasObject*>(items[1]); }
 };
 
 typedef SequenceOf<MeasObjectToAddMod, CONSTRAINED, 1, maxObjectId> MeasObjectToAddModList;
@@ -5300,6 +6016,8 @@ public:
 	ReportConfigEUTRATriggerTypeEventEventIdEventA1(const ThresholdEUTRA& a1Threshold);
 
 	void setA1Threshold(const ThresholdEUTRA& a1Threshold) { *static_cast<ThresholdEUTRA*>(items[0]) = a1Threshold; }
+
+	ThresholdEUTRA& getA1Threshold() { return *static_cast<ThresholdEUTRA*>(items[0]); }
 };
 
 class ReportConfigEUTRATriggerTypeEventEventIdEventA2 : public Sequence {
@@ -5312,6 +6030,8 @@ public:
 	ReportConfigEUTRATriggerTypeEventEventIdEventA2(const ThresholdEUTRA& a2Threshold);
 
 	void setA2Threshold(const ThresholdEUTRA& a2Threshold) { *static_cast<ThresholdEUTRA*>(items[0]) = a2Threshold; }
+
+	ThresholdEUTRA& getA2Threshold() { return *static_cast<ThresholdEUTRA*>(items[0]); }
 };
 
 typedef Integer<CONSTRAINED, -30, 30> ReportConfigEUTRATriggerTypeEventEventIdEventA3A3Offset;
@@ -5329,6 +6049,9 @@ public:
 
 	void setReportConfigEUTRATriggerTypeEventEventIdEventA3A3Offset(const ReportConfigEUTRATriggerTypeEventEventIdEventA3A3Offset& reportConfigEUTRATriggerTypeEventEventIdEventA3A3Offset) { *static_cast<ReportConfigEUTRATriggerTypeEventEventIdEventA3A3Offset*>(items[0]) = reportConfigEUTRATriggerTypeEventEventIdEventA3A3Offset; }
 	void setReportConfigEUTRATriggerTypeEventEventIdEventA3ReportOnLeave(const ReportConfigEUTRATriggerTypeEventEventIdEventA3ReportOnLeave& reportConfigEUTRATriggerTypeEventEventIdEventA3ReportOnLeave) { *static_cast<ReportConfigEUTRATriggerTypeEventEventIdEventA3ReportOnLeave*>(items[1]) = reportConfigEUTRATriggerTypeEventEventIdEventA3ReportOnLeave; }
+
+	ReportConfigEUTRATriggerTypeEventEventIdEventA3A3Offset& getReportConfigEUTRATriggerTypeEventEventIdEventA3A3Offset() { return *static_cast<ReportConfigEUTRATriggerTypeEventEventIdEventA3A3Offset*>(items[0]); }
+	ReportConfigEUTRATriggerTypeEventEventIdEventA3ReportOnLeave& getReportConfigEUTRATriggerTypeEventEventIdEventA3ReportOnLeave() { return *static_cast<ReportConfigEUTRATriggerTypeEventEventIdEventA3ReportOnLeave*>(items[1]); }
 };
 
 class ReportConfigEUTRATriggerTypeEventEventIdEventA4 : public Sequence {
@@ -5341,6 +6064,8 @@ public:
 	ReportConfigEUTRATriggerTypeEventEventIdEventA4(const ThresholdEUTRA& a4Threshold);
 
 	void setA4Threshold(const ThresholdEUTRA& a4Threshold) { *static_cast<ThresholdEUTRA*>(items[0]) = a4Threshold; }
+
+	ThresholdEUTRA& getA4Threshold() { return *static_cast<ThresholdEUTRA*>(items[0]); }
 };
 
 class ReportConfigEUTRATriggerTypeEventEventIdEventA5 : public Sequence {
@@ -5354,6 +6079,9 @@ public:
 
 	void setA5Threshold1(const ThresholdEUTRA& a5Threshold1) { *static_cast<ThresholdEUTRA*>(items[0]) = a5Threshold1; }
 	void setA5Threshold2(const ThresholdEUTRA& a5Threshold2) { *static_cast<ThresholdEUTRA*>(items[1]) = a5Threshold2; }
+
+	ThresholdEUTRA& getA5Threshold1() { return *static_cast<ThresholdEUTRA*>(items[0]); }
+	ThresholdEUTRA& getA5Threshold2() { return *static_cast<ThresholdEUTRA*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, -30, 30> ReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6Offsetr10;
@@ -5371,6 +6099,9 @@ public:
 
 	void setReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6Offsetr10(const ReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6Offsetr10& reportConfigEUTRATriggerTypeEventEventIdEventA6r10A6Offsetr10) { *static_cast<ReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6Offsetr10*>(items[0]) = reportConfigEUTRATriggerTypeEventEventIdEventA6r10A6Offsetr10; }
 	void setReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6ReportOnLeaver10(const ReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6ReportOnLeaver10& reportConfigEUTRATriggerTypeEventEventIdEventA6r10A6ReportOnLeaver10) { *static_cast<ReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6ReportOnLeaver10*>(items[1]) = reportConfigEUTRATriggerTypeEventEventIdEventA6r10A6ReportOnLeaver10; }
+
+	ReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6Offsetr10& getReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6Offsetr10() { return *static_cast<ReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6Offsetr10*>(items[0]); }
+	ReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6ReportOnLeaver10& getReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6ReportOnLeaver10() { return *static_cast<ReportConfigEUTRATriggerTypeEventEventIdEventA6r10A6ReportOnLeaver10*>(items[1]); }
 };
 
 class ReportConfigEUTRATriggerTypeEventEventId : public Choice {
@@ -5423,6 +6154,10 @@ public:
 	void setReportConfigEUTRATriggerTypeEventEventId(const ReportConfigEUTRATriggerTypeEventEventId& reportConfigEUTRATriggerTypeEventEventId) { *static_cast<ReportConfigEUTRATriggerTypeEventEventId*>(items[0]) = reportConfigEUTRATriggerTypeEventEventId; }
 	void setHysteresis(const Hysteresis& hysteresis) { *static_cast<Hysteresis*>(items[1]) = hysteresis; }
 	void setTimeToTrigger(const TimeToTrigger& timeToTrigger) { *static_cast<TimeToTrigger*>(items[2]) = timeToTrigger; }
+
+	ReportConfigEUTRATriggerTypeEventEventId& getReportConfigEUTRATriggerTypeEventEventId() { return *static_cast<ReportConfigEUTRATriggerTypeEventEventId*>(items[0]); }
+	Hysteresis& getHysteresis() { return *static_cast<Hysteresis*>(items[1]); }
+	TimeToTrigger& getTimeToTrigger() { return *static_cast<TimeToTrigger*>(items[2]); }
 };
 
 enum ReportConfigEUTRATriggerTypePeriodicalpurposeValues {
@@ -5441,6 +6176,8 @@ public:
 	ReportConfigEUTRATriggerTypePeriodical(const ReportConfigEUTRATriggerTypePeriodicalpurpose& reportConfigEUTRATriggerTypePeriodicalpurpose);
 
 	void setReportConfigEUTRATriggerTypePeriodicalpurpose(const ReportConfigEUTRATriggerTypePeriodicalpurpose& reportConfigEUTRATriggerTypePeriodicalpurpose) { *static_cast<ReportConfigEUTRATriggerTypePeriodicalpurpose*>(items[0]) = reportConfigEUTRATriggerTypePeriodicalpurpose; }
+
+	ReportConfigEUTRATriggerTypePeriodicalpurpose& getReportConfigEUTRATriggerTypePeriodicalpurpose() { return *static_cast<ReportConfigEUTRATriggerTypePeriodicalpurpose*>(items[0]); }
 };
 
 class ReportConfigEUTRATriggerType : public Choice {
@@ -5540,6 +6277,17 @@ public:
 	void setReportConfigEUTRAue_RxTxTimeDiffPeriodical_r9(const ReportConfigEUTRAue_RxTxTimeDiffPeriodical_r9& reportConfigEUTRAue_RxTxTimeDiffPeriodical_r9) { *static_cast<ReportConfigEUTRAue_RxTxTimeDiffPeriodical_r9*>(items[7]) = reportConfigEUTRAue_RxTxTimeDiffPeriodical_r9; }
 	void setReportConfigEUTRAincludeLocationInfo_r10(const ReportConfigEUTRAincludeLocationInfo_r10& reportConfigEUTRAincludeLocationInfo_r10) { *static_cast<ReportConfigEUTRAincludeLocationInfo_r10*>(items[8]) = reportConfigEUTRAincludeLocationInfo_r10; }
 	void setReportConfigEUTRAreportAddNeighMeas_r10(const ReportConfigEUTRAreportAddNeighMeas_r10& reportConfigEUTRAreportAddNeighMeas_r10) { *static_cast<ReportConfigEUTRAreportAddNeighMeas_r10*>(items[9]) = reportConfigEUTRAreportAddNeighMeas_r10; }
+
+	ReportConfigEUTRATriggerType& getReportConfigEUTRATriggerType() { return *static_cast<ReportConfigEUTRATriggerType*>(items[0]); }
+	ReportConfigEUTRAtriggerQuantity& getReportConfigEUTRAtriggerQuantity() { return *static_cast<ReportConfigEUTRAtriggerQuantity*>(items[1]); }
+	ReportConfigEUTRAreportQuantity& getReportConfigEUTRAreportQuantity() { return *static_cast<ReportConfigEUTRAreportQuantity*>(items[2]); }
+	ReportConfigEUTRAMaxReportCells& getReportConfigEUTRAMaxReportCells() { return *static_cast<ReportConfigEUTRAMaxReportCells*>(items[3]); }
+	ReportInterval& getReportInterval() { return *static_cast<ReportInterval*>(items[4]); }
+	ReportConfigEUTRAreportAmount& getReportConfigEUTRAreportAmount() { return *static_cast<ReportConfigEUTRAreportAmount*>(items[5]); }
+	ReportConfigEUTRAsi_RequestForHO_r9& getReportConfigEUTRAsi_RequestForHO_r9() { return *static_cast<ReportConfigEUTRAsi_RequestForHO_r9*>(items[6]); }
+	ReportConfigEUTRAue_RxTxTimeDiffPeriodical_r9& getReportConfigEUTRAue_RxTxTimeDiffPeriodical_r9() { return *static_cast<ReportConfigEUTRAue_RxTxTimeDiffPeriodical_r9*>(items[7]); }
+	ReportConfigEUTRAincludeLocationInfo_r10& getReportConfigEUTRAincludeLocationInfo_r10() { return *static_cast<ReportConfigEUTRAincludeLocationInfo_r10*>(items[8]); }
+	ReportConfigEUTRAreportAddNeighMeas_r10& getReportConfigEUTRAreportAddNeighMeas_r10() { return *static_cast<ReportConfigEUTRAreportAddNeighMeas_r10*>(items[9]); }
 };
 
 typedef Integer<CONSTRAINED, -5, 91> ThresholdUTRAUtraRSCP;
@@ -5585,6 +6333,8 @@ public:
 	ReportConfigInterRATTriggerTypeEventEventIdEventB1(const ReportConfigInterRATTriggerTypeEventEventIdEventB1B1Threshold& reportConfigInterRATTriggerTypeEventEventIdEventB1B1Threshold);
 
 	void setReportConfigInterRATTriggerTypeEventEventIdEventB1B1Threshold(const ReportConfigInterRATTriggerTypeEventEventIdEventB1B1Threshold& reportConfigInterRATTriggerTypeEventEventIdEventB1B1Threshold) { *static_cast<ReportConfigInterRATTriggerTypeEventEventIdEventB1B1Threshold*>(items[0]) = reportConfigInterRATTriggerTypeEventEventIdEventB1B1Threshold; }
+
+	ReportConfigInterRATTriggerTypeEventEventIdEventB1B1Threshold& getReportConfigInterRATTriggerTypeEventEventIdEventB1B1Threshold() { return *static_cast<ReportConfigInterRATTriggerTypeEventEventIdEventB1B1Threshold*>(items[0]); }
 };
 
 class ReportConfigInterRATTriggerTypeEventEventIdEventB2B2Threshold2 : public Choice {
@@ -5611,6 +6361,9 @@ public:
 
 	void setB2Threshold1(const ThresholdEUTRA& b2Threshold1) { *static_cast<ThresholdEUTRA*>(items[0]) = b2Threshold1; }
 	void setReportConfigInterRATTriggerTypeEventEventIdEventB2B2Threshold2(const ReportConfigInterRATTriggerTypeEventEventIdEventB2B2Threshold2& reportConfigInterRATTriggerTypeEventEventIdEventB2B2Threshold2) { *static_cast<ReportConfigInterRATTriggerTypeEventEventIdEventB2B2Threshold2*>(items[1]) = reportConfigInterRATTriggerTypeEventEventIdEventB2B2Threshold2; }
+
+	ThresholdEUTRA& getB2Threshold1() { return *static_cast<ThresholdEUTRA*>(items[0]); }
+	ReportConfigInterRATTriggerTypeEventEventIdEventB2B2Threshold2& getReportConfigInterRATTriggerTypeEventEventIdEventB2B2Threshold2() { return *static_cast<ReportConfigInterRATTriggerTypeEventEventIdEventB2B2Threshold2*>(items[1]); }
 };
 
 class ReportConfigInterRATTriggerTypeEventEventId : public Choice {
@@ -5637,6 +6390,10 @@ public:
 	void setReportConfigInterRATTriggerTypeEventEventId(const ReportConfigInterRATTriggerTypeEventEventId& reportConfigInterRATTriggerTypeEventEventId) { *static_cast<ReportConfigInterRATTriggerTypeEventEventId*>(items[0]) = reportConfigInterRATTriggerTypeEventEventId; }
 	void setHysteresis(const Hysteresis& hysteresis) { *static_cast<Hysteresis*>(items[1]) = hysteresis; }
 	void setTimeToTrigger(const TimeToTrigger& timeToTrigger) { *static_cast<TimeToTrigger*>(items[2]) = timeToTrigger; }
+
+	ReportConfigInterRATTriggerTypeEventEventId& getReportConfigInterRATTriggerTypeEventEventId() { return *static_cast<ReportConfigInterRATTriggerTypeEventEventId*>(items[0]); }
+	Hysteresis& getHysteresis() { return *static_cast<Hysteresis*>(items[1]); }
+	TimeToTrigger& getTimeToTrigger() { return *static_cast<TimeToTrigger*>(items[2]); }
 };
 
 enum ReportConfigInterRATTriggerTypePeriodicalpurposeValues {
@@ -5656,6 +6413,8 @@ public:
 	ReportConfigInterRATTriggerTypePeriodical(const ReportConfigInterRATTriggerTypePeriodicalpurpose& reportConfigInterRATTriggerTypePeriodicalpurpose);
 
 	void setReportConfigInterRATTriggerTypePeriodicalpurpose(const ReportConfigInterRATTriggerTypePeriodicalpurpose& reportConfigInterRATTriggerTypePeriodicalpurpose) { *static_cast<ReportConfigInterRATTriggerTypePeriodicalpurpose*>(items[0]) = reportConfigInterRATTriggerTypePeriodicalpurpose; }
+
+	ReportConfigInterRATTriggerTypePeriodicalpurpose& getReportConfigInterRATTriggerTypePeriodicalpurpose() { return *static_cast<ReportConfigInterRATTriggerTypePeriodicalpurpose*>(items[0]); }
 };
 
 class ReportConfigInterRATTriggerType : public Choice {
@@ -5709,6 +6468,13 @@ public:
 	void setReportConfigInterRATreportAmount(const ReportConfigInterRATreportAmount& reportConfigInterRATreportAmount) { *static_cast<ReportConfigInterRATreportAmount*>(items[3]) = reportConfigInterRATreportAmount; }
 	void setReportConfigInterRATsi_RequestForHO_r9(const ReportConfigInterRATsi_RequestForHO_r9& reportConfigInterRATsi_RequestForHO_r9) { *static_cast<ReportConfigInterRATsi_RequestForHO_r9*>(items[4]) = reportConfigInterRATsi_RequestForHO_r9; }
 	void setReportConfigInterRATreportQuantityUTRA_FDD_r10(const ReportConfigInterRATreportQuantityUTRA_FDD_r10& reportConfigInterRATreportQuantityUTRA_FDD_r10) { *static_cast<ReportConfigInterRATreportQuantityUTRA_FDD_r10*>(items[5]) = reportConfigInterRATreportQuantityUTRA_FDD_r10; }
+
+	ReportConfigInterRATTriggerType& getReportConfigInterRATTriggerType() { return *static_cast<ReportConfigInterRATTriggerType*>(items[0]); }
+	ReportConfigInterRATMaxReportCells& getReportConfigInterRATMaxReportCells() { return *static_cast<ReportConfigInterRATMaxReportCells*>(items[1]); }
+	ReportInterval& getReportInterval() { return *static_cast<ReportInterval*>(items[2]); }
+	ReportConfigInterRATreportAmount& getReportConfigInterRATreportAmount() { return *static_cast<ReportConfigInterRATreportAmount*>(items[3]); }
+	ReportConfigInterRATsi_RequestForHO_r9& getReportConfigInterRATsi_RequestForHO_r9() { return *static_cast<ReportConfigInterRATsi_RequestForHO_r9*>(items[4]); }
+	ReportConfigInterRATreportQuantityUTRA_FDD_r10& getReportConfigInterRATreportQuantityUTRA_FDD_r10() { return *static_cast<ReportConfigInterRATreportQuantityUTRA_FDD_r10*>(items[5]); }
 };
 
 class ReportConfigToAddModReportConfig : public Choice {
@@ -5734,6 +6500,9 @@ public:
 
 	void setReportConfigId(const ReportConfigId& reportConfigId) { *static_cast<ReportConfigId*>(items[0]) = reportConfigId; }
 	void setReportConfigToAddModReportConfig(const ReportConfigToAddModReportConfig& reportConfigToAddModReportConfig) { *static_cast<ReportConfigToAddModReportConfig*>(items[1]) = reportConfigToAddModReportConfig; }
+
+	ReportConfigId& getReportConfigId() { return *static_cast<ReportConfigId*>(items[0]); }
+	ReportConfigToAddModReportConfig& getReportConfigToAddModReportConfig() { return *static_cast<ReportConfigToAddModReportConfig*>(items[1]); }
 };
 
 typedef SequenceOf<ReportConfigToAddMod, CONSTRAINED, 1, maxReportConfigId> ReportConfigToAddModList;
@@ -5754,6 +6523,10 @@ public:
 	void setMeasId(const MeasId& measId) { *static_cast<MeasId*>(items[0]) = measId; }
 	void setMeasObjectId(const MeasObjectId& measObjectId) { *static_cast<MeasObjectId*>(items[1]) = measObjectId; }
 	void setReportConfigId(const ReportConfigId& reportConfigId) { *static_cast<ReportConfigId*>(items[2]) = reportConfigId; }
+
+	MeasId& getMeasId() { return *static_cast<MeasId*>(items[0]); }
+	MeasObjectId& getMeasObjectId() { return *static_cast<MeasObjectId*>(items[1]); }
+	ReportConfigId& getReportConfigId() { return *static_cast<ReportConfigId*>(items[2]); }
 };
 
 typedef SequenceOf<MeasIdToAddMod, CONSTRAINED, 1, maxMeasId> MeasIdToAddModList;
@@ -5765,8 +6538,12 @@ private:
 public:
 	static const Info theInfo;
 	QuantityConfigEUTRA(): Sequence(&theInfo) {}
+
 	void setFilterCoefficientRSRP(const FilterCoefficient& filterCoefficientRSRP) { *static_cast<FilterCoefficient*>(items[0]) = filterCoefficientRSRP; }
 	void setFilterCoefficientRSRQ(const FilterCoefficient& filterCoefficientRSRQ) { *static_cast<FilterCoefficient*>(items[1]) = filterCoefficientRSRQ; }
+
+	FilterCoefficient& getFilterCoefficientRSRP() { return *static_cast<FilterCoefficient*>(items[0]); }
+	FilterCoefficient& getFilterCoefficientRSRQ() { return *static_cast<FilterCoefficient*>(items[1]); }
 };
 
 enum QuantityConfigUTRAmeasQuantityUTRA_FDDValues {
@@ -5792,6 +6569,10 @@ public:
 	void setQuantityConfigUTRAmeasQuantityUTRA_FDD(const QuantityConfigUTRAmeasQuantityUTRA_FDD& quantityConfigUTRAmeasQuantityUTRA_FDD) { *static_cast<QuantityConfigUTRAmeasQuantityUTRA_FDD*>(items[0]) = quantityConfigUTRAmeasQuantityUTRA_FDD; }
 	void setQuantityConfigUTRAmeasQuantityUTRA_TDD(const QuantityConfigUTRAmeasQuantityUTRA_TDD& quantityConfigUTRAmeasQuantityUTRA_TDD) { *static_cast<QuantityConfigUTRAmeasQuantityUTRA_TDD*>(items[1]) = quantityConfigUTRAmeasQuantityUTRA_TDD; }
 	void setFilterCoefficient(const FilterCoefficient& filterCoefficient) { *static_cast<FilterCoefficient*>(items[2]) = filterCoefficient; }
+
+	QuantityConfigUTRAmeasQuantityUTRA_FDD& getQuantityConfigUTRAmeasQuantityUTRA_FDD() { return *static_cast<QuantityConfigUTRAmeasQuantityUTRA_FDD*>(items[0]); }
+	QuantityConfigUTRAmeasQuantityUTRA_TDD& getQuantityConfigUTRAmeasQuantityUTRA_TDD() { return *static_cast<QuantityConfigUTRAmeasQuantityUTRA_TDD*>(items[1]); }
+	FilterCoefficient& getFilterCoefficient() { return *static_cast<FilterCoefficient*>(items[2]); }
 };
 
 enum QuantityConfigGERANmeasQuantityGERANValues {
@@ -5810,6 +6591,9 @@ public:
 
 	void setQuantityConfigGERANmeasQuantityGERAN(const QuantityConfigGERANmeasQuantityGERAN& quantityConfigGERANmeasQuantityGERAN) { *static_cast<QuantityConfigGERANmeasQuantityGERAN*>(items[0]) = quantityConfigGERANmeasQuantityGERAN; }
 	void setFilterCoefficient(const FilterCoefficient& filterCoefficient) { *static_cast<FilterCoefficient*>(items[1]) = filterCoefficient; }
+
+	QuantityConfigGERANmeasQuantityGERAN& getQuantityConfigGERANmeasQuantityGERAN() { return *static_cast<QuantityConfigGERANmeasQuantityGERAN*>(items[0]); }
+	FilterCoefficient& getFilterCoefficient() { return *static_cast<FilterCoefficient*>(items[1]); }
 };
 
 enum QuantityConfigCDMA2000measQuantityCDMA2000Values {
@@ -5828,6 +6612,8 @@ public:
 	QuantityConfigCDMA2000(const QuantityConfigCDMA2000measQuantityCDMA2000& quantityConfigCDMA2000measQuantityCDMA2000);
 
 	void setQuantityConfigCDMA2000measQuantityCDMA2000(const QuantityConfigCDMA2000measQuantityCDMA2000& quantityConfigCDMA2000measQuantityCDMA2000) { *static_cast<QuantityConfigCDMA2000measQuantityCDMA2000*>(items[0]) = quantityConfigCDMA2000measQuantityCDMA2000; }
+
+	QuantityConfigCDMA2000measQuantityCDMA2000& getQuantityConfigCDMA2000measQuantityCDMA2000() { return *static_cast<QuantityConfigCDMA2000measQuantityCDMA2000*>(items[0]); }
 };
 
 class QuantityConfigUTRAv1020 : public Sequence {
@@ -5837,7 +6623,10 @@ private:
 public:
 	static const Info theInfo;
 	QuantityConfigUTRAv1020(): Sequence(&theInfo) {}
+
 	void setFilterCoefficient2FDDr10(const FilterCoefficient& filterCoefficient2FDDr10) { *static_cast<FilterCoefficient*>(items[0]) = filterCoefficient2FDDr10; }
+
+	FilterCoefficient& getFilterCoefficient2FDDr10() { return *static_cast<FilterCoefficient*>(items[0]); }
 };
 
 class QuantityConfig : public Sequence {
@@ -5847,11 +6636,18 @@ private:
 public:
 	static const Info theInfo;
 	QuantityConfig(): Sequence(&theInfo) {}
+
 	void setQuantityConfigEUTRA(const QuantityConfigEUTRA& quantityConfigEUTRA) { *static_cast<QuantityConfigEUTRA*>(items[0]) = quantityConfigEUTRA; }
 	void setQuantityConfigUTRA(const QuantityConfigUTRA& quantityConfigUTRA) { *static_cast<QuantityConfigUTRA*>(items[1]) = quantityConfigUTRA; }
 	void setQuantityConfigGERAN(const QuantityConfigGERAN& quantityConfigGERAN) { *static_cast<QuantityConfigGERAN*>(items[2]) = quantityConfigGERAN; }
 	void setQuantityConfigCDMA2000(const QuantityConfigCDMA2000& quantityConfigCDMA2000) { *static_cast<QuantityConfigCDMA2000*>(items[3]) = quantityConfigCDMA2000; }
 	void setQuantityConfigUTRAv1020(const QuantityConfigUTRAv1020& quantityConfigUTRAv1020) { *static_cast<QuantityConfigUTRAv1020*>(items[4]) = quantityConfigUTRAv1020; }
+
+	QuantityConfigEUTRA& getQuantityConfigEUTRA() { return *static_cast<QuantityConfigEUTRA*>(items[0]); }
+	QuantityConfigUTRA& getQuantityConfigUTRA() { return *static_cast<QuantityConfigUTRA*>(items[1]); }
+	QuantityConfigGERAN& getQuantityConfigGERAN() { return *static_cast<QuantityConfigGERAN*>(items[2]); }
+	QuantityConfigCDMA2000& getQuantityConfigCDMA2000() { return *static_cast<QuantityConfigCDMA2000*>(items[3]); }
+	QuantityConfigUTRAv1020& getQuantityConfigUTRAv1020() { return *static_cast<QuantityConfigUTRAv1020*>(items[4]); }
 };
 
 typedef Null MeasGapConfigRelease;
@@ -5882,6 +6678,8 @@ public:
 	MeasGapConfigSetup(const MeasGapConfigSetupGapOffset& measGapConfigSetupGapOffset);
 
 	void setMeasGapConfigSetupGapOffset(const MeasGapConfigSetupGapOffset& measGapConfigSetupGapOffset) { *static_cast<MeasGapConfigSetupGapOffset*>(items[0]) = measGapConfigSetupGapOffset; }
+
+	MeasGapConfigSetupGapOffset& getMeasGapConfigSetupGapOffset() { return *static_cast<MeasGapConfigSetupGapOffset*>(items[0]); }
 };
 
 class MeasGapConfig : public Choice {
@@ -5914,6 +6712,10 @@ public:
 	void setPreRegistrationInfoHRPDPreRegistrationAllowed(const PreRegistrationInfoHRPDPreRegistrationAllowed& preRegistrationInfoHRPDPreRegistrationAllowed) { *static_cast<PreRegistrationInfoHRPDPreRegistrationAllowed*>(items[0]) = preRegistrationInfoHRPDPreRegistrationAllowed; }
 	void setPreRegistrationZoneId(const PreRegistrationZoneIdHRPD& preRegistrationZoneId) { *static_cast<PreRegistrationZoneIdHRPD*>(items[1]) = preRegistrationZoneId; }
 	void setSecondaryPreRegistrationZoneIdList(const SecondaryPreRegistrationZoneIdListHRPD& secondaryPreRegistrationZoneIdList) { *static_cast<SecondaryPreRegistrationZoneIdListHRPD*>(items[2]) = secondaryPreRegistrationZoneIdList; }
+
+	PreRegistrationInfoHRPDPreRegistrationAllowed& getPreRegistrationInfoHRPDPreRegistrationAllowed() { return *static_cast<PreRegistrationInfoHRPDPreRegistrationAllowed*>(items[0]); }
+	PreRegistrationZoneIdHRPD& getPreRegistrationZoneId() { return *static_cast<PreRegistrationZoneIdHRPD*>(items[1]); }
+	SecondaryPreRegistrationZoneIdListHRPD& getSecondaryPreRegistrationZoneIdList() { return *static_cast<SecondaryPreRegistrationZoneIdListHRPD*>(items[2]); }
 };
 
 typedef Null MeasConfigSpeedStateParsRelease;
@@ -5959,6 +6761,11 @@ public:
 	void setMobilityStateParameterst_HystNormal(const MobilityStateParameterst_HystNormal& mobilityStateParameterst_HystNormal) { *static_cast<MobilityStateParameterst_HystNormal*>(items[1]) = mobilityStateParameterst_HystNormal; }
 	void setMobilityStateParametersNCellChangeMedium(const MobilityStateParametersNCellChangeMedium& mobilityStateParametersNCellChangeMedium) { *static_cast<MobilityStateParametersNCellChangeMedium*>(items[2]) = mobilityStateParametersNCellChangeMedium; }
 	void setMobilityStateParametersNCellChangeHigh(const MobilityStateParametersNCellChangeHigh& mobilityStateParametersNCellChangeHigh) { *static_cast<MobilityStateParametersNCellChangeHigh*>(items[3]) = mobilityStateParametersNCellChangeHigh; }
+
+	MobilityStateParameterst_Evaluation& getMobilityStateParameterst_Evaluation() { return *static_cast<MobilityStateParameterst_Evaluation*>(items[0]); }
+	MobilityStateParameterst_HystNormal& getMobilityStateParameterst_HystNormal() { return *static_cast<MobilityStateParameterst_HystNormal*>(items[1]); }
+	MobilityStateParametersNCellChangeMedium& getMobilityStateParametersNCellChangeMedium() { return *static_cast<MobilityStateParametersNCellChangeMedium*>(items[2]); }
+	MobilityStateParametersNCellChangeHigh& getMobilityStateParametersNCellChangeHigh() { return *static_cast<MobilityStateParametersNCellChangeHigh*>(items[3]); }
 };
 
 enum SpeedStateScaleFactorssf_MediumValues {
@@ -5988,6 +6795,9 @@ public:
 
 	void setSpeedStateScaleFactorssf_Medium(const SpeedStateScaleFactorssf_Medium& speedStateScaleFactorssf_Medium) { *static_cast<SpeedStateScaleFactorssf_Medium*>(items[0]) = speedStateScaleFactorssf_Medium; }
 	void setSpeedStateScaleFactorssf_High(const SpeedStateScaleFactorssf_High& speedStateScaleFactorssf_High) { *static_cast<SpeedStateScaleFactorssf_High*>(items[1]) = speedStateScaleFactorssf_High; }
+
+	SpeedStateScaleFactorssf_Medium& getSpeedStateScaleFactorssf_Medium() { return *static_cast<SpeedStateScaleFactorssf_Medium*>(items[0]); }
+	SpeedStateScaleFactorssf_High& getSpeedStateScaleFactorssf_High() { return *static_cast<SpeedStateScaleFactorssf_High*>(items[1]); }
 };
 
 class MeasConfigSpeedStateParsSetup : public Sequence {
@@ -6001,6 +6811,9 @@ public:
 
 	void setMobilityStateParameters(const MobilityStateParameters& mobilityStateParameters) { *static_cast<MobilityStateParameters*>(items[0]) = mobilityStateParameters; }
 	void setTimeToTriggerSF(const SpeedStateScaleFactors& timeToTriggerSF) { *static_cast<SpeedStateScaleFactors*>(items[1]) = timeToTriggerSF; }
+
+	MobilityStateParameters& getMobilityStateParameters() { return *static_cast<MobilityStateParameters*>(items[0]); }
+	SpeedStateScaleFactors& getTimeToTriggerSF() { return *static_cast<SpeedStateScaleFactors*>(items[1]); }
 };
 
 class MeasConfigSpeedStatePars : public Choice {
@@ -6022,6 +6835,7 @@ private:
 public:
 	static const Info theInfo;
 	MeasConfig(): Sequence(&theInfo) {}
+
 	void setMeasObjectToRemoveList(const MeasObjectToRemoveList& measObjectToRemoveList) { *static_cast<MeasObjectToRemoveList*>(items[0]) = measObjectToRemoveList; }
 	void setMeasObjectToAddModList(const MeasObjectToAddModList& measObjectToAddModList) { *static_cast<MeasObjectToAddModList*>(items[1]) = measObjectToAddModList; }
 	void setReportConfigToRemoveList(const ReportConfigToRemoveList& reportConfigToRemoveList) { *static_cast<ReportConfigToRemoveList*>(items[2]) = reportConfigToRemoveList; }
@@ -6033,6 +6847,18 @@ public:
 	void setSMeasure(const RSRPRange& sMeasure) { *static_cast<RSRPRange*>(items[8]) = sMeasure; }
 	void setPreRegistrationInfoHRPD(const PreRegistrationInfoHRPD& preRegistrationInfoHRPD) { *static_cast<PreRegistrationInfoHRPD*>(items[9]) = preRegistrationInfoHRPD; }
 	void setMeasConfigSpeedStatePars(const MeasConfigSpeedStatePars& measConfigSpeedStatePars) { *static_cast<MeasConfigSpeedStatePars*>(items[10]) = measConfigSpeedStatePars; }
+
+	MeasObjectToRemoveList& getMeasObjectToRemoveList() { return *static_cast<MeasObjectToRemoveList*>(items[0]); }
+	MeasObjectToAddModList& getMeasObjectToAddModList() { return *static_cast<MeasObjectToAddModList*>(items[1]); }
+	ReportConfigToRemoveList& getReportConfigToRemoveList() { return *static_cast<ReportConfigToRemoveList*>(items[2]); }
+	ReportConfigToAddModList& getReportConfigToAddModList() { return *static_cast<ReportConfigToAddModList*>(items[3]); }
+	MeasIdToRemoveList& getMeasIdToRemoveList() { return *static_cast<MeasIdToRemoveList*>(items[4]); }
+	MeasIdToAddModList& getMeasIdToAddModList() { return *static_cast<MeasIdToAddModList*>(items[5]); }
+	QuantityConfig& getQuantityConfig() { return *static_cast<QuantityConfig*>(items[6]); }
+	MeasGapConfig& getMeasGapConfig() { return *static_cast<MeasGapConfig*>(items[7]); }
+	RSRPRange& getSMeasure() { return *static_cast<RSRPRange*>(items[8]); }
+	PreRegistrationInfoHRPD& getPreRegistrationInfoHRPD() { return *static_cast<PreRegistrationInfoHRPD*>(items[9]); }
+	MeasConfigSpeedStatePars& getMeasConfigSpeedStatePars() { return *static_cast<MeasConfigSpeedStatePars*>(items[10]); }
 };
 
 class CarrierFreqEUTRA : public Sequence {
@@ -6046,6 +6872,9 @@ public:
 
 	void setDlCarrierFreq(const ARFCNValueEUTRA& dlCarrierFreq) { *static_cast<ARFCNValueEUTRA*>(items[0]) = dlCarrierFreq; }
 	void setUlCarrierFreq(const ARFCNValueEUTRA& ulCarrierFreq) { *static_cast<ARFCNValueEUTRA*>(items[1]) = ulCarrierFreq; }
+
+	ARFCNValueEUTRA& getDlCarrierFreq() { return *static_cast<ARFCNValueEUTRA*>(items[0]); }
+	ARFCNValueEUTRA& getUlCarrierFreq() { return *static_cast<ARFCNValueEUTRA*>(items[1]); }
 };
 
 enum CarrierBandwidthEUTRAdl_BandwidthValues {
@@ -6099,6 +6928,9 @@ public:
 
 	void setCarrierBandwidthEUTRAdl_Bandwidth(const CarrierBandwidthEUTRAdl_Bandwidth& carrierBandwidthEUTRAdl_Bandwidth) { *static_cast<CarrierBandwidthEUTRAdl_Bandwidth*>(items[0]) = carrierBandwidthEUTRAdl_Bandwidth; }
 	void setCarrierBandwidthEUTRAul_Bandwidth(const CarrierBandwidthEUTRAul_Bandwidth& carrierBandwidthEUTRAul_Bandwidth) { *static_cast<CarrierBandwidthEUTRAul_Bandwidth*>(items[1]) = carrierBandwidthEUTRAul_Bandwidth; }
+
+	CarrierBandwidthEUTRAdl_Bandwidth& getCarrierBandwidthEUTRAdl_Bandwidth() { return *static_cast<CarrierBandwidthEUTRAdl_Bandwidth*>(items[0]); }
+	CarrierBandwidthEUTRAul_Bandwidth& getCarrierBandwidthEUTRAul_Bandwidth() { return *static_cast<CarrierBandwidthEUTRAul_Bandwidth*>(items[1]); }
 };
 
 enum MobilityControlInfot304Values {
@@ -6184,6 +7016,10 @@ public:
 	void setRACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA) { *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA*>(items[0]) = rACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA; }
 	void setRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA) { *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA*>(items[1]) = rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA; }
 	void setRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB) { *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB*>(items[2]) = rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB; }
+
+	RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA& getRACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA() { return *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA*>(items[0]); }
+	RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA& getRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA() { return *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA*>(items[1]); }
+	RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB& getRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB() { return *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB*>(items[2]); }
 };
 
 class RACHConfigCommonPreambleInfo : public Sequence {
@@ -6197,6 +7033,9 @@ public:
 
 	void setRACHConfigCommonPreambleInfonumberOfRA_Preambles(const RACHConfigCommonPreambleInfonumberOfRA_Preambles& rACHConfigCommonPreambleInfonumberOfRA_Preambles) { *static_cast<RACHConfigCommonPreambleInfonumberOfRA_Preambles*>(items[0]) = rACHConfigCommonPreambleInfonumberOfRA_Preambles; }
 	void setRACHConfigCommonPreambleInfoPreamblesGroupAConfig(const RACHConfigCommonPreambleInfoPreamblesGroupAConfig& rACHConfigCommonPreambleInfoPreamblesGroupAConfig) { *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfig*>(items[1]) = rACHConfigCommonPreambleInfoPreamblesGroupAConfig; }
+
+	RACHConfigCommonPreambleInfonumberOfRA_Preambles& getRACHConfigCommonPreambleInfonumberOfRA_Preambles() { return *static_cast<RACHConfigCommonPreambleInfonumberOfRA_Preambles*>(items[0]); }
+	RACHConfigCommonPreambleInfoPreamblesGroupAConfig& getRACHConfigCommonPreambleInfoPreamblesGroupAConfig() { return *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfig*>(items[1]); }
 };
 
 enum RACHConfigCommonPowerRampingParameterspowerRampingStepValues {
@@ -6238,6 +7077,9 @@ public:
 
 	void setRACHConfigCommonPowerRampingParameterspowerRampingStep(const RACHConfigCommonPowerRampingParameterspowerRampingStep& rACHConfigCommonPowerRampingParameterspowerRampingStep) { *static_cast<RACHConfigCommonPowerRampingParameterspowerRampingStep*>(items[0]) = rACHConfigCommonPowerRampingParameterspowerRampingStep; }
 	void setRACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower(const RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower& rACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower) { *static_cast<RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower*>(items[1]) = rACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower; }
+
+	RACHConfigCommonPowerRampingParameterspowerRampingStep& getRACHConfigCommonPowerRampingParameterspowerRampingStep() { return *static_cast<RACHConfigCommonPowerRampingParameterspowerRampingStep*>(items[0]); }
+	RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower& getRACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower() { return *static_cast<RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower*>(items[1]); }
 };
 
 enum RACHConfigCommonRaSupervisionInfopreambleTransMaxValues {
@@ -6291,6 +7133,10 @@ public:
 	void setRACHConfigCommonRaSupervisionInfopreambleTransMax(const RACHConfigCommonRaSupervisionInfopreambleTransMax& rACHConfigCommonRaSupervisionInfopreambleTransMax) { *static_cast<RACHConfigCommonRaSupervisionInfopreambleTransMax*>(items[0]) = rACHConfigCommonRaSupervisionInfopreambleTransMax; }
 	void setRACHConfigCommonRaSupervisionInfora_ResponseWindowSize(const RACHConfigCommonRaSupervisionInfora_ResponseWindowSize& rACHConfigCommonRaSupervisionInfora_ResponseWindowSize) { *static_cast<RACHConfigCommonRaSupervisionInfora_ResponseWindowSize*>(items[1]) = rACHConfigCommonRaSupervisionInfora_ResponseWindowSize; }
 	void setRACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer(const RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer& rACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer) { *static_cast<RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer*>(items[2]) = rACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer; }
+
+	RACHConfigCommonRaSupervisionInfopreambleTransMax& getRACHConfigCommonRaSupervisionInfopreambleTransMax() { return *static_cast<RACHConfigCommonRaSupervisionInfopreambleTransMax*>(items[0]); }
+	RACHConfigCommonRaSupervisionInfora_ResponseWindowSize& getRACHConfigCommonRaSupervisionInfora_ResponseWindowSize() { return *static_cast<RACHConfigCommonRaSupervisionInfora_ResponseWindowSize*>(items[1]); }
+	RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer& getRACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer() { return *static_cast<RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer*>(items[2]); }
 };
 
 typedef Integer<CONSTRAINED, 1, 8> RACHConfigCommonMaxHARQMsg3Tx;
@@ -6308,6 +7154,11 @@ public:
 	void setRACHConfigCommonPowerRampingParameters(const RACHConfigCommonPowerRampingParameters& rACHConfigCommonPowerRampingParameters) { *static_cast<RACHConfigCommonPowerRampingParameters*>(items[1]) = rACHConfigCommonPowerRampingParameters; }
 	void setRACHConfigCommonRaSupervisionInfo(const RACHConfigCommonRaSupervisionInfo& rACHConfigCommonRaSupervisionInfo) { *static_cast<RACHConfigCommonRaSupervisionInfo*>(items[2]) = rACHConfigCommonRaSupervisionInfo; }
 	void setRACHConfigCommonMaxHARQMsg3Tx(const RACHConfigCommonMaxHARQMsg3Tx& rACHConfigCommonMaxHARQMsg3Tx) { *static_cast<RACHConfigCommonMaxHARQMsg3Tx*>(items[3]) = rACHConfigCommonMaxHARQMsg3Tx; }
+
+	RACHConfigCommonPreambleInfo& getRACHConfigCommonPreambleInfo() { return *static_cast<RACHConfigCommonPreambleInfo*>(items[0]); }
+	RACHConfigCommonPowerRampingParameters& getRACHConfigCommonPowerRampingParameters() { return *static_cast<RACHConfigCommonPowerRampingParameters*>(items[1]); }
+	RACHConfigCommonRaSupervisionInfo& getRACHConfigCommonRaSupervisionInfo() { return *static_cast<RACHConfigCommonRaSupervisionInfo*>(items[2]); }
+	RACHConfigCommonMaxHARQMsg3Tx& getRACHConfigCommonMaxHARQMsg3Tx() { return *static_cast<RACHConfigCommonMaxHARQMsg3Tx*>(items[3]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 837> PRACHConfigRootSequenceIndex;
@@ -6333,6 +7184,11 @@ public:
 	void setPRACHConfigInfoHighSpeedFlag(const PRACHConfigInfoHighSpeedFlag& pRACHConfigInfoHighSpeedFlag) { *static_cast<PRACHConfigInfoHighSpeedFlag*>(items[1]) = pRACHConfigInfoHighSpeedFlag; }
 	void setPRACHConfigInfoZeroCorrelationZoneConfig(const PRACHConfigInfoZeroCorrelationZoneConfig& pRACHConfigInfoZeroCorrelationZoneConfig) { *static_cast<PRACHConfigInfoZeroCorrelationZoneConfig*>(items[2]) = pRACHConfigInfoZeroCorrelationZoneConfig; }
 	void setPRACHConfigInfoPrachFreqOffset(const PRACHConfigInfoPrachFreqOffset& pRACHConfigInfoPrachFreqOffset) { *static_cast<PRACHConfigInfoPrachFreqOffset*>(items[3]) = pRACHConfigInfoPrachFreqOffset; }
+
+	PRACHConfigInfoPrachConfigIndex& getPRACHConfigInfoPrachConfigIndex() { return *static_cast<PRACHConfigInfoPrachConfigIndex*>(items[0]); }
+	PRACHConfigInfoHighSpeedFlag& getPRACHConfigInfoHighSpeedFlag() { return *static_cast<PRACHConfigInfoHighSpeedFlag*>(items[1]); }
+	PRACHConfigInfoZeroCorrelationZoneConfig& getPRACHConfigInfoZeroCorrelationZoneConfig() { return *static_cast<PRACHConfigInfoZeroCorrelationZoneConfig*>(items[2]); }
+	PRACHConfigInfoPrachFreqOffset& getPRACHConfigInfoPrachFreqOffset() { return *static_cast<PRACHConfigInfoPrachFreqOffset*>(items[3]); }
 };
 
 class PRACHConfig : public Sequence {
@@ -6346,6 +7202,9 @@ public:
 
 	void setPRACHConfigRootSequenceIndex(const PRACHConfigRootSequenceIndex& pRACHConfigRootSequenceIndex) { *static_cast<PRACHConfigRootSequenceIndex*>(items[0]) = pRACHConfigRootSequenceIndex; }
 	void setPrachConfigInfo(const PRACHConfigInfo& prachConfigInfo) { *static_cast<PRACHConfigInfo*>(items[1]) = prachConfigInfo; }
+
+	PRACHConfigRootSequenceIndex& getPRACHConfigRootSequenceIndex() { return *static_cast<PRACHConfigRootSequenceIndex*>(items[0]); }
+	PRACHConfigInfo& getPrachConfigInfo() { return *static_cast<PRACHConfigInfo*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, -60, 50> PDSCHConfigCommonReferenceSignalPower;
@@ -6363,6 +7222,9 @@ public:
 
 	void setPDSCHConfigCommonReferenceSignalPower(const PDSCHConfigCommonReferenceSignalPower& pDSCHConfigCommonReferenceSignalPower) { *static_cast<PDSCHConfigCommonReferenceSignalPower*>(items[0]) = pDSCHConfigCommonReferenceSignalPower; }
 	void setPDSCHConfigCommonPb(const PDSCHConfigCommonPb& pDSCHConfigCommonPb) { *static_cast<PDSCHConfigCommonPb*>(items[1]) = pDSCHConfigCommonPb; }
+
+	PDSCHConfigCommonReferenceSignalPower& getPDSCHConfigCommonReferenceSignalPower() { return *static_cast<PDSCHConfigCommonReferenceSignalPower*>(items[0]); }
+	PDSCHConfigCommonPb& getPDSCHConfigCommonPb() { return *static_cast<PDSCHConfigCommonPb*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 1, 4> PUSCHConfigCommonPuschConfigBasicNSB;
@@ -6390,6 +7252,11 @@ public:
 	void setPUSCHConfigCommonPuschConfigBasichoppingMode(const PUSCHConfigCommonPuschConfigBasichoppingMode& pUSCHConfigCommonPuschConfigBasichoppingMode) { *static_cast<PUSCHConfigCommonPuschConfigBasichoppingMode*>(items[1]) = pUSCHConfigCommonPuschConfigBasichoppingMode; }
 	void setPUSCHConfigCommonPuschConfigBasicPuschHoppingOffset(const PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset& pUSCHConfigCommonPuschConfigBasicPuschHoppingOffset) { *static_cast<PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset*>(items[2]) = pUSCHConfigCommonPuschConfigBasicPuschHoppingOffset; }
 	void setPUSCHConfigCommonPuschConfigBasicEnable64QAM(const PUSCHConfigCommonPuschConfigBasicEnable64QAM& pUSCHConfigCommonPuschConfigBasicEnable64QAM) { *static_cast<PUSCHConfigCommonPuschConfigBasicEnable64QAM*>(items[3]) = pUSCHConfigCommonPuschConfigBasicEnable64QAM; }
+
+	PUSCHConfigCommonPuschConfigBasicNSB& getPUSCHConfigCommonPuschConfigBasicNSB() { return *static_cast<PUSCHConfigCommonPuschConfigBasicNSB*>(items[0]); }
+	PUSCHConfigCommonPuschConfigBasichoppingMode& getPUSCHConfigCommonPuschConfigBasichoppingMode() { return *static_cast<PUSCHConfigCommonPuschConfigBasichoppingMode*>(items[1]); }
+	PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset& getPUSCHConfigCommonPuschConfigBasicPuschHoppingOffset() { return *static_cast<PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset*>(items[2]); }
+	PUSCHConfigCommonPuschConfigBasicEnable64QAM& getPUSCHConfigCommonPuschConfigBasicEnable64QAM() { return *static_cast<PUSCHConfigCommonPuschConfigBasicEnable64QAM*>(items[3]); }
 };
 
 typedef Boolean ULReferenceSignalsPUSCHGroupHoppingEnabled;
@@ -6413,6 +7280,11 @@ public:
 	void setULReferenceSignalsPUSCHGroupAssignmentPUSCH(const ULReferenceSignalsPUSCHGroupAssignmentPUSCH& uLReferenceSignalsPUSCHGroupAssignmentPUSCH) { *static_cast<ULReferenceSignalsPUSCHGroupAssignmentPUSCH*>(items[1]) = uLReferenceSignalsPUSCHGroupAssignmentPUSCH; }
 	void setULReferenceSignalsPUSCHSequenceHoppingEnabled(const ULReferenceSignalsPUSCHSequenceHoppingEnabled& uLReferenceSignalsPUSCHSequenceHoppingEnabled) { *static_cast<ULReferenceSignalsPUSCHSequenceHoppingEnabled*>(items[2]) = uLReferenceSignalsPUSCHSequenceHoppingEnabled; }
 	void setULReferenceSignalsPUSCHCyclicShift(const ULReferenceSignalsPUSCHCyclicShift& uLReferenceSignalsPUSCHCyclicShift) { *static_cast<ULReferenceSignalsPUSCHCyclicShift*>(items[3]) = uLReferenceSignalsPUSCHCyclicShift; }
+
+	ULReferenceSignalsPUSCHGroupHoppingEnabled& getULReferenceSignalsPUSCHGroupHoppingEnabled() { return *static_cast<ULReferenceSignalsPUSCHGroupHoppingEnabled*>(items[0]); }
+	ULReferenceSignalsPUSCHGroupAssignmentPUSCH& getULReferenceSignalsPUSCHGroupAssignmentPUSCH() { return *static_cast<ULReferenceSignalsPUSCHGroupAssignmentPUSCH*>(items[1]); }
+	ULReferenceSignalsPUSCHSequenceHoppingEnabled& getULReferenceSignalsPUSCHSequenceHoppingEnabled() { return *static_cast<ULReferenceSignalsPUSCHSequenceHoppingEnabled*>(items[2]); }
+	ULReferenceSignalsPUSCHCyclicShift& getULReferenceSignalsPUSCHCyclicShift() { return *static_cast<ULReferenceSignalsPUSCHCyclicShift*>(items[3]); }
 };
 
 class PUSCHConfigCommon : public Sequence {
@@ -6426,6 +7298,9 @@ public:
 
 	void setPUSCHConfigCommonPuschConfigBasic(const PUSCHConfigCommonPuschConfigBasic& pUSCHConfigCommonPuschConfigBasic) { *static_cast<PUSCHConfigCommonPuschConfigBasic*>(items[0]) = pUSCHConfigCommonPuschConfigBasic; }
 	void setUlReferenceSignalsPUSCH(const ULReferenceSignalsPUSCH& ulReferenceSignalsPUSCH) { *static_cast<ULReferenceSignalsPUSCH*>(items[1]) = ulReferenceSignalsPUSCH; }
+
+	PUSCHConfigCommonPuschConfigBasic& getPUSCHConfigCommonPuschConfigBasic() { return *static_cast<PUSCHConfigCommonPuschConfigBasic*>(items[0]); }
+	ULReferenceSignalsPUSCH& getUlReferenceSignalsPUSCH() { return *static_cast<ULReferenceSignalsPUSCH*>(items[1]); }
 };
 
 enum PUCCHConfigCommondeltaPUCCH_ShiftValues {
@@ -6454,6 +7329,11 @@ public:
 	void setPUCCHConfigCommonNRBCQI(const PUCCHConfigCommonNRBCQI& pUCCHConfigCommonNRBCQI) { *static_cast<PUCCHConfigCommonNRBCQI*>(items[1]) = pUCCHConfigCommonNRBCQI; }
 	void setPUCCHConfigCommonNCSAN(const PUCCHConfigCommonNCSAN& pUCCHConfigCommonNCSAN) { *static_cast<PUCCHConfigCommonNCSAN*>(items[2]) = pUCCHConfigCommonNCSAN; }
 	void setPUCCHConfigCommonN1PUCCHAN(const PUCCHConfigCommonN1PUCCHAN& pUCCHConfigCommonN1PUCCHAN) { *static_cast<PUCCHConfigCommonN1PUCCHAN*>(items[3]) = pUCCHConfigCommonN1PUCCHAN; }
+
+	PUCCHConfigCommondeltaPUCCH_Shift& getPUCCHConfigCommondeltaPUCCH_Shift() { return *static_cast<PUCCHConfigCommondeltaPUCCH_Shift*>(items[0]); }
+	PUCCHConfigCommonNRBCQI& getPUCCHConfigCommonNRBCQI() { return *static_cast<PUCCHConfigCommonNRBCQI*>(items[1]); }
+	PUCCHConfigCommonNCSAN& getPUCCHConfigCommonNCSAN() { return *static_cast<PUCCHConfigCommonNCSAN*>(items[2]); }
+	PUCCHConfigCommonN1PUCCHAN& getPUCCHConfigCommonN1PUCCHAN() { return *static_cast<PUCCHConfigCommonN1PUCCHAN*>(items[3]); }
 };
 
 typedef Null SoundingRSULConfigCommonRelease;
@@ -6510,6 +7390,11 @@ public:
 	void setSoundingRSULConfigCommonSetupsrs_SubframeConfig(const SoundingRSULConfigCommonSetupsrs_SubframeConfig& soundingRSULConfigCommonSetupsrs_SubframeConfig) { *static_cast<SoundingRSULConfigCommonSetupsrs_SubframeConfig*>(items[1]) = soundingRSULConfigCommonSetupsrs_SubframeConfig; }
 	void setSoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission(const SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission& soundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission) { *static_cast<SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission*>(items[2]) = soundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission; }
 	void setSoundingRSULConfigCommonSetupsrs_MaxUpPts(const SoundingRSULConfigCommonSetupsrs_MaxUpPts& soundingRSULConfigCommonSetupsrs_MaxUpPts) { *static_cast<SoundingRSULConfigCommonSetupsrs_MaxUpPts*>(items[3]) = soundingRSULConfigCommonSetupsrs_MaxUpPts; }
+
+	SoundingRSULConfigCommonSetupsrs_BandwidthConfig& getSoundingRSULConfigCommonSetupsrs_BandwidthConfig() { return *static_cast<SoundingRSULConfigCommonSetupsrs_BandwidthConfig*>(items[0]); }
+	SoundingRSULConfigCommonSetupsrs_SubframeConfig& getSoundingRSULConfigCommonSetupsrs_SubframeConfig() { return *static_cast<SoundingRSULConfigCommonSetupsrs_SubframeConfig*>(items[1]); }
+	SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission& getSoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission() { return *static_cast<SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission*>(items[2]); }
+	SoundingRSULConfigCommonSetupsrs_MaxUpPts& getSoundingRSULConfigCommonSetupsrs_MaxUpPts() { return *static_cast<SoundingRSULConfigCommonSetupsrs_MaxUpPts*>(items[3]); }
 };
 
 class SoundingRSULConfigCommon : public Choice {
@@ -6590,6 +7475,12 @@ public:
 	void setDeltaFListPUCCHdeltaF_PUCCH_Format2(const DeltaFListPUCCHdeltaF_PUCCH_Format2& deltaFListPUCCHdeltaF_PUCCH_Format2) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2*>(items[2]) = deltaFListPUCCHdeltaF_PUCCH_Format2; }
 	void setDeltaFListPUCCHdeltaF_PUCCH_Format2a(const DeltaFListPUCCHdeltaF_PUCCH_Format2a& deltaFListPUCCHdeltaF_PUCCH_Format2a) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2a*>(items[3]) = deltaFListPUCCHdeltaF_PUCCH_Format2a; }
 	void setDeltaFListPUCCHdeltaF_PUCCH_Format2b(const DeltaFListPUCCHdeltaF_PUCCH_Format2b& deltaFListPUCCHdeltaF_PUCCH_Format2b) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2b*>(items[4]) = deltaFListPUCCHdeltaF_PUCCH_Format2b; }
+
+	DeltaFListPUCCHdeltaF_PUCCH_Format1& getDeltaFListPUCCHdeltaF_PUCCH_Format1() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format1*>(items[0]); }
+	DeltaFListPUCCHdeltaF_PUCCH_Format1b& getDeltaFListPUCCHdeltaF_PUCCH_Format1b() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format1b*>(items[1]); }
+	DeltaFListPUCCHdeltaF_PUCCH_Format2& getDeltaFListPUCCHdeltaF_PUCCH_Format2() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2*>(items[2]); }
+	DeltaFListPUCCHdeltaF_PUCCH_Format2a& getDeltaFListPUCCHdeltaF_PUCCH_Format2a() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2a*>(items[3]); }
+	DeltaFListPUCCHdeltaF_PUCCH_Format2b& getDeltaFListPUCCHdeltaF_PUCCH_Format2b() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2b*>(items[4]); }
 };
 
 typedef Integer<CONSTRAINED, -1, 6> UplinkPowerControlCommonDeltaPreambleMsg3;
@@ -6608,6 +7499,12 @@ public:
 	void setUplinkPowerControlCommonP0NominalPUCCH(const UplinkPowerControlCommonP0NominalPUCCH& uplinkPowerControlCommonP0NominalPUCCH) { *static_cast<UplinkPowerControlCommonP0NominalPUCCH*>(items[2]) = uplinkPowerControlCommonP0NominalPUCCH; }
 	void setDeltaFListPUCCH(const DeltaFListPUCCH& deltaFListPUCCH) { *static_cast<DeltaFListPUCCH*>(items[3]) = deltaFListPUCCH; }
 	void setUplinkPowerControlCommonDeltaPreambleMsg3(const UplinkPowerControlCommonDeltaPreambleMsg3& uplinkPowerControlCommonDeltaPreambleMsg3) { *static_cast<UplinkPowerControlCommonDeltaPreambleMsg3*>(items[4]) = uplinkPowerControlCommonDeltaPreambleMsg3; }
+
+	UplinkPowerControlCommonP0NominalPUSCH& getUplinkPowerControlCommonP0NominalPUSCH() { return *static_cast<UplinkPowerControlCommonP0NominalPUSCH*>(items[0]); }
+	UplinkPowerControlCommonalpha& getUplinkPowerControlCommonalpha() { return *static_cast<UplinkPowerControlCommonalpha*>(items[1]); }
+	UplinkPowerControlCommonP0NominalPUCCH& getUplinkPowerControlCommonP0NominalPUCCH() { return *static_cast<UplinkPowerControlCommonP0NominalPUCCH*>(items[2]); }
+	DeltaFListPUCCH& getDeltaFListPUCCH() { return *static_cast<DeltaFListPUCCH*>(items[3]); }
+	UplinkPowerControlCommonDeltaPreambleMsg3& getUplinkPowerControlCommonDeltaPreambleMsg3() { return *static_cast<UplinkPowerControlCommonDeltaPreambleMsg3*>(items[4]); }
 };
 
 enum AntennaInfoCommonantennaPortsCountValues {
@@ -6628,6 +7525,8 @@ public:
 	AntennaInfoCommon(const AntennaInfoCommonantennaPortsCount& antennaInfoCommonantennaPortsCount);
 
 	void setAntennaInfoCommonantennaPortsCount(const AntennaInfoCommonantennaPortsCount& antennaInfoCommonantennaPortsCount) { *static_cast<AntennaInfoCommonantennaPortsCount*>(items[0]) = antennaInfoCommonantennaPortsCount; }
+
+	AntennaInfoCommonantennaPortsCount& getAntennaInfoCommonantennaPortsCount() { return *static_cast<AntennaInfoCommonantennaPortsCount*>(items[0]); }
 };
 
 enum ULCyclicPrefixLengthValues {
@@ -6667,6 +7566,9 @@ public:
 
 	void setUplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10(const UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10) { *static_cast<UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10*>(items[0]) = uplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10; }
 	void setUplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10(const UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10) { *static_cast<UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10*>(items[1]) = uplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10; }
+
+	UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10& getUplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10() { return *static_cast<UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10*>(items[0]); }
+	UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10& getUplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10() { return *static_cast<UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10*>(items[1]); }
 };
 
 class RadioResourceConfigCommon : public Sequence {
@@ -6691,6 +7593,20 @@ public:
 	void setTddConfig(const TDDConfig& tddConfig) { *static_cast<TDDConfig*>(items[10]) = tddConfig; }
 	void setUlCyclicPrefixLength(const ULCyclicPrefixLength& ulCyclicPrefixLength) { *static_cast<ULCyclicPrefixLength*>(items[11]) = ulCyclicPrefixLength; }
 	void setUplinkPowerControlCommonv1020(const UplinkPowerControlCommonv1020& uplinkPowerControlCommonv1020) { *static_cast<UplinkPowerControlCommonv1020*>(items[12]) = uplinkPowerControlCommonv1020; }
+
+	RACHConfigCommon& getRachConfigCommon() { return *static_cast<RACHConfigCommon*>(items[0]); }
+	PRACHConfig& getPrachConfig() { return *static_cast<PRACHConfig*>(items[1]); }
+	PDSCHConfigCommon& getPdschConfigCommon() { return *static_cast<PDSCHConfigCommon*>(items[2]); }
+	PUSCHConfigCommon& getPuschConfigCommon() { return *static_cast<PUSCHConfigCommon*>(items[3]); }
+	PHICHConfig& getPhichConfig() { return *static_cast<PHICHConfig*>(items[4]); }
+	PUCCHConfigCommon& getPucchConfigCommon() { return *static_cast<PUCCHConfigCommon*>(items[5]); }
+	SoundingRSULConfigCommon& getSoundingRSULConfigCommon() { return *static_cast<SoundingRSULConfigCommon*>(items[6]); }
+	UplinkPowerControlCommon& getUplinkPowerControlCommon() { return *static_cast<UplinkPowerControlCommon*>(items[7]); }
+	AntennaInfoCommon& getAntennaInfoCommon() { return *static_cast<AntennaInfoCommon*>(items[8]); }
+	PMax& getPMax() { return *static_cast<PMax*>(items[9]); }
+	TDDConfig& getTddConfig() { return *static_cast<TDDConfig*>(items[10]); }
+	ULCyclicPrefixLength& getUlCyclicPrefixLength() { return *static_cast<ULCyclicPrefixLength*>(items[11]); }
+	UplinkPowerControlCommonv1020& getUplinkPowerControlCommonv1020() { return *static_cast<UplinkPowerControlCommonv1020*>(items[12]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 63> RACHConfigDedicatedRaPreambleIndex;
@@ -6708,6 +7624,9 @@ public:
 
 	void setRACHConfigDedicatedRaPreambleIndex(const RACHConfigDedicatedRaPreambleIndex& rACHConfigDedicatedRaPreambleIndex) { *static_cast<RACHConfigDedicatedRaPreambleIndex*>(items[0]) = rACHConfigDedicatedRaPreambleIndex; }
 	void setRACHConfigDedicatedRaPRACHMaskIndex(const RACHConfigDedicatedRaPRACHMaskIndex& rACHConfigDedicatedRaPRACHMaskIndex) { *static_cast<RACHConfigDedicatedRaPRACHMaskIndex*>(items[1]) = rACHConfigDedicatedRaPRACHMaskIndex; }
+
+	RACHConfigDedicatedRaPreambleIndex& getRACHConfigDedicatedRaPreambleIndex() { return *static_cast<RACHConfigDedicatedRaPreambleIndex*>(items[0]); }
+	RACHConfigDedicatedRaPRACHMaskIndex& getRACHConfigDedicatedRaPRACHMaskIndex() { return *static_cast<RACHConfigDedicatedRaPRACHMaskIndex*>(items[1]); }
 };
 
 class MobilityControlInfo : public Sequence {
@@ -6727,6 +7646,15 @@ public:
 	void setNewUEIdentity(const CRNTI& newUEIdentity) { *static_cast<CRNTI*>(items[5]) = newUEIdentity; }
 	void setRadioResourceConfigCommon(const RadioResourceConfigCommon& radioResourceConfigCommon) { *static_cast<RadioResourceConfigCommon*>(items[6]) = radioResourceConfigCommon; }
 	void setRachConfigDedicated(const RACHConfigDedicated& rachConfigDedicated) { *static_cast<RACHConfigDedicated*>(items[7]) = rachConfigDedicated; }
+
+	PhysCellId& getTargetPhysCellId() { return *static_cast<PhysCellId*>(items[0]); }
+	CarrierFreqEUTRA& getCarrierFreq() { return *static_cast<CarrierFreqEUTRA*>(items[1]); }
+	CarrierBandwidthEUTRA& getCarrierBandwidth() { return *static_cast<CarrierBandwidthEUTRA*>(items[2]); }
+	AdditionalSpectrumEmission& getAdditionalSpectrumEmission() { return *static_cast<AdditionalSpectrumEmission*>(items[3]); }
+	MobilityControlInfot304& getMobilityControlInfot304() { return *static_cast<MobilityControlInfot304*>(items[4]); }
+	CRNTI& getNewUEIdentity() { return *static_cast<CRNTI*>(items[5]); }
+	RadioResourceConfigCommon& getRadioResourceConfigCommon() { return *static_cast<RadioResourceConfigCommon*>(items[6]); }
+	RACHConfigDedicated& getRachConfigDedicated() { return *static_cast<RACHConfigDedicated*>(items[7]); }
 };
 
 typedef SequenceOf<DedicatedInfoNAS, CONSTRAINED, 1, maxDRB> RRCConnectionReconfigurationr8IEsDedicatedInfoNASList;
@@ -6766,6 +7694,9 @@ public:
 
 	void setSecurityAlgorithmConfigcipheringAlgorithm(const SecurityAlgorithmConfigcipheringAlgorithm& securityAlgorithmConfigcipheringAlgorithm) { *static_cast<SecurityAlgorithmConfigcipheringAlgorithm*>(items[0]) = securityAlgorithmConfigcipheringAlgorithm; }
 	void setSecurityAlgorithmConfigintegrityProtAlgorithm(const SecurityAlgorithmConfigintegrityProtAlgorithm& securityAlgorithmConfigintegrityProtAlgorithm) { *static_cast<SecurityAlgorithmConfigintegrityProtAlgorithm*>(items[1]) = securityAlgorithmConfigintegrityProtAlgorithm; }
+
+	SecurityAlgorithmConfigcipheringAlgorithm& getSecurityAlgorithmConfigcipheringAlgorithm() { return *static_cast<SecurityAlgorithmConfigcipheringAlgorithm*>(items[0]); }
+	SecurityAlgorithmConfigintegrityProtAlgorithm& getSecurityAlgorithmConfigintegrityProtAlgorithm() { return *static_cast<SecurityAlgorithmConfigintegrityProtAlgorithm*>(items[1]); }
 };
 
 typedef Boolean SecurityConfigHOHandoverTypeIntraLTEKeyChangeIndicator;
@@ -6782,6 +7713,10 @@ public:
 	void setSecurityAlgorithmConfig(const SecurityAlgorithmConfig& securityAlgorithmConfig) { *static_cast<SecurityAlgorithmConfig*>(items[0]) = securityAlgorithmConfig; }
 	void setSecurityConfigHOHandoverTypeIntraLTEKeyChangeIndicator(const SecurityConfigHOHandoverTypeIntraLTEKeyChangeIndicator& securityConfigHOHandoverTypeIntraLTEKeyChangeIndicator) { *static_cast<SecurityConfigHOHandoverTypeIntraLTEKeyChangeIndicator*>(items[1]) = securityConfigHOHandoverTypeIntraLTEKeyChangeIndicator; }
 	void setNextHopChainingCount(const NextHopChainingCount& nextHopChainingCount) { *static_cast<NextHopChainingCount*>(items[2]) = nextHopChainingCount; }
+
+	SecurityAlgorithmConfig& getSecurityAlgorithmConfig() { return *static_cast<SecurityAlgorithmConfig*>(items[0]); }
+	SecurityConfigHOHandoverTypeIntraLTEKeyChangeIndicator& getSecurityConfigHOHandoverTypeIntraLTEKeyChangeIndicator() { return *static_cast<SecurityConfigHOHandoverTypeIntraLTEKeyChangeIndicator*>(items[1]); }
+	NextHopChainingCount& getNextHopChainingCount() { return *static_cast<NextHopChainingCount*>(items[2]); }
 };
 
 typedef OctetString<CONSTRAINED, 6, 6> SecurityConfigHOHandoverTypeInterRATNasSecurityParamToEUTRA;
@@ -6797,6 +7732,9 @@ public:
 
 	void setSecurityAlgorithmConfig(const SecurityAlgorithmConfig& securityAlgorithmConfig) { *static_cast<SecurityAlgorithmConfig*>(items[0]) = securityAlgorithmConfig; }
 	void setSecurityConfigHOHandoverTypeInterRATNasSecurityParamToEUTRA(const SecurityConfigHOHandoverTypeInterRATNasSecurityParamToEUTRA& securityConfigHOHandoverTypeInterRATNasSecurityParamToEUTRA) { *static_cast<SecurityConfigHOHandoverTypeInterRATNasSecurityParamToEUTRA*>(items[1]) = securityConfigHOHandoverTypeInterRATNasSecurityParamToEUTRA; }
+
+	SecurityAlgorithmConfig& getSecurityAlgorithmConfig() { return *static_cast<SecurityAlgorithmConfig*>(items[0]); }
+	SecurityConfigHOHandoverTypeInterRATNasSecurityParamToEUTRA& getSecurityConfigHOHandoverTypeInterRATNasSecurityParamToEUTRA() { return *static_cast<SecurityConfigHOHandoverTypeInterRATNasSecurityParamToEUTRA*>(items[1]); }
 };
 
 class SecurityConfigHOHandoverType : public Choice {
@@ -6821,6 +7759,8 @@ public:
 	SecurityConfigHO(const SecurityConfigHOHandoverType& securityConfigHOHandoverType);
 
 	void setSecurityConfigHOHandoverType(const SecurityConfigHOHandoverType& securityConfigHOHandoverType) { *static_cast<SecurityConfigHOHandoverType*>(items[0]) = securityConfigHOHandoverType; }
+
+	SecurityConfigHOHandoverType& getSecurityConfigHOHandoverType() { return *static_cast<SecurityConfigHOHandoverType*>(items[0]); }
 };
 
 typedef OctetStringBase RRCConnectionReconfigurationv890IEsLateNonCriticalExtension;
@@ -6842,8 +7782,12 @@ private:
 public:
 	static const Info theInfo;
 	ReportProximityConfigr9(): Sequence(&theInfo) {}
+
 	void setReportProximityConfigr9proximityIndicationEUTRA_r9(const ReportProximityConfigr9proximityIndicationEUTRA_r9& reportProximityConfigr9proximityIndicationEUTRA_r9) { *static_cast<ReportProximityConfigr9proximityIndicationEUTRA_r9*>(items[0]) = reportProximityConfigr9proximityIndicationEUTRA_r9; }
 	void setReportProximityConfigr9proximityIndicationUTRA_r9(const ReportProximityConfigr9proximityIndicationUTRA_r9& reportProximityConfigr9proximityIndicationUTRA_r9) { *static_cast<ReportProximityConfigr9proximityIndicationUTRA_r9*>(items[1]) = reportProximityConfigr9proximityIndicationUTRA_r9; }
+
+	ReportProximityConfigr9proximityIndicationEUTRA_r9& getReportProximityConfigr9proximityIndicationEUTRA_r9() { return *static_cast<ReportProximityConfigr9proximityIndicationEUTRA_r9*>(items[0]); }
+	ReportProximityConfigr9proximityIndicationUTRA_r9& getReportProximityConfigr9proximityIndicationUTRA_r9() { return *static_cast<ReportProximityConfigr9proximityIndicationUTRA_r9*>(items[1]); }
 };
 
 class OtherConfigr9 : public Sequence {
@@ -6853,7 +7797,10 @@ private:
 public:
 	static const Info theInfo;
 	OtherConfigr9(): Sequence(&theInfo) {}
+
 	void setReportProximityConfigr9(const ReportProximityConfigr9& reportProximityConfigr9) { *static_cast<ReportProximityConfigr9*>(items[0]) = reportProximityConfigr9; }
+
+	ReportProximityConfigr9& getReportProximityConfigr9() { return *static_cast<ReportProximityConfigr9*>(items[0]); }
 };
 
 enum RRCConnectionReconfigurationv920IEsfullConfig_r9Values {
@@ -6876,6 +7823,9 @@ public:
 
 	void setPhysCellIdr10(const PhysCellId& physCellIdr10) { *static_cast<PhysCellId*>(items[0]) = physCellIdr10; }
 	void setDlCarrierFreqr10(const ARFCNValueEUTRA& dlCarrierFreqr10) { *static_cast<ARFCNValueEUTRA*>(items[1]) = dlCarrierFreqr10; }
+
+	PhysCellId& getPhysCellIdr10() { return *static_cast<PhysCellId*>(items[0]); }
+	ARFCNValueEUTRA& getDlCarrierFreqr10() { return *static_cast<ARFCNValueEUTRA*>(items[1]); }
 };
 
 enum RadioResourceConfigCommonSCellr10NonULConfigurationr10dl_Bandwidth_r10Values {
@@ -6905,6 +7855,13 @@ public:
 	void setPhichConfigr10(const PHICHConfig& phichConfigr10) { *static_cast<PHICHConfig*>(items[3]) = phichConfigr10; }
 	void setPdschConfigCommonr10(const PDSCHConfigCommon& pdschConfigCommonr10) { *static_cast<PDSCHConfigCommon*>(items[4]) = pdschConfigCommonr10; }
 	void setTddConfigr10(const TDDConfig& tddConfigr10) { *static_cast<TDDConfig*>(items[5]) = tddConfigr10; }
+
+	RadioResourceConfigCommonSCellr10NonULConfigurationr10dl_Bandwidth_r10& getRadioResourceConfigCommonSCellr10NonULConfigurationr10dl_Bandwidth_r10() { return *static_cast<RadioResourceConfigCommonSCellr10NonULConfigurationr10dl_Bandwidth_r10*>(items[0]); }
+	AntennaInfoCommon& getAntennaInfoCommonr10() { return *static_cast<AntennaInfoCommon*>(items[1]); }
+	MBSFNSubframeConfigList& getMbsfnSubframeConfigListr10() { return *static_cast<MBSFNSubframeConfigList*>(items[2]); }
+	PHICHConfig& getPhichConfigr10() { return *static_cast<PHICHConfig*>(items[3]); }
+	PDSCHConfigCommon& getPdschConfigCommonr10() { return *static_cast<PDSCHConfigCommon*>(items[4]); }
+	TDDConfig& getTddConfigr10() { return *static_cast<TDDConfig*>(items[5]); }
 };
 
 enum RadioResourceConfigCommonSCellr10UlConfigurationr10UlFreqInfor10ul_Bandwidth_r10Values {
@@ -6929,6 +7886,10 @@ public:
 	void setUlCarrierFreqr10(const ARFCNValueEUTRA& ulCarrierFreqr10) { *static_cast<ARFCNValueEUTRA*>(items[0]) = ulCarrierFreqr10; }
 	void setRadioResourceConfigCommonSCellr10UlConfigurationr10UlFreqInfor10ul_Bandwidth_r10(const RadioResourceConfigCommonSCellr10UlConfigurationr10UlFreqInfor10ul_Bandwidth_r10& radioResourceConfigCommonSCellr10UlConfigurationr10UlFreqInfor10ul_Bandwidth_r10) { *static_cast<RadioResourceConfigCommonSCellr10UlConfigurationr10UlFreqInfor10ul_Bandwidth_r10*>(items[1]) = radioResourceConfigCommonSCellr10UlConfigurationr10UlFreqInfor10ul_Bandwidth_r10; }
 	void setAdditionalSpectrumEmissionSCellr10(const AdditionalSpectrumEmission& additionalSpectrumEmissionSCellr10) { *static_cast<AdditionalSpectrumEmission*>(items[2]) = additionalSpectrumEmissionSCellr10; }
+
+	ARFCNValueEUTRA& getUlCarrierFreqr10() { return *static_cast<ARFCNValueEUTRA*>(items[0]); }
+	RadioResourceConfigCommonSCellr10UlConfigurationr10UlFreqInfor10ul_Bandwidth_r10& getRadioResourceConfigCommonSCellr10UlConfigurationr10UlFreqInfor10ul_Bandwidth_r10() { return *static_cast<RadioResourceConfigCommonSCellr10UlConfigurationr10UlFreqInfor10ul_Bandwidth_r10*>(items[1]); }
+	AdditionalSpectrumEmission& getAdditionalSpectrumEmissionSCellr10() { return *static_cast<AdditionalSpectrumEmission*>(items[2]); }
 };
 
 typedef Integer<CONSTRAINED, -126, 24> UplinkPowerControlCommonSCellr10P0NominalPUSCHr10;
@@ -6956,6 +7917,9 @@ public:
 
 	void setUplinkPowerControlCommonSCellr10P0NominalPUSCHr10(const UplinkPowerControlCommonSCellr10P0NominalPUSCHr10& uplinkPowerControlCommonSCellr10P0NominalPUSCHr10) { *static_cast<UplinkPowerControlCommonSCellr10P0NominalPUSCHr10*>(items[0]) = uplinkPowerControlCommonSCellr10P0NominalPUSCHr10; }
 	void setUplinkPowerControlCommonSCellr10alpha_r10(const UplinkPowerControlCommonSCellr10alpha_r10& uplinkPowerControlCommonSCellr10alpha_r10) { *static_cast<UplinkPowerControlCommonSCellr10alpha_r10*>(items[1]) = uplinkPowerControlCommonSCellr10alpha_r10; }
+
+	UplinkPowerControlCommonSCellr10P0NominalPUSCHr10& getUplinkPowerControlCommonSCellr10P0NominalPUSCHr10() { return *static_cast<UplinkPowerControlCommonSCellr10P0NominalPUSCHr10*>(items[0]); }
+	UplinkPowerControlCommonSCellr10alpha_r10& getUplinkPowerControlCommonSCellr10alpha_r10() { return *static_cast<UplinkPowerControlCommonSCellr10alpha_r10*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 63> PRACHConfigSCellr10PrachConfigIndexr10;
@@ -6970,6 +7934,8 @@ public:
 	PRACHConfigSCellr10(const PRACHConfigSCellr10PrachConfigIndexr10& pRACHConfigSCellr10PrachConfigIndexr10);
 
 	void setPRACHConfigSCellr10PrachConfigIndexr10(const PRACHConfigSCellr10PrachConfigIndexr10& pRACHConfigSCellr10PrachConfigIndexr10) { *static_cast<PRACHConfigSCellr10PrachConfigIndexr10*>(items[0]) = pRACHConfigSCellr10PrachConfigIndexr10; }
+
+	PRACHConfigSCellr10PrachConfigIndexr10& getPRACHConfigSCellr10PrachConfigIndexr10() { return *static_cast<PRACHConfigSCellr10PrachConfigIndexr10*>(items[0]); }
 };
 
 class RadioResourceConfigCommonSCellr10UlConfigurationr10 : public Sequence {
@@ -6988,6 +7954,14 @@ public:
 	void setUlCyclicPrefixLengthr10(const ULCyclicPrefixLength& ulCyclicPrefixLengthr10) { *static_cast<ULCyclicPrefixLength*>(items[4]) = ulCyclicPrefixLengthr10; }
 	void setPrachConfigSCellr10(const PRACHConfigSCellr10& prachConfigSCellr10) { *static_cast<PRACHConfigSCellr10*>(items[5]) = prachConfigSCellr10; }
 	void setPuschConfigCommonr10(const PUSCHConfigCommon& puschConfigCommonr10) { *static_cast<PUSCHConfigCommon*>(items[6]) = puschConfigCommonr10; }
+
+	RadioResourceConfigCommonSCellr10UlConfigurationr10UlFreqInfor10& getRadioResourceConfigCommonSCellr10UlConfigurationr10UlFreqInfor10() { return *static_cast<RadioResourceConfigCommonSCellr10UlConfigurationr10UlFreqInfor10*>(items[0]); }
+	PMax& getPMaxr10() { return *static_cast<PMax*>(items[1]); }
+	UplinkPowerControlCommonSCellr10& getUplinkPowerControlCommonSCellr10() { return *static_cast<UplinkPowerControlCommonSCellr10*>(items[2]); }
+	SoundingRSULConfigCommon& getSoundingRSULConfigCommonr10() { return *static_cast<SoundingRSULConfigCommon*>(items[3]); }
+	ULCyclicPrefixLength& getUlCyclicPrefixLengthr10() { return *static_cast<ULCyclicPrefixLength*>(items[4]); }
+	PRACHConfigSCellr10& getPrachConfigSCellr10() { return *static_cast<PRACHConfigSCellr10*>(items[5]); }
+	PUSCHConfigCommon& getPuschConfigCommonr10() { return *static_cast<PUSCHConfigCommon*>(items[6]); }
 };
 
 class RadioResourceConfigCommonSCellr10 : public Sequence {
@@ -7001,6 +7975,9 @@ public:
 
 	void setRadioResourceConfigCommonSCellr10NonULConfigurationr10(const RadioResourceConfigCommonSCellr10NonULConfigurationr10& radioResourceConfigCommonSCellr10NonULConfigurationr10) { *static_cast<RadioResourceConfigCommonSCellr10NonULConfigurationr10*>(items[0]) = radioResourceConfigCommonSCellr10NonULConfigurationr10; }
 	void setRadioResourceConfigCommonSCellr10UlConfigurationr10(const RadioResourceConfigCommonSCellr10UlConfigurationr10& radioResourceConfigCommonSCellr10UlConfigurationr10) { *static_cast<RadioResourceConfigCommonSCellr10UlConfigurationr10*>(items[1]) = radioResourceConfigCommonSCellr10UlConfigurationr10; }
+
+	RadioResourceConfigCommonSCellr10NonULConfigurationr10& getRadioResourceConfigCommonSCellr10NonULConfigurationr10() { return *static_cast<RadioResourceConfigCommonSCellr10NonULConfigurationr10*>(items[0]); }
+	RadioResourceConfigCommonSCellr10UlConfigurationr10& getRadioResourceConfigCommonSCellr10UlConfigurationr10() { return *static_cast<RadioResourceConfigCommonSCellr10UlConfigurationr10*>(items[1]); }
 };
 
 typedef Boolean CrossCarrierSchedulingConfigr10SchedulingCellInfor10Ownr10CifPresencer10;
@@ -7015,6 +7992,8 @@ public:
 	CrossCarrierSchedulingConfigr10SchedulingCellInfor10Ownr10(const CrossCarrierSchedulingConfigr10SchedulingCellInfor10Ownr10CifPresencer10& crossCarrierSchedulingConfigr10SchedulingCellInfor10Ownr10CifPresencer10);
 
 	void setCrossCarrierSchedulingConfigr10SchedulingCellInfor10Ownr10CifPresencer10(const CrossCarrierSchedulingConfigr10SchedulingCellInfor10Ownr10CifPresencer10& crossCarrierSchedulingConfigr10SchedulingCellInfor10Ownr10CifPresencer10) { *static_cast<CrossCarrierSchedulingConfigr10SchedulingCellInfor10Ownr10CifPresencer10*>(items[0]) = crossCarrierSchedulingConfigr10SchedulingCellInfor10Ownr10CifPresencer10; }
+
+	CrossCarrierSchedulingConfigr10SchedulingCellInfor10Ownr10CifPresencer10& getCrossCarrierSchedulingConfigr10SchedulingCellInfor10Ownr10CifPresencer10() { return *static_cast<CrossCarrierSchedulingConfigr10SchedulingCellInfor10Ownr10CifPresencer10*>(items[0]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 7> ServCellIndexr10;
@@ -7032,6 +8011,9 @@ public:
 
 	void setSchedulingCellIdr10(const ServCellIndexr10& schedulingCellIdr10) { *static_cast<ServCellIndexr10*>(items[0]) = schedulingCellIdr10; }
 	void setCrossCarrierSchedulingConfigr10SchedulingCellInfor10Otherr10PdschStartr10(const CrossCarrierSchedulingConfigr10SchedulingCellInfor10Otherr10PdschStartr10& crossCarrierSchedulingConfigr10SchedulingCellInfor10Otherr10PdschStartr10) { *static_cast<CrossCarrierSchedulingConfigr10SchedulingCellInfor10Otherr10PdschStartr10*>(items[1]) = crossCarrierSchedulingConfigr10SchedulingCellInfor10Otherr10PdschStartr10; }
+
+	ServCellIndexr10& getSchedulingCellIdr10() { return *static_cast<ServCellIndexr10*>(items[0]); }
+	CrossCarrierSchedulingConfigr10SchedulingCellInfor10Otherr10PdschStartr10& getCrossCarrierSchedulingConfigr10SchedulingCellInfor10Otherr10PdschStartr10() { return *static_cast<CrossCarrierSchedulingConfigr10SchedulingCellInfor10Otherr10PdschStartr10*>(items[1]); }
 };
 
 class CrossCarrierSchedulingConfigr10SchedulingCellInfor10 : public Choice {
@@ -7056,6 +8038,8 @@ public:
 	CrossCarrierSchedulingConfigr10(const CrossCarrierSchedulingConfigr10SchedulingCellInfor10& crossCarrierSchedulingConfigr10SchedulingCellInfor10);
 
 	void setCrossCarrierSchedulingConfigr10SchedulingCellInfor10(const CrossCarrierSchedulingConfigr10SchedulingCellInfor10& crossCarrierSchedulingConfigr10SchedulingCellInfor10) { *static_cast<CrossCarrierSchedulingConfigr10SchedulingCellInfor10*>(items[0]) = crossCarrierSchedulingConfigr10SchedulingCellInfor10; }
+
+	CrossCarrierSchedulingConfigr10SchedulingCellInfor10& getCrossCarrierSchedulingConfigr10SchedulingCellInfor10() { return *static_cast<CrossCarrierSchedulingConfigr10SchedulingCellInfor10*>(items[0]); }
 };
 
 class PhysicalConfigDedicatedSCellr10NonULConfigurationr10 : public Sequence {
@@ -7065,10 +8049,16 @@ private:
 public:
 	static const Info theInfo;
 	PhysicalConfigDedicatedSCellr10NonULConfigurationr10(): Sequence(&theInfo) {}
+
 	void setAntennaInfor10(const AntennaInfoDedicatedr10& antennaInfor10) { *static_cast<AntennaInfoDedicatedr10*>(items[0]) = antennaInfor10; }
 	void setCrossCarrierSchedulingConfigr10(const CrossCarrierSchedulingConfigr10& crossCarrierSchedulingConfigr10) { *static_cast<CrossCarrierSchedulingConfigr10*>(items[1]) = crossCarrierSchedulingConfigr10; }
 	void setCsiRSConfigr10(const CSIRSConfigr10& csiRSConfigr10) { *static_cast<CSIRSConfigr10*>(items[2]) = csiRSConfigr10; }
 	void setPdschConfigDedicatedr10(const PDSCHConfigDedicated& pdschConfigDedicatedr10) { *static_cast<PDSCHConfigDedicated*>(items[3]) = pdschConfigDedicatedr10; }
+
+	AntennaInfoDedicatedr10& getAntennaInfor10() { return *static_cast<AntennaInfoDedicatedr10*>(items[0]); }
+	CrossCarrierSchedulingConfigr10& getCrossCarrierSchedulingConfigr10() { return *static_cast<CrossCarrierSchedulingConfigr10*>(items[1]); }
+	CSIRSConfigr10& getCsiRSConfigr10() { return *static_cast<CSIRSConfigr10*>(items[2]); }
+	PDSCHConfigDedicated& getPdschConfigDedicatedr10() { return *static_cast<PDSCHConfigDedicated*>(items[3]); }
 };
 
 enum PUSCHConfigDedicatedSCellr10groupHoppingDisabled_r10Values {
@@ -7088,8 +8078,12 @@ private:
 public:
 	static const Info theInfo;
 	PUSCHConfigDedicatedSCellr10(): Sequence(&theInfo) {}
+
 	void setPUSCHConfigDedicatedSCellr10groupHoppingDisabled_r10(const PUSCHConfigDedicatedSCellr10groupHoppingDisabled_r10& pUSCHConfigDedicatedSCellr10groupHoppingDisabled_r10) { *static_cast<PUSCHConfigDedicatedSCellr10groupHoppingDisabled_r10*>(items[0]) = pUSCHConfigDedicatedSCellr10groupHoppingDisabled_r10; }
 	void setPUSCHConfigDedicatedSCellr10dmrs_WithOCC_Activated_r10(const PUSCHConfigDedicatedSCellr10dmrs_WithOCC_Activated_r10& pUSCHConfigDedicatedSCellr10dmrs_WithOCC_Activated_r10) { *static_cast<PUSCHConfigDedicatedSCellr10dmrs_WithOCC_Activated_r10*>(items[1]) = pUSCHConfigDedicatedSCellr10dmrs_WithOCC_Activated_r10; }
+
+	PUSCHConfigDedicatedSCellr10groupHoppingDisabled_r10& getPUSCHConfigDedicatedSCellr10groupHoppingDisabled_r10() { return *static_cast<PUSCHConfigDedicatedSCellr10groupHoppingDisabled_r10*>(items[0]); }
+	PUSCHConfigDedicatedSCellr10dmrs_WithOCC_Activated_r10& getPUSCHConfigDedicatedSCellr10dmrs_WithOCC_Activated_r10() { return *static_cast<PUSCHConfigDedicatedSCellr10dmrs_WithOCC_Activated_r10*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, -8, 7> UplinkPowerControlDedicatedSCellr10P0UEPUSCHr10;
@@ -7128,6 +8122,14 @@ public:
 	void setUplinkPowerControlDedicatedSCellr10PSRSOffsetApr10(const UplinkPowerControlDedicatedSCellr10PSRSOffsetApr10& uplinkPowerControlDedicatedSCellr10PSRSOffsetApr10) { *static_cast<UplinkPowerControlDedicatedSCellr10PSRSOffsetApr10*>(items[4]) = uplinkPowerControlDedicatedSCellr10PSRSOffsetApr10; }
 	void setFilterCoefficientr10(const FilterCoefficient& filterCoefficientr10) { *static_cast<FilterCoefficient*>(items[5]) = filterCoefficientr10; }
 	void setUplinkPowerControlDedicatedSCellr10pathlossReferenceLinking_r10(const UplinkPowerControlDedicatedSCellr10pathlossReferenceLinking_r10& uplinkPowerControlDedicatedSCellr10pathlossReferenceLinking_r10) { *static_cast<UplinkPowerControlDedicatedSCellr10pathlossReferenceLinking_r10*>(items[6]) = uplinkPowerControlDedicatedSCellr10pathlossReferenceLinking_r10; }
+
+	UplinkPowerControlDedicatedSCellr10P0UEPUSCHr10& getUplinkPowerControlDedicatedSCellr10P0UEPUSCHr10() { return *static_cast<UplinkPowerControlDedicatedSCellr10P0UEPUSCHr10*>(items[0]); }
+	UplinkPowerControlDedicatedSCellr10deltaMCS_Enabled_r10& getUplinkPowerControlDedicatedSCellr10deltaMCS_Enabled_r10() { return *static_cast<UplinkPowerControlDedicatedSCellr10deltaMCS_Enabled_r10*>(items[1]); }
+	UplinkPowerControlDedicatedSCellr10AccumulationEnabledr10& getUplinkPowerControlDedicatedSCellr10AccumulationEnabledr10() { return *static_cast<UplinkPowerControlDedicatedSCellr10AccumulationEnabledr10*>(items[2]); }
+	UplinkPowerControlDedicatedSCellr10PSRSOffsetr10& getUplinkPowerControlDedicatedSCellr10PSRSOffsetr10() { return *static_cast<UplinkPowerControlDedicatedSCellr10PSRSOffsetr10*>(items[3]); }
+	UplinkPowerControlDedicatedSCellr10PSRSOffsetApr10& getUplinkPowerControlDedicatedSCellr10PSRSOffsetApr10() { return *static_cast<UplinkPowerControlDedicatedSCellr10PSRSOffsetApr10*>(items[4]); }
+	FilterCoefficient& getFilterCoefficientr10() { return *static_cast<FilterCoefficient*>(items[5]); }
+	UplinkPowerControlDedicatedSCellr10pathlossReferenceLinking_r10& getUplinkPowerControlDedicatedSCellr10pathlossReferenceLinking_r10() { return *static_cast<UplinkPowerControlDedicatedSCellr10pathlossReferenceLinking_r10*>(items[6]); }
 };
 
 typedef Integer<CONSTRAINED, -1, 6> CQIReportConfigSCellr10NomPDSCHRSEPREOffsetr10;
@@ -7150,6 +8152,11 @@ public:
 	void setCQIReportConfigSCellr10NomPDSCHRSEPREOffsetr10(const CQIReportConfigSCellr10NomPDSCHRSEPREOffsetr10& cQIReportConfigSCellr10NomPDSCHRSEPREOffsetr10) { *static_cast<CQIReportConfigSCellr10NomPDSCHRSEPREOffsetr10*>(items[1]) = cQIReportConfigSCellr10NomPDSCHRSEPREOffsetr10; }
 	void setCqiReportPeriodicSCellr10(const CQIReportPeriodicr10& cqiReportPeriodicSCellr10) { *static_cast<CQIReportPeriodicr10*>(items[2]) = cqiReportPeriodicSCellr10; }
 	void setCQIReportConfigSCellr10pmi_RI_Report_r10(const CQIReportConfigSCellr10pmi_RI_Report_r10& cQIReportConfigSCellr10pmi_RI_Report_r10) { *static_cast<CQIReportConfigSCellr10pmi_RI_Report_r10*>(items[3]) = cQIReportConfigSCellr10pmi_RI_Report_r10; }
+
+	CQIReportModeAperiodic& getCqiReportModeAperiodicr10() { return *static_cast<CQIReportModeAperiodic*>(items[0]); }
+	CQIReportConfigSCellr10NomPDSCHRSEPREOffsetr10& getCQIReportConfigSCellr10NomPDSCHRSEPREOffsetr10() { return *static_cast<CQIReportConfigSCellr10NomPDSCHRSEPREOffsetr10*>(items[1]); }
+	CQIReportPeriodicr10& getCqiReportPeriodicSCellr10() { return *static_cast<CQIReportPeriodicr10*>(items[2]); }
+	CQIReportConfigSCellr10pmi_RI_Report_r10& getCQIReportConfigSCellr10pmi_RI_Report_r10() { return *static_cast<CQIReportConfigSCellr10pmi_RI_Report_r10*>(items[3]); }
 };
 
 class PhysicalConfigDedicatedSCellr10UlConfigurationr10 : public Sequence {
@@ -7159,6 +8166,7 @@ private:
 public:
 	static const Info theInfo;
 	PhysicalConfigDedicatedSCellr10UlConfigurationr10(): Sequence(&theInfo) {}
+
 	void setAntennaInfoULr10(const AntennaInfoULr10& antennaInfoULr10) { *static_cast<AntennaInfoULr10*>(items[0]) = antennaInfoULr10; }
 	void setPuschConfigDedicatedSCellr10(const PUSCHConfigDedicatedSCellr10& puschConfigDedicatedSCellr10) { *static_cast<PUSCHConfigDedicatedSCellr10*>(items[1]) = puschConfigDedicatedSCellr10; }
 	void setUplinkPowerControlDedicatedSCellr10(const UplinkPowerControlDedicatedSCellr10& uplinkPowerControlDedicatedSCellr10) { *static_cast<UplinkPowerControlDedicatedSCellr10*>(items[2]) = uplinkPowerControlDedicatedSCellr10; }
@@ -7166,6 +8174,14 @@ public:
 	void setSoundingRSULConfigDedicatedr10(const SoundingRSULConfigDedicated& soundingRSULConfigDedicatedr10) { *static_cast<SoundingRSULConfigDedicated*>(items[4]) = soundingRSULConfigDedicatedr10; }
 	void setSoundingRSULConfigDedicatedv1020(const SoundingRSULConfigDedicatedv1020& soundingRSULConfigDedicatedv1020) { *static_cast<SoundingRSULConfigDedicatedv1020*>(items[5]) = soundingRSULConfigDedicatedv1020; }
 	void setSoundingRSULConfigDedicatedAperiodicr10(const SoundingRSULConfigDedicatedAperiodicr10& soundingRSULConfigDedicatedAperiodicr10) { *static_cast<SoundingRSULConfigDedicatedAperiodicr10*>(items[6]) = soundingRSULConfigDedicatedAperiodicr10; }
+
+	AntennaInfoULr10& getAntennaInfoULr10() { return *static_cast<AntennaInfoULr10*>(items[0]); }
+	PUSCHConfigDedicatedSCellr10& getPuschConfigDedicatedSCellr10() { return *static_cast<PUSCHConfigDedicatedSCellr10*>(items[1]); }
+	UplinkPowerControlDedicatedSCellr10& getUplinkPowerControlDedicatedSCellr10() { return *static_cast<UplinkPowerControlDedicatedSCellr10*>(items[2]); }
+	CQIReportConfigSCellr10& getCqiReportConfigSCellr10() { return *static_cast<CQIReportConfigSCellr10*>(items[3]); }
+	SoundingRSULConfigDedicated& getSoundingRSULConfigDedicatedr10() { return *static_cast<SoundingRSULConfigDedicated*>(items[4]); }
+	SoundingRSULConfigDedicatedv1020& getSoundingRSULConfigDedicatedv1020() { return *static_cast<SoundingRSULConfigDedicatedv1020*>(items[5]); }
+	SoundingRSULConfigDedicatedAperiodicr10& getSoundingRSULConfigDedicatedAperiodicr10() { return *static_cast<SoundingRSULConfigDedicatedAperiodicr10*>(items[6]); }
 };
 
 class PhysicalConfigDedicatedSCellr10 : public Sequence {
@@ -7175,8 +8191,12 @@ private:
 public:
 	static const Info theInfo;
 	PhysicalConfigDedicatedSCellr10(): Sequence(&theInfo) {}
+
 	void setPhysicalConfigDedicatedSCellr10NonULConfigurationr10(const PhysicalConfigDedicatedSCellr10NonULConfigurationr10& physicalConfigDedicatedSCellr10NonULConfigurationr10) { *static_cast<PhysicalConfigDedicatedSCellr10NonULConfigurationr10*>(items[0]) = physicalConfigDedicatedSCellr10NonULConfigurationr10; }
 	void setPhysicalConfigDedicatedSCellr10UlConfigurationr10(const PhysicalConfigDedicatedSCellr10UlConfigurationr10& physicalConfigDedicatedSCellr10UlConfigurationr10) { *static_cast<PhysicalConfigDedicatedSCellr10UlConfigurationr10*>(items[1]) = physicalConfigDedicatedSCellr10UlConfigurationr10; }
+
+	PhysicalConfigDedicatedSCellr10NonULConfigurationr10& getPhysicalConfigDedicatedSCellr10NonULConfigurationr10() { return *static_cast<PhysicalConfigDedicatedSCellr10NonULConfigurationr10*>(items[0]); }
+	PhysicalConfigDedicatedSCellr10UlConfigurationr10& getPhysicalConfigDedicatedSCellr10UlConfigurationr10() { return *static_cast<PhysicalConfigDedicatedSCellr10UlConfigurationr10*>(items[1]); }
 };
 
 class RadioResourceConfigDedicatedSCellr10 : public Sequence {
@@ -7186,7 +8206,10 @@ private:
 public:
 	static const Info theInfo;
 	RadioResourceConfigDedicatedSCellr10(): Sequence(&theInfo) {}
+
 	void setPhysicalConfigDedicatedSCellr10(const PhysicalConfigDedicatedSCellr10& physicalConfigDedicatedSCellr10) { *static_cast<PhysicalConfigDedicatedSCellr10*>(items[0]) = physicalConfigDedicatedSCellr10; }
+
+	PhysicalConfigDedicatedSCellr10& getPhysicalConfigDedicatedSCellr10() { return *static_cast<PhysicalConfigDedicatedSCellr10*>(items[0]); }
 };
 
 class SCellToAddModr10 : public Sequence {
@@ -7202,6 +8225,11 @@ public:
 	void setSCellToAddModr10CellIdentificationr10(const SCellToAddModr10CellIdentificationr10& sCellToAddModr10CellIdentificationr10) { *static_cast<SCellToAddModr10CellIdentificationr10*>(items[1]) = sCellToAddModr10CellIdentificationr10; }
 	void setRadioResourceConfigCommonSCellr10(const RadioResourceConfigCommonSCellr10& radioResourceConfigCommonSCellr10) { *static_cast<RadioResourceConfigCommonSCellr10*>(items[2]) = radioResourceConfigCommonSCellr10; }
 	void setRadioResourceConfigDedicatedSCellr10(const RadioResourceConfigDedicatedSCellr10& radioResourceConfigDedicatedSCellr10) { *static_cast<RadioResourceConfigDedicatedSCellr10*>(items[3]) = radioResourceConfigDedicatedSCellr10; }
+
+	SCellIndexr10& getSCellIndexr10() { return *static_cast<SCellIndexr10*>(items[0]); }
+	SCellToAddModr10CellIdentificationr10& getSCellToAddModr10CellIdentificationr10() { return *static_cast<SCellToAddModr10CellIdentificationr10*>(items[1]); }
+	RadioResourceConfigCommonSCellr10& getRadioResourceConfigCommonSCellr10() { return *static_cast<RadioResourceConfigCommonSCellr10*>(items[2]); }
+	RadioResourceConfigDedicatedSCellr10& getRadioResourceConfigDedicatedSCellr10() { return *static_cast<RadioResourceConfigDedicatedSCellr10*>(items[3]); }
 };
 
 typedef SequenceOf<SCellToAddModr10, CONSTRAINED, 1, maxSCell_r10> SCellToAddModListr10;
@@ -7213,6 +8241,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReconfigurationv1020IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReconfigurationv1020IEs : public Sequence {
@@ -7222,9 +8252,14 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReconfigurationv1020IEs(): Sequence(&theInfo) {}
+
 	void setSCellToReleaseListr10(const SCellToReleaseListr10& sCellToReleaseListr10) { *static_cast<SCellToReleaseListr10*>(items[0]) = sCellToReleaseListr10; }
 	void setSCellToAddModListr10(const SCellToAddModListr10& sCellToAddModListr10) { *static_cast<SCellToAddModListr10*>(items[1]) = sCellToAddModListr10; }
 	void setRRCConnectionReconfigurationv1020IEsNonCriticalExtension(const RRCConnectionReconfigurationv1020IEsNonCriticalExtension& rRCConnectionReconfigurationv1020IEsNonCriticalExtension) { *static_cast<RRCConnectionReconfigurationv1020IEsNonCriticalExtension*>(items[2]) = rRCConnectionReconfigurationv1020IEsNonCriticalExtension; }
+
+	SCellToReleaseListr10& getSCellToReleaseListr10() { return *static_cast<SCellToReleaseListr10*>(items[0]); }
+	SCellToAddModListr10& getSCellToAddModListr10() { return *static_cast<SCellToAddModListr10*>(items[1]); }
+	RRCConnectionReconfigurationv1020IEsNonCriticalExtension& getRRCConnectionReconfigurationv1020IEsNonCriticalExtension() { return *static_cast<RRCConnectionReconfigurationv1020IEsNonCriticalExtension*>(items[2]); }
 };
 
 class RRCConnectionReconfigurationv920IEs : public Sequence {
@@ -7234,9 +8269,14 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReconfigurationv920IEs(): Sequence(&theInfo) {}
+
 	void setOtherConfigr9(const OtherConfigr9& otherConfigr9) { *static_cast<OtherConfigr9*>(items[0]) = otherConfigr9; }
 	void setRRCConnectionReconfigurationv920IEsfullConfig_r9(const RRCConnectionReconfigurationv920IEsfullConfig_r9& rRCConnectionReconfigurationv920IEsfullConfig_r9) { *static_cast<RRCConnectionReconfigurationv920IEsfullConfig_r9*>(items[1]) = rRCConnectionReconfigurationv920IEsfullConfig_r9; }
 	void setNonCriticalExtension(const RRCConnectionReconfigurationv1020IEs& nonCriticalExtension) { *static_cast<RRCConnectionReconfigurationv1020IEs*>(items[2]) = nonCriticalExtension; }
+
+	OtherConfigr9& getOtherConfigr9() { return *static_cast<OtherConfigr9*>(items[0]); }
+	RRCConnectionReconfigurationv920IEsfullConfig_r9& getRRCConnectionReconfigurationv920IEsfullConfig_r9() { return *static_cast<RRCConnectionReconfigurationv920IEsfullConfig_r9*>(items[1]); }
+	RRCConnectionReconfigurationv1020IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReconfigurationv1020IEs*>(items[2]); }
 };
 
 class RRCConnectionReconfigurationv890IEs : public Sequence {
@@ -7246,8 +8286,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReconfigurationv890IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionReconfigurationv890IEsLateNonCriticalExtension(const RRCConnectionReconfigurationv890IEsLateNonCriticalExtension& rRCConnectionReconfigurationv890IEsLateNonCriticalExtension) { *static_cast<RRCConnectionReconfigurationv890IEsLateNonCriticalExtension*>(items[0]) = rRCConnectionReconfigurationv890IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const RRCConnectionReconfigurationv920IEs& nonCriticalExtension) { *static_cast<RRCConnectionReconfigurationv920IEs*>(items[1]) = nonCriticalExtension; }
+
+	RRCConnectionReconfigurationv890IEsLateNonCriticalExtension& getRRCConnectionReconfigurationv890IEsLateNonCriticalExtension() { return *static_cast<RRCConnectionReconfigurationv890IEsLateNonCriticalExtension*>(items[0]); }
+	RRCConnectionReconfigurationv920IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReconfigurationv920IEs*>(items[1]); }
 };
 
 class RRCConnectionReconfigurationr8IEs : public Sequence {
@@ -7257,12 +8301,20 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReconfigurationr8IEs(): Sequence(&theInfo) {}
+
 	void setMeasConfig(const MeasConfig& measConfig) { *static_cast<MeasConfig*>(items[0]) = measConfig; }
 	void setMobilityControlInfo(const MobilityControlInfo& mobilityControlInfo) { *static_cast<MobilityControlInfo*>(items[1]) = mobilityControlInfo; }
 	void setRRCConnectionReconfigurationr8IEsDedicatedInfoNASList(const RRCConnectionReconfigurationr8IEsDedicatedInfoNASList& rRCConnectionReconfigurationr8IEsDedicatedInfoNASList) { *static_cast<RRCConnectionReconfigurationr8IEsDedicatedInfoNASList*>(items[2]) = rRCConnectionReconfigurationr8IEsDedicatedInfoNASList; }
 	void setRadioResourceConfigDedicated(const RadioResourceConfigDedicated& radioResourceConfigDedicated) { *static_cast<RadioResourceConfigDedicated*>(items[3]) = radioResourceConfigDedicated; }
 	void setSecurityConfigHO(const SecurityConfigHO& securityConfigHO) { *static_cast<SecurityConfigHO*>(items[4]) = securityConfigHO; }
 	void setNonCriticalExtension(const RRCConnectionReconfigurationv890IEs& nonCriticalExtension) { *static_cast<RRCConnectionReconfigurationv890IEs*>(items[5]) = nonCriticalExtension; }
+
+	MeasConfig& getMeasConfig() { return *static_cast<MeasConfig*>(items[0]); }
+	MobilityControlInfo& getMobilityControlInfo() { return *static_cast<MobilityControlInfo*>(items[1]); }
+	RRCConnectionReconfigurationr8IEsDedicatedInfoNASList& getRRCConnectionReconfigurationr8IEsDedicatedInfoNASList() { return *static_cast<RRCConnectionReconfigurationr8IEsDedicatedInfoNASList*>(items[2]); }
+	RadioResourceConfigDedicated& getRadioResourceConfigDedicated() { return *static_cast<RadioResourceConfigDedicated*>(items[3]); }
+	SecurityConfigHO& getSecurityConfigHO() { return *static_cast<SecurityConfigHO*>(items[4]); }
+	RRCConnectionReconfigurationv890IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReconfigurationv890IEs*>(items[5]); }
 };
 
 typedef Null RRCConnectionReconfigurationCriticalExtensionsC1Spare7;
@@ -7304,6 +8356,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReconfigurationCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReconfigurationCriticalExtensions : public Choice {
@@ -7329,6 +8383,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setRRCConnectionReconfigurationCriticalExtensions(const RRCConnectionReconfigurationCriticalExtensions& rRCConnectionReconfigurationCriticalExtensions) { *static_cast<RRCConnectionReconfigurationCriticalExtensions*>(items[1]) = rRCConnectionReconfigurationCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	RRCConnectionReconfigurationCriticalExtensions& getRRCConnectionReconfigurationCriticalExtensions() { return *static_cast<RRCConnectionReconfigurationCriticalExtensions*>(items[1]); }
 };
 
 enum ReleaseCauseValues {
@@ -7371,6 +8428,9 @@ public:
 
 	void setCarrierFreq(const ARFCNValueEUTRA& carrierFreq) { *static_cast<ARFCNValueEUTRA*>(items[0]) = carrierFreq; }
 	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
+
+	ARFCNValueEUTRA& getCarrierFreq() { return *static_cast<ARFCNValueEUTRA*>(items[0]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
 };
 
 typedef SequenceOf<FreqPriorityEUTRA, CONSTRAINED, 1, maxFreq> FreqPriorityListEUTRA;
@@ -7386,6 +8446,9 @@ public:
 
 	void setCarrierFreqs(const CarrierFreqsGERAN& carrierFreqs) { *static_cast<CarrierFreqsGERAN*>(items[0]) = carrierFreqs; }
 	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
+
+	CarrierFreqsGERAN& getCarrierFreqs() { return *static_cast<CarrierFreqsGERAN*>(items[0]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
 };
 
 typedef SequenceOf<FreqsPriorityGERAN, CONSTRAINED, 1, maxGNFG> FreqsPriorityListGERAN;
@@ -7401,6 +8464,9 @@ public:
 
 	void setCarrierFreq(const ARFCNValueUTRA& carrierFreq) { *static_cast<ARFCNValueUTRA*>(items[0]) = carrierFreq; }
 	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
+
+	ARFCNValueUTRA& getCarrierFreq() { return *static_cast<ARFCNValueUTRA*>(items[0]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
 };
 
 typedef SequenceOf<FreqPriorityUTRAFDD, CONSTRAINED, 1, maxUTRA_FDD_Carrier> FreqPriorityListUTRAFDD;
@@ -7416,6 +8482,9 @@ public:
 
 	void setCarrierFreq(const ARFCNValueUTRA& carrierFreq) { *static_cast<ARFCNValueUTRA*>(items[0]) = carrierFreq; }
 	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
+
+	ARFCNValueUTRA& getCarrierFreq() { return *static_cast<ARFCNValueUTRA*>(items[0]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
 };
 
 typedef SequenceOf<FreqPriorityUTRATDD, CONSTRAINED, 1, maxUTRA_TDD_Carrier> FreqPriorityListUTRATDD;
@@ -7431,6 +8500,9 @@ public:
 
 	void setBandClass(const BandclassCDMA2000& bandClass) { *static_cast<BandclassCDMA2000*>(items[0]) = bandClass; }
 	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
+
+	BandclassCDMA2000& getBandClass() { return *static_cast<BandclassCDMA2000*>(items[0]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
 };
 
 typedef SequenceOf<BandClassPriorityHRPD, CONSTRAINED, 1, maxCDMA_BandClass> BandClassPriorityListHRPD;
@@ -7446,6 +8518,9 @@ public:
 
 	void setBandClass(const BandclassCDMA2000& bandClass) { *static_cast<BandclassCDMA2000*>(items[0]) = bandClass; }
 	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
+
+	BandclassCDMA2000& getBandClass() { return *static_cast<BandclassCDMA2000*>(items[0]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
 };
 
 typedef SequenceOf<BandClassPriority1XRTT, CONSTRAINED, 1, maxCDMA_BandClass> BandClassPriorityList1XRTT;
@@ -7469,6 +8544,7 @@ private:
 public:
 	static const Info theInfo;
 	IdleModeMobilityControlInfo(): Sequence(&theInfo) {}
+
 	void setFreqPriorityListEUTRA(const FreqPriorityListEUTRA& freqPriorityListEUTRA) { *static_cast<FreqPriorityListEUTRA*>(items[0]) = freqPriorityListEUTRA; }
 	void setFreqPriorityListGERAN(const FreqsPriorityListGERAN& freqPriorityListGERAN) { *static_cast<FreqsPriorityListGERAN*>(items[1]) = freqPriorityListGERAN; }
 	void setFreqPriorityListUTRAFDD(const FreqPriorityListUTRAFDD& freqPriorityListUTRAFDD) { *static_cast<FreqPriorityListUTRAFDD*>(items[2]) = freqPriorityListUTRAFDD; }
@@ -7476,6 +8552,14 @@ public:
 	void setBandClassPriorityListHRPD(const BandClassPriorityListHRPD& bandClassPriorityListHRPD) { *static_cast<BandClassPriorityListHRPD*>(items[4]) = bandClassPriorityListHRPD; }
 	void setBandClassPriorityList1XRTT(const BandClassPriorityList1XRTT& bandClassPriorityList1XRTT) { *static_cast<BandClassPriorityList1XRTT*>(items[5]) = bandClassPriorityList1XRTT; }
 	void setIdleModeMobilityControlInfot320(const IdleModeMobilityControlInfot320& idleModeMobilityControlInfot320) { *static_cast<IdleModeMobilityControlInfot320*>(items[6]) = idleModeMobilityControlInfot320; }
+
+	FreqPriorityListEUTRA& getFreqPriorityListEUTRA() { return *static_cast<FreqPriorityListEUTRA*>(items[0]); }
+	FreqsPriorityListGERAN& getFreqPriorityListGERAN() { return *static_cast<FreqsPriorityListGERAN*>(items[1]); }
+	FreqPriorityListUTRAFDD& getFreqPriorityListUTRAFDD() { return *static_cast<FreqPriorityListUTRAFDD*>(items[2]); }
+	FreqPriorityListUTRATDD& getFreqPriorityListUTRATDD() { return *static_cast<FreqPriorityListUTRATDD*>(items[3]); }
+	BandClassPriorityListHRPD& getBandClassPriorityListHRPD() { return *static_cast<BandClassPriorityListHRPD*>(items[4]); }
+	BandClassPriorityList1XRTT& getBandClassPriorityList1XRTT() { return *static_cast<BandClassPriorityList1XRTT*>(items[5]); }
+	IdleModeMobilityControlInfot320& getIdleModeMobilityControlInfot320() { return *static_cast<IdleModeMobilityControlInfot320*>(items[6]); }
 };
 
 typedef OctetStringBase RRCConnectionReleasev890IEsLateNonCriticalExtension;
@@ -7492,6 +8576,10 @@ public:
 	void setPhysCellIdr9(const PhysCellIdGERAN& physCellIdr9) { *static_cast<PhysCellIdGERAN*>(items[0]) = physCellIdr9; }
 	void setCarrierFreqr9(const CarrierFreqGERAN& carrierFreqr9) { *static_cast<CarrierFreqGERAN*>(items[1]) = carrierFreqr9; }
 	void setSystemInformationr9(const SystemInfoListGERAN& systemInformationr9) { *static_cast<SystemInfoListGERAN*>(items[2]) = systemInformationr9; }
+
+	PhysCellIdGERAN& getPhysCellIdr9() { return *static_cast<PhysCellIdGERAN*>(items[0]); }
+	CarrierFreqGERAN& getCarrierFreqr9() { return *static_cast<CarrierFreqGERAN*>(items[1]); }
+	SystemInfoListGERAN& getSystemInformationr9() { return *static_cast<SystemInfoListGERAN*>(items[2]); }
 };
 
 typedef SequenceOf<CellInfoGERANr9, CONSTRAINED, 1, maxCellInfoGERAN_r9> CellInfoListGERANr9;
@@ -7509,6 +8597,9 @@ public:
 
 	void setPhysCellIdr9(const PhysCellIdUTRAFDD& physCellIdr9) { *static_cast<PhysCellIdUTRAFDD*>(items[0]) = physCellIdr9; }
 	void setCellInfoUTRAFDDr9UtraBCCHContainerr9(const CellInfoUTRAFDDr9UtraBCCHContainerr9& cellInfoUTRAFDDr9UtraBCCHContainerr9) { *static_cast<CellInfoUTRAFDDr9UtraBCCHContainerr9*>(items[1]) = cellInfoUTRAFDDr9UtraBCCHContainerr9; }
+
+	PhysCellIdUTRAFDD& getPhysCellIdr9() { return *static_cast<PhysCellIdUTRAFDD*>(items[0]); }
+	CellInfoUTRAFDDr9UtraBCCHContainerr9& getCellInfoUTRAFDDr9UtraBCCHContainerr9() { return *static_cast<CellInfoUTRAFDDr9UtraBCCHContainerr9*>(items[1]); }
 };
 
 typedef SequenceOf<CellInfoUTRAFDDr9, CONSTRAINED, 1, maxCellInfoUTRA_r9> CellInfoListUTRAFDDr9;
@@ -7526,6 +8617,9 @@ public:
 
 	void setPhysCellIdr9(const PhysCellIdUTRATDD& physCellIdr9) { *static_cast<PhysCellIdUTRATDD*>(items[0]) = physCellIdr9; }
 	void setCellInfoUTRATDDr9UtraBCCHContainerr9(const CellInfoUTRATDDr9UtraBCCHContainerr9& cellInfoUTRATDDr9UtraBCCHContainerr9) { *static_cast<CellInfoUTRATDDr9UtraBCCHContainerr9*>(items[1]) = cellInfoUTRATDDr9UtraBCCHContainerr9; }
+
+	PhysCellIdUTRATDD& getPhysCellIdr9() { return *static_cast<PhysCellIdUTRATDD*>(items[0]); }
+	CellInfoUTRATDDr9UtraBCCHContainerr9& getCellInfoUTRATDDr9UtraBCCHContainerr9() { return *static_cast<CellInfoUTRATDDr9UtraBCCHContainerr9*>(items[1]); }
 };
 
 typedef SequenceOf<CellInfoUTRATDDr9, CONSTRAINED, 1, maxCellInfoUTRA_r9> CellInfoListUTRATDDr9;
@@ -7544,6 +8638,10 @@ public:
 	void setPhysCellIdr10(const PhysCellIdUTRATDD& physCellIdr10) { *static_cast<PhysCellIdUTRATDD*>(items[0]) = physCellIdr10; }
 	void setCarrierFreqr10(const ARFCNValueUTRA& carrierFreqr10) { *static_cast<ARFCNValueUTRA*>(items[1]) = carrierFreqr10; }
 	void setCellInfoUTRATDDr10UtraBCCHContainerr10(const CellInfoUTRATDDr10UtraBCCHContainerr10& cellInfoUTRATDDr10UtraBCCHContainerr10) { *static_cast<CellInfoUTRATDDr10UtraBCCHContainerr10*>(items[2]) = cellInfoUTRATDDr10UtraBCCHContainerr10; }
+
+	PhysCellIdUTRATDD& getPhysCellIdr10() { return *static_cast<PhysCellIdUTRATDD*>(items[0]); }
+	ARFCNValueUTRA& getCarrierFreqr10() { return *static_cast<ARFCNValueUTRA*>(items[1]); }
+	CellInfoUTRATDDr10UtraBCCHContainerr10& getCellInfoUTRATDDr10UtraBCCHContainerr10() { return *static_cast<CellInfoUTRATDDr10UtraBCCHContainerr10*>(items[2]); }
 };
 
 typedef SequenceOf<CellInfoUTRATDDr10, CONSTRAINED, 1, maxCellInfoUTRA_r9> CellInfoListUTRATDDr10;
@@ -7571,6 +8669,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReleasev1020IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReleasev1020IEs : public Sequence {
@@ -7580,8 +8680,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReleasev1020IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionReleasev1020IEsExtendedWaitTimer10(const RRCConnectionReleasev1020IEsExtendedWaitTimer10& rRCConnectionReleasev1020IEsExtendedWaitTimer10) { *static_cast<RRCConnectionReleasev1020IEsExtendedWaitTimer10*>(items[0]) = rRCConnectionReleasev1020IEsExtendedWaitTimer10; }
 	void setRRCConnectionReleasev1020IEsNonCriticalExtension(const RRCConnectionReleasev1020IEsNonCriticalExtension& rRCConnectionReleasev1020IEsNonCriticalExtension) { *static_cast<RRCConnectionReleasev1020IEsNonCriticalExtension*>(items[1]) = rRCConnectionReleasev1020IEsNonCriticalExtension; }
+
+	RRCConnectionReleasev1020IEsExtendedWaitTimer10& getRRCConnectionReleasev1020IEsExtendedWaitTimer10() { return *static_cast<RRCConnectionReleasev1020IEsExtendedWaitTimer10*>(items[0]); }
+	RRCConnectionReleasev1020IEsNonCriticalExtension& getRRCConnectionReleasev1020IEsNonCriticalExtension() { return *static_cast<RRCConnectionReleasev1020IEsNonCriticalExtension*>(items[1]); }
 };
 
 class RRCConnectionReleasev920IEs : public Sequence {
@@ -7591,8 +8695,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReleasev920IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionReleasev920IEsCellInfoListr9(const RRCConnectionReleasev920IEsCellInfoListr9& rRCConnectionReleasev920IEsCellInfoListr9) { *static_cast<RRCConnectionReleasev920IEsCellInfoListr9*>(items[0]) = rRCConnectionReleasev920IEsCellInfoListr9; }
 	void setNonCriticalExtension(const RRCConnectionReleasev1020IEs& nonCriticalExtension) { *static_cast<RRCConnectionReleasev1020IEs*>(items[1]) = nonCriticalExtension; }
+
+	RRCConnectionReleasev920IEsCellInfoListr9& getRRCConnectionReleasev920IEsCellInfoListr9() { return *static_cast<RRCConnectionReleasev920IEsCellInfoListr9*>(items[0]); }
+	RRCConnectionReleasev1020IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReleasev1020IEs*>(items[1]); }
 };
 
 class RRCConnectionReleasev890IEs : public Sequence {
@@ -7602,8 +8710,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReleasev890IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionReleasev890IEsLateNonCriticalExtension(const RRCConnectionReleasev890IEsLateNonCriticalExtension& rRCConnectionReleasev890IEsLateNonCriticalExtension) { *static_cast<RRCConnectionReleasev890IEsLateNonCriticalExtension*>(items[0]) = rRCConnectionReleasev890IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const RRCConnectionReleasev920IEs& nonCriticalExtension) { *static_cast<RRCConnectionReleasev920IEs*>(items[1]) = nonCriticalExtension; }
+
+	RRCConnectionReleasev890IEsLateNonCriticalExtension& getRRCConnectionReleasev890IEsLateNonCriticalExtension() { return *static_cast<RRCConnectionReleasev890IEsLateNonCriticalExtension*>(items[0]); }
+	RRCConnectionReleasev920IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReleasev920IEs*>(items[1]); }
 };
 
 class RRCConnectionReleaser8IEs : public Sequence {
@@ -7619,6 +8731,11 @@ public:
 	void setRedirectedCarrierInfo(const RedirectedCarrierInfo& redirectedCarrierInfo) { *static_cast<RedirectedCarrierInfo*>(items[1]) = redirectedCarrierInfo; }
 	void setIdleModeMobilityControlInfo(const IdleModeMobilityControlInfo& idleModeMobilityControlInfo) { *static_cast<IdleModeMobilityControlInfo*>(items[2]) = idleModeMobilityControlInfo; }
 	void setNonCriticalExtension(const RRCConnectionReleasev890IEs& nonCriticalExtension) { *static_cast<RRCConnectionReleasev890IEs*>(items[3]) = nonCriticalExtension; }
+
+	ReleaseCause& getReleaseCause() { return *static_cast<ReleaseCause*>(items[0]); }
+	RedirectedCarrierInfo& getRedirectedCarrierInfo() { return *static_cast<RedirectedCarrierInfo*>(items[1]); }
+	IdleModeMobilityControlInfo& getIdleModeMobilityControlInfo() { return *static_cast<IdleModeMobilityControlInfo*>(items[2]); }
+	RRCConnectionReleasev890IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReleasev890IEs*>(items[3]); }
 };
 
 typedef Null RRCConnectionReleaseCriticalExtensionsC1Spare3;
@@ -7648,6 +8765,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReleaseCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReleaseCriticalExtensions : public Choice {
@@ -7673,6 +8792,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setRRCConnectionReleaseCriticalExtensions(const RRCConnectionReleaseCriticalExtensions& rRCConnectionReleaseCriticalExtensions) { *static_cast<RRCConnectionReleaseCriticalExtensions*>(items[1]) = rRCConnectionReleaseCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	RRCConnectionReleaseCriticalExtensions& getRRCConnectionReleaseCriticalExtensions() { return *static_cast<RRCConnectionReleaseCriticalExtensions*>(items[1]); }
 };
 
 class SecurityConfigSMC : public Sequence {
@@ -7685,6 +8807,8 @@ public:
 	SecurityConfigSMC(const SecurityAlgorithmConfig& securityAlgorithmConfig);
 
 	void setSecurityAlgorithmConfig(const SecurityAlgorithmConfig& securityAlgorithmConfig) { *static_cast<SecurityAlgorithmConfig*>(items[0]) = securityAlgorithmConfig; }
+
+	SecurityAlgorithmConfig& getSecurityAlgorithmConfig() { return *static_cast<SecurityAlgorithmConfig*>(items[0]); }
 };
 
 typedef OctetStringBase SecurityModeCommandv8a0IEsLateNonCriticalExtension;
@@ -7696,6 +8820,8 @@ private:
 public:
 	static const Info theInfo;
 	SecurityModeCommandv8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class SecurityModeCommandv8a0IEs : public Sequence {
@@ -7705,8 +8831,12 @@ private:
 public:
 	static const Info theInfo;
 	SecurityModeCommandv8a0IEs(): Sequence(&theInfo) {}
+
 	void setSecurityModeCommandv8a0IEsLateNonCriticalExtension(const SecurityModeCommandv8a0IEsLateNonCriticalExtension& securityModeCommandv8a0IEsLateNonCriticalExtension) { *static_cast<SecurityModeCommandv8a0IEsLateNonCriticalExtension*>(items[0]) = securityModeCommandv8a0IEsLateNonCriticalExtension; }
 	void setSecurityModeCommandv8a0IEsNonCriticalExtension(const SecurityModeCommandv8a0IEsNonCriticalExtension& securityModeCommandv8a0IEsNonCriticalExtension) { *static_cast<SecurityModeCommandv8a0IEsNonCriticalExtension*>(items[1]) = securityModeCommandv8a0IEsNonCriticalExtension; }
+
+	SecurityModeCommandv8a0IEsLateNonCriticalExtension& getSecurityModeCommandv8a0IEsLateNonCriticalExtension() { return *static_cast<SecurityModeCommandv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	SecurityModeCommandv8a0IEsNonCriticalExtension& getSecurityModeCommandv8a0IEsNonCriticalExtension() { return *static_cast<SecurityModeCommandv8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class SecurityModeCommandr8IEs : public Sequence {
@@ -7720,6 +8850,9 @@ public:
 
 	void setSecurityConfigSMC(const SecurityConfigSMC& securityConfigSMC) { *static_cast<SecurityConfigSMC*>(items[0]) = securityConfigSMC; }
 	void setNonCriticalExtension(const SecurityModeCommandv8a0IEs& nonCriticalExtension) { *static_cast<SecurityModeCommandv8a0IEs*>(items[1]) = nonCriticalExtension; }
+
+	SecurityConfigSMC& getSecurityConfigSMC() { return *static_cast<SecurityConfigSMC*>(items[0]); }
+	SecurityModeCommandv8a0IEs& getNonCriticalExtension() { return *static_cast<SecurityModeCommandv8a0IEs*>(items[1]); }
 };
 
 typedef Null SecurityModeCommandCriticalExtensionsC1Spare3;
@@ -7749,6 +8882,8 @@ private:
 public:
 	static const Info theInfo;
 	SecurityModeCommandCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class SecurityModeCommandCriticalExtensions : public Choice {
@@ -7774,6 +8909,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setSecurityModeCommandCriticalExtensions(const SecurityModeCommandCriticalExtensions& securityModeCommandCriticalExtensions) { *static_cast<SecurityModeCommandCriticalExtensions*>(items[1]) = securityModeCommandCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	SecurityModeCommandCriticalExtensions& getSecurityModeCommandCriticalExtensions() { return *static_cast<SecurityModeCommandCriticalExtensions*>(items[1]); }
 };
 
 enum RATTypeValues {
@@ -7799,6 +8937,8 @@ private:
 public:
 	static const Info theInfo;
 	UECapabilityEnquiryv8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class UECapabilityEnquiryv8a0IEs : public Sequence {
@@ -7808,8 +8948,12 @@ private:
 public:
 	static const Info theInfo;
 	UECapabilityEnquiryv8a0IEs(): Sequence(&theInfo) {}
+
 	void setUECapabilityEnquiryv8a0IEsLateNonCriticalExtension(const UECapabilityEnquiryv8a0IEsLateNonCriticalExtension& uECapabilityEnquiryv8a0IEsLateNonCriticalExtension) { *static_cast<UECapabilityEnquiryv8a0IEsLateNonCriticalExtension*>(items[0]) = uECapabilityEnquiryv8a0IEsLateNonCriticalExtension; }
 	void setUECapabilityEnquiryv8a0IEsNonCriticalExtension(const UECapabilityEnquiryv8a0IEsNonCriticalExtension& uECapabilityEnquiryv8a0IEsNonCriticalExtension) { *static_cast<UECapabilityEnquiryv8a0IEsNonCriticalExtension*>(items[1]) = uECapabilityEnquiryv8a0IEsNonCriticalExtension; }
+
+	UECapabilityEnquiryv8a0IEsLateNonCriticalExtension& getUECapabilityEnquiryv8a0IEsLateNonCriticalExtension() { return *static_cast<UECapabilityEnquiryv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	UECapabilityEnquiryv8a0IEsNonCriticalExtension& getUECapabilityEnquiryv8a0IEsNonCriticalExtension() { return *static_cast<UECapabilityEnquiryv8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class UECapabilityEnquiryr8IEs : public Sequence {
@@ -7823,6 +8967,9 @@ public:
 
 	void setUeCapabilityRequest(const UECapabilityRequest& ueCapabilityRequest) { *static_cast<UECapabilityRequest*>(items[0]) = ueCapabilityRequest; }
 	void setNonCriticalExtension(const UECapabilityEnquiryv8a0IEs& nonCriticalExtension) { *static_cast<UECapabilityEnquiryv8a0IEs*>(items[1]) = nonCriticalExtension; }
+
+	UECapabilityRequest& getUeCapabilityRequest() { return *static_cast<UECapabilityRequest*>(items[0]); }
+	UECapabilityEnquiryv8a0IEs& getNonCriticalExtension() { return *static_cast<UECapabilityEnquiryv8a0IEs*>(items[1]); }
 };
 
 typedef Null UECapabilityEnquiryCriticalExtensionsC1Spare3;
@@ -7852,6 +8999,8 @@ private:
 public:
 	static const Info theInfo;
 	UECapabilityEnquiryCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class UECapabilityEnquiryCriticalExtensions : public Choice {
@@ -7877,6 +9026,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setUECapabilityEnquiryCriticalExtensions(const UECapabilityEnquiryCriticalExtensions& uECapabilityEnquiryCriticalExtensions) { *static_cast<UECapabilityEnquiryCriticalExtensions*>(items[1]) = uECapabilityEnquiryCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	UECapabilityEnquiryCriticalExtensions& getUECapabilityEnquiryCriticalExtensions() { return *static_cast<UECapabilityEnquiryCriticalExtensions*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 33554431> DRBCountMSBInfoCountMSBUplink;
@@ -7895,6 +9047,10 @@ public:
 	void setDrbIdentity(const DRBIdentity& drbIdentity) { *static_cast<DRBIdentity*>(items[0]) = drbIdentity; }
 	void setDRBCountMSBInfoCountMSBUplink(const DRBCountMSBInfoCountMSBUplink& dRBCountMSBInfoCountMSBUplink) { *static_cast<DRBCountMSBInfoCountMSBUplink*>(items[1]) = dRBCountMSBInfoCountMSBUplink; }
 	void setDRBCountMSBInfoCountMSBDownlink(const DRBCountMSBInfoCountMSBDownlink& dRBCountMSBInfoCountMSBDownlink) { *static_cast<DRBCountMSBInfoCountMSBDownlink*>(items[2]) = dRBCountMSBInfoCountMSBDownlink; }
+
+	DRBIdentity& getDrbIdentity() { return *static_cast<DRBIdentity*>(items[0]); }
+	DRBCountMSBInfoCountMSBUplink& getDRBCountMSBInfoCountMSBUplink() { return *static_cast<DRBCountMSBInfoCountMSBUplink*>(items[1]); }
+	DRBCountMSBInfoCountMSBDownlink& getDRBCountMSBInfoCountMSBDownlink() { return *static_cast<DRBCountMSBInfoCountMSBDownlink*>(items[2]); }
 };
 
 typedef SequenceOf<DRBCountMSBInfo, CONSTRAINED, 1, maxDRB> DRBCountMSBInfoList;
@@ -7908,6 +9064,8 @@ private:
 public:
 	static const Info theInfo;
 	CounterCheckv8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class CounterCheckv8a0IEs : public Sequence {
@@ -7917,8 +9075,12 @@ private:
 public:
 	static const Info theInfo;
 	CounterCheckv8a0IEs(): Sequence(&theInfo) {}
+
 	void setCounterCheckv8a0IEsLateNonCriticalExtension(const CounterCheckv8a0IEsLateNonCriticalExtension& counterCheckv8a0IEsLateNonCriticalExtension) { *static_cast<CounterCheckv8a0IEsLateNonCriticalExtension*>(items[0]) = counterCheckv8a0IEsLateNonCriticalExtension; }
 	void setCounterCheckv8a0IEsNonCriticalExtension(const CounterCheckv8a0IEsNonCriticalExtension& counterCheckv8a0IEsNonCriticalExtension) { *static_cast<CounterCheckv8a0IEsNonCriticalExtension*>(items[1]) = counterCheckv8a0IEsNonCriticalExtension; }
+
+	CounterCheckv8a0IEsLateNonCriticalExtension& getCounterCheckv8a0IEsLateNonCriticalExtension() { return *static_cast<CounterCheckv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	CounterCheckv8a0IEsNonCriticalExtension& getCounterCheckv8a0IEsNonCriticalExtension() { return *static_cast<CounterCheckv8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class CounterCheckr8IEs : public Sequence {
@@ -7932,6 +9094,9 @@ public:
 
 	void setDrbCountMSBInfoList(const DRBCountMSBInfoList& drbCountMSBInfoList) { *static_cast<DRBCountMSBInfoList*>(items[0]) = drbCountMSBInfoList; }
 	void setNonCriticalExtension(const CounterCheckv8a0IEs& nonCriticalExtension) { *static_cast<CounterCheckv8a0IEs*>(items[1]) = nonCriticalExtension; }
+
+	DRBCountMSBInfoList& getDrbCountMSBInfoList() { return *static_cast<DRBCountMSBInfoList*>(items[0]); }
+	CounterCheckv8a0IEs& getNonCriticalExtension() { return *static_cast<CounterCheckv8a0IEs*>(items[1]); }
 };
 
 typedef Null CounterCheckCriticalExtensionsC1Spare3;
@@ -7961,6 +9126,8 @@ private:
 public:
 	static const Info theInfo;
 	CounterCheckCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class CounterCheckCriticalExtensions : public Choice {
@@ -7986,6 +9153,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setCounterCheckCriticalExtensions(const CounterCheckCriticalExtensions& counterCheckCriticalExtensions) { *static_cast<CounterCheckCriticalExtensions*>(items[1]) = counterCheckCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	CounterCheckCriticalExtensions& getCounterCheckCriticalExtensions() { return *static_cast<CounterCheckCriticalExtensions*>(items[1]); }
 };
 
 typedef Boolean UEInformationRequestr9IEsRachReportReqr9;
@@ -8006,6 +9176,8 @@ private:
 public:
 	static const Info theInfo;
 	UEInformationRequestv1020IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class UEInformationRequestv1020IEs : public Sequence {
@@ -8015,8 +9187,12 @@ private:
 public:
 	static const Info theInfo;
 	UEInformationRequestv1020IEs(): Sequence(&theInfo) {}
+
 	void setUEInformationRequestv1020IEslogMeasReportReq_r10(const UEInformationRequestv1020IEslogMeasReportReq_r10& uEInformationRequestv1020IEslogMeasReportReq_r10) { *static_cast<UEInformationRequestv1020IEslogMeasReportReq_r10*>(items[0]) = uEInformationRequestv1020IEslogMeasReportReq_r10; }
 	void setUEInformationRequestv1020IEsNonCriticalExtension(const UEInformationRequestv1020IEsNonCriticalExtension& uEInformationRequestv1020IEsNonCriticalExtension) { *static_cast<UEInformationRequestv1020IEsNonCriticalExtension*>(items[1]) = uEInformationRequestv1020IEsNonCriticalExtension; }
+
+	UEInformationRequestv1020IEslogMeasReportReq_r10& getUEInformationRequestv1020IEslogMeasReportReq_r10() { return *static_cast<UEInformationRequestv1020IEslogMeasReportReq_r10*>(items[0]); }
+	UEInformationRequestv1020IEsNonCriticalExtension& getUEInformationRequestv1020IEsNonCriticalExtension() { return *static_cast<UEInformationRequestv1020IEsNonCriticalExtension*>(items[1]); }
 };
 
 class UEInformationRequestv930IEs : public Sequence {
@@ -8026,8 +9202,12 @@ private:
 public:
 	static const Info theInfo;
 	UEInformationRequestv930IEs(): Sequence(&theInfo) {}
+
 	void setUEInformationRequestv930IEsLateNonCriticalExtension(const UEInformationRequestv930IEsLateNonCriticalExtension& uEInformationRequestv930IEsLateNonCriticalExtension) { *static_cast<UEInformationRequestv930IEsLateNonCriticalExtension*>(items[0]) = uEInformationRequestv930IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const UEInformationRequestv1020IEs& nonCriticalExtension) { *static_cast<UEInformationRequestv1020IEs*>(items[1]) = nonCriticalExtension; }
+
+	UEInformationRequestv930IEsLateNonCriticalExtension& getUEInformationRequestv930IEsLateNonCriticalExtension() { return *static_cast<UEInformationRequestv930IEsLateNonCriticalExtension*>(items[0]); }
+	UEInformationRequestv1020IEs& getNonCriticalExtension() { return *static_cast<UEInformationRequestv1020IEs*>(items[1]); }
 };
 
 class UEInformationRequestr9IEs : public Sequence {
@@ -8042,6 +9222,10 @@ public:
 	void setUEInformationRequestr9IEsRachReportReqr9(const UEInformationRequestr9IEsRachReportReqr9& uEInformationRequestr9IEsRachReportReqr9) { *static_cast<UEInformationRequestr9IEsRachReportReqr9*>(items[0]) = uEInformationRequestr9IEsRachReportReqr9; }
 	void setUEInformationRequestr9IEsRlfReportReqr9(const UEInformationRequestr9IEsRlfReportReqr9& uEInformationRequestr9IEsRlfReportReqr9) { *static_cast<UEInformationRequestr9IEsRlfReportReqr9*>(items[1]) = uEInformationRequestr9IEsRlfReportReqr9; }
 	void setNonCriticalExtension(const UEInformationRequestv930IEs& nonCriticalExtension) { *static_cast<UEInformationRequestv930IEs*>(items[2]) = nonCriticalExtension; }
+
+	UEInformationRequestr9IEsRachReportReqr9& getUEInformationRequestr9IEsRachReportReqr9() { return *static_cast<UEInformationRequestr9IEsRachReportReqr9*>(items[0]); }
+	UEInformationRequestr9IEsRlfReportReqr9& getUEInformationRequestr9IEsRlfReportReqr9() { return *static_cast<UEInformationRequestr9IEsRlfReportReqr9*>(items[1]); }
+	UEInformationRequestv930IEs& getNonCriticalExtension() { return *static_cast<UEInformationRequestv930IEs*>(items[2]); }
 };
 
 typedef Null UEInformationRequestr9CriticalExtensionsC1Spare3;
@@ -8071,6 +9255,8 @@ private:
 public:
 	static const Info theInfo;
 	UEInformationRequestr9CriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class UEInformationRequestr9CriticalExtensions : public Choice {
@@ -8096,6 +9282,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setUEInformationRequestr9CriticalExtensions(const UEInformationRequestr9CriticalExtensions& uEInformationRequestr9CriticalExtensions) { *static_cast<UEInformationRequestr9CriticalExtensions*>(items[1]) = uEInformationRequestr9CriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	UEInformationRequestr9CriticalExtensions& getUEInformationRequestr9CriticalExtensions() { return *static_cast<UEInformationRequestr9CriticalExtensions*>(items[1]); }
 };
 
 typedef OctetString<CONSTRAINED, 3, 3> TraceReferencer10TraceIdr10;
@@ -8111,6 +9300,9 @@ public:
 
 	void setPlmnIdentityr10(const PLMNIdentity& plmnIdentityr10) { *static_cast<PLMNIdentity*>(items[0]) = plmnIdentityr10; }
 	void setTraceReferencer10TraceIdr10(const TraceReferencer10TraceIdr10& traceReferencer10TraceIdr10) { *static_cast<TraceReferencer10TraceIdr10*>(items[1]) = traceReferencer10TraceIdr10; }
+
+	PLMNIdentity& getPlmnIdentityr10() { return *static_cast<PLMNIdentity*>(items[0]); }
+	TraceReferencer10TraceIdr10& getTraceReferencer10TraceIdr10() { return *static_cast<TraceReferencer10TraceIdr10*>(items[1]); }
 };
 
 typedef OctetString<CONSTRAINED, 2, 2> LoggedMeasurementConfigurationr10IEsTraceRecordingSessionRefr10;
@@ -8130,6 +9322,9 @@ public:
 
 	void setPlmnIdentity(const PLMNIdentity& plmnIdentity) { *static_cast<PLMNIdentity*>(items[0]) = plmnIdentity; }
 	void setCellIdentity(const CellIdentity& cellIdentity) { *static_cast<CellIdentity*>(items[1]) = cellIdentity; }
+
+	PLMNIdentity& getPlmnIdentity() { return *static_cast<PLMNIdentity*>(items[0]); }
+	CellIdentity& getCellIdentity() { return *static_cast<CellIdentity*>(items[1]); }
 };
 
 typedef SequenceOf<CellGlobalIdEUTRA, CONSTRAINED, 1, 32> CellGlobalIdListr10;
@@ -8179,6 +9374,8 @@ private:
 public:
 	static const Info theInfo;
 	LoggedMeasurementConfigurationr10IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class LoggedMeasurementConfigurationr10IEs : public Sequence {
@@ -8198,6 +9395,15 @@ public:
 	void setLoggingDurationr10(const LoggingDurationr10& loggingDurationr10) { *static_cast<LoggingDurationr10*>(items[5]) = loggingDurationr10; }
 	void setLoggingIntervalr10(const LoggingIntervalr10& loggingIntervalr10) { *static_cast<LoggingIntervalr10*>(items[6]) = loggingIntervalr10; }
 	void setLoggedMeasurementConfigurationr10IEsNonCriticalExtension(const LoggedMeasurementConfigurationr10IEsNonCriticalExtension& loggedMeasurementConfigurationr10IEsNonCriticalExtension) { *static_cast<LoggedMeasurementConfigurationr10IEsNonCriticalExtension*>(items[7]) = loggedMeasurementConfigurationr10IEsNonCriticalExtension; }
+
+	TraceReferencer10& getTraceReferencer10() { return *static_cast<TraceReferencer10*>(items[0]); }
+	LoggedMeasurementConfigurationr10IEsTraceRecordingSessionRefr10& getLoggedMeasurementConfigurationr10IEsTraceRecordingSessionRefr10() { return *static_cast<LoggedMeasurementConfigurationr10IEsTraceRecordingSessionRefr10*>(items[1]); }
+	LoggedMeasurementConfigurationr10IEsTceIdr10& getLoggedMeasurementConfigurationr10IEsTceIdr10() { return *static_cast<LoggedMeasurementConfigurationr10IEsTceIdr10*>(items[2]); }
+	AbsoluteTimeInfor10& getAbsoluteTimeInfor10() { return *static_cast<AbsoluteTimeInfor10*>(items[3]); }
+	AreaConfigurationr10& getAreaConfigurationr10() { return *static_cast<AreaConfigurationr10*>(items[4]); }
+	LoggingDurationr10& getLoggingDurationr10() { return *static_cast<LoggingDurationr10*>(items[5]); }
+	LoggingIntervalr10& getLoggingIntervalr10() { return *static_cast<LoggingIntervalr10*>(items[6]); }
+	LoggedMeasurementConfigurationr10IEsNonCriticalExtension& getLoggedMeasurementConfigurationr10IEsNonCriticalExtension() { return *static_cast<LoggedMeasurementConfigurationr10IEsNonCriticalExtension*>(items[7]); }
 };
 
 typedef Null LoggedMeasurementConfigurationr10CriticalExtensionsC1Spare3;
@@ -8227,6 +9433,8 @@ private:
 public:
 	static const Info theInfo;
 	LoggedMeasurementConfigurationr10CriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class LoggedMeasurementConfigurationr10CriticalExtensions : public Choice {
@@ -8251,6 +9459,8 @@ public:
 	LoggedMeasurementConfigurationr10(const LoggedMeasurementConfigurationr10CriticalExtensions& loggedMeasurementConfigurationr10CriticalExtensions);
 
 	void setLoggedMeasurementConfigurationr10CriticalExtensions(const LoggedMeasurementConfigurationr10CriticalExtensions& loggedMeasurementConfigurationr10CriticalExtensions) { *static_cast<LoggedMeasurementConfigurationr10CriticalExtensions*>(items[0]) = loggedMeasurementConfigurationr10CriticalExtensions; }
+
+	LoggedMeasurementConfigurationr10CriticalExtensions& getLoggedMeasurementConfigurationr10CriticalExtensions() { return *static_cast<LoggedMeasurementConfigurationr10CriticalExtensions*>(items[0]); }
 };
 
 typedef OctetStringBase RNSystemInfor10SystemInformationBlockType1r10;
@@ -8303,6 +9513,10 @@ public:
 	void setACBarringConfigac_BarringFactor(const ACBarringConfigac_BarringFactor& aCBarringConfigac_BarringFactor) { *static_cast<ACBarringConfigac_BarringFactor*>(items[0]) = aCBarringConfigac_BarringFactor; }
 	void setACBarringConfigac_BarringTime(const ACBarringConfigac_BarringTime& aCBarringConfigac_BarringTime) { *static_cast<ACBarringConfigac_BarringTime*>(items[1]) = aCBarringConfigac_BarringTime; }
 	void setACBarringConfigAcBarringForSpecialAC(const ACBarringConfigAcBarringForSpecialAC& aCBarringConfigAcBarringForSpecialAC) { *static_cast<ACBarringConfigAcBarringForSpecialAC*>(items[2]) = aCBarringConfigAcBarringForSpecialAC; }
+
+	ACBarringConfigac_BarringFactor& getACBarringConfigac_BarringFactor() { return *static_cast<ACBarringConfigac_BarringFactor*>(items[0]); }
+	ACBarringConfigac_BarringTime& getACBarringConfigac_BarringTime() { return *static_cast<ACBarringConfigac_BarringTime*>(items[1]); }
+	ACBarringConfigAcBarringForSpecialAC& getACBarringConfigAcBarringForSpecialAC() { return *static_cast<ACBarringConfigAcBarringForSpecialAC*>(items[2]); }
 };
 
 class SystemInformationBlockType2AcBarringInfo : public Sequence {
@@ -8317,6 +9531,10 @@ public:
 	void setSystemInformationBlockType2AcBarringInfoAcBarringForEmergency(const SystemInformationBlockType2AcBarringInfoAcBarringForEmergency& systemInformationBlockType2AcBarringInfoAcBarringForEmergency) { *static_cast<SystemInformationBlockType2AcBarringInfoAcBarringForEmergency*>(items[0]) = systemInformationBlockType2AcBarringInfoAcBarringForEmergency; }
 	void setAcBarringForMOSignalling(const ACBarringConfig& acBarringForMOSignalling) { *static_cast<ACBarringConfig*>(items[1]) = acBarringForMOSignalling; }
 	void setAcBarringForMOData(const ACBarringConfig& acBarringForMOData) { *static_cast<ACBarringConfig*>(items[2]) = acBarringForMOData; }
+
+	SystemInformationBlockType2AcBarringInfoAcBarringForEmergency& getSystemInformationBlockType2AcBarringInfoAcBarringForEmergency() { return *static_cast<SystemInformationBlockType2AcBarringInfoAcBarringForEmergency*>(items[0]); }
+	ACBarringConfig& getAcBarringForMOSignalling() { return *static_cast<ACBarringConfig*>(items[1]); }
+	ACBarringConfig& getAcBarringForMOData() { return *static_cast<ACBarringConfig*>(items[2]); }
 };
 
 enum BCCHConfigmodificationPeriodCoeffValues {
@@ -8337,6 +9555,8 @@ public:
 	BCCHConfig(const BCCHConfigmodificationPeriodCoeff& bCCHConfigmodificationPeriodCoeff);
 
 	void setBCCHConfigmodificationPeriodCoeff(const BCCHConfigmodificationPeriodCoeff& bCCHConfigmodificationPeriodCoeff) { *static_cast<BCCHConfigmodificationPeriodCoeff*>(items[0]) = bCCHConfigmodificationPeriodCoeff; }
+
+	BCCHConfigmodificationPeriodCoeff& getBCCHConfigmodificationPeriodCoeff() { return *static_cast<BCCHConfigmodificationPeriodCoeff*>(items[0]); }
 };
 
 enum PCCHConfigdefaultPagingCycleValues {
@@ -8370,6 +9590,9 @@ public:
 
 	void setPCCHConfigdefaultPagingCycle(const PCCHConfigdefaultPagingCycle& pCCHConfigdefaultPagingCycle) { *static_cast<PCCHConfigdefaultPagingCycle*>(items[0]) = pCCHConfigdefaultPagingCycle; }
 	void setPCCHConfignB(const PCCHConfignB& pCCHConfignB) { *static_cast<PCCHConfignB*>(items[1]) = pCCHConfignB; }
+
+	PCCHConfigdefaultPagingCycle& getPCCHConfigdefaultPagingCycle() { return *static_cast<PCCHConfigdefaultPagingCycle*>(items[0]); }
+	PCCHConfignB& getPCCHConfignB() { return *static_cast<PCCHConfignB*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 837> PRACHConfigSIBRootSequenceIndex;
@@ -8385,6 +9608,9 @@ public:
 
 	void setPRACHConfigSIBRootSequenceIndex(const PRACHConfigSIBRootSequenceIndex& pRACHConfigSIBRootSequenceIndex) { *static_cast<PRACHConfigSIBRootSequenceIndex*>(items[0]) = pRACHConfigSIBRootSequenceIndex; }
 	void setPrachConfigInfo(const PRACHConfigInfo& prachConfigInfo) { *static_cast<PRACHConfigInfo*>(items[1]) = prachConfigInfo; }
+
+	PRACHConfigSIBRootSequenceIndex& getPRACHConfigSIBRootSequenceIndex() { return *static_cast<PRACHConfigSIBRootSequenceIndex*>(items[0]); }
+	PRACHConfigInfo& getPrachConfigInfo() { return *static_cast<PRACHConfigInfo*>(items[1]); }
 };
 
 class RadioResourceConfigCommonSIB : public Sequence {
@@ -8407,6 +9633,18 @@ public:
 	void setUplinkPowerControlCommon(const UplinkPowerControlCommon& uplinkPowerControlCommon) { *static_cast<UplinkPowerControlCommon*>(items[8]) = uplinkPowerControlCommon; }
 	void setUlCyclicPrefixLength(const ULCyclicPrefixLength& ulCyclicPrefixLength) { *static_cast<ULCyclicPrefixLength*>(items[9]) = ulCyclicPrefixLength; }
 	void setUplinkPowerControlCommonv1020(const UplinkPowerControlCommonv1020& uplinkPowerControlCommonv1020) { *static_cast<UplinkPowerControlCommonv1020*>(items[10]) = uplinkPowerControlCommonv1020; }
+
+	RACHConfigCommon& getRachConfigCommon() { return *static_cast<RACHConfigCommon*>(items[0]); }
+	BCCHConfig& getBcchConfig() { return *static_cast<BCCHConfig*>(items[1]); }
+	PCCHConfig& getPcchConfig() { return *static_cast<PCCHConfig*>(items[2]); }
+	PRACHConfigSIB& getPrachConfig() { return *static_cast<PRACHConfigSIB*>(items[3]); }
+	PDSCHConfigCommon& getPdschConfigCommon() { return *static_cast<PDSCHConfigCommon*>(items[4]); }
+	PUSCHConfigCommon& getPuschConfigCommon() { return *static_cast<PUSCHConfigCommon*>(items[5]); }
+	PUCCHConfigCommon& getPucchConfigCommon() { return *static_cast<PUCCHConfigCommon*>(items[6]); }
+	SoundingRSULConfigCommon& getSoundingRSULConfigCommon() { return *static_cast<SoundingRSULConfigCommon*>(items[7]); }
+	UplinkPowerControlCommon& getUplinkPowerControlCommon() { return *static_cast<UplinkPowerControlCommon*>(items[8]); }
+	ULCyclicPrefixLength& getUlCyclicPrefixLength() { return *static_cast<ULCyclicPrefixLength*>(items[9]); }
+	UplinkPowerControlCommonv1020& getUplinkPowerControlCommonv1020() { return *static_cast<UplinkPowerControlCommonv1020*>(items[10]); }
 };
 
 enum UETimersAndConstantst300Values {
@@ -8494,6 +9732,13 @@ public:
 	void setUETimersAndConstantsn310(const UETimersAndConstantsn310& uETimersAndConstantsn310) { *static_cast<UETimersAndConstantsn310*>(items[3]) = uETimersAndConstantsn310; }
 	void setUETimersAndConstantst311(const UETimersAndConstantst311& uETimersAndConstantst311) { *static_cast<UETimersAndConstantst311*>(items[4]) = uETimersAndConstantst311; }
 	void setUETimersAndConstantsn311(const UETimersAndConstantsn311& uETimersAndConstantsn311) { *static_cast<UETimersAndConstantsn311*>(items[5]) = uETimersAndConstantsn311; }
+
+	UETimersAndConstantst300& getUETimersAndConstantst300() { return *static_cast<UETimersAndConstantst300*>(items[0]); }
+	UETimersAndConstantst301& getUETimersAndConstantst301() { return *static_cast<UETimersAndConstantst301*>(items[1]); }
+	UETimersAndConstantst310& getUETimersAndConstantst310() { return *static_cast<UETimersAndConstantst310*>(items[2]); }
+	UETimersAndConstantsn310& getUETimersAndConstantsn310() { return *static_cast<UETimersAndConstantsn310*>(items[3]); }
+	UETimersAndConstantst311& getUETimersAndConstantst311() { return *static_cast<UETimersAndConstantst311*>(items[4]); }
+	UETimersAndConstantsn311& getUETimersAndConstantsn311() { return *static_cast<UETimersAndConstantsn311*>(items[5]); }
 };
 
 enum SystemInformationBlockType2FreqInfoul_BandwidthValues {
@@ -8518,6 +9763,10 @@ public:
 	void setUlCarrierFreq(const ARFCNValueEUTRA& ulCarrierFreq) { *static_cast<ARFCNValueEUTRA*>(items[0]) = ulCarrierFreq; }
 	void setSystemInformationBlockType2FreqInfoul_Bandwidth(const SystemInformationBlockType2FreqInfoul_Bandwidth& systemInformationBlockType2FreqInfoul_Bandwidth) { *static_cast<SystemInformationBlockType2FreqInfoul_Bandwidth*>(items[1]) = systemInformationBlockType2FreqInfoul_Bandwidth; }
 	void setAdditionalSpectrumEmission(const AdditionalSpectrumEmission& additionalSpectrumEmission) { *static_cast<AdditionalSpectrumEmission*>(items[2]) = additionalSpectrumEmission; }
+
+	ARFCNValueEUTRA& getUlCarrierFreq() { return *static_cast<ARFCNValueEUTRA*>(items[0]); }
+	SystemInformationBlockType2FreqInfoul_Bandwidth& getSystemInformationBlockType2FreqInfoul_Bandwidth() { return *static_cast<SystemInformationBlockType2FreqInfoul_Bandwidth*>(items[1]); }
+	AdditionalSpectrumEmission& getAdditionalSpectrumEmission() { return *static_cast<AdditionalSpectrumEmission*>(items[2]); }
 };
 
 typedef OctetStringBase SystemInformationBlockType2LateNonCriticalExtension;
@@ -8541,6 +9790,17 @@ public:
 	void setSsacBarringForMMTELVoicer9(const ACBarringConfig& ssacBarringForMMTELVoicer9) { *static_cast<ACBarringConfig*>(items[7]) = ssacBarringForMMTELVoicer9; }
 	void setSsacBarringForMMTELVideor9(const ACBarringConfig& ssacBarringForMMTELVideor9) { *static_cast<ACBarringConfig*>(items[8]) = ssacBarringForMMTELVideor9; }
 	void setAcBarringForCSFBr10(const ACBarringConfig& acBarringForCSFBr10) { *static_cast<ACBarringConfig*>(items[9]) = acBarringForCSFBr10; }
+
+	SystemInformationBlockType2AcBarringInfo& getSystemInformationBlockType2AcBarringInfo() { return *static_cast<SystemInformationBlockType2AcBarringInfo*>(items[0]); }
+	RadioResourceConfigCommonSIB& getRadioResourceConfigCommon() { return *static_cast<RadioResourceConfigCommonSIB*>(items[1]); }
+	UETimersAndConstants& getUeTimersAndConstants() { return *static_cast<UETimersAndConstants*>(items[2]); }
+	SystemInformationBlockType2FreqInfo& getSystemInformationBlockType2FreqInfo() { return *static_cast<SystemInformationBlockType2FreqInfo*>(items[3]); }
+	MBSFNSubframeConfigList& getMbsfnSubframeConfigList() { return *static_cast<MBSFNSubframeConfigList*>(items[4]); }
+	TimeAlignmentTimer& getTimeAlignmentTimerCommon() { return *static_cast<TimeAlignmentTimer*>(items[5]); }
+	SystemInformationBlockType2LateNonCriticalExtension& getSystemInformationBlockType2LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType2LateNonCriticalExtension*>(items[6]); }
+	ACBarringConfig& getSsacBarringForMMTELVoicer9() { return *static_cast<ACBarringConfig*>(items[7]); }
+	ACBarringConfig& getSsacBarringForMMTELVideor9() { return *static_cast<ACBarringConfig*>(items[8]); }
+	ACBarringConfig& getAcBarringForCSFBr10() { return *static_cast<ACBarringConfig*>(items[9]); }
 };
 
 class RNSystemInfor10 : public Sequence {
@@ -8550,8 +9810,12 @@ private:
 public:
 	static const Info theInfo;
 	RNSystemInfor10(): Sequence(&theInfo) {}
+
 	void setRNSystemInfor10SystemInformationBlockType1r10(const RNSystemInfor10SystemInformationBlockType1r10& rNSystemInfor10SystemInformationBlockType1r10) { *static_cast<RNSystemInfor10SystemInformationBlockType1r10*>(items[0]) = rNSystemInfor10SystemInformationBlockType1r10; }
 	void setSystemInformationBlockType2r10(const SystemInformationBlockType2& systemInformationBlockType2r10) { *static_cast<SystemInformationBlockType2*>(items[1]) = systemInformationBlockType2r10; }
+
+	RNSystemInfor10SystemInformationBlockType1r10& getRNSystemInfor10SystemInformationBlockType1r10() { return *static_cast<RNSystemInfor10SystemInformationBlockType1r10*>(items[0]); }
+	SystemInformationBlockType2& getSystemInformationBlockType2r10() { return *static_cast<SystemInformationBlockType2*>(items[1]); }
 };
 
 typedef BitString<CONSTRAINED, 8, 8> RNSubframeConfigr10SubframeConfigPatternr10SubframeConfigPatternFDDr10;
@@ -8689,6 +9953,8 @@ public:
 	RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddChannelSelectionMultiplexingBundling(const RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddChannelSelectionMultiplexingBundlingN1PUCCHANListr10& rNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddChannelSelectionMultiplexingBundlingN1PUCCHANListr10);
 
 	void setRNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddChannelSelectionMultiplexingBundlingN1PUCCHANListr10(const RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddChannelSelectionMultiplexingBundlingN1PUCCHANListr10& rNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddChannelSelectionMultiplexingBundlingN1PUCCHANListr10) { *static_cast<RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddChannelSelectionMultiplexingBundlingN1PUCCHANListr10*>(items[0]) = rNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddChannelSelectionMultiplexingBundlingN1PUCCHANListr10; }
+
+	RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddChannelSelectionMultiplexingBundlingN1PUCCHANListr10& getRNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddChannelSelectionMultiplexingBundlingN1PUCCHANListr10() { return *static_cast<RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddChannelSelectionMultiplexingBundlingN1PUCCHANListr10*>(items[0]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 2047> RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP0r10;
@@ -8706,6 +9972,9 @@ public:
 
 	void setRNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP0r10(const RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP0r10& rNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP0r10) { *static_cast<RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP0r10*>(items[0]) = rNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP0r10; }
 	void setRNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP1r10(const RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP1r10& rNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP1r10) { *static_cast<RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP1r10*>(items[1]) = rNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP1r10; }
+
+	RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP0r10& getRNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP0r10() { return *static_cast<RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP0r10*>(items[0]); }
+	RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP1r10& getRNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP1r10() { return *static_cast<RNSubframeConfigr10RpdcchConfigr10PucchConfigr10TddFallbackForFormat3N1PUCCHANP1r10*>(items[1]); }
 };
 
 class RNSubframeConfigr10RpdcchConfigr10PucchConfigr10Tdd : public Choice {
@@ -8735,6 +10004,9 @@ public:
 
 	void setRNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP0r10(const RNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP0r10& rNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP0r10) { *static_cast<RNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP0r10*>(items[0]) = rNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP0r10; }
 	void setRNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP1r10(const RNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP1r10& rNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP1r10) { *static_cast<RNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP1r10*>(items[1]) = rNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP1r10; }
+
+	RNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP0r10& getRNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP0r10() { return *static_cast<RNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP0r10*>(items[0]); }
+	RNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP1r10& getRNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP1r10() { return *static_cast<RNSubframeConfigr10RpdcchConfigr10PucchConfigr10FddN1PUCCHANP1r10*>(items[1]); }
 };
 
 class RNSubframeConfigr10RpdcchConfigr10PucchConfigr10 : public Choice {
@@ -8763,6 +10035,12 @@ public:
 	void setRNSubframeConfigr10RpdcchConfigr10DemodulationRSr10(const RNSubframeConfigr10RpdcchConfigr10DemodulationRSr10& rNSubframeConfigr10RpdcchConfigr10DemodulationRSr10) { *static_cast<RNSubframeConfigr10RpdcchConfigr10DemodulationRSr10*>(items[2]) = rNSubframeConfigr10RpdcchConfigr10DemodulationRSr10; }
 	void setRNSubframeConfigr10RpdcchConfigr10PdschStartr10(const RNSubframeConfigr10RpdcchConfigr10PdschStartr10& rNSubframeConfigr10RpdcchConfigr10PdschStartr10) { *static_cast<RNSubframeConfigr10RpdcchConfigr10PdschStartr10*>(items[3]) = rNSubframeConfigr10RpdcchConfigr10PdschStartr10; }
 	void setRNSubframeConfigr10RpdcchConfigr10PucchConfigr10(const RNSubframeConfigr10RpdcchConfigr10PucchConfigr10& rNSubframeConfigr10RpdcchConfigr10PucchConfigr10) { *static_cast<RNSubframeConfigr10RpdcchConfigr10PucchConfigr10*>(items[4]) = rNSubframeConfigr10RpdcchConfigr10PucchConfigr10; }
+
+	RNSubframeConfigr10RpdcchConfigr10resourceAllocationType_r10& getRNSubframeConfigr10RpdcchConfigr10resourceAllocationType_r10() { return *static_cast<RNSubframeConfigr10RpdcchConfigr10resourceAllocationType_r10*>(items[0]); }
+	RNSubframeConfigr10RpdcchConfigr10ResourceBlockAssignmentr10& getRNSubframeConfigr10RpdcchConfigr10ResourceBlockAssignmentr10() { return *static_cast<RNSubframeConfigr10RpdcchConfigr10ResourceBlockAssignmentr10*>(items[1]); }
+	RNSubframeConfigr10RpdcchConfigr10DemodulationRSr10& getRNSubframeConfigr10RpdcchConfigr10DemodulationRSr10() { return *static_cast<RNSubframeConfigr10RpdcchConfigr10DemodulationRSr10*>(items[2]); }
+	RNSubframeConfigr10RpdcchConfigr10PdschStartr10& getRNSubframeConfigr10RpdcchConfigr10PdschStartr10() { return *static_cast<RNSubframeConfigr10RpdcchConfigr10PdschStartr10*>(items[3]); }
+	RNSubframeConfigr10RpdcchConfigr10PucchConfigr10& getRNSubframeConfigr10RpdcchConfigr10PucchConfigr10() { return *static_cast<RNSubframeConfigr10RpdcchConfigr10PucchConfigr10*>(items[4]); }
 };
 
 class RNSubframeConfigr10 : public Sequence {
@@ -8772,8 +10050,12 @@ private:
 public:
 	static const Info theInfo;
 	RNSubframeConfigr10(): Sequence(&theInfo) {}
+
 	void setRNSubframeConfigr10SubframeConfigPatternr10(const RNSubframeConfigr10SubframeConfigPatternr10& rNSubframeConfigr10SubframeConfigPatternr10) { *static_cast<RNSubframeConfigr10SubframeConfigPatternr10*>(items[0]) = rNSubframeConfigr10SubframeConfigPatternr10; }
 	void setRNSubframeConfigr10RpdcchConfigr10(const RNSubframeConfigr10RpdcchConfigr10& rNSubframeConfigr10RpdcchConfigr10) { *static_cast<RNSubframeConfigr10RpdcchConfigr10*>(items[1]) = rNSubframeConfigr10RpdcchConfigr10; }
+
+	RNSubframeConfigr10SubframeConfigPatternr10& getRNSubframeConfigr10SubframeConfigPatternr10() { return *static_cast<RNSubframeConfigr10SubframeConfigPatternr10*>(items[0]); }
+	RNSubframeConfigr10RpdcchConfigr10& getRNSubframeConfigr10RpdcchConfigr10() { return *static_cast<RNSubframeConfigr10RpdcchConfigr10*>(items[1]); }
 };
 
 typedef OctetStringBase RNReconfigurationr10IEsLateNonCriticalExtension;
@@ -8785,6 +10067,8 @@ private:
 public:
 	static const Info theInfo;
 	RNReconfigurationr10IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class RNReconfigurationr10IEs : public Sequence {
@@ -8794,10 +10078,16 @@ private:
 public:
 	static const Info theInfo;
 	RNReconfigurationr10IEs(): Sequence(&theInfo) {}
+
 	void setRnSystemInfor10(const RNSystemInfor10& rnSystemInfor10) { *static_cast<RNSystemInfor10*>(items[0]) = rnSystemInfor10; }
 	void setRnSubframeConfigr10(const RNSubframeConfigr10& rnSubframeConfigr10) { *static_cast<RNSubframeConfigr10*>(items[1]) = rnSubframeConfigr10; }
 	void setRNReconfigurationr10IEsLateNonCriticalExtension(const RNReconfigurationr10IEsLateNonCriticalExtension& rNReconfigurationr10IEsLateNonCriticalExtension) { *static_cast<RNReconfigurationr10IEsLateNonCriticalExtension*>(items[2]) = rNReconfigurationr10IEsLateNonCriticalExtension; }
 	void setRNReconfigurationr10IEsNonCriticalExtension(const RNReconfigurationr10IEsNonCriticalExtension& rNReconfigurationr10IEsNonCriticalExtension) { *static_cast<RNReconfigurationr10IEsNonCriticalExtension*>(items[3]) = rNReconfigurationr10IEsNonCriticalExtension; }
+
+	RNSystemInfor10& getRnSystemInfor10() { return *static_cast<RNSystemInfor10*>(items[0]); }
+	RNSubframeConfigr10& getRnSubframeConfigr10() { return *static_cast<RNSubframeConfigr10*>(items[1]); }
+	RNReconfigurationr10IEsLateNonCriticalExtension& getRNReconfigurationr10IEsLateNonCriticalExtension() { return *static_cast<RNReconfigurationr10IEsLateNonCriticalExtension*>(items[2]); }
+	RNReconfigurationr10IEsNonCriticalExtension& getRNReconfigurationr10IEsNonCriticalExtension() { return *static_cast<RNReconfigurationr10IEsNonCriticalExtension*>(items[3]); }
 };
 
 typedef Null RNReconfigurationr10CriticalExtensionsC1Spare3;
@@ -8827,6 +10117,8 @@ private:
 public:
 	static const Info theInfo;
 	RNReconfigurationr10CriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RNReconfigurationr10CriticalExtensions : public Choice {
@@ -8852,6 +10144,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setRNReconfigurationr10CriticalExtensions(const RNReconfigurationr10CriticalExtensions& rNReconfigurationr10CriticalExtensions) { *static_cast<RNReconfigurationr10CriticalExtensions*>(items[1]) = rNReconfigurationr10CriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	RNReconfigurationr10CriticalExtensions& getRNReconfigurationr10CriticalExtensions() { return *static_cast<RNReconfigurationr10CriticalExtensions*>(items[1]); }
 };
 
 typedef Null DLDCCHMessageTypeC1Spare4;
@@ -8895,6 +10190,8 @@ private:
 public:
 	static const Info theInfo;
 	DLDCCHMessageTypeMessageClassExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class DLDCCHMessageType : public Choice {
@@ -8919,6 +10216,8 @@ public:
 	DLDCCHMessage(const DLDCCHMessageType& message);
 
 	void setMessage(const DLDCCHMessageType& message) { *static_cast<DLDCCHMessageType*>(items[0]) = message; }
+
+	DLDCCHMessageType& getMessage() { return *static_cast<DLDCCHMessageType*>(items[0]); }
 };
 
 typedef BitString<CONSTRAINED, 16, 16> ShortMACI;
@@ -8935,6 +10234,10 @@ public:
 	void setCRNTI(const CRNTI& cRNTI) { *static_cast<CRNTI*>(items[0]) = cRNTI; }
 	void setPhysCellId(const PhysCellId& physCellId) { *static_cast<PhysCellId*>(items[1]) = physCellId; }
 	void setShortMACI(const ShortMACI& shortMACI) { *static_cast<ShortMACI*>(items[2]) = shortMACI; }
+
+	CRNTI& getCRNTI() { return *static_cast<CRNTI*>(items[0]); }
+	PhysCellId& getPhysCellId() { return *static_cast<PhysCellId*>(items[1]); }
+	ShortMACI& getShortMACI() { return *static_cast<ShortMACI*>(items[2]); }
 };
 
 enum ReestablishmentCauseValues {
@@ -8959,6 +10262,10 @@ public:
 	void setUeIdentity(const ReestabUEIdentity& ueIdentity) { *static_cast<ReestabUEIdentity*>(items[0]) = ueIdentity; }
 	void setReestablishmentCause(const ReestablishmentCause& reestablishmentCause) { *static_cast<ReestablishmentCause*>(items[1]) = reestablishmentCause; }
 	void setRRCConnectionReestablishmentRequestr8IEsSpare(const RRCConnectionReestablishmentRequestr8IEsSpare& rRCConnectionReestablishmentRequestr8IEsSpare) { *static_cast<RRCConnectionReestablishmentRequestr8IEsSpare*>(items[2]) = rRCConnectionReestablishmentRequestr8IEsSpare; }
+
+	ReestabUEIdentity& getUeIdentity() { return *static_cast<ReestabUEIdentity*>(items[0]); }
+	ReestablishmentCause& getReestablishmentCause() { return *static_cast<ReestablishmentCause*>(items[1]); }
+	RRCConnectionReestablishmentRequestr8IEsSpare& getRRCConnectionReestablishmentRequestr8IEsSpare() { return *static_cast<RRCConnectionReestablishmentRequestr8IEsSpare*>(items[2]); }
 };
 
 class RRCConnectionReestablishmentRequestCriticalExtensionsCriticalExtensionsFuture : public Sequence {
@@ -8968,6 +10275,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentRequestCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReestablishmentRequestCriticalExtensions : public Choice {
@@ -8992,6 +10301,8 @@ public:
 	RRCConnectionReestablishmentRequest(const RRCConnectionReestablishmentRequestCriticalExtensions& rRCConnectionReestablishmentRequestCriticalExtensions);
 
 	void setRRCConnectionReestablishmentRequestCriticalExtensions(const RRCConnectionReestablishmentRequestCriticalExtensions& rRCConnectionReestablishmentRequestCriticalExtensions) { *static_cast<RRCConnectionReestablishmentRequestCriticalExtensions*>(items[0]) = rRCConnectionReestablishmentRequestCriticalExtensions; }
+
+	RRCConnectionReestablishmentRequestCriticalExtensions& getRRCConnectionReestablishmentRequestCriticalExtensions() { return *static_cast<RRCConnectionReestablishmentRequestCriticalExtensions*>(items[0]); }
 };
 
 typedef BitString<CONSTRAINED, 40, 40> InitialUEIdentityRandomValue;
@@ -9034,6 +10345,10 @@ public:
 	void setUeIdentity(const InitialUEIdentity& ueIdentity) { *static_cast<InitialUEIdentity*>(items[0]) = ueIdentity; }
 	void setEstablishmentCause(const EstablishmentCause& establishmentCause) { *static_cast<EstablishmentCause*>(items[1]) = establishmentCause; }
 	void setRRCConnectionRequestr8IEsSpare(const RRCConnectionRequestr8IEsSpare& rRCConnectionRequestr8IEsSpare) { *static_cast<RRCConnectionRequestr8IEsSpare*>(items[2]) = rRCConnectionRequestr8IEsSpare; }
+
+	InitialUEIdentity& getUeIdentity() { return *static_cast<InitialUEIdentity*>(items[0]); }
+	EstablishmentCause& getEstablishmentCause() { return *static_cast<EstablishmentCause*>(items[1]); }
+	RRCConnectionRequestr8IEsSpare& getRRCConnectionRequestr8IEsSpare() { return *static_cast<RRCConnectionRequestr8IEsSpare*>(items[2]); }
 };
 
 class RRCConnectionRequestCriticalExtensionsCriticalExtensionsFuture : public Sequence {
@@ -9043,6 +10358,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionRequestCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionRequestCriticalExtensions : public Choice {
@@ -9067,6 +10384,8 @@ public:
 	RRCConnectionRequest(const RRCConnectionRequestCriticalExtensions& rRCConnectionRequestCriticalExtensions);
 
 	void setRRCConnectionRequestCriticalExtensions(const RRCConnectionRequestCriticalExtensions& rRCConnectionRequestCriticalExtensions) { *static_cast<RRCConnectionRequestCriticalExtensions*>(items[0]) = rRCConnectionRequestCriticalExtensions; }
+
+	RRCConnectionRequestCriticalExtensions& getRRCConnectionRequestCriticalExtensions() { return *static_cast<RRCConnectionRequestCriticalExtensions*>(items[0]); }
 };
 
 class ULCCCHMessageTypeC1 : public Choice {
@@ -9088,6 +10407,8 @@ private:
 public:
 	static const Info theInfo;
 	ULCCCHMessageTypeMessageClassExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class ULCCCHMessageType : public Choice {
@@ -9112,6 +10433,8 @@ public:
 	ULCCCHMessage(const ULCCCHMessageType& message);
 
 	void setMessage(const ULCCCHMessageType& message) { *static_cast<ULCCCHMessageType*>(items[0]) = message; }
+
+	ULCCCHMessageType& getMessage() { return *static_cast<ULCCCHMessageType*>(items[0]); }
 };
 
 typedef OctetStringBase CSFBParametersRequestCDMA2000v8a0IEsLateNonCriticalExtension;
@@ -9123,6 +10446,8 @@ private:
 public:
 	static const Info theInfo;
 	CSFBParametersRequestCDMA2000v8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class CSFBParametersRequestCDMA2000v8a0IEs : public Sequence {
@@ -9132,8 +10457,12 @@ private:
 public:
 	static const Info theInfo;
 	CSFBParametersRequestCDMA2000v8a0IEs(): Sequence(&theInfo) {}
+
 	void setCSFBParametersRequestCDMA2000v8a0IEsLateNonCriticalExtension(const CSFBParametersRequestCDMA2000v8a0IEsLateNonCriticalExtension& cSFBParametersRequestCDMA2000v8a0IEsLateNonCriticalExtension) { *static_cast<CSFBParametersRequestCDMA2000v8a0IEsLateNonCriticalExtension*>(items[0]) = cSFBParametersRequestCDMA2000v8a0IEsLateNonCriticalExtension; }
 	void setCSFBParametersRequestCDMA2000v8a0IEsNonCriticalExtension(const CSFBParametersRequestCDMA2000v8a0IEsNonCriticalExtension& cSFBParametersRequestCDMA2000v8a0IEsNonCriticalExtension) { *static_cast<CSFBParametersRequestCDMA2000v8a0IEsNonCriticalExtension*>(items[1]) = cSFBParametersRequestCDMA2000v8a0IEsNonCriticalExtension; }
+
+	CSFBParametersRequestCDMA2000v8a0IEsLateNonCriticalExtension& getCSFBParametersRequestCDMA2000v8a0IEsLateNonCriticalExtension() { return *static_cast<CSFBParametersRequestCDMA2000v8a0IEsLateNonCriticalExtension*>(items[0]); }
+	CSFBParametersRequestCDMA2000v8a0IEsNonCriticalExtension& getCSFBParametersRequestCDMA2000v8a0IEsNonCriticalExtension() { return *static_cast<CSFBParametersRequestCDMA2000v8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class CSFBParametersRequestCDMA2000r8IEs : public Sequence {
@@ -9143,7 +10472,10 @@ private:
 public:
 	static const Info theInfo;
 	CSFBParametersRequestCDMA2000r8IEs(): Sequence(&theInfo) {}
+
 	void setNonCriticalExtension(const CSFBParametersRequestCDMA2000v8a0IEs& nonCriticalExtension) { *static_cast<CSFBParametersRequestCDMA2000v8a0IEs*>(items[0]) = nonCriticalExtension; }
+
+	CSFBParametersRequestCDMA2000v8a0IEs& getNonCriticalExtension() { return *static_cast<CSFBParametersRequestCDMA2000v8a0IEs*>(items[0]); }
 };
 
 class CSFBParametersRequestCDMA2000CriticalExtensionsCriticalExtensionsFuture : public Sequence {
@@ -9153,6 +10485,8 @@ private:
 public:
 	static const Info theInfo;
 	CSFBParametersRequestCDMA2000CriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class CSFBParametersRequestCDMA2000CriticalExtensions : public Choice {
@@ -9177,6 +10511,8 @@ public:
 	CSFBParametersRequestCDMA2000(const CSFBParametersRequestCDMA2000CriticalExtensions& cSFBParametersRequestCDMA2000CriticalExtensions);
 
 	void setCSFBParametersRequestCDMA2000CriticalExtensions(const CSFBParametersRequestCDMA2000CriticalExtensions& cSFBParametersRequestCDMA2000CriticalExtensions) { *static_cast<CSFBParametersRequestCDMA2000CriticalExtensions*>(items[0]) = cSFBParametersRequestCDMA2000CriticalExtensions; }
+
+	CSFBParametersRequestCDMA2000CriticalExtensions& getCSFBParametersRequestCDMA2000CriticalExtensions() { return *static_cast<CSFBParametersRequestCDMA2000CriticalExtensions*>(items[0]); }
 };
 
 class MeasResultsMeasResultPCell : public Sequence {
@@ -9190,6 +10526,9 @@ public:
 
 	void setRsrpResult(const RSRPRange& rsrpResult) { *static_cast<RSRPRange*>(items[0]) = rsrpResult; }
 	void setRsrqResult(const RSRQRange& rsrqResult) { *static_cast<RSRQRange*>(items[1]) = rsrqResult; }
+
+	RSRPRange& getRsrpResult() { return *static_cast<RSRPRange*>(items[0]); }
+	RSRQRange& getRsrqResult() { return *static_cast<RSRQRange*>(items[1]); }
 };
 
 typedef SequenceOf<PLMNIdentity, CONSTRAINED, 1, 5> PLMNIdentityList2;
@@ -9206,6 +10545,10 @@ public:
 	void setCellGlobalId(const CellGlobalIdEUTRA& cellGlobalId) { *static_cast<CellGlobalIdEUTRA*>(items[0]) = cellGlobalId; }
 	void setTrackingAreaCode(const TrackingAreaCode& trackingAreaCode) { *static_cast<TrackingAreaCode*>(items[1]) = trackingAreaCode; }
 	void setPlmnIdentityList(const PLMNIdentityList2& plmnIdentityList) { *static_cast<PLMNIdentityList2*>(items[2]) = plmnIdentityList; }
+
+	CellGlobalIdEUTRA& getCellGlobalId() { return *static_cast<CellGlobalIdEUTRA*>(items[0]); }
+	TrackingAreaCode& getTrackingAreaCode() { return *static_cast<TrackingAreaCode*>(items[1]); }
+	PLMNIdentityList2& getPlmnIdentityList() { return *static_cast<PLMNIdentityList2*>(items[2]); }
 };
 
 enum AdditionalSIInfor9csg_MemberStatus_r9Values {
@@ -9220,8 +10563,12 @@ private:
 public:
 	static const Info theInfo;
 	AdditionalSIInfor9(): Sequence(&theInfo) {}
+
 	void setAdditionalSIInfor9csg_MemberStatus_r9(const AdditionalSIInfor9csg_MemberStatus_r9& additionalSIInfor9csg_MemberStatus_r9) { *static_cast<AdditionalSIInfor9csg_MemberStatus_r9*>(items[0]) = additionalSIInfor9csg_MemberStatus_r9; }
 	void setCsgIdentityr9(const CSGIdentity& csgIdentityr9) { *static_cast<CSGIdentity*>(items[1]) = csgIdentityr9; }
+
+	AdditionalSIInfor9csg_MemberStatus_r9& getAdditionalSIInfor9csg_MemberStatus_r9() { return *static_cast<AdditionalSIInfor9csg_MemberStatus_r9*>(items[0]); }
+	CSGIdentity& getCsgIdentityr9() { return *static_cast<CSGIdentity*>(items[1]); }
 };
 
 class MeasResultEUTRAMeasResult : public Sequence {
@@ -9231,9 +10578,14 @@ private:
 public:
 	static const Info theInfo;
 	MeasResultEUTRAMeasResult(): Sequence(&theInfo) {}
+
 	void setRsrpResult(const RSRPRange& rsrpResult) { *static_cast<RSRPRange*>(items[0]) = rsrpResult; }
 	void setRsrqResult(const RSRQRange& rsrqResult) { *static_cast<RSRQRange*>(items[1]) = rsrqResult; }
 	void setAdditionalSIInfor9(const AdditionalSIInfor9& additionalSIInfor9) { *static_cast<AdditionalSIInfor9*>(items[2]) = additionalSIInfor9; }
+
+	RSRPRange& getRsrpResult() { return *static_cast<RSRPRange*>(items[0]); }
+	RSRQRange& getRsrqResult() { return *static_cast<RSRQRange*>(items[1]); }
+	AdditionalSIInfor9& getAdditionalSIInfor9() { return *static_cast<AdditionalSIInfor9*>(items[2]); }
 };
 
 class MeasResultEUTRA : public Sequence {
@@ -9248,6 +10600,10 @@ public:
 	void setPhysCellId(const PhysCellId& physCellId) { *static_cast<PhysCellId*>(items[0]) = physCellId; }
 	void setMeasResultEUTRACgiInfo(const MeasResultEUTRACgiInfo& measResultEUTRACgiInfo) { *static_cast<MeasResultEUTRACgiInfo*>(items[1]) = measResultEUTRACgiInfo; }
 	void setMeasResultEUTRAMeasResult(const MeasResultEUTRAMeasResult& measResultEUTRAMeasResult) { *static_cast<MeasResultEUTRAMeasResult*>(items[2]) = measResultEUTRAMeasResult; }
+
+	PhysCellId& getPhysCellId() { return *static_cast<PhysCellId*>(items[0]); }
+	MeasResultEUTRACgiInfo& getMeasResultEUTRACgiInfo() { return *static_cast<MeasResultEUTRACgiInfo*>(items[1]); }
+	MeasResultEUTRAMeasResult& getMeasResultEUTRAMeasResult() { return *static_cast<MeasResultEUTRAMeasResult*>(items[2]); }
 };
 
 typedef SequenceOf<MeasResultEUTRA, CONSTRAINED, 1, maxCellReport> MeasResultListEUTRA;
@@ -9277,6 +10633,9 @@ public:
 
 	void setPlmnIdentity(const PLMNIdentity& plmnIdentity) { *static_cast<PLMNIdentity*>(items[0]) = plmnIdentity; }
 	void setCellGlobalIdUTRACellIdentity(const CellGlobalIdUTRACellIdentity& cellGlobalIdUTRACellIdentity) { *static_cast<CellGlobalIdUTRACellIdentity*>(items[1]) = cellGlobalIdUTRACellIdentity; }
+
+	PLMNIdentity& getPlmnIdentity() { return *static_cast<PLMNIdentity*>(items[0]); }
+	CellGlobalIdUTRACellIdentity& getCellGlobalIdUTRACellIdentity() { return *static_cast<CellGlobalIdUTRACellIdentity*>(items[1]); }
 };
 
 typedef BitString<CONSTRAINED, 16, 16> MeasResultUTRACgiInfoLocationAreaCode;
@@ -9296,6 +10655,11 @@ public:
 	void setMeasResultUTRACgiInfoLocationAreaCode(const MeasResultUTRACgiInfoLocationAreaCode& measResultUTRACgiInfoLocationAreaCode) { *static_cast<MeasResultUTRACgiInfoLocationAreaCode*>(items[1]) = measResultUTRACgiInfoLocationAreaCode; }
 	void setMeasResultUTRACgiInfoRoutingAreaCode(const MeasResultUTRACgiInfoRoutingAreaCode& measResultUTRACgiInfoRoutingAreaCode) { *static_cast<MeasResultUTRACgiInfoRoutingAreaCode*>(items[2]) = measResultUTRACgiInfoRoutingAreaCode; }
 	void setPlmnIdentityList(const PLMNIdentityList2& plmnIdentityList) { *static_cast<PLMNIdentityList2*>(items[3]) = plmnIdentityList; }
+
+	CellGlobalIdUTRA& getCellGlobalId() { return *static_cast<CellGlobalIdUTRA*>(items[0]); }
+	MeasResultUTRACgiInfoLocationAreaCode& getMeasResultUTRACgiInfoLocationAreaCode() { return *static_cast<MeasResultUTRACgiInfoLocationAreaCode*>(items[1]); }
+	MeasResultUTRACgiInfoRoutingAreaCode& getMeasResultUTRACgiInfoRoutingAreaCode() { return *static_cast<MeasResultUTRACgiInfoRoutingAreaCode*>(items[2]); }
+	PLMNIdentityList2& getPlmnIdentityList() { return *static_cast<PLMNIdentityList2*>(items[3]); }
 };
 
 typedef Integer<CONSTRAINED, -5, 91> MeasResultUTRAMeasResultUtraRSCP;
@@ -9309,9 +10673,14 @@ private:
 public:
 	static const Info theInfo;
 	MeasResultUTRAMeasResult(): Sequence(&theInfo) {}
+
 	void setMeasResultUTRAMeasResultUtraRSCP(const MeasResultUTRAMeasResultUtraRSCP& measResultUTRAMeasResultUtraRSCP) { *static_cast<MeasResultUTRAMeasResultUtraRSCP*>(items[0]) = measResultUTRAMeasResultUtraRSCP; }
 	void setMeasResultUTRAMeasResultUtraEcN0(const MeasResultUTRAMeasResultUtraEcN0& measResultUTRAMeasResultUtraEcN0) { *static_cast<MeasResultUTRAMeasResultUtraEcN0*>(items[1]) = measResultUTRAMeasResultUtraEcN0; }
 	void setAdditionalSIInfor9(const AdditionalSIInfor9& additionalSIInfor9) { *static_cast<AdditionalSIInfor9*>(items[2]) = additionalSIInfor9; }
+
+	MeasResultUTRAMeasResultUtraRSCP& getMeasResultUTRAMeasResultUtraRSCP() { return *static_cast<MeasResultUTRAMeasResultUtraRSCP*>(items[0]); }
+	MeasResultUTRAMeasResultUtraEcN0& getMeasResultUTRAMeasResultUtraEcN0() { return *static_cast<MeasResultUTRAMeasResultUtraEcN0*>(items[1]); }
+	AdditionalSIInfor9& getAdditionalSIInfor9() { return *static_cast<AdditionalSIInfor9*>(items[2]); }
 };
 
 class MeasResultUTRA : public Sequence {
@@ -9326,6 +10695,10 @@ public:
 	void setMeasResultUTRAPhysCellId(const MeasResultUTRAPhysCellId& measResultUTRAPhysCellId) { *static_cast<MeasResultUTRAPhysCellId*>(items[0]) = measResultUTRAPhysCellId; }
 	void setMeasResultUTRACgiInfo(const MeasResultUTRACgiInfo& measResultUTRACgiInfo) { *static_cast<MeasResultUTRACgiInfo*>(items[1]) = measResultUTRACgiInfo; }
 	void setMeasResultUTRAMeasResult(const MeasResultUTRAMeasResult& measResultUTRAMeasResult) { *static_cast<MeasResultUTRAMeasResult*>(items[2]) = measResultUTRAMeasResult; }
+
+	MeasResultUTRAPhysCellId& getMeasResultUTRAPhysCellId() { return *static_cast<MeasResultUTRAPhysCellId*>(items[0]); }
+	MeasResultUTRACgiInfo& getMeasResultUTRACgiInfo() { return *static_cast<MeasResultUTRACgiInfo*>(items[1]); }
+	MeasResultUTRAMeasResult& getMeasResultUTRAMeasResult() { return *static_cast<MeasResultUTRAMeasResult*>(items[2]); }
 };
 
 typedef SequenceOf<MeasResultUTRA, CONSTRAINED, 1, maxCellReport> MeasResultListUTRA;
@@ -9346,6 +10719,10 @@ public:
 	void setPlmnIdentity(const PLMNIdentity& plmnIdentity) { *static_cast<PLMNIdentity*>(items[0]) = plmnIdentity; }
 	void setCellGlobalIdGERANLocationAreaCode(const CellGlobalIdGERANLocationAreaCode& cellGlobalIdGERANLocationAreaCode) { *static_cast<CellGlobalIdGERANLocationAreaCode*>(items[1]) = cellGlobalIdGERANLocationAreaCode; }
 	void setCellGlobalIdGERANCellIdentity(const CellGlobalIdGERANCellIdentity& cellGlobalIdGERANCellIdentity) { *static_cast<CellGlobalIdGERANCellIdentity*>(items[2]) = cellGlobalIdGERANCellIdentity; }
+
+	PLMNIdentity& getPlmnIdentity() { return *static_cast<PLMNIdentity*>(items[0]); }
+	CellGlobalIdGERANLocationAreaCode& getCellGlobalIdGERANLocationAreaCode() { return *static_cast<CellGlobalIdGERANLocationAreaCode*>(items[1]); }
+	CellGlobalIdGERANCellIdentity& getCellGlobalIdGERANCellIdentity() { return *static_cast<CellGlobalIdGERANCellIdentity*>(items[2]); }
 };
 
 typedef BitString<CONSTRAINED, 8, 8> MeasResultGERANCgiInfoRoutingAreaCode;
@@ -9361,6 +10738,9 @@ public:
 
 	void setCellGlobalId(const CellGlobalIdGERAN& cellGlobalId) { *static_cast<CellGlobalIdGERAN*>(items[0]) = cellGlobalId; }
 	void setMeasResultGERANCgiInfoRoutingAreaCode(const MeasResultGERANCgiInfoRoutingAreaCode& measResultGERANCgiInfoRoutingAreaCode) { *static_cast<MeasResultGERANCgiInfoRoutingAreaCode*>(items[1]) = measResultGERANCgiInfoRoutingAreaCode; }
+
+	CellGlobalIdGERAN& getCellGlobalId() { return *static_cast<CellGlobalIdGERAN*>(items[0]); }
+	MeasResultGERANCgiInfoRoutingAreaCode& getMeasResultGERANCgiInfoRoutingAreaCode() { return *static_cast<MeasResultGERANCgiInfoRoutingAreaCode*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 63> MeasResultGERANMeasResultRssi;
@@ -9375,6 +10755,8 @@ public:
 	MeasResultGERANMeasResult(const MeasResultGERANMeasResultRssi& measResultGERANMeasResultRssi);
 
 	void setMeasResultGERANMeasResultRssi(const MeasResultGERANMeasResultRssi& measResultGERANMeasResultRssi) { *static_cast<MeasResultGERANMeasResultRssi*>(items[0]) = measResultGERANMeasResultRssi; }
+
+	MeasResultGERANMeasResultRssi& getMeasResultGERANMeasResultRssi() { return *static_cast<MeasResultGERANMeasResultRssi*>(items[0]); }
 };
 
 class MeasResultGERAN : public Sequence {
@@ -9390,6 +10772,11 @@ public:
 	void setPhysCellId(const PhysCellIdGERAN& physCellId) { *static_cast<PhysCellIdGERAN*>(items[1]) = physCellId; }
 	void setMeasResultGERANCgiInfo(const MeasResultGERANCgiInfo& measResultGERANCgiInfo) { *static_cast<MeasResultGERANCgiInfo*>(items[2]) = measResultGERANCgiInfo; }
 	void setMeasResultGERANMeasResult(const MeasResultGERANMeasResult& measResultGERANMeasResult) { *static_cast<MeasResultGERANMeasResult*>(items[3]) = measResultGERANMeasResult; }
+
+	CarrierFreqGERAN& getCarrierFreq() { return *static_cast<CarrierFreqGERAN*>(items[0]); }
+	PhysCellIdGERAN& getPhysCellId() { return *static_cast<PhysCellIdGERAN*>(items[1]); }
+	MeasResultGERANCgiInfo& getMeasResultGERANCgiInfo() { return *static_cast<MeasResultGERANCgiInfo*>(items[2]); }
+	MeasResultGERANMeasResult& getMeasResultGERANMeasResult() { return *static_cast<MeasResultGERANMeasResult*>(items[3]); }
 };
 
 typedef SequenceOf<MeasResultGERAN, CONSTRAINED, 1, maxCellReport> MeasResultListGERAN;
@@ -9427,6 +10814,9 @@ public:
 
 	void setMeasResultCDMA2000MeasResultPilotPnPhase(const MeasResultCDMA2000MeasResultPilotPnPhase& measResultCDMA2000MeasResultPilotPnPhase) { *static_cast<MeasResultCDMA2000MeasResultPilotPnPhase*>(items[0]) = measResultCDMA2000MeasResultPilotPnPhase; }
 	void setMeasResultCDMA2000MeasResultPilotStrength(const MeasResultCDMA2000MeasResultPilotStrength& measResultCDMA2000MeasResultPilotStrength) { *static_cast<MeasResultCDMA2000MeasResultPilotStrength*>(items[1]) = measResultCDMA2000MeasResultPilotStrength; }
+
+	MeasResultCDMA2000MeasResultPilotPnPhase& getMeasResultCDMA2000MeasResultPilotPnPhase() { return *static_cast<MeasResultCDMA2000MeasResultPilotPnPhase*>(items[0]); }
+	MeasResultCDMA2000MeasResultPilotStrength& getMeasResultCDMA2000MeasResultPilotStrength() { return *static_cast<MeasResultCDMA2000MeasResultPilotStrength*>(items[1]); }
 };
 
 class MeasResultCDMA2000 : public Sequence {
@@ -9441,6 +10831,10 @@ public:
 	void setPhysCellId(const PhysCellIdCDMA2000& physCellId) { *static_cast<PhysCellIdCDMA2000*>(items[0]) = physCellId; }
 	void setCgiInfo(const CellGlobalIdCDMA2000& cgiInfo) { *static_cast<CellGlobalIdCDMA2000*>(items[1]) = cgiInfo; }
 	void setMeasResultCDMA2000MeasResult(const MeasResultCDMA2000MeasResult& measResultCDMA2000MeasResult) { *static_cast<MeasResultCDMA2000MeasResult*>(items[2]) = measResultCDMA2000MeasResult; }
+
+	PhysCellIdCDMA2000& getPhysCellId() { return *static_cast<PhysCellIdCDMA2000*>(items[0]); }
+	CellGlobalIdCDMA2000& getCgiInfo() { return *static_cast<CellGlobalIdCDMA2000*>(items[1]); }
+	MeasResultCDMA2000MeasResult& getMeasResultCDMA2000MeasResult() { return *static_cast<MeasResultCDMA2000MeasResult*>(items[2]); }
 };
 
 typedef SequenceOf<MeasResultCDMA2000, CONSTRAINED, 1, maxCellReport> MeasResultListCDMA2000;
@@ -9456,6 +10850,9 @@ public:
 
 	void setMeasResultsCDMA2000PreRegistrationStatusHRPD(const MeasResultsCDMA2000PreRegistrationStatusHRPD& measResultsCDMA2000PreRegistrationStatusHRPD) { *static_cast<MeasResultsCDMA2000PreRegistrationStatusHRPD*>(items[0]) = measResultsCDMA2000PreRegistrationStatusHRPD; }
 	void setMeasResultListCDMA2000(const MeasResultListCDMA2000& measResultListCDMA2000) { *static_cast<MeasResultListCDMA2000*>(items[1]) = measResultListCDMA2000; }
+
+	MeasResultsCDMA2000PreRegistrationStatusHRPD& getMeasResultsCDMA2000PreRegistrationStatusHRPD() { return *static_cast<MeasResultsCDMA2000PreRegistrationStatusHRPD*>(items[0]); }
+	MeasResultListCDMA2000& getMeasResultListCDMA2000() { return *static_cast<MeasResultListCDMA2000*>(items[1]); }
 };
 
 class MeasResultsMeasResultNeighCells : public Choice {
@@ -9487,6 +10884,9 @@ public:
 
 	void setMeasResultForECIDr9UeRxTxTimeDiffResultr9(const MeasResultForECIDr9UeRxTxTimeDiffResultr9& measResultForECIDr9UeRxTxTimeDiffResultr9) { *static_cast<MeasResultForECIDr9UeRxTxTimeDiffResultr9*>(items[0]) = measResultForECIDr9UeRxTxTimeDiffResultr9; }
 	void setMeasResultForECIDr9CurrentSFNr9(const MeasResultForECIDr9CurrentSFNr9& measResultForECIDr9CurrentSFNr9) { *static_cast<MeasResultForECIDr9CurrentSFNr9*>(items[1]) = measResultForECIDr9CurrentSFNr9; }
+
+	MeasResultForECIDr9UeRxTxTimeDiffResultr9& getMeasResultForECIDr9UeRxTxTimeDiffResultr9() { return *static_cast<MeasResultForECIDr9UeRxTxTimeDiffResultr9*>(items[0]); }
+	MeasResultForECIDr9CurrentSFNr9& getMeasResultForECIDr9CurrentSFNr9() { return *static_cast<MeasResultForECIDr9CurrentSFNr9*>(items[1]); }
 };
 
 typedef OctetStringBase LocationInfor10LocationCoordinatesr10EllipsoidPointr10;
@@ -9521,6 +10921,10 @@ public:
 	void setLocationInfor10LocationCoordinatesr10(const LocationInfor10LocationCoordinatesr10& locationInfor10LocationCoordinatesr10) { *static_cast<LocationInfor10LocationCoordinatesr10*>(items[0]) = locationInfor10LocationCoordinatesr10; }
 	void setLocationInfor10HorizontalVelocityr10(const LocationInfor10HorizontalVelocityr10& locationInfor10HorizontalVelocityr10) { *static_cast<LocationInfor10HorizontalVelocityr10*>(items[1]) = locationInfor10HorizontalVelocityr10; }
 	void setLocationInfor10GnssTODmsecr10(const LocationInfor10GnssTODmsecr10& locationInfor10GnssTODmsecr10) { *static_cast<LocationInfor10GnssTODmsecr10*>(items[2]) = locationInfor10GnssTODmsecr10; }
+
+	LocationInfor10LocationCoordinatesr10& getLocationInfor10LocationCoordinatesr10() { return *static_cast<LocationInfor10LocationCoordinatesr10*>(items[0]); }
+	LocationInfor10HorizontalVelocityr10& getLocationInfor10HorizontalVelocityr10() { return *static_cast<LocationInfor10HorizontalVelocityr10*>(items[1]); }
+	LocationInfor10GnssTODmsecr10& getLocationInfor10GnssTODmsecr10() { return *static_cast<LocationInfor10GnssTODmsecr10*>(items[2]); }
 };
 
 class MeasResultServFreqr10MeasResultSCellr10 : public Sequence {
@@ -9534,6 +10938,9 @@ public:
 
 	void setRsrpResultSCellr10(const RSRPRange& rsrpResultSCellr10) { *static_cast<RSRPRange*>(items[0]) = rsrpResultSCellr10; }
 	void setRsrqResultSCellr10(const RSRQRange& rsrqResultSCellr10) { *static_cast<RSRQRange*>(items[1]) = rsrqResultSCellr10; }
+
+	RSRPRange& getRsrpResultSCellr10() { return *static_cast<RSRPRange*>(items[0]); }
+	RSRQRange& getRsrqResultSCellr10() { return *static_cast<RSRQRange*>(items[1]); }
 };
 
 class MeasResultServFreqr10MeasResultBestNeighCellr10 : public Sequence {
@@ -9548,6 +10955,10 @@ public:
 	void setPhysCellIdr10(const PhysCellId& physCellIdr10) { *static_cast<PhysCellId*>(items[0]) = physCellIdr10; }
 	void setRsrpResultNCellr10(const RSRPRange& rsrpResultNCellr10) { *static_cast<RSRPRange*>(items[1]) = rsrpResultNCellr10; }
 	void setRsrqResultNCellr10(const RSRQRange& rsrqResultNCellr10) { *static_cast<RSRQRange*>(items[2]) = rsrqResultNCellr10; }
+
+	PhysCellId& getPhysCellIdr10() { return *static_cast<PhysCellId*>(items[0]); }
+	RSRPRange& getRsrpResultNCellr10() { return *static_cast<RSRPRange*>(items[1]); }
+	RSRQRange& getRsrqResultNCellr10() { return *static_cast<RSRQRange*>(items[2]); }
 };
 
 class MeasResultServFreqr10 : public Sequence {
@@ -9562,6 +10973,10 @@ public:
 	void setServFreqIdr10(const ServCellIndexr10& servFreqIdr10) { *static_cast<ServCellIndexr10*>(items[0]) = servFreqIdr10; }
 	void setMeasResultServFreqr10MeasResultSCellr10(const MeasResultServFreqr10MeasResultSCellr10& measResultServFreqr10MeasResultSCellr10) { *static_cast<MeasResultServFreqr10MeasResultSCellr10*>(items[1]) = measResultServFreqr10MeasResultSCellr10; }
 	void setMeasResultServFreqr10MeasResultBestNeighCellr10(const MeasResultServFreqr10MeasResultBestNeighCellr10& measResultServFreqr10MeasResultBestNeighCellr10) { *static_cast<MeasResultServFreqr10MeasResultBestNeighCellr10*>(items[2]) = measResultServFreqr10MeasResultBestNeighCellr10; }
+
+	ServCellIndexr10& getServFreqIdr10() { return *static_cast<ServCellIndexr10*>(items[0]); }
+	MeasResultServFreqr10MeasResultSCellr10& getMeasResultServFreqr10MeasResultSCellr10() { return *static_cast<MeasResultServFreqr10MeasResultSCellr10*>(items[1]); }
+	MeasResultServFreqr10MeasResultBestNeighCellr10& getMeasResultServFreqr10MeasResultBestNeighCellr10() { return *static_cast<MeasResultServFreqr10MeasResultBestNeighCellr10*>(items[2]); }
 };
 
 typedef SequenceOf<MeasResultServFreqr10, CONSTRAINED, 1, maxServCell_r10> MeasResultServFreqListr10;
@@ -9581,6 +10996,13 @@ public:
 	void setMeasResultForECIDr9(const MeasResultForECIDr9& measResultForECIDr9) { *static_cast<MeasResultForECIDr9*>(items[3]) = measResultForECIDr9; }
 	void setLocationInfor10(const LocationInfor10& locationInfor10) { *static_cast<LocationInfor10*>(items[4]) = locationInfor10; }
 	void setMeasResultServFreqListr10(const MeasResultServFreqListr10& measResultServFreqListr10) { *static_cast<MeasResultServFreqListr10*>(items[5]) = measResultServFreqListr10; }
+
+	MeasId& getMeasId() { return *static_cast<MeasId*>(items[0]); }
+	MeasResultsMeasResultPCell& getMeasResultsMeasResultPCell() { return *static_cast<MeasResultsMeasResultPCell*>(items[1]); }
+	MeasResultsMeasResultNeighCells& getMeasResultsMeasResultNeighCells() { return *static_cast<MeasResultsMeasResultNeighCells*>(items[2]); }
+	MeasResultForECIDr9& getMeasResultForECIDr9() { return *static_cast<MeasResultForECIDr9*>(items[3]); }
+	LocationInfor10& getLocationInfor10() { return *static_cast<LocationInfor10*>(items[4]); }
+	MeasResultServFreqListr10& getMeasResultServFreqListr10() { return *static_cast<MeasResultServFreqListr10*>(items[5]); }
 };
 
 typedef OctetStringBase MeasurementReportv8a0IEsLateNonCriticalExtension;
@@ -9592,6 +11014,8 @@ private:
 public:
 	static const Info theInfo;
 	MeasurementReportv8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class MeasurementReportv8a0IEs : public Sequence {
@@ -9601,8 +11025,12 @@ private:
 public:
 	static const Info theInfo;
 	MeasurementReportv8a0IEs(): Sequence(&theInfo) {}
+
 	void setMeasurementReportv8a0IEsLateNonCriticalExtension(const MeasurementReportv8a0IEsLateNonCriticalExtension& measurementReportv8a0IEsLateNonCriticalExtension) { *static_cast<MeasurementReportv8a0IEsLateNonCriticalExtension*>(items[0]) = measurementReportv8a0IEsLateNonCriticalExtension; }
 	void setMeasurementReportv8a0IEsNonCriticalExtension(const MeasurementReportv8a0IEsNonCriticalExtension& measurementReportv8a0IEsNonCriticalExtension) { *static_cast<MeasurementReportv8a0IEsNonCriticalExtension*>(items[1]) = measurementReportv8a0IEsNonCriticalExtension; }
+
+	MeasurementReportv8a0IEsLateNonCriticalExtension& getMeasurementReportv8a0IEsLateNonCriticalExtension() { return *static_cast<MeasurementReportv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	MeasurementReportv8a0IEsNonCriticalExtension& getMeasurementReportv8a0IEsNonCriticalExtension() { return *static_cast<MeasurementReportv8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class MeasurementReportr8IEs : public Sequence {
@@ -9616,6 +11044,9 @@ public:
 
 	void setMeasResults(const MeasResults& measResults) { *static_cast<MeasResults*>(items[0]) = measResults; }
 	void setNonCriticalExtension(const MeasurementReportv8a0IEs& nonCriticalExtension) { *static_cast<MeasurementReportv8a0IEs*>(items[1]) = nonCriticalExtension; }
+
+	MeasResults& getMeasResults() { return *static_cast<MeasResults*>(items[0]); }
+	MeasurementReportv8a0IEs& getNonCriticalExtension() { return *static_cast<MeasurementReportv8a0IEs*>(items[1]); }
 };
 
 typedef Null MeasurementReportCriticalExtensionsC1Spare7;
@@ -9657,6 +11088,8 @@ private:
 public:
 	static const Info theInfo;
 	MeasurementReportCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class MeasurementReportCriticalExtensions : public Choice {
@@ -9681,6 +11114,8 @@ public:
 	MeasurementReport(const MeasurementReportCriticalExtensions& measurementReportCriticalExtensions);
 
 	void setMeasurementReportCriticalExtensions(const MeasurementReportCriticalExtensions& measurementReportCriticalExtensions) { *static_cast<MeasurementReportCriticalExtensions*>(items[0]) = measurementReportCriticalExtensions; }
+
+	MeasurementReportCriticalExtensions& getMeasurementReportCriticalExtensions() { return *static_cast<MeasurementReportCriticalExtensions*>(items[0]); }
 };
 
 typedef OctetStringBase RRCConnectionReconfigurationCompletev8a0IEsLateNonCriticalExtension;
@@ -9702,6 +11137,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReconfigurationCompletev1020IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReconfigurationCompletev1020IEs : public Sequence {
@@ -9711,9 +11148,14 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReconfigurationCompletev1020IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionReconfigurationCompletev1020IEsrlf_InfoAvailable_r10(const RRCConnectionReconfigurationCompletev1020IEsrlf_InfoAvailable_r10& rRCConnectionReconfigurationCompletev1020IEsrlf_InfoAvailable_r10) { *static_cast<RRCConnectionReconfigurationCompletev1020IEsrlf_InfoAvailable_r10*>(items[0]) = rRCConnectionReconfigurationCompletev1020IEsrlf_InfoAvailable_r10; }
 	void setRRCConnectionReconfigurationCompletev1020IEslogMeasAvailable_r10(const RRCConnectionReconfigurationCompletev1020IEslogMeasAvailable_r10& rRCConnectionReconfigurationCompletev1020IEslogMeasAvailable_r10) { *static_cast<RRCConnectionReconfigurationCompletev1020IEslogMeasAvailable_r10*>(items[1]) = rRCConnectionReconfigurationCompletev1020IEslogMeasAvailable_r10; }
 	void setRRCConnectionReconfigurationCompletev1020IEsNonCriticalExtension(const RRCConnectionReconfigurationCompletev1020IEsNonCriticalExtension& rRCConnectionReconfigurationCompletev1020IEsNonCriticalExtension) { *static_cast<RRCConnectionReconfigurationCompletev1020IEsNonCriticalExtension*>(items[2]) = rRCConnectionReconfigurationCompletev1020IEsNonCriticalExtension; }
+
+	RRCConnectionReconfigurationCompletev1020IEsrlf_InfoAvailable_r10& getRRCConnectionReconfigurationCompletev1020IEsrlf_InfoAvailable_r10() { return *static_cast<RRCConnectionReconfigurationCompletev1020IEsrlf_InfoAvailable_r10*>(items[0]); }
+	RRCConnectionReconfigurationCompletev1020IEslogMeasAvailable_r10& getRRCConnectionReconfigurationCompletev1020IEslogMeasAvailable_r10() { return *static_cast<RRCConnectionReconfigurationCompletev1020IEslogMeasAvailable_r10*>(items[1]); }
+	RRCConnectionReconfigurationCompletev1020IEsNonCriticalExtension& getRRCConnectionReconfigurationCompletev1020IEsNonCriticalExtension() { return *static_cast<RRCConnectionReconfigurationCompletev1020IEsNonCriticalExtension*>(items[2]); }
 };
 
 class RRCConnectionReconfigurationCompletev8a0IEs : public Sequence {
@@ -9723,8 +11165,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReconfigurationCompletev8a0IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionReconfigurationCompletev8a0IEsLateNonCriticalExtension(const RRCConnectionReconfigurationCompletev8a0IEsLateNonCriticalExtension& rRCConnectionReconfigurationCompletev8a0IEsLateNonCriticalExtension) { *static_cast<RRCConnectionReconfigurationCompletev8a0IEsLateNonCriticalExtension*>(items[0]) = rRCConnectionReconfigurationCompletev8a0IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const RRCConnectionReconfigurationCompletev1020IEs& nonCriticalExtension) { *static_cast<RRCConnectionReconfigurationCompletev1020IEs*>(items[1]) = nonCriticalExtension; }
+
+	RRCConnectionReconfigurationCompletev8a0IEsLateNonCriticalExtension& getRRCConnectionReconfigurationCompletev8a0IEsLateNonCriticalExtension() { return *static_cast<RRCConnectionReconfigurationCompletev8a0IEsLateNonCriticalExtension*>(items[0]); }
+	RRCConnectionReconfigurationCompletev1020IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReconfigurationCompletev1020IEs*>(items[1]); }
 };
 
 class RRCConnectionReconfigurationCompleter8IEs : public Sequence {
@@ -9734,7 +11180,10 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReconfigurationCompleter8IEs(): Sequence(&theInfo) {}
+
 	void setNonCriticalExtension(const RRCConnectionReconfigurationCompletev8a0IEs& nonCriticalExtension) { *static_cast<RRCConnectionReconfigurationCompletev8a0IEs*>(items[0]) = nonCriticalExtension; }
+
+	RRCConnectionReconfigurationCompletev8a0IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReconfigurationCompletev8a0IEs*>(items[0]); }
 };
 
 class RRCConnectionReconfigurationCompleteCriticalExtensionsCriticalExtensionsFuture : public Sequence {
@@ -9744,6 +11193,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReconfigurationCompleteCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReconfigurationCompleteCriticalExtensions : public Choice {
@@ -9769,6 +11220,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setRRCConnectionReconfigurationCompleteCriticalExtensions(const RRCConnectionReconfigurationCompleteCriticalExtensions& rRCConnectionReconfigurationCompleteCriticalExtensions) { *static_cast<RRCConnectionReconfigurationCompleteCriticalExtensions*>(items[1]) = rRCConnectionReconfigurationCompleteCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	RRCConnectionReconfigurationCompleteCriticalExtensions& getRRCConnectionReconfigurationCompleteCriticalExtensions() { return *static_cast<RRCConnectionReconfigurationCompleteCriticalExtensions*>(items[1]); }
 };
 
 enum RRCConnectionReestablishmentCompletev920IEsrlf_InfoAvailable_r9Values {
@@ -9790,6 +11244,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentCompletev1020IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReestablishmentCompletev1020IEs : public Sequence {
@@ -9799,8 +11255,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentCompletev1020IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionReestablishmentCompletev1020IEslogMeasAvailable_r10(const RRCConnectionReestablishmentCompletev1020IEslogMeasAvailable_r10& rRCConnectionReestablishmentCompletev1020IEslogMeasAvailable_r10) { *static_cast<RRCConnectionReestablishmentCompletev1020IEslogMeasAvailable_r10*>(items[0]) = rRCConnectionReestablishmentCompletev1020IEslogMeasAvailable_r10; }
 	void setRRCConnectionReestablishmentCompletev1020IEsNonCriticalExtension(const RRCConnectionReestablishmentCompletev1020IEsNonCriticalExtension& rRCConnectionReestablishmentCompletev1020IEsNonCriticalExtension) { *static_cast<RRCConnectionReestablishmentCompletev1020IEsNonCriticalExtension*>(items[1]) = rRCConnectionReestablishmentCompletev1020IEsNonCriticalExtension; }
+
+	RRCConnectionReestablishmentCompletev1020IEslogMeasAvailable_r10& getRRCConnectionReestablishmentCompletev1020IEslogMeasAvailable_r10() { return *static_cast<RRCConnectionReestablishmentCompletev1020IEslogMeasAvailable_r10*>(items[0]); }
+	RRCConnectionReestablishmentCompletev1020IEsNonCriticalExtension& getRRCConnectionReestablishmentCompletev1020IEsNonCriticalExtension() { return *static_cast<RRCConnectionReestablishmentCompletev1020IEsNonCriticalExtension*>(items[1]); }
 };
 
 class RRCConnectionReestablishmentCompletev8a0IEs : public Sequence {
@@ -9810,8 +11270,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentCompletev8a0IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionReestablishmentCompletev8a0IEsLateNonCriticalExtension(const RRCConnectionReestablishmentCompletev8a0IEsLateNonCriticalExtension& rRCConnectionReestablishmentCompletev8a0IEsLateNonCriticalExtension) { *static_cast<RRCConnectionReestablishmentCompletev8a0IEsLateNonCriticalExtension*>(items[0]) = rRCConnectionReestablishmentCompletev8a0IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const RRCConnectionReestablishmentCompletev1020IEs& nonCriticalExtension) { *static_cast<RRCConnectionReestablishmentCompletev1020IEs*>(items[1]) = nonCriticalExtension; }
+
+	RRCConnectionReestablishmentCompletev8a0IEsLateNonCriticalExtension& getRRCConnectionReestablishmentCompletev8a0IEsLateNonCriticalExtension() { return *static_cast<RRCConnectionReestablishmentCompletev8a0IEsLateNonCriticalExtension*>(items[0]); }
+	RRCConnectionReestablishmentCompletev1020IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReestablishmentCompletev1020IEs*>(items[1]); }
 };
 
 class RRCConnectionReestablishmentCompletev920IEs : public Sequence {
@@ -9821,8 +11285,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentCompletev920IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionReestablishmentCompletev920IEsrlf_InfoAvailable_r9(const RRCConnectionReestablishmentCompletev920IEsrlf_InfoAvailable_r9& rRCConnectionReestablishmentCompletev920IEsrlf_InfoAvailable_r9) { *static_cast<RRCConnectionReestablishmentCompletev920IEsrlf_InfoAvailable_r9*>(items[0]) = rRCConnectionReestablishmentCompletev920IEsrlf_InfoAvailable_r9; }
 	void setNonCriticalExtension(const RRCConnectionReestablishmentCompletev8a0IEs& nonCriticalExtension) { *static_cast<RRCConnectionReestablishmentCompletev8a0IEs*>(items[1]) = nonCriticalExtension; }
+
+	RRCConnectionReestablishmentCompletev920IEsrlf_InfoAvailable_r9& getRRCConnectionReestablishmentCompletev920IEsrlf_InfoAvailable_r9() { return *static_cast<RRCConnectionReestablishmentCompletev920IEsrlf_InfoAvailable_r9*>(items[0]); }
+	RRCConnectionReestablishmentCompletev8a0IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReestablishmentCompletev8a0IEs*>(items[1]); }
 };
 
 class RRCConnectionReestablishmentCompleter8IEs : public Sequence {
@@ -9832,7 +11300,10 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentCompleter8IEs(): Sequence(&theInfo) {}
+
 	void setNonCriticalExtension(const RRCConnectionReestablishmentCompletev920IEs& nonCriticalExtension) { *static_cast<RRCConnectionReestablishmentCompletev920IEs*>(items[0]) = nonCriticalExtension; }
+
+	RRCConnectionReestablishmentCompletev920IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionReestablishmentCompletev920IEs*>(items[0]); }
 };
 
 class RRCConnectionReestablishmentCompleteCriticalExtensionsCriticalExtensionsFuture : public Sequence {
@@ -9842,6 +11313,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionReestablishmentCompleteCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionReestablishmentCompleteCriticalExtensions : public Choice {
@@ -9867,6 +11340,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setRRCConnectionReestablishmentCompleteCriticalExtensions(const RRCConnectionReestablishmentCompleteCriticalExtensions& rRCConnectionReestablishmentCompleteCriticalExtensions) { *static_cast<RRCConnectionReestablishmentCompleteCriticalExtensions*>(items[1]) = rRCConnectionReestablishmentCompleteCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	RRCConnectionReestablishmentCompleteCriticalExtensions& getRRCConnectionReestablishmentCompleteCriticalExtensions() { return *static_cast<RRCConnectionReestablishmentCompleteCriticalExtensions*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 1, 6> RRCConnectionSetupCompleter8IEsSelectedPLMNIdentity;
@@ -9885,6 +11361,10 @@ public:
 	void setPlmnIdentity(const PLMNIdentity& plmnIdentity) { *static_cast<PLMNIdentity*>(items[0]) = plmnIdentity; }
 	void setRegisteredMMEMmegi(const RegisteredMMEMmegi& registeredMMEMmegi) { *static_cast<RegisteredMMEMmegi*>(items[1]) = registeredMMEMmegi; }
 	void setMmec(const MMEC& mmec) { *static_cast<MMEC*>(items[2]) = mmec; }
+
+	PLMNIdentity& getPlmnIdentity() { return *static_cast<PLMNIdentity*>(items[0]); }
+	RegisteredMMEMmegi& getRegisteredMMEMmegi() { return *static_cast<RegisteredMMEMmegi*>(items[1]); }
+	MMEC& getMmec() { return *static_cast<MMEC*>(items[2]); }
 };
 
 typedef OctetStringBase RRCConnectionSetupCompletev8a0IEsLateNonCriticalExtension;
@@ -9918,6 +11398,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionSetupCompletev1020IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionSetupCompletev1020IEs : public Sequence {
@@ -9927,11 +11409,18 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionSetupCompletev1020IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionSetupCompletev1020IEsgummei_Type_r10(const RRCConnectionSetupCompletev1020IEsgummei_Type_r10& rRCConnectionSetupCompletev1020IEsgummei_Type_r10) { *static_cast<RRCConnectionSetupCompletev1020IEsgummei_Type_r10*>(items[0]) = rRCConnectionSetupCompletev1020IEsgummei_Type_r10; }
 	void setRRCConnectionSetupCompletev1020IEsrlf_InfoAvailable_r10(const RRCConnectionSetupCompletev1020IEsrlf_InfoAvailable_r10& rRCConnectionSetupCompletev1020IEsrlf_InfoAvailable_r10) { *static_cast<RRCConnectionSetupCompletev1020IEsrlf_InfoAvailable_r10*>(items[1]) = rRCConnectionSetupCompletev1020IEsrlf_InfoAvailable_r10; }
 	void setRRCConnectionSetupCompletev1020IEslogMeasAvailable_r10(const RRCConnectionSetupCompletev1020IEslogMeasAvailable_r10& rRCConnectionSetupCompletev1020IEslogMeasAvailable_r10) { *static_cast<RRCConnectionSetupCompletev1020IEslogMeasAvailable_r10*>(items[2]) = rRCConnectionSetupCompletev1020IEslogMeasAvailable_r10; }
 	void setRRCConnectionSetupCompletev1020IEsrn_SubframeConfigReq_r10(const RRCConnectionSetupCompletev1020IEsrn_SubframeConfigReq_r10& rRCConnectionSetupCompletev1020IEsrn_SubframeConfigReq_r10) { *static_cast<RRCConnectionSetupCompletev1020IEsrn_SubframeConfigReq_r10*>(items[3]) = rRCConnectionSetupCompletev1020IEsrn_SubframeConfigReq_r10; }
 	void setRRCConnectionSetupCompletev1020IEsNonCriticalExtension(const RRCConnectionSetupCompletev1020IEsNonCriticalExtension& rRCConnectionSetupCompletev1020IEsNonCriticalExtension) { *static_cast<RRCConnectionSetupCompletev1020IEsNonCriticalExtension*>(items[4]) = rRCConnectionSetupCompletev1020IEsNonCriticalExtension; }
+
+	RRCConnectionSetupCompletev1020IEsgummei_Type_r10& getRRCConnectionSetupCompletev1020IEsgummei_Type_r10() { return *static_cast<RRCConnectionSetupCompletev1020IEsgummei_Type_r10*>(items[0]); }
+	RRCConnectionSetupCompletev1020IEsrlf_InfoAvailable_r10& getRRCConnectionSetupCompletev1020IEsrlf_InfoAvailable_r10() { return *static_cast<RRCConnectionSetupCompletev1020IEsrlf_InfoAvailable_r10*>(items[1]); }
+	RRCConnectionSetupCompletev1020IEslogMeasAvailable_r10& getRRCConnectionSetupCompletev1020IEslogMeasAvailable_r10() { return *static_cast<RRCConnectionSetupCompletev1020IEslogMeasAvailable_r10*>(items[2]); }
+	RRCConnectionSetupCompletev1020IEsrn_SubframeConfigReq_r10& getRRCConnectionSetupCompletev1020IEsrn_SubframeConfigReq_r10() { return *static_cast<RRCConnectionSetupCompletev1020IEsrn_SubframeConfigReq_r10*>(items[3]); }
+	RRCConnectionSetupCompletev1020IEsNonCriticalExtension& getRRCConnectionSetupCompletev1020IEsNonCriticalExtension() { return *static_cast<RRCConnectionSetupCompletev1020IEsNonCriticalExtension*>(items[4]); }
 };
 
 class RRCConnectionSetupCompletev8a0IEs : public Sequence {
@@ -9941,8 +11430,12 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionSetupCompletev8a0IEs(): Sequence(&theInfo) {}
+
 	void setRRCConnectionSetupCompletev8a0IEsLateNonCriticalExtension(const RRCConnectionSetupCompletev8a0IEsLateNonCriticalExtension& rRCConnectionSetupCompletev8a0IEsLateNonCriticalExtension) { *static_cast<RRCConnectionSetupCompletev8a0IEsLateNonCriticalExtension*>(items[0]) = rRCConnectionSetupCompletev8a0IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const RRCConnectionSetupCompletev1020IEs& nonCriticalExtension) { *static_cast<RRCConnectionSetupCompletev1020IEs*>(items[1]) = nonCriticalExtension; }
+
+	RRCConnectionSetupCompletev8a0IEsLateNonCriticalExtension& getRRCConnectionSetupCompletev8a0IEsLateNonCriticalExtension() { return *static_cast<RRCConnectionSetupCompletev8a0IEsLateNonCriticalExtension*>(items[0]); }
+	RRCConnectionSetupCompletev1020IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionSetupCompletev1020IEs*>(items[1]); }
 };
 
 class RRCConnectionSetupCompleter8IEs : public Sequence {
@@ -9958,6 +11451,11 @@ public:
 	void setRegisteredMME(const RegisteredMME& registeredMME) { *static_cast<RegisteredMME*>(items[1]) = registeredMME; }
 	void setDedicatedInfoNAS(const DedicatedInfoNAS& dedicatedInfoNAS) { *static_cast<DedicatedInfoNAS*>(items[2]) = dedicatedInfoNAS; }
 	void setNonCriticalExtension(const RRCConnectionSetupCompletev8a0IEs& nonCriticalExtension) { *static_cast<RRCConnectionSetupCompletev8a0IEs*>(items[3]) = nonCriticalExtension; }
+
+	RRCConnectionSetupCompleter8IEsSelectedPLMNIdentity& getRRCConnectionSetupCompleter8IEsSelectedPLMNIdentity() { return *static_cast<RRCConnectionSetupCompleter8IEsSelectedPLMNIdentity*>(items[0]); }
+	RegisteredMME& getRegisteredMME() { return *static_cast<RegisteredMME*>(items[1]); }
+	DedicatedInfoNAS& getDedicatedInfoNAS() { return *static_cast<DedicatedInfoNAS*>(items[2]); }
+	RRCConnectionSetupCompletev8a0IEs& getNonCriticalExtension() { return *static_cast<RRCConnectionSetupCompletev8a0IEs*>(items[3]); }
 };
 
 typedef Null RRCConnectionSetupCompleteCriticalExtensionsC1Spare3;
@@ -9987,6 +11485,8 @@ private:
 public:
 	static const Info theInfo;
 	RRCConnectionSetupCompleteCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RRCConnectionSetupCompleteCriticalExtensions : public Choice {
@@ -10012,6 +11512,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setRRCConnectionSetupCompleteCriticalExtensions(const RRCConnectionSetupCompleteCriticalExtensions& rRCConnectionSetupCompleteCriticalExtensions) { *static_cast<RRCConnectionSetupCompleteCriticalExtensions*>(items[1]) = rRCConnectionSetupCompleteCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	RRCConnectionSetupCompleteCriticalExtensions& getRRCConnectionSetupCompleteCriticalExtensions() { return *static_cast<RRCConnectionSetupCompleteCriticalExtensions*>(items[1]); }
 };
 
 typedef OctetStringBase SecurityModeCompletev8a0IEsLateNonCriticalExtension;
@@ -10023,6 +11526,8 @@ private:
 public:
 	static const Info theInfo;
 	SecurityModeCompletev8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class SecurityModeCompletev8a0IEs : public Sequence {
@@ -10032,8 +11537,12 @@ private:
 public:
 	static const Info theInfo;
 	SecurityModeCompletev8a0IEs(): Sequence(&theInfo) {}
+
 	void setSecurityModeCompletev8a0IEsLateNonCriticalExtension(const SecurityModeCompletev8a0IEsLateNonCriticalExtension& securityModeCompletev8a0IEsLateNonCriticalExtension) { *static_cast<SecurityModeCompletev8a0IEsLateNonCriticalExtension*>(items[0]) = securityModeCompletev8a0IEsLateNonCriticalExtension; }
 	void setSecurityModeCompletev8a0IEsNonCriticalExtension(const SecurityModeCompletev8a0IEsNonCriticalExtension& securityModeCompletev8a0IEsNonCriticalExtension) { *static_cast<SecurityModeCompletev8a0IEsNonCriticalExtension*>(items[1]) = securityModeCompletev8a0IEsNonCriticalExtension; }
+
+	SecurityModeCompletev8a0IEsLateNonCriticalExtension& getSecurityModeCompletev8a0IEsLateNonCriticalExtension() { return *static_cast<SecurityModeCompletev8a0IEsLateNonCriticalExtension*>(items[0]); }
+	SecurityModeCompletev8a0IEsNonCriticalExtension& getSecurityModeCompletev8a0IEsNonCriticalExtension() { return *static_cast<SecurityModeCompletev8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class SecurityModeCompleter8IEs : public Sequence {
@@ -10043,7 +11552,10 @@ private:
 public:
 	static const Info theInfo;
 	SecurityModeCompleter8IEs(): Sequence(&theInfo) {}
+
 	void setNonCriticalExtension(const SecurityModeCompletev8a0IEs& nonCriticalExtension) { *static_cast<SecurityModeCompletev8a0IEs*>(items[0]) = nonCriticalExtension; }
+
+	SecurityModeCompletev8a0IEs& getNonCriticalExtension() { return *static_cast<SecurityModeCompletev8a0IEs*>(items[0]); }
 };
 
 class SecurityModeCompleteCriticalExtensionsCriticalExtensionsFuture : public Sequence {
@@ -10053,6 +11565,8 @@ private:
 public:
 	static const Info theInfo;
 	SecurityModeCompleteCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class SecurityModeCompleteCriticalExtensions : public Choice {
@@ -10078,6 +11592,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setSecurityModeCompleteCriticalExtensions(const SecurityModeCompleteCriticalExtensions& securityModeCompleteCriticalExtensions) { *static_cast<SecurityModeCompleteCriticalExtensions*>(items[1]) = securityModeCompleteCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	SecurityModeCompleteCriticalExtensions& getSecurityModeCompleteCriticalExtensions() { return *static_cast<SecurityModeCompleteCriticalExtensions*>(items[1]); }
 };
 
 typedef OctetStringBase SecurityModeFailurev8a0IEsLateNonCriticalExtension;
@@ -10089,6 +11606,8 @@ private:
 public:
 	static const Info theInfo;
 	SecurityModeFailurev8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class SecurityModeFailurev8a0IEs : public Sequence {
@@ -10098,8 +11617,12 @@ private:
 public:
 	static const Info theInfo;
 	SecurityModeFailurev8a0IEs(): Sequence(&theInfo) {}
+
 	void setSecurityModeFailurev8a0IEsLateNonCriticalExtension(const SecurityModeFailurev8a0IEsLateNonCriticalExtension& securityModeFailurev8a0IEsLateNonCriticalExtension) { *static_cast<SecurityModeFailurev8a0IEsLateNonCriticalExtension*>(items[0]) = securityModeFailurev8a0IEsLateNonCriticalExtension; }
 	void setSecurityModeFailurev8a0IEsNonCriticalExtension(const SecurityModeFailurev8a0IEsNonCriticalExtension& securityModeFailurev8a0IEsNonCriticalExtension) { *static_cast<SecurityModeFailurev8a0IEsNonCriticalExtension*>(items[1]) = securityModeFailurev8a0IEsNonCriticalExtension; }
+
+	SecurityModeFailurev8a0IEsLateNonCriticalExtension& getSecurityModeFailurev8a0IEsLateNonCriticalExtension() { return *static_cast<SecurityModeFailurev8a0IEsLateNonCriticalExtension*>(items[0]); }
+	SecurityModeFailurev8a0IEsNonCriticalExtension& getSecurityModeFailurev8a0IEsNonCriticalExtension() { return *static_cast<SecurityModeFailurev8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class SecurityModeFailurer8IEs : public Sequence {
@@ -10109,7 +11632,10 @@ private:
 public:
 	static const Info theInfo;
 	SecurityModeFailurer8IEs(): Sequence(&theInfo) {}
+
 	void setNonCriticalExtension(const SecurityModeFailurev8a0IEs& nonCriticalExtension) { *static_cast<SecurityModeFailurev8a0IEs*>(items[0]) = nonCriticalExtension; }
+
+	SecurityModeFailurev8a0IEs& getNonCriticalExtension() { return *static_cast<SecurityModeFailurev8a0IEs*>(items[0]); }
 };
 
 class SecurityModeFailureCriticalExtensionsCriticalExtensionsFuture : public Sequence {
@@ -10119,6 +11645,8 @@ private:
 public:
 	static const Info theInfo;
 	SecurityModeFailureCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class SecurityModeFailureCriticalExtensions : public Choice {
@@ -10144,6 +11672,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setSecurityModeFailureCriticalExtensions(const SecurityModeFailureCriticalExtensions& securityModeFailureCriticalExtensions) { *static_cast<SecurityModeFailureCriticalExtensions*>(items[1]) = securityModeFailureCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	SecurityModeFailureCriticalExtensions& getSecurityModeFailureCriticalExtensions() { return *static_cast<SecurityModeFailureCriticalExtensions*>(items[1]); }
 };
 
 typedef OctetStringBase UECapabilityRATContainerUeCapabilityRATContainer;
@@ -10159,6 +11690,9 @@ public:
 
 	void setRatType(const RATType& ratType) { *static_cast<RATType*>(items[0]) = ratType; }
 	void setUECapabilityRATContainerUeCapabilityRATContainer(const UECapabilityRATContainerUeCapabilityRATContainer& uECapabilityRATContainerUeCapabilityRATContainer) { *static_cast<UECapabilityRATContainerUeCapabilityRATContainer*>(items[1]) = uECapabilityRATContainerUeCapabilityRATContainer; }
+
+	RATType& getRatType() { return *static_cast<RATType*>(items[0]); }
+	UECapabilityRATContainerUeCapabilityRATContainer& getUECapabilityRATContainerUeCapabilityRATContainer() { return *static_cast<UECapabilityRATContainerUeCapabilityRATContainer*>(items[1]); }
 };
 
 typedef SequenceOf<UECapabilityRATContainer, CONSTRAINED, 0, maxRAT_Capabilities> UECapabilityRATContainerList;
@@ -10172,6 +11706,8 @@ private:
 public:
 	static const Info theInfo;
 	UECapabilityInformationv8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class UECapabilityInformationv8a0IEs : public Sequence {
@@ -10181,8 +11717,12 @@ private:
 public:
 	static const Info theInfo;
 	UECapabilityInformationv8a0IEs(): Sequence(&theInfo) {}
+
 	void setUECapabilityInformationv8a0IEsLateNonCriticalExtension(const UECapabilityInformationv8a0IEsLateNonCriticalExtension& uECapabilityInformationv8a0IEsLateNonCriticalExtension) { *static_cast<UECapabilityInformationv8a0IEsLateNonCriticalExtension*>(items[0]) = uECapabilityInformationv8a0IEsLateNonCriticalExtension; }
 	void setUECapabilityInformationv8a0IEsNonCriticalExtension(const UECapabilityInformationv8a0IEsNonCriticalExtension& uECapabilityInformationv8a0IEsNonCriticalExtension) { *static_cast<UECapabilityInformationv8a0IEsNonCriticalExtension*>(items[1]) = uECapabilityInformationv8a0IEsNonCriticalExtension; }
+
+	UECapabilityInformationv8a0IEsLateNonCriticalExtension& getUECapabilityInformationv8a0IEsLateNonCriticalExtension() { return *static_cast<UECapabilityInformationv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	UECapabilityInformationv8a0IEsNonCriticalExtension& getUECapabilityInformationv8a0IEsNonCriticalExtension() { return *static_cast<UECapabilityInformationv8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class UECapabilityInformationr8IEs : public Sequence {
@@ -10196,6 +11736,9 @@ public:
 
 	void setUeCapabilityRATContainerList(const UECapabilityRATContainerList& ueCapabilityRATContainerList) { *static_cast<UECapabilityRATContainerList*>(items[0]) = ueCapabilityRATContainerList; }
 	void setNonCriticalExtension(const UECapabilityInformationv8a0IEs& nonCriticalExtension) { *static_cast<UECapabilityInformationv8a0IEs*>(items[1]) = nonCriticalExtension; }
+
+	UECapabilityRATContainerList& getUeCapabilityRATContainerList() { return *static_cast<UECapabilityRATContainerList*>(items[0]); }
+	UECapabilityInformationv8a0IEs& getNonCriticalExtension() { return *static_cast<UECapabilityInformationv8a0IEs*>(items[1]); }
 };
 
 typedef Null UECapabilityInformationCriticalExtensionsC1Spare7;
@@ -10237,6 +11780,8 @@ private:
 public:
 	static const Info theInfo;
 	UECapabilityInformationCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class UECapabilityInformationCriticalExtensions : public Choice {
@@ -10262,6 +11807,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setUECapabilityInformationCriticalExtensions(const UECapabilityInformationCriticalExtensions& uECapabilityInformationCriticalExtensions) { *static_cast<UECapabilityInformationCriticalExtensions*>(items[1]) = uECapabilityInformationCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	UECapabilityInformationCriticalExtensions& getUECapabilityInformationCriticalExtensions() { return *static_cast<UECapabilityInformationCriticalExtensions*>(items[1]); }
 };
 
 typedef BitString<CONSTRAINED, 56, 56> ULHandoverPreparationTransferr8IEsMeid;
@@ -10275,6 +11823,8 @@ private:
 public:
 	static const Info theInfo;
 	ULHandoverPreparationTransferv8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class ULHandoverPreparationTransferv8a0IEs : public Sequence {
@@ -10284,8 +11834,12 @@ private:
 public:
 	static const Info theInfo;
 	ULHandoverPreparationTransferv8a0IEs(): Sequence(&theInfo) {}
+
 	void setULHandoverPreparationTransferv8a0IEsLateNonCriticalExtension(const ULHandoverPreparationTransferv8a0IEsLateNonCriticalExtension& uLHandoverPreparationTransferv8a0IEsLateNonCriticalExtension) { *static_cast<ULHandoverPreparationTransferv8a0IEsLateNonCriticalExtension*>(items[0]) = uLHandoverPreparationTransferv8a0IEsLateNonCriticalExtension; }
 	void setULHandoverPreparationTransferv8a0IEsNonCriticalExtension(const ULHandoverPreparationTransferv8a0IEsNonCriticalExtension& uLHandoverPreparationTransferv8a0IEsNonCriticalExtension) { *static_cast<ULHandoverPreparationTransferv8a0IEsNonCriticalExtension*>(items[1]) = uLHandoverPreparationTransferv8a0IEsNonCriticalExtension; }
+
+	ULHandoverPreparationTransferv8a0IEsLateNonCriticalExtension& getULHandoverPreparationTransferv8a0IEsLateNonCriticalExtension() { return *static_cast<ULHandoverPreparationTransferv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	ULHandoverPreparationTransferv8a0IEsNonCriticalExtension& getULHandoverPreparationTransferv8a0IEsNonCriticalExtension() { return *static_cast<ULHandoverPreparationTransferv8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class ULHandoverPreparationTransferr8IEs : public Sequence {
@@ -10301,6 +11855,11 @@ public:
 	void setULHandoverPreparationTransferr8IEsMeid(const ULHandoverPreparationTransferr8IEsMeid& uLHandoverPreparationTransferr8IEsMeid) { *static_cast<ULHandoverPreparationTransferr8IEsMeid*>(items[1]) = uLHandoverPreparationTransferr8IEsMeid; }
 	void setDedicatedInfo(const DedicatedInfoCDMA2000& dedicatedInfo) { *static_cast<DedicatedInfoCDMA2000*>(items[2]) = dedicatedInfo; }
 	void setNonCriticalExtension(const ULHandoverPreparationTransferv8a0IEs& nonCriticalExtension) { *static_cast<ULHandoverPreparationTransferv8a0IEs*>(items[3]) = nonCriticalExtension; }
+
+	CDMA2000Type& getCdma2000Type() { return *static_cast<CDMA2000Type*>(items[0]); }
+	ULHandoverPreparationTransferr8IEsMeid& getULHandoverPreparationTransferr8IEsMeid() { return *static_cast<ULHandoverPreparationTransferr8IEsMeid*>(items[1]); }
+	DedicatedInfoCDMA2000& getDedicatedInfo() { return *static_cast<DedicatedInfoCDMA2000*>(items[2]); }
+	ULHandoverPreparationTransferv8a0IEs& getNonCriticalExtension() { return *static_cast<ULHandoverPreparationTransferv8a0IEs*>(items[3]); }
 };
 
 typedef Null ULHandoverPreparationTransferCriticalExtensionsC1Spare3;
@@ -10330,6 +11889,8 @@ private:
 public:
 	static const Info theInfo;
 	ULHandoverPreparationTransferCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class ULHandoverPreparationTransferCriticalExtensions : public Choice {
@@ -10354,6 +11915,8 @@ public:
 	ULHandoverPreparationTransfer(const ULHandoverPreparationTransferCriticalExtensions& uLHandoverPreparationTransferCriticalExtensions);
 
 	void setULHandoverPreparationTransferCriticalExtensions(const ULHandoverPreparationTransferCriticalExtensions& uLHandoverPreparationTransferCriticalExtensions) { *static_cast<ULHandoverPreparationTransferCriticalExtensions*>(items[0]) = uLHandoverPreparationTransferCriticalExtensions; }
+
+	ULHandoverPreparationTransferCriticalExtensions& getULHandoverPreparationTransferCriticalExtensions() { return *static_cast<ULHandoverPreparationTransferCriticalExtensions*>(items[0]); }
 };
 
 class ULInformationTransferr8IEsDedicatedInfoType : public Choice {
@@ -10378,6 +11941,8 @@ private:
 public:
 	static const Info theInfo;
 	ULInformationTransferv8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class ULInformationTransferv8a0IEs : public Sequence {
@@ -10387,8 +11952,12 @@ private:
 public:
 	static const Info theInfo;
 	ULInformationTransferv8a0IEs(): Sequence(&theInfo) {}
+
 	void setULInformationTransferv8a0IEsLateNonCriticalExtension(const ULInformationTransferv8a0IEsLateNonCriticalExtension& uLInformationTransferv8a0IEsLateNonCriticalExtension) { *static_cast<ULInformationTransferv8a0IEsLateNonCriticalExtension*>(items[0]) = uLInformationTransferv8a0IEsLateNonCriticalExtension; }
 	void setULInformationTransferv8a0IEsNonCriticalExtension(const ULInformationTransferv8a0IEsNonCriticalExtension& uLInformationTransferv8a0IEsNonCriticalExtension) { *static_cast<ULInformationTransferv8a0IEsNonCriticalExtension*>(items[1]) = uLInformationTransferv8a0IEsNonCriticalExtension; }
+
+	ULInformationTransferv8a0IEsLateNonCriticalExtension& getULInformationTransferv8a0IEsLateNonCriticalExtension() { return *static_cast<ULInformationTransferv8a0IEsLateNonCriticalExtension*>(items[0]); }
+	ULInformationTransferv8a0IEsNonCriticalExtension& getULInformationTransferv8a0IEsNonCriticalExtension() { return *static_cast<ULInformationTransferv8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class ULInformationTransferr8IEs : public Sequence {
@@ -10402,6 +11971,9 @@ public:
 
 	void setULInformationTransferr8IEsDedicatedInfoType(const ULInformationTransferr8IEsDedicatedInfoType& uLInformationTransferr8IEsDedicatedInfoType) { *static_cast<ULInformationTransferr8IEsDedicatedInfoType*>(items[0]) = uLInformationTransferr8IEsDedicatedInfoType; }
 	void setNonCriticalExtension(const ULInformationTransferv8a0IEs& nonCriticalExtension) { *static_cast<ULInformationTransferv8a0IEs*>(items[1]) = nonCriticalExtension; }
+
+	ULInformationTransferr8IEsDedicatedInfoType& getULInformationTransferr8IEsDedicatedInfoType() { return *static_cast<ULInformationTransferr8IEsDedicatedInfoType*>(items[0]); }
+	ULInformationTransferv8a0IEs& getNonCriticalExtension() { return *static_cast<ULInformationTransferv8a0IEs*>(items[1]); }
 };
 
 typedef Null ULInformationTransferCriticalExtensionsC1Spare3;
@@ -10431,6 +12003,8 @@ private:
 public:
 	static const Info theInfo;
 	ULInformationTransferCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class ULInformationTransferCriticalExtensions : public Choice {
@@ -10455,6 +12029,8 @@ public:
 	ULInformationTransfer(const ULInformationTransferCriticalExtensions& uLInformationTransferCriticalExtensions);
 
 	void setULInformationTransferCriticalExtensions(const ULInformationTransferCriticalExtensions& uLInformationTransferCriticalExtensions) { *static_cast<ULInformationTransferCriticalExtensions*>(items[0]) = uLInformationTransferCriticalExtensions; }
+
+	ULInformationTransferCriticalExtensions& getULInformationTransferCriticalExtensions() { return *static_cast<ULInformationTransferCriticalExtensions*>(items[0]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 4294967295> DRBCountInfoCountUplink;
@@ -10473,6 +12049,10 @@ public:
 	void setDrbIdentity(const DRBIdentity& drbIdentity) { *static_cast<DRBIdentity*>(items[0]) = drbIdentity; }
 	void setDRBCountInfoCountUplink(const DRBCountInfoCountUplink& dRBCountInfoCountUplink) { *static_cast<DRBCountInfoCountUplink*>(items[1]) = dRBCountInfoCountUplink; }
 	void setDRBCountInfoCountDownlink(const DRBCountInfoCountDownlink& dRBCountInfoCountDownlink) { *static_cast<DRBCountInfoCountDownlink*>(items[2]) = dRBCountInfoCountDownlink; }
+
+	DRBIdentity& getDrbIdentity() { return *static_cast<DRBIdentity*>(items[0]); }
+	DRBCountInfoCountUplink& getDRBCountInfoCountUplink() { return *static_cast<DRBCountInfoCountUplink*>(items[1]); }
+	DRBCountInfoCountDownlink& getDRBCountInfoCountDownlink() { return *static_cast<DRBCountInfoCountDownlink*>(items[2]); }
 };
 
 typedef SequenceOf<DRBCountInfo, CONSTRAINED, 0, maxDRB> DRBCountInfoList;
@@ -10486,6 +12066,8 @@ private:
 public:
 	static const Info theInfo;
 	CounterCheckResponsev8a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class CounterCheckResponsev8a0IEs : public Sequence {
@@ -10495,8 +12077,12 @@ private:
 public:
 	static const Info theInfo;
 	CounterCheckResponsev8a0IEs(): Sequence(&theInfo) {}
+
 	void setCounterCheckResponsev8a0IEsLateNonCriticalExtension(const CounterCheckResponsev8a0IEsLateNonCriticalExtension& counterCheckResponsev8a0IEsLateNonCriticalExtension) { *static_cast<CounterCheckResponsev8a0IEsLateNonCriticalExtension*>(items[0]) = counterCheckResponsev8a0IEsLateNonCriticalExtension; }
 	void setCounterCheckResponsev8a0IEsNonCriticalExtension(const CounterCheckResponsev8a0IEsNonCriticalExtension& counterCheckResponsev8a0IEsNonCriticalExtension) { *static_cast<CounterCheckResponsev8a0IEsNonCriticalExtension*>(items[1]) = counterCheckResponsev8a0IEsNonCriticalExtension; }
+
+	CounterCheckResponsev8a0IEsLateNonCriticalExtension& getCounterCheckResponsev8a0IEsLateNonCriticalExtension() { return *static_cast<CounterCheckResponsev8a0IEsLateNonCriticalExtension*>(items[0]); }
+	CounterCheckResponsev8a0IEsNonCriticalExtension& getCounterCheckResponsev8a0IEsNonCriticalExtension() { return *static_cast<CounterCheckResponsev8a0IEsNonCriticalExtension*>(items[1]); }
 };
 
 class CounterCheckResponser8IEs : public Sequence {
@@ -10510,6 +12096,9 @@ public:
 
 	void setDrbCountInfoList(const DRBCountInfoList& drbCountInfoList) { *static_cast<DRBCountInfoList*>(items[0]) = drbCountInfoList; }
 	void setNonCriticalExtension(const CounterCheckResponsev8a0IEs& nonCriticalExtension) { *static_cast<CounterCheckResponsev8a0IEs*>(items[1]) = nonCriticalExtension; }
+
+	DRBCountInfoList& getDrbCountInfoList() { return *static_cast<DRBCountInfoList*>(items[0]); }
+	CounterCheckResponsev8a0IEs& getNonCriticalExtension() { return *static_cast<CounterCheckResponsev8a0IEs*>(items[1]); }
 };
 
 class CounterCheckResponseCriticalExtensionsCriticalExtensionsFuture : public Sequence {
@@ -10519,6 +12108,8 @@ private:
 public:
 	static const Info theInfo;
 	CounterCheckResponseCriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class CounterCheckResponseCriticalExtensions : public Choice {
@@ -10544,6 +12135,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setCounterCheckResponseCriticalExtensions(const CounterCheckResponseCriticalExtensions& counterCheckResponseCriticalExtensions) { *static_cast<CounterCheckResponseCriticalExtensions*>(items[1]) = counterCheckResponseCriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	CounterCheckResponseCriticalExtensions& getCounterCheckResponseCriticalExtensions() { return *static_cast<CounterCheckResponseCriticalExtensions*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 1, 200> UEInformationResponser9IEsRachReportr9NumberOfPreamblesSentr9;
@@ -10561,6 +12155,9 @@ public:
 
 	void setUEInformationResponser9IEsRachReportr9NumberOfPreamblesSentr9(const UEInformationResponser9IEsRachReportr9NumberOfPreamblesSentr9& uEInformationResponser9IEsRachReportr9NumberOfPreamblesSentr9) { *static_cast<UEInformationResponser9IEsRachReportr9NumberOfPreamblesSentr9*>(items[0]) = uEInformationResponser9IEsRachReportr9NumberOfPreamblesSentr9; }
 	void setUEInformationResponser9IEsRachReportr9ContentionDetectedr9(const UEInformationResponser9IEsRachReportr9ContentionDetectedr9& uEInformationResponser9IEsRachReportr9ContentionDetectedr9) { *static_cast<UEInformationResponser9IEsRachReportr9ContentionDetectedr9*>(items[1]) = uEInformationResponser9IEsRachReportr9ContentionDetectedr9; }
+
+	UEInformationResponser9IEsRachReportr9NumberOfPreamblesSentr9& getUEInformationResponser9IEsRachReportr9NumberOfPreamblesSentr9() { return *static_cast<UEInformationResponser9IEsRachReportr9NumberOfPreamblesSentr9*>(items[0]); }
+	UEInformationResponser9IEsRachReportr9ContentionDetectedr9& getUEInformationResponser9IEsRachReportr9ContentionDetectedr9() { return *static_cast<UEInformationResponser9IEsRachReportr9ContentionDetectedr9*>(items[1]); }
 };
 
 class RLFReportr9MeasResultLastServCellr9 : public Sequence {
@@ -10574,6 +12171,9 @@ public:
 
 	void setRsrpResultr9(const RSRPRange& rsrpResultr9) { *static_cast<RSRPRange*>(items[0]) = rsrpResultr9; }
 	void setRsrqResultr9(const RSRQRange& rsrqResultr9) { *static_cast<RSRQRange*>(items[1]) = rsrqResultr9; }
+
+	RSRPRange& getRsrpResultr9() { return *static_cast<RSRPRange*>(items[0]); }
+	RSRQRange& getRsrqResultr9() { return *static_cast<RSRQRange*>(items[1]); }
 };
 
 class MeasResult2EUTRAr9 : public Sequence {
@@ -10587,6 +12187,9 @@ public:
 
 	void setCarrierFreqr9(const ARFCNValueEUTRA& carrierFreqr9) { *static_cast<ARFCNValueEUTRA*>(items[0]) = carrierFreqr9; }
 	void setMeasResultListr9(const MeasResultListEUTRA& measResultListr9) { *static_cast<MeasResultListEUTRA*>(items[1]) = measResultListr9; }
+
+	ARFCNValueEUTRA& getCarrierFreqr9() { return *static_cast<ARFCNValueEUTRA*>(items[0]); }
+	MeasResultListEUTRA& getMeasResultListr9() { return *static_cast<MeasResultListEUTRA*>(items[1]); }
 };
 
 typedef SequenceOf<MeasResult2EUTRAr9, CONSTRAINED, 1, maxFreq> MeasResultList2EUTRAr9;
@@ -10602,6 +12205,9 @@ public:
 
 	void setCarrierFreqr9(const ARFCNValueUTRA& carrierFreqr9) { *static_cast<ARFCNValueUTRA*>(items[0]) = carrierFreqr9; }
 	void setMeasResultListr9(const MeasResultListUTRA& measResultListr9) { *static_cast<MeasResultListUTRA*>(items[1]) = measResultListr9; }
+
+	ARFCNValueUTRA& getCarrierFreqr9() { return *static_cast<ARFCNValueUTRA*>(items[0]); }
+	MeasResultListUTRA& getMeasResultListr9() { return *static_cast<MeasResultListUTRA*>(items[1]); }
 };
 
 typedef SequenceOf<MeasResult2UTRAr9, CONSTRAINED, 1, maxFreq> MeasResultList2UTRAr9;
@@ -10617,6 +12223,9 @@ public:
 
 	void setCarrierFreqr9(const CarrierFreqCDMA2000& carrierFreqr9) { *static_cast<CarrierFreqCDMA2000*>(items[0]) = carrierFreqr9; }
 	void setMeasResultListr9(const MeasResultsCDMA2000& measResultListr9) { *static_cast<MeasResultsCDMA2000*>(items[1]) = measResultListr9; }
+
+	CarrierFreqCDMA2000& getCarrierFreqr9() { return *static_cast<CarrierFreqCDMA2000*>(items[0]); }
+	MeasResultsCDMA2000& getMeasResultListr9() { return *static_cast<MeasResultsCDMA2000*>(items[1]); }
 };
 
 typedef SequenceOf<MeasResult2CDMA2000r9, CONSTRAINED, 1, maxFreq> MeasResultList2CDMA2000r9;
@@ -10628,10 +12237,16 @@ private:
 public:
 	static const Info theInfo;
 	RLFReportr9MeasResultNeighCellsr9(): Sequence(&theInfo) {}
+
 	void setMeasResultListEUTRAr9(const MeasResultList2EUTRAr9& measResultListEUTRAr9) { *static_cast<MeasResultList2EUTRAr9*>(items[0]) = measResultListEUTRAr9; }
 	void setMeasResultListUTRAr9(const MeasResultList2UTRAr9& measResultListUTRAr9) { *static_cast<MeasResultList2UTRAr9*>(items[1]) = measResultListUTRAr9; }
 	void setMeasResultListGERANr9(const MeasResultListGERAN& measResultListGERANr9) { *static_cast<MeasResultListGERAN*>(items[2]) = measResultListGERANr9; }
 	void setMeasResultsCDMA2000r9(const MeasResultList2CDMA2000r9& measResultsCDMA2000r9) { *static_cast<MeasResultList2CDMA2000r9*>(items[3]) = measResultsCDMA2000r9; }
+
+	MeasResultList2EUTRAr9& getMeasResultListEUTRAr9() { return *static_cast<MeasResultList2EUTRAr9*>(items[0]); }
+	MeasResultList2UTRAr9& getMeasResultListUTRAr9() { return *static_cast<MeasResultList2UTRAr9*>(items[1]); }
+	MeasResultListGERAN& getMeasResultListGERANr9() { return *static_cast<MeasResultListGERAN*>(items[2]); }
+	MeasResultList2CDMA2000r9& getMeasResultsCDMA2000r9() { return *static_cast<MeasResultList2CDMA2000r9*>(items[3]); }
 };
 
 class RLFReportr9FailedPCellIdr10Pciarfcnr10 : public Sequence {
@@ -10645,6 +12260,9 @@ public:
 
 	void setPhysCellIdr10(const PhysCellId& physCellIdr10) { *static_cast<PhysCellId*>(items[0]) = physCellIdr10; }
 	void setCarrierFreqr10(const ARFCNValueEUTRA& carrierFreqr10) { *static_cast<ARFCNValueEUTRA*>(items[1]) = carrierFreqr10; }
+
+	PhysCellId& getPhysCellIdr10() { return *static_cast<PhysCellId*>(items[0]); }
+	ARFCNValueEUTRA& getCarrierFreqr10() { return *static_cast<ARFCNValueEUTRA*>(items[1]); }
 };
 
 class RLFReportr9FailedPCellIdr10 : public Choice {
@@ -10684,6 +12302,15 @@ public:
 	void setRLFReportr9TimeConnFailurer10(const RLFReportr9TimeConnFailurer10& rLFReportr9TimeConnFailurer10) { *static_cast<RLFReportr9TimeConnFailurer10*>(items[5]) = rLFReportr9TimeConnFailurer10; }
 	void setRLFReportr9connectionFailureType_r10(const RLFReportr9connectionFailureType_r10& rLFReportr9connectionFailureType_r10) { *static_cast<RLFReportr9connectionFailureType_r10*>(items[6]) = rLFReportr9connectionFailureType_r10; }
 	void setPreviousPCellIdr10(const CellGlobalIdEUTRA& previousPCellIdr10) { *static_cast<CellGlobalIdEUTRA*>(items[7]) = previousPCellIdr10; }
+
+	RLFReportr9MeasResultLastServCellr9& getRLFReportr9MeasResultLastServCellr9() { return *static_cast<RLFReportr9MeasResultLastServCellr9*>(items[0]); }
+	RLFReportr9MeasResultNeighCellsr9& getRLFReportr9MeasResultNeighCellsr9() { return *static_cast<RLFReportr9MeasResultNeighCellsr9*>(items[1]); }
+	LocationInfor10& getLocationInfor10() { return *static_cast<LocationInfor10*>(items[2]); }
+	RLFReportr9FailedPCellIdr10& getRLFReportr9FailedPCellIdr10() { return *static_cast<RLFReportr9FailedPCellIdr10*>(items[3]); }
+	CellGlobalIdEUTRA& getReestablishmentCellIdr10() { return *static_cast<CellGlobalIdEUTRA*>(items[4]); }
+	RLFReportr9TimeConnFailurer10& getRLFReportr9TimeConnFailurer10() { return *static_cast<RLFReportr9TimeConnFailurer10*>(items[5]); }
+	RLFReportr9connectionFailureType_r10& getRLFReportr9connectionFailureType_r10() { return *static_cast<RLFReportr9connectionFailureType_r10*>(items[6]); }
+	CellGlobalIdEUTRA& getPreviousPCellIdr10() { return *static_cast<CellGlobalIdEUTRA*>(items[7]); }
 };
 
 typedef OctetStringBase UEInformationResponsev930IEsLateNonCriticalExtension;
@@ -10705,6 +12332,9 @@ public:
 
 	void setRsrpResultr10(const RSRPRange& rsrpResultr10) { *static_cast<RSRPRange*>(items[0]) = rsrpResultr10; }
 	void setRsrqResultr10(const RSRQRange& rsrqResultr10) { *static_cast<RSRQRange*>(items[1]) = rsrqResultr10; }
+
+	RSRPRange& getRsrpResultr10() { return *static_cast<RSRPRange*>(items[0]); }
+	RSRQRange& getRsrqResultr10() { return *static_cast<RSRQRange*>(items[1]); }
 };
 
 typedef SequenceOf<MeasResultListGERAN, CONSTRAINED, 1, maxCellListGERAN> MeasResultList2GERANr10;
@@ -10716,10 +12346,16 @@ private:
 public:
 	static const Info theInfo;
 	LogMeasInfor10MeasResultNeighCellsr10(): Sequence(&theInfo) {}
+
 	void setMeasResultListEUTRAr10(const MeasResultList2EUTRAr9& measResultListEUTRAr10) { *static_cast<MeasResultList2EUTRAr9*>(items[0]) = measResultListEUTRAr10; }
 	void setMeasResultListUTRAr10(const MeasResultList2UTRAr9& measResultListUTRAr10) { *static_cast<MeasResultList2UTRAr9*>(items[1]) = measResultListUTRAr10; }
 	void setMeasResultListGERANr10(const MeasResultList2GERANr10& measResultListGERANr10) { *static_cast<MeasResultList2GERANr10*>(items[2]) = measResultListGERANr10; }
 	void setMeasResultListCDMA2000r10(const MeasResultList2CDMA2000r9& measResultListCDMA2000r10) { *static_cast<MeasResultList2CDMA2000r9*>(items[3]) = measResultListCDMA2000r10; }
+
+	MeasResultList2EUTRAr9& getMeasResultListEUTRAr10() { return *static_cast<MeasResultList2EUTRAr9*>(items[0]); }
+	MeasResultList2UTRAr9& getMeasResultListUTRAr10() { return *static_cast<MeasResultList2UTRAr9*>(items[1]); }
+	MeasResultList2GERANr10& getMeasResultListGERANr10() { return *static_cast<MeasResultList2GERANr10*>(items[2]); }
+	MeasResultList2CDMA2000r9& getMeasResultListCDMA2000r10() { return *static_cast<MeasResultList2CDMA2000r9*>(items[3]); }
 };
 
 class LogMeasInfor10 : public Sequence {
@@ -10736,6 +12372,12 @@ public:
 	void setServCellIdentityr10(const CellGlobalIdEUTRA& servCellIdentityr10) { *static_cast<CellGlobalIdEUTRA*>(items[2]) = servCellIdentityr10; }
 	void setLogMeasInfor10MeasResultServCellr10(const LogMeasInfor10MeasResultServCellr10& logMeasInfor10MeasResultServCellr10) { *static_cast<LogMeasInfor10MeasResultServCellr10*>(items[3]) = logMeasInfor10MeasResultServCellr10; }
 	void setLogMeasInfor10MeasResultNeighCellsr10(const LogMeasInfor10MeasResultNeighCellsr10& logMeasInfor10MeasResultNeighCellsr10) { *static_cast<LogMeasInfor10MeasResultNeighCellsr10*>(items[4]) = logMeasInfor10MeasResultNeighCellsr10; }
+
+	LocationInfor10& getLocationInfor10() { return *static_cast<LocationInfor10*>(items[0]); }
+	LogMeasInfor10RelativeTimeStampr10& getLogMeasInfor10RelativeTimeStampr10() { return *static_cast<LogMeasInfor10RelativeTimeStampr10*>(items[1]); }
+	CellGlobalIdEUTRA& getServCellIdentityr10() { return *static_cast<CellGlobalIdEUTRA*>(items[2]); }
+	LogMeasInfor10MeasResultServCellr10& getLogMeasInfor10MeasResultServCellr10() { return *static_cast<LogMeasInfor10MeasResultServCellr10*>(items[3]); }
+	LogMeasInfor10MeasResultNeighCellsr10& getLogMeasInfor10MeasResultNeighCellsr10() { return *static_cast<LogMeasInfor10MeasResultNeighCellsr10*>(items[4]); }
 };
 
 typedef SequenceOf<LogMeasInfor10, CONSTRAINED, 1, maxLogMeasReport_r10> LogMeasInfoListr10;
@@ -10760,6 +12402,13 @@ public:
 	void setLogMeasReportr10TceIdr10(const LogMeasReportr10TceIdr10& logMeasReportr10TceIdr10) { *static_cast<LogMeasReportr10TceIdr10*>(items[3]) = logMeasReportr10TceIdr10; }
 	void setLogMeasInfoListr10(const LogMeasInfoListr10& logMeasInfoListr10) { *static_cast<LogMeasInfoListr10*>(items[4]) = logMeasInfoListr10; }
 	void setLogMeasReportr10logMeasAvailable_r10(const LogMeasReportr10logMeasAvailable_r10& logMeasReportr10logMeasAvailable_r10) { *static_cast<LogMeasReportr10logMeasAvailable_r10*>(items[5]) = logMeasReportr10logMeasAvailable_r10; }
+
+	AbsoluteTimeInfor10& getAbsoluteTimeStampr10() { return *static_cast<AbsoluteTimeInfor10*>(items[0]); }
+	TraceReferencer10& getTraceReferencer10() { return *static_cast<TraceReferencer10*>(items[1]); }
+	LogMeasReportr10TraceRecordingSessionRefr10& getLogMeasReportr10TraceRecordingSessionRefr10() { return *static_cast<LogMeasReportr10TraceRecordingSessionRefr10*>(items[2]); }
+	LogMeasReportr10TceIdr10& getLogMeasReportr10TceIdr10() { return *static_cast<LogMeasReportr10TceIdr10*>(items[3]); }
+	LogMeasInfoListr10& getLogMeasInfoListr10() { return *static_cast<LogMeasInfoListr10*>(items[4]); }
+	LogMeasReportr10logMeasAvailable_r10& getLogMeasReportr10logMeasAvailable_r10() { return *static_cast<LogMeasReportr10logMeasAvailable_r10*>(items[5]); }
 };
 
 class UEInformationResponsev1020IEsNonCriticalExtension : public Sequence {
@@ -10769,6 +12418,8 @@ private:
 public:
 	static const Info theInfo;
 	UEInformationResponsev1020IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class UEInformationResponsev1020IEs : public Sequence {
@@ -10778,8 +12429,12 @@ private:
 public:
 	static const Info theInfo;
 	UEInformationResponsev1020IEs(): Sequence(&theInfo) {}
+
 	void setLogMeasReportr10(const LogMeasReportr10& logMeasReportr10) { *static_cast<LogMeasReportr10*>(items[0]) = logMeasReportr10; }
 	void setUEInformationResponsev1020IEsNonCriticalExtension(const UEInformationResponsev1020IEsNonCriticalExtension& uEInformationResponsev1020IEsNonCriticalExtension) { *static_cast<UEInformationResponsev1020IEsNonCriticalExtension*>(items[1]) = uEInformationResponsev1020IEsNonCriticalExtension; }
+
+	LogMeasReportr10& getLogMeasReportr10() { return *static_cast<LogMeasReportr10*>(items[0]); }
+	UEInformationResponsev1020IEsNonCriticalExtension& getUEInformationResponsev1020IEsNonCriticalExtension() { return *static_cast<UEInformationResponsev1020IEsNonCriticalExtension*>(items[1]); }
 };
 
 class UEInformationResponsev930IEs : public Sequence {
@@ -10789,8 +12444,12 @@ private:
 public:
 	static const Info theInfo;
 	UEInformationResponsev930IEs(): Sequence(&theInfo) {}
+
 	void setUEInformationResponsev930IEsLateNonCriticalExtension(const UEInformationResponsev930IEsLateNonCriticalExtension& uEInformationResponsev930IEsLateNonCriticalExtension) { *static_cast<UEInformationResponsev930IEsLateNonCriticalExtension*>(items[0]) = uEInformationResponsev930IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const UEInformationResponsev1020IEs& nonCriticalExtension) { *static_cast<UEInformationResponsev1020IEs*>(items[1]) = nonCriticalExtension; }
+
+	UEInformationResponsev930IEsLateNonCriticalExtension& getUEInformationResponsev930IEsLateNonCriticalExtension() { return *static_cast<UEInformationResponsev930IEsLateNonCriticalExtension*>(items[0]); }
+	UEInformationResponsev1020IEs& getNonCriticalExtension() { return *static_cast<UEInformationResponsev1020IEs*>(items[1]); }
 };
 
 class UEInformationResponser9IEs : public Sequence {
@@ -10800,9 +12459,14 @@ private:
 public:
 	static const Info theInfo;
 	UEInformationResponser9IEs(): Sequence(&theInfo) {}
+
 	void setUEInformationResponser9IEsRachReportr9(const UEInformationResponser9IEsRachReportr9& uEInformationResponser9IEsRachReportr9) { *static_cast<UEInformationResponser9IEsRachReportr9*>(items[0]) = uEInformationResponser9IEsRachReportr9; }
 	void setRlfReportr9(const RLFReportr9& rlfReportr9) { *static_cast<RLFReportr9*>(items[1]) = rlfReportr9; }
 	void setNonCriticalExtension(const UEInformationResponsev930IEs& nonCriticalExtension) { *static_cast<UEInformationResponsev930IEs*>(items[2]) = nonCriticalExtension; }
+
+	UEInformationResponser9IEsRachReportr9& getUEInformationResponser9IEsRachReportr9() { return *static_cast<UEInformationResponser9IEsRachReportr9*>(items[0]); }
+	RLFReportr9& getRlfReportr9() { return *static_cast<RLFReportr9*>(items[1]); }
+	UEInformationResponsev930IEs& getNonCriticalExtension() { return *static_cast<UEInformationResponsev930IEs*>(items[2]); }
 };
 
 typedef Null UEInformationResponser9CriticalExtensionsC1Spare3;
@@ -10832,6 +12496,8 @@ private:
 public:
 	static const Info theInfo;
 	UEInformationResponser9CriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class UEInformationResponser9CriticalExtensions : public Choice {
@@ -10857,6 +12523,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setUEInformationResponser9CriticalExtensions(const UEInformationResponser9CriticalExtensions& uEInformationResponser9CriticalExtensions) { *static_cast<UEInformationResponser9CriticalExtensions*>(items[1]) = uEInformationResponser9CriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	UEInformationResponser9CriticalExtensions& getUEInformationResponser9CriticalExtensions() { return *static_cast<UEInformationResponser9CriticalExtensions*>(items[1]); }
 };
 
 enum ProximityIndicationr9IEstype_r9Values {
@@ -10886,6 +12555,8 @@ private:
 public:
 	static const Info theInfo;
 	ProximityIndicationv930IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class ProximityIndicationv930IEs : public Sequence {
@@ -10895,8 +12566,12 @@ private:
 public:
 	static const Info theInfo;
 	ProximityIndicationv930IEs(): Sequence(&theInfo) {}
+
 	void setProximityIndicationv930IEsLateNonCriticalExtension(const ProximityIndicationv930IEsLateNonCriticalExtension& proximityIndicationv930IEsLateNonCriticalExtension) { *static_cast<ProximityIndicationv930IEsLateNonCriticalExtension*>(items[0]) = proximityIndicationv930IEsLateNonCriticalExtension; }
 	void setProximityIndicationv930IEsNonCriticalExtension(const ProximityIndicationv930IEsNonCriticalExtension& proximityIndicationv930IEsNonCriticalExtension) { *static_cast<ProximityIndicationv930IEsNonCriticalExtension*>(items[1]) = proximityIndicationv930IEsNonCriticalExtension; }
+
+	ProximityIndicationv930IEsLateNonCriticalExtension& getProximityIndicationv930IEsLateNonCriticalExtension() { return *static_cast<ProximityIndicationv930IEsLateNonCriticalExtension*>(items[0]); }
+	ProximityIndicationv930IEsNonCriticalExtension& getProximityIndicationv930IEsNonCriticalExtension() { return *static_cast<ProximityIndicationv930IEsNonCriticalExtension*>(items[1]); }
 };
 
 class ProximityIndicationr9IEs : public Sequence {
@@ -10911,6 +12586,10 @@ public:
 	void setProximityIndicationr9IEstype_r9(const ProximityIndicationr9IEstype_r9& proximityIndicationr9IEstype_r9) { *static_cast<ProximityIndicationr9IEstype_r9*>(items[0]) = proximityIndicationr9IEstype_r9; }
 	void setProximityIndicationr9IEsCarrierFreqr9(const ProximityIndicationr9IEsCarrierFreqr9& proximityIndicationr9IEsCarrierFreqr9) { *static_cast<ProximityIndicationr9IEsCarrierFreqr9*>(items[1]) = proximityIndicationr9IEsCarrierFreqr9; }
 	void setNonCriticalExtension(const ProximityIndicationv930IEs& nonCriticalExtension) { *static_cast<ProximityIndicationv930IEs*>(items[2]) = nonCriticalExtension; }
+
+	ProximityIndicationr9IEstype_r9& getProximityIndicationr9IEstype_r9() { return *static_cast<ProximityIndicationr9IEstype_r9*>(items[0]); }
+	ProximityIndicationr9IEsCarrierFreqr9& getProximityIndicationr9IEsCarrierFreqr9() { return *static_cast<ProximityIndicationr9IEsCarrierFreqr9*>(items[1]); }
+	ProximityIndicationv930IEs& getNonCriticalExtension() { return *static_cast<ProximityIndicationv930IEs*>(items[2]); }
 };
 
 typedef Null ProximityIndicationr9CriticalExtensionsC1Spare3;
@@ -10940,6 +12619,8 @@ private:
 public:
 	static const Info theInfo;
 	ProximityIndicationr9CriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class ProximityIndicationr9CriticalExtensions : public Choice {
@@ -10964,6 +12645,8 @@ public:
 	ProximityIndicationr9(const ProximityIndicationr9CriticalExtensions& proximityIndicationr9CriticalExtensions);
 
 	void setProximityIndicationr9CriticalExtensions(const ProximityIndicationr9CriticalExtensions& proximityIndicationr9CriticalExtensions) { *static_cast<ProximityIndicationr9CriticalExtensions*>(items[0]) = proximityIndicationr9CriticalExtensions; }
+
+	ProximityIndicationr9CriticalExtensions& getProximityIndicationr9CriticalExtensions() { return *static_cast<ProximityIndicationr9CriticalExtensions*>(items[0]); }
 };
 
 typedef OctetStringBase RNReconfigurationCompleter10IEsLateNonCriticalExtension;
@@ -10975,6 +12658,8 @@ private:
 public:
 	static const Info theInfo;
 	RNReconfigurationCompleter10IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class RNReconfigurationCompleter10IEs : public Sequence {
@@ -10984,8 +12669,12 @@ private:
 public:
 	static const Info theInfo;
 	RNReconfigurationCompleter10IEs(): Sequence(&theInfo) {}
+
 	void setRNReconfigurationCompleter10IEsLateNonCriticalExtension(const RNReconfigurationCompleter10IEsLateNonCriticalExtension& rNReconfigurationCompleter10IEsLateNonCriticalExtension) { *static_cast<RNReconfigurationCompleter10IEsLateNonCriticalExtension*>(items[0]) = rNReconfigurationCompleter10IEsLateNonCriticalExtension; }
 	void setRNReconfigurationCompleter10IEsNonCriticalExtension(const RNReconfigurationCompleter10IEsNonCriticalExtension& rNReconfigurationCompleter10IEsNonCriticalExtension) { *static_cast<RNReconfigurationCompleter10IEsNonCriticalExtension*>(items[1]) = rNReconfigurationCompleter10IEsNonCriticalExtension; }
+
+	RNReconfigurationCompleter10IEsLateNonCriticalExtension& getRNReconfigurationCompleter10IEsLateNonCriticalExtension() { return *static_cast<RNReconfigurationCompleter10IEsLateNonCriticalExtension*>(items[0]); }
+	RNReconfigurationCompleter10IEsNonCriticalExtension& getRNReconfigurationCompleter10IEsNonCriticalExtension() { return *static_cast<RNReconfigurationCompleter10IEsNonCriticalExtension*>(items[1]); }
 };
 
 typedef Null RNReconfigurationCompleter10CriticalExtensionsC1Spare3;
@@ -11015,6 +12704,8 @@ private:
 public:
 	static const Info theInfo;
 	RNReconfigurationCompleter10CriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class RNReconfigurationCompleter10CriticalExtensions : public Choice {
@@ -11040,6 +12731,9 @@ public:
 
 	void setRrcTransactionIdentifier(const RRCTransactionIdentifier& rrcTransactionIdentifier) { *static_cast<RRCTransactionIdentifier*>(items[0]) = rrcTransactionIdentifier; }
 	void setRNReconfigurationCompleter10CriticalExtensions(const RNReconfigurationCompleter10CriticalExtensions& rNReconfigurationCompleter10CriticalExtensions) { *static_cast<RNReconfigurationCompleter10CriticalExtensions*>(items[1]) = rNReconfigurationCompleter10CriticalExtensions; }
+
+	RRCTransactionIdentifier& getRrcTransactionIdentifier() { return *static_cast<RRCTransactionIdentifier*>(items[0]); }
+	RNReconfigurationCompleter10CriticalExtensions& getRNReconfigurationCompleter10CriticalExtensions() { return *static_cast<RNReconfigurationCompleter10CriticalExtensions*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 0, maxMBSFN_Area_1> MBMSCountingResponser10IEsMbsfnAreaIndexr10;
@@ -11056,6 +12750,8 @@ public:
 	CountingResponseInfor10(const CountingResponseInfor10CountingResponseServicer10& countingResponseInfor10CountingResponseServicer10);
 
 	void setCountingResponseInfor10CountingResponseServicer10(const CountingResponseInfor10CountingResponseServicer10& countingResponseInfor10CountingResponseServicer10) { *static_cast<CountingResponseInfor10CountingResponseServicer10*>(items[0]) = countingResponseInfor10CountingResponseServicer10; }
+
+	CountingResponseInfor10CountingResponseServicer10& getCountingResponseInfor10CountingResponseServicer10() { return *static_cast<CountingResponseInfor10CountingResponseServicer10*>(items[0]); }
 };
 
 typedef SequenceOf<CountingResponseInfor10, CONSTRAINED, 1, maxServiceCount> CountingResponseListr10;
@@ -11069,6 +12765,8 @@ private:
 public:
 	static const Info theInfo;
 	MBMSCountingResponser10IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class MBMSCountingResponser10IEs : public Sequence {
@@ -11078,10 +12776,16 @@ private:
 public:
 	static const Info theInfo;
 	MBMSCountingResponser10IEs(): Sequence(&theInfo) {}
+
 	void setMBMSCountingResponser10IEsMbsfnAreaIndexr10(const MBMSCountingResponser10IEsMbsfnAreaIndexr10& mBMSCountingResponser10IEsMbsfnAreaIndexr10) { *static_cast<MBMSCountingResponser10IEsMbsfnAreaIndexr10*>(items[0]) = mBMSCountingResponser10IEsMbsfnAreaIndexr10; }
 	void setCountingResponseListr10(const CountingResponseListr10& countingResponseListr10) { *static_cast<CountingResponseListr10*>(items[1]) = countingResponseListr10; }
 	void setMBMSCountingResponser10IEsLateNonCriticalExtension(const MBMSCountingResponser10IEsLateNonCriticalExtension& mBMSCountingResponser10IEsLateNonCriticalExtension) { *static_cast<MBMSCountingResponser10IEsLateNonCriticalExtension*>(items[2]) = mBMSCountingResponser10IEsLateNonCriticalExtension; }
 	void setMBMSCountingResponser10IEsNonCriticalExtension(const MBMSCountingResponser10IEsNonCriticalExtension& mBMSCountingResponser10IEsNonCriticalExtension) { *static_cast<MBMSCountingResponser10IEsNonCriticalExtension*>(items[3]) = mBMSCountingResponser10IEsNonCriticalExtension; }
+
+	MBMSCountingResponser10IEsMbsfnAreaIndexr10& getMBMSCountingResponser10IEsMbsfnAreaIndexr10() { return *static_cast<MBMSCountingResponser10IEsMbsfnAreaIndexr10*>(items[0]); }
+	CountingResponseListr10& getCountingResponseListr10() { return *static_cast<CountingResponseListr10*>(items[1]); }
+	MBMSCountingResponser10IEsLateNonCriticalExtension& getMBMSCountingResponser10IEsLateNonCriticalExtension() { return *static_cast<MBMSCountingResponser10IEsLateNonCriticalExtension*>(items[2]); }
+	MBMSCountingResponser10IEsNonCriticalExtension& getMBMSCountingResponser10IEsNonCriticalExtension() { return *static_cast<MBMSCountingResponser10IEsNonCriticalExtension*>(items[3]); }
 };
 
 typedef Null MBMSCountingResponser10CriticalExtensionsC1Spare3;
@@ -11111,6 +12815,8 @@ private:
 public:
 	static const Info theInfo;
 	MBMSCountingResponser10CriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class MBMSCountingResponser10CriticalExtensions : public Choice {
@@ -11135,6 +12841,8 @@ public:
 	MBMSCountingResponser10(const MBMSCountingResponser10CriticalExtensions& mBMSCountingResponser10CriticalExtensions);
 
 	void setMBMSCountingResponser10CriticalExtensions(const MBMSCountingResponser10CriticalExtensions& mBMSCountingResponser10CriticalExtensions) { *static_cast<MBMSCountingResponser10CriticalExtensions*>(items[0]) = mBMSCountingResponser10CriticalExtensions; }
+
+	MBMSCountingResponser10CriticalExtensions& getMBMSCountingResponser10CriticalExtensions() { return *static_cast<MBMSCountingResponser10CriticalExtensions*>(items[0]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 39> RSTDInterFreqInfor10MeasPRSOffsetr10;
@@ -11150,6 +12858,9 @@ public:
 
 	void setCarrierFreqr10(const ARFCNValueEUTRA& carrierFreqr10) { *static_cast<ARFCNValueEUTRA*>(items[0]) = carrierFreqr10; }
 	void setRSTDInterFreqInfor10MeasPRSOffsetr10(const RSTDInterFreqInfor10MeasPRSOffsetr10& rSTDInterFreqInfor10MeasPRSOffsetr10) { *static_cast<RSTDInterFreqInfor10MeasPRSOffsetr10*>(items[1]) = rSTDInterFreqInfor10MeasPRSOffsetr10; }
+
+	ARFCNValueEUTRA& getCarrierFreqr10() { return *static_cast<ARFCNValueEUTRA*>(items[0]); }
+	RSTDInterFreqInfor10MeasPRSOffsetr10& getRSTDInterFreqInfor10MeasPRSOffsetr10() { return *static_cast<RSTDInterFreqInfor10MeasPRSOffsetr10*>(items[1]); }
 };
 
 typedef SequenceOf<RSTDInterFreqInfor10, CONSTRAINED, 1, maxRSTD_Freq_r10> RSTDInterFreqInfoListr10;
@@ -11164,6 +12875,8 @@ public:
 	InterFreqRSTDMeasurementIndicationr10IEsRstdInterFreqIndicationr10Start(const RSTDInterFreqInfoListr10& rstdInterFreqInfoListr10);
 
 	void setRstdInterFreqInfoListr10(const RSTDInterFreqInfoListr10& rstdInterFreqInfoListr10) { *static_cast<RSTDInterFreqInfoListr10*>(items[0]) = rstdInterFreqInfoListr10; }
+
+	RSTDInterFreqInfoListr10& getRstdInterFreqInfoListr10() { return *static_cast<RSTDInterFreqInfoListr10*>(items[0]); }
 };
 
 typedef Null InterFreqRSTDMeasurementIndicationr10IEsRstdInterFreqIndicationr10Stop;
@@ -11189,6 +12902,8 @@ private:
 public:
 	static const Info theInfo;
 	InterFreqRSTDMeasurementIndicationr10IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class InterFreqRSTDMeasurementIndicationr10IEs : public Sequence {
@@ -11203,6 +12918,10 @@ public:
 	void setInterFreqRSTDMeasurementIndicationr10IEsRstdInterFreqIndicationr10(const InterFreqRSTDMeasurementIndicationr10IEsRstdInterFreqIndicationr10& interFreqRSTDMeasurementIndicationr10IEsRstdInterFreqIndicationr10) { *static_cast<InterFreqRSTDMeasurementIndicationr10IEsRstdInterFreqIndicationr10*>(items[0]) = interFreqRSTDMeasurementIndicationr10IEsRstdInterFreqIndicationr10; }
 	void setInterFreqRSTDMeasurementIndicationr10IEsLateNonCriticalExtension(const InterFreqRSTDMeasurementIndicationr10IEsLateNonCriticalExtension& interFreqRSTDMeasurementIndicationr10IEsLateNonCriticalExtension) { *static_cast<InterFreqRSTDMeasurementIndicationr10IEsLateNonCriticalExtension*>(items[1]) = interFreqRSTDMeasurementIndicationr10IEsLateNonCriticalExtension; }
 	void setInterFreqRSTDMeasurementIndicationr10IEsNonCriticalExtension(const InterFreqRSTDMeasurementIndicationr10IEsNonCriticalExtension& interFreqRSTDMeasurementIndicationr10IEsNonCriticalExtension) { *static_cast<InterFreqRSTDMeasurementIndicationr10IEsNonCriticalExtension*>(items[2]) = interFreqRSTDMeasurementIndicationr10IEsNonCriticalExtension; }
+
+	InterFreqRSTDMeasurementIndicationr10IEsRstdInterFreqIndicationr10& getInterFreqRSTDMeasurementIndicationr10IEsRstdInterFreqIndicationr10() { return *static_cast<InterFreqRSTDMeasurementIndicationr10IEsRstdInterFreqIndicationr10*>(items[0]); }
+	InterFreqRSTDMeasurementIndicationr10IEsLateNonCriticalExtension& getInterFreqRSTDMeasurementIndicationr10IEsLateNonCriticalExtension() { return *static_cast<InterFreqRSTDMeasurementIndicationr10IEsLateNonCriticalExtension*>(items[1]); }
+	InterFreqRSTDMeasurementIndicationr10IEsNonCriticalExtension& getInterFreqRSTDMeasurementIndicationr10IEsNonCriticalExtension() { return *static_cast<InterFreqRSTDMeasurementIndicationr10IEsNonCriticalExtension*>(items[2]); }
 };
 
 typedef Null InterFreqRSTDMeasurementIndicationr10CriticalExtensionsC1Spare3;
@@ -11232,6 +12951,8 @@ private:
 public:
 	static const Info theInfo;
 	InterFreqRSTDMeasurementIndicationr10CriticalExtensionsCriticalExtensionsFuture(): Sequence(&theInfo) {}
+
+
 };
 
 class InterFreqRSTDMeasurementIndicationr10CriticalExtensions : public Choice {
@@ -11256,6 +12977,8 @@ public:
 	InterFreqRSTDMeasurementIndicationr10(const InterFreqRSTDMeasurementIndicationr10CriticalExtensions& interFreqRSTDMeasurementIndicationr10CriticalExtensions);
 
 	void setInterFreqRSTDMeasurementIndicationr10CriticalExtensions(const InterFreqRSTDMeasurementIndicationr10CriticalExtensions& interFreqRSTDMeasurementIndicationr10CriticalExtensions) { *static_cast<InterFreqRSTDMeasurementIndicationr10CriticalExtensions*>(items[0]) = interFreqRSTDMeasurementIndicationr10CriticalExtensions; }
+
+	InterFreqRSTDMeasurementIndicationr10CriticalExtensions& getInterFreqRSTDMeasurementIndicationr10CriticalExtensions() { return *static_cast<InterFreqRSTDMeasurementIndicationr10CriticalExtensions*>(items[0]); }
 };
 
 class ULDCCHMessageTypeC1 : public Choice {
@@ -11291,6 +13014,8 @@ private:
 public:
 	static const Info theInfo;
 	ULDCCHMessageTypeMessageClassExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class ULDCCHMessageType : public Choice {
@@ -11315,6 +13040,8 @@ public:
 	ULDCCHMessage(const ULDCCHMessageType& message);
 
 	void setMessage(const ULDCCHMessageType& message) { *static_cast<ULDCCHMessageType*>(items[0]) = message; }
+
+	ULDCCHMessageType& getMessage() { return *static_cast<ULDCCHMessageType*>(items[0]); }
 };
 
 enum SystemInformationBlockType3CellReselectionInfoCommonq_HystValues {
@@ -11364,6 +13091,9 @@ public:
 
 	void setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium*>(items[0]) = systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium; }
 	void setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High*>(items[1]) = systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High; }
+
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium& getSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium*>(items[0]); }
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High& getSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High*>(items[1]); }
 };
 
 class SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars : public Sequence {
@@ -11377,6 +13107,9 @@ public:
 
 	void setMobilityStateParameters(const MobilityStateParameters& mobilityStateParameters) { *static_cast<MobilityStateParameters*>(items[0]) = mobilityStateParameters; }
 	void setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF*>(items[1]) = systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF; }
+
+	MobilityStateParameters& getMobilityStateParameters() { return *static_cast<MobilityStateParameters*>(items[0]); }
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF& getSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF*>(items[1]); }
 };
 
 class SystemInformationBlockType3CellReselectionInfoCommon : public Sequence {
@@ -11390,6 +13123,9 @@ public:
 
 	void setSystemInformationBlockType3CellReselectionInfoCommonq_Hyst(const SystemInformationBlockType3CellReselectionInfoCommonq_Hyst& systemInformationBlockType3CellReselectionInfoCommonq_Hyst) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonq_Hyst*>(items[0]) = systemInformationBlockType3CellReselectionInfoCommonq_Hyst; }
 	void setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars*>(items[1]) = systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars; }
+
+	SystemInformationBlockType3CellReselectionInfoCommonq_Hyst& getSystemInformationBlockType3CellReselectionInfoCommonq_Hyst() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonq_Hyst*>(items[0]); }
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars& getSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 31> ReselectionThreshold;
@@ -11406,6 +13142,10 @@ public:
 	void setSNonIntraSearch(const ReselectionThreshold& sNonIntraSearch) { *static_cast<ReselectionThreshold*>(items[0]) = sNonIntraSearch; }
 	void setThreshServingLow(const ReselectionThreshold& threshServingLow) { *static_cast<ReselectionThreshold*>(items[1]) = threshServingLow; }
 	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[2]) = cellReselectionPriority; }
+
+	ReselectionThreshold& getSNonIntraSearch() { return *static_cast<ReselectionThreshold*>(items[0]); }
+	ReselectionThreshold& getThreshServingLow() { return *static_cast<ReselectionThreshold*>(items[1]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[2]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 7> TReselection;
@@ -11427,6 +13167,15 @@ public:
 	void setNeighCellConfig(const NeighCellConfig& neighCellConfig) { *static_cast<NeighCellConfig*>(items[5]) = neighCellConfig; }
 	void setTReselectionEUTRA(const TReselection& tReselectionEUTRA) { *static_cast<TReselection*>(items[6]) = tReselectionEUTRA; }
 	void setTReselectionEUTRASF(const SpeedStateScaleFactors& tReselectionEUTRASF) { *static_cast<SpeedStateScaleFactors*>(items[7]) = tReselectionEUTRASF; }
+
+	QRxLevMin& getQRxLevMin() { return *static_cast<QRxLevMin*>(items[0]); }
+	PMax& getPMax() { return *static_cast<PMax*>(items[1]); }
+	ReselectionThreshold& getSIntraSearch() { return *static_cast<ReselectionThreshold*>(items[2]); }
+	AllowedMeasBandwidth& getAllowedMeasBandwidth() { return *static_cast<AllowedMeasBandwidth*>(items[3]); }
+	PresenceAntennaPort1& getPresenceAntennaPort1() { return *static_cast<PresenceAntennaPort1*>(items[4]); }
+	NeighCellConfig& getNeighCellConfig() { return *static_cast<NeighCellConfig*>(items[5]); }
+	TReselection& getTReselectionEUTRA() { return *static_cast<TReselection*>(items[6]); }
+	SpeedStateScaleFactors& getTReselectionEUTRASF() { return *static_cast<SpeedStateScaleFactors*>(items[7]); }
 };
 
 typedef OctetStringBase SystemInformationBlockType3LateNonCriticalExtension;
@@ -11444,6 +13193,9 @@ public:
 
 	void setSIntraSearchPr9(const ReselectionThreshold& sIntraSearchPr9) { *static_cast<ReselectionThreshold*>(items[0]) = sIntraSearchPr9; }
 	void setSIntraSearchQr9(const ReselectionThresholdQr9& sIntraSearchQr9) { *static_cast<ReselectionThresholdQr9*>(items[1]) = sIntraSearchQr9; }
+
+	ReselectionThreshold& getSIntraSearchPr9() { return *static_cast<ReselectionThreshold*>(items[0]); }
+	ReselectionThresholdQr9& getSIntraSearchQr9() { return *static_cast<ReselectionThresholdQr9*>(items[1]); }
 };
 
 class SystemInformationBlockType3SNonIntraSearchv920 : public Sequence {
@@ -11457,6 +13209,9 @@ public:
 
 	void setSNonIntraSearchPr9(const ReselectionThreshold& sNonIntraSearchPr9) { *static_cast<ReselectionThreshold*>(items[0]) = sNonIntraSearchPr9; }
 	void setSNonIntraSearchQr9(const ReselectionThresholdQr9& sNonIntraSearchQr9) { *static_cast<ReselectionThresholdQr9*>(items[1]) = sNonIntraSearchQr9; }
+
+	ReselectionThreshold& getSNonIntraSearchPr9() { return *static_cast<ReselectionThreshold*>(items[0]); }
+	ReselectionThresholdQr9& getSNonIntraSearchQr9() { return *static_cast<ReselectionThresholdQr9*>(items[1]); }
 };
 
 class SystemInformationBlockType3 : public Sequence {
@@ -11476,6 +13231,15 @@ public:
 	void setSystemInformationBlockType3SNonIntraSearchv920(const SystemInformationBlockType3SNonIntraSearchv920& systemInformationBlockType3SNonIntraSearchv920) { *static_cast<SystemInformationBlockType3SNonIntraSearchv920*>(items[5]) = systemInformationBlockType3SNonIntraSearchv920; }
 	void setQQualMinr9(const QQualMinr9& qQualMinr9) { *static_cast<QQualMinr9*>(items[6]) = qQualMinr9; }
 	void setThreshServingLowQr9(const ReselectionThresholdQr9& threshServingLowQr9) { *static_cast<ReselectionThresholdQr9*>(items[7]) = threshServingLowQr9; }
+
+	SystemInformationBlockType3CellReselectionInfoCommon& getSystemInformationBlockType3CellReselectionInfoCommon() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommon*>(items[0]); }
+	SystemInformationBlockType3CellReselectionServingFreqInfo& getSystemInformationBlockType3CellReselectionServingFreqInfo() { return *static_cast<SystemInformationBlockType3CellReselectionServingFreqInfo*>(items[1]); }
+	SystemInformationBlockType3IntraFreqCellReselectionInfo& getSystemInformationBlockType3IntraFreqCellReselectionInfo() { return *static_cast<SystemInformationBlockType3IntraFreqCellReselectionInfo*>(items[2]); }
+	SystemInformationBlockType3LateNonCriticalExtension& getSystemInformationBlockType3LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType3LateNonCriticalExtension*>(items[3]); }
+	SystemInformationBlockType3SIntraSearchv920& getSystemInformationBlockType3SIntraSearchv920() { return *static_cast<SystemInformationBlockType3SIntraSearchv920*>(items[4]); }
+	SystemInformationBlockType3SNonIntraSearchv920& getSystemInformationBlockType3SNonIntraSearchv920() { return *static_cast<SystemInformationBlockType3SNonIntraSearchv920*>(items[5]); }
+	QQualMinr9& getQQualMinr9() { return *static_cast<QQualMinr9*>(items[6]); }
+	ReselectionThresholdQr9& getThreshServingLowQr9() { return *static_cast<ReselectionThresholdQr9*>(items[7]); }
 };
 
 class IntraFreqNeighCellInfo : public Sequence {
@@ -11489,6 +13253,9 @@ public:
 
 	void setPhysCellId(const PhysCellId& physCellId) { *static_cast<PhysCellId*>(items[0]) = physCellId; }
 	void setQOffsetCell(const QOffsetRange& qOffsetCell) { *static_cast<QOffsetRange*>(items[1]) = qOffsetCell; }
+
+	PhysCellId& getPhysCellId() { return *static_cast<PhysCellId*>(items[0]); }
+	QOffsetRange& getQOffsetCell() { return *static_cast<QOffsetRange*>(items[1]); }
 };
 
 typedef SequenceOf<IntraFreqNeighCellInfo, CONSTRAINED, 1, maxCellIntra> IntraFreqNeighCellList;
@@ -11504,10 +13271,16 @@ private:
 public:
 	static const Info theInfo;
 	SystemInformationBlockType4(): Sequence(&theInfo) {}
+
 	void setIntraFreqNeighCellList(const IntraFreqNeighCellList& intraFreqNeighCellList) { *static_cast<IntraFreqNeighCellList*>(items[0]) = intraFreqNeighCellList; }
 	void setIntraFreqBlackCellList(const IntraFreqBlackCellList& intraFreqBlackCellList) { *static_cast<IntraFreqBlackCellList*>(items[1]) = intraFreqBlackCellList; }
 	void setCsgPhysCellIdRange(const PhysCellIdRange& csgPhysCellIdRange) { *static_cast<PhysCellIdRange*>(items[2]) = csgPhysCellIdRange; }
 	void setSystemInformationBlockType4LateNonCriticalExtension(const SystemInformationBlockType4LateNonCriticalExtension& systemInformationBlockType4LateNonCriticalExtension) { *static_cast<SystemInformationBlockType4LateNonCriticalExtension*>(items[3]) = systemInformationBlockType4LateNonCriticalExtension; }
+
+	IntraFreqNeighCellList& getIntraFreqNeighCellList() { return *static_cast<IntraFreqNeighCellList*>(items[0]); }
+	IntraFreqBlackCellList& getIntraFreqBlackCellList() { return *static_cast<IntraFreqBlackCellList*>(items[1]); }
+	PhysCellIdRange& getCsgPhysCellIdRange() { return *static_cast<PhysCellIdRange*>(items[2]); }
+	SystemInformationBlockType4LateNonCriticalExtension& getSystemInformationBlockType4LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType4LateNonCriticalExtension*>(items[3]); }
 };
 
 class InterFreqNeighCellInfo : public Sequence {
@@ -11521,6 +13294,9 @@ public:
 
 	void setPhysCellId(const PhysCellId& physCellId) { *static_cast<PhysCellId*>(items[0]) = physCellId; }
 	void setQOffsetCell(const QOffsetRange& qOffsetCell) { *static_cast<QOffsetRange*>(items[1]) = qOffsetCell; }
+
+	PhysCellId& getPhysCellId() { return *static_cast<PhysCellId*>(items[0]); }
+	QOffsetRange& getQOffsetCell() { return *static_cast<QOffsetRange*>(items[1]); }
 };
 
 typedef SequenceOf<InterFreqNeighCellInfo, CONSTRAINED, 1, maxCellInter> InterFreqNeighCellList;
@@ -11538,6 +13314,9 @@ public:
 
 	void setThreshXHighQr9(const ReselectionThresholdQr9& threshXHighQr9) { *static_cast<ReselectionThresholdQr9*>(items[0]) = threshXHighQr9; }
 	void setThreshXLowQr9(const ReselectionThresholdQr9& threshXLowQr9) { *static_cast<ReselectionThresholdQr9*>(items[1]) = threshXLowQr9; }
+
+	ReselectionThresholdQr9& getThreshXHighQr9() { return *static_cast<ReselectionThresholdQr9*>(items[0]); }
+	ReselectionThresholdQr9& getThreshXLowQr9() { return *static_cast<ReselectionThresholdQr9*>(items[1]); }
 };
 
 class InterFreqCarrierFreqInfo : public Sequence {
@@ -11565,6 +13344,23 @@ public:
 	void setInterFreqBlackCellList(const InterFreqBlackCellList& interFreqBlackCellList) { *static_cast<InterFreqBlackCellList*>(items[13]) = interFreqBlackCellList; }
 	void setQQualMinr9(const QQualMinr9& qQualMinr9) { *static_cast<QQualMinr9*>(items[14]) = qQualMinr9; }
 	void setInterFreqCarrierFreqInfoThreshXQr9(const InterFreqCarrierFreqInfoThreshXQr9& interFreqCarrierFreqInfoThreshXQr9) { *static_cast<InterFreqCarrierFreqInfoThreshXQr9*>(items[15]) = interFreqCarrierFreqInfoThreshXQr9; }
+
+	ARFCNValueEUTRA& getDlCarrierFreq() { return *static_cast<ARFCNValueEUTRA*>(items[0]); }
+	QRxLevMin& getQRxLevMin() { return *static_cast<QRxLevMin*>(items[1]); }
+	PMax& getPMax() { return *static_cast<PMax*>(items[2]); }
+	TReselection& getTReselectionEUTRA() { return *static_cast<TReselection*>(items[3]); }
+	SpeedStateScaleFactors& getTReselectionEUTRASF() { return *static_cast<SpeedStateScaleFactors*>(items[4]); }
+	ReselectionThreshold& getThreshXHigh() { return *static_cast<ReselectionThreshold*>(items[5]); }
+	ReselectionThreshold& getThreshXLow() { return *static_cast<ReselectionThreshold*>(items[6]); }
+	AllowedMeasBandwidth& getAllowedMeasBandwidth() { return *static_cast<AllowedMeasBandwidth*>(items[7]); }
+	PresenceAntennaPort1& getPresenceAntennaPort1() { return *static_cast<PresenceAntennaPort1*>(items[8]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[9]); }
+	NeighCellConfig& getNeighCellConfig() { return *static_cast<NeighCellConfig*>(items[10]); }
+	QOffsetRange& getQOffsetFreq() { return *static_cast<QOffsetRange*>(items[11]); }
+	InterFreqNeighCellList& getInterFreqNeighCellList() { return *static_cast<InterFreqNeighCellList*>(items[12]); }
+	InterFreqBlackCellList& getInterFreqBlackCellList() { return *static_cast<InterFreqBlackCellList*>(items[13]); }
+	QQualMinr9& getQQualMinr9() { return *static_cast<QQualMinr9*>(items[14]); }
+	InterFreqCarrierFreqInfoThreshXQr9& getInterFreqCarrierFreqInfoThreshXQr9() { return *static_cast<InterFreqCarrierFreqInfoThreshXQr9*>(items[15]); }
 };
 
 typedef SequenceOf<InterFreqCarrierFreqInfo, CONSTRAINED, 1, maxFreq> InterFreqCarrierFreqList;
@@ -11582,6 +13378,9 @@ public:
 
 	void setInterFreqCarrierFreqList(const InterFreqCarrierFreqList& interFreqCarrierFreqList) { *static_cast<InterFreqCarrierFreqList*>(items[0]) = interFreqCarrierFreqList; }
 	void setSystemInformationBlockType5LateNonCriticalExtension(const SystemInformationBlockType5LateNonCriticalExtension& systemInformationBlockType5LateNonCriticalExtension) { *static_cast<SystemInformationBlockType5LateNonCriticalExtension*>(items[1]) = systemInformationBlockType5LateNonCriticalExtension; }
+
+	InterFreqCarrierFreqList& getInterFreqCarrierFreqList() { return *static_cast<InterFreqCarrierFreqList*>(items[0]); }
+	SystemInformationBlockType5LateNonCriticalExtension& getSystemInformationBlockType5LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType5LateNonCriticalExtension*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, -60, -13> CarrierFreqUTRAFDDQRxLevMin;
@@ -11601,6 +13400,9 @@ public:
 
 	void setThreshXHighQr9(const ReselectionThresholdQr9& threshXHighQr9) { *static_cast<ReselectionThresholdQr9*>(items[0]) = threshXHighQr9; }
 	void setThreshXLowQr9(const ReselectionThresholdQr9& threshXLowQr9) { *static_cast<ReselectionThresholdQr9*>(items[1]) = threshXLowQr9; }
+
+	ReselectionThresholdQr9& getThreshXHighQr9() { return *static_cast<ReselectionThresholdQr9*>(items[0]); }
+	ReselectionThresholdQr9& getThreshXLowQr9() { return *static_cast<ReselectionThresholdQr9*>(items[1]); }
 };
 
 class CarrierFreqUTRAFDD : public Sequence {
@@ -11620,6 +13422,15 @@ public:
 	void setCarrierFreqUTRAFDDPMaxUTRA(const CarrierFreqUTRAFDDPMaxUTRA& carrierFreqUTRAFDDPMaxUTRA) { *static_cast<CarrierFreqUTRAFDDPMaxUTRA*>(items[5]) = carrierFreqUTRAFDDPMaxUTRA; }
 	void setCarrierFreqUTRAFDDQQualMin(const CarrierFreqUTRAFDDQQualMin& carrierFreqUTRAFDDQQualMin) { *static_cast<CarrierFreqUTRAFDDQQualMin*>(items[6]) = carrierFreqUTRAFDDQQualMin; }
 	void setCarrierFreqUTRAFDDThreshXQr9(const CarrierFreqUTRAFDDThreshXQr9& carrierFreqUTRAFDDThreshXQr9) { *static_cast<CarrierFreqUTRAFDDThreshXQr9*>(items[7]) = carrierFreqUTRAFDDThreshXQr9; }
+
+	ARFCNValueUTRA& getCarrierFreq() { return *static_cast<ARFCNValueUTRA*>(items[0]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
+	ReselectionThreshold& getThreshXHigh() { return *static_cast<ReselectionThreshold*>(items[2]); }
+	ReselectionThreshold& getThreshXLow() { return *static_cast<ReselectionThreshold*>(items[3]); }
+	CarrierFreqUTRAFDDQRxLevMin& getCarrierFreqUTRAFDDQRxLevMin() { return *static_cast<CarrierFreqUTRAFDDQRxLevMin*>(items[4]); }
+	CarrierFreqUTRAFDDPMaxUTRA& getCarrierFreqUTRAFDDPMaxUTRA() { return *static_cast<CarrierFreqUTRAFDDPMaxUTRA*>(items[5]); }
+	CarrierFreqUTRAFDDQQualMin& getCarrierFreqUTRAFDDQQualMin() { return *static_cast<CarrierFreqUTRAFDDQQualMin*>(items[6]); }
+	CarrierFreqUTRAFDDThreshXQr9& getCarrierFreqUTRAFDDThreshXQr9() { return *static_cast<CarrierFreqUTRAFDDThreshXQr9*>(items[7]); }
 };
 
 typedef SequenceOf<CarrierFreqUTRAFDD, CONSTRAINED, 1, maxUTRA_FDD_Carrier> CarrierFreqListUTRAFDD;
@@ -11643,6 +13454,13 @@ public:
 	void setThreshXLow(const ReselectionThreshold& threshXLow) { *static_cast<ReselectionThreshold*>(items[3]) = threshXLow; }
 	void setCarrierFreqUTRATDDQRxLevMin(const CarrierFreqUTRATDDQRxLevMin& carrierFreqUTRATDDQRxLevMin) { *static_cast<CarrierFreqUTRATDDQRxLevMin*>(items[4]) = carrierFreqUTRATDDQRxLevMin; }
 	void setCarrierFreqUTRATDDPMaxUTRA(const CarrierFreqUTRATDDPMaxUTRA& carrierFreqUTRATDDPMaxUTRA) { *static_cast<CarrierFreqUTRATDDPMaxUTRA*>(items[5]) = carrierFreqUTRATDDPMaxUTRA; }
+
+	ARFCNValueUTRA& getCarrierFreq() { return *static_cast<ARFCNValueUTRA*>(items[0]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
+	ReselectionThreshold& getThreshXHigh() { return *static_cast<ReselectionThreshold*>(items[2]); }
+	ReselectionThreshold& getThreshXLow() { return *static_cast<ReselectionThreshold*>(items[3]); }
+	CarrierFreqUTRATDDQRxLevMin& getCarrierFreqUTRATDDQRxLevMin() { return *static_cast<CarrierFreqUTRATDDQRxLevMin*>(items[4]); }
+	CarrierFreqUTRATDDPMaxUTRA& getCarrierFreqUTRATDDPMaxUTRA() { return *static_cast<CarrierFreqUTRATDDPMaxUTRA*>(items[5]); }
 };
 
 typedef SequenceOf<CarrierFreqUTRATDD, CONSTRAINED, 1, maxUTRA_TDD_Carrier> CarrierFreqListUTRATDD;
@@ -11663,6 +13481,12 @@ public:
 	void setTReselectionUTRA(const TReselection& tReselectionUTRA) { *static_cast<TReselection*>(items[2]) = tReselectionUTRA; }
 	void setTReselectionUTRASF(const SpeedStateScaleFactors& tReselectionUTRASF) { *static_cast<SpeedStateScaleFactors*>(items[3]) = tReselectionUTRASF; }
 	void setSystemInformationBlockType6LateNonCriticalExtension(const SystemInformationBlockType6LateNonCriticalExtension& systemInformationBlockType6LateNonCriticalExtension) { *static_cast<SystemInformationBlockType6LateNonCriticalExtension*>(items[4]) = systemInformationBlockType6LateNonCriticalExtension; }
+
+	CarrierFreqListUTRAFDD& getCarrierFreqListUTRAFDD() { return *static_cast<CarrierFreqListUTRAFDD*>(items[0]); }
+	CarrierFreqListUTRATDD& getCarrierFreqListUTRATDD() { return *static_cast<CarrierFreqListUTRATDD*>(items[1]); }
+	TReselection& getTReselectionUTRA() { return *static_cast<TReselection*>(items[2]); }
+	SpeedStateScaleFactors& getTReselectionUTRASF() { return *static_cast<SpeedStateScaleFactors*>(items[3]); }
+	SystemInformationBlockType6LateNonCriticalExtension& getSystemInformationBlockType6LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType6LateNonCriticalExtension*>(items[4]); }
 };
 
 typedef BitString<CONSTRAINED, 8, 8> CarrierFreqsInfoGERANCommonInfoNccPermitted;
@@ -11686,6 +13510,13 @@ public:
 	void setCarrierFreqsInfoGERANCommonInfoPMaxGERAN(const CarrierFreqsInfoGERANCommonInfoPMaxGERAN& carrierFreqsInfoGERANCommonInfoPMaxGERAN) { *static_cast<CarrierFreqsInfoGERANCommonInfoPMaxGERAN*>(items[3]) = carrierFreqsInfoGERANCommonInfoPMaxGERAN; }
 	void setThreshXHigh(const ReselectionThreshold& threshXHigh) { *static_cast<ReselectionThreshold*>(items[4]) = threshXHigh; }
 	void setThreshXLow(const ReselectionThreshold& threshXLow) { *static_cast<ReselectionThreshold*>(items[5]) = threshXLow; }
+
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[0]); }
+	CarrierFreqsInfoGERANCommonInfoNccPermitted& getCarrierFreqsInfoGERANCommonInfoNccPermitted() { return *static_cast<CarrierFreqsInfoGERANCommonInfoNccPermitted*>(items[1]); }
+	CarrierFreqsInfoGERANCommonInfoQRxLevMin& getCarrierFreqsInfoGERANCommonInfoQRxLevMin() { return *static_cast<CarrierFreqsInfoGERANCommonInfoQRxLevMin*>(items[2]); }
+	CarrierFreqsInfoGERANCommonInfoPMaxGERAN& getCarrierFreqsInfoGERANCommonInfoPMaxGERAN() { return *static_cast<CarrierFreqsInfoGERANCommonInfoPMaxGERAN*>(items[3]); }
+	ReselectionThreshold& getThreshXHigh() { return *static_cast<ReselectionThreshold*>(items[4]); }
+	ReselectionThreshold& getThreshXLow() { return *static_cast<ReselectionThreshold*>(items[5]); }
 };
 
 class CarrierFreqsInfoGERAN : public Sequence {
@@ -11699,6 +13530,9 @@ public:
 
 	void setCarrierFreqs(const CarrierFreqsGERAN& carrierFreqs) { *static_cast<CarrierFreqsGERAN*>(items[0]) = carrierFreqs; }
 	void setCarrierFreqsInfoGERANCommonInfo(const CarrierFreqsInfoGERANCommonInfo& carrierFreqsInfoGERANCommonInfo) { *static_cast<CarrierFreqsInfoGERANCommonInfo*>(items[1]) = carrierFreqsInfoGERANCommonInfo; }
+
+	CarrierFreqsGERAN& getCarrierFreqs() { return *static_cast<CarrierFreqsGERAN*>(items[0]); }
+	CarrierFreqsInfoGERANCommonInfo& getCarrierFreqsInfoGERANCommonInfo() { return *static_cast<CarrierFreqsInfoGERANCommonInfo*>(items[1]); }
 };
 
 typedef SequenceOf<CarrierFreqsInfoGERAN, CONSTRAINED, 1, maxGNFG> CarrierFreqsInfoListGERAN;
@@ -11718,6 +13552,11 @@ public:
 	void setTReselectionGERANSF(const SpeedStateScaleFactors& tReselectionGERANSF) { *static_cast<SpeedStateScaleFactors*>(items[1]) = tReselectionGERANSF; }
 	void setCarrierFreqsInfoList(const CarrierFreqsInfoListGERAN& carrierFreqsInfoList) { *static_cast<CarrierFreqsInfoListGERAN*>(items[2]) = carrierFreqsInfoList; }
 	void setSystemInformationBlockType7LateNonCriticalExtension(const SystemInformationBlockType7LateNonCriticalExtension& systemInformationBlockType7LateNonCriticalExtension) { *static_cast<SystemInformationBlockType7LateNonCriticalExtension*>(items[3]) = systemInformationBlockType7LateNonCriticalExtension; }
+
+	TReselection& getTReselectionGERAN() { return *static_cast<TReselection*>(items[0]); }
+	SpeedStateScaleFactors& getTReselectionGERANSF() { return *static_cast<SpeedStateScaleFactors*>(items[1]); }
+	CarrierFreqsInfoListGERAN& getCarrierFreqsInfoList() { return *static_cast<CarrierFreqsInfoListGERAN*>(items[2]); }
+	SystemInformationBlockType7LateNonCriticalExtension& getSystemInformationBlockType7LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType7LateNonCriticalExtension*>(items[3]); }
 };
 
 typedef Boolean SystemTimeInfoCDMA2000CdmaEUTRASynchronisation;
@@ -11749,6 +13588,9 @@ public:
 
 	void setSystemTimeInfoCDMA2000CdmaEUTRASynchronisation(const SystemTimeInfoCDMA2000CdmaEUTRASynchronisation& systemTimeInfoCDMA2000CdmaEUTRASynchronisation) { *static_cast<SystemTimeInfoCDMA2000CdmaEUTRASynchronisation*>(items[0]) = systemTimeInfoCDMA2000CdmaEUTRASynchronisation; }
 	void setSystemTimeInfoCDMA2000CdmaSystemTime(const SystemTimeInfoCDMA2000CdmaSystemTime& systemTimeInfoCDMA2000CdmaSystemTime) { *static_cast<SystemTimeInfoCDMA2000CdmaSystemTime*>(items[1]) = systemTimeInfoCDMA2000CdmaSystemTime; }
+
+	SystemTimeInfoCDMA2000CdmaEUTRASynchronisation& getSystemTimeInfoCDMA2000CdmaEUTRASynchronisation() { return *static_cast<SystemTimeInfoCDMA2000CdmaEUTRASynchronisation*>(items[0]); }
+	SystemTimeInfoCDMA2000CdmaSystemTime& getSystemTimeInfoCDMA2000CdmaSystemTime() { return *static_cast<SystemTimeInfoCDMA2000CdmaSystemTime*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 15> SystemInformationBlockType8SearchWindowSize;
@@ -11770,6 +13612,11 @@ public:
 	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
 	void setBandClassInfoCDMA2000ThreshXHigh(const BandClassInfoCDMA2000ThreshXHigh& bandClassInfoCDMA2000ThreshXHigh) { *static_cast<BandClassInfoCDMA2000ThreshXHigh*>(items[2]) = bandClassInfoCDMA2000ThreshXHigh; }
 	void setBandClassInfoCDMA2000ThreshXLow(const BandClassInfoCDMA2000ThreshXLow& bandClassInfoCDMA2000ThreshXLow) { *static_cast<BandClassInfoCDMA2000ThreshXLow*>(items[3]) = bandClassInfoCDMA2000ThreshXLow; }
+
+	BandclassCDMA2000& getBandClass() { return *static_cast<BandclassCDMA2000*>(items[0]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
+	BandClassInfoCDMA2000ThreshXHigh& getBandClassInfoCDMA2000ThreshXHigh() { return *static_cast<BandClassInfoCDMA2000ThreshXHigh*>(items[2]); }
+	BandClassInfoCDMA2000ThreshXLow& getBandClassInfoCDMA2000ThreshXLow() { return *static_cast<BandClassInfoCDMA2000ThreshXLow*>(items[3]); }
 };
 
 typedef SequenceOf<BandClassInfoCDMA2000, CONSTRAINED, 1, maxCDMA_BandClass> BandClassListCDMA2000;
@@ -11787,6 +13634,9 @@ public:
 
 	void setArfcn(const ARFCNValueCDMA2000& arfcn) { *static_cast<ARFCNValueCDMA2000*>(items[0]) = arfcn; }
 	void setPhysCellIdList(const PhysCellIdListCDMA2000& physCellIdList) { *static_cast<PhysCellIdListCDMA2000*>(items[1]) = physCellIdList; }
+
+	ARFCNValueCDMA2000& getArfcn() { return *static_cast<ARFCNValueCDMA2000*>(items[0]); }
+	PhysCellIdListCDMA2000& getPhysCellIdList() { return *static_cast<PhysCellIdListCDMA2000*>(items[1]); }
 };
 
 typedef SequenceOf<NeighCellsPerBandclassCDMA2000, CONSTRAINED, 1, 16> NeighCellsPerBandclassListCDMA2000;
@@ -11802,6 +13652,9 @@ public:
 
 	void setBandClass(const BandclassCDMA2000& bandClass) { *static_cast<BandclassCDMA2000*>(items[0]) = bandClass; }
 	void setNeighCellsPerFreqList(const NeighCellsPerBandclassListCDMA2000& neighCellsPerFreqList) { *static_cast<NeighCellsPerBandclassListCDMA2000*>(items[1]) = neighCellsPerFreqList; }
+
+	BandclassCDMA2000& getBandClass() { return *static_cast<BandclassCDMA2000*>(items[0]); }
+	NeighCellsPerBandclassListCDMA2000& getNeighCellsPerFreqList() { return *static_cast<NeighCellsPerBandclassListCDMA2000*>(items[1]); }
 };
 
 typedef SequenceOf<NeighCellCDMA2000, CONSTRAINED, 1, 16> NeighCellListCDMA2000;
@@ -11819,6 +13672,11 @@ public:
 	void setNeighCellList(const NeighCellListCDMA2000& neighCellList) { *static_cast<NeighCellListCDMA2000*>(items[1]) = neighCellList; }
 	void setTReselectionCDMA2000(const TReselection& tReselectionCDMA2000) { *static_cast<TReselection*>(items[2]) = tReselectionCDMA2000; }
 	void setTReselectionCDMA2000SF(const SpeedStateScaleFactors& tReselectionCDMA2000SF) { *static_cast<SpeedStateScaleFactors*>(items[3]) = tReselectionCDMA2000SF; }
+
+	BandClassListCDMA2000& getBandClassList() { return *static_cast<BandClassListCDMA2000*>(items[0]); }
+	NeighCellListCDMA2000& getNeighCellList() { return *static_cast<NeighCellListCDMA2000*>(items[1]); }
+	TReselection& getTReselectionCDMA2000() { return *static_cast<TReselection*>(items[2]); }
+	SpeedStateScaleFactors& getTReselectionCDMA2000SF() { return *static_cast<SpeedStateScaleFactors*>(items[3]); }
 };
 
 class SystemInformationBlockType8ParametersHRPD : public Sequence {
@@ -11832,6 +13690,9 @@ public:
 
 	void setPreRegistrationInfoHRPD(const PreRegistrationInfoHRPD& preRegistrationInfoHRPD) { *static_cast<PreRegistrationInfoHRPD*>(items[0]) = preRegistrationInfoHRPD; }
 	void setCellReselectionParametersHRPD(const CellReselectionParametersCDMA2000& cellReselectionParametersHRPD) { *static_cast<CellReselectionParametersCDMA2000*>(items[1]) = cellReselectionParametersHRPD; }
+
+	PreRegistrationInfoHRPD& getPreRegistrationInfoHRPD() { return *static_cast<PreRegistrationInfoHRPD*>(items[0]); }
+	CellReselectionParametersCDMA2000& getCellReselectionParametersHRPD() { return *static_cast<CellReselectionParametersCDMA2000*>(items[1]); }
 };
 
 typedef BitString<CONSTRAINED, 15, 15> CSFBRegistrationParam1XRTTSid;
@@ -11882,6 +13743,20 @@ public:
 	void setCSFBRegistrationParam1XRTTRegistrationZone(const CSFBRegistrationParam1XRTTRegistrationZone& cSFBRegistrationParam1XRTTRegistrationZone) { *static_cast<CSFBRegistrationParam1XRTTRegistrationZone*>(items[10]) = cSFBRegistrationParam1XRTTRegistrationZone; }
 	void setCSFBRegistrationParam1XRTTTotalZone(const CSFBRegistrationParam1XRTTTotalZone& cSFBRegistrationParam1XRTTTotalZone) { *static_cast<CSFBRegistrationParam1XRTTTotalZone*>(items[11]) = cSFBRegistrationParam1XRTTTotalZone; }
 	void setCSFBRegistrationParam1XRTTZoneTimer(const CSFBRegistrationParam1XRTTZoneTimer& cSFBRegistrationParam1XRTTZoneTimer) { *static_cast<CSFBRegistrationParam1XRTTZoneTimer*>(items[12]) = cSFBRegistrationParam1XRTTZoneTimer; }
+
+	CSFBRegistrationParam1XRTTSid& getCSFBRegistrationParam1XRTTSid() { return *static_cast<CSFBRegistrationParam1XRTTSid*>(items[0]); }
+	CSFBRegistrationParam1XRTTNid& getCSFBRegistrationParam1XRTTNid() { return *static_cast<CSFBRegistrationParam1XRTTNid*>(items[1]); }
+	CSFBRegistrationParam1XRTTMultipleSID& getCSFBRegistrationParam1XRTTMultipleSID() { return *static_cast<CSFBRegistrationParam1XRTTMultipleSID*>(items[2]); }
+	CSFBRegistrationParam1XRTTMultipleNID& getCSFBRegistrationParam1XRTTMultipleNID() { return *static_cast<CSFBRegistrationParam1XRTTMultipleNID*>(items[3]); }
+	CSFBRegistrationParam1XRTTHomeReg& getCSFBRegistrationParam1XRTTHomeReg() { return *static_cast<CSFBRegistrationParam1XRTTHomeReg*>(items[4]); }
+	CSFBRegistrationParam1XRTTForeignSIDReg& getCSFBRegistrationParam1XRTTForeignSIDReg() { return *static_cast<CSFBRegistrationParam1XRTTForeignSIDReg*>(items[5]); }
+	CSFBRegistrationParam1XRTTForeignNIDReg& getCSFBRegistrationParam1XRTTForeignNIDReg() { return *static_cast<CSFBRegistrationParam1XRTTForeignNIDReg*>(items[6]); }
+	CSFBRegistrationParam1XRTTParameterReg& getCSFBRegistrationParam1XRTTParameterReg() { return *static_cast<CSFBRegistrationParam1XRTTParameterReg*>(items[7]); }
+	CSFBRegistrationParam1XRTTPowerUpReg& getCSFBRegistrationParam1XRTTPowerUpReg() { return *static_cast<CSFBRegistrationParam1XRTTPowerUpReg*>(items[8]); }
+	CSFBRegistrationParam1XRTTRegistrationPeriod& getCSFBRegistrationParam1XRTTRegistrationPeriod() { return *static_cast<CSFBRegistrationParam1XRTTRegistrationPeriod*>(items[9]); }
+	CSFBRegistrationParam1XRTTRegistrationZone& getCSFBRegistrationParam1XRTTRegistrationZone() { return *static_cast<CSFBRegistrationParam1XRTTRegistrationZone*>(items[10]); }
+	CSFBRegistrationParam1XRTTTotalZone& getCSFBRegistrationParam1XRTTTotalZone() { return *static_cast<CSFBRegistrationParam1XRTTTotalZone*>(items[11]); }
+	CSFBRegistrationParam1XRTTZoneTimer& getCSFBRegistrationParam1XRTTZoneTimer() { return *static_cast<CSFBRegistrationParam1XRTTZoneTimer*>(items[12]); }
 };
 
 typedef BitString<CONSTRAINED, 42, 42> SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT;
@@ -11893,9 +13768,14 @@ private:
 public:
 	static const Info theInfo;
 	SystemInformationBlockType8Parameters1XRTT(): Sequence(&theInfo) {}
+
 	void setCsfbRegistrationParam1XRTT(const CSFBRegistrationParam1XRTT& csfbRegistrationParam1XRTT) { *static_cast<CSFBRegistrationParam1XRTT*>(items[0]) = csfbRegistrationParam1XRTT; }
 	void setSystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT(const SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT& systemInformationBlockType8Parameters1XRTTLongCodeState1XRTT) { *static_cast<SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT*>(items[1]) = systemInformationBlockType8Parameters1XRTTLongCodeState1XRTT; }
 	void setCellReselectionParameters1XRTT(const CellReselectionParametersCDMA2000& cellReselectionParameters1XRTT) { *static_cast<CellReselectionParametersCDMA2000*>(items[2]) = cellReselectionParameters1XRTT; }
+
+	CSFBRegistrationParam1XRTT& getCsfbRegistrationParam1XRTT() { return *static_cast<CSFBRegistrationParam1XRTT*>(items[0]); }
+	SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT& getSystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT() { return *static_cast<SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT*>(items[1]); }
+	CellReselectionParametersCDMA2000& getCellReselectionParameters1XRTT() { return *static_cast<CellReselectionParametersCDMA2000*>(items[2]); }
 };
 
 typedef OctetStringBase SystemInformationBlockType8LateNonCriticalExtension;
@@ -11914,6 +13794,8 @@ public:
 	NeighCellsPerBandclassCDMA2000v920(const PhysCellIdListCDMA2000v920& physCellIdListv920);
 
 	void setPhysCellIdListv920(const PhysCellIdListCDMA2000v920& physCellIdListv920) { *static_cast<PhysCellIdListCDMA2000v920*>(items[0]) = physCellIdListv920; }
+
+	PhysCellIdListCDMA2000v920& getPhysCellIdListv920() { return *static_cast<PhysCellIdListCDMA2000v920*>(items[0]); }
 };
 
 typedef SequenceOf<NeighCellsPerBandclassCDMA2000v920, CONSTRAINED, 1, 16> NeighCellsPerBandclassListCDMA2000v920;
@@ -11928,6 +13810,8 @@ public:
 	NeighCellCDMA2000v920(const NeighCellsPerBandclassListCDMA2000v920& neighCellsPerFreqListv920);
 
 	void setNeighCellsPerFreqListv920(const NeighCellsPerBandclassListCDMA2000v920& neighCellsPerFreqListv920) { *static_cast<NeighCellsPerBandclassListCDMA2000v920*>(items[0]) = neighCellsPerFreqListv920; }
+
+	NeighCellsPerBandclassListCDMA2000v920& getNeighCellsPerFreqListv920() { return *static_cast<NeighCellsPerBandclassListCDMA2000v920*>(items[0]); }
 };
 
 typedef SequenceOf<NeighCellCDMA2000v920, CONSTRAINED, 1, 16> NeighCellListCDMA2000v920;
@@ -11942,6 +13826,8 @@ public:
 	CellReselectionParametersCDMA2000v920(const NeighCellListCDMA2000v920& neighCellListv920);
 
 	void setNeighCellListv920(const NeighCellListCDMA2000v920& neighCellListv920) { *static_cast<NeighCellListCDMA2000v920*>(items[0]) = neighCellListv920; }
+
+	NeighCellListCDMA2000v920& getNeighCellListv920() { return *static_cast<NeighCellListCDMA2000v920*>(items[0]); }
 };
 
 enum CSFBRegistrationParam1XRTTv920powerDownReg_r9Values {
@@ -11959,6 +13845,8 @@ public:
 	CSFBRegistrationParam1XRTTv920(const CSFBRegistrationParam1XRTTv920powerDownReg_r9& cSFBRegistrationParam1XRTTv920powerDownReg_r9);
 
 	void setCSFBRegistrationParam1XRTTv920powerDownReg_r9(const CSFBRegistrationParam1XRTTv920powerDownReg_r9& cSFBRegistrationParam1XRTTv920powerDownReg_r9) { *static_cast<CSFBRegistrationParam1XRTTv920powerDownReg_r9*>(items[0]) = cSFBRegistrationParam1XRTTv920powerDownReg_r9; }
+
+	CSFBRegistrationParam1XRTTv920powerDownReg_r9& getCSFBRegistrationParam1XRTTv920powerDownReg_r9() { return *static_cast<CSFBRegistrationParam1XRTTv920powerDownReg_r9*>(items[0]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 63> ACBarringConfig1XRTTr9AcBarring0to9r9;
@@ -12000,6 +13888,17 @@ public:
 	void setACBarringConfig1XRTTr9AcBarringMsgr9(const ACBarringConfig1XRTTr9AcBarringMsgr9& aCBarringConfig1XRTTr9AcBarringMsgr9) { *static_cast<ACBarringConfig1XRTTr9AcBarringMsgr9*>(items[7]) = aCBarringConfig1XRTTr9AcBarringMsgr9; }
 	void setACBarringConfig1XRTTr9AcBarringRegr9(const ACBarringConfig1XRTTr9AcBarringRegr9& aCBarringConfig1XRTTr9AcBarringRegr9) { *static_cast<ACBarringConfig1XRTTr9AcBarringRegr9*>(items[8]) = aCBarringConfig1XRTTr9AcBarringRegr9; }
 	void setACBarringConfig1XRTTr9AcBarringEmgr9(const ACBarringConfig1XRTTr9AcBarringEmgr9& aCBarringConfig1XRTTr9AcBarringEmgr9) { *static_cast<ACBarringConfig1XRTTr9AcBarringEmgr9*>(items[9]) = aCBarringConfig1XRTTr9AcBarringEmgr9; }
+
+	ACBarringConfig1XRTTr9AcBarring0to9r9& getACBarringConfig1XRTTr9AcBarring0to9r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring0to9r9*>(items[0]); }
+	ACBarringConfig1XRTTr9AcBarring10r9& getACBarringConfig1XRTTr9AcBarring10r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring10r9*>(items[1]); }
+	ACBarringConfig1XRTTr9AcBarring11r9& getACBarringConfig1XRTTr9AcBarring11r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring11r9*>(items[2]); }
+	ACBarringConfig1XRTTr9AcBarring12r9& getACBarringConfig1XRTTr9AcBarring12r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring12r9*>(items[3]); }
+	ACBarringConfig1XRTTr9AcBarring13r9& getACBarringConfig1XRTTr9AcBarring13r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring13r9*>(items[4]); }
+	ACBarringConfig1XRTTr9AcBarring14r9& getACBarringConfig1XRTTr9AcBarring14r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring14r9*>(items[5]); }
+	ACBarringConfig1XRTTr9AcBarring15r9& getACBarringConfig1XRTTr9AcBarring15r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring15r9*>(items[6]); }
+	ACBarringConfig1XRTTr9AcBarringMsgr9& getACBarringConfig1XRTTr9AcBarringMsgr9() { return *static_cast<ACBarringConfig1XRTTr9AcBarringMsgr9*>(items[7]); }
+	ACBarringConfig1XRTTr9AcBarringRegr9& getACBarringConfig1XRTTr9AcBarringRegr9() { return *static_cast<ACBarringConfig1XRTTr9AcBarringRegr9*>(items[8]); }
+	ACBarringConfig1XRTTr9AcBarringEmgr9& getACBarringConfig1XRTTr9AcBarringEmgr9() { return *static_cast<ACBarringConfig1XRTTr9AcBarringEmgr9*>(items[9]); }
 };
 
 enum SystemInformationBlockType8csfb_DualRxTxSupport_r10Values {
@@ -12014,6 +13913,7 @@ private:
 public:
 	static const Info theInfo;
 	SystemInformationBlockType8(): Sequence(&theInfo) {}
+
 	void setSystemTimeInfo(const SystemTimeInfoCDMA2000& systemTimeInfo) { *static_cast<SystemTimeInfoCDMA2000*>(items[0]) = systemTimeInfo; }
 	void setSystemInformationBlockType8SearchWindowSize(const SystemInformationBlockType8SearchWindowSize& systemInformationBlockType8SearchWindowSize) { *static_cast<SystemInformationBlockType8SearchWindowSize*>(items[1]) = systemInformationBlockType8SearchWindowSize; }
 	void setSystemInformationBlockType8ParametersHRPD(const SystemInformationBlockType8ParametersHRPD& systemInformationBlockType8ParametersHRPD) { *static_cast<SystemInformationBlockType8ParametersHRPD*>(items[2]) = systemInformationBlockType8ParametersHRPD; }
@@ -12025,6 +13925,18 @@ public:
 	void setCsfbRegistrationParam1XRTTv920(const CSFBRegistrationParam1XRTTv920& csfbRegistrationParam1XRTTv920) { *static_cast<CSFBRegistrationParam1XRTTv920*>(items[8]) = csfbRegistrationParam1XRTTv920; }
 	void setAcBarringConfig1XRTTr9(const ACBarringConfig1XRTTr9& acBarringConfig1XRTTr9) { *static_cast<ACBarringConfig1XRTTr9*>(items[9]) = acBarringConfig1XRTTr9; }
 	void setSystemInformationBlockType8csfb_DualRxTxSupport_r10(const SystemInformationBlockType8csfb_DualRxTxSupport_r10& systemInformationBlockType8csfb_DualRxTxSupport_r10) { *static_cast<SystemInformationBlockType8csfb_DualRxTxSupport_r10*>(items[10]) = systemInformationBlockType8csfb_DualRxTxSupport_r10; }
+
+	SystemTimeInfoCDMA2000& getSystemTimeInfo() { return *static_cast<SystemTimeInfoCDMA2000*>(items[0]); }
+	SystemInformationBlockType8SearchWindowSize& getSystemInformationBlockType8SearchWindowSize() { return *static_cast<SystemInformationBlockType8SearchWindowSize*>(items[1]); }
+	SystemInformationBlockType8ParametersHRPD& getSystemInformationBlockType8ParametersHRPD() { return *static_cast<SystemInformationBlockType8ParametersHRPD*>(items[2]); }
+	SystemInformationBlockType8Parameters1XRTT& getSystemInformationBlockType8Parameters1XRTT() { return *static_cast<SystemInformationBlockType8Parameters1XRTT*>(items[3]); }
+	SystemInformationBlockType8LateNonCriticalExtension& getSystemInformationBlockType8LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType8LateNonCriticalExtension*>(items[4]); }
+	SystemInformationBlockType8CsfbSupportForDualRxUEsr9& getSystemInformationBlockType8CsfbSupportForDualRxUEsr9() { return *static_cast<SystemInformationBlockType8CsfbSupportForDualRxUEsr9*>(items[5]); }
+	CellReselectionParametersCDMA2000v920& getCellReselectionParametersHRPDv920() { return *static_cast<CellReselectionParametersCDMA2000v920*>(items[6]); }
+	CellReselectionParametersCDMA2000v920& getCellReselectionParameters1XRTTv920() { return *static_cast<CellReselectionParametersCDMA2000v920*>(items[7]); }
+	CSFBRegistrationParam1XRTTv920& getCsfbRegistrationParam1XRTTv920() { return *static_cast<CSFBRegistrationParam1XRTTv920*>(items[8]); }
+	ACBarringConfig1XRTTr9& getAcBarringConfig1XRTTr9() { return *static_cast<ACBarringConfig1XRTTr9*>(items[9]); }
+	SystemInformationBlockType8csfb_DualRxTxSupport_r10& getSystemInformationBlockType8csfb_DualRxTxSupport_r10() { return *static_cast<SystemInformationBlockType8csfb_DualRxTxSupport_r10*>(items[10]); }
 };
 
 typedef OctetString<CONSTRAINED, 1, 48> SystemInformationBlockType9HnbName;
@@ -12038,8 +13950,12 @@ private:
 public:
 	static const Info theInfo;
 	SystemInformationBlockType9(): Sequence(&theInfo) {}
+
 	void setSystemInformationBlockType9HnbName(const SystemInformationBlockType9HnbName& systemInformationBlockType9HnbName) { *static_cast<SystemInformationBlockType9HnbName*>(items[0]) = systemInformationBlockType9HnbName; }
 	void setSystemInformationBlockType9LateNonCriticalExtension(const SystemInformationBlockType9LateNonCriticalExtension& systemInformationBlockType9LateNonCriticalExtension) { *static_cast<SystemInformationBlockType9LateNonCriticalExtension*>(items[1]) = systemInformationBlockType9LateNonCriticalExtension; }
+
+	SystemInformationBlockType9HnbName& getSystemInformationBlockType9HnbName() { return *static_cast<SystemInformationBlockType9HnbName*>(items[0]); }
+	SystemInformationBlockType9LateNonCriticalExtension& getSystemInformationBlockType9LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType9LateNonCriticalExtension*>(items[1]); }
 };
 
 typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType10MessageIdentifier;
@@ -12066,6 +13982,12 @@ public:
 	void setSystemInformationBlockType10WarningType(const SystemInformationBlockType10WarningType& systemInformationBlockType10WarningType) { *static_cast<SystemInformationBlockType10WarningType*>(items[2]) = systemInformationBlockType10WarningType; }
 	void setSystemInformationBlockType10WarningSecurityInfo(const SystemInformationBlockType10WarningSecurityInfo& systemInformationBlockType10WarningSecurityInfo) { *static_cast<SystemInformationBlockType10WarningSecurityInfo*>(items[3]) = systemInformationBlockType10WarningSecurityInfo; }
 	void setSystemInformationBlockType10LateNonCriticalExtension(const SystemInformationBlockType10LateNonCriticalExtension& systemInformationBlockType10LateNonCriticalExtension) { *static_cast<SystemInformationBlockType10LateNonCriticalExtension*>(items[4]) = systemInformationBlockType10LateNonCriticalExtension; }
+
+	SystemInformationBlockType10MessageIdentifier& getSystemInformationBlockType10MessageIdentifier() { return *static_cast<SystemInformationBlockType10MessageIdentifier*>(items[0]); }
+	SystemInformationBlockType10SerialNumber& getSystemInformationBlockType10SerialNumber() { return *static_cast<SystemInformationBlockType10SerialNumber*>(items[1]); }
+	SystemInformationBlockType10WarningType& getSystemInformationBlockType10WarningType() { return *static_cast<SystemInformationBlockType10WarningType*>(items[2]); }
+	SystemInformationBlockType10WarningSecurityInfo& getSystemInformationBlockType10WarningSecurityInfo() { return *static_cast<SystemInformationBlockType10WarningSecurityInfo*>(items[3]); }
+	SystemInformationBlockType10LateNonCriticalExtension& getSystemInformationBlockType10LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType10LateNonCriticalExtension*>(items[4]); }
 };
 
 typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType11MessageIdentifier;
@@ -12102,6 +14024,14 @@ public:
 	void setSystemInformationBlockType11WarningMessageSegment(const SystemInformationBlockType11WarningMessageSegment& systemInformationBlockType11WarningMessageSegment) { *static_cast<SystemInformationBlockType11WarningMessageSegment*>(items[4]) = systemInformationBlockType11WarningMessageSegment; }
 	void setSystemInformationBlockType11DataCodingScheme(const SystemInformationBlockType11DataCodingScheme& systemInformationBlockType11DataCodingScheme) { *static_cast<SystemInformationBlockType11DataCodingScheme*>(items[5]) = systemInformationBlockType11DataCodingScheme; }
 	void setSystemInformationBlockType11LateNonCriticalExtension(const SystemInformationBlockType11LateNonCriticalExtension& systemInformationBlockType11LateNonCriticalExtension) { *static_cast<SystemInformationBlockType11LateNonCriticalExtension*>(items[6]) = systemInformationBlockType11LateNonCriticalExtension; }
+
+	SystemInformationBlockType11MessageIdentifier& getSystemInformationBlockType11MessageIdentifier() { return *static_cast<SystemInformationBlockType11MessageIdentifier*>(items[0]); }
+	SystemInformationBlockType11SerialNumber& getSystemInformationBlockType11SerialNumber() { return *static_cast<SystemInformationBlockType11SerialNumber*>(items[1]); }
+	SystemInformationBlockType11warningMessageSegmentType& getSystemInformationBlockType11warningMessageSegmentType() { return *static_cast<SystemInformationBlockType11warningMessageSegmentType*>(items[2]); }
+	SystemInformationBlockType11WarningMessageSegmentNumber& getSystemInformationBlockType11WarningMessageSegmentNumber() { return *static_cast<SystemInformationBlockType11WarningMessageSegmentNumber*>(items[3]); }
+	SystemInformationBlockType11WarningMessageSegment& getSystemInformationBlockType11WarningMessageSegment() { return *static_cast<SystemInformationBlockType11WarningMessageSegment*>(items[4]); }
+	SystemInformationBlockType11DataCodingScheme& getSystemInformationBlockType11DataCodingScheme() { return *static_cast<SystemInformationBlockType11DataCodingScheme*>(items[5]); }
+	SystemInformationBlockType11LateNonCriticalExtension& getSystemInformationBlockType11LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType11LateNonCriticalExtension*>(items[6]); }
 };
 
 typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType12r9MessageIdentifierr9;
@@ -12138,6 +14068,14 @@ public:
 	void setSystemInformationBlockType12r9WarningMessageSegmentr9(const SystemInformationBlockType12r9WarningMessageSegmentr9& systemInformationBlockType12r9WarningMessageSegmentr9) { *static_cast<SystemInformationBlockType12r9WarningMessageSegmentr9*>(items[4]) = systemInformationBlockType12r9WarningMessageSegmentr9; }
 	void setSystemInformationBlockType12r9DataCodingSchemer9(const SystemInformationBlockType12r9DataCodingSchemer9& systemInformationBlockType12r9DataCodingSchemer9) { *static_cast<SystemInformationBlockType12r9DataCodingSchemer9*>(items[5]) = systemInformationBlockType12r9DataCodingSchemer9; }
 	void setSystemInformationBlockType12r9LateNonCriticalExtension(const SystemInformationBlockType12r9LateNonCriticalExtension& systemInformationBlockType12r9LateNonCriticalExtension) { *static_cast<SystemInformationBlockType12r9LateNonCriticalExtension*>(items[6]) = systemInformationBlockType12r9LateNonCriticalExtension; }
+
+	SystemInformationBlockType12r9MessageIdentifierr9& getSystemInformationBlockType12r9MessageIdentifierr9() { return *static_cast<SystemInformationBlockType12r9MessageIdentifierr9*>(items[0]); }
+	SystemInformationBlockType12r9SerialNumberr9& getSystemInformationBlockType12r9SerialNumberr9() { return *static_cast<SystemInformationBlockType12r9SerialNumberr9*>(items[1]); }
+	SystemInformationBlockType12r9warningMessageSegmentType_r9& getSystemInformationBlockType12r9warningMessageSegmentType_r9() { return *static_cast<SystemInformationBlockType12r9warningMessageSegmentType_r9*>(items[2]); }
+	SystemInformationBlockType12r9WarningMessageSegmentNumberr9& getSystemInformationBlockType12r9WarningMessageSegmentNumberr9() { return *static_cast<SystemInformationBlockType12r9WarningMessageSegmentNumberr9*>(items[3]); }
+	SystemInformationBlockType12r9WarningMessageSegmentr9& getSystemInformationBlockType12r9WarningMessageSegmentr9() { return *static_cast<SystemInformationBlockType12r9WarningMessageSegmentr9*>(items[4]); }
+	SystemInformationBlockType12r9DataCodingSchemer9& getSystemInformationBlockType12r9DataCodingSchemer9() { return *static_cast<SystemInformationBlockType12r9DataCodingSchemer9*>(items[5]); }
+	SystemInformationBlockType12r9LateNonCriticalExtension& getSystemInformationBlockType12r9LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType12r9LateNonCriticalExtension*>(items[6]); }
 };
 
 typedef Integer<CONSTRAINED, 0, 255> MBSFNAreaInfor9MbsfnAreaIdr9;
@@ -12190,6 +14128,12 @@ public:
 	void setMBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9(const MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9) { *static_cast<MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9*>(items[2]) = mBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9; }
 	void setMBSFNAreaInfor9McchConfigr9SfAllocInfor9(const MBSFNAreaInfor9McchConfigr9SfAllocInfor9& mBSFNAreaInfor9McchConfigr9SfAllocInfor9) { *static_cast<MBSFNAreaInfor9McchConfigr9SfAllocInfor9*>(items[3]) = mBSFNAreaInfor9McchConfigr9SfAllocInfor9; }
 	void setMBSFNAreaInfor9McchConfigr9signallingMCS_r9(const MBSFNAreaInfor9McchConfigr9signallingMCS_r9& mBSFNAreaInfor9McchConfigr9signallingMCS_r9) { *static_cast<MBSFNAreaInfor9McchConfigr9signallingMCS_r9*>(items[4]) = mBSFNAreaInfor9McchConfigr9signallingMCS_r9; }
+
+	MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9& getMBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9() { return *static_cast<MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9*>(items[0]); }
+	MBSFNAreaInfor9McchConfigr9McchOffsetr9& getMBSFNAreaInfor9McchConfigr9McchOffsetr9() { return *static_cast<MBSFNAreaInfor9McchConfigr9McchOffsetr9*>(items[1]); }
+	MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9& getMBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9() { return *static_cast<MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9*>(items[2]); }
+	MBSFNAreaInfor9McchConfigr9SfAllocInfor9& getMBSFNAreaInfor9McchConfigr9SfAllocInfor9() { return *static_cast<MBSFNAreaInfor9McchConfigr9SfAllocInfor9*>(items[3]); }
+	MBSFNAreaInfor9McchConfigr9signallingMCS_r9& getMBSFNAreaInfor9McchConfigr9signallingMCS_r9() { return *static_cast<MBSFNAreaInfor9McchConfigr9signallingMCS_r9*>(items[4]); }
 };
 
 class MBSFNAreaInfor9 : public Sequence {
@@ -12205,6 +14149,11 @@ public:
 	void setMBSFNAreaInfor9non_MBSFNregionLength(const MBSFNAreaInfor9non_MBSFNregionLength& mBSFNAreaInfor9non_MBSFNregionLength) { *static_cast<MBSFNAreaInfor9non_MBSFNregionLength*>(items[1]) = mBSFNAreaInfor9non_MBSFNregionLength; }
 	void setMBSFNAreaInfor9NotificationIndicatorr9(const MBSFNAreaInfor9NotificationIndicatorr9& mBSFNAreaInfor9NotificationIndicatorr9) { *static_cast<MBSFNAreaInfor9NotificationIndicatorr9*>(items[2]) = mBSFNAreaInfor9NotificationIndicatorr9; }
 	void setMBSFNAreaInfor9McchConfigr9(const MBSFNAreaInfor9McchConfigr9& mBSFNAreaInfor9McchConfigr9) { *static_cast<MBSFNAreaInfor9McchConfigr9*>(items[3]) = mBSFNAreaInfor9McchConfigr9; }
+
+	MBSFNAreaInfor9MbsfnAreaIdr9& getMBSFNAreaInfor9MbsfnAreaIdr9() { return *static_cast<MBSFNAreaInfor9MbsfnAreaIdr9*>(items[0]); }
+	MBSFNAreaInfor9non_MBSFNregionLength& getMBSFNAreaInfor9non_MBSFNregionLength() { return *static_cast<MBSFNAreaInfor9non_MBSFNregionLength*>(items[1]); }
+	MBSFNAreaInfor9NotificationIndicatorr9& getMBSFNAreaInfor9NotificationIndicatorr9() { return *static_cast<MBSFNAreaInfor9NotificationIndicatorr9*>(items[2]); }
+	MBSFNAreaInfor9McchConfigr9& getMBSFNAreaInfor9McchConfigr9() { return *static_cast<MBSFNAreaInfor9McchConfigr9*>(items[3]); }
 };
 
 typedef SequenceOf<MBSFNAreaInfor9, CONSTRAINED, 1, maxMBSFN_Area> MBSFNAreaInfoListr9;
@@ -12231,6 +14180,10 @@ public:
 	void setMBMSNotificationConfigr9notificationRepetitionCoeff_r9(const MBMSNotificationConfigr9notificationRepetitionCoeff_r9& mBMSNotificationConfigr9notificationRepetitionCoeff_r9) { *static_cast<MBMSNotificationConfigr9notificationRepetitionCoeff_r9*>(items[0]) = mBMSNotificationConfigr9notificationRepetitionCoeff_r9; }
 	void setMBMSNotificationConfigr9NotificationOffsetr9(const MBMSNotificationConfigr9NotificationOffsetr9& mBMSNotificationConfigr9NotificationOffsetr9) { *static_cast<MBMSNotificationConfigr9NotificationOffsetr9*>(items[1]) = mBMSNotificationConfigr9NotificationOffsetr9; }
 	void setMBMSNotificationConfigr9NotificationSFIndexr9(const MBMSNotificationConfigr9NotificationSFIndexr9& mBMSNotificationConfigr9NotificationSFIndexr9) { *static_cast<MBMSNotificationConfigr9NotificationSFIndexr9*>(items[2]) = mBMSNotificationConfigr9NotificationSFIndexr9; }
+
+	MBMSNotificationConfigr9notificationRepetitionCoeff_r9& getMBMSNotificationConfigr9notificationRepetitionCoeff_r9() { return *static_cast<MBMSNotificationConfigr9notificationRepetitionCoeff_r9*>(items[0]); }
+	MBMSNotificationConfigr9NotificationOffsetr9& getMBMSNotificationConfigr9NotificationOffsetr9() { return *static_cast<MBMSNotificationConfigr9NotificationOffsetr9*>(items[1]); }
+	MBMSNotificationConfigr9NotificationSFIndexr9& getMBMSNotificationConfigr9NotificationSFIndexr9() { return *static_cast<MBMSNotificationConfigr9NotificationSFIndexr9*>(items[2]); }
 };
 
 typedef OctetStringBase SystemInformationBlockType13r9LateNonCriticalExtension;
@@ -12247,6 +14200,10 @@ public:
 	void setMbsfnAreaInfoListr9(const MBSFNAreaInfoListr9& mbsfnAreaInfoListr9) { *static_cast<MBSFNAreaInfoListr9*>(items[0]) = mbsfnAreaInfoListr9; }
 	void setNotificationConfigr9(const MBMSNotificationConfigr9& notificationConfigr9) { *static_cast<MBMSNotificationConfigr9*>(items[1]) = notificationConfigr9; }
 	void setSystemInformationBlockType13r9LateNonCriticalExtension(const SystemInformationBlockType13r9LateNonCriticalExtension& systemInformationBlockType13r9LateNonCriticalExtension) { *static_cast<SystemInformationBlockType13r9LateNonCriticalExtension*>(items[2]) = systemInformationBlockType13r9LateNonCriticalExtension; }
+
+	MBSFNAreaInfoListr9& getMbsfnAreaInfoListr9() { return *static_cast<MBSFNAreaInfoListr9*>(items[0]); }
+	MBMSNotificationConfigr9& getNotificationConfigr9() { return *static_cast<MBMSNotificationConfigr9*>(items[1]); }
+	SystemInformationBlockType13r9LateNonCriticalExtension& getSystemInformationBlockType13r9LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType13r9LateNonCriticalExtension*>(items[2]); }
 };
 
 enum AccessStratumReleaseValues {
@@ -12299,6 +14256,16 @@ public:
 	void setPDCPParametersSupportedROHCProfilesProfile0x0102(const PDCPParametersSupportedROHCProfilesProfile0x0102& pDCPParametersSupportedROHCProfilesProfile0x0102) { *static_cast<PDCPParametersSupportedROHCProfilesProfile0x0102*>(items[6]) = pDCPParametersSupportedROHCProfilesProfile0x0102; }
 	void setPDCPParametersSupportedROHCProfilesProfile0x0103(const PDCPParametersSupportedROHCProfilesProfile0x0103& pDCPParametersSupportedROHCProfilesProfile0x0103) { *static_cast<PDCPParametersSupportedROHCProfilesProfile0x0103*>(items[7]) = pDCPParametersSupportedROHCProfilesProfile0x0103; }
 	void setPDCPParametersSupportedROHCProfilesProfile0x0104(const PDCPParametersSupportedROHCProfilesProfile0x0104& pDCPParametersSupportedROHCProfilesProfile0x0104) { *static_cast<PDCPParametersSupportedROHCProfilesProfile0x0104*>(items[8]) = pDCPParametersSupportedROHCProfilesProfile0x0104; }
+
+	PDCPParametersSupportedROHCProfilesProfile0x0001& getPDCPParametersSupportedROHCProfilesProfile0x0001() { return *static_cast<PDCPParametersSupportedROHCProfilesProfile0x0001*>(items[0]); }
+	PDCPParametersSupportedROHCProfilesProfile0x0002& getPDCPParametersSupportedROHCProfilesProfile0x0002() { return *static_cast<PDCPParametersSupportedROHCProfilesProfile0x0002*>(items[1]); }
+	PDCPParametersSupportedROHCProfilesProfile0x0003& getPDCPParametersSupportedROHCProfilesProfile0x0003() { return *static_cast<PDCPParametersSupportedROHCProfilesProfile0x0003*>(items[2]); }
+	PDCPParametersSupportedROHCProfilesProfile0x0004& getPDCPParametersSupportedROHCProfilesProfile0x0004() { return *static_cast<PDCPParametersSupportedROHCProfilesProfile0x0004*>(items[3]); }
+	PDCPParametersSupportedROHCProfilesProfile0x0006& getPDCPParametersSupportedROHCProfilesProfile0x0006() { return *static_cast<PDCPParametersSupportedROHCProfilesProfile0x0006*>(items[4]); }
+	PDCPParametersSupportedROHCProfilesProfile0x0101& getPDCPParametersSupportedROHCProfilesProfile0x0101() { return *static_cast<PDCPParametersSupportedROHCProfilesProfile0x0101*>(items[5]); }
+	PDCPParametersSupportedROHCProfilesProfile0x0102& getPDCPParametersSupportedROHCProfilesProfile0x0102() { return *static_cast<PDCPParametersSupportedROHCProfilesProfile0x0102*>(items[6]); }
+	PDCPParametersSupportedROHCProfilesProfile0x0103& getPDCPParametersSupportedROHCProfilesProfile0x0103() { return *static_cast<PDCPParametersSupportedROHCProfilesProfile0x0103*>(items[7]); }
+	PDCPParametersSupportedROHCProfilesProfile0x0104& getPDCPParametersSupportedROHCProfilesProfile0x0104() { return *static_cast<PDCPParametersSupportedROHCProfilesProfile0x0104*>(items[8]); }
 };
 
 enum PDCPParametersmaxNumberROHC_ContextSessionsValues {
@@ -12332,6 +14299,9 @@ public:
 
 	void setPDCPParametersSupportedROHCProfiles(const PDCPParametersSupportedROHCProfiles& pDCPParametersSupportedROHCProfiles) { *static_cast<PDCPParametersSupportedROHCProfiles*>(items[0]) = pDCPParametersSupportedROHCProfiles; }
 	void setPDCPParametersmaxNumberROHC_ContextSessions(const PDCPParametersmaxNumberROHC_ContextSessions& pDCPParametersmaxNumberROHC_ContextSessions) { *static_cast<PDCPParametersmaxNumberROHC_ContextSessions*>(items[1]) = pDCPParametersmaxNumberROHC_ContextSessions; }
+
+	PDCPParametersSupportedROHCProfiles& getPDCPParametersSupportedROHCProfiles() { return *static_cast<PDCPParametersSupportedROHCProfiles*>(items[0]); }
+	PDCPParametersmaxNumberROHC_ContextSessions& getPDCPParametersmaxNumberROHC_ContextSessions() { return *static_cast<PDCPParametersmaxNumberROHC_ContextSessions*>(items[1]); }
 };
 
 typedef Boolean PhyLayerParametersUeTxAntennaSelectionSupported;
@@ -12349,6 +14319,9 @@ public:
 
 	void setPhyLayerParametersUeTxAntennaSelectionSupported(const PhyLayerParametersUeTxAntennaSelectionSupported& phyLayerParametersUeTxAntennaSelectionSupported) { *static_cast<PhyLayerParametersUeTxAntennaSelectionSupported*>(items[0]) = phyLayerParametersUeTxAntennaSelectionSupported; }
 	void setPhyLayerParametersUeSpecificRefSigsSupported(const PhyLayerParametersUeSpecificRefSigsSupported& phyLayerParametersUeSpecificRefSigsSupported) { *static_cast<PhyLayerParametersUeSpecificRefSigsSupported*>(items[1]) = phyLayerParametersUeSpecificRefSigsSupported; }
+
+	PhyLayerParametersUeTxAntennaSelectionSupported& getPhyLayerParametersUeTxAntennaSelectionSupported() { return *static_cast<PhyLayerParametersUeTxAntennaSelectionSupported*>(items[0]); }
+	PhyLayerParametersUeSpecificRefSigsSupported& getPhyLayerParametersUeSpecificRefSigsSupported() { return *static_cast<PhyLayerParametersUeSpecificRefSigsSupported*>(items[1]); }
 };
 
 typedef Integer<CONSTRAINED, 1, 64> SupportedBandEUTRABandEUTRA;
@@ -12366,6 +14339,9 @@ public:
 
 	void setSupportedBandEUTRABandEUTRA(const SupportedBandEUTRABandEUTRA& supportedBandEUTRABandEUTRA) { *static_cast<SupportedBandEUTRABandEUTRA*>(items[0]) = supportedBandEUTRABandEUTRA; }
 	void setSupportedBandEUTRAHalfDuplex(const SupportedBandEUTRAHalfDuplex& supportedBandEUTRAHalfDuplex) { *static_cast<SupportedBandEUTRAHalfDuplex*>(items[1]) = supportedBandEUTRAHalfDuplex; }
+
+	SupportedBandEUTRABandEUTRA& getSupportedBandEUTRABandEUTRA() { return *static_cast<SupportedBandEUTRABandEUTRA*>(items[0]); }
+	SupportedBandEUTRAHalfDuplex& getSupportedBandEUTRAHalfDuplex() { return *static_cast<SupportedBandEUTRAHalfDuplex*>(items[1]); }
 };
 
 typedef SequenceOf<SupportedBandEUTRA, CONSTRAINED, 1, maxBands> SupportedBandListEUTRA;
@@ -12380,6 +14356,8 @@ public:
 	RFParameters(const SupportedBandListEUTRA& supportedBandListEUTRA);
 
 	void setSupportedBandListEUTRA(const SupportedBandListEUTRA& supportedBandListEUTRA) { *static_cast<SupportedBandListEUTRA*>(items[0]) = supportedBandListEUTRA; }
+
+	SupportedBandListEUTRA& getSupportedBandListEUTRA() { return *static_cast<SupportedBandListEUTRA*>(items[0]); }
 };
 
 typedef Boolean InterFreqBandInfoInterFreqNeedForGaps;
@@ -12394,6 +14372,8 @@ public:
 	InterFreqBandInfo(const InterFreqBandInfoInterFreqNeedForGaps& interFreqBandInfoInterFreqNeedForGaps);
 
 	void setInterFreqBandInfoInterFreqNeedForGaps(const InterFreqBandInfoInterFreqNeedForGaps& interFreqBandInfoInterFreqNeedForGaps) { *static_cast<InterFreqBandInfoInterFreqNeedForGaps*>(items[0]) = interFreqBandInfoInterFreqNeedForGaps; }
+
+	InterFreqBandInfoInterFreqNeedForGaps& getInterFreqBandInfoInterFreqNeedForGaps() { return *static_cast<InterFreqBandInfoInterFreqNeedForGaps*>(items[0]); }
 };
 
 typedef SequenceOf<InterFreqBandInfo, CONSTRAINED, 1, maxBands> InterFreqBandList;
@@ -12410,6 +14390,8 @@ public:
 	InterRATBandInfo(const InterRATBandInfoInterRATNeedForGaps& interRATBandInfoInterRATNeedForGaps);
 
 	void setInterRATBandInfoInterRATNeedForGaps(const InterRATBandInfoInterRATNeedForGaps& interRATBandInfoInterRATNeedForGaps) { *static_cast<InterRATBandInfoInterRATNeedForGaps*>(items[0]) = interRATBandInfoInterRATNeedForGaps; }
+
+	InterRATBandInfoInterRATNeedForGaps& getInterRATBandInfoInterRATNeedForGaps() { return *static_cast<InterRATBandInfoInterRATNeedForGaps*>(items[0]); }
 };
 
 typedef SequenceOf<InterRATBandInfo, CONSTRAINED, 1, maxBands> InterRATBandList;
@@ -12425,6 +14407,9 @@ public:
 
 	void setInterFreqBandList(const InterFreqBandList& interFreqBandList) { *static_cast<InterFreqBandList*>(items[0]) = interFreqBandList; }
 	void setInterRATBandList(const InterRATBandList& interRATBandList) { *static_cast<InterRATBandList*>(items[1]) = interRATBandList; }
+
+	InterFreqBandList& getInterFreqBandList() { return *static_cast<InterFreqBandList*>(items[0]); }
+	InterRATBandList& getInterRATBandList() { return *static_cast<InterRATBandList*>(items[1]); }
 };
 
 typedef SequenceOf<BandInfoEUTRA, CONSTRAINED, 1, maxBands> BandListEUTRA;
@@ -12439,6 +14424,8 @@ public:
 	MeasParameters(const BandListEUTRA& bandListEUTRA);
 
 	void setBandListEUTRA(const BandListEUTRA& bandListEUTRA) { *static_cast<BandListEUTRA*>(items[0]) = bandListEUTRA; }
+
+	BandListEUTRA& getBandListEUTRA() { return *static_cast<BandListEUTRA*>(items[0]); }
 };
 
 typedef BitString<CONSTRAINED, 32, 32> UEEUTRACapabilityFeatureGroupIndicators;
@@ -12491,6 +14478,8 @@ public:
 	IRATParametersUTRAFDD(const SupportedBandListUTRAFDD& supportedBandListUTRAFDD);
 
 	void setSupportedBandListUTRAFDD(const SupportedBandListUTRAFDD& supportedBandListUTRAFDD) { *static_cast<SupportedBandListUTRAFDD*>(items[0]) = supportedBandListUTRAFDD; }
+
+	SupportedBandListUTRAFDD& getSupportedBandListUTRAFDD() { return *static_cast<SupportedBandListUTRAFDD*>(items[0]); }
 };
 
 enum SupportedBandUTRATDD128Values {
@@ -12525,6 +14514,8 @@ public:
 	IRATParametersUTRATDD128(const SupportedBandListUTRATDD128& supportedBandListUTRATDD128);
 
 	void setSupportedBandListUTRATDD128(const SupportedBandListUTRATDD128& supportedBandListUTRATDD128) { *static_cast<SupportedBandListUTRATDD128*>(items[0]) = supportedBandListUTRATDD128; }
+
+	SupportedBandListUTRATDD128& getSupportedBandListUTRATDD128() { return *static_cast<SupportedBandListUTRATDD128*>(items[0]); }
 };
 
 enum SupportedBandUTRATDD384Values {
@@ -12559,6 +14550,8 @@ public:
 	IRATParametersUTRATDD384(const SupportedBandListUTRATDD384& supportedBandListUTRATDD384);
 
 	void setSupportedBandListUTRATDD384(const SupportedBandListUTRATDD384& supportedBandListUTRATDD384) { *static_cast<SupportedBandListUTRATDD384*>(items[0]) = supportedBandListUTRATDD384; }
+
+	SupportedBandListUTRATDD384& getSupportedBandListUTRATDD384() { return *static_cast<SupportedBandListUTRATDD384*>(items[0]); }
 };
 
 enum SupportedBandUTRATDD768Values {
@@ -12593,6 +14586,8 @@ public:
 	IRATParametersUTRATDD768(const SupportedBandListUTRATDD768& supportedBandListUTRATDD768);
 
 	void setSupportedBandListUTRATDD768(const SupportedBandListUTRATDD768& supportedBandListUTRATDD768) { *static_cast<SupportedBandListUTRATDD768*>(items[0]) = supportedBandListUTRATDD768; }
+
+	SupportedBandListUTRATDD768& getSupportedBandListUTRATDD768() { return *static_cast<SupportedBandListUTRATDD768*>(items[0]); }
 };
 
 enum SupportedBandGERANValues {
@@ -12630,6 +14625,9 @@ public:
 
 	void setSupportedBandListGERAN(const SupportedBandListGERAN& supportedBandListGERAN) { *static_cast<SupportedBandListGERAN*>(items[0]) = supportedBandListGERAN; }
 	void setIRATParametersGERANInterRATPSHOToGERAN(const IRATParametersGERANInterRATPSHOToGERAN& iRATParametersGERANInterRATPSHOToGERAN) { *static_cast<IRATParametersGERANInterRATPSHOToGERAN*>(items[1]) = iRATParametersGERANInterRATPSHOToGERAN; }
+
+	SupportedBandListGERAN& getSupportedBandListGERAN() { return *static_cast<SupportedBandListGERAN*>(items[0]); }
+	IRATParametersGERANInterRATPSHOToGERAN& getIRATParametersGERANInterRATPSHOToGERAN() { return *static_cast<IRATParametersGERANInterRATPSHOToGERAN*>(items[1]); }
 };
 
 typedef SequenceOf<BandclassCDMA2000, CONSTRAINED, 1, maxCDMA_BandClass> SupportedBandListHRPD;
@@ -12658,6 +14656,10 @@ public:
 	void setSupportedBandListHRPD(const SupportedBandListHRPD& supportedBandListHRPD) { *static_cast<SupportedBandListHRPD*>(items[0]) = supportedBandListHRPD; }
 	void setIRATParametersCDMA2000HRPDtx_ConfigHRPD(const IRATParametersCDMA2000HRPDtx_ConfigHRPD& iRATParametersCDMA2000HRPDtx_ConfigHRPD) { *static_cast<IRATParametersCDMA2000HRPDtx_ConfigHRPD*>(items[1]) = iRATParametersCDMA2000HRPDtx_ConfigHRPD; }
 	void setIRATParametersCDMA2000HRPDrx_ConfigHRPD(const IRATParametersCDMA2000HRPDrx_ConfigHRPD& iRATParametersCDMA2000HRPDrx_ConfigHRPD) { *static_cast<IRATParametersCDMA2000HRPDrx_ConfigHRPD*>(items[2]) = iRATParametersCDMA2000HRPDrx_ConfigHRPD; }
+
+	SupportedBandListHRPD& getSupportedBandListHRPD() { return *static_cast<SupportedBandListHRPD*>(items[0]); }
+	IRATParametersCDMA2000HRPDtx_ConfigHRPD& getIRATParametersCDMA2000HRPDtx_ConfigHRPD() { return *static_cast<IRATParametersCDMA2000HRPDtx_ConfigHRPD*>(items[1]); }
+	IRATParametersCDMA2000HRPDrx_ConfigHRPD& getIRATParametersCDMA2000HRPDrx_ConfigHRPD() { return *static_cast<IRATParametersCDMA2000HRPDrx_ConfigHRPD*>(items[2]); }
 };
 
 typedef SequenceOf<BandclassCDMA2000, CONSTRAINED, 1, maxCDMA_BandClass> SupportedBandList1XRTT;
@@ -12686,6 +14688,10 @@ public:
 	void setSupportedBandList1XRTT(const SupportedBandList1XRTT& supportedBandList1XRTT) { *static_cast<SupportedBandList1XRTT*>(items[0]) = supportedBandList1XRTT; }
 	void setIRATParametersCDMA20001XRTTtx_Config1XRTT(const IRATParametersCDMA20001XRTTtx_Config1XRTT& iRATParametersCDMA20001XRTTtx_Config1XRTT) { *static_cast<IRATParametersCDMA20001XRTTtx_Config1XRTT*>(items[1]) = iRATParametersCDMA20001XRTTtx_Config1XRTT; }
 	void setIRATParametersCDMA20001XRTTrx_Config1XRTT(const IRATParametersCDMA20001XRTTrx_Config1XRTT& iRATParametersCDMA20001XRTTrx_Config1XRTT) { *static_cast<IRATParametersCDMA20001XRTTrx_Config1XRTT*>(items[2]) = iRATParametersCDMA20001XRTTrx_Config1XRTT; }
+
+	SupportedBandList1XRTT& getSupportedBandList1XRTT() { return *static_cast<SupportedBandList1XRTT*>(items[0]); }
+	IRATParametersCDMA20001XRTTtx_Config1XRTT& getIRATParametersCDMA20001XRTTtx_Config1XRTT() { return *static_cast<IRATParametersCDMA20001XRTTtx_Config1XRTT*>(items[1]); }
+	IRATParametersCDMA20001XRTTrx_Config1XRTT& getIRATParametersCDMA20001XRTTrx_Config1XRTT() { return *static_cast<IRATParametersCDMA20001XRTTrx_Config1XRTT*>(items[2]); }
 };
 
 class UEEUTRACapabilityInterRATParameters : public Sequence {
@@ -12695,6 +14701,7 @@ private:
 public:
 	static const Info theInfo;
 	UEEUTRACapabilityInterRATParameters(): Sequence(&theInfo) {}
+
 	void setUtraFDD(const IRATParametersUTRAFDD& utraFDD) { *static_cast<IRATParametersUTRAFDD*>(items[0]) = utraFDD; }
 	void setUtraTDD128(const IRATParametersUTRATDD128& utraTDD128) { *static_cast<IRATParametersUTRATDD128*>(items[1]) = utraTDD128; }
 	void setUtraTDD384(const IRATParametersUTRATDD384& utraTDD384) { *static_cast<IRATParametersUTRATDD384*>(items[2]) = utraTDD384; }
@@ -12702,6 +14709,14 @@ public:
 	void setGeran(const IRATParametersGERAN& geran) { *static_cast<IRATParametersGERAN*>(items[4]) = geran; }
 	void setCdma2000HRPD(const IRATParametersCDMA2000HRPD& cdma2000HRPD) { *static_cast<IRATParametersCDMA2000HRPD*>(items[5]) = cdma2000HRPD; }
 	void setCdma20001xRTT(const IRATParametersCDMA20001XRTT& cdma20001xRTT) { *static_cast<IRATParametersCDMA20001XRTT*>(items[6]) = cdma20001xRTT; }
+
+	IRATParametersUTRAFDD& getUtraFDD() { return *static_cast<IRATParametersUTRAFDD*>(items[0]); }
+	IRATParametersUTRATDD128& getUtraTDD128() { return *static_cast<IRATParametersUTRATDD128*>(items[1]); }
+	IRATParametersUTRATDD384& getUtraTDD384() { return *static_cast<IRATParametersUTRATDD384*>(items[2]); }
+	IRATParametersUTRATDD768& getUtraTDD768() { return *static_cast<IRATParametersUTRATDD768*>(items[3]); }
+	IRATParametersGERAN& getGeran() { return *static_cast<IRATParametersGERAN*>(items[4]); }
+	IRATParametersCDMA2000HRPD& getCdma2000HRPD() { return *static_cast<IRATParametersCDMA2000HRPD*>(items[5]); }
+	IRATParametersCDMA20001XRTT& getCdma20001xRTT() { return *static_cast<IRATParametersCDMA20001XRTT*>(items[6]); }
 };
 
 enum PhyLayerParametersv920enhancedDualLayerFDD_r9Values {
@@ -12721,8 +14736,12 @@ private:
 public:
 	static const Info theInfo;
 	PhyLayerParametersv920(): Sequence(&theInfo) {}
+
 	void setPhyLayerParametersv920enhancedDualLayerFDD_r9(const PhyLayerParametersv920enhancedDualLayerFDD_r9& phyLayerParametersv920enhancedDualLayerFDD_r9) { *static_cast<PhyLayerParametersv920enhancedDualLayerFDD_r9*>(items[0]) = phyLayerParametersv920enhancedDualLayerFDD_r9; }
 	void setPhyLayerParametersv920enhancedDualLayerTDD_r9(const PhyLayerParametersv920enhancedDualLayerTDD_r9& phyLayerParametersv920enhancedDualLayerTDD_r9) { *static_cast<PhyLayerParametersv920enhancedDualLayerTDD_r9*>(items[1]) = phyLayerParametersv920enhancedDualLayerTDD_r9; }
+
+	PhyLayerParametersv920enhancedDualLayerFDD_r9& getPhyLayerParametersv920enhancedDualLayerFDD_r9() { return *static_cast<PhyLayerParametersv920enhancedDualLayerFDD_r9*>(items[0]); }
+	PhyLayerParametersv920enhancedDualLayerTDD_r9& getPhyLayerParametersv920enhancedDualLayerTDD_r9() { return *static_cast<PhyLayerParametersv920enhancedDualLayerTDD_r9*>(items[1]); }
 };
 
 enum IRATParametersGERANv920dtm_r9Values {
@@ -12742,8 +14761,12 @@ private:
 public:
 	static const Info theInfo;
 	IRATParametersGERANv920(): Sequence(&theInfo) {}
+
 	void setIRATParametersGERANv920dtm_r9(const IRATParametersGERANv920dtm_r9& iRATParametersGERANv920dtm_r9) { *static_cast<IRATParametersGERANv920dtm_r9*>(items[0]) = iRATParametersGERANv920dtm_r9; }
 	void setIRATParametersGERANv920e_RedirectionGERAN_r9(const IRATParametersGERANv920e_RedirectionGERAN_r9& iRATParametersGERANv920e_RedirectionGERAN_r9) { *static_cast<IRATParametersGERANv920e_RedirectionGERAN_r9*>(items[1]) = iRATParametersGERANv920e_RedirectionGERAN_r9; }
+
+	IRATParametersGERANv920dtm_r9& getIRATParametersGERANv920dtm_r9() { return *static_cast<IRATParametersGERANv920dtm_r9*>(items[0]); }
+	IRATParametersGERANv920e_RedirectionGERAN_r9& getIRATParametersGERANv920e_RedirectionGERAN_r9() { return *static_cast<IRATParametersGERANv920e_RedirectionGERAN_r9*>(items[1]); }
 };
 
 enum IRATParametersUTRAv920e_RedirectionUTRA_r9Values {
@@ -12761,6 +14784,8 @@ public:
 	IRATParametersUTRAv920(const IRATParametersUTRAv920e_RedirectionUTRA_r9& iRATParametersUTRAv920e_RedirectionUTRA_r9);
 
 	void setIRATParametersUTRAv920e_RedirectionUTRA_r9(const IRATParametersUTRAv920e_RedirectionUTRA_r9& iRATParametersUTRAv920e_RedirectionUTRA_r9) { *static_cast<IRATParametersUTRAv920e_RedirectionUTRA_r9*>(items[0]) = iRATParametersUTRAv920e_RedirectionUTRA_r9; }
+
+	IRATParametersUTRAv920e_RedirectionUTRA_r9& getIRATParametersUTRAv920e_RedirectionUTRA_r9() { return *static_cast<IRATParametersUTRAv920e_RedirectionUTRA_r9*>(items[0]); }
 };
 
 enum IRATParametersCDMA20001XRTTv920e_CSFB_1XRTT_r9Values {
@@ -12784,6 +14809,9 @@ public:
 
 	void setIRATParametersCDMA20001XRTTv920e_CSFB_1XRTT_r9(const IRATParametersCDMA20001XRTTv920e_CSFB_1XRTT_r9& iRATParametersCDMA20001XRTTv920e_CSFB_1XRTT_r9) { *static_cast<IRATParametersCDMA20001XRTTv920e_CSFB_1XRTT_r9*>(items[0]) = iRATParametersCDMA20001XRTTv920e_CSFB_1XRTT_r9; }
 	void setIRATParametersCDMA20001XRTTv920e_CSFB_ConcPS_Mob1XRTT_r9(const IRATParametersCDMA20001XRTTv920e_CSFB_ConcPS_Mob1XRTT_r9& iRATParametersCDMA20001XRTTv920e_CSFB_ConcPS_Mob1XRTT_r9) { *static_cast<IRATParametersCDMA20001XRTTv920e_CSFB_ConcPS_Mob1XRTT_r9*>(items[1]) = iRATParametersCDMA20001XRTTv920e_CSFB_ConcPS_Mob1XRTT_r9; }
+
+	IRATParametersCDMA20001XRTTv920e_CSFB_1XRTT_r9& getIRATParametersCDMA20001XRTTv920e_CSFB_1XRTT_r9() { return *static_cast<IRATParametersCDMA20001XRTTv920e_CSFB_1XRTT_r9*>(items[0]); }
+	IRATParametersCDMA20001XRTTv920e_CSFB_ConcPS_Mob1XRTT_r9& getIRATParametersCDMA20001XRTTv920e_CSFB_ConcPS_Mob1XRTT_r9() { return *static_cast<IRATParametersCDMA20001XRTTv920e_CSFB_ConcPS_Mob1XRTT_r9*>(items[1]); }
 };
 
 enum UEEUTRACapabilityv920IEsdeviceType_r9Values {
@@ -12813,9 +14841,14 @@ private:
 public:
 	static const Info theInfo;
 	CSGProximityIndicationParametersr9(): Sequence(&theInfo) {}
+
 	void setCSGProximityIndicationParametersr9intraFreqProximityIndication_r9(const CSGProximityIndicationParametersr9intraFreqProximityIndication_r9& cSGProximityIndicationParametersr9intraFreqProximityIndication_r9) { *static_cast<CSGProximityIndicationParametersr9intraFreqProximityIndication_r9*>(items[0]) = cSGProximityIndicationParametersr9intraFreqProximityIndication_r9; }
 	void setCSGProximityIndicationParametersr9interFreqProximityIndication_r9(const CSGProximityIndicationParametersr9interFreqProximityIndication_r9& cSGProximityIndicationParametersr9interFreqProximityIndication_r9) { *static_cast<CSGProximityIndicationParametersr9interFreqProximityIndication_r9*>(items[1]) = cSGProximityIndicationParametersr9interFreqProximityIndication_r9; }
 	void setCSGProximityIndicationParametersr9utran_ProximityIndication_r9(const CSGProximityIndicationParametersr9utran_ProximityIndication_r9& cSGProximityIndicationParametersr9utran_ProximityIndication_r9) { *static_cast<CSGProximityIndicationParametersr9utran_ProximityIndication_r9*>(items[2]) = cSGProximityIndicationParametersr9utran_ProximityIndication_r9; }
+
+	CSGProximityIndicationParametersr9intraFreqProximityIndication_r9& getCSGProximityIndicationParametersr9intraFreqProximityIndication_r9() { return *static_cast<CSGProximityIndicationParametersr9intraFreqProximityIndication_r9*>(items[0]); }
+	CSGProximityIndicationParametersr9interFreqProximityIndication_r9& getCSGProximityIndicationParametersr9interFreqProximityIndication_r9() { return *static_cast<CSGProximityIndicationParametersr9interFreqProximityIndication_r9*>(items[1]); }
+	CSGProximityIndicationParametersr9utran_ProximityIndication_r9& getCSGProximityIndicationParametersr9utran_ProximityIndication_r9() { return *static_cast<CSGProximityIndicationParametersr9utran_ProximityIndication_r9*>(items[2]); }
 };
 
 enum NeighCellSIAcquisitionParametersr9intraFreqSI_AcquisitionForHO_r9Values {
@@ -12840,9 +14873,14 @@ private:
 public:
 	static const Info theInfo;
 	NeighCellSIAcquisitionParametersr9(): Sequence(&theInfo) {}
+
 	void setNeighCellSIAcquisitionParametersr9intraFreqSI_AcquisitionForHO_r9(const NeighCellSIAcquisitionParametersr9intraFreqSI_AcquisitionForHO_r9& neighCellSIAcquisitionParametersr9intraFreqSI_AcquisitionForHO_r9) { *static_cast<NeighCellSIAcquisitionParametersr9intraFreqSI_AcquisitionForHO_r9*>(items[0]) = neighCellSIAcquisitionParametersr9intraFreqSI_AcquisitionForHO_r9; }
 	void setNeighCellSIAcquisitionParametersr9interFreqSI_AcquisitionForHO_r9(const NeighCellSIAcquisitionParametersr9interFreqSI_AcquisitionForHO_r9& neighCellSIAcquisitionParametersr9interFreqSI_AcquisitionForHO_r9) { *static_cast<NeighCellSIAcquisitionParametersr9interFreqSI_AcquisitionForHO_r9*>(items[1]) = neighCellSIAcquisitionParametersr9interFreqSI_AcquisitionForHO_r9; }
 	void setNeighCellSIAcquisitionParametersr9utran_SI_AcquisitionForHO_r9(const NeighCellSIAcquisitionParametersr9utran_SI_AcquisitionForHO_r9& neighCellSIAcquisitionParametersr9utran_SI_AcquisitionForHO_r9) { *static_cast<NeighCellSIAcquisitionParametersr9utran_SI_AcquisitionForHO_r9*>(items[2]) = neighCellSIAcquisitionParametersr9utran_SI_AcquisitionForHO_r9; }
+
+	NeighCellSIAcquisitionParametersr9intraFreqSI_AcquisitionForHO_r9& getNeighCellSIAcquisitionParametersr9intraFreqSI_AcquisitionForHO_r9() { return *static_cast<NeighCellSIAcquisitionParametersr9intraFreqSI_AcquisitionForHO_r9*>(items[0]); }
+	NeighCellSIAcquisitionParametersr9interFreqSI_AcquisitionForHO_r9& getNeighCellSIAcquisitionParametersr9interFreqSI_AcquisitionForHO_r9() { return *static_cast<NeighCellSIAcquisitionParametersr9interFreqSI_AcquisitionForHO_r9*>(items[1]); }
+	NeighCellSIAcquisitionParametersr9utran_SI_AcquisitionForHO_r9& getNeighCellSIAcquisitionParametersr9utran_SI_AcquisitionForHO_r9() { return *static_cast<NeighCellSIAcquisitionParametersr9utran_SI_AcquisitionForHO_r9*>(items[2]); }
 };
 
 enum SONParametersr9rach_Report_r9Values {
@@ -12857,7 +14895,10 @@ private:
 public:
 	static const Info theInfo;
 	SONParametersr9(): Sequence(&theInfo) {}
+
 	void setSONParametersr9rach_Report_r9(const SONParametersr9rach_Report_r9& sONParametersr9rach_Report_r9) { *static_cast<SONParametersr9rach_Report_r9*>(items[0]) = sONParametersr9rach_Report_r9; }
+
+	SONParametersr9rach_Report_r9& getSONParametersr9rach_Report_r9() { return *static_cast<SONParametersr9rach_Report_r9*>(items[0]); }
 };
 
 typedef OctetStringBase UEEUTRACapabilityv940IEsLateNonCriticalExtension;
@@ -12906,7 +14947,10 @@ private:
 public:
 	static const Info theInfo;
 	NonContiguousULRAWithinCCr10(): Sequence(&theInfo) {}
+
 	void setNonContiguousULRAWithinCCr10nonContiguousUL_RA_WithinCC_Info_r10(const NonContiguousULRAWithinCCr10nonContiguousUL_RA_WithinCC_Info_r10& nonContiguousULRAWithinCCr10nonContiguousUL_RA_WithinCC_Info_r10) { *static_cast<NonContiguousULRAWithinCCr10nonContiguousUL_RA_WithinCC_Info_r10*>(items[0]) = nonContiguousULRAWithinCCr10nonContiguousUL_RA_WithinCC_Info_r10; }
+
+	NonContiguousULRAWithinCCr10nonContiguousUL_RA_WithinCC_Info_r10& getNonContiguousULRAWithinCCr10nonContiguousUL_RA_WithinCC_Info_r10() { return *static_cast<NonContiguousULRAWithinCCr10nonContiguousUL_RA_WithinCC_Info_r10*>(items[0]); }
 };
 
 typedef SequenceOf<NonContiguousULRAWithinCCr10, CONSTRAINED, 1, maxBands> NonContiguousULRAWithinCCListr10;
@@ -12918,6 +14962,7 @@ private:
 public:
 	static const Info theInfo;
 	PhyLayerParametersv1020(): Sequence(&theInfo) {}
+
 	void setPhyLayerParametersv1020twoAntennaPortsForPUCCH_r10(const PhyLayerParametersv1020twoAntennaPortsForPUCCH_r10& phyLayerParametersv1020twoAntennaPortsForPUCCH_r10) { *static_cast<PhyLayerParametersv1020twoAntennaPortsForPUCCH_r10*>(items[0]) = phyLayerParametersv1020twoAntennaPortsForPUCCH_r10; }
 	void setPhyLayerParametersv1020tm9_With_8Tx_FDD_r10(const PhyLayerParametersv1020tm9_With_8Tx_FDD_r10& phyLayerParametersv1020tm9_With_8Tx_FDD_r10) { *static_cast<PhyLayerParametersv1020tm9_With_8Tx_FDD_r10*>(items[1]) = phyLayerParametersv1020tm9_With_8Tx_FDD_r10; }
 	void setPhyLayerParametersv1020pmi_Disabling_r10(const PhyLayerParametersv1020pmi_Disabling_r10& phyLayerParametersv1020pmi_Disabling_r10) { *static_cast<PhyLayerParametersv1020pmi_Disabling_r10*>(items[2]) = phyLayerParametersv1020pmi_Disabling_r10; }
@@ -12925,6 +14970,14 @@ public:
 	void setPhyLayerParametersv1020simultaneousPUCCH_PUSCH_r10(const PhyLayerParametersv1020simultaneousPUCCH_PUSCH_r10& phyLayerParametersv1020simultaneousPUCCH_PUSCH_r10) { *static_cast<PhyLayerParametersv1020simultaneousPUCCH_PUSCH_r10*>(items[4]) = phyLayerParametersv1020simultaneousPUCCH_PUSCH_r10; }
 	void setPhyLayerParametersv1020multiClusterPUSCH_WithinCC_r10(const PhyLayerParametersv1020multiClusterPUSCH_WithinCC_r10& phyLayerParametersv1020multiClusterPUSCH_WithinCC_r10) { *static_cast<PhyLayerParametersv1020multiClusterPUSCH_WithinCC_r10*>(items[5]) = phyLayerParametersv1020multiClusterPUSCH_WithinCC_r10; }
 	void setNonContiguousULRAWithinCCListr10(const NonContiguousULRAWithinCCListr10& nonContiguousULRAWithinCCListr10) { *static_cast<NonContiguousULRAWithinCCListr10*>(items[6]) = nonContiguousULRAWithinCCListr10; }
+
+	PhyLayerParametersv1020twoAntennaPortsForPUCCH_r10& getPhyLayerParametersv1020twoAntennaPortsForPUCCH_r10() { return *static_cast<PhyLayerParametersv1020twoAntennaPortsForPUCCH_r10*>(items[0]); }
+	PhyLayerParametersv1020tm9_With_8Tx_FDD_r10& getPhyLayerParametersv1020tm9_With_8Tx_FDD_r10() { return *static_cast<PhyLayerParametersv1020tm9_With_8Tx_FDD_r10*>(items[1]); }
+	PhyLayerParametersv1020pmi_Disabling_r10& getPhyLayerParametersv1020pmi_Disabling_r10() { return *static_cast<PhyLayerParametersv1020pmi_Disabling_r10*>(items[2]); }
+	PhyLayerParametersv1020crossCarrierScheduling_r10& getPhyLayerParametersv1020crossCarrierScheduling_r10() { return *static_cast<PhyLayerParametersv1020crossCarrierScheduling_r10*>(items[3]); }
+	PhyLayerParametersv1020simultaneousPUCCH_PUSCH_r10& getPhyLayerParametersv1020simultaneousPUCCH_PUSCH_r10() { return *static_cast<PhyLayerParametersv1020simultaneousPUCCH_PUSCH_r10*>(items[4]); }
+	PhyLayerParametersv1020multiClusterPUSCH_WithinCC_r10& getPhyLayerParametersv1020multiClusterPUSCH_WithinCC_r10() { return *static_cast<PhyLayerParametersv1020multiClusterPUSCH_WithinCC_r10*>(items[5]); }
+	NonContiguousULRAWithinCCListr10& getNonContiguousULRAWithinCCListr10() { return *static_cast<NonContiguousULRAWithinCCListr10*>(items[6]); }
 };
 
 typedef Integer<CONSTRAINED, 1, 64> BandParametersr10BandEUTRAr10;
@@ -12956,6 +15009,9 @@ public:
 
 	void setCaBandwidthClassULr10(const CABandwidthClassr10& caBandwidthClassULr10) { *static_cast<CABandwidthClassr10*>(items[0]) = caBandwidthClassULr10; }
 	void setSupportedMIMOCapabilityULr10(const MIMOCapabilityULr10& supportedMIMOCapabilityULr10) { *static_cast<MIMOCapabilityULr10*>(items[1]) = supportedMIMOCapabilityULr10; }
+
+	CABandwidthClassr10& getCaBandwidthClassULr10() { return *static_cast<CABandwidthClassr10*>(items[0]); }
+	MIMOCapabilityULr10& getSupportedMIMOCapabilityULr10() { return *static_cast<MIMOCapabilityULr10*>(items[1]); }
 };
 
 typedef SequenceOf<CAMIMOParametersULr10, CONSTRAINED, 1, maxBandwidthClass_r10> BandParametersULr10;
@@ -12978,6 +15034,9 @@ public:
 
 	void setCaBandwidthClassDLr10(const CABandwidthClassr10& caBandwidthClassDLr10) { *static_cast<CABandwidthClassr10*>(items[0]) = caBandwidthClassDLr10; }
 	void setSupportedMIMOCapabilityDLr10(const MIMOCapabilityDLr10& supportedMIMOCapabilityDLr10) { *static_cast<MIMOCapabilityDLr10*>(items[1]) = supportedMIMOCapabilityDLr10; }
+
+	CABandwidthClassr10& getCaBandwidthClassDLr10() { return *static_cast<CABandwidthClassr10*>(items[0]); }
+	MIMOCapabilityDLr10& getSupportedMIMOCapabilityDLr10() { return *static_cast<MIMOCapabilityDLr10*>(items[1]); }
 };
 
 typedef SequenceOf<CAMIMOParametersDLr10, CONSTRAINED, 1, maxBandwidthClass_r10> BandParametersDLr10;
@@ -12994,6 +15053,10 @@ public:
 	void setBandParametersr10BandEUTRAr10(const BandParametersr10BandEUTRAr10& bandParametersr10BandEUTRAr10) { *static_cast<BandParametersr10BandEUTRAr10*>(items[0]) = bandParametersr10BandEUTRAr10; }
 	void setBandParametersULr10(const BandParametersULr10& bandParametersULr10) { *static_cast<BandParametersULr10*>(items[1]) = bandParametersULr10; }
 	void setBandParametersDLr10(const BandParametersDLr10& bandParametersDLr10) { *static_cast<BandParametersDLr10*>(items[2]) = bandParametersDLr10; }
+
+	BandParametersr10BandEUTRAr10& getBandParametersr10BandEUTRAr10() { return *static_cast<BandParametersr10BandEUTRAr10*>(items[0]); }
+	BandParametersULr10& getBandParametersULr10() { return *static_cast<BandParametersULr10*>(items[1]); }
+	BandParametersDLr10& getBandParametersDLr10() { return *static_cast<BandParametersDLr10*>(items[2]); }
 };
 
 typedef SequenceOf<BandParametersr10, CONSTRAINED, 1, maxSimultaneousBands_r10> BandCombinationParametersr10;
@@ -13010,6 +15073,8 @@ public:
 	RFParametersv1020(const SupportedBandCombinationr10& supportedBandCombinationr10);
 
 	void setSupportedBandCombinationr10(const SupportedBandCombinationr10& supportedBandCombinationr10) { *static_cast<SupportedBandCombinationr10*>(items[0]) = supportedBandCombinationr10; }
+
+	SupportedBandCombinationr10& getSupportedBandCombinationr10() { return *static_cast<SupportedBandCombinationr10*>(items[0]); }
 };
 
 typedef SequenceOf<BandInfoEUTRA, CONSTRAINED, 1, maxBandComb_r10> BandCombinationListEUTRAr10;
@@ -13024,6 +15089,8 @@ public:
 	MeasParametersv1020(const BandCombinationListEUTRAr10& bandCombinationListEUTRAr10);
 
 	void setBandCombinationListEUTRAr10(const BandCombinationListEUTRAr10& bandCombinationListEUTRAr10) { *static_cast<BandCombinationListEUTRAr10*>(items[0]) = bandCombinationListEUTRAr10; }
+
+	BandCombinationListEUTRAr10& getBandCombinationListEUTRAr10() { return *static_cast<BandCombinationListEUTRAr10*>(items[0]); }
 };
 
 typedef BitString<CONSTRAINED, 32, 32> UEEUTRACapabilityv1020IEsFeatureGroupIndRel10r10;
@@ -13043,6 +15110,8 @@ public:
 	IRATParametersCDMA20001XRTTv1020(const IRATParametersCDMA20001XRTTv1020e_CSFB_dual_1XRTT_r10& iRATParametersCDMA20001XRTTv1020e_CSFB_dual_1XRTT_r10);
 
 	void setIRATParametersCDMA20001XRTTv1020e_CSFB_dual_1XRTT_r10(const IRATParametersCDMA20001XRTTv1020e_CSFB_dual_1XRTT_r10& iRATParametersCDMA20001XRTTv1020e_CSFB_dual_1XRTT_r10) { *static_cast<IRATParametersCDMA20001XRTTv1020e_CSFB_dual_1XRTT_r10*>(items[0]) = iRATParametersCDMA20001XRTTv1020e_CSFB_dual_1XRTT_r10; }
+
+	IRATParametersCDMA20001XRTTv1020e_CSFB_dual_1XRTT_r10& getIRATParametersCDMA20001XRTTv1020e_CSFB_dual_1XRTT_r10() { return *static_cast<IRATParametersCDMA20001XRTTv1020e_CSFB_dual_1XRTT_r10*>(items[0]); }
 };
 
 enum UEBasedNetwPerfMeasParametersr10loggedMeasurementsIdle_r10Values {
@@ -13062,8 +15131,12 @@ private:
 public:
 	static const Info theInfo;
 	UEBasedNetwPerfMeasParametersr10(): Sequence(&theInfo) {}
+
 	void setUEBasedNetwPerfMeasParametersr10loggedMeasurementsIdle_r10(const UEBasedNetwPerfMeasParametersr10loggedMeasurementsIdle_r10& uEBasedNetwPerfMeasParametersr10loggedMeasurementsIdle_r10) { *static_cast<UEBasedNetwPerfMeasParametersr10loggedMeasurementsIdle_r10*>(items[0]) = uEBasedNetwPerfMeasParametersr10loggedMeasurementsIdle_r10; }
 	void setUEBasedNetwPerfMeasParametersr10standaloneGNSS_Location_r10(const UEBasedNetwPerfMeasParametersr10standaloneGNSS_Location_r10& uEBasedNetwPerfMeasParametersr10standaloneGNSS_Location_r10) { *static_cast<UEBasedNetwPerfMeasParametersr10standaloneGNSS_Location_r10*>(items[1]) = uEBasedNetwPerfMeasParametersr10standaloneGNSS_Location_r10; }
+
+	UEBasedNetwPerfMeasParametersr10loggedMeasurementsIdle_r10& getUEBasedNetwPerfMeasParametersr10loggedMeasurementsIdle_r10() { return *static_cast<UEBasedNetwPerfMeasParametersr10loggedMeasurementsIdle_r10*>(items[0]); }
+	UEBasedNetwPerfMeasParametersr10standaloneGNSS_Location_r10& getUEBasedNetwPerfMeasParametersr10standaloneGNSS_Location_r10() { return *static_cast<UEBasedNetwPerfMeasParametersr10standaloneGNSS_Location_r10*>(items[1]); }
 };
 
 enum IRATParametersUTRATDDv1020e_RedirectionUTRA_TDD_r10Values {
@@ -13081,6 +15154,8 @@ public:
 	IRATParametersUTRATDDv1020(const IRATParametersUTRATDDv1020e_RedirectionUTRA_TDD_r10& iRATParametersUTRATDDv1020e_RedirectionUTRA_TDD_r10);
 
 	void setIRATParametersUTRATDDv1020e_RedirectionUTRA_TDD_r10(const IRATParametersUTRATDDv1020e_RedirectionUTRA_TDD_r10& iRATParametersUTRATDDv1020e_RedirectionUTRA_TDD_r10) { *static_cast<IRATParametersUTRATDDv1020e_RedirectionUTRA_TDD_r10*>(items[0]) = iRATParametersUTRATDDv1020e_RedirectionUTRA_TDD_r10; }
+
+	IRATParametersUTRATDDv1020e_RedirectionUTRA_TDD_r10& getIRATParametersUTRATDDv1020e_RedirectionUTRA_TDD_r10() { return *static_cast<IRATParametersUTRATDDv1020e_RedirectionUTRA_TDD_r10*>(items[0]); }
 };
 
 class UEEUTRACapabilityv1020IEsNonCriticalExtension : public Sequence {
@@ -13090,6 +15165,8 @@ private:
 public:
 	static const Info theInfo;
 	UEEUTRACapabilityv1020IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class UEEUTRACapabilityv1020IEs : public Sequence {
@@ -13099,6 +15176,7 @@ private:
 public:
 	static const Info theInfo;
 	UEEUTRACapabilityv1020IEs(): Sequence(&theInfo) {}
+
 	void setUEEUTRACapabilityv1020IEsUeCategoryv1020(const UEEUTRACapabilityv1020IEsUeCategoryv1020& uEEUTRACapabilityv1020IEsUeCategoryv1020) { *static_cast<UEEUTRACapabilityv1020IEsUeCategoryv1020*>(items[0]) = uEEUTRACapabilityv1020IEsUeCategoryv1020; }
 	void setPhyLayerParametersv1020(const PhyLayerParametersv1020& phyLayerParametersv1020) { *static_cast<PhyLayerParametersv1020*>(items[1]) = phyLayerParametersv1020; }
 	void setRfParametersv1020(const RFParametersv1020& rfParametersv1020) { *static_cast<RFParametersv1020*>(items[2]) = rfParametersv1020; }
@@ -13108,6 +15186,16 @@ public:
 	void setUeBasedNetwPerfMeasParametersr10(const UEBasedNetwPerfMeasParametersr10& ueBasedNetwPerfMeasParametersr10) { *static_cast<UEBasedNetwPerfMeasParametersr10*>(items[6]) = ueBasedNetwPerfMeasParametersr10; }
 	void setInterRATParametersUTRATDDv1020(const IRATParametersUTRATDDv1020& interRATParametersUTRATDDv1020) { *static_cast<IRATParametersUTRATDDv1020*>(items[7]) = interRATParametersUTRATDDv1020; }
 	void setUEEUTRACapabilityv1020IEsNonCriticalExtension(const UEEUTRACapabilityv1020IEsNonCriticalExtension& uEEUTRACapabilityv1020IEsNonCriticalExtension) { *static_cast<UEEUTRACapabilityv1020IEsNonCriticalExtension*>(items[8]) = uEEUTRACapabilityv1020IEsNonCriticalExtension; }
+
+	UEEUTRACapabilityv1020IEsUeCategoryv1020& getUEEUTRACapabilityv1020IEsUeCategoryv1020() { return *static_cast<UEEUTRACapabilityv1020IEsUeCategoryv1020*>(items[0]); }
+	PhyLayerParametersv1020& getPhyLayerParametersv1020() { return *static_cast<PhyLayerParametersv1020*>(items[1]); }
+	RFParametersv1020& getRfParametersv1020() { return *static_cast<RFParametersv1020*>(items[2]); }
+	MeasParametersv1020& getMeasParametersv1020() { return *static_cast<MeasParametersv1020*>(items[3]); }
+	UEEUTRACapabilityv1020IEsFeatureGroupIndRel10r10& getUEEUTRACapabilityv1020IEsFeatureGroupIndRel10r10() { return *static_cast<UEEUTRACapabilityv1020IEsFeatureGroupIndRel10r10*>(items[4]); }
+	IRATParametersCDMA20001XRTTv1020& getInterRATParametersCDMA2000v1020() { return *static_cast<IRATParametersCDMA20001XRTTv1020*>(items[5]); }
+	UEBasedNetwPerfMeasParametersr10& getUeBasedNetwPerfMeasParametersr10() { return *static_cast<UEBasedNetwPerfMeasParametersr10*>(items[6]); }
+	IRATParametersUTRATDDv1020& getInterRATParametersUTRATDDv1020() { return *static_cast<IRATParametersUTRATDDv1020*>(items[7]); }
+	UEEUTRACapabilityv1020IEsNonCriticalExtension& getUEEUTRACapabilityv1020IEsNonCriticalExtension() { return *static_cast<UEEUTRACapabilityv1020IEsNonCriticalExtension*>(items[8]); }
 };
 
 class UEEUTRACapabilityv940IEs : public Sequence {
@@ -13117,8 +15205,12 @@ private:
 public:
 	static const Info theInfo;
 	UEEUTRACapabilityv940IEs(): Sequence(&theInfo) {}
+
 	void setUEEUTRACapabilityv940IEsLateNonCriticalExtension(const UEEUTRACapabilityv940IEsLateNonCriticalExtension& uEEUTRACapabilityv940IEsLateNonCriticalExtension) { *static_cast<UEEUTRACapabilityv940IEsLateNonCriticalExtension*>(items[0]) = uEEUTRACapabilityv940IEsLateNonCriticalExtension; }
 	void setNonCriticalExtension(const UEEUTRACapabilityv1020IEs& nonCriticalExtension) { *static_cast<UEEUTRACapabilityv1020IEs*>(items[1]) = nonCriticalExtension; }
+
+	UEEUTRACapabilityv940IEsLateNonCriticalExtension& getUEEUTRACapabilityv940IEsLateNonCriticalExtension() { return *static_cast<UEEUTRACapabilityv940IEsLateNonCriticalExtension*>(items[0]); }
+	UEEUTRACapabilityv1020IEs& getNonCriticalExtension() { return *static_cast<UEEUTRACapabilityv1020IEs*>(items[1]); }
 };
 
 class UEEUTRACapabilityv920IEs : public Sequence {
@@ -13139,6 +15231,16 @@ public:
 	void setNeighCellSIAcquisitionParametersr9(const NeighCellSIAcquisitionParametersr9& neighCellSIAcquisitionParametersr9) { *static_cast<NeighCellSIAcquisitionParametersr9*>(items[6]) = neighCellSIAcquisitionParametersr9; }
 	void setSonParametersr9(const SONParametersr9& sonParametersr9) { *static_cast<SONParametersr9*>(items[7]) = sonParametersr9; }
 	void setNonCriticalExtension(const UEEUTRACapabilityv940IEs& nonCriticalExtension) { *static_cast<UEEUTRACapabilityv940IEs*>(items[8]) = nonCriticalExtension; }
+
+	PhyLayerParametersv920& getPhyLayerParametersv920() { return *static_cast<PhyLayerParametersv920*>(items[0]); }
+	IRATParametersGERANv920& getInterRATParametersGERANv920() { return *static_cast<IRATParametersGERANv920*>(items[1]); }
+	IRATParametersUTRAv920& getInterRATParametersUTRAv920() { return *static_cast<IRATParametersUTRAv920*>(items[2]); }
+	IRATParametersCDMA20001XRTTv920& getInterRATParametersCDMA2000v920() { return *static_cast<IRATParametersCDMA20001XRTTv920*>(items[3]); }
+	UEEUTRACapabilityv920IEsdeviceType_r9& getUEEUTRACapabilityv920IEsdeviceType_r9() { return *static_cast<UEEUTRACapabilityv920IEsdeviceType_r9*>(items[4]); }
+	CSGProximityIndicationParametersr9& getCsgProximityIndicationParametersr9() { return *static_cast<CSGProximityIndicationParametersr9*>(items[5]); }
+	NeighCellSIAcquisitionParametersr9& getNeighCellSIAcquisitionParametersr9() { return *static_cast<NeighCellSIAcquisitionParametersr9*>(items[6]); }
+	SONParametersr9& getSonParametersr9() { return *static_cast<SONParametersr9*>(items[7]); }
+	UEEUTRACapabilityv940IEs& getNonCriticalExtension() { return *static_cast<UEEUTRACapabilityv940IEs*>(items[8]); }
 };
 
 class UEEUTRACapability : public Sequence {
@@ -13159,6 +15261,16 @@ public:
 	void setUEEUTRACapabilityFeatureGroupIndicators(const UEEUTRACapabilityFeatureGroupIndicators& uEEUTRACapabilityFeatureGroupIndicators) { *static_cast<UEEUTRACapabilityFeatureGroupIndicators*>(items[6]) = uEEUTRACapabilityFeatureGroupIndicators; }
 	void setUEEUTRACapabilityInterRATParameters(const UEEUTRACapabilityInterRATParameters& uEEUTRACapabilityInterRATParameters) { *static_cast<UEEUTRACapabilityInterRATParameters*>(items[7]) = uEEUTRACapabilityInterRATParameters; }
 	void setNonCriticalExtension(const UEEUTRACapabilityv920IEs& nonCriticalExtension) { *static_cast<UEEUTRACapabilityv920IEs*>(items[8]) = nonCriticalExtension; }
+
+	AccessStratumRelease& getAccessStratumRelease() { return *static_cast<AccessStratumRelease*>(items[0]); }
+	UEEUTRACapabilityUeCategory& getUEEUTRACapabilityUeCategory() { return *static_cast<UEEUTRACapabilityUeCategory*>(items[1]); }
+	PDCPParameters& getPdcpParameters() { return *static_cast<PDCPParameters*>(items[2]); }
+	PhyLayerParameters& getPhyLayerParameters() { return *static_cast<PhyLayerParameters*>(items[3]); }
+	RFParameters& getRfParameters() { return *static_cast<RFParameters*>(items[4]); }
+	MeasParameters& getMeasParameters() { return *static_cast<MeasParameters*>(items[5]); }
+	UEEUTRACapabilityFeatureGroupIndicators& getUEEUTRACapabilityFeatureGroupIndicators() { return *static_cast<UEEUTRACapabilityFeatureGroupIndicators*>(items[6]); }
+	UEEUTRACapabilityInterRATParameters& getUEEUTRACapabilityInterRATParameters() { return *static_cast<UEEUTRACapabilityInterRATParameters*>(items[7]); }
+	UEEUTRACapabilityv920IEs& getNonCriticalExtension() { return *static_cast<UEEUTRACapabilityv920IEs*>(items[8]); }
 };
 
 typedef BitString<CONSTRAINED, 32, 32> UEEUTRACapabilityv9a0IEsFeatureGroupIndRel9Addr9;
@@ -13174,6 +15286,7 @@ private:
 public:
 	static const Info theInfo;
 	UEEUTRACapabilityAddXDDModer9(): Sequence(&theInfo) {}
+
 	void setPhyLayerParametersr9(const PhyLayerParameters& phyLayerParametersr9) { *static_cast<PhyLayerParameters*>(items[0]) = phyLayerParametersr9; }
 	void setUEEUTRACapabilityAddXDDModer9FeatureGroupIndicatorsr9(const UEEUTRACapabilityAddXDDModer9FeatureGroupIndicatorsr9& uEEUTRACapabilityAddXDDModer9FeatureGroupIndicatorsr9) { *static_cast<UEEUTRACapabilityAddXDDModer9FeatureGroupIndicatorsr9*>(items[1]) = uEEUTRACapabilityAddXDDModer9FeatureGroupIndicatorsr9; }
 	void setUEEUTRACapabilityAddXDDModer9FeatureGroupIndRel9Addr9(const UEEUTRACapabilityAddXDDModer9FeatureGroupIndRel9Addr9& uEEUTRACapabilityAddXDDModer9FeatureGroupIndRel9Addr9) { *static_cast<UEEUTRACapabilityAddXDDModer9FeatureGroupIndRel9Addr9*>(items[2]) = uEEUTRACapabilityAddXDDModer9FeatureGroupIndRel9Addr9; }
@@ -13181,6 +15294,14 @@ public:
 	void setInterRATParametersUTRAr9(const IRATParametersUTRAv920& interRATParametersUTRAr9) { *static_cast<IRATParametersUTRAv920*>(items[4]) = interRATParametersUTRAr9; }
 	void setInterRATParametersCDMA2000r9(const IRATParametersCDMA20001XRTTv920& interRATParametersCDMA2000r9) { *static_cast<IRATParametersCDMA20001XRTTv920*>(items[5]) = interRATParametersCDMA2000r9; }
 	void setNeighCellSIAcquisitionParametersr9(const NeighCellSIAcquisitionParametersr9& neighCellSIAcquisitionParametersr9) { *static_cast<NeighCellSIAcquisitionParametersr9*>(items[6]) = neighCellSIAcquisitionParametersr9; }
+
+	PhyLayerParameters& getPhyLayerParametersr9() { return *static_cast<PhyLayerParameters*>(items[0]); }
+	UEEUTRACapabilityAddXDDModer9FeatureGroupIndicatorsr9& getUEEUTRACapabilityAddXDDModer9FeatureGroupIndicatorsr9() { return *static_cast<UEEUTRACapabilityAddXDDModer9FeatureGroupIndicatorsr9*>(items[1]); }
+	UEEUTRACapabilityAddXDDModer9FeatureGroupIndRel9Addr9& getUEEUTRACapabilityAddXDDModer9FeatureGroupIndRel9Addr9() { return *static_cast<UEEUTRACapabilityAddXDDModer9FeatureGroupIndRel9Addr9*>(items[2]); }
+	IRATParametersGERAN& getInterRATParametersGERANr9() { return *static_cast<IRATParametersGERAN*>(items[3]); }
+	IRATParametersUTRAv920& getInterRATParametersUTRAr9() { return *static_cast<IRATParametersUTRAv920*>(items[4]); }
+	IRATParametersCDMA20001XRTTv920& getInterRATParametersCDMA2000r9() { return *static_cast<IRATParametersCDMA20001XRTTv920*>(items[5]); }
+	NeighCellSIAcquisitionParametersr9& getNeighCellSIAcquisitionParametersr9() { return *static_cast<NeighCellSIAcquisitionParametersr9*>(items[6]); }
 };
 
 class UEEUTRACapabilityv9a0IEsNonCriticalExtension : public Sequence {
@@ -13190,6 +15311,8 @@ private:
 public:
 	static const Info theInfo;
 	UEEUTRACapabilityv9a0IEsNonCriticalExtension(): Sequence(&theInfo) {}
+
+
 };
 
 class UEEUTRACapabilityv9a0IEs : public Sequence {
@@ -13199,10 +15322,16 @@ private:
 public:
 	static const Info theInfo;
 	UEEUTRACapabilityv9a0IEs(): Sequence(&theInfo) {}
+
 	void setUEEUTRACapabilityv9a0IEsFeatureGroupIndRel9Addr9(const UEEUTRACapabilityv9a0IEsFeatureGroupIndRel9Addr9& uEEUTRACapabilityv9a0IEsFeatureGroupIndRel9Addr9) { *static_cast<UEEUTRACapabilityv9a0IEsFeatureGroupIndRel9Addr9*>(items[0]) = uEEUTRACapabilityv9a0IEsFeatureGroupIndRel9Addr9; }
 	void setFddAddUEEUTRACapabilitiesr9(const UEEUTRACapabilityAddXDDModer9& fddAddUEEUTRACapabilitiesr9) { *static_cast<UEEUTRACapabilityAddXDDModer9*>(items[1]) = fddAddUEEUTRACapabilitiesr9; }
 	void setTddAddUEEUTRACapabilitiesr9(const UEEUTRACapabilityAddXDDModer9& tddAddUEEUTRACapabilitiesr9) { *static_cast<UEEUTRACapabilityAddXDDModer9*>(items[2]) = tddAddUEEUTRACapabilitiesr9; }
 	void setUEEUTRACapabilityv9a0IEsNonCriticalExtension(const UEEUTRACapabilityv9a0IEsNonCriticalExtension& uEEUTRACapabilityv9a0IEsNonCriticalExtension) { *static_cast<UEEUTRACapabilityv9a0IEsNonCriticalExtension*>(items[3]) = uEEUTRACapabilityv9a0IEsNonCriticalExtension; }
+
+	UEEUTRACapabilityv9a0IEsFeatureGroupIndRel9Addr9& getUEEUTRACapabilityv9a0IEsFeatureGroupIndRel9Addr9() { return *static_cast<UEEUTRACapabilityv9a0IEsFeatureGroupIndRel9Addr9*>(items[0]); }
+	UEEUTRACapabilityAddXDDModer9& getFddAddUEEUTRACapabilitiesr9() { return *static_cast<UEEUTRACapabilityAddXDDModer9*>(items[1]); }
+	UEEUTRACapabilityAddXDDModer9& getTddAddUEEUTRACapabilitiesr9() { return *static_cast<UEEUTRACapabilityAddXDDModer9*>(items[2]); }
+	UEEUTRACapabilityv9a0IEsNonCriticalExtension& getUEEUTRACapabilityv9a0IEsNonCriticalExtension() { return *static_cast<UEEUTRACapabilityv9a0IEsNonCriticalExtension*>(items[3]); }
 };
 
 }

@@ -20,34 +20,21 @@
 
 #include <omnetpp.h>
 #include "RRCClassDefinitions.h"
-#include "NotificationBoard.h"
 #include "ASNTypes.h"
 #include "SubscriberTable.h"
 
-enum RRCStates {
-    RRC_IDLE,
-    RRC_CONNECTED
-};
+using namespace rrc;
 
-enum RRCEvent {
-    RRC_CONN_EST,
-    RRC_CONN_REL
-};
+#define UE_NODE_TYPE        0
+#define ENB_NODE_TYPE       1
 
-class RRC : public cSimpleModule, public INotifiable {
+class RRC : public cSimpleModule {
 private:
-    NotificationBoard *nb;
-
+    bool nodeType;
     SubscriberTable *subT;
-
-    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
-
-    void performStateTransition(RRCEvent &event);
 public:
 	RRC();
 	virtual ~RRC();
-
-	cFSM fsm;
 
 	virtual int numInitStages() const  { return 5; }
 
@@ -55,8 +42,8 @@ public:
 	void handleMessage(cMessage *msg);
 	void handleLowerMessage(cMessage *msg);
 
-	void sendRRCConnectionRequest();
 	void sendDown(int logChannel, int choice, const char *name, AbstractType *payload);
+
 };
 
 #endif /* RRC_H_ */

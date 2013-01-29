@@ -103,7 +103,7 @@ void TunnelEndpoint::processCreateSessionRequest(GTPMessage *msg) {
 	if (sub == NULL) {
 		sub = new Subscriber();
 		dynamic_cast<GTPControl*>(module)->subT->push_back(sub);
-		sub->initEntities(0);
+		sub->initNasEntities(0);
 		sub->setImsi(imsi);
 		sub->setGTPProcedure(EUTRANInitAttachReq);
 	}

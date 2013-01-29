@@ -36,17 +36,17 @@ RRC::~RRC() {
 
 void RRC::initialize(int stage) {
     if (stage == 4) {
-        nb = NotificationBoardAccess().get();
-        nb->subscribe(this, NF_RAND_ACCESS_COMPL);
-
         subT = SubscriberTableAccess().get();
 
-        fsm.setState(RRC_IDLE);
-
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
-            RRCEvent event = RRC_CONN_EST;
-            performStateTransition(event);
-        }
+            nodeType = UE_NODE_TYPE;
+            Subscriber *sub = subT->at(0);
+            sub->initRrcEntity(nodeType);
+            RRCEntity *rrc = sub->getRrcEntity();
+            rrc->setModule(this);
+            rrc->performStateTransition(ConnectionEstablishment);
+        } else
+            nodeType = ENB_NODE_TYPE;
     }
 }
 
@@ -57,21 +57,41 @@ void RRC::handleMessage(cMessage *msg) {
 }
 
 void RRC::handleLowerMessage(cMessage *msg) {
-    using namespace rrc;
     RRCMessage *rrcMsg = check_and_cast<RRCMessage*>(msg);
     LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
     switch(ctrl->getChannel()) {
-    case ULCCCH:
-        ULCCCHMessage *ulccchMessage = dynamic_cast<ULCCCHMessage*>(rrcMsg->getSdu());
-        ULCCCHMessageType ulccchMessageType = ulccchMessage->getM
+    case ULCCCH: {
+        SequencePtr seq = rrcMsg->getSdu();
+        ULCCCHMessage *ulccchMessage = dynamic_cast<ULCCCHMessage*>(seq);
+        ULCCCHMessageType ulccchMessageType = ulccchMessage->getMessage();
+        if (ulccchMessageType.getChoice() == ULCCCHMessageType::uLCCCHMessageTypeC1) {
+            ULCCCHMessageTypeC1 *c1 = dynamic_cast<ULCCCHMessageTypeC1*>(ulccchMessageType.getValue());
+            if (c1->getChoice() == ULCCCHMessageTypeC1::rrcConnectionRequest) {
+                RRCConnectionRequest *rrcConnReq = dynamic_cast<RRCConnectionRequest*>(c1->getValue());
+                RRCConnectionRequestCriticalExtensions critExt = rrcConnReq->getRRCConnectionRequestCriticalExtensions();
+                if (critExt.getChoice() == RRCConnectionRequestCriticalExtensions::rrcConnectionRequestr8) {
+                    RRCConnectionRequestr8IEs *rrcConnReqIes = dynamic_cast<RRCConnectionRequestr8IEs*>(critExt.getValue());
+                    InitialUEIdentity initUeId = rrcConnReqIes->getUeIdentity();
+                    if (initUeId.getChoice() == InitialUEIdentity::initialUEIdentityRandomValue) {
+                        Subscriber *sub = new Subscriber();
+                        sub->initRrcEntity(nodeType);
+                        RRCEntity *rrc = sub->getRrcEntity();
+                        rrc->setModule(this);
+                        rrc->performStateTransition(ConnectionEstablishment);
+                        subT->push_back(sub);
+                    }
+                }
+            }
+        }
         break;
+    }
     default:
         break;
     }
 }
 
 void RRC::sendDown(int logChannel, int choice, const char *name, AbstractType *payload) {
-    using namespace rrc;
+//    using namespace rrc;
 
     RRCMessage *msg = new RRCMessage(name);
     LTEControlInfo *ctrl = new LTEControlInfo();
@@ -94,52 +114,20 @@ void RRC::sendDown(int logChannel, int choice, const char *name, AbstractType *p
     this->send(msg, gate("lowerLayerOut"));
 }
 
-void RRC::sendRRCConnectionRequest() {
-    using namespace rrc;
-    unsigned tmsi = htons(subT->at(0)->getEmmEntity()->getTmsi());
-    InitialUEIdentity initUeId = RRCUtils().createInitialUEIdentity(subT->at(0)->getMmeCode(), (char*)&tmsi);
-
-    RRCConnectionRequestr8IEs *rrcConnReqIes = new RRCConnectionRequestr8IEs(initUeId, EstablishmentCause(mo_Signalling_EstablishmentCause), RRCConnectionRequestr8IEsSpare());
-    RRCConnectionRequestCriticalExtensions critExt = RRCConnectionRequestCriticalExtensions();
-    critExt.setValue(rrcConnReqIes, RRCConnectionRequestCriticalExtensions::rrcConnectionRequestr8);
-
-    RRCConnectionRequest *rrcConnReq = new RRCConnectionRequest(critExt);
-
-    ULCCCHMessageTypeC1 *c1 = new ULCCCHMessageTypeC1();
-    c1->setValue(rrcConnReq, ULCCCHMessageTypeC1::rrcConnectionRequest);
-
-    sendDown(ULCCCH, ULCCCHMessageType::uLCCCHMessageTypeC1, "RRCConnectionRequest", c1);
-}
-
-void RRC::performStateTransition(RRCEvent &event) {
-    int oldState = fsm.getState();
-
-    switch(oldState) {
-        case RRC_IDLE:
-            switch(event) {
-                case RRC_CONN_EST: {
-                    sendRRCConnectionRequest();
-                    break;
-                }
-                default:
-                    EV << "RRC: Received unexpected event\n";
-                    break;
-            }
-            break;
-        default:
-            EV << "RRC: Unknown state\n";
-            break;
-    }
-
-}
-
-void RRC::receiveChangeNotification(int category, const cPolymorphic *details) {
-//    Enter_Method_Silent();
-//    if (category == NF_RAND_ACCESS_COMPL) {
-//        EV << "RRC: Received NF_RAND_ACCESS_COMPL notification. Processing notification.\n";
-//        RRCEvent event = RRC_CONN_EST;
-//        performStateTransition(event);
-//    }
-}
-
-
+//void RRC::processRRCConnectionRequest(RRCConnectionRequest *rrcConnReq) {
+//
+//
+////    Subscriber *sub = subT->findSubscriberForChannel(ctrl->getChannelNumber());
+////
+////    sub = new Subscriber();
+////    sub->initEntities(appType);
+////    // only dummy PDN connection to store the UE bearer contexts
+////    PDNConnection *conn = new PDNConnection();
+////    conn->setOwner(sub->getEsmEntity());
+////    sub->getEsmEntity()->addPDNConnection(conn, true);
+////    sub->setChannelNr(ctrl->getChannelNumber());
+////    sub->setEnbId(subT->genEnbId());
+////    sub->setMmeId(0);
+////    sub->setStatus(SUB_PENDING);
+////    subT->push_back(sub);
+//}

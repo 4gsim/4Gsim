@@ -31,6 +31,7 @@ Subscriber::Subscriber() {
 	cellId = NULL;
 	tac = NULL;
 	emm = NULL;
+	rrc = NULL;
 	mmeCode = (char*)calloc(1, sizeof(char));
 	mmeGrId = NULL;
 	status = SUB_INACTIVE;
@@ -69,6 +70,8 @@ std::string Subscriber::info() const {
     	out << "\ts11tunn:{ " << s11Tunn->info(2) <<" }\n";
     if (esm != NULL)
     	out << esm->info(1);
+    if (rrc != NULL)
+        out << rrc->info(1);
     return out.str();
 }
 
@@ -84,13 +87,18 @@ const char *Subscriber::statusName() const {
 #undef CASE
 }
 
-void Subscriber::initEntities(unsigned char appType) {
+void Subscriber::initNasEntities(unsigned char appType) {
 	ESMEntity *esm = new ESMEntity(appType);
 	EMMEntity *emm = new EMMEntity(appType);
 	emm->setPeer(esm);
 	esm->setPeer(emm);
 	emm->setOwner(this);
 	esm->setOwner(this);
+}
+
+void Subscriber::initRrcEntity(bool nodeType) {
+    RRCEntity *rrc = new RRCEntity(nodeType);
+    rrc->setOwner(this);
 }
 
 unsigned Subscriber::popSeqNr() {

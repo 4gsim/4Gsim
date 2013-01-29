@@ -41,7 +41,7 @@ NAS::~NAS() {
 }
 
 void NAS::initialize(int stage) {
-	if (stage == 3) {
+	if (stage == 4) {
 		subT = SubscriberTableAccess().get();
 		const char *fileName = par("configFile");
 		if (fileName != NULL && (strcmp(fileName, "")))
@@ -115,7 +115,7 @@ void NAS::handleMessageFromS1AP(cMessage *msg) {
 					goto end;
 				}
 				sub->setMmeId(subT->genMmeId());
-				sub->initEntities(appType);
+				sub->initNasEntities(appType);
 				EMMEntity *emm = sub->getEmmEntity();
 				emm->setModule(this);
 				ESMEntity *esm = sub->getEsmEntity();
@@ -170,7 +170,7 @@ void NAS::handleMessageFromRadio(cMessage *msg) {
 	if (appType == RELAY_APPL_TYPE) {
 		if (sub == NULL) {
 			sub = new Subscriber();
-			sub->initEntities(appType);
+			sub->initNasEntities(appType);
 			// only dummy PDN connection to store the UE bearer contexts
 			PDNConnection *conn = new PDNConnection();
 			conn->setOwner(sub->getEsmEntity());
@@ -276,10 +276,9 @@ void NAS::loadConfigFromXML(const char *filename) {
     	// no cell available
     	channelNumber = par("channelNumber");
 
-    	Subscriber *sub = new Subscriber();
+    	Subscriber *sub = subT->at(0);
     	sub->setChannelNr(channelNumber);
-    	sub->initEntities(appType);
-    	subT->push_back(sub);
+    	sub->initNasEntities(appType);
     	loadESMConfigFromXML(*nasNode);
     	loadEMMConfigFromXML(*nasNode);
     } else if (appType == RELAY_APPL_TYPE) {
