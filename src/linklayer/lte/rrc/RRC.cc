@@ -62,22 +62,22 @@ void RRC::handleLowerMessage(cMessage *msg) {
     switch(ctrl->getChannel()) {
     case ULCCCH: {
         SequencePtr seq = rrcMsg->getSdu();
-        ULCCCHMessage *ulccchMessage = dynamic_cast<ULCCCHMessage*>(seq);
+        ULCCCHMessage *ulccchMessage = static_cast<ULCCCHMessage*>(seq);
         ULCCCHMessageType ulccchMessageType = ulccchMessage->getMessage();
         if (ulccchMessageType.getChoice() == ULCCCHMessageType::uLCCCHMessageTypeC1) {
-            ULCCCHMessageTypeC1 *c1 = dynamic_cast<ULCCCHMessageTypeC1*>(ulccchMessageType.getValue());
+            ULCCCHMessageTypeC1 *c1 = static_cast<ULCCCHMessageTypeC1*>(ulccchMessageType.getValue());
             if (c1->getChoice() == ULCCCHMessageTypeC1::rrcConnectionRequest) {
-                RRCConnectionRequest *rrcConnReq = dynamic_cast<RRCConnectionRequest*>(c1->getValue());
+                RRCConnectionRequest *rrcConnReq = static_cast<RRCConnectionRequest*>(c1->getValue());
                 RRCConnectionRequestCriticalExtensions critExt = rrcConnReq->getRRCConnectionRequestCriticalExtensions();
                 if (critExt.getChoice() == RRCConnectionRequestCriticalExtensions::rrcConnectionRequestr8) {
-                    RRCConnectionRequestr8IEs *rrcConnReqIes = dynamic_cast<RRCConnectionRequestr8IEs*>(critExt.getValue());
+                    RRCConnectionRequestr8IEs *rrcConnReqIes = static_cast<RRCConnectionRequestr8IEs*>(critExt.getValue());
                     InitialUEIdentity initUeId = rrcConnReqIes->getUeIdentity();
                     if (initUeId.getChoice() == InitialUEIdentity::initialUEIdentityRandomValue) {
                         Subscriber *sub = new Subscriber();
                         sub->initRrcEntity(nodeType);
                         RRCEntity *rrc = sub->getRrcEntity();
                         rrc->setModule(this);
-                        rrc->performStateTransition(ConnectionEstablishment);
+                        rrc->processRRCConnectionRequest(rrcConnReq);
                         subT->push_back(sub);
                     }
                 }
@@ -104,6 +104,15 @@ void RRC::sendDown(int logChannel, int choice, const char *name, AbstractType *p
             ULCCCHMessage *ulccchMessage = new ULCCCHMessage();
             ulccchMessage->setMessage(ulccchMessageType);
             msg->setSdu(ulccchMessage);
+            break;
+        }
+        case DLCCCH: {
+            DLCCCHMessageType dlccchMessageType = DLCCCHMessageType();
+            DLCCCHMessageTypeC1 *c1 = dynamic_cast<DLCCCHMessageTypeC1*>(payload);
+            dlccchMessageType.setValue(c1, choice);
+            DLCCCHMessage *dlccchMessage = new DLCCCHMessage();
+            dlccchMessage->setMessage(dlccchMessageType);
+            msg->setSdu(dlccchMessage);
             break;
         }
         default:

@@ -56,12 +56,24 @@ void RRCEntity::performStateTransition(RRCEvent event) {
                     break;
                 }
                 default:
-                    EV << "RRC: Received unexpected event\n";
+                    EV << "RRC: Received unexpected event.\n";
+                    break;
+            }
+            break;
+        case EUTRAN_RRC_IDLE:
+            switch(event) {
+                case ConnectionEstablishment: {
+                    sendRRCConnectionSetup();
+                    FSM_Goto(*fsm, EUTRAN_RRC_CONNECTED);
+                    break;
+                }
+                default:
+                    EV << "RRC: Received unexpected event.\n";
                     break;
             }
             break;
         default:
-            EV << "RRC: Unknown state\n";
+            EV << "RRC: Unknown state.\n";
             break;
     }
 }
@@ -82,6 +94,41 @@ void RRCEntity::sendRRCConnectionRequest() {
     c1->setValue(rrcConnReq, ULCCCHMessageTypeC1::rrcConnectionRequest);
 
     module->sendDown(ULCCCH, ULCCCHMessageType::uLCCCHMessageTypeC1, "RRCConnectionRequest", c1);
+}
+
+void RRCEntity::sendRRCConnectionSetup() {
+    RRCTransactionIdentifier rrcTransId = RRCTransactionIdentifier((int64_t)0);
+
+    SRBToAddModSrbIdentity srbId = SRBToAddModSrbIdentity(1);
+    SRBToAddModRlcConfig rlcConf = SRBToAddModRlcConfig();
+    rlcConf.setValue(new Null(), SRBToAddModRlcConfig::sRBToAddModRlcConfigDefaultValue);
+    SRBToAddModLogicalChannelConfig logChConf = SRBToAddModLogicalChannelConfig();
+    logChConf.setValue(new Null(), SRBToAddModLogicalChannelConfig::sRBToAddModLogicalChannelConfigDefaultValue);
+
+    SRBToAddMod *srbTodAddMod = new SRBToAddMod(srbId);
+    srbTodAddMod->setSRBToAddModRlcConfig(rlcConf);
+    srbTodAddMod->setSRBToAddModLogicalChannelConfig(logChConf);
+
+    SRBToAddModList srbToAddModList = SRBToAddModList();
+    srbToAddModList.push_back(srbTodAddMod);
+
+    RadioResourceConfigDedicated radioResConfDed = RadioResourceConfigDedicated();
+    radioResConfDed.setSrbToAddModList(srbToAddModList);
+
+    RRCConnectionSetupr8IEs *rrcConnSetIes = new RRCConnectionSetupr8IEs(radioResConfDed);
+    RRCConnectionSetupCriticalExtensions critExt = RRCConnectionSetupCriticalExtensions();
+    critExt.setValue(rrcConnSetIes, RRCConnectionSetupCriticalExtensions::rRCConnectionSetupCriticalExtensionsC1);
+
+    RRCConnectionSetup *rrcConnSet = new RRCConnectionSetup(rrcTransId, critExt);
+
+    DLCCCHMessageTypeC1 *c1 = new DLCCCHMessageTypeC1();
+    c1->setValue(rrcConnSet, DLCCCHMessageTypeC1::rrcConnectionSetup);
+
+    module->sendDown(DLCCCH, DLCCCHMessageType::dLCCCHMessageTypeC1, "RRCConnectionSetup", c1);
+}
+
+void RRCEntity::processRRCConnectionRequest(RRCConnectionRequest *rrcConnReq) {
+    this->performStateTransition(ConnectionEstablishment);
 }
 
 const char *RRCEntity::stateName(int state) const {

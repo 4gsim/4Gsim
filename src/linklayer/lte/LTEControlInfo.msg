@@ -16,6 +16,7 @@
 enum LTELogicalChannels
 {
 	ULCCCH = 1;    
+	DLCCCH = 2;
 }
 
 enum LTETransportChannels

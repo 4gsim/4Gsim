@@ -73,13 +73,13 @@ void SubscriberTable::handleMessage(cMessage *msg) {
 			EV << "SubscriberTable: Inactive subscriber timer expired. Cleaning inactive subscribers.\n";
 			Subscribers::iterator i = subs.begin();
 			Subscribers::iterator last = subs.end();
-			for (;i != last; ++i) {
-				Subscriber *sub = *i;
-				if (sub->getStatus() == SUB_INACTIVE) {
+			for (;i != last;) {
+				if ((*i)->getStatus() == SUB_INACTIVE) {
 					EV << "SubscriberTable: Found one inactive subscriber. Cleaning it.\n";
-					delete *i;
-					subs.erase(i);
-				}
+					delete (*i);
+					i = subs.erase(i);
+				} else
+				    ++i;
 			}
 			this->cancelEvent(cleanTimer);
 			this->scheduleAt(simTime() + CLEAN_TIMER_TIMEOUT, cleanTimer);

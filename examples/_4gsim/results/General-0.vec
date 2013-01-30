@@ -1,0 +1,1044 @@
+version 2
+run General-0-20130130-16:27:45-5088
+attr configname General
+attr datetime 20130130-16:27:45
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvars2 $repetition=0
+attr measurement ""
+attr network Test
+attr processid 5088
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+
+vector 34  Test.enb.networkLayer.arp  sentReq:vector  ETV
+attr title  "ARP request sent, vector"
+vector 36  Test.enb.networkLayer.arp  initiatedResolution:vector  ETV
+attr title  "ARP initiated resolutions, vector"
+vector 19  Test.enb.eth[0].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 15  Test.enb.eth[0].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 10  Test.enb.eth[0].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 49  Test.mme.eth[0].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 50  Test.mme.eth[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 58  Test.mme.eth[0].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 57  Test.mme.eth[0].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 53  Test.mme.eth[0].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 48  Test.mme.eth[0].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 11  Test.enb.eth[0].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 12  Test.enb.eth[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 20  Test.enb.eth[0].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 226  Test.mme.sctp  "Slow Start Threshold 13:192.168.2.1"  ETV
+vector 227  Test.mme.sctp  "Congestion Window 13:192.168.2.1"  ETV
+vector 230  Test.mme.sctp  "HB Sent 13:192.168.2.1"  ETV
+vector 224  Test.mme.sctp  "RTO 13:192.168.2.1"  ETV
+vector 217  Test.enb.sctp  "HB ACK Sent 5:192.168.2.2"  ETV
+vector 218  Test.enb.sctp  "HB Received 5:192.168.2.2"  ETV
+vector 212  Test.enb.sctp  "Slow Start Threshold 5:192.168.2.2"  ETV
+vector 213  Test.enb.sctp  "Congestion Window 5:192.168.2.2"  ETV
+vector 216  Test.enb.sctp  "HB Sent 5:192.168.2.2"  ETV
+vector 210  Test.enb.sctp  "RTO 5:192.168.2.2"  ETV
+vector 239  Test.enb.sctp  "SendQueue of Association 5"  ETV
+vector 214  Test.enb.sctp  "TSN Sent 5:192.168.2.2"  ETV
+vector 233  Test.mme.sctp  "HB ACK Received 13:192.168.2.1"  ETV
+vector 225  Test.mme.sctp  "RTT 13:192.168.2.1"  ETV
+vector 231  Test.mme.sctp  "HB ACK Sent 13:192.168.2.1"  ETV
+vector 232  Test.mme.sctp  "HB Received 13:192.168.2.1"  ETV
+vector 219  Test.enb.sctp  "HB ACK Received 5:192.168.2.2"  ETV
+vector 211  Test.enb.sctp  "RTT 5:192.168.2.2"  ETV
+vector 229  Test.mme.sctp  "TSN Received 13:192.168.2.1"  ETV
+vector 221  Test.mme.sctp  "Advertised Receiver Window 10"  ETV
+vector 236  Test.mme.sctp  "SendQueue of Association 13"  ETV
+vector 228  Test.mme.sctp  "TSN Sent 13:192.168.2.1"  ETV
+vector 215  Test.enb.sctp  "TSN Received 5:192.168.2.2"  ETV
+vector 209  Test.enb.sctp  "Advertised Receiver Window 5"  ETV
+vector 84  Test.mme.networkLayer.arp  sentReq:vector  ETV
+attr title  "ARP request sent, vector"
+vector 86  Test.mme.networkLayer.arp  initiatedResolution:vector  ETV
+attr title  "ARP initiated resolutions, vector"
+vector 69  Test.mme.eth[1].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 65  Test.mme.eth[1].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 60  Test.mme.eth[1].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 94  Test.hss.eth[0].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 95  Test.hss.eth[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 103  Test.hss.eth[0].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 102  Test.hss.eth[0].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 98  Test.hss.eth[0].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 93  Test.hss.eth[0].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 61  Test.mme.eth[1].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 62  Test.mme.eth[1].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 70  Test.mme.eth[1].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 254  Test.hss.sctp  "Slow Start Threshold 14:192.168.3.2"  ETV
+vector 255  Test.hss.sctp  "Congestion Window 14:192.168.3.2"  ETV
+vector 258  Test.hss.sctp  "HB Sent 14:192.168.3.2"  ETV
+vector 252  Test.hss.sctp  "RTO 14:192.168.3.2"  ETV
+vector 248  Test.mme.sctp  "HB ACK Sent 8:192.168.3.1"  ETV
+vector 249  Test.mme.sctp  "HB Received 8:192.168.3.1"  ETV
+vector 243  Test.mme.sctp  "Slow Start Threshold 8:192.168.3.1"  ETV
+vector 244  Test.mme.sctp  "Congestion Window 8:192.168.3.1"  ETV
+vector 247  Test.mme.sctp  "HB Sent 8:192.168.3.1"  ETV
+vector 241  Test.mme.sctp  "RTO 8:192.168.3.1"  ETV
+vector 267  Test.mme.sctp  "SendQueue of Association 8"  ETV
+vector 245  Test.mme.sctp  "TSN Sent 8:192.168.3.1"  ETV
+vector 261  Test.hss.sctp  "HB ACK Received 14:192.168.3.2"  ETV
+vector 253  Test.hss.sctp  "RTT 14:192.168.3.2"  ETV
+vector 259  Test.hss.sctp  "HB ACK Sent 14:192.168.3.2"  ETV
+vector 260  Test.hss.sctp  "HB Received 14:192.168.3.2"  ETV
+vector 250  Test.mme.sctp  "HB ACK Received 8:192.168.3.1"  ETV
+vector 242  Test.mme.sctp  "RTT 8:192.168.3.1"  ETV
+vector 257  Test.hss.sctp  "TSN Received 14:192.168.3.2"  ETV
+vector 222  Test.hss.sctp  "Advertised Receiver Window 12"  ETV
+vector 264  Test.hss.sctp  "SendQueue of Association 14"  ETV
+vector 256  Test.hss.sctp  "TSN Sent 14:192.168.3.2"  ETV
+vector 246  Test.mme.sctp  "TSN Received 8:192.168.3.1"  ETV
+vector 240  Test.mme.sctp  "Advertised Receiver Window 8"  ETV
+vector 147  Test.sgw.udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 157  Test.sgw.networkLayer.arp  sentReq:vector  ETV
+attr title  "ARP request sent, vector"
+vector 159  Test.sgw.networkLayer.arp  initiatedResolution:vector  ETV
+attr title  "ARP initiated resolutions, vector"
+vector 170  Test.sgw.eth[0].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 166  Test.sgw.eth[0].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 161  Test.sgw.eth[0].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 124  Test.pgw.eth[0].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 125  Test.pgw.eth[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 133  Test.pgw.eth[0].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 132  Test.pgw.eth[0].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 128  Test.pgw.eth[0].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 123  Test.pgw.eth[0].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 162  Test.sgw.eth[0].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 163  Test.sgw.eth[0].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 171  Test.sgw.eth[0].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 110  Test.pgw.udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 111  Test.pgw.udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 109  Test.pgw.udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 148  Test.sgw.udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 149  Test.sgw.udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 194  Test.sgw.eth[2].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 190  Test.sgw.eth[2].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 185  Test.sgw.eth[2].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 136  Test.pgw.eth[1].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 137  Test.pgw.eth[1].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 145  Test.pgw.eth[1].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 144  Test.pgw.eth[1].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 140  Test.pgw.eth[1].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 135  Test.pgw.eth[1].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 186  Test.sgw.eth[2].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 187  Test.sgw.eth[2].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 195  Test.sgw.eth[2].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 182  Test.sgw.eth[1].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 178  Test.sgw.eth[1].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 173  Test.sgw.eth[1].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 73  Test.mme.eth[2].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 74  Test.mme.eth[2].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 82  Test.mme.eth[2].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 81  Test.mme.eth[2].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 77  Test.mme.eth[2].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 72  Test.mme.eth[2].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 174  Test.sgw.eth[1].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 175  Test.sgw.eth[1].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 183  Test.sgw.eth[1].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 44  Test.mme.udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 45  Test.mme.udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+vector 43  Test.mme.udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 5  Test.enb.udp  sentPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, vector(packetBytes)"
+vector 31  Test.enb.eth[1].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 27  Test.enb.eth[1].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 22  Test.enb.eth[1].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 198  Test.sgw.eth[3].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 199  Test.sgw.eth[3].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 207  Test.sgw.eth[3].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 206  Test.sgw.eth[3].encap  encapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  encapPk
+attr title  "packets encapsulated, vector(packetBytes)"
+vector 202  Test.sgw.eth[3].mac  rxPkFromHL:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkFromHL
+attr title  "packet bytes from higher layer, vector(packetBytes)"
+vector 197  Test.sgw.eth[3].mac  txPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  txPk
+attr title  "packets transmitted, vector(packetBytes)"
+vector 23  Test.enb.eth[1].mac  rxPkOk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rxPkOk
+attr title  "packets received OK, vector(packetBytes)"
+vector 24  Test.enb.eth[1].mac  passedUpPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  packetSentToUpper
+attr title  "packets passed to higher layer, vector(packetBytes)"
+vector 32  Test.enb.eth[1].encap  decapPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  decapPk
+attr title  "packets decapsulated, vector(packetBytes)"
+vector 6  Test.enb.udp  rcvdPk:vector(packetBytes)  ETV
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, vector(packetBytes)"
+vector 7  Test.enb.udp  passedUpPk:vector(count)  ETV
+attr interpolationmode  none
+attr title  "packets passed up, vector(count)"
+212	151	0.0006086	65535
+212	428	3.0006086	65535
+212	1131	30	0
+213	151	0.0006086	4380
+213	428	3.0006086	4380
+213	1131	30	0
+210	151	0.0006086	3
+210	189	0.000748	1
+210	1131	30	0
+211	189	0.000748	0.0001394
+211	1131	30	0
+214	155	0.0006086	1000
+215	223	0.000956	2000
+216	151	0.0006086	1
+218	138	0.0005414	1
+217	138	0.0005414	1
+219	189	0.000748	1
+209	223	0.000956	65498
+239	155	0.0006086	0
+226	120	0.0004725	65535
+226	369	1.0007863	65535
+226	1131	30	0
+227	120	0.0004725	4380
+227	369	1.0007863	4380
+227	1131	30	0
+224	120	0.0004725	3
+224	169	0.0006103	1
+224	238	0.0010249	1
+224	1131	30	0
+225	169	0.0006103	0.0001378
+225	238	0.0010249	0.0002386
+225	1131	30	0
+228	202	0.0007863	2000
+229	195	0.0007863	1000
+230	120	0.0004725	1
+232	176	0.0006791	1
+231	176	0.0006791	1
+233	169	0.0006103	1
+221	195	0.0007863	65489
+236	202	0.0007863	0
+243	330	1.0006086	65535
+243	434	4.0006086	65535
+243	729	12.329230364959	65535
+243	918	20.404626557044	65535
+243	1131	30	0
+244	330	1.0006086	4380
+244	434	4.0006086	4380
+244	729	12.329230364959	4380
+244	918	20.404626557044	4380
+244	1131	30	0
+241	330	1.0006086	3
+241	368	1.000748	1
+241	396	1.0009448	1
+241	710	11.529412964959	1
+241	890	19.604809157044	1
+241	1087	29.353173967701	1
+241	1131	30	0
+242	368	1.000748	0.0001394
+242	396	1.0009448	0.0003362
+242	710	11.529412964959	0.2001826
+242	890	19.604809157044	0.2001826
+242	1087	29.353173967701	0.2001826
+242	1131	30	0
+245	334	1.0006086	1000
+245	666	11.329230364959	1001
+245	846	19.404626557044	1002
+245	1043	29.152991367701	1003
+246	403	1.0011512	2000
+246	694	11.329467364959	2001
+246	874	19.404863557044	2002
+246	1071	29.153228367701	2003
+247	330	1.0006086	1
+249	317	1.0005414	1
+248	317	1.0005414	1
+250	368	1.000748	1
+240	403	1.0011512	65363
+240	711	11.529467364959	65535
+240	891	19.604863557044	65535
+240	1088	29.353228367701	65535
+267	334	1.0006086	1
+267	334	1.0006086	0
+267	666	11.329230364959	1
+267	666	11.329230364959	0
+267	846	19.404626557044	1
+267	846	19.404626557044	0
+267	1043	29.152991367701	1
+267	1043	29.152991367701	0
+254	299	1.0004725	65535
+254	424	2.0008759	65535
+254	730	12.329344064959	65535
+254	919	20.404740257044	65535
+254	1131	30	0
+255	299	1.0004725	4380
+255	424	2.0008759	4380
+255	730	12.329344064959	4380
+255	919	20.404740257044	4380
+255	1131	30	0
+252	299	1.0004725	3
+252	348	1.0006103	1
+252	418	1.0012201	1
+252	723	11.529536264959	1
+252	903	19.604932457044	1
+252	1100	29.353297267701	1
+252	1131	30	0
+253	348	1.0006103	0.0001378
+253	418	1.0012201	0.0003442
+253	723	11.529536264959	0.2001922
+253	903	19.604932457044	0.2001922
+253	1100	29.353297267701	0.2001922
+253	1131	30	0
+256	382	1.0008759	2000
+256	682	11.329344064959	2001
+256	862	19.404740257044	2002
+256	1059	29.153105067701	2003
+257	375	1.0008759	1000
+257	678	11.329344064959	1001
+257	858	19.404740257044	1002
+257	1055	29.153105067701	1003
+258	299	1.0004725	1
+260	355	1.0006791	1
+259	355	1.0006791	1
+261	348	1.0006103	1
+222	375	1.0008759	65375
+222	682	11.329344064959	65535
+222	698	11.529344064959	65535
+222	862	19.404740257044	65535
+222	878	19.604740257044	65535
+222	1059	29.153105067701	65535
+222	1075	29.353105067701	65535
+264	382	1.0008759	1
+264	382	1.0008759	0
+264	682	11.329344064959	1
+264	682	11.329344064959	0
+264	862	19.404740257044	1
+264	862	19.404740257044	0
+264	1059	29.153105067701	1
+264	1059	29.153105067701	0
+5	614	10.115579686127	8
+5	938	21.063521597812	8
+5	1102	29.460643003973	8
+6	660	10.115848886127	8
+6	936	21.063521597812	8
+6	1128	29.460777603973	8
+7	660	10.115848886127	1
+7	936	21.063521597812	2
+7	1128	29.460777603973	3
+10	71	0.0000672	64
+10	91	0.000213	78
+10	115	0.0004724	130
+10	164	0.0006102	66
+10	171	0.000679	66
+10	190	0.0007862	114
+10	233	0.0010248	66
+11	82	0.0001346	64
+11	104	0.0003524	154
+11	134	0.0005414	66
+11	147	0.0006086	64
+11	185	0.000748	66
+11	212	0.0008552	66
+11	219	0.000956	106
+12	82	0.0001346	64
+12	104	0.0003524	154
+12	134	0.0005414	66
+12	147	0.0006086	64
+12	185	0.000748	66
+12	212	0.0008552	66
+12	219	0.000956	106
+15	25	0	64
+15	89	0.0001346	78
+15	113	0.0003524	130
+15	143	0.0005414	66
+15	160	0.0006086	66
+15	163	0.0006086	114
+15	231	0.000956	66
+19	24	0	28
+19	88	0.0001346	60
+19	112	0.0003524	112
+19	142	0.0005414	48
+19	158	0.0006086	48
+19	162	0.0006086	96
+19	230	0.000956	48
+20	83	0.0001346	28
+20	105	0.0003524	136
+20	135	0.0005414	48
+20	148	0.0006086	36
+20	186	0.000748	48
+20	213	0.0008552	48
+20	220	0.000956	88
+22	621	10.115646886127	64
+22	641	10.115781486127	64
+22	945	21.063588797812	64
+22	1109	29.460710203973	64
+23	632	10.115714286127	64
+23	656	10.115848886127	64
+23	932	21.063521597812	64
+23	1124	29.460777603973	64
+24	632	10.115714286127	64
+24	656	10.115848886127	64
+24	932	21.063521597812	64
+24	1124	29.460777603973	64
+27	619	10.115579686127	64
+27	639	10.115714286127	64
+27	943	21.063521597812	64
+27	1107	29.460643003973	64
+31	618	10.115579686127	28
+31	638	10.115714286127	28
+31	942	21.063521597812	28
+31	1106	29.460643003973	28
+32	633	10.115714286127	28
+32	657	10.115848886127	28
+32	933	21.063521597812	28
+32	1125	29.460777603973	28
+34	20	0	1
+34	616	10.115579686127	1
+36	20	0	1
+36	616	10.115579686127	1
+43	587	9.349786546523	8
+43	785	18.408008992183	8
+43	1006	27.297294534254	8
+44	585	9.349786546523	8
+44	811	18.408143592183	8
+44	1032	27.297429134254	8
+45	585	9.349786546523	1
+45	811	18.408143592183	2
+45	1032	27.297429134254	3
+48	81	0.0001345	64
+48	103	0.0003523	154
+48	133	0.0005413	66
+48	146	0.0006085	64
+48	184	0.0007479	66
+48	211	0.0008551	66
+48	218	0.0009559	106
+49	72	0.0000673	64
+49	92	0.0002131	78
+49	116	0.0004725	130
+49	165	0.0006103	66
+49	172	0.0006791	66
+49	191	0.0007863	114
+49	234	0.0010249	66
+50	72	0.0000673	64
+50	92	0.0002131	78
+50	116	0.0004725	130
+50	165	0.0006103	66
+50	172	0.0006791	66
+50	191	0.0007863	114
+50	234	0.0010249	66
+53	79	0.0000673	64
+53	101	0.0002131	154
+53	130	0.0004725	66
+53	131	0.0004725	64
+53	181	0.0006791	66
+53	205	0.0007863	66
+53	209	0.0007863	106
+57	78	0.0000673	28
+57	100	0.0002131	136
+57	128	0.0004725	48
+57	129	0.0004725	36
+57	180	0.0006791	48
+57	203	0.0007863	48
+57	208	0.0007863	88
+58	73	0.0000673	28
+58	93	0.0002131	60
+58	117	0.0004725	112
+58	166	0.0006103	48
+58	173	0.0006791	48
+58	192	0.0007863	96
+58	235	0.0010249	48
+60	250	1.0000672	64
+60	270	1.000213	78
+60	294	1.0004724	130
+60	343	1.0006102	66
+60	350	1.000679	66
+60	370	1.0008758	226
+60	413	1.00122	66
+60	673	11.329343964959	122
+60	718	11.529536164959	66
+60	853	19.404740157044	122
+60	898	19.604932357044	66
+60	1050	29.153104967701	122
+60	1095	29.353297167701	66
+61	261	1.0001346	64
+61	283	1.0003524	154
+61	313	1.0005414	66
+61	326	1.0006086	64
+61	364	1.000748	66
+61	392	1.0009448	66
+61	399	1.0011512	238
+61	690	11.329467364959	134
+61	706	11.529412964959	66
+61	870	19.404863557044	134
+61	886	19.604809157044	66
+61	1067	29.153228367701	134
+61	1083	29.353173967701	66
+62	261	1.0001346	64
+62	283	1.0003524	154
+62	313	1.0005414	66
+62	326	1.0006086	64
+62	364	1.000748	66
+62	392	1.0009448	66
+62	399	1.0011512	238
+62	690	11.329467364959	134
+62	706	11.529412964959	66
+62	870	19.404863557044	134
+62	886	19.604809157044	66
+62	1067	29.153228367701	134
+62	1083	29.353173967701	66
+65	248	1	64
+65	268	1.0001346	78
+65	292	1.0003524	130
+65	322	1.0005414	66
+65	339	1.0006086	66
+65	342	1.0006086	226
+65	411	1.0011512	66
+65	671	11.329230364959	122
+65	716	11.529467364959	66
+65	851	19.404626557044	122
+65	896	19.604863557044	66
+65	1048	29.152991367701	122
+65	1093	29.353228367701	66
+69	247	1	28
+69	267	1.0001346	60
+69	291	1.0003524	112
+69	321	1.0005414	48
+69	337	1.0006086	48
+69	341	1.0006086	208
+69	410	1.0011512	48
+69	670	11.329230364959	104
+69	715	11.529467364959	48
+69	850	19.404626557044	104
+69	895	19.604863557044	48
+69	1047	29.152991367701	104
+69	1092	29.353228367701	48
+70	262	1.0001346	28
+70	284	1.0003524	136
+70	314	1.0005414	48
+70	327	1.0006086	36
+70	365	1.000748	48
+70	393	1.0009448	48
+70	400	1.0011512	220
+70	691	11.329467364959	116
+70	707	11.529412964959	48
+70	871	19.404863557044	116
+70	887	19.604809157044	48
+70	1068	29.153228367701	116
+70	1084	29.353173967701	48
+72	570	9.349719146523	64
+72	594	9.349853746523	64
+72	792	18.408076192183	64
+72	1013	27.297361734254	64
+73	561	9.349651946523	64
+73	581	9.349786546523	64
+73	807	18.408143592183	64
+73	1028	27.297429134254	64
+74	561	9.349651946523	64
+74	581	9.349786546523	64
+74	807	18.408143592183	64
+74	1028	27.297429134254	64
+77	568	9.349651946523	64
+77	592	9.349786546523	64
+77	790	18.408008992183	64
+77	1011	27.297294534254	64
+81	567	9.349651946523	28
+81	591	9.349786546523	28
+81	789	18.408008992183	28
+81	1010	27.297294534254	28
+82	562	9.349651946523	28
+82	582	9.349786546523	28
+82	808	18.408143592183	28
+82	1029	27.297429134254	28
+84	245	1	1
+86	245	1	1
+93	260	1.0001345	64
+93	282	1.0003523	154
+93	312	1.0005413	66
+93	325	1.0006085	64
+93	363	1.0007479	66
+93	391	1.0009447	66
+93	398	1.0011511	238
+93	689	11.329467264959	134
+93	705	11.529412864959	66
+93	869	19.404863457044	134
+93	885	19.604809057044	66
+93	1066	29.153228267701	134
+93	1082	29.353173867701	66
+94	251	1.0000673	64
+94	271	1.0002131	78
+94	295	1.0004725	130
+94	344	1.0006103	66
+94	351	1.0006791	66
+94	371	1.0008759	226
+94	414	1.0012201	66
+94	674	11.329344064959	122
+94	719	11.529536264959	66
+94	854	19.404740257044	122
+94	899	19.604932457044	66
+94	1051	29.153105067701	122
+94	1096	29.353297267701	66
+95	251	1.0000673	64
+95	271	1.0002131	78
+95	295	1.0004725	130
+95	344	1.0006103	66
+95	351	1.0006791	66
+95	371	1.0008759	226
+95	414	1.0012201	66
+95	674	11.329344064959	122
+95	719	11.529536264959	66
+95	854	19.404740257044	122
+95	899	19.604932457044	66
+95	1051	29.153105067701	122
+95	1096	29.353297267701	66
+98	258	1.0000673	64
+98	280	1.0002131	154
+98	309	1.0004725	66
+98	310	1.0004725	64
+98	360	1.0006791	66
+98	385	1.0008759	66
+98	389	1.0008759	238
+98	687	11.329344064959	134
+98	703	11.529344064959	66
+98	867	19.404740257044	134
+98	883	19.604740257044	66
+98	1064	29.153105067701	134
+98	1080	29.353105067701	66
+102	257	1.0000673	28
+102	279	1.0002131	136
+102	307	1.0004725	48
+102	308	1.0004725	36
+102	359	1.0006791	48
+102	383	1.0008759	48
+102	388	1.0008759	220
+102	686	11.329344064959	116
+102	702	11.529344064959	48
+102	866	19.404740257044	116
+102	882	19.604740257044	48
+102	1063	29.153105067701	116
+102	1079	29.353105067701	48
+103	252	1.0000673	28
+103	272	1.0002131	60
+103	296	1.0004725	112
+103	345	1.0006103	48
+103	352	1.0006791	48
+103	372	1.0008759	208
+103	415	1.0012201	48
+103	675	11.329344064959	104
+103	720	11.529536264959	48
+103	855	19.404740257044	104
+103	900	19.604932457044	48
+103	1052	29.153105067701	104
+103	1097	29.353297267701	48
+109	486	8.284346134844	8
+109	535	8.348719087872	8
+109	748	16.772349513579	8
+109	828	18.433704447769	8
+109	983	25.371183568729	8
+110	484	8.284346134844	8
+110	533	8.348719087872	8
+110	774	16.772484113579	8
+110	826	18.433704447769	8
+110	981	25.371183568729	8
+111	484	8.284346134844	1
+111	533	8.348719087872	2
+111	774	16.772484113579	3
+111	826	18.433704447769	4
+111	981	25.371183568729	5
+123	469	8.284278734844	64
+123	493	8.284413334844	64
+123	835	18.433771647769	64
+124	460	8.284211534844	64
+124	480	8.284346134844	64
+124	822	18.433704447769	64
+125	460	8.284211534844	64
+125	480	8.284346134844	64
+125	822	18.433704447769	64
+128	467	8.284211534844	64
+128	491	8.284346134844	64
+128	833	18.433704447769	64
+132	466	8.284211534844	28
+132	490	8.284346134844	28
+132	832	18.433704447769	28
+133	461	8.284211534844	28
+133	481	8.284346134844	28
+133	823	18.433704447769	28
+135	518	8.348651687872	64
+135	542	8.348786287872	64
+135	755	16.772416713579	64
+135	990	25.371250768729	64
+136	509	8.348584487872	64
+136	529	8.348719087872	64
+136	770	16.772484113579	64
+136	977	25.371183568729	64
+137	509	8.348584487872	64
+137	529	8.348719087872	64
+137	770	16.772484113579	64
+137	977	25.371183568729	64
+140	516	8.348584487872	64
+140	540	8.348719087872	64
+140	753	16.772349513579	64
+140	988	25.371183568729	64
+144	515	8.348584487872	28
+144	539	8.348719087872	28
+144	752	16.772349513579	28
+144	987	25.371183568729	28
+145	510	8.348584487872	28
+145	530	8.348719087872	28
+145	771	16.772484113579	28
+145	978	25.371183568729	28
+147	452	8.284144234844	8
+147	501	8.348517187872	8
+147	553	9.349584646523	8
+147	648	10.115781586127	8
+147	762	16.772416813579	8
+147	799	18.408076292183	8
+147	814	18.433637147769	8
+147	924	21.063454297812	8
+147	969	25.371116268729	8
+147	1020	27.297361834254	8
+147	1116	29.460710303973	8
+148	498	8.284413434844	8
+148	547	8.348786387872	8
+148	599	9.349853846523	8
+148	646	10.115781586127	8
+148	760	16.772416813579	8
+148	797	18.408076292183	8
+148	840	18.433771747769	8
+148	950	21.063588897812	8
+148	995	25.371250868729	8
+148	1018	27.297361834254	8
+148	1114	29.460710303973	8
+149	498	8.284413434844	1
+149	547	8.348786387872	2
+149	599	9.349853846523	3
+149	646	10.115781586127	4
+149	760	16.772416813579	5
+149	797	18.408076292183	6
+149	840	18.433771747769	7
+149	950	21.063588897812	8
+149	995	25.371250868729	9
+149	1018	27.297361834254	10
+149	1114	29.460710303973	11
+157	454	8.284144234844	1
+157	503	8.348517187872	1
+157	555	9.349584646523	1
+159	454	8.284144234844	1
+159	503	8.348517187872	1
+159	555	9.349584646523	1
+161	459	8.284211434844	64
+161	479	8.284346034844	64
+161	821	18.433704347769	64
+162	470	8.284278834844	64
+162	494	8.284413434844	64
+162	836	18.433771747769	64
+163	470	8.284278834844	64
+163	494	8.284413434844	64
+163	836	18.433771747769	64
+166	457	8.284144234844	64
+166	477	8.284278834844	64
+166	819	18.433637147769	64
+170	456	8.284144234844	28
+170	476	8.284278834844	28
+170	818	18.433637147769	28
+171	471	8.284278834844	28
+171	495	8.284413434844	28
+171	837	18.433771747769	28
+173	560	9.349651846523	64
+173	580	9.349786446523	64
+173	806	18.408143492183	64
+173	1027	27.297429034254	64
+174	571	9.349719246523	64
+174	595	9.349853846523	64
+174	793	18.408076292183	64
+174	1014	27.297361834254	64
+175	571	9.349719246523	64
+175	595	9.349853846523	64
+175	793	18.408076292183	64
+175	1014	27.297361834254	64
+178	558	9.349584646523	64
+178	578	9.349719246523	64
+178	804	18.408076292183	64
+178	1025	27.297361834254	64
+182	557	9.349584646523	28
+182	577	9.349719246523	28
+182	803	18.408076292183	28
+182	1024	27.297361834254	28
+183	572	9.349719246523	28
+183	596	9.349853846523	28
+183	794	18.408076292183	28
+183	1015	27.297361834254	28
+185	508	8.348584387872	64
+185	528	8.348718987872	64
+185	769	16.772484013579	64
+185	976	25.371183468729	64
+186	519	8.348651787872	64
+186	543	8.348786387872	64
+186	756	16.772416813579	64
+186	991	25.371250868729	64
+187	519	8.348651787872	64
+187	543	8.348786387872	64
+187	756	16.772416813579	64
+187	991	25.371250868729	64
+190	506	8.348517187872	64
+190	526	8.348651787872	64
+190	767	16.772416813579	64
+190	974	25.371116268729	64
+194	505	8.348517187872	28
+194	525	8.348651787872	28
+194	766	16.772416813579	28
+194	973	25.371116268729	28
+195	520	8.348651787872	28
+195	544	8.348786387872	28
+195	757	16.772416813579	28
+195	992	25.371250868729	28
+197	631	10.115714186127	64
+197	655	10.115848786127	64
+197	931	21.063521497812	64
+197	1123	29.460777503973	64
+198	622	10.115646986127	64
+198	642	10.115781586127	64
+198	946	21.063588897812	64
+198	1110	29.460710303973	64
+199	622	10.115646986127	64
+199	642	10.115781586127	64
+199	946	21.063588897812	64
+199	1110	29.460710303973	64
+202	629	10.115646986127	64
+202	653	10.115781586127	64
+202	929	21.063454297812	64
+202	1121	29.460710303973	64
+206	628	10.115646986127	28
+206	652	10.115781586127	28
+206	928	21.063454297812	28
+206	1120	29.460710303973	28
+207	623	10.115646986127	28
+207	643	10.115781586127	28
+207	947	21.063588897812	28
+207	1111	29.460710303973	28

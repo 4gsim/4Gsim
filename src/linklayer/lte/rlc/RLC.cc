@@ -37,10 +37,11 @@ void RLC::handleMessage(cMessage *msg) {
 	// TODO - Generated method body
     LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
     switch (ctrl->getChannel()) {
-    case ULCCCH:
-        tTM->processMessage(msg);
-        break;
-    default:
-        break;
+        case ULCCCH:
+        case DLCCCH:
+            tTM->processMessage(msg);
+            break;
+        default:
+            break;
     }
 }

@@ -116,7 +116,7 @@ void MAC::handleUpperMessage(cMessage *msg) {
     unsigned char lcid;
     LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
 
-    if (ctrl->getChannel() == ULCCCH)
+    if (ctrl->getChannel() == ULCCCH || ctrl->getChannel() == DLCCCH)
         lcid = 0;
 
     MACSubHeaderUlDl *header = MACUtils().createHeaderUlDl(lcid);

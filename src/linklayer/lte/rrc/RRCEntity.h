@@ -66,6 +66,8 @@ public:
     const char *eventName(int event);
 
     void sendRRCConnectionRequest();
+    void sendRRCConnectionSetup();
+    void processRRCConnectionRequest(RRCConnectionRequest *rrcOnnReq);
 
     /*
      * Method for printing information about RRC entity for a subscriber.

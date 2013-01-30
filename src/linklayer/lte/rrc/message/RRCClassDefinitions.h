@@ -4168,7 +4168,7 @@ public:
 	static const Info theInfo;
 	RadioResourceConfigDedicated(): Sequence(&theInfo) {}
 
-	void setSrbToAddModList(const SRBToAddModList& srbToAddModList) { *static_cast<SRBToAddModList*>(items[0]) = srbToAddModList; }
+	void setSrbToAddModList(const SRBToAddModList& srbToAddModList) { *static_cast<SRBToAddModList*>(items[0]) = srbToAddModList; setOptFlag(0, true); }
 	void setDrbToAddModList(const DRBToAddModList& drbToAddModList) { *static_cast<DRBToAddModList*>(items[1]) = drbToAddModList; }
 	void setDrbToReleaseList(const DRBToReleaseList& drbToReleaseList) { *static_cast<DRBToReleaseList*>(items[2]) = drbToReleaseList; }
 	void setRadioResourceConfigDedicatedMacMainConfig(const RadioResourceConfigDedicatedMacMainConfig& radioResourceConfigDedicatedMacMainConfig) { *static_cast<RadioResourceConfigDedicatedMacMainConfig*>(items[3]) = radioResourceConfigDedicatedMacMainConfig; }

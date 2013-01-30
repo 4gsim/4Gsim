@@ -31,6 +31,7 @@ Subscriber::Subscriber() {
 	cellId = NULL;
 	tac = NULL;
 	emm = NULL;
+	esm = NULL;
 	rrc = NULL;
 	mmeCode = (char*)calloc(1, sizeof(char));
 	mmeGrId = NULL;
@@ -40,10 +41,18 @@ Subscriber::Subscriber() {
 
 Subscriber::~Subscriber() {
 	// TODO Auto-generated destructor stub
-	if (emm != NULL)
+	if (emm != NULL) {
 		delete emm;
-	if (esm != NULL)
+		emm = NULL;
+	}
+	if (esm != NULL) {
 		delete esm;
+		esm = NULL;
+	}
+	if (rrc != NULL) {
+	    delete rrc;
+	    rrc = NULL;
+	}
 }
 
 std::string Subscriber::info() const {

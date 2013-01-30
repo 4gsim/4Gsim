@@ -234,17 +234,17 @@ std::string DCTDump::timestamp(simtime_t stime) {
     std::string out;
     seconds << (int32)stime.dbl();
     subseconds << (uint32)((stime.dbl() - (int32)stime.dbl())*1000000);
-    for (unsigned i = 0; i < strlen(seconds.str().c_str()); i++) {
+    std::string tmp = seconds.str();
+    for (unsigned i = 0; i < tmp.size(); i++) {
         if (i > 3)
             break;
-        const char *tmp = seconds.str().c_str();
         out += tmp[i];
     }
     out += ".";
-    for (unsigned i = 0; i < strlen(subseconds.str().c_str()); i++) {
+    tmp = subseconds.str();
+    for (unsigned i = 0; i < tmp.size(); i++) {
         if (i > 3)
             break;
-        const char *tmp = subseconds.str().c_str();
         out += tmp[i];
     }
     return out;
