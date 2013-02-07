@@ -27,5 +27,15 @@ message LTEFrame extends AirFrame
 //	unsigned int radioType;
 //	unsigned int direction;
 	unsigned int ueId;
-	unsigned int rapid;  		// RACH preamble id (0...63)    
+
+}
+
+message RAPreamble extends LTEFrame
+{
+    unsigned int rapid;  		// RACH preamble id (0...63)    
+}
+
+message HARQFrame extends LTEFrame
+{
+    bool harqIndicator;
 }

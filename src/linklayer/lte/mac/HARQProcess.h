@@ -18,8 +18,8 @@
 
 #include "MACMessage.h"
 
-#define HARQ_FEEDBACK_ACK   0
-#define HARQ_FEEDBACK_NACK  1
+#define HARQ_FEEDBACK_ACK   1
+#define HARQ_FEEDBACK_NACK  0
 
 class MAC;
 
