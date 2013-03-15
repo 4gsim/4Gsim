@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <ENBConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="ENB.xsd">
+             
 	<NAS appType="2">		<!-- appType - 2 = RELAY -->
 	</NAS>   
 	<S1AP 	type="1"			
@@ -9,7 +10,7 @@
     		cellId="1"
     		name="enb1">	<!-- 1 = connector -->
 		<Connectors>
-			<Connector address="192.168.2.2" port="30000"/>
+			<!-- <Connector address="192.168.2.2" port="30000"/> -->
 		</Connectors>
 		<SuppTas>
 			<SuppTa tac="7712">
@@ -21,7 +22,18 @@
 	</S1AP> 
 	<GTP mcc="591" mnc="78">
 		<Paths>
-			<Path localAddr="192.168.7.2" remoteAddr="192.168.7.1" ctrlAddr="192.168.2.2" type="0"/> <!-- 0 = S1-U eNodeB GTP-U interface -->
+			<!-- <Path localAddr="192.168.7.2" remoteAddr="192.168.7.1" ctrlAddr="192.168.2.2" type="0"/> --> <!-- 0 = S1-U eNodeB GTP-U interface -->
 		</Paths>
 	</GTP>  
+	<LTEConfig
+			dlBandwith="6"
+			phichDuration="normal"
+			phichResource="1"
+			tac="7712"
+			cellId="1"
+			symbNumber="7">
+		<PLMNIdentityList>
+			<PLMNIdentity mcc="591" mnc="78"/>
+		</PLMNIdentityList>
+	</LTEConfig>
 </ENBConfig>

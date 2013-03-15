@@ -53,6 +53,8 @@ void PDCP::handleMessage(cMessage *msg) {
     switch (ctrl->getChannel()) {
         case ULCCCH:
         case DLCCCH:
+        case BCCH0:
+        case BCCH1:
             if (msg->arrivedOn("upperLayerIn"))
                 this->send(msg, gate("lowerLayerOut"));
             else

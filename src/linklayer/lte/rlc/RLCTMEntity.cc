@@ -41,6 +41,7 @@ void RLCTMEntity::processMessage(cMessage *msg) {
         cMessage *encap = pdu->decapsulate();
         encap->setControlInfo(ctrl);
         module->send(encap, module->gate("upperLayerOut"));
+        delete pdu;
     }
 }
 

@@ -19,7 +19,7 @@
 #include "HARQProcess.h"
 #include "MACMessage.h"
 
-#define HARQ_MAX_PROCS  10
+#define HARQ_MAX_PROCS  8
 
 class MAC;
 

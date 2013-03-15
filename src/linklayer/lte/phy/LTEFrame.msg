@@ -21,21 +21,53 @@ class noncobject AirFrame;
 
 message LTEFrame extends AirFrame
 {
-//	int type;   
-	unsigned int rntiType;
-	unsigned int rnti;			// RA-RNTI (1...60)
-//	unsigned int radioType;
-//	unsigned int direction;
+}
+
+message PhysicalResourceBlock extends AirFrame
+{
+//    unsigned int tbId = 0;
+}
+
+enum LTERadioTypes
+{
+    FDDRadioType = 0;
+	TDDRadioType = 1;
+}
+
+enum LTEDirections
+{
+	UplinkDirection = 0;
+	DownlinkDirection = 1;   
+}
+
+enum LTERntiTypes
+{
+ 	NoRnti = 0; 
+ 	PRnti = 1;
+ 	RaRnti = 2;
+ 	CRnti = 3;
+ 	SiRnti = 4;
+ 	SpsRnti = 5;
+ 	MRnti = 6;	
+}
+
+packet TransportBlock
+{
+    int channel;
+    unsigned int rntiType;
+	unsigned short rnti;			// RA-RNTI (1...60)
 	unsigned int ueId;
-
 }
 
-message RAPreamble extends LTEFrame
-{
-    unsigned int rapid;  		// RACH preamble id (0...63)    
-}
+//message RAPreamble extends LTEFrame
+//{
+//    unsigned int rapid;  		// RACH preamble id (0...63)    
+//}
+//
+//message HARQFrame extends LTEFrame
+//{
+//    bool harqIndicator;
+//    simtime_t ttiId;
+//}
 
-message HARQFrame extends LTEFrame
-{
-    bool harqIndicator;
-}
+

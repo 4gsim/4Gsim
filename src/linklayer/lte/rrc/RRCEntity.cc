@@ -26,12 +26,12 @@ RRCEntity::RRCEntity(bool nodeType) {
     init();
     this->nodeType = nodeType;
     if (nodeType == UE_NODE_TYPE) {
-        fsm = new cFSM("fsm-RRC-UE");
-        fsm->setState(UE_RRC_IDLE);
+        fsm = cFSM("fsm-RRC-UE");
+        fsm.setState(UE_RRC_IDLE);
 //        take(fsm);
     } else {
-        fsm = new cFSM("fsm-RRC-ENB");
-        fsm->setState(EUTRAN_RRC_IDLE);
+        fsm = cFSM("fsm-RRC-ENB");
+        fsm.setState(EUTRAN_RRC_IDLE);
 //        take(fsm);
     }
 }
@@ -42,11 +42,10 @@ RRCEntity::~RRCEntity() {
 
 void RRCEntity::init() {
     module = NULL;
-    fsm = NULL;
 }
 
 void RRCEntity::performStateTransition(RRCEvent event) {
-    int oldState = fsm->getState();
+    int oldState = fsm.getState();
 
     switch(oldState) {
         case UE_RRC_IDLE:
@@ -64,7 +63,7 @@ void RRCEntity::performStateTransition(RRCEvent event) {
             switch(event) {
                 case ConnectionEstablishment: {
                     sendRRCConnectionSetup();
-                    FSM_Goto(*fsm, EUTRAN_RRC_CONNECTED);
+                    FSM_Goto(fsm, EUTRAN_RRC_CONNECTED);
                     break;
                 }
                 default:
@@ -174,10 +173,9 @@ Subscriber *RRCEntity::getOwner() {
 
 std::string RRCEntity::info(int tabs) const {
     std::stringstream out;
-    if (fsm != NULL) {
-        for (int i = 0; i < tabs; i++) out << "\t";
-        out << "rrcSt:" << stateName(fsm->getState()) << "\n";
-    }
+    for (int i = 0; i < tabs; i++) out << "\t";
+        out << "rrcSt:" << stateName(fsm.getState()) << "\n";
+
 
     return out.str();
 }

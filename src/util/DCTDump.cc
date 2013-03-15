@@ -21,6 +21,7 @@
 #include "RRCMessage_m.h"
 #include "MACSerializer.h"
 #include "LTEPhyControlInfo_m.h"
+#include "LTEFrame_m.h"
 
 #define MAXBUFLENGTH 65536
 #define MAXDCTLENGTH 100
@@ -98,28 +99,30 @@ void DCTDump::handleMessage(cMessage *msg) {
         }
 
         // context name - MACProtocolDataUnit
-        MACProtocolDataUnit *macPdu = dynamic_cast<MACProtocolDataUnit*>(msg);
-        if (macPdu) {
+        TransportBlock *tb = dynamic_cast<TransportBlock*>(msg);
+        if (tb) {
             strncpy(p, "MAC-LTE.", 8);
             p += 8;
 
             write = true;
 
-            buf_len = MACSerializer().serialize(macPdu, buf, sizeof(buf));
+            MACProtocolDataUnit *macPdu = dynamic_cast<MACProtocolDataUnit*>(tb->getEncapsulatedPacket());
+            if (macPdu)
+                buf_len = MACSerializer().serialize(macPdu, buf, sizeof(buf));
         }
 
         // context name - MAC Random Access Preamble
-        if (dynamic_cast<LTEPhyControlInfo*>(msg->getControlInfo())) {
-            LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
-            if (ctrl->getChannel() == RACH) {
-                strncpy(p, "MAC-LTE.", 8);
-                p += 8;
-
-                write = true;
-
-                hasComment = true;
-            }
-        }
+//        if (dynamic_cast<LTEPhyControlInfo*>(msg->getControlInfo())) {
+//            LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
+//            if (ctrl->getChannel() == RACH) {
+//                strncpy(p, "MAC-LTE.", 8);
+//                p += 8;
+//
+//                write = true;
+//
+//                hasComment = true;
+//            }
+//        }
 
         // context port number - always 1
         strncpy(p, "1/", 5);
@@ -139,7 +142,7 @@ void DCTDump::handleMessage(cMessage *msg) {
         }
 
         // protocol - MACProtocolDataUnit
-        if (macPdu) {
+        if (tb) {
             vers << 1;
 
             strncpy(p, "mac_r9_lte/", 11);
@@ -161,18 +164,17 @@ void DCTDump::handleMessage(cMessage *msg) {
             strncpy(p, vers.str().c_str(), strlen(vers.str().c_str()));
             p += strlen(vers.str().c_str());
 
-            LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
-            comment << ">> RACH Preamble Request[UE =  "
-                    << ctrl->getUeId() << "]    [RAPID =  "
-                    << ctrl->getRapid() << "]    [Attempt = 1]";
-            strncpy((char*)buf, comment.str().c_str(), strlen(comment.str().c_str()));
-            buf_len = strlen(comment.str().c_str());
+//            LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
+//            comment << ">> RACH Preamble Request[UE =  "
+//                    << ctrl->getUeId() << "]    [RAPID =  "
+//                    << ctrl->getRapid() << "]    [Attempt = 1]";
+//            strncpy((char*)buf, comment.str().c_str(), strlen(comment.str().c_str()));
+//            buf_len = strlen(comment.str().c_str());
         }
 
         // out-header
         if (hasOutHdr) {
-            if (macPdu) {
-                LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
+            if (tb) {
                 unsigned direction;
                 if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2))
                     if (msg->getArrivalGate()->isName("lowerLayerIn"))
@@ -186,12 +188,12 @@ void DCTDump::handleMessage(cMessage *msg) {
                         direction = DownlinkDirection;
                 outHdr  << ","
                         << FDDRadioType << ","
-                        << ctrl->getRntiType() << ","
+                        << tb->getRntiType() << ","
                         << direction << ","
                         << "1," // Subframe number
                         << "0," // is predefined data
-                        << ctrl->getRnti() << ","
-                        << ctrl->getUeId() << ","
+                        << tb->getRnti() << ","
+                        << tb->getUeId() << ","
                         << buf_len << ",";
 
             }

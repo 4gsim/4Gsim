@@ -39,6 +39,8 @@ void RLC::handleMessage(cMessage *msg) {
     switch (ctrl->getChannel()) {
         case ULCCCH:
         case DLCCCH:
+        case BCCH0:
+        case BCCH1:
             tTM->processMessage(msg);
             break;
         default:

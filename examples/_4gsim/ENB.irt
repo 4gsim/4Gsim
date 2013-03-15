@@ -1,20 +1,20 @@
 ifconfig:
 
 # ethernet card 0 of host
-name: eth0
-	inet_addr: 192.168.2.1
-	Mask: 255.255.255.0
-	MTU: 1500
-	Metric: 1
-	POINTTOPOINT MULTICAST
+# name: eth0
+#	inet_addr: 192.168.2.1
+#	Mask: 255.255.255.0
+#	MTU: 1500
+#	Metric: 1
+#	POINTTOPOINT MULTICAST
 	
 # ethernet card 1 of host
-name: eth1
-	inet_addr: 192.168.7.2
-	Mask: 255.255.255.0
-	MTU: 1500
-	Metric: 1
-	POINTTOPOINT MULTICAST
+# name: eth1
+#	inet_addr: 192.168.7.2
+#	Mask: 255.255.255.0
+#	MTU: 1500
+#	Metric: 1
+#	POINTTOPOINT MULTICAST
 
 ifconfigend.
 

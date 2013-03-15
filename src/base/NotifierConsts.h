@@ -116,7 +116,7 @@ enum
     NF_SUB_TUNN_ACK,
     NF_SUB_TUNN_NACK,
     NF_SUB_MODIF_TUNN,
-    NF_RAND_ACCESS_COMPL
+    NF_PHY_PER_CB
 };
 
 /**

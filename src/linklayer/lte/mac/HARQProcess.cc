@@ -34,7 +34,7 @@ void HARQProcess::send(unsigned ulGrant, MACProtocolDataUnit *pdu) {
     // TODO store ulGrant
     harqFeedback = HARQ_FEEDBACK_NACK;
 
-    module->sendDown(pdu, ULSCH);
+//    module->scheduleDown(pdu, ULSCH, TTI_VALUE);
 
     if (currTxNb == maxTrans - 1) {
         while(!buffer.empty()) {

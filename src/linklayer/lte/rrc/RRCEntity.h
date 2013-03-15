@@ -41,7 +41,7 @@ class RRCEntity {
 private:
     bool nodeType;
 
-    cFSM *fsm;
+    cFSM fsm;
 
     RRC *module;
 
@@ -58,8 +58,8 @@ public:
 
     RRC *getModule();
     Subscriber *getOwner();
-    int getState() { return fsm->getState(); }
-    cFSM *getFSM() { return fsm; }
+    int getState() { return fsm.getState(); }
+    cFSM getFSM() { return fsm; }
 
     void performStateTransition(RRCEvent event);
     const char *stateName(int state) const;

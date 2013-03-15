@@ -13,17 +13,25 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
+cplusplus {{
+    #define TTI_VALUE           1
+}}
+
 enum LTELogicalChannels
 {
 	ULCCCH = 1;    
 	DLCCCH = 2;
+	BCCH0 = 3;
+	BCCH1 = 4;
 }
 
 enum LTETransportChannels
 {
     ULSCH = 20;
     RACH = 21;
-    DLSCH = 22;
+    DLSCH0 = 22;
+    DLSCH1 = 23;
+    BCH = 24;
 }
 
 enum LTEPhyChannels 
@@ -31,10 +39,18 @@ enum LTEPhyChannels
     PRACH = 30;
     PDSCH = 31;
     PUSCH = 32;
+    PHICH = 33;
+    PBCH = 34;
 };
+
+enum LTEDirection
+{
+    Uplink = 1;
+    Downlink = 2;
+}
 
 
 class LTEControlInfo
 {
-	int channel; // physical, logical or transport channels    
+	int channel; // logical or transport channels    
 } 

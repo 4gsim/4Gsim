@@ -17,6 +17,7 @@
 
 package inet.nodes._4gsim;
 
+import inet.linklayer.lte.LTEConfig;
 import inet.linklayer.lte.mac.MAC;
 import inet.linklayer.lte.pdcp.PDCP;
 import inet.linklayer.lte.rlc.RLC;
@@ -66,6 +67,11 @@ module ENB
         mobility: StationaryMobility {
             parameters:
                 @display("p=37,25");
+        }
+        lteConfig: LTEConfig {
+            parameters:
+            	@display("p=421,33");
+				configFile = configFile;
         }
         lteRadio: LTERadio {
             @display("p=76,360");

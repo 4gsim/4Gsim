@@ -17,6 +17,7 @@
 
 package inet.nodes._4gsim;
 
+import inet.linklayer.lte.LTEConfig;
 import inet.linklayer.lte.mac.MAC;
 import inet.linklayer.lte.pdcp.PDCP;
 import inet.linklayer.lte.rlc.RLC;
@@ -48,6 +49,11 @@ module UE
         mobility: <mobilityType> like IMobility {
             parameters:
                 @display("p=50,61");
+        }
+        lteConfig: LTEConfig {
+            parameters:
+            	@display("p=433,202");
+        		configFile = configFile;
         }
         lteRadio: LTERadio {
             @display("p=273,420");
@@ -84,7 +90,7 @@ module UE
         nas: NAS {
             parameters:
                 configFile = configFile;
-            	@display("p=329,46");
+                @display("p=329,46");
         }
     connections allowunconnected:
         radioIn --> lteRadio.radioIn;

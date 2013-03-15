@@ -28,37 +28,16 @@ class noncobject LTEControlInfo;
 //	
 //}
 
-enum LTERadioTypes
-{
-    FDDRadioType = 0;
-	TDDRadioType = 1;
-}
 
-enum LTEDirections
-{
-	UplinkDirection = 0;
-	DownlinkDirection = 1;   
-}
-
-enum LTERntiTypes
-{
- 	NoRnti = 0; 
- 	PRnti = 1;
- 	RaRnti = 2;
- 	CRnti = 3;
- 	SiRnti = 4;
- 	SpsRnti = 5;
- 	MRnti = 6;	
-}
 
 class LTEPhyControlInfo extends LTEControlInfo
 {
 //	int phyChannel;
 //	int type;   
-	unsigned int rntiType;
-	unsigned short rnti;			// RA-RNTI (1...60)
+//	unsigned int rntiType;
+//	unsigned short rnti;			// RA-RNTI (1...60)
 //	unsigned int radioType;
 //	unsigned int direction;
-	unsigned int ueId;
-	unsigned int rapid;  		// RACH preamble id (0...63)
+//	unsigned int ueId;
+//	unsigned int rapid;  		// RACH preamble id (0...63)
 }

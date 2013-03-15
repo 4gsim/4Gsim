@@ -21,12 +21,14 @@
 #include <omnetpp.h>
 #include "NotificationBoard.h"
 #include "HARQEntity.h"
+#include "MACScheduler.h"
+#include "LTEConfigAccess.h"
 
 #define RA_RNTI_MIN_VALUE   1
 #define RA_RNTI_MAX_VALUE   60
 #define C_RNTI_MIN_VALUE    1
 #define C_RNTI_MAX_VALUE    65523
-#define TTI_TIMER_TIMEOUT   1
+//#define TTI_VALUE           1
 
 class MAC : public cSimpleModule, public INotifiable {
 protected:
@@ -35,13 +37,21 @@ protected:
     unsigned ueId;
 
     cMessage *ttiTimer;
-    unsigned ttiId;
+//    unsigned ttiId;
+//    unsigned schTtid;
 
     HARQEntity *entity;
+    MACScheduler *scheduler;
 
     NotificationBoard *nb;
 
-    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
+//    MACProtocolDataUnit *bcchMsg;
+
+    LTEConfig *lteCfg;
+
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
+
+    const char *channelName(int channelNumber);
 public:
     MAC();
     virtual ~MAC();
@@ -54,7 +64,7 @@ public:
     void handleLowerMessage(cMessage *msg);
     void handleUpperMessage(cMessage *msg);
 
-    void sendDown(cMessage *msg, int channelNumber, unsigned rapid = 0);
+//    void sendDown(cMessage *msg, int channelNumber, unsigned rntiType, unsigned short rnti);
     void sendUp(cMessage *msg, int channelNumber);
     unsigned getUeId() { return ueId; }
 };

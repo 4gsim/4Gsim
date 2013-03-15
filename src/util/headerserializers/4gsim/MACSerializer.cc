@@ -79,14 +79,20 @@ unsigned MACSerializer::serialize(MACProtocolDataUnit *pdu, unsigned char *buf, 
     bool isExt = pdu->getSdusArraySize() > 1 ? true : false;
     unsigned i = 0;
 
-    for (i = 0; i < pdu->getSubHdrsArraySize() - 1; i++) {
-        msgLen += serializeHeader(pdu->getSubHdrs(i), isExt, false, pdu->getSdus(i)->getByteLength(), buf + msgLen);
-    }
-    if (pdu->getSubHdrsArraySize() > 0)
+    if (pdu->getSubHdrsArraySize()) {
+        for (i = 0; i < pdu->getSubHdrsArraySize() - 1; i++)
+            msgLen += serializeHeader(pdu->getSubHdrs(i), isExt, false, pdu->getSdus(i)->getByteLength(), buf + msgLen);
+
+        // last subheader is fixed size
         msgLen += serializeHeader(pdu->getSubHdrs(i), isExt, true, pdu->getSdus(i)->getByteLength(), buf + msgLen);
 
-    for (i = 0; i < pdu->getSdusArraySize(); i++)
-        msgLen += serializeServiceDataUnit(pdu->getSdus(i), buf + msgLen);
+        for (i = 0; i < pdu->getSdusArraySize(); i++)
+            msgLen += serializeServiceDataUnit(pdu->getSdus(i), buf + msgLen);
+
+    } else {
+        RLCProtocolDataUnit *rlcPdu = check_and_cast<RLCProtocolDataUnit*>(pdu->getEncapsulatedPacket());
+        msgLen = RLCSerializer().serialize(rlcPdu, buf, rlcPdu->getByteLength());
+    }
 
     return msgLen;
 }

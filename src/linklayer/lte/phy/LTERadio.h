@@ -29,13 +29,21 @@
 #include "INoiseGenerator.h"
 #include "InterfaceTable.h"
 #include "LTEPhyControlInfo_m.h"
+#include "LTEFrame_m.h"
+
+#define HARQ_FEEDBACK_DELAY 1
+#define HARQ_FEEDBACK_ACK   1
+#define HARQ_FEEDBACK_NACK  0
+#define PRB_MAX_SIZE        6
 
 //enum kind {
 //	control = 0,
 //	user = 1
 //};
 
-class LTERadio : public ChannelAccess {
+static const char *prbNames[PRB_MAX_SIZE] = { "PRB1", "PRB2", "PRB3", "PRB4", "PRB5", "PRB6" };
+
+class LTERadio : public ChannelAccess, INotifiable {
 public:
 	LTERadio();
 	virtual ~LTERadio();
@@ -45,6 +53,17 @@ protected:
     IRadioModel *radioModel;
     IReceptionModel *receptionModel;
     IInterfaceTable *ift;
+
+//    std::list<HARQFrame*> harqFbs;
+
+    cMessage *ttiTimer;
+//    std::vector<TransportBlock*> tbBuffer;
+    PhysicalResourceBlock *subFrame[PRB_MAX_SIZE];
+
+    NotificationBoard *nb;
+
+    unsigned dir;
+    char *dirStr;
 
     unsigned ueId;
 
@@ -63,9 +82,12 @@ protected:
 
     // implements function from ChannelAccess
     void sendToRadio(cMessage *msg, int channel);
+    void sendUp(LTEFrame *frame, LTEPhyControlInfo *ctrl);
+    void scheduleHARQFeedback(bool harqIndicator, unsigned ueId);
 
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
     //virtual void sendDown(AirFrame *airframe);
-    virtual void sendUp(AirFrame *airframe);
+//    virtual void sendUp(AirFrame *airframe);
 };
 
 #endif /* LTERADIO_H_ */

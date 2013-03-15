@@ -22,16 +22,24 @@
 #include "RRCClassDefinitions.h"
 #include "ASNTypes.h"
 #include "SubscriberTable.h"
+#include "LTEConfigAccess.h"
 
 using namespace rrc;
 
 #define UE_NODE_TYPE        0
 #define ENB_NODE_TYPE       1
 
+using namespace rrc;
+
 class RRC : public cSimpleModule {
 private:
     bool nodeType;
     SubscriberTable *subT;
+
+    cMessage *mibTimer;
+    cMessage *sib1Timer;
+
+    LTEConfig *lteCfg;
 public:
 	RRC();
 	virtual ~RRC();
@@ -44,6 +52,8 @@ public:
 
 	void sendDown(int logChannel, int choice, const char *name, AbstractType *payload);
 
+	void sendMIB();
+	void sendSIB1();
 };
 
 #endif /* RRC_H_ */
