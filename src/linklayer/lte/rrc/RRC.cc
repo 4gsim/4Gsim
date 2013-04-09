@@ -21,6 +21,7 @@
 #include "RRCUtils.h"
 #include "RRCMessage.h"
 #include "SubscriberTableAccess.h"
+#include "RRCControlInfo_m.h"
 #include "PerEncoder.h"
 
 Define_Module(RRC);
@@ -35,6 +36,7 @@ RRC::RRC() {
 	// TODO Auto-generated constructor stub
     mibTimer = NULL;
     sib1Timer = NULL;
+    sib2Timer = NULL;
 }
 
 RRC::~RRC() {
@@ -63,8 +65,12 @@ void RRC::initialize(int stage) {
             mibTimer->setContextPointer(this);
 
             sib1Timer = new cMessage("SIB1-TIMER");
-            this->scheduleAt(simTime(), sib1Timer);
+            this->scheduleAt(simTime() + 4 * TTI_VALUE, sib1Timer);
             sib1Timer->setContextPointer(this);
+
+            sib2Timer = new cMessage("SIB2-TIMER");
+            this->scheduleAt(simTime() + 5 * TTI_VALUE, sib2Timer);
+            sib2Timer->setContextPointer(this);
         }
     }
 }
@@ -79,6 +85,10 @@ void RRC::handleMessage(cMessage *msg) {
             sendSIB1();
             this->cancelEvent(sib1Timer);
             this->scheduleAt(simTime() + 80 * TTI_VALUE, sib1Timer);
+        } else if (msg == sib2Timer) {
+            sendSIB2();
+            this->cancelEvent(sib2Timer);
+            this->scheduleAt(simTime() + 80 * TTI_VALUE, sib2Timer);
         }
     } else if (msg->arrivedOn("lowerLayerIn")) {
         handleLowerMessage(msg);
@@ -88,12 +98,9 @@ void RRC::handleMessage(cMessage *msg) {
 }
 
 void RRC::handleLowerMessage(cMessage *msg) {
-    EV << "aici-2\n";
     RRCMessage *rrcMsg = check_and_cast<RRCMessage*>(msg);
-    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
-    EV << "aici-1\n";
+    RRCControlInfo *ctrl = check_and_cast<RRCControlInfo*>(msg->getControlInfo());
     SequencePtr seq = rrcMsg->getSdu();
-    EV << "aici\n";
     switch(ctrl->getChannel()) {
         case ULCCCH: {
             ULCCCHMessage *ulccchMessage = static_cast<ULCCCHMessage*>(seq);
@@ -120,18 +127,35 @@ void RRC::handleLowerMessage(cMessage *msg) {
             break;
         }
         case BCCH0: {
-            EV << "aici1\n";
             BCCHBCHMessage *bcchbchMessage = static_cast<BCCHBCHMessage*>(seq);
-            EV << "aici2\n";
             MasterInformationBlock mib = bcchbchMessage->getMessage();
-            EV << "aici3\n";
-            lteCfg->setDLBandwithIndex(mib.getMasterInformationBlockdl_Bandwidth().getValue());
-            EV << "aici4\n";
-            PHICHConfig phichConfig = mib.getPhichConfig();
-            EV << "aici5\n";
-            lteCfg->setPhichDurationIndex(phichConfig.getPHICHConfigphich_Duration().getValue());
-            EV << "aici6\n";
-            lteCfg->setPhichResourceIndex(phichConfig.getPHICHConfigphich_Resource().getValue());
+            processMIB(mib);
+            break;
+        }
+        case BCCH1: {
+            BCCHDLSCHMessage *bcchdlschMessage = static_cast<BCCHDLSCHMessage*>(seq);
+            BCCHDLSCHMessageType bcchdlschMessageType = bcchdlschMessage->getMessage();
+            if (bcchdlschMessageType.getChoice() == BCCHDLSCHMessageType::bCCHDLSCHMessageTypeC1) {
+                BCCHDLSCHMessageTypeC1 *c1 = static_cast<BCCHDLSCHMessageTypeC1*>(bcchdlschMessageType.getValue());
+                if (c1->getChoice() == BCCHDLSCHMessageTypeC1::systemInformationBlockType1) {
+                    SystemInformationBlockType1 *sib1 = static_cast<SystemInformationBlockType1*>(c1->getValue());
+                    processSIB1(sib1);
+                } else if (c1->getChoice() == BCCHDLSCHMessageTypeC1::systemInformation) {
+                    SystemInformation *sib = static_cast<SystemInformation*>(c1->getValue());
+                    SystemInformationCriticalExtensions critExt = sib->getSystemInformationCriticalExtensions();
+                    if(critExt.getChoice() == SystemInformationCriticalExtensions::systemInformationr8) {
+                        SystemInformationr8IEs *r8ies = static_cast<SystemInformationr8IEs*>(critExt.getValue());
+                        SystemInformationr8IEsSibTypeAndInfo typeAndInfo = r8ies->getSystemInformationr8IEsSibTypeAndInfo();
+                        for (unsigned i = 0; i < typeAndInfo.size(); i++) {
+                            SibTypeAndInfoItem item = typeAndInfo.at(i);
+                            if (item.getChoice() == SibTypeAndInfoItem::sib2) {
+                                SystemInformationBlockType2 *sib2 = static_cast<SystemInformationBlockType2*>(item.getValue());
+                                processSIB2(sib2);
+                            }
+                        }
+                    }
+                }
+            }
             break;
         }
         default:
@@ -146,7 +170,8 @@ void RRC::sendMIB() {
     PHICHConfigphich_Resource phichResource = PHICHConfigphich_Resource(lteCfg->getPhichResourceSel());
     PHICHConfig phichConfig = PHICHConfig(phichDuration, phichResource);
 
-    MasterInformationBlockSystemFrameNumber systemFrameNumber = MasterInformationBlockSystemFrameNumber();
+    unsigned char sfn = (unsigned char)(lteCfg->getSFN() >> 2);
+    MasterInformationBlockSystemFrameNumber systemFrameNumber = MasterInformationBlockSystemFrameNumber((char *)&sfn);
     MasterInformationBlockSpare spare = MasterInformationBlockSpare();
 
     MasterInformationBlock *mib = new MasterInformationBlock(dlBandwith, phichConfig, systemFrameNumber, spare);
@@ -191,6 +216,128 @@ void RRC::sendSIB1() {
     c1->setValue(sib1, BCCHDLSCHMessageTypeC1::systemInformationBlockType1);
 
     this->sendDown(BCCH1, BCCHDLSCHMessageType::bCCHDLSCHMessageTypeC1, "SystemInformationBlock1", c1);
+}
+
+void RRC::sendSIB2() {
+    // TODO power ramping params, bcch config, pcch config, prach config, pdsch config, pusch config
+    // pucch config, sounding rs ul config, uplink power control, ue timers, freq info, time allignment timer
+    /* RACHConfigCommon */
+    RACHConfigCommonPreambleInfonumberOfRA_Preambles nrOfRAPreambles = RACHConfigCommonPreambleInfonumberOfRA_Preambles(lteCfg->getNrOfRAPreamblesSel());
+    RACHConfigCommonPreambleInfo preambleInfo = RACHConfigCommonPreambleInfo(nrOfRAPreambles);
+    RACHConfigCommonPowerRampingParameterspowerRampingStep powRampingStep = RACHConfigCommonPowerRampingParameterspowerRampingStep(1);
+    RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower preambleInitRcvdTargetPow = RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower(8);
+    RACHConfigCommonPowerRampingParameters powRampingParams = RACHConfigCommonPowerRampingParameters(powRampingStep, preambleInitRcvdTargetPow);
+    RACHConfigCommonRaSupervisionInfopreambleTransMaxValues preambleTransMax = RACHConfigCommonRaSupervisionInfopreambleTransMaxValues(lteCfg->getPreambleTransMaxSel());
+    RACHConfigCommonRaSupervisionInfora_ResponseWindowSize raRespWdwSize = RACHConfigCommonRaSupervisionInfora_ResponseWindowSize(lteCfg->getRaRespWdwSizeSel());
+    RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer macContResolTimer = RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer(lteCfg->getMACContResolTimerSel());
+    RACHConfigCommonRaSupervisionInfo raSupervInfo = RACHConfigCommonRaSupervisionInfo(preambleTransMax, raRespWdwSize, macContResolTimer);
+    RACHConfigCommonMaxHARQMsg3Tx maxHARQMsg3Tx = RACHConfigCommonMaxHARQMsg3Tx(lteCfg->getMaxHARQMsg3Tx());
+    RACHConfigCommon rachCfg = RACHConfigCommon(preambleInfo, powRampingParams, raSupervInfo, maxHARQMsg3Tx);
+
+    /* BCCHConfig */
+    BCCHConfigmodificationPeriodCoeff modifPerCoeff = BCCHConfigmodificationPeriodCoeff(1);
+    BCCHConfig bcchCfg = BCCHConfig(modifPerCoeff);
+
+    /* PCCHConfig */
+    PCCHConfigdefaultPagingCycle defPagCycl = PCCHConfigdefaultPagingCycle(2);
+    PCCHConfignB nb = PCCHConfignB(2);
+    PCCHConfig pcchCfg = PCCHConfig(defPagCycl, nb);
+
+    /* PRACHConfigSIB */
+    PRACHConfigRootSequenceIndex rootSeqIndex = PRACHConfigRootSequenceIndex(22);
+    PRACHConfigInfoPrachConfigIndex prachCfgIndex = PRACHConfigInfoPrachConfigIndex(3);
+    PRACHConfigInfoHighSpeedFlag highSpeedFlag = PRACHConfigInfoHighSpeedFlag(false);
+    PRACHConfigInfoZeroCorrelationZoneConfig zeroCorrZoneCfg = PRACHConfigInfoZeroCorrelationZoneConfig(5);
+    PRACHConfigInfoPrachFreqOffset prachFreqOff = PRACHConfigInfoPrachFreqOffset(lteCfg->getPRACHFreqOffset());
+    PRACHConfigInfo prachCfgInfo = PRACHConfigInfo(prachCfgIndex, highSpeedFlag, zeroCorrZoneCfg, prachFreqOff);
+    PRACHConfigSIB prachCfg = PRACHConfigSIB(rootSeqIndex, prachCfgInfo);
+
+    /* PDSCHConfigCommon */
+    PDSCHConfigCommonReferenceSignalPower refSignPow = PDSCHConfigCommonReferenceSignalPower(18);
+    PDSCHConfigCommonPb pb = PDSCHConfigCommonPb((int64_t)0);
+    PDSCHConfigCommon pdschCfg = PDSCHConfigCommon(refSignPow, pb);
+
+    /* PUSCHConfigCommon */
+    PUSCHConfigCommonPuschConfigBasicNSB nSB = PUSCHConfigCommonPuschConfigBasicNSB(1);
+    PUSCHConfigCommonPuschConfigBasichoppingMode hoppMode = PUSCHConfigCommonPuschConfigBasichoppingMode((int64_t)0);
+    PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset puschHoppOff = PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset(4);
+    PUSCHConfigCommonPuschConfigBasicEnable64QAM en64QAM = PUSCHConfigCommonPuschConfigBasicEnable64QAM(false);
+    PUSCHConfigCommonPuschConfigBasic puschCfgBasic = PUSCHConfigCommonPuschConfigBasic(nSB, hoppMode, puschHoppOff, en64QAM);
+    ULReferenceSignalsPUSCHGroupHoppingEnabled grHoppEn = ULReferenceSignalsPUSCHGroupHoppingEnabled(true);
+    ULReferenceSignalsPUSCHGroupAssignmentPUSCH grAssignPUSCH = ULReferenceSignalsPUSCHGroupAssignmentPUSCH((int64_t)0);
+    ULReferenceSignalsPUSCHSequenceHoppingEnabled seqHoppEn = ULReferenceSignalsPUSCHSequenceHoppingEnabled(false);
+    ULReferenceSignalsPUSCHCyclicShift cyclShift = ULReferenceSignalsPUSCHCyclicShift((int64_t)0);
+    ULReferenceSignalsPUSCH ulRefSignPUSCH = ULReferenceSignalsPUSCH(grHoppEn, grAssignPUSCH, seqHoppEn, cyclShift);
+    PUSCHConfigCommon puschCfg = PUSCHConfigCommon(puschCfgBasic, ulRefSignPUSCH);
+
+    /* PUCCHConfigCommon */
+    PUCCHConfigCommondeltaPUCCH_Shift deltaPUCCHShift = PUCCHConfigCommondeltaPUCCH_Shift(1);
+    PUCCHConfigCommonNRBCQI nRBCqi = PUCCHConfigCommonNRBCQI(2);
+    PUCCHConfigCommonNCSAN nCSSan = PUCCHConfigCommonNCSAN(6);
+    PUCCHConfigCommonN1PUCCHAN n1PUCCHAn = PUCCHConfigCommonN1PUCCHAN((int64_t)0);
+    PUCCHConfigCommon pucchCfg = PUCCHConfigCommon(deltaPUCCHShift, nRBCqi, nCSSan, n1PUCCHAn);
+
+    /* SoundingRSULConfigCommon */
+    SoundingRSULConfigCommonSetupsrs_BandwidthConfig srsBandCfg = SoundingRSULConfigCommonSetupsrs_BandwidthConfig(3);
+    SoundingRSULConfigCommonSetupsrs_SubframeConfig srsSubfrCfg = SoundingRSULConfigCommonSetupsrs_SubframeConfig((int64_t)0);
+    SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission ackNackSrsSimTrans = SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission(true);
+    SoundingRSULConfigCommonSetup *setup = new SoundingRSULConfigCommonSetup(srsBandCfg, srsSubfrCfg, ackNackSrsSimTrans);
+    SoundingRSULConfigCommon soundRSULCfg = SoundingRSULConfigCommon();
+    soundRSULCfg.setValue(setup, SoundingRSULConfigCommon::soundingRSULConfigCommonSetup);
+
+    /* UplinkPowerControlCommon */
+    UplinkPowerControlCommonP0NominalPUSCH p0NomPUSCH = UplinkPowerControlCommonP0NominalPUSCH(-85);
+    UplinkPowerControlCommonalpha alpha = UplinkPowerControlCommonalpha(5);
+    UplinkPowerControlCommonP0NominalPUCCH p0NomPUCCH = UplinkPowerControlCommonP0NominalPUCCH(-117);
+    DeltaFListPUCCHdeltaF_PUCCH_Format1 deltaFPUCCHForm1 = DeltaFListPUCCHdeltaF_PUCCH_Format1(1);
+    DeltaFListPUCCHdeltaF_PUCCH_Format1b deltaFPUCCHForm1b = DeltaFListPUCCHdeltaF_PUCCH_Format1b(1);
+    DeltaFListPUCCHdeltaF_PUCCH_Format2 deltaFPUCCHForm2 = DeltaFListPUCCHdeltaF_PUCCH_Format2(1);
+    DeltaFListPUCCHdeltaF_PUCCH_Format2a deltaFPUCCHForm2a = DeltaFListPUCCHdeltaF_PUCCH_Format2a(1);
+    DeltaFListPUCCHdeltaF_PUCCH_Format2b deltaFPUCCHForm2b = DeltaFListPUCCHdeltaF_PUCCH_Format2b(1);
+    DeltaFListPUCCH deltaFListPUCCH = DeltaFListPUCCH(deltaFPUCCHForm1, deltaFPUCCHForm1b, deltaFPUCCHForm2, deltaFPUCCHForm2a, deltaFPUCCHForm2b);
+    UplinkPowerControlCommonDeltaPreambleMsg3 deltaPreambleMsg3 = UplinkPowerControlCommonDeltaPreambleMsg3(4);
+    UplinkPowerControlCommon ulPowCtrl = UplinkPowerControlCommon(p0NomPUSCH, alpha, p0NomPUCCH, deltaFListPUCCH, deltaPreambleMsg3);
+
+    /* ULCyclicPrefixLength */
+    ULCyclicPrefixLength ulCyclPrefLen = ULCyclicPrefixLength((int64_t)0);
+
+    /* RadioResourceConfigCommonSIB */
+    RadioResourceConfigCommonSIB radioResCfgComm = RadioResourceConfigCommonSIB(rachCfg, bcchCfg, pcchCfg, prachCfg, pdschCfg, puschCfg, pucchCfg, soundRSULCfg, ulPowCtrl, ulCyclPrefLen);
+
+    /* UETimersAndConstants */
+    UETimersAndConstantst300 t300 = UETimersAndConstantst300(5);
+    UETimersAndConstantst301 t301 = UETimersAndConstantst301(5);
+    UETimersAndConstantst310 t310 = UETimersAndConstantst310(5);
+    UETimersAndConstantsn310 n310 = UETimersAndConstantsn310((int64_t)0);
+    UETimersAndConstantst311 t311 = UETimersAndConstantst311((int64_t)0);
+    UETimersAndConstantsn311 n311 = UETimersAndConstantsn311((int64_t)0);
+    UETimersAndConstants ueTimersAndCt = UETimersAndConstants(t300, t301, t310, n310, t311, n311);
+
+    /* SystemInformationBlockType2FreqInfo */
+    AdditionalSpectrumEmission addSpectrEm = AdditionalSpectrumEmission(1);
+    SystemInformationBlockType2FreqInfo freqInfo = SystemInformationBlockType2FreqInfo(addSpectrEm);
+
+    /* TimeAlignmentTimer */
+    TimeAlignmentTimer timeAllignTimer = TimeAlignmentTimer(1);
+
+    SystemInformationBlockType2 *sib2 = new SystemInformationBlockType2(radioResCfgComm, ueTimersAndCt, freqInfo, timeAllignTimer);
+
+    SibTypeAndInfoItem *sibTypeAndInfoItem = new SibTypeAndInfoItem();
+    sibTypeAndInfoItem->setValue(sib2, SibTypeAndInfoItem::sib2);
+
+    SystemInformationr8IEsSibTypeAndInfo sibTypeAndInfo = SystemInformationr8IEsSibTypeAndInfo();
+    sibTypeAndInfo.push_back(sibTypeAndInfoItem);
+
+    SystemInformationr8IEs *sibR8Ie = new SystemInformationr8IEs(sibTypeAndInfo);
+    SystemInformationCriticalExtensions critExt = SystemInformationCriticalExtensions();
+    critExt.setValue(sibR8Ie, SystemInformationCriticalExtensions::systemInformationr8);
+
+    SystemInformation *sib = new SystemInformation(critExt);
+
+    BCCHDLSCHMessageTypeC1 *c1 = new BCCHDLSCHMessageTypeC1();
+    c1->setValue(sib, BCCHDLSCHMessageTypeC1::systemInformation);
+
+    this->sendDown(BCCH1, BCCHDLSCHMessageType::bCCHDLSCHMessageTypeC1, "SystemInformationBlock2", c1);
 }
 
 void RRC::sendDown(int logChannel, int choice, const char *name, AbstractType *payload) {
@@ -240,6 +387,44 @@ void RRC::sendDown(int logChannel, int choice, const char *name, AbstractType *p
     ctrl->setChannel(logChannel);
     msg->setControlInfo(ctrl);
     this->send(msg, gate("lowerLayerOut"));
+}
+
+void RRC::processMIB(MasterInformationBlock mib) {
+    RRCEntity *entity = subT->at(0)->getRrcEntity();
+    if (entity->getState() == UE_RRC_IDLE) {    // TODO UE_RRC_CONNECTED with T3111 running
+        lteCfg->setDLBandwithIndex(mib.getMasterInformationBlockdl_Bandwidth().getValue());
+        PHICHConfig phichConfig = mib.getPhichConfig();
+        lteCfg->setPhichDurationIndex(phichConfig.getPHICHConfigphich_Duration().getValue());
+        lteCfg->setPhichResourceIndex(phichConfig.getPHICHConfigphich_Resource().getValue());
+        lteCfg->setSFN(mib.getMasterInformationBlockSystemFrameNumber().getValue()[0]);
+    }
+}
+
+void RRC::processSIB1(SystemInformationBlockType1 *sib1) {
+    // TODO frequency band check
+    SystemInformationBlockType1CellAccessRelatedInfo cellAccRelInfo = sib1->getSystemInformationBlockType1CellAccessRelatedInfo();
+    lteCfg->setTAC(cellAccRelInfo.getTrackingAreaCode().getValue());
+    lteCfg->setCellId(cellAccRelInfo.getCellIdentity().getValue());
+}
+
+void RRC::processSIB2(SystemInformationBlockType2 *sib2) {
+    RadioResourceConfigCommonSIB radioResCfgComm = sib2->getRadioResourceConfigCommon();
+
+    RACHConfigCommon rachCfg = radioResCfgComm.getRachConfigCommon();
+
+    RACHConfigCommonPreambleInfo preambleInfo = rachCfg.getRACHConfigCommonPreambleInfo();
+
+    lteCfg->setNrOfRAPreamblesIndex(preambleInfo.getRACHConfigCommonPreambleInfonumberOfRA_Preambles().getValue());
+
+    RACHConfigCommonRaSupervisionInfo raSupervInfo = rachCfg.getRACHConfigCommonRaSupervisionInfo();
+
+    lteCfg->setPreambleTransMaxIndex(raSupervInfo.getRACHConfigCommonRaSupervisionInfopreambleTransMax().getValue());
+    lteCfg->setRaRespWdwSize(raSupervInfo.getRACHConfigCommonRaSupervisionInfora_ResponseWindowSize().getValue());
+    lteCfg->setMACContResolTimer(raSupervInfo.getRACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer().getValue());
+
+    lteCfg->setMaxHARQMsg3Tx(rachCfg.getRACHConfigCommonMaxHARQMsg3Tx().getValue());
+
+    lteCfg->setRAState(0);
 }
 
 //void RRC::processRRCConnectionRequest(RRCConnectionRequest *rrcConnReq) {

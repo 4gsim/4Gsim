@@ -14,6 +14,7 @@
 // 
 
 #include "HARQEntity.h"
+#include "HARQControlInfo_m.h"
 #include "MAC.h"
 
 HARQEntity::HARQEntity() {
@@ -25,18 +26,29 @@ HARQEntity::~HARQEntity() {
     // TODO Auto-generated destructor stub
 }
 
-void HARQEntity::init(MAC *module) {
-    for (unsigned i = 0; i < HARQ_MAX_PROCS; i++) {
+void HARQEntity::init(MAC *module, unsigned nrOfProcs) {
+    bcastProc = new HARQProcess(module);
+
+    for (unsigned i = 0; i < nrOfProcs; i++) {
         procs[i] = new HARQProcess(module);
     }
 }
 
 void HARQEntity::processUplinkGrant(unsigned ulGrant, unsigned ttiId) {
-    HARQProcess *proc = procs[ttiId % HARQ_MAX_PROCS];
-    if (msg3.size()) {
-        MACProtocolDataUnit *pdu = msg3.back();
-        msg3.pop_back();
-        proc->send(ulGrant, pdu);
+//    HARQProcess *proc = procs[ttiId % HARQ_MAX_PROCS];
+//    if (msg3.size()) {
+//        MACProtocolDataUnit *pdu = msg3.back();
+//        msg3.pop_back();
+//        proc->send(ulGrant, pdu);
+//    }
+}
+
+void HARQEntity::indicateDownlinkAssignment(TransportBlock *tb) {
+    HARQControlInfo *ctrl = check_and_cast<HARQControlInfo*>(tb->getControlInfo());
+    EV << "LTE-MAC: Received a downlink assignment.\n";
+    if (ctrl->getHarqProcId() == HARQ_BCAST_PROC_ID) {
+        EV << "LTE-MAC: Allocating assignment to broadcast HARQ process.\n";
+        bcastProc->allocate(tb);
     }
 }
 

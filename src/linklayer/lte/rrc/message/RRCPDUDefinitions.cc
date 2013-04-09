@@ -151,10 +151,10 @@ const ASConfig::Info ASConfig::theInfo = {
 	ASConfig::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	12, 2, 0
+	9, 0, 3
 };
 ASConfig::ASConfig(const MeasConfig& sourceMeasConfig, const RadioResourceConfigDedicated& sourceRadioResourceConfig, const SecurityAlgorithmConfig& sourceSecurityAlgorithmConfig, const CRNTI& sourceUEIdentity, const MasterInformationBlock& sourceMasterInformationBlock, const SystemInformationBlockType1& sourceSystemInformationBlockType1, const SystemInformationBlockType2& sourceSystemInformationBlockType2, const AntennaInfoCommon& antennaInfoCommon, const ARFCNValueEUTRA& sourceDlCarrierFreq, const OtherConfigr9& sourceOtherConfigr9) : Sequence(&theInfo) {
 	setSourceMeasConfig(sourceMeasConfig);
@@ -207,10 +207,10 @@ const RRMConfig::Info RRMConfig::theInfo = {
 	RRMConfig::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	2, 2, 0
+	1, 1, 1
 };
 
 const void *AdditionalReestabInfo::itemsInfo[3] = {

@@ -18,19 +18,36 @@
 
 #include "MACMessage.h"
 #include "LTEFrame_m.h"
+#include "LTEConfig.h"
+
+class MACResource {
+public:
+    MACProtocolDataUnit *pdu;
+    int sfn;
+    int tti;
+    int retrNr;
+};
 
 class MACScheduler {
 private:
 //    std::vector<MACProtocolDataUnit*> schMsgs;
-    MACProtocolDataUnit *mib;
-    MACProtocolDataUnit *sib1;
+//    MACProtocolDataUnit *mib;
+//    MACProtocolDataUnit *sib;
 
-    unsigned ttiId;
+    typedef std::vector<MACResource> MACResources;
 
-    unsigned dlBandwith;
-    unsigned blockSize;
+    MACResources resources;
 
-    TransportBlock *getTransportBlock(MACProtocolDataUnit *pdu, int channelNumber, unsigned rntiType, unsigned short rnti);
+//    unsigned ttiId;
+//    unsigned sfn;
+
+//    unsigned dlBandwith;
+//    unsigned blockSize;
+
+    LTEConfig *lteCfg;
+
+//    TransportBlock *getTransportBlock(MACProtocolDataUnit *pdu);
+    void initRandomAccessProcedure();
 public:
     MACScheduler();
     virtual ~MACScheduler();
@@ -38,12 +55,13 @@ public:
 //    void scheduleMessage(unsigned ttiNr, MACProtocolDataUnit* pdu);
 //    void addMessage(MACProtocolDataUnit *pdu) { schMsgs.push_back(pdu); }
 
-    void configure(unsigned dlBandwith, unsigned blockSize);
+    void setLTEConfig(LTEConfig *lteCfg) { this->lteCfg = lteCfg; }
 
-    void setMIB(MACProtocolDataUnit *mib) { this->mib = mib; }
-    void setSIB1(MACProtocolDataUnit *sib1) { this->sib1 = sib1; }
+//    void setMIB(MACProtocolDataUnit *mib) { this->mib = mib; }
+//    void setSIB(MACProtocolDataUnit *sib) { this->sib = sib; }
 
     TransportBlock *getMessageToBeSent();
+    void addMACProtocolDataUnit(MACProtocolDataUnit *pdu, int sfn, int tti, int retrNr);
 };
 
 #endif /* MACSCHEDULER_H_ */

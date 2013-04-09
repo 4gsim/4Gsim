@@ -40,7 +40,7 @@ protected:
 //    unsigned ttiId;
 //    unsigned schTtid;
 
-    HARQEntity *entity;
+    HARQEntity *dlEntity;
     MACScheduler *scheduler;
 
     NotificationBoard *nb;
@@ -50,6 +50,8 @@ protected:
     LTEConfig *lteCfg;
 
     virtual void receiveChangeNotification(int category, const cPolymorphic *details);
+
+    void addHarqInformation(TransportBlock *tb, int harqProcId);
 
     const char *channelName(int channelNumber);
 public:

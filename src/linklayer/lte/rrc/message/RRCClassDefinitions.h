@@ -188,16 +188,2483 @@ public:
 	BCCHBCHMessageType& getMessage() { return *static_cast<BCCHBCHMessageType*>(items[0]); }
 };
 
-class SystemInformationr8IEsSibTypeAndInfo : public Sequence {
+typedef Boolean SystemInformationBlockType2AcBarringInfoAcBarringForEmergency;
+
+enum ACBarringConfigac_BarringFactorValues {
+	p00_ACBarringConfigac_BarringFactor = 0,
+	p05_ACBarringConfigac_BarringFactor = 1,
+	p10_ACBarringConfigac_BarringFactor = 2,
+	p15_ACBarringConfigac_BarringFactor = 3,
+	p20_ACBarringConfigac_BarringFactor = 4,
+	p25_ACBarringConfigac_BarringFactor = 5,
+	p30_ACBarringConfigac_BarringFactor = 6,
+	p40_ACBarringConfigac_BarringFactor = 7,
+	p50_ACBarringConfigac_BarringFactor = 8,
+	p60_ACBarringConfigac_BarringFactor = 9,
+	p70_ACBarringConfigac_BarringFactor = 10,
+	p75_ACBarringConfigac_BarringFactor = 11,
+	p80_ACBarringConfigac_BarringFactor = 12,
+	p85_ACBarringConfigac_BarringFactor = 13,
+	p90_ACBarringConfigac_BarringFactor = 14,
+	p95_ACBarringConfigac_BarringFactor = 15,
+};
+typedef Enumerated<CONSTRAINED, 15> ACBarringConfigac_BarringFactor;
+
+enum ACBarringConfigac_BarringTimeValues {
+	s4_ACBarringConfigac_BarringTime = 0,
+	s8_ACBarringConfigac_BarringTime = 1,
+	s16_ACBarringConfigac_BarringTime = 2,
+	s32_ACBarringConfigac_BarringTime = 3,
+	s64_ACBarringConfigac_BarringTime = 4,
+	s128_ACBarringConfigac_BarringTime = 5,
+	s256_ACBarringConfigac_BarringTime = 6,
+	s512_ACBarringConfigac_BarringTime = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> ACBarringConfigac_BarringTime;
+
+typedef BitString<CONSTRAINED, 5, 5> ACBarringConfigAcBarringForSpecialAC;
+
+class ACBarringConfig : public Sequence {
 private:
-	static const void *itemsInfo[0];
-	static bool itemsPres[0];
+	static const void *itemsInfo[3];
+	static bool itemsPres[3];
 public:
 	static const Info theInfo;
-	SystemInformationr8IEsSibTypeAndInfo(): Sequence(&theInfo) {}
+	ACBarringConfig(): Sequence(&theInfo) {}
+	ACBarringConfig(const ACBarringConfigac_BarringFactor& aCBarringConfigac_BarringFactor, const ACBarringConfigac_BarringTime& aCBarringConfigac_BarringTime, const ACBarringConfigAcBarringForSpecialAC& aCBarringConfigAcBarringForSpecialAC);
 
+	void setACBarringConfigac_BarringFactor(const ACBarringConfigac_BarringFactor& aCBarringConfigac_BarringFactor) { *static_cast<ACBarringConfigac_BarringFactor*>(items[0]) = aCBarringConfigac_BarringFactor; }
+	void setACBarringConfigac_BarringTime(const ACBarringConfigac_BarringTime& aCBarringConfigac_BarringTime) { *static_cast<ACBarringConfigac_BarringTime*>(items[1]) = aCBarringConfigac_BarringTime; }
+	void setACBarringConfigAcBarringForSpecialAC(const ACBarringConfigAcBarringForSpecialAC& aCBarringConfigAcBarringForSpecialAC) { *static_cast<ACBarringConfigAcBarringForSpecialAC*>(items[2]) = aCBarringConfigAcBarringForSpecialAC; }
 
+	ACBarringConfigac_BarringFactor& getACBarringConfigac_BarringFactor() { return *static_cast<ACBarringConfigac_BarringFactor*>(items[0]); }
+	ACBarringConfigac_BarringTime& getACBarringConfigac_BarringTime() { return *static_cast<ACBarringConfigac_BarringTime*>(items[1]); }
+	ACBarringConfigAcBarringForSpecialAC& getACBarringConfigAcBarringForSpecialAC() { return *static_cast<ACBarringConfigAcBarringForSpecialAC*>(items[2]); }
 };
+
+class SystemInformationBlockType2AcBarringInfo : public Sequence {
+private:
+	static const void *itemsInfo[3];
+	static bool itemsPres[3];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType2AcBarringInfo(): Sequence(&theInfo) {}
+	SystemInformationBlockType2AcBarringInfo(const SystemInformationBlockType2AcBarringInfoAcBarringForEmergency& systemInformationBlockType2AcBarringInfoAcBarringForEmergency);
+
+	void setSystemInformationBlockType2AcBarringInfoAcBarringForEmergency(const SystemInformationBlockType2AcBarringInfoAcBarringForEmergency& systemInformationBlockType2AcBarringInfoAcBarringForEmergency) { *static_cast<SystemInformationBlockType2AcBarringInfoAcBarringForEmergency*>(items[0]) = systemInformationBlockType2AcBarringInfoAcBarringForEmergency; }
+	void setAcBarringForMOSignalling(const ACBarringConfig& acBarringForMOSignalling) { *static_cast<ACBarringConfig*>(items[1]) = acBarringForMOSignalling; }
+	void setAcBarringForMOData(const ACBarringConfig& acBarringForMOData) { *static_cast<ACBarringConfig*>(items[2]) = acBarringForMOData; }
+
+	SystemInformationBlockType2AcBarringInfoAcBarringForEmergency& getSystemInformationBlockType2AcBarringInfoAcBarringForEmergency() { return *static_cast<SystemInformationBlockType2AcBarringInfoAcBarringForEmergency*>(items[0]); }
+	ACBarringConfig& getAcBarringForMOSignalling() { return *static_cast<ACBarringConfig*>(items[1]); }
+	ACBarringConfig& getAcBarringForMOData() { return *static_cast<ACBarringConfig*>(items[2]); }
+};
+
+enum RACHConfigCommonPreambleInfonumberOfRA_PreamblesValues {
+	n4_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 0,
+	n8_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 1,
+	n12_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 2,
+	n16_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 3,
+	n20_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 4,
+	n24_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 5,
+	n28_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 6,
+	n32_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 7,
+	n36_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 8,
+	n40_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 9,
+	n44_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 10,
+	n48_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 11,
+	n52_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 12,
+	n56_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 13,
+	n60_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 14,
+	n64_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 15,
+};
+typedef Enumerated<CONSTRAINED, 15> RACHConfigCommonPreambleInfonumberOfRA_Preambles;
+
+enum RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupAValues {
+	n4_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 0,
+	n8_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 1,
+	n12_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 2,
+	n16_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 3,
+	n20_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 4,
+	n24_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 5,
+	n28_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 6,
+	n32_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 7,
+	n36_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 8,
+	n40_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 9,
+	n44_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 10,
+	n48_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 11,
+	n52_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 12,
+	n56_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 13,
+	n60_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 14,
+};
+typedef Enumerated<CONSTRAINED, 14> RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA;
+
+enum RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupAValues {
+	b56_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA = 0,
+	b144_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA = 1,
+	b208_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA = 2,
+	b256_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA = 3,
+};
+typedef Enumerated<CONSTRAINED, 3> RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA;
+
+enum RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupBValues {
+	minusinfinity_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 0,
+	dB0_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 1,
+	dB5_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 2,
+	dB8_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 3,
+	dB10_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 4,
+	dB12_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 5,
+	dB15_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 6,
+	dB18_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB;
+
+class RACHConfigCommonPreambleInfoPreamblesGroupAConfig : public Sequence {
+private:
+	static const void *itemsInfo[3];
+	static bool itemsPres[3];
+public:
+	static const Info theInfo;
+	RACHConfigCommonPreambleInfoPreamblesGroupAConfig(): Sequence(&theInfo) {}
+	RACHConfigCommonPreambleInfoPreamblesGroupAConfig(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA, const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA, const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB);
+
+	void setRACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA) { *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA*>(items[0]) = rACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA; }
+	void setRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA) { *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA*>(items[1]) = rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA; }
+	void setRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB) { *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB*>(items[2]) = rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB; }
+
+	RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA& getRACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA() { return *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA*>(items[0]); }
+	RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA& getRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA() { return *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA*>(items[1]); }
+	RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB& getRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB() { return *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB*>(items[2]); }
+};
+
+class RACHConfigCommonPreambleInfo : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	RACHConfigCommonPreambleInfo(): Sequence(&theInfo) {}
+	RACHConfigCommonPreambleInfo(const RACHConfigCommonPreambleInfonumberOfRA_Preambles& rACHConfigCommonPreambleInfonumberOfRA_Preambles);
+
+	void setRACHConfigCommonPreambleInfonumberOfRA_Preambles(const RACHConfigCommonPreambleInfonumberOfRA_Preambles& rACHConfigCommonPreambleInfonumberOfRA_Preambles) { *static_cast<RACHConfigCommonPreambleInfonumberOfRA_Preambles*>(items[0]) = rACHConfigCommonPreambleInfonumberOfRA_Preambles; }
+	void setRACHConfigCommonPreambleInfoPreamblesGroupAConfig(const RACHConfigCommonPreambleInfoPreamblesGroupAConfig& rACHConfigCommonPreambleInfoPreamblesGroupAConfig) { *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfig*>(items[1]) = rACHConfigCommonPreambleInfoPreamblesGroupAConfig; }
+
+	RACHConfigCommonPreambleInfonumberOfRA_Preambles& getRACHConfigCommonPreambleInfonumberOfRA_Preambles() { return *static_cast<RACHConfigCommonPreambleInfonumberOfRA_Preambles*>(items[0]); }
+	RACHConfigCommonPreambleInfoPreamblesGroupAConfig& getRACHConfigCommonPreambleInfoPreamblesGroupAConfig() { return *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfig*>(items[1]); }
+};
+
+enum RACHConfigCommonPowerRampingParameterspowerRampingStepValues {
+	dB0_RACHConfigCommonPowerRampingParameterspowerRampingStep = 0,
+	dB2_RACHConfigCommonPowerRampingParameterspowerRampingStep = 1,
+	dB4_RACHConfigCommonPowerRampingParameterspowerRampingStep = 2,
+	dB6_RACHConfigCommonPowerRampingParameterspowerRampingStep = 3,
+};
+typedef Enumerated<CONSTRAINED, 3> RACHConfigCommonPowerRampingParameterspowerRampingStep;
+
+enum RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPowerValues {
+	dBm_120_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 0,
+	dBm_118_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 1,
+	dBm_116_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 2,
+	dBm_114_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 3,
+	dBm_112_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 4,
+	dBm_110_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 5,
+	dBm_108_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 6,
+	dBm_106_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 7,
+	dBm_104_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 8,
+	dBm_102_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 9,
+	dBm_100_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 10,
+	dBm_98_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 11,
+	dBm_96_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 12,
+	dBm_94_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 13,
+	dBm_92_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 14,
+	dBm_90_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 15,
+};
+typedef Enumerated<CONSTRAINED, 15> RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower;
+
+class RACHConfigCommonPowerRampingParameters : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	RACHConfigCommonPowerRampingParameters(): Sequence(&theInfo) {}
+	RACHConfigCommonPowerRampingParameters(const RACHConfigCommonPowerRampingParameterspowerRampingStep& rACHConfigCommonPowerRampingParameterspowerRampingStep, const RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower& rACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower);
+
+	void setRACHConfigCommonPowerRampingParameterspowerRampingStep(const RACHConfigCommonPowerRampingParameterspowerRampingStep& rACHConfigCommonPowerRampingParameterspowerRampingStep) { *static_cast<RACHConfigCommonPowerRampingParameterspowerRampingStep*>(items[0]) = rACHConfigCommonPowerRampingParameterspowerRampingStep; }
+	void setRACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower(const RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower& rACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower) { *static_cast<RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower*>(items[1]) = rACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower; }
+
+	RACHConfigCommonPowerRampingParameterspowerRampingStep& getRACHConfigCommonPowerRampingParameterspowerRampingStep() { return *static_cast<RACHConfigCommonPowerRampingParameterspowerRampingStep*>(items[0]); }
+	RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower& getRACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower() { return *static_cast<RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower*>(items[1]); }
+};
+
+enum RACHConfigCommonRaSupervisionInfopreambleTransMaxValues {
+	n3_RACHConfigCommonRaSupervisionInfopreambleTransMax = 0,
+	n4_RACHConfigCommonRaSupervisionInfopreambleTransMax = 1,
+	n5_RACHConfigCommonRaSupervisionInfopreambleTransMax = 2,
+	n6_RACHConfigCommonRaSupervisionInfopreambleTransMax = 3,
+	n7_RACHConfigCommonRaSupervisionInfopreambleTransMax = 4,
+	n8_RACHConfigCommonRaSupervisionInfopreambleTransMax = 5,
+	n10_RACHConfigCommonRaSupervisionInfopreambleTransMax = 6,
+	n20_RACHConfigCommonRaSupervisionInfopreambleTransMax = 7,
+	n50_RACHConfigCommonRaSupervisionInfopreambleTransMax = 8,
+	n100_RACHConfigCommonRaSupervisionInfopreambleTransMax = 9,
+	n200_RACHConfigCommonRaSupervisionInfopreambleTransMax = 10,
+};
+typedef Enumerated<CONSTRAINED, 10> RACHConfigCommonRaSupervisionInfopreambleTransMax;
+
+enum RACHConfigCommonRaSupervisionInfora_ResponseWindowSizeValues {
+	sf2_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 0,
+	sf3_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 1,
+	sf4_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 2,
+	sf5_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 3,
+	sf6_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 4,
+	sf7_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 5,
+	sf8_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 6,
+	sf10_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> RACHConfigCommonRaSupervisionInfora_ResponseWindowSize;
+
+enum RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimerValues {
+	sf8_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 0,
+	sf16_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 1,
+	sf24_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 2,
+	sf32_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 3,
+	sf40_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 4,
+	sf48_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 5,
+	sf56_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 6,
+	sf64_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer;
+
+class RACHConfigCommonRaSupervisionInfo : public Sequence {
+private:
+	static const void *itemsInfo[3];
+	static bool itemsPres[3];
+public:
+	static const Info theInfo;
+	RACHConfigCommonRaSupervisionInfo(): Sequence(&theInfo) {}
+	RACHConfigCommonRaSupervisionInfo(const RACHConfigCommonRaSupervisionInfopreambleTransMax& rACHConfigCommonRaSupervisionInfopreambleTransMax, const RACHConfigCommonRaSupervisionInfora_ResponseWindowSize& rACHConfigCommonRaSupervisionInfora_ResponseWindowSize, const RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer& rACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer);
+
+	void setRACHConfigCommonRaSupervisionInfopreambleTransMax(const RACHConfigCommonRaSupervisionInfopreambleTransMax& rACHConfigCommonRaSupervisionInfopreambleTransMax) { *static_cast<RACHConfigCommonRaSupervisionInfopreambleTransMax*>(items[0]) = rACHConfigCommonRaSupervisionInfopreambleTransMax; }
+	void setRACHConfigCommonRaSupervisionInfora_ResponseWindowSize(const RACHConfigCommonRaSupervisionInfora_ResponseWindowSize& rACHConfigCommonRaSupervisionInfora_ResponseWindowSize) { *static_cast<RACHConfigCommonRaSupervisionInfora_ResponseWindowSize*>(items[1]) = rACHConfigCommonRaSupervisionInfora_ResponseWindowSize; }
+	void setRACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer(const RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer& rACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer) { *static_cast<RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer*>(items[2]) = rACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer; }
+
+	RACHConfigCommonRaSupervisionInfopreambleTransMax& getRACHConfigCommonRaSupervisionInfopreambleTransMax() { return *static_cast<RACHConfigCommonRaSupervisionInfopreambleTransMax*>(items[0]); }
+	RACHConfigCommonRaSupervisionInfora_ResponseWindowSize& getRACHConfigCommonRaSupervisionInfora_ResponseWindowSize() { return *static_cast<RACHConfigCommonRaSupervisionInfora_ResponseWindowSize*>(items[1]); }
+	RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer& getRACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer() { return *static_cast<RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer*>(items[2]); }
+};
+
+typedef Integer<CONSTRAINED, 1, 8> RACHConfigCommonMaxHARQMsg3Tx;
+
+class RACHConfigCommon : public Sequence {
+private:
+	static const void *itemsInfo[4];
+	static bool itemsPres[4];
+public:
+	static const Info theInfo;
+	RACHConfigCommon(): Sequence(&theInfo) {}
+	RACHConfigCommon(const RACHConfigCommonPreambleInfo& rACHConfigCommonPreambleInfo, const RACHConfigCommonPowerRampingParameters& rACHConfigCommonPowerRampingParameters, const RACHConfigCommonRaSupervisionInfo& rACHConfigCommonRaSupervisionInfo, const RACHConfigCommonMaxHARQMsg3Tx& rACHConfigCommonMaxHARQMsg3Tx);
+
+	void setRACHConfigCommonPreambleInfo(const RACHConfigCommonPreambleInfo& rACHConfigCommonPreambleInfo) { *static_cast<RACHConfigCommonPreambleInfo*>(items[0]) = rACHConfigCommonPreambleInfo; }
+	void setRACHConfigCommonPowerRampingParameters(const RACHConfigCommonPowerRampingParameters& rACHConfigCommonPowerRampingParameters) { *static_cast<RACHConfigCommonPowerRampingParameters*>(items[1]) = rACHConfigCommonPowerRampingParameters; }
+	void setRACHConfigCommonRaSupervisionInfo(const RACHConfigCommonRaSupervisionInfo& rACHConfigCommonRaSupervisionInfo) { *static_cast<RACHConfigCommonRaSupervisionInfo*>(items[2]) = rACHConfigCommonRaSupervisionInfo; }
+	void setRACHConfigCommonMaxHARQMsg3Tx(const RACHConfigCommonMaxHARQMsg3Tx& rACHConfigCommonMaxHARQMsg3Tx) { *static_cast<RACHConfigCommonMaxHARQMsg3Tx*>(items[3]) = rACHConfigCommonMaxHARQMsg3Tx; }
+
+	RACHConfigCommonPreambleInfo& getRACHConfigCommonPreambleInfo() { return *static_cast<RACHConfigCommonPreambleInfo*>(items[0]); }
+	RACHConfigCommonPowerRampingParameters& getRACHConfigCommonPowerRampingParameters() { return *static_cast<RACHConfigCommonPowerRampingParameters*>(items[1]); }
+	RACHConfigCommonRaSupervisionInfo& getRACHConfigCommonRaSupervisionInfo() { return *static_cast<RACHConfigCommonRaSupervisionInfo*>(items[2]); }
+	RACHConfigCommonMaxHARQMsg3Tx& getRACHConfigCommonMaxHARQMsg3Tx() { return *static_cast<RACHConfigCommonMaxHARQMsg3Tx*>(items[3]); }
+};
+
+enum BCCHConfigmodificationPeriodCoeffValues {
+	n2_BCCHConfigmodificationPeriodCoeff = 0,
+	n4_BCCHConfigmodificationPeriodCoeff = 1,
+	n8_BCCHConfigmodificationPeriodCoeff = 2,
+	n16_BCCHConfigmodificationPeriodCoeff = 3,
+};
+typedef Enumerated<CONSTRAINED, 3> BCCHConfigmodificationPeriodCoeff;
+
+class BCCHConfig : public Sequence {
+private:
+	static const void *itemsInfo[1];
+	static bool itemsPres[1];
+public:
+	static const Info theInfo;
+	BCCHConfig(): Sequence(&theInfo) {}
+	BCCHConfig(const BCCHConfigmodificationPeriodCoeff& bCCHConfigmodificationPeriodCoeff);
+
+	void setBCCHConfigmodificationPeriodCoeff(const BCCHConfigmodificationPeriodCoeff& bCCHConfigmodificationPeriodCoeff) { *static_cast<BCCHConfigmodificationPeriodCoeff*>(items[0]) = bCCHConfigmodificationPeriodCoeff; }
+
+	BCCHConfigmodificationPeriodCoeff& getBCCHConfigmodificationPeriodCoeff() { return *static_cast<BCCHConfigmodificationPeriodCoeff*>(items[0]); }
+};
+
+enum PCCHConfigdefaultPagingCycleValues {
+	rf32_PCCHConfigdefaultPagingCycle = 0,
+	rf64_PCCHConfigdefaultPagingCycle = 1,
+	rf128_PCCHConfigdefaultPagingCycle = 2,
+	rf256_PCCHConfigdefaultPagingCycle = 3,
+};
+typedef Enumerated<CONSTRAINED, 3> PCCHConfigdefaultPagingCycle;
+
+enum PCCHConfignBValues {
+	fourT_PCCHConfignB = 0,
+	twoT_PCCHConfignB = 1,
+	oneT_PCCHConfignB = 2,
+	halfT_PCCHConfignB = 3,
+	quarterT_PCCHConfignB = 4,
+	oneEighthT_PCCHConfignB = 5,
+	oneSixteenthT_PCCHConfignB = 6,
+	oneThirtySecondT_PCCHConfignB = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> PCCHConfignB;
+
+class PCCHConfig : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	PCCHConfig(): Sequence(&theInfo) {}
+	PCCHConfig(const PCCHConfigdefaultPagingCycle& pCCHConfigdefaultPagingCycle, const PCCHConfignB& pCCHConfignB);
+
+	void setPCCHConfigdefaultPagingCycle(const PCCHConfigdefaultPagingCycle& pCCHConfigdefaultPagingCycle) { *static_cast<PCCHConfigdefaultPagingCycle*>(items[0]) = pCCHConfigdefaultPagingCycle; }
+	void setPCCHConfignB(const PCCHConfignB& pCCHConfignB) { *static_cast<PCCHConfignB*>(items[1]) = pCCHConfignB; }
+
+	PCCHConfigdefaultPagingCycle& getPCCHConfigdefaultPagingCycle() { return *static_cast<PCCHConfigdefaultPagingCycle*>(items[0]); }
+	PCCHConfignB& getPCCHConfignB() { return *static_cast<PCCHConfignB*>(items[1]); }
+};
+
+typedef Integer<CONSTRAINED, 0, 837> PRACHConfigSIBRootSequenceIndex;
+
+typedef Integer<CONSTRAINED, 0, 63> PRACHConfigInfoPrachConfigIndex;
+
+typedef Boolean PRACHConfigInfoHighSpeedFlag;
+
+typedef Integer<CONSTRAINED, 0, 15> PRACHConfigInfoZeroCorrelationZoneConfig;
+
+typedef Integer<CONSTRAINED, 0, 94> PRACHConfigInfoPrachFreqOffset;
+
+class PRACHConfigInfo : public Sequence {
+private:
+	static const void *itemsInfo[4];
+	static bool itemsPres[4];
+public:
+	static const Info theInfo;
+	PRACHConfigInfo(): Sequence(&theInfo) {}
+	PRACHConfigInfo(const PRACHConfigInfoPrachConfigIndex& pRACHConfigInfoPrachConfigIndex, const PRACHConfigInfoHighSpeedFlag& pRACHConfigInfoHighSpeedFlag, const PRACHConfigInfoZeroCorrelationZoneConfig& pRACHConfigInfoZeroCorrelationZoneConfig, const PRACHConfigInfoPrachFreqOffset& pRACHConfigInfoPrachFreqOffset);
+
+	void setPRACHConfigInfoPrachConfigIndex(const PRACHConfigInfoPrachConfigIndex& pRACHConfigInfoPrachConfigIndex) { *static_cast<PRACHConfigInfoPrachConfigIndex*>(items[0]) = pRACHConfigInfoPrachConfigIndex; }
+	void setPRACHConfigInfoHighSpeedFlag(const PRACHConfigInfoHighSpeedFlag& pRACHConfigInfoHighSpeedFlag) { *static_cast<PRACHConfigInfoHighSpeedFlag*>(items[1]) = pRACHConfigInfoHighSpeedFlag; }
+	void setPRACHConfigInfoZeroCorrelationZoneConfig(const PRACHConfigInfoZeroCorrelationZoneConfig& pRACHConfigInfoZeroCorrelationZoneConfig) { *static_cast<PRACHConfigInfoZeroCorrelationZoneConfig*>(items[2]) = pRACHConfigInfoZeroCorrelationZoneConfig; }
+	void setPRACHConfigInfoPrachFreqOffset(const PRACHConfigInfoPrachFreqOffset& pRACHConfigInfoPrachFreqOffset) { *static_cast<PRACHConfigInfoPrachFreqOffset*>(items[3]) = pRACHConfigInfoPrachFreqOffset; }
+
+	PRACHConfigInfoPrachConfigIndex& getPRACHConfigInfoPrachConfigIndex() { return *static_cast<PRACHConfigInfoPrachConfigIndex*>(items[0]); }
+	PRACHConfigInfoHighSpeedFlag& getPRACHConfigInfoHighSpeedFlag() { return *static_cast<PRACHConfigInfoHighSpeedFlag*>(items[1]); }
+	PRACHConfigInfoZeroCorrelationZoneConfig& getPRACHConfigInfoZeroCorrelationZoneConfig() { return *static_cast<PRACHConfigInfoZeroCorrelationZoneConfig*>(items[2]); }
+	PRACHConfigInfoPrachFreqOffset& getPRACHConfigInfoPrachFreqOffset() { return *static_cast<PRACHConfigInfoPrachFreqOffset*>(items[3]); }
+};
+
+class PRACHConfigSIB : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	PRACHConfigSIB(): Sequence(&theInfo) {}
+	PRACHConfigSIB(const PRACHConfigSIBRootSequenceIndex& pRACHConfigSIBRootSequenceIndex, const PRACHConfigInfo& prachConfigInfo);
+
+	void setPRACHConfigSIBRootSequenceIndex(const PRACHConfigSIBRootSequenceIndex& pRACHConfigSIBRootSequenceIndex) { *static_cast<PRACHConfigSIBRootSequenceIndex*>(items[0]) = pRACHConfigSIBRootSequenceIndex; }
+	void setPrachConfigInfo(const PRACHConfigInfo& prachConfigInfo) { *static_cast<PRACHConfigInfo*>(items[1]) = prachConfigInfo; }
+
+	PRACHConfigSIBRootSequenceIndex& getPRACHConfigSIBRootSequenceIndex() { return *static_cast<PRACHConfigSIBRootSequenceIndex*>(items[0]); }
+	PRACHConfigInfo& getPrachConfigInfo() { return *static_cast<PRACHConfigInfo*>(items[1]); }
+};
+
+typedef Integer<CONSTRAINED, -60, 50> PDSCHConfigCommonReferenceSignalPower;
+
+typedef Integer<CONSTRAINED, 0, 3> PDSCHConfigCommonPb;
+
+class PDSCHConfigCommon : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	PDSCHConfigCommon(): Sequence(&theInfo) {}
+	PDSCHConfigCommon(const PDSCHConfigCommonReferenceSignalPower& pDSCHConfigCommonReferenceSignalPower, const PDSCHConfigCommonPb& pDSCHConfigCommonPb);
+
+	void setPDSCHConfigCommonReferenceSignalPower(const PDSCHConfigCommonReferenceSignalPower& pDSCHConfigCommonReferenceSignalPower) { *static_cast<PDSCHConfigCommonReferenceSignalPower*>(items[0]) = pDSCHConfigCommonReferenceSignalPower; }
+	void setPDSCHConfigCommonPb(const PDSCHConfigCommonPb& pDSCHConfigCommonPb) { *static_cast<PDSCHConfigCommonPb*>(items[1]) = pDSCHConfigCommonPb; }
+
+	PDSCHConfigCommonReferenceSignalPower& getPDSCHConfigCommonReferenceSignalPower() { return *static_cast<PDSCHConfigCommonReferenceSignalPower*>(items[0]); }
+	PDSCHConfigCommonPb& getPDSCHConfigCommonPb() { return *static_cast<PDSCHConfigCommonPb*>(items[1]); }
+};
+
+typedef Integer<CONSTRAINED, 1, 4> PUSCHConfigCommonPuschConfigBasicNSB;
+
+enum PUSCHConfigCommonPuschConfigBasichoppingModeValues {
+	interSubFrame_PUSCHConfigCommonPuschConfigBasichoppingMode = 0,
+	intraAndInterSubFrame_PUSCHConfigCommonPuschConfigBasichoppingMode = 1,
+};
+typedef Enumerated<CONSTRAINED, 1> PUSCHConfigCommonPuschConfigBasichoppingMode;
+
+typedef Integer<CONSTRAINED, 0, 98> PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset;
+
+typedef Boolean PUSCHConfigCommonPuschConfigBasicEnable64QAM;
+
+class PUSCHConfigCommonPuschConfigBasic : public Sequence {
+private:
+	static const void *itemsInfo[4];
+	static bool itemsPres[4];
+public:
+	static const Info theInfo;
+	PUSCHConfigCommonPuschConfigBasic(): Sequence(&theInfo) {}
+	PUSCHConfigCommonPuschConfigBasic(const PUSCHConfigCommonPuschConfigBasicNSB& pUSCHConfigCommonPuschConfigBasicNSB, const PUSCHConfigCommonPuschConfigBasichoppingMode& pUSCHConfigCommonPuschConfigBasichoppingMode, const PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset& pUSCHConfigCommonPuschConfigBasicPuschHoppingOffset, const PUSCHConfigCommonPuschConfigBasicEnable64QAM& pUSCHConfigCommonPuschConfigBasicEnable64QAM);
+
+	void setPUSCHConfigCommonPuschConfigBasicNSB(const PUSCHConfigCommonPuschConfigBasicNSB& pUSCHConfigCommonPuschConfigBasicNSB) { *static_cast<PUSCHConfigCommonPuschConfigBasicNSB*>(items[0]) = pUSCHConfigCommonPuschConfigBasicNSB; }
+	void setPUSCHConfigCommonPuschConfigBasichoppingMode(const PUSCHConfigCommonPuschConfigBasichoppingMode& pUSCHConfigCommonPuschConfigBasichoppingMode) { *static_cast<PUSCHConfigCommonPuschConfigBasichoppingMode*>(items[1]) = pUSCHConfigCommonPuschConfigBasichoppingMode; }
+	void setPUSCHConfigCommonPuschConfigBasicPuschHoppingOffset(const PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset& pUSCHConfigCommonPuschConfigBasicPuschHoppingOffset) { *static_cast<PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset*>(items[2]) = pUSCHConfigCommonPuschConfigBasicPuschHoppingOffset; }
+	void setPUSCHConfigCommonPuschConfigBasicEnable64QAM(const PUSCHConfigCommonPuschConfigBasicEnable64QAM& pUSCHConfigCommonPuschConfigBasicEnable64QAM) { *static_cast<PUSCHConfigCommonPuschConfigBasicEnable64QAM*>(items[3]) = pUSCHConfigCommonPuschConfigBasicEnable64QAM; }
+
+	PUSCHConfigCommonPuschConfigBasicNSB& getPUSCHConfigCommonPuschConfigBasicNSB() { return *static_cast<PUSCHConfigCommonPuschConfigBasicNSB*>(items[0]); }
+	PUSCHConfigCommonPuschConfigBasichoppingMode& getPUSCHConfigCommonPuschConfigBasichoppingMode() { return *static_cast<PUSCHConfigCommonPuschConfigBasichoppingMode*>(items[1]); }
+	PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset& getPUSCHConfigCommonPuschConfigBasicPuschHoppingOffset() { return *static_cast<PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset*>(items[2]); }
+	PUSCHConfigCommonPuschConfigBasicEnable64QAM& getPUSCHConfigCommonPuschConfigBasicEnable64QAM() { return *static_cast<PUSCHConfigCommonPuschConfigBasicEnable64QAM*>(items[3]); }
+};
+
+typedef Boolean ULReferenceSignalsPUSCHGroupHoppingEnabled;
+
+typedef Integer<CONSTRAINED, 0, 29> ULReferenceSignalsPUSCHGroupAssignmentPUSCH;
+
+typedef Boolean ULReferenceSignalsPUSCHSequenceHoppingEnabled;
+
+typedef Integer<CONSTRAINED, 0, 7> ULReferenceSignalsPUSCHCyclicShift;
+
+class ULReferenceSignalsPUSCH : public Sequence {
+private:
+	static const void *itemsInfo[4];
+	static bool itemsPres[4];
+public:
+	static const Info theInfo;
+	ULReferenceSignalsPUSCH(): Sequence(&theInfo) {}
+	ULReferenceSignalsPUSCH(const ULReferenceSignalsPUSCHGroupHoppingEnabled& uLReferenceSignalsPUSCHGroupHoppingEnabled, const ULReferenceSignalsPUSCHGroupAssignmentPUSCH& uLReferenceSignalsPUSCHGroupAssignmentPUSCH, const ULReferenceSignalsPUSCHSequenceHoppingEnabled& uLReferenceSignalsPUSCHSequenceHoppingEnabled, const ULReferenceSignalsPUSCHCyclicShift& uLReferenceSignalsPUSCHCyclicShift);
+
+	void setULReferenceSignalsPUSCHGroupHoppingEnabled(const ULReferenceSignalsPUSCHGroupHoppingEnabled& uLReferenceSignalsPUSCHGroupHoppingEnabled) { *static_cast<ULReferenceSignalsPUSCHGroupHoppingEnabled*>(items[0]) = uLReferenceSignalsPUSCHGroupHoppingEnabled; }
+	void setULReferenceSignalsPUSCHGroupAssignmentPUSCH(const ULReferenceSignalsPUSCHGroupAssignmentPUSCH& uLReferenceSignalsPUSCHGroupAssignmentPUSCH) { *static_cast<ULReferenceSignalsPUSCHGroupAssignmentPUSCH*>(items[1]) = uLReferenceSignalsPUSCHGroupAssignmentPUSCH; }
+	void setULReferenceSignalsPUSCHSequenceHoppingEnabled(const ULReferenceSignalsPUSCHSequenceHoppingEnabled& uLReferenceSignalsPUSCHSequenceHoppingEnabled) { *static_cast<ULReferenceSignalsPUSCHSequenceHoppingEnabled*>(items[2]) = uLReferenceSignalsPUSCHSequenceHoppingEnabled; }
+	void setULReferenceSignalsPUSCHCyclicShift(const ULReferenceSignalsPUSCHCyclicShift& uLReferenceSignalsPUSCHCyclicShift) { *static_cast<ULReferenceSignalsPUSCHCyclicShift*>(items[3]) = uLReferenceSignalsPUSCHCyclicShift; }
+
+	ULReferenceSignalsPUSCHGroupHoppingEnabled& getULReferenceSignalsPUSCHGroupHoppingEnabled() { return *static_cast<ULReferenceSignalsPUSCHGroupHoppingEnabled*>(items[0]); }
+	ULReferenceSignalsPUSCHGroupAssignmentPUSCH& getULReferenceSignalsPUSCHGroupAssignmentPUSCH() { return *static_cast<ULReferenceSignalsPUSCHGroupAssignmentPUSCH*>(items[1]); }
+	ULReferenceSignalsPUSCHSequenceHoppingEnabled& getULReferenceSignalsPUSCHSequenceHoppingEnabled() { return *static_cast<ULReferenceSignalsPUSCHSequenceHoppingEnabled*>(items[2]); }
+	ULReferenceSignalsPUSCHCyclicShift& getULReferenceSignalsPUSCHCyclicShift() { return *static_cast<ULReferenceSignalsPUSCHCyclicShift*>(items[3]); }
+};
+
+class PUSCHConfigCommon : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	PUSCHConfigCommon(): Sequence(&theInfo) {}
+	PUSCHConfigCommon(const PUSCHConfigCommonPuschConfigBasic& pUSCHConfigCommonPuschConfigBasic, const ULReferenceSignalsPUSCH& ulReferenceSignalsPUSCH);
+
+	void setPUSCHConfigCommonPuschConfigBasic(const PUSCHConfigCommonPuschConfigBasic& pUSCHConfigCommonPuschConfigBasic) { *static_cast<PUSCHConfigCommonPuschConfigBasic*>(items[0]) = pUSCHConfigCommonPuschConfigBasic; }
+	void setUlReferenceSignalsPUSCH(const ULReferenceSignalsPUSCH& ulReferenceSignalsPUSCH) { *static_cast<ULReferenceSignalsPUSCH*>(items[1]) = ulReferenceSignalsPUSCH; }
+
+	PUSCHConfigCommonPuschConfigBasic& getPUSCHConfigCommonPuschConfigBasic() { return *static_cast<PUSCHConfigCommonPuschConfigBasic*>(items[0]); }
+	ULReferenceSignalsPUSCH& getUlReferenceSignalsPUSCH() { return *static_cast<ULReferenceSignalsPUSCH*>(items[1]); }
+};
+
+enum PUCCHConfigCommondeltaPUCCH_ShiftValues {
+	ds1_PUCCHConfigCommondeltaPUCCH_Shift = 0,
+	ds2_PUCCHConfigCommondeltaPUCCH_Shift = 1,
+	ds3_PUCCHConfigCommondeltaPUCCH_Shift = 2,
+};
+typedef Enumerated<CONSTRAINED, 2> PUCCHConfigCommondeltaPUCCH_Shift;
+
+typedef Integer<CONSTRAINED, 0, 98> PUCCHConfigCommonNRBCQI;
+
+typedef Integer<CONSTRAINED, 0, 7> PUCCHConfigCommonNCSAN;
+
+typedef Integer<CONSTRAINED, 0, 2047> PUCCHConfigCommonN1PUCCHAN;
+
+class PUCCHConfigCommon : public Sequence {
+private:
+	static const void *itemsInfo[4];
+	static bool itemsPres[4];
+public:
+	static const Info theInfo;
+	PUCCHConfigCommon(): Sequence(&theInfo) {}
+	PUCCHConfigCommon(const PUCCHConfigCommondeltaPUCCH_Shift& pUCCHConfigCommondeltaPUCCH_Shift, const PUCCHConfigCommonNRBCQI& pUCCHConfigCommonNRBCQI, const PUCCHConfigCommonNCSAN& pUCCHConfigCommonNCSAN, const PUCCHConfigCommonN1PUCCHAN& pUCCHConfigCommonN1PUCCHAN);
+
+	void setPUCCHConfigCommondeltaPUCCH_Shift(const PUCCHConfigCommondeltaPUCCH_Shift& pUCCHConfigCommondeltaPUCCH_Shift) { *static_cast<PUCCHConfigCommondeltaPUCCH_Shift*>(items[0]) = pUCCHConfigCommondeltaPUCCH_Shift; }
+	void setPUCCHConfigCommonNRBCQI(const PUCCHConfigCommonNRBCQI& pUCCHConfigCommonNRBCQI) { *static_cast<PUCCHConfigCommonNRBCQI*>(items[1]) = pUCCHConfigCommonNRBCQI; }
+	void setPUCCHConfigCommonNCSAN(const PUCCHConfigCommonNCSAN& pUCCHConfigCommonNCSAN) { *static_cast<PUCCHConfigCommonNCSAN*>(items[2]) = pUCCHConfigCommonNCSAN; }
+	void setPUCCHConfigCommonN1PUCCHAN(const PUCCHConfigCommonN1PUCCHAN& pUCCHConfigCommonN1PUCCHAN) { *static_cast<PUCCHConfigCommonN1PUCCHAN*>(items[3]) = pUCCHConfigCommonN1PUCCHAN; }
+
+	PUCCHConfigCommondeltaPUCCH_Shift& getPUCCHConfigCommondeltaPUCCH_Shift() { return *static_cast<PUCCHConfigCommondeltaPUCCH_Shift*>(items[0]); }
+	PUCCHConfigCommonNRBCQI& getPUCCHConfigCommonNRBCQI() { return *static_cast<PUCCHConfigCommonNRBCQI*>(items[1]); }
+	PUCCHConfigCommonNCSAN& getPUCCHConfigCommonNCSAN() { return *static_cast<PUCCHConfigCommonNCSAN*>(items[2]); }
+	PUCCHConfigCommonN1PUCCHAN& getPUCCHConfigCommonN1PUCCHAN() { return *static_cast<PUCCHConfigCommonN1PUCCHAN*>(items[3]); }
+};
+
+typedef Null SoundingRSULConfigCommonRelease;
+
+enum SoundingRSULConfigCommonSetupsrs_BandwidthConfigValues {
+	bw0_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 0,
+	bw1_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 1,
+	bw2_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 2,
+	bw3_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 3,
+	bw4_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 4,
+	bw5_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 5,
+	bw6_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 6,
+	bw7_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> SoundingRSULConfigCommonSetupsrs_BandwidthConfig;
+
+enum SoundingRSULConfigCommonSetupsrs_SubframeConfigValues {
+	sc0_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 0,
+	sc1_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 1,
+	sc2_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 2,
+	sc3_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 3,
+	sc4_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 4,
+	sc5_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 5,
+	sc6_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 6,
+	sc7_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 7,
+	sc8_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 8,
+	sc9_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 9,
+	sc10_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 10,
+	sc11_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 11,
+	sc12_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 12,
+	sc13_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 13,
+	sc14_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 14,
+	sc15_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 15,
+};
+typedef Enumerated<CONSTRAINED, 15> SoundingRSULConfigCommonSetupsrs_SubframeConfig;
+
+typedef Boolean SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission;
+
+enum SoundingRSULConfigCommonSetupsrs_MaxUpPtsValues {
+	true_SoundingRSULConfigCommonSetupsrs_MaxUpPts = 0,
+};
+typedef Enumerated<CONSTRAINED, 0> SoundingRSULConfigCommonSetupsrs_MaxUpPts;
+
+class SoundingRSULConfigCommonSetup : public Sequence {
+private:
+	static const void *itemsInfo[4];
+	static bool itemsPres[4];
+public:
+	static const Info theInfo;
+	SoundingRSULConfigCommonSetup(): Sequence(&theInfo) {}
+	SoundingRSULConfigCommonSetup(const SoundingRSULConfigCommonSetupsrs_BandwidthConfig& soundingRSULConfigCommonSetupsrs_BandwidthConfig, const SoundingRSULConfigCommonSetupsrs_SubframeConfig& soundingRSULConfigCommonSetupsrs_SubframeConfig, const SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission& soundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission);
+
+	void setSoundingRSULConfigCommonSetupsrs_BandwidthConfig(const SoundingRSULConfigCommonSetupsrs_BandwidthConfig& soundingRSULConfigCommonSetupsrs_BandwidthConfig) { *static_cast<SoundingRSULConfigCommonSetupsrs_BandwidthConfig*>(items[0]) = soundingRSULConfigCommonSetupsrs_BandwidthConfig; }
+	void setSoundingRSULConfigCommonSetupsrs_SubframeConfig(const SoundingRSULConfigCommonSetupsrs_SubframeConfig& soundingRSULConfigCommonSetupsrs_SubframeConfig) { *static_cast<SoundingRSULConfigCommonSetupsrs_SubframeConfig*>(items[1]) = soundingRSULConfigCommonSetupsrs_SubframeConfig; }
+	void setSoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission(const SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission& soundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission) { *static_cast<SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission*>(items[2]) = soundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission; }
+	void setSoundingRSULConfigCommonSetupsrs_MaxUpPts(const SoundingRSULConfigCommonSetupsrs_MaxUpPts& soundingRSULConfigCommonSetupsrs_MaxUpPts) { *static_cast<SoundingRSULConfigCommonSetupsrs_MaxUpPts*>(items[3]) = soundingRSULConfigCommonSetupsrs_MaxUpPts; }
+
+	SoundingRSULConfigCommonSetupsrs_BandwidthConfig& getSoundingRSULConfigCommonSetupsrs_BandwidthConfig() { return *static_cast<SoundingRSULConfigCommonSetupsrs_BandwidthConfig*>(items[0]); }
+	SoundingRSULConfigCommonSetupsrs_SubframeConfig& getSoundingRSULConfigCommonSetupsrs_SubframeConfig() { return *static_cast<SoundingRSULConfigCommonSetupsrs_SubframeConfig*>(items[1]); }
+	SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission& getSoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission() { return *static_cast<SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission*>(items[2]); }
+	SoundingRSULConfigCommonSetupsrs_MaxUpPts& getSoundingRSULConfigCommonSetupsrs_MaxUpPts() { return *static_cast<SoundingRSULConfigCommonSetupsrs_MaxUpPts*>(items[3]); }
+};
+
+class SoundingRSULConfigCommon : public Choice {
+private:
+	static const void *choicesInfo[2];
+public:
+	enum SoundingRSULConfigCommonChoices {
+		soundingRSULConfigCommonRelease = 0,
+		soundingRSULConfigCommonSetup = 1,
+	};
+	static const Info theInfo;
+	SoundingRSULConfigCommon(): Choice(&theInfo) {}
+};
+
+typedef Integer<CONSTRAINED, -126, 24> UplinkPowerControlCommonP0NominalPUSCH;
+
+enum UplinkPowerControlCommonalphaValues {
+	al0_UplinkPowerControlCommonalpha = 0,
+	al04_UplinkPowerControlCommonalpha = 1,
+	al05_UplinkPowerControlCommonalpha = 2,
+	al06_UplinkPowerControlCommonalpha = 3,
+	al07_UplinkPowerControlCommonalpha = 4,
+	al08_UplinkPowerControlCommonalpha = 5,
+	al09_UplinkPowerControlCommonalpha = 6,
+	al1_UplinkPowerControlCommonalpha = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> UplinkPowerControlCommonalpha;
+
+typedef Integer<CONSTRAINED, -127, -96> UplinkPowerControlCommonP0NominalPUCCH;
+
+enum DeltaFListPUCCHdeltaF_PUCCH_Format1Values {
+	deltaF_2_DeltaFListPUCCHdeltaF_PUCCH_Format1 = 0,
+	deltaF0_DeltaFListPUCCHdeltaF_PUCCH_Format1 = 1,
+	deltaF2_DeltaFListPUCCHdeltaF_PUCCH_Format1 = 2,
+};
+typedef Enumerated<CONSTRAINED, 2> DeltaFListPUCCHdeltaF_PUCCH_Format1;
+
+enum DeltaFListPUCCHdeltaF_PUCCH_Format1bValues {
+	deltaF1_DeltaFListPUCCHdeltaF_PUCCH_Format1b = 0,
+	deltaF3_DeltaFListPUCCHdeltaF_PUCCH_Format1b = 1,
+	deltaF5_DeltaFListPUCCHdeltaF_PUCCH_Format1b = 2,
+};
+typedef Enumerated<CONSTRAINED, 2> DeltaFListPUCCHdeltaF_PUCCH_Format1b;
+
+enum DeltaFListPUCCHdeltaF_PUCCH_Format2Values {
+	deltaF_2_DeltaFListPUCCHdeltaF_PUCCH_Format2 = 0,
+	deltaF0_DeltaFListPUCCHdeltaF_PUCCH_Format2 = 1,
+	deltaF1_DeltaFListPUCCHdeltaF_PUCCH_Format2 = 2,
+	deltaF2_DeltaFListPUCCHdeltaF_PUCCH_Format2 = 3,
+};
+typedef Enumerated<CONSTRAINED, 3> DeltaFListPUCCHdeltaF_PUCCH_Format2;
+
+enum DeltaFListPUCCHdeltaF_PUCCH_Format2aValues {
+	deltaF_2_DeltaFListPUCCHdeltaF_PUCCH_Format2a = 0,
+	deltaF0_DeltaFListPUCCHdeltaF_PUCCH_Format2a = 1,
+	deltaF2_DeltaFListPUCCHdeltaF_PUCCH_Format2a = 2,
+};
+typedef Enumerated<CONSTRAINED, 2> DeltaFListPUCCHdeltaF_PUCCH_Format2a;
+
+enum DeltaFListPUCCHdeltaF_PUCCH_Format2bValues {
+	deltaF_2_DeltaFListPUCCHdeltaF_PUCCH_Format2b = 0,
+	deltaF0_DeltaFListPUCCHdeltaF_PUCCH_Format2b = 1,
+	deltaF2_DeltaFListPUCCHdeltaF_PUCCH_Format2b = 2,
+};
+typedef Enumerated<CONSTRAINED, 2> DeltaFListPUCCHdeltaF_PUCCH_Format2b;
+
+class DeltaFListPUCCH : public Sequence {
+private:
+	static const void *itemsInfo[5];
+	static bool itemsPres[5];
+public:
+	static const Info theInfo;
+	DeltaFListPUCCH(): Sequence(&theInfo) {}
+	DeltaFListPUCCH(const DeltaFListPUCCHdeltaF_PUCCH_Format1& deltaFListPUCCHdeltaF_PUCCH_Format1, const DeltaFListPUCCHdeltaF_PUCCH_Format1b& deltaFListPUCCHdeltaF_PUCCH_Format1b, const DeltaFListPUCCHdeltaF_PUCCH_Format2& deltaFListPUCCHdeltaF_PUCCH_Format2, const DeltaFListPUCCHdeltaF_PUCCH_Format2a& deltaFListPUCCHdeltaF_PUCCH_Format2a, const DeltaFListPUCCHdeltaF_PUCCH_Format2b& deltaFListPUCCHdeltaF_PUCCH_Format2b);
+
+	void setDeltaFListPUCCHdeltaF_PUCCH_Format1(const DeltaFListPUCCHdeltaF_PUCCH_Format1& deltaFListPUCCHdeltaF_PUCCH_Format1) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format1*>(items[0]) = deltaFListPUCCHdeltaF_PUCCH_Format1; }
+	void setDeltaFListPUCCHdeltaF_PUCCH_Format1b(const DeltaFListPUCCHdeltaF_PUCCH_Format1b& deltaFListPUCCHdeltaF_PUCCH_Format1b) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format1b*>(items[1]) = deltaFListPUCCHdeltaF_PUCCH_Format1b; }
+	void setDeltaFListPUCCHdeltaF_PUCCH_Format2(const DeltaFListPUCCHdeltaF_PUCCH_Format2& deltaFListPUCCHdeltaF_PUCCH_Format2) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2*>(items[2]) = deltaFListPUCCHdeltaF_PUCCH_Format2; }
+	void setDeltaFListPUCCHdeltaF_PUCCH_Format2a(const DeltaFListPUCCHdeltaF_PUCCH_Format2a& deltaFListPUCCHdeltaF_PUCCH_Format2a) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2a*>(items[3]) = deltaFListPUCCHdeltaF_PUCCH_Format2a; }
+	void setDeltaFListPUCCHdeltaF_PUCCH_Format2b(const DeltaFListPUCCHdeltaF_PUCCH_Format2b& deltaFListPUCCHdeltaF_PUCCH_Format2b) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2b*>(items[4]) = deltaFListPUCCHdeltaF_PUCCH_Format2b; }
+
+	DeltaFListPUCCHdeltaF_PUCCH_Format1& getDeltaFListPUCCHdeltaF_PUCCH_Format1() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format1*>(items[0]); }
+	DeltaFListPUCCHdeltaF_PUCCH_Format1b& getDeltaFListPUCCHdeltaF_PUCCH_Format1b() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format1b*>(items[1]); }
+	DeltaFListPUCCHdeltaF_PUCCH_Format2& getDeltaFListPUCCHdeltaF_PUCCH_Format2() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2*>(items[2]); }
+	DeltaFListPUCCHdeltaF_PUCCH_Format2a& getDeltaFListPUCCHdeltaF_PUCCH_Format2a() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2a*>(items[3]); }
+	DeltaFListPUCCHdeltaF_PUCCH_Format2b& getDeltaFListPUCCHdeltaF_PUCCH_Format2b() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2b*>(items[4]); }
+};
+
+typedef Integer<CONSTRAINED, -1, 6> UplinkPowerControlCommonDeltaPreambleMsg3;
+
+class UplinkPowerControlCommon : public Sequence {
+private:
+	static const void *itemsInfo[5];
+	static bool itemsPres[5];
+public:
+	static const Info theInfo;
+	UplinkPowerControlCommon(): Sequence(&theInfo) {}
+	UplinkPowerControlCommon(const UplinkPowerControlCommonP0NominalPUSCH& uplinkPowerControlCommonP0NominalPUSCH, const UplinkPowerControlCommonalpha& uplinkPowerControlCommonalpha, const UplinkPowerControlCommonP0NominalPUCCH& uplinkPowerControlCommonP0NominalPUCCH, const DeltaFListPUCCH& deltaFListPUCCH, const UplinkPowerControlCommonDeltaPreambleMsg3& uplinkPowerControlCommonDeltaPreambleMsg3);
+
+	void setUplinkPowerControlCommonP0NominalPUSCH(const UplinkPowerControlCommonP0NominalPUSCH& uplinkPowerControlCommonP0NominalPUSCH) { *static_cast<UplinkPowerControlCommonP0NominalPUSCH*>(items[0]) = uplinkPowerControlCommonP0NominalPUSCH; }
+	void setUplinkPowerControlCommonalpha(const UplinkPowerControlCommonalpha& uplinkPowerControlCommonalpha) { *static_cast<UplinkPowerControlCommonalpha*>(items[1]) = uplinkPowerControlCommonalpha; }
+	void setUplinkPowerControlCommonP0NominalPUCCH(const UplinkPowerControlCommonP0NominalPUCCH& uplinkPowerControlCommonP0NominalPUCCH) { *static_cast<UplinkPowerControlCommonP0NominalPUCCH*>(items[2]) = uplinkPowerControlCommonP0NominalPUCCH; }
+	void setDeltaFListPUCCH(const DeltaFListPUCCH& deltaFListPUCCH) { *static_cast<DeltaFListPUCCH*>(items[3]) = deltaFListPUCCH; }
+	void setUplinkPowerControlCommonDeltaPreambleMsg3(const UplinkPowerControlCommonDeltaPreambleMsg3& uplinkPowerControlCommonDeltaPreambleMsg3) { *static_cast<UplinkPowerControlCommonDeltaPreambleMsg3*>(items[4]) = uplinkPowerControlCommonDeltaPreambleMsg3; }
+
+	UplinkPowerControlCommonP0NominalPUSCH& getUplinkPowerControlCommonP0NominalPUSCH() { return *static_cast<UplinkPowerControlCommonP0NominalPUSCH*>(items[0]); }
+	UplinkPowerControlCommonalpha& getUplinkPowerControlCommonalpha() { return *static_cast<UplinkPowerControlCommonalpha*>(items[1]); }
+	UplinkPowerControlCommonP0NominalPUCCH& getUplinkPowerControlCommonP0NominalPUCCH() { return *static_cast<UplinkPowerControlCommonP0NominalPUCCH*>(items[2]); }
+	DeltaFListPUCCH& getDeltaFListPUCCH() { return *static_cast<DeltaFListPUCCH*>(items[3]); }
+	UplinkPowerControlCommonDeltaPreambleMsg3& getUplinkPowerControlCommonDeltaPreambleMsg3() { return *static_cast<UplinkPowerControlCommonDeltaPreambleMsg3*>(items[4]); }
+};
+
+enum ULCyclicPrefixLengthValues {
+	len1_ULCyclicPrefixLength = 0,
+	len2_ULCyclicPrefixLength = 1,
+};
+typedef Enumerated<CONSTRAINED, 1> ULCyclicPrefixLength;
+
+enum UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10Values {
+	deltaF_1_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 0,
+	deltaF0_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 1,
+	deltaF1_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 2,
+	deltaF2_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 3,
+	deltaF3_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 4,
+	deltaF4_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 5,
+	deltaF5_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 6,
+	deltaF6_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10;
+
+enum UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10Values {
+	deltaF1_UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10 = 0,
+	deltaF2_UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10 = 1,
+	spare2_UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10 = 2,
+	spare1_UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10 = 3,
+};
+typedef Enumerated<CONSTRAINED, 3> UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10;
+
+class UplinkPowerControlCommonv1020 : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	UplinkPowerControlCommonv1020(): Sequence(&theInfo) {}
+	UplinkPowerControlCommonv1020(const UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10, const UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10);
+
+	void setUplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10(const UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10) { *static_cast<UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10*>(items[0]) = uplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10; }
+	void setUplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10(const UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10) { *static_cast<UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10*>(items[1]) = uplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10; }
+
+	UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10& getUplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10() { return *static_cast<UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10*>(items[0]); }
+	UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10& getUplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10() { return *static_cast<UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10*>(items[1]); }
+};
+
+class RadioResourceConfigCommonSIB : public Sequence {
+private:
+	static const void *itemsInfo[11];
+	static bool itemsPres[11];
+public:
+	static const Info theInfo;
+	RadioResourceConfigCommonSIB(): Sequence(&theInfo) {}
+	RadioResourceConfigCommonSIB(const RACHConfigCommon& rachConfigCommon, const BCCHConfig& bcchConfig, const PCCHConfig& pcchConfig, const PRACHConfigSIB& prachConfig, const PDSCHConfigCommon& pdschConfigCommon, const PUSCHConfigCommon& puschConfigCommon, const PUCCHConfigCommon& pucchConfigCommon, const SoundingRSULConfigCommon& soundingRSULConfigCommon, const UplinkPowerControlCommon& uplinkPowerControlCommon, const ULCyclicPrefixLength& ulCyclicPrefixLength);
+
+	void setRachConfigCommon(const RACHConfigCommon& rachConfigCommon) { *static_cast<RACHConfigCommon*>(items[0]) = rachConfigCommon; }
+	void setBcchConfig(const BCCHConfig& bcchConfig) { *static_cast<BCCHConfig*>(items[1]) = bcchConfig; }
+	void setPcchConfig(const PCCHConfig& pcchConfig) { *static_cast<PCCHConfig*>(items[2]) = pcchConfig; }
+	void setPrachConfig(const PRACHConfigSIB& prachConfig) { *static_cast<PRACHConfigSIB*>(items[3]) = prachConfig; }
+	void setPdschConfigCommon(const PDSCHConfigCommon& pdschConfigCommon) { *static_cast<PDSCHConfigCommon*>(items[4]) = pdschConfigCommon; }
+	void setPuschConfigCommon(const PUSCHConfigCommon& puschConfigCommon) { *static_cast<PUSCHConfigCommon*>(items[5]) = puschConfigCommon; }
+	void setPucchConfigCommon(const PUCCHConfigCommon& pucchConfigCommon) { *static_cast<PUCCHConfigCommon*>(items[6]) = pucchConfigCommon; }
+	void setSoundingRSULConfigCommon(const SoundingRSULConfigCommon& soundingRSULConfigCommon) { *static_cast<SoundingRSULConfigCommon*>(items[7]) = soundingRSULConfigCommon; }
+	void setUplinkPowerControlCommon(const UplinkPowerControlCommon& uplinkPowerControlCommon) { *static_cast<UplinkPowerControlCommon*>(items[8]) = uplinkPowerControlCommon; }
+	void setUlCyclicPrefixLength(const ULCyclicPrefixLength& ulCyclicPrefixLength) { *static_cast<ULCyclicPrefixLength*>(items[9]) = ulCyclicPrefixLength; }
+	void setUplinkPowerControlCommonv1020(const UplinkPowerControlCommonv1020& uplinkPowerControlCommonv1020) { *static_cast<UplinkPowerControlCommonv1020*>(items[10]) = uplinkPowerControlCommonv1020; }
+
+	RACHConfigCommon& getRachConfigCommon() { return *static_cast<RACHConfigCommon*>(items[0]); }
+	BCCHConfig& getBcchConfig() { return *static_cast<BCCHConfig*>(items[1]); }
+	PCCHConfig& getPcchConfig() { return *static_cast<PCCHConfig*>(items[2]); }
+	PRACHConfigSIB& getPrachConfig() { return *static_cast<PRACHConfigSIB*>(items[3]); }
+	PDSCHConfigCommon& getPdschConfigCommon() { return *static_cast<PDSCHConfigCommon*>(items[4]); }
+	PUSCHConfigCommon& getPuschConfigCommon() { return *static_cast<PUSCHConfigCommon*>(items[5]); }
+	PUCCHConfigCommon& getPucchConfigCommon() { return *static_cast<PUCCHConfigCommon*>(items[6]); }
+	SoundingRSULConfigCommon& getSoundingRSULConfigCommon() { return *static_cast<SoundingRSULConfigCommon*>(items[7]); }
+	UplinkPowerControlCommon& getUplinkPowerControlCommon() { return *static_cast<UplinkPowerControlCommon*>(items[8]); }
+	ULCyclicPrefixLength& getUlCyclicPrefixLength() { return *static_cast<ULCyclicPrefixLength*>(items[9]); }
+	UplinkPowerControlCommonv1020& getUplinkPowerControlCommonv1020() { return *static_cast<UplinkPowerControlCommonv1020*>(items[10]); }
+};
+
+enum UETimersAndConstantst300Values {
+	ms100_UETimersAndConstantst300 = 0,
+	ms200_UETimersAndConstantst300 = 1,
+	ms300_UETimersAndConstantst300 = 2,
+	ms400_UETimersAndConstantst300 = 3,
+	ms600_UETimersAndConstantst300 = 4,
+	ms1000_UETimersAndConstantst300 = 5,
+	ms1500_UETimersAndConstantst300 = 6,
+	ms2000_UETimersAndConstantst300 = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> UETimersAndConstantst300;
+
+enum UETimersAndConstantst301Values {
+	ms100_UETimersAndConstantst301 = 0,
+	ms200_UETimersAndConstantst301 = 1,
+	ms300_UETimersAndConstantst301 = 2,
+	ms400_UETimersAndConstantst301 = 3,
+	ms600_UETimersAndConstantst301 = 4,
+	ms1000_UETimersAndConstantst301 = 5,
+	ms1500_UETimersAndConstantst301 = 6,
+	ms2000_UETimersAndConstantst301 = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> UETimersAndConstantst301;
+
+enum UETimersAndConstantst310Values {
+	ms0_UETimersAndConstantst310 = 0,
+	ms50_UETimersAndConstantst310 = 1,
+	ms100_UETimersAndConstantst310 = 2,
+	ms200_UETimersAndConstantst310 = 3,
+	ms500_UETimersAndConstantst310 = 4,
+	ms1000_UETimersAndConstantst310 = 5,
+	ms2000_UETimersAndConstantst310 = 6,
+};
+typedef Enumerated<CONSTRAINED, 6> UETimersAndConstantst310;
+
+enum UETimersAndConstantsn310Values {
+	n1_UETimersAndConstantsn310 = 0,
+	n2_UETimersAndConstantsn310 = 1,
+	n3_UETimersAndConstantsn310 = 2,
+	n4_UETimersAndConstantsn310 = 3,
+	n6_UETimersAndConstantsn310 = 4,
+	n8_UETimersAndConstantsn310 = 5,
+	n10_UETimersAndConstantsn310 = 6,
+	n20_UETimersAndConstantsn310 = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> UETimersAndConstantsn310;
+
+enum UETimersAndConstantst311Values {
+	ms1000_UETimersAndConstantst311 = 0,
+	ms3000_UETimersAndConstantst311 = 1,
+	ms5000_UETimersAndConstantst311 = 2,
+	ms10000_UETimersAndConstantst311 = 3,
+	ms15000_UETimersAndConstantst311 = 4,
+	ms20000_UETimersAndConstantst311 = 5,
+	ms30000_UETimersAndConstantst311 = 6,
+};
+typedef Enumerated<CONSTRAINED, 6> UETimersAndConstantst311;
+
+enum UETimersAndConstantsn311Values {
+	n1_UETimersAndConstantsn311 = 0,
+	n2_UETimersAndConstantsn311 = 1,
+	n3_UETimersAndConstantsn311 = 2,
+	n4_UETimersAndConstantsn311 = 3,
+	n5_UETimersAndConstantsn311 = 4,
+	n6_UETimersAndConstantsn311 = 5,
+	n8_UETimersAndConstantsn311 = 6,
+	n10_UETimersAndConstantsn311 = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> UETimersAndConstantsn311;
+
+class UETimersAndConstants : public Sequence {
+private:
+	static const void *itemsInfo[6];
+	static bool itemsPres[6];
+public:
+	static const Info theInfo;
+	UETimersAndConstants(): Sequence(&theInfo) {}
+	UETimersAndConstants(const UETimersAndConstantst300& uETimersAndConstantst300, const UETimersAndConstantst301& uETimersAndConstantst301, const UETimersAndConstantst310& uETimersAndConstantst310, const UETimersAndConstantsn310& uETimersAndConstantsn310, const UETimersAndConstantst311& uETimersAndConstantst311, const UETimersAndConstantsn311& uETimersAndConstantsn311);
+
+	void setUETimersAndConstantst300(const UETimersAndConstantst300& uETimersAndConstantst300) { *static_cast<UETimersAndConstantst300*>(items[0]) = uETimersAndConstantst300; }
+	void setUETimersAndConstantst301(const UETimersAndConstantst301& uETimersAndConstantst301) { *static_cast<UETimersAndConstantst301*>(items[1]) = uETimersAndConstantst301; }
+	void setUETimersAndConstantst310(const UETimersAndConstantst310& uETimersAndConstantst310) { *static_cast<UETimersAndConstantst310*>(items[2]) = uETimersAndConstantst310; }
+	void setUETimersAndConstantsn310(const UETimersAndConstantsn310& uETimersAndConstantsn310) { *static_cast<UETimersAndConstantsn310*>(items[3]) = uETimersAndConstantsn310; }
+	void setUETimersAndConstantst311(const UETimersAndConstantst311& uETimersAndConstantst311) { *static_cast<UETimersAndConstantst311*>(items[4]) = uETimersAndConstantst311; }
+	void setUETimersAndConstantsn311(const UETimersAndConstantsn311& uETimersAndConstantsn311) { *static_cast<UETimersAndConstantsn311*>(items[5]) = uETimersAndConstantsn311; }
+
+	UETimersAndConstantst300& getUETimersAndConstantst300() { return *static_cast<UETimersAndConstantst300*>(items[0]); }
+	UETimersAndConstantst301& getUETimersAndConstantst301() { return *static_cast<UETimersAndConstantst301*>(items[1]); }
+	UETimersAndConstantst310& getUETimersAndConstantst310() { return *static_cast<UETimersAndConstantst310*>(items[2]); }
+	UETimersAndConstantsn310& getUETimersAndConstantsn310() { return *static_cast<UETimersAndConstantsn310*>(items[3]); }
+	UETimersAndConstantst311& getUETimersAndConstantst311() { return *static_cast<UETimersAndConstantst311*>(items[4]); }
+	UETimersAndConstantsn311& getUETimersAndConstantsn311() { return *static_cast<UETimersAndConstantsn311*>(items[5]); }
+};
+
+typedef Integer<CONSTRAINED, 0, maxEARFCN> ARFCNValueEUTRA;
+
+enum SystemInformationBlockType2FreqInfoul_BandwidthValues {
+	n6_SystemInformationBlockType2FreqInfoul_Bandwidth = 0,
+	n15_SystemInformationBlockType2FreqInfoul_Bandwidth = 1,
+	n25_SystemInformationBlockType2FreqInfoul_Bandwidth = 2,
+	n50_SystemInformationBlockType2FreqInfoul_Bandwidth = 3,
+	n75_SystemInformationBlockType2FreqInfoul_Bandwidth = 4,
+	n100_SystemInformationBlockType2FreqInfoul_Bandwidth = 5,
+};
+typedef Enumerated<CONSTRAINED, 5> SystemInformationBlockType2FreqInfoul_Bandwidth;
+
+typedef Integer<CONSTRAINED, 1, 32> AdditionalSpectrumEmission;
+
+class SystemInformationBlockType2FreqInfo : public Sequence {
+private:
+	static const void *itemsInfo[3];
+	static bool itemsPres[3];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType2FreqInfo(): Sequence(&theInfo) {}
+	SystemInformationBlockType2FreqInfo(const AdditionalSpectrumEmission& additionalSpectrumEmission);
+
+	void setUlCarrierFreq(const ARFCNValueEUTRA& ulCarrierFreq) { *static_cast<ARFCNValueEUTRA*>(items[0]) = ulCarrierFreq; }
+	void setSystemInformationBlockType2FreqInfoul_Bandwidth(const SystemInformationBlockType2FreqInfoul_Bandwidth& systemInformationBlockType2FreqInfoul_Bandwidth) { *static_cast<SystemInformationBlockType2FreqInfoul_Bandwidth*>(items[1]) = systemInformationBlockType2FreqInfoul_Bandwidth; }
+	void setAdditionalSpectrumEmission(const AdditionalSpectrumEmission& additionalSpectrumEmission) { *static_cast<AdditionalSpectrumEmission*>(items[2]) = additionalSpectrumEmission; }
+
+	ARFCNValueEUTRA& getUlCarrierFreq() { return *static_cast<ARFCNValueEUTRA*>(items[0]); }
+	SystemInformationBlockType2FreqInfoul_Bandwidth& getSystemInformationBlockType2FreqInfoul_Bandwidth() { return *static_cast<SystemInformationBlockType2FreqInfoul_Bandwidth*>(items[1]); }
+	AdditionalSpectrumEmission& getAdditionalSpectrumEmission() { return *static_cast<AdditionalSpectrumEmission*>(items[2]); }
+};
+
+enum MBSFNSubframeConfigradioframeAllocationPeriodValues {
+	n1_MBSFNSubframeConfigradioframeAllocationPeriod = 0,
+	n2_MBSFNSubframeConfigradioframeAllocationPeriod = 1,
+	n4_MBSFNSubframeConfigradioframeAllocationPeriod = 2,
+	n8_MBSFNSubframeConfigradioframeAllocationPeriod = 3,
+	n16_MBSFNSubframeConfigradioframeAllocationPeriod = 4,
+	n32_MBSFNSubframeConfigradioframeAllocationPeriod = 5,
+};
+typedef Enumerated<CONSTRAINED, 5> MBSFNSubframeConfigradioframeAllocationPeriod;
+
+typedef Integer<CONSTRAINED, 0, 7> MBSFNSubframeConfigRadioframeAllocationOffset;
+
+typedef BitString<CONSTRAINED, 6, 6> MBSFNSubframeConfigSubframeAllocationOneFrame;
+
+typedef BitString<CONSTRAINED, 24, 24> MBSFNSubframeConfigSubframeAllocationFourFrames;
+
+class MBSFNSubframeConfigSubframeAllocation : public Choice {
+private:
+	static const void *choicesInfo[2];
+public:
+	enum MBSFNSubframeConfigSubframeAllocationChoices {
+		mBSFNSubframeConfigSubframeAllocationOneFrame = 0,
+		mBSFNSubframeConfigSubframeAllocationFourFrames = 1,
+	};
+	static const Info theInfo;
+	MBSFNSubframeConfigSubframeAllocation(): Choice(&theInfo) {}
+};
+
+class MBSFNSubframeConfig : public Sequence {
+private:
+	static const void *itemsInfo[3];
+	static bool itemsPres[3];
+public:
+	static const Info theInfo;
+	MBSFNSubframeConfig(): Sequence(&theInfo) {}
+	MBSFNSubframeConfig(const MBSFNSubframeConfigradioframeAllocationPeriod& mBSFNSubframeConfigradioframeAllocationPeriod, const MBSFNSubframeConfigRadioframeAllocationOffset& mBSFNSubframeConfigRadioframeAllocationOffset, const MBSFNSubframeConfigSubframeAllocation& mBSFNSubframeConfigSubframeAllocation);
+
+	void setMBSFNSubframeConfigradioframeAllocationPeriod(const MBSFNSubframeConfigradioframeAllocationPeriod& mBSFNSubframeConfigradioframeAllocationPeriod) { *static_cast<MBSFNSubframeConfigradioframeAllocationPeriod*>(items[0]) = mBSFNSubframeConfigradioframeAllocationPeriod; }
+	void setMBSFNSubframeConfigRadioframeAllocationOffset(const MBSFNSubframeConfigRadioframeAllocationOffset& mBSFNSubframeConfigRadioframeAllocationOffset) { *static_cast<MBSFNSubframeConfigRadioframeAllocationOffset*>(items[1]) = mBSFNSubframeConfigRadioframeAllocationOffset; }
+	void setMBSFNSubframeConfigSubframeAllocation(const MBSFNSubframeConfigSubframeAllocation& mBSFNSubframeConfigSubframeAllocation) { *static_cast<MBSFNSubframeConfigSubframeAllocation*>(items[2]) = mBSFNSubframeConfigSubframeAllocation; }
+
+	MBSFNSubframeConfigradioframeAllocationPeriod& getMBSFNSubframeConfigradioframeAllocationPeriod() { return *static_cast<MBSFNSubframeConfigradioframeAllocationPeriod*>(items[0]); }
+	MBSFNSubframeConfigRadioframeAllocationOffset& getMBSFNSubframeConfigRadioframeAllocationOffset() { return *static_cast<MBSFNSubframeConfigRadioframeAllocationOffset*>(items[1]); }
+	MBSFNSubframeConfigSubframeAllocation& getMBSFNSubframeConfigSubframeAllocation() { return *static_cast<MBSFNSubframeConfigSubframeAllocation*>(items[2]); }
+};
+
+typedef SequenceOf<MBSFNSubframeConfig, CONSTRAINED, 1, maxMBSFN_Allocations> MBSFNSubframeConfigList;
+
+enum TimeAlignmentTimerValues {
+	sf500_TimeAlignmentTimer = 0,
+	sf750_TimeAlignmentTimer = 1,
+	sf1280_TimeAlignmentTimer = 2,
+	sf1920_TimeAlignmentTimer = 3,
+	sf2560_TimeAlignmentTimer = 4,
+	sf5120_TimeAlignmentTimer = 5,
+	sf10240_TimeAlignmentTimer = 6,
+	infinity_TimeAlignmentTimer = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> TimeAlignmentTimer;
+
+typedef OctetStringBase SystemInformationBlockType2LateNonCriticalExtension;
+
+class SystemInformationBlockType2 : public Sequence {
+private:
+	static const void *itemsInfo[10];
+	static bool itemsPres[10];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType2(): Sequence(&theInfo) {}
+	SystemInformationBlockType2(const RadioResourceConfigCommonSIB& radioResourceConfigCommon, const UETimersAndConstants& ueTimersAndConstants, const SystemInformationBlockType2FreqInfo& systemInformationBlockType2FreqInfo, const TimeAlignmentTimer& timeAlignmentTimerCommon);
+
+	void setSystemInformationBlockType2AcBarringInfo(const SystemInformationBlockType2AcBarringInfo& systemInformationBlockType2AcBarringInfo) { *static_cast<SystemInformationBlockType2AcBarringInfo*>(items[0]) = systemInformationBlockType2AcBarringInfo; }
+	void setRadioResourceConfigCommon(const RadioResourceConfigCommonSIB& radioResourceConfigCommon) { *static_cast<RadioResourceConfigCommonSIB*>(items[1]) = radioResourceConfigCommon; }
+	void setUeTimersAndConstants(const UETimersAndConstants& ueTimersAndConstants) { *static_cast<UETimersAndConstants*>(items[2]) = ueTimersAndConstants; }
+	void setSystemInformationBlockType2FreqInfo(const SystemInformationBlockType2FreqInfo& systemInformationBlockType2FreqInfo) { *static_cast<SystemInformationBlockType2FreqInfo*>(items[3]) = systemInformationBlockType2FreqInfo; }
+	void setMbsfnSubframeConfigList(const MBSFNSubframeConfigList& mbsfnSubframeConfigList) { *static_cast<MBSFNSubframeConfigList*>(items[4]) = mbsfnSubframeConfigList; }
+	void setTimeAlignmentTimerCommon(const TimeAlignmentTimer& timeAlignmentTimerCommon) { *static_cast<TimeAlignmentTimer*>(items[5]) = timeAlignmentTimerCommon; }
+	void setSystemInformationBlockType2LateNonCriticalExtension(const SystemInformationBlockType2LateNonCriticalExtension& systemInformationBlockType2LateNonCriticalExtension) { *static_cast<SystemInformationBlockType2LateNonCriticalExtension*>(items[6]) = systemInformationBlockType2LateNonCriticalExtension; }
+	void setSsacBarringForMMTELVoicer9(const ACBarringConfig& ssacBarringForMMTELVoicer9) { *static_cast<ACBarringConfig*>(items[7]) = ssacBarringForMMTELVoicer9; }
+	void setSsacBarringForMMTELVideor9(const ACBarringConfig& ssacBarringForMMTELVideor9) { *static_cast<ACBarringConfig*>(items[8]) = ssacBarringForMMTELVideor9; }
+	void setAcBarringForCSFBr10(const ACBarringConfig& acBarringForCSFBr10) { *static_cast<ACBarringConfig*>(items[9]) = acBarringForCSFBr10; }
+
+	SystemInformationBlockType2AcBarringInfo& getSystemInformationBlockType2AcBarringInfo() { return *static_cast<SystemInformationBlockType2AcBarringInfo*>(items[0]); }
+	RadioResourceConfigCommonSIB& getRadioResourceConfigCommon() { return *static_cast<RadioResourceConfigCommonSIB*>(items[1]); }
+	UETimersAndConstants& getUeTimersAndConstants() { return *static_cast<UETimersAndConstants*>(items[2]); }
+	SystemInformationBlockType2FreqInfo& getSystemInformationBlockType2FreqInfo() { return *static_cast<SystemInformationBlockType2FreqInfo*>(items[3]); }
+	MBSFNSubframeConfigList& getMbsfnSubframeConfigList() { return *static_cast<MBSFNSubframeConfigList*>(items[4]); }
+	TimeAlignmentTimer& getTimeAlignmentTimerCommon() { return *static_cast<TimeAlignmentTimer*>(items[5]); }
+	SystemInformationBlockType2LateNonCriticalExtension& getSystemInformationBlockType2LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType2LateNonCriticalExtension*>(items[6]); }
+	ACBarringConfig& getSsacBarringForMMTELVoicer9() { return *static_cast<ACBarringConfig*>(items[7]); }
+	ACBarringConfig& getSsacBarringForMMTELVideor9() { return *static_cast<ACBarringConfig*>(items[8]); }
+	ACBarringConfig& getAcBarringForCSFBr10() { return *static_cast<ACBarringConfig*>(items[9]); }
+};
+
+enum SystemInformationBlockType3CellReselectionInfoCommonq_HystValues {
+	dB0_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 0,
+	dB1_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 1,
+	dB2_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 2,
+	dB3_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 3,
+	dB4_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 4,
+	dB5_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 5,
+	dB6_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 6,
+	dB8_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 7,
+	dB10_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 8,
+	dB12_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 9,
+	dB14_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 10,
+	dB16_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 11,
+	dB18_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 12,
+	dB20_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 13,
+	dB22_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 14,
+	dB24_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 15,
+};
+typedef Enumerated<CONSTRAINED, 15> SystemInformationBlockType3CellReselectionInfoCommonq_Hyst;
+
+enum MobilityStateParameterst_EvaluationValues {
+	s30_MobilityStateParameterst_Evaluation = 0,
+	s60_MobilityStateParameterst_Evaluation = 1,
+	s120_MobilityStateParameterst_Evaluation = 2,
+	s180_MobilityStateParameterst_Evaluation = 3,
+	s240_MobilityStateParameterst_Evaluation = 4,
+	spare3_MobilityStateParameterst_Evaluation = 5,
+	spare2_MobilityStateParameterst_Evaluation = 6,
+	spare1_MobilityStateParameterst_Evaluation = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> MobilityStateParameterst_Evaluation;
+
+enum MobilityStateParameterst_HystNormalValues {
+	s30_MobilityStateParameterst_HystNormal = 0,
+	s60_MobilityStateParameterst_HystNormal = 1,
+	s120_MobilityStateParameterst_HystNormal = 2,
+	s180_MobilityStateParameterst_HystNormal = 3,
+	s240_MobilityStateParameterst_HystNormal = 4,
+	spare3_MobilityStateParameterst_HystNormal = 5,
+	spare2_MobilityStateParameterst_HystNormal = 6,
+	spare1_MobilityStateParameterst_HystNormal = 7,
+};
+typedef Enumerated<CONSTRAINED, 7> MobilityStateParameterst_HystNormal;
+
+typedef Integer<CONSTRAINED, 1, 16> MobilityStateParametersNCellChangeMedium;
+
+typedef Integer<CONSTRAINED, 1, 16> MobilityStateParametersNCellChangeHigh;
+
+class MobilityStateParameters : public Sequence {
+private:
+	static const void *itemsInfo[4];
+	static bool itemsPres[4];
+public:
+	static const Info theInfo;
+	MobilityStateParameters(): Sequence(&theInfo) {}
+	MobilityStateParameters(const MobilityStateParameterst_Evaluation& mobilityStateParameterst_Evaluation, const MobilityStateParameterst_HystNormal& mobilityStateParameterst_HystNormal, const MobilityStateParametersNCellChangeMedium& mobilityStateParametersNCellChangeMedium, const MobilityStateParametersNCellChangeHigh& mobilityStateParametersNCellChangeHigh);
+
+	void setMobilityStateParameterst_Evaluation(const MobilityStateParameterst_Evaluation& mobilityStateParameterst_Evaluation) { *static_cast<MobilityStateParameterst_Evaluation*>(items[0]) = mobilityStateParameterst_Evaluation; }
+	void setMobilityStateParameterst_HystNormal(const MobilityStateParameterst_HystNormal& mobilityStateParameterst_HystNormal) { *static_cast<MobilityStateParameterst_HystNormal*>(items[1]) = mobilityStateParameterst_HystNormal; }
+	void setMobilityStateParametersNCellChangeMedium(const MobilityStateParametersNCellChangeMedium& mobilityStateParametersNCellChangeMedium) { *static_cast<MobilityStateParametersNCellChangeMedium*>(items[2]) = mobilityStateParametersNCellChangeMedium; }
+	void setMobilityStateParametersNCellChangeHigh(const MobilityStateParametersNCellChangeHigh& mobilityStateParametersNCellChangeHigh) { *static_cast<MobilityStateParametersNCellChangeHigh*>(items[3]) = mobilityStateParametersNCellChangeHigh; }
+
+	MobilityStateParameterst_Evaluation& getMobilityStateParameterst_Evaluation() { return *static_cast<MobilityStateParameterst_Evaluation*>(items[0]); }
+	MobilityStateParameterst_HystNormal& getMobilityStateParameterst_HystNormal() { return *static_cast<MobilityStateParameterst_HystNormal*>(items[1]); }
+	MobilityStateParametersNCellChangeMedium& getMobilityStateParametersNCellChangeMedium() { return *static_cast<MobilityStateParametersNCellChangeMedium*>(items[2]); }
+	MobilityStateParametersNCellChangeHigh& getMobilityStateParametersNCellChangeHigh() { return *static_cast<MobilityStateParametersNCellChangeHigh*>(items[3]); }
+};
+
+enum SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_MediumValues {
+	dB_6_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium = 0,
+	dB_4_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium = 1,
+	dB_2_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium = 2,
+	dB0_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium = 3,
+};
+typedef Enumerated<CONSTRAINED, 3> SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium;
+
+enum SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_HighValues {
+	dB_6_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High = 0,
+	dB_4_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High = 1,
+	dB_2_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High = 2,
+	dB0_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High = 3,
+};
+typedef Enumerated<CONSTRAINED, 3> SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High;
+
+class SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF(): Sequence(&theInfo) {}
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium, const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High);
+
+	void setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium*>(items[0]) = systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium; }
+	void setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High*>(items[1]) = systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High; }
+
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium& getSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium*>(items[0]); }
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High& getSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High*>(items[1]); }
+};
+
+class SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars(): Sequence(&theInfo) {}
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars(const MobilityStateParameters& mobilityStateParameters, const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF);
+
+	void setMobilityStateParameters(const MobilityStateParameters& mobilityStateParameters) { *static_cast<MobilityStateParameters*>(items[0]) = mobilityStateParameters; }
+	void setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF*>(items[1]) = systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF; }
+
+	MobilityStateParameters& getMobilityStateParameters() { return *static_cast<MobilityStateParameters*>(items[0]); }
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF& getSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF*>(items[1]); }
+};
+
+class SystemInformationBlockType3CellReselectionInfoCommon : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType3CellReselectionInfoCommon(): Sequence(&theInfo) {}
+	SystemInformationBlockType3CellReselectionInfoCommon(const SystemInformationBlockType3CellReselectionInfoCommonq_Hyst& systemInformationBlockType3CellReselectionInfoCommonq_Hyst);
+
+	void setSystemInformationBlockType3CellReselectionInfoCommonq_Hyst(const SystemInformationBlockType3CellReselectionInfoCommonq_Hyst& systemInformationBlockType3CellReselectionInfoCommonq_Hyst) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonq_Hyst*>(items[0]) = systemInformationBlockType3CellReselectionInfoCommonq_Hyst; }
+	void setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars*>(items[1]) = systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars; }
+
+	SystemInformationBlockType3CellReselectionInfoCommonq_Hyst& getSystemInformationBlockType3CellReselectionInfoCommonq_Hyst() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonq_Hyst*>(items[0]); }
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars& getSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars*>(items[1]); }
+};
+
+typedef Integer<CONSTRAINED, 0, 31> ReselectionThreshold;
+
+typedef Integer<CONSTRAINED, 0, 7> CellReselectionPriority;
+
+class SystemInformationBlockType3CellReselectionServingFreqInfo : public Sequence {
+private:
+	static const void *itemsInfo[3];
+	static bool itemsPres[3];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType3CellReselectionServingFreqInfo(): Sequence(&theInfo) {}
+	SystemInformationBlockType3CellReselectionServingFreqInfo(const ReselectionThreshold& threshServingLow, const CellReselectionPriority& cellReselectionPriority);
+
+	void setSNonIntraSearch(const ReselectionThreshold& sNonIntraSearch) { *static_cast<ReselectionThreshold*>(items[0]) = sNonIntraSearch; }
+	void setThreshServingLow(const ReselectionThreshold& threshServingLow) { *static_cast<ReselectionThreshold*>(items[1]) = threshServingLow; }
+	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[2]) = cellReselectionPriority; }
+
+	ReselectionThreshold& getSNonIntraSearch() { return *static_cast<ReselectionThreshold*>(items[0]); }
+	ReselectionThreshold& getThreshServingLow() { return *static_cast<ReselectionThreshold*>(items[1]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[2]); }
+};
+
+typedef Integer<CONSTRAINED, -70, -22> QRxLevMin;
+
+typedef Integer<CONSTRAINED, -30, 33> PMax;
+
+enum AllowedMeasBandwidthValues {
+	mbw6_AllowedMeasBandwidth = 0,
+	mbw15_AllowedMeasBandwidth = 1,
+	mbw25_AllowedMeasBandwidth = 2,
+	mbw50_AllowedMeasBandwidth = 3,
+	mbw75_AllowedMeasBandwidth = 4,
+	mbw100_AllowedMeasBandwidth = 5,
+};
+typedef Enumerated<CONSTRAINED, 5> AllowedMeasBandwidth;
+
+typedef Boolean PresenceAntennaPort1;
+
+typedef BitString<CONSTRAINED, 2, 2> NeighCellConfig;
+
+typedef Integer<CONSTRAINED, 0, 7> TReselection;
+
+enum SpeedStateScaleFactorssf_MediumValues {
+	oDot25_SpeedStateScaleFactorssf_Medium = 0,
+	oDot5_SpeedStateScaleFactorssf_Medium = 1,
+	oDot75_SpeedStateScaleFactorssf_Medium = 2,
+	lDot0_SpeedStateScaleFactorssf_Medium = 3,
+};
+typedef Enumerated<CONSTRAINED, 3> SpeedStateScaleFactorssf_Medium;
+
+enum SpeedStateScaleFactorssf_HighValues {
+	oDot25_SpeedStateScaleFactorssf_High = 0,
+	oDot5_SpeedStateScaleFactorssf_High = 1,
+	oDot75_SpeedStateScaleFactorssf_High = 2,
+	lDot0_SpeedStateScaleFactorssf_High = 3,
+};
+typedef Enumerated<CONSTRAINED, 3> SpeedStateScaleFactorssf_High;
+
+class SpeedStateScaleFactors : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	SpeedStateScaleFactors(): Sequence(&theInfo) {}
+	SpeedStateScaleFactors(const SpeedStateScaleFactorssf_Medium& speedStateScaleFactorssf_Medium, const SpeedStateScaleFactorssf_High& speedStateScaleFactorssf_High);
+
+	void setSpeedStateScaleFactorssf_Medium(const SpeedStateScaleFactorssf_Medium& speedStateScaleFactorssf_Medium) { *static_cast<SpeedStateScaleFactorssf_Medium*>(items[0]) = speedStateScaleFactorssf_Medium; }
+	void setSpeedStateScaleFactorssf_High(const SpeedStateScaleFactorssf_High& speedStateScaleFactorssf_High) { *static_cast<SpeedStateScaleFactorssf_High*>(items[1]) = speedStateScaleFactorssf_High; }
+
+	SpeedStateScaleFactorssf_Medium& getSpeedStateScaleFactorssf_Medium() { return *static_cast<SpeedStateScaleFactorssf_Medium*>(items[0]); }
+	SpeedStateScaleFactorssf_High& getSpeedStateScaleFactorssf_High() { return *static_cast<SpeedStateScaleFactorssf_High*>(items[1]); }
+};
+
+class SystemInformationBlockType3IntraFreqCellReselectionInfo : public Sequence {
+private:
+	static const void *itemsInfo[8];
+	static bool itemsPres[8];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType3IntraFreqCellReselectionInfo(): Sequence(&theInfo) {}
+	SystemInformationBlockType3IntraFreqCellReselectionInfo(const QRxLevMin& qRxLevMin, const PresenceAntennaPort1& presenceAntennaPort1, const NeighCellConfig& neighCellConfig, const TReselection& tReselectionEUTRA);
+
+	void setQRxLevMin(const QRxLevMin& qRxLevMin) { *static_cast<QRxLevMin*>(items[0]) = qRxLevMin; }
+	void setPMax(const PMax& pMax) { *static_cast<PMax*>(items[1]) = pMax; }
+	void setSIntraSearch(const ReselectionThreshold& sIntraSearch) { *static_cast<ReselectionThreshold*>(items[2]) = sIntraSearch; }
+	void setAllowedMeasBandwidth(const AllowedMeasBandwidth& allowedMeasBandwidth) { *static_cast<AllowedMeasBandwidth*>(items[3]) = allowedMeasBandwidth; }
+	void setPresenceAntennaPort1(const PresenceAntennaPort1& presenceAntennaPort1) { *static_cast<PresenceAntennaPort1*>(items[4]) = presenceAntennaPort1; }
+	void setNeighCellConfig(const NeighCellConfig& neighCellConfig) { *static_cast<NeighCellConfig*>(items[5]) = neighCellConfig; }
+	void setTReselectionEUTRA(const TReselection& tReselectionEUTRA) { *static_cast<TReselection*>(items[6]) = tReselectionEUTRA; }
+	void setTReselectionEUTRASF(const SpeedStateScaleFactors& tReselectionEUTRASF) { *static_cast<SpeedStateScaleFactors*>(items[7]) = tReselectionEUTRASF; }
+
+	QRxLevMin& getQRxLevMin() { return *static_cast<QRxLevMin*>(items[0]); }
+	PMax& getPMax() { return *static_cast<PMax*>(items[1]); }
+	ReselectionThreshold& getSIntraSearch() { return *static_cast<ReselectionThreshold*>(items[2]); }
+	AllowedMeasBandwidth& getAllowedMeasBandwidth() { return *static_cast<AllowedMeasBandwidth*>(items[3]); }
+	PresenceAntennaPort1& getPresenceAntennaPort1() { return *static_cast<PresenceAntennaPort1*>(items[4]); }
+	NeighCellConfig& getNeighCellConfig() { return *static_cast<NeighCellConfig*>(items[5]); }
+	TReselection& getTReselectionEUTRA() { return *static_cast<TReselection*>(items[6]); }
+	SpeedStateScaleFactors& getTReselectionEUTRASF() { return *static_cast<SpeedStateScaleFactors*>(items[7]); }
+};
+
+typedef OctetStringBase SystemInformationBlockType3LateNonCriticalExtension;
+
+typedef Integer<CONSTRAINED, 0, 31> ReselectionThresholdQr9;
+
+class SystemInformationBlockType3SIntraSearchv920 : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType3SIntraSearchv920(): Sequence(&theInfo) {}
+	SystemInformationBlockType3SIntraSearchv920(const ReselectionThreshold& sIntraSearchPr9, const ReselectionThresholdQr9& sIntraSearchQr9);
+
+	void setSIntraSearchPr9(const ReselectionThreshold& sIntraSearchPr9) { *static_cast<ReselectionThreshold*>(items[0]) = sIntraSearchPr9; }
+	void setSIntraSearchQr9(const ReselectionThresholdQr9& sIntraSearchQr9) { *static_cast<ReselectionThresholdQr9*>(items[1]) = sIntraSearchQr9; }
+
+	ReselectionThreshold& getSIntraSearchPr9() { return *static_cast<ReselectionThreshold*>(items[0]); }
+	ReselectionThresholdQr9& getSIntraSearchQr9() { return *static_cast<ReselectionThresholdQr9*>(items[1]); }
+};
+
+class SystemInformationBlockType3SNonIntraSearchv920 : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType3SNonIntraSearchv920(): Sequence(&theInfo) {}
+	SystemInformationBlockType3SNonIntraSearchv920(const ReselectionThreshold& sNonIntraSearchPr9, const ReselectionThresholdQr9& sNonIntraSearchQr9);
+
+	void setSNonIntraSearchPr9(const ReselectionThreshold& sNonIntraSearchPr9) { *static_cast<ReselectionThreshold*>(items[0]) = sNonIntraSearchPr9; }
+	void setSNonIntraSearchQr9(const ReselectionThresholdQr9& sNonIntraSearchQr9) { *static_cast<ReselectionThresholdQr9*>(items[1]) = sNonIntraSearchQr9; }
+
+	ReselectionThreshold& getSNonIntraSearchPr9() { return *static_cast<ReselectionThreshold*>(items[0]); }
+	ReselectionThresholdQr9& getSNonIntraSearchQr9() { return *static_cast<ReselectionThresholdQr9*>(items[1]); }
+};
+
+typedef Integer<CONSTRAINED, -34, -3> QQualMinr9;
+
+class SystemInformationBlockType3 : public Sequence {
+private:
+	static const void *itemsInfo[8];
+	static bool itemsPres[8];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType3(): Sequence(&theInfo) {}
+	SystemInformationBlockType3(const SystemInformationBlockType3CellReselectionInfoCommon& systemInformationBlockType3CellReselectionInfoCommon, const SystemInformationBlockType3CellReselectionServingFreqInfo& systemInformationBlockType3CellReselectionServingFreqInfo, const SystemInformationBlockType3IntraFreqCellReselectionInfo& systemInformationBlockType3IntraFreqCellReselectionInfo);
+
+	void setSystemInformationBlockType3CellReselectionInfoCommon(const SystemInformationBlockType3CellReselectionInfoCommon& systemInformationBlockType3CellReselectionInfoCommon) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommon*>(items[0]) = systemInformationBlockType3CellReselectionInfoCommon; }
+	void setSystemInformationBlockType3CellReselectionServingFreqInfo(const SystemInformationBlockType3CellReselectionServingFreqInfo& systemInformationBlockType3CellReselectionServingFreqInfo) { *static_cast<SystemInformationBlockType3CellReselectionServingFreqInfo*>(items[1]) = systemInformationBlockType3CellReselectionServingFreqInfo; }
+	void setSystemInformationBlockType3IntraFreqCellReselectionInfo(const SystemInformationBlockType3IntraFreqCellReselectionInfo& systemInformationBlockType3IntraFreqCellReselectionInfo) { *static_cast<SystemInformationBlockType3IntraFreqCellReselectionInfo*>(items[2]) = systemInformationBlockType3IntraFreqCellReselectionInfo; }
+	void setSystemInformationBlockType3LateNonCriticalExtension(const SystemInformationBlockType3LateNonCriticalExtension& systemInformationBlockType3LateNonCriticalExtension) { *static_cast<SystemInformationBlockType3LateNonCriticalExtension*>(items[3]) = systemInformationBlockType3LateNonCriticalExtension; }
+	void setSystemInformationBlockType3SIntraSearchv920(const SystemInformationBlockType3SIntraSearchv920& systemInformationBlockType3SIntraSearchv920) { *static_cast<SystemInformationBlockType3SIntraSearchv920*>(items[4]) = systemInformationBlockType3SIntraSearchv920; }
+	void setSystemInformationBlockType3SNonIntraSearchv920(const SystemInformationBlockType3SNonIntraSearchv920& systemInformationBlockType3SNonIntraSearchv920) { *static_cast<SystemInformationBlockType3SNonIntraSearchv920*>(items[5]) = systemInformationBlockType3SNonIntraSearchv920; }
+	void setQQualMinr9(const QQualMinr9& qQualMinr9) { *static_cast<QQualMinr9*>(items[6]) = qQualMinr9; }
+	void setThreshServingLowQr9(const ReselectionThresholdQr9& threshServingLowQr9) { *static_cast<ReselectionThresholdQr9*>(items[7]) = threshServingLowQr9; }
+
+	SystemInformationBlockType3CellReselectionInfoCommon& getSystemInformationBlockType3CellReselectionInfoCommon() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommon*>(items[0]); }
+	SystemInformationBlockType3CellReselectionServingFreqInfo& getSystemInformationBlockType3CellReselectionServingFreqInfo() { return *static_cast<SystemInformationBlockType3CellReselectionServingFreqInfo*>(items[1]); }
+	SystemInformationBlockType3IntraFreqCellReselectionInfo& getSystemInformationBlockType3IntraFreqCellReselectionInfo() { return *static_cast<SystemInformationBlockType3IntraFreqCellReselectionInfo*>(items[2]); }
+	SystemInformationBlockType3LateNonCriticalExtension& getSystemInformationBlockType3LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType3LateNonCriticalExtension*>(items[3]); }
+	SystemInformationBlockType3SIntraSearchv920& getSystemInformationBlockType3SIntraSearchv920() { return *static_cast<SystemInformationBlockType3SIntraSearchv920*>(items[4]); }
+	SystemInformationBlockType3SNonIntraSearchv920& getSystemInformationBlockType3SNonIntraSearchv920() { return *static_cast<SystemInformationBlockType3SNonIntraSearchv920*>(items[5]); }
+	QQualMinr9& getQQualMinr9() { return *static_cast<QQualMinr9*>(items[6]); }
+	ReselectionThresholdQr9& getThreshServingLowQr9() { return *static_cast<ReselectionThresholdQr9*>(items[7]); }
+};
+
+typedef Integer<CONSTRAINED, 0, 503> PhysCellId;
+
+enum QOffsetRangeValues {
+	dB_24_QOffsetRange = 0,
+	dB_22_QOffsetRange = 1,
+	dB_20_QOffsetRange = 2,
+	dB_18_QOffsetRange = 3,
+	dB_16_QOffsetRange = 4,
+	dB_14_QOffsetRange = 5,
+	dB_12_QOffsetRange = 6,
+	dB_10_QOffsetRange = 7,
+	dB_8_QOffsetRange = 8,
+	dB_6_QOffsetRange = 9,
+	dB_5_QOffsetRange = 10,
+	dB_4_QOffsetRange = 11,
+	dB_3_QOffsetRange = 12,
+	dB_2_QOffsetRange = 13,
+	dB_1_QOffsetRange = 14,
+	dB0_QOffsetRange = 15,
+	dB1_QOffsetRange = 16,
+	dB2_QOffsetRange = 17,
+	dB3_QOffsetRange = 18,
+	dB4_QOffsetRange = 19,
+	dB5_QOffsetRange = 20,
+	dB6_QOffsetRange = 21,
+	dB8_QOffsetRange = 22,
+	dB10_QOffsetRange = 23,
+	dB12_QOffsetRange = 24,
+	dB14_QOffsetRange = 25,
+	dB16_QOffsetRange = 26,
+	dB18_QOffsetRange = 27,
+	dB20_QOffsetRange = 28,
+	dB22_QOffsetRange = 29,
+	dB24_QOffsetRange = 30,
+};
+typedef Enumerated<CONSTRAINED, 30> QOffsetRange;
+
+class IntraFreqNeighCellInfo : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	IntraFreqNeighCellInfo(): Sequence(&theInfo) {}
+	IntraFreqNeighCellInfo(const PhysCellId& physCellId, const QOffsetRange& qOffsetCell);
+
+	void setPhysCellId(const PhysCellId& physCellId) { *static_cast<PhysCellId*>(items[0]) = physCellId; }
+	void setQOffsetCell(const QOffsetRange& qOffsetCell) { *static_cast<QOffsetRange*>(items[1]) = qOffsetCell; }
+
+	PhysCellId& getPhysCellId() { return *static_cast<PhysCellId*>(items[0]); }
+	QOffsetRange& getQOffsetCell() { return *static_cast<QOffsetRange*>(items[1]); }
+};
+
+typedef SequenceOf<IntraFreqNeighCellInfo, CONSTRAINED, 1, maxCellIntra> IntraFreqNeighCellList;
+
+enum PhysCellIdRangerangeValues {
+	n4_PhysCellIdRangerange = 0,
+	n8_PhysCellIdRangerange = 1,
+	n12_PhysCellIdRangerange = 2,
+	n16_PhysCellIdRangerange = 3,
+	n24_PhysCellIdRangerange = 4,
+	n32_PhysCellIdRangerange = 5,
+	n48_PhysCellIdRangerange = 6,
+	n64_PhysCellIdRangerange = 7,
+	n84_PhysCellIdRangerange = 8,
+	n96_PhysCellIdRangerange = 9,
+	n128_PhysCellIdRangerange = 10,
+	n168_PhysCellIdRangerange = 11,
+	n252_PhysCellIdRangerange = 12,
+	n504_PhysCellIdRangerange = 13,
+	spare2_PhysCellIdRangerange = 14,
+	spare1_PhysCellIdRangerange = 15,
+};
+typedef Enumerated<CONSTRAINED, 15> PhysCellIdRangerange;
+
+class PhysCellIdRange : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	PhysCellIdRange(): Sequence(&theInfo) {}
+	PhysCellIdRange(const PhysCellId& start);
+
+	void setStart(const PhysCellId& start) { *static_cast<PhysCellId*>(items[0]) = start; }
+	void setPhysCellIdRangerange(const PhysCellIdRangerange& physCellIdRangerange) { *static_cast<PhysCellIdRangerange*>(items[1]) = physCellIdRangerange; }
+
+	PhysCellId& getStart() { return *static_cast<PhysCellId*>(items[0]); }
+	PhysCellIdRangerange& getPhysCellIdRangerange() { return *static_cast<PhysCellIdRangerange*>(items[1]); }
+};
+
+typedef SequenceOf<PhysCellIdRange, CONSTRAINED, 1, maxCellBlack> IntraFreqBlackCellList;
+
+typedef OctetStringBase SystemInformationBlockType4LateNonCriticalExtension;
+
+class SystemInformationBlockType4 : public Sequence {
+private:
+	static const void *itemsInfo[4];
+	static bool itemsPres[4];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType4(): Sequence(&theInfo) {}
+
+	void setIntraFreqNeighCellList(const IntraFreqNeighCellList& intraFreqNeighCellList) { *static_cast<IntraFreqNeighCellList*>(items[0]) = intraFreqNeighCellList; }
+	void setIntraFreqBlackCellList(const IntraFreqBlackCellList& intraFreqBlackCellList) { *static_cast<IntraFreqBlackCellList*>(items[1]) = intraFreqBlackCellList; }
+	void setCsgPhysCellIdRange(const PhysCellIdRange& csgPhysCellIdRange) { *static_cast<PhysCellIdRange*>(items[2]) = csgPhysCellIdRange; }
+	void setSystemInformationBlockType4LateNonCriticalExtension(const SystemInformationBlockType4LateNonCriticalExtension& systemInformationBlockType4LateNonCriticalExtension) { *static_cast<SystemInformationBlockType4LateNonCriticalExtension*>(items[3]) = systemInformationBlockType4LateNonCriticalExtension; }
+
+	IntraFreqNeighCellList& getIntraFreqNeighCellList() { return *static_cast<IntraFreqNeighCellList*>(items[0]); }
+	IntraFreqBlackCellList& getIntraFreqBlackCellList() { return *static_cast<IntraFreqBlackCellList*>(items[1]); }
+	PhysCellIdRange& getCsgPhysCellIdRange() { return *static_cast<PhysCellIdRange*>(items[2]); }
+	SystemInformationBlockType4LateNonCriticalExtension& getSystemInformationBlockType4LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType4LateNonCriticalExtension*>(items[3]); }
+};
+
+class InterFreqNeighCellInfo : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	InterFreqNeighCellInfo(): Sequence(&theInfo) {}
+	InterFreqNeighCellInfo(const PhysCellId& physCellId, const QOffsetRange& qOffsetCell);
+
+	void setPhysCellId(const PhysCellId& physCellId) { *static_cast<PhysCellId*>(items[0]) = physCellId; }
+	void setQOffsetCell(const QOffsetRange& qOffsetCell) { *static_cast<QOffsetRange*>(items[1]) = qOffsetCell; }
+
+	PhysCellId& getPhysCellId() { return *static_cast<PhysCellId*>(items[0]); }
+	QOffsetRange& getQOffsetCell() { return *static_cast<QOffsetRange*>(items[1]); }
+};
+
+typedef SequenceOf<InterFreqNeighCellInfo, CONSTRAINED, 1, maxCellInter> InterFreqNeighCellList;
+
+typedef SequenceOf<PhysCellIdRange, CONSTRAINED, 1, maxCellBlack> InterFreqBlackCellList;
+
+class InterFreqCarrierFreqInfoThreshXQr9 : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	InterFreqCarrierFreqInfoThreshXQr9(): Sequence(&theInfo) {}
+	InterFreqCarrierFreqInfoThreshXQr9(const ReselectionThresholdQr9& threshXHighQr9, const ReselectionThresholdQr9& threshXLowQr9);
+
+	void setThreshXHighQr9(const ReselectionThresholdQr9& threshXHighQr9) { *static_cast<ReselectionThresholdQr9*>(items[0]) = threshXHighQr9; }
+	void setThreshXLowQr9(const ReselectionThresholdQr9& threshXLowQr9) { *static_cast<ReselectionThresholdQr9*>(items[1]) = threshXLowQr9; }
+
+	ReselectionThresholdQr9& getThreshXHighQr9() { return *static_cast<ReselectionThresholdQr9*>(items[0]); }
+	ReselectionThresholdQr9& getThreshXLowQr9() { return *static_cast<ReselectionThresholdQr9*>(items[1]); }
+};
+
+class InterFreqCarrierFreqInfo : public Sequence {
+private:
+	static const void *itemsInfo[16];
+	static bool itemsPres[16];
+public:
+	static const Info theInfo;
+	InterFreqCarrierFreqInfo(): Sequence(&theInfo) {}
+	InterFreqCarrierFreqInfo(const ARFCNValueEUTRA& dlCarrierFreq, const QRxLevMin& qRxLevMin, const TReselection& tReselectionEUTRA, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow, const AllowedMeasBandwidth& allowedMeasBandwidth, const PresenceAntennaPort1& presenceAntennaPort1, const NeighCellConfig& neighCellConfig);
+
+	void setDlCarrierFreq(const ARFCNValueEUTRA& dlCarrierFreq) { *static_cast<ARFCNValueEUTRA*>(items[0]) = dlCarrierFreq; }
+	void setQRxLevMin(const QRxLevMin& qRxLevMin) { *static_cast<QRxLevMin*>(items[1]) = qRxLevMin; }
+	void setPMax(const PMax& pMax) { *static_cast<PMax*>(items[2]) = pMax; }
+	void setTReselectionEUTRA(const TReselection& tReselectionEUTRA) { *static_cast<TReselection*>(items[3]) = tReselectionEUTRA; }
+	void setTReselectionEUTRASF(const SpeedStateScaleFactors& tReselectionEUTRASF) { *static_cast<SpeedStateScaleFactors*>(items[4]) = tReselectionEUTRASF; }
+	void setThreshXHigh(const ReselectionThreshold& threshXHigh) { *static_cast<ReselectionThreshold*>(items[5]) = threshXHigh; }
+	void setThreshXLow(const ReselectionThreshold& threshXLow) { *static_cast<ReselectionThreshold*>(items[6]) = threshXLow; }
+	void setAllowedMeasBandwidth(const AllowedMeasBandwidth& allowedMeasBandwidth) { *static_cast<AllowedMeasBandwidth*>(items[7]) = allowedMeasBandwidth; }
+	void setPresenceAntennaPort1(const PresenceAntennaPort1& presenceAntennaPort1) { *static_cast<PresenceAntennaPort1*>(items[8]) = presenceAntennaPort1; }
+	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[9]) = cellReselectionPriority; }
+	void setNeighCellConfig(const NeighCellConfig& neighCellConfig) { *static_cast<NeighCellConfig*>(items[10]) = neighCellConfig; }
+	void setQOffsetFreq(const QOffsetRange& qOffsetFreq) { *static_cast<QOffsetRange*>(items[11]) = qOffsetFreq; }
+	void setInterFreqNeighCellList(const InterFreqNeighCellList& interFreqNeighCellList) { *static_cast<InterFreqNeighCellList*>(items[12]) = interFreqNeighCellList; }
+	void setInterFreqBlackCellList(const InterFreqBlackCellList& interFreqBlackCellList) { *static_cast<InterFreqBlackCellList*>(items[13]) = interFreqBlackCellList; }
+	void setQQualMinr9(const QQualMinr9& qQualMinr9) { *static_cast<QQualMinr9*>(items[14]) = qQualMinr9; }
+	void setInterFreqCarrierFreqInfoThreshXQr9(const InterFreqCarrierFreqInfoThreshXQr9& interFreqCarrierFreqInfoThreshXQr9) { *static_cast<InterFreqCarrierFreqInfoThreshXQr9*>(items[15]) = interFreqCarrierFreqInfoThreshXQr9; }
+
+	ARFCNValueEUTRA& getDlCarrierFreq() { return *static_cast<ARFCNValueEUTRA*>(items[0]); }
+	QRxLevMin& getQRxLevMin() { return *static_cast<QRxLevMin*>(items[1]); }
+	PMax& getPMax() { return *static_cast<PMax*>(items[2]); }
+	TReselection& getTReselectionEUTRA() { return *static_cast<TReselection*>(items[3]); }
+	SpeedStateScaleFactors& getTReselectionEUTRASF() { return *static_cast<SpeedStateScaleFactors*>(items[4]); }
+	ReselectionThreshold& getThreshXHigh() { return *static_cast<ReselectionThreshold*>(items[5]); }
+	ReselectionThreshold& getThreshXLow() { return *static_cast<ReselectionThreshold*>(items[6]); }
+	AllowedMeasBandwidth& getAllowedMeasBandwidth() { return *static_cast<AllowedMeasBandwidth*>(items[7]); }
+	PresenceAntennaPort1& getPresenceAntennaPort1() { return *static_cast<PresenceAntennaPort1*>(items[8]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[9]); }
+	NeighCellConfig& getNeighCellConfig() { return *static_cast<NeighCellConfig*>(items[10]); }
+	QOffsetRange& getQOffsetFreq() { return *static_cast<QOffsetRange*>(items[11]); }
+	InterFreqNeighCellList& getInterFreqNeighCellList() { return *static_cast<InterFreqNeighCellList*>(items[12]); }
+	InterFreqBlackCellList& getInterFreqBlackCellList() { return *static_cast<InterFreqBlackCellList*>(items[13]); }
+	QQualMinr9& getQQualMinr9() { return *static_cast<QQualMinr9*>(items[14]); }
+	InterFreqCarrierFreqInfoThreshXQr9& getInterFreqCarrierFreqInfoThreshXQr9() { return *static_cast<InterFreqCarrierFreqInfoThreshXQr9*>(items[15]); }
+};
+
+typedef SequenceOf<InterFreqCarrierFreqInfo, CONSTRAINED, 1, maxFreq> InterFreqCarrierFreqList;
+
+typedef OctetStringBase SystemInformationBlockType5LateNonCriticalExtension;
+
+class SystemInformationBlockType5 : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType5(): Sequence(&theInfo) {}
+	SystemInformationBlockType5(const InterFreqCarrierFreqList& interFreqCarrierFreqList);
+
+	void setInterFreqCarrierFreqList(const InterFreqCarrierFreqList& interFreqCarrierFreqList) { *static_cast<InterFreqCarrierFreqList*>(items[0]) = interFreqCarrierFreqList; }
+	void setSystemInformationBlockType5LateNonCriticalExtension(const SystemInformationBlockType5LateNonCriticalExtension& systemInformationBlockType5LateNonCriticalExtension) { *static_cast<SystemInformationBlockType5LateNonCriticalExtension*>(items[1]) = systemInformationBlockType5LateNonCriticalExtension; }
+
+	InterFreqCarrierFreqList& getInterFreqCarrierFreqList() { return *static_cast<InterFreqCarrierFreqList*>(items[0]); }
+	SystemInformationBlockType5LateNonCriticalExtension& getSystemInformationBlockType5LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType5LateNonCriticalExtension*>(items[1]); }
+};
+
+typedef Integer<CONSTRAINED, 0, 16383> ARFCNValueUTRA;
+
+typedef Integer<CONSTRAINED, -60, -13> CarrierFreqUTRAFDDQRxLevMin;
+
+typedef Integer<CONSTRAINED, -50, 33> CarrierFreqUTRAFDDPMaxUTRA;
+
+typedef Integer<CONSTRAINED, -24, 0> CarrierFreqUTRAFDDQQualMin;
+
+class CarrierFreqUTRAFDDThreshXQr9 : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	CarrierFreqUTRAFDDThreshXQr9(): Sequence(&theInfo) {}
+	CarrierFreqUTRAFDDThreshXQr9(const ReselectionThresholdQr9& threshXHighQr9, const ReselectionThresholdQr9& threshXLowQr9);
+
+	void setThreshXHighQr9(const ReselectionThresholdQr9& threshXHighQr9) { *static_cast<ReselectionThresholdQr9*>(items[0]) = threshXHighQr9; }
+	void setThreshXLowQr9(const ReselectionThresholdQr9& threshXLowQr9) { *static_cast<ReselectionThresholdQr9*>(items[1]) = threshXLowQr9; }
+
+	ReselectionThresholdQr9& getThreshXHighQr9() { return *static_cast<ReselectionThresholdQr9*>(items[0]); }
+	ReselectionThresholdQr9& getThreshXLowQr9() { return *static_cast<ReselectionThresholdQr9*>(items[1]); }
+};
+
+class CarrierFreqUTRAFDD : public Sequence {
+private:
+	static const void *itemsInfo[8];
+	static bool itemsPres[8];
+public:
+	static const Info theInfo;
+	CarrierFreqUTRAFDD(): Sequence(&theInfo) {}
+	CarrierFreqUTRAFDD(const ARFCNValueUTRA& carrierFreq, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow, const CarrierFreqUTRAFDDQRxLevMin& carrierFreqUTRAFDDQRxLevMin, const CarrierFreqUTRAFDDPMaxUTRA& carrierFreqUTRAFDDPMaxUTRA, const CarrierFreqUTRAFDDQQualMin& carrierFreqUTRAFDDQQualMin);
+
+	void setCarrierFreq(const ARFCNValueUTRA& carrierFreq) { *static_cast<ARFCNValueUTRA*>(items[0]) = carrierFreq; }
+	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
+	void setThreshXHigh(const ReselectionThreshold& threshXHigh) { *static_cast<ReselectionThreshold*>(items[2]) = threshXHigh; }
+	void setThreshXLow(const ReselectionThreshold& threshXLow) { *static_cast<ReselectionThreshold*>(items[3]) = threshXLow; }
+	void setCarrierFreqUTRAFDDQRxLevMin(const CarrierFreqUTRAFDDQRxLevMin& carrierFreqUTRAFDDQRxLevMin) { *static_cast<CarrierFreqUTRAFDDQRxLevMin*>(items[4]) = carrierFreqUTRAFDDQRxLevMin; }
+	void setCarrierFreqUTRAFDDPMaxUTRA(const CarrierFreqUTRAFDDPMaxUTRA& carrierFreqUTRAFDDPMaxUTRA) { *static_cast<CarrierFreqUTRAFDDPMaxUTRA*>(items[5]) = carrierFreqUTRAFDDPMaxUTRA; }
+	void setCarrierFreqUTRAFDDQQualMin(const CarrierFreqUTRAFDDQQualMin& carrierFreqUTRAFDDQQualMin) { *static_cast<CarrierFreqUTRAFDDQQualMin*>(items[6]) = carrierFreqUTRAFDDQQualMin; }
+	void setCarrierFreqUTRAFDDThreshXQr9(const CarrierFreqUTRAFDDThreshXQr9& carrierFreqUTRAFDDThreshXQr9) { *static_cast<CarrierFreqUTRAFDDThreshXQr9*>(items[7]) = carrierFreqUTRAFDDThreshXQr9; }
+
+	ARFCNValueUTRA& getCarrierFreq() { return *static_cast<ARFCNValueUTRA*>(items[0]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
+	ReselectionThreshold& getThreshXHigh() { return *static_cast<ReselectionThreshold*>(items[2]); }
+	ReselectionThreshold& getThreshXLow() { return *static_cast<ReselectionThreshold*>(items[3]); }
+	CarrierFreqUTRAFDDQRxLevMin& getCarrierFreqUTRAFDDQRxLevMin() { return *static_cast<CarrierFreqUTRAFDDQRxLevMin*>(items[4]); }
+	CarrierFreqUTRAFDDPMaxUTRA& getCarrierFreqUTRAFDDPMaxUTRA() { return *static_cast<CarrierFreqUTRAFDDPMaxUTRA*>(items[5]); }
+	CarrierFreqUTRAFDDQQualMin& getCarrierFreqUTRAFDDQQualMin() { return *static_cast<CarrierFreqUTRAFDDQQualMin*>(items[6]); }
+	CarrierFreqUTRAFDDThreshXQr9& getCarrierFreqUTRAFDDThreshXQr9() { return *static_cast<CarrierFreqUTRAFDDThreshXQr9*>(items[7]); }
+};
+
+typedef SequenceOf<CarrierFreqUTRAFDD, CONSTRAINED, 1, maxUTRA_FDD_Carrier> CarrierFreqListUTRAFDD;
+
+typedef Integer<CONSTRAINED, -60, -13> CarrierFreqUTRATDDQRxLevMin;
+
+typedef Integer<CONSTRAINED, -50, 33> CarrierFreqUTRATDDPMaxUTRA;
+
+class CarrierFreqUTRATDD : public Sequence {
+private:
+	static const void *itemsInfo[6];
+	static bool itemsPres[6];
+public:
+	static const Info theInfo;
+	CarrierFreqUTRATDD(): Sequence(&theInfo) {}
+	CarrierFreqUTRATDD(const ARFCNValueUTRA& carrierFreq, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow, const CarrierFreqUTRATDDQRxLevMin& carrierFreqUTRATDDQRxLevMin, const CarrierFreqUTRATDDPMaxUTRA& carrierFreqUTRATDDPMaxUTRA);
+
+	void setCarrierFreq(const ARFCNValueUTRA& carrierFreq) { *static_cast<ARFCNValueUTRA*>(items[0]) = carrierFreq; }
+	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
+	void setThreshXHigh(const ReselectionThreshold& threshXHigh) { *static_cast<ReselectionThreshold*>(items[2]) = threshXHigh; }
+	void setThreshXLow(const ReselectionThreshold& threshXLow) { *static_cast<ReselectionThreshold*>(items[3]) = threshXLow; }
+	void setCarrierFreqUTRATDDQRxLevMin(const CarrierFreqUTRATDDQRxLevMin& carrierFreqUTRATDDQRxLevMin) { *static_cast<CarrierFreqUTRATDDQRxLevMin*>(items[4]) = carrierFreqUTRATDDQRxLevMin; }
+	void setCarrierFreqUTRATDDPMaxUTRA(const CarrierFreqUTRATDDPMaxUTRA& carrierFreqUTRATDDPMaxUTRA) { *static_cast<CarrierFreqUTRATDDPMaxUTRA*>(items[5]) = carrierFreqUTRATDDPMaxUTRA; }
+
+	ARFCNValueUTRA& getCarrierFreq() { return *static_cast<ARFCNValueUTRA*>(items[0]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
+	ReselectionThreshold& getThreshXHigh() { return *static_cast<ReselectionThreshold*>(items[2]); }
+	ReselectionThreshold& getThreshXLow() { return *static_cast<ReselectionThreshold*>(items[3]); }
+	CarrierFreqUTRATDDQRxLevMin& getCarrierFreqUTRATDDQRxLevMin() { return *static_cast<CarrierFreqUTRATDDQRxLevMin*>(items[4]); }
+	CarrierFreqUTRATDDPMaxUTRA& getCarrierFreqUTRATDDPMaxUTRA() { return *static_cast<CarrierFreqUTRATDDPMaxUTRA*>(items[5]); }
+};
+
+typedef SequenceOf<CarrierFreqUTRATDD, CONSTRAINED, 1, maxUTRA_TDD_Carrier> CarrierFreqListUTRATDD;
+
+typedef OctetStringBase SystemInformationBlockType6LateNonCriticalExtension;
+
+class SystemInformationBlockType6 : public Sequence {
+private:
+	static const void *itemsInfo[5];
+	static bool itemsPres[5];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType6(): Sequence(&theInfo) {}
+	SystemInformationBlockType6(const TReselection& tReselectionUTRA);
+
+	void setCarrierFreqListUTRAFDD(const CarrierFreqListUTRAFDD& carrierFreqListUTRAFDD) { *static_cast<CarrierFreqListUTRAFDD*>(items[0]) = carrierFreqListUTRAFDD; }
+	void setCarrierFreqListUTRATDD(const CarrierFreqListUTRATDD& carrierFreqListUTRATDD) { *static_cast<CarrierFreqListUTRATDD*>(items[1]) = carrierFreqListUTRATDD; }
+	void setTReselectionUTRA(const TReselection& tReselectionUTRA) { *static_cast<TReselection*>(items[2]) = tReselectionUTRA; }
+	void setTReselectionUTRASF(const SpeedStateScaleFactors& tReselectionUTRASF) { *static_cast<SpeedStateScaleFactors*>(items[3]) = tReselectionUTRASF; }
+	void setSystemInformationBlockType6LateNonCriticalExtension(const SystemInformationBlockType6LateNonCriticalExtension& systemInformationBlockType6LateNonCriticalExtension) { *static_cast<SystemInformationBlockType6LateNonCriticalExtension*>(items[4]) = systemInformationBlockType6LateNonCriticalExtension; }
+
+	CarrierFreqListUTRAFDD& getCarrierFreqListUTRAFDD() { return *static_cast<CarrierFreqListUTRAFDD*>(items[0]); }
+	CarrierFreqListUTRATDD& getCarrierFreqListUTRATDD() { return *static_cast<CarrierFreqListUTRATDD*>(items[1]); }
+	TReselection& getTReselectionUTRA() { return *static_cast<TReselection*>(items[2]); }
+	SpeedStateScaleFactors& getTReselectionUTRASF() { return *static_cast<SpeedStateScaleFactors*>(items[3]); }
+	SystemInformationBlockType6LateNonCriticalExtension& getSystemInformationBlockType6LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType6LateNonCriticalExtension*>(items[4]); }
+};
+
+typedef Integer<CONSTRAINED, 0, 1023> ARFCNValueGERAN;
+
+enum BandIndicatorGERANValues {
+	dcs1800_BandIndicatorGERAN = 0,
+	pcs1900_BandIndicatorGERAN = 1,
+};
+typedef Enumerated<CONSTRAINED, 1> BandIndicatorGERAN;
+
+typedef SequenceOf<ARFCNValueGERAN, CONSTRAINED, 0, 31> ExplicitListOfARFCNs;
+
+typedef Integer<CONSTRAINED, 1, 8> CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing;
+
+typedef Integer<CONSTRAINED, 0, 31> CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs;
+
+class CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs(): Sequence(&theInfo) {}
+	CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs(const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing, const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs);
+
+	void setCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing(const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing) { *static_cast<CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing*>(items[0]) = carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing; }
+	void setCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs(const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs) { *static_cast<CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs*>(items[1]) = carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs; }
+
+	CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing& getCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing() { return *static_cast<CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing*>(items[0]); }
+	CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs& getCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs() { return *static_cast<CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs*>(items[1]); }
+};
+
+typedef OctetString<CONSTRAINED, 1, 16> CarrierFreqsGERANFollowingARFCNsVariableBitMapOfARFCNs;
+
+class CarrierFreqsGERANFollowingARFCNs : public Choice {
+private:
+	static const void *choicesInfo[3];
+public:
+	enum CarrierFreqsGERANFollowingARFCNsChoices {
+		explicitListOfARFCNs = 0,
+		carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs = 1,
+		carrierFreqsGERANFollowingARFCNsVariableBitMapOfARFCNs = 2,
+	};
+	static const Info theInfo;
+	CarrierFreqsGERANFollowingARFCNs(): Choice(&theInfo) {}
+};
+
+class CarrierFreqsGERAN : public Sequence {
+private:
+	static const void *itemsInfo[3];
+	static bool itemsPres[3];
+public:
+	static const Info theInfo;
+	CarrierFreqsGERAN(): Sequence(&theInfo) {}
+	CarrierFreqsGERAN(const ARFCNValueGERAN& startingARFCN, const BandIndicatorGERAN& bandIndicator, const CarrierFreqsGERANFollowingARFCNs& carrierFreqsGERANFollowingARFCNs);
+
+	void setStartingARFCN(const ARFCNValueGERAN& startingARFCN) { *static_cast<ARFCNValueGERAN*>(items[0]) = startingARFCN; }
+	void setBandIndicator(const BandIndicatorGERAN& bandIndicator) { *static_cast<BandIndicatorGERAN*>(items[1]) = bandIndicator; }
+	void setCarrierFreqsGERANFollowingARFCNs(const CarrierFreqsGERANFollowingARFCNs& carrierFreqsGERANFollowingARFCNs) { *static_cast<CarrierFreqsGERANFollowingARFCNs*>(items[2]) = carrierFreqsGERANFollowingARFCNs; }
+
+	ARFCNValueGERAN& getStartingARFCN() { return *static_cast<ARFCNValueGERAN*>(items[0]); }
+	BandIndicatorGERAN& getBandIndicator() { return *static_cast<BandIndicatorGERAN*>(items[1]); }
+	CarrierFreqsGERANFollowingARFCNs& getCarrierFreqsGERANFollowingARFCNs() { return *static_cast<CarrierFreqsGERANFollowingARFCNs*>(items[2]); }
+};
+
+typedef BitString<CONSTRAINED, 8, 8> CarrierFreqsInfoGERANCommonInfoNccPermitted;
+
+typedef Integer<CONSTRAINED, 0, 45> CarrierFreqsInfoGERANCommonInfoQRxLevMin;
+
+typedef Integer<CONSTRAINED, 0, 39> CarrierFreqsInfoGERANCommonInfoPMaxGERAN;
+
+class CarrierFreqsInfoGERANCommonInfo : public Sequence {
+private:
+	static const void *itemsInfo[6];
+	static bool itemsPres[6];
+public:
+	static const Info theInfo;
+	CarrierFreqsInfoGERANCommonInfo(): Sequence(&theInfo) {}
+	CarrierFreqsInfoGERANCommonInfo(const CarrierFreqsInfoGERANCommonInfoNccPermitted& carrierFreqsInfoGERANCommonInfoNccPermitted, const CarrierFreqsInfoGERANCommonInfoQRxLevMin& carrierFreqsInfoGERANCommonInfoQRxLevMin, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow);
+
+	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[0]) = cellReselectionPriority; }
+	void setCarrierFreqsInfoGERANCommonInfoNccPermitted(const CarrierFreqsInfoGERANCommonInfoNccPermitted& carrierFreqsInfoGERANCommonInfoNccPermitted) { *static_cast<CarrierFreqsInfoGERANCommonInfoNccPermitted*>(items[1]) = carrierFreqsInfoGERANCommonInfoNccPermitted; }
+	void setCarrierFreqsInfoGERANCommonInfoQRxLevMin(const CarrierFreqsInfoGERANCommonInfoQRxLevMin& carrierFreqsInfoGERANCommonInfoQRxLevMin) { *static_cast<CarrierFreqsInfoGERANCommonInfoQRxLevMin*>(items[2]) = carrierFreqsInfoGERANCommonInfoQRxLevMin; }
+	void setCarrierFreqsInfoGERANCommonInfoPMaxGERAN(const CarrierFreqsInfoGERANCommonInfoPMaxGERAN& carrierFreqsInfoGERANCommonInfoPMaxGERAN) { *static_cast<CarrierFreqsInfoGERANCommonInfoPMaxGERAN*>(items[3]) = carrierFreqsInfoGERANCommonInfoPMaxGERAN; }
+	void setThreshXHigh(const ReselectionThreshold& threshXHigh) { *static_cast<ReselectionThreshold*>(items[4]) = threshXHigh; }
+	void setThreshXLow(const ReselectionThreshold& threshXLow) { *static_cast<ReselectionThreshold*>(items[5]) = threshXLow; }
+
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[0]); }
+	CarrierFreqsInfoGERANCommonInfoNccPermitted& getCarrierFreqsInfoGERANCommonInfoNccPermitted() { return *static_cast<CarrierFreqsInfoGERANCommonInfoNccPermitted*>(items[1]); }
+	CarrierFreqsInfoGERANCommonInfoQRxLevMin& getCarrierFreqsInfoGERANCommonInfoQRxLevMin() { return *static_cast<CarrierFreqsInfoGERANCommonInfoQRxLevMin*>(items[2]); }
+	CarrierFreqsInfoGERANCommonInfoPMaxGERAN& getCarrierFreqsInfoGERANCommonInfoPMaxGERAN() { return *static_cast<CarrierFreqsInfoGERANCommonInfoPMaxGERAN*>(items[3]); }
+	ReselectionThreshold& getThreshXHigh() { return *static_cast<ReselectionThreshold*>(items[4]); }
+	ReselectionThreshold& getThreshXLow() { return *static_cast<ReselectionThreshold*>(items[5]); }
+};
+
+class CarrierFreqsInfoGERAN : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	CarrierFreqsInfoGERAN(): Sequence(&theInfo) {}
+	CarrierFreqsInfoGERAN(const CarrierFreqsGERAN& carrierFreqs, const CarrierFreqsInfoGERANCommonInfo& carrierFreqsInfoGERANCommonInfo);
+
+	void setCarrierFreqs(const CarrierFreqsGERAN& carrierFreqs) { *static_cast<CarrierFreqsGERAN*>(items[0]) = carrierFreqs; }
+	void setCarrierFreqsInfoGERANCommonInfo(const CarrierFreqsInfoGERANCommonInfo& carrierFreqsInfoGERANCommonInfo) { *static_cast<CarrierFreqsInfoGERANCommonInfo*>(items[1]) = carrierFreqsInfoGERANCommonInfo; }
+
+	CarrierFreqsGERAN& getCarrierFreqs() { return *static_cast<CarrierFreqsGERAN*>(items[0]); }
+	CarrierFreqsInfoGERANCommonInfo& getCarrierFreqsInfoGERANCommonInfo() { return *static_cast<CarrierFreqsInfoGERANCommonInfo*>(items[1]); }
+};
+
+typedef SequenceOf<CarrierFreqsInfoGERAN, CONSTRAINED, 1, maxGNFG> CarrierFreqsInfoListGERAN;
+
+typedef OctetStringBase SystemInformationBlockType7LateNonCriticalExtension;
+
+class SystemInformationBlockType7 : public Sequence {
+private:
+	static const void *itemsInfo[4];
+	static bool itemsPres[4];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType7(): Sequence(&theInfo) {}
+	SystemInformationBlockType7(const TReselection& tReselectionGERAN);
+
+	void setTReselectionGERAN(const TReselection& tReselectionGERAN) { *static_cast<TReselection*>(items[0]) = tReselectionGERAN; }
+	void setTReselectionGERANSF(const SpeedStateScaleFactors& tReselectionGERANSF) { *static_cast<SpeedStateScaleFactors*>(items[1]) = tReselectionGERANSF; }
+	void setCarrierFreqsInfoList(const CarrierFreqsInfoListGERAN& carrierFreqsInfoList) { *static_cast<CarrierFreqsInfoListGERAN*>(items[2]) = carrierFreqsInfoList; }
+	void setSystemInformationBlockType7LateNonCriticalExtension(const SystemInformationBlockType7LateNonCriticalExtension& systemInformationBlockType7LateNonCriticalExtension) { *static_cast<SystemInformationBlockType7LateNonCriticalExtension*>(items[3]) = systemInformationBlockType7LateNonCriticalExtension; }
+
+	TReselection& getTReselectionGERAN() { return *static_cast<TReselection*>(items[0]); }
+	SpeedStateScaleFactors& getTReselectionGERANSF() { return *static_cast<SpeedStateScaleFactors*>(items[1]); }
+	CarrierFreqsInfoListGERAN& getCarrierFreqsInfoList() { return *static_cast<CarrierFreqsInfoListGERAN*>(items[2]); }
+	SystemInformationBlockType7LateNonCriticalExtension& getSystemInformationBlockType7LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType7LateNonCriticalExtension*>(items[3]); }
+};
+
+typedef Boolean SystemTimeInfoCDMA2000CdmaEUTRASynchronisation;
+
+typedef BitString<CONSTRAINED, 39, 39> SystemTimeInfoCDMA2000CdmaSystemTimeSynchronousSystemTime;
+
+typedef BitString<CONSTRAINED, 49, 49> SystemTimeInfoCDMA2000CdmaSystemTimeAsynchronousSystemTime;
+
+class SystemTimeInfoCDMA2000CdmaSystemTime : public Choice {
+private:
+	static const void *choicesInfo[2];
+public:
+	enum SystemTimeInfoCDMA2000CdmaSystemTimeChoices {
+		systemTimeInfoCDMA2000CdmaSystemTimeSynchronousSystemTime = 0,
+		systemTimeInfoCDMA2000CdmaSystemTimeAsynchronousSystemTime = 1,
+	};
+	static const Info theInfo;
+	SystemTimeInfoCDMA2000CdmaSystemTime(): Choice(&theInfo) {}
+};
+
+class SystemTimeInfoCDMA2000 : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	SystemTimeInfoCDMA2000(): Sequence(&theInfo) {}
+	SystemTimeInfoCDMA2000(const SystemTimeInfoCDMA2000CdmaEUTRASynchronisation& systemTimeInfoCDMA2000CdmaEUTRASynchronisation, const SystemTimeInfoCDMA2000CdmaSystemTime& systemTimeInfoCDMA2000CdmaSystemTime);
+
+	void setSystemTimeInfoCDMA2000CdmaEUTRASynchronisation(const SystemTimeInfoCDMA2000CdmaEUTRASynchronisation& systemTimeInfoCDMA2000CdmaEUTRASynchronisation) { *static_cast<SystemTimeInfoCDMA2000CdmaEUTRASynchronisation*>(items[0]) = systemTimeInfoCDMA2000CdmaEUTRASynchronisation; }
+	void setSystemTimeInfoCDMA2000CdmaSystemTime(const SystemTimeInfoCDMA2000CdmaSystemTime& systemTimeInfoCDMA2000CdmaSystemTime) { *static_cast<SystemTimeInfoCDMA2000CdmaSystemTime*>(items[1]) = systemTimeInfoCDMA2000CdmaSystemTime; }
+
+	SystemTimeInfoCDMA2000CdmaEUTRASynchronisation& getSystemTimeInfoCDMA2000CdmaEUTRASynchronisation() { return *static_cast<SystemTimeInfoCDMA2000CdmaEUTRASynchronisation*>(items[0]); }
+	SystemTimeInfoCDMA2000CdmaSystemTime& getSystemTimeInfoCDMA2000CdmaSystemTime() { return *static_cast<SystemTimeInfoCDMA2000CdmaSystemTime*>(items[1]); }
+};
+
+typedef Integer<CONSTRAINED, 0, 15> SystemInformationBlockType8SearchWindowSize;
+
+typedef Boolean PreRegistrationInfoHRPDPreRegistrationAllowed;
+
+typedef Integer<CONSTRAINED, 0, 255> PreRegistrationZoneIdHRPD;
+
+typedef SequenceOf<PreRegistrationZoneIdHRPD, CONSTRAINED, 1, 2> SecondaryPreRegistrationZoneIdListHRPD;
+
+class PreRegistrationInfoHRPD : public Sequence {
+private:
+	static const void *itemsInfo[3];
+	static bool itemsPres[3];
+public:
+	static const Info theInfo;
+	PreRegistrationInfoHRPD(): Sequence(&theInfo) {}
+	PreRegistrationInfoHRPD(const PreRegistrationInfoHRPDPreRegistrationAllowed& preRegistrationInfoHRPDPreRegistrationAllowed);
+
+	void setPreRegistrationInfoHRPDPreRegistrationAllowed(const PreRegistrationInfoHRPDPreRegistrationAllowed& preRegistrationInfoHRPDPreRegistrationAllowed) { *static_cast<PreRegistrationInfoHRPDPreRegistrationAllowed*>(items[0]) = preRegistrationInfoHRPDPreRegistrationAllowed; }
+	void setPreRegistrationZoneId(const PreRegistrationZoneIdHRPD& preRegistrationZoneId) { *static_cast<PreRegistrationZoneIdHRPD*>(items[1]) = preRegistrationZoneId; }
+	void setSecondaryPreRegistrationZoneIdList(const SecondaryPreRegistrationZoneIdListHRPD& secondaryPreRegistrationZoneIdList) { *static_cast<SecondaryPreRegistrationZoneIdListHRPD*>(items[2]) = secondaryPreRegistrationZoneIdList; }
+
+	PreRegistrationInfoHRPDPreRegistrationAllowed& getPreRegistrationInfoHRPDPreRegistrationAllowed() { return *static_cast<PreRegistrationInfoHRPDPreRegistrationAllowed*>(items[0]); }
+	PreRegistrationZoneIdHRPD& getPreRegistrationZoneId() { return *static_cast<PreRegistrationZoneIdHRPD*>(items[1]); }
+	SecondaryPreRegistrationZoneIdListHRPD& getSecondaryPreRegistrationZoneIdList() { return *static_cast<SecondaryPreRegistrationZoneIdListHRPD*>(items[2]); }
+};
+
+enum BandclassCDMA2000Values {
+	bc0_BandclassCDMA2000 = 0,
+	bc1_BandclassCDMA2000 = 1,
+	bc2_BandclassCDMA2000 = 2,
+	bc3_BandclassCDMA2000 = 3,
+	bc4_BandclassCDMA2000 = 4,
+	bc5_BandclassCDMA2000 = 5,
+	bc6_BandclassCDMA2000 = 6,
+	bc7_BandclassCDMA2000 = 7,
+	bc8_BandclassCDMA2000 = 8,
+	bc9_BandclassCDMA2000 = 9,
+	bc10_BandclassCDMA2000 = 10,
+	bc11_BandclassCDMA2000 = 11,
+	bc12_BandclassCDMA2000 = 12,
+	bc13_BandclassCDMA2000 = 13,
+	bc14_BandclassCDMA2000 = 14,
+	bc15_BandclassCDMA2000 = 15,
+	bc16_BandclassCDMA2000 = 16,
+	bc17_BandclassCDMA2000 = 17,
+	bc18_v9a0_BandclassCDMA2000 = 18,
+	bc19_v9a0_BandclassCDMA2000 = 19,
+	bc20_v9a0_BandclassCDMA2000 = 20,
+	bc21_v9a0_BandclassCDMA2000 = 21,
+	spare10_BandclassCDMA2000 = 22,
+	spare9_BandclassCDMA2000 = 23,
+	spare8_BandclassCDMA2000 = 24,
+	spare7_BandclassCDMA2000 = 25,
+	spare6_BandclassCDMA2000 = 26,
+	spare5_BandclassCDMA2000 = 27,
+	spare4_BandclassCDMA2000 = 28,
+	spare3_BandclassCDMA2000 = 29,
+	spare2_BandclassCDMA2000 = 30,
+	spare1_BandclassCDMA2000 = 31,
+};
+typedef Enumerated<EXTCONSTRAINED, 31> BandclassCDMA2000;
+
+typedef Integer<CONSTRAINED, 0, 63> BandClassInfoCDMA2000ThreshXHigh;
+
+typedef Integer<CONSTRAINED, 0, 63> BandClassInfoCDMA2000ThreshXLow;
+
+class BandClassInfoCDMA2000 : public Sequence {
+private:
+	static const void *itemsInfo[4];
+	static bool itemsPres[4];
+public:
+	static const Info theInfo;
+	BandClassInfoCDMA2000(): Sequence(&theInfo) {}
+	BandClassInfoCDMA2000(const BandclassCDMA2000& bandClass, const BandClassInfoCDMA2000ThreshXHigh& bandClassInfoCDMA2000ThreshXHigh, const BandClassInfoCDMA2000ThreshXLow& bandClassInfoCDMA2000ThreshXLow);
+
+	void setBandClass(const BandclassCDMA2000& bandClass) { *static_cast<BandclassCDMA2000*>(items[0]) = bandClass; }
+	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
+	void setBandClassInfoCDMA2000ThreshXHigh(const BandClassInfoCDMA2000ThreshXHigh& bandClassInfoCDMA2000ThreshXHigh) { *static_cast<BandClassInfoCDMA2000ThreshXHigh*>(items[2]) = bandClassInfoCDMA2000ThreshXHigh; }
+	void setBandClassInfoCDMA2000ThreshXLow(const BandClassInfoCDMA2000ThreshXLow& bandClassInfoCDMA2000ThreshXLow) { *static_cast<BandClassInfoCDMA2000ThreshXLow*>(items[3]) = bandClassInfoCDMA2000ThreshXLow; }
+
+	BandclassCDMA2000& getBandClass() { return *static_cast<BandclassCDMA2000*>(items[0]); }
+	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
+	BandClassInfoCDMA2000ThreshXHigh& getBandClassInfoCDMA2000ThreshXHigh() { return *static_cast<BandClassInfoCDMA2000ThreshXHigh*>(items[2]); }
+	BandClassInfoCDMA2000ThreshXLow& getBandClassInfoCDMA2000ThreshXLow() { return *static_cast<BandClassInfoCDMA2000ThreshXLow*>(items[3]); }
+};
+
+typedef SequenceOf<BandClassInfoCDMA2000, CONSTRAINED, 1, maxCDMA_BandClass> BandClassListCDMA2000;
+
+typedef Integer<CONSTRAINED, 0, 2047> ARFCNValueCDMA2000;
+
+typedef Integer<CONSTRAINED, 0, maxPNOffset> PhysCellIdCDMA2000;
+
+typedef SequenceOf<PhysCellIdCDMA2000, CONSTRAINED, 1, 16> PhysCellIdListCDMA2000;
+
+class NeighCellsPerBandclassCDMA2000 : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	NeighCellsPerBandclassCDMA2000(): Sequence(&theInfo) {}
+	NeighCellsPerBandclassCDMA2000(const ARFCNValueCDMA2000& arfcn, const PhysCellIdListCDMA2000& physCellIdList);
+
+	void setArfcn(const ARFCNValueCDMA2000& arfcn) { *static_cast<ARFCNValueCDMA2000*>(items[0]) = arfcn; }
+	void setPhysCellIdList(const PhysCellIdListCDMA2000& physCellIdList) { *static_cast<PhysCellIdListCDMA2000*>(items[1]) = physCellIdList; }
+
+	ARFCNValueCDMA2000& getArfcn() { return *static_cast<ARFCNValueCDMA2000*>(items[0]); }
+	PhysCellIdListCDMA2000& getPhysCellIdList() { return *static_cast<PhysCellIdListCDMA2000*>(items[1]); }
+};
+
+typedef SequenceOf<NeighCellsPerBandclassCDMA2000, CONSTRAINED, 1, 16> NeighCellsPerBandclassListCDMA2000;
+
+class NeighCellCDMA2000 : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	NeighCellCDMA2000(): Sequence(&theInfo) {}
+	NeighCellCDMA2000(const BandclassCDMA2000& bandClass, const NeighCellsPerBandclassListCDMA2000& neighCellsPerFreqList);
+
+	void setBandClass(const BandclassCDMA2000& bandClass) { *static_cast<BandclassCDMA2000*>(items[0]) = bandClass; }
+	void setNeighCellsPerFreqList(const NeighCellsPerBandclassListCDMA2000& neighCellsPerFreqList) { *static_cast<NeighCellsPerBandclassListCDMA2000*>(items[1]) = neighCellsPerFreqList; }
+
+	BandclassCDMA2000& getBandClass() { return *static_cast<BandclassCDMA2000*>(items[0]); }
+	NeighCellsPerBandclassListCDMA2000& getNeighCellsPerFreqList() { return *static_cast<NeighCellsPerBandclassListCDMA2000*>(items[1]); }
+};
+
+typedef SequenceOf<NeighCellCDMA2000, CONSTRAINED, 1, 16> NeighCellListCDMA2000;
+
+class CellReselectionParametersCDMA2000 : public Sequence {
+private:
+	static const void *itemsInfo[4];
+	static bool itemsPres[4];
+public:
+	static const Info theInfo;
+	CellReselectionParametersCDMA2000(): Sequence(&theInfo) {}
+	CellReselectionParametersCDMA2000(const BandClassListCDMA2000& bandClassList, const NeighCellListCDMA2000& neighCellList, const TReselection& tReselectionCDMA2000);
+
+	void setBandClassList(const BandClassListCDMA2000& bandClassList) { *static_cast<BandClassListCDMA2000*>(items[0]) = bandClassList; }
+	void setNeighCellList(const NeighCellListCDMA2000& neighCellList) { *static_cast<NeighCellListCDMA2000*>(items[1]) = neighCellList; }
+	void setTReselectionCDMA2000(const TReselection& tReselectionCDMA2000) { *static_cast<TReselection*>(items[2]) = tReselectionCDMA2000; }
+	void setTReselectionCDMA2000SF(const SpeedStateScaleFactors& tReselectionCDMA2000SF) { *static_cast<SpeedStateScaleFactors*>(items[3]) = tReselectionCDMA2000SF; }
+
+	BandClassListCDMA2000& getBandClassList() { return *static_cast<BandClassListCDMA2000*>(items[0]); }
+	NeighCellListCDMA2000& getNeighCellList() { return *static_cast<NeighCellListCDMA2000*>(items[1]); }
+	TReselection& getTReselectionCDMA2000() { return *static_cast<TReselection*>(items[2]); }
+	SpeedStateScaleFactors& getTReselectionCDMA2000SF() { return *static_cast<SpeedStateScaleFactors*>(items[3]); }
+};
+
+class SystemInformationBlockType8ParametersHRPD : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType8ParametersHRPD(): Sequence(&theInfo) {}
+	SystemInformationBlockType8ParametersHRPD(const PreRegistrationInfoHRPD& preRegistrationInfoHRPD);
+
+	void setPreRegistrationInfoHRPD(const PreRegistrationInfoHRPD& preRegistrationInfoHRPD) { *static_cast<PreRegistrationInfoHRPD*>(items[0]) = preRegistrationInfoHRPD; }
+	void setCellReselectionParametersHRPD(const CellReselectionParametersCDMA2000& cellReselectionParametersHRPD) { *static_cast<CellReselectionParametersCDMA2000*>(items[1]) = cellReselectionParametersHRPD; }
+
+	PreRegistrationInfoHRPD& getPreRegistrationInfoHRPD() { return *static_cast<PreRegistrationInfoHRPD*>(items[0]); }
+	CellReselectionParametersCDMA2000& getCellReselectionParametersHRPD() { return *static_cast<CellReselectionParametersCDMA2000*>(items[1]); }
+};
+
+typedef BitString<CONSTRAINED, 15, 15> CSFBRegistrationParam1XRTTSid;
+
+typedef BitString<CONSTRAINED, 16, 16> CSFBRegistrationParam1XRTTNid;
+
+typedef Boolean CSFBRegistrationParam1XRTTMultipleSID;
+
+typedef Boolean CSFBRegistrationParam1XRTTMultipleNID;
+
+typedef Boolean CSFBRegistrationParam1XRTTHomeReg;
+
+typedef Boolean CSFBRegistrationParam1XRTTForeignSIDReg;
+
+typedef Boolean CSFBRegistrationParam1XRTTForeignNIDReg;
+
+typedef Boolean CSFBRegistrationParam1XRTTParameterReg;
+
+typedef Boolean CSFBRegistrationParam1XRTTPowerUpReg;
+
+typedef BitString<CONSTRAINED, 7, 7> CSFBRegistrationParam1XRTTRegistrationPeriod;
+
+typedef BitString<CONSTRAINED, 12, 12> CSFBRegistrationParam1XRTTRegistrationZone;
+
+typedef BitString<CONSTRAINED, 3, 3> CSFBRegistrationParam1XRTTTotalZone;
+
+typedef BitString<CONSTRAINED, 3, 3> CSFBRegistrationParam1XRTTZoneTimer;
+
+class CSFBRegistrationParam1XRTT : public Sequence {
+private:
+	static const void *itemsInfo[13];
+	static bool itemsPres[13];
+public:
+	static const Info theInfo;
+	CSFBRegistrationParam1XRTT(): Sequence(&theInfo) {}
+	CSFBRegistrationParam1XRTT(const CSFBRegistrationParam1XRTTSid& cSFBRegistrationParam1XRTTSid, const CSFBRegistrationParam1XRTTNid& cSFBRegistrationParam1XRTTNid, const CSFBRegistrationParam1XRTTMultipleSID& cSFBRegistrationParam1XRTTMultipleSID, const CSFBRegistrationParam1XRTTMultipleNID& cSFBRegistrationParam1XRTTMultipleNID, const CSFBRegistrationParam1XRTTHomeReg& cSFBRegistrationParam1XRTTHomeReg, const CSFBRegistrationParam1XRTTForeignSIDReg& cSFBRegistrationParam1XRTTForeignSIDReg, const CSFBRegistrationParam1XRTTForeignNIDReg& cSFBRegistrationParam1XRTTForeignNIDReg, const CSFBRegistrationParam1XRTTParameterReg& cSFBRegistrationParam1XRTTParameterReg, const CSFBRegistrationParam1XRTTPowerUpReg& cSFBRegistrationParam1XRTTPowerUpReg, const CSFBRegistrationParam1XRTTRegistrationPeriod& cSFBRegistrationParam1XRTTRegistrationPeriod, const CSFBRegistrationParam1XRTTRegistrationZone& cSFBRegistrationParam1XRTTRegistrationZone, const CSFBRegistrationParam1XRTTTotalZone& cSFBRegistrationParam1XRTTTotalZone, const CSFBRegistrationParam1XRTTZoneTimer& cSFBRegistrationParam1XRTTZoneTimer);
+
+	void setCSFBRegistrationParam1XRTTSid(const CSFBRegistrationParam1XRTTSid& cSFBRegistrationParam1XRTTSid) { *static_cast<CSFBRegistrationParam1XRTTSid*>(items[0]) = cSFBRegistrationParam1XRTTSid; }
+	void setCSFBRegistrationParam1XRTTNid(const CSFBRegistrationParam1XRTTNid& cSFBRegistrationParam1XRTTNid) { *static_cast<CSFBRegistrationParam1XRTTNid*>(items[1]) = cSFBRegistrationParam1XRTTNid; }
+	void setCSFBRegistrationParam1XRTTMultipleSID(const CSFBRegistrationParam1XRTTMultipleSID& cSFBRegistrationParam1XRTTMultipleSID) { *static_cast<CSFBRegistrationParam1XRTTMultipleSID*>(items[2]) = cSFBRegistrationParam1XRTTMultipleSID; }
+	void setCSFBRegistrationParam1XRTTMultipleNID(const CSFBRegistrationParam1XRTTMultipleNID& cSFBRegistrationParam1XRTTMultipleNID) { *static_cast<CSFBRegistrationParam1XRTTMultipleNID*>(items[3]) = cSFBRegistrationParam1XRTTMultipleNID; }
+	void setCSFBRegistrationParam1XRTTHomeReg(const CSFBRegistrationParam1XRTTHomeReg& cSFBRegistrationParam1XRTTHomeReg) { *static_cast<CSFBRegistrationParam1XRTTHomeReg*>(items[4]) = cSFBRegistrationParam1XRTTHomeReg; }
+	void setCSFBRegistrationParam1XRTTForeignSIDReg(const CSFBRegistrationParam1XRTTForeignSIDReg& cSFBRegistrationParam1XRTTForeignSIDReg) { *static_cast<CSFBRegistrationParam1XRTTForeignSIDReg*>(items[5]) = cSFBRegistrationParam1XRTTForeignSIDReg; }
+	void setCSFBRegistrationParam1XRTTForeignNIDReg(const CSFBRegistrationParam1XRTTForeignNIDReg& cSFBRegistrationParam1XRTTForeignNIDReg) { *static_cast<CSFBRegistrationParam1XRTTForeignNIDReg*>(items[6]) = cSFBRegistrationParam1XRTTForeignNIDReg; }
+	void setCSFBRegistrationParam1XRTTParameterReg(const CSFBRegistrationParam1XRTTParameterReg& cSFBRegistrationParam1XRTTParameterReg) { *static_cast<CSFBRegistrationParam1XRTTParameterReg*>(items[7]) = cSFBRegistrationParam1XRTTParameterReg; }
+	void setCSFBRegistrationParam1XRTTPowerUpReg(const CSFBRegistrationParam1XRTTPowerUpReg& cSFBRegistrationParam1XRTTPowerUpReg) { *static_cast<CSFBRegistrationParam1XRTTPowerUpReg*>(items[8]) = cSFBRegistrationParam1XRTTPowerUpReg; }
+	void setCSFBRegistrationParam1XRTTRegistrationPeriod(const CSFBRegistrationParam1XRTTRegistrationPeriod& cSFBRegistrationParam1XRTTRegistrationPeriod) { *static_cast<CSFBRegistrationParam1XRTTRegistrationPeriod*>(items[9]) = cSFBRegistrationParam1XRTTRegistrationPeriod; }
+	void setCSFBRegistrationParam1XRTTRegistrationZone(const CSFBRegistrationParam1XRTTRegistrationZone& cSFBRegistrationParam1XRTTRegistrationZone) { *static_cast<CSFBRegistrationParam1XRTTRegistrationZone*>(items[10]) = cSFBRegistrationParam1XRTTRegistrationZone; }
+	void setCSFBRegistrationParam1XRTTTotalZone(const CSFBRegistrationParam1XRTTTotalZone& cSFBRegistrationParam1XRTTTotalZone) { *static_cast<CSFBRegistrationParam1XRTTTotalZone*>(items[11]) = cSFBRegistrationParam1XRTTTotalZone; }
+	void setCSFBRegistrationParam1XRTTZoneTimer(const CSFBRegistrationParam1XRTTZoneTimer& cSFBRegistrationParam1XRTTZoneTimer) { *static_cast<CSFBRegistrationParam1XRTTZoneTimer*>(items[12]) = cSFBRegistrationParam1XRTTZoneTimer; }
+
+	CSFBRegistrationParam1XRTTSid& getCSFBRegistrationParam1XRTTSid() { return *static_cast<CSFBRegistrationParam1XRTTSid*>(items[0]); }
+	CSFBRegistrationParam1XRTTNid& getCSFBRegistrationParam1XRTTNid() { return *static_cast<CSFBRegistrationParam1XRTTNid*>(items[1]); }
+	CSFBRegistrationParam1XRTTMultipleSID& getCSFBRegistrationParam1XRTTMultipleSID() { return *static_cast<CSFBRegistrationParam1XRTTMultipleSID*>(items[2]); }
+	CSFBRegistrationParam1XRTTMultipleNID& getCSFBRegistrationParam1XRTTMultipleNID() { return *static_cast<CSFBRegistrationParam1XRTTMultipleNID*>(items[3]); }
+	CSFBRegistrationParam1XRTTHomeReg& getCSFBRegistrationParam1XRTTHomeReg() { return *static_cast<CSFBRegistrationParam1XRTTHomeReg*>(items[4]); }
+	CSFBRegistrationParam1XRTTForeignSIDReg& getCSFBRegistrationParam1XRTTForeignSIDReg() { return *static_cast<CSFBRegistrationParam1XRTTForeignSIDReg*>(items[5]); }
+	CSFBRegistrationParam1XRTTForeignNIDReg& getCSFBRegistrationParam1XRTTForeignNIDReg() { return *static_cast<CSFBRegistrationParam1XRTTForeignNIDReg*>(items[6]); }
+	CSFBRegistrationParam1XRTTParameterReg& getCSFBRegistrationParam1XRTTParameterReg() { return *static_cast<CSFBRegistrationParam1XRTTParameterReg*>(items[7]); }
+	CSFBRegistrationParam1XRTTPowerUpReg& getCSFBRegistrationParam1XRTTPowerUpReg() { return *static_cast<CSFBRegistrationParam1XRTTPowerUpReg*>(items[8]); }
+	CSFBRegistrationParam1XRTTRegistrationPeriod& getCSFBRegistrationParam1XRTTRegistrationPeriod() { return *static_cast<CSFBRegistrationParam1XRTTRegistrationPeriod*>(items[9]); }
+	CSFBRegistrationParam1XRTTRegistrationZone& getCSFBRegistrationParam1XRTTRegistrationZone() { return *static_cast<CSFBRegistrationParam1XRTTRegistrationZone*>(items[10]); }
+	CSFBRegistrationParam1XRTTTotalZone& getCSFBRegistrationParam1XRTTTotalZone() { return *static_cast<CSFBRegistrationParam1XRTTTotalZone*>(items[11]); }
+	CSFBRegistrationParam1XRTTZoneTimer& getCSFBRegistrationParam1XRTTZoneTimer() { return *static_cast<CSFBRegistrationParam1XRTTZoneTimer*>(items[12]); }
+};
+
+typedef BitString<CONSTRAINED, 42, 42> SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT;
+
+class SystemInformationBlockType8Parameters1XRTT : public Sequence {
+private:
+	static const void *itemsInfo[3];
+	static bool itemsPres[3];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType8Parameters1XRTT(): Sequence(&theInfo) {}
+
+	void setCsfbRegistrationParam1XRTT(const CSFBRegistrationParam1XRTT& csfbRegistrationParam1XRTT) { *static_cast<CSFBRegistrationParam1XRTT*>(items[0]) = csfbRegistrationParam1XRTT; }
+	void setSystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT(const SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT& systemInformationBlockType8Parameters1XRTTLongCodeState1XRTT) { *static_cast<SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT*>(items[1]) = systemInformationBlockType8Parameters1XRTTLongCodeState1XRTT; }
+	void setCellReselectionParameters1XRTT(const CellReselectionParametersCDMA2000& cellReselectionParameters1XRTT) { *static_cast<CellReselectionParametersCDMA2000*>(items[2]) = cellReselectionParameters1XRTT; }
+
+	CSFBRegistrationParam1XRTT& getCsfbRegistrationParam1XRTT() { return *static_cast<CSFBRegistrationParam1XRTT*>(items[0]); }
+	SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT& getSystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT() { return *static_cast<SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT*>(items[1]); }
+	CellReselectionParametersCDMA2000& getCellReselectionParameters1XRTT() { return *static_cast<CellReselectionParametersCDMA2000*>(items[2]); }
+};
+
+typedef OctetStringBase SystemInformationBlockType8LateNonCriticalExtension;
+
+typedef Boolean SystemInformationBlockType8CsfbSupportForDualRxUEsr9;
+
+typedef SequenceOf<PhysCellIdCDMA2000, CONSTRAINED, 0, 24> PhysCellIdListCDMA2000v920;
+
+class NeighCellsPerBandclassCDMA2000v920 : public Sequence {
+private:
+	static const void *itemsInfo[1];
+	static bool itemsPres[1];
+public:
+	static const Info theInfo;
+	NeighCellsPerBandclassCDMA2000v920(): Sequence(&theInfo) {}
+	NeighCellsPerBandclassCDMA2000v920(const PhysCellIdListCDMA2000v920& physCellIdListv920);
+
+	void setPhysCellIdListv920(const PhysCellIdListCDMA2000v920& physCellIdListv920) { *static_cast<PhysCellIdListCDMA2000v920*>(items[0]) = physCellIdListv920; }
+
+	PhysCellIdListCDMA2000v920& getPhysCellIdListv920() { return *static_cast<PhysCellIdListCDMA2000v920*>(items[0]); }
+};
+
+typedef SequenceOf<NeighCellsPerBandclassCDMA2000v920, CONSTRAINED, 1, 16> NeighCellsPerBandclassListCDMA2000v920;
+
+class NeighCellCDMA2000v920 : public Sequence {
+private:
+	static const void *itemsInfo[1];
+	static bool itemsPres[1];
+public:
+	static const Info theInfo;
+	NeighCellCDMA2000v920(): Sequence(&theInfo) {}
+	NeighCellCDMA2000v920(const NeighCellsPerBandclassListCDMA2000v920& neighCellsPerFreqListv920);
+
+	void setNeighCellsPerFreqListv920(const NeighCellsPerBandclassListCDMA2000v920& neighCellsPerFreqListv920) { *static_cast<NeighCellsPerBandclassListCDMA2000v920*>(items[0]) = neighCellsPerFreqListv920; }
+
+	NeighCellsPerBandclassListCDMA2000v920& getNeighCellsPerFreqListv920() { return *static_cast<NeighCellsPerBandclassListCDMA2000v920*>(items[0]); }
+};
+
+typedef SequenceOf<NeighCellCDMA2000v920, CONSTRAINED, 1, 16> NeighCellListCDMA2000v920;
+
+class CellReselectionParametersCDMA2000v920 : public Sequence {
+private:
+	static const void *itemsInfo[1];
+	static bool itemsPres[1];
+public:
+	static const Info theInfo;
+	CellReselectionParametersCDMA2000v920(): Sequence(&theInfo) {}
+	CellReselectionParametersCDMA2000v920(const NeighCellListCDMA2000v920& neighCellListv920);
+
+	void setNeighCellListv920(const NeighCellListCDMA2000v920& neighCellListv920) { *static_cast<NeighCellListCDMA2000v920*>(items[0]) = neighCellListv920; }
+
+	NeighCellListCDMA2000v920& getNeighCellListv920() { return *static_cast<NeighCellListCDMA2000v920*>(items[0]); }
+};
+
+enum CSFBRegistrationParam1XRTTv920powerDownReg_r9Values {
+	true_CSFBRegistrationParam1XRTTv920powerDownReg_r9 = 0,
+};
+typedef Enumerated<CONSTRAINED, 0> CSFBRegistrationParam1XRTTv920powerDownReg_r9;
+
+class CSFBRegistrationParam1XRTTv920 : public Sequence {
+private:
+	static const void *itemsInfo[1];
+	static bool itemsPres[1];
+public:
+	static const Info theInfo;
+	CSFBRegistrationParam1XRTTv920(): Sequence(&theInfo) {}
+	CSFBRegistrationParam1XRTTv920(const CSFBRegistrationParam1XRTTv920powerDownReg_r9& cSFBRegistrationParam1XRTTv920powerDownReg_r9);
+
+	void setCSFBRegistrationParam1XRTTv920powerDownReg_r9(const CSFBRegistrationParam1XRTTv920powerDownReg_r9& cSFBRegistrationParam1XRTTv920powerDownReg_r9) { *static_cast<CSFBRegistrationParam1XRTTv920powerDownReg_r9*>(items[0]) = cSFBRegistrationParam1XRTTv920powerDownReg_r9; }
+
+	CSFBRegistrationParam1XRTTv920powerDownReg_r9& getCSFBRegistrationParam1XRTTv920powerDownReg_r9() { return *static_cast<CSFBRegistrationParam1XRTTv920powerDownReg_r9*>(items[0]); }
+};
+
+typedef Integer<CONSTRAINED, 0, 63> ACBarringConfig1XRTTr9AcBarring0to9r9;
+
+typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarring10r9;
+
+typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarring11r9;
+
+typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarring12r9;
+
+typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarring13r9;
+
+typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarring14r9;
+
+typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarring15r9;
+
+typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarringMsgr9;
+
+typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarringRegr9;
+
+typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarringEmgr9;
+
+class ACBarringConfig1XRTTr9 : public Sequence {
+private:
+	static const void *itemsInfo[10];
+	static bool itemsPres[10];
+public:
+	static const Info theInfo;
+	ACBarringConfig1XRTTr9(): Sequence(&theInfo) {}
+	ACBarringConfig1XRTTr9(const ACBarringConfig1XRTTr9AcBarring0to9r9& aCBarringConfig1XRTTr9AcBarring0to9r9, const ACBarringConfig1XRTTr9AcBarring10r9& aCBarringConfig1XRTTr9AcBarring10r9, const ACBarringConfig1XRTTr9AcBarring11r9& aCBarringConfig1XRTTr9AcBarring11r9, const ACBarringConfig1XRTTr9AcBarring12r9& aCBarringConfig1XRTTr9AcBarring12r9, const ACBarringConfig1XRTTr9AcBarring13r9& aCBarringConfig1XRTTr9AcBarring13r9, const ACBarringConfig1XRTTr9AcBarring14r9& aCBarringConfig1XRTTr9AcBarring14r9, const ACBarringConfig1XRTTr9AcBarring15r9& aCBarringConfig1XRTTr9AcBarring15r9, const ACBarringConfig1XRTTr9AcBarringMsgr9& aCBarringConfig1XRTTr9AcBarringMsgr9, const ACBarringConfig1XRTTr9AcBarringRegr9& aCBarringConfig1XRTTr9AcBarringRegr9, const ACBarringConfig1XRTTr9AcBarringEmgr9& aCBarringConfig1XRTTr9AcBarringEmgr9);
+
+	void setACBarringConfig1XRTTr9AcBarring0to9r9(const ACBarringConfig1XRTTr9AcBarring0to9r9& aCBarringConfig1XRTTr9AcBarring0to9r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring0to9r9*>(items[0]) = aCBarringConfig1XRTTr9AcBarring0to9r9; }
+	void setACBarringConfig1XRTTr9AcBarring10r9(const ACBarringConfig1XRTTr9AcBarring10r9& aCBarringConfig1XRTTr9AcBarring10r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring10r9*>(items[1]) = aCBarringConfig1XRTTr9AcBarring10r9; }
+	void setACBarringConfig1XRTTr9AcBarring11r9(const ACBarringConfig1XRTTr9AcBarring11r9& aCBarringConfig1XRTTr9AcBarring11r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring11r9*>(items[2]) = aCBarringConfig1XRTTr9AcBarring11r9; }
+	void setACBarringConfig1XRTTr9AcBarring12r9(const ACBarringConfig1XRTTr9AcBarring12r9& aCBarringConfig1XRTTr9AcBarring12r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring12r9*>(items[3]) = aCBarringConfig1XRTTr9AcBarring12r9; }
+	void setACBarringConfig1XRTTr9AcBarring13r9(const ACBarringConfig1XRTTr9AcBarring13r9& aCBarringConfig1XRTTr9AcBarring13r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring13r9*>(items[4]) = aCBarringConfig1XRTTr9AcBarring13r9; }
+	void setACBarringConfig1XRTTr9AcBarring14r9(const ACBarringConfig1XRTTr9AcBarring14r9& aCBarringConfig1XRTTr9AcBarring14r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring14r9*>(items[5]) = aCBarringConfig1XRTTr9AcBarring14r9; }
+	void setACBarringConfig1XRTTr9AcBarring15r9(const ACBarringConfig1XRTTr9AcBarring15r9& aCBarringConfig1XRTTr9AcBarring15r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring15r9*>(items[6]) = aCBarringConfig1XRTTr9AcBarring15r9; }
+	void setACBarringConfig1XRTTr9AcBarringMsgr9(const ACBarringConfig1XRTTr9AcBarringMsgr9& aCBarringConfig1XRTTr9AcBarringMsgr9) { *static_cast<ACBarringConfig1XRTTr9AcBarringMsgr9*>(items[7]) = aCBarringConfig1XRTTr9AcBarringMsgr9; }
+	void setACBarringConfig1XRTTr9AcBarringRegr9(const ACBarringConfig1XRTTr9AcBarringRegr9& aCBarringConfig1XRTTr9AcBarringRegr9) { *static_cast<ACBarringConfig1XRTTr9AcBarringRegr9*>(items[8]) = aCBarringConfig1XRTTr9AcBarringRegr9; }
+	void setACBarringConfig1XRTTr9AcBarringEmgr9(const ACBarringConfig1XRTTr9AcBarringEmgr9& aCBarringConfig1XRTTr9AcBarringEmgr9) { *static_cast<ACBarringConfig1XRTTr9AcBarringEmgr9*>(items[9]) = aCBarringConfig1XRTTr9AcBarringEmgr9; }
+
+	ACBarringConfig1XRTTr9AcBarring0to9r9& getACBarringConfig1XRTTr9AcBarring0to9r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring0to9r9*>(items[0]); }
+	ACBarringConfig1XRTTr9AcBarring10r9& getACBarringConfig1XRTTr9AcBarring10r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring10r9*>(items[1]); }
+	ACBarringConfig1XRTTr9AcBarring11r9& getACBarringConfig1XRTTr9AcBarring11r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring11r9*>(items[2]); }
+	ACBarringConfig1XRTTr9AcBarring12r9& getACBarringConfig1XRTTr9AcBarring12r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring12r9*>(items[3]); }
+	ACBarringConfig1XRTTr9AcBarring13r9& getACBarringConfig1XRTTr9AcBarring13r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring13r9*>(items[4]); }
+	ACBarringConfig1XRTTr9AcBarring14r9& getACBarringConfig1XRTTr9AcBarring14r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring14r9*>(items[5]); }
+	ACBarringConfig1XRTTr9AcBarring15r9& getACBarringConfig1XRTTr9AcBarring15r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring15r9*>(items[6]); }
+	ACBarringConfig1XRTTr9AcBarringMsgr9& getACBarringConfig1XRTTr9AcBarringMsgr9() { return *static_cast<ACBarringConfig1XRTTr9AcBarringMsgr9*>(items[7]); }
+	ACBarringConfig1XRTTr9AcBarringRegr9& getACBarringConfig1XRTTr9AcBarringRegr9() { return *static_cast<ACBarringConfig1XRTTr9AcBarringRegr9*>(items[8]); }
+	ACBarringConfig1XRTTr9AcBarringEmgr9& getACBarringConfig1XRTTr9AcBarringEmgr9() { return *static_cast<ACBarringConfig1XRTTr9AcBarringEmgr9*>(items[9]); }
+};
+
+enum SystemInformationBlockType8csfb_DualRxTxSupport_r10Values {
+	true_SystemInformationBlockType8csfb_DualRxTxSupport_r10 = 0,
+};
+typedef Enumerated<CONSTRAINED, 0> SystemInformationBlockType8csfb_DualRxTxSupport_r10;
+
+class SystemInformationBlockType8 : public Sequence {
+private:
+	static const void *itemsInfo[11];
+	static bool itemsPres[11];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType8(): Sequence(&theInfo) {}
+
+	void setSystemTimeInfo(const SystemTimeInfoCDMA2000& systemTimeInfo) { *static_cast<SystemTimeInfoCDMA2000*>(items[0]) = systemTimeInfo; }
+	void setSystemInformationBlockType8SearchWindowSize(const SystemInformationBlockType8SearchWindowSize& systemInformationBlockType8SearchWindowSize) { *static_cast<SystemInformationBlockType8SearchWindowSize*>(items[1]) = systemInformationBlockType8SearchWindowSize; }
+	void setSystemInformationBlockType8ParametersHRPD(const SystemInformationBlockType8ParametersHRPD& systemInformationBlockType8ParametersHRPD) { *static_cast<SystemInformationBlockType8ParametersHRPD*>(items[2]) = systemInformationBlockType8ParametersHRPD; }
+	void setSystemInformationBlockType8Parameters1XRTT(const SystemInformationBlockType8Parameters1XRTT& systemInformationBlockType8Parameters1XRTT) { *static_cast<SystemInformationBlockType8Parameters1XRTT*>(items[3]) = systemInformationBlockType8Parameters1XRTT; }
+	void setSystemInformationBlockType8LateNonCriticalExtension(const SystemInformationBlockType8LateNonCriticalExtension& systemInformationBlockType8LateNonCriticalExtension) { *static_cast<SystemInformationBlockType8LateNonCriticalExtension*>(items[4]) = systemInformationBlockType8LateNonCriticalExtension; }
+	void setSystemInformationBlockType8CsfbSupportForDualRxUEsr9(const SystemInformationBlockType8CsfbSupportForDualRxUEsr9& systemInformationBlockType8CsfbSupportForDualRxUEsr9) { *static_cast<SystemInformationBlockType8CsfbSupportForDualRxUEsr9*>(items[5]) = systemInformationBlockType8CsfbSupportForDualRxUEsr9; }
+	void setCellReselectionParametersHRPDv920(const CellReselectionParametersCDMA2000v920& cellReselectionParametersHRPDv920) { *static_cast<CellReselectionParametersCDMA2000v920*>(items[6]) = cellReselectionParametersHRPDv920; }
+	void setCellReselectionParameters1XRTTv920(const CellReselectionParametersCDMA2000v920& cellReselectionParameters1XRTTv920) { *static_cast<CellReselectionParametersCDMA2000v920*>(items[7]) = cellReselectionParameters1XRTTv920; }
+	void setCsfbRegistrationParam1XRTTv920(const CSFBRegistrationParam1XRTTv920& csfbRegistrationParam1XRTTv920) { *static_cast<CSFBRegistrationParam1XRTTv920*>(items[8]) = csfbRegistrationParam1XRTTv920; }
+	void setAcBarringConfig1XRTTr9(const ACBarringConfig1XRTTr9& acBarringConfig1XRTTr9) { *static_cast<ACBarringConfig1XRTTr9*>(items[9]) = acBarringConfig1XRTTr9; }
+	void setSystemInformationBlockType8csfb_DualRxTxSupport_r10(const SystemInformationBlockType8csfb_DualRxTxSupport_r10& systemInformationBlockType8csfb_DualRxTxSupport_r10) { *static_cast<SystemInformationBlockType8csfb_DualRxTxSupport_r10*>(items[10]) = systemInformationBlockType8csfb_DualRxTxSupport_r10; }
+
+	SystemTimeInfoCDMA2000& getSystemTimeInfo() { return *static_cast<SystemTimeInfoCDMA2000*>(items[0]); }
+	SystemInformationBlockType8SearchWindowSize& getSystemInformationBlockType8SearchWindowSize() { return *static_cast<SystemInformationBlockType8SearchWindowSize*>(items[1]); }
+	SystemInformationBlockType8ParametersHRPD& getSystemInformationBlockType8ParametersHRPD() { return *static_cast<SystemInformationBlockType8ParametersHRPD*>(items[2]); }
+	SystemInformationBlockType8Parameters1XRTT& getSystemInformationBlockType8Parameters1XRTT() { return *static_cast<SystemInformationBlockType8Parameters1XRTT*>(items[3]); }
+	SystemInformationBlockType8LateNonCriticalExtension& getSystemInformationBlockType8LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType8LateNonCriticalExtension*>(items[4]); }
+	SystemInformationBlockType8CsfbSupportForDualRxUEsr9& getSystemInformationBlockType8CsfbSupportForDualRxUEsr9() { return *static_cast<SystemInformationBlockType8CsfbSupportForDualRxUEsr9*>(items[5]); }
+	CellReselectionParametersCDMA2000v920& getCellReselectionParametersHRPDv920() { return *static_cast<CellReselectionParametersCDMA2000v920*>(items[6]); }
+	CellReselectionParametersCDMA2000v920& getCellReselectionParameters1XRTTv920() { return *static_cast<CellReselectionParametersCDMA2000v920*>(items[7]); }
+	CSFBRegistrationParam1XRTTv920& getCsfbRegistrationParam1XRTTv920() { return *static_cast<CSFBRegistrationParam1XRTTv920*>(items[8]); }
+	ACBarringConfig1XRTTr9& getAcBarringConfig1XRTTr9() { return *static_cast<ACBarringConfig1XRTTr9*>(items[9]); }
+	SystemInformationBlockType8csfb_DualRxTxSupport_r10& getSystemInformationBlockType8csfb_DualRxTxSupport_r10() { return *static_cast<SystemInformationBlockType8csfb_DualRxTxSupport_r10*>(items[10]); }
+};
+
+typedef OctetString<CONSTRAINED, 1, 48> SystemInformationBlockType9HnbName;
+
+typedef OctetStringBase SystemInformationBlockType9LateNonCriticalExtension;
+
+class SystemInformationBlockType9 : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType9(): Sequence(&theInfo) {}
+
+	void setSystemInformationBlockType9HnbName(const SystemInformationBlockType9HnbName& systemInformationBlockType9HnbName) { *static_cast<SystemInformationBlockType9HnbName*>(items[0]) = systemInformationBlockType9HnbName; }
+	void setSystemInformationBlockType9LateNonCriticalExtension(const SystemInformationBlockType9LateNonCriticalExtension& systemInformationBlockType9LateNonCriticalExtension) { *static_cast<SystemInformationBlockType9LateNonCriticalExtension*>(items[1]) = systemInformationBlockType9LateNonCriticalExtension; }
+
+	SystemInformationBlockType9HnbName& getSystemInformationBlockType9HnbName() { return *static_cast<SystemInformationBlockType9HnbName*>(items[0]); }
+	SystemInformationBlockType9LateNonCriticalExtension& getSystemInformationBlockType9LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType9LateNonCriticalExtension*>(items[1]); }
+};
+
+typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType10MessageIdentifier;
+
+typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType10SerialNumber;
+
+typedef OctetString<CONSTRAINED, 2, 2> SystemInformationBlockType10WarningType;
+
+typedef OctetString<CONSTRAINED, 50, 50> SystemInformationBlockType10WarningSecurityInfo;
+
+typedef OctetStringBase SystemInformationBlockType10LateNonCriticalExtension;
+
+class SystemInformationBlockType10 : public Sequence {
+private:
+	static const void *itemsInfo[5];
+	static bool itemsPres[5];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType10(): Sequence(&theInfo) {}
+	SystemInformationBlockType10(const SystemInformationBlockType10MessageIdentifier& systemInformationBlockType10MessageIdentifier, const SystemInformationBlockType10SerialNumber& systemInformationBlockType10SerialNumber, const SystemInformationBlockType10WarningType& systemInformationBlockType10WarningType);
+
+	void setSystemInformationBlockType10MessageIdentifier(const SystemInformationBlockType10MessageIdentifier& systemInformationBlockType10MessageIdentifier) { *static_cast<SystemInformationBlockType10MessageIdentifier*>(items[0]) = systemInformationBlockType10MessageIdentifier; }
+	void setSystemInformationBlockType10SerialNumber(const SystemInformationBlockType10SerialNumber& systemInformationBlockType10SerialNumber) { *static_cast<SystemInformationBlockType10SerialNumber*>(items[1]) = systemInformationBlockType10SerialNumber; }
+	void setSystemInformationBlockType10WarningType(const SystemInformationBlockType10WarningType& systemInformationBlockType10WarningType) { *static_cast<SystemInformationBlockType10WarningType*>(items[2]) = systemInformationBlockType10WarningType; }
+	void setSystemInformationBlockType10WarningSecurityInfo(const SystemInformationBlockType10WarningSecurityInfo& systemInformationBlockType10WarningSecurityInfo) { *static_cast<SystemInformationBlockType10WarningSecurityInfo*>(items[3]) = systemInformationBlockType10WarningSecurityInfo; }
+	void setSystemInformationBlockType10LateNonCriticalExtension(const SystemInformationBlockType10LateNonCriticalExtension& systemInformationBlockType10LateNonCriticalExtension) { *static_cast<SystemInformationBlockType10LateNonCriticalExtension*>(items[4]) = systemInformationBlockType10LateNonCriticalExtension; }
+
+	SystemInformationBlockType10MessageIdentifier& getSystemInformationBlockType10MessageIdentifier() { return *static_cast<SystemInformationBlockType10MessageIdentifier*>(items[0]); }
+	SystemInformationBlockType10SerialNumber& getSystemInformationBlockType10SerialNumber() { return *static_cast<SystemInformationBlockType10SerialNumber*>(items[1]); }
+	SystemInformationBlockType10WarningType& getSystemInformationBlockType10WarningType() { return *static_cast<SystemInformationBlockType10WarningType*>(items[2]); }
+	SystemInformationBlockType10WarningSecurityInfo& getSystemInformationBlockType10WarningSecurityInfo() { return *static_cast<SystemInformationBlockType10WarningSecurityInfo*>(items[3]); }
+	SystemInformationBlockType10LateNonCriticalExtension& getSystemInformationBlockType10LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType10LateNonCriticalExtension*>(items[4]); }
+};
+
+typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType11MessageIdentifier;
+
+typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType11SerialNumber;
+
+enum SystemInformationBlockType11warningMessageSegmentTypeValues {
+	notLastSegment_SystemInformationBlockType11warningMessageSegmentType = 0,
+	lastSegment_SystemInformationBlockType11warningMessageSegmentType = 1,
+};
+typedef Enumerated<CONSTRAINED, 1> SystemInformationBlockType11warningMessageSegmentType;
+
+typedef Integer<CONSTRAINED, 0, 63> SystemInformationBlockType11WarningMessageSegmentNumber;
+
+typedef OctetStringBase SystemInformationBlockType11WarningMessageSegment;
+
+typedef OctetString<CONSTRAINED, 1, 1> SystemInformationBlockType11DataCodingScheme;
+
+typedef OctetStringBase SystemInformationBlockType11LateNonCriticalExtension;
+
+class SystemInformationBlockType11 : public Sequence {
+private:
+	static const void *itemsInfo[7];
+	static bool itemsPres[7];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType11(): Sequence(&theInfo) {}
+	SystemInformationBlockType11(const SystemInformationBlockType11MessageIdentifier& systemInformationBlockType11MessageIdentifier, const SystemInformationBlockType11SerialNumber& systemInformationBlockType11SerialNumber, const SystemInformationBlockType11warningMessageSegmentType& systemInformationBlockType11warningMessageSegmentType, const SystemInformationBlockType11WarningMessageSegmentNumber& systemInformationBlockType11WarningMessageSegmentNumber, const SystemInformationBlockType11WarningMessageSegment& systemInformationBlockType11WarningMessageSegment);
+
+	void setSystemInformationBlockType11MessageIdentifier(const SystemInformationBlockType11MessageIdentifier& systemInformationBlockType11MessageIdentifier) { *static_cast<SystemInformationBlockType11MessageIdentifier*>(items[0]) = systemInformationBlockType11MessageIdentifier; }
+	void setSystemInformationBlockType11SerialNumber(const SystemInformationBlockType11SerialNumber& systemInformationBlockType11SerialNumber) { *static_cast<SystemInformationBlockType11SerialNumber*>(items[1]) = systemInformationBlockType11SerialNumber; }
+	void setSystemInformationBlockType11warningMessageSegmentType(const SystemInformationBlockType11warningMessageSegmentType& systemInformationBlockType11warningMessageSegmentType) { *static_cast<SystemInformationBlockType11warningMessageSegmentType*>(items[2]) = systemInformationBlockType11warningMessageSegmentType; }
+	void setSystemInformationBlockType11WarningMessageSegmentNumber(const SystemInformationBlockType11WarningMessageSegmentNumber& systemInformationBlockType11WarningMessageSegmentNumber) { *static_cast<SystemInformationBlockType11WarningMessageSegmentNumber*>(items[3]) = systemInformationBlockType11WarningMessageSegmentNumber; }
+	void setSystemInformationBlockType11WarningMessageSegment(const SystemInformationBlockType11WarningMessageSegment& systemInformationBlockType11WarningMessageSegment) { *static_cast<SystemInformationBlockType11WarningMessageSegment*>(items[4]) = systemInformationBlockType11WarningMessageSegment; }
+	void setSystemInformationBlockType11DataCodingScheme(const SystemInformationBlockType11DataCodingScheme& systemInformationBlockType11DataCodingScheme) { *static_cast<SystemInformationBlockType11DataCodingScheme*>(items[5]) = systemInformationBlockType11DataCodingScheme; }
+	void setSystemInformationBlockType11LateNonCriticalExtension(const SystemInformationBlockType11LateNonCriticalExtension& systemInformationBlockType11LateNonCriticalExtension) { *static_cast<SystemInformationBlockType11LateNonCriticalExtension*>(items[6]) = systemInformationBlockType11LateNonCriticalExtension; }
+
+	SystemInformationBlockType11MessageIdentifier& getSystemInformationBlockType11MessageIdentifier() { return *static_cast<SystemInformationBlockType11MessageIdentifier*>(items[0]); }
+	SystemInformationBlockType11SerialNumber& getSystemInformationBlockType11SerialNumber() { return *static_cast<SystemInformationBlockType11SerialNumber*>(items[1]); }
+	SystemInformationBlockType11warningMessageSegmentType& getSystemInformationBlockType11warningMessageSegmentType() { return *static_cast<SystemInformationBlockType11warningMessageSegmentType*>(items[2]); }
+	SystemInformationBlockType11WarningMessageSegmentNumber& getSystemInformationBlockType11WarningMessageSegmentNumber() { return *static_cast<SystemInformationBlockType11WarningMessageSegmentNumber*>(items[3]); }
+	SystemInformationBlockType11WarningMessageSegment& getSystemInformationBlockType11WarningMessageSegment() { return *static_cast<SystemInformationBlockType11WarningMessageSegment*>(items[4]); }
+	SystemInformationBlockType11DataCodingScheme& getSystemInformationBlockType11DataCodingScheme() { return *static_cast<SystemInformationBlockType11DataCodingScheme*>(items[5]); }
+	SystemInformationBlockType11LateNonCriticalExtension& getSystemInformationBlockType11LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType11LateNonCriticalExtension*>(items[6]); }
+};
+
+typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType12r9MessageIdentifierr9;
+
+typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType12r9SerialNumberr9;
+
+enum SystemInformationBlockType12r9warningMessageSegmentType_r9Values {
+	notLastSegment_SystemInformationBlockType12r9warningMessageSegmentType_r9 = 0,
+	lastSegment_SystemInformationBlockType12r9warningMessageSegmentType_r9 = 1,
+};
+typedef Enumerated<CONSTRAINED, 1> SystemInformationBlockType12r9warningMessageSegmentType_r9;
+
+typedef Integer<CONSTRAINED, 0, 63> SystemInformationBlockType12r9WarningMessageSegmentNumberr9;
+
+typedef OctetStringBase SystemInformationBlockType12r9WarningMessageSegmentr9;
+
+typedef OctetString<CONSTRAINED, 1, 1> SystemInformationBlockType12r9DataCodingSchemer9;
+
+typedef OctetStringBase SystemInformationBlockType12r9LateNonCriticalExtension;
+
+class SystemInformationBlockType12r9 : public Sequence {
+private:
+	static const void *itemsInfo[7];
+	static bool itemsPres[7];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType12r9(): Sequence(&theInfo) {}
+	SystemInformationBlockType12r9(const SystemInformationBlockType12r9MessageIdentifierr9& systemInformationBlockType12r9MessageIdentifierr9, const SystemInformationBlockType12r9SerialNumberr9& systemInformationBlockType12r9SerialNumberr9, const SystemInformationBlockType12r9warningMessageSegmentType_r9& systemInformationBlockType12r9warningMessageSegmentType_r9, const SystemInformationBlockType12r9WarningMessageSegmentNumberr9& systemInformationBlockType12r9WarningMessageSegmentNumberr9, const SystemInformationBlockType12r9WarningMessageSegmentr9& systemInformationBlockType12r9WarningMessageSegmentr9);
+
+	void setSystemInformationBlockType12r9MessageIdentifierr9(const SystemInformationBlockType12r9MessageIdentifierr9& systemInformationBlockType12r9MessageIdentifierr9) { *static_cast<SystemInformationBlockType12r9MessageIdentifierr9*>(items[0]) = systemInformationBlockType12r9MessageIdentifierr9; }
+	void setSystemInformationBlockType12r9SerialNumberr9(const SystemInformationBlockType12r9SerialNumberr9& systemInformationBlockType12r9SerialNumberr9) { *static_cast<SystemInformationBlockType12r9SerialNumberr9*>(items[1]) = systemInformationBlockType12r9SerialNumberr9; }
+	void setSystemInformationBlockType12r9warningMessageSegmentType_r9(const SystemInformationBlockType12r9warningMessageSegmentType_r9& systemInformationBlockType12r9warningMessageSegmentType_r9) { *static_cast<SystemInformationBlockType12r9warningMessageSegmentType_r9*>(items[2]) = systemInformationBlockType12r9warningMessageSegmentType_r9; }
+	void setSystemInformationBlockType12r9WarningMessageSegmentNumberr9(const SystemInformationBlockType12r9WarningMessageSegmentNumberr9& systemInformationBlockType12r9WarningMessageSegmentNumberr9) { *static_cast<SystemInformationBlockType12r9WarningMessageSegmentNumberr9*>(items[3]) = systemInformationBlockType12r9WarningMessageSegmentNumberr9; }
+	void setSystemInformationBlockType12r9WarningMessageSegmentr9(const SystemInformationBlockType12r9WarningMessageSegmentr9& systemInformationBlockType12r9WarningMessageSegmentr9) { *static_cast<SystemInformationBlockType12r9WarningMessageSegmentr9*>(items[4]) = systemInformationBlockType12r9WarningMessageSegmentr9; }
+	void setSystemInformationBlockType12r9DataCodingSchemer9(const SystemInformationBlockType12r9DataCodingSchemer9& systemInformationBlockType12r9DataCodingSchemer9) { *static_cast<SystemInformationBlockType12r9DataCodingSchemer9*>(items[5]) = systemInformationBlockType12r9DataCodingSchemer9; }
+	void setSystemInformationBlockType12r9LateNonCriticalExtension(const SystemInformationBlockType12r9LateNonCriticalExtension& systemInformationBlockType12r9LateNonCriticalExtension) { *static_cast<SystemInformationBlockType12r9LateNonCriticalExtension*>(items[6]) = systemInformationBlockType12r9LateNonCriticalExtension; }
+
+	SystemInformationBlockType12r9MessageIdentifierr9& getSystemInformationBlockType12r9MessageIdentifierr9() { return *static_cast<SystemInformationBlockType12r9MessageIdentifierr9*>(items[0]); }
+	SystemInformationBlockType12r9SerialNumberr9& getSystemInformationBlockType12r9SerialNumberr9() { return *static_cast<SystemInformationBlockType12r9SerialNumberr9*>(items[1]); }
+	SystemInformationBlockType12r9warningMessageSegmentType_r9& getSystemInformationBlockType12r9warningMessageSegmentType_r9() { return *static_cast<SystemInformationBlockType12r9warningMessageSegmentType_r9*>(items[2]); }
+	SystemInformationBlockType12r9WarningMessageSegmentNumberr9& getSystemInformationBlockType12r9WarningMessageSegmentNumberr9() { return *static_cast<SystemInformationBlockType12r9WarningMessageSegmentNumberr9*>(items[3]); }
+	SystemInformationBlockType12r9WarningMessageSegmentr9& getSystemInformationBlockType12r9WarningMessageSegmentr9() { return *static_cast<SystemInformationBlockType12r9WarningMessageSegmentr9*>(items[4]); }
+	SystemInformationBlockType12r9DataCodingSchemer9& getSystemInformationBlockType12r9DataCodingSchemer9() { return *static_cast<SystemInformationBlockType12r9DataCodingSchemer9*>(items[5]); }
+	SystemInformationBlockType12r9LateNonCriticalExtension& getSystemInformationBlockType12r9LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType12r9LateNonCriticalExtension*>(items[6]); }
+};
+
+typedef Integer<CONSTRAINED, 0, 255> MBSFNAreaInfor9MbsfnAreaIdr9;
+
+enum MBSFNAreaInfor9non_MBSFNregionLengthValues {
+	s1_MBSFNAreaInfor9non_MBSFNregionLength = 0,
+	s2_MBSFNAreaInfor9non_MBSFNregionLength = 1,
+};
+typedef Enumerated<CONSTRAINED, 1> MBSFNAreaInfor9non_MBSFNregionLength;
+
+typedef Integer<CONSTRAINED, 0, 7> MBSFNAreaInfor9NotificationIndicatorr9;
+
+enum MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9Values {
+	rf32_MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9 = 0,
+	rf64_MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9 = 1,
+	rf128_MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9 = 2,
+	rf256_MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9 = 3,
+};
+typedef Enumerated<CONSTRAINED, 3> MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9;
+
+typedef Integer<CONSTRAINED, 0, 10> MBSFNAreaInfor9McchConfigr9McchOffsetr9;
+
+enum MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9Values {
+	rf512_MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9 = 0,
+	rf1024_MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9 = 1,
+};
+typedef Enumerated<CONSTRAINED, 1> MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9;
+
+typedef BitString<CONSTRAINED, 6, 6> MBSFNAreaInfor9McchConfigr9SfAllocInfor9;
+
+enum MBSFNAreaInfor9McchConfigr9signallingMCS_r9Values {
+	n2_MBSFNAreaInfor9McchConfigr9signallingMCS_r9 = 0,
+	n7_MBSFNAreaInfor9McchConfigr9signallingMCS_r9 = 1,
+	n13_MBSFNAreaInfor9McchConfigr9signallingMCS_r9 = 2,
+	n19_MBSFNAreaInfor9McchConfigr9signallingMCS_r9 = 3,
+};
+typedef Enumerated<CONSTRAINED, 3> MBSFNAreaInfor9McchConfigr9signallingMCS_r9;
+
+class MBSFNAreaInfor9McchConfigr9 : public Sequence {
+private:
+	static const void *itemsInfo[5];
+	static bool itemsPres[5];
+public:
+	static const Info theInfo;
+	MBSFNAreaInfor9McchConfigr9(): Sequence(&theInfo) {}
+	MBSFNAreaInfor9McchConfigr9(const MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9, const MBSFNAreaInfor9McchConfigr9McchOffsetr9& mBSFNAreaInfor9McchConfigr9McchOffsetr9, const MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9, const MBSFNAreaInfor9McchConfigr9SfAllocInfor9& mBSFNAreaInfor9McchConfigr9SfAllocInfor9, const MBSFNAreaInfor9McchConfigr9signallingMCS_r9& mBSFNAreaInfor9McchConfigr9signallingMCS_r9);
+
+	void setMBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9(const MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9) { *static_cast<MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9*>(items[0]) = mBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9; }
+	void setMBSFNAreaInfor9McchConfigr9McchOffsetr9(const MBSFNAreaInfor9McchConfigr9McchOffsetr9& mBSFNAreaInfor9McchConfigr9McchOffsetr9) { *static_cast<MBSFNAreaInfor9McchConfigr9McchOffsetr9*>(items[1]) = mBSFNAreaInfor9McchConfigr9McchOffsetr9; }
+	void setMBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9(const MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9) { *static_cast<MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9*>(items[2]) = mBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9; }
+	void setMBSFNAreaInfor9McchConfigr9SfAllocInfor9(const MBSFNAreaInfor9McchConfigr9SfAllocInfor9& mBSFNAreaInfor9McchConfigr9SfAllocInfor9) { *static_cast<MBSFNAreaInfor9McchConfigr9SfAllocInfor9*>(items[3]) = mBSFNAreaInfor9McchConfigr9SfAllocInfor9; }
+	void setMBSFNAreaInfor9McchConfigr9signallingMCS_r9(const MBSFNAreaInfor9McchConfigr9signallingMCS_r9& mBSFNAreaInfor9McchConfigr9signallingMCS_r9) { *static_cast<MBSFNAreaInfor9McchConfigr9signallingMCS_r9*>(items[4]) = mBSFNAreaInfor9McchConfigr9signallingMCS_r9; }
+
+	MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9& getMBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9() { return *static_cast<MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9*>(items[0]); }
+	MBSFNAreaInfor9McchConfigr9McchOffsetr9& getMBSFNAreaInfor9McchConfigr9McchOffsetr9() { return *static_cast<MBSFNAreaInfor9McchConfigr9McchOffsetr9*>(items[1]); }
+	MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9& getMBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9() { return *static_cast<MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9*>(items[2]); }
+	MBSFNAreaInfor9McchConfigr9SfAllocInfor9& getMBSFNAreaInfor9McchConfigr9SfAllocInfor9() { return *static_cast<MBSFNAreaInfor9McchConfigr9SfAllocInfor9*>(items[3]); }
+	MBSFNAreaInfor9McchConfigr9signallingMCS_r9& getMBSFNAreaInfor9McchConfigr9signallingMCS_r9() { return *static_cast<MBSFNAreaInfor9McchConfigr9signallingMCS_r9*>(items[4]); }
+};
+
+class MBSFNAreaInfor9 : public Sequence {
+private:
+	static const void *itemsInfo[4];
+	static bool itemsPres[4];
+public:
+	static const Info theInfo;
+	MBSFNAreaInfor9(): Sequence(&theInfo) {}
+	MBSFNAreaInfor9(const MBSFNAreaInfor9MbsfnAreaIdr9& mBSFNAreaInfor9MbsfnAreaIdr9, const MBSFNAreaInfor9non_MBSFNregionLength& mBSFNAreaInfor9non_MBSFNregionLength, const MBSFNAreaInfor9NotificationIndicatorr9& mBSFNAreaInfor9NotificationIndicatorr9, const MBSFNAreaInfor9McchConfigr9& mBSFNAreaInfor9McchConfigr9);
+
+	void setMBSFNAreaInfor9MbsfnAreaIdr9(const MBSFNAreaInfor9MbsfnAreaIdr9& mBSFNAreaInfor9MbsfnAreaIdr9) { *static_cast<MBSFNAreaInfor9MbsfnAreaIdr9*>(items[0]) = mBSFNAreaInfor9MbsfnAreaIdr9; }
+	void setMBSFNAreaInfor9non_MBSFNregionLength(const MBSFNAreaInfor9non_MBSFNregionLength& mBSFNAreaInfor9non_MBSFNregionLength) { *static_cast<MBSFNAreaInfor9non_MBSFNregionLength*>(items[1]) = mBSFNAreaInfor9non_MBSFNregionLength; }
+	void setMBSFNAreaInfor9NotificationIndicatorr9(const MBSFNAreaInfor9NotificationIndicatorr9& mBSFNAreaInfor9NotificationIndicatorr9) { *static_cast<MBSFNAreaInfor9NotificationIndicatorr9*>(items[2]) = mBSFNAreaInfor9NotificationIndicatorr9; }
+	void setMBSFNAreaInfor9McchConfigr9(const MBSFNAreaInfor9McchConfigr9& mBSFNAreaInfor9McchConfigr9) { *static_cast<MBSFNAreaInfor9McchConfigr9*>(items[3]) = mBSFNAreaInfor9McchConfigr9; }
+
+	MBSFNAreaInfor9MbsfnAreaIdr9& getMBSFNAreaInfor9MbsfnAreaIdr9() { return *static_cast<MBSFNAreaInfor9MbsfnAreaIdr9*>(items[0]); }
+	MBSFNAreaInfor9non_MBSFNregionLength& getMBSFNAreaInfor9non_MBSFNregionLength() { return *static_cast<MBSFNAreaInfor9non_MBSFNregionLength*>(items[1]); }
+	MBSFNAreaInfor9NotificationIndicatorr9& getMBSFNAreaInfor9NotificationIndicatorr9() { return *static_cast<MBSFNAreaInfor9NotificationIndicatorr9*>(items[2]); }
+	MBSFNAreaInfor9McchConfigr9& getMBSFNAreaInfor9McchConfigr9() { return *static_cast<MBSFNAreaInfor9McchConfigr9*>(items[3]); }
+};
+
+typedef SequenceOf<MBSFNAreaInfor9, CONSTRAINED, 1, maxMBSFN_Area> MBSFNAreaInfoListr9;
+
+enum MBMSNotificationConfigr9notificationRepetitionCoeff_r9Values {
+	n2_MBMSNotificationConfigr9notificationRepetitionCoeff_r9 = 0,
+	n4_MBMSNotificationConfigr9notificationRepetitionCoeff_r9 = 1,
+};
+typedef Enumerated<CONSTRAINED, 1> MBMSNotificationConfigr9notificationRepetitionCoeff_r9;
+
+typedef Integer<CONSTRAINED, 0, 10> MBMSNotificationConfigr9NotificationOffsetr9;
+
+typedef Integer<CONSTRAINED, 1, 6> MBMSNotificationConfigr9NotificationSFIndexr9;
+
+class MBMSNotificationConfigr9 : public Sequence {
+private:
+	static const void *itemsInfo[3];
+	static bool itemsPres[3];
+public:
+	static const Info theInfo;
+	MBMSNotificationConfigr9(): Sequence(&theInfo) {}
+	MBMSNotificationConfigr9(const MBMSNotificationConfigr9notificationRepetitionCoeff_r9& mBMSNotificationConfigr9notificationRepetitionCoeff_r9, const MBMSNotificationConfigr9NotificationOffsetr9& mBMSNotificationConfigr9NotificationOffsetr9, const MBMSNotificationConfigr9NotificationSFIndexr9& mBMSNotificationConfigr9NotificationSFIndexr9);
+
+	void setMBMSNotificationConfigr9notificationRepetitionCoeff_r9(const MBMSNotificationConfigr9notificationRepetitionCoeff_r9& mBMSNotificationConfigr9notificationRepetitionCoeff_r9) { *static_cast<MBMSNotificationConfigr9notificationRepetitionCoeff_r9*>(items[0]) = mBMSNotificationConfigr9notificationRepetitionCoeff_r9; }
+	void setMBMSNotificationConfigr9NotificationOffsetr9(const MBMSNotificationConfigr9NotificationOffsetr9& mBMSNotificationConfigr9NotificationOffsetr9) { *static_cast<MBMSNotificationConfigr9NotificationOffsetr9*>(items[1]) = mBMSNotificationConfigr9NotificationOffsetr9; }
+	void setMBMSNotificationConfigr9NotificationSFIndexr9(const MBMSNotificationConfigr9NotificationSFIndexr9& mBMSNotificationConfigr9NotificationSFIndexr9) { *static_cast<MBMSNotificationConfigr9NotificationSFIndexr9*>(items[2]) = mBMSNotificationConfigr9NotificationSFIndexr9; }
+
+	MBMSNotificationConfigr9notificationRepetitionCoeff_r9& getMBMSNotificationConfigr9notificationRepetitionCoeff_r9() { return *static_cast<MBMSNotificationConfigr9notificationRepetitionCoeff_r9*>(items[0]); }
+	MBMSNotificationConfigr9NotificationOffsetr9& getMBMSNotificationConfigr9NotificationOffsetr9() { return *static_cast<MBMSNotificationConfigr9NotificationOffsetr9*>(items[1]); }
+	MBMSNotificationConfigr9NotificationSFIndexr9& getMBMSNotificationConfigr9NotificationSFIndexr9() { return *static_cast<MBMSNotificationConfigr9NotificationSFIndexr9*>(items[2]); }
+};
+
+typedef OctetStringBase SystemInformationBlockType13r9LateNonCriticalExtension;
+
+class SystemInformationBlockType13r9 : public Sequence {
+private:
+	static const void *itemsInfo[3];
+	static bool itemsPres[3];
+public:
+	static const Info theInfo;
+	SystemInformationBlockType13r9(): Sequence(&theInfo) {}
+	SystemInformationBlockType13r9(const MBSFNAreaInfoListr9& mbsfnAreaInfoListr9, const MBMSNotificationConfigr9& notificationConfigr9);
+
+	void setMbsfnAreaInfoListr9(const MBSFNAreaInfoListr9& mbsfnAreaInfoListr9) { *static_cast<MBSFNAreaInfoListr9*>(items[0]) = mbsfnAreaInfoListr9; }
+	void setNotificationConfigr9(const MBMSNotificationConfigr9& notificationConfigr9) { *static_cast<MBMSNotificationConfigr9*>(items[1]) = notificationConfigr9; }
+	void setSystemInformationBlockType13r9LateNonCriticalExtension(const SystemInformationBlockType13r9LateNonCriticalExtension& systemInformationBlockType13r9LateNonCriticalExtension) { *static_cast<SystemInformationBlockType13r9LateNonCriticalExtension*>(items[2]) = systemInformationBlockType13r9LateNonCriticalExtension; }
+
+	MBSFNAreaInfoListr9& getMbsfnAreaInfoListr9() { return *static_cast<MBSFNAreaInfoListr9*>(items[0]); }
+	MBMSNotificationConfigr9& getNotificationConfigr9() { return *static_cast<MBMSNotificationConfigr9*>(items[1]); }
+	SystemInformationBlockType13r9LateNonCriticalExtension& getSystemInformationBlockType13r9LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType13r9LateNonCriticalExtension*>(items[2]); }
+};
+
+class SibTypeAndInfoItem : public Choice {
+private:
+	static const void *choicesInfo[12];
+public:
+	enum SibTypeAndInfoItemChoices {
+		sib2 = 0,
+		sib3 = 1,
+		sib4 = 2,
+		sib5 = 3,
+		sib6 = 4,
+		sib7 = 5,
+		sib8 = 6,
+		sib9 = 7,
+		sib10 = 8,
+		sib11 = 9,
+		sib12v920 = 10,
+		sib13v920 = 11,
+	};
+	static const Info theInfo;
+	SibTypeAndInfoItem(): Choice(&theInfo) {}
+};
+
+typedef SequenceOf<SibTypeAndInfoItem, CONSTRAINED, 1, maxSIB> SystemInformationr8IEsSibTypeAndInfo;
 
 typedef OctetStringBase SystemInformationv8a0IEsLateNonCriticalExtension;
 
@@ -372,8 +2839,6 @@ public:
 	CSGIdentity& getCsgIdentity() { return *static_cast<CSGIdentity*>(items[6]); }
 };
 
-typedef Integer<CONSTRAINED, -70, -22> QRxLevMin;
-
 typedef Integer<CONSTRAINED, 1, 8> SystemInformationBlockType1CellSelectionInfoQRxLevMinOffset;
 
 class SystemInformationBlockType1CellSelectionInfo : public Sequence {
@@ -391,8 +2856,6 @@ public:
 	QRxLevMin& getQRxLevMin() { return *static_cast<QRxLevMin*>(items[0]); }
 	SystemInformationBlockType1CellSelectionInfoQRxLevMinOffset& getSystemInformationBlockType1CellSelectionInfoQRxLevMinOffset() { return *static_cast<SystemInformationBlockType1CellSelectionInfoQRxLevMinOffset*>(items[1]); }
 };
-
-typedef Integer<CONSTRAINED, -30, 33> PMax;
 
 typedef Integer<CONSTRAINED, 1, 64> SystemInformationBlockType1FreqBandIndicator;
 
@@ -506,8 +2969,6 @@ enum SystemInformationBlockType1v920IEsims_EmergencySupport_r9Values {
 	true_SystemInformationBlockType1v920IEsims_EmergencySupport_r9 = 0,
 };
 typedef Enumerated<CONSTRAINED, 0> SystemInformationBlockType1v920IEsims_EmergencySupport_r9;
-
-typedef Integer<CONSTRAINED, -34, -3> QQualMinr9;
 
 typedef Integer<CONSTRAINED, 1, 8> CellSelectionInfov920QQualMinOffsetr9;
 
@@ -647,52 +3108,6 @@ public:
 	void setMessage(const BCCHDLSCHMessageType& message) { *static_cast<BCCHDLSCHMessageType*>(items[0]) = message; }
 
 	BCCHDLSCHMessageType& getMessage() { return *static_cast<BCCHDLSCHMessageType*>(items[0]); }
-};
-
-enum MBSFNSubframeConfigradioframeAllocationPeriodValues {
-	n1_MBSFNSubframeConfigradioframeAllocationPeriod = 0,
-	n2_MBSFNSubframeConfigradioframeAllocationPeriod = 1,
-	n4_MBSFNSubframeConfigradioframeAllocationPeriod = 2,
-	n8_MBSFNSubframeConfigradioframeAllocationPeriod = 3,
-	n16_MBSFNSubframeConfigradioframeAllocationPeriod = 4,
-	n32_MBSFNSubframeConfigradioframeAllocationPeriod = 5,
-};
-typedef Enumerated<CONSTRAINED, 5> MBSFNSubframeConfigradioframeAllocationPeriod;
-
-typedef Integer<CONSTRAINED, 0, 7> MBSFNSubframeConfigRadioframeAllocationOffset;
-
-typedef BitString<CONSTRAINED, 6, 6> MBSFNSubframeConfigSubframeAllocationOneFrame;
-
-typedef BitString<CONSTRAINED, 24, 24> MBSFNSubframeConfigSubframeAllocationFourFrames;
-
-class MBSFNSubframeConfigSubframeAllocation : public Choice {
-private:
-	static const void *choicesInfo[2];
-public:
-	enum MBSFNSubframeConfigSubframeAllocationChoices {
-		mBSFNSubframeConfigSubframeAllocationOneFrame = 0,
-		mBSFNSubframeConfigSubframeAllocationFourFrames = 1,
-	};
-	static const Info theInfo;
-	MBSFNSubframeConfigSubframeAllocation(): Choice(&theInfo) {}
-};
-
-class MBSFNSubframeConfig : public Sequence {
-private:
-	static const void *itemsInfo[3];
-	static bool itemsPres[3];
-public:
-	static const Info theInfo;
-	MBSFNSubframeConfig(): Sequence(&theInfo) {}
-	MBSFNSubframeConfig(const MBSFNSubframeConfigradioframeAllocationPeriod& mBSFNSubframeConfigradioframeAllocationPeriod, const MBSFNSubframeConfigRadioframeAllocationOffset& mBSFNSubframeConfigRadioframeAllocationOffset, const MBSFNSubframeConfigSubframeAllocation& mBSFNSubframeConfigSubframeAllocation);
-
-	void setMBSFNSubframeConfigradioframeAllocationPeriod(const MBSFNSubframeConfigradioframeAllocationPeriod& mBSFNSubframeConfigradioframeAllocationPeriod) { *static_cast<MBSFNSubframeConfigradioframeAllocationPeriod*>(items[0]) = mBSFNSubframeConfigradioframeAllocationPeriod; }
-	void setMBSFNSubframeConfigRadioframeAllocationOffset(const MBSFNSubframeConfigRadioframeAllocationOffset& mBSFNSubframeConfigRadioframeAllocationOffset) { *static_cast<MBSFNSubframeConfigRadioframeAllocationOffset*>(items[1]) = mBSFNSubframeConfigRadioframeAllocationOffset; }
-	void setMBSFNSubframeConfigSubframeAllocation(const MBSFNSubframeConfigSubframeAllocation& mBSFNSubframeConfigSubframeAllocation) { *static_cast<MBSFNSubframeConfigSubframeAllocation*>(items[2]) = mBSFNSubframeConfigSubframeAllocation; }
-
-	MBSFNSubframeConfigradioframeAllocationPeriod& getMBSFNSubframeConfigradioframeAllocationPeriod() { return *static_cast<MBSFNSubframeConfigradioframeAllocationPeriod*>(items[0]); }
-	MBSFNSubframeConfigRadioframeAllocationOffset& getMBSFNSubframeConfigRadioframeAllocationOffset() { return *static_cast<MBSFNSubframeConfigRadioframeAllocationOffset*>(items[1]); }
-	MBSFNSubframeConfigSubframeAllocation& getMBSFNSubframeConfigSubframeAllocation() { return *static_cast<MBSFNSubframeConfigSubframeAllocation*>(items[2]); }
 };
 
 typedef SequenceOf<MBSFNSubframeConfig, CONSTRAINED, 1, maxMBSFN_Allocations> CommonSFAllocPatternListr9;
@@ -2118,18 +4533,6 @@ public:
 	static const Info theInfo;
 	DRXConfig(): Choice(&theInfo) {}
 };
-
-enum TimeAlignmentTimerValues {
-	sf500_TimeAlignmentTimer = 0,
-	sf750_TimeAlignmentTimer = 1,
-	sf1280_TimeAlignmentTimer = 2,
-	sf1920_TimeAlignmentTimer = 3,
-	sf2560_TimeAlignmentTimer = 4,
-	sf5120_TimeAlignmentTimer = 5,
-	sf10240_TimeAlignmentTimer = 6,
-	infinity_TimeAlignmentTimer = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> TimeAlignmentTimer;
 
 typedef Null MACMainConfigPhrConfigRelease;
 
@@ -3965,8 +6368,6 @@ public:
 
 typedef Null PhysicalConfigDedicatedAdditionalSpectrumEmissionCAr10Release;
 
-typedef Integer<CONSTRAINED, 1, 32> AdditionalSpectrumEmission;
-
 class PhysicalConfigDedicatedAdditionalSpectrumEmissionCAr10Setup : public Sequence {
 private:
 	static const void *itemsInfo[1];
@@ -4168,7 +6569,7 @@ public:
 	static const Info theInfo;
 	RadioResourceConfigDedicated(): Sequence(&theInfo) {}
 
-	void setSrbToAddModList(const SRBToAddModList& srbToAddModList) { *static_cast<SRBToAddModList*>(items[0]) = srbToAddModList; setOptFlag(0, true); }
+	void setSrbToAddModList(const SRBToAddModList& srbToAddModList) { *static_cast<SRBToAddModList*>(items[0]) = srbToAddModList; }
 	void setDrbToAddModList(const DRBToAddModList& drbToAddModList) { *static_cast<DRBToAddModList*>(items[1]) = drbToAddModList; }
 	void setDrbToReleaseList(const DRBToReleaseList& drbToReleaseList) { *static_cast<DRBToReleaseList*>(items[2]) = drbToReleaseList; }
 	void setRadioResourceConfigDedicatedMacMainConfig(const RadioResourceConfigDedicatedMacMainConfig& radioResourceConfigDedicatedMacMainConfig) { *static_cast<RadioResourceConfigDedicatedMacMainConfig*>(items[3]) = radioResourceConfigDedicatedMacMainConfig; }
@@ -4894,44 +7295,6 @@ enum HandoverFromEUTRAPreparationRequestv1020IEsdualRxTxRedirectIndicator_r10Val
 };
 typedef Enumerated<CONSTRAINED, 0> HandoverFromEUTRAPreparationRequestv1020IEsdualRxTxRedirectIndicator_r10;
 
-enum BandclassCDMA2000Values {
-	bc0_BandclassCDMA2000 = 0,
-	bc1_BandclassCDMA2000 = 1,
-	bc2_BandclassCDMA2000 = 2,
-	bc3_BandclassCDMA2000 = 3,
-	bc4_BandclassCDMA2000 = 4,
-	bc5_BandclassCDMA2000 = 5,
-	bc6_BandclassCDMA2000 = 6,
-	bc7_BandclassCDMA2000 = 7,
-	bc8_BandclassCDMA2000 = 8,
-	bc9_BandclassCDMA2000 = 9,
-	bc10_BandclassCDMA2000 = 10,
-	bc11_BandclassCDMA2000 = 11,
-	bc12_BandclassCDMA2000 = 12,
-	bc13_BandclassCDMA2000 = 13,
-	bc14_BandclassCDMA2000 = 14,
-	bc15_BandclassCDMA2000 = 15,
-	bc16_BandclassCDMA2000 = 16,
-	bc17_BandclassCDMA2000 = 17,
-	bc18_v9a0_BandclassCDMA2000 = 18,
-	bc19_v9a0_BandclassCDMA2000 = 19,
-	bc20_v9a0_BandclassCDMA2000 = 20,
-	bc21_v9a0_BandclassCDMA2000 = 21,
-	spare10_BandclassCDMA2000 = 22,
-	spare9_BandclassCDMA2000 = 23,
-	spare8_BandclassCDMA2000 = 24,
-	spare7_BandclassCDMA2000 = 25,
-	spare6_BandclassCDMA2000 = 26,
-	spare5_BandclassCDMA2000 = 27,
-	spare4_BandclassCDMA2000 = 28,
-	spare3_BandclassCDMA2000 = 29,
-	spare2_BandclassCDMA2000 = 30,
-	spare1_BandclassCDMA2000 = 31,
-};
-typedef Enumerated<EXTCONSTRAINED, 31> BandclassCDMA2000;
-
-typedef Integer<CONSTRAINED, 0, 2047> ARFCNValueCDMA2000;
-
 class CarrierFreqCDMA2000 : public Sequence {
 private:
 	static const void *itemsInfo[2];
@@ -5170,14 +7533,6 @@ public:
 	PhysCellIdGERANNetworkColourCode& getPhysCellIdGERANNetworkColourCode() { return *static_cast<PhysCellIdGERANNetworkColourCode*>(items[0]); }
 	PhysCellIdGERANBaseStationColourCode& getPhysCellIdGERANBaseStationColourCode() { return *static_cast<PhysCellIdGERANBaseStationColourCode*>(items[1]); }
 };
-
-typedef Integer<CONSTRAINED, 0, 1023> ARFCNValueGERAN;
-
-enum BandIndicatorGERANValues {
-	dcs1800_BandIndicatorGERAN = 0,
-	pcs1900_BandIndicatorGERAN = 1,
-};
-typedef Enumerated<CONSTRAINED, 1> BandIndicatorGERAN;
 
 class CarrierFreqGERAN : public Sequence {
 private:
@@ -5483,64 +7838,11 @@ typedef Integer<CONSTRAINED, 1, maxObjectId> MeasObjectId;
 
 typedef SequenceOf<MeasObjectId, CONSTRAINED, 1, maxObjectId> MeasObjectToRemoveList;
 
-typedef Integer<CONSTRAINED, 0, maxEARFCN> ARFCNValueEUTRA;
-
-enum AllowedMeasBandwidthValues {
-	mbw6_AllowedMeasBandwidth = 0,
-	mbw15_AllowedMeasBandwidth = 1,
-	mbw25_AllowedMeasBandwidth = 2,
-	mbw50_AllowedMeasBandwidth = 3,
-	mbw75_AllowedMeasBandwidth = 4,
-	mbw100_AllowedMeasBandwidth = 5,
-};
-typedef Enumerated<CONSTRAINED, 5> AllowedMeasBandwidth;
-
-typedef Boolean PresenceAntennaPort1;
-
-typedef BitString<CONSTRAINED, 2, 2> NeighCellConfig;
-
-enum QOffsetRangeValues {
-	dB_24_QOffsetRange = 0,
-	dB_22_QOffsetRange = 1,
-	dB_20_QOffsetRange = 2,
-	dB_18_QOffsetRange = 3,
-	dB_16_QOffsetRange = 4,
-	dB_14_QOffsetRange = 5,
-	dB_12_QOffsetRange = 6,
-	dB_10_QOffsetRange = 7,
-	dB_8_QOffsetRange = 8,
-	dB_6_QOffsetRange = 9,
-	dB_5_QOffsetRange = 10,
-	dB_4_QOffsetRange = 11,
-	dB_3_QOffsetRange = 12,
-	dB_2_QOffsetRange = 13,
-	dB_1_QOffsetRange = 14,
-	dB0_QOffsetRange = 15,
-	dB1_QOffsetRange = 16,
-	dB2_QOffsetRange = 17,
-	dB3_QOffsetRange = 18,
-	dB4_QOffsetRange = 19,
-	dB5_QOffsetRange = 20,
-	dB6_QOffsetRange = 21,
-	dB8_QOffsetRange = 22,
-	dB10_QOffsetRange = 23,
-	dB12_QOffsetRange = 24,
-	dB14_QOffsetRange = 25,
-	dB16_QOffsetRange = 26,
-	dB18_QOffsetRange = 27,
-	dB20_QOffsetRange = 28,
-	dB22_QOffsetRange = 29,
-	dB24_QOffsetRange = 30,
-};
-typedef Enumerated<CONSTRAINED, 30> QOffsetRange;
-
 typedef Integer<CONSTRAINED, 1, maxCellMeas> CellIndex;
 
 typedef SequenceOf<CellIndex, CONSTRAINED, 1, maxCellMeas> CellIndexList;
 
 typedef Integer<CONSTRAINED, 1, maxCellMeas> CellsToAddModCellIndex;
-
-typedef Integer<CONSTRAINED, 0, 503> PhysCellId;
 
 class CellsToAddMod : public Sequence {
 private:
@@ -5563,42 +7865,6 @@ public:
 typedef SequenceOf<CellsToAddMod, CONSTRAINED, 1, maxCellMeas> CellsToAddModList;
 
 typedef Integer<CONSTRAINED, 1, maxCellMeas> BlackCellsToAddModCellIndex;
-
-enum PhysCellIdRangerangeValues {
-	n4_PhysCellIdRangerange = 0,
-	n8_PhysCellIdRangerange = 1,
-	n12_PhysCellIdRangerange = 2,
-	n16_PhysCellIdRangerange = 3,
-	n24_PhysCellIdRangerange = 4,
-	n32_PhysCellIdRangerange = 5,
-	n48_PhysCellIdRangerange = 6,
-	n64_PhysCellIdRangerange = 7,
-	n84_PhysCellIdRangerange = 8,
-	n96_PhysCellIdRangerange = 9,
-	n128_PhysCellIdRangerange = 10,
-	n168_PhysCellIdRangerange = 11,
-	n252_PhysCellIdRangerange = 12,
-	n504_PhysCellIdRangerange = 13,
-	spare2_PhysCellIdRangerange = 14,
-	spare1_PhysCellIdRangerange = 15,
-};
-typedef Enumerated<CONSTRAINED, 15> PhysCellIdRangerange;
-
-class PhysCellIdRange : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	PhysCellIdRange(): Sequence(&theInfo) {}
-	PhysCellIdRange(const PhysCellId& start);
-
-	void setStart(const PhysCellId& start) { *static_cast<PhysCellId*>(items[0]) = start; }
-	void setPhysCellIdRangerange(const PhysCellIdRangerange& physCellIdRangerange) { *static_cast<PhysCellIdRangerange*>(items[1]) = physCellIdRangerange; }
-
-	PhysCellId& getStart() { return *static_cast<PhysCellId*>(items[0]); }
-	PhysCellIdRangerange& getPhysCellIdRangerange() { return *static_cast<PhysCellIdRangerange*>(items[1]); }
-};
 
 class BlackCellsToAddMod : public Sequence {
 private:
@@ -5697,8 +7963,6 @@ public:
 	MeasCycleSCellr10& getMeasCycleSCellr10() { return *static_cast<MeasCycleSCellr10*>(items[10]); }
 	MeasSubframePatternConfigNeighr10& getMeasSubframePatternConfigNeighr10() { return *static_cast<MeasSubframePatternConfigNeighr10*>(items[11]); }
 };
-
-typedef Integer<CONSTRAINED, 0, 16383> ARFCNValueUTRA;
 
 typedef Integer<CONSTRAINED, -15, 15> QOffsetRangeInterRAT;
 
@@ -5827,61 +8091,6 @@ public:
 	CSGAllowedReportingCellsr9& getCsgallowedReportingCellsv930() { return *static_cast<CSGAllowedReportingCellsr9*>(items[5]); }
 };
 
-typedef SequenceOf<ARFCNValueGERAN, CONSTRAINED, 0, 31> ExplicitListOfARFCNs;
-
-typedef Integer<CONSTRAINED, 1, 8> CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing;
-
-typedef Integer<CONSTRAINED, 0, 31> CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs;
-
-class CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs(): Sequence(&theInfo) {}
-	CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs(const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing, const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs);
-
-	void setCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing(const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing) { *static_cast<CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing*>(items[0]) = carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing; }
-	void setCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs(const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs) { *static_cast<CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs*>(items[1]) = carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs; }
-
-	CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing& getCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing() { return *static_cast<CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing*>(items[0]); }
-	CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs& getCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs() { return *static_cast<CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs*>(items[1]); }
-};
-
-typedef OctetString<CONSTRAINED, 1, 16> CarrierFreqsGERANFollowingARFCNsVariableBitMapOfARFCNs;
-
-class CarrierFreqsGERANFollowingARFCNs : public Choice {
-private:
-	static const void *choicesInfo[3];
-public:
-	enum CarrierFreqsGERANFollowingARFCNsChoices {
-		explicitListOfARFCNs = 0,
-		carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs = 1,
-		carrierFreqsGERANFollowingARFCNsVariableBitMapOfARFCNs = 2,
-	};
-	static const Info theInfo;
-	CarrierFreqsGERANFollowingARFCNs(): Choice(&theInfo) {}
-};
-
-class CarrierFreqsGERAN : public Sequence {
-private:
-	static const void *itemsInfo[3];
-	static bool itemsPres[3];
-public:
-	static const Info theInfo;
-	CarrierFreqsGERAN(): Sequence(&theInfo) {}
-	CarrierFreqsGERAN(const ARFCNValueGERAN& startingARFCN, const BandIndicatorGERAN& bandIndicator, const CarrierFreqsGERANFollowingARFCNs& carrierFreqsGERANFollowingARFCNs);
-
-	void setStartingARFCN(const ARFCNValueGERAN& startingARFCN) { *static_cast<ARFCNValueGERAN*>(items[0]) = startingARFCN; }
-	void setBandIndicator(const BandIndicatorGERAN& bandIndicator) { *static_cast<BandIndicatorGERAN*>(items[1]) = bandIndicator; }
-	void setCarrierFreqsGERANFollowingARFCNs(const CarrierFreqsGERANFollowingARFCNs& carrierFreqsGERANFollowingARFCNs) { *static_cast<CarrierFreqsGERANFollowingARFCNs*>(items[2]) = carrierFreqsGERANFollowingARFCNs; }
-
-	ARFCNValueGERAN& getStartingARFCN() { return *static_cast<ARFCNValueGERAN*>(items[0]); }
-	BandIndicatorGERAN& getBandIndicator() { return *static_cast<BandIndicatorGERAN*>(items[1]); }
-	CarrierFreqsGERANFollowingARFCNs& getCarrierFreqsGERANFollowingARFCNs() { return *static_cast<CarrierFreqsGERANFollowingARFCNs*>(items[2]); }
-};
-
 typedef BitString<CONSTRAINED, 8, 8> MeasObjectGERANNccPermitted;
 
 class MeasObjectGERAN : public Sequence {
@@ -5907,8 +8116,6 @@ public:
 typedef Integer<CONSTRAINED, 0, 15> MeasObjectCDMA2000SearchWindowSize;
 
 typedef Integer<CONSTRAINED, 1, maxCellMeas> CellsToAddModCDMA2000CellIndex;
-
-typedef Integer<CONSTRAINED, 0, maxPNOffset> PhysCellIdCDMA2000;
 
 class CellsToAddModCDMA2000 : public Sequence {
 private:
@@ -6694,111 +8901,7 @@ public:
 	MeasGapConfig(): Choice(&theInfo) {}
 };
 
-typedef Boolean PreRegistrationInfoHRPDPreRegistrationAllowed;
-
-typedef Integer<CONSTRAINED, 0, 255> PreRegistrationZoneIdHRPD;
-
-typedef SequenceOf<PreRegistrationZoneIdHRPD, CONSTRAINED, 1, 2> SecondaryPreRegistrationZoneIdListHRPD;
-
-class PreRegistrationInfoHRPD : public Sequence {
-private:
-	static const void *itemsInfo[3];
-	static bool itemsPres[3];
-public:
-	static const Info theInfo;
-	PreRegistrationInfoHRPD(): Sequence(&theInfo) {}
-	PreRegistrationInfoHRPD(const PreRegistrationInfoHRPDPreRegistrationAllowed& preRegistrationInfoHRPDPreRegistrationAllowed);
-
-	void setPreRegistrationInfoHRPDPreRegistrationAllowed(const PreRegistrationInfoHRPDPreRegistrationAllowed& preRegistrationInfoHRPDPreRegistrationAllowed) { *static_cast<PreRegistrationInfoHRPDPreRegistrationAllowed*>(items[0]) = preRegistrationInfoHRPDPreRegistrationAllowed; }
-	void setPreRegistrationZoneId(const PreRegistrationZoneIdHRPD& preRegistrationZoneId) { *static_cast<PreRegistrationZoneIdHRPD*>(items[1]) = preRegistrationZoneId; }
-	void setSecondaryPreRegistrationZoneIdList(const SecondaryPreRegistrationZoneIdListHRPD& secondaryPreRegistrationZoneIdList) { *static_cast<SecondaryPreRegistrationZoneIdListHRPD*>(items[2]) = secondaryPreRegistrationZoneIdList; }
-
-	PreRegistrationInfoHRPDPreRegistrationAllowed& getPreRegistrationInfoHRPDPreRegistrationAllowed() { return *static_cast<PreRegistrationInfoHRPDPreRegistrationAllowed*>(items[0]); }
-	PreRegistrationZoneIdHRPD& getPreRegistrationZoneId() { return *static_cast<PreRegistrationZoneIdHRPD*>(items[1]); }
-	SecondaryPreRegistrationZoneIdListHRPD& getSecondaryPreRegistrationZoneIdList() { return *static_cast<SecondaryPreRegistrationZoneIdListHRPD*>(items[2]); }
-};
-
 typedef Null MeasConfigSpeedStateParsRelease;
-
-enum MobilityStateParameterst_EvaluationValues {
-	s30_MobilityStateParameterst_Evaluation = 0,
-	s60_MobilityStateParameterst_Evaluation = 1,
-	s120_MobilityStateParameterst_Evaluation = 2,
-	s180_MobilityStateParameterst_Evaluation = 3,
-	s240_MobilityStateParameterst_Evaluation = 4,
-	spare3_MobilityStateParameterst_Evaluation = 5,
-	spare2_MobilityStateParameterst_Evaluation = 6,
-	spare1_MobilityStateParameterst_Evaluation = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> MobilityStateParameterst_Evaluation;
-
-enum MobilityStateParameterst_HystNormalValues {
-	s30_MobilityStateParameterst_HystNormal = 0,
-	s60_MobilityStateParameterst_HystNormal = 1,
-	s120_MobilityStateParameterst_HystNormal = 2,
-	s180_MobilityStateParameterst_HystNormal = 3,
-	s240_MobilityStateParameterst_HystNormal = 4,
-	spare3_MobilityStateParameterst_HystNormal = 5,
-	spare2_MobilityStateParameterst_HystNormal = 6,
-	spare1_MobilityStateParameterst_HystNormal = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> MobilityStateParameterst_HystNormal;
-
-typedef Integer<CONSTRAINED, 1, 16> MobilityStateParametersNCellChangeMedium;
-
-typedef Integer<CONSTRAINED, 1, 16> MobilityStateParametersNCellChangeHigh;
-
-class MobilityStateParameters : public Sequence {
-private:
-	static const void *itemsInfo[4];
-	static bool itemsPres[4];
-public:
-	static const Info theInfo;
-	MobilityStateParameters(): Sequence(&theInfo) {}
-	MobilityStateParameters(const MobilityStateParameterst_Evaluation& mobilityStateParameterst_Evaluation, const MobilityStateParameterst_HystNormal& mobilityStateParameterst_HystNormal, const MobilityStateParametersNCellChangeMedium& mobilityStateParametersNCellChangeMedium, const MobilityStateParametersNCellChangeHigh& mobilityStateParametersNCellChangeHigh);
-
-	void setMobilityStateParameterst_Evaluation(const MobilityStateParameterst_Evaluation& mobilityStateParameterst_Evaluation) { *static_cast<MobilityStateParameterst_Evaluation*>(items[0]) = mobilityStateParameterst_Evaluation; }
-	void setMobilityStateParameterst_HystNormal(const MobilityStateParameterst_HystNormal& mobilityStateParameterst_HystNormal) { *static_cast<MobilityStateParameterst_HystNormal*>(items[1]) = mobilityStateParameterst_HystNormal; }
-	void setMobilityStateParametersNCellChangeMedium(const MobilityStateParametersNCellChangeMedium& mobilityStateParametersNCellChangeMedium) { *static_cast<MobilityStateParametersNCellChangeMedium*>(items[2]) = mobilityStateParametersNCellChangeMedium; }
-	void setMobilityStateParametersNCellChangeHigh(const MobilityStateParametersNCellChangeHigh& mobilityStateParametersNCellChangeHigh) { *static_cast<MobilityStateParametersNCellChangeHigh*>(items[3]) = mobilityStateParametersNCellChangeHigh; }
-
-	MobilityStateParameterst_Evaluation& getMobilityStateParameterst_Evaluation() { return *static_cast<MobilityStateParameterst_Evaluation*>(items[0]); }
-	MobilityStateParameterst_HystNormal& getMobilityStateParameterst_HystNormal() { return *static_cast<MobilityStateParameterst_HystNormal*>(items[1]); }
-	MobilityStateParametersNCellChangeMedium& getMobilityStateParametersNCellChangeMedium() { return *static_cast<MobilityStateParametersNCellChangeMedium*>(items[2]); }
-	MobilityStateParametersNCellChangeHigh& getMobilityStateParametersNCellChangeHigh() { return *static_cast<MobilityStateParametersNCellChangeHigh*>(items[3]); }
-};
-
-enum SpeedStateScaleFactorssf_MediumValues {
-	oDot25_SpeedStateScaleFactorssf_Medium = 0,
-	oDot5_SpeedStateScaleFactorssf_Medium = 1,
-	oDot75_SpeedStateScaleFactorssf_Medium = 2,
-	lDot0_SpeedStateScaleFactorssf_Medium = 3,
-};
-typedef Enumerated<CONSTRAINED, 3> SpeedStateScaleFactorssf_Medium;
-
-enum SpeedStateScaleFactorssf_HighValues {
-	oDot25_SpeedStateScaleFactorssf_High = 0,
-	oDot5_SpeedStateScaleFactorssf_High = 1,
-	oDot75_SpeedStateScaleFactorssf_High = 2,
-	lDot0_SpeedStateScaleFactorssf_High = 3,
-};
-typedef Enumerated<CONSTRAINED, 3> SpeedStateScaleFactorssf_High;
-
-class SpeedStateScaleFactors : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	SpeedStateScaleFactors(): Sequence(&theInfo) {}
-	SpeedStateScaleFactors(const SpeedStateScaleFactorssf_Medium& speedStateScaleFactorssf_Medium, const SpeedStateScaleFactorssf_High& speedStateScaleFactorssf_High);
-
-	void setSpeedStateScaleFactorssf_Medium(const SpeedStateScaleFactorssf_Medium& speedStateScaleFactorssf_Medium) { *static_cast<SpeedStateScaleFactorssf_Medium*>(items[0]) = speedStateScaleFactorssf_Medium; }
-	void setSpeedStateScaleFactorssf_High(const SpeedStateScaleFactorssf_High& speedStateScaleFactorssf_High) { *static_cast<SpeedStateScaleFactorssf_High*>(items[1]) = speedStateScaleFactorssf_High; }
-
-	SpeedStateScaleFactorssf_Medium& getSpeedStateScaleFactorssf_Medium() { return *static_cast<SpeedStateScaleFactorssf_Medium*>(items[0]); }
-	SpeedStateScaleFactorssf_High& getSpeedStateScaleFactorssf_High() { return *static_cast<SpeedStateScaleFactorssf_High*>(items[1]); }
-};
 
 class MeasConfigSpeedStateParsSetup : public Sequence {
 private:
@@ -6945,251 +9048,7 @@ enum MobilityControlInfot304Values {
 };
 typedef Enumerated<CONSTRAINED, 7> MobilityControlInfot304;
 
-enum RACHConfigCommonPreambleInfonumberOfRA_PreamblesValues {
-	n4_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 0,
-	n8_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 1,
-	n12_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 2,
-	n16_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 3,
-	n20_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 4,
-	n24_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 5,
-	n28_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 6,
-	n32_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 7,
-	n36_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 8,
-	n40_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 9,
-	n44_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 10,
-	n48_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 11,
-	n52_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 12,
-	n56_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 13,
-	n60_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 14,
-	n64_RACHConfigCommonPreambleInfonumberOfRA_Preambles = 15,
-};
-typedef Enumerated<CONSTRAINED, 15> RACHConfigCommonPreambleInfonumberOfRA_Preambles;
-
-enum RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupAValues {
-	n4_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 0,
-	n8_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 1,
-	n12_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 2,
-	n16_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 3,
-	n20_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 4,
-	n24_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 5,
-	n28_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 6,
-	n32_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 7,
-	n36_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 8,
-	n40_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 9,
-	n44_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 10,
-	n48_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 11,
-	n52_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 12,
-	n56_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 13,
-	n60_RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA = 14,
-};
-typedef Enumerated<CONSTRAINED, 14> RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA;
-
-enum RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupAValues {
-	b56_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA = 0,
-	b144_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA = 1,
-	b208_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA = 2,
-	b256_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA = 3,
-};
-typedef Enumerated<CONSTRAINED, 3> RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA;
-
-enum RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupBValues {
-	minusinfinity_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 0,
-	dB0_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 1,
-	dB5_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 2,
-	dB8_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 3,
-	dB10_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 4,
-	dB12_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 5,
-	dB15_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 6,
-	dB18_RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB;
-
-class RACHConfigCommonPreambleInfoPreamblesGroupAConfig : public Sequence {
-private:
-	static const void *itemsInfo[3];
-	static bool itemsPres[3];
-public:
-	static const Info theInfo;
-	RACHConfigCommonPreambleInfoPreamblesGroupAConfig(): Sequence(&theInfo) {}
-	RACHConfigCommonPreambleInfoPreamblesGroupAConfig(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA, const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA, const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB);
-
-	void setRACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA) { *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA*>(items[0]) = rACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA; }
-	void setRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA) { *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA*>(items[1]) = rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA; }
-	void setRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB) { *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB*>(items[2]) = rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB; }
-
-	RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA& getRACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA() { return *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA*>(items[0]); }
-	RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA& getRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA() { return *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA*>(items[1]); }
-	RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB& getRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB() { return *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB*>(items[2]); }
-};
-
-class RACHConfigCommonPreambleInfo : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	RACHConfigCommonPreambleInfo(): Sequence(&theInfo) {}
-	RACHConfigCommonPreambleInfo(const RACHConfigCommonPreambleInfonumberOfRA_Preambles& rACHConfigCommonPreambleInfonumberOfRA_Preambles);
-
-	void setRACHConfigCommonPreambleInfonumberOfRA_Preambles(const RACHConfigCommonPreambleInfonumberOfRA_Preambles& rACHConfigCommonPreambleInfonumberOfRA_Preambles) { *static_cast<RACHConfigCommonPreambleInfonumberOfRA_Preambles*>(items[0]) = rACHConfigCommonPreambleInfonumberOfRA_Preambles; }
-	void setRACHConfigCommonPreambleInfoPreamblesGroupAConfig(const RACHConfigCommonPreambleInfoPreamblesGroupAConfig& rACHConfigCommonPreambleInfoPreamblesGroupAConfig) { *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfig*>(items[1]) = rACHConfigCommonPreambleInfoPreamblesGroupAConfig; }
-
-	RACHConfigCommonPreambleInfonumberOfRA_Preambles& getRACHConfigCommonPreambleInfonumberOfRA_Preambles() { return *static_cast<RACHConfigCommonPreambleInfonumberOfRA_Preambles*>(items[0]); }
-	RACHConfigCommonPreambleInfoPreamblesGroupAConfig& getRACHConfigCommonPreambleInfoPreamblesGroupAConfig() { return *static_cast<RACHConfigCommonPreambleInfoPreamblesGroupAConfig*>(items[1]); }
-};
-
-enum RACHConfigCommonPowerRampingParameterspowerRampingStepValues {
-	dB0_RACHConfigCommonPowerRampingParameterspowerRampingStep = 0,
-	dB2_RACHConfigCommonPowerRampingParameterspowerRampingStep = 1,
-	dB4_RACHConfigCommonPowerRampingParameterspowerRampingStep = 2,
-	dB6_RACHConfigCommonPowerRampingParameterspowerRampingStep = 3,
-};
-typedef Enumerated<CONSTRAINED, 3> RACHConfigCommonPowerRampingParameterspowerRampingStep;
-
-enum RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPowerValues {
-	dBm_120_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 0,
-	dBm_118_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 1,
-	dBm_116_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 2,
-	dBm_114_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 3,
-	dBm_112_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 4,
-	dBm_110_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 5,
-	dBm_108_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 6,
-	dBm_106_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 7,
-	dBm_104_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 8,
-	dBm_102_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 9,
-	dBm_100_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 10,
-	dBm_98_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 11,
-	dBm_96_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 12,
-	dBm_94_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 13,
-	dBm_92_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 14,
-	dBm_90_RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower = 15,
-};
-typedef Enumerated<CONSTRAINED, 15> RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower;
-
-class RACHConfigCommonPowerRampingParameters : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	RACHConfigCommonPowerRampingParameters(): Sequence(&theInfo) {}
-	RACHConfigCommonPowerRampingParameters(const RACHConfigCommonPowerRampingParameterspowerRampingStep& rACHConfigCommonPowerRampingParameterspowerRampingStep, const RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower& rACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower);
-
-	void setRACHConfigCommonPowerRampingParameterspowerRampingStep(const RACHConfigCommonPowerRampingParameterspowerRampingStep& rACHConfigCommonPowerRampingParameterspowerRampingStep) { *static_cast<RACHConfigCommonPowerRampingParameterspowerRampingStep*>(items[0]) = rACHConfigCommonPowerRampingParameterspowerRampingStep; }
-	void setRACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower(const RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower& rACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower) { *static_cast<RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower*>(items[1]) = rACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower; }
-
-	RACHConfigCommonPowerRampingParameterspowerRampingStep& getRACHConfigCommonPowerRampingParameterspowerRampingStep() { return *static_cast<RACHConfigCommonPowerRampingParameterspowerRampingStep*>(items[0]); }
-	RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower& getRACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower() { return *static_cast<RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower*>(items[1]); }
-};
-
-enum RACHConfigCommonRaSupervisionInfopreambleTransMaxValues {
-	n3_RACHConfigCommonRaSupervisionInfopreambleTransMax = 0,
-	n4_RACHConfigCommonRaSupervisionInfopreambleTransMax = 1,
-	n5_RACHConfigCommonRaSupervisionInfopreambleTransMax = 2,
-	n6_RACHConfigCommonRaSupervisionInfopreambleTransMax = 3,
-	n7_RACHConfigCommonRaSupervisionInfopreambleTransMax = 4,
-	n8_RACHConfigCommonRaSupervisionInfopreambleTransMax = 5,
-	n10_RACHConfigCommonRaSupervisionInfopreambleTransMax = 6,
-	n20_RACHConfigCommonRaSupervisionInfopreambleTransMax = 7,
-	n50_RACHConfigCommonRaSupervisionInfopreambleTransMax = 8,
-	n100_RACHConfigCommonRaSupervisionInfopreambleTransMax = 9,
-	n200_RACHConfigCommonRaSupervisionInfopreambleTransMax = 10,
-};
-typedef Enumerated<CONSTRAINED, 10> RACHConfigCommonRaSupervisionInfopreambleTransMax;
-
-enum RACHConfigCommonRaSupervisionInfora_ResponseWindowSizeValues {
-	sf2_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 0,
-	sf3_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 1,
-	sf4_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 2,
-	sf5_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 3,
-	sf6_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 4,
-	sf7_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 5,
-	sf8_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 6,
-	sf10_RACHConfigCommonRaSupervisionInfora_ResponseWindowSize = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> RACHConfigCommonRaSupervisionInfora_ResponseWindowSize;
-
-enum RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimerValues {
-	sf8_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 0,
-	sf16_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 1,
-	sf24_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 2,
-	sf32_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 3,
-	sf40_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 4,
-	sf48_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 5,
-	sf56_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 6,
-	sf64_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer;
-
-class RACHConfigCommonRaSupervisionInfo : public Sequence {
-private:
-	static const void *itemsInfo[3];
-	static bool itemsPres[3];
-public:
-	static const Info theInfo;
-	RACHConfigCommonRaSupervisionInfo(): Sequence(&theInfo) {}
-	RACHConfigCommonRaSupervisionInfo(const RACHConfigCommonRaSupervisionInfopreambleTransMax& rACHConfigCommonRaSupervisionInfopreambleTransMax, const RACHConfigCommonRaSupervisionInfora_ResponseWindowSize& rACHConfigCommonRaSupervisionInfora_ResponseWindowSize, const RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer& rACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer);
-
-	void setRACHConfigCommonRaSupervisionInfopreambleTransMax(const RACHConfigCommonRaSupervisionInfopreambleTransMax& rACHConfigCommonRaSupervisionInfopreambleTransMax) { *static_cast<RACHConfigCommonRaSupervisionInfopreambleTransMax*>(items[0]) = rACHConfigCommonRaSupervisionInfopreambleTransMax; }
-	void setRACHConfigCommonRaSupervisionInfora_ResponseWindowSize(const RACHConfigCommonRaSupervisionInfora_ResponseWindowSize& rACHConfigCommonRaSupervisionInfora_ResponseWindowSize) { *static_cast<RACHConfigCommonRaSupervisionInfora_ResponseWindowSize*>(items[1]) = rACHConfigCommonRaSupervisionInfora_ResponseWindowSize; }
-	void setRACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer(const RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer& rACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer) { *static_cast<RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer*>(items[2]) = rACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer; }
-
-	RACHConfigCommonRaSupervisionInfopreambleTransMax& getRACHConfigCommonRaSupervisionInfopreambleTransMax() { return *static_cast<RACHConfigCommonRaSupervisionInfopreambleTransMax*>(items[0]); }
-	RACHConfigCommonRaSupervisionInfora_ResponseWindowSize& getRACHConfigCommonRaSupervisionInfora_ResponseWindowSize() { return *static_cast<RACHConfigCommonRaSupervisionInfora_ResponseWindowSize*>(items[1]); }
-	RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer& getRACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer() { return *static_cast<RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer*>(items[2]); }
-};
-
-typedef Integer<CONSTRAINED, 1, 8> RACHConfigCommonMaxHARQMsg3Tx;
-
-class RACHConfigCommon : public Sequence {
-private:
-	static const void *itemsInfo[4];
-	static bool itemsPres[4];
-public:
-	static const Info theInfo;
-	RACHConfigCommon(): Sequence(&theInfo) {}
-	RACHConfigCommon(const RACHConfigCommonPreambleInfo& rACHConfigCommonPreambleInfo, const RACHConfigCommonPowerRampingParameters& rACHConfigCommonPowerRampingParameters, const RACHConfigCommonRaSupervisionInfo& rACHConfigCommonRaSupervisionInfo, const RACHConfigCommonMaxHARQMsg3Tx& rACHConfigCommonMaxHARQMsg3Tx);
-
-	void setRACHConfigCommonPreambleInfo(const RACHConfigCommonPreambleInfo& rACHConfigCommonPreambleInfo) { *static_cast<RACHConfigCommonPreambleInfo*>(items[0]) = rACHConfigCommonPreambleInfo; }
-	void setRACHConfigCommonPowerRampingParameters(const RACHConfigCommonPowerRampingParameters& rACHConfigCommonPowerRampingParameters) { *static_cast<RACHConfigCommonPowerRampingParameters*>(items[1]) = rACHConfigCommonPowerRampingParameters; }
-	void setRACHConfigCommonRaSupervisionInfo(const RACHConfigCommonRaSupervisionInfo& rACHConfigCommonRaSupervisionInfo) { *static_cast<RACHConfigCommonRaSupervisionInfo*>(items[2]) = rACHConfigCommonRaSupervisionInfo; }
-	void setRACHConfigCommonMaxHARQMsg3Tx(const RACHConfigCommonMaxHARQMsg3Tx& rACHConfigCommonMaxHARQMsg3Tx) { *static_cast<RACHConfigCommonMaxHARQMsg3Tx*>(items[3]) = rACHConfigCommonMaxHARQMsg3Tx; }
-
-	RACHConfigCommonPreambleInfo& getRACHConfigCommonPreambleInfo() { return *static_cast<RACHConfigCommonPreambleInfo*>(items[0]); }
-	RACHConfigCommonPowerRampingParameters& getRACHConfigCommonPowerRampingParameters() { return *static_cast<RACHConfigCommonPowerRampingParameters*>(items[1]); }
-	RACHConfigCommonRaSupervisionInfo& getRACHConfigCommonRaSupervisionInfo() { return *static_cast<RACHConfigCommonRaSupervisionInfo*>(items[2]); }
-	RACHConfigCommonMaxHARQMsg3Tx& getRACHConfigCommonMaxHARQMsg3Tx() { return *static_cast<RACHConfigCommonMaxHARQMsg3Tx*>(items[3]); }
-};
-
 typedef Integer<CONSTRAINED, 0, 837> PRACHConfigRootSequenceIndex;
-
-typedef Integer<CONSTRAINED, 0, 63> PRACHConfigInfoPrachConfigIndex;
-
-typedef Boolean PRACHConfigInfoHighSpeedFlag;
-
-typedef Integer<CONSTRAINED, 0, 15> PRACHConfigInfoZeroCorrelationZoneConfig;
-
-typedef Integer<CONSTRAINED, 0, 94> PRACHConfigInfoPrachFreqOffset;
-
-class PRACHConfigInfo : public Sequence {
-private:
-	static const void *itemsInfo[4];
-	static bool itemsPres[4];
-public:
-	static const Info theInfo;
-	PRACHConfigInfo(): Sequence(&theInfo) {}
-	PRACHConfigInfo(const PRACHConfigInfoPrachConfigIndex& pRACHConfigInfoPrachConfigIndex, const PRACHConfigInfoHighSpeedFlag& pRACHConfigInfoHighSpeedFlag, const PRACHConfigInfoZeroCorrelationZoneConfig& pRACHConfigInfoZeroCorrelationZoneConfig, const PRACHConfigInfoPrachFreqOffset& pRACHConfigInfoPrachFreqOffset);
-
-	void setPRACHConfigInfoPrachConfigIndex(const PRACHConfigInfoPrachConfigIndex& pRACHConfigInfoPrachConfigIndex) { *static_cast<PRACHConfigInfoPrachConfigIndex*>(items[0]) = pRACHConfigInfoPrachConfigIndex; }
-	void setPRACHConfigInfoHighSpeedFlag(const PRACHConfigInfoHighSpeedFlag& pRACHConfigInfoHighSpeedFlag) { *static_cast<PRACHConfigInfoHighSpeedFlag*>(items[1]) = pRACHConfigInfoHighSpeedFlag; }
-	void setPRACHConfigInfoZeroCorrelationZoneConfig(const PRACHConfigInfoZeroCorrelationZoneConfig& pRACHConfigInfoZeroCorrelationZoneConfig) { *static_cast<PRACHConfigInfoZeroCorrelationZoneConfig*>(items[2]) = pRACHConfigInfoZeroCorrelationZoneConfig; }
-	void setPRACHConfigInfoPrachFreqOffset(const PRACHConfigInfoPrachFreqOffset& pRACHConfigInfoPrachFreqOffset) { *static_cast<PRACHConfigInfoPrachFreqOffset*>(items[3]) = pRACHConfigInfoPrachFreqOffset; }
-
-	PRACHConfigInfoPrachConfigIndex& getPRACHConfigInfoPrachConfigIndex() { return *static_cast<PRACHConfigInfoPrachConfigIndex*>(items[0]); }
-	PRACHConfigInfoHighSpeedFlag& getPRACHConfigInfoHighSpeedFlag() { return *static_cast<PRACHConfigInfoHighSpeedFlag*>(items[1]); }
-	PRACHConfigInfoZeroCorrelationZoneConfig& getPRACHConfigInfoZeroCorrelationZoneConfig() { return *static_cast<PRACHConfigInfoZeroCorrelationZoneConfig*>(items[2]); }
-	PRACHConfigInfoPrachFreqOffset& getPRACHConfigInfoPrachFreqOffset() { return *static_cast<PRACHConfigInfoPrachFreqOffset*>(items[3]); }
-};
 
 class PRACHConfig : public Sequence {
 private:
@@ -7205,306 +9064,6 @@ public:
 
 	PRACHConfigRootSequenceIndex& getPRACHConfigRootSequenceIndex() { return *static_cast<PRACHConfigRootSequenceIndex*>(items[0]); }
 	PRACHConfigInfo& getPrachConfigInfo() { return *static_cast<PRACHConfigInfo*>(items[1]); }
-};
-
-typedef Integer<CONSTRAINED, -60, 50> PDSCHConfigCommonReferenceSignalPower;
-
-typedef Integer<CONSTRAINED, 0, 3> PDSCHConfigCommonPb;
-
-class PDSCHConfigCommon : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	PDSCHConfigCommon(): Sequence(&theInfo) {}
-	PDSCHConfigCommon(const PDSCHConfigCommonReferenceSignalPower& pDSCHConfigCommonReferenceSignalPower, const PDSCHConfigCommonPb& pDSCHConfigCommonPb);
-
-	void setPDSCHConfigCommonReferenceSignalPower(const PDSCHConfigCommonReferenceSignalPower& pDSCHConfigCommonReferenceSignalPower) { *static_cast<PDSCHConfigCommonReferenceSignalPower*>(items[0]) = pDSCHConfigCommonReferenceSignalPower; }
-	void setPDSCHConfigCommonPb(const PDSCHConfigCommonPb& pDSCHConfigCommonPb) { *static_cast<PDSCHConfigCommonPb*>(items[1]) = pDSCHConfigCommonPb; }
-
-	PDSCHConfigCommonReferenceSignalPower& getPDSCHConfigCommonReferenceSignalPower() { return *static_cast<PDSCHConfigCommonReferenceSignalPower*>(items[0]); }
-	PDSCHConfigCommonPb& getPDSCHConfigCommonPb() { return *static_cast<PDSCHConfigCommonPb*>(items[1]); }
-};
-
-typedef Integer<CONSTRAINED, 1, 4> PUSCHConfigCommonPuschConfigBasicNSB;
-
-enum PUSCHConfigCommonPuschConfigBasichoppingModeValues {
-	interSubFrame_PUSCHConfigCommonPuschConfigBasichoppingMode = 0,
-	intraAndInterSubFrame_PUSCHConfigCommonPuschConfigBasichoppingMode = 1,
-};
-typedef Enumerated<CONSTRAINED, 1> PUSCHConfigCommonPuschConfigBasichoppingMode;
-
-typedef Integer<CONSTRAINED, 0, 98> PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset;
-
-typedef Boolean PUSCHConfigCommonPuschConfigBasicEnable64QAM;
-
-class PUSCHConfigCommonPuschConfigBasic : public Sequence {
-private:
-	static const void *itemsInfo[4];
-	static bool itemsPres[4];
-public:
-	static const Info theInfo;
-	PUSCHConfigCommonPuschConfigBasic(): Sequence(&theInfo) {}
-	PUSCHConfigCommonPuschConfigBasic(const PUSCHConfigCommonPuschConfigBasicNSB& pUSCHConfigCommonPuschConfigBasicNSB, const PUSCHConfigCommonPuschConfigBasichoppingMode& pUSCHConfigCommonPuschConfigBasichoppingMode, const PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset& pUSCHConfigCommonPuschConfigBasicPuschHoppingOffset, const PUSCHConfigCommonPuschConfigBasicEnable64QAM& pUSCHConfigCommonPuschConfigBasicEnable64QAM);
-
-	void setPUSCHConfigCommonPuschConfigBasicNSB(const PUSCHConfigCommonPuschConfigBasicNSB& pUSCHConfigCommonPuschConfigBasicNSB) { *static_cast<PUSCHConfigCommonPuschConfigBasicNSB*>(items[0]) = pUSCHConfigCommonPuschConfigBasicNSB; }
-	void setPUSCHConfigCommonPuschConfigBasichoppingMode(const PUSCHConfigCommonPuschConfigBasichoppingMode& pUSCHConfigCommonPuschConfigBasichoppingMode) { *static_cast<PUSCHConfigCommonPuschConfigBasichoppingMode*>(items[1]) = pUSCHConfigCommonPuschConfigBasichoppingMode; }
-	void setPUSCHConfigCommonPuschConfigBasicPuschHoppingOffset(const PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset& pUSCHConfigCommonPuschConfigBasicPuschHoppingOffset) { *static_cast<PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset*>(items[2]) = pUSCHConfigCommonPuschConfigBasicPuschHoppingOffset; }
-	void setPUSCHConfigCommonPuschConfigBasicEnable64QAM(const PUSCHConfigCommonPuschConfigBasicEnable64QAM& pUSCHConfigCommonPuschConfigBasicEnable64QAM) { *static_cast<PUSCHConfigCommonPuschConfigBasicEnable64QAM*>(items[3]) = pUSCHConfigCommonPuschConfigBasicEnable64QAM; }
-
-	PUSCHConfigCommonPuschConfigBasicNSB& getPUSCHConfigCommonPuschConfigBasicNSB() { return *static_cast<PUSCHConfigCommonPuschConfigBasicNSB*>(items[0]); }
-	PUSCHConfigCommonPuschConfigBasichoppingMode& getPUSCHConfigCommonPuschConfigBasichoppingMode() { return *static_cast<PUSCHConfigCommonPuschConfigBasichoppingMode*>(items[1]); }
-	PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset& getPUSCHConfigCommonPuschConfigBasicPuschHoppingOffset() { return *static_cast<PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset*>(items[2]); }
-	PUSCHConfigCommonPuschConfigBasicEnable64QAM& getPUSCHConfigCommonPuschConfigBasicEnable64QAM() { return *static_cast<PUSCHConfigCommonPuschConfigBasicEnable64QAM*>(items[3]); }
-};
-
-typedef Boolean ULReferenceSignalsPUSCHGroupHoppingEnabled;
-
-typedef Integer<CONSTRAINED, 0, 29> ULReferenceSignalsPUSCHGroupAssignmentPUSCH;
-
-typedef Boolean ULReferenceSignalsPUSCHSequenceHoppingEnabled;
-
-typedef Integer<CONSTRAINED, 0, 7> ULReferenceSignalsPUSCHCyclicShift;
-
-class ULReferenceSignalsPUSCH : public Sequence {
-private:
-	static const void *itemsInfo[4];
-	static bool itemsPres[4];
-public:
-	static const Info theInfo;
-	ULReferenceSignalsPUSCH(): Sequence(&theInfo) {}
-	ULReferenceSignalsPUSCH(const ULReferenceSignalsPUSCHGroupHoppingEnabled& uLReferenceSignalsPUSCHGroupHoppingEnabled, const ULReferenceSignalsPUSCHGroupAssignmentPUSCH& uLReferenceSignalsPUSCHGroupAssignmentPUSCH, const ULReferenceSignalsPUSCHSequenceHoppingEnabled& uLReferenceSignalsPUSCHSequenceHoppingEnabled, const ULReferenceSignalsPUSCHCyclicShift& uLReferenceSignalsPUSCHCyclicShift);
-
-	void setULReferenceSignalsPUSCHGroupHoppingEnabled(const ULReferenceSignalsPUSCHGroupHoppingEnabled& uLReferenceSignalsPUSCHGroupHoppingEnabled) { *static_cast<ULReferenceSignalsPUSCHGroupHoppingEnabled*>(items[0]) = uLReferenceSignalsPUSCHGroupHoppingEnabled; }
-	void setULReferenceSignalsPUSCHGroupAssignmentPUSCH(const ULReferenceSignalsPUSCHGroupAssignmentPUSCH& uLReferenceSignalsPUSCHGroupAssignmentPUSCH) { *static_cast<ULReferenceSignalsPUSCHGroupAssignmentPUSCH*>(items[1]) = uLReferenceSignalsPUSCHGroupAssignmentPUSCH; }
-	void setULReferenceSignalsPUSCHSequenceHoppingEnabled(const ULReferenceSignalsPUSCHSequenceHoppingEnabled& uLReferenceSignalsPUSCHSequenceHoppingEnabled) { *static_cast<ULReferenceSignalsPUSCHSequenceHoppingEnabled*>(items[2]) = uLReferenceSignalsPUSCHSequenceHoppingEnabled; }
-	void setULReferenceSignalsPUSCHCyclicShift(const ULReferenceSignalsPUSCHCyclicShift& uLReferenceSignalsPUSCHCyclicShift) { *static_cast<ULReferenceSignalsPUSCHCyclicShift*>(items[3]) = uLReferenceSignalsPUSCHCyclicShift; }
-
-	ULReferenceSignalsPUSCHGroupHoppingEnabled& getULReferenceSignalsPUSCHGroupHoppingEnabled() { return *static_cast<ULReferenceSignalsPUSCHGroupHoppingEnabled*>(items[0]); }
-	ULReferenceSignalsPUSCHGroupAssignmentPUSCH& getULReferenceSignalsPUSCHGroupAssignmentPUSCH() { return *static_cast<ULReferenceSignalsPUSCHGroupAssignmentPUSCH*>(items[1]); }
-	ULReferenceSignalsPUSCHSequenceHoppingEnabled& getULReferenceSignalsPUSCHSequenceHoppingEnabled() { return *static_cast<ULReferenceSignalsPUSCHSequenceHoppingEnabled*>(items[2]); }
-	ULReferenceSignalsPUSCHCyclicShift& getULReferenceSignalsPUSCHCyclicShift() { return *static_cast<ULReferenceSignalsPUSCHCyclicShift*>(items[3]); }
-};
-
-class PUSCHConfigCommon : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	PUSCHConfigCommon(): Sequence(&theInfo) {}
-	PUSCHConfigCommon(const PUSCHConfigCommonPuschConfigBasic& pUSCHConfigCommonPuschConfigBasic, const ULReferenceSignalsPUSCH& ulReferenceSignalsPUSCH);
-
-	void setPUSCHConfigCommonPuschConfigBasic(const PUSCHConfigCommonPuschConfigBasic& pUSCHConfigCommonPuschConfigBasic) { *static_cast<PUSCHConfigCommonPuschConfigBasic*>(items[0]) = pUSCHConfigCommonPuschConfigBasic; }
-	void setUlReferenceSignalsPUSCH(const ULReferenceSignalsPUSCH& ulReferenceSignalsPUSCH) { *static_cast<ULReferenceSignalsPUSCH*>(items[1]) = ulReferenceSignalsPUSCH; }
-
-	PUSCHConfigCommonPuschConfigBasic& getPUSCHConfigCommonPuschConfigBasic() { return *static_cast<PUSCHConfigCommonPuschConfigBasic*>(items[0]); }
-	ULReferenceSignalsPUSCH& getUlReferenceSignalsPUSCH() { return *static_cast<ULReferenceSignalsPUSCH*>(items[1]); }
-};
-
-enum PUCCHConfigCommondeltaPUCCH_ShiftValues {
-	ds1_PUCCHConfigCommondeltaPUCCH_Shift = 0,
-	ds2_PUCCHConfigCommondeltaPUCCH_Shift = 1,
-	ds3_PUCCHConfigCommondeltaPUCCH_Shift = 2,
-};
-typedef Enumerated<CONSTRAINED, 2> PUCCHConfigCommondeltaPUCCH_Shift;
-
-typedef Integer<CONSTRAINED, 0, 98> PUCCHConfigCommonNRBCQI;
-
-typedef Integer<CONSTRAINED, 0, 7> PUCCHConfigCommonNCSAN;
-
-typedef Integer<CONSTRAINED, 0, 2047> PUCCHConfigCommonN1PUCCHAN;
-
-class PUCCHConfigCommon : public Sequence {
-private:
-	static const void *itemsInfo[4];
-	static bool itemsPres[4];
-public:
-	static const Info theInfo;
-	PUCCHConfigCommon(): Sequence(&theInfo) {}
-	PUCCHConfigCommon(const PUCCHConfigCommondeltaPUCCH_Shift& pUCCHConfigCommondeltaPUCCH_Shift, const PUCCHConfigCommonNRBCQI& pUCCHConfigCommonNRBCQI, const PUCCHConfigCommonNCSAN& pUCCHConfigCommonNCSAN, const PUCCHConfigCommonN1PUCCHAN& pUCCHConfigCommonN1PUCCHAN);
-
-	void setPUCCHConfigCommondeltaPUCCH_Shift(const PUCCHConfigCommondeltaPUCCH_Shift& pUCCHConfigCommondeltaPUCCH_Shift) { *static_cast<PUCCHConfigCommondeltaPUCCH_Shift*>(items[0]) = pUCCHConfigCommondeltaPUCCH_Shift; }
-	void setPUCCHConfigCommonNRBCQI(const PUCCHConfigCommonNRBCQI& pUCCHConfigCommonNRBCQI) { *static_cast<PUCCHConfigCommonNRBCQI*>(items[1]) = pUCCHConfigCommonNRBCQI; }
-	void setPUCCHConfigCommonNCSAN(const PUCCHConfigCommonNCSAN& pUCCHConfigCommonNCSAN) { *static_cast<PUCCHConfigCommonNCSAN*>(items[2]) = pUCCHConfigCommonNCSAN; }
-	void setPUCCHConfigCommonN1PUCCHAN(const PUCCHConfigCommonN1PUCCHAN& pUCCHConfigCommonN1PUCCHAN) { *static_cast<PUCCHConfigCommonN1PUCCHAN*>(items[3]) = pUCCHConfigCommonN1PUCCHAN; }
-
-	PUCCHConfigCommondeltaPUCCH_Shift& getPUCCHConfigCommondeltaPUCCH_Shift() { return *static_cast<PUCCHConfigCommondeltaPUCCH_Shift*>(items[0]); }
-	PUCCHConfigCommonNRBCQI& getPUCCHConfigCommonNRBCQI() { return *static_cast<PUCCHConfigCommonNRBCQI*>(items[1]); }
-	PUCCHConfigCommonNCSAN& getPUCCHConfigCommonNCSAN() { return *static_cast<PUCCHConfigCommonNCSAN*>(items[2]); }
-	PUCCHConfigCommonN1PUCCHAN& getPUCCHConfigCommonN1PUCCHAN() { return *static_cast<PUCCHConfigCommonN1PUCCHAN*>(items[3]); }
-};
-
-typedef Null SoundingRSULConfigCommonRelease;
-
-enum SoundingRSULConfigCommonSetupsrs_BandwidthConfigValues {
-	bw0_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 0,
-	bw1_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 1,
-	bw2_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 2,
-	bw3_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 3,
-	bw4_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 4,
-	bw5_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 5,
-	bw6_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 6,
-	bw7_SoundingRSULConfigCommonSetupsrs_BandwidthConfig = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> SoundingRSULConfigCommonSetupsrs_BandwidthConfig;
-
-enum SoundingRSULConfigCommonSetupsrs_SubframeConfigValues {
-	sc0_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 0,
-	sc1_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 1,
-	sc2_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 2,
-	sc3_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 3,
-	sc4_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 4,
-	sc5_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 5,
-	sc6_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 6,
-	sc7_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 7,
-	sc8_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 8,
-	sc9_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 9,
-	sc10_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 10,
-	sc11_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 11,
-	sc12_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 12,
-	sc13_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 13,
-	sc14_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 14,
-	sc15_SoundingRSULConfigCommonSetupsrs_SubframeConfig = 15,
-};
-typedef Enumerated<CONSTRAINED, 15> SoundingRSULConfigCommonSetupsrs_SubframeConfig;
-
-typedef Boolean SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission;
-
-enum SoundingRSULConfigCommonSetupsrs_MaxUpPtsValues {
-	true_SoundingRSULConfigCommonSetupsrs_MaxUpPts = 0,
-};
-typedef Enumerated<CONSTRAINED, 0> SoundingRSULConfigCommonSetupsrs_MaxUpPts;
-
-class SoundingRSULConfigCommonSetup : public Sequence {
-private:
-	static const void *itemsInfo[4];
-	static bool itemsPres[4];
-public:
-	static const Info theInfo;
-	SoundingRSULConfigCommonSetup(): Sequence(&theInfo) {}
-	SoundingRSULConfigCommonSetup(const SoundingRSULConfigCommonSetupsrs_BandwidthConfig& soundingRSULConfigCommonSetupsrs_BandwidthConfig, const SoundingRSULConfigCommonSetupsrs_SubframeConfig& soundingRSULConfigCommonSetupsrs_SubframeConfig, const SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission& soundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission);
-
-	void setSoundingRSULConfigCommonSetupsrs_BandwidthConfig(const SoundingRSULConfigCommonSetupsrs_BandwidthConfig& soundingRSULConfigCommonSetupsrs_BandwidthConfig) { *static_cast<SoundingRSULConfigCommonSetupsrs_BandwidthConfig*>(items[0]) = soundingRSULConfigCommonSetupsrs_BandwidthConfig; }
-	void setSoundingRSULConfigCommonSetupsrs_SubframeConfig(const SoundingRSULConfigCommonSetupsrs_SubframeConfig& soundingRSULConfigCommonSetupsrs_SubframeConfig) { *static_cast<SoundingRSULConfigCommonSetupsrs_SubframeConfig*>(items[1]) = soundingRSULConfigCommonSetupsrs_SubframeConfig; }
-	void setSoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission(const SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission& soundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission) { *static_cast<SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission*>(items[2]) = soundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission; }
-	void setSoundingRSULConfigCommonSetupsrs_MaxUpPts(const SoundingRSULConfigCommonSetupsrs_MaxUpPts& soundingRSULConfigCommonSetupsrs_MaxUpPts) { *static_cast<SoundingRSULConfigCommonSetupsrs_MaxUpPts*>(items[3]) = soundingRSULConfigCommonSetupsrs_MaxUpPts; }
-
-	SoundingRSULConfigCommonSetupsrs_BandwidthConfig& getSoundingRSULConfigCommonSetupsrs_BandwidthConfig() { return *static_cast<SoundingRSULConfigCommonSetupsrs_BandwidthConfig*>(items[0]); }
-	SoundingRSULConfigCommonSetupsrs_SubframeConfig& getSoundingRSULConfigCommonSetupsrs_SubframeConfig() { return *static_cast<SoundingRSULConfigCommonSetupsrs_SubframeConfig*>(items[1]); }
-	SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission& getSoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission() { return *static_cast<SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission*>(items[2]); }
-	SoundingRSULConfigCommonSetupsrs_MaxUpPts& getSoundingRSULConfigCommonSetupsrs_MaxUpPts() { return *static_cast<SoundingRSULConfigCommonSetupsrs_MaxUpPts*>(items[3]); }
-};
-
-class SoundingRSULConfigCommon : public Choice {
-private:
-	static const void *choicesInfo[2];
-public:
-	enum SoundingRSULConfigCommonChoices {
-		soundingRSULConfigCommonRelease = 0,
-		soundingRSULConfigCommonSetup = 1,
-	};
-	static const Info theInfo;
-	SoundingRSULConfigCommon(): Choice(&theInfo) {}
-};
-
-typedef Integer<CONSTRAINED, -126, 24> UplinkPowerControlCommonP0NominalPUSCH;
-
-enum UplinkPowerControlCommonalphaValues {
-	al0_UplinkPowerControlCommonalpha = 0,
-	al04_UplinkPowerControlCommonalpha = 1,
-	al05_UplinkPowerControlCommonalpha = 2,
-	al06_UplinkPowerControlCommonalpha = 3,
-	al07_UplinkPowerControlCommonalpha = 4,
-	al08_UplinkPowerControlCommonalpha = 5,
-	al09_UplinkPowerControlCommonalpha = 6,
-	al1_UplinkPowerControlCommonalpha = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> UplinkPowerControlCommonalpha;
-
-typedef Integer<CONSTRAINED, -127, -96> UplinkPowerControlCommonP0NominalPUCCH;
-
-enum DeltaFListPUCCHdeltaF_PUCCH_Format1Values {
-	deltaF_2_DeltaFListPUCCHdeltaF_PUCCH_Format1 = 0,
-	deltaF0_DeltaFListPUCCHdeltaF_PUCCH_Format1 = 1,
-	deltaF2_DeltaFListPUCCHdeltaF_PUCCH_Format1 = 2,
-};
-typedef Enumerated<CONSTRAINED, 2> DeltaFListPUCCHdeltaF_PUCCH_Format1;
-
-enum DeltaFListPUCCHdeltaF_PUCCH_Format1bValues {
-	deltaF1_DeltaFListPUCCHdeltaF_PUCCH_Format1b = 0,
-	deltaF3_DeltaFListPUCCHdeltaF_PUCCH_Format1b = 1,
-	deltaF5_DeltaFListPUCCHdeltaF_PUCCH_Format1b = 2,
-};
-typedef Enumerated<CONSTRAINED, 2> DeltaFListPUCCHdeltaF_PUCCH_Format1b;
-
-enum DeltaFListPUCCHdeltaF_PUCCH_Format2Values {
-	deltaF_2_DeltaFListPUCCHdeltaF_PUCCH_Format2 = 0,
-	deltaF0_DeltaFListPUCCHdeltaF_PUCCH_Format2 = 1,
-	deltaF1_DeltaFListPUCCHdeltaF_PUCCH_Format2 = 2,
-	deltaF2_DeltaFListPUCCHdeltaF_PUCCH_Format2 = 3,
-};
-typedef Enumerated<CONSTRAINED, 3> DeltaFListPUCCHdeltaF_PUCCH_Format2;
-
-enum DeltaFListPUCCHdeltaF_PUCCH_Format2aValues {
-	deltaF_2_DeltaFListPUCCHdeltaF_PUCCH_Format2a = 0,
-	deltaF0_DeltaFListPUCCHdeltaF_PUCCH_Format2a = 1,
-	deltaF2_DeltaFListPUCCHdeltaF_PUCCH_Format2a = 2,
-};
-typedef Enumerated<CONSTRAINED, 2> DeltaFListPUCCHdeltaF_PUCCH_Format2a;
-
-enum DeltaFListPUCCHdeltaF_PUCCH_Format2bValues {
-	deltaF_2_DeltaFListPUCCHdeltaF_PUCCH_Format2b = 0,
-	deltaF0_DeltaFListPUCCHdeltaF_PUCCH_Format2b = 1,
-	deltaF2_DeltaFListPUCCHdeltaF_PUCCH_Format2b = 2,
-};
-typedef Enumerated<CONSTRAINED, 2> DeltaFListPUCCHdeltaF_PUCCH_Format2b;
-
-class DeltaFListPUCCH : public Sequence {
-private:
-	static const void *itemsInfo[5];
-	static bool itemsPres[5];
-public:
-	static const Info theInfo;
-	DeltaFListPUCCH(): Sequence(&theInfo) {}
-	DeltaFListPUCCH(const DeltaFListPUCCHdeltaF_PUCCH_Format1& deltaFListPUCCHdeltaF_PUCCH_Format1, const DeltaFListPUCCHdeltaF_PUCCH_Format1b& deltaFListPUCCHdeltaF_PUCCH_Format1b, const DeltaFListPUCCHdeltaF_PUCCH_Format2& deltaFListPUCCHdeltaF_PUCCH_Format2, const DeltaFListPUCCHdeltaF_PUCCH_Format2a& deltaFListPUCCHdeltaF_PUCCH_Format2a, const DeltaFListPUCCHdeltaF_PUCCH_Format2b& deltaFListPUCCHdeltaF_PUCCH_Format2b);
-
-	void setDeltaFListPUCCHdeltaF_PUCCH_Format1(const DeltaFListPUCCHdeltaF_PUCCH_Format1& deltaFListPUCCHdeltaF_PUCCH_Format1) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format1*>(items[0]) = deltaFListPUCCHdeltaF_PUCCH_Format1; }
-	void setDeltaFListPUCCHdeltaF_PUCCH_Format1b(const DeltaFListPUCCHdeltaF_PUCCH_Format1b& deltaFListPUCCHdeltaF_PUCCH_Format1b) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format1b*>(items[1]) = deltaFListPUCCHdeltaF_PUCCH_Format1b; }
-	void setDeltaFListPUCCHdeltaF_PUCCH_Format2(const DeltaFListPUCCHdeltaF_PUCCH_Format2& deltaFListPUCCHdeltaF_PUCCH_Format2) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2*>(items[2]) = deltaFListPUCCHdeltaF_PUCCH_Format2; }
-	void setDeltaFListPUCCHdeltaF_PUCCH_Format2a(const DeltaFListPUCCHdeltaF_PUCCH_Format2a& deltaFListPUCCHdeltaF_PUCCH_Format2a) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2a*>(items[3]) = deltaFListPUCCHdeltaF_PUCCH_Format2a; }
-	void setDeltaFListPUCCHdeltaF_PUCCH_Format2b(const DeltaFListPUCCHdeltaF_PUCCH_Format2b& deltaFListPUCCHdeltaF_PUCCH_Format2b) { *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2b*>(items[4]) = deltaFListPUCCHdeltaF_PUCCH_Format2b; }
-
-	DeltaFListPUCCHdeltaF_PUCCH_Format1& getDeltaFListPUCCHdeltaF_PUCCH_Format1() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format1*>(items[0]); }
-	DeltaFListPUCCHdeltaF_PUCCH_Format1b& getDeltaFListPUCCHdeltaF_PUCCH_Format1b() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format1b*>(items[1]); }
-	DeltaFListPUCCHdeltaF_PUCCH_Format2& getDeltaFListPUCCHdeltaF_PUCCH_Format2() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2*>(items[2]); }
-	DeltaFListPUCCHdeltaF_PUCCH_Format2a& getDeltaFListPUCCHdeltaF_PUCCH_Format2a() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2a*>(items[3]); }
-	DeltaFListPUCCHdeltaF_PUCCH_Format2b& getDeltaFListPUCCHdeltaF_PUCCH_Format2b() { return *static_cast<DeltaFListPUCCHdeltaF_PUCCH_Format2b*>(items[4]); }
-};
-
-typedef Integer<CONSTRAINED, -1, 6> UplinkPowerControlCommonDeltaPreambleMsg3;
-
-class UplinkPowerControlCommon : public Sequence {
-private:
-	static const void *itemsInfo[5];
-	static bool itemsPres[5];
-public:
-	static const Info theInfo;
-	UplinkPowerControlCommon(): Sequence(&theInfo) {}
-	UplinkPowerControlCommon(const UplinkPowerControlCommonP0NominalPUSCH& uplinkPowerControlCommonP0NominalPUSCH, const UplinkPowerControlCommonalpha& uplinkPowerControlCommonalpha, const UplinkPowerControlCommonP0NominalPUCCH& uplinkPowerControlCommonP0NominalPUCCH, const DeltaFListPUCCH& deltaFListPUCCH, const UplinkPowerControlCommonDeltaPreambleMsg3& uplinkPowerControlCommonDeltaPreambleMsg3);
-
-	void setUplinkPowerControlCommonP0NominalPUSCH(const UplinkPowerControlCommonP0NominalPUSCH& uplinkPowerControlCommonP0NominalPUSCH) { *static_cast<UplinkPowerControlCommonP0NominalPUSCH*>(items[0]) = uplinkPowerControlCommonP0NominalPUSCH; }
-	void setUplinkPowerControlCommonalpha(const UplinkPowerControlCommonalpha& uplinkPowerControlCommonalpha) { *static_cast<UplinkPowerControlCommonalpha*>(items[1]) = uplinkPowerControlCommonalpha; }
-	void setUplinkPowerControlCommonP0NominalPUCCH(const UplinkPowerControlCommonP0NominalPUCCH& uplinkPowerControlCommonP0NominalPUCCH) { *static_cast<UplinkPowerControlCommonP0NominalPUCCH*>(items[2]) = uplinkPowerControlCommonP0NominalPUCCH; }
-	void setDeltaFListPUCCH(const DeltaFListPUCCH& deltaFListPUCCH) { *static_cast<DeltaFListPUCCH*>(items[3]) = deltaFListPUCCH; }
-	void setUplinkPowerControlCommonDeltaPreambleMsg3(const UplinkPowerControlCommonDeltaPreambleMsg3& uplinkPowerControlCommonDeltaPreambleMsg3) { *static_cast<UplinkPowerControlCommonDeltaPreambleMsg3*>(items[4]) = uplinkPowerControlCommonDeltaPreambleMsg3; }
-
-	UplinkPowerControlCommonP0NominalPUSCH& getUplinkPowerControlCommonP0NominalPUSCH() { return *static_cast<UplinkPowerControlCommonP0NominalPUSCH*>(items[0]); }
-	UplinkPowerControlCommonalpha& getUplinkPowerControlCommonalpha() { return *static_cast<UplinkPowerControlCommonalpha*>(items[1]); }
-	UplinkPowerControlCommonP0NominalPUCCH& getUplinkPowerControlCommonP0NominalPUCCH() { return *static_cast<UplinkPowerControlCommonP0NominalPUCCH*>(items[2]); }
-	DeltaFListPUCCH& getDeltaFListPUCCH() { return *static_cast<DeltaFListPUCCH*>(items[3]); }
-	UplinkPowerControlCommonDeltaPreambleMsg3& getUplinkPowerControlCommonDeltaPreambleMsg3() { return *static_cast<UplinkPowerControlCommonDeltaPreambleMsg3*>(items[4]); }
 };
 
 enum AntennaInfoCommonantennaPortsCountValues {
@@ -7527,48 +9086,6 @@ public:
 	void setAntennaInfoCommonantennaPortsCount(const AntennaInfoCommonantennaPortsCount& antennaInfoCommonantennaPortsCount) { *static_cast<AntennaInfoCommonantennaPortsCount*>(items[0]) = antennaInfoCommonantennaPortsCount; }
 
 	AntennaInfoCommonantennaPortsCount& getAntennaInfoCommonantennaPortsCount() { return *static_cast<AntennaInfoCommonantennaPortsCount*>(items[0]); }
-};
-
-enum ULCyclicPrefixLengthValues {
-	len1_ULCyclicPrefixLength = 0,
-	len2_ULCyclicPrefixLength = 1,
-};
-typedef Enumerated<CONSTRAINED, 1> ULCyclicPrefixLength;
-
-enum UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10Values {
-	deltaF_1_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 0,
-	deltaF0_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 1,
-	deltaF1_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 2,
-	deltaF2_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 3,
-	deltaF3_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 4,
-	deltaF4_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 5,
-	deltaF5_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 6,
-	deltaF6_UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10 = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10;
-
-enum UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10Values {
-	deltaF1_UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10 = 0,
-	deltaF2_UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10 = 1,
-	spare2_UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10 = 2,
-	spare1_UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10 = 3,
-};
-typedef Enumerated<CONSTRAINED, 3> UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10;
-
-class UplinkPowerControlCommonv1020 : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	UplinkPowerControlCommonv1020(): Sequence(&theInfo) {}
-	UplinkPowerControlCommonv1020(const UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10, const UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10);
-
-	void setUplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10(const UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10) { *static_cast<UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10*>(items[0]) = uplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10; }
-	void setUplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10(const UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10) { *static_cast<UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10*>(items[1]) = uplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10; }
-
-	UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10& getUplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10() { return *static_cast<UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10*>(items[0]); }
-	UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10& getUplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10() { return *static_cast<UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10*>(items[1]); }
 };
 
 class RadioResourceConfigCommon : public Sequence {
@@ -7837,8 +9354,6 @@ enum RadioResourceConfigCommonSCellr10NonULConfigurationr10dl_Bandwidth_r10Value
 	n100_RadioResourceConfigCommonSCellr10NonULConfigurationr10dl_Bandwidth_r10 = 5,
 };
 typedef Enumerated<CONSTRAINED, 5> RadioResourceConfigCommonSCellr10NonULConfigurationr10dl_Bandwidth_r10;
-
-typedef SequenceOf<MBSFNSubframeConfig, CONSTRAINED, 1, maxMBSFN_Allocations> MBSFNSubframeConfigList;
 
 class RadioResourceConfigCommonSCellr10NonULConfigurationr10 : public Sequence {
 private:
@@ -8414,8 +9929,6 @@ public:
 	static const Info theInfo;
 	RedirectedCarrierInfo(): Choice(&theInfo) {}
 };
-
-typedef Integer<CONSTRAINED, 0, 7> CellReselectionPriority;
 
 class FreqPriorityEUTRA : public Sequence {
 private:
@@ -9464,344 +10977,6 @@ public:
 };
 
 typedef OctetStringBase RNSystemInfor10SystemInformationBlockType1r10;
-
-typedef Boolean SystemInformationBlockType2AcBarringInfoAcBarringForEmergency;
-
-enum ACBarringConfigac_BarringFactorValues {
-	p00_ACBarringConfigac_BarringFactor = 0,
-	p05_ACBarringConfigac_BarringFactor = 1,
-	p10_ACBarringConfigac_BarringFactor = 2,
-	p15_ACBarringConfigac_BarringFactor = 3,
-	p20_ACBarringConfigac_BarringFactor = 4,
-	p25_ACBarringConfigac_BarringFactor = 5,
-	p30_ACBarringConfigac_BarringFactor = 6,
-	p40_ACBarringConfigac_BarringFactor = 7,
-	p50_ACBarringConfigac_BarringFactor = 8,
-	p60_ACBarringConfigac_BarringFactor = 9,
-	p70_ACBarringConfigac_BarringFactor = 10,
-	p75_ACBarringConfigac_BarringFactor = 11,
-	p80_ACBarringConfigac_BarringFactor = 12,
-	p85_ACBarringConfigac_BarringFactor = 13,
-	p90_ACBarringConfigac_BarringFactor = 14,
-	p95_ACBarringConfigac_BarringFactor = 15,
-};
-typedef Enumerated<CONSTRAINED, 15> ACBarringConfigac_BarringFactor;
-
-enum ACBarringConfigac_BarringTimeValues {
-	s4_ACBarringConfigac_BarringTime = 0,
-	s8_ACBarringConfigac_BarringTime = 1,
-	s16_ACBarringConfigac_BarringTime = 2,
-	s32_ACBarringConfigac_BarringTime = 3,
-	s64_ACBarringConfigac_BarringTime = 4,
-	s128_ACBarringConfigac_BarringTime = 5,
-	s256_ACBarringConfigac_BarringTime = 6,
-	s512_ACBarringConfigac_BarringTime = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> ACBarringConfigac_BarringTime;
-
-typedef BitString<CONSTRAINED, 5, 5> ACBarringConfigAcBarringForSpecialAC;
-
-class ACBarringConfig : public Sequence {
-private:
-	static const void *itemsInfo[3];
-	static bool itemsPres[3];
-public:
-	static const Info theInfo;
-	ACBarringConfig(): Sequence(&theInfo) {}
-	ACBarringConfig(const ACBarringConfigac_BarringFactor& aCBarringConfigac_BarringFactor, const ACBarringConfigac_BarringTime& aCBarringConfigac_BarringTime, const ACBarringConfigAcBarringForSpecialAC& aCBarringConfigAcBarringForSpecialAC);
-
-	void setACBarringConfigac_BarringFactor(const ACBarringConfigac_BarringFactor& aCBarringConfigac_BarringFactor) { *static_cast<ACBarringConfigac_BarringFactor*>(items[0]) = aCBarringConfigac_BarringFactor; }
-	void setACBarringConfigac_BarringTime(const ACBarringConfigac_BarringTime& aCBarringConfigac_BarringTime) { *static_cast<ACBarringConfigac_BarringTime*>(items[1]) = aCBarringConfigac_BarringTime; }
-	void setACBarringConfigAcBarringForSpecialAC(const ACBarringConfigAcBarringForSpecialAC& aCBarringConfigAcBarringForSpecialAC) { *static_cast<ACBarringConfigAcBarringForSpecialAC*>(items[2]) = aCBarringConfigAcBarringForSpecialAC; }
-
-	ACBarringConfigac_BarringFactor& getACBarringConfigac_BarringFactor() { return *static_cast<ACBarringConfigac_BarringFactor*>(items[0]); }
-	ACBarringConfigac_BarringTime& getACBarringConfigac_BarringTime() { return *static_cast<ACBarringConfigac_BarringTime*>(items[1]); }
-	ACBarringConfigAcBarringForSpecialAC& getACBarringConfigAcBarringForSpecialAC() { return *static_cast<ACBarringConfigAcBarringForSpecialAC*>(items[2]); }
-};
-
-class SystemInformationBlockType2AcBarringInfo : public Sequence {
-private:
-	static const void *itemsInfo[3];
-	static bool itemsPres[3];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType2AcBarringInfo(): Sequence(&theInfo) {}
-	SystemInformationBlockType2AcBarringInfo(const SystemInformationBlockType2AcBarringInfoAcBarringForEmergency& systemInformationBlockType2AcBarringInfoAcBarringForEmergency);
-
-	void setSystemInformationBlockType2AcBarringInfoAcBarringForEmergency(const SystemInformationBlockType2AcBarringInfoAcBarringForEmergency& systemInformationBlockType2AcBarringInfoAcBarringForEmergency) { *static_cast<SystemInformationBlockType2AcBarringInfoAcBarringForEmergency*>(items[0]) = systemInformationBlockType2AcBarringInfoAcBarringForEmergency; }
-	void setAcBarringForMOSignalling(const ACBarringConfig& acBarringForMOSignalling) { *static_cast<ACBarringConfig*>(items[1]) = acBarringForMOSignalling; }
-	void setAcBarringForMOData(const ACBarringConfig& acBarringForMOData) { *static_cast<ACBarringConfig*>(items[2]) = acBarringForMOData; }
-
-	SystemInformationBlockType2AcBarringInfoAcBarringForEmergency& getSystemInformationBlockType2AcBarringInfoAcBarringForEmergency() { return *static_cast<SystemInformationBlockType2AcBarringInfoAcBarringForEmergency*>(items[0]); }
-	ACBarringConfig& getAcBarringForMOSignalling() { return *static_cast<ACBarringConfig*>(items[1]); }
-	ACBarringConfig& getAcBarringForMOData() { return *static_cast<ACBarringConfig*>(items[2]); }
-};
-
-enum BCCHConfigmodificationPeriodCoeffValues {
-	n2_BCCHConfigmodificationPeriodCoeff = 0,
-	n4_BCCHConfigmodificationPeriodCoeff = 1,
-	n8_BCCHConfigmodificationPeriodCoeff = 2,
-	n16_BCCHConfigmodificationPeriodCoeff = 3,
-};
-typedef Enumerated<CONSTRAINED, 3> BCCHConfigmodificationPeriodCoeff;
-
-class BCCHConfig : public Sequence {
-private:
-	static const void *itemsInfo[1];
-	static bool itemsPres[1];
-public:
-	static const Info theInfo;
-	BCCHConfig(): Sequence(&theInfo) {}
-	BCCHConfig(const BCCHConfigmodificationPeriodCoeff& bCCHConfigmodificationPeriodCoeff);
-
-	void setBCCHConfigmodificationPeriodCoeff(const BCCHConfigmodificationPeriodCoeff& bCCHConfigmodificationPeriodCoeff) { *static_cast<BCCHConfigmodificationPeriodCoeff*>(items[0]) = bCCHConfigmodificationPeriodCoeff; }
-
-	BCCHConfigmodificationPeriodCoeff& getBCCHConfigmodificationPeriodCoeff() { return *static_cast<BCCHConfigmodificationPeriodCoeff*>(items[0]); }
-};
-
-enum PCCHConfigdefaultPagingCycleValues {
-	rf32_PCCHConfigdefaultPagingCycle = 0,
-	rf64_PCCHConfigdefaultPagingCycle = 1,
-	rf128_PCCHConfigdefaultPagingCycle = 2,
-	rf256_PCCHConfigdefaultPagingCycle = 3,
-};
-typedef Enumerated<CONSTRAINED, 3> PCCHConfigdefaultPagingCycle;
-
-enum PCCHConfignBValues {
-	fourT_PCCHConfignB = 0,
-	twoT_PCCHConfignB = 1,
-	oneT_PCCHConfignB = 2,
-	halfT_PCCHConfignB = 3,
-	quarterT_PCCHConfignB = 4,
-	oneEighthT_PCCHConfignB = 5,
-	oneSixteenthT_PCCHConfignB = 6,
-	oneThirtySecondT_PCCHConfignB = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> PCCHConfignB;
-
-class PCCHConfig : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	PCCHConfig(): Sequence(&theInfo) {}
-	PCCHConfig(const PCCHConfigdefaultPagingCycle& pCCHConfigdefaultPagingCycle, const PCCHConfignB& pCCHConfignB);
-
-	void setPCCHConfigdefaultPagingCycle(const PCCHConfigdefaultPagingCycle& pCCHConfigdefaultPagingCycle) { *static_cast<PCCHConfigdefaultPagingCycle*>(items[0]) = pCCHConfigdefaultPagingCycle; }
-	void setPCCHConfignB(const PCCHConfignB& pCCHConfignB) { *static_cast<PCCHConfignB*>(items[1]) = pCCHConfignB; }
-
-	PCCHConfigdefaultPagingCycle& getPCCHConfigdefaultPagingCycle() { return *static_cast<PCCHConfigdefaultPagingCycle*>(items[0]); }
-	PCCHConfignB& getPCCHConfignB() { return *static_cast<PCCHConfignB*>(items[1]); }
-};
-
-typedef Integer<CONSTRAINED, 0, 837> PRACHConfigSIBRootSequenceIndex;
-
-class PRACHConfigSIB : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	PRACHConfigSIB(): Sequence(&theInfo) {}
-	PRACHConfigSIB(const PRACHConfigSIBRootSequenceIndex& pRACHConfigSIBRootSequenceIndex, const PRACHConfigInfo& prachConfigInfo);
-
-	void setPRACHConfigSIBRootSequenceIndex(const PRACHConfigSIBRootSequenceIndex& pRACHConfigSIBRootSequenceIndex) { *static_cast<PRACHConfigSIBRootSequenceIndex*>(items[0]) = pRACHConfigSIBRootSequenceIndex; }
-	void setPrachConfigInfo(const PRACHConfigInfo& prachConfigInfo) { *static_cast<PRACHConfigInfo*>(items[1]) = prachConfigInfo; }
-
-	PRACHConfigSIBRootSequenceIndex& getPRACHConfigSIBRootSequenceIndex() { return *static_cast<PRACHConfigSIBRootSequenceIndex*>(items[0]); }
-	PRACHConfigInfo& getPrachConfigInfo() { return *static_cast<PRACHConfigInfo*>(items[1]); }
-};
-
-class RadioResourceConfigCommonSIB : public Sequence {
-private:
-	static const void *itemsInfo[11];
-	static bool itemsPres[11];
-public:
-	static const Info theInfo;
-	RadioResourceConfigCommonSIB(): Sequence(&theInfo) {}
-	RadioResourceConfigCommonSIB(const RACHConfigCommon& rachConfigCommon, const BCCHConfig& bcchConfig, const PCCHConfig& pcchConfig, const PRACHConfigSIB& prachConfig, const PDSCHConfigCommon& pdschConfigCommon, const PUSCHConfigCommon& puschConfigCommon, const PUCCHConfigCommon& pucchConfigCommon, const SoundingRSULConfigCommon& soundingRSULConfigCommon, const UplinkPowerControlCommon& uplinkPowerControlCommon, const ULCyclicPrefixLength& ulCyclicPrefixLength);
-
-	void setRachConfigCommon(const RACHConfigCommon& rachConfigCommon) { *static_cast<RACHConfigCommon*>(items[0]) = rachConfigCommon; }
-	void setBcchConfig(const BCCHConfig& bcchConfig) { *static_cast<BCCHConfig*>(items[1]) = bcchConfig; }
-	void setPcchConfig(const PCCHConfig& pcchConfig) { *static_cast<PCCHConfig*>(items[2]) = pcchConfig; }
-	void setPrachConfig(const PRACHConfigSIB& prachConfig) { *static_cast<PRACHConfigSIB*>(items[3]) = prachConfig; }
-	void setPdschConfigCommon(const PDSCHConfigCommon& pdschConfigCommon) { *static_cast<PDSCHConfigCommon*>(items[4]) = pdschConfigCommon; }
-	void setPuschConfigCommon(const PUSCHConfigCommon& puschConfigCommon) { *static_cast<PUSCHConfigCommon*>(items[5]) = puschConfigCommon; }
-	void setPucchConfigCommon(const PUCCHConfigCommon& pucchConfigCommon) { *static_cast<PUCCHConfigCommon*>(items[6]) = pucchConfigCommon; }
-	void setSoundingRSULConfigCommon(const SoundingRSULConfigCommon& soundingRSULConfigCommon) { *static_cast<SoundingRSULConfigCommon*>(items[7]) = soundingRSULConfigCommon; }
-	void setUplinkPowerControlCommon(const UplinkPowerControlCommon& uplinkPowerControlCommon) { *static_cast<UplinkPowerControlCommon*>(items[8]) = uplinkPowerControlCommon; }
-	void setUlCyclicPrefixLength(const ULCyclicPrefixLength& ulCyclicPrefixLength) { *static_cast<ULCyclicPrefixLength*>(items[9]) = ulCyclicPrefixLength; }
-	void setUplinkPowerControlCommonv1020(const UplinkPowerControlCommonv1020& uplinkPowerControlCommonv1020) { *static_cast<UplinkPowerControlCommonv1020*>(items[10]) = uplinkPowerControlCommonv1020; }
-
-	RACHConfigCommon& getRachConfigCommon() { return *static_cast<RACHConfigCommon*>(items[0]); }
-	BCCHConfig& getBcchConfig() { return *static_cast<BCCHConfig*>(items[1]); }
-	PCCHConfig& getPcchConfig() { return *static_cast<PCCHConfig*>(items[2]); }
-	PRACHConfigSIB& getPrachConfig() { return *static_cast<PRACHConfigSIB*>(items[3]); }
-	PDSCHConfigCommon& getPdschConfigCommon() { return *static_cast<PDSCHConfigCommon*>(items[4]); }
-	PUSCHConfigCommon& getPuschConfigCommon() { return *static_cast<PUSCHConfigCommon*>(items[5]); }
-	PUCCHConfigCommon& getPucchConfigCommon() { return *static_cast<PUCCHConfigCommon*>(items[6]); }
-	SoundingRSULConfigCommon& getSoundingRSULConfigCommon() { return *static_cast<SoundingRSULConfigCommon*>(items[7]); }
-	UplinkPowerControlCommon& getUplinkPowerControlCommon() { return *static_cast<UplinkPowerControlCommon*>(items[8]); }
-	ULCyclicPrefixLength& getUlCyclicPrefixLength() { return *static_cast<ULCyclicPrefixLength*>(items[9]); }
-	UplinkPowerControlCommonv1020& getUplinkPowerControlCommonv1020() { return *static_cast<UplinkPowerControlCommonv1020*>(items[10]); }
-};
-
-enum UETimersAndConstantst300Values {
-	ms100_UETimersAndConstantst300 = 0,
-	ms200_UETimersAndConstantst300 = 1,
-	ms300_UETimersAndConstantst300 = 2,
-	ms400_UETimersAndConstantst300 = 3,
-	ms600_UETimersAndConstantst300 = 4,
-	ms1000_UETimersAndConstantst300 = 5,
-	ms1500_UETimersAndConstantst300 = 6,
-	ms2000_UETimersAndConstantst300 = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> UETimersAndConstantst300;
-
-enum UETimersAndConstantst301Values {
-	ms100_UETimersAndConstantst301 = 0,
-	ms200_UETimersAndConstantst301 = 1,
-	ms300_UETimersAndConstantst301 = 2,
-	ms400_UETimersAndConstantst301 = 3,
-	ms600_UETimersAndConstantst301 = 4,
-	ms1000_UETimersAndConstantst301 = 5,
-	ms1500_UETimersAndConstantst301 = 6,
-	ms2000_UETimersAndConstantst301 = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> UETimersAndConstantst301;
-
-enum UETimersAndConstantst310Values {
-	ms0_UETimersAndConstantst310 = 0,
-	ms50_UETimersAndConstantst310 = 1,
-	ms100_UETimersAndConstantst310 = 2,
-	ms200_UETimersAndConstantst310 = 3,
-	ms500_UETimersAndConstantst310 = 4,
-	ms1000_UETimersAndConstantst310 = 5,
-	ms2000_UETimersAndConstantst310 = 6,
-};
-typedef Enumerated<CONSTRAINED, 6> UETimersAndConstantst310;
-
-enum UETimersAndConstantsn310Values {
-	n1_UETimersAndConstantsn310 = 0,
-	n2_UETimersAndConstantsn310 = 1,
-	n3_UETimersAndConstantsn310 = 2,
-	n4_UETimersAndConstantsn310 = 3,
-	n6_UETimersAndConstantsn310 = 4,
-	n8_UETimersAndConstantsn310 = 5,
-	n10_UETimersAndConstantsn310 = 6,
-	n20_UETimersAndConstantsn310 = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> UETimersAndConstantsn310;
-
-enum UETimersAndConstantst311Values {
-	ms1000_UETimersAndConstantst311 = 0,
-	ms3000_UETimersAndConstantst311 = 1,
-	ms5000_UETimersAndConstantst311 = 2,
-	ms10000_UETimersAndConstantst311 = 3,
-	ms15000_UETimersAndConstantst311 = 4,
-	ms20000_UETimersAndConstantst311 = 5,
-	ms30000_UETimersAndConstantst311 = 6,
-};
-typedef Enumerated<CONSTRAINED, 6> UETimersAndConstantst311;
-
-enum UETimersAndConstantsn311Values {
-	n1_UETimersAndConstantsn311 = 0,
-	n2_UETimersAndConstantsn311 = 1,
-	n3_UETimersAndConstantsn311 = 2,
-	n4_UETimersAndConstantsn311 = 3,
-	n5_UETimersAndConstantsn311 = 4,
-	n6_UETimersAndConstantsn311 = 5,
-	n8_UETimersAndConstantsn311 = 6,
-	n10_UETimersAndConstantsn311 = 7,
-};
-typedef Enumerated<CONSTRAINED, 7> UETimersAndConstantsn311;
-
-class UETimersAndConstants : public Sequence {
-private:
-	static const void *itemsInfo[6];
-	static bool itemsPres[6];
-public:
-	static const Info theInfo;
-	UETimersAndConstants(): Sequence(&theInfo) {}
-	UETimersAndConstants(const UETimersAndConstantst300& uETimersAndConstantst300, const UETimersAndConstantst301& uETimersAndConstantst301, const UETimersAndConstantst310& uETimersAndConstantst310, const UETimersAndConstantsn310& uETimersAndConstantsn310, const UETimersAndConstantst311& uETimersAndConstantst311, const UETimersAndConstantsn311& uETimersAndConstantsn311);
-
-	void setUETimersAndConstantst300(const UETimersAndConstantst300& uETimersAndConstantst300) { *static_cast<UETimersAndConstantst300*>(items[0]) = uETimersAndConstantst300; }
-	void setUETimersAndConstantst301(const UETimersAndConstantst301& uETimersAndConstantst301) { *static_cast<UETimersAndConstantst301*>(items[1]) = uETimersAndConstantst301; }
-	void setUETimersAndConstantst310(const UETimersAndConstantst310& uETimersAndConstantst310) { *static_cast<UETimersAndConstantst310*>(items[2]) = uETimersAndConstantst310; }
-	void setUETimersAndConstantsn310(const UETimersAndConstantsn310& uETimersAndConstantsn310) { *static_cast<UETimersAndConstantsn310*>(items[3]) = uETimersAndConstantsn310; }
-	void setUETimersAndConstantst311(const UETimersAndConstantst311& uETimersAndConstantst311) { *static_cast<UETimersAndConstantst311*>(items[4]) = uETimersAndConstantst311; }
-	void setUETimersAndConstantsn311(const UETimersAndConstantsn311& uETimersAndConstantsn311) { *static_cast<UETimersAndConstantsn311*>(items[5]) = uETimersAndConstantsn311; }
-
-	UETimersAndConstantst300& getUETimersAndConstantst300() { return *static_cast<UETimersAndConstantst300*>(items[0]); }
-	UETimersAndConstantst301& getUETimersAndConstantst301() { return *static_cast<UETimersAndConstantst301*>(items[1]); }
-	UETimersAndConstantst310& getUETimersAndConstantst310() { return *static_cast<UETimersAndConstantst310*>(items[2]); }
-	UETimersAndConstantsn310& getUETimersAndConstantsn310() { return *static_cast<UETimersAndConstantsn310*>(items[3]); }
-	UETimersAndConstantst311& getUETimersAndConstantst311() { return *static_cast<UETimersAndConstantst311*>(items[4]); }
-	UETimersAndConstantsn311& getUETimersAndConstantsn311() { return *static_cast<UETimersAndConstantsn311*>(items[5]); }
-};
-
-enum SystemInformationBlockType2FreqInfoul_BandwidthValues {
-	n6_SystemInformationBlockType2FreqInfoul_Bandwidth = 0,
-	n15_SystemInformationBlockType2FreqInfoul_Bandwidth = 1,
-	n25_SystemInformationBlockType2FreqInfoul_Bandwidth = 2,
-	n50_SystemInformationBlockType2FreqInfoul_Bandwidth = 3,
-	n75_SystemInformationBlockType2FreqInfoul_Bandwidth = 4,
-	n100_SystemInformationBlockType2FreqInfoul_Bandwidth = 5,
-};
-typedef Enumerated<CONSTRAINED, 5> SystemInformationBlockType2FreqInfoul_Bandwidth;
-
-class SystemInformationBlockType2FreqInfo : public Sequence {
-private:
-	static const void *itemsInfo[3];
-	static bool itemsPres[3];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType2FreqInfo(): Sequence(&theInfo) {}
-	SystemInformationBlockType2FreqInfo(const AdditionalSpectrumEmission& additionalSpectrumEmission);
-
-	void setUlCarrierFreq(const ARFCNValueEUTRA& ulCarrierFreq) { *static_cast<ARFCNValueEUTRA*>(items[0]) = ulCarrierFreq; }
-	void setSystemInformationBlockType2FreqInfoul_Bandwidth(const SystemInformationBlockType2FreqInfoul_Bandwidth& systemInformationBlockType2FreqInfoul_Bandwidth) { *static_cast<SystemInformationBlockType2FreqInfoul_Bandwidth*>(items[1]) = systemInformationBlockType2FreqInfoul_Bandwidth; }
-	void setAdditionalSpectrumEmission(const AdditionalSpectrumEmission& additionalSpectrumEmission) { *static_cast<AdditionalSpectrumEmission*>(items[2]) = additionalSpectrumEmission; }
-
-	ARFCNValueEUTRA& getUlCarrierFreq() { return *static_cast<ARFCNValueEUTRA*>(items[0]); }
-	SystemInformationBlockType2FreqInfoul_Bandwidth& getSystemInformationBlockType2FreqInfoul_Bandwidth() { return *static_cast<SystemInformationBlockType2FreqInfoul_Bandwidth*>(items[1]); }
-	AdditionalSpectrumEmission& getAdditionalSpectrumEmission() { return *static_cast<AdditionalSpectrumEmission*>(items[2]); }
-};
-
-typedef OctetStringBase SystemInformationBlockType2LateNonCriticalExtension;
-
-class SystemInformationBlockType2 : public Sequence {
-private:
-	static const void *itemsInfo[10];
-	static bool itemsPres[10];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType2(): Sequence(&theInfo) {}
-	SystemInformationBlockType2(const RadioResourceConfigCommonSIB& radioResourceConfigCommon, const UETimersAndConstants& ueTimersAndConstants, const SystemInformationBlockType2FreqInfo& systemInformationBlockType2FreqInfo, const TimeAlignmentTimer& timeAlignmentTimerCommon);
-
-	void setSystemInformationBlockType2AcBarringInfo(const SystemInformationBlockType2AcBarringInfo& systemInformationBlockType2AcBarringInfo) { *static_cast<SystemInformationBlockType2AcBarringInfo*>(items[0]) = systemInformationBlockType2AcBarringInfo; }
-	void setRadioResourceConfigCommon(const RadioResourceConfigCommonSIB& radioResourceConfigCommon) { *static_cast<RadioResourceConfigCommonSIB*>(items[1]) = radioResourceConfigCommon; }
-	void setUeTimersAndConstants(const UETimersAndConstants& ueTimersAndConstants) { *static_cast<UETimersAndConstants*>(items[2]) = ueTimersAndConstants; }
-	void setSystemInformationBlockType2FreqInfo(const SystemInformationBlockType2FreqInfo& systemInformationBlockType2FreqInfo) { *static_cast<SystemInformationBlockType2FreqInfo*>(items[3]) = systemInformationBlockType2FreqInfo; }
-	void setMbsfnSubframeConfigList(const MBSFNSubframeConfigList& mbsfnSubframeConfigList) { *static_cast<MBSFNSubframeConfigList*>(items[4]) = mbsfnSubframeConfigList; }
-	void setTimeAlignmentTimerCommon(const TimeAlignmentTimer& timeAlignmentTimerCommon) { *static_cast<TimeAlignmentTimer*>(items[5]) = timeAlignmentTimerCommon; }
-	void setSystemInformationBlockType2LateNonCriticalExtension(const SystemInformationBlockType2LateNonCriticalExtension& systemInformationBlockType2LateNonCriticalExtension) { *static_cast<SystemInformationBlockType2LateNonCriticalExtension*>(items[6]) = systemInformationBlockType2LateNonCriticalExtension; }
-	void setSsacBarringForMMTELVoicer9(const ACBarringConfig& ssacBarringForMMTELVoicer9) { *static_cast<ACBarringConfig*>(items[7]) = ssacBarringForMMTELVoicer9; }
-	void setSsacBarringForMMTELVideor9(const ACBarringConfig& ssacBarringForMMTELVideor9) { *static_cast<ACBarringConfig*>(items[8]) = ssacBarringForMMTELVideor9; }
-	void setAcBarringForCSFBr10(const ACBarringConfig& acBarringForCSFBr10) { *static_cast<ACBarringConfig*>(items[9]) = acBarringForCSFBr10; }
-
-	SystemInformationBlockType2AcBarringInfo& getSystemInformationBlockType2AcBarringInfo() { return *static_cast<SystemInformationBlockType2AcBarringInfo*>(items[0]); }
-	RadioResourceConfigCommonSIB& getRadioResourceConfigCommon() { return *static_cast<RadioResourceConfigCommonSIB*>(items[1]); }
-	UETimersAndConstants& getUeTimersAndConstants() { return *static_cast<UETimersAndConstants*>(items[2]); }
-	SystemInformationBlockType2FreqInfo& getSystemInformationBlockType2FreqInfo() { return *static_cast<SystemInformationBlockType2FreqInfo*>(items[3]); }
-	MBSFNSubframeConfigList& getMbsfnSubframeConfigList() { return *static_cast<MBSFNSubframeConfigList*>(items[4]); }
-	TimeAlignmentTimer& getTimeAlignmentTimerCommon() { return *static_cast<TimeAlignmentTimer*>(items[5]); }
-	SystemInformationBlockType2LateNonCriticalExtension& getSystemInformationBlockType2LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType2LateNonCriticalExtension*>(items[6]); }
-	ACBarringConfig& getSsacBarringForMMTELVoicer9() { return *static_cast<ACBarringConfig*>(items[7]); }
-	ACBarringConfig& getSsacBarringForMMTELVideor9() { return *static_cast<ACBarringConfig*>(items[8]); }
-	ACBarringConfig& getAcBarringForCSFBr10() { return *static_cast<ACBarringConfig*>(items[9]); }
-};
 
 class RNSystemInfor10 : public Sequence {
 private:
@@ -13044,1168 +14219,6 @@ public:
 	ULDCCHMessageType& getMessage() { return *static_cast<ULDCCHMessageType*>(items[0]); }
 };
 
-enum SystemInformationBlockType3CellReselectionInfoCommonq_HystValues {
-	dB0_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 0,
-	dB1_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 1,
-	dB2_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 2,
-	dB3_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 3,
-	dB4_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 4,
-	dB5_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 5,
-	dB6_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 6,
-	dB8_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 7,
-	dB10_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 8,
-	dB12_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 9,
-	dB14_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 10,
-	dB16_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 11,
-	dB18_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 12,
-	dB20_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 13,
-	dB22_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 14,
-	dB24_SystemInformationBlockType3CellReselectionInfoCommonq_Hyst = 15,
-};
-typedef Enumerated<CONSTRAINED, 15> SystemInformationBlockType3CellReselectionInfoCommonq_Hyst;
-
-enum SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_MediumValues {
-	dB_6_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium = 0,
-	dB_4_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium = 1,
-	dB_2_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium = 2,
-	dB0_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium = 3,
-};
-typedef Enumerated<CONSTRAINED, 3> SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium;
-
-enum SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_HighValues {
-	dB_6_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High = 0,
-	dB_4_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High = 1,
-	dB_2_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High = 2,
-	dB0_SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High = 3,
-};
-typedef Enumerated<CONSTRAINED, 3> SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High;
-
-class SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF(): Sequence(&theInfo) {}
-	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium, const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High);
-
-	void setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium*>(items[0]) = systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium; }
-	void setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High*>(items[1]) = systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High; }
-
-	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium& getSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium*>(items[0]); }
-	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High& getSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High*>(items[1]); }
-};
-
-class SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars(): Sequence(&theInfo) {}
-	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars(const MobilityStateParameters& mobilityStateParameters, const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF);
-
-	void setMobilityStateParameters(const MobilityStateParameters& mobilityStateParameters) { *static_cast<MobilityStateParameters*>(items[0]) = mobilityStateParameters; }
-	void setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF*>(items[1]) = systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF; }
-
-	MobilityStateParameters& getMobilityStateParameters() { return *static_cast<MobilityStateParameters*>(items[0]); }
-	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF& getSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF*>(items[1]); }
-};
-
-class SystemInformationBlockType3CellReselectionInfoCommon : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType3CellReselectionInfoCommon(): Sequence(&theInfo) {}
-	SystemInformationBlockType3CellReselectionInfoCommon(const SystemInformationBlockType3CellReselectionInfoCommonq_Hyst& systemInformationBlockType3CellReselectionInfoCommonq_Hyst);
-
-	void setSystemInformationBlockType3CellReselectionInfoCommonq_Hyst(const SystemInformationBlockType3CellReselectionInfoCommonq_Hyst& systemInformationBlockType3CellReselectionInfoCommonq_Hyst) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonq_Hyst*>(items[0]) = systemInformationBlockType3CellReselectionInfoCommonq_Hyst; }
-	void setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars*>(items[1]) = systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars; }
-
-	SystemInformationBlockType3CellReselectionInfoCommonq_Hyst& getSystemInformationBlockType3CellReselectionInfoCommonq_Hyst() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonq_Hyst*>(items[0]); }
-	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars& getSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars*>(items[1]); }
-};
-
-typedef Integer<CONSTRAINED, 0, 31> ReselectionThreshold;
-
-class SystemInformationBlockType3CellReselectionServingFreqInfo : public Sequence {
-private:
-	static const void *itemsInfo[3];
-	static bool itemsPres[3];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType3CellReselectionServingFreqInfo(): Sequence(&theInfo) {}
-	SystemInformationBlockType3CellReselectionServingFreqInfo(const ReselectionThreshold& threshServingLow, const CellReselectionPriority& cellReselectionPriority);
-
-	void setSNonIntraSearch(const ReselectionThreshold& sNonIntraSearch) { *static_cast<ReselectionThreshold*>(items[0]) = sNonIntraSearch; }
-	void setThreshServingLow(const ReselectionThreshold& threshServingLow) { *static_cast<ReselectionThreshold*>(items[1]) = threshServingLow; }
-	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[2]) = cellReselectionPriority; }
-
-	ReselectionThreshold& getSNonIntraSearch() { return *static_cast<ReselectionThreshold*>(items[0]); }
-	ReselectionThreshold& getThreshServingLow() { return *static_cast<ReselectionThreshold*>(items[1]); }
-	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[2]); }
-};
-
-typedef Integer<CONSTRAINED, 0, 7> TReselection;
-
-class SystemInformationBlockType3IntraFreqCellReselectionInfo : public Sequence {
-private:
-	static const void *itemsInfo[8];
-	static bool itemsPres[8];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType3IntraFreqCellReselectionInfo(): Sequence(&theInfo) {}
-	SystemInformationBlockType3IntraFreqCellReselectionInfo(const QRxLevMin& qRxLevMin, const PresenceAntennaPort1& presenceAntennaPort1, const NeighCellConfig& neighCellConfig, const TReselection& tReselectionEUTRA);
-
-	void setQRxLevMin(const QRxLevMin& qRxLevMin) { *static_cast<QRxLevMin*>(items[0]) = qRxLevMin; }
-	void setPMax(const PMax& pMax) { *static_cast<PMax*>(items[1]) = pMax; }
-	void setSIntraSearch(const ReselectionThreshold& sIntraSearch) { *static_cast<ReselectionThreshold*>(items[2]) = sIntraSearch; }
-	void setAllowedMeasBandwidth(const AllowedMeasBandwidth& allowedMeasBandwidth) { *static_cast<AllowedMeasBandwidth*>(items[3]) = allowedMeasBandwidth; }
-	void setPresenceAntennaPort1(const PresenceAntennaPort1& presenceAntennaPort1) { *static_cast<PresenceAntennaPort1*>(items[4]) = presenceAntennaPort1; }
-	void setNeighCellConfig(const NeighCellConfig& neighCellConfig) { *static_cast<NeighCellConfig*>(items[5]) = neighCellConfig; }
-	void setTReselectionEUTRA(const TReselection& tReselectionEUTRA) { *static_cast<TReselection*>(items[6]) = tReselectionEUTRA; }
-	void setTReselectionEUTRASF(const SpeedStateScaleFactors& tReselectionEUTRASF) { *static_cast<SpeedStateScaleFactors*>(items[7]) = tReselectionEUTRASF; }
-
-	QRxLevMin& getQRxLevMin() { return *static_cast<QRxLevMin*>(items[0]); }
-	PMax& getPMax() { return *static_cast<PMax*>(items[1]); }
-	ReselectionThreshold& getSIntraSearch() { return *static_cast<ReselectionThreshold*>(items[2]); }
-	AllowedMeasBandwidth& getAllowedMeasBandwidth() { return *static_cast<AllowedMeasBandwidth*>(items[3]); }
-	PresenceAntennaPort1& getPresenceAntennaPort1() { return *static_cast<PresenceAntennaPort1*>(items[4]); }
-	NeighCellConfig& getNeighCellConfig() { return *static_cast<NeighCellConfig*>(items[5]); }
-	TReselection& getTReselectionEUTRA() { return *static_cast<TReselection*>(items[6]); }
-	SpeedStateScaleFactors& getTReselectionEUTRASF() { return *static_cast<SpeedStateScaleFactors*>(items[7]); }
-};
-
-typedef OctetStringBase SystemInformationBlockType3LateNonCriticalExtension;
-
-typedef Integer<CONSTRAINED, 0, 31> ReselectionThresholdQr9;
-
-class SystemInformationBlockType3SIntraSearchv920 : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType3SIntraSearchv920(): Sequence(&theInfo) {}
-	SystemInformationBlockType3SIntraSearchv920(const ReselectionThreshold& sIntraSearchPr9, const ReselectionThresholdQr9& sIntraSearchQr9);
-
-	void setSIntraSearchPr9(const ReselectionThreshold& sIntraSearchPr9) { *static_cast<ReselectionThreshold*>(items[0]) = sIntraSearchPr9; }
-	void setSIntraSearchQr9(const ReselectionThresholdQr9& sIntraSearchQr9) { *static_cast<ReselectionThresholdQr9*>(items[1]) = sIntraSearchQr9; }
-
-	ReselectionThreshold& getSIntraSearchPr9() { return *static_cast<ReselectionThreshold*>(items[0]); }
-	ReselectionThresholdQr9& getSIntraSearchQr9() { return *static_cast<ReselectionThresholdQr9*>(items[1]); }
-};
-
-class SystemInformationBlockType3SNonIntraSearchv920 : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType3SNonIntraSearchv920(): Sequence(&theInfo) {}
-	SystemInformationBlockType3SNonIntraSearchv920(const ReselectionThreshold& sNonIntraSearchPr9, const ReselectionThresholdQr9& sNonIntraSearchQr9);
-
-	void setSNonIntraSearchPr9(const ReselectionThreshold& sNonIntraSearchPr9) { *static_cast<ReselectionThreshold*>(items[0]) = sNonIntraSearchPr9; }
-	void setSNonIntraSearchQr9(const ReselectionThresholdQr9& sNonIntraSearchQr9) { *static_cast<ReselectionThresholdQr9*>(items[1]) = sNonIntraSearchQr9; }
-
-	ReselectionThreshold& getSNonIntraSearchPr9() { return *static_cast<ReselectionThreshold*>(items[0]); }
-	ReselectionThresholdQr9& getSNonIntraSearchQr9() { return *static_cast<ReselectionThresholdQr9*>(items[1]); }
-};
-
-class SystemInformationBlockType3 : public Sequence {
-private:
-	static const void *itemsInfo[8];
-	static bool itemsPres[8];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType3(): Sequence(&theInfo) {}
-	SystemInformationBlockType3(const SystemInformationBlockType3CellReselectionInfoCommon& systemInformationBlockType3CellReselectionInfoCommon, const SystemInformationBlockType3CellReselectionServingFreqInfo& systemInformationBlockType3CellReselectionServingFreqInfo, const SystemInformationBlockType3IntraFreqCellReselectionInfo& systemInformationBlockType3IntraFreqCellReselectionInfo);
-
-	void setSystemInformationBlockType3CellReselectionInfoCommon(const SystemInformationBlockType3CellReselectionInfoCommon& systemInformationBlockType3CellReselectionInfoCommon) { *static_cast<SystemInformationBlockType3CellReselectionInfoCommon*>(items[0]) = systemInformationBlockType3CellReselectionInfoCommon; }
-	void setSystemInformationBlockType3CellReselectionServingFreqInfo(const SystemInformationBlockType3CellReselectionServingFreqInfo& systemInformationBlockType3CellReselectionServingFreqInfo) { *static_cast<SystemInformationBlockType3CellReselectionServingFreqInfo*>(items[1]) = systemInformationBlockType3CellReselectionServingFreqInfo; }
-	void setSystemInformationBlockType3IntraFreqCellReselectionInfo(const SystemInformationBlockType3IntraFreqCellReselectionInfo& systemInformationBlockType3IntraFreqCellReselectionInfo) { *static_cast<SystemInformationBlockType3IntraFreqCellReselectionInfo*>(items[2]) = systemInformationBlockType3IntraFreqCellReselectionInfo; }
-	void setSystemInformationBlockType3LateNonCriticalExtension(const SystemInformationBlockType3LateNonCriticalExtension& systemInformationBlockType3LateNonCriticalExtension) { *static_cast<SystemInformationBlockType3LateNonCriticalExtension*>(items[3]) = systemInformationBlockType3LateNonCriticalExtension; }
-	void setSystemInformationBlockType3SIntraSearchv920(const SystemInformationBlockType3SIntraSearchv920& systemInformationBlockType3SIntraSearchv920) { *static_cast<SystemInformationBlockType3SIntraSearchv920*>(items[4]) = systemInformationBlockType3SIntraSearchv920; }
-	void setSystemInformationBlockType3SNonIntraSearchv920(const SystemInformationBlockType3SNonIntraSearchv920& systemInformationBlockType3SNonIntraSearchv920) { *static_cast<SystemInformationBlockType3SNonIntraSearchv920*>(items[5]) = systemInformationBlockType3SNonIntraSearchv920; }
-	void setQQualMinr9(const QQualMinr9& qQualMinr9) { *static_cast<QQualMinr9*>(items[6]) = qQualMinr9; }
-	void setThreshServingLowQr9(const ReselectionThresholdQr9& threshServingLowQr9) { *static_cast<ReselectionThresholdQr9*>(items[7]) = threshServingLowQr9; }
-
-	SystemInformationBlockType3CellReselectionInfoCommon& getSystemInformationBlockType3CellReselectionInfoCommon() { return *static_cast<SystemInformationBlockType3CellReselectionInfoCommon*>(items[0]); }
-	SystemInformationBlockType3CellReselectionServingFreqInfo& getSystemInformationBlockType3CellReselectionServingFreqInfo() { return *static_cast<SystemInformationBlockType3CellReselectionServingFreqInfo*>(items[1]); }
-	SystemInformationBlockType3IntraFreqCellReselectionInfo& getSystemInformationBlockType3IntraFreqCellReselectionInfo() { return *static_cast<SystemInformationBlockType3IntraFreqCellReselectionInfo*>(items[2]); }
-	SystemInformationBlockType3LateNonCriticalExtension& getSystemInformationBlockType3LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType3LateNonCriticalExtension*>(items[3]); }
-	SystemInformationBlockType3SIntraSearchv920& getSystemInformationBlockType3SIntraSearchv920() { return *static_cast<SystemInformationBlockType3SIntraSearchv920*>(items[4]); }
-	SystemInformationBlockType3SNonIntraSearchv920& getSystemInformationBlockType3SNonIntraSearchv920() { return *static_cast<SystemInformationBlockType3SNonIntraSearchv920*>(items[5]); }
-	QQualMinr9& getQQualMinr9() { return *static_cast<QQualMinr9*>(items[6]); }
-	ReselectionThresholdQr9& getThreshServingLowQr9() { return *static_cast<ReselectionThresholdQr9*>(items[7]); }
-};
-
-class IntraFreqNeighCellInfo : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	IntraFreqNeighCellInfo(): Sequence(&theInfo) {}
-	IntraFreqNeighCellInfo(const PhysCellId& physCellId, const QOffsetRange& qOffsetCell);
-
-	void setPhysCellId(const PhysCellId& physCellId) { *static_cast<PhysCellId*>(items[0]) = physCellId; }
-	void setQOffsetCell(const QOffsetRange& qOffsetCell) { *static_cast<QOffsetRange*>(items[1]) = qOffsetCell; }
-
-	PhysCellId& getPhysCellId() { return *static_cast<PhysCellId*>(items[0]); }
-	QOffsetRange& getQOffsetCell() { return *static_cast<QOffsetRange*>(items[1]); }
-};
-
-typedef SequenceOf<IntraFreqNeighCellInfo, CONSTRAINED, 1, maxCellIntra> IntraFreqNeighCellList;
-
-typedef SequenceOf<PhysCellIdRange, CONSTRAINED, 1, maxCellBlack> IntraFreqBlackCellList;
-
-typedef OctetStringBase SystemInformationBlockType4LateNonCriticalExtension;
-
-class SystemInformationBlockType4 : public Sequence {
-private:
-	static const void *itemsInfo[4];
-	static bool itemsPres[4];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType4(): Sequence(&theInfo) {}
-
-	void setIntraFreqNeighCellList(const IntraFreqNeighCellList& intraFreqNeighCellList) { *static_cast<IntraFreqNeighCellList*>(items[0]) = intraFreqNeighCellList; }
-	void setIntraFreqBlackCellList(const IntraFreqBlackCellList& intraFreqBlackCellList) { *static_cast<IntraFreqBlackCellList*>(items[1]) = intraFreqBlackCellList; }
-	void setCsgPhysCellIdRange(const PhysCellIdRange& csgPhysCellIdRange) { *static_cast<PhysCellIdRange*>(items[2]) = csgPhysCellIdRange; }
-	void setSystemInformationBlockType4LateNonCriticalExtension(const SystemInformationBlockType4LateNonCriticalExtension& systemInformationBlockType4LateNonCriticalExtension) { *static_cast<SystemInformationBlockType4LateNonCriticalExtension*>(items[3]) = systemInformationBlockType4LateNonCriticalExtension; }
-
-	IntraFreqNeighCellList& getIntraFreqNeighCellList() { return *static_cast<IntraFreqNeighCellList*>(items[0]); }
-	IntraFreqBlackCellList& getIntraFreqBlackCellList() { return *static_cast<IntraFreqBlackCellList*>(items[1]); }
-	PhysCellIdRange& getCsgPhysCellIdRange() { return *static_cast<PhysCellIdRange*>(items[2]); }
-	SystemInformationBlockType4LateNonCriticalExtension& getSystemInformationBlockType4LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType4LateNonCriticalExtension*>(items[3]); }
-};
-
-class InterFreqNeighCellInfo : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	InterFreqNeighCellInfo(): Sequence(&theInfo) {}
-	InterFreqNeighCellInfo(const PhysCellId& physCellId, const QOffsetRange& qOffsetCell);
-
-	void setPhysCellId(const PhysCellId& physCellId) { *static_cast<PhysCellId*>(items[0]) = physCellId; }
-	void setQOffsetCell(const QOffsetRange& qOffsetCell) { *static_cast<QOffsetRange*>(items[1]) = qOffsetCell; }
-
-	PhysCellId& getPhysCellId() { return *static_cast<PhysCellId*>(items[0]); }
-	QOffsetRange& getQOffsetCell() { return *static_cast<QOffsetRange*>(items[1]); }
-};
-
-typedef SequenceOf<InterFreqNeighCellInfo, CONSTRAINED, 1, maxCellInter> InterFreqNeighCellList;
-
-typedef SequenceOf<PhysCellIdRange, CONSTRAINED, 1, maxCellBlack> InterFreqBlackCellList;
-
-class InterFreqCarrierFreqInfoThreshXQr9 : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	InterFreqCarrierFreqInfoThreshXQr9(): Sequence(&theInfo) {}
-	InterFreqCarrierFreqInfoThreshXQr9(const ReselectionThresholdQr9& threshXHighQr9, const ReselectionThresholdQr9& threshXLowQr9);
-
-	void setThreshXHighQr9(const ReselectionThresholdQr9& threshXHighQr9) { *static_cast<ReselectionThresholdQr9*>(items[0]) = threshXHighQr9; }
-	void setThreshXLowQr9(const ReselectionThresholdQr9& threshXLowQr9) { *static_cast<ReselectionThresholdQr9*>(items[1]) = threshXLowQr9; }
-
-	ReselectionThresholdQr9& getThreshXHighQr9() { return *static_cast<ReselectionThresholdQr9*>(items[0]); }
-	ReselectionThresholdQr9& getThreshXLowQr9() { return *static_cast<ReselectionThresholdQr9*>(items[1]); }
-};
-
-class InterFreqCarrierFreqInfo : public Sequence {
-private:
-	static const void *itemsInfo[16];
-	static bool itemsPres[16];
-public:
-	static const Info theInfo;
-	InterFreqCarrierFreqInfo(): Sequence(&theInfo) {}
-	InterFreqCarrierFreqInfo(const ARFCNValueEUTRA& dlCarrierFreq, const QRxLevMin& qRxLevMin, const TReselection& tReselectionEUTRA, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow, const AllowedMeasBandwidth& allowedMeasBandwidth, const PresenceAntennaPort1& presenceAntennaPort1, const NeighCellConfig& neighCellConfig);
-
-	void setDlCarrierFreq(const ARFCNValueEUTRA& dlCarrierFreq) { *static_cast<ARFCNValueEUTRA*>(items[0]) = dlCarrierFreq; }
-	void setQRxLevMin(const QRxLevMin& qRxLevMin) { *static_cast<QRxLevMin*>(items[1]) = qRxLevMin; }
-	void setPMax(const PMax& pMax) { *static_cast<PMax*>(items[2]) = pMax; }
-	void setTReselectionEUTRA(const TReselection& tReselectionEUTRA) { *static_cast<TReselection*>(items[3]) = tReselectionEUTRA; }
-	void setTReselectionEUTRASF(const SpeedStateScaleFactors& tReselectionEUTRASF) { *static_cast<SpeedStateScaleFactors*>(items[4]) = tReselectionEUTRASF; }
-	void setThreshXHigh(const ReselectionThreshold& threshXHigh) { *static_cast<ReselectionThreshold*>(items[5]) = threshXHigh; }
-	void setThreshXLow(const ReselectionThreshold& threshXLow) { *static_cast<ReselectionThreshold*>(items[6]) = threshXLow; }
-	void setAllowedMeasBandwidth(const AllowedMeasBandwidth& allowedMeasBandwidth) { *static_cast<AllowedMeasBandwidth*>(items[7]) = allowedMeasBandwidth; }
-	void setPresenceAntennaPort1(const PresenceAntennaPort1& presenceAntennaPort1) { *static_cast<PresenceAntennaPort1*>(items[8]) = presenceAntennaPort1; }
-	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[9]) = cellReselectionPriority; }
-	void setNeighCellConfig(const NeighCellConfig& neighCellConfig) { *static_cast<NeighCellConfig*>(items[10]) = neighCellConfig; }
-	void setQOffsetFreq(const QOffsetRange& qOffsetFreq) { *static_cast<QOffsetRange*>(items[11]) = qOffsetFreq; }
-	void setInterFreqNeighCellList(const InterFreqNeighCellList& interFreqNeighCellList) { *static_cast<InterFreqNeighCellList*>(items[12]) = interFreqNeighCellList; }
-	void setInterFreqBlackCellList(const InterFreqBlackCellList& interFreqBlackCellList) { *static_cast<InterFreqBlackCellList*>(items[13]) = interFreqBlackCellList; }
-	void setQQualMinr9(const QQualMinr9& qQualMinr9) { *static_cast<QQualMinr9*>(items[14]) = qQualMinr9; }
-	void setInterFreqCarrierFreqInfoThreshXQr9(const InterFreqCarrierFreqInfoThreshXQr9& interFreqCarrierFreqInfoThreshXQr9) { *static_cast<InterFreqCarrierFreqInfoThreshXQr9*>(items[15]) = interFreqCarrierFreqInfoThreshXQr9; }
-
-	ARFCNValueEUTRA& getDlCarrierFreq() { return *static_cast<ARFCNValueEUTRA*>(items[0]); }
-	QRxLevMin& getQRxLevMin() { return *static_cast<QRxLevMin*>(items[1]); }
-	PMax& getPMax() { return *static_cast<PMax*>(items[2]); }
-	TReselection& getTReselectionEUTRA() { return *static_cast<TReselection*>(items[3]); }
-	SpeedStateScaleFactors& getTReselectionEUTRASF() { return *static_cast<SpeedStateScaleFactors*>(items[4]); }
-	ReselectionThreshold& getThreshXHigh() { return *static_cast<ReselectionThreshold*>(items[5]); }
-	ReselectionThreshold& getThreshXLow() { return *static_cast<ReselectionThreshold*>(items[6]); }
-	AllowedMeasBandwidth& getAllowedMeasBandwidth() { return *static_cast<AllowedMeasBandwidth*>(items[7]); }
-	PresenceAntennaPort1& getPresenceAntennaPort1() { return *static_cast<PresenceAntennaPort1*>(items[8]); }
-	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[9]); }
-	NeighCellConfig& getNeighCellConfig() { return *static_cast<NeighCellConfig*>(items[10]); }
-	QOffsetRange& getQOffsetFreq() { return *static_cast<QOffsetRange*>(items[11]); }
-	InterFreqNeighCellList& getInterFreqNeighCellList() { return *static_cast<InterFreqNeighCellList*>(items[12]); }
-	InterFreqBlackCellList& getInterFreqBlackCellList() { return *static_cast<InterFreqBlackCellList*>(items[13]); }
-	QQualMinr9& getQQualMinr9() { return *static_cast<QQualMinr9*>(items[14]); }
-	InterFreqCarrierFreqInfoThreshXQr9& getInterFreqCarrierFreqInfoThreshXQr9() { return *static_cast<InterFreqCarrierFreqInfoThreshXQr9*>(items[15]); }
-};
-
-typedef SequenceOf<InterFreqCarrierFreqInfo, CONSTRAINED, 1, maxFreq> InterFreqCarrierFreqList;
-
-typedef OctetStringBase SystemInformationBlockType5LateNonCriticalExtension;
-
-class SystemInformationBlockType5 : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType5(): Sequence(&theInfo) {}
-	SystemInformationBlockType5(const InterFreqCarrierFreqList& interFreqCarrierFreqList);
-
-	void setInterFreqCarrierFreqList(const InterFreqCarrierFreqList& interFreqCarrierFreqList) { *static_cast<InterFreqCarrierFreqList*>(items[0]) = interFreqCarrierFreqList; }
-	void setSystemInformationBlockType5LateNonCriticalExtension(const SystemInformationBlockType5LateNonCriticalExtension& systemInformationBlockType5LateNonCriticalExtension) { *static_cast<SystemInformationBlockType5LateNonCriticalExtension*>(items[1]) = systemInformationBlockType5LateNonCriticalExtension; }
-
-	InterFreqCarrierFreqList& getInterFreqCarrierFreqList() { return *static_cast<InterFreqCarrierFreqList*>(items[0]); }
-	SystemInformationBlockType5LateNonCriticalExtension& getSystemInformationBlockType5LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType5LateNonCriticalExtension*>(items[1]); }
-};
-
-typedef Integer<CONSTRAINED, -60, -13> CarrierFreqUTRAFDDQRxLevMin;
-
-typedef Integer<CONSTRAINED, -50, 33> CarrierFreqUTRAFDDPMaxUTRA;
-
-typedef Integer<CONSTRAINED, -24, 0> CarrierFreqUTRAFDDQQualMin;
-
-class CarrierFreqUTRAFDDThreshXQr9 : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	CarrierFreqUTRAFDDThreshXQr9(): Sequence(&theInfo) {}
-	CarrierFreqUTRAFDDThreshXQr9(const ReselectionThresholdQr9& threshXHighQr9, const ReselectionThresholdQr9& threshXLowQr9);
-
-	void setThreshXHighQr9(const ReselectionThresholdQr9& threshXHighQr9) { *static_cast<ReselectionThresholdQr9*>(items[0]) = threshXHighQr9; }
-	void setThreshXLowQr9(const ReselectionThresholdQr9& threshXLowQr9) { *static_cast<ReselectionThresholdQr9*>(items[1]) = threshXLowQr9; }
-
-	ReselectionThresholdQr9& getThreshXHighQr9() { return *static_cast<ReselectionThresholdQr9*>(items[0]); }
-	ReselectionThresholdQr9& getThreshXLowQr9() { return *static_cast<ReselectionThresholdQr9*>(items[1]); }
-};
-
-class CarrierFreqUTRAFDD : public Sequence {
-private:
-	static const void *itemsInfo[8];
-	static bool itemsPres[8];
-public:
-	static const Info theInfo;
-	CarrierFreqUTRAFDD(): Sequence(&theInfo) {}
-	CarrierFreqUTRAFDD(const ARFCNValueUTRA& carrierFreq, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow, const CarrierFreqUTRAFDDQRxLevMin& carrierFreqUTRAFDDQRxLevMin, const CarrierFreqUTRAFDDPMaxUTRA& carrierFreqUTRAFDDPMaxUTRA, const CarrierFreqUTRAFDDQQualMin& carrierFreqUTRAFDDQQualMin);
-
-	void setCarrierFreq(const ARFCNValueUTRA& carrierFreq) { *static_cast<ARFCNValueUTRA*>(items[0]) = carrierFreq; }
-	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
-	void setThreshXHigh(const ReselectionThreshold& threshXHigh) { *static_cast<ReselectionThreshold*>(items[2]) = threshXHigh; }
-	void setThreshXLow(const ReselectionThreshold& threshXLow) { *static_cast<ReselectionThreshold*>(items[3]) = threshXLow; }
-	void setCarrierFreqUTRAFDDQRxLevMin(const CarrierFreqUTRAFDDQRxLevMin& carrierFreqUTRAFDDQRxLevMin) { *static_cast<CarrierFreqUTRAFDDQRxLevMin*>(items[4]) = carrierFreqUTRAFDDQRxLevMin; }
-	void setCarrierFreqUTRAFDDPMaxUTRA(const CarrierFreqUTRAFDDPMaxUTRA& carrierFreqUTRAFDDPMaxUTRA) { *static_cast<CarrierFreqUTRAFDDPMaxUTRA*>(items[5]) = carrierFreqUTRAFDDPMaxUTRA; }
-	void setCarrierFreqUTRAFDDQQualMin(const CarrierFreqUTRAFDDQQualMin& carrierFreqUTRAFDDQQualMin) { *static_cast<CarrierFreqUTRAFDDQQualMin*>(items[6]) = carrierFreqUTRAFDDQQualMin; }
-	void setCarrierFreqUTRAFDDThreshXQr9(const CarrierFreqUTRAFDDThreshXQr9& carrierFreqUTRAFDDThreshXQr9) { *static_cast<CarrierFreqUTRAFDDThreshXQr9*>(items[7]) = carrierFreqUTRAFDDThreshXQr9; }
-
-	ARFCNValueUTRA& getCarrierFreq() { return *static_cast<ARFCNValueUTRA*>(items[0]); }
-	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
-	ReselectionThreshold& getThreshXHigh() { return *static_cast<ReselectionThreshold*>(items[2]); }
-	ReselectionThreshold& getThreshXLow() { return *static_cast<ReselectionThreshold*>(items[3]); }
-	CarrierFreqUTRAFDDQRxLevMin& getCarrierFreqUTRAFDDQRxLevMin() { return *static_cast<CarrierFreqUTRAFDDQRxLevMin*>(items[4]); }
-	CarrierFreqUTRAFDDPMaxUTRA& getCarrierFreqUTRAFDDPMaxUTRA() { return *static_cast<CarrierFreqUTRAFDDPMaxUTRA*>(items[5]); }
-	CarrierFreqUTRAFDDQQualMin& getCarrierFreqUTRAFDDQQualMin() { return *static_cast<CarrierFreqUTRAFDDQQualMin*>(items[6]); }
-	CarrierFreqUTRAFDDThreshXQr9& getCarrierFreqUTRAFDDThreshXQr9() { return *static_cast<CarrierFreqUTRAFDDThreshXQr9*>(items[7]); }
-};
-
-typedef SequenceOf<CarrierFreqUTRAFDD, CONSTRAINED, 1, maxUTRA_FDD_Carrier> CarrierFreqListUTRAFDD;
-
-typedef Integer<CONSTRAINED, -60, -13> CarrierFreqUTRATDDQRxLevMin;
-
-typedef Integer<CONSTRAINED, -50, 33> CarrierFreqUTRATDDPMaxUTRA;
-
-class CarrierFreqUTRATDD : public Sequence {
-private:
-	static const void *itemsInfo[6];
-	static bool itemsPres[6];
-public:
-	static const Info theInfo;
-	CarrierFreqUTRATDD(): Sequence(&theInfo) {}
-	CarrierFreqUTRATDD(const ARFCNValueUTRA& carrierFreq, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow, const CarrierFreqUTRATDDQRxLevMin& carrierFreqUTRATDDQRxLevMin, const CarrierFreqUTRATDDPMaxUTRA& carrierFreqUTRATDDPMaxUTRA);
-
-	void setCarrierFreq(const ARFCNValueUTRA& carrierFreq) { *static_cast<ARFCNValueUTRA*>(items[0]) = carrierFreq; }
-	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
-	void setThreshXHigh(const ReselectionThreshold& threshXHigh) { *static_cast<ReselectionThreshold*>(items[2]) = threshXHigh; }
-	void setThreshXLow(const ReselectionThreshold& threshXLow) { *static_cast<ReselectionThreshold*>(items[3]) = threshXLow; }
-	void setCarrierFreqUTRATDDQRxLevMin(const CarrierFreqUTRATDDQRxLevMin& carrierFreqUTRATDDQRxLevMin) { *static_cast<CarrierFreqUTRATDDQRxLevMin*>(items[4]) = carrierFreqUTRATDDQRxLevMin; }
-	void setCarrierFreqUTRATDDPMaxUTRA(const CarrierFreqUTRATDDPMaxUTRA& carrierFreqUTRATDDPMaxUTRA) { *static_cast<CarrierFreqUTRATDDPMaxUTRA*>(items[5]) = carrierFreqUTRATDDPMaxUTRA; }
-
-	ARFCNValueUTRA& getCarrierFreq() { return *static_cast<ARFCNValueUTRA*>(items[0]); }
-	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
-	ReselectionThreshold& getThreshXHigh() { return *static_cast<ReselectionThreshold*>(items[2]); }
-	ReselectionThreshold& getThreshXLow() { return *static_cast<ReselectionThreshold*>(items[3]); }
-	CarrierFreqUTRATDDQRxLevMin& getCarrierFreqUTRATDDQRxLevMin() { return *static_cast<CarrierFreqUTRATDDQRxLevMin*>(items[4]); }
-	CarrierFreqUTRATDDPMaxUTRA& getCarrierFreqUTRATDDPMaxUTRA() { return *static_cast<CarrierFreqUTRATDDPMaxUTRA*>(items[5]); }
-};
-
-typedef SequenceOf<CarrierFreqUTRATDD, CONSTRAINED, 1, maxUTRA_TDD_Carrier> CarrierFreqListUTRATDD;
-
-typedef OctetStringBase SystemInformationBlockType6LateNonCriticalExtension;
-
-class SystemInformationBlockType6 : public Sequence {
-private:
-	static const void *itemsInfo[5];
-	static bool itemsPres[5];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType6(): Sequence(&theInfo) {}
-	SystemInformationBlockType6(const TReselection& tReselectionUTRA);
-
-	void setCarrierFreqListUTRAFDD(const CarrierFreqListUTRAFDD& carrierFreqListUTRAFDD) { *static_cast<CarrierFreqListUTRAFDD*>(items[0]) = carrierFreqListUTRAFDD; }
-	void setCarrierFreqListUTRATDD(const CarrierFreqListUTRATDD& carrierFreqListUTRATDD) { *static_cast<CarrierFreqListUTRATDD*>(items[1]) = carrierFreqListUTRATDD; }
-	void setTReselectionUTRA(const TReselection& tReselectionUTRA) { *static_cast<TReselection*>(items[2]) = tReselectionUTRA; }
-	void setTReselectionUTRASF(const SpeedStateScaleFactors& tReselectionUTRASF) { *static_cast<SpeedStateScaleFactors*>(items[3]) = tReselectionUTRASF; }
-	void setSystemInformationBlockType6LateNonCriticalExtension(const SystemInformationBlockType6LateNonCriticalExtension& systemInformationBlockType6LateNonCriticalExtension) { *static_cast<SystemInformationBlockType6LateNonCriticalExtension*>(items[4]) = systemInformationBlockType6LateNonCriticalExtension; }
-
-	CarrierFreqListUTRAFDD& getCarrierFreqListUTRAFDD() { return *static_cast<CarrierFreqListUTRAFDD*>(items[0]); }
-	CarrierFreqListUTRATDD& getCarrierFreqListUTRATDD() { return *static_cast<CarrierFreqListUTRATDD*>(items[1]); }
-	TReselection& getTReselectionUTRA() { return *static_cast<TReselection*>(items[2]); }
-	SpeedStateScaleFactors& getTReselectionUTRASF() { return *static_cast<SpeedStateScaleFactors*>(items[3]); }
-	SystemInformationBlockType6LateNonCriticalExtension& getSystemInformationBlockType6LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType6LateNonCriticalExtension*>(items[4]); }
-};
-
-typedef BitString<CONSTRAINED, 8, 8> CarrierFreqsInfoGERANCommonInfoNccPermitted;
-
-typedef Integer<CONSTRAINED, 0, 45> CarrierFreqsInfoGERANCommonInfoQRxLevMin;
-
-typedef Integer<CONSTRAINED, 0, 39> CarrierFreqsInfoGERANCommonInfoPMaxGERAN;
-
-class CarrierFreqsInfoGERANCommonInfo : public Sequence {
-private:
-	static const void *itemsInfo[6];
-	static bool itemsPres[6];
-public:
-	static const Info theInfo;
-	CarrierFreqsInfoGERANCommonInfo(): Sequence(&theInfo) {}
-	CarrierFreqsInfoGERANCommonInfo(const CarrierFreqsInfoGERANCommonInfoNccPermitted& carrierFreqsInfoGERANCommonInfoNccPermitted, const CarrierFreqsInfoGERANCommonInfoQRxLevMin& carrierFreqsInfoGERANCommonInfoQRxLevMin, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow);
-
-	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[0]) = cellReselectionPriority; }
-	void setCarrierFreqsInfoGERANCommonInfoNccPermitted(const CarrierFreqsInfoGERANCommonInfoNccPermitted& carrierFreqsInfoGERANCommonInfoNccPermitted) { *static_cast<CarrierFreqsInfoGERANCommonInfoNccPermitted*>(items[1]) = carrierFreqsInfoGERANCommonInfoNccPermitted; }
-	void setCarrierFreqsInfoGERANCommonInfoQRxLevMin(const CarrierFreqsInfoGERANCommonInfoQRxLevMin& carrierFreqsInfoGERANCommonInfoQRxLevMin) { *static_cast<CarrierFreqsInfoGERANCommonInfoQRxLevMin*>(items[2]) = carrierFreqsInfoGERANCommonInfoQRxLevMin; }
-	void setCarrierFreqsInfoGERANCommonInfoPMaxGERAN(const CarrierFreqsInfoGERANCommonInfoPMaxGERAN& carrierFreqsInfoGERANCommonInfoPMaxGERAN) { *static_cast<CarrierFreqsInfoGERANCommonInfoPMaxGERAN*>(items[3]) = carrierFreqsInfoGERANCommonInfoPMaxGERAN; }
-	void setThreshXHigh(const ReselectionThreshold& threshXHigh) { *static_cast<ReselectionThreshold*>(items[4]) = threshXHigh; }
-	void setThreshXLow(const ReselectionThreshold& threshXLow) { *static_cast<ReselectionThreshold*>(items[5]) = threshXLow; }
-
-	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[0]); }
-	CarrierFreqsInfoGERANCommonInfoNccPermitted& getCarrierFreqsInfoGERANCommonInfoNccPermitted() { return *static_cast<CarrierFreqsInfoGERANCommonInfoNccPermitted*>(items[1]); }
-	CarrierFreqsInfoGERANCommonInfoQRxLevMin& getCarrierFreqsInfoGERANCommonInfoQRxLevMin() { return *static_cast<CarrierFreqsInfoGERANCommonInfoQRxLevMin*>(items[2]); }
-	CarrierFreqsInfoGERANCommonInfoPMaxGERAN& getCarrierFreqsInfoGERANCommonInfoPMaxGERAN() { return *static_cast<CarrierFreqsInfoGERANCommonInfoPMaxGERAN*>(items[3]); }
-	ReselectionThreshold& getThreshXHigh() { return *static_cast<ReselectionThreshold*>(items[4]); }
-	ReselectionThreshold& getThreshXLow() { return *static_cast<ReselectionThreshold*>(items[5]); }
-};
-
-class CarrierFreqsInfoGERAN : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	CarrierFreqsInfoGERAN(): Sequence(&theInfo) {}
-	CarrierFreqsInfoGERAN(const CarrierFreqsGERAN& carrierFreqs, const CarrierFreqsInfoGERANCommonInfo& carrierFreqsInfoGERANCommonInfo);
-
-	void setCarrierFreqs(const CarrierFreqsGERAN& carrierFreqs) { *static_cast<CarrierFreqsGERAN*>(items[0]) = carrierFreqs; }
-	void setCarrierFreqsInfoGERANCommonInfo(const CarrierFreqsInfoGERANCommonInfo& carrierFreqsInfoGERANCommonInfo) { *static_cast<CarrierFreqsInfoGERANCommonInfo*>(items[1]) = carrierFreqsInfoGERANCommonInfo; }
-
-	CarrierFreqsGERAN& getCarrierFreqs() { return *static_cast<CarrierFreqsGERAN*>(items[0]); }
-	CarrierFreqsInfoGERANCommonInfo& getCarrierFreqsInfoGERANCommonInfo() { return *static_cast<CarrierFreqsInfoGERANCommonInfo*>(items[1]); }
-};
-
-typedef SequenceOf<CarrierFreqsInfoGERAN, CONSTRAINED, 1, maxGNFG> CarrierFreqsInfoListGERAN;
-
-typedef OctetStringBase SystemInformationBlockType7LateNonCriticalExtension;
-
-class SystemInformationBlockType7 : public Sequence {
-private:
-	static const void *itemsInfo[4];
-	static bool itemsPres[4];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType7(): Sequence(&theInfo) {}
-	SystemInformationBlockType7(const TReselection& tReselectionGERAN);
-
-	void setTReselectionGERAN(const TReselection& tReselectionGERAN) { *static_cast<TReselection*>(items[0]) = tReselectionGERAN; }
-	void setTReselectionGERANSF(const SpeedStateScaleFactors& tReselectionGERANSF) { *static_cast<SpeedStateScaleFactors*>(items[1]) = tReselectionGERANSF; }
-	void setCarrierFreqsInfoList(const CarrierFreqsInfoListGERAN& carrierFreqsInfoList) { *static_cast<CarrierFreqsInfoListGERAN*>(items[2]) = carrierFreqsInfoList; }
-	void setSystemInformationBlockType7LateNonCriticalExtension(const SystemInformationBlockType7LateNonCriticalExtension& systemInformationBlockType7LateNonCriticalExtension) { *static_cast<SystemInformationBlockType7LateNonCriticalExtension*>(items[3]) = systemInformationBlockType7LateNonCriticalExtension; }
-
-	TReselection& getTReselectionGERAN() { return *static_cast<TReselection*>(items[0]); }
-	SpeedStateScaleFactors& getTReselectionGERANSF() { return *static_cast<SpeedStateScaleFactors*>(items[1]); }
-	CarrierFreqsInfoListGERAN& getCarrierFreqsInfoList() { return *static_cast<CarrierFreqsInfoListGERAN*>(items[2]); }
-	SystemInformationBlockType7LateNonCriticalExtension& getSystemInformationBlockType7LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType7LateNonCriticalExtension*>(items[3]); }
-};
-
-typedef Boolean SystemTimeInfoCDMA2000CdmaEUTRASynchronisation;
-
-typedef BitString<CONSTRAINED, 39, 39> SystemTimeInfoCDMA2000CdmaSystemTimeSynchronousSystemTime;
-
-typedef BitString<CONSTRAINED, 49, 49> SystemTimeInfoCDMA2000CdmaSystemTimeAsynchronousSystemTime;
-
-class SystemTimeInfoCDMA2000CdmaSystemTime : public Choice {
-private:
-	static const void *choicesInfo[2];
-public:
-	enum SystemTimeInfoCDMA2000CdmaSystemTimeChoices {
-		systemTimeInfoCDMA2000CdmaSystemTimeSynchronousSystemTime = 0,
-		systemTimeInfoCDMA2000CdmaSystemTimeAsynchronousSystemTime = 1,
-	};
-	static const Info theInfo;
-	SystemTimeInfoCDMA2000CdmaSystemTime(): Choice(&theInfo) {}
-};
-
-class SystemTimeInfoCDMA2000 : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	SystemTimeInfoCDMA2000(): Sequence(&theInfo) {}
-	SystemTimeInfoCDMA2000(const SystemTimeInfoCDMA2000CdmaEUTRASynchronisation& systemTimeInfoCDMA2000CdmaEUTRASynchronisation, const SystemTimeInfoCDMA2000CdmaSystemTime& systemTimeInfoCDMA2000CdmaSystemTime);
-
-	void setSystemTimeInfoCDMA2000CdmaEUTRASynchronisation(const SystemTimeInfoCDMA2000CdmaEUTRASynchronisation& systemTimeInfoCDMA2000CdmaEUTRASynchronisation) { *static_cast<SystemTimeInfoCDMA2000CdmaEUTRASynchronisation*>(items[0]) = systemTimeInfoCDMA2000CdmaEUTRASynchronisation; }
-	void setSystemTimeInfoCDMA2000CdmaSystemTime(const SystemTimeInfoCDMA2000CdmaSystemTime& systemTimeInfoCDMA2000CdmaSystemTime) { *static_cast<SystemTimeInfoCDMA2000CdmaSystemTime*>(items[1]) = systemTimeInfoCDMA2000CdmaSystemTime; }
-
-	SystemTimeInfoCDMA2000CdmaEUTRASynchronisation& getSystemTimeInfoCDMA2000CdmaEUTRASynchronisation() { return *static_cast<SystemTimeInfoCDMA2000CdmaEUTRASynchronisation*>(items[0]); }
-	SystemTimeInfoCDMA2000CdmaSystemTime& getSystemTimeInfoCDMA2000CdmaSystemTime() { return *static_cast<SystemTimeInfoCDMA2000CdmaSystemTime*>(items[1]); }
-};
-
-typedef Integer<CONSTRAINED, 0, 15> SystemInformationBlockType8SearchWindowSize;
-
-typedef Integer<CONSTRAINED, 0, 63> BandClassInfoCDMA2000ThreshXHigh;
-
-typedef Integer<CONSTRAINED, 0, 63> BandClassInfoCDMA2000ThreshXLow;
-
-class BandClassInfoCDMA2000 : public Sequence {
-private:
-	static const void *itemsInfo[4];
-	static bool itemsPres[4];
-public:
-	static const Info theInfo;
-	BandClassInfoCDMA2000(): Sequence(&theInfo) {}
-	BandClassInfoCDMA2000(const BandclassCDMA2000& bandClass, const BandClassInfoCDMA2000ThreshXHigh& bandClassInfoCDMA2000ThreshXHigh, const BandClassInfoCDMA2000ThreshXLow& bandClassInfoCDMA2000ThreshXLow);
-
-	void setBandClass(const BandclassCDMA2000& bandClass) { *static_cast<BandclassCDMA2000*>(items[0]) = bandClass; }
-	void setCellReselectionPriority(const CellReselectionPriority& cellReselectionPriority) { *static_cast<CellReselectionPriority*>(items[1]) = cellReselectionPriority; }
-	void setBandClassInfoCDMA2000ThreshXHigh(const BandClassInfoCDMA2000ThreshXHigh& bandClassInfoCDMA2000ThreshXHigh) { *static_cast<BandClassInfoCDMA2000ThreshXHigh*>(items[2]) = bandClassInfoCDMA2000ThreshXHigh; }
-	void setBandClassInfoCDMA2000ThreshXLow(const BandClassInfoCDMA2000ThreshXLow& bandClassInfoCDMA2000ThreshXLow) { *static_cast<BandClassInfoCDMA2000ThreshXLow*>(items[3]) = bandClassInfoCDMA2000ThreshXLow; }
-
-	BandclassCDMA2000& getBandClass() { return *static_cast<BandclassCDMA2000*>(items[0]); }
-	CellReselectionPriority& getCellReselectionPriority() { return *static_cast<CellReselectionPriority*>(items[1]); }
-	BandClassInfoCDMA2000ThreshXHigh& getBandClassInfoCDMA2000ThreshXHigh() { return *static_cast<BandClassInfoCDMA2000ThreshXHigh*>(items[2]); }
-	BandClassInfoCDMA2000ThreshXLow& getBandClassInfoCDMA2000ThreshXLow() { return *static_cast<BandClassInfoCDMA2000ThreshXLow*>(items[3]); }
-};
-
-typedef SequenceOf<BandClassInfoCDMA2000, CONSTRAINED, 1, maxCDMA_BandClass> BandClassListCDMA2000;
-
-typedef SequenceOf<PhysCellIdCDMA2000, CONSTRAINED, 1, 16> PhysCellIdListCDMA2000;
-
-class NeighCellsPerBandclassCDMA2000 : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	NeighCellsPerBandclassCDMA2000(): Sequence(&theInfo) {}
-	NeighCellsPerBandclassCDMA2000(const ARFCNValueCDMA2000& arfcn, const PhysCellIdListCDMA2000& physCellIdList);
-
-	void setArfcn(const ARFCNValueCDMA2000& arfcn) { *static_cast<ARFCNValueCDMA2000*>(items[0]) = arfcn; }
-	void setPhysCellIdList(const PhysCellIdListCDMA2000& physCellIdList) { *static_cast<PhysCellIdListCDMA2000*>(items[1]) = physCellIdList; }
-
-	ARFCNValueCDMA2000& getArfcn() { return *static_cast<ARFCNValueCDMA2000*>(items[0]); }
-	PhysCellIdListCDMA2000& getPhysCellIdList() { return *static_cast<PhysCellIdListCDMA2000*>(items[1]); }
-};
-
-typedef SequenceOf<NeighCellsPerBandclassCDMA2000, CONSTRAINED, 1, 16> NeighCellsPerBandclassListCDMA2000;
-
-class NeighCellCDMA2000 : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	NeighCellCDMA2000(): Sequence(&theInfo) {}
-	NeighCellCDMA2000(const BandclassCDMA2000& bandClass, const NeighCellsPerBandclassListCDMA2000& neighCellsPerFreqList);
-
-	void setBandClass(const BandclassCDMA2000& bandClass) { *static_cast<BandclassCDMA2000*>(items[0]) = bandClass; }
-	void setNeighCellsPerFreqList(const NeighCellsPerBandclassListCDMA2000& neighCellsPerFreqList) { *static_cast<NeighCellsPerBandclassListCDMA2000*>(items[1]) = neighCellsPerFreqList; }
-
-	BandclassCDMA2000& getBandClass() { return *static_cast<BandclassCDMA2000*>(items[0]); }
-	NeighCellsPerBandclassListCDMA2000& getNeighCellsPerFreqList() { return *static_cast<NeighCellsPerBandclassListCDMA2000*>(items[1]); }
-};
-
-typedef SequenceOf<NeighCellCDMA2000, CONSTRAINED, 1, 16> NeighCellListCDMA2000;
-
-class CellReselectionParametersCDMA2000 : public Sequence {
-private:
-	static const void *itemsInfo[4];
-	static bool itemsPres[4];
-public:
-	static const Info theInfo;
-	CellReselectionParametersCDMA2000(): Sequence(&theInfo) {}
-	CellReselectionParametersCDMA2000(const BandClassListCDMA2000& bandClassList, const NeighCellListCDMA2000& neighCellList, const TReselection& tReselectionCDMA2000);
-
-	void setBandClassList(const BandClassListCDMA2000& bandClassList) { *static_cast<BandClassListCDMA2000*>(items[0]) = bandClassList; }
-	void setNeighCellList(const NeighCellListCDMA2000& neighCellList) { *static_cast<NeighCellListCDMA2000*>(items[1]) = neighCellList; }
-	void setTReselectionCDMA2000(const TReselection& tReselectionCDMA2000) { *static_cast<TReselection*>(items[2]) = tReselectionCDMA2000; }
-	void setTReselectionCDMA2000SF(const SpeedStateScaleFactors& tReselectionCDMA2000SF) { *static_cast<SpeedStateScaleFactors*>(items[3]) = tReselectionCDMA2000SF; }
-
-	BandClassListCDMA2000& getBandClassList() { return *static_cast<BandClassListCDMA2000*>(items[0]); }
-	NeighCellListCDMA2000& getNeighCellList() { return *static_cast<NeighCellListCDMA2000*>(items[1]); }
-	TReselection& getTReselectionCDMA2000() { return *static_cast<TReselection*>(items[2]); }
-	SpeedStateScaleFactors& getTReselectionCDMA2000SF() { return *static_cast<SpeedStateScaleFactors*>(items[3]); }
-};
-
-class SystemInformationBlockType8ParametersHRPD : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType8ParametersHRPD(): Sequence(&theInfo) {}
-	SystemInformationBlockType8ParametersHRPD(const PreRegistrationInfoHRPD& preRegistrationInfoHRPD);
-
-	void setPreRegistrationInfoHRPD(const PreRegistrationInfoHRPD& preRegistrationInfoHRPD) { *static_cast<PreRegistrationInfoHRPD*>(items[0]) = preRegistrationInfoHRPD; }
-	void setCellReselectionParametersHRPD(const CellReselectionParametersCDMA2000& cellReselectionParametersHRPD) { *static_cast<CellReselectionParametersCDMA2000*>(items[1]) = cellReselectionParametersHRPD; }
-
-	PreRegistrationInfoHRPD& getPreRegistrationInfoHRPD() { return *static_cast<PreRegistrationInfoHRPD*>(items[0]); }
-	CellReselectionParametersCDMA2000& getCellReselectionParametersHRPD() { return *static_cast<CellReselectionParametersCDMA2000*>(items[1]); }
-};
-
-typedef BitString<CONSTRAINED, 15, 15> CSFBRegistrationParam1XRTTSid;
-
-typedef BitString<CONSTRAINED, 16, 16> CSFBRegistrationParam1XRTTNid;
-
-typedef Boolean CSFBRegistrationParam1XRTTMultipleSID;
-
-typedef Boolean CSFBRegistrationParam1XRTTMultipleNID;
-
-typedef Boolean CSFBRegistrationParam1XRTTHomeReg;
-
-typedef Boolean CSFBRegistrationParam1XRTTForeignSIDReg;
-
-typedef Boolean CSFBRegistrationParam1XRTTForeignNIDReg;
-
-typedef Boolean CSFBRegistrationParam1XRTTParameterReg;
-
-typedef Boolean CSFBRegistrationParam1XRTTPowerUpReg;
-
-typedef BitString<CONSTRAINED, 7, 7> CSFBRegistrationParam1XRTTRegistrationPeriod;
-
-typedef BitString<CONSTRAINED, 12, 12> CSFBRegistrationParam1XRTTRegistrationZone;
-
-typedef BitString<CONSTRAINED, 3, 3> CSFBRegistrationParam1XRTTTotalZone;
-
-typedef BitString<CONSTRAINED, 3, 3> CSFBRegistrationParam1XRTTZoneTimer;
-
-class CSFBRegistrationParam1XRTT : public Sequence {
-private:
-	static const void *itemsInfo[13];
-	static bool itemsPres[13];
-public:
-	static const Info theInfo;
-	CSFBRegistrationParam1XRTT(): Sequence(&theInfo) {}
-	CSFBRegistrationParam1XRTT(const CSFBRegistrationParam1XRTTSid& cSFBRegistrationParam1XRTTSid, const CSFBRegistrationParam1XRTTNid& cSFBRegistrationParam1XRTTNid, const CSFBRegistrationParam1XRTTMultipleSID& cSFBRegistrationParam1XRTTMultipleSID, const CSFBRegistrationParam1XRTTMultipleNID& cSFBRegistrationParam1XRTTMultipleNID, const CSFBRegistrationParam1XRTTHomeReg& cSFBRegistrationParam1XRTTHomeReg, const CSFBRegistrationParam1XRTTForeignSIDReg& cSFBRegistrationParam1XRTTForeignSIDReg, const CSFBRegistrationParam1XRTTForeignNIDReg& cSFBRegistrationParam1XRTTForeignNIDReg, const CSFBRegistrationParam1XRTTParameterReg& cSFBRegistrationParam1XRTTParameterReg, const CSFBRegistrationParam1XRTTPowerUpReg& cSFBRegistrationParam1XRTTPowerUpReg, const CSFBRegistrationParam1XRTTRegistrationPeriod& cSFBRegistrationParam1XRTTRegistrationPeriod, const CSFBRegistrationParam1XRTTRegistrationZone& cSFBRegistrationParam1XRTTRegistrationZone, const CSFBRegistrationParam1XRTTTotalZone& cSFBRegistrationParam1XRTTTotalZone, const CSFBRegistrationParam1XRTTZoneTimer& cSFBRegistrationParam1XRTTZoneTimer);
-
-	void setCSFBRegistrationParam1XRTTSid(const CSFBRegistrationParam1XRTTSid& cSFBRegistrationParam1XRTTSid) { *static_cast<CSFBRegistrationParam1XRTTSid*>(items[0]) = cSFBRegistrationParam1XRTTSid; }
-	void setCSFBRegistrationParam1XRTTNid(const CSFBRegistrationParam1XRTTNid& cSFBRegistrationParam1XRTTNid) { *static_cast<CSFBRegistrationParam1XRTTNid*>(items[1]) = cSFBRegistrationParam1XRTTNid; }
-	void setCSFBRegistrationParam1XRTTMultipleSID(const CSFBRegistrationParam1XRTTMultipleSID& cSFBRegistrationParam1XRTTMultipleSID) { *static_cast<CSFBRegistrationParam1XRTTMultipleSID*>(items[2]) = cSFBRegistrationParam1XRTTMultipleSID; }
-	void setCSFBRegistrationParam1XRTTMultipleNID(const CSFBRegistrationParam1XRTTMultipleNID& cSFBRegistrationParam1XRTTMultipleNID) { *static_cast<CSFBRegistrationParam1XRTTMultipleNID*>(items[3]) = cSFBRegistrationParam1XRTTMultipleNID; }
-	void setCSFBRegistrationParam1XRTTHomeReg(const CSFBRegistrationParam1XRTTHomeReg& cSFBRegistrationParam1XRTTHomeReg) { *static_cast<CSFBRegistrationParam1XRTTHomeReg*>(items[4]) = cSFBRegistrationParam1XRTTHomeReg; }
-	void setCSFBRegistrationParam1XRTTForeignSIDReg(const CSFBRegistrationParam1XRTTForeignSIDReg& cSFBRegistrationParam1XRTTForeignSIDReg) { *static_cast<CSFBRegistrationParam1XRTTForeignSIDReg*>(items[5]) = cSFBRegistrationParam1XRTTForeignSIDReg; }
-	void setCSFBRegistrationParam1XRTTForeignNIDReg(const CSFBRegistrationParam1XRTTForeignNIDReg& cSFBRegistrationParam1XRTTForeignNIDReg) { *static_cast<CSFBRegistrationParam1XRTTForeignNIDReg*>(items[6]) = cSFBRegistrationParam1XRTTForeignNIDReg; }
-	void setCSFBRegistrationParam1XRTTParameterReg(const CSFBRegistrationParam1XRTTParameterReg& cSFBRegistrationParam1XRTTParameterReg) { *static_cast<CSFBRegistrationParam1XRTTParameterReg*>(items[7]) = cSFBRegistrationParam1XRTTParameterReg; }
-	void setCSFBRegistrationParam1XRTTPowerUpReg(const CSFBRegistrationParam1XRTTPowerUpReg& cSFBRegistrationParam1XRTTPowerUpReg) { *static_cast<CSFBRegistrationParam1XRTTPowerUpReg*>(items[8]) = cSFBRegistrationParam1XRTTPowerUpReg; }
-	void setCSFBRegistrationParam1XRTTRegistrationPeriod(const CSFBRegistrationParam1XRTTRegistrationPeriod& cSFBRegistrationParam1XRTTRegistrationPeriod) { *static_cast<CSFBRegistrationParam1XRTTRegistrationPeriod*>(items[9]) = cSFBRegistrationParam1XRTTRegistrationPeriod; }
-	void setCSFBRegistrationParam1XRTTRegistrationZone(const CSFBRegistrationParam1XRTTRegistrationZone& cSFBRegistrationParam1XRTTRegistrationZone) { *static_cast<CSFBRegistrationParam1XRTTRegistrationZone*>(items[10]) = cSFBRegistrationParam1XRTTRegistrationZone; }
-	void setCSFBRegistrationParam1XRTTTotalZone(const CSFBRegistrationParam1XRTTTotalZone& cSFBRegistrationParam1XRTTTotalZone) { *static_cast<CSFBRegistrationParam1XRTTTotalZone*>(items[11]) = cSFBRegistrationParam1XRTTTotalZone; }
-	void setCSFBRegistrationParam1XRTTZoneTimer(const CSFBRegistrationParam1XRTTZoneTimer& cSFBRegistrationParam1XRTTZoneTimer) { *static_cast<CSFBRegistrationParam1XRTTZoneTimer*>(items[12]) = cSFBRegistrationParam1XRTTZoneTimer; }
-
-	CSFBRegistrationParam1XRTTSid& getCSFBRegistrationParam1XRTTSid() { return *static_cast<CSFBRegistrationParam1XRTTSid*>(items[0]); }
-	CSFBRegistrationParam1XRTTNid& getCSFBRegistrationParam1XRTTNid() { return *static_cast<CSFBRegistrationParam1XRTTNid*>(items[1]); }
-	CSFBRegistrationParam1XRTTMultipleSID& getCSFBRegistrationParam1XRTTMultipleSID() { return *static_cast<CSFBRegistrationParam1XRTTMultipleSID*>(items[2]); }
-	CSFBRegistrationParam1XRTTMultipleNID& getCSFBRegistrationParam1XRTTMultipleNID() { return *static_cast<CSFBRegistrationParam1XRTTMultipleNID*>(items[3]); }
-	CSFBRegistrationParam1XRTTHomeReg& getCSFBRegistrationParam1XRTTHomeReg() { return *static_cast<CSFBRegistrationParam1XRTTHomeReg*>(items[4]); }
-	CSFBRegistrationParam1XRTTForeignSIDReg& getCSFBRegistrationParam1XRTTForeignSIDReg() { return *static_cast<CSFBRegistrationParam1XRTTForeignSIDReg*>(items[5]); }
-	CSFBRegistrationParam1XRTTForeignNIDReg& getCSFBRegistrationParam1XRTTForeignNIDReg() { return *static_cast<CSFBRegistrationParam1XRTTForeignNIDReg*>(items[6]); }
-	CSFBRegistrationParam1XRTTParameterReg& getCSFBRegistrationParam1XRTTParameterReg() { return *static_cast<CSFBRegistrationParam1XRTTParameterReg*>(items[7]); }
-	CSFBRegistrationParam1XRTTPowerUpReg& getCSFBRegistrationParam1XRTTPowerUpReg() { return *static_cast<CSFBRegistrationParam1XRTTPowerUpReg*>(items[8]); }
-	CSFBRegistrationParam1XRTTRegistrationPeriod& getCSFBRegistrationParam1XRTTRegistrationPeriod() { return *static_cast<CSFBRegistrationParam1XRTTRegistrationPeriod*>(items[9]); }
-	CSFBRegistrationParam1XRTTRegistrationZone& getCSFBRegistrationParam1XRTTRegistrationZone() { return *static_cast<CSFBRegistrationParam1XRTTRegistrationZone*>(items[10]); }
-	CSFBRegistrationParam1XRTTTotalZone& getCSFBRegistrationParam1XRTTTotalZone() { return *static_cast<CSFBRegistrationParam1XRTTTotalZone*>(items[11]); }
-	CSFBRegistrationParam1XRTTZoneTimer& getCSFBRegistrationParam1XRTTZoneTimer() { return *static_cast<CSFBRegistrationParam1XRTTZoneTimer*>(items[12]); }
-};
-
-typedef BitString<CONSTRAINED, 42, 42> SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT;
-
-class SystemInformationBlockType8Parameters1XRTT : public Sequence {
-private:
-	static const void *itemsInfo[3];
-	static bool itemsPres[3];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType8Parameters1XRTT(): Sequence(&theInfo) {}
-
-	void setCsfbRegistrationParam1XRTT(const CSFBRegistrationParam1XRTT& csfbRegistrationParam1XRTT) { *static_cast<CSFBRegistrationParam1XRTT*>(items[0]) = csfbRegistrationParam1XRTT; }
-	void setSystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT(const SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT& systemInformationBlockType8Parameters1XRTTLongCodeState1XRTT) { *static_cast<SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT*>(items[1]) = systemInformationBlockType8Parameters1XRTTLongCodeState1XRTT; }
-	void setCellReselectionParameters1XRTT(const CellReselectionParametersCDMA2000& cellReselectionParameters1XRTT) { *static_cast<CellReselectionParametersCDMA2000*>(items[2]) = cellReselectionParameters1XRTT; }
-
-	CSFBRegistrationParam1XRTT& getCsfbRegistrationParam1XRTT() { return *static_cast<CSFBRegistrationParam1XRTT*>(items[0]); }
-	SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT& getSystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT() { return *static_cast<SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT*>(items[1]); }
-	CellReselectionParametersCDMA2000& getCellReselectionParameters1XRTT() { return *static_cast<CellReselectionParametersCDMA2000*>(items[2]); }
-};
-
-typedef OctetStringBase SystemInformationBlockType8LateNonCriticalExtension;
-
-typedef Boolean SystemInformationBlockType8CsfbSupportForDualRxUEsr9;
-
-typedef SequenceOf<PhysCellIdCDMA2000, CONSTRAINED, 0, 24> PhysCellIdListCDMA2000v920;
-
-class NeighCellsPerBandclassCDMA2000v920 : public Sequence {
-private:
-	static const void *itemsInfo[1];
-	static bool itemsPres[1];
-public:
-	static const Info theInfo;
-	NeighCellsPerBandclassCDMA2000v920(): Sequence(&theInfo) {}
-	NeighCellsPerBandclassCDMA2000v920(const PhysCellIdListCDMA2000v920& physCellIdListv920);
-
-	void setPhysCellIdListv920(const PhysCellIdListCDMA2000v920& physCellIdListv920) { *static_cast<PhysCellIdListCDMA2000v920*>(items[0]) = physCellIdListv920; }
-
-	PhysCellIdListCDMA2000v920& getPhysCellIdListv920() { return *static_cast<PhysCellIdListCDMA2000v920*>(items[0]); }
-};
-
-typedef SequenceOf<NeighCellsPerBandclassCDMA2000v920, CONSTRAINED, 1, 16> NeighCellsPerBandclassListCDMA2000v920;
-
-class NeighCellCDMA2000v920 : public Sequence {
-private:
-	static const void *itemsInfo[1];
-	static bool itemsPres[1];
-public:
-	static const Info theInfo;
-	NeighCellCDMA2000v920(): Sequence(&theInfo) {}
-	NeighCellCDMA2000v920(const NeighCellsPerBandclassListCDMA2000v920& neighCellsPerFreqListv920);
-
-	void setNeighCellsPerFreqListv920(const NeighCellsPerBandclassListCDMA2000v920& neighCellsPerFreqListv920) { *static_cast<NeighCellsPerBandclassListCDMA2000v920*>(items[0]) = neighCellsPerFreqListv920; }
-
-	NeighCellsPerBandclassListCDMA2000v920& getNeighCellsPerFreqListv920() { return *static_cast<NeighCellsPerBandclassListCDMA2000v920*>(items[0]); }
-};
-
-typedef SequenceOf<NeighCellCDMA2000v920, CONSTRAINED, 1, 16> NeighCellListCDMA2000v920;
-
-class CellReselectionParametersCDMA2000v920 : public Sequence {
-private:
-	static const void *itemsInfo[1];
-	static bool itemsPres[1];
-public:
-	static const Info theInfo;
-	CellReselectionParametersCDMA2000v920(): Sequence(&theInfo) {}
-	CellReselectionParametersCDMA2000v920(const NeighCellListCDMA2000v920& neighCellListv920);
-
-	void setNeighCellListv920(const NeighCellListCDMA2000v920& neighCellListv920) { *static_cast<NeighCellListCDMA2000v920*>(items[0]) = neighCellListv920; }
-
-	NeighCellListCDMA2000v920& getNeighCellListv920() { return *static_cast<NeighCellListCDMA2000v920*>(items[0]); }
-};
-
-enum CSFBRegistrationParam1XRTTv920powerDownReg_r9Values {
-	true_CSFBRegistrationParam1XRTTv920powerDownReg_r9 = 0,
-};
-typedef Enumerated<CONSTRAINED, 0> CSFBRegistrationParam1XRTTv920powerDownReg_r9;
-
-class CSFBRegistrationParam1XRTTv920 : public Sequence {
-private:
-	static const void *itemsInfo[1];
-	static bool itemsPres[1];
-public:
-	static const Info theInfo;
-	CSFBRegistrationParam1XRTTv920(): Sequence(&theInfo) {}
-	CSFBRegistrationParam1XRTTv920(const CSFBRegistrationParam1XRTTv920powerDownReg_r9& cSFBRegistrationParam1XRTTv920powerDownReg_r9);
-
-	void setCSFBRegistrationParam1XRTTv920powerDownReg_r9(const CSFBRegistrationParam1XRTTv920powerDownReg_r9& cSFBRegistrationParam1XRTTv920powerDownReg_r9) { *static_cast<CSFBRegistrationParam1XRTTv920powerDownReg_r9*>(items[0]) = cSFBRegistrationParam1XRTTv920powerDownReg_r9; }
-
-	CSFBRegistrationParam1XRTTv920powerDownReg_r9& getCSFBRegistrationParam1XRTTv920powerDownReg_r9() { return *static_cast<CSFBRegistrationParam1XRTTv920powerDownReg_r9*>(items[0]); }
-};
-
-typedef Integer<CONSTRAINED, 0, 63> ACBarringConfig1XRTTr9AcBarring0to9r9;
-
-typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarring10r9;
-
-typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarring11r9;
-
-typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarring12r9;
-
-typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarring13r9;
-
-typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarring14r9;
-
-typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarring15r9;
-
-typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarringMsgr9;
-
-typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarringRegr9;
-
-typedef Integer<CONSTRAINED, 0, 7> ACBarringConfig1XRTTr9AcBarringEmgr9;
-
-class ACBarringConfig1XRTTr9 : public Sequence {
-private:
-	static const void *itemsInfo[10];
-	static bool itemsPres[10];
-public:
-	static const Info theInfo;
-	ACBarringConfig1XRTTr9(): Sequence(&theInfo) {}
-	ACBarringConfig1XRTTr9(const ACBarringConfig1XRTTr9AcBarring0to9r9& aCBarringConfig1XRTTr9AcBarring0to9r9, const ACBarringConfig1XRTTr9AcBarring10r9& aCBarringConfig1XRTTr9AcBarring10r9, const ACBarringConfig1XRTTr9AcBarring11r9& aCBarringConfig1XRTTr9AcBarring11r9, const ACBarringConfig1XRTTr9AcBarring12r9& aCBarringConfig1XRTTr9AcBarring12r9, const ACBarringConfig1XRTTr9AcBarring13r9& aCBarringConfig1XRTTr9AcBarring13r9, const ACBarringConfig1XRTTr9AcBarring14r9& aCBarringConfig1XRTTr9AcBarring14r9, const ACBarringConfig1XRTTr9AcBarring15r9& aCBarringConfig1XRTTr9AcBarring15r9, const ACBarringConfig1XRTTr9AcBarringMsgr9& aCBarringConfig1XRTTr9AcBarringMsgr9, const ACBarringConfig1XRTTr9AcBarringRegr9& aCBarringConfig1XRTTr9AcBarringRegr9, const ACBarringConfig1XRTTr9AcBarringEmgr9& aCBarringConfig1XRTTr9AcBarringEmgr9);
-
-	void setACBarringConfig1XRTTr9AcBarring0to9r9(const ACBarringConfig1XRTTr9AcBarring0to9r9& aCBarringConfig1XRTTr9AcBarring0to9r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring0to9r9*>(items[0]) = aCBarringConfig1XRTTr9AcBarring0to9r9; }
-	void setACBarringConfig1XRTTr9AcBarring10r9(const ACBarringConfig1XRTTr9AcBarring10r9& aCBarringConfig1XRTTr9AcBarring10r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring10r9*>(items[1]) = aCBarringConfig1XRTTr9AcBarring10r9; }
-	void setACBarringConfig1XRTTr9AcBarring11r9(const ACBarringConfig1XRTTr9AcBarring11r9& aCBarringConfig1XRTTr9AcBarring11r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring11r9*>(items[2]) = aCBarringConfig1XRTTr9AcBarring11r9; }
-	void setACBarringConfig1XRTTr9AcBarring12r9(const ACBarringConfig1XRTTr9AcBarring12r9& aCBarringConfig1XRTTr9AcBarring12r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring12r9*>(items[3]) = aCBarringConfig1XRTTr9AcBarring12r9; }
-	void setACBarringConfig1XRTTr9AcBarring13r9(const ACBarringConfig1XRTTr9AcBarring13r9& aCBarringConfig1XRTTr9AcBarring13r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring13r9*>(items[4]) = aCBarringConfig1XRTTr9AcBarring13r9; }
-	void setACBarringConfig1XRTTr9AcBarring14r9(const ACBarringConfig1XRTTr9AcBarring14r9& aCBarringConfig1XRTTr9AcBarring14r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring14r9*>(items[5]) = aCBarringConfig1XRTTr9AcBarring14r9; }
-	void setACBarringConfig1XRTTr9AcBarring15r9(const ACBarringConfig1XRTTr9AcBarring15r9& aCBarringConfig1XRTTr9AcBarring15r9) { *static_cast<ACBarringConfig1XRTTr9AcBarring15r9*>(items[6]) = aCBarringConfig1XRTTr9AcBarring15r9; }
-	void setACBarringConfig1XRTTr9AcBarringMsgr9(const ACBarringConfig1XRTTr9AcBarringMsgr9& aCBarringConfig1XRTTr9AcBarringMsgr9) { *static_cast<ACBarringConfig1XRTTr9AcBarringMsgr9*>(items[7]) = aCBarringConfig1XRTTr9AcBarringMsgr9; }
-	void setACBarringConfig1XRTTr9AcBarringRegr9(const ACBarringConfig1XRTTr9AcBarringRegr9& aCBarringConfig1XRTTr9AcBarringRegr9) { *static_cast<ACBarringConfig1XRTTr9AcBarringRegr9*>(items[8]) = aCBarringConfig1XRTTr9AcBarringRegr9; }
-	void setACBarringConfig1XRTTr9AcBarringEmgr9(const ACBarringConfig1XRTTr9AcBarringEmgr9& aCBarringConfig1XRTTr9AcBarringEmgr9) { *static_cast<ACBarringConfig1XRTTr9AcBarringEmgr9*>(items[9]) = aCBarringConfig1XRTTr9AcBarringEmgr9; }
-
-	ACBarringConfig1XRTTr9AcBarring0to9r9& getACBarringConfig1XRTTr9AcBarring0to9r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring0to9r9*>(items[0]); }
-	ACBarringConfig1XRTTr9AcBarring10r9& getACBarringConfig1XRTTr9AcBarring10r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring10r9*>(items[1]); }
-	ACBarringConfig1XRTTr9AcBarring11r9& getACBarringConfig1XRTTr9AcBarring11r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring11r9*>(items[2]); }
-	ACBarringConfig1XRTTr9AcBarring12r9& getACBarringConfig1XRTTr9AcBarring12r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring12r9*>(items[3]); }
-	ACBarringConfig1XRTTr9AcBarring13r9& getACBarringConfig1XRTTr9AcBarring13r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring13r9*>(items[4]); }
-	ACBarringConfig1XRTTr9AcBarring14r9& getACBarringConfig1XRTTr9AcBarring14r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring14r9*>(items[5]); }
-	ACBarringConfig1XRTTr9AcBarring15r9& getACBarringConfig1XRTTr9AcBarring15r9() { return *static_cast<ACBarringConfig1XRTTr9AcBarring15r9*>(items[6]); }
-	ACBarringConfig1XRTTr9AcBarringMsgr9& getACBarringConfig1XRTTr9AcBarringMsgr9() { return *static_cast<ACBarringConfig1XRTTr9AcBarringMsgr9*>(items[7]); }
-	ACBarringConfig1XRTTr9AcBarringRegr9& getACBarringConfig1XRTTr9AcBarringRegr9() { return *static_cast<ACBarringConfig1XRTTr9AcBarringRegr9*>(items[8]); }
-	ACBarringConfig1XRTTr9AcBarringEmgr9& getACBarringConfig1XRTTr9AcBarringEmgr9() { return *static_cast<ACBarringConfig1XRTTr9AcBarringEmgr9*>(items[9]); }
-};
-
-enum SystemInformationBlockType8csfb_DualRxTxSupport_r10Values {
-	true_SystemInformationBlockType8csfb_DualRxTxSupport_r10 = 0,
-};
-typedef Enumerated<CONSTRAINED, 0> SystemInformationBlockType8csfb_DualRxTxSupport_r10;
-
-class SystemInformationBlockType8 : public Sequence {
-private:
-	static const void *itemsInfo[11];
-	static bool itemsPres[11];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType8(): Sequence(&theInfo) {}
-
-	void setSystemTimeInfo(const SystemTimeInfoCDMA2000& systemTimeInfo) { *static_cast<SystemTimeInfoCDMA2000*>(items[0]) = systemTimeInfo; }
-	void setSystemInformationBlockType8SearchWindowSize(const SystemInformationBlockType8SearchWindowSize& systemInformationBlockType8SearchWindowSize) { *static_cast<SystemInformationBlockType8SearchWindowSize*>(items[1]) = systemInformationBlockType8SearchWindowSize; }
-	void setSystemInformationBlockType8ParametersHRPD(const SystemInformationBlockType8ParametersHRPD& systemInformationBlockType8ParametersHRPD) { *static_cast<SystemInformationBlockType8ParametersHRPD*>(items[2]) = systemInformationBlockType8ParametersHRPD; }
-	void setSystemInformationBlockType8Parameters1XRTT(const SystemInformationBlockType8Parameters1XRTT& systemInformationBlockType8Parameters1XRTT) { *static_cast<SystemInformationBlockType8Parameters1XRTT*>(items[3]) = systemInformationBlockType8Parameters1XRTT; }
-	void setSystemInformationBlockType8LateNonCriticalExtension(const SystemInformationBlockType8LateNonCriticalExtension& systemInformationBlockType8LateNonCriticalExtension) { *static_cast<SystemInformationBlockType8LateNonCriticalExtension*>(items[4]) = systemInformationBlockType8LateNonCriticalExtension; }
-	void setSystemInformationBlockType8CsfbSupportForDualRxUEsr9(const SystemInformationBlockType8CsfbSupportForDualRxUEsr9& systemInformationBlockType8CsfbSupportForDualRxUEsr9) { *static_cast<SystemInformationBlockType8CsfbSupportForDualRxUEsr9*>(items[5]) = systemInformationBlockType8CsfbSupportForDualRxUEsr9; }
-	void setCellReselectionParametersHRPDv920(const CellReselectionParametersCDMA2000v920& cellReselectionParametersHRPDv920) { *static_cast<CellReselectionParametersCDMA2000v920*>(items[6]) = cellReselectionParametersHRPDv920; }
-	void setCellReselectionParameters1XRTTv920(const CellReselectionParametersCDMA2000v920& cellReselectionParameters1XRTTv920) { *static_cast<CellReselectionParametersCDMA2000v920*>(items[7]) = cellReselectionParameters1XRTTv920; }
-	void setCsfbRegistrationParam1XRTTv920(const CSFBRegistrationParam1XRTTv920& csfbRegistrationParam1XRTTv920) { *static_cast<CSFBRegistrationParam1XRTTv920*>(items[8]) = csfbRegistrationParam1XRTTv920; }
-	void setAcBarringConfig1XRTTr9(const ACBarringConfig1XRTTr9& acBarringConfig1XRTTr9) { *static_cast<ACBarringConfig1XRTTr9*>(items[9]) = acBarringConfig1XRTTr9; }
-	void setSystemInformationBlockType8csfb_DualRxTxSupport_r10(const SystemInformationBlockType8csfb_DualRxTxSupport_r10& systemInformationBlockType8csfb_DualRxTxSupport_r10) { *static_cast<SystemInformationBlockType8csfb_DualRxTxSupport_r10*>(items[10]) = systemInformationBlockType8csfb_DualRxTxSupport_r10; }
-
-	SystemTimeInfoCDMA2000& getSystemTimeInfo() { return *static_cast<SystemTimeInfoCDMA2000*>(items[0]); }
-	SystemInformationBlockType8SearchWindowSize& getSystemInformationBlockType8SearchWindowSize() { return *static_cast<SystemInformationBlockType8SearchWindowSize*>(items[1]); }
-	SystemInformationBlockType8ParametersHRPD& getSystemInformationBlockType8ParametersHRPD() { return *static_cast<SystemInformationBlockType8ParametersHRPD*>(items[2]); }
-	SystemInformationBlockType8Parameters1XRTT& getSystemInformationBlockType8Parameters1XRTT() { return *static_cast<SystemInformationBlockType8Parameters1XRTT*>(items[3]); }
-	SystemInformationBlockType8LateNonCriticalExtension& getSystemInformationBlockType8LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType8LateNonCriticalExtension*>(items[4]); }
-	SystemInformationBlockType8CsfbSupportForDualRxUEsr9& getSystemInformationBlockType8CsfbSupportForDualRxUEsr9() { return *static_cast<SystemInformationBlockType8CsfbSupportForDualRxUEsr9*>(items[5]); }
-	CellReselectionParametersCDMA2000v920& getCellReselectionParametersHRPDv920() { return *static_cast<CellReselectionParametersCDMA2000v920*>(items[6]); }
-	CellReselectionParametersCDMA2000v920& getCellReselectionParameters1XRTTv920() { return *static_cast<CellReselectionParametersCDMA2000v920*>(items[7]); }
-	CSFBRegistrationParam1XRTTv920& getCsfbRegistrationParam1XRTTv920() { return *static_cast<CSFBRegistrationParam1XRTTv920*>(items[8]); }
-	ACBarringConfig1XRTTr9& getAcBarringConfig1XRTTr9() { return *static_cast<ACBarringConfig1XRTTr9*>(items[9]); }
-	SystemInformationBlockType8csfb_DualRxTxSupport_r10& getSystemInformationBlockType8csfb_DualRxTxSupport_r10() { return *static_cast<SystemInformationBlockType8csfb_DualRxTxSupport_r10*>(items[10]); }
-};
-
-typedef OctetString<CONSTRAINED, 1, 48> SystemInformationBlockType9HnbName;
-
-typedef OctetStringBase SystemInformationBlockType9LateNonCriticalExtension;
-
-class SystemInformationBlockType9 : public Sequence {
-private:
-	static const void *itemsInfo[2];
-	static bool itemsPres[2];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType9(): Sequence(&theInfo) {}
-
-	void setSystemInformationBlockType9HnbName(const SystemInformationBlockType9HnbName& systemInformationBlockType9HnbName) { *static_cast<SystemInformationBlockType9HnbName*>(items[0]) = systemInformationBlockType9HnbName; }
-	void setSystemInformationBlockType9LateNonCriticalExtension(const SystemInformationBlockType9LateNonCriticalExtension& systemInformationBlockType9LateNonCriticalExtension) { *static_cast<SystemInformationBlockType9LateNonCriticalExtension*>(items[1]) = systemInformationBlockType9LateNonCriticalExtension; }
-
-	SystemInformationBlockType9HnbName& getSystemInformationBlockType9HnbName() { return *static_cast<SystemInformationBlockType9HnbName*>(items[0]); }
-	SystemInformationBlockType9LateNonCriticalExtension& getSystemInformationBlockType9LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType9LateNonCriticalExtension*>(items[1]); }
-};
-
-typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType10MessageIdentifier;
-
-typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType10SerialNumber;
-
-typedef OctetString<CONSTRAINED, 2, 2> SystemInformationBlockType10WarningType;
-
-typedef OctetString<CONSTRAINED, 50, 50> SystemInformationBlockType10WarningSecurityInfo;
-
-typedef OctetStringBase SystemInformationBlockType10LateNonCriticalExtension;
-
-class SystemInformationBlockType10 : public Sequence {
-private:
-	static const void *itemsInfo[5];
-	static bool itemsPres[5];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType10(): Sequence(&theInfo) {}
-	SystemInformationBlockType10(const SystemInformationBlockType10MessageIdentifier& systemInformationBlockType10MessageIdentifier, const SystemInformationBlockType10SerialNumber& systemInformationBlockType10SerialNumber, const SystemInformationBlockType10WarningType& systemInformationBlockType10WarningType);
-
-	void setSystemInformationBlockType10MessageIdentifier(const SystemInformationBlockType10MessageIdentifier& systemInformationBlockType10MessageIdentifier) { *static_cast<SystemInformationBlockType10MessageIdentifier*>(items[0]) = systemInformationBlockType10MessageIdentifier; }
-	void setSystemInformationBlockType10SerialNumber(const SystemInformationBlockType10SerialNumber& systemInformationBlockType10SerialNumber) { *static_cast<SystemInformationBlockType10SerialNumber*>(items[1]) = systemInformationBlockType10SerialNumber; }
-	void setSystemInformationBlockType10WarningType(const SystemInformationBlockType10WarningType& systemInformationBlockType10WarningType) { *static_cast<SystemInformationBlockType10WarningType*>(items[2]) = systemInformationBlockType10WarningType; }
-	void setSystemInformationBlockType10WarningSecurityInfo(const SystemInformationBlockType10WarningSecurityInfo& systemInformationBlockType10WarningSecurityInfo) { *static_cast<SystemInformationBlockType10WarningSecurityInfo*>(items[3]) = systemInformationBlockType10WarningSecurityInfo; }
-	void setSystemInformationBlockType10LateNonCriticalExtension(const SystemInformationBlockType10LateNonCriticalExtension& systemInformationBlockType10LateNonCriticalExtension) { *static_cast<SystemInformationBlockType10LateNonCriticalExtension*>(items[4]) = systemInformationBlockType10LateNonCriticalExtension; }
-
-	SystemInformationBlockType10MessageIdentifier& getSystemInformationBlockType10MessageIdentifier() { return *static_cast<SystemInformationBlockType10MessageIdentifier*>(items[0]); }
-	SystemInformationBlockType10SerialNumber& getSystemInformationBlockType10SerialNumber() { return *static_cast<SystemInformationBlockType10SerialNumber*>(items[1]); }
-	SystemInformationBlockType10WarningType& getSystemInformationBlockType10WarningType() { return *static_cast<SystemInformationBlockType10WarningType*>(items[2]); }
-	SystemInformationBlockType10WarningSecurityInfo& getSystemInformationBlockType10WarningSecurityInfo() { return *static_cast<SystemInformationBlockType10WarningSecurityInfo*>(items[3]); }
-	SystemInformationBlockType10LateNonCriticalExtension& getSystemInformationBlockType10LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType10LateNonCriticalExtension*>(items[4]); }
-};
-
-typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType11MessageIdentifier;
-
-typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType11SerialNumber;
-
-enum SystemInformationBlockType11warningMessageSegmentTypeValues {
-	notLastSegment_SystemInformationBlockType11warningMessageSegmentType = 0,
-	lastSegment_SystemInformationBlockType11warningMessageSegmentType = 1,
-};
-typedef Enumerated<CONSTRAINED, 1> SystemInformationBlockType11warningMessageSegmentType;
-
-typedef Integer<CONSTRAINED, 0, 63> SystemInformationBlockType11WarningMessageSegmentNumber;
-
-typedef OctetStringBase SystemInformationBlockType11WarningMessageSegment;
-
-typedef OctetString<CONSTRAINED, 1, 1> SystemInformationBlockType11DataCodingScheme;
-
-typedef OctetStringBase SystemInformationBlockType11LateNonCriticalExtension;
-
-class SystemInformationBlockType11 : public Sequence {
-private:
-	static const void *itemsInfo[7];
-	static bool itemsPres[7];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType11(): Sequence(&theInfo) {}
-	SystemInformationBlockType11(const SystemInformationBlockType11MessageIdentifier& systemInformationBlockType11MessageIdentifier, const SystemInformationBlockType11SerialNumber& systemInformationBlockType11SerialNumber, const SystemInformationBlockType11warningMessageSegmentType& systemInformationBlockType11warningMessageSegmentType, const SystemInformationBlockType11WarningMessageSegmentNumber& systemInformationBlockType11WarningMessageSegmentNumber, const SystemInformationBlockType11WarningMessageSegment& systemInformationBlockType11WarningMessageSegment);
-
-	void setSystemInformationBlockType11MessageIdentifier(const SystemInformationBlockType11MessageIdentifier& systemInformationBlockType11MessageIdentifier) { *static_cast<SystemInformationBlockType11MessageIdentifier*>(items[0]) = systemInformationBlockType11MessageIdentifier; }
-	void setSystemInformationBlockType11SerialNumber(const SystemInformationBlockType11SerialNumber& systemInformationBlockType11SerialNumber) { *static_cast<SystemInformationBlockType11SerialNumber*>(items[1]) = systemInformationBlockType11SerialNumber; }
-	void setSystemInformationBlockType11warningMessageSegmentType(const SystemInformationBlockType11warningMessageSegmentType& systemInformationBlockType11warningMessageSegmentType) { *static_cast<SystemInformationBlockType11warningMessageSegmentType*>(items[2]) = systemInformationBlockType11warningMessageSegmentType; }
-	void setSystemInformationBlockType11WarningMessageSegmentNumber(const SystemInformationBlockType11WarningMessageSegmentNumber& systemInformationBlockType11WarningMessageSegmentNumber) { *static_cast<SystemInformationBlockType11WarningMessageSegmentNumber*>(items[3]) = systemInformationBlockType11WarningMessageSegmentNumber; }
-	void setSystemInformationBlockType11WarningMessageSegment(const SystemInformationBlockType11WarningMessageSegment& systemInformationBlockType11WarningMessageSegment) { *static_cast<SystemInformationBlockType11WarningMessageSegment*>(items[4]) = systemInformationBlockType11WarningMessageSegment; }
-	void setSystemInformationBlockType11DataCodingScheme(const SystemInformationBlockType11DataCodingScheme& systemInformationBlockType11DataCodingScheme) { *static_cast<SystemInformationBlockType11DataCodingScheme*>(items[5]) = systemInformationBlockType11DataCodingScheme; }
-	void setSystemInformationBlockType11LateNonCriticalExtension(const SystemInformationBlockType11LateNonCriticalExtension& systemInformationBlockType11LateNonCriticalExtension) { *static_cast<SystemInformationBlockType11LateNonCriticalExtension*>(items[6]) = systemInformationBlockType11LateNonCriticalExtension; }
-
-	SystemInformationBlockType11MessageIdentifier& getSystemInformationBlockType11MessageIdentifier() { return *static_cast<SystemInformationBlockType11MessageIdentifier*>(items[0]); }
-	SystemInformationBlockType11SerialNumber& getSystemInformationBlockType11SerialNumber() { return *static_cast<SystemInformationBlockType11SerialNumber*>(items[1]); }
-	SystemInformationBlockType11warningMessageSegmentType& getSystemInformationBlockType11warningMessageSegmentType() { return *static_cast<SystemInformationBlockType11warningMessageSegmentType*>(items[2]); }
-	SystemInformationBlockType11WarningMessageSegmentNumber& getSystemInformationBlockType11WarningMessageSegmentNumber() { return *static_cast<SystemInformationBlockType11WarningMessageSegmentNumber*>(items[3]); }
-	SystemInformationBlockType11WarningMessageSegment& getSystemInformationBlockType11WarningMessageSegment() { return *static_cast<SystemInformationBlockType11WarningMessageSegment*>(items[4]); }
-	SystemInformationBlockType11DataCodingScheme& getSystemInformationBlockType11DataCodingScheme() { return *static_cast<SystemInformationBlockType11DataCodingScheme*>(items[5]); }
-	SystemInformationBlockType11LateNonCriticalExtension& getSystemInformationBlockType11LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType11LateNonCriticalExtension*>(items[6]); }
-};
-
-typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType12r9MessageIdentifierr9;
-
-typedef BitString<CONSTRAINED, 16, 16> SystemInformationBlockType12r9SerialNumberr9;
-
-enum SystemInformationBlockType12r9warningMessageSegmentType_r9Values {
-	notLastSegment_SystemInformationBlockType12r9warningMessageSegmentType_r9 = 0,
-	lastSegment_SystemInformationBlockType12r9warningMessageSegmentType_r9 = 1,
-};
-typedef Enumerated<CONSTRAINED, 1> SystemInformationBlockType12r9warningMessageSegmentType_r9;
-
-typedef Integer<CONSTRAINED, 0, 63> SystemInformationBlockType12r9WarningMessageSegmentNumberr9;
-
-typedef OctetStringBase SystemInformationBlockType12r9WarningMessageSegmentr9;
-
-typedef OctetString<CONSTRAINED, 1, 1> SystemInformationBlockType12r9DataCodingSchemer9;
-
-typedef OctetStringBase SystemInformationBlockType12r9LateNonCriticalExtension;
-
-class SystemInformationBlockType12r9 : public Sequence {
-private:
-	static const void *itemsInfo[7];
-	static bool itemsPres[7];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType12r9(): Sequence(&theInfo) {}
-	SystemInformationBlockType12r9(const SystemInformationBlockType12r9MessageIdentifierr9& systemInformationBlockType12r9MessageIdentifierr9, const SystemInformationBlockType12r9SerialNumberr9& systemInformationBlockType12r9SerialNumberr9, const SystemInformationBlockType12r9warningMessageSegmentType_r9& systemInformationBlockType12r9warningMessageSegmentType_r9, const SystemInformationBlockType12r9WarningMessageSegmentNumberr9& systemInformationBlockType12r9WarningMessageSegmentNumberr9, const SystemInformationBlockType12r9WarningMessageSegmentr9& systemInformationBlockType12r9WarningMessageSegmentr9);
-
-	void setSystemInformationBlockType12r9MessageIdentifierr9(const SystemInformationBlockType12r9MessageIdentifierr9& systemInformationBlockType12r9MessageIdentifierr9) { *static_cast<SystemInformationBlockType12r9MessageIdentifierr9*>(items[0]) = systemInformationBlockType12r9MessageIdentifierr9; }
-	void setSystemInformationBlockType12r9SerialNumberr9(const SystemInformationBlockType12r9SerialNumberr9& systemInformationBlockType12r9SerialNumberr9) { *static_cast<SystemInformationBlockType12r9SerialNumberr9*>(items[1]) = systemInformationBlockType12r9SerialNumberr9; }
-	void setSystemInformationBlockType12r9warningMessageSegmentType_r9(const SystemInformationBlockType12r9warningMessageSegmentType_r9& systemInformationBlockType12r9warningMessageSegmentType_r9) { *static_cast<SystemInformationBlockType12r9warningMessageSegmentType_r9*>(items[2]) = systemInformationBlockType12r9warningMessageSegmentType_r9; }
-	void setSystemInformationBlockType12r9WarningMessageSegmentNumberr9(const SystemInformationBlockType12r9WarningMessageSegmentNumberr9& systemInformationBlockType12r9WarningMessageSegmentNumberr9) { *static_cast<SystemInformationBlockType12r9WarningMessageSegmentNumberr9*>(items[3]) = systemInformationBlockType12r9WarningMessageSegmentNumberr9; }
-	void setSystemInformationBlockType12r9WarningMessageSegmentr9(const SystemInformationBlockType12r9WarningMessageSegmentr9& systemInformationBlockType12r9WarningMessageSegmentr9) { *static_cast<SystemInformationBlockType12r9WarningMessageSegmentr9*>(items[4]) = systemInformationBlockType12r9WarningMessageSegmentr9; }
-	void setSystemInformationBlockType12r9DataCodingSchemer9(const SystemInformationBlockType12r9DataCodingSchemer9& systemInformationBlockType12r9DataCodingSchemer9) { *static_cast<SystemInformationBlockType12r9DataCodingSchemer9*>(items[5]) = systemInformationBlockType12r9DataCodingSchemer9; }
-	void setSystemInformationBlockType12r9LateNonCriticalExtension(const SystemInformationBlockType12r9LateNonCriticalExtension& systemInformationBlockType12r9LateNonCriticalExtension) { *static_cast<SystemInformationBlockType12r9LateNonCriticalExtension*>(items[6]) = systemInformationBlockType12r9LateNonCriticalExtension; }
-
-	SystemInformationBlockType12r9MessageIdentifierr9& getSystemInformationBlockType12r9MessageIdentifierr9() { return *static_cast<SystemInformationBlockType12r9MessageIdentifierr9*>(items[0]); }
-	SystemInformationBlockType12r9SerialNumberr9& getSystemInformationBlockType12r9SerialNumberr9() { return *static_cast<SystemInformationBlockType12r9SerialNumberr9*>(items[1]); }
-	SystemInformationBlockType12r9warningMessageSegmentType_r9& getSystemInformationBlockType12r9warningMessageSegmentType_r9() { return *static_cast<SystemInformationBlockType12r9warningMessageSegmentType_r9*>(items[2]); }
-	SystemInformationBlockType12r9WarningMessageSegmentNumberr9& getSystemInformationBlockType12r9WarningMessageSegmentNumberr9() { return *static_cast<SystemInformationBlockType12r9WarningMessageSegmentNumberr9*>(items[3]); }
-	SystemInformationBlockType12r9WarningMessageSegmentr9& getSystemInformationBlockType12r9WarningMessageSegmentr9() { return *static_cast<SystemInformationBlockType12r9WarningMessageSegmentr9*>(items[4]); }
-	SystemInformationBlockType12r9DataCodingSchemer9& getSystemInformationBlockType12r9DataCodingSchemer9() { return *static_cast<SystemInformationBlockType12r9DataCodingSchemer9*>(items[5]); }
-	SystemInformationBlockType12r9LateNonCriticalExtension& getSystemInformationBlockType12r9LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType12r9LateNonCriticalExtension*>(items[6]); }
-};
-
-typedef Integer<CONSTRAINED, 0, 255> MBSFNAreaInfor9MbsfnAreaIdr9;
-
-enum MBSFNAreaInfor9non_MBSFNregionLengthValues {
-	s1_MBSFNAreaInfor9non_MBSFNregionLength = 0,
-	s2_MBSFNAreaInfor9non_MBSFNregionLength = 1,
-};
-typedef Enumerated<CONSTRAINED, 1> MBSFNAreaInfor9non_MBSFNregionLength;
-
-typedef Integer<CONSTRAINED, 0, 7> MBSFNAreaInfor9NotificationIndicatorr9;
-
-enum MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9Values {
-	rf32_MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9 = 0,
-	rf64_MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9 = 1,
-	rf128_MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9 = 2,
-	rf256_MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9 = 3,
-};
-typedef Enumerated<CONSTRAINED, 3> MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9;
-
-typedef Integer<CONSTRAINED, 0, 10> MBSFNAreaInfor9McchConfigr9McchOffsetr9;
-
-enum MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9Values {
-	rf512_MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9 = 0,
-	rf1024_MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9 = 1,
-};
-typedef Enumerated<CONSTRAINED, 1> MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9;
-
-typedef BitString<CONSTRAINED, 6, 6> MBSFNAreaInfor9McchConfigr9SfAllocInfor9;
-
-enum MBSFNAreaInfor9McchConfigr9signallingMCS_r9Values {
-	n2_MBSFNAreaInfor9McchConfigr9signallingMCS_r9 = 0,
-	n7_MBSFNAreaInfor9McchConfigr9signallingMCS_r9 = 1,
-	n13_MBSFNAreaInfor9McchConfigr9signallingMCS_r9 = 2,
-	n19_MBSFNAreaInfor9McchConfigr9signallingMCS_r9 = 3,
-};
-typedef Enumerated<CONSTRAINED, 3> MBSFNAreaInfor9McchConfigr9signallingMCS_r9;
-
-class MBSFNAreaInfor9McchConfigr9 : public Sequence {
-private:
-	static const void *itemsInfo[5];
-	static bool itemsPres[5];
-public:
-	static const Info theInfo;
-	MBSFNAreaInfor9McchConfigr9(): Sequence(&theInfo) {}
-	MBSFNAreaInfor9McchConfigr9(const MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9, const MBSFNAreaInfor9McchConfigr9McchOffsetr9& mBSFNAreaInfor9McchConfigr9McchOffsetr9, const MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9, const MBSFNAreaInfor9McchConfigr9SfAllocInfor9& mBSFNAreaInfor9McchConfigr9SfAllocInfor9, const MBSFNAreaInfor9McchConfigr9signallingMCS_r9& mBSFNAreaInfor9McchConfigr9signallingMCS_r9);
-
-	void setMBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9(const MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9) { *static_cast<MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9*>(items[0]) = mBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9; }
-	void setMBSFNAreaInfor9McchConfigr9McchOffsetr9(const MBSFNAreaInfor9McchConfigr9McchOffsetr9& mBSFNAreaInfor9McchConfigr9McchOffsetr9) { *static_cast<MBSFNAreaInfor9McchConfigr9McchOffsetr9*>(items[1]) = mBSFNAreaInfor9McchConfigr9McchOffsetr9; }
-	void setMBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9(const MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9) { *static_cast<MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9*>(items[2]) = mBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9; }
-	void setMBSFNAreaInfor9McchConfigr9SfAllocInfor9(const MBSFNAreaInfor9McchConfigr9SfAllocInfor9& mBSFNAreaInfor9McchConfigr9SfAllocInfor9) { *static_cast<MBSFNAreaInfor9McchConfigr9SfAllocInfor9*>(items[3]) = mBSFNAreaInfor9McchConfigr9SfAllocInfor9; }
-	void setMBSFNAreaInfor9McchConfigr9signallingMCS_r9(const MBSFNAreaInfor9McchConfigr9signallingMCS_r9& mBSFNAreaInfor9McchConfigr9signallingMCS_r9) { *static_cast<MBSFNAreaInfor9McchConfigr9signallingMCS_r9*>(items[4]) = mBSFNAreaInfor9McchConfigr9signallingMCS_r9; }
-
-	MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9& getMBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9() { return *static_cast<MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9*>(items[0]); }
-	MBSFNAreaInfor9McchConfigr9McchOffsetr9& getMBSFNAreaInfor9McchConfigr9McchOffsetr9() { return *static_cast<MBSFNAreaInfor9McchConfigr9McchOffsetr9*>(items[1]); }
-	MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9& getMBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9() { return *static_cast<MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9*>(items[2]); }
-	MBSFNAreaInfor9McchConfigr9SfAllocInfor9& getMBSFNAreaInfor9McchConfigr9SfAllocInfor9() { return *static_cast<MBSFNAreaInfor9McchConfigr9SfAllocInfor9*>(items[3]); }
-	MBSFNAreaInfor9McchConfigr9signallingMCS_r9& getMBSFNAreaInfor9McchConfigr9signallingMCS_r9() { return *static_cast<MBSFNAreaInfor9McchConfigr9signallingMCS_r9*>(items[4]); }
-};
-
-class MBSFNAreaInfor9 : public Sequence {
-private:
-	static const void *itemsInfo[4];
-	static bool itemsPres[4];
-public:
-	static const Info theInfo;
-	MBSFNAreaInfor9(): Sequence(&theInfo) {}
-	MBSFNAreaInfor9(const MBSFNAreaInfor9MbsfnAreaIdr9& mBSFNAreaInfor9MbsfnAreaIdr9, const MBSFNAreaInfor9non_MBSFNregionLength& mBSFNAreaInfor9non_MBSFNregionLength, const MBSFNAreaInfor9NotificationIndicatorr9& mBSFNAreaInfor9NotificationIndicatorr9, const MBSFNAreaInfor9McchConfigr9& mBSFNAreaInfor9McchConfigr9);
-
-	void setMBSFNAreaInfor9MbsfnAreaIdr9(const MBSFNAreaInfor9MbsfnAreaIdr9& mBSFNAreaInfor9MbsfnAreaIdr9) { *static_cast<MBSFNAreaInfor9MbsfnAreaIdr9*>(items[0]) = mBSFNAreaInfor9MbsfnAreaIdr9; }
-	void setMBSFNAreaInfor9non_MBSFNregionLength(const MBSFNAreaInfor9non_MBSFNregionLength& mBSFNAreaInfor9non_MBSFNregionLength) { *static_cast<MBSFNAreaInfor9non_MBSFNregionLength*>(items[1]) = mBSFNAreaInfor9non_MBSFNregionLength; }
-	void setMBSFNAreaInfor9NotificationIndicatorr9(const MBSFNAreaInfor9NotificationIndicatorr9& mBSFNAreaInfor9NotificationIndicatorr9) { *static_cast<MBSFNAreaInfor9NotificationIndicatorr9*>(items[2]) = mBSFNAreaInfor9NotificationIndicatorr9; }
-	void setMBSFNAreaInfor9McchConfigr9(const MBSFNAreaInfor9McchConfigr9& mBSFNAreaInfor9McchConfigr9) { *static_cast<MBSFNAreaInfor9McchConfigr9*>(items[3]) = mBSFNAreaInfor9McchConfigr9; }
-
-	MBSFNAreaInfor9MbsfnAreaIdr9& getMBSFNAreaInfor9MbsfnAreaIdr9() { return *static_cast<MBSFNAreaInfor9MbsfnAreaIdr9*>(items[0]); }
-	MBSFNAreaInfor9non_MBSFNregionLength& getMBSFNAreaInfor9non_MBSFNregionLength() { return *static_cast<MBSFNAreaInfor9non_MBSFNregionLength*>(items[1]); }
-	MBSFNAreaInfor9NotificationIndicatorr9& getMBSFNAreaInfor9NotificationIndicatorr9() { return *static_cast<MBSFNAreaInfor9NotificationIndicatorr9*>(items[2]); }
-	MBSFNAreaInfor9McchConfigr9& getMBSFNAreaInfor9McchConfigr9() { return *static_cast<MBSFNAreaInfor9McchConfigr9*>(items[3]); }
-};
-
-typedef SequenceOf<MBSFNAreaInfor9, CONSTRAINED, 1, maxMBSFN_Area> MBSFNAreaInfoListr9;
-
-enum MBMSNotificationConfigr9notificationRepetitionCoeff_r9Values {
-	n2_MBMSNotificationConfigr9notificationRepetitionCoeff_r9 = 0,
-	n4_MBMSNotificationConfigr9notificationRepetitionCoeff_r9 = 1,
-};
-typedef Enumerated<CONSTRAINED, 1> MBMSNotificationConfigr9notificationRepetitionCoeff_r9;
-
-typedef Integer<CONSTRAINED, 0, 10> MBMSNotificationConfigr9NotificationOffsetr9;
-
-typedef Integer<CONSTRAINED, 1, 6> MBMSNotificationConfigr9NotificationSFIndexr9;
-
-class MBMSNotificationConfigr9 : public Sequence {
-private:
-	static const void *itemsInfo[3];
-	static bool itemsPres[3];
-public:
-	static const Info theInfo;
-	MBMSNotificationConfigr9(): Sequence(&theInfo) {}
-	MBMSNotificationConfigr9(const MBMSNotificationConfigr9notificationRepetitionCoeff_r9& mBMSNotificationConfigr9notificationRepetitionCoeff_r9, const MBMSNotificationConfigr9NotificationOffsetr9& mBMSNotificationConfigr9NotificationOffsetr9, const MBMSNotificationConfigr9NotificationSFIndexr9& mBMSNotificationConfigr9NotificationSFIndexr9);
-
-	void setMBMSNotificationConfigr9notificationRepetitionCoeff_r9(const MBMSNotificationConfigr9notificationRepetitionCoeff_r9& mBMSNotificationConfigr9notificationRepetitionCoeff_r9) { *static_cast<MBMSNotificationConfigr9notificationRepetitionCoeff_r9*>(items[0]) = mBMSNotificationConfigr9notificationRepetitionCoeff_r9; }
-	void setMBMSNotificationConfigr9NotificationOffsetr9(const MBMSNotificationConfigr9NotificationOffsetr9& mBMSNotificationConfigr9NotificationOffsetr9) { *static_cast<MBMSNotificationConfigr9NotificationOffsetr9*>(items[1]) = mBMSNotificationConfigr9NotificationOffsetr9; }
-	void setMBMSNotificationConfigr9NotificationSFIndexr9(const MBMSNotificationConfigr9NotificationSFIndexr9& mBMSNotificationConfigr9NotificationSFIndexr9) { *static_cast<MBMSNotificationConfigr9NotificationSFIndexr9*>(items[2]) = mBMSNotificationConfigr9NotificationSFIndexr9; }
-
-	MBMSNotificationConfigr9notificationRepetitionCoeff_r9& getMBMSNotificationConfigr9notificationRepetitionCoeff_r9() { return *static_cast<MBMSNotificationConfigr9notificationRepetitionCoeff_r9*>(items[0]); }
-	MBMSNotificationConfigr9NotificationOffsetr9& getMBMSNotificationConfigr9NotificationOffsetr9() { return *static_cast<MBMSNotificationConfigr9NotificationOffsetr9*>(items[1]); }
-	MBMSNotificationConfigr9NotificationSFIndexr9& getMBMSNotificationConfigr9NotificationSFIndexr9() { return *static_cast<MBMSNotificationConfigr9NotificationSFIndexr9*>(items[2]); }
-};
-
-typedef OctetStringBase SystemInformationBlockType13r9LateNonCriticalExtension;
-
-class SystemInformationBlockType13r9 : public Sequence {
-private:
-	static const void *itemsInfo[3];
-	static bool itemsPres[3];
-public:
-	static const Info theInfo;
-	SystemInformationBlockType13r9(): Sequence(&theInfo) {}
-	SystemInformationBlockType13r9(const MBSFNAreaInfoListr9& mbsfnAreaInfoListr9, const MBMSNotificationConfigr9& notificationConfigr9);
-
-	void setMbsfnAreaInfoListr9(const MBSFNAreaInfoListr9& mbsfnAreaInfoListr9) { *static_cast<MBSFNAreaInfoListr9*>(items[0]) = mbsfnAreaInfoListr9; }
-	void setNotificationConfigr9(const MBMSNotificationConfigr9& notificationConfigr9) { *static_cast<MBMSNotificationConfigr9*>(items[1]) = notificationConfigr9; }
-	void setSystemInformationBlockType13r9LateNonCriticalExtension(const SystemInformationBlockType13r9LateNonCriticalExtension& systemInformationBlockType13r9LateNonCriticalExtension) { *static_cast<SystemInformationBlockType13r9LateNonCriticalExtension*>(items[2]) = systemInformationBlockType13r9LateNonCriticalExtension; }
-
-	MBSFNAreaInfoListr9& getMbsfnAreaInfoListr9() { return *static_cast<MBSFNAreaInfoListr9*>(items[0]); }
-	MBMSNotificationConfigr9& getNotificationConfigr9() { return *static_cast<MBMSNotificationConfigr9*>(items[1]); }
-	SystemInformationBlockType13r9LateNonCriticalExtension& getSystemInformationBlockType13r9LateNonCriticalExtension() { return *static_cast<SystemInformationBlockType13r9LateNonCriticalExtension*>(items[2]); }
-};
-
 enum AccessStratumReleaseValues {
 	rel8_AccessStratumRelease = 0,
 	rel9_AccessStratumRelease = 1,
@@ -14464,7 +14477,7 @@ enum SupportedBandUTRAFDDValues {
 	bandXXXI_8a0_SupportedBandUTRAFDD = 30,
 	bandXXXII_8a0_SupportedBandUTRAFDD = 31,
 };
-typedef Enumerated<CONSTRAINED, 31> SupportedBandUTRAFDD;
+typedef Enumerated<EXTCONSTRAINED, 31> SupportedBandUTRAFDD;
 
 typedef SequenceOf<SupportedBandUTRAFDD, CONSTRAINED, 1, maxBands> SupportedBandListUTRAFDD;
 

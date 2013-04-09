@@ -26,8 +26,8 @@
 		</Paths>
 	</GTP>  
 	<LTEConfig
-			dlBandwith="6"
-			phichDuration="normal"
+			<!-- dlBandwith="6" -->
+			phichDuration="normal" 
 			phichResource="1"
 			tac="7712"
 			cellId="1"

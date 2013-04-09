@@ -128,16 +128,49 @@ public:
 	VarMeasConfigSpeedStatePars& getVarMeasConfigSpeedStatePars() { return *static_cast<VarMeasConfigSpeedStatePars*>(items[5]); }
 };
 
-class CellsTriggeredList : public Sequence {
+class CellsTriggeredListItemPhysCellIdUTRA : public Choice {
 private:
-	static const void *itemsInfo[0];
-	static bool itemsPres[0];
+	static const void *choicesInfo[2];
+public:
+	enum CellsTriggeredListItemPhysCellIdUTRAChoices {
+		fdd = 0,
+		tdd = 1,
+	};
+	static const Info theInfo;
+	CellsTriggeredListItemPhysCellIdUTRA(): Choice(&theInfo) {}
+};
+
+class CellsTriggeredListItemPhysCellIdGERAN : public Sequence {
+private:
+	static const void *itemsInfo[2];
+	static bool itemsPres[2];
 public:
 	static const Info theInfo;
-	CellsTriggeredList(): Sequence(&theInfo) {}
+	CellsTriggeredListItemPhysCellIdGERAN(): Sequence(&theInfo) {}
+	CellsTriggeredListItemPhysCellIdGERAN(const CarrierFreqGERAN& carrierFreq, const PhysCellIdGERAN& physCellId);
 
+	void setCarrierFreq(const CarrierFreqGERAN& carrierFreq) { *static_cast<CarrierFreqGERAN*>(items[0]) = carrierFreq; }
+	void setPhysCellId(const PhysCellIdGERAN& physCellId) { *static_cast<PhysCellIdGERAN*>(items[1]) = physCellId; }
 
+	CarrierFreqGERAN& getCarrierFreq() { return *static_cast<CarrierFreqGERAN*>(items[0]); }
+	PhysCellIdGERAN& getPhysCellId() { return *static_cast<PhysCellIdGERAN*>(items[1]); }
 };
+
+class CellsTriggeredListItem : public Choice {
+private:
+	static const void *choicesInfo[4];
+public:
+	enum CellsTriggeredListItemChoices {
+		physCellIdEUTRA = 0,
+		cellsTriggeredListItemPhysCellIdUTRA = 1,
+		cellsTriggeredListItemPhysCellIdGERAN = 2,
+		physCellIdCDMA2000 = 3,
+	};
+	static const Info theInfo;
+	CellsTriggeredListItem(): Choice(&theInfo) {}
+};
+
+typedef SequenceOf<CellsTriggeredListItem, CONSTRAINED, 1, maxCellMeas> CellsTriggeredList;
 
 typedef IntegerBase VarMeasReportNumberOfReportsSent;
 

@@ -1,0 +1,82 @@
+-- 3GPP TS 36.331 V10.5.0 (2012-03)﻿
+-- $Id: EUTRA-RRC-Definitions.asn 41917 2012-04-04 07:47:54Z etxrab $
+--
+Test-Definitions DEFINITIONS AUTOMATIC TAGS ::=
+
+BEGIN
+
+ENBid ::= INTEGER (SIZE (1..4, ...))
+
+SystemInformation-r8-IEs ::=		SEQUENCE {
+	sib-TypeAndInfo						SEQUENCE (SIZE (1..maxSIB)) OF CHOICE {
+		sib2								SystemInformationBlockType2,
+		sib3								SystemInformationBlockType3,
+		sib4								SystemInformationBlockType4,
+		sib5								SystemInformationBlockType5,
+		sib6								SystemInformationBlockType6,
+		sib7								SystemInformationBlockType7,
+		sib8								SystemInformationBlockType8,
+		sib9								SystemInformationBlockType9,
+		sib10								SystemInformationBlockType10,
+		sib11								SystemInformationBlockType11,
+		...,
+		sib12-v920							SystemInformationBlockType12-r9,
+		sib13-v920							SystemInformationBlockType13-r9
+	},
+	nonCriticalExtension				SystemInformation-v8a0-IEs							OPTIONAL
+}
+
+SystemInformation-v8a0-IEs ::= SEQUENCE {
+	lateNonCriticalExtension			OCTET STRING						OPTIONAL,	-- Need OP
+	nonCriticalExtension				SEQUENCE {}							OPTIONAL	-- Need OP
+}
+
+SystemInformationBlockType2 ::=		SEQUENCE {
+
+}
+
+SystemInformationBlockType3 ::=		SEQUENCE {
+
+}
+
+SystemInformationBlockType4 ::=		SEQUENCE {
+
+}
+
+SystemInformationBlockType5 ::=		SEQUENCE {
+
+}
+
+SystemInformationBlockType6 ::=		SEQUENCE {
+
+}
+
+SystemInformationBlockType7 ::=		SEQUENCE {
+
+}
+
+SystemInformationBlockType8 ::=		SEQUENCE {
+
+}
+
+SystemInformationBlockType9 ::=		SEQUENCE {
+
+}
+
+SystemInformationBlockType10 ::=		SEQUENCE {
+
+}
+
+SystemInformationBlockType11 ::=		SEQUENCE {
+
+}
+
+SystemInformationBlockType12-r9 ::=		SEQUENCE {
+
+}
+
+SystemInformationBlockType13-r9 ::=		SEQUENCE {
+
+}
+
+END

@@ -38,8 +38,10 @@ private:
 
     cMessage *mibTimer;
     cMessage *sib1Timer;
+    cMessage *sib2Timer;
 
     LTEConfig *lteCfg;
+
 public:
 	RRC();
 	virtual ~RRC();
@@ -53,7 +55,12 @@ public:
 	void sendDown(int logChannel, int choice, const char *name, AbstractType *payload);
 
 	void sendMIB();
+	void processMIB(MasterInformationBlock mib);
 	void sendSIB1();
+	void processSIB1(SystemInformationBlockType1 *sib1);
+	void sendSIB2();
+	void processSIB2(SystemInformationBlockType2 *sib2);
+
 };
 
 #endif /* RRC_H_ */

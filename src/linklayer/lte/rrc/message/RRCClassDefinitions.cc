@@ -88,18 +88,2057 @@ BCCHBCHMessage::BCCHBCHMessage(const BCCHBCHMessageType& message) : Sequence(&th
 	setMessage(message);
 }
 
-const void *SystemInformationr8IEsSibTypeAndInfo::itemsInfo[0] = {
+const void *ACBarringConfig::itemsInfo[3] = {
+	&ACBarringConfigac_BarringFactor::theInfo,
+	&ACBarringConfigac_BarringTime::theInfo,
+	&ACBarringConfigAcBarringForSpecialAC::theInfo,
 };
-bool SystemInformationr8IEsSibTypeAndInfo::itemsPres[0] = {
+bool ACBarringConfig::itemsPres[3] = {
+	1,
+	1,
+	1,
 };
-const SystemInformationr8IEsSibTypeAndInfo::Info SystemInformationr8IEsSibTypeAndInfo::theInfo = {
-	SystemInformationr8IEsSibTypeAndInfo::create,
+const ACBarringConfig::Info ACBarringConfig::theInfo = {
+	ACBarringConfig::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	3, 0, 0
+};
+ACBarringConfig::ACBarringConfig(const ACBarringConfigac_BarringFactor& aCBarringConfigac_BarringFactor, const ACBarringConfigac_BarringTime& aCBarringConfigac_BarringTime, const ACBarringConfigAcBarringForSpecialAC& aCBarringConfigAcBarringForSpecialAC) : Sequence(&theInfo) {
+	setACBarringConfigac_BarringFactor(aCBarringConfigac_BarringFactor);
+	setACBarringConfigac_BarringTime(aCBarringConfigac_BarringTime);
+	setACBarringConfigAcBarringForSpecialAC(aCBarringConfigAcBarringForSpecialAC);
+}
+
+const void *SystemInformationBlockType2AcBarringInfo::itemsInfo[3] = {
+	&SystemInformationBlockType2AcBarringInfoAcBarringForEmergency::theInfo,
+	&ACBarringConfig::theInfo,
+	&ACBarringConfig::theInfo,
+};
+bool SystemInformationBlockType2AcBarringInfo::itemsPres[3] = {
+	1,
+	0,
+	0,
+};
+const SystemInformationBlockType2AcBarringInfo::Info SystemInformationBlockType2AcBarringInfo::theInfo = {
+	SystemInformationBlockType2AcBarringInfo::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	3, 2, 0
+};
+SystemInformationBlockType2AcBarringInfo::SystemInformationBlockType2AcBarringInfo(const SystemInformationBlockType2AcBarringInfoAcBarringForEmergency& systemInformationBlockType2AcBarringInfoAcBarringForEmergency) : Sequence(&theInfo) {
+	setSystemInformationBlockType2AcBarringInfoAcBarringForEmergency(systemInformationBlockType2AcBarringInfoAcBarringForEmergency);
+}
+
+const void *RACHConfigCommonPreambleInfoPreamblesGroupAConfig::itemsInfo[3] = {
+	&RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA::theInfo,
+	&RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA::theInfo,
+	&RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB::theInfo,
+};
+bool RACHConfigCommonPreambleInfoPreamblesGroupAConfig::itemsPres[3] = {
+	1,
+	1,
+	1,
+};
+const RACHConfigCommonPreambleInfoPreamblesGroupAConfig::Info RACHConfigCommonPreambleInfoPreamblesGroupAConfig::theInfo = {
+	RACHConfigCommonPreambleInfoPreamblesGroupAConfig::create,
 	SEQUENCE,
 	0,
 	true,
 	itemsInfo,
 	itemsPres,
-	0, 0, 0
+	3, 0, 0
+};
+RACHConfigCommonPreambleInfoPreamblesGroupAConfig::RACHConfigCommonPreambleInfoPreamblesGroupAConfig(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA, const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA, const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB) : Sequence(&theInfo) {
+	setRACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA(rACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA);
+	setRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA(rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA);
+	setRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB(rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB);
+}
+
+const void *RACHConfigCommonPreambleInfo::itemsInfo[2] = {
+	&RACHConfigCommonPreambleInfonumberOfRA_Preambles::theInfo,
+	&RACHConfigCommonPreambleInfoPreamblesGroupAConfig::theInfo,
+};
+bool RACHConfigCommonPreambleInfo::itemsPres[2] = {
+	1,
+	0,
+};
+const RACHConfigCommonPreambleInfo::Info RACHConfigCommonPreambleInfo::theInfo = {
+	RACHConfigCommonPreambleInfo::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 1, 0
+};
+RACHConfigCommonPreambleInfo::RACHConfigCommonPreambleInfo(const RACHConfigCommonPreambleInfonumberOfRA_Preambles& rACHConfigCommonPreambleInfonumberOfRA_Preambles) : Sequence(&theInfo) {
+	setRACHConfigCommonPreambleInfonumberOfRA_Preambles(rACHConfigCommonPreambleInfonumberOfRA_Preambles);
+}
+
+const void *RACHConfigCommonPowerRampingParameters::itemsInfo[2] = {
+	&RACHConfigCommonPowerRampingParameterspowerRampingStep::theInfo,
+	&RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower::theInfo,
+};
+bool RACHConfigCommonPowerRampingParameters::itemsPres[2] = {
+	1,
+	1,
+};
+const RACHConfigCommonPowerRampingParameters::Info RACHConfigCommonPowerRampingParameters::theInfo = {
+	RACHConfigCommonPowerRampingParameters::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+RACHConfigCommonPowerRampingParameters::RACHConfigCommonPowerRampingParameters(const RACHConfigCommonPowerRampingParameterspowerRampingStep& rACHConfigCommonPowerRampingParameterspowerRampingStep, const RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower& rACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower) : Sequence(&theInfo) {
+	setRACHConfigCommonPowerRampingParameterspowerRampingStep(rACHConfigCommonPowerRampingParameterspowerRampingStep);
+	setRACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower(rACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower);
+}
+
+const void *RACHConfigCommonRaSupervisionInfo::itemsInfo[3] = {
+	&RACHConfigCommonRaSupervisionInfopreambleTransMax::theInfo,
+	&RACHConfigCommonRaSupervisionInfora_ResponseWindowSize::theInfo,
+	&RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer::theInfo,
+};
+bool RACHConfigCommonRaSupervisionInfo::itemsPres[3] = {
+	1,
+	1,
+	1,
+};
+const RACHConfigCommonRaSupervisionInfo::Info RACHConfigCommonRaSupervisionInfo::theInfo = {
+	RACHConfigCommonRaSupervisionInfo::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	3, 0, 0
+};
+RACHConfigCommonRaSupervisionInfo::RACHConfigCommonRaSupervisionInfo(const RACHConfigCommonRaSupervisionInfopreambleTransMax& rACHConfigCommonRaSupervisionInfopreambleTransMax, const RACHConfigCommonRaSupervisionInfora_ResponseWindowSize& rACHConfigCommonRaSupervisionInfora_ResponseWindowSize, const RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer& rACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer) : Sequence(&theInfo) {
+	setRACHConfigCommonRaSupervisionInfopreambleTransMax(rACHConfigCommonRaSupervisionInfopreambleTransMax);
+	setRACHConfigCommonRaSupervisionInfora_ResponseWindowSize(rACHConfigCommonRaSupervisionInfora_ResponseWindowSize);
+	setRACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer(rACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer);
+}
+
+const void *RACHConfigCommon::itemsInfo[4] = {
+	&RACHConfigCommonPreambleInfo::theInfo,
+	&RACHConfigCommonPowerRampingParameters::theInfo,
+	&RACHConfigCommonRaSupervisionInfo::theInfo,
+	&RACHConfigCommonMaxHARQMsg3Tx::theInfo,
+};
+bool RACHConfigCommon::itemsPres[4] = {
+	1,
+	1,
+	1,
+	1,
+};
+const RACHConfigCommon::Info RACHConfigCommon::theInfo = {
+	RACHConfigCommon::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	4, 0, 0
+};
+RACHConfigCommon::RACHConfigCommon(const RACHConfigCommonPreambleInfo& rACHConfigCommonPreambleInfo, const RACHConfigCommonPowerRampingParameters& rACHConfigCommonPowerRampingParameters, const RACHConfigCommonRaSupervisionInfo& rACHConfigCommonRaSupervisionInfo, const RACHConfigCommonMaxHARQMsg3Tx& rACHConfigCommonMaxHARQMsg3Tx) : Sequence(&theInfo) {
+	setRACHConfigCommonPreambleInfo(rACHConfigCommonPreambleInfo);
+	setRACHConfigCommonPowerRampingParameters(rACHConfigCommonPowerRampingParameters);
+	setRACHConfigCommonRaSupervisionInfo(rACHConfigCommonRaSupervisionInfo);
+	setRACHConfigCommonMaxHARQMsg3Tx(rACHConfigCommonMaxHARQMsg3Tx);
+}
+
+const void *BCCHConfig::itemsInfo[1] = {
+	&BCCHConfigmodificationPeriodCoeff::theInfo,
+};
+bool BCCHConfig::itemsPres[1] = {
+	1,
+};
+const BCCHConfig::Info BCCHConfig::theInfo = {
+	BCCHConfig::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	1, 0, 0
+};
+BCCHConfig::BCCHConfig(const BCCHConfigmodificationPeriodCoeff& bCCHConfigmodificationPeriodCoeff) : Sequence(&theInfo) {
+	setBCCHConfigmodificationPeriodCoeff(bCCHConfigmodificationPeriodCoeff);
+}
+
+const void *PCCHConfig::itemsInfo[2] = {
+	&PCCHConfigdefaultPagingCycle::theInfo,
+	&PCCHConfignB::theInfo,
+};
+bool PCCHConfig::itemsPres[2] = {
+	1,
+	1,
+};
+const PCCHConfig::Info PCCHConfig::theInfo = {
+	PCCHConfig::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+PCCHConfig::PCCHConfig(const PCCHConfigdefaultPagingCycle& pCCHConfigdefaultPagingCycle, const PCCHConfignB& pCCHConfignB) : Sequence(&theInfo) {
+	setPCCHConfigdefaultPagingCycle(pCCHConfigdefaultPagingCycle);
+	setPCCHConfignB(pCCHConfignB);
+}
+
+const void *PRACHConfigInfo::itemsInfo[4] = {
+	&PRACHConfigInfoPrachConfigIndex::theInfo,
+	&PRACHConfigInfoHighSpeedFlag::theInfo,
+	&PRACHConfigInfoZeroCorrelationZoneConfig::theInfo,
+	&PRACHConfigInfoPrachFreqOffset::theInfo,
+};
+bool PRACHConfigInfo::itemsPres[4] = {
+	1,
+	1,
+	1,
+	1,
+};
+const PRACHConfigInfo::Info PRACHConfigInfo::theInfo = {
+	PRACHConfigInfo::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	4, 0, 0
+};
+PRACHConfigInfo::PRACHConfigInfo(const PRACHConfigInfoPrachConfigIndex& pRACHConfigInfoPrachConfigIndex, const PRACHConfigInfoHighSpeedFlag& pRACHConfigInfoHighSpeedFlag, const PRACHConfigInfoZeroCorrelationZoneConfig& pRACHConfigInfoZeroCorrelationZoneConfig, const PRACHConfigInfoPrachFreqOffset& pRACHConfigInfoPrachFreqOffset) : Sequence(&theInfo) {
+	setPRACHConfigInfoPrachConfigIndex(pRACHConfigInfoPrachConfigIndex);
+	setPRACHConfigInfoHighSpeedFlag(pRACHConfigInfoHighSpeedFlag);
+	setPRACHConfigInfoZeroCorrelationZoneConfig(pRACHConfigInfoZeroCorrelationZoneConfig);
+	setPRACHConfigInfoPrachFreqOffset(pRACHConfigInfoPrachFreqOffset);
+}
+
+const void *PRACHConfigSIB::itemsInfo[2] = {
+	&PRACHConfigSIBRootSequenceIndex::theInfo,
+	&PRACHConfigInfo::theInfo,
+};
+bool PRACHConfigSIB::itemsPres[2] = {
+	1,
+	1,
+};
+const PRACHConfigSIB::Info PRACHConfigSIB::theInfo = {
+	PRACHConfigSIB::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+PRACHConfigSIB::PRACHConfigSIB(const PRACHConfigSIBRootSequenceIndex& pRACHConfigSIBRootSequenceIndex, const PRACHConfigInfo& prachConfigInfo) : Sequence(&theInfo) {
+	setPRACHConfigSIBRootSequenceIndex(pRACHConfigSIBRootSequenceIndex);
+	setPrachConfigInfo(prachConfigInfo);
+}
+
+const void *PDSCHConfigCommon::itemsInfo[2] = {
+	&PDSCHConfigCommonReferenceSignalPower::theInfo,
+	&PDSCHConfigCommonPb::theInfo,
+};
+bool PDSCHConfigCommon::itemsPres[2] = {
+	1,
+	1,
+};
+const PDSCHConfigCommon::Info PDSCHConfigCommon::theInfo = {
+	PDSCHConfigCommon::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+PDSCHConfigCommon::PDSCHConfigCommon(const PDSCHConfigCommonReferenceSignalPower& pDSCHConfigCommonReferenceSignalPower, const PDSCHConfigCommonPb& pDSCHConfigCommonPb) : Sequence(&theInfo) {
+	setPDSCHConfigCommonReferenceSignalPower(pDSCHConfigCommonReferenceSignalPower);
+	setPDSCHConfigCommonPb(pDSCHConfigCommonPb);
+}
+
+const void *PUSCHConfigCommonPuschConfigBasic::itemsInfo[4] = {
+	&PUSCHConfigCommonPuschConfigBasicNSB::theInfo,
+	&PUSCHConfigCommonPuschConfigBasichoppingMode::theInfo,
+	&PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset::theInfo,
+	&PUSCHConfigCommonPuschConfigBasicEnable64QAM::theInfo,
+};
+bool PUSCHConfigCommonPuschConfigBasic::itemsPres[4] = {
+	1,
+	1,
+	1,
+	1,
+};
+const PUSCHConfigCommonPuschConfigBasic::Info PUSCHConfigCommonPuschConfigBasic::theInfo = {
+	PUSCHConfigCommonPuschConfigBasic::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	4, 0, 0
+};
+PUSCHConfigCommonPuschConfigBasic::PUSCHConfigCommonPuschConfigBasic(const PUSCHConfigCommonPuschConfigBasicNSB& pUSCHConfigCommonPuschConfigBasicNSB, const PUSCHConfigCommonPuschConfigBasichoppingMode& pUSCHConfigCommonPuschConfigBasichoppingMode, const PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset& pUSCHConfigCommonPuschConfigBasicPuschHoppingOffset, const PUSCHConfigCommonPuschConfigBasicEnable64QAM& pUSCHConfigCommonPuschConfigBasicEnable64QAM) : Sequence(&theInfo) {
+	setPUSCHConfigCommonPuschConfigBasicNSB(pUSCHConfigCommonPuschConfigBasicNSB);
+	setPUSCHConfigCommonPuschConfigBasichoppingMode(pUSCHConfigCommonPuschConfigBasichoppingMode);
+	setPUSCHConfigCommonPuschConfigBasicPuschHoppingOffset(pUSCHConfigCommonPuschConfigBasicPuschHoppingOffset);
+	setPUSCHConfigCommonPuschConfigBasicEnable64QAM(pUSCHConfigCommonPuschConfigBasicEnable64QAM);
+}
+
+const void *ULReferenceSignalsPUSCH::itemsInfo[4] = {
+	&ULReferenceSignalsPUSCHGroupHoppingEnabled::theInfo,
+	&ULReferenceSignalsPUSCHGroupAssignmentPUSCH::theInfo,
+	&ULReferenceSignalsPUSCHSequenceHoppingEnabled::theInfo,
+	&ULReferenceSignalsPUSCHCyclicShift::theInfo,
+};
+bool ULReferenceSignalsPUSCH::itemsPres[4] = {
+	1,
+	1,
+	1,
+	1,
+};
+const ULReferenceSignalsPUSCH::Info ULReferenceSignalsPUSCH::theInfo = {
+	ULReferenceSignalsPUSCH::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	4, 0, 0
+};
+ULReferenceSignalsPUSCH::ULReferenceSignalsPUSCH(const ULReferenceSignalsPUSCHGroupHoppingEnabled& uLReferenceSignalsPUSCHGroupHoppingEnabled, const ULReferenceSignalsPUSCHGroupAssignmentPUSCH& uLReferenceSignalsPUSCHGroupAssignmentPUSCH, const ULReferenceSignalsPUSCHSequenceHoppingEnabled& uLReferenceSignalsPUSCHSequenceHoppingEnabled, const ULReferenceSignalsPUSCHCyclicShift& uLReferenceSignalsPUSCHCyclicShift) : Sequence(&theInfo) {
+	setULReferenceSignalsPUSCHGroupHoppingEnabled(uLReferenceSignalsPUSCHGroupHoppingEnabled);
+	setULReferenceSignalsPUSCHGroupAssignmentPUSCH(uLReferenceSignalsPUSCHGroupAssignmentPUSCH);
+	setULReferenceSignalsPUSCHSequenceHoppingEnabled(uLReferenceSignalsPUSCHSequenceHoppingEnabled);
+	setULReferenceSignalsPUSCHCyclicShift(uLReferenceSignalsPUSCHCyclicShift);
+}
+
+const void *PUSCHConfigCommon::itemsInfo[2] = {
+	&PUSCHConfigCommonPuschConfigBasic::theInfo,
+	&ULReferenceSignalsPUSCH::theInfo,
+};
+bool PUSCHConfigCommon::itemsPres[2] = {
+	1,
+	1,
+};
+const PUSCHConfigCommon::Info PUSCHConfigCommon::theInfo = {
+	PUSCHConfigCommon::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+PUSCHConfigCommon::PUSCHConfigCommon(const PUSCHConfigCommonPuschConfigBasic& pUSCHConfigCommonPuschConfigBasic, const ULReferenceSignalsPUSCH& ulReferenceSignalsPUSCH) : Sequence(&theInfo) {
+	setPUSCHConfigCommonPuschConfigBasic(pUSCHConfigCommonPuschConfigBasic);
+	setUlReferenceSignalsPUSCH(ulReferenceSignalsPUSCH);
+}
+
+const void *PUCCHConfigCommon::itemsInfo[4] = {
+	&PUCCHConfigCommondeltaPUCCH_Shift::theInfo,
+	&PUCCHConfigCommonNRBCQI::theInfo,
+	&PUCCHConfigCommonNCSAN::theInfo,
+	&PUCCHConfigCommonN1PUCCHAN::theInfo,
+};
+bool PUCCHConfigCommon::itemsPres[4] = {
+	1,
+	1,
+	1,
+	1,
+};
+const PUCCHConfigCommon::Info PUCCHConfigCommon::theInfo = {
+	PUCCHConfigCommon::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	4, 0, 0
+};
+PUCCHConfigCommon::PUCCHConfigCommon(const PUCCHConfigCommondeltaPUCCH_Shift& pUCCHConfigCommondeltaPUCCH_Shift, const PUCCHConfigCommonNRBCQI& pUCCHConfigCommonNRBCQI, const PUCCHConfigCommonNCSAN& pUCCHConfigCommonNCSAN, const PUCCHConfigCommonN1PUCCHAN& pUCCHConfigCommonN1PUCCHAN) : Sequence(&theInfo) {
+	setPUCCHConfigCommondeltaPUCCH_Shift(pUCCHConfigCommondeltaPUCCH_Shift);
+	setPUCCHConfigCommonNRBCQI(pUCCHConfigCommonNRBCQI);
+	setPUCCHConfigCommonNCSAN(pUCCHConfigCommonNCSAN);
+	setPUCCHConfigCommonN1PUCCHAN(pUCCHConfigCommonN1PUCCHAN);
+}
+
+const void *SoundingRSULConfigCommonSetup::itemsInfo[4] = {
+	&SoundingRSULConfigCommonSetupsrs_BandwidthConfig::theInfo,
+	&SoundingRSULConfigCommonSetupsrs_SubframeConfig::theInfo,
+	&SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission::theInfo,
+	&SoundingRSULConfigCommonSetupsrs_MaxUpPts::theInfo,
+};
+bool SoundingRSULConfigCommonSetup::itemsPres[4] = {
+	1,
+	1,
+	1,
+	0,
+};
+const SoundingRSULConfigCommonSetup::Info SoundingRSULConfigCommonSetup::theInfo = {
+	SoundingRSULConfigCommonSetup::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	4, 1, 0
+};
+SoundingRSULConfigCommonSetup::SoundingRSULConfigCommonSetup(const SoundingRSULConfigCommonSetupsrs_BandwidthConfig& soundingRSULConfigCommonSetupsrs_BandwidthConfig, const SoundingRSULConfigCommonSetupsrs_SubframeConfig& soundingRSULConfigCommonSetupsrs_SubframeConfig, const SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission& soundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission) : Sequence(&theInfo) {
+	setSoundingRSULConfigCommonSetupsrs_BandwidthConfig(soundingRSULConfigCommonSetupsrs_BandwidthConfig);
+	setSoundingRSULConfigCommonSetupsrs_SubframeConfig(soundingRSULConfigCommonSetupsrs_SubframeConfig);
+	setSoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission(soundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission);
+}
+
+const void *SoundingRSULConfigCommon::choicesInfo[2] = {
+	&SoundingRSULConfigCommonRelease::theInfo,
+	&SoundingRSULConfigCommonSetup::theInfo,
+};
+const SoundingRSULConfigCommon::Info SoundingRSULConfigCommon::theInfo = {
+	SoundingRSULConfigCommon::create,
+	CHOICE,
+	0,
+	false,
+	choicesInfo,
+	1
+};
+
+const void *DeltaFListPUCCH::itemsInfo[5] = {
+	&DeltaFListPUCCHdeltaF_PUCCH_Format1::theInfo,
+	&DeltaFListPUCCHdeltaF_PUCCH_Format1b::theInfo,
+	&DeltaFListPUCCHdeltaF_PUCCH_Format2::theInfo,
+	&DeltaFListPUCCHdeltaF_PUCCH_Format2a::theInfo,
+	&DeltaFListPUCCHdeltaF_PUCCH_Format2b::theInfo,
+};
+bool DeltaFListPUCCH::itemsPres[5] = {
+	1,
+	1,
+	1,
+	1,
+	1,
+};
+const DeltaFListPUCCH::Info DeltaFListPUCCH::theInfo = {
+	DeltaFListPUCCH::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	5, 0, 0
+};
+DeltaFListPUCCH::DeltaFListPUCCH(const DeltaFListPUCCHdeltaF_PUCCH_Format1& deltaFListPUCCHdeltaF_PUCCH_Format1, const DeltaFListPUCCHdeltaF_PUCCH_Format1b& deltaFListPUCCHdeltaF_PUCCH_Format1b, const DeltaFListPUCCHdeltaF_PUCCH_Format2& deltaFListPUCCHdeltaF_PUCCH_Format2, const DeltaFListPUCCHdeltaF_PUCCH_Format2a& deltaFListPUCCHdeltaF_PUCCH_Format2a, const DeltaFListPUCCHdeltaF_PUCCH_Format2b& deltaFListPUCCHdeltaF_PUCCH_Format2b) : Sequence(&theInfo) {
+	setDeltaFListPUCCHdeltaF_PUCCH_Format1(deltaFListPUCCHdeltaF_PUCCH_Format1);
+	setDeltaFListPUCCHdeltaF_PUCCH_Format1b(deltaFListPUCCHdeltaF_PUCCH_Format1b);
+	setDeltaFListPUCCHdeltaF_PUCCH_Format2(deltaFListPUCCHdeltaF_PUCCH_Format2);
+	setDeltaFListPUCCHdeltaF_PUCCH_Format2a(deltaFListPUCCHdeltaF_PUCCH_Format2a);
+	setDeltaFListPUCCHdeltaF_PUCCH_Format2b(deltaFListPUCCHdeltaF_PUCCH_Format2b);
+}
+
+const void *UplinkPowerControlCommon::itemsInfo[5] = {
+	&UplinkPowerControlCommonP0NominalPUSCH::theInfo,
+	&UplinkPowerControlCommonalpha::theInfo,
+	&UplinkPowerControlCommonP0NominalPUCCH::theInfo,
+	&DeltaFListPUCCH::theInfo,
+	&UplinkPowerControlCommonDeltaPreambleMsg3::theInfo,
+};
+bool UplinkPowerControlCommon::itemsPres[5] = {
+	1,
+	1,
+	1,
+	1,
+	1,
+};
+const UplinkPowerControlCommon::Info UplinkPowerControlCommon::theInfo = {
+	UplinkPowerControlCommon::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	5, 0, 0
+};
+UplinkPowerControlCommon::UplinkPowerControlCommon(const UplinkPowerControlCommonP0NominalPUSCH& uplinkPowerControlCommonP0NominalPUSCH, const UplinkPowerControlCommonalpha& uplinkPowerControlCommonalpha, const UplinkPowerControlCommonP0NominalPUCCH& uplinkPowerControlCommonP0NominalPUCCH, const DeltaFListPUCCH& deltaFListPUCCH, const UplinkPowerControlCommonDeltaPreambleMsg3& uplinkPowerControlCommonDeltaPreambleMsg3) : Sequence(&theInfo) {
+	setUplinkPowerControlCommonP0NominalPUSCH(uplinkPowerControlCommonP0NominalPUSCH);
+	setUplinkPowerControlCommonalpha(uplinkPowerControlCommonalpha);
+	setUplinkPowerControlCommonP0NominalPUCCH(uplinkPowerControlCommonP0NominalPUCCH);
+	setDeltaFListPUCCH(deltaFListPUCCH);
+	setUplinkPowerControlCommonDeltaPreambleMsg3(uplinkPowerControlCommonDeltaPreambleMsg3);
+}
+
+const void *UplinkPowerControlCommonv1020::itemsInfo[2] = {
+	&UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10::theInfo,
+	&UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10::theInfo,
+};
+bool UplinkPowerControlCommonv1020::itemsPres[2] = {
+	1,
+	1,
+};
+const UplinkPowerControlCommonv1020::Info UplinkPowerControlCommonv1020::theInfo = {
+	UplinkPowerControlCommonv1020::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+UplinkPowerControlCommonv1020::UplinkPowerControlCommonv1020(const UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10, const UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10) : Sequence(&theInfo) {
+	setUplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10(uplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10);
+	setUplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10(uplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10);
+}
+
+const void *RadioResourceConfigCommonSIB::itemsInfo[11] = {
+	&RACHConfigCommon::theInfo,
+	&BCCHConfig::theInfo,
+	&PCCHConfig::theInfo,
+	&PRACHConfigSIB::theInfo,
+	&PDSCHConfigCommon::theInfo,
+	&PUSCHConfigCommon::theInfo,
+	&PUCCHConfigCommon::theInfo,
+	&SoundingRSULConfigCommon::theInfo,
+	&UplinkPowerControlCommon::theInfo,
+	&ULCyclicPrefixLength::theInfo,
+	&UplinkPowerControlCommonv1020::theInfo,
+};
+bool RadioResourceConfigCommonSIB::itemsPres[11] = {
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	0,
+};
+const RadioResourceConfigCommonSIB::Info RadioResourceConfigCommonSIB::theInfo = {
+	RadioResourceConfigCommonSIB::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	10, 0, 1
+};
+RadioResourceConfigCommonSIB::RadioResourceConfigCommonSIB(const RACHConfigCommon& rachConfigCommon, const BCCHConfig& bcchConfig, const PCCHConfig& pcchConfig, const PRACHConfigSIB& prachConfig, const PDSCHConfigCommon& pdschConfigCommon, const PUSCHConfigCommon& puschConfigCommon, const PUCCHConfigCommon& pucchConfigCommon, const SoundingRSULConfigCommon& soundingRSULConfigCommon, const UplinkPowerControlCommon& uplinkPowerControlCommon, const ULCyclicPrefixLength& ulCyclicPrefixLength) : Sequence(&theInfo) {
+	setRachConfigCommon(rachConfigCommon);
+	setBcchConfig(bcchConfig);
+	setPcchConfig(pcchConfig);
+	setPrachConfig(prachConfig);
+	setPdschConfigCommon(pdschConfigCommon);
+	setPuschConfigCommon(puschConfigCommon);
+	setPucchConfigCommon(pucchConfigCommon);
+	setSoundingRSULConfigCommon(soundingRSULConfigCommon);
+	setUplinkPowerControlCommon(uplinkPowerControlCommon);
+	setUlCyclicPrefixLength(ulCyclicPrefixLength);
+}
+
+const void *UETimersAndConstants::itemsInfo[6] = {
+	&UETimersAndConstantst300::theInfo,
+	&UETimersAndConstantst301::theInfo,
+	&UETimersAndConstantst310::theInfo,
+	&UETimersAndConstantsn310::theInfo,
+	&UETimersAndConstantst311::theInfo,
+	&UETimersAndConstantsn311::theInfo,
+};
+bool UETimersAndConstants::itemsPres[6] = {
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+};
+const UETimersAndConstants::Info UETimersAndConstants::theInfo = {
+	UETimersAndConstants::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	6, 0, 0
+};
+UETimersAndConstants::UETimersAndConstants(const UETimersAndConstantst300& uETimersAndConstantst300, const UETimersAndConstantst301& uETimersAndConstantst301, const UETimersAndConstantst310& uETimersAndConstantst310, const UETimersAndConstantsn310& uETimersAndConstantsn310, const UETimersAndConstantst311& uETimersAndConstantst311, const UETimersAndConstantsn311& uETimersAndConstantsn311) : Sequence(&theInfo) {
+	setUETimersAndConstantst300(uETimersAndConstantst300);
+	setUETimersAndConstantst301(uETimersAndConstantst301);
+	setUETimersAndConstantst310(uETimersAndConstantst310);
+	setUETimersAndConstantsn310(uETimersAndConstantsn310);
+	setUETimersAndConstantst311(uETimersAndConstantst311);
+	setUETimersAndConstantsn311(uETimersAndConstantsn311);
+}
+
+const void *SystemInformationBlockType2FreqInfo::itemsInfo[3] = {
+	&ARFCNValueEUTRA::theInfo,
+	&SystemInformationBlockType2FreqInfoul_Bandwidth::theInfo,
+	&AdditionalSpectrumEmission::theInfo,
+};
+bool SystemInformationBlockType2FreqInfo::itemsPres[3] = {
+	0,
+	0,
+	1,
+};
+const SystemInformationBlockType2FreqInfo::Info SystemInformationBlockType2FreqInfo::theInfo = {
+	SystemInformationBlockType2FreqInfo::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	3, 2, 0
+};
+SystemInformationBlockType2FreqInfo::SystemInformationBlockType2FreqInfo(const AdditionalSpectrumEmission& additionalSpectrumEmission) : Sequence(&theInfo) {
+	setAdditionalSpectrumEmission(additionalSpectrumEmission);
+}
+
+const void *MBSFNSubframeConfigSubframeAllocation::choicesInfo[2] = {
+	&MBSFNSubframeConfigSubframeAllocationOneFrame::theInfo,
+	&MBSFNSubframeConfigSubframeAllocationFourFrames::theInfo,
+};
+const MBSFNSubframeConfigSubframeAllocation::Info MBSFNSubframeConfigSubframeAllocation::theInfo = {
+	MBSFNSubframeConfigSubframeAllocation::create,
+	CHOICE,
+	0,
+	false,
+	choicesInfo,
+	1
+};
+
+const void *MBSFNSubframeConfig::itemsInfo[3] = {
+	&MBSFNSubframeConfigradioframeAllocationPeriod::theInfo,
+	&MBSFNSubframeConfigRadioframeAllocationOffset::theInfo,
+	&MBSFNSubframeConfigSubframeAllocation::theInfo,
+};
+bool MBSFNSubframeConfig::itemsPres[3] = {
+	1,
+	1,
+	1,
+};
+const MBSFNSubframeConfig::Info MBSFNSubframeConfig::theInfo = {
+	MBSFNSubframeConfig::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	3, 0, 0
+};
+MBSFNSubframeConfig::MBSFNSubframeConfig(const MBSFNSubframeConfigradioframeAllocationPeriod& mBSFNSubframeConfigradioframeAllocationPeriod, const MBSFNSubframeConfigRadioframeAllocationOffset& mBSFNSubframeConfigRadioframeAllocationOffset, const MBSFNSubframeConfigSubframeAllocation& mBSFNSubframeConfigSubframeAllocation) : Sequence(&theInfo) {
+	setMBSFNSubframeConfigradioframeAllocationPeriod(mBSFNSubframeConfigradioframeAllocationPeriod);
+	setMBSFNSubframeConfigRadioframeAllocationOffset(mBSFNSubframeConfigRadioframeAllocationOffset);
+	setMBSFNSubframeConfigSubframeAllocation(mBSFNSubframeConfigSubframeAllocation);
+}
+
+const void *SystemInformationBlockType2::itemsInfo[10] = {
+	&SystemInformationBlockType2AcBarringInfo::theInfo,
+	&RadioResourceConfigCommonSIB::theInfo,
+	&UETimersAndConstants::theInfo,
+	&SystemInformationBlockType2FreqInfo::theInfo,
+	&MBSFNSubframeConfigList::theInfo,
+	&TimeAlignmentTimer::theInfo,
+	&SystemInformationBlockType2LateNonCriticalExtension::theInfo,
+	&ACBarringConfig::theInfo,
+	&ACBarringConfig::theInfo,
+	&ACBarringConfig::theInfo,
+};
+bool SystemInformationBlockType2::itemsPres[10] = {
+	0,
+	1,
+	1,
+	1,
+	0,
+	1,
+	0,
+	0,
+	0,
+	0,
+};
+const SystemInformationBlockType2::Info SystemInformationBlockType2::theInfo = {
+	SystemInformationBlockType2::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	6, 2, 4
+};
+SystemInformationBlockType2::SystemInformationBlockType2(const RadioResourceConfigCommonSIB& radioResourceConfigCommon, const UETimersAndConstants& ueTimersAndConstants, const SystemInformationBlockType2FreqInfo& systemInformationBlockType2FreqInfo, const TimeAlignmentTimer& timeAlignmentTimerCommon) : Sequence(&theInfo) {
+	setRadioResourceConfigCommon(radioResourceConfigCommon);
+	setUeTimersAndConstants(ueTimersAndConstants);
+	setSystemInformationBlockType2FreqInfo(systemInformationBlockType2FreqInfo);
+	setTimeAlignmentTimerCommon(timeAlignmentTimerCommon);
+}
+
+const void *MobilityStateParameters::itemsInfo[4] = {
+	&MobilityStateParameterst_Evaluation::theInfo,
+	&MobilityStateParameterst_HystNormal::theInfo,
+	&MobilityStateParametersNCellChangeMedium::theInfo,
+	&MobilityStateParametersNCellChangeHigh::theInfo,
+};
+bool MobilityStateParameters::itemsPres[4] = {
+	1,
+	1,
+	1,
+	1,
+};
+const MobilityStateParameters::Info MobilityStateParameters::theInfo = {
+	MobilityStateParameters::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	4, 0, 0
+};
+MobilityStateParameters::MobilityStateParameters(const MobilityStateParameterst_Evaluation& mobilityStateParameterst_Evaluation, const MobilityStateParameterst_HystNormal& mobilityStateParameterst_HystNormal, const MobilityStateParametersNCellChangeMedium& mobilityStateParametersNCellChangeMedium, const MobilityStateParametersNCellChangeHigh& mobilityStateParametersNCellChangeHigh) : Sequence(&theInfo) {
+	setMobilityStateParameterst_Evaluation(mobilityStateParameterst_Evaluation);
+	setMobilityStateParameterst_HystNormal(mobilityStateParameterst_HystNormal);
+	setMobilityStateParametersNCellChangeMedium(mobilityStateParametersNCellChangeMedium);
+	setMobilityStateParametersNCellChangeHigh(mobilityStateParametersNCellChangeHigh);
+}
+
+const void *SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::itemsInfo[2] = {
+	&SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium::theInfo,
+	&SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High::theInfo,
+};
+bool SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::itemsPres[2] = {
+	1,
+	1,
+};
+const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::Info SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::theInfo = {
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium, const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High) : Sequence(&theInfo) {
+	setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium(systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium);
+	setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High(systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High);
+}
+
+const void *SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::itemsInfo[2] = {
+	&MobilityStateParameters::theInfo,
+	&SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::theInfo,
+};
+bool SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::itemsPres[2] = {
+	1,
+	1,
+};
+const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::Info SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::theInfo = {
+	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars(const MobilityStateParameters& mobilityStateParameters, const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF) : Sequence(&theInfo) {
+	setMobilityStateParameters(mobilityStateParameters);
+	setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF(systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF);
+}
+
+const void *SystemInformationBlockType3CellReselectionInfoCommon::itemsInfo[2] = {
+	&SystemInformationBlockType3CellReselectionInfoCommonq_Hyst::theInfo,
+	&SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::theInfo,
+};
+bool SystemInformationBlockType3CellReselectionInfoCommon::itemsPres[2] = {
+	1,
+	0,
+};
+const SystemInformationBlockType3CellReselectionInfoCommon::Info SystemInformationBlockType3CellReselectionInfoCommon::theInfo = {
+	SystemInformationBlockType3CellReselectionInfoCommon::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 1, 0
+};
+SystemInformationBlockType3CellReselectionInfoCommon::SystemInformationBlockType3CellReselectionInfoCommon(const SystemInformationBlockType3CellReselectionInfoCommonq_Hyst& systemInformationBlockType3CellReselectionInfoCommonq_Hyst) : Sequence(&theInfo) {
+	setSystemInformationBlockType3CellReselectionInfoCommonq_Hyst(systemInformationBlockType3CellReselectionInfoCommonq_Hyst);
+}
+
+const void *SystemInformationBlockType3CellReselectionServingFreqInfo::itemsInfo[3] = {
+	&ReselectionThreshold::theInfo,
+	&ReselectionThreshold::theInfo,
+	&CellReselectionPriority::theInfo,
+};
+bool SystemInformationBlockType3CellReselectionServingFreqInfo::itemsPres[3] = {
+	0,
+	1,
+	1,
+};
+const SystemInformationBlockType3CellReselectionServingFreqInfo::Info SystemInformationBlockType3CellReselectionServingFreqInfo::theInfo = {
+	SystemInformationBlockType3CellReselectionServingFreqInfo::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	3, 1, 0
+};
+SystemInformationBlockType3CellReselectionServingFreqInfo::SystemInformationBlockType3CellReselectionServingFreqInfo(const ReselectionThreshold& threshServingLow, const CellReselectionPriority& cellReselectionPriority) : Sequence(&theInfo) {
+	setThreshServingLow(threshServingLow);
+	setCellReselectionPriority(cellReselectionPriority);
+}
+
+const void *SpeedStateScaleFactors::itemsInfo[2] = {
+	&SpeedStateScaleFactorssf_Medium::theInfo,
+	&SpeedStateScaleFactorssf_High::theInfo,
+};
+bool SpeedStateScaleFactors::itemsPres[2] = {
+	1,
+	1,
+};
+const SpeedStateScaleFactors::Info SpeedStateScaleFactors::theInfo = {
+	SpeedStateScaleFactors::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+SpeedStateScaleFactors::SpeedStateScaleFactors(const SpeedStateScaleFactorssf_Medium& speedStateScaleFactorssf_Medium, const SpeedStateScaleFactorssf_High& speedStateScaleFactorssf_High) : Sequence(&theInfo) {
+	setSpeedStateScaleFactorssf_Medium(speedStateScaleFactorssf_Medium);
+	setSpeedStateScaleFactorssf_High(speedStateScaleFactorssf_High);
+}
+
+const void *SystemInformationBlockType3IntraFreqCellReselectionInfo::itemsInfo[8] = {
+	&QRxLevMin::theInfo,
+	&PMax::theInfo,
+	&ReselectionThreshold::theInfo,
+	&AllowedMeasBandwidth::theInfo,
+	&PresenceAntennaPort1::theInfo,
+	&NeighCellConfig::theInfo,
+	&TReselection::theInfo,
+	&SpeedStateScaleFactors::theInfo,
+};
+bool SystemInformationBlockType3IntraFreqCellReselectionInfo::itemsPres[8] = {
+	1,
+	0,
+	0,
+	0,
+	1,
+	1,
+	1,
+	0,
+};
+const SystemInformationBlockType3IntraFreqCellReselectionInfo::Info SystemInformationBlockType3IntraFreqCellReselectionInfo::theInfo = {
+	SystemInformationBlockType3IntraFreqCellReselectionInfo::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	8, 4, 0
+};
+SystemInformationBlockType3IntraFreqCellReselectionInfo::SystemInformationBlockType3IntraFreqCellReselectionInfo(const QRxLevMin& qRxLevMin, const PresenceAntennaPort1& presenceAntennaPort1, const NeighCellConfig& neighCellConfig, const TReselection& tReselectionEUTRA) : Sequence(&theInfo) {
+	setQRxLevMin(qRxLevMin);
+	setPresenceAntennaPort1(presenceAntennaPort1);
+	setNeighCellConfig(neighCellConfig);
+	setTReselectionEUTRA(tReselectionEUTRA);
+}
+
+const void *SystemInformationBlockType3SIntraSearchv920::itemsInfo[2] = {
+	&ReselectionThreshold::theInfo,
+	&ReselectionThresholdQr9::theInfo,
+};
+bool SystemInformationBlockType3SIntraSearchv920::itemsPres[2] = {
+	1,
+	1,
+};
+const SystemInformationBlockType3SIntraSearchv920::Info SystemInformationBlockType3SIntraSearchv920::theInfo = {
+	SystemInformationBlockType3SIntraSearchv920::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+SystemInformationBlockType3SIntraSearchv920::SystemInformationBlockType3SIntraSearchv920(const ReselectionThreshold& sIntraSearchPr9, const ReselectionThresholdQr9& sIntraSearchQr9) : Sequence(&theInfo) {
+	setSIntraSearchPr9(sIntraSearchPr9);
+	setSIntraSearchQr9(sIntraSearchQr9);
+}
+
+const void *SystemInformationBlockType3SNonIntraSearchv920::itemsInfo[2] = {
+	&ReselectionThreshold::theInfo,
+	&ReselectionThresholdQr9::theInfo,
+};
+bool SystemInformationBlockType3SNonIntraSearchv920::itemsPres[2] = {
+	1,
+	1,
+};
+const SystemInformationBlockType3SNonIntraSearchv920::Info SystemInformationBlockType3SNonIntraSearchv920::theInfo = {
+	SystemInformationBlockType3SNonIntraSearchv920::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+SystemInformationBlockType3SNonIntraSearchv920::SystemInformationBlockType3SNonIntraSearchv920(const ReselectionThreshold& sNonIntraSearchPr9, const ReselectionThresholdQr9& sNonIntraSearchQr9) : Sequence(&theInfo) {
+	setSNonIntraSearchPr9(sNonIntraSearchPr9);
+	setSNonIntraSearchQr9(sNonIntraSearchQr9);
+}
+
+const void *SystemInformationBlockType3::itemsInfo[8] = {
+	&SystemInformationBlockType3CellReselectionInfoCommon::theInfo,
+	&SystemInformationBlockType3CellReselectionServingFreqInfo::theInfo,
+	&SystemInformationBlockType3IntraFreqCellReselectionInfo::theInfo,
+	&SystemInformationBlockType3LateNonCriticalExtension::theInfo,
+	&SystemInformationBlockType3SIntraSearchv920::theInfo,
+	&SystemInformationBlockType3SNonIntraSearchv920::theInfo,
+	&QQualMinr9::theInfo,
+	&ReselectionThresholdQr9::theInfo,
+};
+bool SystemInformationBlockType3::itemsPres[8] = {
+	1,
+	1,
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+};
+const SystemInformationBlockType3::Info SystemInformationBlockType3::theInfo = {
+	SystemInformationBlockType3::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	3, 0, 5
+};
+SystemInformationBlockType3::SystemInformationBlockType3(const SystemInformationBlockType3CellReselectionInfoCommon& systemInformationBlockType3CellReselectionInfoCommon, const SystemInformationBlockType3CellReselectionServingFreqInfo& systemInformationBlockType3CellReselectionServingFreqInfo, const SystemInformationBlockType3IntraFreqCellReselectionInfo& systemInformationBlockType3IntraFreqCellReselectionInfo) : Sequence(&theInfo) {
+	setSystemInformationBlockType3CellReselectionInfoCommon(systemInformationBlockType3CellReselectionInfoCommon);
+	setSystemInformationBlockType3CellReselectionServingFreqInfo(systemInformationBlockType3CellReselectionServingFreqInfo);
+	setSystemInformationBlockType3IntraFreqCellReselectionInfo(systemInformationBlockType3IntraFreqCellReselectionInfo);
+}
+
+const void *IntraFreqNeighCellInfo::itemsInfo[2] = {
+	&PhysCellId::theInfo,
+	&QOffsetRange::theInfo,
+};
+bool IntraFreqNeighCellInfo::itemsPres[2] = {
+	1,
+	1,
+};
+const IntraFreqNeighCellInfo::Info IntraFreqNeighCellInfo::theInfo = {
+	IntraFreqNeighCellInfo::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+IntraFreqNeighCellInfo::IntraFreqNeighCellInfo(const PhysCellId& physCellId, const QOffsetRange& qOffsetCell) : Sequence(&theInfo) {
+	setPhysCellId(physCellId);
+	setQOffsetCell(qOffsetCell);
+}
+
+const void *PhysCellIdRange::itemsInfo[2] = {
+	&PhysCellId::theInfo,
+	&PhysCellIdRangerange::theInfo,
+};
+bool PhysCellIdRange::itemsPres[2] = {
+	1,
+	0,
+};
+const PhysCellIdRange::Info PhysCellIdRange::theInfo = {
+	PhysCellIdRange::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 1, 0
+};
+PhysCellIdRange::PhysCellIdRange(const PhysCellId& start) : Sequence(&theInfo) {
+	setStart(start);
+}
+
+const void *SystemInformationBlockType4::itemsInfo[4] = {
+	&IntraFreqNeighCellList::theInfo,
+	&IntraFreqBlackCellList::theInfo,
+	&PhysCellIdRange::theInfo,
+	&SystemInformationBlockType4LateNonCriticalExtension::theInfo,
+};
+bool SystemInformationBlockType4::itemsPres[4] = {
+	0,
+	0,
+	0,
+	0,
+};
+const SystemInformationBlockType4::Info SystemInformationBlockType4::theInfo = {
+	SystemInformationBlockType4::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	3, 3, 1
+};
+
+const void *InterFreqNeighCellInfo::itemsInfo[2] = {
+	&PhysCellId::theInfo,
+	&QOffsetRange::theInfo,
+};
+bool InterFreqNeighCellInfo::itemsPres[2] = {
+	1,
+	1,
+};
+const InterFreqNeighCellInfo::Info InterFreqNeighCellInfo::theInfo = {
+	InterFreqNeighCellInfo::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+InterFreqNeighCellInfo::InterFreqNeighCellInfo(const PhysCellId& physCellId, const QOffsetRange& qOffsetCell) : Sequence(&theInfo) {
+	setPhysCellId(physCellId);
+	setQOffsetCell(qOffsetCell);
+}
+
+const void *InterFreqCarrierFreqInfoThreshXQr9::itemsInfo[2] = {
+	&ReselectionThresholdQr9::theInfo,
+	&ReselectionThresholdQr9::theInfo,
+};
+bool InterFreqCarrierFreqInfoThreshXQr9::itemsPres[2] = {
+	1,
+	1,
+};
+const InterFreqCarrierFreqInfoThreshXQr9::Info InterFreqCarrierFreqInfoThreshXQr9::theInfo = {
+	InterFreqCarrierFreqInfoThreshXQr9::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+InterFreqCarrierFreqInfoThreshXQr9::InterFreqCarrierFreqInfoThreshXQr9(const ReselectionThresholdQr9& threshXHighQr9, const ReselectionThresholdQr9& threshXLowQr9) : Sequence(&theInfo) {
+	setThreshXHighQr9(threshXHighQr9);
+	setThreshXLowQr9(threshXLowQr9);
+}
+
+const void *InterFreqCarrierFreqInfo::itemsInfo[16] = {
+	&ARFCNValueEUTRA::theInfo,
+	&QRxLevMin::theInfo,
+	&PMax::theInfo,
+	&TReselection::theInfo,
+	&SpeedStateScaleFactors::theInfo,
+	&ReselectionThreshold::theInfo,
+	&ReselectionThreshold::theInfo,
+	&AllowedMeasBandwidth::theInfo,
+	&PresenceAntennaPort1::theInfo,
+	&CellReselectionPriority::theInfo,
+	&NeighCellConfig::theInfo,
+	&QOffsetRange::theInfo,
+	&InterFreqNeighCellList::theInfo,
+	&InterFreqBlackCellList::theInfo,
+	&QQualMinr9::theInfo,
+	&InterFreqCarrierFreqInfoThreshXQr9::theInfo,
+};
+bool InterFreqCarrierFreqInfo::itemsPres[16] = {
+	1,
+	1,
+	0,
+	1,
+	0,
+	1,
+	1,
+	1,
+	1,
+	0,
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+};
+const InterFreqCarrierFreqInfo::Info InterFreqCarrierFreqInfo::theInfo = {
+	InterFreqCarrierFreqInfo::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	14, 6, 2
+};
+InterFreqCarrierFreqInfo::InterFreqCarrierFreqInfo(const ARFCNValueEUTRA& dlCarrierFreq, const QRxLevMin& qRxLevMin, const TReselection& tReselectionEUTRA, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow, const AllowedMeasBandwidth& allowedMeasBandwidth, const PresenceAntennaPort1& presenceAntennaPort1, const NeighCellConfig& neighCellConfig) : Sequence(&theInfo) {
+	setDlCarrierFreq(dlCarrierFreq);
+	setQRxLevMin(qRxLevMin);
+	setTReselectionEUTRA(tReselectionEUTRA);
+	setThreshXHigh(threshXHigh);
+	setThreshXLow(threshXLow);
+	setAllowedMeasBandwidth(allowedMeasBandwidth);
+	setPresenceAntennaPort1(presenceAntennaPort1);
+	setNeighCellConfig(neighCellConfig);
+}
+
+const void *SystemInformationBlockType5::itemsInfo[2] = {
+	&InterFreqCarrierFreqList::theInfo,
+	&SystemInformationBlockType5LateNonCriticalExtension::theInfo,
+};
+bool SystemInformationBlockType5::itemsPres[2] = {
+	1,
+	0,
+};
+const SystemInformationBlockType5::Info SystemInformationBlockType5::theInfo = {
+	SystemInformationBlockType5::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	1, 0, 1
+};
+SystemInformationBlockType5::SystemInformationBlockType5(const InterFreqCarrierFreqList& interFreqCarrierFreqList) : Sequence(&theInfo) {
+	setInterFreqCarrierFreqList(interFreqCarrierFreqList);
+}
+
+const void *CarrierFreqUTRAFDDThreshXQr9::itemsInfo[2] = {
+	&ReselectionThresholdQr9::theInfo,
+	&ReselectionThresholdQr9::theInfo,
+};
+bool CarrierFreqUTRAFDDThreshXQr9::itemsPres[2] = {
+	1,
+	1,
+};
+const CarrierFreqUTRAFDDThreshXQr9::Info CarrierFreqUTRAFDDThreshXQr9::theInfo = {
+	CarrierFreqUTRAFDDThreshXQr9::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+CarrierFreqUTRAFDDThreshXQr9::CarrierFreqUTRAFDDThreshXQr9(const ReselectionThresholdQr9& threshXHighQr9, const ReselectionThresholdQr9& threshXLowQr9) : Sequence(&theInfo) {
+	setThreshXHighQr9(threshXHighQr9);
+	setThreshXLowQr9(threshXLowQr9);
+}
+
+const void *CarrierFreqUTRAFDD::itemsInfo[8] = {
+	&ARFCNValueUTRA::theInfo,
+	&CellReselectionPriority::theInfo,
+	&ReselectionThreshold::theInfo,
+	&ReselectionThreshold::theInfo,
+	&CarrierFreqUTRAFDDQRxLevMin::theInfo,
+	&CarrierFreqUTRAFDDPMaxUTRA::theInfo,
+	&CarrierFreqUTRAFDDQQualMin::theInfo,
+	&CarrierFreqUTRAFDDThreshXQr9::theInfo,
+};
+bool CarrierFreqUTRAFDD::itemsPres[8] = {
+	1,
+	0,
+	1,
+	1,
+	1,
+	1,
+	1,
+	0,
+};
+const CarrierFreqUTRAFDD::Info CarrierFreqUTRAFDD::theInfo = {
+	CarrierFreqUTRAFDD::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	7, 1, 1
+};
+CarrierFreqUTRAFDD::CarrierFreqUTRAFDD(const ARFCNValueUTRA& carrierFreq, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow, const CarrierFreqUTRAFDDQRxLevMin& carrierFreqUTRAFDDQRxLevMin, const CarrierFreqUTRAFDDPMaxUTRA& carrierFreqUTRAFDDPMaxUTRA, const CarrierFreqUTRAFDDQQualMin& carrierFreqUTRAFDDQQualMin) : Sequence(&theInfo) {
+	setCarrierFreq(carrierFreq);
+	setThreshXHigh(threshXHigh);
+	setThreshXLow(threshXLow);
+	setCarrierFreqUTRAFDDQRxLevMin(carrierFreqUTRAFDDQRxLevMin);
+	setCarrierFreqUTRAFDDPMaxUTRA(carrierFreqUTRAFDDPMaxUTRA);
+	setCarrierFreqUTRAFDDQQualMin(carrierFreqUTRAFDDQQualMin);
+}
+
+const void *CarrierFreqUTRATDD::itemsInfo[6] = {
+	&ARFCNValueUTRA::theInfo,
+	&CellReselectionPriority::theInfo,
+	&ReselectionThreshold::theInfo,
+	&ReselectionThreshold::theInfo,
+	&CarrierFreqUTRATDDQRxLevMin::theInfo,
+	&CarrierFreqUTRATDDPMaxUTRA::theInfo,
+};
+bool CarrierFreqUTRATDD::itemsPres[6] = {
+	1,
+	0,
+	1,
+	1,
+	1,
+	1,
+};
+const CarrierFreqUTRATDD::Info CarrierFreqUTRATDD::theInfo = {
+	CarrierFreqUTRATDD::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	6, 1, 0
+};
+CarrierFreqUTRATDD::CarrierFreqUTRATDD(const ARFCNValueUTRA& carrierFreq, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow, const CarrierFreqUTRATDDQRxLevMin& carrierFreqUTRATDDQRxLevMin, const CarrierFreqUTRATDDPMaxUTRA& carrierFreqUTRATDDPMaxUTRA) : Sequence(&theInfo) {
+	setCarrierFreq(carrierFreq);
+	setThreshXHigh(threshXHigh);
+	setThreshXLow(threshXLow);
+	setCarrierFreqUTRATDDQRxLevMin(carrierFreqUTRATDDQRxLevMin);
+	setCarrierFreqUTRATDDPMaxUTRA(carrierFreqUTRATDDPMaxUTRA);
+}
+
+const void *SystemInformationBlockType6::itemsInfo[5] = {
+	&CarrierFreqListUTRAFDD::theInfo,
+	&CarrierFreqListUTRATDD::theInfo,
+	&TReselection::theInfo,
+	&SpeedStateScaleFactors::theInfo,
+	&SystemInformationBlockType6LateNonCriticalExtension::theInfo,
+};
+bool SystemInformationBlockType6::itemsPres[5] = {
+	0,
+	0,
+	1,
+	0,
+	0,
+};
+const SystemInformationBlockType6::Info SystemInformationBlockType6::theInfo = {
+	SystemInformationBlockType6::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	4, 3, 1
+};
+SystemInformationBlockType6::SystemInformationBlockType6(const TReselection& tReselectionUTRA) : Sequence(&theInfo) {
+	setTReselectionUTRA(tReselectionUTRA);
+}
+
+const void *CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::itemsInfo[2] = {
+	&CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing::theInfo,
+	&CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs::theInfo,
+};
+bool CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::itemsPres[2] = {
+	1,
+	1,
+};
+const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::Info CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::theInfo = {
+	CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs(const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing, const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs) : Sequence(&theInfo) {
+	setCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing(carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing);
+	setCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs(carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs);
+}
+
+const void *CarrierFreqsGERANFollowingARFCNs::choicesInfo[3] = {
+	&ExplicitListOfARFCNs::theInfo,
+	&CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::theInfo,
+	&CarrierFreqsGERANFollowingARFCNsVariableBitMapOfARFCNs::theInfo,
+};
+const CarrierFreqsGERANFollowingARFCNs::Info CarrierFreqsGERANFollowingARFCNs::theInfo = {
+	CarrierFreqsGERANFollowingARFCNs::create,
+	CHOICE,
+	0,
+	false,
+	choicesInfo,
+	2
+};
+
+const void *CarrierFreqsGERAN::itemsInfo[3] = {
+	&ARFCNValueGERAN::theInfo,
+	&BandIndicatorGERAN::theInfo,
+	&CarrierFreqsGERANFollowingARFCNs::theInfo,
+};
+bool CarrierFreqsGERAN::itemsPres[3] = {
+	1,
+	1,
+	1,
+};
+const CarrierFreqsGERAN::Info CarrierFreqsGERAN::theInfo = {
+	CarrierFreqsGERAN::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	3, 0, 0
+};
+CarrierFreqsGERAN::CarrierFreqsGERAN(const ARFCNValueGERAN& startingARFCN, const BandIndicatorGERAN& bandIndicator, const CarrierFreqsGERANFollowingARFCNs& carrierFreqsGERANFollowingARFCNs) : Sequence(&theInfo) {
+	setStartingARFCN(startingARFCN);
+	setBandIndicator(bandIndicator);
+	setCarrierFreqsGERANFollowingARFCNs(carrierFreqsGERANFollowingARFCNs);
+}
+
+const void *CarrierFreqsInfoGERANCommonInfo::itemsInfo[6] = {
+	&CellReselectionPriority::theInfo,
+	&CarrierFreqsInfoGERANCommonInfoNccPermitted::theInfo,
+	&CarrierFreqsInfoGERANCommonInfoQRxLevMin::theInfo,
+	&CarrierFreqsInfoGERANCommonInfoPMaxGERAN::theInfo,
+	&ReselectionThreshold::theInfo,
+	&ReselectionThreshold::theInfo,
+};
+bool CarrierFreqsInfoGERANCommonInfo::itemsPres[6] = {
+	0,
+	1,
+	1,
+	0,
+	1,
+	1,
+};
+const CarrierFreqsInfoGERANCommonInfo::Info CarrierFreqsInfoGERANCommonInfo::theInfo = {
+	CarrierFreqsInfoGERANCommonInfo::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	6, 2, 0
+};
+CarrierFreqsInfoGERANCommonInfo::CarrierFreqsInfoGERANCommonInfo(const CarrierFreqsInfoGERANCommonInfoNccPermitted& carrierFreqsInfoGERANCommonInfoNccPermitted, const CarrierFreqsInfoGERANCommonInfoQRxLevMin& carrierFreqsInfoGERANCommonInfoQRxLevMin, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow) : Sequence(&theInfo) {
+	setCarrierFreqsInfoGERANCommonInfoNccPermitted(carrierFreqsInfoGERANCommonInfoNccPermitted);
+	setCarrierFreqsInfoGERANCommonInfoQRxLevMin(carrierFreqsInfoGERANCommonInfoQRxLevMin);
+	setThreshXHigh(threshXHigh);
+	setThreshXLow(threshXLow);
+}
+
+const void *CarrierFreqsInfoGERAN::itemsInfo[2] = {
+	&CarrierFreqsGERAN::theInfo,
+	&CarrierFreqsInfoGERANCommonInfo::theInfo,
+};
+bool CarrierFreqsInfoGERAN::itemsPres[2] = {
+	1,
+	1,
+};
+const CarrierFreqsInfoGERAN::Info CarrierFreqsInfoGERAN::theInfo = {
+	CarrierFreqsInfoGERAN::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+CarrierFreqsInfoGERAN::CarrierFreqsInfoGERAN(const CarrierFreqsGERAN& carrierFreqs, const CarrierFreqsInfoGERANCommonInfo& carrierFreqsInfoGERANCommonInfo) : Sequence(&theInfo) {
+	setCarrierFreqs(carrierFreqs);
+	setCarrierFreqsInfoGERANCommonInfo(carrierFreqsInfoGERANCommonInfo);
+}
+
+const void *SystemInformationBlockType7::itemsInfo[4] = {
+	&TReselection::theInfo,
+	&SpeedStateScaleFactors::theInfo,
+	&CarrierFreqsInfoListGERAN::theInfo,
+	&SystemInformationBlockType7LateNonCriticalExtension::theInfo,
+};
+bool SystemInformationBlockType7::itemsPres[4] = {
+	1,
+	0,
+	0,
+	0,
+};
+const SystemInformationBlockType7::Info SystemInformationBlockType7::theInfo = {
+	SystemInformationBlockType7::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	3, 2, 1
+};
+SystemInformationBlockType7::SystemInformationBlockType7(const TReselection& tReselectionGERAN) : Sequence(&theInfo) {
+	setTReselectionGERAN(tReselectionGERAN);
+}
+
+const void *SystemTimeInfoCDMA2000CdmaSystemTime::choicesInfo[2] = {
+	&SystemTimeInfoCDMA2000CdmaSystemTimeSynchronousSystemTime::theInfo,
+	&SystemTimeInfoCDMA2000CdmaSystemTimeAsynchronousSystemTime::theInfo,
+};
+const SystemTimeInfoCDMA2000CdmaSystemTime::Info SystemTimeInfoCDMA2000CdmaSystemTime::theInfo = {
+	SystemTimeInfoCDMA2000CdmaSystemTime::create,
+	CHOICE,
+	0,
+	false,
+	choicesInfo,
+	1
+};
+
+const void *SystemTimeInfoCDMA2000::itemsInfo[2] = {
+	&SystemTimeInfoCDMA2000CdmaEUTRASynchronisation::theInfo,
+	&SystemTimeInfoCDMA2000CdmaSystemTime::theInfo,
+};
+bool SystemTimeInfoCDMA2000::itemsPres[2] = {
+	1,
+	1,
+};
+const SystemTimeInfoCDMA2000::Info SystemTimeInfoCDMA2000::theInfo = {
+	SystemTimeInfoCDMA2000::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+SystemTimeInfoCDMA2000::SystemTimeInfoCDMA2000(const SystemTimeInfoCDMA2000CdmaEUTRASynchronisation& systemTimeInfoCDMA2000CdmaEUTRASynchronisation, const SystemTimeInfoCDMA2000CdmaSystemTime& systemTimeInfoCDMA2000CdmaSystemTime) : Sequence(&theInfo) {
+	setSystemTimeInfoCDMA2000CdmaEUTRASynchronisation(systemTimeInfoCDMA2000CdmaEUTRASynchronisation);
+	setSystemTimeInfoCDMA2000CdmaSystemTime(systemTimeInfoCDMA2000CdmaSystemTime);
+}
+
+const void *PreRegistrationInfoHRPD::itemsInfo[3] = {
+	&PreRegistrationInfoHRPDPreRegistrationAllowed::theInfo,
+	&PreRegistrationZoneIdHRPD::theInfo,
+	&SecondaryPreRegistrationZoneIdListHRPD::theInfo,
+};
+bool PreRegistrationInfoHRPD::itemsPres[3] = {
+	1,
+	0,
+	0,
+};
+const PreRegistrationInfoHRPD::Info PreRegistrationInfoHRPD::theInfo = {
+	PreRegistrationInfoHRPD::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	3, 2, 0
+};
+PreRegistrationInfoHRPD::PreRegistrationInfoHRPD(const PreRegistrationInfoHRPDPreRegistrationAllowed& preRegistrationInfoHRPDPreRegistrationAllowed) : Sequence(&theInfo) {
+	setPreRegistrationInfoHRPDPreRegistrationAllowed(preRegistrationInfoHRPDPreRegistrationAllowed);
+}
+
+const void *BandClassInfoCDMA2000::itemsInfo[4] = {
+	&BandclassCDMA2000::theInfo,
+	&CellReselectionPriority::theInfo,
+	&BandClassInfoCDMA2000ThreshXHigh::theInfo,
+	&BandClassInfoCDMA2000ThreshXLow::theInfo,
+};
+bool BandClassInfoCDMA2000::itemsPres[4] = {
+	1,
+	0,
+	1,
+	1,
+};
+const BandClassInfoCDMA2000::Info BandClassInfoCDMA2000::theInfo = {
+	BandClassInfoCDMA2000::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	4, 1, 0
+};
+BandClassInfoCDMA2000::BandClassInfoCDMA2000(const BandclassCDMA2000& bandClass, const BandClassInfoCDMA2000ThreshXHigh& bandClassInfoCDMA2000ThreshXHigh, const BandClassInfoCDMA2000ThreshXLow& bandClassInfoCDMA2000ThreshXLow) : Sequence(&theInfo) {
+	setBandClass(bandClass);
+	setBandClassInfoCDMA2000ThreshXHigh(bandClassInfoCDMA2000ThreshXHigh);
+	setBandClassInfoCDMA2000ThreshXLow(bandClassInfoCDMA2000ThreshXLow);
+}
+
+const void *NeighCellsPerBandclassCDMA2000::itemsInfo[2] = {
+	&ARFCNValueCDMA2000::theInfo,
+	&PhysCellIdListCDMA2000::theInfo,
+};
+bool NeighCellsPerBandclassCDMA2000::itemsPres[2] = {
+	1,
+	1,
+};
+const NeighCellsPerBandclassCDMA2000::Info NeighCellsPerBandclassCDMA2000::theInfo = {
+	NeighCellsPerBandclassCDMA2000::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+NeighCellsPerBandclassCDMA2000::NeighCellsPerBandclassCDMA2000(const ARFCNValueCDMA2000& arfcn, const PhysCellIdListCDMA2000& physCellIdList) : Sequence(&theInfo) {
+	setArfcn(arfcn);
+	setPhysCellIdList(physCellIdList);
+}
+
+const void *NeighCellCDMA2000::itemsInfo[2] = {
+	&BandclassCDMA2000::theInfo,
+	&NeighCellsPerBandclassListCDMA2000::theInfo,
+};
+bool NeighCellCDMA2000::itemsPres[2] = {
+	1,
+	1,
+};
+const NeighCellCDMA2000::Info NeighCellCDMA2000::theInfo = {
+	NeighCellCDMA2000::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 0, 0
+};
+NeighCellCDMA2000::NeighCellCDMA2000(const BandclassCDMA2000& bandClass, const NeighCellsPerBandclassListCDMA2000& neighCellsPerFreqList) : Sequence(&theInfo) {
+	setBandClass(bandClass);
+	setNeighCellsPerFreqList(neighCellsPerFreqList);
+}
+
+const void *CellReselectionParametersCDMA2000::itemsInfo[4] = {
+	&BandClassListCDMA2000::theInfo,
+	&NeighCellListCDMA2000::theInfo,
+	&TReselection::theInfo,
+	&SpeedStateScaleFactors::theInfo,
+};
+bool CellReselectionParametersCDMA2000::itemsPres[4] = {
+	1,
+	1,
+	1,
+	0,
+};
+const CellReselectionParametersCDMA2000::Info CellReselectionParametersCDMA2000::theInfo = {
+	CellReselectionParametersCDMA2000::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	4, 1, 0
+};
+CellReselectionParametersCDMA2000::CellReselectionParametersCDMA2000(const BandClassListCDMA2000& bandClassList, const NeighCellListCDMA2000& neighCellList, const TReselection& tReselectionCDMA2000) : Sequence(&theInfo) {
+	setBandClassList(bandClassList);
+	setNeighCellList(neighCellList);
+	setTReselectionCDMA2000(tReselectionCDMA2000);
+}
+
+const void *SystemInformationBlockType8ParametersHRPD::itemsInfo[2] = {
+	&PreRegistrationInfoHRPD::theInfo,
+	&CellReselectionParametersCDMA2000::theInfo,
+};
+bool SystemInformationBlockType8ParametersHRPD::itemsPres[2] = {
+	1,
+	0,
+};
+const SystemInformationBlockType8ParametersHRPD::Info SystemInformationBlockType8ParametersHRPD::theInfo = {
+	SystemInformationBlockType8ParametersHRPD::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	2, 1, 0
+};
+SystemInformationBlockType8ParametersHRPD::SystemInformationBlockType8ParametersHRPD(const PreRegistrationInfoHRPD& preRegistrationInfoHRPD) : Sequence(&theInfo) {
+	setPreRegistrationInfoHRPD(preRegistrationInfoHRPD);
+}
+
+const void *CSFBRegistrationParam1XRTT::itemsInfo[13] = {
+	&CSFBRegistrationParam1XRTTSid::theInfo,
+	&CSFBRegistrationParam1XRTTNid::theInfo,
+	&CSFBRegistrationParam1XRTTMultipleSID::theInfo,
+	&CSFBRegistrationParam1XRTTMultipleNID::theInfo,
+	&CSFBRegistrationParam1XRTTHomeReg::theInfo,
+	&CSFBRegistrationParam1XRTTForeignSIDReg::theInfo,
+	&CSFBRegistrationParam1XRTTForeignNIDReg::theInfo,
+	&CSFBRegistrationParam1XRTTParameterReg::theInfo,
+	&CSFBRegistrationParam1XRTTPowerUpReg::theInfo,
+	&CSFBRegistrationParam1XRTTRegistrationPeriod::theInfo,
+	&CSFBRegistrationParam1XRTTRegistrationZone::theInfo,
+	&CSFBRegistrationParam1XRTTTotalZone::theInfo,
+	&CSFBRegistrationParam1XRTTZoneTimer::theInfo,
+};
+bool CSFBRegistrationParam1XRTT::itemsPres[13] = {
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+};
+const CSFBRegistrationParam1XRTT::Info CSFBRegistrationParam1XRTT::theInfo = {
+	CSFBRegistrationParam1XRTT::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	13, 0, 0
+};
+CSFBRegistrationParam1XRTT::CSFBRegistrationParam1XRTT(const CSFBRegistrationParam1XRTTSid& cSFBRegistrationParam1XRTTSid, const CSFBRegistrationParam1XRTTNid& cSFBRegistrationParam1XRTTNid, const CSFBRegistrationParam1XRTTMultipleSID& cSFBRegistrationParam1XRTTMultipleSID, const CSFBRegistrationParam1XRTTMultipleNID& cSFBRegistrationParam1XRTTMultipleNID, const CSFBRegistrationParam1XRTTHomeReg& cSFBRegistrationParam1XRTTHomeReg, const CSFBRegistrationParam1XRTTForeignSIDReg& cSFBRegistrationParam1XRTTForeignSIDReg, const CSFBRegistrationParam1XRTTForeignNIDReg& cSFBRegistrationParam1XRTTForeignNIDReg, const CSFBRegistrationParam1XRTTParameterReg& cSFBRegistrationParam1XRTTParameterReg, const CSFBRegistrationParam1XRTTPowerUpReg& cSFBRegistrationParam1XRTTPowerUpReg, const CSFBRegistrationParam1XRTTRegistrationPeriod& cSFBRegistrationParam1XRTTRegistrationPeriod, const CSFBRegistrationParam1XRTTRegistrationZone& cSFBRegistrationParam1XRTTRegistrationZone, const CSFBRegistrationParam1XRTTTotalZone& cSFBRegistrationParam1XRTTTotalZone, const CSFBRegistrationParam1XRTTZoneTimer& cSFBRegistrationParam1XRTTZoneTimer) : Sequence(&theInfo) {
+	setCSFBRegistrationParam1XRTTSid(cSFBRegistrationParam1XRTTSid);
+	setCSFBRegistrationParam1XRTTNid(cSFBRegistrationParam1XRTTNid);
+	setCSFBRegistrationParam1XRTTMultipleSID(cSFBRegistrationParam1XRTTMultipleSID);
+	setCSFBRegistrationParam1XRTTMultipleNID(cSFBRegistrationParam1XRTTMultipleNID);
+	setCSFBRegistrationParam1XRTTHomeReg(cSFBRegistrationParam1XRTTHomeReg);
+	setCSFBRegistrationParam1XRTTForeignSIDReg(cSFBRegistrationParam1XRTTForeignSIDReg);
+	setCSFBRegistrationParam1XRTTForeignNIDReg(cSFBRegistrationParam1XRTTForeignNIDReg);
+	setCSFBRegistrationParam1XRTTParameterReg(cSFBRegistrationParam1XRTTParameterReg);
+	setCSFBRegistrationParam1XRTTPowerUpReg(cSFBRegistrationParam1XRTTPowerUpReg);
+	setCSFBRegistrationParam1XRTTRegistrationPeriod(cSFBRegistrationParam1XRTTRegistrationPeriod);
+	setCSFBRegistrationParam1XRTTRegistrationZone(cSFBRegistrationParam1XRTTRegistrationZone);
+	setCSFBRegistrationParam1XRTTTotalZone(cSFBRegistrationParam1XRTTTotalZone);
+	setCSFBRegistrationParam1XRTTZoneTimer(cSFBRegistrationParam1XRTTZoneTimer);
+}
+
+const void *SystemInformationBlockType8Parameters1XRTT::itemsInfo[3] = {
+	&CSFBRegistrationParam1XRTT::theInfo,
+	&SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT::theInfo,
+	&CellReselectionParametersCDMA2000::theInfo,
+};
+bool SystemInformationBlockType8Parameters1XRTT::itemsPres[3] = {
+	0,
+	0,
+	0,
+};
+const SystemInformationBlockType8Parameters1XRTT::Info SystemInformationBlockType8Parameters1XRTT::theInfo = {
+	SystemInformationBlockType8Parameters1XRTT::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	3, 3, 0
+};
+
+const void *NeighCellsPerBandclassCDMA2000v920::itemsInfo[1] = {
+	&PhysCellIdListCDMA2000v920::theInfo,
+};
+bool NeighCellsPerBandclassCDMA2000v920::itemsPres[1] = {
+	1,
+};
+const NeighCellsPerBandclassCDMA2000v920::Info NeighCellsPerBandclassCDMA2000v920::theInfo = {
+	NeighCellsPerBandclassCDMA2000v920::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	1, 0, 0
+};
+NeighCellsPerBandclassCDMA2000v920::NeighCellsPerBandclassCDMA2000v920(const PhysCellIdListCDMA2000v920& physCellIdListv920) : Sequence(&theInfo) {
+	setPhysCellIdListv920(physCellIdListv920);
+}
+
+const void *NeighCellCDMA2000v920::itemsInfo[1] = {
+	&NeighCellsPerBandclassListCDMA2000v920::theInfo,
+};
+bool NeighCellCDMA2000v920::itemsPres[1] = {
+	1,
+};
+const NeighCellCDMA2000v920::Info NeighCellCDMA2000v920::theInfo = {
+	NeighCellCDMA2000v920::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	1, 0, 0
+};
+NeighCellCDMA2000v920::NeighCellCDMA2000v920(const NeighCellsPerBandclassListCDMA2000v920& neighCellsPerFreqListv920) : Sequence(&theInfo) {
+	setNeighCellsPerFreqListv920(neighCellsPerFreqListv920);
+}
+
+const void *CellReselectionParametersCDMA2000v920::itemsInfo[1] = {
+	&NeighCellListCDMA2000v920::theInfo,
+};
+bool CellReselectionParametersCDMA2000v920::itemsPres[1] = {
+	1,
+};
+const CellReselectionParametersCDMA2000v920::Info CellReselectionParametersCDMA2000v920::theInfo = {
+	CellReselectionParametersCDMA2000v920::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	1, 0, 0
+};
+CellReselectionParametersCDMA2000v920::CellReselectionParametersCDMA2000v920(const NeighCellListCDMA2000v920& neighCellListv920) : Sequence(&theInfo) {
+	setNeighCellListv920(neighCellListv920);
+}
+
+const void *CSFBRegistrationParam1XRTTv920::itemsInfo[1] = {
+	&CSFBRegistrationParam1XRTTv920powerDownReg_r9::theInfo,
+};
+bool CSFBRegistrationParam1XRTTv920::itemsPres[1] = {
+	1,
+};
+const CSFBRegistrationParam1XRTTv920::Info CSFBRegistrationParam1XRTTv920::theInfo = {
+	CSFBRegistrationParam1XRTTv920::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	1, 0, 0
+};
+CSFBRegistrationParam1XRTTv920::CSFBRegistrationParam1XRTTv920(const CSFBRegistrationParam1XRTTv920powerDownReg_r9& cSFBRegistrationParam1XRTTv920powerDownReg_r9) : Sequence(&theInfo) {
+	setCSFBRegistrationParam1XRTTv920powerDownReg_r9(cSFBRegistrationParam1XRTTv920powerDownReg_r9);
+}
+
+const void *ACBarringConfig1XRTTr9::itemsInfo[10] = {
+	&ACBarringConfig1XRTTr9AcBarring0to9r9::theInfo,
+	&ACBarringConfig1XRTTr9AcBarring10r9::theInfo,
+	&ACBarringConfig1XRTTr9AcBarring11r9::theInfo,
+	&ACBarringConfig1XRTTr9AcBarring12r9::theInfo,
+	&ACBarringConfig1XRTTr9AcBarring13r9::theInfo,
+	&ACBarringConfig1XRTTr9AcBarring14r9::theInfo,
+	&ACBarringConfig1XRTTr9AcBarring15r9::theInfo,
+	&ACBarringConfig1XRTTr9AcBarringMsgr9::theInfo,
+	&ACBarringConfig1XRTTr9AcBarringRegr9::theInfo,
+	&ACBarringConfig1XRTTr9AcBarringEmgr9::theInfo,
+};
+bool ACBarringConfig1XRTTr9::itemsPres[10] = {
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+	1,
+};
+const ACBarringConfig1XRTTr9::Info ACBarringConfig1XRTTr9::theInfo = {
+	ACBarringConfig1XRTTr9::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	10, 0, 0
+};
+ACBarringConfig1XRTTr9::ACBarringConfig1XRTTr9(const ACBarringConfig1XRTTr9AcBarring0to9r9& aCBarringConfig1XRTTr9AcBarring0to9r9, const ACBarringConfig1XRTTr9AcBarring10r9& aCBarringConfig1XRTTr9AcBarring10r9, const ACBarringConfig1XRTTr9AcBarring11r9& aCBarringConfig1XRTTr9AcBarring11r9, const ACBarringConfig1XRTTr9AcBarring12r9& aCBarringConfig1XRTTr9AcBarring12r9, const ACBarringConfig1XRTTr9AcBarring13r9& aCBarringConfig1XRTTr9AcBarring13r9, const ACBarringConfig1XRTTr9AcBarring14r9& aCBarringConfig1XRTTr9AcBarring14r9, const ACBarringConfig1XRTTr9AcBarring15r9& aCBarringConfig1XRTTr9AcBarring15r9, const ACBarringConfig1XRTTr9AcBarringMsgr9& aCBarringConfig1XRTTr9AcBarringMsgr9, const ACBarringConfig1XRTTr9AcBarringRegr9& aCBarringConfig1XRTTr9AcBarringRegr9, const ACBarringConfig1XRTTr9AcBarringEmgr9& aCBarringConfig1XRTTr9AcBarringEmgr9) : Sequence(&theInfo) {
+	setACBarringConfig1XRTTr9AcBarring0to9r9(aCBarringConfig1XRTTr9AcBarring0to9r9);
+	setACBarringConfig1XRTTr9AcBarring10r9(aCBarringConfig1XRTTr9AcBarring10r9);
+	setACBarringConfig1XRTTr9AcBarring11r9(aCBarringConfig1XRTTr9AcBarring11r9);
+	setACBarringConfig1XRTTr9AcBarring12r9(aCBarringConfig1XRTTr9AcBarring12r9);
+	setACBarringConfig1XRTTr9AcBarring13r9(aCBarringConfig1XRTTr9AcBarring13r9);
+	setACBarringConfig1XRTTr9AcBarring14r9(aCBarringConfig1XRTTr9AcBarring14r9);
+	setACBarringConfig1XRTTr9AcBarring15r9(aCBarringConfig1XRTTr9AcBarring15r9);
+	setACBarringConfig1XRTTr9AcBarringMsgr9(aCBarringConfig1XRTTr9AcBarringMsgr9);
+	setACBarringConfig1XRTTr9AcBarringRegr9(aCBarringConfig1XRTTr9AcBarringRegr9);
+	setACBarringConfig1XRTTr9AcBarringEmgr9(aCBarringConfig1XRTTr9AcBarringEmgr9);
+}
+
+const void *SystemInformationBlockType8::itemsInfo[11] = {
+	&SystemTimeInfoCDMA2000::theInfo,
+	&SystemInformationBlockType8SearchWindowSize::theInfo,
+	&SystemInformationBlockType8ParametersHRPD::theInfo,
+	&SystemInformationBlockType8Parameters1XRTT::theInfo,
+	&SystemInformationBlockType8LateNonCriticalExtension::theInfo,
+	&SystemInformationBlockType8CsfbSupportForDualRxUEsr9::theInfo,
+	&CellReselectionParametersCDMA2000v920::theInfo,
+	&CellReselectionParametersCDMA2000v920::theInfo,
+	&CSFBRegistrationParam1XRTTv920::theInfo,
+	&ACBarringConfig1XRTTr9::theInfo,
+	&SystemInformationBlockType8csfb_DualRxTxSupport_r10::theInfo,
+};
+bool SystemInformationBlockType8::itemsPres[11] = {
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+};
+const SystemInformationBlockType8::Info SystemInformationBlockType8::theInfo = {
+	SystemInformationBlockType8::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	4, 4, 7
+};
+
+const void *SystemInformationBlockType9::itemsInfo[2] = {
+	&SystemInformationBlockType9HnbName::theInfo,
+	&SystemInformationBlockType9LateNonCriticalExtension::theInfo,
+};
+bool SystemInformationBlockType9::itemsPres[2] = {
+	0,
+	0,
+};
+const SystemInformationBlockType9::Info SystemInformationBlockType9::theInfo = {
+	SystemInformationBlockType9::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	1, 1, 1
+};
+
+const void *SystemInformationBlockType10::itemsInfo[5] = {
+	&SystemInformationBlockType10MessageIdentifier::theInfo,
+	&SystemInformationBlockType10SerialNumber::theInfo,
+	&SystemInformationBlockType10WarningType::theInfo,
+	&SystemInformationBlockType10WarningSecurityInfo::theInfo,
+	&SystemInformationBlockType10LateNonCriticalExtension::theInfo,
+};
+bool SystemInformationBlockType10::itemsPres[5] = {
+	1,
+	1,
+	1,
+	0,
+	0,
+};
+const SystemInformationBlockType10::Info SystemInformationBlockType10::theInfo = {
+	SystemInformationBlockType10::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	4, 1, 1
+};
+SystemInformationBlockType10::SystemInformationBlockType10(const SystemInformationBlockType10MessageIdentifier& systemInformationBlockType10MessageIdentifier, const SystemInformationBlockType10SerialNumber& systemInformationBlockType10SerialNumber, const SystemInformationBlockType10WarningType& systemInformationBlockType10WarningType) : Sequence(&theInfo) {
+	setSystemInformationBlockType10MessageIdentifier(systemInformationBlockType10MessageIdentifier);
+	setSystemInformationBlockType10SerialNumber(systemInformationBlockType10SerialNumber);
+	setSystemInformationBlockType10WarningType(systemInformationBlockType10WarningType);
+}
+
+const void *SystemInformationBlockType11::itemsInfo[7] = {
+	&SystemInformationBlockType11MessageIdentifier::theInfo,
+	&SystemInformationBlockType11SerialNumber::theInfo,
+	&SystemInformationBlockType11warningMessageSegmentType::theInfo,
+	&SystemInformationBlockType11WarningMessageSegmentNumber::theInfo,
+	&SystemInformationBlockType11WarningMessageSegment::theInfo,
+	&SystemInformationBlockType11DataCodingScheme::theInfo,
+	&SystemInformationBlockType11LateNonCriticalExtension::theInfo,
+};
+bool SystemInformationBlockType11::itemsPres[7] = {
+	1,
+	1,
+	1,
+	1,
+	1,
+	0,
+	0,
+};
+const SystemInformationBlockType11::Info SystemInformationBlockType11::theInfo = {
+	SystemInformationBlockType11::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	6, 1, 1
+};
+SystemInformationBlockType11::SystemInformationBlockType11(const SystemInformationBlockType11MessageIdentifier& systemInformationBlockType11MessageIdentifier, const SystemInformationBlockType11SerialNumber& systemInformationBlockType11SerialNumber, const SystemInformationBlockType11warningMessageSegmentType& systemInformationBlockType11warningMessageSegmentType, const SystemInformationBlockType11WarningMessageSegmentNumber& systemInformationBlockType11WarningMessageSegmentNumber, const SystemInformationBlockType11WarningMessageSegment& systemInformationBlockType11WarningMessageSegment) : Sequence(&theInfo) {
+	setSystemInformationBlockType11MessageIdentifier(systemInformationBlockType11MessageIdentifier);
+	setSystemInformationBlockType11SerialNumber(systemInformationBlockType11SerialNumber);
+	setSystemInformationBlockType11warningMessageSegmentType(systemInformationBlockType11warningMessageSegmentType);
+	setSystemInformationBlockType11WarningMessageSegmentNumber(systemInformationBlockType11WarningMessageSegmentNumber);
+	setSystemInformationBlockType11WarningMessageSegment(systemInformationBlockType11WarningMessageSegment);
+}
+
+const void *SystemInformationBlockType12r9::itemsInfo[7] = {
+	&SystemInformationBlockType12r9MessageIdentifierr9::theInfo,
+	&SystemInformationBlockType12r9SerialNumberr9::theInfo,
+	&SystemInformationBlockType12r9warningMessageSegmentType_r9::theInfo,
+	&SystemInformationBlockType12r9WarningMessageSegmentNumberr9::theInfo,
+	&SystemInformationBlockType12r9WarningMessageSegmentr9::theInfo,
+	&SystemInformationBlockType12r9DataCodingSchemer9::theInfo,
+	&SystemInformationBlockType12r9LateNonCriticalExtension::theInfo,
+};
+bool SystemInformationBlockType12r9::itemsPres[7] = {
+	1,
+	1,
+	1,
+	1,
+	1,
+	0,
+	0,
+};
+const SystemInformationBlockType12r9::Info SystemInformationBlockType12r9::theInfo = {
+	SystemInformationBlockType12r9::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	7, 2, 0
+};
+SystemInformationBlockType12r9::SystemInformationBlockType12r9(const SystemInformationBlockType12r9MessageIdentifierr9& systemInformationBlockType12r9MessageIdentifierr9, const SystemInformationBlockType12r9SerialNumberr9& systemInformationBlockType12r9SerialNumberr9, const SystemInformationBlockType12r9warningMessageSegmentType_r9& systemInformationBlockType12r9warningMessageSegmentType_r9, const SystemInformationBlockType12r9WarningMessageSegmentNumberr9& systemInformationBlockType12r9WarningMessageSegmentNumberr9, const SystemInformationBlockType12r9WarningMessageSegmentr9& systemInformationBlockType12r9WarningMessageSegmentr9) : Sequence(&theInfo) {
+	setSystemInformationBlockType12r9MessageIdentifierr9(systemInformationBlockType12r9MessageIdentifierr9);
+	setSystemInformationBlockType12r9SerialNumberr9(systemInformationBlockType12r9SerialNumberr9);
+	setSystemInformationBlockType12r9warningMessageSegmentType_r9(systemInformationBlockType12r9warningMessageSegmentType_r9);
+	setSystemInformationBlockType12r9WarningMessageSegmentNumberr9(systemInformationBlockType12r9WarningMessageSegmentNumberr9);
+	setSystemInformationBlockType12r9WarningMessageSegmentr9(systemInformationBlockType12r9WarningMessageSegmentr9);
+}
+
+const void *MBSFNAreaInfor9McchConfigr9::itemsInfo[5] = {
+	&MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9::theInfo,
+	&MBSFNAreaInfor9McchConfigr9McchOffsetr9::theInfo,
+	&MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9::theInfo,
+	&MBSFNAreaInfor9McchConfigr9SfAllocInfor9::theInfo,
+	&MBSFNAreaInfor9McchConfigr9signallingMCS_r9::theInfo,
+};
+bool MBSFNAreaInfor9McchConfigr9::itemsPres[5] = {
+	1,
+	1,
+	1,
+	1,
+	1,
+};
+const MBSFNAreaInfor9McchConfigr9::Info MBSFNAreaInfor9McchConfigr9::theInfo = {
+	MBSFNAreaInfor9McchConfigr9::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	5, 0, 0
+};
+MBSFNAreaInfor9McchConfigr9::MBSFNAreaInfor9McchConfigr9(const MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9, const MBSFNAreaInfor9McchConfigr9McchOffsetr9& mBSFNAreaInfor9McchConfigr9McchOffsetr9, const MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9, const MBSFNAreaInfor9McchConfigr9SfAllocInfor9& mBSFNAreaInfor9McchConfigr9SfAllocInfor9, const MBSFNAreaInfor9McchConfigr9signallingMCS_r9& mBSFNAreaInfor9McchConfigr9signallingMCS_r9) : Sequence(&theInfo) {
+	setMBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9(mBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9);
+	setMBSFNAreaInfor9McchConfigr9McchOffsetr9(mBSFNAreaInfor9McchConfigr9McchOffsetr9);
+	setMBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9(mBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9);
+	setMBSFNAreaInfor9McchConfigr9SfAllocInfor9(mBSFNAreaInfor9McchConfigr9SfAllocInfor9);
+	setMBSFNAreaInfor9McchConfigr9signallingMCS_r9(mBSFNAreaInfor9McchConfigr9signallingMCS_r9);
+}
+
+const void *MBSFNAreaInfor9::itemsInfo[4] = {
+	&MBSFNAreaInfor9MbsfnAreaIdr9::theInfo,
+	&MBSFNAreaInfor9non_MBSFNregionLength::theInfo,
+	&MBSFNAreaInfor9NotificationIndicatorr9::theInfo,
+	&MBSFNAreaInfor9McchConfigr9::theInfo,
+};
+bool MBSFNAreaInfor9::itemsPres[4] = {
+	1,
+	1,
+	1,
+	1,
+};
+const MBSFNAreaInfor9::Info MBSFNAreaInfor9::theInfo = {
+	MBSFNAreaInfor9::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	4, 0, 0
+};
+MBSFNAreaInfor9::MBSFNAreaInfor9(const MBSFNAreaInfor9MbsfnAreaIdr9& mBSFNAreaInfor9MbsfnAreaIdr9, const MBSFNAreaInfor9non_MBSFNregionLength& mBSFNAreaInfor9non_MBSFNregionLength, const MBSFNAreaInfor9NotificationIndicatorr9& mBSFNAreaInfor9NotificationIndicatorr9, const MBSFNAreaInfor9McchConfigr9& mBSFNAreaInfor9McchConfigr9) : Sequence(&theInfo) {
+	setMBSFNAreaInfor9MbsfnAreaIdr9(mBSFNAreaInfor9MbsfnAreaIdr9);
+	setMBSFNAreaInfor9non_MBSFNregionLength(mBSFNAreaInfor9non_MBSFNregionLength);
+	setMBSFNAreaInfor9NotificationIndicatorr9(mBSFNAreaInfor9NotificationIndicatorr9);
+	setMBSFNAreaInfor9McchConfigr9(mBSFNAreaInfor9McchConfigr9);
+}
+
+const void *MBMSNotificationConfigr9::itemsInfo[3] = {
+	&MBMSNotificationConfigr9notificationRepetitionCoeff_r9::theInfo,
+	&MBMSNotificationConfigr9NotificationOffsetr9::theInfo,
+	&MBMSNotificationConfigr9NotificationSFIndexr9::theInfo,
+};
+bool MBMSNotificationConfigr9::itemsPres[3] = {
+	1,
+	1,
+	1,
+};
+const MBMSNotificationConfigr9::Info MBMSNotificationConfigr9::theInfo = {
+	MBMSNotificationConfigr9::create,
+	SEQUENCE,
+	0,
+	false,
+	itemsInfo,
+	itemsPres,
+	3, 0, 0
+};
+MBMSNotificationConfigr9::MBMSNotificationConfigr9(const MBMSNotificationConfigr9notificationRepetitionCoeff_r9& mBMSNotificationConfigr9notificationRepetitionCoeff_r9, const MBMSNotificationConfigr9NotificationOffsetr9& mBMSNotificationConfigr9NotificationOffsetr9, const MBMSNotificationConfigr9NotificationSFIndexr9& mBMSNotificationConfigr9NotificationSFIndexr9) : Sequence(&theInfo) {
+	setMBMSNotificationConfigr9notificationRepetitionCoeff_r9(mBMSNotificationConfigr9notificationRepetitionCoeff_r9);
+	setMBMSNotificationConfigr9NotificationOffsetr9(mBMSNotificationConfigr9NotificationOffsetr9);
+	setMBMSNotificationConfigr9NotificationSFIndexr9(mBMSNotificationConfigr9NotificationSFIndexr9);
+}
+
+const void *SystemInformationBlockType13r9::itemsInfo[3] = {
+	&MBSFNAreaInfoListr9::theInfo,
+	&MBMSNotificationConfigr9::theInfo,
+	&SystemInformationBlockType13r9LateNonCriticalExtension::theInfo,
+};
+bool SystemInformationBlockType13r9::itemsPres[3] = {
+	1,
+	1,
+	0,
+};
+const SystemInformationBlockType13r9::Info SystemInformationBlockType13r9::theInfo = {
+	SystemInformationBlockType13r9::create,
+	SEQUENCE,
+	0,
+	true,
+	itemsInfo,
+	itemsPres,
+	3, 1, 0
+};
+SystemInformationBlockType13r9::SystemInformationBlockType13r9(const MBSFNAreaInfoListr9& mbsfnAreaInfoListr9, const MBMSNotificationConfigr9& notificationConfigr9) : Sequence(&theInfo) {
+	setMbsfnAreaInfoListr9(mbsfnAreaInfoListr9);
+	setNotificationConfigr9(notificationConfigr9);
+}
+
+const void *SibTypeAndInfoItem::choicesInfo[12] = {
+	&SystemInformationBlockType2::theInfo,
+	&SystemInformationBlockType3::theInfo,
+	&SystemInformationBlockType4::theInfo,
+	&SystemInformationBlockType5::theInfo,
+	&SystemInformationBlockType6::theInfo,
+	&SystemInformationBlockType7::theInfo,
+	&SystemInformationBlockType8::theInfo,
+	&SystemInformationBlockType9::theInfo,
+	&SystemInformationBlockType10::theInfo,
+	&SystemInformationBlockType11::theInfo,
+	&SystemInformationBlockType12r9::theInfo,
+	&SystemInformationBlockType13r9::theInfo,
+};
+const SibTypeAndInfoItem::Info SibTypeAndInfoItem::theInfo = {
+	SibTypeAndInfoItem::create,
+	CHOICE,
+	0,
+	true,
+	choicesInfo,
+	9
 };
 
 const void *SystemInformationv8a0IEsNonCriticalExtension::itemsInfo[0] = {
@@ -515,44 +2554,6 @@ const BCCHDLSCHMessage::Info BCCHDLSCHMessage::theInfo = {
 };
 BCCHDLSCHMessage::BCCHDLSCHMessage(const BCCHDLSCHMessageType& message) : Sequence(&theInfo) {
 	setMessage(message);
-}
-
-const void *MBSFNSubframeConfigSubframeAllocation::choicesInfo[2] = {
-	&MBSFNSubframeConfigSubframeAllocationOneFrame::theInfo,
-	&MBSFNSubframeConfigSubframeAllocationFourFrames::theInfo,
-};
-const MBSFNSubframeConfigSubframeAllocation::Info MBSFNSubframeConfigSubframeAllocation::theInfo = {
-	MBSFNSubframeConfigSubframeAllocation::create,
-	CHOICE,
-	0,
-	false,
-	choicesInfo,
-	1
-};
-
-const void *MBSFNSubframeConfig::itemsInfo[3] = {
-	&MBSFNSubframeConfigradioframeAllocationPeriod::theInfo,
-	&MBSFNSubframeConfigRadioframeAllocationOffset::theInfo,
-	&MBSFNSubframeConfigSubframeAllocation::theInfo,
-};
-bool MBSFNSubframeConfig::itemsPres[3] = {
-	1,
-	1,
-	1,
-};
-const MBSFNSubframeConfig::Info MBSFNSubframeConfig::theInfo = {
-	MBSFNSubframeConfig::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	3, 0, 0
-};
-MBSFNSubframeConfig::MBSFNSubframeConfig(const MBSFNSubframeConfigradioframeAllocationPeriod& mBSFNSubframeConfigradioframeAllocationPeriod, const MBSFNSubframeConfigRadioframeAllocationOffset& mBSFNSubframeConfigRadioframeAllocationOffset, const MBSFNSubframeConfigSubframeAllocation& mBSFNSubframeConfigSubframeAllocation) : Sequence(&theInfo) {
-	setMBSFNSubframeConfigradioframeAllocationPeriod(mBSFNSubframeConfigradioframeAllocationPeriod);
-	setMBSFNSubframeConfigRadioframeAllocationOffset(mBSFNSubframeConfigRadioframeAllocationOffset);
-	setMBSFNSubframeConfigSubframeAllocation(mBSFNSubframeConfigSubframeAllocation);
 }
 
 const void *PMCHConfigr9::itemsInfo[3] = {
@@ -1286,10 +3287,10 @@ const LogicalChannelConfig::Info LogicalChannelConfig::theInfo = {
 	LogicalChannelConfig::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	2, 2, 0
+	1, 1, 1
 };
 
 const void *SRBToAddModLogicalChannelConfig::choicesInfo[2] = {
@@ -1461,10 +3462,10 @@ const PDCPConfig::Info PDCPConfig::theInfo = {
 	PDCPConfig::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	5, 5, 0
+	4, 4, 1
 };
 
 const void *DRBToAddMod::itemsInfo[6] = {
@@ -1692,10 +3693,10 @@ const MACMainConfig::Info MACMainConfig::theInfo = {
 	MACMainConfig::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	6, 5, 0
+	4, 3, 2
 };
 MACMainConfig::MACMainConfig(const TimeAlignmentTimer& timeAlignmentTimerDedicated) : Sequence(&theInfo) {
 	setTimeAlignmentTimerDedicated(timeAlignmentTimerDedicated);
@@ -1762,10 +3763,10 @@ const SPSConfigDLSetup::Info SPSConfigDLSetup::theInfo = {
 	SPSConfigDLSetup::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	4, 1, 0
+	3, 0, 1
 };
 SPSConfigDLSetup::SPSConfigDLSetup(const SPSConfigDLSetupsemiPersistSchedIntervalDL& sPSConfigDLSetupsemiPersistSchedIntervalDL, const SPSConfigDLSetupNumberOfConfSPSProcesses& sPSConfigDLSetupNumberOfConfSPSProcesses, const N1PUCCHANPersistentList& n1PUCCHANPersistentList) : Sequence(&theInfo) {
 	setSPSConfigDLSetupsemiPersistSchedIntervalDL(sPSConfigDLSetupsemiPersistSchedIntervalDL);
@@ -3240,10 +5241,10 @@ const PhysicalConfigDedicated::Info PhysicalConfigDedicated::theInfo = {
 	PhysicalConfigDedicated::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	24, 24, 0
+	10, 10, 14
 };
 
 const void *RLFTimersAndConstantsr9Setup::itemsInfo[5] = {
@@ -3327,10 +5328,10 @@ const RadioResourceConfigDedicated::Info RadioResourceConfigDedicated::theInfo =
 	RadioResourceConfigDedicated::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	8, 8, 0
+	6, 6, 2
 };
 
 const void *RRCConnectionReestablishmentv8a0IEsNonCriticalExtension::itemsInfo[0] = {
@@ -4711,27 +6712,6 @@ CellsToAddMod::CellsToAddMod(const CellsToAddModCellIndex& cellsToAddModCellInde
 	setCellIndividualOffset(cellIndividualOffset);
 }
 
-const void *PhysCellIdRange::itemsInfo[2] = {
-	&PhysCellId::theInfo,
-	&PhysCellIdRangerange::theInfo,
-};
-bool PhysCellIdRange::itemsPres[2] = {
-	1,
-	0,
-};
-const PhysCellIdRange::Info PhysCellIdRange::theInfo = {
-	PhysCellIdRange::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 1, 0
-};
-PhysCellIdRange::PhysCellIdRange(const PhysCellId& start) : Sequence(&theInfo) {
-	setStart(start);
-}
-
 const void *BlackCellsToAddMod::itemsInfo[2] = {
 	&BlackCellsToAddModCellIndex::theInfo,
 	&PhysCellIdRange::theInfo,
@@ -4820,10 +6800,10 @@ const MeasObjectEUTRA::Info MeasObjectEUTRA::theInfo = {
 	MeasObjectEUTRA::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	12, 8, 0
+	10, 6, 2
 };
 MeasObjectEUTRA::MeasObjectEUTRA(const ARFCNValueEUTRA& carrierFreq, const AllowedMeasBandwidth& allowedMeasBandwidth, const PresenceAntennaPort1& presenceAntennaPort1, const NeighCellConfig& neighCellConfig) : Sequence(&theInfo) {
 	setCarrierFreq(carrierFreq);
@@ -4959,74 +6939,13 @@ const MeasObjectUTRA::Info MeasObjectUTRA::theInfo = {
 	MeasObjectUTRA::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	6, 5, 0
+	5, 4, 1
 };
 MeasObjectUTRA::MeasObjectUTRA(const ARFCNValueUTRA& carrierFreq) : Sequence(&theInfo) {
 	setCarrierFreq(carrierFreq);
-}
-
-const void *CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::itemsInfo[2] = {
-	&CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing::theInfo,
-	&CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs::theInfo,
-};
-bool CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::itemsPres[2] = {
-	1,
-	1,
-};
-const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::Info CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::theInfo = {
-	CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs(const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing, const CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs& carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs) : Sequence(&theInfo) {
-	setCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing(carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsArfcnSpacing);
-	setCarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs(carrierFreqsGERANFollowingARFCNsEquallySpacedARFCNsNumberOfFollowingARFCNs);
-}
-
-const void *CarrierFreqsGERANFollowingARFCNs::choicesInfo[3] = {
-	&ExplicitListOfARFCNs::theInfo,
-	&CarrierFreqsGERANFollowingARFCNsEquallySpacedARFCNs::theInfo,
-	&CarrierFreqsGERANFollowingARFCNsVariableBitMapOfARFCNs::theInfo,
-};
-const CarrierFreqsGERANFollowingARFCNs::Info CarrierFreqsGERANFollowingARFCNs::theInfo = {
-	CarrierFreqsGERANFollowingARFCNs::create,
-	CHOICE,
-	0,
-	false,
-	choicesInfo,
-	2
-};
-
-const void *CarrierFreqsGERAN::itemsInfo[3] = {
-	&ARFCNValueGERAN::theInfo,
-	&BandIndicatorGERAN::theInfo,
-	&CarrierFreqsGERANFollowingARFCNs::theInfo,
-};
-bool CarrierFreqsGERAN::itemsPres[3] = {
-	1,
-	1,
-	1,
-};
-const CarrierFreqsGERAN::Info CarrierFreqsGERAN::theInfo = {
-	CarrierFreqsGERAN::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	3, 0, 0
-};
-CarrierFreqsGERAN::CarrierFreqsGERAN(const ARFCNValueGERAN& startingARFCN, const BandIndicatorGERAN& bandIndicator, const CarrierFreqsGERANFollowingARFCNs& carrierFreqsGERANFollowingARFCNs) : Sequence(&theInfo) {
-	setStartingARFCN(startingARFCN);
-	setBandIndicator(bandIndicator);
-	setCarrierFreqsGERANFollowingARFCNs(carrierFreqsGERANFollowingARFCNs);
 }
 
 const void *MeasObjectGERAN::itemsInfo[4] = {
@@ -5293,9 +7212,9 @@ const ReportConfigEUTRATriggerTypeEventEventId::Info ReportConfigEUTRATriggerTyp
 	ReportConfigEUTRATriggerTypeEventEventId::create,
 	CHOICE,
 	0,
-	false,
+	true,
 	choicesInfo,
-	5
+	4
 };
 
 const void *ReportConfigEUTRATriggerTypeEvent::itemsInfo[3] = {
@@ -5383,10 +7302,10 @@ const ReportConfigEUTRA::Info ReportConfigEUTRA::theInfo = {
 	ReportConfigEUTRA::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	10, 4, 0
+	6, 0, 4
 };
 ReportConfigEUTRA::ReportConfigEUTRA(const ReportConfigEUTRATriggerType& reportConfigEUTRATriggerType, const ReportConfigEUTRAtriggerQuantity& reportConfigEUTRAtriggerQuantity, const ReportConfigEUTRAreportQuantity& reportConfigEUTRAreportQuantity, const ReportConfigEUTRAMaxReportCells& reportConfigEUTRAMaxReportCells, const ReportInterval& reportInterval, const ReportConfigEUTRAreportAmount& reportConfigEUTRAreportAmount) : Sequence(&theInfo) {
 	setReportConfigEUTRATriggerType(reportConfigEUTRATriggerType);
@@ -5569,10 +7488,10 @@ const ReportConfigInterRAT::Info ReportConfigInterRAT::theInfo = {
 	ReportConfigInterRAT::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	6, 2, 0
+	4, 0, 2
 };
 ReportConfigInterRAT::ReportConfigInterRAT(const ReportConfigInterRATTriggerType& reportConfigInterRATTriggerType, const ReportConfigInterRATMaxReportCells& reportConfigInterRATMaxReportCells, const ReportInterval& reportInterval, const ReportConfigInterRATreportAmount& reportConfigInterRATreportAmount) : Sequence(&theInfo) {
 	setReportConfigInterRATTriggerType(reportConfigInterRATTriggerType);
@@ -5757,10 +7676,10 @@ const QuantityConfig::Info QuantityConfig::theInfo = {
 	QuantityConfig::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	5, 5, 0
+	4, 4, 1
 };
 
 const void *MeasGapConfigSetupGapOffset::choicesInfo[2] = {
@@ -5807,79 +7726,6 @@ const MeasGapConfig::Info MeasGapConfig::theInfo = {
 	choicesInfo,
 	1
 };
-
-const void *PreRegistrationInfoHRPD::itemsInfo[3] = {
-	&PreRegistrationInfoHRPDPreRegistrationAllowed::theInfo,
-	&PreRegistrationZoneIdHRPD::theInfo,
-	&SecondaryPreRegistrationZoneIdListHRPD::theInfo,
-};
-bool PreRegistrationInfoHRPD::itemsPres[3] = {
-	1,
-	0,
-	0,
-};
-const PreRegistrationInfoHRPD::Info PreRegistrationInfoHRPD::theInfo = {
-	PreRegistrationInfoHRPD::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	3, 2, 0
-};
-PreRegistrationInfoHRPD::PreRegistrationInfoHRPD(const PreRegistrationInfoHRPDPreRegistrationAllowed& preRegistrationInfoHRPDPreRegistrationAllowed) : Sequence(&theInfo) {
-	setPreRegistrationInfoHRPDPreRegistrationAllowed(preRegistrationInfoHRPDPreRegistrationAllowed);
-}
-
-const void *MobilityStateParameters::itemsInfo[4] = {
-	&MobilityStateParameterst_Evaluation::theInfo,
-	&MobilityStateParameterst_HystNormal::theInfo,
-	&MobilityStateParametersNCellChangeMedium::theInfo,
-	&MobilityStateParametersNCellChangeHigh::theInfo,
-};
-bool MobilityStateParameters::itemsPres[4] = {
-	1,
-	1,
-	1,
-	1,
-};
-const MobilityStateParameters::Info MobilityStateParameters::theInfo = {
-	MobilityStateParameters::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	4, 0, 0
-};
-MobilityStateParameters::MobilityStateParameters(const MobilityStateParameterst_Evaluation& mobilityStateParameterst_Evaluation, const MobilityStateParameterst_HystNormal& mobilityStateParameterst_HystNormal, const MobilityStateParametersNCellChangeMedium& mobilityStateParametersNCellChangeMedium, const MobilityStateParametersNCellChangeHigh& mobilityStateParametersNCellChangeHigh) : Sequence(&theInfo) {
-	setMobilityStateParameterst_Evaluation(mobilityStateParameterst_Evaluation);
-	setMobilityStateParameterst_HystNormal(mobilityStateParameterst_HystNormal);
-	setMobilityStateParametersNCellChangeMedium(mobilityStateParametersNCellChangeMedium);
-	setMobilityStateParametersNCellChangeHigh(mobilityStateParametersNCellChangeHigh);
-}
-
-const void *SpeedStateScaleFactors::itemsInfo[2] = {
-	&SpeedStateScaleFactorssf_Medium::theInfo,
-	&SpeedStateScaleFactorssf_High::theInfo,
-};
-bool SpeedStateScaleFactors::itemsPres[2] = {
-	1,
-	1,
-};
-const SpeedStateScaleFactors::Info SpeedStateScaleFactors::theInfo = {
-	SpeedStateScaleFactors::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-SpeedStateScaleFactors::SpeedStateScaleFactors(const SpeedStateScaleFactorssf_Medium& speedStateScaleFactorssf_Medium, const SpeedStateScaleFactorssf_High& speedStateScaleFactorssf_High) : Sequence(&theInfo) {
-	setSpeedStateScaleFactorssf_Medium(speedStateScaleFactorssf_Medium);
-	setSpeedStateScaleFactorssf_High(speedStateScaleFactorssf_High);
-}
 
 const void *MeasConfigSpeedStateParsSetup::itemsInfo[2] = {
 	&MobilityStateParameters::theInfo,
@@ -5994,155 +7840,6 @@ CarrierBandwidthEUTRA::CarrierBandwidthEUTRA(const CarrierBandwidthEUTRAdl_Bandw
 	setCarrierBandwidthEUTRAdl_Bandwidth(carrierBandwidthEUTRAdl_Bandwidth);
 }
 
-const void *RACHConfigCommonPreambleInfoPreamblesGroupAConfig::itemsInfo[3] = {
-	&RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA::theInfo,
-	&RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA::theInfo,
-	&RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB::theInfo,
-};
-bool RACHConfigCommonPreambleInfoPreamblesGroupAConfig::itemsPres[3] = {
-	1,
-	1,
-	1,
-};
-const RACHConfigCommonPreambleInfoPreamblesGroupAConfig::Info RACHConfigCommonPreambleInfoPreamblesGroupAConfig::theInfo = {
-	RACHConfigCommonPreambleInfoPreamblesGroupAConfig::create,
-	SEQUENCE,
-	0,
-	true,
-	itemsInfo,
-	itemsPres,
-	3, 0, 0
-};
-RACHConfigCommonPreambleInfoPreamblesGroupAConfig::RACHConfigCommonPreambleInfoPreamblesGroupAConfig(const RACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA, const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA, const RACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB& rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB) : Sequence(&theInfo) {
-	setRACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA(rACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA);
-	setRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA(rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessageSizeGroupA);
-	setRACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB(rACHConfigCommonPreambleInfoPreamblesGroupAConfigmessagePowerOffsetGroupB);
-}
-
-const void *RACHConfigCommonPreambleInfo::itemsInfo[2] = {
-	&RACHConfigCommonPreambleInfonumberOfRA_Preambles::theInfo,
-	&RACHConfigCommonPreambleInfoPreamblesGroupAConfig::theInfo,
-};
-bool RACHConfigCommonPreambleInfo::itemsPres[2] = {
-	1,
-	0,
-};
-const RACHConfigCommonPreambleInfo::Info RACHConfigCommonPreambleInfo::theInfo = {
-	RACHConfigCommonPreambleInfo::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 1, 0
-};
-RACHConfigCommonPreambleInfo::RACHConfigCommonPreambleInfo(const RACHConfigCommonPreambleInfonumberOfRA_Preambles& rACHConfigCommonPreambleInfonumberOfRA_Preambles) : Sequence(&theInfo) {
-	setRACHConfigCommonPreambleInfonumberOfRA_Preambles(rACHConfigCommonPreambleInfonumberOfRA_Preambles);
-}
-
-const void *RACHConfigCommonPowerRampingParameters::itemsInfo[2] = {
-	&RACHConfigCommonPowerRampingParameterspowerRampingStep::theInfo,
-	&RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower::theInfo,
-};
-bool RACHConfigCommonPowerRampingParameters::itemsPres[2] = {
-	1,
-	1,
-};
-const RACHConfigCommonPowerRampingParameters::Info RACHConfigCommonPowerRampingParameters::theInfo = {
-	RACHConfigCommonPowerRampingParameters::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-RACHConfigCommonPowerRampingParameters::RACHConfigCommonPowerRampingParameters(const RACHConfigCommonPowerRampingParameterspowerRampingStep& rACHConfigCommonPowerRampingParameterspowerRampingStep, const RACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower& rACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower) : Sequence(&theInfo) {
-	setRACHConfigCommonPowerRampingParameterspowerRampingStep(rACHConfigCommonPowerRampingParameterspowerRampingStep);
-	setRACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower(rACHConfigCommonPowerRampingParameterspreambleInitialReceivedTargetPower);
-}
-
-const void *RACHConfigCommonRaSupervisionInfo::itemsInfo[3] = {
-	&RACHConfigCommonRaSupervisionInfopreambleTransMax::theInfo,
-	&RACHConfigCommonRaSupervisionInfora_ResponseWindowSize::theInfo,
-	&RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer::theInfo,
-};
-bool RACHConfigCommonRaSupervisionInfo::itemsPres[3] = {
-	1,
-	1,
-	1,
-};
-const RACHConfigCommonRaSupervisionInfo::Info RACHConfigCommonRaSupervisionInfo::theInfo = {
-	RACHConfigCommonRaSupervisionInfo::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	3, 0, 0
-};
-RACHConfigCommonRaSupervisionInfo::RACHConfigCommonRaSupervisionInfo(const RACHConfigCommonRaSupervisionInfopreambleTransMax& rACHConfigCommonRaSupervisionInfopreambleTransMax, const RACHConfigCommonRaSupervisionInfora_ResponseWindowSize& rACHConfigCommonRaSupervisionInfora_ResponseWindowSize, const RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer& rACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer) : Sequence(&theInfo) {
-	setRACHConfigCommonRaSupervisionInfopreambleTransMax(rACHConfigCommonRaSupervisionInfopreambleTransMax);
-	setRACHConfigCommonRaSupervisionInfora_ResponseWindowSize(rACHConfigCommonRaSupervisionInfora_ResponseWindowSize);
-	setRACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer(rACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer);
-}
-
-const void *RACHConfigCommon::itemsInfo[4] = {
-	&RACHConfigCommonPreambleInfo::theInfo,
-	&RACHConfigCommonPowerRampingParameters::theInfo,
-	&RACHConfigCommonRaSupervisionInfo::theInfo,
-	&RACHConfigCommonMaxHARQMsg3Tx::theInfo,
-};
-bool RACHConfigCommon::itemsPres[4] = {
-	1,
-	1,
-	1,
-	1,
-};
-const RACHConfigCommon::Info RACHConfigCommon::theInfo = {
-	RACHConfigCommon::create,
-	SEQUENCE,
-	0,
-	true,
-	itemsInfo,
-	itemsPres,
-	4, 0, 0
-};
-RACHConfigCommon::RACHConfigCommon(const RACHConfigCommonPreambleInfo& rACHConfigCommonPreambleInfo, const RACHConfigCommonPowerRampingParameters& rACHConfigCommonPowerRampingParameters, const RACHConfigCommonRaSupervisionInfo& rACHConfigCommonRaSupervisionInfo, const RACHConfigCommonMaxHARQMsg3Tx& rACHConfigCommonMaxHARQMsg3Tx) : Sequence(&theInfo) {
-	setRACHConfigCommonPreambleInfo(rACHConfigCommonPreambleInfo);
-	setRACHConfigCommonPowerRampingParameters(rACHConfigCommonPowerRampingParameters);
-	setRACHConfigCommonRaSupervisionInfo(rACHConfigCommonRaSupervisionInfo);
-	setRACHConfigCommonMaxHARQMsg3Tx(rACHConfigCommonMaxHARQMsg3Tx);
-}
-
-const void *PRACHConfigInfo::itemsInfo[4] = {
-	&PRACHConfigInfoPrachConfigIndex::theInfo,
-	&PRACHConfigInfoHighSpeedFlag::theInfo,
-	&PRACHConfigInfoZeroCorrelationZoneConfig::theInfo,
-	&PRACHConfigInfoPrachFreqOffset::theInfo,
-};
-bool PRACHConfigInfo::itemsPres[4] = {
-	1,
-	1,
-	1,
-	1,
-};
-const PRACHConfigInfo::Info PRACHConfigInfo::theInfo = {
-	PRACHConfigInfo::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	4, 0, 0
-};
-PRACHConfigInfo::PRACHConfigInfo(const PRACHConfigInfoPrachConfigIndex& pRACHConfigInfoPrachConfigIndex, const PRACHConfigInfoHighSpeedFlag& pRACHConfigInfoHighSpeedFlag, const PRACHConfigInfoZeroCorrelationZoneConfig& pRACHConfigInfoZeroCorrelationZoneConfig, const PRACHConfigInfoPrachFreqOffset& pRACHConfigInfoPrachFreqOffset) : Sequence(&theInfo) {
-	setPRACHConfigInfoPrachConfigIndex(pRACHConfigInfoPrachConfigIndex);
-	setPRACHConfigInfoHighSpeedFlag(pRACHConfigInfoHighSpeedFlag);
-	setPRACHConfigInfoZeroCorrelationZoneConfig(pRACHConfigInfoZeroCorrelationZoneConfig);
-	setPRACHConfigInfoPrachFreqOffset(pRACHConfigInfoPrachFreqOffset);
-}
-
 const void *PRACHConfig::itemsInfo[2] = {
 	&PRACHConfigRootSequenceIndex::theInfo,
 	&PRACHConfigInfo::theInfo,
@@ -6164,236 +7861,6 @@ PRACHConfig::PRACHConfig(const PRACHConfigRootSequenceIndex& pRACHConfigRootSequ
 	setPRACHConfigRootSequenceIndex(pRACHConfigRootSequenceIndex);
 }
 
-const void *PDSCHConfigCommon::itemsInfo[2] = {
-	&PDSCHConfigCommonReferenceSignalPower::theInfo,
-	&PDSCHConfigCommonPb::theInfo,
-};
-bool PDSCHConfigCommon::itemsPres[2] = {
-	1,
-	1,
-};
-const PDSCHConfigCommon::Info PDSCHConfigCommon::theInfo = {
-	PDSCHConfigCommon::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-PDSCHConfigCommon::PDSCHConfigCommon(const PDSCHConfigCommonReferenceSignalPower& pDSCHConfigCommonReferenceSignalPower, const PDSCHConfigCommonPb& pDSCHConfigCommonPb) : Sequence(&theInfo) {
-	setPDSCHConfigCommonReferenceSignalPower(pDSCHConfigCommonReferenceSignalPower);
-	setPDSCHConfigCommonPb(pDSCHConfigCommonPb);
-}
-
-const void *PUSCHConfigCommonPuschConfigBasic::itemsInfo[4] = {
-	&PUSCHConfigCommonPuschConfigBasicNSB::theInfo,
-	&PUSCHConfigCommonPuschConfigBasichoppingMode::theInfo,
-	&PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset::theInfo,
-	&PUSCHConfigCommonPuschConfigBasicEnable64QAM::theInfo,
-};
-bool PUSCHConfigCommonPuschConfigBasic::itemsPres[4] = {
-	1,
-	1,
-	1,
-	1,
-};
-const PUSCHConfigCommonPuschConfigBasic::Info PUSCHConfigCommonPuschConfigBasic::theInfo = {
-	PUSCHConfigCommonPuschConfigBasic::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	4, 0, 0
-};
-PUSCHConfigCommonPuschConfigBasic::PUSCHConfigCommonPuschConfigBasic(const PUSCHConfigCommonPuschConfigBasicNSB& pUSCHConfigCommonPuschConfigBasicNSB, const PUSCHConfigCommonPuschConfigBasichoppingMode& pUSCHConfigCommonPuschConfigBasichoppingMode, const PUSCHConfigCommonPuschConfigBasicPuschHoppingOffset& pUSCHConfigCommonPuschConfigBasicPuschHoppingOffset, const PUSCHConfigCommonPuschConfigBasicEnable64QAM& pUSCHConfigCommonPuschConfigBasicEnable64QAM) : Sequence(&theInfo) {
-	setPUSCHConfigCommonPuschConfigBasicNSB(pUSCHConfigCommonPuschConfigBasicNSB);
-	setPUSCHConfigCommonPuschConfigBasichoppingMode(pUSCHConfigCommonPuschConfigBasichoppingMode);
-	setPUSCHConfigCommonPuschConfigBasicPuschHoppingOffset(pUSCHConfigCommonPuschConfigBasicPuschHoppingOffset);
-	setPUSCHConfigCommonPuschConfigBasicEnable64QAM(pUSCHConfigCommonPuschConfigBasicEnable64QAM);
-}
-
-const void *ULReferenceSignalsPUSCH::itemsInfo[4] = {
-	&ULReferenceSignalsPUSCHGroupHoppingEnabled::theInfo,
-	&ULReferenceSignalsPUSCHGroupAssignmentPUSCH::theInfo,
-	&ULReferenceSignalsPUSCHSequenceHoppingEnabled::theInfo,
-	&ULReferenceSignalsPUSCHCyclicShift::theInfo,
-};
-bool ULReferenceSignalsPUSCH::itemsPres[4] = {
-	1,
-	1,
-	1,
-	1,
-};
-const ULReferenceSignalsPUSCH::Info ULReferenceSignalsPUSCH::theInfo = {
-	ULReferenceSignalsPUSCH::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	4, 0, 0
-};
-ULReferenceSignalsPUSCH::ULReferenceSignalsPUSCH(const ULReferenceSignalsPUSCHGroupHoppingEnabled& uLReferenceSignalsPUSCHGroupHoppingEnabled, const ULReferenceSignalsPUSCHGroupAssignmentPUSCH& uLReferenceSignalsPUSCHGroupAssignmentPUSCH, const ULReferenceSignalsPUSCHSequenceHoppingEnabled& uLReferenceSignalsPUSCHSequenceHoppingEnabled, const ULReferenceSignalsPUSCHCyclicShift& uLReferenceSignalsPUSCHCyclicShift) : Sequence(&theInfo) {
-	setULReferenceSignalsPUSCHGroupHoppingEnabled(uLReferenceSignalsPUSCHGroupHoppingEnabled);
-	setULReferenceSignalsPUSCHGroupAssignmentPUSCH(uLReferenceSignalsPUSCHGroupAssignmentPUSCH);
-	setULReferenceSignalsPUSCHSequenceHoppingEnabled(uLReferenceSignalsPUSCHSequenceHoppingEnabled);
-	setULReferenceSignalsPUSCHCyclicShift(uLReferenceSignalsPUSCHCyclicShift);
-}
-
-const void *PUSCHConfigCommon::itemsInfo[2] = {
-	&PUSCHConfigCommonPuschConfigBasic::theInfo,
-	&ULReferenceSignalsPUSCH::theInfo,
-};
-bool PUSCHConfigCommon::itemsPres[2] = {
-	1,
-	1,
-};
-const PUSCHConfigCommon::Info PUSCHConfigCommon::theInfo = {
-	PUSCHConfigCommon::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-PUSCHConfigCommon::PUSCHConfigCommon(const PUSCHConfigCommonPuschConfigBasic& pUSCHConfigCommonPuschConfigBasic, const ULReferenceSignalsPUSCH& ulReferenceSignalsPUSCH) : Sequence(&theInfo) {
-	setPUSCHConfigCommonPuschConfigBasic(pUSCHConfigCommonPuschConfigBasic);
-	setUlReferenceSignalsPUSCH(ulReferenceSignalsPUSCH);
-}
-
-const void *PUCCHConfigCommon::itemsInfo[4] = {
-	&PUCCHConfigCommondeltaPUCCH_Shift::theInfo,
-	&PUCCHConfigCommonNRBCQI::theInfo,
-	&PUCCHConfigCommonNCSAN::theInfo,
-	&PUCCHConfigCommonN1PUCCHAN::theInfo,
-};
-bool PUCCHConfigCommon::itemsPres[4] = {
-	1,
-	1,
-	1,
-	1,
-};
-const PUCCHConfigCommon::Info PUCCHConfigCommon::theInfo = {
-	PUCCHConfigCommon::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	4, 0, 0
-};
-PUCCHConfigCommon::PUCCHConfigCommon(const PUCCHConfigCommondeltaPUCCH_Shift& pUCCHConfigCommondeltaPUCCH_Shift, const PUCCHConfigCommonNRBCQI& pUCCHConfigCommonNRBCQI, const PUCCHConfigCommonNCSAN& pUCCHConfigCommonNCSAN, const PUCCHConfigCommonN1PUCCHAN& pUCCHConfigCommonN1PUCCHAN) : Sequence(&theInfo) {
-	setPUCCHConfigCommondeltaPUCCH_Shift(pUCCHConfigCommondeltaPUCCH_Shift);
-	setPUCCHConfigCommonNRBCQI(pUCCHConfigCommonNRBCQI);
-	setPUCCHConfigCommonNCSAN(pUCCHConfigCommonNCSAN);
-	setPUCCHConfigCommonN1PUCCHAN(pUCCHConfigCommonN1PUCCHAN);
-}
-
-const void *SoundingRSULConfigCommonSetup::itemsInfo[4] = {
-	&SoundingRSULConfigCommonSetupsrs_BandwidthConfig::theInfo,
-	&SoundingRSULConfigCommonSetupsrs_SubframeConfig::theInfo,
-	&SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission::theInfo,
-	&SoundingRSULConfigCommonSetupsrs_MaxUpPts::theInfo,
-};
-bool SoundingRSULConfigCommonSetup::itemsPres[4] = {
-	1,
-	1,
-	1,
-	0,
-};
-const SoundingRSULConfigCommonSetup::Info SoundingRSULConfigCommonSetup::theInfo = {
-	SoundingRSULConfigCommonSetup::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	4, 1, 0
-};
-SoundingRSULConfigCommonSetup::SoundingRSULConfigCommonSetup(const SoundingRSULConfigCommonSetupsrs_BandwidthConfig& soundingRSULConfigCommonSetupsrs_BandwidthConfig, const SoundingRSULConfigCommonSetupsrs_SubframeConfig& soundingRSULConfigCommonSetupsrs_SubframeConfig, const SoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission& soundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission) : Sequence(&theInfo) {
-	setSoundingRSULConfigCommonSetupsrs_BandwidthConfig(soundingRSULConfigCommonSetupsrs_BandwidthConfig);
-	setSoundingRSULConfigCommonSetupsrs_SubframeConfig(soundingRSULConfigCommonSetupsrs_SubframeConfig);
-	setSoundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission(soundingRSULConfigCommonSetupAckNackSRSSimultaneousTransmission);
-}
-
-const void *SoundingRSULConfigCommon::choicesInfo[2] = {
-	&SoundingRSULConfigCommonRelease::theInfo,
-	&SoundingRSULConfigCommonSetup::theInfo,
-};
-const SoundingRSULConfigCommon::Info SoundingRSULConfigCommon::theInfo = {
-	SoundingRSULConfigCommon::create,
-	CHOICE,
-	0,
-	false,
-	choicesInfo,
-	1
-};
-
-const void *DeltaFListPUCCH::itemsInfo[5] = {
-	&DeltaFListPUCCHdeltaF_PUCCH_Format1::theInfo,
-	&DeltaFListPUCCHdeltaF_PUCCH_Format1b::theInfo,
-	&DeltaFListPUCCHdeltaF_PUCCH_Format2::theInfo,
-	&DeltaFListPUCCHdeltaF_PUCCH_Format2a::theInfo,
-	&DeltaFListPUCCHdeltaF_PUCCH_Format2b::theInfo,
-};
-bool DeltaFListPUCCH::itemsPres[5] = {
-	1,
-	1,
-	1,
-	1,
-	1,
-};
-const DeltaFListPUCCH::Info DeltaFListPUCCH::theInfo = {
-	DeltaFListPUCCH::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	5, 0, 0
-};
-DeltaFListPUCCH::DeltaFListPUCCH(const DeltaFListPUCCHdeltaF_PUCCH_Format1& deltaFListPUCCHdeltaF_PUCCH_Format1, const DeltaFListPUCCHdeltaF_PUCCH_Format1b& deltaFListPUCCHdeltaF_PUCCH_Format1b, const DeltaFListPUCCHdeltaF_PUCCH_Format2& deltaFListPUCCHdeltaF_PUCCH_Format2, const DeltaFListPUCCHdeltaF_PUCCH_Format2a& deltaFListPUCCHdeltaF_PUCCH_Format2a, const DeltaFListPUCCHdeltaF_PUCCH_Format2b& deltaFListPUCCHdeltaF_PUCCH_Format2b) : Sequence(&theInfo) {
-	setDeltaFListPUCCHdeltaF_PUCCH_Format1(deltaFListPUCCHdeltaF_PUCCH_Format1);
-	setDeltaFListPUCCHdeltaF_PUCCH_Format1b(deltaFListPUCCHdeltaF_PUCCH_Format1b);
-	setDeltaFListPUCCHdeltaF_PUCCH_Format2(deltaFListPUCCHdeltaF_PUCCH_Format2);
-	setDeltaFListPUCCHdeltaF_PUCCH_Format2a(deltaFListPUCCHdeltaF_PUCCH_Format2a);
-	setDeltaFListPUCCHdeltaF_PUCCH_Format2b(deltaFListPUCCHdeltaF_PUCCH_Format2b);
-}
-
-const void *UplinkPowerControlCommon::itemsInfo[5] = {
-	&UplinkPowerControlCommonP0NominalPUSCH::theInfo,
-	&UplinkPowerControlCommonalpha::theInfo,
-	&UplinkPowerControlCommonP0NominalPUCCH::theInfo,
-	&DeltaFListPUCCH::theInfo,
-	&UplinkPowerControlCommonDeltaPreambleMsg3::theInfo,
-};
-bool UplinkPowerControlCommon::itemsPres[5] = {
-	1,
-	1,
-	1,
-	1,
-	1,
-};
-const UplinkPowerControlCommon::Info UplinkPowerControlCommon::theInfo = {
-	UplinkPowerControlCommon::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	5, 0, 0
-};
-UplinkPowerControlCommon::UplinkPowerControlCommon(const UplinkPowerControlCommonP0NominalPUSCH& uplinkPowerControlCommonP0NominalPUSCH, const UplinkPowerControlCommonalpha& uplinkPowerControlCommonalpha, const UplinkPowerControlCommonP0NominalPUCCH& uplinkPowerControlCommonP0NominalPUCCH, const DeltaFListPUCCH& deltaFListPUCCH, const UplinkPowerControlCommonDeltaPreambleMsg3& uplinkPowerControlCommonDeltaPreambleMsg3) : Sequence(&theInfo) {
-	setUplinkPowerControlCommonP0NominalPUSCH(uplinkPowerControlCommonP0NominalPUSCH);
-	setUplinkPowerControlCommonalpha(uplinkPowerControlCommonalpha);
-	setUplinkPowerControlCommonP0NominalPUCCH(uplinkPowerControlCommonP0NominalPUCCH);
-	setDeltaFListPUCCH(deltaFListPUCCH);
-	setUplinkPowerControlCommonDeltaPreambleMsg3(uplinkPowerControlCommonDeltaPreambleMsg3);
-}
-
 const void *AntennaInfoCommon::itemsInfo[1] = {
 	&AntennaInfoCommonantennaPortsCount::theInfo,
 };
@@ -6411,28 +7878,6 @@ const AntennaInfoCommon::Info AntennaInfoCommon::theInfo = {
 };
 AntennaInfoCommon::AntennaInfoCommon(const AntennaInfoCommonantennaPortsCount& antennaInfoCommonantennaPortsCount) : Sequence(&theInfo) {
 	setAntennaInfoCommonantennaPortsCount(antennaInfoCommonantennaPortsCount);
-}
-
-const void *UplinkPowerControlCommonv1020::itemsInfo[2] = {
-	&UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10::theInfo,
-	&UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10::theInfo,
-};
-bool UplinkPowerControlCommonv1020::itemsPres[2] = {
-	1,
-	1,
-};
-const UplinkPowerControlCommonv1020::Info UplinkPowerControlCommonv1020::theInfo = {
-	UplinkPowerControlCommonv1020::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-UplinkPowerControlCommonv1020::UplinkPowerControlCommonv1020(const UplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10, const UplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10& uplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10) : Sequence(&theInfo) {
-	setUplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10(uplinkPowerControlCommonv1020deltaF_PUCCH_Format3_r10);
-	setUplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10(uplinkPowerControlCommonv1020deltaF_PUCCH_Format1bCS_r10);
 }
 
 const void *RadioResourceConfigCommon::itemsInfo[13] = {
@@ -6469,10 +7914,10 @@ const RadioResourceConfigCommon::Info RadioResourceConfigCommon::theInfo = {
 	RadioResourceConfigCommon::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	13, 10, 0
+	12, 9, 1
 };
 RadioResourceConfigCommon::RadioResourceConfigCommon(const PRACHConfig& prachConfig, const PUSCHConfigCommon& puschConfigCommon, const ULCyclicPrefixLength& ulCyclicPrefixLength) : Sequence(&theInfo) {
 	setPrachConfig(prachConfig);
@@ -7285,9 +8730,9 @@ const RedirectedCarrierInfo::Info RedirectedCarrierInfo::theInfo = {
 	RedirectedCarrierInfo::create,
 	CHOICE,
 	0,
-	false,
+	true,
 	choicesInfo,
-	6
+	5
 };
 
 const void *FreqPriorityEUTRA::itemsInfo[2] = {
@@ -7554,9 +8999,9 @@ const RRCConnectionReleasev920IEsCellInfoListr9::Info RRCConnectionReleasev920IE
 	RRCConnectionReleasev920IEsCellInfoListr9::create,
 	CHOICE,
 	0,
-	false,
+	true,
 	choicesInfo,
-	3
+	2
 };
 
 const void *RRCConnectionReleasev1020IEsNonCriticalExtension::itemsInfo[0] = {
@@ -8419,262 +9864,6 @@ LoggedMeasurementConfigurationr10::LoggedMeasurementConfigurationr10(const Logge
 	setLoggedMeasurementConfigurationr10CriticalExtensions(loggedMeasurementConfigurationr10CriticalExtensions);
 }
 
-const void *ACBarringConfig::itemsInfo[3] = {
-	&ACBarringConfigac_BarringFactor::theInfo,
-	&ACBarringConfigac_BarringTime::theInfo,
-	&ACBarringConfigAcBarringForSpecialAC::theInfo,
-};
-bool ACBarringConfig::itemsPres[3] = {
-	1,
-	1,
-	1,
-};
-const ACBarringConfig::Info ACBarringConfig::theInfo = {
-	ACBarringConfig::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	3, 0, 0
-};
-ACBarringConfig::ACBarringConfig(const ACBarringConfigac_BarringFactor& aCBarringConfigac_BarringFactor, const ACBarringConfigac_BarringTime& aCBarringConfigac_BarringTime, const ACBarringConfigAcBarringForSpecialAC& aCBarringConfigAcBarringForSpecialAC) : Sequence(&theInfo) {
-	setACBarringConfigac_BarringFactor(aCBarringConfigac_BarringFactor);
-	setACBarringConfigac_BarringTime(aCBarringConfigac_BarringTime);
-	setACBarringConfigAcBarringForSpecialAC(aCBarringConfigAcBarringForSpecialAC);
-}
-
-const void *SystemInformationBlockType2AcBarringInfo::itemsInfo[3] = {
-	&SystemInformationBlockType2AcBarringInfoAcBarringForEmergency::theInfo,
-	&ACBarringConfig::theInfo,
-	&ACBarringConfig::theInfo,
-};
-bool SystemInformationBlockType2AcBarringInfo::itemsPres[3] = {
-	1,
-	0,
-	0,
-};
-const SystemInformationBlockType2AcBarringInfo::Info SystemInformationBlockType2AcBarringInfo::theInfo = {
-	SystemInformationBlockType2AcBarringInfo::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	3, 2, 0
-};
-SystemInformationBlockType2AcBarringInfo::SystemInformationBlockType2AcBarringInfo(const SystemInformationBlockType2AcBarringInfoAcBarringForEmergency& systemInformationBlockType2AcBarringInfoAcBarringForEmergency) : Sequence(&theInfo) {
-	setSystemInformationBlockType2AcBarringInfoAcBarringForEmergency(systemInformationBlockType2AcBarringInfoAcBarringForEmergency);
-}
-
-const void *BCCHConfig::itemsInfo[1] = {
-	&BCCHConfigmodificationPeriodCoeff::theInfo,
-};
-bool BCCHConfig::itemsPres[1] = {
-	1,
-};
-const BCCHConfig::Info BCCHConfig::theInfo = {
-	BCCHConfig::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	1, 0, 0
-};
-BCCHConfig::BCCHConfig(const BCCHConfigmodificationPeriodCoeff& bCCHConfigmodificationPeriodCoeff) : Sequence(&theInfo) {
-	setBCCHConfigmodificationPeriodCoeff(bCCHConfigmodificationPeriodCoeff);
-}
-
-const void *PCCHConfig::itemsInfo[2] = {
-	&PCCHConfigdefaultPagingCycle::theInfo,
-	&PCCHConfignB::theInfo,
-};
-bool PCCHConfig::itemsPres[2] = {
-	1,
-	1,
-};
-const PCCHConfig::Info PCCHConfig::theInfo = {
-	PCCHConfig::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-PCCHConfig::PCCHConfig(const PCCHConfigdefaultPagingCycle& pCCHConfigdefaultPagingCycle, const PCCHConfignB& pCCHConfignB) : Sequence(&theInfo) {
-	setPCCHConfigdefaultPagingCycle(pCCHConfigdefaultPagingCycle);
-	setPCCHConfignB(pCCHConfignB);
-}
-
-const void *PRACHConfigSIB::itemsInfo[2] = {
-	&PRACHConfigSIBRootSequenceIndex::theInfo,
-	&PRACHConfigInfo::theInfo,
-};
-bool PRACHConfigSIB::itemsPres[2] = {
-	1,
-	1,
-};
-const PRACHConfigSIB::Info PRACHConfigSIB::theInfo = {
-	PRACHConfigSIB::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-PRACHConfigSIB::PRACHConfigSIB(const PRACHConfigSIBRootSequenceIndex& pRACHConfigSIBRootSequenceIndex, const PRACHConfigInfo& prachConfigInfo) : Sequence(&theInfo) {
-	setPRACHConfigSIBRootSequenceIndex(pRACHConfigSIBRootSequenceIndex);
-	setPrachConfigInfo(prachConfigInfo);
-}
-
-const void *RadioResourceConfigCommonSIB::itemsInfo[11] = {
-	&RACHConfigCommon::theInfo,
-	&BCCHConfig::theInfo,
-	&PCCHConfig::theInfo,
-	&PRACHConfigSIB::theInfo,
-	&PDSCHConfigCommon::theInfo,
-	&PUSCHConfigCommon::theInfo,
-	&PUCCHConfigCommon::theInfo,
-	&SoundingRSULConfigCommon::theInfo,
-	&UplinkPowerControlCommon::theInfo,
-	&ULCyclicPrefixLength::theInfo,
-	&UplinkPowerControlCommonv1020::theInfo,
-};
-bool RadioResourceConfigCommonSIB::itemsPres[11] = {
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	0,
-};
-const RadioResourceConfigCommonSIB::Info RadioResourceConfigCommonSIB::theInfo = {
-	RadioResourceConfigCommonSIB::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	11, 1, 0
-};
-RadioResourceConfigCommonSIB::RadioResourceConfigCommonSIB(const RACHConfigCommon& rachConfigCommon, const BCCHConfig& bcchConfig, const PCCHConfig& pcchConfig, const PRACHConfigSIB& prachConfig, const PDSCHConfigCommon& pdschConfigCommon, const PUSCHConfigCommon& puschConfigCommon, const PUCCHConfigCommon& pucchConfigCommon, const SoundingRSULConfigCommon& soundingRSULConfigCommon, const UplinkPowerControlCommon& uplinkPowerControlCommon, const ULCyclicPrefixLength& ulCyclicPrefixLength) : Sequence(&theInfo) {
-	setRachConfigCommon(rachConfigCommon);
-	setBcchConfig(bcchConfig);
-	setPcchConfig(pcchConfig);
-	setPrachConfig(prachConfig);
-	setPdschConfigCommon(pdschConfigCommon);
-	setPuschConfigCommon(puschConfigCommon);
-	setPucchConfigCommon(pucchConfigCommon);
-	setSoundingRSULConfigCommon(soundingRSULConfigCommon);
-	setUplinkPowerControlCommon(uplinkPowerControlCommon);
-	setUlCyclicPrefixLength(ulCyclicPrefixLength);
-}
-
-const void *UETimersAndConstants::itemsInfo[6] = {
-	&UETimersAndConstantst300::theInfo,
-	&UETimersAndConstantst301::theInfo,
-	&UETimersAndConstantst310::theInfo,
-	&UETimersAndConstantsn310::theInfo,
-	&UETimersAndConstantst311::theInfo,
-	&UETimersAndConstantsn311::theInfo,
-};
-bool UETimersAndConstants::itemsPres[6] = {
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-};
-const UETimersAndConstants::Info UETimersAndConstants::theInfo = {
-	UETimersAndConstants::create,
-	SEQUENCE,
-	0,
-	true,
-	itemsInfo,
-	itemsPres,
-	6, 0, 0
-};
-UETimersAndConstants::UETimersAndConstants(const UETimersAndConstantst300& uETimersAndConstantst300, const UETimersAndConstantst301& uETimersAndConstantst301, const UETimersAndConstantst310& uETimersAndConstantst310, const UETimersAndConstantsn310& uETimersAndConstantsn310, const UETimersAndConstantst311& uETimersAndConstantst311, const UETimersAndConstantsn311& uETimersAndConstantsn311) : Sequence(&theInfo) {
-	setUETimersAndConstantst300(uETimersAndConstantst300);
-	setUETimersAndConstantst301(uETimersAndConstantst301);
-	setUETimersAndConstantst310(uETimersAndConstantst310);
-	setUETimersAndConstantsn310(uETimersAndConstantsn310);
-	setUETimersAndConstantst311(uETimersAndConstantst311);
-	setUETimersAndConstantsn311(uETimersAndConstantsn311);
-}
-
-const void *SystemInformationBlockType2FreqInfo::itemsInfo[3] = {
-	&ARFCNValueEUTRA::theInfo,
-	&SystemInformationBlockType2FreqInfoul_Bandwidth::theInfo,
-	&AdditionalSpectrumEmission::theInfo,
-};
-bool SystemInformationBlockType2FreqInfo::itemsPres[3] = {
-	0,
-	0,
-	1,
-};
-const SystemInformationBlockType2FreqInfo::Info SystemInformationBlockType2FreqInfo::theInfo = {
-	SystemInformationBlockType2FreqInfo::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	3, 2, 0
-};
-SystemInformationBlockType2FreqInfo::SystemInformationBlockType2FreqInfo(const AdditionalSpectrumEmission& additionalSpectrumEmission) : Sequence(&theInfo) {
-	setAdditionalSpectrumEmission(additionalSpectrumEmission);
-}
-
-const void *SystemInformationBlockType2::itemsInfo[10] = {
-	&SystemInformationBlockType2AcBarringInfo::theInfo,
-	&RadioResourceConfigCommonSIB::theInfo,
-	&UETimersAndConstants::theInfo,
-	&SystemInformationBlockType2FreqInfo::theInfo,
-	&MBSFNSubframeConfigList::theInfo,
-	&TimeAlignmentTimer::theInfo,
-	&SystemInformationBlockType2LateNonCriticalExtension::theInfo,
-	&ACBarringConfig::theInfo,
-	&ACBarringConfig::theInfo,
-	&ACBarringConfig::theInfo,
-};
-bool SystemInformationBlockType2::itemsPres[10] = {
-	0,
-	1,
-	1,
-	1,
-	0,
-	1,
-	0,
-	0,
-	0,
-	0,
-};
-const SystemInformationBlockType2::Info SystemInformationBlockType2::theInfo = {
-	SystemInformationBlockType2::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	10, 6, 0
-};
-SystemInformationBlockType2::SystemInformationBlockType2(const RadioResourceConfigCommonSIB& radioResourceConfigCommon, const UETimersAndConstants& ueTimersAndConstants, const SystemInformationBlockType2FreqInfo& systemInformationBlockType2FreqInfo, const TimeAlignmentTimer& timeAlignmentTimerCommon) : Sequence(&theInfo) {
-	setRadioResourceConfigCommon(radioResourceConfigCommon);
-	setUeTimersAndConstants(ueTimersAndConstants);
-	setSystemInformationBlockType2FreqInfo(systemInformationBlockType2FreqInfo);
-	setTimeAlignmentTimerCommon(timeAlignmentTimerCommon);
-}
-
 const void *RNSystemInfor10::itemsInfo[2] = {
 	&RNSystemInfor10SystemInformationBlockType1r10::theInfo,
 	&SystemInformationBlockType2::theInfo,
@@ -9486,10 +10675,10 @@ const MeasResultEUTRAMeasResult::Info MeasResultEUTRAMeasResult::theInfo = {
 	MeasResultEUTRAMeasResult::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	3, 3, 0
+	2, 2, 1
 };
 
 const void *MeasResultEUTRA::itemsInfo[3] = {
@@ -9590,10 +10779,10 @@ const MeasResultUTRAMeasResult::Info MeasResultUTRAMeasResult::theInfo = {
 	MeasResultUTRAMeasResult::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	3, 3, 0
+	2, 2, 1
 };
 
 const void *MeasResultUTRA::itemsInfo[3] = {
@@ -9955,10 +11144,10 @@ const MeasResults::Info MeasResults::theInfo = {
 	MeasResults::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	6, 4, 0
+	3, 1, 3
 };
 MeasResults::MeasResults(const MeasId& measId, const MeasResultsMeasResultPCell& measResultsMeasResultPCell) : Sequence(&theInfo) {
 	setMeasId(measId);
@@ -11404,10 +12593,10 @@ const RLFReportr9::Info RLFReportr9::theInfo = {
 	RLFReportr9::create,
 	SEQUENCE,
 	0,
-	false,
+	true,
 	itemsInfo,
 	itemsPres,
-	8, 7, 0
+	2, 1, 6
 };
 RLFReportr9::RLFReportr9(const RLFReportr9MeasResultLastServCellr9& rLFReportr9MeasResultLastServCellr9) : Sequence(&theInfo) {
 	setRLFReportr9MeasResultLastServCellr9(rLFReportr9MeasResultLastServCellr9);
@@ -12218,1186 +13407,6 @@ const ULDCCHMessage::Info ULDCCHMessage::theInfo = {
 };
 ULDCCHMessage::ULDCCHMessage(const ULDCCHMessageType& message) : Sequence(&theInfo) {
 	setMessage(message);
-}
-
-const void *SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::itemsInfo[2] = {
-	&SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium::theInfo,
-	&SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High::theInfo,
-};
-bool SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::itemsPres[2] = {
-	1,
-	1,
-};
-const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::Info SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::theInfo = {
-	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF(const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium, const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High) : Sequence(&theInfo) {
-	setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium(systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_Medium);
-	setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High(systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSFsf_High);
-}
-
-const void *SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::itemsInfo[2] = {
-	&MobilityStateParameters::theInfo,
-	&SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF::theInfo,
-};
-bool SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::itemsPres[2] = {
-	1,
-	1,
-};
-const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::Info SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::theInfo = {
-	SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars(const MobilityStateParameters& mobilityStateParameters, const SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF& systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF) : Sequence(&theInfo) {
-	setMobilityStateParameters(mobilityStateParameters);
-	setSystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF(systemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionParsQHystSF);
-}
-
-const void *SystemInformationBlockType3CellReselectionInfoCommon::itemsInfo[2] = {
-	&SystemInformationBlockType3CellReselectionInfoCommonq_Hyst::theInfo,
-	&SystemInformationBlockType3CellReselectionInfoCommonSpeedStateReselectionPars::theInfo,
-};
-bool SystemInformationBlockType3CellReselectionInfoCommon::itemsPres[2] = {
-	1,
-	0,
-};
-const SystemInformationBlockType3CellReselectionInfoCommon::Info SystemInformationBlockType3CellReselectionInfoCommon::theInfo = {
-	SystemInformationBlockType3CellReselectionInfoCommon::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 1, 0
-};
-SystemInformationBlockType3CellReselectionInfoCommon::SystemInformationBlockType3CellReselectionInfoCommon(const SystemInformationBlockType3CellReselectionInfoCommonq_Hyst& systemInformationBlockType3CellReselectionInfoCommonq_Hyst) : Sequence(&theInfo) {
-	setSystemInformationBlockType3CellReselectionInfoCommonq_Hyst(systemInformationBlockType3CellReselectionInfoCommonq_Hyst);
-}
-
-const void *SystemInformationBlockType3CellReselectionServingFreqInfo::itemsInfo[3] = {
-	&ReselectionThreshold::theInfo,
-	&ReselectionThreshold::theInfo,
-	&CellReselectionPriority::theInfo,
-};
-bool SystemInformationBlockType3CellReselectionServingFreqInfo::itemsPres[3] = {
-	0,
-	1,
-	1,
-};
-const SystemInformationBlockType3CellReselectionServingFreqInfo::Info SystemInformationBlockType3CellReselectionServingFreqInfo::theInfo = {
-	SystemInformationBlockType3CellReselectionServingFreqInfo::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	3, 1, 0
-};
-SystemInformationBlockType3CellReselectionServingFreqInfo::SystemInformationBlockType3CellReselectionServingFreqInfo(const ReselectionThreshold& threshServingLow, const CellReselectionPriority& cellReselectionPriority) : Sequence(&theInfo) {
-	setThreshServingLow(threshServingLow);
-	setCellReselectionPriority(cellReselectionPriority);
-}
-
-const void *SystemInformationBlockType3IntraFreqCellReselectionInfo::itemsInfo[8] = {
-	&QRxLevMin::theInfo,
-	&PMax::theInfo,
-	&ReselectionThreshold::theInfo,
-	&AllowedMeasBandwidth::theInfo,
-	&PresenceAntennaPort1::theInfo,
-	&NeighCellConfig::theInfo,
-	&TReselection::theInfo,
-	&SpeedStateScaleFactors::theInfo,
-};
-bool SystemInformationBlockType3IntraFreqCellReselectionInfo::itemsPres[8] = {
-	1,
-	0,
-	0,
-	0,
-	1,
-	1,
-	1,
-	0,
-};
-const SystemInformationBlockType3IntraFreqCellReselectionInfo::Info SystemInformationBlockType3IntraFreqCellReselectionInfo::theInfo = {
-	SystemInformationBlockType3IntraFreqCellReselectionInfo::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	8, 4, 0
-};
-SystemInformationBlockType3IntraFreqCellReselectionInfo::SystemInformationBlockType3IntraFreqCellReselectionInfo(const QRxLevMin& qRxLevMin, const PresenceAntennaPort1& presenceAntennaPort1, const NeighCellConfig& neighCellConfig, const TReselection& tReselectionEUTRA) : Sequence(&theInfo) {
-	setQRxLevMin(qRxLevMin);
-	setPresenceAntennaPort1(presenceAntennaPort1);
-	setNeighCellConfig(neighCellConfig);
-	setTReselectionEUTRA(tReselectionEUTRA);
-}
-
-const void *SystemInformationBlockType3SIntraSearchv920::itemsInfo[2] = {
-	&ReselectionThreshold::theInfo,
-	&ReselectionThresholdQr9::theInfo,
-};
-bool SystemInformationBlockType3SIntraSearchv920::itemsPres[2] = {
-	1,
-	1,
-};
-const SystemInformationBlockType3SIntraSearchv920::Info SystemInformationBlockType3SIntraSearchv920::theInfo = {
-	SystemInformationBlockType3SIntraSearchv920::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-SystemInformationBlockType3SIntraSearchv920::SystemInformationBlockType3SIntraSearchv920(const ReselectionThreshold& sIntraSearchPr9, const ReselectionThresholdQr9& sIntraSearchQr9) : Sequence(&theInfo) {
-	setSIntraSearchPr9(sIntraSearchPr9);
-	setSIntraSearchQr9(sIntraSearchQr9);
-}
-
-const void *SystemInformationBlockType3SNonIntraSearchv920::itemsInfo[2] = {
-	&ReselectionThreshold::theInfo,
-	&ReselectionThresholdQr9::theInfo,
-};
-bool SystemInformationBlockType3SNonIntraSearchv920::itemsPres[2] = {
-	1,
-	1,
-};
-const SystemInformationBlockType3SNonIntraSearchv920::Info SystemInformationBlockType3SNonIntraSearchv920::theInfo = {
-	SystemInformationBlockType3SNonIntraSearchv920::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-SystemInformationBlockType3SNonIntraSearchv920::SystemInformationBlockType3SNonIntraSearchv920(const ReselectionThreshold& sNonIntraSearchPr9, const ReselectionThresholdQr9& sNonIntraSearchQr9) : Sequence(&theInfo) {
-	setSNonIntraSearchPr9(sNonIntraSearchPr9);
-	setSNonIntraSearchQr9(sNonIntraSearchQr9);
-}
-
-const void *SystemInformationBlockType3::itemsInfo[8] = {
-	&SystemInformationBlockType3CellReselectionInfoCommon::theInfo,
-	&SystemInformationBlockType3CellReselectionServingFreqInfo::theInfo,
-	&SystemInformationBlockType3IntraFreqCellReselectionInfo::theInfo,
-	&SystemInformationBlockType3LateNonCriticalExtension::theInfo,
-	&SystemInformationBlockType3SIntraSearchv920::theInfo,
-	&SystemInformationBlockType3SNonIntraSearchv920::theInfo,
-	&QQualMinr9::theInfo,
-	&ReselectionThresholdQr9::theInfo,
-};
-bool SystemInformationBlockType3::itemsPres[8] = {
-	1,
-	1,
-	1,
-	0,
-	0,
-	0,
-	0,
-	0,
-};
-const SystemInformationBlockType3::Info SystemInformationBlockType3::theInfo = {
-	SystemInformationBlockType3::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	8, 5, 0
-};
-SystemInformationBlockType3::SystemInformationBlockType3(const SystemInformationBlockType3CellReselectionInfoCommon& systemInformationBlockType3CellReselectionInfoCommon, const SystemInformationBlockType3CellReselectionServingFreqInfo& systemInformationBlockType3CellReselectionServingFreqInfo, const SystemInformationBlockType3IntraFreqCellReselectionInfo& systemInformationBlockType3IntraFreqCellReselectionInfo) : Sequence(&theInfo) {
-	setSystemInformationBlockType3CellReselectionInfoCommon(systemInformationBlockType3CellReselectionInfoCommon);
-	setSystemInformationBlockType3CellReselectionServingFreqInfo(systemInformationBlockType3CellReselectionServingFreqInfo);
-	setSystemInformationBlockType3IntraFreqCellReselectionInfo(systemInformationBlockType3IntraFreqCellReselectionInfo);
-}
-
-const void *IntraFreqNeighCellInfo::itemsInfo[2] = {
-	&PhysCellId::theInfo,
-	&QOffsetRange::theInfo,
-};
-bool IntraFreqNeighCellInfo::itemsPres[2] = {
-	1,
-	1,
-};
-const IntraFreqNeighCellInfo::Info IntraFreqNeighCellInfo::theInfo = {
-	IntraFreqNeighCellInfo::create,
-	SEQUENCE,
-	0,
-	true,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-IntraFreqNeighCellInfo::IntraFreqNeighCellInfo(const PhysCellId& physCellId, const QOffsetRange& qOffsetCell) : Sequence(&theInfo) {
-	setPhysCellId(physCellId);
-	setQOffsetCell(qOffsetCell);
-}
-
-const void *SystemInformationBlockType4::itemsInfo[4] = {
-	&IntraFreqNeighCellList::theInfo,
-	&IntraFreqBlackCellList::theInfo,
-	&PhysCellIdRange::theInfo,
-	&SystemInformationBlockType4LateNonCriticalExtension::theInfo,
-};
-bool SystemInformationBlockType4::itemsPres[4] = {
-	0,
-	0,
-	0,
-	0,
-};
-const SystemInformationBlockType4::Info SystemInformationBlockType4::theInfo = {
-	SystemInformationBlockType4::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	4, 4, 0
-};
-
-const void *InterFreqNeighCellInfo::itemsInfo[2] = {
-	&PhysCellId::theInfo,
-	&QOffsetRange::theInfo,
-};
-bool InterFreqNeighCellInfo::itemsPres[2] = {
-	1,
-	1,
-};
-const InterFreqNeighCellInfo::Info InterFreqNeighCellInfo::theInfo = {
-	InterFreqNeighCellInfo::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-InterFreqNeighCellInfo::InterFreqNeighCellInfo(const PhysCellId& physCellId, const QOffsetRange& qOffsetCell) : Sequence(&theInfo) {
-	setPhysCellId(physCellId);
-	setQOffsetCell(qOffsetCell);
-}
-
-const void *InterFreqCarrierFreqInfoThreshXQr9::itemsInfo[2] = {
-	&ReselectionThresholdQr9::theInfo,
-	&ReselectionThresholdQr9::theInfo,
-};
-bool InterFreqCarrierFreqInfoThreshXQr9::itemsPres[2] = {
-	1,
-	1,
-};
-const InterFreqCarrierFreqInfoThreshXQr9::Info InterFreqCarrierFreqInfoThreshXQr9::theInfo = {
-	InterFreqCarrierFreqInfoThreshXQr9::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-InterFreqCarrierFreqInfoThreshXQr9::InterFreqCarrierFreqInfoThreshXQr9(const ReselectionThresholdQr9& threshXHighQr9, const ReselectionThresholdQr9& threshXLowQr9) : Sequence(&theInfo) {
-	setThreshXHighQr9(threshXHighQr9);
-	setThreshXLowQr9(threshXLowQr9);
-}
-
-const void *InterFreqCarrierFreqInfo::itemsInfo[16] = {
-	&ARFCNValueEUTRA::theInfo,
-	&QRxLevMin::theInfo,
-	&PMax::theInfo,
-	&TReselection::theInfo,
-	&SpeedStateScaleFactors::theInfo,
-	&ReselectionThreshold::theInfo,
-	&ReselectionThreshold::theInfo,
-	&AllowedMeasBandwidth::theInfo,
-	&PresenceAntennaPort1::theInfo,
-	&CellReselectionPriority::theInfo,
-	&NeighCellConfig::theInfo,
-	&QOffsetRange::theInfo,
-	&InterFreqNeighCellList::theInfo,
-	&InterFreqBlackCellList::theInfo,
-	&QQualMinr9::theInfo,
-	&InterFreqCarrierFreqInfoThreshXQr9::theInfo,
-};
-bool InterFreqCarrierFreqInfo::itemsPres[16] = {
-	1,
-	1,
-	0,
-	1,
-	0,
-	1,
-	1,
-	1,
-	1,
-	0,
-	1,
-	0,
-	0,
-	0,
-	0,
-	0,
-};
-const InterFreqCarrierFreqInfo::Info InterFreqCarrierFreqInfo::theInfo = {
-	InterFreqCarrierFreqInfo::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	16, 8, 0
-};
-InterFreqCarrierFreqInfo::InterFreqCarrierFreqInfo(const ARFCNValueEUTRA& dlCarrierFreq, const QRxLevMin& qRxLevMin, const TReselection& tReselectionEUTRA, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow, const AllowedMeasBandwidth& allowedMeasBandwidth, const PresenceAntennaPort1& presenceAntennaPort1, const NeighCellConfig& neighCellConfig) : Sequence(&theInfo) {
-	setDlCarrierFreq(dlCarrierFreq);
-	setQRxLevMin(qRxLevMin);
-	setTReselectionEUTRA(tReselectionEUTRA);
-	setThreshXHigh(threshXHigh);
-	setThreshXLow(threshXLow);
-	setAllowedMeasBandwidth(allowedMeasBandwidth);
-	setPresenceAntennaPort1(presenceAntennaPort1);
-	setNeighCellConfig(neighCellConfig);
-}
-
-const void *SystemInformationBlockType5::itemsInfo[2] = {
-	&InterFreqCarrierFreqList::theInfo,
-	&SystemInformationBlockType5LateNonCriticalExtension::theInfo,
-};
-bool SystemInformationBlockType5::itemsPres[2] = {
-	1,
-	0,
-};
-const SystemInformationBlockType5::Info SystemInformationBlockType5::theInfo = {
-	SystemInformationBlockType5::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 1, 0
-};
-SystemInformationBlockType5::SystemInformationBlockType5(const InterFreqCarrierFreqList& interFreqCarrierFreqList) : Sequence(&theInfo) {
-	setInterFreqCarrierFreqList(interFreqCarrierFreqList);
-}
-
-const void *CarrierFreqUTRAFDDThreshXQr9::itemsInfo[2] = {
-	&ReselectionThresholdQr9::theInfo,
-	&ReselectionThresholdQr9::theInfo,
-};
-bool CarrierFreqUTRAFDDThreshXQr9::itemsPres[2] = {
-	1,
-	1,
-};
-const CarrierFreqUTRAFDDThreshXQr9::Info CarrierFreqUTRAFDDThreshXQr9::theInfo = {
-	CarrierFreqUTRAFDDThreshXQr9::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-CarrierFreqUTRAFDDThreshXQr9::CarrierFreqUTRAFDDThreshXQr9(const ReselectionThresholdQr9& threshXHighQr9, const ReselectionThresholdQr9& threshXLowQr9) : Sequence(&theInfo) {
-	setThreshXHighQr9(threshXHighQr9);
-	setThreshXLowQr9(threshXLowQr9);
-}
-
-const void *CarrierFreqUTRAFDD::itemsInfo[8] = {
-	&ARFCNValueUTRA::theInfo,
-	&CellReselectionPriority::theInfo,
-	&ReselectionThreshold::theInfo,
-	&ReselectionThreshold::theInfo,
-	&CarrierFreqUTRAFDDQRxLevMin::theInfo,
-	&CarrierFreqUTRAFDDPMaxUTRA::theInfo,
-	&CarrierFreqUTRAFDDQQualMin::theInfo,
-	&CarrierFreqUTRAFDDThreshXQr9::theInfo,
-};
-bool CarrierFreqUTRAFDD::itemsPres[8] = {
-	1,
-	0,
-	1,
-	1,
-	1,
-	1,
-	1,
-	0,
-};
-const CarrierFreqUTRAFDD::Info CarrierFreqUTRAFDD::theInfo = {
-	CarrierFreqUTRAFDD::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	8, 2, 0
-};
-CarrierFreqUTRAFDD::CarrierFreqUTRAFDD(const ARFCNValueUTRA& carrierFreq, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow, const CarrierFreqUTRAFDDQRxLevMin& carrierFreqUTRAFDDQRxLevMin, const CarrierFreqUTRAFDDPMaxUTRA& carrierFreqUTRAFDDPMaxUTRA, const CarrierFreqUTRAFDDQQualMin& carrierFreqUTRAFDDQQualMin) : Sequence(&theInfo) {
-	setCarrierFreq(carrierFreq);
-	setThreshXHigh(threshXHigh);
-	setThreshXLow(threshXLow);
-	setCarrierFreqUTRAFDDQRxLevMin(carrierFreqUTRAFDDQRxLevMin);
-	setCarrierFreqUTRAFDDPMaxUTRA(carrierFreqUTRAFDDPMaxUTRA);
-	setCarrierFreqUTRAFDDQQualMin(carrierFreqUTRAFDDQQualMin);
-}
-
-const void *CarrierFreqUTRATDD::itemsInfo[6] = {
-	&ARFCNValueUTRA::theInfo,
-	&CellReselectionPriority::theInfo,
-	&ReselectionThreshold::theInfo,
-	&ReselectionThreshold::theInfo,
-	&CarrierFreqUTRATDDQRxLevMin::theInfo,
-	&CarrierFreqUTRATDDPMaxUTRA::theInfo,
-};
-bool CarrierFreqUTRATDD::itemsPres[6] = {
-	1,
-	0,
-	1,
-	1,
-	1,
-	1,
-};
-const CarrierFreqUTRATDD::Info CarrierFreqUTRATDD::theInfo = {
-	CarrierFreqUTRATDD::create,
-	SEQUENCE,
-	0,
-	true,
-	itemsInfo,
-	itemsPres,
-	6, 1, 0
-};
-CarrierFreqUTRATDD::CarrierFreqUTRATDD(const ARFCNValueUTRA& carrierFreq, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow, const CarrierFreqUTRATDDQRxLevMin& carrierFreqUTRATDDQRxLevMin, const CarrierFreqUTRATDDPMaxUTRA& carrierFreqUTRATDDPMaxUTRA) : Sequence(&theInfo) {
-	setCarrierFreq(carrierFreq);
-	setThreshXHigh(threshXHigh);
-	setThreshXLow(threshXLow);
-	setCarrierFreqUTRATDDQRxLevMin(carrierFreqUTRATDDQRxLevMin);
-	setCarrierFreqUTRATDDPMaxUTRA(carrierFreqUTRATDDPMaxUTRA);
-}
-
-const void *SystemInformationBlockType6::itemsInfo[5] = {
-	&CarrierFreqListUTRAFDD::theInfo,
-	&CarrierFreqListUTRATDD::theInfo,
-	&TReselection::theInfo,
-	&SpeedStateScaleFactors::theInfo,
-	&SystemInformationBlockType6LateNonCriticalExtension::theInfo,
-};
-bool SystemInformationBlockType6::itemsPres[5] = {
-	0,
-	0,
-	1,
-	0,
-	0,
-};
-const SystemInformationBlockType6::Info SystemInformationBlockType6::theInfo = {
-	SystemInformationBlockType6::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	5, 4, 0
-};
-SystemInformationBlockType6::SystemInformationBlockType6(const TReselection& tReselectionUTRA) : Sequence(&theInfo) {
-	setTReselectionUTRA(tReselectionUTRA);
-}
-
-const void *CarrierFreqsInfoGERANCommonInfo::itemsInfo[6] = {
-	&CellReselectionPriority::theInfo,
-	&CarrierFreqsInfoGERANCommonInfoNccPermitted::theInfo,
-	&CarrierFreqsInfoGERANCommonInfoQRxLevMin::theInfo,
-	&CarrierFreqsInfoGERANCommonInfoPMaxGERAN::theInfo,
-	&ReselectionThreshold::theInfo,
-	&ReselectionThreshold::theInfo,
-};
-bool CarrierFreqsInfoGERANCommonInfo::itemsPres[6] = {
-	0,
-	1,
-	1,
-	0,
-	1,
-	1,
-};
-const CarrierFreqsInfoGERANCommonInfo::Info CarrierFreqsInfoGERANCommonInfo::theInfo = {
-	CarrierFreqsInfoGERANCommonInfo::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	6, 2, 0
-};
-CarrierFreqsInfoGERANCommonInfo::CarrierFreqsInfoGERANCommonInfo(const CarrierFreqsInfoGERANCommonInfoNccPermitted& carrierFreqsInfoGERANCommonInfoNccPermitted, const CarrierFreqsInfoGERANCommonInfoQRxLevMin& carrierFreqsInfoGERANCommonInfoQRxLevMin, const ReselectionThreshold& threshXHigh, const ReselectionThreshold& threshXLow) : Sequence(&theInfo) {
-	setCarrierFreqsInfoGERANCommonInfoNccPermitted(carrierFreqsInfoGERANCommonInfoNccPermitted);
-	setCarrierFreqsInfoGERANCommonInfoQRxLevMin(carrierFreqsInfoGERANCommonInfoQRxLevMin);
-	setThreshXHigh(threshXHigh);
-	setThreshXLow(threshXLow);
-}
-
-const void *CarrierFreqsInfoGERAN::itemsInfo[2] = {
-	&CarrierFreqsGERAN::theInfo,
-	&CarrierFreqsInfoGERANCommonInfo::theInfo,
-};
-bool CarrierFreqsInfoGERAN::itemsPres[2] = {
-	1,
-	1,
-};
-const CarrierFreqsInfoGERAN::Info CarrierFreqsInfoGERAN::theInfo = {
-	CarrierFreqsInfoGERAN::create,
-	SEQUENCE,
-	0,
-	true,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-CarrierFreqsInfoGERAN::CarrierFreqsInfoGERAN(const CarrierFreqsGERAN& carrierFreqs, const CarrierFreqsInfoGERANCommonInfo& carrierFreqsInfoGERANCommonInfo) : Sequence(&theInfo) {
-	setCarrierFreqs(carrierFreqs);
-	setCarrierFreqsInfoGERANCommonInfo(carrierFreqsInfoGERANCommonInfo);
-}
-
-const void *SystemInformationBlockType7::itemsInfo[4] = {
-	&TReselection::theInfo,
-	&SpeedStateScaleFactors::theInfo,
-	&CarrierFreqsInfoListGERAN::theInfo,
-	&SystemInformationBlockType7LateNonCriticalExtension::theInfo,
-};
-bool SystemInformationBlockType7::itemsPres[4] = {
-	1,
-	0,
-	0,
-	0,
-};
-const SystemInformationBlockType7::Info SystemInformationBlockType7::theInfo = {
-	SystemInformationBlockType7::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	4, 3, 0
-};
-SystemInformationBlockType7::SystemInformationBlockType7(const TReselection& tReselectionGERAN) : Sequence(&theInfo) {
-	setTReselectionGERAN(tReselectionGERAN);
-}
-
-const void *SystemTimeInfoCDMA2000CdmaSystemTime::choicesInfo[2] = {
-	&SystemTimeInfoCDMA2000CdmaSystemTimeSynchronousSystemTime::theInfo,
-	&SystemTimeInfoCDMA2000CdmaSystemTimeAsynchronousSystemTime::theInfo,
-};
-const SystemTimeInfoCDMA2000CdmaSystemTime::Info SystemTimeInfoCDMA2000CdmaSystemTime::theInfo = {
-	SystemTimeInfoCDMA2000CdmaSystemTime::create,
-	CHOICE,
-	0,
-	false,
-	choicesInfo,
-	1
-};
-
-const void *SystemTimeInfoCDMA2000::itemsInfo[2] = {
-	&SystemTimeInfoCDMA2000CdmaEUTRASynchronisation::theInfo,
-	&SystemTimeInfoCDMA2000CdmaSystemTime::theInfo,
-};
-bool SystemTimeInfoCDMA2000::itemsPres[2] = {
-	1,
-	1,
-};
-const SystemTimeInfoCDMA2000::Info SystemTimeInfoCDMA2000::theInfo = {
-	SystemTimeInfoCDMA2000::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-SystemTimeInfoCDMA2000::SystemTimeInfoCDMA2000(const SystemTimeInfoCDMA2000CdmaEUTRASynchronisation& systemTimeInfoCDMA2000CdmaEUTRASynchronisation, const SystemTimeInfoCDMA2000CdmaSystemTime& systemTimeInfoCDMA2000CdmaSystemTime) : Sequence(&theInfo) {
-	setSystemTimeInfoCDMA2000CdmaEUTRASynchronisation(systemTimeInfoCDMA2000CdmaEUTRASynchronisation);
-	setSystemTimeInfoCDMA2000CdmaSystemTime(systemTimeInfoCDMA2000CdmaSystemTime);
-}
-
-const void *BandClassInfoCDMA2000::itemsInfo[4] = {
-	&BandclassCDMA2000::theInfo,
-	&CellReselectionPriority::theInfo,
-	&BandClassInfoCDMA2000ThreshXHigh::theInfo,
-	&BandClassInfoCDMA2000ThreshXLow::theInfo,
-};
-bool BandClassInfoCDMA2000::itemsPres[4] = {
-	1,
-	0,
-	1,
-	1,
-};
-const BandClassInfoCDMA2000::Info BandClassInfoCDMA2000::theInfo = {
-	BandClassInfoCDMA2000::create,
-	SEQUENCE,
-	0,
-	true,
-	itemsInfo,
-	itemsPres,
-	4, 1, 0
-};
-BandClassInfoCDMA2000::BandClassInfoCDMA2000(const BandclassCDMA2000& bandClass, const BandClassInfoCDMA2000ThreshXHigh& bandClassInfoCDMA2000ThreshXHigh, const BandClassInfoCDMA2000ThreshXLow& bandClassInfoCDMA2000ThreshXLow) : Sequence(&theInfo) {
-	setBandClass(bandClass);
-	setBandClassInfoCDMA2000ThreshXHigh(bandClassInfoCDMA2000ThreshXHigh);
-	setBandClassInfoCDMA2000ThreshXLow(bandClassInfoCDMA2000ThreshXLow);
-}
-
-const void *NeighCellsPerBandclassCDMA2000::itemsInfo[2] = {
-	&ARFCNValueCDMA2000::theInfo,
-	&PhysCellIdListCDMA2000::theInfo,
-};
-bool NeighCellsPerBandclassCDMA2000::itemsPres[2] = {
-	1,
-	1,
-};
-const NeighCellsPerBandclassCDMA2000::Info NeighCellsPerBandclassCDMA2000::theInfo = {
-	NeighCellsPerBandclassCDMA2000::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-NeighCellsPerBandclassCDMA2000::NeighCellsPerBandclassCDMA2000(const ARFCNValueCDMA2000& arfcn, const PhysCellIdListCDMA2000& physCellIdList) : Sequence(&theInfo) {
-	setArfcn(arfcn);
-	setPhysCellIdList(physCellIdList);
-}
-
-const void *NeighCellCDMA2000::itemsInfo[2] = {
-	&BandclassCDMA2000::theInfo,
-	&NeighCellsPerBandclassListCDMA2000::theInfo,
-};
-bool NeighCellCDMA2000::itemsPres[2] = {
-	1,
-	1,
-};
-const NeighCellCDMA2000::Info NeighCellCDMA2000::theInfo = {
-	NeighCellCDMA2000::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 0, 0
-};
-NeighCellCDMA2000::NeighCellCDMA2000(const BandclassCDMA2000& bandClass, const NeighCellsPerBandclassListCDMA2000& neighCellsPerFreqList) : Sequence(&theInfo) {
-	setBandClass(bandClass);
-	setNeighCellsPerFreqList(neighCellsPerFreqList);
-}
-
-const void *CellReselectionParametersCDMA2000::itemsInfo[4] = {
-	&BandClassListCDMA2000::theInfo,
-	&NeighCellListCDMA2000::theInfo,
-	&TReselection::theInfo,
-	&SpeedStateScaleFactors::theInfo,
-};
-bool CellReselectionParametersCDMA2000::itemsPres[4] = {
-	1,
-	1,
-	1,
-	0,
-};
-const CellReselectionParametersCDMA2000::Info CellReselectionParametersCDMA2000::theInfo = {
-	CellReselectionParametersCDMA2000::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	4, 1, 0
-};
-CellReselectionParametersCDMA2000::CellReselectionParametersCDMA2000(const BandClassListCDMA2000& bandClassList, const NeighCellListCDMA2000& neighCellList, const TReselection& tReselectionCDMA2000) : Sequence(&theInfo) {
-	setBandClassList(bandClassList);
-	setNeighCellList(neighCellList);
-	setTReselectionCDMA2000(tReselectionCDMA2000);
-}
-
-const void *SystemInformationBlockType8ParametersHRPD::itemsInfo[2] = {
-	&PreRegistrationInfoHRPD::theInfo,
-	&CellReselectionParametersCDMA2000::theInfo,
-};
-bool SystemInformationBlockType8ParametersHRPD::itemsPres[2] = {
-	1,
-	0,
-};
-const SystemInformationBlockType8ParametersHRPD::Info SystemInformationBlockType8ParametersHRPD::theInfo = {
-	SystemInformationBlockType8ParametersHRPD::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 1, 0
-};
-SystemInformationBlockType8ParametersHRPD::SystemInformationBlockType8ParametersHRPD(const PreRegistrationInfoHRPD& preRegistrationInfoHRPD) : Sequence(&theInfo) {
-	setPreRegistrationInfoHRPD(preRegistrationInfoHRPD);
-}
-
-const void *CSFBRegistrationParam1XRTT::itemsInfo[13] = {
-	&CSFBRegistrationParam1XRTTSid::theInfo,
-	&CSFBRegistrationParam1XRTTNid::theInfo,
-	&CSFBRegistrationParam1XRTTMultipleSID::theInfo,
-	&CSFBRegistrationParam1XRTTMultipleNID::theInfo,
-	&CSFBRegistrationParam1XRTTHomeReg::theInfo,
-	&CSFBRegistrationParam1XRTTForeignSIDReg::theInfo,
-	&CSFBRegistrationParam1XRTTForeignNIDReg::theInfo,
-	&CSFBRegistrationParam1XRTTParameterReg::theInfo,
-	&CSFBRegistrationParam1XRTTPowerUpReg::theInfo,
-	&CSFBRegistrationParam1XRTTRegistrationPeriod::theInfo,
-	&CSFBRegistrationParam1XRTTRegistrationZone::theInfo,
-	&CSFBRegistrationParam1XRTTTotalZone::theInfo,
-	&CSFBRegistrationParam1XRTTZoneTimer::theInfo,
-};
-bool CSFBRegistrationParam1XRTT::itemsPres[13] = {
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-};
-const CSFBRegistrationParam1XRTT::Info CSFBRegistrationParam1XRTT::theInfo = {
-	CSFBRegistrationParam1XRTT::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	13, 0, 0
-};
-CSFBRegistrationParam1XRTT::CSFBRegistrationParam1XRTT(const CSFBRegistrationParam1XRTTSid& cSFBRegistrationParam1XRTTSid, const CSFBRegistrationParam1XRTTNid& cSFBRegistrationParam1XRTTNid, const CSFBRegistrationParam1XRTTMultipleSID& cSFBRegistrationParam1XRTTMultipleSID, const CSFBRegistrationParam1XRTTMultipleNID& cSFBRegistrationParam1XRTTMultipleNID, const CSFBRegistrationParam1XRTTHomeReg& cSFBRegistrationParam1XRTTHomeReg, const CSFBRegistrationParam1XRTTForeignSIDReg& cSFBRegistrationParam1XRTTForeignSIDReg, const CSFBRegistrationParam1XRTTForeignNIDReg& cSFBRegistrationParam1XRTTForeignNIDReg, const CSFBRegistrationParam1XRTTParameterReg& cSFBRegistrationParam1XRTTParameterReg, const CSFBRegistrationParam1XRTTPowerUpReg& cSFBRegistrationParam1XRTTPowerUpReg, const CSFBRegistrationParam1XRTTRegistrationPeriod& cSFBRegistrationParam1XRTTRegistrationPeriod, const CSFBRegistrationParam1XRTTRegistrationZone& cSFBRegistrationParam1XRTTRegistrationZone, const CSFBRegistrationParam1XRTTTotalZone& cSFBRegistrationParam1XRTTTotalZone, const CSFBRegistrationParam1XRTTZoneTimer& cSFBRegistrationParam1XRTTZoneTimer) : Sequence(&theInfo) {
-	setCSFBRegistrationParam1XRTTSid(cSFBRegistrationParam1XRTTSid);
-	setCSFBRegistrationParam1XRTTNid(cSFBRegistrationParam1XRTTNid);
-	setCSFBRegistrationParam1XRTTMultipleSID(cSFBRegistrationParam1XRTTMultipleSID);
-	setCSFBRegistrationParam1XRTTMultipleNID(cSFBRegistrationParam1XRTTMultipleNID);
-	setCSFBRegistrationParam1XRTTHomeReg(cSFBRegistrationParam1XRTTHomeReg);
-	setCSFBRegistrationParam1XRTTForeignSIDReg(cSFBRegistrationParam1XRTTForeignSIDReg);
-	setCSFBRegistrationParam1XRTTForeignNIDReg(cSFBRegistrationParam1XRTTForeignNIDReg);
-	setCSFBRegistrationParam1XRTTParameterReg(cSFBRegistrationParam1XRTTParameterReg);
-	setCSFBRegistrationParam1XRTTPowerUpReg(cSFBRegistrationParam1XRTTPowerUpReg);
-	setCSFBRegistrationParam1XRTTRegistrationPeriod(cSFBRegistrationParam1XRTTRegistrationPeriod);
-	setCSFBRegistrationParam1XRTTRegistrationZone(cSFBRegistrationParam1XRTTRegistrationZone);
-	setCSFBRegistrationParam1XRTTTotalZone(cSFBRegistrationParam1XRTTTotalZone);
-	setCSFBRegistrationParam1XRTTZoneTimer(cSFBRegistrationParam1XRTTZoneTimer);
-}
-
-const void *SystemInformationBlockType8Parameters1XRTT::itemsInfo[3] = {
-	&CSFBRegistrationParam1XRTT::theInfo,
-	&SystemInformationBlockType8Parameters1XRTTLongCodeState1XRTT::theInfo,
-	&CellReselectionParametersCDMA2000::theInfo,
-};
-bool SystemInformationBlockType8Parameters1XRTT::itemsPres[3] = {
-	0,
-	0,
-	0,
-};
-const SystemInformationBlockType8Parameters1XRTT::Info SystemInformationBlockType8Parameters1XRTT::theInfo = {
-	SystemInformationBlockType8Parameters1XRTT::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	3, 3, 0
-};
-
-const void *NeighCellsPerBandclassCDMA2000v920::itemsInfo[1] = {
-	&PhysCellIdListCDMA2000v920::theInfo,
-};
-bool NeighCellsPerBandclassCDMA2000v920::itemsPres[1] = {
-	1,
-};
-const NeighCellsPerBandclassCDMA2000v920::Info NeighCellsPerBandclassCDMA2000v920::theInfo = {
-	NeighCellsPerBandclassCDMA2000v920::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	1, 0, 0
-};
-NeighCellsPerBandclassCDMA2000v920::NeighCellsPerBandclassCDMA2000v920(const PhysCellIdListCDMA2000v920& physCellIdListv920) : Sequence(&theInfo) {
-	setPhysCellIdListv920(physCellIdListv920);
-}
-
-const void *NeighCellCDMA2000v920::itemsInfo[1] = {
-	&NeighCellsPerBandclassListCDMA2000v920::theInfo,
-};
-bool NeighCellCDMA2000v920::itemsPres[1] = {
-	1,
-};
-const NeighCellCDMA2000v920::Info NeighCellCDMA2000v920::theInfo = {
-	NeighCellCDMA2000v920::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	1, 0, 0
-};
-NeighCellCDMA2000v920::NeighCellCDMA2000v920(const NeighCellsPerBandclassListCDMA2000v920& neighCellsPerFreqListv920) : Sequence(&theInfo) {
-	setNeighCellsPerFreqListv920(neighCellsPerFreqListv920);
-}
-
-const void *CellReselectionParametersCDMA2000v920::itemsInfo[1] = {
-	&NeighCellListCDMA2000v920::theInfo,
-};
-bool CellReselectionParametersCDMA2000v920::itemsPres[1] = {
-	1,
-};
-const CellReselectionParametersCDMA2000v920::Info CellReselectionParametersCDMA2000v920::theInfo = {
-	CellReselectionParametersCDMA2000v920::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	1, 0, 0
-};
-CellReselectionParametersCDMA2000v920::CellReselectionParametersCDMA2000v920(const NeighCellListCDMA2000v920& neighCellListv920) : Sequence(&theInfo) {
-	setNeighCellListv920(neighCellListv920);
-}
-
-const void *CSFBRegistrationParam1XRTTv920::itemsInfo[1] = {
-	&CSFBRegistrationParam1XRTTv920powerDownReg_r9::theInfo,
-};
-bool CSFBRegistrationParam1XRTTv920::itemsPres[1] = {
-	1,
-};
-const CSFBRegistrationParam1XRTTv920::Info CSFBRegistrationParam1XRTTv920::theInfo = {
-	CSFBRegistrationParam1XRTTv920::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	1, 0, 0
-};
-CSFBRegistrationParam1XRTTv920::CSFBRegistrationParam1XRTTv920(const CSFBRegistrationParam1XRTTv920powerDownReg_r9& cSFBRegistrationParam1XRTTv920powerDownReg_r9) : Sequence(&theInfo) {
-	setCSFBRegistrationParam1XRTTv920powerDownReg_r9(cSFBRegistrationParam1XRTTv920powerDownReg_r9);
-}
-
-const void *ACBarringConfig1XRTTr9::itemsInfo[10] = {
-	&ACBarringConfig1XRTTr9AcBarring0to9r9::theInfo,
-	&ACBarringConfig1XRTTr9AcBarring10r9::theInfo,
-	&ACBarringConfig1XRTTr9AcBarring11r9::theInfo,
-	&ACBarringConfig1XRTTr9AcBarring12r9::theInfo,
-	&ACBarringConfig1XRTTr9AcBarring13r9::theInfo,
-	&ACBarringConfig1XRTTr9AcBarring14r9::theInfo,
-	&ACBarringConfig1XRTTr9AcBarring15r9::theInfo,
-	&ACBarringConfig1XRTTr9AcBarringMsgr9::theInfo,
-	&ACBarringConfig1XRTTr9AcBarringRegr9::theInfo,
-	&ACBarringConfig1XRTTr9AcBarringEmgr9::theInfo,
-};
-bool ACBarringConfig1XRTTr9::itemsPres[10] = {
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-	1,
-};
-const ACBarringConfig1XRTTr9::Info ACBarringConfig1XRTTr9::theInfo = {
-	ACBarringConfig1XRTTr9::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	10, 0, 0
-};
-ACBarringConfig1XRTTr9::ACBarringConfig1XRTTr9(const ACBarringConfig1XRTTr9AcBarring0to9r9& aCBarringConfig1XRTTr9AcBarring0to9r9, const ACBarringConfig1XRTTr9AcBarring10r9& aCBarringConfig1XRTTr9AcBarring10r9, const ACBarringConfig1XRTTr9AcBarring11r9& aCBarringConfig1XRTTr9AcBarring11r9, const ACBarringConfig1XRTTr9AcBarring12r9& aCBarringConfig1XRTTr9AcBarring12r9, const ACBarringConfig1XRTTr9AcBarring13r9& aCBarringConfig1XRTTr9AcBarring13r9, const ACBarringConfig1XRTTr9AcBarring14r9& aCBarringConfig1XRTTr9AcBarring14r9, const ACBarringConfig1XRTTr9AcBarring15r9& aCBarringConfig1XRTTr9AcBarring15r9, const ACBarringConfig1XRTTr9AcBarringMsgr9& aCBarringConfig1XRTTr9AcBarringMsgr9, const ACBarringConfig1XRTTr9AcBarringRegr9& aCBarringConfig1XRTTr9AcBarringRegr9, const ACBarringConfig1XRTTr9AcBarringEmgr9& aCBarringConfig1XRTTr9AcBarringEmgr9) : Sequence(&theInfo) {
-	setACBarringConfig1XRTTr9AcBarring0to9r9(aCBarringConfig1XRTTr9AcBarring0to9r9);
-	setACBarringConfig1XRTTr9AcBarring10r9(aCBarringConfig1XRTTr9AcBarring10r9);
-	setACBarringConfig1XRTTr9AcBarring11r9(aCBarringConfig1XRTTr9AcBarring11r9);
-	setACBarringConfig1XRTTr9AcBarring12r9(aCBarringConfig1XRTTr9AcBarring12r9);
-	setACBarringConfig1XRTTr9AcBarring13r9(aCBarringConfig1XRTTr9AcBarring13r9);
-	setACBarringConfig1XRTTr9AcBarring14r9(aCBarringConfig1XRTTr9AcBarring14r9);
-	setACBarringConfig1XRTTr9AcBarring15r9(aCBarringConfig1XRTTr9AcBarring15r9);
-	setACBarringConfig1XRTTr9AcBarringMsgr9(aCBarringConfig1XRTTr9AcBarringMsgr9);
-	setACBarringConfig1XRTTr9AcBarringRegr9(aCBarringConfig1XRTTr9AcBarringRegr9);
-	setACBarringConfig1XRTTr9AcBarringEmgr9(aCBarringConfig1XRTTr9AcBarringEmgr9);
-}
-
-const void *SystemInformationBlockType8::itemsInfo[11] = {
-	&SystemTimeInfoCDMA2000::theInfo,
-	&SystemInformationBlockType8SearchWindowSize::theInfo,
-	&SystemInformationBlockType8ParametersHRPD::theInfo,
-	&SystemInformationBlockType8Parameters1XRTT::theInfo,
-	&SystemInformationBlockType8LateNonCriticalExtension::theInfo,
-	&SystemInformationBlockType8CsfbSupportForDualRxUEsr9::theInfo,
-	&CellReselectionParametersCDMA2000v920::theInfo,
-	&CellReselectionParametersCDMA2000v920::theInfo,
-	&CSFBRegistrationParam1XRTTv920::theInfo,
-	&ACBarringConfig1XRTTr9::theInfo,
-	&SystemInformationBlockType8csfb_DualRxTxSupport_r10::theInfo,
-};
-bool SystemInformationBlockType8::itemsPres[11] = {
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-	0,
-};
-const SystemInformationBlockType8::Info SystemInformationBlockType8::theInfo = {
-	SystemInformationBlockType8::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	11, 11, 0
-};
-
-const void *SystemInformationBlockType9::itemsInfo[2] = {
-	&SystemInformationBlockType9HnbName::theInfo,
-	&SystemInformationBlockType9LateNonCriticalExtension::theInfo,
-};
-bool SystemInformationBlockType9::itemsPres[2] = {
-	0,
-	0,
-};
-const SystemInformationBlockType9::Info SystemInformationBlockType9::theInfo = {
-	SystemInformationBlockType9::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	2, 2, 0
-};
-
-const void *SystemInformationBlockType10::itemsInfo[5] = {
-	&SystemInformationBlockType10MessageIdentifier::theInfo,
-	&SystemInformationBlockType10SerialNumber::theInfo,
-	&SystemInformationBlockType10WarningType::theInfo,
-	&SystemInformationBlockType10WarningSecurityInfo::theInfo,
-	&SystemInformationBlockType10LateNonCriticalExtension::theInfo,
-};
-bool SystemInformationBlockType10::itemsPres[5] = {
-	1,
-	1,
-	1,
-	0,
-	0,
-};
-const SystemInformationBlockType10::Info SystemInformationBlockType10::theInfo = {
-	SystemInformationBlockType10::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	5, 2, 0
-};
-SystemInformationBlockType10::SystemInformationBlockType10(const SystemInformationBlockType10MessageIdentifier& systemInformationBlockType10MessageIdentifier, const SystemInformationBlockType10SerialNumber& systemInformationBlockType10SerialNumber, const SystemInformationBlockType10WarningType& systemInformationBlockType10WarningType) : Sequence(&theInfo) {
-	setSystemInformationBlockType10MessageIdentifier(systemInformationBlockType10MessageIdentifier);
-	setSystemInformationBlockType10SerialNumber(systemInformationBlockType10SerialNumber);
-	setSystemInformationBlockType10WarningType(systemInformationBlockType10WarningType);
-}
-
-const void *SystemInformationBlockType11::itemsInfo[7] = {
-	&SystemInformationBlockType11MessageIdentifier::theInfo,
-	&SystemInformationBlockType11SerialNumber::theInfo,
-	&SystemInformationBlockType11warningMessageSegmentType::theInfo,
-	&SystemInformationBlockType11WarningMessageSegmentNumber::theInfo,
-	&SystemInformationBlockType11WarningMessageSegment::theInfo,
-	&SystemInformationBlockType11DataCodingScheme::theInfo,
-	&SystemInformationBlockType11LateNonCriticalExtension::theInfo,
-};
-bool SystemInformationBlockType11::itemsPres[7] = {
-	1,
-	1,
-	1,
-	1,
-	1,
-	0,
-	0,
-};
-const SystemInformationBlockType11::Info SystemInformationBlockType11::theInfo = {
-	SystemInformationBlockType11::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	7, 2, 0
-};
-SystemInformationBlockType11::SystemInformationBlockType11(const SystemInformationBlockType11MessageIdentifier& systemInformationBlockType11MessageIdentifier, const SystemInformationBlockType11SerialNumber& systemInformationBlockType11SerialNumber, const SystemInformationBlockType11warningMessageSegmentType& systemInformationBlockType11warningMessageSegmentType, const SystemInformationBlockType11WarningMessageSegmentNumber& systemInformationBlockType11WarningMessageSegmentNumber, const SystemInformationBlockType11WarningMessageSegment& systemInformationBlockType11WarningMessageSegment) : Sequence(&theInfo) {
-	setSystemInformationBlockType11MessageIdentifier(systemInformationBlockType11MessageIdentifier);
-	setSystemInformationBlockType11SerialNumber(systemInformationBlockType11SerialNumber);
-	setSystemInformationBlockType11warningMessageSegmentType(systemInformationBlockType11warningMessageSegmentType);
-	setSystemInformationBlockType11WarningMessageSegmentNumber(systemInformationBlockType11WarningMessageSegmentNumber);
-	setSystemInformationBlockType11WarningMessageSegment(systemInformationBlockType11WarningMessageSegment);
-}
-
-const void *SystemInformationBlockType12r9::itemsInfo[7] = {
-	&SystemInformationBlockType12r9MessageIdentifierr9::theInfo,
-	&SystemInformationBlockType12r9SerialNumberr9::theInfo,
-	&SystemInformationBlockType12r9warningMessageSegmentType_r9::theInfo,
-	&SystemInformationBlockType12r9WarningMessageSegmentNumberr9::theInfo,
-	&SystemInformationBlockType12r9WarningMessageSegmentr9::theInfo,
-	&SystemInformationBlockType12r9DataCodingSchemer9::theInfo,
-	&SystemInformationBlockType12r9LateNonCriticalExtension::theInfo,
-};
-bool SystemInformationBlockType12r9::itemsPres[7] = {
-	1,
-	1,
-	1,
-	1,
-	1,
-	0,
-	0,
-};
-const SystemInformationBlockType12r9::Info SystemInformationBlockType12r9::theInfo = {
-	SystemInformationBlockType12r9::create,
-	SEQUENCE,
-	0,
-	true,
-	itemsInfo,
-	itemsPres,
-	7, 2, 0
-};
-SystemInformationBlockType12r9::SystemInformationBlockType12r9(const SystemInformationBlockType12r9MessageIdentifierr9& systemInformationBlockType12r9MessageIdentifierr9, const SystemInformationBlockType12r9SerialNumberr9& systemInformationBlockType12r9SerialNumberr9, const SystemInformationBlockType12r9warningMessageSegmentType_r9& systemInformationBlockType12r9warningMessageSegmentType_r9, const SystemInformationBlockType12r9WarningMessageSegmentNumberr9& systemInformationBlockType12r9WarningMessageSegmentNumberr9, const SystemInformationBlockType12r9WarningMessageSegmentr9& systemInformationBlockType12r9WarningMessageSegmentr9) : Sequence(&theInfo) {
-	setSystemInformationBlockType12r9MessageIdentifierr9(systemInformationBlockType12r9MessageIdentifierr9);
-	setSystemInformationBlockType12r9SerialNumberr9(systemInformationBlockType12r9SerialNumberr9);
-	setSystemInformationBlockType12r9warningMessageSegmentType_r9(systemInformationBlockType12r9warningMessageSegmentType_r9);
-	setSystemInformationBlockType12r9WarningMessageSegmentNumberr9(systemInformationBlockType12r9WarningMessageSegmentNumberr9);
-	setSystemInformationBlockType12r9WarningMessageSegmentr9(systemInformationBlockType12r9WarningMessageSegmentr9);
-}
-
-const void *MBSFNAreaInfor9McchConfigr9::itemsInfo[5] = {
-	&MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9::theInfo,
-	&MBSFNAreaInfor9McchConfigr9McchOffsetr9::theInfo,
-	&MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9::theInfo,
-	&MBSFNAreaInfor9McchConfigr9SfAllocInfor9::theInfo,
-	&MBSFNAreaInfor9McchConfigr9signallingMCS_r9::theInfo,
-};
-bool MBSFNAreaInfor9McchConfigr9::itemsPres[5] = {
-	1,
-	1,
-	1,
-	1,
-	1,
-};
-const MBSFNAreaInfor9McchConfigr9::Info MBSFNAreaInfor9McchConfigr9::theInfo = {
-	MBSFNAreaInfor9McchConfigr9::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	5, 0, 0
-};
-MBSFNAreaInfor9McchConfigr9::MBSFNAreaInfor9McchConfigr9(const MBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9, const MBSFNAreaInfor9McchConfigr9McchOffsetr9& mBSFNAreaInfor9McchConfigr9McchOffsetr9, const MBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9& mBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9, const MBSFNAreaInfor9McchConfigr9SfAllocInfor9& mBSFNAreaInfor9McchConfigr9SfAllocInfor9, const MBSFNAreaInfor9McchConfigr9signallingMCS_r9& mBSFNAreaInfor9McchConfigr9signallingMCS_r9) : Sequence(&theInfo) {
-	setMBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9(mBSFNAreaInfor9McchConfigr9mcch_RepetitionPeriod_r9);
-	setMBSFNAreaInfor9McchConfigr9McchOffsetr9(mBSFNAreaInfor9McchConfigr9McchOffsetr9);
-	setMBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9(mBSFNAreaInfor9McchConfigr9mcch_ModificationPeriod_r9);
-	setMBSFNAreaInfor9McchConfigr9SfAllocInfor9(mBSFNAreaInfor9McchConfigr9SfAllocInfor9);
-	setMBSFNAreaInfor9McchConfigr9signallingMCS_r9(mBSFNAreaInfor9McchConfigr9signallingMCS_r9);
-}
-
-const void *MBSFNAreaInfor9::itemsInfo[4] = {
-	&MBSFNAreaInfor9MbsfnAreaIdr9::theInfo,
-	&MBSFNAreaInfor9non_MBSFNregionLength::theInfo,
-	&MBSFNAreaInfor9NotificationIndicatorr9::theInfo,
-	&MBSFNAreaInfor9McchConfigr9::theInfo,
-};
-bool MBSFNAreaInfor9::itemsPres[4] = {
-	1,
-	1,
-	1,
-	1,
-};
-const MBSFNAreaInfor9::Info MBSFNAreaInfor9::theInfo = {
-	MBSFNAreaInfor9::create,
-	SEQUENCE,
-	0,
-	true,
-	itemsInfo,
-	itemsPres,
-	4, 0, 0
-};
-MBSFNAreaInfor9::MBSFNAreaInfor9(const MBSFNAreaInfor9MbsfnAreaIdr9& mBSFNAreaInfor9MbsfnAreaIdr9, const MBSFNAreaInfor9non_MBSFNregionLength& mBSFNAreaInfor9non_MBSFNregionLength, const MBSFNAreaInfor9NotificationIndicatorr9& mBSFNAreaInfor9NotificationIndicatorr9, const MBSFNAreaInfor9McchConfigr9& mBSFNAreaInfor9McchConfigr9) : Sequence(&theInfo) {
-	setMBSFNAreaInfor9MbsfnAreaIdr9(mBSFNAreaInfor9MbsfnAreaIdr9);
-	setMBSFNAreaInfor9non_MBSFNregionLength(mBSFNAreaInfor9non_MBSFNregionLength);
-	setMBSFNAreaInfor9NotificationIndicatorr9(mBSFNAreaInfor9NotificationIndicatorr9);
-	setMBSFNAreaInfor9McchConfigr9(mBSFNAreaInfor9McchConfigr9);
-}
-
-const void *MBMSNotificationConfigr9::itemsInfo[3] = {
-	&MBMSNotificationConfigr9notificationRepetitionCoeff_r9::theInfo,
-	&MBMSNotificationConfigr9NotificationOffsetr9::theInfo,
-	&MBMSNotificationConfigr9NotificationSFIndexr9::theInfo,
-};
-bool MBMSNotificationConfigr9::itemsPres[3] = {
-	1,
-	1,
-	1,
-};
-const MBMSNotificationConfigr9::Info MBMSNotificationConfigr9::theInfo = {
-	MBMSNotificationConfigr9::create,
-	SEQUENCE,
-	0,
-	false,
-	itemsInfo,
-	itemsPres,
-	3, 0, 0
-};
-MBMSNotificationConfigr9::MBMSNotificationConfigr9(const MBMSNotificationConfigr9notificationRepetitionCoeff_r9& mBMSNotificationConfigr9notificationRepetitionCoeff_r9, const MBMSNotificationConfigr9NotificationOffsetr9& mBMSNotificationConfigr9NotificationOffsetr9, const MBMSNotificationConfigr9NotificationSFIndexr9& mBMSNotificationConfigr9NotificationSFIndexr9) : Sequence(&theInfo) {
-	setMBMSNotificationConfigr9notificationRepetitionCoeff_r9(mBMSNotificationConfigr9notificationRepetitionCoeff_r9);
-	setMBMSNotificationConfigr9NotificationOffsetr9(mBMSNotificationConfigr9NotificationOffsetr9);
-	setMBMSNotificationConfigr9NotificationSFIndexr9(mBMSNotificationConfigr9NotificationSFIndexr9);
-}
-
-const void *SystemInformationBlockType13r9::itemsInfo[3] = {
-	&MBSFNAreaInfoListr9::theInfo,
-	&MBMSNotificationConfigr9::theInfo,
-	&SystemInformationBlockType13r9LateNonCriticalExtension::theInfo,
-};
-bool SystemInformationBlockType13r9::itemsPres[3] = {
-	1,
-	1,
-	0,
-};
-const SystemInformationBlockType13r9::Info SystemInformationBlockType13r9::theInfo = {
-	SystemInformationBlockType13r9::create,
-	SEQUENCE,
-	0,
-	true,
-	itemsInfo,
-	itemsPres,
-	3, 1, 0
-};
-SystemInformationBlockType13r9::SystemInformationBlockType13r9(const MBSFNAreaInfoListr9& mbsfnAreaInfoListr9, const MBMSNotificationConfigr9& notificationConfigr9) : Sequence(&theInfo) {
-	setMbsfnAreaInfoListr9(mbsfnAreaInfoListr9);
-	setNotificationConfigr9(notificationConfigr9);
 }
 
 const void *PDCPParametersSupportedROHCProfiles::itemsInfo[9] = {

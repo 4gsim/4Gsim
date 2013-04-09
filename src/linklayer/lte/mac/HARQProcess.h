@@ -25,7 +25,7 @@ class MAC;
 
 class HARQProcess {
 private:
-    std::list<MACProtocolDataUnit*> buffer;
+    std::map<unsigned, TransportBlock*> softBuffer;
 
     unsigned currTxNb;
     bool harqFeedback;
@@ -37,6 +37,8 @@ public:
     virtual ~HARQProcess();
 
     void send(unsigned ulGrant, MACProtocolDataUnit *pdu);
+
+    void allocate(TransportBlock *tb);
 };
 
 #endif /* HARQPROCESS_H_ */

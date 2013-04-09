@@ -19,12 +19,13 @@
 #include "HARQProcess.h"
 #include "MACMessage.h"
 
-#define HARQ_MAX_PROCS  8
+#define HARQ_BCAST_PROC_ID  -1
 
 class MAC;
 
 class HARQEntity {
 private:
+    HARQProcess *bcastProc;
     std::map<unsigned, HARQProcess*> procs;
     std::list<MACProtocolDataUnit*> msg3;
 
@@ -32,11 +33,13 @@ public:
     HARQEntity();
     virtual ~HARQEntity();
 
-    void init(MAC *module);
+    void init(MAC *module, unsigned nrOfProcs);
 
     void processUplinkGrant(unsigned ulGrant, unsigned ttiId);
 
     void pushMsg3(MACProtocolDataUnit *pdu) { msg3.push_back(pdu); }
+
+    void indicateDownlinkAssignment(TransportBlock *tb);
 };
 
 #endif /* HARQENTITY_H_ */

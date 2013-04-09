@@ -21,7 +21,6 @@
 #include "ESMEntity.h"
 #include "NAS.h"
 #include "GTPUtils.h"
-#include "S1APIe.h"
 #include "GTPSerializer.h"
 
 BearerContext::BearerContext() {

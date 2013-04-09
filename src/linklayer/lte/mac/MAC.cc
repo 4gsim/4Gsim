@@ -21,6 +21,9 @@
 #include "MACUtils.h"
 #include "MACSerializer.h"
 #include "RRCMessage.h"
+#include "HARQControlInfo_m.h"
+#include "MACControlInfo_m.h"
+#include "RRCControlInfo_m.h"
 
 Define_Module(MAC);
 
@@ -52,11 +55,12 @@ void MAC::initialize(int stage) {
 //        ttiTimer = new cMessage("TTI-TIMER");
 //        this->scheduleAt(simTime(), ttiTimer);
 //        ttiTimer->setContextPointer(this);
-        entity = new HARQEntity();
-        entity->init(this);
+        // TODO number of HARQ processes
+        dlEntity = new HARQEntity();
+        dlEntity->init(this, 4);
 
         scheduler = new MACScheduler();
-        scheduler->configure(lteCfg->getDlBandwith(), lteCfg->getBlockSize());
+        scheduler->setLTEConfig(lteCfg);
     }
 }
 
@@ -98,7 +102,12 @@ void MAC::handleLowerMessage(cMessage *msg) {
 //        sendDown(pdu, DLSCH);
 //        break;
 //    }
-//    case DLSCH: {
+    case DLSCH0: {
+        if (tb->getRntiType() == SiRnti) {
+            // TODO redundancy version
+            addHarqInformation(tb, HARQ_BCAST_PROC_ID);
+            dlEntity->indicateDownlinkAssignment(tb);
+        }
 //        if (ueId == ctrl->getUeId()) {
 //            MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(msg);
 //            if (ctrl->getRntiType() == RaRnti) {
@@ -110,9 +119,9 @@ void MAC::handleLowerMessage(cMessage *msg) {
 //        } else {
 //            EV << "LTE-MAC: Message received for incorrect UeId = " << ctrl->getUeId() << ". Discarding message.\n";
 //        }
-////        nb->fireChangeNotification(NF_RAND_ACCESS_COMPL, NULL);
-//        break;
-//    }
+//        nb->fireChangeNotification(NF_RAND_ACCESS_COMPL, NULL);
+        break;
+    }
 //    case ULSCH: {
 //        MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(msg);
 //        MACSubHeaderUlDl *header = check_and_cast<MACSubHeaderUlDl*>(pdu->getSubHdrs(0));
@@ -125,7 +134,7 @@ void MAC::handleLowerMessage(cMessage *msg) {
 //        break;
 //    }
         default:
-            EV << "LTE-MAC: Unknown LTEPhyControlInfo type. Discarding message.\n";
+            EV << "LTE-MAC: Unknown transport channel. Discarding message.\n";
             break;
     }
     delete tb;
@@ -133,21 +142,31 @@ void MAC::handleLowerMessage(cMessage *msg) {
 
 void MAC::handleUpperMessage(cMessage *msg) {
 //    unsigned char lcid;
-    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
+    RRCControlInfo *rrcCtrl = check_and_cast<RRCControlInfo*>(msg->removeControlInfo());
 
     MACProtocolDataUnit *pdu = new MACProtocolDataUnit(msg->getName());
-    switch(ctrl->getChannel()) {
+    MACControlInfo *ctrl = new MACControlInfo();
+
+    switch(rrcCtrl->getChannel()) {
         case BCCH0: {
             pdu->encapsulate(PK(msg));
-            scheduler->setMIB(pdu);
+            ctrl->setRnti(NoRnti);
+            ctrl->setChannel(BCH);
             break;
         }
         case BCCH1: {
+            pdu->encapsulate(PK(msg));
+            ctrl->setRntiType(SiRnti);
+            ctrl->setRnti(65535);
+            ctrl->setChannel(DLSCH0);
             break;
         }
         default:
             break;
     }
+
+    pdu->setControlInfo(ctrl);
+    scheduler->addMACProtocolDataUnit(pdu, rrcCtrl->getSfn(), rrcCtrl->getTti(), rrcCtrl->getRetrNr());
 
 
 //
@@ -199,7 +218,7 @@ const char *MAC::channelName(int channelNumber) {
 }
 
 void MAC::sendUp(cMessage *msg, int channelNumber) {
-    LTEControlInfo *ctrl = new LTEControlInfo();
+    RRCControlInfo *ctrl = new RRCControlInfo();
     ctrl->setChannel(channelNumber);
     msg->setControlInfo(ctrl);
     this->send(msg, gate("upperLayerOut"));
@@ -228,3 +247,8 @@ void MAC::receiveChangeNotification(int category, const cPolymorphic *details) {
     }
 }
 
+void MAC::addHarqInformation(TransportBlock *tb, int harqProcId) {
+    HARQControlInfo *ctrl = new HARQControlInfo();
+    ctrl->setHarqProcId(harqProcId);
+    tb->setControlInfo(ctrl);
+}

@@ -138,18 +138,54 @@ const VarMeasConfig::Info VarMeasConfig::theInfo = {
 	6, 6, 0
 };
 
-const void *CellsTriggeredList::itemsInfo[0] = {
+const void *CellsTriggeredListItemPhysCellIdUTRA::choicesInfo[2] = {
+	&PhysCellIdUTRAFDD::theInfo,
+	&PhysCellIdUTRATDD::theInfo,
 };
-bool CellsTriggeredList::itemsPres[0] = {
+const CellsTriggeredListItemPhysCellIdUTRA::Info CellsTriggeredListItemPhysCellIdUTRA::theInfo = {
+	CellsTriggeredListItemPhysCellIdUTRA::create,
+	CHOICE,
+	0,
+	false,
+	choicesInfo,
+	1
 };
-const CellsTriggeredList::Info CellsTriggeredList::theInfo = {
-	CellsTriggeredList::create,
+
+const void *CellsTriggeredListItemPhysCellIdGERAN::itemsInfo[2] = {
+	&CarrierFreqGERAN::theInfo,
+	&PhysCellIdGERAN::theInfo,
+};
+bool CellsTriggeredListItemPhysCellIdGERAN::itemsPres[2] = {
+	1,
+	1,
+};
+const CellsTriggeredListItemPhysCellIdGERAN::Info CellsTriggeredListItemPhysCellIdGERAN::theInfo = {
+	CellsTriggeredListItemPhysCellIdGERAN::create,
 	SEQUENCE,
 	0,
-	true,
+	false,
 	itemsInfo,
 	itemsPres,
-	0, 0, 0
+	2, 0, 0
+};
+CellsTriggeredListItemPhysCellIdGERAN::CellsTriggeredListItemPhysCellIdGERAN(const CarrierFreqGERAN& carrierFreq, const PhysCellIdGERAN& physCellId) : Sequence(&theInfo) {
+	setCarrierFreq(carrierFreq);
+	setPhysCellId(physCellId);
+}
+
+const void *CellsTriggeredListItem::choicesInfo[4] = {
+	&PhysCellId::theInfo,
+	&CellsTriggeredListItemPhysCellIdUTRA::theInfo,
+	&CellsTriggeredListItemPhysCellIdGERAN::theInfo,
+	&PhysCellIdCDMA2000::theInfo,
+};
+const CellsTriggeredListItem::Info CellsTriggeredListItem::theInfo = {
+	CellsTriggeredListItem::create,
+	CHOICE,
+	0,
+	false,
+	choicesInfo,
+	3
 };
 
 const void *VarMeasReport::itemsInfo[3] = {

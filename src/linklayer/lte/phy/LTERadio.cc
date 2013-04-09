@@ -23,6 +23,7 @@
 #include "InterfaceTableAccess.h"
 #include "IPv4InterfaceData.h"
 #include "LTEChannelControl.h"
+#include "MACMessage.h"
 //#include "HARQProcess.h"
 
 Define_Module(LTERadio);
@@ -57,6 +58,8 @@ void LTERadio::initialize(int stage) {
     	ueId = this->getParentModule()->getId();
 
     	nb = NotificationBoardAccess().get();
+
+    	lteCfg = LTEConfigAccess().get();
     } else if (stage == 2) {
         //cc->setRadioChannel(myRadioRef, rs.getChannelNumber());
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
@@ -104,6 +107,9 @@ void LTERadio::handleMessage(cMessage *msg) {
     if (msg->isSelfMessage()) {
         if (msg == ttiTimer) {
             nb->fireChangeNotification(NF_PHY_PER_CB, NULL);
+            this->cancelEvent(ttiTimer);
+            this->scheduleAt(simTime() + TTI_VALUE, ttiTimer);
+            lteCfg->incrementTTI();
 //            for (unsigned i = 0; i < PRB_MAX_SIZE; i++) {
 //                sendToChannel(subFrame[i]);
 //                subFrame[i] = new PhysicalResourceBlock();
@@ -180,9 +186,9 @@ void LTERadio::handleUpperMessage(cMessage* msg) {
 //            frame = rap;
 //            break;
 //        }
-//        case DLSCH:
-//            frame->setChannelNumber(PDSCH);
-//            break;
+        case DLSCH0:
+            prb->setChannelNumber(PDSCH);
+            break;
 //        case ULSCH:
 //            frame->setChannelNumber(PUSCH);
 //            break;
@@ -230,6 +236,7 @@ void LTERadio::handleRadioMessage(cMessage *msg) {
     PhysicalResourceBlock *prb = check_and_cast<PhysicalResourceBlock*>(msg);
     if (prb->getEncapsulatedPacket()) {
         TransportBlock *tb = check_and_cast<TransportBlock*>(prb->decapsulate());
+        tb->setTbId(lteCfg->getSFN() * 10 + lteCfg->getTTI());
         send(tb, gate("upperLayerOut"));
     }
     delete prb;

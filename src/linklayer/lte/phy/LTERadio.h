@@ -30,6 +30,7 @@
 #include "InterfaceTable.h"
 #include "LTEPhyControlInfo_m.h"
 #include "LTEFrame_m.h"
+#include "LTEConfigAccess.h"
 
 #define HARQ_FEEDBACK_DELAY 1
 #define HARQ_FEEDBACK_ACK   1
@@ -61,6 +62,8 @@ protected:
     PhysicalResourceBlock *subFrame[PRB_MAX_SIZE];
 
     NotificationBoard *nb;
+
+    LTEConfig *lteCfg;
 
     unsigned dir;
     char *dirStr;

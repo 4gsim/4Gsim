@@ -13,3 +13,14 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
+cplusplus {{ 
+	#include "LTEControlInfo_m.h"    
+}}
+
+class noncobject LTEControlInfo;
+
+class MACControlInfo extends LTEControlInfo
+{
+	unsigned int rntiType;
+	unsigned short rnti = 0;   
+}

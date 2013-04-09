@@ -16,6 +16,7 @@
 #include "HARQProcess.h"
 #include "MAC.h"
 #include "LTEControlInfo_m.h"
+#include "HARQControlInfo_m.h"
 
 HARQProcess::HARQProcess(MAC *module) {
     // TODO Auto-generated constructor stub
@@ -29,18 +30,51 @@ HARQProcess::~HARQProcess() {
 }
 
 void HARQProcess::send(unsigned ulGrant, MACProtocolDataUnit *pdu) {
-    currTxNb = 0;
-    buffer.push_back(pdu);
-    // TODO store ulGrant
-    harqFeedback = HARQ_FEEDBACK_NACK;
+//    currTxNb = 0;
+//    buffer.push_back(pdu);
+//    // TODO store ulGrant
+//    harqFeedback = HARQ_FEEDBACK_NACK;
+//
+////    module->scheduleDown(pdu, ULSCH, TTI_VALUE);
+//
+//    if (currTxNb == maxTrans - 1) {
+//        while(!buffer.empty()) {
+//            delete buffer.front();
+//            buffer.pop_front();
+//        }
+//    }
+}
 
-//    module->scheduleDown(pdu, ULSCH, TTI_VALUE);
+void HARQProcess::allocate(TransportBlock *tb) {
+    bool newTrans = false;
+    bool harqFb = HARQ_FEEDBACK_NACK;
+    bool decodeResult = true;
+    HARQControlInfo *ctrl = check_and_cast<HARQControlInfo*>(tb->getControlInfo());
+    if (ctrl->getHarqProcId() == HARQ_BCAST_PROC_ID) {  // TODO scheduling info from RRC
+        newTrans = true;
+    }
 
-    if (currTxNb == maxTrans - 1) {
-        while(!buffer.empty()) {
-            delete buffer.front();
-            buffer.pop_front();
+    if (newTrans) {
+        EV << "LTE-MAC: New downlink transmission.\n";
+        softBuffer[tb->getTbId()] = tb;
+    }
+
+    // TODO attempt to decode ...
+
+    MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(tb->decapsulate());
+    if (decodeResult) {
+        EV << "LTE-MAC: Successfully decoded the Transport Block.\n";
+        if (ctrl->getHarqProcId() == HARQ_BCAST_PROC_ID) {
+            EV << "LTE-MAC: Broadcast message. Sending the data to the upper layer.\n";
+            cMessage *msg = pdu->decapsulate();
+            delete pdu;
+            module->sendUp(msg, BCCH1);
         }
+        harqFb = HARQ_FEEDBACK_ACK;
+    }
+
+    if (ctrl->getHarqProcId() == HARQ_BCAST_PROC_ID) {  // TODO timeAllignmentTimer
+        // do not indicate to lower layer
     }
 }
 

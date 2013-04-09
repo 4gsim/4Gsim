@@ -129,7 +129,10 @@ def writeobject(asnobj, hdrfile, srcfile):
 					srcfile.write("\t1,\n")
 				else:
 					srcfile.write("\t0,\n")
-					optnr += 1
+					if j < asnobj.upperlimit:
+                                                optnr += 1
+                                if j >= asnobj.upperlimit:
+                                        extnr += 1
 			srcfile.write("};\n")
 			srcfile.write("const " + asnobj.name + "::Info " + asnobj.name + "::theInfo = {\n" +
 						"\t" + asnobj.name + "::create,\n" +
@@ -141,7 +144,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 				srcfile.write("\tfalse,\n")
 			srcfile.write("\titemsInfo,\n" +
 						"\titemsPres,\n"
-						"\t" + str(len(asnobj.objs)) + ", " + str(optnr) + ", " + str(extnr) + "\n" +
+						"\t" + str(asnobj.upperlimit) + ", " + str(optnr) + ", " + str(extnr) + "\n" +
 						"};\n")
 			if len(objs) > 0:
                                 srcfile.write(asnobj.name + "::" + asnobj.name + "(")
@@ -200,7 +203,7 @@ def writeobject(asnobj, hdrfile, srcfile):
 			else:
 				srcfile.write("\tfalse,\n")
 			srcfile.write("\tchoicesInfo,\n" +
-						"\t" + str(len(asnobj.objs) - 1) + "\n" +
+						"\t" + str(asnobj.upperlimit - 1) + "\n" +
 						"};\n")
                     	srcfile.write("\n")
 			

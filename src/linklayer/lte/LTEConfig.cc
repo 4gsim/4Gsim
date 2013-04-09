@@ -19,13 +19,23 @@
 Define_Module(LTEConfig);
 
 LTEConfig::LTEConfig() {
-    dlBandwith = 0;
-    phichDuration = "";
-    phichResource = 0;
-    symbNumber = 0;
-    blockSize = 0;
+    dlBandwith = 6;
+    phichDuration = "normal";
+    phichResource = 1;
+    symbNumber = 7;
     cellId = NULL;
     tac = NULL;
+    tti = 0;
+    sfn = 0;
+    nrOfRAPreambles = 52;
+    preambleTransMax = 6;
+    raRespWdwSize = 10;
+    macContResolTimer = 48;
+    maxHARQMsg3Tx = 4;
+    prachCfgIndex = 0;
+    prachFreqOff = 0;
+    preambleFmt = 0;
+    raSt = -1;
 }
 
 void LTEConfig::initialize() {
@@ -42,32 +52,52 @@ void LTEConfig::initialize() {
     WATCH(phichDuration);
     WATCH(phichResource);
     WATCH(symbNumber);
-    WATCH(blockSize);
+    WATCH(tti);
+    WATCH(sfn);
+    WATCH(nrOfRAPreambles);
+    WATCH(preambleTransMax);
+    WATCH(raRespWdwSize);
+    WATCH(macContResolTimer);
+    WATCH(maxHARQMsg3Tx);
+    WATCH(preambleFmt);
+    WATCH(prachCfgIndex);
+    WATCH(prachFreqOff);
 }
 
 void LTEConfig::handleMessage(cMessage *msg) {
     // TODO - Generated method body
 }
 
-unsigned LTEConfig::find(const unsigned *array, unsigned value) {
-    for (unsigned i = 0; i < sizeof(array); i++)
+unsigned LTEConfig::find(unsigned value, const unsigned *array, unsigned size) {
+    for (unsigned i = 0; i < size; i++)
         if (array[i] == value)
             return i;
     return sizeof(array) - 1;
 }
 
-unsigned LTEConfig::find(const std::string *array, std::string value) {
-    for (unsigned i = 0; i < sizeof(array); i++)
+unsigned LTEConfig::find(std::string value, const std::string *array, unsigned size) {
+    for (unsigned i = 0; i < size; i++)
         if (!array[i].compare(value))
             return i;
     return sizeof(array) - 1;
 }
 
-unsigned LTEConfig::find(const double *array, double value) {
-    for (unsigned i = 0; i < sizeof(array); i++)
+unsigned LTEConfig::find(double value, const double *array, unsigned size) {
+    for (unsigned i = 0; i < size; i++)
         if (array[i] == value)
             return i;
     return sizeof(array) - 1;
+}
+
+unsigned LTEConfig::getBlockSize() {
+    if (phichDuration.compare("normal")) {
+        return 12;
+    } else {
+        if (symbNumber == 6)
+            return 12;
+        else
+            return 24;
+    }
 }
 
 rrc::PLMNIdentityList LTEConfig::getPLMNIdentityList() {
@@ -86,6 +116,7 @@ rrc::PLMNIdentityList LTEConfig::getPLMNIdentityList() {
         if (plmnId.mnc.size() > 2)
             mnc.push_back(rrc::MCCMNCDigit(atoi(plmnId.mnc.substr(2, 1).c_str()) % 10));
         plmnIdentity.setMcc(mcc);
+        plmnIdentity.setOptFlag(0, true);
         plmnIdentity.setMnc(mnc);
         rrc::PLMNIdentityInfocellReservedForOperatorUse infoCellResForOpUse = rrc::PLMNIdentityInfocellReservedForOperatorUse(rrc::notReserved_PLMNIdentityInfocellReservedForOperatorUse);
         rrc::PLMNIdentityInfo *plmnIdentityInfo = new rrc::PLMNIdentityInfo(plmnIdentity, infoCellResForOpUse);
@@ -102,8 +133,24 @@ void LTEConfig::loadConfigFromXML(const char *filename) {
     cXMLElement* lteCfgNode = config->getElementByPath("LTEConfig");
     if (lteCfgNode != NULL) {
 
-        if (lteCfgNode->getAttribute("dlBandwith")) {
-            setDLBandwith(atoi(lteCfgNode->getAttribute("dlBandwith")));
+//        if (lteCfgNode->getAttribute("dlBandwith")) {
+//            setDLBandwith(atoi(lteCfgNode->getAttribute("dlBandwith")));
+//
+//
+//
+//            if (dlBandwith == 6)
+//                preambleFmt = 0;
+//        }
+
+        prachFreqOff = uniform(0, dlBandwith - 6);
+
+        switch (prachCfgIndex % 16) {
+            case 0: {
+                schedulePRBs(UL_SCHEDULING, -1, 0, 2, INF, 1, 10, INF, prachFreqOff, 1, 6);
+                break;
+            }
+            default:
+                break;
         }
 
         if (lteCfgNode->getAttribute("phichDuration")) {
@@ -124,15 +171,6 @@ void LTEConfig::loadConfigFromXML(const char *filename) {
 
         if (lteCfgNode->getAttribute("symbNumber")) {
             setSymbNumber(atoi(lteCfgNode->getAttribute("symbNumber")));
-        }
-
-        if (phichDuration.compare("normal")) {
-            blockSize = 12;
-        } else {
-            if (symbNumber == 6)
-                blockSize = 12;
-            else
-                blockSize = 24;
         }
 
         cXMLElement* plmnIdListNode = lteCfgNode->getElementByPath("PLMNIdentityList");
@@ -156,4 +194,41 @@ void LTEConfig::loadConfigFromXML(const char *filename) {
     }
 }
 
+void LTEConfig::incrementTTI() {
+    tti++;
 
+    if (tti % 10 == 0) {
+        tti = 0;
+        sfn++;
+    }
+}
+
+void LTEConfig::schedule(LTESchedulings schedulings, LTESchedulingInfo newSchInfo) {
+    for (unsigned i = 0; i < schedulings; i++) {
+        LTESchedulingInfo oldSchInfo = schedulings[i];
+        if (oldSchInfo.getSfn().getBegin() != )
+    }
+}
+
+void LTEConfig::schedulePRBs(bool direction, int msgId, int sfnBegin, int sfnPeriod, int sfnSize, int ttiBegin, int ttiPeriod, int ttiSize, int prbBegin, int prbPeriod, int prbSize) {
+    LTETimestamp sfn;
+    sfn.setBegin(sfnBegin);
+    sfn.setPeriod(sfnPeriod);
+    sfn.setSize(sfnSize);
+    LTETimestamp tti;
+    tti.setBegin(ttiBegin);
+    tti.setPeriod(ttiPeriod);
+    tti.setSize(ttiSize);
+    LTETimestamp prb;
+    prb.setBegin(prbBegin);
+    prb.setPeriod(prbPeriod);
+    prb.setSize(prbSize);
+    LTESchedulingInfo schInfo;
+    schInfo.setSfn(sfn);
+    schInfo.setTti(tti);
+    schInfo.setPrb(prb);
+    if (direction == UL_SCHEDULING)
+        ulSchedulings.push_back(schInfo);
+    else
+        dlSchedulings.push_back(schInfo);
+}

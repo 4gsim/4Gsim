@@ -51,14 +51,6 @@ enum LTERntiTypes
  	MRnti = 6;	
 }
 
-packet TransportBlock
-{
-    int channel;
-    unsigned int rntiType;
-	unsigned short rnti;			// RA-RNTI (1...60)
-	unsigned int ueId;
-}
-
 //message RAPreamble extends LTEFrame
 //{
 //    unsigned int rapid;  		// RACH preamble id (0...63)    

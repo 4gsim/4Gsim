@@ -51,40 +51,59 @@ def iscomment(line):
                 return False
 
 def parsebracket(asnobj, string, cursor):
-	#print string
 	objstring = ""
 	i = cursor
 	openbrackets = 0
+	openparanthesis = 0
 	objs = list()
+	asnobj.constrainttype = "CONSTRAINED"
+	upperlimit = 0
+	ext = 0
+
 	for i in range(0, len(string)):
-		if string[i] == ',' and openbrackets == 0 and len(objstring) > 0:
+		if string[i] == ',' and openbrackets == 0 and openparanthesis == 0 and len(objstring) > 0:
                         objstring = objstring.strip()
-##                        print objstring + '\n'
+##                        print asnobj.type
+##                        print objstring
                         if objstring == '...':
                                 asnobj.constrainttype = "EXTCONSTRAINED"
                                 objstring = ""
+                                ext = 1
                         else:
                                 childobj = parsestring(objstring)
                                 objs.append(childobj)
                                 childobj.parent = asnobj
                                 objstring = ""
+                                if not ext:
+                                        upperlimit += 1
 		else:
 			if string[i] == '{':
 				openbrackets += 1
 			elif string[i] == '}':
 				if openbrackets != 0:
 					openbrackets -= 1
+			elif string[i] == '(':
+				openparanthesis += 1
+			elif string[i] == ')':
+				if openparanthesis != 0:
+					openparanthesis -= 1
 			objstring += string[i]
 	objstring = objstring.strip()
-##	print objstring + '\n'
         if objstring == '...':
 		asnobj.constrainttype = "EXTCONSTRAINED"
+		ext = 1
 	else:
 		if len(objstring) > 0:
+##                        print asnobj.type
+##                        print objstring
 			childobj = parsestring(objstring)
 			objs.append(childobj)
 			childobj.parent = asnobj
-			asnobj.constrainttype = "CONSTRAINED"
+			if not ext:
+                                upperlimit += 1
+
+        if asnobj.type == "Choice" or asnobj.type == "Sequence":
+                asnobj.upperlimit = upperlimit
 	asnobj.objs = objs
 
 def parsesize(asnobj, string):
@@ -93,7 +112,7 @@ def parsesize(asnobj, string):
 	limits.append("")
 	skip = 0
 	begin = 0
-
+	
 	if 'CONTAINING' in string:
                 asnobj.constrainttype = "UNCONSTRAINED"
                 return
@@ -104,20 +123,25 @@ def parsesize(asnobj, string):
 			if string[i] == '(':
 				break
 			
-	if ',' in string:
-		asnobj.constrainttype = "EXTCONSTRAINED"
-	else:
-		asnobj.constrainttype = "CONSTRAINED"
+##	if ',' in string:
+##		asnobj.constrainttype = "EXTCONSTRAINED"
+##	else:
+##		asnobj.constrainttype = "CONSTRAINED"
 
 	for i in range(begin, len(string)):
-		if string[i] != '.' and string[i] != ')':
+		if string[i] != '.' and string[i] != ')' and string[i] != ',':
 			limits[count] += string[i]
 		if string[i] == '.' and skip == 0:
 			count += 1
 			limits.append("")
 			skip = 1
 		if string[i] == ')':
+##                        print asnobj.type
+                        asnobj.constrainttype = "CONSTRAINED"
 			break
+		if string[i] == ',':
+                        asnobj.constrainttype = "EXTCONSTRAINED"
+                        break
 
 	if count == 0:
 		limits.append(limits[count])
@@ -126,26 +150,39 @@ def parsesize(asnobj, string):
 	if not limits[1].replace("-", "").isdigit():
 		limits[1] = limits[1].replace("-", "_")
 
+##        print limits
 	asnobj.lowerlimit = limits[0]
 	asnobj.upperlimit = limits[1]
 
 def parsetype(asnobj, string):
 	type = ""	
-	
+	localstring = ""
 	if string.split()[-1] == 'OPTIONAL':
 		asnobj.opt = 1
 		string = string.split('OPTIONAL')[0].strip()
 	if 'DEFAULT' in string:
 		asnobj.opt = 1
 		string = string.split('DEFAULT')[0].strip()
-
-	for i in range(0, len(string)):
-		if string[i] == '(' or string[i] == '{' or string[i] == ',' or string[i] == ':':
-			break
+	if 'SIZE' in string:
+                delete = 0
+                for i in range(0, len(string)):
+                        if string[i] == '(':
+                                delete += 1
+                        if delete == 0:
+                                localstring += string[i]
+                        if string[i] == ')':
+                                delete -= 1
+        else:
+                localstring = string
+##        print localstring
+        localstring = localstring.strip()
+	for i in range(0, len(localstring)):
+		if localstring[i] == '(' or localstring[i] == '{' or localstring[i] == ',' or localstring[i] == ':' or localstring.find("OF") == i:
+                        break
 		else:
-			type += string[i]
+			type += localstring[i]
 	type = type.strip()
-	
+
 	if type == 'INTEGER':
 		asnobj.type = "Integer"
 	elif type == 'BIT STRING':
@@ -153,8 +190,11 @@ def parsetype(asnobj, string):
 	elif type == 'OCTET STRING':
 		asnobj.type = "OctetString"
 	elif type == 'SEQUENCE':
-		if ' OF ' in string and '{' not in string:
-			asnobj.type = "SequenceOf"
+		if ' OF ' in localstring:
+                        if localstring.find('{') == -1 or localstring.find('OF') < localstring.find('{'):
+                                asnobj.type = "SequenceOf"
+                        else:
+                                asnobj.type = "Sequence"
 		else:
 			asnobj.type = "Sequence"
 	elif type == 'CHOICE':
@@ -168,8 +208,10 @@ def parsetype(asnobj, string):
 	else:
 		asnobj.type = type.replace("-", "")
 
-	if '::=' in string and string.index(type) < string.index('::='):
+	if '::=' in localstring and localstring.index(type) < localstring.index('::='):
 		asnobj.constrainttype = "CONSTANT"
+
+##        print asnobj.type
 
 def findfilename(string):
 	filename = string
@@ -261,24 +303,24 @@ def parsestring(string):
 						parsesize(asnobj, words[1])
 						break
 					else:
-						words = words[1].split('{', 1)
-						tmpstring = words[1].strip()
-						while len(tmpstring) > 0:
-							if tmpstring[len(tmpstring) - 1] == '}':
-								tmpstring = tmpstring[:-1]
-								break
-							tmpstring = tmpstring[:-1]
-						parsebracket(asnobj, tmpstring, 0)
-						break
+                                                if asnobj.type != "SequenceOf":
+                                                        words = words[1].split('{', 1)
+                                                        tmpstring = words[1].strip()
+                                                        while len(tmpstring) > 0:
+                                                                if tmpstring[len(tmpstring) - 1] == '}':
+                                                                        tmpstring = tmpstring[:-1]
+                                                                        break
+                                                                tmpstring = tmpstring[:-1]
+                                                        parsebracket(asnobj, tmpstring, 0)
+                                                        break
 				else:
 					asnobj.constrainttype = "UNCONSTRAINED"
 
 		if asnobj.type == "SequenceOf":
 			objs = list()
-
 			objstring = words[1].split(' OF ')[1]
 			objstring = asnobj.name + "Item " + objstring 
-
+                        
 			obj = parsestring(objstring.strip())
 
 			objs.append(obj)

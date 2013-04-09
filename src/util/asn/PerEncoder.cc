@@ -34,21 +34,38 @@ bool PerEncoder::encodeConstrainedValue(int64_t lowerBound, int64_t upperBound, 
     int64_t range = upperBound - lowerBound + 1;
     value -= lowerBound;
     int64_t bitCount;
+    int64_t byteCount;
 
-    if (range < 2) {
-        return true;
-    } else if (range < 256) {
+    if (alignmentFlag == UNALIGNED) {
         bitCount = countBits(range - 1, 0);
-        value <<= (8 - bitCount);
-        encodeBits(value, bitCount);
-    } else if (range < 65537) {
-        bitCount = (countBits(range - 1, 0) + 7) / 8;
-        encodeValue(value, bitCount);
+        byteCount = (bitCount + 7) / 8;
+        value <<= byteCount * 8 - bitCount;
+        for (int i = byteCount - 1; i >= 0; i--) {
+            char tmp = (char)(value >> i * 8);
+            if (bitCount > 8) {
+                encodeBits(tmp, 8);
+                bitCount -= 8;
+            } else {
+                encodeBits(tmp, bitCount);
+                bitCount = 0;
+            }
+        }
     } else {
-        bitCount = (countBits(value, 0) + 7) / 8;
-        if (!encodeLength(bitCount, (countBits(lowerBound, 0) + 7) / 8, (countBits(upperBound, 0) + 7) / 8))
-            return false;
-        encodeValue(value, bitCount);
+        if (range < 2) {
+            return true;
+        } else if (range < 256) {
+            bitCount = countBits(range - 1, 0);
+            value <<= (8 - bitCount);
+            encodeBits(value, bitCount);
+        } else if (range < 65537) {
+            byteCount = (countBits(range - 1, 0) + 7) / 8;
+            encodeValue(value, byteCount);
+        } else {
+            byteCount = (countBits(value, 0) + 7) / 8;
+            if (!encodeLength(byteCount, (countBits(lowerBound, 0) + 7) / 8, (countBits(upperBound, 0) + 7) / 8))
+                return false;
+            encodeValue(value, byteCount);
+        }
     }
     return true;
 }
@@ -223,7 +240,11 @@ bool PerEncoder::encodeOpenType(const OpenType& openType) {
 }
 
 bool PerEncoder::encodeBoolean(const Boolean& boolean) {
-    encodeBits(boolean.getValue(), 1);
+    if (boolean.getValue()) {
+        encodeBits(0x80, 1);
+    } else {
+        encodeBits(0x00, 1);
+    }
     return true;
 }
 
@@ -273,7 +294,7 @@ bool PerEncoder::encodeBitString(const BitStringBase& bitString) {
 			return false;
 		bytesNr = (bitString.getLength() + 7) / 8;
 		encodeBytes(bitString.getValue(), bytesNr);
-		if (this->alignmentFlag == ALIGNED)
+		if (this->alignmentFlag == UNALIGNED)
 		    usedBits = bytesNr * 8 - bitString.getLength();
 	} else {
 		if (!bitString.getLength()) {
@@ -283,7 +304,7 @@ bool PerEncoder::encodeBitString(const BitStringBase& bitString) {
 		} else {
 			bytesNr = (bitString.getLength() + 7) / 8;
 			encodeBytes(bitString.getValue(), bytesNr);
-			if (this->alignmentFlag == ALIGNED)
+			if (this->alignmentFlag == UNALIGNED)
 			    usedBits = bytesNr * 8 - bitString.getLength();
 		}
 	}
@@ -393,7 +414,7 @@ bool PerEncoder::encodeChoice(const Choice& choice) {
 
 	if (choice.isExtendable() && isExtension) {
 
-		if (!encodeSmallNumber(choice.getChoice()))
+		if (!encodeSmallNumber(choice.getChoice() - choice.getUpperBound() - 1))
 			return false;
 
 		OpenType openType = (choice.getValue());

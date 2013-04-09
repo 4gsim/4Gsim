@@ -92,7 +92,7 @@ void RRCEntity::sendRRCConnectionRequest() {
     ULCCCHMessageTypeC1 *c1 = new ULCCCHMessageTypeC1();
     c1->setValue(rrcConnReq, ULCCCHMessageTypeC1::rrcConnectionRequest);
 
-    module->sendDown(ULCCCH, ULCCCHMessageType::uLCCCHMessageTypeC1, "RRCConnectionRequest", c1);
+//    module->sendDown(ULCCCH, ULCCCHMessageType::uLCCCHMessageTypeC1, "RRCConnectionRequest", c1);
 }
 
 void RRCEntity::sendRRCConnectionSetup() {
@@ -123,7 +123,7 @@ void RRCEntity::sendRRCConnectionSetup() {
     DLCCCHMessageTypeC1 *c1 = new DLCCCHMessageTypeC1();
     c1->setValue(rrcConnSet, DLCCCHMessageTypeC1::rrcConnectionSetup);
 
-    module->sendDown(DLCCCH, DLCCCHMessageType::dLCCCHMessageTypeC1, "RRCConnectionSetup", c1);
+//    module->sendDown(DLCCCH, DLCCCHMessageType::dLCCCHMessageTypeC1, "RRCConnectionSetup", c1);
 }
 
 void RRCEntity::processRRCConnectionRequest(RRCConnectionRequest *rrcConnReq) {
