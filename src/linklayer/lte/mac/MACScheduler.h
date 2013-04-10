@@ -61,7 +61,7 @@ public:
 //    void setSIB(MACProtocolDataUnit *sib) { this->sib = sib; }
 
     TransportBlock *getMessageToBeSent();
-    void addMACProtocolDataUnit(MACProtocolDataUnit *pdu, int sfn, int tti, int retrNr);
+    void addMACProtocolDataUnit(MACProtocolDataUnit *pdu);
 };
 
 #endif /* MACSCHEDULER_H_ */

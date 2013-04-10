@@ -63,14 +63,20 @@ void RRC::initialize(int stage) {
             mibTimer = new cMessage("MIB-TIMER");
             this->scheduleAt(simTime(), mibTimer);
             mibTimer->setContextPointer(this);
+            int prbBegin = ceil((lteCfg->getDlBandwith() * lteCfg->getBlockSize() / 2 - 36 + 0) / lteCfg->getBlockSize());
+            int prbSize = ceil((lteCfg->getDlBandwith() * lteCfg->getBlockSize() / 2 - 36 + 71) / lteCfg->getBlockSize()) - prbBegin;
+            lteCfg->addFixedScheduling(MIB_MSG_ID, 4, 10, prbBegin, prbSize);
 
             sib1Timer = new cMessage("SIB1-TIMER");
             this->scheduleAt(simTime() + 4 * TTI_VALUE, sib1Timer);
             sib1Timer->setContextPointer(this);
+            // TODO calculate the actual size of SIB1 for PRBs
+            lteCfg->addFixedScheduling(SIB1_MSG_ID, 8, 4, 0, 6);
 
             sib2Timer = new cMessage("SIB2-TIMER");
             this->scheduleAt(simTime() + 5 * TTI_VALUE, sib2Timer);
             sib2Timer->setContextPointer(this);
+            lteCfg->addFixedScheduling(SIB2_MSG_ID, 8, 4, 0, 6);
         }
     }
 }
@@ -176,7 +182,7 @@ void RRC::sendMIB() {
 
     MasterInformationBlock *mib = new MasterInformationBlock(dlBandwith, phichConfig, systemFrameNumber, spare);
 
-    this->sendDown(BCCH0, 0, "MasterInformationBlock", mib);
+    this->sendDown(MIB_MSG_ID, BCCH0, 0, "MasterInformationBlock", mib);
 }
 
 void RRC::sendSIB1() {
@@ -337,10 +343,11 @@ void RRC::sendSIB2() {
     BCCHDLSCHMessageTypeC1 *c1 = new BCCHDLSCHMessageTypeC1();
     c1->setValue(sib, BCCHDLSCHMessageTypeC1::systemInformation);
 
+    lteCfg->
     this->sendDown(BCCH1, BCCHDLSCHMessageType::bCCHDLSCHMessageTypeC1, "SystemInformationBlock2", c1);
 }
 
-void RRC::sendDown(int logChannel, int choice, const char *name, AbstractType *payload) {
+void RRC::sendDown(int msgId, int logChannel, int choice, const char *name, AbstractType *payload) {
 //    using namespace rrc;
 
     RRCMessage *msg = new RRCMessage(name);

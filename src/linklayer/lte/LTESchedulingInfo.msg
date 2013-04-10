@@ -14,20 +14,22 @@
 //
 
 cplusplus {{ 
-	#define INF -1  
+	#define MIB_MSG_ID      0
+	#define SIB1_MSG_ID     1 
+	#define SIB2_MSG_ID		2 
 }}
 
-class LTETimestamp
-{
-	int begin;
-    int period;
-    int size;    
-}
-
-class LTESchedulingInfo
+class LTEFixedSchedulingInfo
 {
     int msgId;
-	LTETimestamp sfn;
-	LTETimestamp tti;
-	LTETimestamp prb;    
+    int sfnPeriod;
+    int ttiPeriod;
+    int prbBegin;
+    int prbSize;
 }
+
+//class LTESchedulingInfo
+//{
+//    int msgId;
+//	int prbId;  
+//}

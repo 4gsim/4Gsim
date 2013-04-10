@@ -36,6 +36,7 @@ LTEConfig::LTEConfig() {
     prachFreqOff = 0;
     preambleFmt = 0;
     raSt = -1;
+    msgIds = 100;
 }
 
 void LTEConfig::initialize() {
@@ -146,7 +147,7 @@ void LTEConfig::loadConfigFromXML(const char *filename) {
 
         switch (prachCfgIndex % 16) {
             case 0: {
-                schedulePRBs(UL_SCHEDULING, -1, 0, 2, INF, 1, 10, INF, prachFreqOff, 1, 6);
+//                schedulePRBs(UL_SCHEDULING, -1, 0, 2, INF, 1, 10, INF, prachFreqOff, 1, 6);
                 break;
             }
             default:
@@ -203,14 +204,10 @@ void LTEConfig::incrementTTI() {
     }
 }
 
-void LTEConfig::schedule(LTESchedulings schedulings, LTESchedulingInfo newSchInfo) {
-    for (unsigned i = 0; i < schedulings; i++) {
-        LTESchedulingInfo oldSchInfo = schedulings[i];
-        if (oldSchInfo.getSfn().getBegin() != )
-    }
-}
+void LTEConfig::schedulePRBs(bool direction, int sfnBegin, int sfnPeriod, int sfnSize, int ttiBegin, int ttiPeriod, int ttiSize, int prbBegin, int prbPeriod, int prbSize) {
 
-void LTEConfig::schedulePRBs(bool direction, int msgId, int sfnBegin, int sfnPeriod, int sfnSize, int ttiBegin, int ttiPeriod, int ttiSize, int prbBegin, int prbPeriod, int prbSize) {
+
+
     LTETimestamp sfn;
     sfn.setBegin(sfnBegin);
     sfn.setPeriod(sfnPeriod);
@@ -220,7 +217,6 @@ void LTEConfig::schedulePRBs(bool direction, int msgId, int sfnBegin, int sfnPer
     tti.setPeriod(ttiPeriod);
     tti.setSize(ttiSize);
     LTETimestamp prb;
-    prb.setBegin(prbBegin);
     prb.setPeriod(prbPeriod);
     prb.setSize(prbSize);
     LTESchedulingInfo schInfo;
@@ -231,4 +227,13 @@ void LTEConfig::schedulePRBs(bool direction, int msgId, int sfnBegin, int sfnPer
         ulSchedulings.push_back(schInfo);
     else
         dlSchedulings.push_back(schInfo);
+}
+
+void LTEConfig::addFixedScheduling(int msgId, int sfnPeriod, int ttiPeriod, int prbBegin, int prbSize) {
+    LTEFixedSchedulingInfo fixedSchedInfo;
+    fixedSchedInfo.setMsgId(msgId);
+    fixedSchedInfo.setSfnPeriod(sfnPeriod);
+    fixedSchedInfo.setTtiPeriod(ttiPeriod);
+    fixedSchedInfo.setPrbBegin(prbBegin);
+    fixedSchedInfo.setPrbSize(prbSize);
 }

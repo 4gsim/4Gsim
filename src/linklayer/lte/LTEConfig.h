@@ -34,6 +34,11 @@ static const unsigned maxHARQMsg3Txs[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 #define UL_SCHEDULING   0
 #define DL_SCHEDULING   1
 
+struct LTEResource {
+    int msgId;
+    int prbId;
+};
+
 class LTEConfig : public cSimpleModule {
 private:
     struct PLMNIdentity {
@@ -59,10 +64,10 @@ private:
     unsigned preambleFmt;
     unsigned prachFreqOff;
 
-    typedef std::vector<LTESchedulingInfo> LTESchedulings;
-    LTESchedulings ulSchedulings;
-    LTESchedulings dlSchedulings;
+    typedef std::vector<LTEFixedSchedulingInfo> LTEFixedSchedulings;
+    LTEFixedSchedulings dlFixedScheds;
 
+    int msgIds;
     int raSt;
 
     unsigned find(double value, const double *array, unsigned size);
@@ -100,6 +105,7 @@ public:
     unsigned getPRACHFreqOffset() { return prachFreqOff; }
     unsigned calcPRACHCfgIndex();
     int getRAState() { return raSt; }
+    int getMessageId() { return msgIds++; }
 
     void setDLBandwith(unsigned dlBandwith) { this->dlBandwith = dlBandwiths[find(dlBandwith, dlBandwiths, 6)]; }
     void setDLBandwithIndex(unsigned index) {  if (index < 7) this->dlBandwith = dlBandwiths[index]; }
@@ -123,7 +129,8 @@ public:
     void setRAState(int raSt) { this->raSt = raSt; }
 
     void incrementTTI();
-    void schedulePRBs(bool direction, int msgId, int sfnBegin, int sfnPeriod, int sfnSize, int ttiBegin, int ttiPeriod, int ttiSize, int prbBegin, int prbPeriod, int prbSize);
+    void schedulePRBs(bool direction, int sfnBegin, int sfnPeriod, int sfnSize, int ttiBegin, int ttiPeriod, int ttiSize, int prbBegin, int prbPeriod, int prbSize);
+    void addFixedScheduling(int msgId, int sfnPeriod, int ttiPeriod, int prbId, int prbSize);
 };
 
 #endif /* LTECONFIG_H_ */

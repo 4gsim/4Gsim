@@ -166,7 +166,7 @@ void MAC::handleUpperMessage(cMessage *msg) {
     }
 
     pdu->setControlInfo(ctrl);
-    scheduler->addMACProtocolDataUnit(pdu, rrcCtrl->getSfn(), rrcCtrl->getTti(), rrcCtrl->getRetrNr());
+    scheduler->addMACProtocolDataUnit(pdu);
 
 
 //

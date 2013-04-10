@@ -52,7 +52,7 @@ public:
 	void handleMessage(cMessage *msg);
 	void handleLowerMessage(cMessage *msg);
 
-	void sendDown(int logChannel, int choice, const char *name, AbstractType *payload);
+	void sendDown(int msgId, int logChannel, int choice, const char *name, AbstractType *payload);
 
 	void sendMIB();
 	void processMIB(MasterInformationBlock mib);
