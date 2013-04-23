@@ -60,12 +60,21 @@ void LTERadio::initialize(int stage) {
     	nb = NotificationBoardAccess().get();
 
     	lteCfg = LTEConfigAccess().get();
+    	lteSched = LTESchedulerAccess().get();
     } else if (stage == 2) {
         //cc->setRadioChannel(myRadioRef, rs.getChannelNumber());
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
             EV << "LTE-Radio: LTE physical module for ENB.\n";
             cc->setRadioChannel(myRadioRef, PRACH);
             cc->setRadioChannel(myRadioRef, PUSCH);
+            // TODO rest of the table 3GPP TS 36211 Table 5.7.1-2 pag. 32
+            switch (lteCfg->getPRACHCfgIndex() % 16) {
+                case 0:
+                    lteSched->addFixedScheduling(UL_SCHEDULING, RA_MSG_ID, 2, prachCfgIndex0TTIs, 1, lteCfg->getPRACHFreqOffset(), 6);
+                    break;
+                default:
+                    break;
+            }
 //            cc->setRadioChannel(myRadioRef, Uplink);
         } else if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
             EV << "LTE-Radio: LTE physical module for UE.\n";
@@ -109,7 +118,7 @@ void LTERadio::handleMessage(cMessage *msg) {
             nb->fireChangeNotification(NF_PHY_PER_CB, NULL);
             this->cancelEvent(ttiTimer);
             this->scheduleAt(simTime() + TTI_VALUE, ttiTimer);
-            lteCfg->incrementTTI();
+            lteSched->incrementTTI();
 //            for (unsigned i = 0; i < PRB_MAX_SIZE; i++) {
 //                sendToChannel(subFrame[i]);
 //                subFrame[i] = new PhysicalResourceBlock();
@@ -236,7 +245,7 @@ void LTERadio::handleRadioMessage(cMessage *msg) {
     PhysicalResourceBlock *prb = check_and_cast<PhysicalResourceBlock*>(msg);
     if (prb->getEncapsulatedPacket()) {
         TransportBlock *tb = check_and_cast<TransportBlock*>(prb->decapsulate());
-        tb->setTbId(lteCfg->getSFN() * 10 + lteCfg->getTTI());
+        tb->setTbId(lteSched->getSFN() * 10 + lteSched->getTTI());
         send(tb, gate("upperLayerOut"));
     }
     delete prb;

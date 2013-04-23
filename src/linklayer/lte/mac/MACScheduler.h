@@ -20,23 +20,24 @@
 #include "LTEFrame_m.h"
 #include "LTEConfig.h"
 
-class MACResource {
-public:
-    MACProtocolDataUnit *pdu;
-    int sfn;
-    int tti;
-    int retrNr;
-};
+//class MACResource {
+//public:
+//    MACProtocolDataUnit *pdu;
+//    int sfn;
+//    int tti;
+//    int retrNr;
+//};
 
 class MACScheduler {
 private:
-//    std::vector<MACProtocolDataUnit*> schMsgs;
+    typedef std::vector<MACProtocolDataUnit*> MACQueue;
+    MACQueue queue;
 //    MACProtocolDataUnit *mib;
 //    MACProtocolDataUnit *sib;
 
-    typedef std::vector<MACResource> MACResources;
+//    typedef std::vector<MACResource> MACResources;
 
-    MACResources resources;
+//    MACResources resources;
 
 //    unsigned ttiId;
 //    unsigned sfn;

@@ -31,6 +31,7 @@
 #include "LTEPhyControlInfo_m.h"
 #include "LTEFrame_m.h"
 #include "LTEConfigAccess.h"
+#include "LTESchedulerAccess.h"
 
 #define HARQ_FEEDBACK_DELAY 1
 #define HARQ_FEEDBACK_ACK   1
@@ -42,7 +43,8 @@
 //	user = 1
 //};
 
-static const char *prbNames[PRB_MAX_SIZE] = { "PRB1", "PRB2", "PRB3", "PRB4", "PRB5", "PRB6" };
+//static const char *prbNames[PRB_MAX_SIZE] = { "PRB1", "PRB2", "PRB3", "PRB4", "PRB5", "PRB6" };
+static const int prachCfgIndex0TTIs[1] = { 1 };
 
 class LTERadio : public ChannelAccess, INotifiable {
 public:
@@ -64,6 +66,7 @@ protected:
     NotificationBoard *nb;
 
     LTEConfig *lteCfg;
+    LTEScheduler *lteSched;
 
     unsigned dir;
     char *dirStr;

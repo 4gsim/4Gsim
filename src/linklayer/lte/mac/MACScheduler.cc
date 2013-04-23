@@ -27,43 +27,46 @@ MACScheduler::~MACScheduler() {
     // TODO Auto-generated destructor stub
 }
 
-void MACScheduler::addMACProtocolDataUnit(MACProtocolDataUnit *pdu, int sfn, int tti, int retrNr) {
-    MACResource resource;
-    resource.pdu = pdu;
-    resource.sfn = sfn;
-    resource.tti = tti;
-    resource.retrNr = retrNr;
-    resources.push_back(resource);
+void MACScheduler::addMACProtocolDataUnit(MACProtocolDataUnit *pdu) {
+//    if (pdu->getKind() == MIB_MSG_ID || pdu->getKind() == SIB1_MSG_ID || pdu->getKind() == SIB2_MSG_ID) {
+//
+//    }
+//    MACResource resource;
+//    resource.pdu = pdu;
+//    resource.sfn = sfn;
+//    resource.tti = tti;
+//    resource.retrNr = retrNr;
+//    resources.push_back(resource);
 }
 
 TransportBlock *MACScheduler::getMessageToBeSent() {
-    unsigned prbs[lteCfg->getDlBandwith()];
-    memset(prbs, 0, lteCfg->getDlBandwith());
-
-    if (lteCfg->getRAState() == 0) {
-        initRandomAccessProcedure();
-    }
-
-    for (MACResources::iterator it = resources.begin(); it != resources.end(); ++it) {
-        MACResource resource = (*it);
-        if ((resource.sfn == -1 && resource.tti == lteCfg->getTTI()) ||
-                (lteCfg->getSFN() % resource.sfn == 0 &&  resource.tti == lteCfg->getTTI())) {
-            MACProtocolDataUnit *pdu = resource.pdu;
-            MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(pdu->getControlInfo());
-            TransportBlock *tb = new TransportBlock();
-            tb->setName(pdu->getName());
-            tb->encapsulate(pdu->dup());
-            tb->setChannel(ctrl->getChannel());
-            tb->setRntiType(ctrl->getRntiType());
-            tb->setRnti(ctrl->getRnti());
-            resource.retrNr--;
-            if (!resource.retrNr) {
-                delete pdu;
-                resources.erase(it);
-            }
-            return tb;
-        }
-    }
+//    unsigned prbs[lteCfg->getDlBandwith()];
+//    memset(prbs, 0, lteCfg->getDlBandwith());
+//
+//    if (lteCfg->getRAState() == 0) {
+//        initRandomAccessProcedure();
+//    }
+//
+//    for (MACResources::iterator it = resources.begin(); it != resources.end(); ++it) {
+//        MACResource resource = (*it);
+//        if ((resource.sfn == -1 && resource.tti == lteCfg->getTTI()) ||
+//                (lteCfg->getSFN() % resource.sfn == 0 &&  resource.tti == lteCfg->getTTI())) {
+//            MACProtocolDataUnit *pdu = resource.pdu;
+//            MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(pdu->getControlInfo());
+//            TransportBlock *tb = new TransportBlock();
+//            tb->setName(pdu->getName());
+//            tb->encapsulate(pdu->dup());
+//            tb->setChannel(ctrl->getChannel());
+//            tb->setRntiType(ctrl->getRntiType());
+//            tb->setRnti(ctrl->getRnti());
+//            resource.retrNr--;
+//            if (!resource.retrNr) {
+//                delete pdu;
+//                resources.erase(it);
+//            }
+//            return tb;
+//        }
+//    }
 
 //    if (lteCfg->getTTIid() == 0 && mib != NULL) { // MIB send time
 //        // MIB is sent alone in one transparent MAC PDU

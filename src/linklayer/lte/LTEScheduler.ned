@@ -11,15 +11,11 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-//
+// 
 
-cplusplus {{   
-	#include "LTESchedulingInfo_m.h"
-}}
+package inet.linklayer.lte;
 
-class noncobject LTESchedulingInfo;
+simple LTEScheduler
+{
 
-//class RRCControlInfo extends LTESchedulingInfo
-//{
-//    int channel;
-//}
+}

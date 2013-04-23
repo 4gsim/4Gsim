@@ -23,6 +23,7 @@
 #include "SubscriberTableAccess.h"
 #include "RRCControlInfo_m.h"
 #include "PerEncoder.h"
+#include "LTERadio.h"
 
 Define_Module(RRC);
 
@@ -47,6 +48,7 @@ void RRC::initialize(int stage) {
     if (stage == 4) {
         subT = SubscriberTableAccess().get();
         lteCfg = LTEConfigAccess().get();
+        lteSched = LTESchedulerAccess().get();
 
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
             EV << "LTE-RRC: RRC module for UE.\n";
@@ -65,18 +67,18 @@ void RRC::initialize(int stage) {
             mibTimer->setContextPointer(this);
             int prbBegin = ceil((lteCfg->getDlBandwith() * lteCfg->getBlockSize() / 2 - 36 + 0) / lteCfg->getBlockSize());
             int prbSize = ceil((lteCfg->getDlBandwith() * lteCfg->getBlockSize() / 2 - 36 + 71) / lteCfg->getBlockSize()) - prbBegin;
-            lteCfg->addFixedScheduling(MIB_MSG_ID, 4, 10, prbBegin, prbSize);
+            lteSched->addFixedScheduling(DL_SCHEDULING, MIB_MSG_ID, 1, mibTTIs, 1, prbBegin, prbSize);
 
             sib1Timer = new cMessage("SIB1-TIMER");
             this->scheduleAt(simTime() + 4 * TTI_VALUE, sib1Timer);
             sib1Timer->setContextPointer(this);
             // TODO calculate the actual size of SIB1 for PRBs
-            lteCfg->addFixedScheduling(SIB1_MSG_ID, 8, 4, 0, 6);
+            lteSched->addFixedScheduling(DL_SCHEDULING, SIB1_MSG_ID, 2, sib1TTIs, 1, 0, 6);
 
             sib2Timer = new cMessage("SIB2-TIMER");
             this->scheduleAt(simTime() + 5 * TTI_VALUE, sib2Timer);
             sib2Timer->setContextPointer(this);
-            lteCfg->addFixedScheduling(SIB2_MSG_ID, 8, 4, 0, 6);
+            lteSched->addFixedScheduling(DL_SCHEDULING, SIB2_MSG_ID, 2, sib2TTIs, 1, 0, 6);
         }
     }
 }
@@ -105,7 +107,7 @@ void RRC::handleMessage(cMessage *msg) {
 
 void RRC::handleLowerMessage(cMessage *msg) {
     RRCMessage *rrcMsg = check_and_cast<RRCMessage*>(msg);
-    RRCControlInfo *ctrl = check_and_cast<RRCControlInfo*>(msg->getControlInfo());
+    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
     SequencePtr seq = rrcMsg->getSdu();
     switch(ctrl->getChannel()) {
         case ULCCCH: {
@@ -176,7 +178,7 @@ void RRC::sendMIB() {
     PHICHConfigphich_Resource phichResource = PHICHConfigphich_Resource(lteCfg->getPhichResourceSel());
     PHICHConfig phichConfig = PHICHConfig(phichDuration, phichResource);
 
-    unsigned char sfn = (unsigned char)(lteCfg->getSFN() >> 2);
+    unsigned char sfn = (unsigned char)(lteSched->getSFN() >> 2);
     MasterInformationBlockSystemFrameNumber systemFrameNumber = MasterInformationBlockSystemFrameNumber((char *)&sfn);
     MasterInformationBlockSpare spare = MasterInformationBlockSpare();
 
@@ -221,11 +223,11 @@ void RRC::sendSIB1() {
     BCCHDLSCHMessageTypeC1 *c1 = new BCCHDLSCHMessageTypeC1();
     c1->setValue(sib1, BCCHDLSCHMessageTypeC1::systemInformationBlockType1);
 
-    this->sendDown(BCCH1, BCCHDLSCHMessageType::bCCHDLSCHMessageTypeC1, "SystemInformationBlock1", c1);
+    this->sendDown(SIB1_MSG_ID, BCCH1, BCCHDLSCHMessageType::bCCHDLSCHMessageTypeC1, "SystemInformationBlock1", c1);
 }
 
 void RRC::sendSIB2() {
-    // TODO power ramping params, bcch config, pcch config, prach config, pdsch config, pusch config
+    // TODO preambles group a config, power ramping params, bcch config, pcch config, prach config, pdsch config, pusch config
     // pucch config, sounding rs ul config, uplink power control, ue timers, freq info, time allignment timer
     /* RACHConfigCommon */
     RACHConfigCommonPreambleInfonumberOfRA_Preambles nrOfRAPreambles = RACHConfigCommonPreambleInfonumberOfRA_Preambles(lteCfg->getNrOfRAPreamblesSel());
@@ -251,7 +253,7 @@ void RRC::sendSIB2() {
 
     /* PRACHConfigSIB */
     PRACHConfigRootSequenceIndex rootSeqIndex = PRACHConfigRootSequenceIndex(22);
-    PRACHConfigInfoPrachConfigIndex prachCfgIndex = PRACHConfigInfoPrachConfigIndex(3);
+    PRACHConfigInfoPrachConfigIndex prachCfgIndex = PRACHConfigInfoPrachConfigIndex(lteCfg->getPRACHCfgIndex());
     PRACHConfigInfoHighSpeedFlag highSpeedFlag = PRACHConfigInfoHighSpeedFlag(false);
     PRACHConfigInfoZeroCorrelationZoneConfig zeroCorrZoneCfg = PRACHConfigInfoZeroCorrelationZoneConfig(5);
     PRACHConfigInfoPrachFreqOffset prachFreqOff = PRACHConfigInfoPrachFreqOffset(lteCfg->getPRACHFreqOffset());
@@ -343,8 +345,7 @@ void RRC::sendSIB2() {
     BCCHDLSCHMessageTypeC1 *c1 = new BCCHDLSCHMessageTypeC1();
     c1->setValue(sib, BCCHDLSCHMessageTypeC1::systemInformation);
 
-    lteCfg->
-    this->sendDown(BCCH1, BCCHDLSCHMessageType::bCCHDLSCHMessageTypeC1, "SystemInformationBlock2", c1);
+    this->sendDown(SIB2_MSG_ID, BCCH1, BCCHDLSCHMessageType::bCCHDLSCHMessageTypeC1, "SystemInformationBlock2", c1);
 }
 
 void RRC::sendDown(int msgId, int logChannel, int choice, const char *name, AbstractType *payload) {
@@ -393,6 +394,7 @@ void RRC::sendDown(int msgId, int logChannel, int choice, const char *name, Abst
     }
     ctrl->setChannel(logChannel);
     msg->setControlInfo(ctrl);
+    msg->setKind(msgId);
     this->send(msg, gate("lowerLayerOut"));
 }
 
@@ -403,7 +405,7 @@ void RRC::processMIB(MasterInformationBlock mib) {
         PHICHConfig phichConfig = mib.getPhichConfig();
         lteCfg->setPhichDurationIndex(phichConfig.getPHICHConfigphich_Duration().getValue());
         lteCfg->setPhichResourceIndex(phichConfig.getPHICHConfigphich_Resource().getValue());
-        lteCfg->setSFN(mib.getMasterInformationBlockSystemFrameNumber().getValue()[0]);
+        lteSched->setSFN(mib.getMasterInformationBlockSystemFrameNumber().getValue()[0]);
     }
 }
 
@@ -422,6 +424,13 @@ void RRC::processSIB2(SystemInformationBlockType2 *sib2) {
     RACHConfigCommonPreambleInfo preambleInfo = rachCfg.getRACHConfigCommonPreambleInfo();
 
     lteCfg->setNrOfRAPreamblesIndex(preambleInfo.getRACHConfigCommonPreambleInfonumberOfRA_Preambles().getValue());
+    if (preambleInfo.getOptFlag(0)) {
+        RACHConfigCommonPreambleInfoPreamblesGroupAConfig preamblesGrACfg = preambleInfo.getRACHConfigCommonPreambleInfoPreamblesGroupAConfig();
+        lteCfg->setSizeOfRAPreamblesGroupAIndex(preamblesGrACfg.getRACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA().getValue());
+        // TODO message size group a and messsage power offset group b
+    } else {
+        lteCfg->setSizeOfRAPreamblesGroupAIndex(lteCfg->getNrOfRAPreamblesSel());
+    }
 
     RACHConfigCommonRaSupervisionInfo raSupervInfo = rachCfg.getRACHConfigCommonRaSupervisionInfo();
 
@@ -431,7 +440,24 @@ void RRC::processSIB2(SystemInformationBlockType2 *sib2) {
 
     lteCfg->setMaxHARQMsg3Tx(rachCfg.getRACHConfigCommonMaxHARQMsg3Tx().getValue());
 
-    lteCfg->setRAState(0);
+    PRACHConfigSIB prachCfg = radioResCfgComm.getPrachConfig();
+
+    PRACHConfigInfo prachCfgInfo = prachCfg.getPrachConfigInfo();
+
+    lteCfg->setPRACHCfgIndex(prachCfgInfo.getPRACHConfigInfoPrachConfigIndex().getValue());
+    lteCfg->setPRACHFreqOffset(prachCfgInfo.getPRACHConfigInfoPrachFreqOffset().getValue());
+
+    // TODO rest of the table 3GPP TS 36211 Table 5.7.1-2 pag. 32
+    switch (lteCfg->getPRACHCfgIndex() % 16) {
+        case 0:
+            lteSched->addFixedScheduling(UL_SCHEDULING, RA_MSG_ID, 2, prachCfgIndex0TTIs, 1, lteCfg->getPRACHFreqOffset(), 6);
+            break;
+        default:
+            break;
+    }
+
+//    lteCfg->setRAState(0);
+
 }
 
 //void RRC::processRRCConnectionRequest(RRCConnectionRequest *rrcConnReq) {

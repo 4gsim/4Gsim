@@ -1,0 +1,105 @@
+version 2
+run General-0-20130419-14:02:37-2156
+attr configname General
+attr datetime 20130419-14:02:37
+attr experiment General
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvars2 $repetition=0
+attr measurement ""
+attr network Test1
+attr processid 2156
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+
+scalar Test1.enb.networkLayer.arp 	failedResolution:count 	0
+attr title  "ARP failed resolutions, count"
+scalar Test1.enb.networkLayer.arp 	initiatedResolution:count 	0
+attr title  "ARP initiated resolutions, count"
+scalar Test1.enb.networkLayer.arp 	sentReplies:count 	0
+attr title  "ARP replies sent, count"
+scalar Test1.enb.networkLayer.arp 	sentReq:count 	0
+attr title  "ARP request sent, count"
+scalar Test1.enb.pingApp 	pingRxSeq:count 	0
+attr interpolationmode  none
+attr title  "ping rx seq, count"
+scalar Test1.enb.pingApp 	pingTxSeq:count 	0
+attr interpolationmode  none
+attr title  "ping tx seq, count"
+scalar Test1.enb.pingApp 	numOutOfOrderArrivals:last 	-1.#IND
+attr interpolationmode  none
+attr title  "ping out-of-order arrivals, last"
+scalar Test1.enb.pingApp 	numLost:last 	-1.#IND
+attr interpolationmode  none
+attr title  "pings lost, last"
+statistic Test1.enb.pingApp 	rtt:histogram
+field count 0
+field mean 0
+field stddev -1.#IND
+field sum 0
+field sqrsum 0
+field min 0
+field max 0
+attr interpolationmode  none
+attr title  "ping round-trip time, histogram"
+attr unit  s
+bin	-INF	0
+bin	-0.5	0
+bin	-0.46666666666667	0
+bin	-0.43333333333333	0
+bin	-0.4	0
+bin	-0.36666666666667	0
+bin	-0.33333333333333	0
+bin	-0.3	0
+bin	-0.26666666666667	0
+bin	-0.23333333333333	0
+bin	-0.2	0
+bin	-0.16666666666667	0
+bin	-0.13333333333333	0
+bin	-0.1	0
+bin	-0.066666666666667	0
+bin	-0.033333333333333	0
+bin	-6.9388939039072e-018	0
+bin	0.033333333333333	0
+bin	0.066666666666667	0
+bin	0.1	0
+bin	0.13333333333333	0
+bin	0.16666666666667	0
+bin	0.2	0
+bin	0.23333333333333	0
+bin	0.26666666666667	0
+bin	0.3	0
+bin	0.33333333333333	0
+bin	0.36666666666667	0
+bin	0.4	0
+bin	0.43333333333333	0
+bin	0.46666666666667	0
+bin	0.5	0
+scalar Test1.enb.udp 	droppedPkBadChecksum:count 	0
+attr interpolationmode  none
+attr title  "packets dropped (checksum error), count"
+scalar Test1.enb.udp 	droppedPkWrongPort:count 	0
+attr interpolationmode  none
+attr title  "packets dropped (wrong port), count"
+scalar Test1.enb.udp 	passedUpPk:count 	0
+attr interpolationmode  none
+attr title  "packets passed up, count"
+scalar Test1.enb.udp 	rcvdPk:count 	0
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, count"
+scalar Test1.enb.udp 	rcvdPk:sum(packetBytes) 	0
+attr interpolationmode  none
+attr source  rcvdPk
+attr title  "packets received, sum(packetBytes)"
+scalar Test1.enb.udp 	sentPk:count 	0
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, count"
+scalar Test1.enb.udp 	sentPk:sum(packetBytes) 	0
+attr interpolationmode  none
+attr source  sentPk
+attr title  "packets sent, sum(packetBytes)"

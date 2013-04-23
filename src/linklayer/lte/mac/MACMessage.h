@@ -54,27 +54,11 @@ public:
     virtual MACServiceDataUnitPtr& getSdus(unsigned int k);
 
     /*
-     * Method for pushing GTP information element at the end of the vector.
+     * Method for pushing MACSubheader and MACServiceDataUnit to the vectors.
      */
     void pushSubHdr(MACSubHeaderPtr subHdr) { subHdrs.push_back(subHdr); }
     void pushSdu(MACServiceDataUnitPtr sdu) { sdus.push_back(sdu); }
 
-//    /*
-//     * Method for printing the message contents. Currently it prints info
-//     * only for the header.
-//     */
-//    void print();
-//
-//    /*
-//     * Method for finding a GTP IE with a given GTP IE type and instance. It returns
-//     * NULL, if the GTP IE is not found.
-//     */
-//    GTPInfoElemPtr findIe(unsigned char type, unsigned char instance);
-//
-//    /*
-//     * Method for finding a range of GTP IEs with a given GTP IE type and instance.
-//     */
-//    std::vector<GTPInfoElemPtr> findIes(unsigned char type, unsigned char instance);
 };
 
 #endif /* MACMESSAGE_H_ */

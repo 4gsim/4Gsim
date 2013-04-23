@@ -18,6 +18,7 @@
 package inet.nodes._4gsim;
 
 import inet.linklayer.lte.LTEConfig;
+import inet.linklayer.lte.LTEScheduler;
 import inet.linklayer.lte.mac.MAC;
 import inet.linklayer.lte.pdcp.PDCP;
 import inet.linklayer.lte.rlc.RLC;
@@ -47,7 +48,7 @@ module ENB
 {
     parameters:
         @node();
-        @display("i=device/antennatower_l;bgb=559,396");
+        @display("i=device/antennatower_l;bgb=617,396");
         int numSctpApps = default(0);
         string sctpAppType = default("n/a");
         string configFile;
@@ -70,8 +71,11 @@ module ENB
         }
         lteConfig: LTEConfig {
             parameters:
-            	@display("p=421,33");
-				configFile = configFile;
+                @display("p=421,33");
+                configFile = configFile;
+        }
+        lteScheduler: LTEScheduler {
+            @display("p=575,33");
         }
         lteRadio: LTERadio {
             @display("p=76,360");

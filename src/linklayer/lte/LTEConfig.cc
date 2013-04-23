@@ -25,9 +25,8 @@ LTEConfig::LTEConfig() {
     symbNumber = 7;
     cellId = NULL;
     tac = NULL;
-    tti = 0;
-    sfn = 0;
     nrOfRAPreambles = 52;
+    sizeOfRAPreamblesGroupA = 52;
     preambleTransMax = 6;
     raRespWdwSize = 10;
     macContResolTimer = 48;
@@ -36,7 +35,8 @@ LTEConfig::LTEConfig() {
     prachFreqOff = 0;
     preambleFmt = 0;
     raSt = -1;
-    msgIds = 100;
+    transMode = FDD_MODE;
+    raPreambleIndex = 0;
 }
 
 void LTEConfig::initialize() {
@@ -53,9 +53,8 @@ void LTEConfig::initialize() {
     WATCH(phichDuration);
     WATCH(phichResource);
     WATCH(symbNumber);
-    WATCH(tti);
-    WATCH(sfn);
     WATCH(nrOfRAPreambles);
+    WATCH(sizeOfRAPreamblesGroupA);
     WATCH(preambleTransMax);
     WATCH(raRespWdwSize);
     WATCH(macContResolTimer);
@@ -145,15 +144,6 @@ void LTEConfig::loadConfigFromXML(const char *filename) {
 
         prachFreqOff = uniform(0, dlBandwith - 6);
 
-        switch (prachCfgIndex % 16) {
-            case 0: {
-//                schedulePRBs(UL_SCHEDULING, -1, 0, 2, INF, 1, 10, INF, prachFreqOff, 1, 6);
-                break;
-            }
-            default:
-                break;
-        }
-
         if (lteCfgNode->getAttribute("phichDuration")) {
             setPhichDuration(lteCfgNode->getAttribute("phichDuration"));
         }
@@ -195,45 +185,28 @@ void LTEConfig::loadConfigFromXML(const char *filename) {
     }
 }
 
-void LTEConfig::incrementTTI() {
-    tti++;
+//void LTEConfig::schedulePRBs(bool direction, int sfnBegin, int sfnPeriod, int sfnSize, int ttiBegin, int ttiPeriod, int ttiSize, int prbBegin, int prbPeriod, int prbSize) {
+//
+//
+//
+//    LTETimestamp sfn;
+//    sfn.setBegin(sfnBegin);
+//    sfn.setPeriod(sfnPeriod);
+//    sfn.setSize(sfnSize);
+//    LTETimestamp tti;
+//    tti.setBegin(ttiBegin);
+//    tti.setPeriod(ttiPeriod);
+//    tti.setSize(ttiSize);
+//    LTETimestamp prb;
+//    prb.setPeriod(prbPeriod);
+//    prb.setSize(prbSize);
+//    LTESchedulingInfo schInfo;
+//    schInfo.setSfn(sfn);
+//    schInfo.setTti(tti);
+//    schInfo.setPrb(prb);
+//    if (direction == UL_SCHEDULING)
+//        ulSchedulings.push_back(schInfo);
+//    else
+//        dlSchedulings.push_back(schInfo);
+//}
 
-    if (tti % 10 == 0) {
-        tti = 0;
-        sfn++;
-    }
-}
-
-void LTEConfig::schedulePRBs(bool direction, int sfnBegin, int sfnPeriod, int sfnSize, int ttiBegin, int ttiPeriod, int ttiSize, int prbBegin, int prbPeriod, int prbSize) {
-
-
-
-    LTETimestamp sfn;
-    sfn.setBegin(sfnBegin);
-    sfn.setPeriod(sfnPeriod);
-    sfn.setSize(sfnSize);
-    LTETimestamp tti;
-    tti.setBegin(ttiBegin);
-    tti.setPeriod(ttiPeriod);
-    tti.setSize(ttiSize);
-    LTETimestamp prb;
-    prb.setPeriod(prbPeriod);
-    prb.setSize(prbSize);
-    LTESchedulingInfo schInfo;
-    schInfo.setSfn(sfn);
-    schInfo.setTti(tti);
-    schInfo.setPrb(prb);
-    if (direction == UL_SCHEDULING)
-        ulSchedulings.push_back(schInfo);
-    else
-        dlSchedulings.push_back(schInfo);
-}
-
-void LTEConfig::addFixedScheduling(int msgId, int sfnPeriod, int ttiPeriod, int prbBegin, int prbSize) {
-    LTEFixedSchedulingInfo fixedSchedInfo;
-    fixedSchedInfo.setMsgId(msgId);
-    fixedSchedInfo.setSfnPeriod(sfnPeriod);
-    fixedSchedInfo.setTtiPeriod(ttiPeriod);
-    fixedSchedInfo.setPrbBegin(prbBegin);
-    fixedSchedInfo.setPrbSize(prbSize);
-}

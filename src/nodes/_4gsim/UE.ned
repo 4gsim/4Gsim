@@ -18,6 +18,7 @@
 package inet.nodes._4gsim;
 
 import inet.linklayer.lte.LTEConfig;
+import inet.linklayer.lte.LTEScheduler;
 import inet.linklayer.lte.mac.MAC;
 import inet.linklayer.lte.pdcp.PDCP;
 import inet.linklayer.lte.rlc.RLC;
@@ -52,8 +53,11 @@ module UE
         }
         lteConfig: LTEConfig {
             parameters:
-            	@display("p=433,202");
-        		configFile = configFile;
+                @display("p=433,202");
+                configFile = configFile;
+        }
+        lteScheduler: LTEScheduler {
+            @display("p=424,290");
         }
         lteRadio: LTERadio {
             @display("p=273,420");

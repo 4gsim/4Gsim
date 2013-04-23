@@ -23,13 +23,16 @@
 #include "ASNTypes.h"
 #include "SubscriberTable.h"
 #include "LTEConfigAccess.h"
+#include "LTESchedulerAccess.h"
 
 using namespace rrc;
 
 #define UE_NODE_TYPE        0
 #define ENB_NODE_TYPE       1
 
-using namespace rrc;
+static const int mibTTIs[1] = { 0 };
+static const int sib1TTIs[1] = { 4 };
+static const int sib2TTIs[1] = { 5 };
 
 class RRC : public cSimpleModule {
 private:
@@ -41,7 +44,7 @@ private:
     cMessage *sib2Timer;
 
     LTEConfig *lteCfg;
-
+    LTEScheduler *lteSched;
 public:
 	RRC();
 	virtual ~RRC();

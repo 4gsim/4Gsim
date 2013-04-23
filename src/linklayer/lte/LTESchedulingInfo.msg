@@ -17,13 +17,15 @@ cplusplus {{
 	#define MIB_MSG_ID      0
 	#define SIB1_MSG_ID     1 
 	#define SIB2_MSG_ID		2 
+	#define RA_MSG_ID		3
 }}
 
 class LTEFixedSchedulingInfo
 {
+    @customize(true);
     int msgId;
     int sfnPeriod;
-    int ttiPeriod;
+    abstract int ttis[];
     int prbBegin;
     int prbSize;
 }

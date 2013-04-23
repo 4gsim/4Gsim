@@ -17,7 +17,7 @@
 #include "RLCMessage_m.h"
 #include "RLC.h"
 #include "INETDefs.h"
-#include "RRCControlInfo_m.h"
+#include "LTEControlInfo_m.h"
 
 RLCTMEntity::RLCTMEntity() {
 	// TODO Auto-generated constructor stub
@@ -30,9 +30,10 @@ RLCTMEntity::~RLCTMEntity() {
 
 void RLCTMEntity::processMessage(cMessage *msg) {
     // TODO implement transmission buffer
-    RRCControlInfo *ctrl = check_and_cast<RRCControlInfo*>(msg->removeControlInfo());
+    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
     if (msg->arrivedOn("upperLayerIn")) {
         TMDProtocolDataUnit *pdu = new TMDProtocolDataUnit(msg->getName());
+        pdu->setKind(msg->getKind());
         pdu->encapsulate(PK(msg));
         pdu->setControlInfo(ctrl);
         module->send(pdu, module->gate("lowerLayerOut"));

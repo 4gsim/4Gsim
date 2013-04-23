@@ -42,8 +42,10 @@ void MAC::initialize(int stage) {
     if (stage == 4) {
         nb = NotificationBoardAccess().get();
         nb->subscribe(this, NF_PHY_PER_CB);
+        nb->subscribe(this, NF_MAC_BEGIN_RA);
 
         lteCfg = LTEConfigAccess().get();
+        lteSched = LTESchedulerAccess().get();
 
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
 //            rnti = uniform(RA_RNTI_MIN_VALUE, RA_RNTI_MAX_VALUE);
@@ -142,12 +144,12 @@ void MAC::handleLowerMessage(cMessage *msg) {
 
 void MAC::handleUpperMessage(cMessage *msg) {
 //    unsigned char lcid;
-    RRCControlInfo *rrcCtrl = check_and_cast<RRCControlInfo*>(msg->removeControlInfo());
+    LTEControlInfo *lteCtrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
 
     MACProtocolDataUnit *pdu = new MACProtocolDataUnit(msg->getName());
     MACControlInfo *ctrl = new MACControlInfo();
 
-    switch(rrcCtrl->getChannel()) {
+    switch(lteCtrl->getChannel()) {
         case BCCH0: {
             pdu->encapsulate(PK(msg));
             ctrl->setRnti(NoRnti);
@@ -164,9 +166,13 @@ void MAC::handleUpperMessage(cMessage *msg) {
         default:
             break;
     }
-
+    pdu->setKind(msg->getKind());
     pdu->setControlInfo(ctrl);
-    scheduler->addMACProtocolDataUnit(pdu);
+
+    if (pdu->getKind() != -1) { // already scheduled messages
+        queue[pdu->getKind()] = pdu;
+    }
+//    scheduler->addMACProtocolDataUnit(pdu);
 
 
 //
@@ -218,7 +224,7 @@ const char *MAC::channelName(int channelNumber) {
 }
 
 void MAC::sendUp(cMessage *msg, int channelNumber) {
-    RRCControlInfo *ctrl = new RRCControlInfo();
+    LTEControlInfo *ctrl = new LTEControlInfo();
     ctrl->setChannel(channelNumber);
     msg->setControlInfo(ctrl);
     this->send(msg, gate("upperLayerOut"));
@@ -240,10 +246,51 @@ void MAC::receiveChangeNotification(int category, const cPolymorphic *details) {
 //            }
 //        }
         // continue scheduling
-        TransportBlock *tb = scheduler->getMessageToBeSent();
-        if (tb)
+        MACProtocolDataUnit *pdu = NULL;
+        if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
+            int msgId = lteSched->getMessageId(DL_SCHEDULING);
+            if (msgId != -1) {
+                pdu = queue[msgId];
+            }
+        }
+
+        if (pdu != NULL) {
+            MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(pdu->getControlInfo());
+            TransportBlock *tb = new TransportBlock();
+            tb->setName(pdu->getName());
+            tb->encapsulate(pdu->dup());
+            tb->setChannel(ctrl->getChannel());
+            tb->setRntiType(ctrl->getRntiType());
+            tb->setRnti(ctrl->getRnti());
             this->send(tb, gate("lowerLayerOut"));
+        }
+//        TransportBlock *tb = scheduler->getMessageToBeSent();
+//        if (tb)
+//            this->send(tb, gate("lowerLayerOut"));
 //        ttiId++;
+    } else if (category == NF_MAC_BEGIN_RA) {
+        // Random Access Procedure initialization
+        msg3Buffer.clear();
+        preambleTransCount = 1;
+        backoffParam = 0;
+
+        // Random Access Resource selection
+        unsigned raPreamble = 0;
+        unsigned prachMaskIndex;
+        // TODO if ra-preambleindex and ra-prach-maskindex are signaled
+        // else
+        if (msg3Buffer.size() == 0) {   // msg3 has not been transmitted
+            if (lteCfg->getNrOfRAPreambles() != lteCfg->getSizeOfRAPreamblesGroupA()) { // TODO select group B
+
+            } else {    // select group A
+                raPreamble = uniform(0, lteCfg->getSizeOfRAPreamblesGroupA());
+                prachMaskIndex = 0;
+
+                if (lteCfg->getTransmissionMode() == TDD_MODE && prachMaskIndex == 0) {
+
+                }
+            }
+        }
     }
 }
 

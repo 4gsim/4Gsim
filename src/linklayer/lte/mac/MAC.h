@@ -23,6 +23,7 @@
 #include "HARQEntity.h"
 #include "MACScheduler.h"
 #include "LTEConfigAccess.h"
+#include "LTESchedulerAccess.h"
 
 #define RA_RNTI_MIN_VALUE   1
 #define RA_RNTI_MAX_VALUE   60
@@ -35,6 +36,8 @@ protected:
     unsigned rntiType;
     unsigned short rnti;
     unsigned ueId;
+    unsigned preambleTransCount;
+    unsigned backoffParam;
 
     cMessage *ttiTimer;
 //    unsigned ttiId;
@@ -48,6 +51,11 @@ protected:
 //    MACProtocolDataUnit *bcchMsg;
 
     LTEConfig *lteCfg;
+    LTEScheduler *lteSched;
+
+    typedef std::map<int, MACProtocolDataUnit*> MACBuffer;
+    MACBuffer queue;
+    MACBuffer msg3Buffer;
 
     virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 
