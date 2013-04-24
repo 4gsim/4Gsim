@@ -62,7 +62,8 @@ private:
     unsigned preambleFmt;
     unsigned prachFreqOff;
     bool transMode;
-    unsigned raPreambleIndex;
+    unsigned preambleIndex;
+    int prachMaskIndex;
 
     int raSt;
 
@@ -102,7 +103,8 @@ public:
     unsigned getPRACHCfgIndex() { return prachCfgIndex; }
     int getRAState() { return raSt; }
     bool getTransmissionMode() { return transMode; }
-    unsigned getRAPreambleIndex() { return raPreambleIndex; }
+    unsigned getPreambleIndex() { return preambleIndex; }
+    int getPRACHMaskIndex() { return prachCfgIndex; }
 
     void setDLBandwith(unsigned dlBandwith) { this->dlBandwith = dlBandwiths[find(dlBandwith, dlBandwiths, 6)]; }
     void setDLBandwithIndex(unsigned index) {  if (index < 7) this->dlBandwith = dlBandwiths[index]; }

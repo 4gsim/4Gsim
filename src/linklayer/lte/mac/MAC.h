@@ -33,9 +33,9 @@
 
 class MAC : public cSimpleModule, public INotifiable {
 protected:
-    unsigned rntiType;
-    unsigned short rnti;
-    unsigned ueId;
+//    unsigned rntiType;
+//    unsigned short rnti;
+//    unsigned ueId;
     unsigned preambleTransCount;
     unsigned backoffParam;
 
@@ -76,7 +76,7 @@ public:
 
 //    void sendDown(cMessage *msg, int channelNumber, unsigned rntiType, unsigned short rnti);
     void sendUp(cMessage *msg, int channelNumber);
-    unsigned getUeId() { return ueId; }
+//    unsigned getUeId() { return ueId; }
 };
 
 #endif /* MAC_H_ */

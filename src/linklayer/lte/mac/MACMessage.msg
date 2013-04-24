@@ -73,3 +73,9 @@ packet TransportBlock
 	unsigned short rnti;			// RA-RNTI (1...60)
 	unsigned int ueId;
 }
+
+packet RandomAccessPreamble extends TransportBlock
+{
+	unsigned int rapid;
+	unsigned int attempt;    
+}

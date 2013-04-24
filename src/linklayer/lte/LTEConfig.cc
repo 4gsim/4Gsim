@@ -36,7 +36,8 @@ LTEConfig::LTEConfig() {
     preambleFmt = 0;
     raSt = -1;
     transMode = FDD_MODE;
-    raPreambleIndex = 0;
+    preambleIndex = 0;
+    prachCfgIndex = -1;
 }
 
 void LTEConfig::initialize() {

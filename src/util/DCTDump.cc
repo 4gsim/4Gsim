@@ -106,9 +106,13 @@ void DCTDump::handleMessage(cMessage *msg) {
 
             write = true;
 
-            MACProtocolDataUnit *macPdu = dynamic_cast<MACProtocolDataUnit*>(tb->getEncapsulatedPacket());
-            if (macPdu)
-                buf_len = MACSerializer().serialize(macPdu, buf, sizeof(buf));
+            if (tb->getChannel() == RACH) {
+                hasComment = true;
+            } else {
+                MACProtocolDataUnit *macPdu = dynamic_cast<MACProtocolDataUnit*>(tb->getEncapsulatedPacket());
+                if (macPdu)
+                    buf_len = MACSerializer().serialize(macPdu, buf, sizeof(buf));
+            }
         }
 
         // context name - MAC Random Access Preamble
@@ -164,12 +168,13 @@ void DCTDump::handleMessage(cMessage *msg) {
             strncpy(p, vers.str().c_str(), strlen(vers.str().c_str()));
             p += strlen(vers.str().c_str());
 
-//            LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
-//            comment << ">> RACH Preamble Request[UE =  "
-//                    << ctrl->getUeId() << "]    [RAPID =  "
-//                    << ctrl->getRapid() << "]    [Attempt = 1]";
-//            strncpy((char*)buf, comment.str().c_str(), strlen(comment.str().c_str()));
-//            buf_len = strlen(comment.str().c_str());
+            RandomAccessPreamble *rap = check_and_cast<RandomAccessPreamble*>(msg);
+            comment << ">> RACH Preamble Request[UE =  "
+                    << rap->getUeId() << "]    [RAPID =  "
+                    << rap->getRapid() << "]    [Attempt = "
+                    << rap->getAttempt() << "]";
+            strncpy((char*)buf, comment.str().c_str(), strlen(comment.str().c_str()));
+            buf_len = strlen(comment.str().c_str());
         }
 
         // out-header

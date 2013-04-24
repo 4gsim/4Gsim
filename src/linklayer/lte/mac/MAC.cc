@@ -30,7 +30,7 @@ Define_Module(MAC);
 MAC::MAC() {
     // TODO Auto-generated constructor stub
 //    ttiId = 0;
-    ueId = 0;
+//    ueId = 0;
 //    bcchMsg = NULL;
 }
 
@@ -246,51 +246,97 @@ void MAC::receiveChangeNotification(int category, const cPolymorphic *details) {
 //            }
 //        }
         // continue scheduling
-        MACProtocolDataUnit *pdu = NULL;
+        int msgId = -1;
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
-            int msgId = lteSched->getMessageId(DL_SCHEDULING);
-            if (msgId != -1) {
-                pdu = queue[msgId];
-            }
+            msgId = lteSched->getMessageId(DL_SCHEDULING);
+        } else {
+            msgId = lteSched->getMessageId(UL_SCHEDULING);
         }
 
-        if (pdu != NULL) {
-            MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(pdu->getControlInfo());
+        if (msgId != -1) {
+            MACProtocolDataUnit *pdu = queue[msgId];
             TransportBlock *tb = new TransportBlock();
+            if (msgId == RA_MSG_ID) {
+                RAPControlInfo *ctrl = check_and_cast<RAPControlInfo*>(pdu->getControlInfo());
+                RandomAccessPreamble *rap = new RandomAccessPreamble();
+                rap->setChannel(RACH);
+                rap->setRnti(1 + lteSched->getTTI() + 10 * ctrl->getRnti());
+                rap->setRntiType(RaRnti);
+                rap->setRapid(ctrl->getRapid());
+                rap->setAttempt(ctrl->getAttempt());
+                tb = rap;
+            } else {
+                MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(pdu->getControlInfo());
+                tb->setChannel(ctrl->getChannel());
+                tb->setRntiType(ctrl->getRntiType());
+                tb->setRnti(ctrl->getRnti());
+
+            }
             tb->setName(pdu->getName());
             tb->encapsulate(pdu->dup());
-            tb->setChannel(ctrl->getChannel());
-            tb->setRntiType(ctrl->getRntiType());
-            tb->setRnti(ctrl->getRnti());
+            tb->setUeId(this->getParentModule()->getId());
             this->send(tb, gate("lowerLayerOut"));
         }
+
 //        TransportBlock *tb = scheduler->getMessageToBeSent();
 //        if (tb)
 //            this->send(tb, gate("lowerLayerOut"));
 //        ttiId++;
     } else if (category == NF_MAC_BEGIN_RA) {
-        // Random Access Procedure initialization
+        EV << "LTE-MAC: Random Access Procedure intialization.\n";
         msg3Buffer.clear();
         preambleTransCount = 1;
         backoffParam = 0;
 
-        // Random Access Resource selection
-        unsigned raPreamble = 0;
+        EV << "LTE-MAC: Random Access Resource selection.\n";
+        unsigned preambleIndex;
         unsigned prachMaskIndex;
-        // TODO if ra-preambleindex and ra-prach-maskindex are signaled
-        // else
-        if (msg3Buffer.size() == 0) {   // msg3 has not been transmitted
-            if (lteCfg->getNrOfRAPreambles() != lteCfg->getSizeOfRAPreamblesGroupA()) { // TODO select group B
+        unsigned prachIndex;
 
-            } else {    // select group A
-                raPreamble = uniform(0, lteCfg->getSizeOfRAPreamblesGroupA());
-                prachMaskIndex = 0;
+        if (lteCfg->getPreambleIndex() != 0 && lteCfg->getPRACHMaskIndex() != -1) {
+            preambleIndex = lteCfg->getPreambleIndex();
+//            prachMaskIndex = lteCfg->getPRACHMaskIndex();
+        } else {
+            if (msg3Buffer.size() == 0) {   // msg3 has not been transmitted
+                if (lteCfg->getNrOfRAPreambles() != lteCfg->getSizeOfRAPreamblesGroupA()) { // TODO select group B
 
-                if (lteCfg->getTransmissionMode() == TDD_MODE && prachMaskIndex == 0) {
-
+                } else {    // select group A
+                    preambleIndex = uniform(0, lteCfg->getSizeOfRAPreamblesGroupA());
+                    prachMaskIndex = 0;
+                    // TODO not sure if this is how PRACH selection is done
+                    if (lteCfg->getTransmissionMode() == TDD_MODE && prachMaskIndex == 0) {
+                        if (lteCfg->getPreambleIndex() != 0) {
+                            // randomly select PRACH from determined subframe
+                            prachIndex = uniform(lteCfg->getPRACHFreqOffset(), lteCfg->getPRACHFreqOffset() + 5);
+                        } else {
+                            // TODO randomly select PRACH from determined subframe and next 2 subframes
+                            prachIndex = uniform(lteCfg->getPRACHFreqOffset(), lteCfg->getPRACHFreqOffset() + 5);
+                        }
+                    } else {
+                        // determine PRACH with PRACH Mask Index
+                        if (prachMaskIndex == 0) {
+                            prachIndex = uniform(lteCfg->getPRACHFreqOffset(), lteCfg->getPRACHFreqOffset() + 5);
+                        } else {
+                            // TODO
+                        }
+                    }
                 }
+            } else {    // TODO select the same group of Random Access Preambles as for previous transmission
+
             }
         }
+
+        EV << "LTE-MAC: Random Access Preamble transmission.\n";
+        // TODO preambleInitialReceivedTargetPower = ...
+        RAPControlInfo *ctrl = new RAPControlInfo();
+        ctrl->setRapid(preambleIndex);
+        ctrl->setAttempt(preambleTransCount);
+        ctrl->setRnti(prachIndex);
+        MACProtocolDataUnit *msg = new MACProtocolDataUnit();
+        msg->setName("RandomAccessPreamble");
+        msg->setKind(RA_MSG_ID);
+        msg->setControlInfo(ctrl);
+        queue[msg->getKind()] = msg;
     }
 }
 

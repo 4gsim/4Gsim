@@ -24,6 +24,7 @@
 #include "SubscriberTable.h"
 #include "LTEConfigAccess.h"
 #include "LTESchedulerAccess.h"
+#include "NotificationBoard.h"
 
 using namespace rrc;
 
@@ -34,7 +35,7 @@ static const int mibTTIs[1] = { 0 };
 static const int sib1TTIs[1] = { 4 };
 static const int sib2TTIs[1] = { 5 };
 
-class RRC : public cSimpleModule {
+class RRC : public cSimpleModule, public INotifiable {
 private:
     bool nodeType;
     SubscriberTable *subT;
@@ -45,6 +46,10 @@ private:
 
     LTEConfig *lteCfg;
     LTEScheduler *lteSched;
+
+    NotificationBoard *nb;
+
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
 public:
 	RRC();
 	virtual ~RRC();

@@ -49,6 +49,7 @@ void RRC::initialize(int stage) {
         subT = SubscriberTableAccess().get();
         lteCfg = LTEConfigAccess().get();
         lteSched = LTESchedulerAccess().get();
+        nb = NotificationBoardAccess().get();
 
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
             EV << "LTE-RRC: RRC module for UE.\n";
@@ -455,6 +456,8 @@ void RRC::processSIB2(SystemInformationBlockType2 *sib2) {
         default:
             break;
     }
+
+    nb->fireChangeNotification(NF_MAC_BEGIN_RA, NULL);
 
 //    lteCfg->setRAState(0);
 

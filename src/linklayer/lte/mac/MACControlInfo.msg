@@ -24,3 +24,9 @@ class MACControlInfo extends LTEControlInfo
 	unsigned int rntiType;
 	unsigned short rnti = 0;   
 }
+
+class RAPControlInfo extends MACControlInfo
+{
+	unsigned int rapid;
+	unsigned int attempt;    
+}
