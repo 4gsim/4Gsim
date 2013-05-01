@@ -24,17 +24,17 @@
  * and adds the vector with the TTI values.
  */
 
-class LTEFixedSchedulingInfo : public LTEFixedSchedulingInfo_Base {
+class LTESchedulingInfo : public LTESchedulingInfo_Base {
 private:
     typedef std::vector<int> TTIValues;
     TTIValues ttis;
 public:
-    LTEFixedSchedulingInfo(const char *name=NULL, int kind=0) : LTEFixedSchedulingInfo_Base() {}
-    LTEFixedSchedulingInfo(const LTEFixedSchedulingInfo& other) : LTEFixedSchedulingInfo_Base() {operator=(other);}
-    virtual ~LTEFixedSchedulingInfo();
+    LTESchedulingInfo(const char *name=NULL, int kind=0) : LTESchedulingInfo_Base() {}
+    LTESchedulingInfo(const LTESchedulingInfo& other) : LTESchedulingInfo_Base() {operator=(other);}
+    virtual ~LTESchedulingInfo();
 
-    LTEFixedSchedulingInfo& operator=(const LTEFixedSchedulingInfo& other);
-    virtual LTEFixedSchedulingInfo *dup() const {return new LTEFixedSchedulingInfo(*this);}
+    LTESchedulingInfo& operator=(const LTESchedulingInfo& other);
+    virtual LTESchedulingInfo *dup() const {return new LTESchedulingInfo(*this);}
 
     /*
      * Methods overridden but not used. You should use instead pushTTI.
@@ -53,6 +53,7 @@ public:
      */
     void pushTti(int tti) { ttis.push_back(tti); }
 
+    virtual std::string info() const;
 };
 
 #endif /* LTESCHEDULINGINFO_H_ */

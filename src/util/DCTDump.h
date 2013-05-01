@@ -44,11 +44,15 @@
  *
  * Unfortunately there is no info besides Wireshark implementation :(
  */
+
+#define ASCII_DUMP  0
+#define HEX_DUMP    1
+
 class DCTDump : public cSimpleModule {
 private:
     FILE *dumpfile;
     std::string timestamp(simtime_t stime);
-    void dumpPacket(uint8 *buf, int32 len);
+    void dumpPacket(uint8 *buf, int32 len, bool type);
 public:
     DCTDump();
     virtual ~DCTDump();

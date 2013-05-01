@@ -70,7 +70,7 @@ void LTERadio::initialize(int stage) {
             // TODO rest of the table 3GPP TS 36211 Table 5.7.1-2 pag. 32
             switch (lteCfg->getPRACHCfgIndex() % 16) {
                 case 0:
-                    lteSched->addFixedScheduling(UL_SCHEDULING, RA_MSG_ID, 2, prachCfgIndex0TTIs, 1, lteCfg->getPRACHFreqOffset(), 6);
+                    lteSched->scheduleMessage(UL_SCHEDULING, RA_MSG_ID, 0, 2, UINT32_MAX, prachCfgIndex0TTIs, 1, lteCfg->getPRACHFreqOffset(), 6);
                     break;
                 default:
                     break;
@@ -188,13 +188,14 @@ void LTERadio::handleUpperMessage(cMessage* msg) {
     TransportBlock *tb = check_and_cast<TransportBlock*>(msg);
     PhysicalResourceBlock *prb = new PhysicalResourceBlock();
     switch (tb->getChannel()) {
-//        case RACH: {
+        case RACH: {
 //            RAPreamble *rap = new RAPreamble();
 //            rap->setChannelNumber(PRACH);
 //            rap->setRapid(ctrl->getRapid());
 //            frame = rap;
-//            break;
-//        }
+            prb->setChannelNumber(PRACH);
+            break;
+        }
         case DLSCH0:
             prb->setChannelNumber(PDSCH);
             break;

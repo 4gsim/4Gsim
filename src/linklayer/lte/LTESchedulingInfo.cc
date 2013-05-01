@@ -15,10 +15,10 @@
 
 #include "LTESchedulingInfo.h"
 
-Register_Class(LTEFixedSchedulingInfo);
+Register_Class(LTESchedulingInfo);
 
-LTEFixedSchedulingInfo& LTEFixedSchedulingInfo::operator=(const LTEFixedSchedulingInfo& other) {
-    LTEFixedSchedulingInfo_Base::operator=(other);
+LTESchedulingInfo& LTESchedulingInfo::operator=(const LTESchedulingInfo& other) {
+    LTESchedulingInfo_Base::operator=(other);
 
     for (unsigned i = 0; i < other.getTtisArraySize(); i++) {
         this->pushTti(other.ttis.at(i));
@@ -27,24 +27,44 @@ LTEFixedSchedulingInfo& LTEFixedSchedulingInfo::operator=(const LTEFixedScheduli
     return *this;
 }
 
-LTEFixedSchedulingInfo::~LTEFixedSchedulingInfo() {
+LTESchedulingInfo::~LTESchedulingInfo() {
 
 }
 
-void LTEFixedSchedulingInfo::setTtisArraySize(unsigned int size) {
+void LTESchedulingInfo::setTtisArraySize(unsigned int size) {
      throw new cException(this, "setTtisArraySize() not supported, use pushTti()");
 }
 
-unsigned int LTEFixedSchedulingInfo::getTtisArraySize() const {
+unsigned int LTESchedulingInfo::getTtisArraySize() const {
      return ttis.size();
 }
 
-void LTEFixedSchedulingInfo::setTtis(unsigned int k, int tti) {
+void LTESchedulingInfo::setTtis(unsigned int k, int tti) {
      throw new cException(this, "setTtis() not supported, use use pushTti()");
 }
 
-int LTEFixedSchedulingInfo::getTtis(unsigned int k) const {
+int LTESchedulingInfo::getTtis(unsigned int k) const {
     return ttis[k];
 }
 
+std::string LTESchedulingInfo::info() const {
+    std::stringstream out;
 
+    if (direction_var == UL_SCHEDULING)
+        out << "dir:UL, ";
+    else
+        out << "dir:DL, ";
+    out << "msgId:" << msgId_var << ", ";
+    out << "sfnBegin:" << sfnBegin_var << ", ";
+    out << "sfnPeriod:" << sfnPeriod_var << ", ";
+    if (sfnEnd_var == UINT32_MAX)
+        out << "sfnEnd:INF, ";
+    else
+        out << "sfnEnd:" << sfnEnd_var << ", ";
+    out << "ttis:{ ";
+    for (unsigned i = 0; i < ttis.size(); i++)
+        out << ttis[i] << " ";
+    out << "}";
+
+    return out.str();
+}

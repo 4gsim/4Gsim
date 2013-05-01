@@ -73,7 +73,8 @@ void DCTDump::handleMessage(cMessage *msg) {
         std::string ascii_buf;
         char dh[MAXDCTLENGTH];
         char *p = dh;
-        bool write = false;
+        bool writeHex = false;
+        bool writeAscii = false;
         bool hasOutHdr = false;
         bool hasComment = false;
 
@@ -93,7 +94,7 @@ void DCTDump::handleMessage(cMessage *msg) {
                 strncpy(p, "UDP.", 4);
                 p += 4;
             }
-            write = true;
+            writeHex = true;
 
             buf_len = IPv4Serializer().serialize(ipPacket, buf, sizeof(buf), true);
         }
@@ -101,14 +102,20 @@ void DCTDump::handleMessage(cMessage *msg) {
         // context name - MACProtocolDataUnit
         TransportBlock *tb = dynamic_cast<TransportBlock*>(msg);
         if (tb) {
-            strncpy(p, "MAC-LTE.", 8);
-            p += 8;
-
-            write = true;
+            strncpy(p, "MAC-LTE", 7);
+            p += 7;
 
             if (tb->getChannel() == RACH) {
                 hasComment = true;
+
+                writeAscii = true;
+
             } else {
+                strncpy(p, ".", 1);
+                p += 1;
+
+                writeHex = true;
+
                 MACProtocolDataUnit *macPdu = dynamic_cast<MACProtocolDataUnit*>(tb->getEncapsulatedPacket());
                 if (macPdu)
                     buf_len = MACSerializer().serialize(macPdu, buf, sizeof(buf));
@@ -128,45 +135,9 @@ void DCTDump::handleMessage(cMessage *msg) {
 //            }
 //        }
 
-        // context port number - always 1
-        strncpy(p, "1/", 5);
-        p += 2;
-
-        // protocol - IPv4Datagram
-        if (ipPacket) {
-            vers << ipPacket->getVersion();
-            // protocol name
-            strncpy(p, "ip/", 3);
-            p += 3;
-            //protocol version
-            strncpy(p, vers.str().c_str(), strlen(vers.str().c_str()));
-            p += strlen(vers.str().c_str());
-            *p = '/';
-            p++;
-        }
-
-        // protocol - MACProtocolDataUnit
-        if (tb) {
-            vers << 1;
-
-            strncpy(p, "mac_r9_lte/", 11);
-            hasOutHdr = true;
-            p += 11;
-
-            //protocol version
-            strncpy(p, vers.str().c_str(), strlen(vers.str().c_str()));
-            p += strlen(vers.str().c_str());
-        }
-
         if (hasComment) {
-            vers << 1;
-
-            strncpy(p, "comment/", 8);
-            p += 8;
-
-            //protocol version
-            strncpy(p, vers.str().c_str(), strlen(vers.str().c_str()));
-            p += strlen(vers.str().c_str());
+            strncpy(p, "/////", 5);
+            p += 5;
 
             RandomAccessPreamble *rap = check_and_cast<RandomAccessPreamble*>(msg);
             comment << ">> RACH Preamble Request[UE =  "
@@ -175,43 +146,77 @@ void DCTDump::handleMessage(cMessage *msg) {
                     << rap->getAttempt() << "]";
             strncpy((char*)buf, comment.str().c_str(), strlen(comment.str().c_str()));
             buf_len = strlen(comment.str().c_str());
-        }
 
-        // out-header
-        if (hasOutHdr) {
-            if (tb) {
-                unsigned direction;
-                if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2))
-                    if (msg->getArrivalGate()->isName("lowerLayerIn"))
-                        direction = DownlinkDirection;
-                    else
-                        direction = UplinkDirection;
-                else
-                    if (msg->getArrivalGate()->isName("lowerLayerIn"))
-                        direction = UplinkDirection;
-                    else
-                        direction = DownlinkDirection;
-                outHdr  << ","
-                        << FDDRadioType << ","
-                        << tb->getRntiType() << ","
-                        << direction << ","
-                        << "1," // Subframe number
-                        << "0," // is predefined data
-                        << tb->getRnti() << ","
-                        << tb->getUeId() << ","
-                        << buf_len << ",";
+        } else {
 
+            // context port number - always 1
+            strncpy(p, "1/", 5);
+            p += 2;
+
+            // protocol - IPv4Datagram
+            if (ipPacket) {
+                vers << ipPacket->getVersion();
+                // protocol name
+                strncpy(p, "ip/", 3);
+                p += 3;
+                //protocol version
+                strncpy(p, vers.str().c_str(), strlen(vers.str().c_str()));
+                p += strlen(vers.str().c_str());
+                *p = '/';
+                p++;
             }
-            strncpy(p, outHdr.str().c_str(), strlen(outHdr.str().c_str()));
-            p += strlen(outHdr.str().c_str());
-        }
 
-        // direction
-        if (msg->arrivedOn("lowerLayerIn")) {
-            strncpy(p, " r", 2);
-        } else
-            strncpy(p, " s", 2);
-        p += 2;
+            // protocol - MACProtocolDataUnit
+            if (tb) {
+                vers << 1;
+
+                strncpy(p, "mac_r9_lte/", 11);
+                hasOutHdr = true;
+                p += 11;
+
+                //protocol version
+                strncpy(p, vers.str().c_str(), strlen(vers.str().c_str()));
+                p += strlen(vers.str().c_str());
+            }
+
+
+            // out-header
+            if (hasOutHdr) {
+                if (tb) {
+                    unsigned direction;
+                    if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2))
+                        if (msg->getArrivalGate()->isName("lowerLayerIn"))
+                            direction = DownlinkDirection;
+                        else
+                            direction = UplinkDirection;
+                    else
+                        if (msg->getArrivalGate()->isName("lowerLayerIn"))
+                            direction = UplinkDirection;
+                        else
+                            direction = DownlinkDirection;
+                    outHdr  << ","
+                            << FDDRadioType << ","
+                            << tb->getRntiType() << ","
+                            << direction << ","
+                            << "1," // Subframe number
+                            << "0," // is predefined data
+                            << tb->getRnti() << ","
+                            << tb->getUeId() << ","
+                            << buf_len << ",";
+
+                }
+                strncpy(p, outHdr.str().c_str(), strlen(outHdr.str().c_str()));
+                p += strlen(outHdr.str().c_str());
+            }
+
+            // direction
+            if (msg->arrivedOn("lowerLayerIn")) {
+                strncpy(p, " r", 2);
+            } else
+                strncpy(p, " s", 2);
+            p += 2;
+
+        }
 
         // timestamp
         strncpy(p, " tm ", 4);
@@ -219,9 +224,14 @@ void DCTDump::handleMessage(cMessage *msg) {
         strncpy(p, time.c_str(), strlen(time.c_str()));
         p += strlen(time.c_str());
 
-        if (write) {
+        if (writeHex) {
             fwrite(&dh, p - dh, 1, dumpfile);
-            dumpPacket(buf, buf_len);
+            dumpPacket(buf, buf_len, HEX_DUMP);
+        }
+
+        if (writeAscii) {
+            fwrite(&dh, p - dh, 1, dumpfile);
+            dumpPacket(buf, buf_len, ASCII_DUMP);
         }
     }
     // forward
@@ -263,16 +273,22 @@ void DCTDump::finish() {
      }
 }
 
-void DCTDump::dumpPacket(uint8 *buf, int32 len) {
+void DCTDump::dumpPacket(uint8 *buf, int32 len, bool type) {
     if (len > 0) {
         std::string dump = " $";
         int32 j = 0;
-        for (int32 i = 0; i < len * 2; i++) {
-            if (((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) < 10)
-                dump += ((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) + 48;
-            else
-                dump += ((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) + 87;
-            j = j + i % 2;
+        if (type == true) {
+            for (int32 i = 0; i < len * 2; i++) {
+                if (((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) < 10)
+                    dump += ((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) + 48;
+                else
+                    dump += ((buf[j]) >> (4 * ((i + 1) % 2)) & 0x0f) + 87;
+                j = j + i % 2;
+            }
+        } else {
+            for (int32 i = 0; i < len; i++) {
+                dump += (char)buf[i];
+            }
         }
         dump += "\n";
         fwrite(dump.c_str(), dump.size(), 1, dumpfile);

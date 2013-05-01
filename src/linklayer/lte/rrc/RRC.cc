@@ -68,18 +68,18 @@ void RRC::initialize(int stage) {
             mibTimer->setContextPointer(this);
             int prbBegin = ceil((lteCfg->getDlBandwith() * lteCfg->getBlockSize() / 2 - 36 + 0) / lteCfg->getBlockSize());
             int prbSize = ceil((lteCfg->getDlBandwith() * lteCfg->getBlockSize() / 2 - 36 + 71) / lteCfg->getBlockSize()) - prbBegin;
-            lteSched->addFixedScheduling(DL_SCHEDULING, MIB_MSG_ID, 1, mibTTIs, 1, prbBegin, prbSize);
+            lteSched->scheduleMessage(DL_SCHEDULING, MIB_MSG_ID, 0, 1, UINT32_MAX, mibTTIs, 1, prbBegin, prbSize);
 
             sib1Timer = new cMessage("SIB1-TIMER");
             this->scheduleAt(simTime() + 4 * TTI_VALUE, sib1Timer);
             sib1Timer->setContextPointer(this);
             // TODO calculate the actual size of SIB1 for PRBs
-            lteSched->addFixedScheduling(DL_SCHEDULING, SIB1_MSG_ID, 2, sib1TTIs, 1, 0, 6);
+            lteSched->scheduleMessage(DL_SCHEDULING, SIB1_MSG_ID, 0, 2, UINT32_MAX, sib1TTIs, 1, 0, 6);
 
             sib2Timer = new cMessage("SIB2-TIMER");
             this->scheduleAt(simTime() + 5 * TTI_VALUE, sib2Timer);
             sib2Timer->setContextPointer(this);
-            lteSched->addFixedScheduling(DL_SCHEDULING, SIB2_MSG_ID, 2, sib2TTIs, 1, 0, 6);
+            lteSched->scheduleMessage(DL_SCHEDULING, SIB2_MSG_ID, 0, 2, UINT32_MAX, sib2TTIs, 1, 0, 6);
         }
     }
 }
@@ -406,7 +406,7 @@ void RRC::processMIB(MasterInformationBlock mib) {
         PHICHConfig phichConfig = mib.getPhichConfig();
         lteCfg->setPhichDurationIndex(phichConfig.getPHICHConfigphich_Duration().getValue());
         lteCfg->setPhichResourceIndex(phichConfig.getPHICHConfigphich_Resource().getValue());
-        lteSched->setSFN(mib.getMasterInformationBlockSystemFrameNumber().getValue()[0]);
+//        lteSched->setSFN(mib.getMasterInformationBlockSystemFrameNumber().getValue()[0]);
     }
 }
 
@@ -451,7 +451,7 @@ void RRC::processSIB2(SystemInformationBlockType2 *sib2) {
     // TODO rest of the table 3GPP TS 36211 Table 5.7.1-2 pag. 32
     switch (lteCfg->getPRACHCfgIndex() % 16) {
         case 0:
-            lteSched->addFixedScheduling(UL_SCHEDULING, RA_MSG_ID, 2, prachCfgIndex0TTIs, 1, lteCfg->getPRACHFreqOffset(), 6);
+            lteSched->scheduleMessage(UL_SCHEDULING, RA_MSG_ID, 0, 2, UINT32_MAX, prachCfgIndex0TTIs, 1, lteCfg->getPRACHFreqOffset(), 6);
             break;
         default:
             break;

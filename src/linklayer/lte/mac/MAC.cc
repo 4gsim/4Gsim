@@ -91,8 +91,9 @@ void MAC::handleLowerMessage(cMessage *msg) {
             sendUp(msg, BCCH0);
             break;
         }
-//    case RACH: {
-//        MACSubHeaderRar *header = MACUtils().createHeaderRar(true, ctrl->getRapid());
+    case RACH: {
+        RandomAccessPreamble *rap = check_and_cast<RandomAccessPreamble*>(msg);
+        MACSubHeaderRar *header = MACUtils().createHeaderRar(true, rap->getRapid());
 //        MACServiceDataUnit *sdu = MACUtils().createRAR(0, 0, uniform(0, 65535));  /* TODO UL grant split into bits */
 //        MACProtocolDataUnit *pdu = new MACProtocolDataUnit("RandomAccessResponse");
 //        pdu->pushSubHdr(header);
@@ -102,8 +103,8 @@ void MAC::handleLowerMessage(cMessage *msg) {
 //        ueId = ctrl->getUeId();
 ////        schTtid += TTI_VALUE;
 //        sendDown(pdu, DLSCH);
-//        break;
-//    }
+        break;
+    }
     case DLSCH0: {
         if (tb->getRntiType() == SiRnti) {
             // TODO redundancy version
@@ -254,6 +255,7 @@ void MAC::receiveChangeNotification(int category, const cPolymorphic *details) {
         }
 
         if (msgId != -1) {
+            EV << "LTE-MAC: Sending scheduled message with id " << msgId << ".\n";
             MACProtocolDataUnit *pdu = queue[msgId];
             TransportBlock *tb = new TransportBlock();
             if (msgId == RA_MSG_ID) {

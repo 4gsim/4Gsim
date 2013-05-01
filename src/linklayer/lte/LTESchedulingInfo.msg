@@ -18,13 +18,19 @@ cplusplus {{
 	#define SIB1_MSG_ID     1 
 	#define SIB2_MSG_ID		2 
 	#define RA_MSG_ID		3
+	
+	#define UL_SCHEDULING   0
+	#define DL_SCHEDULING   1
 }}
 
-class LTEFixedSchedulingInfo
+class LTESchedulingInfo
 {
     @customize(true);
+    bool direction;
     int msgId;
-    int sfnPeriod;
+    unsigned int sfnBegin;
+    unsigned int sfnPeriod;
+    unsigned int sfnEnd;
     abstract int ttis[];
     int prbBegin;
     int prbSize;

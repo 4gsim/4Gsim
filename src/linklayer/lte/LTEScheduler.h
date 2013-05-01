@@ -19,19 +19,18 @@
 #include <omnetpp.h>
 #include "LTESchedulingInfo.h"
 
-#define UL_SCHEDULING   0
-#define DL_SCHEDULING   1
-
 class LTEScheduler : public cSimpleModule {
 private:
     unsigned short tti;
     unsigned short sfn;
 
-    typedef std::vector<LTEFixedSchedulingInfo> LTEFixedSchedulings;
-    LTEFixedSchedulings dlFixedScheds;
-    LTEFixedSchedulings ulFixedScheds;
+    typedef std::vector<LTESchedulingInfo> LTESchedulings;
+    LTESchedulings schedulings;
 
     int msgIds;
+
+    unsigned gcd(unsigned a, unsigned b);
+    unsigned lcm(unsigned a, unsigned b);
 
 public:
     LTEScheduler();
@@ -45,11 +44,10 @@ public:
     int generateMessageId() { return msgIds++; }
     int getMessageId(bool direction);
 
-    void setSFN(unsigned short sfn) { this->sfn = sfn; }
-
+//    void setSFN(unsigned short sfn) { this->sfn = sfn; }
     void incrementTTI();
-    void addFixedScheduling(bool direction, int msgId, int sfnPeriod, const int *tti, unsigned ttiSize, int prbId, int prbSize);
-
+//    void addFixedScheduling(bool direction, int msgId, unsigned sfnPeriod, const int *tti, unsigned ttiSize, int prbId, int prbSize);
+    bool scheduleMessage(bool direction, int msgId, unsigned sfnBegin, unsigned sfnPeriod, unsigned sfnEnd, const int *tti, unsigned ttiSize, int prbBegin, int prbSize);
 };
 
 #endif /* LTESCHEDULER_H_ */
