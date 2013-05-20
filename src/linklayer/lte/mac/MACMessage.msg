@@ -79,3 +79,8 @@ packet RandomAccessPreamble extends TransportBlock
 	unsigned int rapid;
 	unsigned int attempt;    
 }
+
+packet DCIFormat1C extends TransportBlock
+{
+    
+}

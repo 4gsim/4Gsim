@@ -27,20 +27,25 @@ enum LTELogicalChannels
 
 enum LTETransportChannels
 {
-    ULSCH = 20;
-    RACH = 21;
-    DLSCH0 = 22;
-    DLSCH1 = 23;
-    BCH = 24;
+    SCH_CCCH = 20;
+    SCH_DxCH = 21;
+    SCH_RAR = 22;
+    RACH = 23;
+    DLSCH0 = 24;
+    DLSCH1 = 25;
+    BCH = 26;
 }
 
 enum LTEPhyChannels 
 {
     PRACH = 30;
     PDSCH = 31;
-    PUSCH = 32;
-    PHICH = 33;
-    PBCH = 34;
+    PDSCH0 = 32;
+    PDSCH1 = 33;
+    PUSCH = 34;
+    PHICH = 35;
+    PBCH = 36;
+    PDCCH = 37;
 };
 
 enum LTEDirection

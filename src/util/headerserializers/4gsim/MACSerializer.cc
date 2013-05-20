@@ -33,7 +33,7 @@ unsigned MACSerializer::serializeHeader(MACSubHeader *header, bool isExt, bool i
         MACSubHeaderRar *rarHdr = dynamic_cast<MACSubHeaderRar*>(header);
         *((unsigned char*)(p)) =
                         ((isExt << 7) & 0x80) | ((rarHdr->getT() << 6) & 0x40);
-        if (rarHdr->getT()) // BI
+        if (!rarHdr->getT()) // BI
             *((unsigned char*)(p)) += rarHdr->getRapidOrBi() & 0x0f;
         else
             *((unsigned char*)(p)) += rarHdr->getRapidOrBi() & 0x3f;

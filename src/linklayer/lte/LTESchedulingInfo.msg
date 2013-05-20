@@ -17,7 +17,7 @@ cplusplus {{
 	#define MIB_MSG_ID      0
 	#define SIB1_MSG_ID     1 
 	#define SIB2_MSG_ID		2 
-	#define RA_MSG_ID		3
+	#define RAP_MSG_ID		3
 	
 	#define UL_SCHEDULING   0
 	#define DL_SCHEDULING   1

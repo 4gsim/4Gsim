@@ -32,6 +32,7 @@
 #include "LTEFrame_m.h"
 #include "LTEConfigAccess.h"
 #include "LTESchedulerAccess.h"
+#include "MACMessage.h"
 
 #define HARQ_FEEDBACK_DELAY 1
 #define HARQ_FEEDBACK_ACK   1
@@ -44,7 +45,6 @@
 //};
 
 //static const char *prbNames[PRB_MAX_SIZE] = { "PRB1", "PRB2", "PRB3", "PRB4", "PRB5", "PRB6" };
-static const int prachCfgIndex0TTIs[1] = { 1 };
 
 class LTERadio : public ChannelAccess, INotifiable {
 public:
@@ -67,6 +67,10 @@ protected:
 
     LTEConfig *lteCfg;
     LTEScheduler *lteSched;
+
+    std::map<int, TransportBlock*> queue;
+    typedef std::vector<DCIFormat*> DCIFormats;
+    DCIFormats dcis;
 
     unsigned dir;
     char *dirStr;
@@ -92,6 +96,9 @@ protected:
     void scheduleHARQFeedback(bool harqIndicator, unsigned ueId);
 
     virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
+    void sendDown(TransportBlock *tb);
+    void sendDCIFormats();
+    void checkDCIFormats(TransportBlock *tb);
     //virtual void sendDown(AirFrame *airframe);
 //    virtual void sendUp(AirFrame *airframe);
 };

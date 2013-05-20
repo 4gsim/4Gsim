@@ -22,6 +22,7 @@
 #include "MACSerializer.h"
 #include "LTEPhyControlInfo_m.h"
 #include "LTEFrame_m.h"
+#include "MACControlInfo_m.h"
 
 #define MAXBUFLENGTH 65536
 #define MAXDCTLENGTH 100
@@ -99,7 +100,7 @@ void DCTDump::handleMessage(cMessage *msg) {
             buf_len = IPv4Serializer().serialize(ipPacket, buf, sizeof(buf), true);
         }
 
-        // context name - MACProtocolDataUnit
+        // context name - TransportBlock
         TransportBlock *tb = dynamic_cast<TransportBlock*>(msg);
         if (tb) {
             strncpy(p, "MAC-LTE", 7);
@@ -122,6 +123,28 @@ void DCTDump::handleMessage(cMessage *msg) {
             }
         }
 
+        // context name - MACProtocolDataUnit
+        MACProtocolDataUnit *pdu = dynamic_cast<MACProtocolDataUnit*>(msg);
+        if (pdu) {
+            MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(msg->getControlInfo());
+            strncpy(p, "MAC-LTE", 7);
+            p += 7;
+
+            if (ctrl->getChannel() == RACH) {
+//                hasComment = true;
+//
+//                writeAscii = true;
+
+            } else {
+                strncpy(p, ".", 1);
+                p += 1;
+
+                writeHex = true;
+
+                buf_len = MACSerializer().serialize(pdu, buf, sizeof(buf));
+            }
+        }
+
         // context name - MAC Random Access Preamble
 //        if (dynamic_cast<LTEPhyControlInfo*>(msg->getControlInfo())) {
 //            LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
@@ -136,16 +159,16 @@ void DCTDump::handleMessage(cMessage *msg) {
 //        }
 
         if (hasComment) {
-            strncpy(p, "/////", 5);
-            p += 5;
-
-            RandomAccessPreamble *rap = check_and_cast<RandomAccessPreamble*>(msg);
-            comment << ">> RACH Preamble Request[UE =  "
-                    << rap->getUeId() << "]    [RAPID =  "
-                    << rap->getRapid() << "]    [Attempt = "
-                    << rap->getAttempt() << "]";
-            strncpy((char*)buf, comment.str().c_str(), strlen(comment.str().c_str()));
-            buf_len = strlen(comment.str().c_str());
+//            strncpy(p, "/////", 5);
+//            p += 5;
+//
+//            RandomAccessPreamble *rap = check_and_cast<RandomAccessPreamble*>(msg);
+//            comment << ">> RACH Preamble Request[UE =  "
+//                    << rap->getUeId() << "]    [RAPID =  "
+//                    << rap->getRapid() << "]    [Attempt = "
+//                    << rap->getAttempt() << "]";
+//            strncpy((char*)buf, comment.str().c_str(), strlen(comment.str().c_str()));
+//            buf_len = strlen(comment.str().c_str());
 
         } else {
 
@@ -166,8 +189,8 @@ void DCTDump::handleMessage(cMessage *msg) {
                 p++;
             }
 
-            // protocol - MACProtocolDataUnit
-            if (tb) {
+            // protocol - MACProtocolDataUnit or TransportBlock
+            if (tb || pdu) {
                 vers << 1;
 
                 strncpy(p, "mac_r9_lte/", 11);
@@ -182,7 +205,7 @@ void DCTDump::handleMessage(cMessage *msg) {
 
             // out-header
             if (hasOutHdr) {
-                if (tb) {
+                if (tb || pdu) {
                     unsigned direction;
                     if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2))
                         if (msg->getArrivalGate()->isName("lowerLayerIn"))
@@ -194,15 +217,29 @@ void DCTDump::handleMessage(cMessage *msg) {
                             direction = UplinkDirection;
                         else
                             direction = DownlinkDirection;
-                    outHdr  << ","
-                            << FDDRadioType << ","
-                            << tb->getRntiType() << ","
-                            << direction << ","
-                            << "1," // Subframe number
-                            << "0," // is predefined data
-                            << tb->getRnti() << ","
-                            << tb->getUeId() << ","
-                            << buf_len << ",";
+
+                    if (tb) {
+                        outHdr  << ","
+                                << FDDRadioType << ","
+                                << tb->getRntiType() << ","
+                                << direction << ","
+                                << "1," // Subframe number
+                                << "0," // is predefined data
+                                << tb->getRnti() << ","
+                                << tb->getUeId() << ","
+                                << buf_len << ",";
+                    } else {
+                        MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(msg->getControlInfo());
+                        outHdr  << ","
+                                << FDDRadioType << ","
+                                << ctrl->getRntiType() << ","
+                                << direction << ","
+                                << "1," // Subframe number
+                                << "0," // is predefined data
+                                << ctrl->getRnti() << ","
+                                << ctrl->getUeId() << ","
+                                << buf_len << ",";
+                    }
 
                 }
                 strncpy(p, outHdr.str().c_str(), strlen(outHdr.str().c_str()));

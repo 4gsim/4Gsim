@@ -34,35 +34,39 @@ LTEConfig::LTEConfig() {
     prachCfgIndex = 0;
     prachFreqOff = 0;
     preambleFmt = 0;
-    raSt = -1;
     transMode = FDD_MODE;
     preambleIndex = 0;
     prachMaskIndex = -1;
 }
 
-void LTEConfig::initialize() {
+void LTEConfig::initialize(int stage) {
     // TODO - Generated method body
 
-    const char *fileName = par("configFile");
-    if (fileName == NULL || (!strcmp(fileName, "")))
-        error("LTEConfig: Error reading configuration from file %s", fileName);
-    this->loadConfigFromXML(fileName);
+    if (stage == 4) {
+        nb = NotificationBoardAccess().get();
+        lteSched = LTESchedulerAccess().get();
 
-    symbNumber = 7;
+        const char *fileName = par("configFile");
+        if (fileName == NULL || (!strcmp(fileName, "")))
+            error("LTEConfig: Error reading configuration from file %s", fileName);
+        this->loadConfigFromXML(fileName);
 
-    WATCH(dlBandwith);
-    WATCH(phichDuration);
-    WATCH(phichResource);
-    WATCH(symbNumber);
-    WATCH(nrOfRAPreambles);
-    WATCH(sizeOfRAPreamblesGroupA);
-    WATCH(preambleTransMax);
-    WATCH(raRespWdwSize);
-    WATCH(macContResolTimer);
-    WATCH(maxHARQMsg3Tx);
-    WATCH(preambleFmt);
-    WATCH(prachCfgIndex);
-    WATCH(prachFreqOff);
+        symbNumber = 7;
+
+        WATCH(dlBandwith);
+        WATCH(phichDuration);
+        WATCH(phichResource);
+        WATCH(symbNumber);
+        WATCH(nrOfRAPreambles);
+        WATCH(sizeOfRAPreamblesGroupA);
+        WATCH(preambleTransMax);
+        WATCH(raRespWdwSize);
+        WATCH(macContResolTimer);
+        WATCH(maxHARQMsg3Tx);
+        WATCH(preambleFmt);
+        WATCH(prachCfgIndex);
+        WATCH(prachFreqOff);
+    }
 }
 
 void LTEConfig::handleMessage(cMessage *msg) {

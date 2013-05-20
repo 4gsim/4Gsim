@@ -54,6 +54,7 @@ public:
     void pushTti(int tti) { ttis.push_back(tti); }
 
     virtual std::string info() const;
+
 };
 
 #endif /* LTESCHEDULINGINFO_H_ */

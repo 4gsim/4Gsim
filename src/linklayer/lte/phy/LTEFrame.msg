@@ -28,6 +28,19 @@ message PhysicalResourceBlock extends AirFrame
 //    unsigned int tbId = 0;
 }
 
+message DCIFormat extends PhysicalResourceBlock
+{
+    unsigned int rnti;
+    unsigned int rntiType;
+    unsigned int allocation;	// should be resource block allocation, but now it is used to signal de tti for DLSCH
+}
+
+message DCIFormat1A extends DCIFormat
+{
+    bool ndi;
+    unsigned char harqNo; 
+}
+
 enum LTERadioTypes
 {
     FDDRadioType = 0;
@@ -49,6 +62,7 @@ enum LTERntiTypes
  	SiRnti = 4;
  	SpsRnti = 5;
  	MRnti = 6;	
+ 	TempCRnti = 7;
 }
 
 //message RAPreamble extends LTEFrame

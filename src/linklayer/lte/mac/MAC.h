@@ -31,6 +31,27 @@
 #define C_RNTI_MAX_VALUE    65523
 //#define TTI_VALUE           1
 
+enum RAState {
+    PROC_NULL               = FSM_Steady(0),
+    PROC_INITIALIZATION     = FSM_Steady(1),
+    RES_SELECTION           = FSM_Steady(2),
+    PRBL_TRANSMISSION       = FSM_Steady(3),
+    RESP_RECEPTION          = FSM_Steady(4),
+    RESP_CORRECT            = FSM_Steady(5),
+    PROC_DONE               = FSM_Steady(6),
+    PROC_ERROR              = FSM_Steady(7)
+};
+
+enum RAEvent {
+    InitializeProc,
+    SelectRes,
+    TransmitPrbl,
+    ReceiveResp,
+    CorrectResp,
+    CorrectProc,
+    IncorrectProc
+};
+
 class MAC : public cSimpleModule, public INotifiable {
 protected:
 //    unsigned rntiType;
@@ -38,6 +59,9 @@ protected:
 //    unsigned ueId;
     unsigned preambleTransCount;
     unsigned backoffParam;
+    unsigned rarLimit;
+    unsigned preambleIndex;
+    unsigned prachIndex;
 
     cMessage *ttiTimer;
 //    unsigned ttiId;
@@ -48,20 +72,33 @@ protected:
 
     NotificationBoard *nb;
 
+    cFSM raFSM;
+
 //    MACProtocolDataUnit *bcchMsg;
 
     LTEConfig *lteCfg;
     LTEScheduler *lteSched;
 
-    typedef std::map<int, MACProtocolDataUnit*> MACBuffer;
-    MACBuffer queue;
+    typedef std::vector<MACProtocolDataUnit*> QueueUp;
+    QueueUp queueUp;
+//    std::map<int, TransportBlock*> queueDown;
+
+
+    typedef std::map<unsigned, MACProtocolDataUnit*> MACBuffer;
+//    MACBuffer queue;
     MACBuffer msg3Buffer;
+//    std::vector<MACRandomAccessResponse*> rars;
 
     virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 
     void addHarqInformation(TransportBlock *tb, int harqProcId);
 
     const char *channelName(int channelNumber);
+
+    void performRAStateTransition(RAEvent event);
+
+    void raStateEntered();
+
 public:
     MAC();
     virtual ~MAC();
@@ -75,8 +112,14 @@ public:
     void handleUpperMessage(cMessage *msg);
 
 //    void sendDown(cMessage *msg, int channelNumber, unsigned rntiType, unsigned short rnti);
-    void sendUp(cMessage *msg, int channelNumber);
+    void sendUp(cMessage *msg, int channel);
+    void sendDown(int channel, unsigned rntiType, unsigned rnti, unsigned ueId, MACProtocolDataUnit *pdu);
+
 //    unsigned getUeId() { return ueId; }
+
+    void ulschDataTransfer(int channel, unsigned rnti, unsigned rntiType);
+
+//    void sendRACommand(int channel, int rnti, int rntiType);
 };
 
 #endif /* MAC_H_ */

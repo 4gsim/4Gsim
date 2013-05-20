@@ -21,8 +21,9 @@ class noncobject LTEControlInfo;
 
 class MACControlInfo extends LTEControlInfo
 {
+    unsigned int ueId;
 	unsigned int rntiType;
-	unsigned short rnti = 0;   
+	unsigned short rnti = 0;
 }
 
 class RAPControlInfo extends MACControlInfo

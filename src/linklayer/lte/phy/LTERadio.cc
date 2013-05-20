@@ -24,6 +24,7 @@
 #include "IPv4InterfaceData.h"
 #include "LTEChannelControl.h"
 #include "MACMessage.h"
+#include "MACControlInfo_m.h"
 //#include "HARQProcess.h"
 
 Define_Module(LTERadio);
@@ -70,7 +71,7 @@ void LTERadio::initialize(int stage) {
             // TODO rest of the table 3GPP TS 36211 Table 5.7.1-2 pag. 32
             switch (lteCfg->getPRACHCfgIndex() % 16) {
                 case 0:
-                    lteSched->scheduleMessage(UL_SCHEDULING, RA_MSG_ID, 0, 2, UINT32_MAX, prachCfgIndex0TTIs, 1, lteCfg->getPRACHFreqOffset(), 6);
+                    lteSched->scheduleMessage(UL_SCHEDULING, RAP_MSG_ID, 0, 2, UINT32_MAX, prachCfgIndex0TTIs, 1, lteCfg->getPRACHFreqOffset(), 6);
                     break;
                 default:
                     break;
@@ -79,8 +80,11 @@ void LTERadio::initialize(int stage) {
         } else if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
             EV << "LTE-Radio: LTE physical module for UE.\n";
             cc->setRadioChannel(myRadioRef, PDSCH);
+            cc->setRadioChannel(myRadioRef, PDSCH0);
+            cc->setRadioChannel(myRadioRef, PDSCH1);
             cc->setRadioChannel(myRadioRef, PHICH);
             cc->setRadioChannel(myRadioRef, PBCH);
+            cc->setRadioChannel(myRadioRef, PDCCH);
 //            cc->setRadioChannel(myRadioRef, Downlink);
         }
     }
@@ -115,7 +119,28 @@ void LTERadio::initialize(int stage) {
 void LTERadio::handleMessage(cMessage *msg) {
     if (msg->isSelfMessage()) {
         if (msg == ttiTimer) {
-            nb->fireChangeNotification(NF_PHY_PER_CB, NULL);
+//            nb->fireChangeNotification(NF_PHY_PER_CB, NULL);
+
+            int msgId = -1;
+            if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
+                msgId = lteSched->getMessageId(DL_SCHEDULING);
+                if (lteSched->getTTI() == 0)
+                    sendDCIFormats();
+            } else {
+                msgId = lteSched->getMessageId(UL_SCHEDULING);
+            }
+
+            if (msgId != -1) {
+                EV << "LTE-Radio: Sending scheduled message with id " << msgId << ".\n";
+                TransportBlock *tb = queue[msgId];
+                if (msgId == RAP_MSG_ID) {
+                    tb->setRnti(1 + lteSched->getTTI() + 10 * tb->getRnti());
+//                  rarLimit = lteSched->getSFN() + 3 + lteCfg->getRaRespWdwSize();
+                }
+//                this->send(tb->dup(), gate("lowerLayerOut"));
+                sendDown(tb->dup());
+            }
+
             this->cancelEvent(ttiTimer);
             this->scheduleAt(simTime() + TTI_VALUE, ttiTimer);
             lteSched->incrementTTI();
@@ -156,6 +181,24 @@ void LTERadio::sendToRadio(cMessage *msg, int channel) {
 
 }
 
+void LTERadio::sendDCIFormats() {
+//    bool direction = !strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3) ? DL_SCHEDULING : UL_SCHEDULING;
+    for (unsigned i = 0; i < 10; i++) {
+        int msgId = lteSched->getMessageId(DL_SCHEDULING, i);
+        if (msgId != -1 && queue[msgId] != NULL) {
+            TransportBlock *tb = queue[msgId];
+            if (tb->getChannel() == DLSCH1) {
+                EV << "LTE-Radio: Sending DCIFormat1A for message with id = " << msgId <<".\n";
+                DCIFormat1A *dci = new DCIFormat1A();
+                dci->setName("DCIFormat1A");
+                dci->setRnti(tb->getRnti());
+                dci->setRntiType(tb->getRntiType());
+                sendToChannel(dci);
+            }
+        }
+    }
+}
+
 //AirFrame *LTERadio::encapsulatePacket(cPacket *frame) {
 ////   PhyControlInfo *ctrl = dynamic_cast<PhyControlInfo *>(frame->removeControlInfo());
 ////
@@ -180,12 +223,7 @@ void LTERadio::sendToRadio(cMessage *msg, int channel) {
 ////    return airframe;
 //}
 
-void LTERadio::handleUpperMessage(cMessage* msg) {
-
-    // no point in sending n Physical Resource Blocks and will send only one Physical Resource
-    // Block with the Transport Block encapsulated
-
-    TransportBlock *tb = check_and_cast<TransportBlock*>(msg);
+void LTERadio::sendDown(TransportBlock *tb) {
     PhysicalResourceBlock *prb = new PhysicalResourceBlock();
     switch (tb->getChannel()) {
         case RACH: {
@@ -197,7 +235,10 @@ void LTERadio::handleUpperMessage(cMessage* msg) {
             break;
         }
         case DLSCH0:
-            prb->setChannelNumber(PDSCH);
+            prb->setChannelNumber(PDSCH0);
+            break;
+        case DLSCH1:
+            prb->setChannelNumber(PDSCH1);
             break;
 //        case ULSCH:
 //            frame->setChannelNumber(PUSCH);
@@ -212,6 +253,66 @@ void LTERadio::handleUpperMessage(cMessage* msg) {
     prb->encapsulate(tb);
     prb->setName(tb->getName());
     sendToChannel(prb);
+}
+
+void LTERadio::handleUpperMessage(cMessage* msg) {
+
+    // no point in sending n Physical Resource Blocks and will send only one Physical Resource
+    // Block with the Transport Block encapsulated
+
+    MACProtocolDataUnit *pdu = dynamic_cast<MACProtocolDataUnit*>(msg);
+    MACControlInfo *ctrl = dynamic_cast<MACControlInfo*>(msg->removeControlInfo());
+
+    if (ctrl) {
+        TransportBlock *tb = new TransportBlock();
+        if (ctrl->getChannel() == RACH) {
+            RAPControlInfo *rapCtrl = check_and_cast<RAPControlInfo*>(ctrl);
+            RandomAccessPreamble *rap = new RandomAccessPreamble();
+            rap->setRapid(rapCtrl->getRapid());
+            rap->setAttempt(rapCtrl->getAttempt());
+            rap->setName("RandomAccessPreamble");
+            rap->setKind(RAP_MSG_ID);
+            tb = rap;
+        } else {
+            tb->setName(pdu->getName());
+            tb->encapsulate(pdu);
+            tb->setKind(pdu->getKind());
+        }
+        tb->setChannel(ctrl->getChannel());
+        tb->setRntiType(ctrl->getRntiType());
+        tb->setRnti(ctrl->getRnti());
+        tb->setUeId(ctrl->getUeId());
+        queue[tb->getKind()] = tb;
+    }
+
+//    switch (ctrl->getChannel()) {
+//        case RACH: {
+//            RAPreamble *rap = new RAPreamble();
+//            rap->setChannelNumber(PRACH);
+//            rap->setRapid(ctrl->getRapid());
+//            frame = rap;
+//            prb->setChannelNumber(PRACH);
+//            break;
+//        }
+//        case DLSCH0:
+//            prb->setChannelNumber(PDSCH0);
+//            break;
+//        case DLSCH1:
+//            prb->setChannelNumber(PDSCH1);
+//            break;
+//        case ULSCH:
+//            frame->setChannelNumber(PUSCH);
+//            break;
+//        case BCH:
+//            prb->setChannelNumber(PBCH);
+//            break;
+//        default:
+//            break;
+//    }
+
+//    prb->encapsulate(tb);
+//    prb->setName(tb->getName());
+//    sendToChannel(prb);
 ////    lteFrame->setType(ctrl->getType());
 //    frame->setRntiType(ctrl->getRntiType());
 //    frame->setRnti(ctrl->getRnti());
@@ -246,10 +347,25 @@ void LTERadio::handleRadioMessage(cMessage *msg) {
     PhysicalResourceBlock *prb = check_and_cast<PhysicalResourceBlock*>(msg);
     if (prb->getEncapsulatedPacket()) {
         TransportBlock *tb = check_and_cast<TransportBlock*>(prb->decapsulate());
-        tb->setTbId(lteSched->getSFN() * 10 + lteSched->getTTI());
-        send(tb, gate("upperLayerOut"));
+        if ((tb->getChannel() == BCH) || (tb->getChannel() == DLSCH0)
+                || (tb->getChannel() == RACH) || (tb->getUeId() == this->getParentModule()->getId())) {
+            if (tb->getChannel() == DLSCH1) {
+                checkDCIFormats(tb);
+            }
+            tb->setTbId(lteSched->getSFN() * 10 + lteSched->getTTI());
+            send(tb, gate("upperLayerOut"));
+        } else {
+            EV << "LTE-Radio: Received unexpected packet on channel = " << tb->getChannel() << ". Dropping it.\n";
+        }
+        delete prb;
     }
-    delete prb;
+
+    DCIFormat *dci = dynamic_cast<DCIFormat*>(msg);
+    if (dci) {
+        dcis.push_back(dci);
+    }
+
+
 //    LTESubFrame *subFrame = check_and_cast<LTESubFrame*>(msg);
 //    scheduleAt(simTime() + subFrame->getDuration(), subFrame);
 //    if (dynamic_cast<RandomAccessFrame*>(msg)) {
@@ -288,6 +404,17 @@ void LTERadio::handleRadioMessage(cMessage *msg) {
 //
 //    } else
 //        delete msg;
+}
+
+void LTERadio::checkDCIFormats(TransportBlock *tb) {
+    for (DCIFormats::iterator i = dcis.begin(); i != dcis.end();) {
+        if ((*i)->getRntiType() == tb->getRntiType() && (*i)->getRnti() == tb->getRnti()) {
+            tb->setControlInfo((*i));
+            i = dcis.erase(i);
+        } else {
+            ++i;
+        }
+    }
 }
 
 void LTERadio::sendUp(LTEFrame *frame, LTEPhyControlInfo *ctrl) {

@@ -18,6 +18,8 @@
 
 #include <omnetpp.h>
 #include "RRCClassDefinitions.h"
+#include "NotificationBoard.h"
+#include "LTESchedulerAccess.h"
 
 static const unsigned dlBandwiths[6] = { 6, 15, 25, 50, 75, 100 };
 static const std::string phichDurations[2] = { "normal", "extended" };
@@ -29,16 +31,12 @@ static const unsigned preambleTransMaxs[11] = { 3, 4, 5, 6, 7, 8, 10, 20, 50, 10
 static const unsigned raRespWdwSizes[8] = { 2, 3, 4, 5, 6, 7, 8, 10 };
 static const unsigned macContResolTimers[8] = { 8, 16, 24, 32, 40, 48, 56, 64 };
 static const unsigned maxHARQMsg3Txs[8] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+static const int prachCfgIndex0TTIs[1] = { 1 };
 
 #define TDD_MODE    0
 #define FDD_MODE    1
 
-//struct LTEResource {
-//    int msgId;
-//    int prbId;
-//};
-
-class LTEConfig : public cSimpleModule {
+class LTEConfig : public cSimpleModule, public INotifiable {
 private:
     struct PLMNIdentity {
         std::string mcc;
@@ -65,15 +63,20 @@ private:
     unsigned preambleIndex;
     int prachMaskIndex;
 
-    int raSt;
+    LTEScheduler *lteSched;
+
+    NotificationBoard *nb;
 
     unsigned find(double value, const double *array, unsigned size);
     unsigned find(unsigned value, const unsigned *array, unsigned size);
     unsigned find(std::string value, const std::string *array, unsigned size);
 
     void loadConfigFromXML(const char *filename);
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
+
 protected:
-    virtual void initialize();
+    virtual int numInitStages() const  { return 5; }
+    virtual void initialize(int stage);
     virtual void handleMessage(cMessage *msg);
 
 public:
@@ -101,7 +104,6 @@ public:
     char *getCellId() { return cellId; }
     unsigned getPRACHFreqOffset() { return prachFreqOff; }
     unsigned getPRACHCfgIndex() { return prachCfgIndex; }
-    int getRAState() { return raSt; }
     bool getTransmissionMode() { return transMode; }
     unsigned getPreambleIndex() { return preambleIndex; }
     int getPRACHMaskIndex() { return prachMaskIndex; }
@@ -128,7 +130,6 @@ public:
     void setMaxHARQMsg3Tx(unsigned maxHARQMsg3Tx) { this->maxHARQMsg3Tx = maxHARQMsg3Txs[find(maxHARQMsg3Tx, maxHARQMsg3Txs, 8)]; }
     void setPRACHFreqOffset(unsigned prachFreqOff) { if (prachFreqOff < 95) this->prachFreqOff = prachFreqOff; }
     void setPRACHCfgIndex(unsigned prachCfgIndex) { if (prachCfgIndex < 64) this->prachCfgIndex = prachCfgIndex; }
-    void setRAState(int raSt) { this->raSt = raSt; }
 
 //    void schedulePRBs(bool direction, int sfnBegin, int sfnPeriod, int sfnSize, int ttiBegin, int ttiPeriod, int ttiSize, int prbBegin, int prbPeriod, int prbSize);
 };

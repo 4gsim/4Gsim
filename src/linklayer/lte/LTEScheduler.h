@@ -21,16 +21,18 @@
 
 class LTEScheduler : public cSimpleModule {
 private:
-    unsigned short tti;
-    unsigned short sfn;
+    unsigned tti;
+    unsigned sfn;
 
-    typedef std::vector<LTESchedulingInfo> LTESchedulings;
+    typedef std::vector<LTESchedulingInfo*> LTESchedulings;
     LTESchedulings schedulings;
 
     int msgIds;
 
     unsigned gcd(unsigned a, unsigned b);
     unsigned lcm(unsigned a, unsigned b);
+
+    void erase(unsigned start, unsigned end);
 
 public:
     LTEScheduler();
@@ -39,15 +41,18 @@ public:
     virtual void initialize();
     virtual void handleMessage(cMessage *msg);
 
-    unsigned short getTTI() { return tti; }
-    unsigned short getSFN() { return sfn; }
+    unsigned getTTI() { return tti; }
+    unsigned getSFN() { return sfn; }
     int generateMessageId() { return msgIds++; }
     int getMessageId(bool direction);
+    int getMessageId(bool direction, unsigned tti);
 
 //    void setSFN(unsigned short sfn) { this->sfn = sfn; }
     void incrementTTI();
 //    void addFixedScheduling(bool direction, int msgId, unsigned sfnPeriod, const int *tti, unsigned ttiSize, int prbId, int prbSize);
     bool scheduleMessage(bool direction, int msgId, unsigned sfnBegin, unsigned sfnPeriod, unsigned sfnEnd, const int *tti, unsigned ttiSize, int prbBegin, int prbSize);
+    int scheduleMessage(bool direction, unsigned sfnBegin, unsigned sfnEnd);
+
 };
 
 #endif /* LTESCHEDULER_H_ */

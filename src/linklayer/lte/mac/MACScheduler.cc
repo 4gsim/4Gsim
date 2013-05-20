@@ -95,6 +95,6 @@ void MACScheduler::initRandomAccessProcedure() {
      * determine next available subframe
      *
      */
-    lteCfg->setRAState(1);
+//    lteCfg->setRAState(1);
 }
 

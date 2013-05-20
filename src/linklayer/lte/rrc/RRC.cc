@@ -448,16 +448,11 @@ void RRC::processSIB2(SystemInformationBlockType2 *sib2) {
     lteCfg->setPRACHCfgIndex(prachCfgInfo.getPRACHConfigInfoPrachConfigIndex().getValue());
     lteCfg->setPRACHFreqOffset(prachCfgInfo.getPRACHConfigInfoPrachFreqOffset().getValue());
 
-    // TODO rest of the table 3GPP TS 36211 Table 5.7.1-2 pag. 32
-    switch (lteCfg->getPRACHCfgIndex() % 16) {
-        case 0:
-            lteSched->scheduleMessage(UL_SCHEDULING, RA_MSG_ID, 0, 2, UINT32_MAX, prachCfgIndex0TTIs, 1, lteCfg->getPRACHFreqOffset(), 6);
-            break;
-        default:
-            break;
-    }
-
-    nb->fireChangeNotification(NF_MAC_BEGIN_RA, NULL);
+    Subscriber *sub = subT->at(0);
+    RRCEntity *rrc = sub->getRrcEntity();
+    if (rrc->getState() == UE_RRC_IDLE)
+        rrc->performStateTransition(ConnectionEstablishment);
+//    lteCfg->performRAStateTransition(RAInitialization);
 
 //    lteCfg->setRAState(0);
 
