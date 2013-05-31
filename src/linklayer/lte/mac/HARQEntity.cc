@@ -14,12 +14,12 @@
 // 
 
 #include "HARQEntity.h"
-#include "HARQControlInfo_m.h"
 #include "MAC.h"
+#include "LTEControlInfo_m.h"
 
 HARQEntity::HARQEntity() {
     // TODO Auto-generated constructor stub
-
+    module = NULL;
 }
 
 HARQEntity::~HARQEntity() {
@@ -27,28 +27,47 @@ HARQEntity::~HARQEntity() {
 }
 
 void HARQEntity::init(MAC *module, unsigned nrOfProcs) {
-    bcastProc = new HARQProcess(module);
+    this->module = module;
 
     for (unsigned i = 0; i < nrOfProcs; i++) {
         procs[i] = new HARQProcess(module);
     }
+
+    procs[HARQ_BCAST_PROC_ID] = new HARQProcess(module);
 }
 
-void HARQEntity::processUplinkGrant(unsigned ulGrant, unsigned ttiId) {
-//    HARQProcess *proc = procs[ttiId % HARQ_MAX_PROCS];
-//    if (msg3.size()) {
-//        MACProtocolDataUnit *pdu = msg3.back();
-//        msg3.pop_back();
-//        proc->send(ulGrant, pdu);
-//    }
+void HARQEntity::indicateDlAssignment(TransportBlock *tb, DownlinkAssignment *dlAssign) {
+    HARQProcess *harqProc = procs[dlAssign->getHarqNo()];
+    if (harqProc != NULL)
+        harqProc->allocate(tb, dlAssign);
 }
 
-void HARQEntity::indicateDownlinkAssignment(TransportBlock *tb) {
-    HARQControlInfo *ctrl = check_and_cast<HARQControlInfo*>(tb->getControlInfo());
-    EV << "LTE-MAC: Received a downlink assignment.\n";
-    if (ctrl->getHarqProcId() == HARQ_BCAST_PROC_ID) {
-        EV << "LTE-MAC: Allocating assignment to broadcast HARQ process.\n";
-        bcastProc->allocate(tb);
+void HARQEntity::indicateUlGrant(int tti, int msgId, UplinkGrant *ulGrant) {
+    // identify the HARQ process associated with this TTI;
+    unsigned procId = tti % procs.size() - 1; // exclude broadcast process
+    HARQProcesses::iterator i = procs.find(procId);
+    if (i != procs.end()) {
+        HARQProcess *harqProc = i->second;
+        if (tti == ulGrant->getTtis(0)) {
+            // TODO if the received grant was not addressed to a Temporary C-RNTI on PDCCH and if the NDI provided in the associated HARQ information has been toggled compared to the value in the previous transmission of this HARQ process; or
+            if ((ulGrant->getRntiType() == CRnti && harqProc->getBuffer() == NULL) || (module->getRAState() == RESP_CORRECT)) {
+                MACProtocolDataUnit *pdu = NULL;
+                if (module->getMsg3Pdu(msgId) != NULL && module->getRAState() == RESP_CORRECT) {
+                    pdu = module->getMsg3Pdu(msgId);
+                } else {
+                    // TODO obtain the MAC PDU to transmit from the "Multiplexing and assembly" entity;
+                }
+                harqProc->requestNewTransmission(pdu);
+            } else {
+                // TODO -   deliver the uplink grant and the HARQ information (redundancy version) to the identified HARQ process;
+                // TODO -   instruct the identified HARQ process to generate an adaptive retransmission.
+            }
+        } else {
+            // TODO else, if the HARQ buffer of the HARQ process corresponding to this TTI is not empty:
+            // TODO -   instruct the identified HARQ process to generate a non-adaptive retransmission.
+        }
     }
+
+    // TODO When determining if NDI has been toggled compared to the value in the previous transmission UE shall ignore NDI received in all uplink grants on PDCCH for its Temporary C-RNTI.
 }
 

@@ -1,6 +1,4 @@
 //
-// Copyright (C) 2012 Calin Cerchez
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -18,18 +16,12 @@
 #ifndef MAC_H_
 #define MAC_H_
 
-#include <omnetpp.h>
 #include "NotificationBoard.h"
-#include "HARQEntity.h"
-#include "MACScheduler.h"
-#include "LTEConfigAccess.h"
 #include "LTESchedulerAccess.h"
-
-#define RA_RNTI_MIN_VALUE   1
-#define RA_RNTI_MAX_VALUE   60
-#define C_RNTI_MIN_VALUE    1
-#define C_RNTI_MAX_VALUE    65523
-//#define TTI_VALUE           1
+#include "LTEConfigAccess.h"
+#include "LTEFrame.h"
+#include "HARQEntity.h"
+#include "SubscriberTableAccess.h"
 
 enum RAState {
     PROC_NULL               = FSM_Steady(0),
@@ -52,53 +44,43 @@ enum RAEvent {
     IncorrectProc
 };
 
-class MAC : public cSimpleModule, public INotifiable {
-protected:
-//    unsigned rntiType;
-//    unsigned short rnti;
-//    unsigned ueId;
+class MAC : public cSimpleModule, INotifiable {
+private:
     unsigned preambleTransCount;
     unsigned backoffParam;
     unsigned rarLimit;
     unsigned preambleIndex;
     unsigned prachIndex;
+    int rapId;
+    int downId;
+    unsigned raRnti;
 
-    cMessage *ttiTimer;
-//    unsigned ttiId;
-//    unsigned schTtid;
-
-    HARQEntity *dlEntity;
-    MACScheduler *scheduler;
+    typedef std::map<int, TransportBlock*> QueueDown;
+    QueueDown queueDown;
+    typedef std::map<int, cMessage*> QueueUp;
+    QueueUp queueUp;
+    typedef std::map<int, MACProtocolDataUnit*> MACBuffer;
+//    MACBuffer queue;
+    MACBuffer msg3Buffer;
 
     NotificationBoard *nb;
 
-    cFSM raFSM;
-
-//    MACProtocolDataUnit *bcchMsg;
-
-    LTEConfig *lteCfg;
     LTEScheduler *lteSched;
 
-    typedef std::vector<MACProtocolDataUnit*> QueueUp;
-    QueueUp queueUp;
-//    std::map<int, TransportBlock*> queueDown;
+    LTEConfig *lteCfg;
 
+    SubscriberTable *subT;
 
-    typedef std::map<unsigned, MACProtocolDataUnit*> MACBuffer;
-//    MACBuffer queue;
-    MACBuffer msg3Buffer;
-//    std::vector<MACRandomAccessResponse*> rars;
+    HARQEntity *dlEntity;
+    HARQEntity *ulEntity;
+
+    cFSM raFSM;
 
     virtual void receiveChangeNotification(int category, const cPolymorphic *details);
-
-    void addHarqInformation(TransportBlock *tb, int harqProcId);
-
-    const char *channelName(int channelNumber);
 
     void performRAStateTransition(RAEvent event);
 
     void raStateEntered();
-
 public:
     MAC();
     virtual ~MAC();
@@ -108,18 +90,19 @@ public:
     virtual void initialize(int stage);
     virtual void handleMessage(cMessage *msg);
 
-    void handleLowerMessage(cMessage *msg);
     void handleUpperMessage(cMessage *msg);
+    void handleLowerMessage(cMessage *msg);
 
-//    void sendDown(cMessage *msg, int channelNumber, unsigned rntiType, unsigned short rnti);
-    void sendUp(cMessage *msg, int channel);
-    void sendDown(int channel, unsigned rntiType, unsigned rnti, unsigned ueId, MACProtocolDataUnit *pdu);
+    void sendUp(TransportBlock *tb, int channel);
+    void sendDown(MACProtocolDataUnit *pdu);
 
-//    unsigned getUeId() { return ueId; }
+    void dlschDataTransfer(TransportBlock *tb, DownlinkAssignment *dlAssign);
+    void ulschDataTransfer(int tti, int msgId, UplinkGrant *ulGrant);
 
-    void ulschDataTransfer(int channel, unsigned rnti, unsigned rntiType);
+    int getRAState() { return raFSM.getState(); }
+    MACProtocolDataUnit *getMsg3Pdu(int msgId);
 
-//    void sendRACommand(int channel, int rnti, int rntiType);
+    std::string timestamp();
 };
 
 #endif /* MAC_H_ */

@@ -18,41 +18,57 @@
 
 #include <omnetpp.h>
 #include "LTESchedulingInfo.h"
+#include "NotificationBoard.h"
 
-class LTEScheduler : public cSimpleModule {
+typedef std::map<int, DownlinkAssignment*> DownlinkAssignments;
+typedef std::map<int, UplinkGrant*> UplinkGrants;
+
+class LTEScheduler : public cSimpleModule, INotifiable {
 private:
     unsigned tti;
     unsigned sfn;
-
-    typedef std::vector<LTESchedulingInfo*> LTESchedulings;
-    LTESchedulings schedulings;
-
     int msgIds;
+
+    cMessage *ttiTimer;
+
+    DownlinkAssignments dlAssigns;
+
+    UplinkGrants ulGrants;
+
+    NotificationBoard *nb;
+
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
 
     unsigned gcd(unsigned a, unsigned b);
     unsigned lcm(unsigned a, unsigned b);
-
-    void erase(unsigned start, unsigned end);
-
+    bool checkDlScheduling(unsigned sfnBegin, unsigned sfnPeriod, unsigned sfnEnd, const int *tti, unsigned ttiSize);
+    bool checkUlScheduling(unsigned sfnBegin, unsigned sfnPeriod, unsigned sfnEnd, const int *tti, unsigned ttiSize);
 public:
     LTEScheduler();
     virtual ~LTEScheduler();
 
-    virtual void initialize();
+    virtual int numInitStages() const { return 5; }
+    virtual void initialize(int stage);
     virtual void handleMessage(cMessage *msg);
 
     unsigned getTTI() { return tti; }
     unsigned getSFN() { return sfn; }
-    int generateMessageId() { return msgIds++; }
-    int getMessageId(bool direction);
-    int getMessageId(bool direction, unsigned tti);
 
-//    void setSFN(unsigned short sfn) { this->sfn = sfn; }
+    int getDlMessageId(unsigned tti);
+    int getDlMessageId() { return getDlMessageId(tti); }
+    int getUlMessageId(unsigned tti);
+    int getUlMessageId() { return getUlMessageId(tti); }
+
     void incrementTTI();
-//    void addFixedScheduling(bool direction, int msgId, unsigned sfnPeriod, const int *tti, unsigned ttiSize, int prbId, int prbSize);
-    bool scheduleMessage(bool direction, int msgId, unsigned sfnBegin, unsigned sfnPeriod, unsigned sfnEnd, const int *tti, unsigned ttiSize, int prbBegin, int prbSize);
-    int scheduleMessage(bool direction, unsigned sfnBegin, unsigned sfnEnd);
+    int scheduleDlMessage(unsigned rntiType, unsigned rnti, unsigned sfnBegin, unsigned sfnPeriod, unsigned sfnEnd, const int *tti, unsigned ttiSize);
+    int scheduleUlMessage(unsigned rntiType, unsigned rnti, unsigned sfnBegin, unsigned sfnPeriod, unsigned sfnEnd, const int *tti, unsigned ttiSize);
+    int scheduleDlMessage(unsigned rntiType, unsigned rnti, unsigned sfnBegin, unsigned sfnPeriod);
 
+    DownlinkAssignments getDlAssignments() { return dlAssigns; }
+    DownlinkAssignment *getDlAssignment(int msgId);
+    UplinkGrant *getUlGrant(int msgId);
+
+    std::string timestamp();
 };
 
 #endif /* LTESCHEDULER_H_ */

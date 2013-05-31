@@ -77,7 +77,10 @@ enum SubscriberGTPProcedure {
 class Subscriber : public cPolymorphic {
 private:
     // radio info
-    int channelNr;
+    int ueId;
+    unsigned rapid;
+    unsigned rnti;
+    unsigned rntiType;
 
     // s1ap info
 	unsigned enbId;
@@ -131,7 +134,10 @@ public:
 	void setMmeId(unsigned mmeId) { this->mmeId = mmeId; }
 	void setMmeGroupId(char *mmeGrId) { this->mmeGrId = mmeGrId; }
 	void setMmeCode(char *mmeCode) { this->mmeCode = mmeCode; }
-	void setChannelNr(unsigned channelNr) { this->channelNr = channelNr; }
+	void setUeId(int ueId) { this->ueId = ueId; }
+	void setRapid(unsigned rapid) { this->rapid = rapid; }
+	void setRnti(unsigned rnti) { this->rnti = rnti; }
+	void setRntiType(unsigned rntiType) { this->rntiType = rntiType; }
 	void setImsi(char *imsi) { emm->setImsi(imsi); }
 	void setCellId(char *cellId) { this->cellId = cellId; }
 	void setPlmnId(char *plmnId) { this->plmnId = plmnId; }
@@ -151,7 +157,10 @@ public:
 	unsigned getMmeId() { return mmeId; }
 	char *getMmeCode() { return mmeCode; }
 	char *getMmeGroupId() { return mmeGrId; }
-	int getChannelNr() { return channelNr; }
+	int getUeId() { return ueId; }
+	unsigned getRapid() { return rapid; }
+	unsigned getRnti() { return rnti; }
+	unsigned getRntiType() { return rntiType; }
 	char *getCellId() { return cellId; }
 	char *getPlmnId() { return plmnId; }
 	char *getTac() { return tac; }
@@ -165,6 +174,7 @@ public:
 	PDNConnection *getDefaultPDNConn() { return esm->getDefPDNConnection(); }
 	char getStatus() { return status; }
 	const char *statusName() const;
+	const char *rntiTypeName() const;
 	unsigned char getGTPProcedure() { return gtpProc; }
 
 	/*

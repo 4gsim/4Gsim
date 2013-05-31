@@ -132,7 +132,7 @@ void NAS::handleMessageFromS1AP(cMessage *msg) {
 					goto end;
 				}
 				sub->setStatus(SUB_ACTIVE);
-				sendToRRC(nmsg, sub->getChannelNr());
+//				sendToRRC(nmsg, sub->getChannelNr());
 				break;
 			}
 			case AttachReject: {
@@ -142,7 +142,7 @@ void NAS::handleMessageFromS1AP(cMessage *msg) {
 					goto end;
 				}
 				sub->setStatus(SUB_INACTIVE);
-				sendToRRC(nmsg, sub->getChannelNr());
+//				sendToRRC(nmsg, sub->getChannelNr());
 				break;
 			}
 			case AttachComplete: {
@@ -166,7 +166,8 @@ void NAS::handleMessageFromS1AP(cMessage *msg) {
 void NAS::handleMessageFromRadio(cMessage *msg) {
 	NASPlainMessage *nmsg = check_and_cast<NASPlainMessage*>(msg);
 	PhyControlInfo *ctrl = dynamic_cast<PhyControlInfo *>(nmsg->removeControlInfo());
-	Subscriber *sub = subT->findSubscriberForChannel(ctrl->getChannelNumber());
+//	Subscriber *sub = subT->findSubscriberForChannel(ctrl->getChannelNumber());
+	Subscriber *sub = NULL;
 	if (appType == RELAY_APPL_TYPE) {
 		if (sub == NULL) {
 			sub = new Subscriber();
@@ -175,7 +176,7 @@ void NAS::handleMessageFromRadio(cMessage *msg) {
 			PDNConnection *conn = new PDNConnection();
 			conn->setOwner(sub->getEsmEntity());
 			sub->getEsmEntity()->addPDNConnection(conn, true);
-			sub->setChannelNr(ctrl->getChannelNumber());
+//			sub->setChannelNr(ctrl->getChannelNumber());
 			sub->setEnbId(subT->genEnbId());
 			sub->setMmeId(0);
 			sub->setStatus(SUB_PENDING);
@@ -277,7 +278,7 @@ void NAS::loadConfigFromXML(const char *filename) {
     	channelNumber = par("channelNumber");
 
     	Subscriber *sub = subT->at(0);
-    	sub->setChannelNr(channelNumber);
+//    	sub->setChannelNr(channelNumber);
     	sub->initNasEntities(appType);
     	loadESMConfigFromXML(*nasNode);
     	loadEMMConfigFromXML(*nasNode);

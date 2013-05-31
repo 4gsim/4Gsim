@@ -64,23 +64,3 @@ packet MACProtocolDataUnit
     abstract MACSubHeaderPtr subHdrs[];
     abstract MACServiceDataUnitPtr sdus[];	// control elements go in the same vector
 }
-
-packet TransportBlock
-{
-    int channel;
-    unsigned int tbId;
-    unsigned int rntiType;
-	unsigned short rnti;			// RA-RNTI (1...60)
-	unsigned int ueId;
-}
-
-packet RandomAccessPreamble extends TransportBlock
-{
-	unsigned int rapid;
-	unsigned int attempt;    
-}
-
-packet DCIFormat1C extends TransportBlock
-{
-    
-}

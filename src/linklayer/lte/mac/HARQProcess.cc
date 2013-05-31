@@ -15,66 +15,75 @@
 
 #include "HARQProcess.h"
 #include "MAC.h"
-#include "LTEControlInfo_m.h"
-#include "HARQControlInfo_m.h"
+#include "MACControlInfo_m.h"
 
 HARQProcess::HARQProcess(MAC *module) {
     // TODO Auto-generated constructor stub
     currTxNb = 0;
     maxTrans = 3;
     this->module = module;
+    softBuffer = NULL;
+    buffer = NULL;
 }
 
 HARQProcess::~HARQProcess() {
     // TODO Auto-generated destructor stub
 }
 
-void HARQProcess::send(unsigned ulGrant, MACProtocolDataUnit *pdu) {
-//    currTxNb = 0;
-//    buffer.push_back(pdu);
-//    // TODO store ulGrant
-//    harqFeedback = HARQ_FEEDBACK_NACK;
-//
-////    module->scheduleDown(pdu, ULSCH, TTI_VALUE);
-//
-//    if (currTxNb == maxTrans - 1) {
-//        while(!buffer.empty()) {
-//            delete buffer.front();
-//            buffer.pop_front();
-//        }
-//    }
-}
-
-void HARQProcess::allocate(TransportBlock *tb) {
+void HARQProcess::allocate(TransportBlock *tb, DownlinkAssignment *dlAssign) {
     bool newTrans = false;
-    bool harqFb = HARQ_FEEDBACK_NACK;
-    bool decodeResult = true;
-    HARQControlInfo *ctrl = check_and_cast<HARQControlInfo*>(tb->getControlInfo());
-    if (ctrl->getHarqProcId() == HARQ_BCAST_PROC_ID) {  // TODO scheduling info from RRC
+
+    if ((dlAssign->getHarqNo() == HARQ_BCAST_PROC_ID && softBuffer == NULL) || softBuffer == NULL)
         newTrans = true;
+
+    if (newTrans == true) {
+        softBuffer = tb;
+    } else {
+        // TODO combine tb with softBuffer
     }
 
-    if (newTrans) {
-        EV << "LTE-MAC: New downlink transmission.\n";
-        softBuffer[tb->getTbId()] = tb;
-    }
+    // TODO attempt to decode...
 
-    // TODO attempt to decode ...
-
-    MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(tb->decapsulate());
-    if (decodeResult) {
-        EV << "LTE-MAC: Successfully decoded the Transport Block.\n";
-        if (ctrl->getHarqProcId() == HARQ_BCAST_PROC_ID) {
-            EV << "LTE-MAC: Broadcast message. Sending the data to the upper layer.\n";
-            cMessage *msg = pdu->decapsulate();
-            delete pdu;
-            module->sendUp(msg, BCCH1);
-        }
-        harqFb = HARQ_FEEDBACK_ACK;
-    }
-
-    if (ctrl->getHarqProcId() == HARQ_BCAST_PROC_ID) {  // TODO timeAllignmentTimer
-        // do not indicate to lower layer
+    if (dlAssign->getHarqNo() == HARQ_BCAST_PROC_ID) {
+        EV << module->timestamp() << "Downlink data transfer for " << tb->getName() << ".\n";
+        module->sendUp(softBuffer, BCCH1);
+        softBuffer = NULL;
     }
 }
+
+void HARQProcess::requestNewTransmission(MACProtocolDataUnit *pdu) {
+    currTxNb = 0;
+
+    currIrv = 0;
+
+    buffer = pdu->dup();
+    MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(pdu->getControlInfo())->dup();
+    buffer->setControlInfo(ctrl);
+
+    harqFeedback = HARQ_FEEDBACK_NACK;
+
+    transmit(pdu);
+
+    if (currTxNb == MAX_NR_OF_TRANS - 1) {
+        delete buffer;
+        buffer = NULL;
+    }
+}
+
+void HARQProcess::transmit(MACProtocolDataUnit *pdu) {
+    int msgId = pdu->getKind();
+    // TODO if there is no measurement gap at the time of the transmission and, in case of retransmission, the retransmission does not collide with a transmission for a MAC PDU obtained from the Msg3 buffer in this TTI:
+    if (module->getMsg3Pdu(msgId) != NULL) {
+        EV << module->timestamp() << "Uplink data transfer for " << pdu->getName() << ".\n";
+        module->sendDown(pdu);
+
+        currIrv++;
+
+        // TODO -    if there is a measurement gap at the time of the HARQ feedback reception for this transmission and if the MAC PDU was not obtained from the Msg3 buffer:
+        // TODO -   set HARQ_FEEDBACK to ACK at the time of the HARQ feedback reception for this transmission.
+
+    }
+}
+
+
 

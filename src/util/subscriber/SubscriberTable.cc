@@ -70,19 +70,19 @@ void SubscriberTable::initialize(int stage) {
 void SubscriberTable::handleMessage(cMessage *msg) {
 	if (msg->isSelfMessage()) {
 		if (msg == cleanTimer) {
-			EV << "SubscriberTable: Inactive subscriber timer expired. Cleaning inactive subscribers.\n";
-			Subscribers::iterator i = subs.begin();
-			Subscribers::iterator last = subs.end();
-			for (;i != last;) {
-				if ((*i)->getStatus() == SUB_INACTIVE) {
-					EV << "SubscriberTable: Found one inactive subscriber. Cleaning it.\n";
-					delete (*i);
-					i = subs.erase(i);
-				} else
-				    ++i;
-			}
-			this->cancelEvent(cleanTimer);
-			this->scheduleAt(simTime() + CLEAN_TIMER_TIMEOUT, cleanTimer);
+//			EV << "SubscriberTable: Inactive subscriber timer expired. Cleaning inactive subscribers.\n";
+//			Subscribers::iterator i = subs.begin();
+//			Subscribers::iterator last = subs.end();
+//			for (;i != last;) {
+//				if ((*i)->getStatus() == SUB_INACTIVE) {
+//					EV << "SubscriberTable: Found one inactive subscriber. Cleaning it.\n";
+//					delete (*i);
+//					i = subs.erase(i);
+//				} else
+//				    ++i;
+//			}
+//			this->cancelEvent(cleanTimer);
+//			this->scheduleAt(simTime() + CLEAN_TIMER_TIMEOUT, cleanTimer);
 		}
 	} else
 		delete msg;
@@ -99,10 +99,10 @@ Subscriber *SubscriberTable::findSubscriberForId(unsigned enbId, unsigned mmeId)
 	return NULL;
 }
 
-Subscriber *SubscriberTable::findSubscriberForChannel(int channelNr) {
+Subscriber *SubscriberTable::findSubscriberForRapid(unsigned rapid) {
 	for (unsigned i = 0; i < subs.size(); i++) {
 		Subscriber *sub = subs[i];
-		if (sub->getChannelNr() == channelNr)
+		if (sub->getRapid() == rapid)
 			return sub;
 	}
 	return NULL;

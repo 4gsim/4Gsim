@@ -23,17 +23,19 @@ enum LTELogicalChannels
 	DLCCCH = 2;
 	BCCH0 = 3;
 	BCCH1 = 4;
+	RA_RESP = 5;
 }
 
 enum LTETransportChannels
 {
-    SCH_CCCH = 20;
-    SCH_DxCH = 21;
-    SCH_RAR = 22;
-    RACH = 23;
-    DLSCH0 = 24;
-    DLSCH1 = 25;
-    BCH = 26;
+    SCH_BCH = 20;
+    ULSCH = 21;
+    SCH_DxCH = 22;
+    SCH_RAR = 23;
+    RACH = 24;
+    DLSCH0 = 25;
+    DLSCH1 = 26;
+    BCH = 27;
 }
 
 enum LTEPhyChannels 
@@ -54,6 +56,17 @@ enum LTEDirection
     Downlink = 2;
 }
 
+enum LTERntiTypes
+{
+ 	NoRnti = 0; 
+ 	PRnti = 1;
+ 	RaRnti = 2;
+ 	CRnti = 3;
+ 	SiRnti = 4;
+ 	SpsRnti = 5;
+ 	MRnti = 6;	
+ 	TempCRnti = 7;
+}
 
 class LTEControlInfo
 {

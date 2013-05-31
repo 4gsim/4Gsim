@@ -21,6 +21,7 @@
 #include <omnetpp.h>
 #include <assert.h>
 #include "TCPDump.h"
+#include "LTESchedulerAccess.h"
 
 /*
  * Module for dumping packets in DCT2000 .out files. The class was
@@ -51,6 +52,7 @@
 class DCTDump : public cSimpleModule {
 private:
     FILE *dumpfile;
+    LTEScheduler *lteSched;
     std::string timestamp(simtime_t stime);
     void dumpPacket(uint8 *buf, int32 len, bool type);
 public:

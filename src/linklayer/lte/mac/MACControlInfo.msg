@@ -19,11 +19,19 @@ cplusplus {{
 
 class noncobject LTEControlInfo;
 
+enum MACControlId
+{
+    SEND_CTRL_INFO			= 0;
+    UL_DATA_CTRL_INFO		= 1;
+    DL_DATA_CTRL_INFO		= 2;
+    BCAST_DATA_CTRL_INFO	= 3;
+    RAP_CTRL_INFO			= 4;
+}
+
 class MACControlInfo extends LTEControlInfo
 {
-    unsigned int ueId;
-	unsigned int rntiType;
-	unsigned short rnti = 0;
+	unsigned int ctrlId;
+	int ueId;
 }
 
 class RAPControlInfo extends MACControlInfo

@@ -15,10 +15,10 @@
 
 #include "LTESchedulingInfo.h"
 
-Register_Class(LTESchedulingInfo);
+Register_Class(DownlinkAssignment);
 
-LTESchedulingInfo& LTESchedulingInfo::operator=(const LTESchedulingInfo& other) {
-    LTESchedulingInfo_Base::operator=(other);
+DownlinkAssignment& DownlinkAssignment::operator=(const DownlinkAssignment& other) {
+    DownlinkAssignment_Base::operator=(other);
 
     for (unsigned i = 0; i < other.getTtisArraySize(); i++) {
         this->pushTti(other.ttis.at(i));
@@ -27,34 +27,29 @@ LTESchedulingInfo& LTESchedulingInfo::operator=(const LTESchedulingInfo& other) 
     return *this;
 }
 
-LTESchedulingInfo::~LTESchedulingInfo() {
+DownlinkAssignment::~DownlinkAssignment() {
 
 }
 
-void LTESchedulingInfo::setTtisArraySize(unsigned int size) {
+void DownlinkAssignment::setTtisArraySize(unsigned int size) {
      throw new cException(this, "setTtisArraySize() not supported, use pushTti()");
 }
 
-unsigned int LTESchedulingInfo::getTtisArraySize() const {
+unsigned int DownlinkAssignment::getTtisArraySize() const {
      return ttis.size();
 }
 
-void LTESchedulingInfo::setTtis(unsigned int k, int tti) {
+void DownlinkAssignment::setTtis(unsigned int k, int tti) {
      throw new cException(this, "setTtis() not supported, use use pushTti()");
 }
 
-int LTESchedulingInfo::getTtis(unsigned int k) const {
+int DownlinkAssignment::getTtis(unsigned int k) const {
     return ttis[k];
 }
 
-std::string LTESchedulingInfo::info() const {
+std::string DownlinkAssignment::info() const {
     std::stringstream out;
 
-    if (direction_var == UL_SCHEDULING)
-        out << "dir:UL, ";
-    else
-        out << "dir:DL, ";
-    out << "msgId:" << msgId_var << ", ";
     out << "sfnBegin:" << sfnBegin_var << ", ";
     out << "sfnPeriod:" << sfnPeriod_var << ", ";
     if (sfnEnd_var == UINT32_MAX)
@@ -68,3 +63,4 @@ std::string LTESchedulingInfo::info() const {
 
     return out.str();
 }
+

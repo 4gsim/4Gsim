@@ -51,7 +51,7 @@ void RRCEntity::performStateTransition(RRCEvent event) {
         case UE_RRC_IDLE:
             switch(event) {
                 case ConnectionEstablishment: {
-                    sendRRCConnectionRequest();
+                    sendRRCConnectionRequest(module->getRapId());
                     break;
                 }
                 default:
@@ -75,9 +75,15 @@ void RRCEntity::performStateTransition(RRCEvent event) {
             EV << "RRC: Unknown state.\n";
             break;
     }
+
+    if (oldState != fsm.getState())
+        EV << module->timestamp() << "PSM-Transition: " << stateName(oldState) << " --> " << stateName(fsm.getState()) << "  (event was: " << eventName(event) << ")\n";
+    else
+        EV << module->timestamp() << "Staying in state: " << stateName(fsm.getState()) << " (event was: " << eventName(event) << ")\n";
+
 }
 
-void RRCEntity::sendRRCConnectionRequest() {
+void RRCEntity::sendRRCConnectionRequest(int rapId) {
 //    using namespace rrc;
     char *randVal = (char*)malloc(5);
     InitialUEIdentity initUeId = InitialUEIdentity();
@@ -92,7 +98,7 @@ void RRCEntity::sendRRCConnectionRequest() {
     ULCCCHMessageTypeC1 *c1 = new ULCCCHMessageTypeC1();
     c1->setValue(rrcConnReq, ULCCCHMessageTypeC1::rrcConnectionRequest);
 
-    module->sendDown(-1, ULCCCH, ULCCCHMessageType::uLCCCHMessageTypeC1, "RRCConnectionRequest", c1);
+    module->sendDown(rapId, ULCCCH, ULCCCHMessageType::uLCCCHMessageTypeC1, "RRCConnectionRequest", c1);
 }
 
 void RRCEntity::sendRRCConnectionSetup() {

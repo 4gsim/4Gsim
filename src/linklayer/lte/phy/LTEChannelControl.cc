@@ -163,6 +163,7 @@ void LTEChannelControl::addOngoingTransmission(RadioRef h, AirFrame *frame) {
     }
 
     // purge old transmissions from time to time
+    simtime_t dif = simTime() - lastOngoingTransmissionsUpdate;
     if (simTime() - lastOngoingTransmissionsUpdate > TRANSMISSION_PURGE_INTERVAL)
     {
         purgeOngoingTransmissions();
@@ -204,7 +205,7 @@ void LTEChannelControl::sendToChannel(RadioRef srcRadio, AirFrame *airFrame) {
         }
         for (unsigned i = 0; i < r->channels.size(); i++) {
             if (r->channels[i] == channel) {
-                EV << "LTEChannelControl: Sending message to radio listening on the same channel.\n";
+//                EV << "LTEChannelControl: Sending message " << airFrame->getName() << " to radio listening on the same channel.\n";
                 // account for propagation delay, based on distance in meters
                 // Over 300m, dt=1us=10 bit times @ 10Mbps
                 simtime_t delay = srcRadio->pos.distance(r->pos) / LIGHT_SPEED;

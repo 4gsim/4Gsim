@@ -31,7 +31,8 @@ using namespace rrc;
 #define UE_NODE_TYPE        0
 #define ENB_NODE_TYPE       1
 
-static const int mibTTIs[1] = { 0 };
+static const int mibTTIsN[1] = { 0 };
+static const int mibTTIsU[1] = { 1 };
 static const int sib1TTIs[1] = { 4 };
 static const int sib2TTIs[1] = { 5 };
 
@@ -40,16 +41,17 @@ private:
     bool nodeType;
     SubscriberTable *subT;
 
-    cMessage *mibTimer;
-    cMessage *sib1Timer;
-    cMessage *sib2Timer;
+    unsigned mibId;
+    unsigned sib1Id;
+    unsigned sib2Id;
+    unsigned rapId;
 
     LTEConfig *lteCfg;
     LTEScheduler *lteSched;
 
     NotificationBoard *nb;
 
-    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 public:
 	RRC();
 	virtual ~RRC();
@@ -68,6 +70,10 @@ public:
 	void processSIB1(SystemInformationBlockType1 *sib1);
 	void sendSIB2();
 	void processSIB2(SystemInformationBlockType2 *sib2);
+
+	int getRapId() { return rapId; }
+
+	std::string timestamp();
 
 };
 

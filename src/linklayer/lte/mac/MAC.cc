@@ -1,6 +1,4 @@
 //
-// Copyright (C) 2012 Calin Cerchez
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -16,22 +14,13 @@
 // 
 
 #include "MAC.h"
-#include "LTEPhyControlInfo_m.h"
-#include "LTERadio.h"
 #include "MACUtils.h"
-#include "MACSerializer.h"
-#include "RRCMessage.h"
-#include "HARQControlInfo_m.h"
 #include "MACControlInfo_m.h"
-#include "RRCControlInfo_m.h"
 
 Define_Module(MAC);
 
 MAC::MAC() {
     // TODO Auto-generated constructor stub
-//    ttiId = 0;
-//    ueId = 0;
-//    bcchMsg = NULL;
     rarLimit = 0;
 
     raFSM = cFSM("fsm-RA");
@@ -44,257 +33,142 @@ MAC::~MAC() {
 
 void MAC::initialize(int stage) {
     if (stage == 4) {
-        nb = NotificationBoardAccess().get();
-        nb->subscribe(this, NF_PHY_PER_CB);
-        nb->subscribe(this, NF_MAC_BEGIN_RA);
-
         lteCfg = LTEConfigAccess().get();
+
         lteSched = LTESchedulerAccess().get();
 
-        if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
-//            rnti = uniform(RA_RNTI_MIN_VALUE, RA_RNTI_MAX_VALUE);
-//            rntiType = RaRnti;
-//            ueId = this->getParentModule()->getId();
-//            sendDown(new cPacket("RandomAccessRequest"), RACH, 1);
-        }
+        subT = SubscriberTableAccess().get();
 
-//        ttiTimer = new cMessage("TTI-TIMER");
-//        this->scheduleAt(simTime(), ttiTimer);
-//        ttiTimer->setContextPointer(this);
-        // TODO number of HARQ processes
+        nb = NotificationBoardAccess().get();
+
+        nb->subscribe(this, NF_TTI_EXP);
+
         dlEntity = new HARQEntity();
         dlEntity->init(this, 4);
 
-        scheduler = new MACScheduler();
-        scheduler->setLTEConfig(lteCfg);
+        ulEntity = new HARQEntity();
+        ulEntity->init(this, 4);
     }
 }
 
 void MAC::handleMessage(cMessage *msg) {
-    if (msg->isSelfMessage()) {
-//        LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
-//        EV << "LTE-MAC: Sending message on " << channelName(ctrl->getChannel()) << " channel.\n";
-//        this->send(msg, gate("lowerLayerOut"));
+    if (msg->arrivedOn("lowerLayerIn")) {
+        handleLowerMessage(msg);
     } else {
-        if (msg->arrivedOn("lowerLayerIn")) {
-            handleLowerMessage(msg);
-        } else {
-            handleUpperMessage(msg);
-        }
+        handleUpperMessage(msg);
     }
-}
-
-void MAC::handleLowerMessage(cMessage *msg) {
-    TransportBlock *tb = check_and_cast<TransportBlock*>(msg);
-//    LTEPhyControlInfo *ctrl = check_and_cast<LTEPhyControlInfo*>(msg->getControlInfo());
-    switch(tb->getChannel()) {
-        case BCH: {
-            MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(tb->decapsulate());
-            cMessage *msg = pdu->decapsulate();
-            delete pdu;
-            sendUp(msg, BCCH0);
-            break;
-        }
-        case RACH: {
-            RandomAccessPreamble *rap = check_and_cast<RandomAccessPreamble*>(msg);
-
-            int msgId = lteSched->scheduleMessage(DL_SCHEDULING, lteSched->getSFN() + 3, lteSched->getSFN() + 3 + lteCfg->getRaRespWdwSize());
-            if (msgId != -1) {
-                MACProtocolDataUnit *pdu = new MACProtocolDataUnit("RandomAccessResponse");
-//                MACControlInfo *ctrl = new MACControlInfo();
-
-                MACSubHeaderRar *header = MACUtils().createHeaderRar(true, rap->getRapid());
-                MACRandomAccessResponse *rar = MACUtils().createRAR(0, 0, uniform(0, 65535));  /* TODO UL grant split into bits */
-                pdu->pushSubHdr(header);
-                pdu->pushSdu(rar);
-                pdu->setKind(msgId);
-
-//                ctrl->setChannel(DLSCH1);
-//                ctrl->setRnti(rap->getRnti());
-//                ctrl->setRntiType(rap->getRntiType());
-//                ctrl->setUeId(rap->getUeId());
-
-                sendDown(DLSCH1, rap->getRntiType(), rap->getRnti(), rap->getUeId(), pdu);
-
-//                pdu->setControlInfo(ctrl);
-//                queue[pdu->getKind()] = pdu;
-            }
-            break;
-        }
-        case DLSCH0: {
-            if (tb->getRntiType() == SiRnti) {
-                // TODO redundancy version
-                addHarqInformation(tb, HARQ_BCAST_PROC_ID);
-                dlEntity->indicateDownlinkAssignment(tb);
-            }
-//        if (ueId == ctrl->getUeId()) {
-//            MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(msg);
-//            if (ctrl->getRntiType() == RaRnti) {
-//                rntiType = CRnti;
-//                MACRandomAccessResponse *rar = check_and_cast<MACRandomAccessResponse*>(pdu->getSdus(0));
-//                rnti = rar->getTmpCRnti();
-//                entity->processUplinkGrant(rar->getUlGrant(), (unsigned)simTime().dbl());
-//            }
-//        } else {
-//            EV << "LTE-MAC: Message received for incorrect UeId = " << ctrl->getUeId() << ". Discarding message.\n";
-//        }
-//        nb->fireChangeNotification(NF_RAND_ACCESS_COMPL, NULL);
-            break;
-        }
-        case DLSCH1: {
-            MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(tb->decapsulate());
-            DCIFormat1A *dci = check_and_cast<DCIFormat1A*>(tb->removeControlInfo());
-            pdu->setControlInfo(dci);
-
-            if (tb->getRntiType() == RaRnti) {
-                queueUp.push_back(pdu);
-                performRAStateTransition(ReceiveResp);
-
-            }
-            break;
-        }
-//    case ULSCH: {
-//        MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(msg);
-//        MACSubHeaderUlDl *header = check_and_cast<MACSubHeaderUlDl*>(pdu->getSubHdrs(0));
-//        MACServiceDataUnit *sdu = pdu->getSdus(0);
-//        cMessage *msg = sdu->decapsulate();
-//        if (header->getLcid() == 0) {
-////            lastTtid = (unsigned)simTime().dbl() + HARQ_FEEDBACK_DELAY + TTI_VALUE;
-//            sendUp(msg, ULCCCH);
-//        }
-//        break;
-//    }
-        default:
-            EV << "LTE-MAC: Unknown transport channel. Discarding message.\n";
-            break;
-    }
-    delete tb;
 }
 
 void MAC::handleUpperMessage(cMessage *msg) {
-//    unsigned char lcid;
-    LTEControlInfo *lteCtrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
 
-    MACProtocolDataUnit *pdu = new MACProtocolDataUnit(msg->getName());
-    pdu->setKind(msg->getKind());
-    pdu->encapsulate(PK(msg));
-    LTEControlInfo *ctrl = new LTEControlInfo();
-
-    switch(lteCtrl->getChannel()) {
-        case BCCH0: {
-//            pdu->encapsulate(PK(msg));
-//            ctrl->setRnti(NoRnti);
-//            ctrl->setChannel(BCH);
-//            MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(pdu->getControlInfo());
-            sendDown(BCH, NoRnti, 0, this->getParentModule()->getId(), pdu);
-            break;
-        }
-        case BCCH1: {
-//            pdu->encapsulate(PK(msg));
-//            ctrl->setRntiType(SiRnti);
-//            ctrl->setRnti(65535);
-//            ctrl->setChannel(DLSCH0);
-            sendDown(DLSCH0, SiRnti, 65535, this->getParentModule()->getId(), pdu);
-            break;
-        }
-        case ULCCCH: {
-//            pdu->encapsulate(PK(msg));
-//            ctrl->setRntiType(CRnti);
-            ctrl->setChannel(SCH_CCCH);
-            pdu->setControlInfo(ctrl);
-            queueUp.push_back(pdu);
-            if (raFSM.getState() == PROC_NULL)
-                performRAStateTransition(InitializeProc);
-            break;
-        }
-        default:
-            break;
-    }
-//    pdu->setKind(msg->getKind());
-//    pdu->setControlInfo(ctrl);
+    queueUp[msg->getKind()] = msg;
+//    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
 //
-//    if (pdu->getKind() != -1) { // already scheduled messages
-//        queue[pdu->getKind()] = pdu;
-//    } else {
-//        if (ctrl->getChannel() == ULSCH_CCCH) { // check if
-//
+//    switch(ctrl->getChannel()) {
+//        case BCCH0: {
+////            MACProtocolDataUnit *pdu = MACUtils().createPDU(BCH, this->getParentModule()->getId(), msg);
+//            queueUp[msg->getKind()] = msg;
+//            break;
 //        }
+//        case BCCH1: {
+////            MACProtocolDataUnit *pdu = MACUtils().createPDU(SCH_BCH, this->getParentModule()->getId(), msg);
+////            queueUp[pdu->getKind()] = pdu;
+//            break;
+//        }
+//        case ULCCCH: {
+////            MACProtocolDataUnit *pdu = MACUtils().createPDU(SCH_CCCH, this->getParentModule()->getId(), msg);
+////            queueUp.push_back(pdu);
+////            if (raFSM.getState() == PROC_NULL)
+////                performRAStateTransition(InitializeProc);
+//            break;
+//        }
+//        default:
+//            break;
 //    }
-//    scheduler->addMACProtocolDataUnit(pdu);
-
-
-//
-//    if (ctrl->getChannel() == ULCCCH || ctrl->getChannel() == DLCCCH)
-//        lcid = 0;
-//
-//    MACSubHeaderUlDl *header = MACUtils().createHeaderUlDl(lcid);
-//    MACServiceDataUnit *sdu = new MACServiceDataUnit();
-//    sdu->encapsulate(PK(msg));
-//    MACProtocolDataUnit *pdu = new MACProtocolDataUnit(msg->getName());
-//    pdu->pushSubHdr(header);
-//    pdu->pushSdu(sdu);
-//
-//    entity->pushMsg3(pdu);
 }
 
-void MAC::sendDown(int channel, unsigned rntiType, unsigned rnti, unsigned ueId, MACProtocolDataUnit *pdu) {
-//    TransportBlock *tb = new TransportBlock();
-//    tb->setChannel(channel);
-//    tb->setRntiType(rntiType);
-//    tb->setRnti(rnti);
-//    tb->setUeId(ueId);
-//    tb->setName(pdu->getName());
-//    tb->encapsulate(pdu);
-//    tb->setKind(pdu->getKind());
-//    queueDown[tb->getKind()] = tb;
-    MACControlInfo *ctrl = new MACControlInfo();
-    ctrl->setChannel(channel);
-    ctrl->setRnti(rnti);
-    ctrl->setRntiType(rntiType);
-    ctrl->setUeId(ueId);
-    pdu->setControlInfo(ctrl);
-    this->send(pdu, gate("lowerLayerOut"));
+void MAC::handleLowerMessage(cMessage *msg) {
+    MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(msg->getControlInfo());
+
+    if (ctrl->getCtrlId() == BCAST_DATA_CTRL_INFO) {
+        TransportBlock *tb = check_and_cast<TransportBlock*>(msg);
+        queueDown[tb->getKind()] = tb;
+    } else if (ctrl->getCtrlId() == DL_DATA_CTRL_INFO) {
+        TransportBlock *tb = check_and_cast<TransportBlock*>(msg);
+        queueDown[tb->getKind()] = tb;
+    } else if (ctrl->getCtrlId() == RAP_CTRL_INFO) {
+        ctrl->setChannel(RA_RESP);
+        msg->setName("RandomAccessResponse");
+        queueUp[msg->getKind()] = msg;
+    }
 }
 
-//void MAC::sendDown(cMessage *msg, int channelNumber, unsigned rntiType, unsigned short rnti) {
-//    TransportBlock *tb = new TransportBlock();
-//    tb->setName(msg->getName());
-//    tb->encapsulate(PK(msg));
-//    tb->setChannel(channelNumber);
-//    tb->setRntiType(rntiType);
-//    tb->setRnti(rnti);
+void MAC::dlschDataTransfer(TransportBlock *tb, DownlinkAssignment *dlAssign) {
+    unsigned rntiType = dlAssign->getRntiType();
+    if (rntiType == CRnti || rntiType == TempCRnti || rntiType == SpsRnti) {
+        if (rntiType == CRnti || rntiType == TempCRnti) {
 
-//    this->send(tb, gate("lowerLayerOut"));
-//    LTEPhyControlInfo *ctrl = new LTEPhyControlInfo();
-//    ctrl->setChannel(channelNumber);
-//    ctrl->setType(ctrlType);
-//    ctrl->setRntiType(rntiType);
-//    ctrl->setRnti(rnti);
-//    ctrl->setRapid(rapid);
-//    ctrl->setUeId(ueId);
+        } else if (rntiType == SpsRnti) {
 
-//    msg->setControlInfo(ctrl);
-//    EV << "LTE-MAC: Scheduling message on " << channelName(channelNumber) << " channel for " << time << " seconds.\n";
-//    this->scheduleAt(simTime() + time, msg);
-//}
+        } else {
+            // not sure you can get here
+        }
+    }
 
-const char *MAC::channelName(int channelNumber) {
-//#define CASE(x) case x: s=#x; break
-//    const char *s = "unknown";
-//    switch (channelNumber) {
-//        CASE(ULSCH);
-//        CASE(RACH);
-//        CASE(DLSCH0);
-//    }
-//    return s;
-//#undef CASE
+    if (rntiType == SiRnti) {
+        if (dlAssign->getRv() == -1) {
+            unsigned k = ((lteSched->getSFN() / 2) % 4);
+            dlAssign->setRv((unsigned)ceil(3 / 2 * k) % 4);
+        }
+        dlAssign->setHarqNo(HARQ_BCAST_PROC_ID);
+        dlEntity->indicateDlAssignment(tb, dlAssign);
+    }
 }
 
-void MAC::sendUp(cMessage *msg, int channel) {
+void MAC::ulschDataTransfer(int tti, int msgId, UplinkGrant *ulGrant) {
+    if (ulGrant->getRntiType() == CRnti || ulGrant->getRntiType() == TempCRnti || raFSM.getState() == RESP_CORRECT) {
+        // TODO if the uplink grant is for UE's C-RNTI and if the previous uplink grant delivered to the HARQ entity for the same HARQ process was either an uplink grant received for the UE's Semi-Persistent Scheduling C-RNTI or a configured uplink grant:
+        // -   consider the NDI to have been toggled regardless of the value of the NDI.
+        ulEntity->indicateUlGrant(tti, msgId, ulGrant);
+    } else if (ulGrant->getRntiType() == SpsRnti) {
+        // TODO -   if the NDI in the received HARQ information is 1:
+        // TODO-   consider the NDI not to have been toggled;
+        // TODO-   deliver the uplink grant and the associated HARQ information to the HARQ entity for this TTI.
+        // TODO-   else if the NDI in the received HARQ information is 0:
+        // TODO-   if PDCCH contents indicate SPS release:
+        // TODO-   clear the configured uplink grant (if any).
+        // TODO-   else:
+        // TODO-   store the uplink grant and the associated HARQ information as configured uplink grant;
+        // TODO-   initialise (if not active) or re-initialise (if already active) the configured uplink grant to start in this TTI and to recur according to rules in subclause 5.10.2;
+        // TODO-   consider the NDI bit to have been toggled;
+        // TODO-   deliver the configured uplink grant and the associated HARQ information to the HARQ entity for this TTI.
+    } else {
+        // TODO -   else, if an uplink grant for this TTI has been configured:
+        // TODO -   consider the NDI bit to have been toggled;
+        // TODO -   deliver the configured uplink grant, and the associated HARQ information to the HARQ entity for this TTI.
+    }
+}
+
+void MAC::sendUp(TransportBlock *tb, int channel) {
+    MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(tb->decapsulate());
+    cMessage *msg;
+    if (channel == BCCH0 || channel == BCCH1)
+        msg = pdu->decapsulate();
+
     LTEControlInfo *ctrl = new LTEControlInfo();
     ctrl->setChannel(channel);
     msg->setControlInfo(ctrl);
+
+    delete pdu;
+    QueueDown::iterator i = queueDown.find(tb->getKind());
+    if (i != queueDown.end())
+        queueDown.erase(i);
+
     this->send(msg, gate("upperLayerOut"));
+}
+
+void MAC::sendDown(MACProtocolDataUnit *pdu) {
+    this->send(pdu, gate("lowerLayerOut"));
 }
 
 void MAC::performRAStateTransition(RAEvent event) {
@@ -382,25 +256,16 @@ void MAC::performRAStateTransition(RAEvent event) {
 void MAC::raStateEntered() {
     switch(raFSM.getState()) {
         case PROC_INITIALIZATION: {
-            EV << "LTE-MAC: Random Access Procedure initialization.\n";
+            EV << timestamp() << "Random Access Procedure initialization.\n";
             msg3Buffer.clear();
             preambleTransCount = 1;
             backoffParam = 0;
-
-            // TODO rest of the table 3GPP TS 36211 Table 5.7.1-2 pag. 32
-            switch (lteCfg->getPRACHCfgIndex() % 16) {
-                case 0:
-                    lteSched->scheduleMessage(UL_SCHEDULING, RAP_MSG_ID, 0, 2, UINT32_MAX, prachCfgIndex0TTIs, 1, lteCfg->getPRACHFreqOffset(), 6);
-                    break;
-                default:
-                    break;
-            }
 
             performRAStateTransition(SelectRes);
             break;
         }
         case RES_SELECTION: {
-            EV << "LTE-MAC: Random Access Resource selection.\n";
+            EV << timestamp() << "Random Access Resource selection.\n";
             unsigned prachMaskIndex;
 
             if (lteCfg->getPreambleIndex() != 0 && lteCfg->getPRACHMaskIndex() != -1) {
@@ -439,67 +304,53 @@ void MAC::raStateEntered() {
             break;
         }
         case PRBL_TRANSMISSION: {
-            EV << "LTE-MAC: Random Access Preamble transmission.\n";
+            EV << timestamp() << "Random Access Preamble transmission.\n";
             // TODO preambleInitialReceivedTargetPower = ...
             //                RAPControlInfo *ctrl = check_and_cast<RAPControlInfo*>(pdu->getControlInfo());
-//            MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
-//            pdu->setName("RandomAccessPreamble");
-//            pdu->setKind(RAP_MSG_ID);
-//            RandomAccessPreamble *rap = new RandomAccessPreamble("RandomAccessPreamble");
-//            rap->setChannel(RACH);
-//            rap->setName(pdu->getName());
-//            rap->setKind(RAP_MSG_ID);
-//            rap->setRnti(prachIndex);
-//            rap->setRntiType(RaRnti);
-//            rap->setRapid(preambleIndex);
-//            rap->setAttempt(preambleTransCount);
-//            rap->setUeId(this->getParentModule()->getId());
-//            RAPControlInfo *ctrl = new RAPControlInfo();
-//            ctrl->setRapid(preambleIndex);
-//            ctrl->setAttempt(preambleTransCount);
-//            ctrl->setRnti(prachIndex);
-//            ctrl->setUeId(this->getParentModule()->getId());
 
-//            msg->setControlInfo(ctrl);
-//            queueDown[rap->getKind()] = rap;
-
-            cMessage *msg = new cMessage("RAPTransmissionCommand");
-            RAPControlInfo *rap = new RAPControlInfo();
-            rap->setChannel(RACH);
-            rap->setRnti(prachIndex);
-            rap->setRntiType(RaRnti);
-            rap->setRapid(preambleIndex);
-            rap->setAttempt(preambleTransCount);
-            rap->setUeId(this->getParentModule()->getId());
-            msg->setControlInfo(rap);
+//            MACProtocolDataUnit *pdu = queueUp.back();
+            cMessage *msg = new cMessage("RandomAccessPreamble");
+            msg->setKind(lteSched->getUlMessageId());
+            RAPControlInfo *ctrl = new RAPControlInfo();
+            ctrl->setCtrlId(RAP_CTRL_INFO);
+            ctrl->setUeId(this->getParentModule()->getId());
+            ctrl->setChannel(RACH);
+            ctrl->setAttempt(preambleTransCount);
+            ctrl->setRapid(preambleIndex);
+            msg->setControlInfo(ctrl);
             this->send(msg, gate("lowerLayerOut"));
+
+            raRnti = 1 + lteSched->getTTI(); // TODO add also frequency offset
 
             break;
         }
         case RESP_RECEPTION: {
-            EV << "LTE-MAC: Random Access Response reception.\n";
-            MACProtocolDataUnit *pdu = queueUp.back();
-            MACSubHeaderRar *rar = check_and_cast<MACSubHeaderRar*>(pdu->getSubHdrs(0));
-            DCIFormat1A *dci = check_and_cast<DCIFormat1A*>(pdu->getControlInfo());
+            EV << timestamp() << "Random Access Response reception.\n";
+            int msgId = lteSched->getDlMessageId();
+            TransportBlock *tb = queueDown[msgId];
+            MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(tb->getEncapsulatedPacket());
 
-            if (dci->getAllocation() == lteSched->getTTI()) {
-                if (rar->getT() == false) { // is backoff indicator present
-                    backoffParam = rar->getRapidOrBi();
-                } else
-                    backoffParam = 0;
+            MACSubHeaderRar *header = check_and_cast<MACSubHeaderRar*>(pdu->getSubHdrs(0));
 
-                if (preambleIndex == rar->getRapidOrBi()) {
-                    performRAStateTransition(CorrectResp);
-                }
+            if (header->getT() == false) { // is backoff indicator present
+                backoffParam = header->getRapidOrBi();
+            } else
+                backoffParam = 0;
+
+            if (preambleIndex == header->getRapidOrBi()) {
+                performRAStateTransition(CorrectResp);
             }
+
             break;
         }
         case RESP_CORRECT: {
-            EV << "LTE-MAC: Random Access Response received successfully.\n";
-            MACProtocolDataUnit *pdu = queueUp.back();
+            EV << timestamp() << "Random Access Response received successfully.\n";
+            int msgId = lteSched->getDlMessageId();
+            TransportBlock *tb = queueDown[msgId];
+            MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(tb->getEncapsulatedPacket());
+            UplinkGrant *ulGrant = lteSched->getUlGrant(downId);
+
             MACRandomAccessResponse *rar = check_and_cast<MACRandomAccessResponse*>(pdu->getSdus(0));
-            MACSubHeaderRar *header = check_and_cast<MACSubHeaderRar*>(pdu->getSubHdrs(0));
-//            rars.push_back(rar);
 
             // TODO process Timing Advance Command
 
@@ -510,43 +361,39 @@ void MAC::raStateEntered() {
             if (lteCfg->getPreambleIndex() != 0) {
                 performRAStateTransition(CorrectProc);
             } else {
-                unsigned ulGrant = rar->getUlGrant();
                 unsigned rarNr = 0;
-                for (unsigned i = 0; i < queueUp.size(); i++) {
-                    MACProtocolDataUnit *pdu = queueUp[i];
-                    MACRandomAccessResponse *queueRar = dynamic_cast<MACRandomAccessResponse*>(pdu->getSdus(0));
+                for (QueueDown::iterator i = queueDown.begin(); i != queueDown.end(); i++) {
+                    TransportBlock *queueTb = i->second;
+                    MACProtocolDataUnit *queuePdu = check_and_cast<MACProtocolDataUnit*>(queueTb->getEncapsulatedPacket());
+
+                    MACRandomAccessResponse *queueRar = dynamic_cast<MACRandomAccessResponse*>(queuePdu->getSdus(0));
                     if (queueRar) {
                         rarNr++;
-                        if (ulGrant == queueRar->getUlGrant()) {
+                        if (queueRar->getUlGrant() == rar->getUlGrant()) {
                             // set tempcrnti
+                            ulGrant->setRnti(queueRar->getTmpCRnti());
                         }
                     }
                 }
 
                 if (rarNr == 1) { // first successfully received Random Access Response
-                    bool isCCCHTrans = false;
-                    for (QueueUp::iterator i = queueUp.begin(); i != queueUp.end();) {
-                        LTEControlInfo *ctrl = dynamic_cast<LTEControlInfo*>((*i)->getControlInfo());
-                        if (ctrl && ctrl->getChannel() == SCH_CCCH) {
-                            isCCCHTrans = true;
-                            msg3Buffer[ulGrant] = (*i);
-                            i = queueUp.erase(i);
-                        } else
-                            ++i;
+                    cMessage *msg = queueUp[rapId];
+                    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
+                    if (ctrl->getChannel() != ULCCCH) {
+                        // TODO indicate to multiplex and assembly unit to include C-RNTI MAC control element ...
                     }
 
-                    if (!isCCCHTrans) {
-                        // TODO indicate multiplex and assembly entity to include a C-RNTI MAC control element for
-                        // subsequent transmission
-                    }
+                    MACProtocolDataUnit *msg3Pdu = MACUtils().createPDU(ULSCH, msg, this->getParentModule()->getId());
+                    msg3Pdu->setKind(downId);
+                    msg3Buffer[downId] = msg3Pdu;
                 }
             }
-
-            if (lteSched->getSFN() > rarLimit || preambleIndex != header->getRapidOrBi())
-                performRAStateTransition(IncorrectProc);
-            else
-                performRAStateTransition(CorrectProc);
-
+//
+//            if (lteSched->getSFN() > rarLimit || preambleIndex != header->getRapidOrBi())
+//                performRAStateTransition(IncorrectProc);
+//            else
+//                performRAStateTransition(CorrectProc);
+//
             break;
         }
         case PROC_DONE: {
@@ -568,128 +415,135 @@ void MAC::raStateEntered() {
     }
 }
 
-void MAC::ulschDataTransfer(int channel, unsigned rnti, unsigned rntiType) {
-    if (channel == SCH_CCCH || (channel == PDCCH && (rntiType == CRnti || rntiType == TempCRnti))) {
-
-    }
-}
 
 void MAC::receiveChangeNotification(int category, const cPolymorphic *details) {
     Enter_Method_Silent();
-    if (category == NF_PHY_PER_CB) {
-//        unsigned prbs[lteCfg->getDlBandwith()];
-//        memset(prbs, 0, lteCfg->getDlBandwith());
-//        if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
-//            if (!(ttiId % 10)) { // MIB time
-//                unsigned k = (lteCfg->getDlBandwith() * lteCfg->getBlockSize() / 2 - 36) / 12;
-//                unsigned limit = k + 6;
-//                for (; k < limit; k++) {
-//                    prbs[k] = PBCH;
-//                }
-//                sendDown(bcchMsg, BCH, NoRnti, 0);
-//            }
-//        }
-        // continue scheduling
-//        int msgId = -1;
-//        if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
-//            msgId = lteSched->getMessageId(DL_SCHEDULING);
-//        } else {
-//            msgId = lteSched->getMessageId(UL_SCHEDULING);
-//        }
-//
-//        if (msgId != -1) {
-//            EV << "LTE-MAC: Sending scheduled message with id " << msgId << ".\n";
-//            MACProtocolDataUnit *pdu = queue[msgId];
-//            TransportBlock *tb = queueDown[msgId];
-//            if (msgId == RAP_MSG_ID) {
-//                RAPControlInfo *ctrl = check_and_cast<RAPControlInfo*>(pdu->getControlInfo());
-//                RandomAccessPreamble *rap = new RandomAccessPreamble();
-//                rap->setChannel(RACH);
-//                tb->setRnti(1 + lteSched->getTTI() + 10 * tb->getRnti());
-//                rap->setRntiType(RaRnti);
-//                rap->setRapid(ctrl->getRapid());
-//                rap->setAttempt(ctrl->getAttempt());
-//                rap->setUeId(ctrl->getUeId());
-//                tb = rap;
-//                rarLimit = lteSched->getSFN() + 3 + lteCfg->getRaRespWdwSize();
-//            }
-//            else {
-//                MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(pdu->getControlInfo());
-//                tb->setChannel(ctrl->getChannel());
-//                tb->setRntiType(ctrl->getRntiType());
-//                tb->setRnti(ctrl->getRnti());
-//                tb->setUeId(ctrl->getUeId());
-//
-//            }
-//            tb->setName(pdu->getName());
-//            tb->encapsulate(pdu->dup());
-//            this->send(tb->dup(), gate("lowerLayerOut"));
-//        }
 
-//        TransportBlock *tb = scheduler->getMessageToBeSent();
-//        if (tb)
-//            this->send(tb, gate("lowerLayerOut"));
-//        ttiId++;
-    } else if (category == NF_MAC_BEGIN_RA) {
-//        EV << "LTE-MAC: Random Access Procedure intialization.\n";
-//        msg3Buffer.clear();
-//        preambleTransCount = 1;
-//        backoffParam = 0;
-//
-//        EV << "LTE-MAC: Random Access Resource selection.\n";
-//        unsigned prachMaskIndex;
-//        unsigned prachIndex;
-//
-//        if (lteCfg->getPreambleIndex() != 0 && lteCfg->getPRACHMaskIndex() != -1) {
-//            preambleIndex = lteCfg->getPreambleIndex();
-////            prachMaskIndex = lteCfg->getPRACHMaskIndex();
-//        } else {
-//            if (msg3Buffer.size() == 0) {   // msg3 has not been transmitted
-//                if (lteCfg->getNrOfRAPreambles() != lteCfg->getSizeOfRAPreamblesGroupA()) { // TODO select group B
-//
-//                } else {    // select group A
-//                    preambleIndex = uniform(0, lteCfg->getSizeOfRAPreamblesGroupA());
-//                    prachMaskIndex = 0;
-//                    // TODO not sure if this is how PRACH selection is done
-//                    if (lteCfg->getTransmissionMode() == TDD_MODE && prachMaskIndex == 0) {
-//                        if (lteCfg->getPreambleIndex() != 0) {
-//                            // randomly select PRACH from determined subframe
-//                            prachIndex = uniform(lteCfg->getPRACHFreqOffset(), lteCfg->getPRACHFreqOffset() + 5);
-//                        } else {
-//                            // TODO randomly select PRACH from determined subframe and next 2 subframes
-//                            prachIndex = uniform(lteCfg->getPRACHFreqOffset(), lteCfg->getPRACHFreqOffset() + 5);
-//                        }
-//                    } else {
-//                        // determine PRACH with PRACH Mask Index
-//                        if (prachMaskIndex == 0) {
-//                            prachIndex = uniform(lteCfg->getPRACHFreqOffset(), lteCfg->getPRACHFreqOffset() + 5);
-//                        } else {
-//                            // TODO
-//                        }
-//                    }
+    if (category == NF_TTI_EXP) {
+        if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
+
+            int msgId = lteSched->getDlMessageId();
+            QueueUp::iterator iUp = queueUp.find(msgId);
+            if (msgId != -1 && iUp != queueUp.end()) {
+                cMessage *msg = iUp->second;
+                LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
+
+                switch(ctrl->getChannel()) {
+                    case BCCH0: {
+                        MACProtocolDataUnit *pdu = MACUtils().createPDU(BCH, msg, this->getParentModule()->getId());
+                        sendDown(pdu);
+                        break;
+                    }
+                    case BCCH1: {
+                        MACProtocolDataUnit *pdu = MACUtils().createPDU(SCH_BCH, msg, this->getParentModule()->getId());
+                        sendDown(pdu);
+                        break;
+                    }
+                    case RA_RESP: {
+                        // send MAC Random Response
+                        MACProtocolDataUnit *pdu = MACUtils().createPDU(SCH_RAR, msg);
+                        MACRandomAccessResponse *rar = check_and_cast<MACRandomAccessResponse*>(pdu->getSdus(0));
+                        RAPControlInfo *ctrl = check_and_cast<RAPControlInfo*>(msg->getControlInfo());
+                        Subscriber *sub = subT->findSubscriberForRapid(ctrl->getRapid());
+                        sub->setRnti(rar->getTmpCRnti());
+                        sub->setRntiType(TempCRnti);
+                        sendDown(pdu);
+
+                        // schedule UE for RRC Connection Request transmission
+                        int ttis[1];
+                        ttis[0] = (lteSched->getTTI() + 1) % 10;
+                        lteSched->scheduleUlMessage(TempCRnti, rar->getTmpCRnti(), lteSched->getSFN() + 6, 1, lteSched->getSFN() + 6, ttis, 1);
+
+                        break;
+                    }
+                    default:
+                        break;
+                }
+            }
+        } else {
+            int msgId = lteSched->getDlMessageId();
+            QueueDown::iterator iDown = queueDown.find(msgId);
+            if (iDown != queueDown.end()) {
+                TransportBlock *tb = iDown->second;
+                MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(tb->getControlInfo());
+                if (ctrl->getCtrlId() == BCAST_DATA_CTRL_INFO) {
+                    sendUp(tb, BCCH0);
+                } else if (ctrl->getCtrlId() == DL_DATA_CTRL_INFO) {
+                    DownlinkAssignment *dlAssign = lteSched->getDlAssignment(msgId);
+                    if (dlAssign->getRntiType() == RaRnti) {
+                        if (raRnti == dlAssign->getRnti()) {
+                            // part of LTE physical random access procedure
+                            if (raFSM.getState() == PRBL_TRANSMISSION) {
+                                int ttis[1];
+                                ttis[0] = lteSched->getTTI();
+                                downId = lteSched->scheduleUlMessage(TempCRnti, 0, lteSched->getSFN() + 6, 1, lteSched->getSFN() + 6, ttis, 1);
+                                performRAStateTransition(ReceiveResp);
+                            }
+                        }
+                    } else {
+                        dlschDataTransfer(tb, dlAssign);
+                    }
+                }
+            }
+
+//            int msgId = lteSched->getDlMessageId();
+//            if (queueDown[msgId] != NULL) {
+//                TransportBlock *tb = check_and_cast<TransportBlock*>(queueDown[msgId]);
+//                MACControlInfo *ctrl = new MACControlInfo();
+//                ctrl->setUeId(tb->getUeId());
+//                switch(tb->getChannelNumber()) {
+//                    case PBCH:
+//                        ctrl->setChannel(BCH);
+//                        ctrl->setCtrlId(BCAST_DATA_CTRL_INFO);
+//                        break;
+//                    case PDSCH0:
+//                        ctrl->setChannel(DLSCH0);
+//                        ctrl->setCtrlId(DL_DATA_CTRL_INFO);
+//                        break;
+//                    case PDSCH1:
+//                        ctrl->setChannel(DLSCH1);
+//                        ctrl->setCtrlId(DL_DATA_CTRL_INFO);
+//                        break;
+//                    default:
+//                        break;
 //                }
-//            } else {    // TODO select the same group of Random Access Preambles as for previous transmission
-//
+//                tb->setControlInfo(ctrl);
+//                send(tb, gate("upperLayerOut"));
+//                queueDown[msgId] = NULL;
 //            }
-//        }
 //
-//        EV << "LTE-MAC: Random Access Preamble transmission.\n";
-//        // TODO preambleInitialReceivedTargetPower = ...
-//        RAPControlInfo *ctrl = new RAPControlInfo();
-//        ctrl->setRapid(preambleIndex);
-//        ctrl->setAttempt(preambleTransCount);
-//        ctrl->setRnti(prachIndex);
-//        ctrl->setUeId(this->getParentModule()->getId());
-//        MACProtocolDataUnit *msg = new MACProtocolDataUnit();
-//        msg->setName("RandomAccessPreamble");
-//        msg->setKind(RAP_MSG_ID);
-//        msg->setControlInfo(ctrl);
-//        queue[msg->getKind()] = msg;
+            msgId = lteSched->getUlMessageId();
+            QueueUp::iterator iUp = queueUp.find(msgId);
+            if (msgId != -1 && iUp != queueUp.end()) {
+                cMessage *msg = iUp->second;
+                LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
+
+                if (ctrl->getChannel() == ULCCCH) {
+                    rapId = msgId;
+                    if (raFSM.getState() == PROC_NULL)
+                        performRAStateTransition(InitializeProc);
+                }
+            }
+
+            MACBuffer::iterator iMsg3 = msg3Buffer.find(msgId);
+            if (msgId != -1 && iMsg3 != msg3Buffer.end()) {
+                UplinkGrant *ulGrant = lteSched->getUlGrant(msgId);
+                ulschDataTransfer(lteSched->getTTI(), msgId, ulGrant);
+            }
+        }
     }
 }
 
-void MAC::addHarqInformation(TransportBlock *tb, int harqProcId) {
-    HARQControlInfo *ctrl = new HARQControlInfo();
-    ctrl->setHarqProcId(harqProcId);
-    tb->setControlInfo(ctrl);
+MACProtocolDataUnit *MAC::getMsg3Pdu(int msgId) {
+    MACBuffer::iterator i = msg3Buffer.find(msgId);
+    if (i != msg3Buffer.end())
+        return i->second;
+    else
+        return NULL;
+}
+
+std::string MAC::timestamp() {
+    std::stringstream out;
+    out << lteSched->timestamp() << " LTE-MAC: ";
+    return out.str();
 }

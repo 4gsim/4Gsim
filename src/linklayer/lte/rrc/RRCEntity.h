@@ -65,7 +65,7 @@ public:
     const char *stateName(int state) const;
     const char *eventName(int event);
 
-    void sendRRCConnectionRequest();
+    void sendRRCConnectionRequest(int rapId);
     void sendRRCConnectionSetup();
     void processRRCConnectionRequest(RRCConnectionRequest *rrcOnnReq);
 

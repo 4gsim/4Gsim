@@ -18,6 +18,8 @@
 
 #include "HARQProcess.h"
 #include "MACMessage.h"
+#include "LTEFrame.h"
+#include "LTEScheduler.h"
 
 #define HARQ_BCAST_PROC_ID  -1
 
@@ -25,21 +27,18 @@ class MAC;
 
 class HARQEntity {
 private:
-    HARQProcess *bcastProc;
-    std::map<unsigned, HARQProcess*> procs;
-    std::list<MACProtocolDataUnit*> msg3;
+    typedef std::map<unsigned, HARQProcess*> HARQProcesses;
+    HARQProcesses procs;
 
+    MAC *module;
 public:
     HARQEntity();
     virtual ~HARQEntity();
 
     void init(MAC *module, unsigned nrOfProcs);
 
-    void processUplinkGrant(unsigned ulGrant, unsigned ttiId);
-
-    void pushMsg3(MACProtocolDataUnit *pdu) { msg3.push_back(pdu); }
-
-    void indicateDownlinkAssignment(TransportBlock *tb);
+    void indicateDlAssignment(TransportBlock *tb, DownlinkAssignment *dlAssign);
+    void indicateUlGrant(int tti, int msgId, UplinkGrant *ulGrant);
 };
 
 #endif /* HARQENTITY_H_ */

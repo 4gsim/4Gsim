@@ -17,17 +17,23 @@
 #define HARQPROCESS_H_
 
 #include "MACMessage.h"
+#include "LTEFrame.h"
+#include "LTEScheduler.h"
 
 #define HARQ_FEEDBACK_ACK   1
 #define HARQ_FEEDBACK_NACK  0
+
+#define MAX_NR_OF_TRANS     3
 
 class MAC;
 
 class HARQProcess {
 private:
-    std::map<unsigned, TransportBlock*> softBuffer;
+    TransportBlock *softBuffer;
+    MACProtocolDataUnit *buffer;
 
     unsigned currTxNb;
+    unsigned currIrv;
     bool harqFeedback;
     unsigned maxTrans;
 
@@ -36,9 +42,13 @@ public:
     HARQProcess(MAC *module);
     virtual ~HARQProcess();
 
-    void send(unsigned ulGrant, MACProtocolDataUnit *pdu);
+    void allocate(TransportBlock *tb, DownlinkAssignment *dlAssign);
 
-    void allocate(TransportBlock *tb);
+    MACProtocolDataUnit *getBuffer() { return buffer; }
+
+    void requestNewTransmission(MACProtocolDataUnit *pdu);
+
+    void transmit(MACProtocolDataUnit *pdu);
 };
 
 #endif /* HARQPROCESS_H_ */

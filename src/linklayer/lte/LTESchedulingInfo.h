@@ -20,21 +20,21 @@
 #include "INETDefs.h"
 
 /*
- * Class for LTE fixed scheduling info. This class inherits the message base class from .msg file
+ * Class for LTE downlink assignment and uplink grant. This class inherits the message base class from .msg file
  * and adds the vector with the TTI values.
  */
 
-class LTESchedulingInfo : public LTESchedulingInfo_Base {
+class DownlinkAssignment : public DownlinkAssignment_Base {
 private:
     typedef std::vector<int> TTIValues;
     TTIValues ttis;
 public:
-    LTESchedulingInfo(const char *name=NULL, int kind=0) : LTESchedulingInfo_Base() {}
-    LTESchedulingInfo(const LTESchedulingInfo& other) : LTESchedulingInfo_Base() {operator=(other);}
-    virtual ~LTESchedulingInfo();
+    DownlinkAssignment(const char *name=NULL, int kind=0) : DownlinkAssignment_Base() {}
+    DownlinkAssignment(const DownlinkAssignment& other) : DownlinkAssignment_Base() {operator=(other);}
+    virtual ~DownlinkAssignment();
 
-    LTESchedulingInfo& operator=(const LTESchedulingInfo& other);
-    virtual LTESchedulingInfo *dup() const {return new LTESchedulingInfo(*this);}
+    DownlinkAssignment& operator=(const DownlinkAssignment& other);
+    virtual DownlinkAssignment *dup() const {return new DownlinkAssignment(*this);}
 
     /*
      * Methods overridden but not used. You should use instead pushTTI.
@@ -54,7 +54,8 @@ public:
     void pushTti(int tti) { ttis.push_back(tti); }
 
     virtual std::string info() const;
-
 };
+
+typedef DownlinkAssignment UplinkGrant;
 
 #endif /* LTESCHEDULINGINFO_H_ */

@@ -19,26 +19,33 @@ cplusplus {{
 
 class noncobject AirFrame;
 
-message LTEFrame extends AirFrame
-{
-}
-
 message PhysicalResourceBlock extends AirFrame
 {
 //    unsigned int tbId = 0;
+	int ueId;
+}
+
+message TransportBlock extends PhysicalResourceBlock
+{
+    
+}
+
+message RandomAccessPreamble extends TransportBlock
+{
+	unsigned int rapid;
+	unsigned int attempt;    
 }
 
 message DCIFormat extends PhysicalResourceBlock
 {
+    @customize(true);
+    bool ndi;
+    int rv;
+    int harqNo;
+    int modCod;
     unsigned int rnti;
     unsigned int rntiType;
-    unsigned int allocation;	// should be resource block allocation, but now it is used to signal de tti for DLSCH
-}
-
-message DCIFormat1A extends DCIFormat
-{
-    bool ndi;
-    unsigned char harqNo; 
+    abstract int ttis[];	// should be resource block allocation, but now it is used to signal de tti allocation
 }
 
 enum LTERadioTypes
@@ -51,18 +58,6 @@ enum LTEDirections
 {
 	UplinkDirection = 0;
 	DownlinkDirection = 1;   
-}
-
-enum LTERntiTypes
-{
- 	NoRnti = 0; 
- 	PRnti = 1;
- 	RaRnti = 2;
- 	CRnti = 3;
- 	SiRnti = 4;
- 	SpsRnti = 5;
- 	MRnti = 6;	
- 	TempCRnti = 7;
 }
 
 //message RAPreamble extends LTEFrame

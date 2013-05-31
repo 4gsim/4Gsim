@@ -14,6 +14,7 @@
 // 
 
 #include "MACUtils.h"
+#include "MACControlInfo_m.h"
 
 MACUtils::MACUtils() {
 
@@ -43,4 +44,36 @@ MACRandomAccessResponse *MACUtils::createRAR(unsigned short timingAdvCmd, unsign
     rar->setTmpCRnti(tempCRnti);
     rar->setByteLength(6);
     return rar;
+}
+
+MACProtocolDataUnit *MACUtils::createPDU(int channel, cMessage *msg, unsigned ueId) {
+    MACProtocolDataUnit *pdu = new MACProtocolDataUnit(msg->getName(), msg->getKind());
+    MACControlInfo *ctrl = new MACControlInfo();
+    ctrl->setCtrlId(SEND_CTRL_INFO);
+    ctrl->setUeId(ueId);
+    if (channel == BCH) {
+        ctrl->setChannel(BCH);
+        pdu->encapsulate(PK(msg->dup()));
+    } else if (channel == SCH_BCH) {
+        ctrl->setChannel(DLSCH0);
+        pdu->encapsulate(PK(msg->dup()));
+    } else if (channel == ULSCH) {
+        ctrl->setChannel(ULSCH);
+        MACSubHeader *header = createHeaderUlDl(0);
+        MACServiceDataUnit *sdu = new MACServiceDataUnit();
+        sdu->encapsulate(PK(msg->dup()));
+        pdu->pushSubHdr(header);
+        pdu->pushSdu(sdu);
+    } else if (channel == SCH_RAR) {
+        ctrl->setChannel(DLSCH1);
+        RAPControlInfo *rap = check_and_cast<RAPControlInfo*>(msg->getControlInfo());
+        MACSubHeaderRar *header = createHeaderRar(true, rap->getRapid());
+        MACRandomAccessResponse *rar = createRAR(0, 0, uniform(0, 65535));  /* TODO UL grant split into bits */
+        ctrl->setUeId(rap->getUeId());
+        pdu->pushSubHdr(header);
+        pdu->pushSdu(rar);
+    }
+    pdu->setControlInfo(ctrl);
+
+    return pdu;
 }

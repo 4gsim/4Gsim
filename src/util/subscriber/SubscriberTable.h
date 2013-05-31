@@ -75,10 +75,10 @@ public:
     Subscriber *findSubscriberForId(unsigned enbId, unsigned mmeId);
 
     /*
-     * Method for finding a subscriber for a given channel id. The method returns
+     * Method for finding a subscriber for a given random access preamble id. The method returns
      * the subscriber, if it is found, or NULL otherwise.
      */
-    Subscriber *findSubscriberForChannel(int channelNr);
+    Subscriber *findSubscriberForRapid(unsigned rapid);
 
     /*
      * Method for finding a subscriber for a given IMSI. The method returns

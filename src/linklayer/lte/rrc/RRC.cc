@@ -23,7 +23,7 @@
 #include "SubscriberTableAccess.h"
 #include "RRCControlInfo_m.h"
 #include "PerEncoder.h"
-#include "LTERadio.h"
+//#include "LTERadio.h"
 
 Define_Module(RRC);
 
@@ -35,9 +35,7 @@ Define_Module(RRC);
 
 RRC::RRC() {
 	// TODO Auto-generated constructor stub
-    mibTimer = NULL;
-    sib1Timer = NULL;
-    sib2Timer = NULL;
+
 }
 
 RRC::~RRC() {
@@ -51,6 +49,8 @@ void RRC::initialize(int stage) {
         lteSched = LTESchedulerAccess().get();
         nb = NotificationBoardAccess().get();
 
+        nb->subscribe(this, NF_TTI_EXP);
+
         if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2)) {
             EV << "LTE-RRC: RRC module for UE.\n";
             nodeType = UE_NODE_TYPE;
@@ -59,46 +59,28 @@ void RRC::initialize(int stage) {
             RRCEntity *rrc = sub->getRrcEntity();
             rrc->setModule(this);
 //            rrc->performStateTransition(ConnectionEstablishment);
+
+            mibId = lteSched->scheduleDlMessage(NoRnti, 0, 0, 1, UINT32_MAX, mibTTIsU, 1);
+
         } else {
             EV << "LTE-RRC: RRC module for ENB.\n";
             nodeType = ENB_NODE_TYPE;
 
-            mibTimer = new cMessage("MIB-TIMER");
-            this->scheduleAt(simTime(), mibTimer);
-            mibTimer->setContextPointer(this);
-            int prbBegin = ceil((lteCfg->getDlBandwith() * lteCfg->getBlockSize() / 2 - 36 + 0) / lteCfg->getBlockSize());
-            int prbSize = ceil((lteCfg->getDlBandwith() * lteCfg->getBlockSize() / 2 - 36 + 71) / lteCfg->getBlockSize()) - prbBegin;
-            lteSched->scheduleMessage(DL_SCHEDULING, MIB_MSG_ID, 0, 1, UINT32_MAX, mibTTIs, 1, prbBegin, prbSize);
+//            int prbBegin = ceil((lteCfg->getDlBandwith() * lteCfg->getBlockSize() / 2 - 36 + 0) / lteCfg->getBlockSize());
+//            int prbSize = ceil((lteCfg->getDlBandwith() * lteCfg->getBlockSize() / 2 - 36 + 71) / lteCfg->getBlockSize()) - prbBegin;
+            mibId = lteSched->scheduleDlMessage(NoRnti, 0, 0, 1, UINT32_MAX, mibTTIsN, 1);
 
-            sib1Timer = new cMessage("SIB1-TIMER");
-            this->scheduleAt(simTime() + 4 * TTI_VALUE, sib1Timer);
-            sib1Timer->setContextPointer(this);
             // TODO calculate the actual size of SIB1 for PRBs
-            lteSched->scheduleMessage(DL_SCHEDULING, SIB1_MSG_ID, 0, 2, UINT32_MAX, sib1TTIs, 1, 0, 6);
+            sib1Id = lteSched->scheduleDlMessage(SiRnti, 65535, 8, 2, UINT32_MAX, sib1TTIs, 1);
 
-            sib2Timer = new cMessage("SIB2-TIMER");
-            this->scheduleAt(simTime() + 5 * TTI_VALUE, sib2Timer);
-            sib2Timer->setContextPointer(this);
-            lteSched->scheduleMessage(DL_SCHEDULING, SIB2_MSG_ID, 0, 2, UINT32_MAX, sib2TTIs, 1, 0, 6);
+            sib2Id = lteSched->scheduleDlMessage(SiRnti, 65535, 8, 2, UINT32_MAX, sib2TTIs, 1);
         }
     }
 }
 
 void RRC::handleMessage(cMessage *msg) {
     if (msg->isSelfMessage()) {
-        if (msg == mibTimer) {
-            sendMIB();
-            this->cancelEvent(mibTimer);
-            this->scheduleAt(simTime() + 40 * TTI_VALUE, mibTimer);
-        } else if (msg == sib1Timer) {
-            sendSIB1();
-            this->cancelEvent(sib1Timer);
-            this->scheduleAt(simTime() + 80 * TTI_VALUE, sib1Timer);
-        } else if (msg == sib2Timer) {
-            sendSIB2();
-            this->cancelEvent(sib2Timer);
-            this->scheduleAt(simTime() + 80 * TTI_VALUE, sib2Timer);
-        }
+
     } else if (msg->arrivedOn("lowerLayerIn")) {
         handleLowerMessage(msg);
     } else {
@@ -185,7 +167,7 @@ void RRC::sendMIB() {
 
     MasterInformationBlock *mib = new MasterInformationBlock(dlBandwith, phichConfig, systemFrameNumber, spare);
 
-    this->sendDown(MIB_MSG_ID, BCCH0, 0, "MasterInformationBlock", mib);
+    this->sendDown(mibId, BCCH0, 0, "MasterInformationBlock", mib);
 }
 
 void RRC::sendSIB1() {
@@ -224,7 +206,7 @@ void RRC::sendSIB1() {
     BCCHDLSCHMessageTypeC1 *c1 = new BCCHDLSCHMessageTypeC1();
     c1->setValue(sib1, BCCHDLSCHMessageTypeC1::systemInformationBlockType1);
 
-    this->sendDown(SIB1_MSG_ID, BCCH1, BCCHDLSCHMessageType::bCCHDLSCHMessageTypeC1, "SystemInformationBlock1", c1);
+    this->sendDown(sib1Id, BCCH1, BCCHDLSCHMessageType::bCCHDLSCHMessageTypeC1, "SystemInformationBlock1", c1);
 }
 
 void RRC::sendSIB2() {
@@ -346,7 +328,7 @@ void RRC::sendSIB2() {
     BCCHDLSCHMessageTypeC1 *c1 = new BCCHDLSCHMessageTypeC1();
     c1->setValue(sib, BCCHDLSCHMessageTypeC1::systemInformation);
 
-    this->sendDown(SIB2_MSG_ID, BCCH1, BCCHDLSCHMessageType::bCCHDLSCHMessageTypeC1, "SystemInformationBlock2", c1);
+    this->sendDown(sib2Id, BCCH1, BCCHDLSCHMessageType::bCCHDLSCHMessageTypeC1, "SystemInformationBlock2", c1);
 }
 
 void RRC::sendDown(int msgId, int logChannel, int choice, const char *name, AbstractType *payload) {
@@ -448,30 +430,41 @@ void RRC::processSIB2(SystemInformationBlockType2 *sib2) {
     lteCfg->setPRACHCfgIndex(prachCfgInfo.getPRACHConfigInfoPrachConfigIndex().getValue());
     lteCfg->setPRACHFreqOffset(prachCfgInfo.getPRACHConfigInfoPrachFreqOffset().getValue());
 
+    if (lteSched->getSFN() % 8 == 0) {
+        // TODO rest of the table 3GPP TS 36211 Table 5.7.1-2 pag. 32
+        switch (lteCfg->getPRACHCfgIndex() % 16) {
+            case 0:
+                rapId = lteSched->scheduleUlMessage(RaRnti, 0, lteSched->getSFN(), 2, lteSched->getSFN() + 7, prachCfgIndex0TTIs, 1);
+                break;
+            default:
+                break;
+        }
+    }
+
     Subscriber *sub = subT->at(0);
     RRCEntity *rrc = sub->getRrcEntity();
     if (rrc->getState() == UE_RRC_IDLE)
         rrc->performStateTransition(ConnectionEstablishment);
-//    lteCfg->performRAStateTransition(RAInitialization);
-
-//    lteCfg->setRAState(0);
 
 }
 
-//void RRC::processRRCConnectionRequest(RRCConnectionRequest *rrcConnReq) {
-//
-//
-////    Subscriber *sub = subT->findSubscriberForChannel(ctrl->getChannelNumber());
-////
-////    sub = new Subscriber();
-////    sub->initEntities(appType);
-////    // only dummy PDN connection to store the UE bearer contexts
-////    PDNConnection *conn = new PDNConnection();
-////    conn->setOwner(sub->getEsmEntity());
-////    sub->getEsmEntity()->addPDNConnection(conn, true);
-////    sub->setChannelNr(ctrl->getChannelNumber());
-////    sub->setEnbId(subT->genEnbId());
-////    sub->setMmeId(0);
-////    sub->setStatus(SUB_PENDING);
-////    subT->push_back(sub);
-//}
+void RRC::receiveChangeNotification(int category, const cPolymorphic *details) {
+    Enter_Method_Silent();
+
+    if (category == NF_TTI_EXP) {
+        if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
+            if (lteSched->getSFN() % 4 == 3 && lteSched->getTTI() == 9)
+                sendMIB();
+            if (lteSched->getSFN() % 8 == 7 && lteSched->getTTI() == 3)
+                sendSIB1();
+            if (lteSched->getSFN() % 8 == 7 && lteSched->getTTI() == 4)
+                sendSIB2();
+        }
+    }
+}
+
+std::string RRC::timestamp() {
+    std::stringstream out;
+    out << lteSched->timestamp() << " LTE-RRC: ";
+    return out.str();
+}

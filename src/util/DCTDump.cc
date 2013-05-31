@@ -20,7 +20,7 @@
 #include "IPv4Serializer.h"
 #include "RRCMessage_m.h"
 #include "MACSerializer.h"
-#include "LTEPhyControlInfo_m.h"
+//#include "LTEPhyControlInfo_m.h"
 #include "LTEFrame_m.h"
 #include "MACControlInfo_m.h"
 
@@ -39,6 +39,8 @@ DCTDump::~DCTDump() {
 }
 
 void DCTDump::initialize() {
+    lteSched = LTESchedulerAccess().get();
+
     const char *file = this->par("dumpFile");
     const char *first_line = "Session Transcript\n";
 
@@ -100,50 +102,80 @@ void DCTDump::handleMessage(cMessage *msg) {
             buf_len = IPv4Serializer().serialize(ipPacket, buf, sizeof(buf), true);
         }
 
-        // context name - TransportBlock
-        TransportBlock *tb = dynamic_cast<TransportBlock*>(msg);
-        if (tb) {
+        // context name MACProtocolDataUnit or TransportBlock
+        MACControlInfo *macCtrl = dynamic_cast<MACControlInfo*>(msg->getControlInfo());
+        if (macCtrl) {
             strncpy(p, "MAC-LTE", 7);
             p += 7;
 
-            if (tb->getChannel() == RACH) {
-                hasComment = true;
-
-                writeAscii = true;
-
-            } else {
+            if (macCtrl->getCtrlId() == BCAST_DATA_CTRL_INFO || macCtrl->getCtrlId() == DL_DATA_CTRL_INFO || macCtrl->getCtrlId() == SEND_CTRL_INFO) {
                 strncpy(p, ".", 1);
                 p += 1;
 
                 writeHex = true;
+            }
+
+            if (macCtrl->getCtrlId() == BCAST_DATA_CTRL_INFO || macCtrl->getCtrlId() == DL_DATA_CTRL_INFO) {
+                TransportBlock *tb = dynamic_cast<TransportBlock*>(msg);
 
                 MACProtocolDataUnit *macPdu = dynamic_cast<MACProtocolDataUnit*>(tb->getEncapsulatedPacket());
                 if (macPdu)
                     buf_len = MACSerializer().serialize(macPdu, buf, sizeof(buf));
             }
-        }
 
-        // context name - MACProtocolDataUnit
-        MACProtocolDataUnit *pdu = dynamic_cast<MACProtocolDataUnit*>(msg);
-        if (pdu) {
-            MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(msg->getControlInfo());
-            strncpy(p, "MAC-LTE", 7);
-            p += 7;
-
-            if (ctrl->getChannel() == RACH) {
-//                hasComment = true;
-//
-//                writeAscii = true;
-
-            } else {
-                strncpy(p, ".", 1);
-                p += 1;
-
-                writeHex = true;
+            if (macCtrl->getCtrlId() == SEND_CTRL_INFO) {
+                MACProtocolDataUnit *pdu = dynamic_cast<MACProtocolDataUnit*>(msg);
 
                 buf_len = MACSerializer().serialize(pdu, buf, sizeof(buf));
             }
+
+            if (macCtrl->getCtrlId() == RAP_CTRL_INFO) {
+                hasComment = true;
+
+                writeAscii = true;
+            }
         }
+
+//        if (tb) {
+//            strncpy(p, "MAC-LTE", 7);
+//            p += 7;
+//
+//            if (tb->getChannel() == RACH) {
+//                hasComment = true;
+//
+//                writeAscii = true;
+//
+//            } else {
+//                strncpy(p, ".", 1);
+//                p += 1;
+//
+//                writeHex = true;
+//
+//
+//            }
+//        }
+
+        // context name - MACProtocolDataUnit
+
+//        if (pdu) {
+//            MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(msg->getControlInfo());
+//            strncpy(p, "MAC-LTE", 7);
+//            p += 7;
+//
+//            if (ctrl->getChannel() == RACH) {
+////                hasComment = true;
+////
+////                writeAscii = true;
+//
+//            } else {
+//                strncpy(p, ".", 1);
+//                p += 1;
+//
+//                writeHex = true;
+//
+//                buf_len = MACSerializer().serialize(pdu, buf, sizeof(buf));
+//            }
+//        }
 
         // context name - MAC Random Access Preamble
 //        if (dynamic_cast<LTEPhyControlInfo*>(msg->getControlInfo())) {
@@ -159,16 +191,16 @@ void DCTDump::handleMessage(cMessage *msg) {
 //        }
 
         if (hasComment) {
-//            strncpy(p, "/////", 5);
-//            p += 5;
-//
-//            RandomAccessPreamble *rap = check_and_cast<RandomAccessPreamble*>(msg);
-//            comment << ">> RACH Preamble Request[UE =  "
-//                    << rap->getUeId() << "]    [RAPID =  "
-//                    << rap->getRapid() << "]    [Attempt = "
-//                    << rap->getAttempt() << "]";
-//            strncpy((char*)buf, comment.str().c_str(), strlen(comment.str().c_str()));
-//            buf_len = strlen(comment.str().c_str());
+            strncpy(p, "/////", 5);
+            p += 5;
+
+            RAPControlInfo *rapCtrl = check_and_cast<RAPControlInfo*>(msg->getControlInfo());
+            comment << ">> RACH Preamble Request[UE = "
+                    << rapCtrl->getUeId() << "]    [RAPID = "
+                    << rapCtrl->getRapid() << "]    [Attempt = "
+                    << rapCtrl->getAttempt() << "]";
+            strncpy((char*)buf, comment.str().c_str(), strlen(comment.str().c_str()));
+            buf_len = strlen(comment.str().c_str());
 
         } else {
 
@@ -190,7 +222,7 @@ void DCTDump::handleMessage(cMessage *msg) {
             }
 
             // protocol - MACProtocolDataUnit or TransportBlock
-            if (tb || pdu) {
+            if (macCtrl) {
                 vers << 1;
 
                 strncpy(p, "mac_r9_lte/", 11);
@@ -205,8 +237,26 @@ void DCTDump::handleMessage(cMessage *msg) {
 
             // out-header
             if (hasOutHdr) {
-                if (tb || pdu) {
+                unsigned rntiType = NoRnti;
+                unsigned rnti = 0;
+
+                DownlinkAssignment *dlAssign = lteSched->getDlAssignment(msg->getKind());
+                if (dlAssign != NULL) {
+                    rntiType = dlAssign->getRntiType();
+                    rnti = dlAssign->getRnti();
+                }
+
+                UplinkGrant *ulGrant = lteSched->getUlGrant(msg->getKind());
+                if (ulGrant != NULL) {
+                    rntiType = ulGrant->getRntiType();
+                    if (rntiType == TempCRnti)  // TempCRnti not recognized by wireshark DCT decoder
+                        rntiType = CRnti;
+                    rnti = ulGrant->getRnti();
+                }
+
+                if (macCtrl) {
                     unsigned direction;
+
                     if (!strncmp(this->getParentModule()->getComponentType()->getName(), "UE", 2))
                         if (msg->getArrivalGate()->isName("lowerLayerIn"))
                             direction = DownlinkDirection;
@@ -218,28 +268,28 @@ void DCTDump::handleMessage(cMessage *msg) {
                         else
                             direction = DownlinkDirection;
 
-                    if (tb) {
-                        outHdr  << ","
-                                << FDDRadioType << ","
-                                << tb->getRntiType() << ","
-                                << direction << ","
-                                << "1," // Subframe number
-                                << "0," // is predefined data
-                                << tb->getRnti() << ","
-                                << tb->getUeId() << ","
-                                << buf_len << ",";
-                    } else {
-                        MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(msg->getControlInfo());
-                        outHdr  << ","
-                                << FDDRadioType << ","
-                                << ctrl->getRntiType() << ","
-                                << direction << ","
-                                << "1," // Subframe number
-                                << "0," // is predefined data
-                                << ctrl->getRnti() << ","
-                                << ctrl->getUeId() << ","
-                                << buf_len << ",";
-                    }
+                    outHdr  << ","
+                            << FDDRadioType << ","
+                            << rntiType << ","
+                            << direction << ","
+                            << "1," // Subframe number
+                            << "0," // is predefined data
+                            << rnti << ","
+                            << macCtrl->getUeId() << ","
+//                            << dlAssign->getUeId() << ","
+                            << buf_len << ",";
+//                    } else {
+//                        MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(msg->getControlInfo());
+//                        outHdr  << ","
+//                                << FDDRadioType << ","
+//                                << ctrl->getRntiType() << ","
+//                                << direction << ","
+//                                << "1," // Subframe number
+//                                << "0," // is predefined data
+//                                << ctrl->getRnti() << ","
+//                                << ctrl->getUeId() << ","
+//                                << buf_len << ",";
+//                    }
 
                 }
                 strncpy(p, outHdr.str().c_str(), strlen(outHdr.str().c_str()));
@@ -283,24 +333,33 @@ void DCTDump::handleMessage(cMessage *msg) {
 }
 
 std::string DCTDump::timestamp(simtime_t stime) {
-    std::stringstream seconds;
-    std::stringstream subseconds;
+//    std::stringstream seconds;
+//    std::stringstream subseconds;
     std::string out;
-    seconds << (int32)stime.dbl();
-    subseconds << (uint32)((stime.dbl() - (int32)stime.dbl())*1000000);
-    std::string tmp = seconds.str();
-    for (unsigned i = 0; i < tmp.size(); i++) {
-        if (i > 3)
-            break;
-        out += tmp[i];
-    }
-    out += ".";
-    tmp = subseconds.str();
-    for (unsigned i = 0; i < tmp.size(); i++) {
-        if (i > 3)
-            break;
-        out += tmp[i];
-    }
+
+    out = stime.str();
+    if (out.find('.') == std::string::npos)
+        out += ".0000";
+
+    if (out.size() - out.find('.') > 5)
+        out = out.substr(0, out.find('.') + 5);
+//    double test = 4.234;
+//
+//    seconds << test;
+//    subseconds << ((stime.dbl() - stime.dbl())*1000000);
+//    std::string tmp = seconds.str();
+//    for (unsigned i = 0; i < tmp.size(); i++) {
+//        if (i > 3)
+//            break;
+//        out += tmp[i];
+//    }
+//    out += ".";
+//    tmp = subseconds.str();
+//    for (unsigned i = 0; i < tmp.size(); i++) {
+//        if (i > 3)
+//            break;
+//        out += tmp[i];
+//    }
     return out;
 }
 

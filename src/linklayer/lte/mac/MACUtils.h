@@ -26,6 +26,8 @@ public:
     MACSubHeaderRar *createHeaderRar(bool t, unsigned char rapidOrBi);
     MACSubHeaderUlDl *createHeaderUlDl(unsigned char lcid);
     MACRandomAccessResponse *createRAR(unsigned short timingAdvCmd, unsigned ulGrant, unsigned short tempCRnti);
+
+    MACProtocolDataUnit *createPDU(int channel, cMessage *msg, unsigned ueId = 0);
 };
 
 #endif /* MACUTILS_H_ */

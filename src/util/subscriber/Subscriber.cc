@@ -18,13 +18,17 @@
 #include "Subscriber.h"
 #include "LTEUtils.h"
 #include "GTPUtils.h"
+#include "LTEControlInfo_m.h"
 
 Subscriber::Subscriber() {
 	// TODO Auto-generated constructor stub
 	ratType = EUTRAN;
 	s11Tunn = NULL;
 	msisdn = NULL;
-	channelNr = -1;
+	ueId = -1;
+	rapid = 65;
+	rnti = 65536;
+	rntiType = 8;
 	enbId = 0;
 	mmeId = 0;
 	plmnId = NULL;
@@ -63,8 +67,14 @@ std::string Subscriber::info() const {
     if (mmeId != 0)
     	out << "\tmmeId:" << mmeId << "\n";
     out << "\tstatus:" << statusName() << "\n";
-    if (channelNr != -1)
-    	out << "\tchannelNr:" << channelNr << "\n";
+    if (ueId != -1)
+    	out << "\tueId:" << ueId << "\n";
+    if (rapid < 65)
+        out << "\trapid:" << rapid << "\n";
+    if (rntiType < 8)
+        out << "\trntiType:" << rntiTypeName() << "\n";
+    if (rnti < 65536)
+        out << "\trnti:" << rnti << "\n";
     if (emm != NULL)
     	out << emm->info(1);
     if (plmnId != NULL)
@@ -91,6 +101,23 @@ const char *Subscriber::statusName() const {
         CASE(SUB_ACTIVE);
         CASE(SUB_INACTIVE);
         CASE(SUB_PENDING);
+    }
+    return s;
+#undef CASE
+}
+
+const char *Subscriber::rntiTypeName() const {
+#define CASE(x) case x: s=#x; break
+    const char *s = "unknown";
+    switch (rntiType) {
+        CASE(NoRnti);
+        CASE(PRnti);
+        CASE(RaRnti);
+        CASE(CRnti);
+        CASE(SiRnti);
+        CASE(SpsRnti);
+        CASE(MRnti);
+        CASE(TempCRnti);
     }
     return s;
 #undef CASE
