@@ -45,7 +45,7 @@ void HARQProcess::allocate(TransportBlock *tb, DownlinkAssignment *dlAssign) {
     // TODO attempt to decode...
 
     if (dlAssign->getHarqNo() == HARQ_BCAST_PROC_ID) {
-        EV << module->timestamp() << "Downlink data transfer for " << tb->getName() << ".\n";
+//        EV << module->timestamp() << "Downlink data transfer for " << tb->getName() << ".\n";
         module->sendUp(softBuffer, BCCH1);
         softBuffer = NULL;
     }
@@ -74,7 +74,7 @@ void HARQProcess::transmit(MACProtocolDataUnit *pdu) {
     int msgId = pdu->getKind();
     // TODO if there is no measurement gap at the time of the transmission and, in case of retransmission, the retransmission does not collide with a transmission for a MAC PDU obtained from the Msg3 buffer in this TTI:
     if (module->getMsg3Pdu(msgId) != NULL) {
-        EV << module->timestamp() << "Uplink data transfer for " << pdu->getName() << ".\n";
+//        EV << module->timestamp() << "Uplink data transfer for " << pdu->getName() << ".\n";
         module->sendDown(pdu);
 
         currIrv++;

@@ -26,16 +26,22 @@ enum MACControlId
     DL_DATA_CTRL_INFO		= 2;
     BCAST_DATA_CTRL_INFO	= 3;
     RAP_CTRL_INFO			= 4;
+    HARQ_CTRL_INFO			= 5;
 }
 
 class MACControlInfo extends LTEControlInfo
 {
 	unsigned int ctrlId;
-	int ueId;
 }
 
 class RAPControlInfo extends MACControlInfo
 {
 	unsigned int rapid;
 	unsigned int attempt;    
+}
+
+class HARQControlInfo extends MACControlInfo
+{
+    bool harq;
+    int index;   
 }

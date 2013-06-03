@@ -30,8 +30,9 @@ enum RAState {
     PRBL_TRANSMISSION       = FSM_Steady(3),
     RESP_RECEPTION          = FSM_Steady(4),
     RESP_CORRECT            = FSM_Steady(5),
-    PROC_DONE               = FSM_Steady(6),
-    PROC_ERROR              = FSM_Steady(7)
+    START_CONT_RES          = FSM_Steady(6),
+    PROC_DONE               = FSM_Steady(7),
+    PROC_ERROR              = FSM_Steady(8)
 };
 
 enum RAEvent {
@@ -40,6 +41,7 @@ enum RAEvent {
     TransmitPrbl,
     ReceiveResp,
     CorrectResp,
+    StartContRes,
     CorrectProc,
     IncorrectProc
 };
@@ -75,6 +77,8 @@ private:
     HARQEntity *ulEntity;
 
     cFSM raFSM;
+
+    unsigned contResTimer;
 
     virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 

@@ -25,10 +25,13 @@ MAC::MAC() {
 
     raFSM = cFSM("fsm-RA");
     raFSM.setState(PROC_NULL);
+
+    contResTimer = UINT32_MAX;
 }
 
 MAC::~MAC() {
     // TODO Auto-generated destructor stub
+
 }
 
 void MAC::initialize(int stage) {
@@ -52,10 +55,14 @@ void MAC::initialize(int stage) {
 }
 
 void MAC::handleMessage(cMessage *msg) {
-    if (msg->arrivedOn("lowerLayerIn")) {
-        handleLowerMessage(msg);
+    if (msg->isSelfMessage()) {
+
     } else {
-        handleUpperMessage(msg);
+        if (msg->arrivedOn("lowerLayerIn")) {
+            handleLowerMessage(msg);
+        } else {
+            handleUpperMessage(msg);
+        }
     }
 }
 
@@ -96,10 +103,15 @@ void MAC::handleLowerMessage(cMessage *msg) {
     } else if (ctrl->getCtrlId() == DL_DATA_CTRL_INFO) {
         TransportBlock *tb = check_and_cast<TransportBlock*>(msg);
         queueDown[tb->getKind()] = tb;
+    } else if (ctrl->getCtrlId() == UL_DATA_CTRL_INFO) {
+        TransportBlock *tb = check_and_cast<TransportBlock*>(msg);
+        queueDown[tb->getKind()] = tb;
     } else if (ctrl->getCtrlId() == RAP_CTRL_INFO) {
         ctrl->setChannel(RA_RESP);
         msg->setName("RandomAccessResponse");
         queueUp[msg->getKind()] = msg;
+    } else if (ctrl->getCtrlId() == HARQ_CTRL_INFO) {
+
     }
 }
 
@@ -152,8 +164,15 @@ void MAC::ulschDataTransfer(int tti, int msgId, UplinkGrant *ulGrant) {
 void MAC::sendUp(TransportBlock *tb, int channel) {
     MACProtocolDataUnit *pdu = check_and_cast<MACProtocolDataUnit*>(tb->decapsulate());
     cMessage *msg;
-    if (channel == BCCH0 || channel == BCCH1)
+    if (channel == BCCH0 || channel == BCCH1) {
         msg = pdu->decapsulate();
+    } else if (channel == ULSCH) {
+        MACSubHeaderUlDl *header = check_and_cast<MACSubHeaderUlDl*>(pdu->getSubHdrs(0));
+        MACServiceDataUnit *sdu = pdu->getSdus(0);
+        if (header->getLcid() == 0)
+            channel = ULCCCH;
+        msg = sdu->decapsulate();
+    }
 
     LTEControlInfo *ctrl = new LTEControlInfo();
     ctrl->setChannel(channel);
@@ -232,17 +251,13 @@ void MAC::performRAStateTransition(RAEvent event) {
             break;
         case RESP_CORRECT:
             switch(event) {
-                case CorrectProc: {
-                    FSM_Goto(raFSM, PROC_DONE);
+                case StartContRes: {
+                    FSM_Goto(raFSM, START_CONT_RES);
                     break;
                 }
-                case IncorrectProc: {
-                    FSM_Goto(raFSM, PROC_ERROR);
+                default:
+                    EV << "LTE-MAC: Received unexpected RA event.\n";
                     break;
-            }
-            default:
-                EV << "LTE-MAC: Received unexpected RA event.\n";
-                break;
             }
             break;
         default:
@@ -365,13 +380,14 @@ void MAC::raStateEntered() {
                 for (QueueDown::iterator i = queueDown.begin(); i != queueDown.end(); i++) {
                     TransportBlock *queueTb = i->second;
                     MACProtocolDataUnit *queuePdu = check_and_cast<MACProtocolDataUnit*>(queueTb->getEncapsulatedPacket());
-
-                    MACRandomAccessResponse *queueRar = dynamic_cast<MACRandomAccessResponse*>(queuePdu->getSdus(0));
-                    if (queueRar) {
-                        rarNr++;
-                        if (queueRar->getUlGrant() == rar->getUlGrant()) {
-                            // set tempcrnti
-                            ulGrant->setRnti(queueRar->getTmpCRnti());
+                    if (queuePdu->getSdusArraySize() > 0) {
+                        MACRandomAccessResponse *queueRar = dynamic_cast<MACRandomAccessResponse*>(queuePdu->getSdus(0));
+                        if (queueRar) {
+                            rarNr++;
+                            if (queueRar->getUlGrant() == rar->getUlGrant()) {
+                                // set tempcrnti
+                                ulGrant->setRnti(queueRar->getTmpCRnti());
+                            }
                         }
                     }
                 }
@@ -394,6 +410,11 @@ void MAC::raStateEntered() {
 //            else
 //                performRAStateTransition(CorrectProc);
 //
+            break;
+        }
+        case START_CONT_RES: {
+            EV << timestamp() << "Starting contention resolution.\n";
+            contResTimer = lteSched->getSFN();
             break;
         }
         case PROC_DONE: {
@@ -460,6 +481,16 @@ void MAC::receiveChangeNotification(int category, const cPolymorphic *details) {
                         break;
                 }
             }
+
+            msgId = lteSched->getUlMessageId();
+            QueueDown::iterator iDown = queueDown.find(msgId);
+            if (iDown != queueDown.end()) {
+                TransportBlock *tb = iDown->second;
+                MACControlInfo *ctrl = check_and_cast<MACControlInfo*>(tb->getControlInfo());
+                if (ctrl->getCtrlId() == UL_DATA_CTRL_INFO) {
+                    sendUp(tb, ULSCH);
+                }
+            }
         } else {
             int msgId = lteSched->getDlMessageId();
             QueueDown::iterator iDown = queueDown.find(msgId);
@@ -475,7 +506,7 @@ void MAC::receiveChangeNotification(int category, const cPolymorphic *details) {
                             // part of LTE physical random access procedure
                             if (raFSM.getState() == PRBL_TRANSMISSION) {
                                 int ttis[1];
-                                ttis[0] = lteSched->getTTI();
+                                ttis[0] = (lteSched->getTTI() - 1) % 10;
                                 downId = lteSched->scheduleUlMessage(TempCRnti, 0, lteSched->getSFN() + 6, 1, lteSched->getSFN() + 6, ttis, 1);
                                 performRAStateTransition(ReceiveResp);
                             }
@@ -529,6 +560,11 @@ void MAC::receiveChangeNotification(int category, const cPolymorphic *details) {
             if (msgId != -1 && iMsg3 != msg3Buffer.end()) {
                 UplinkGrant *ulGrant = lteSched->getUlGrant(msgId);
                 ulschDataTransfer(lteSched->getTTI(), msgId, ulGrant);
+                performRAStateTransition(StartContRes);
+            }
+
+            if (contResTimer != UINT32_MAX && lteSched->getSFN() - contResTimer > lteCfg->getMACContResolTimer()) {
+                // TODO mac contention resolution timer expired
             }
         }
     }

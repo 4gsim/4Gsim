@@ -77,6 +77,17 @@ void LTERadio::handleRadioMessage(cMessage *msg) {
         if (lteSched->scheduleDlMessage(dci->getRntiType(), dci->getRnti(), sfn, 1, sfn, ttis, dci->getTtisArraySize()) == -1) {
             EV << "LTE-Radio: Cannot receive message for this downlink assignment. Resource is already occupied.\n";
         }
+    } else if (prb->getChannelNumber() == PHICH) {
+        HARQInformation *harqInfo = check_and_cast<HARQInformation*>(msg);
+        if (harqInfo->getUeId() == this->getParentModule()->getId()) {
+            cMessage *msg = new cMessage("HARQInformation");
+            HARQControlInfo *ctrl = new HARQControlInfo();
+            ctrl->setCtrlId(HARQ_CTRL_INFO);
+            ctrl->setIndex(harqInfo->getIndex());
+            ctrl->setUeId(harqInfo->getUeId());
+            ctrl->setHarq(harqInfo->getHarq());
+            this->send(msg, gate("upperLayerOut"));
+        }
     } else if (prb->getChannelNumber() == PRACH) {
         unsigned rnti = lteSched->getTTI(); // TODO add also frequency offset
         int msgId = lteSched->scheduleDlMessage(RaRnti, rnti, lteSched->getSFN() + 3, lteSched->getSFN() + 3 + lteCfg->getRaRespWdwSize());
@@ -109,39 +120,55 @@ void LTERadio::handleRadioMessage(cMessage *msg) {
     } else {
         bool isForMe = false;
         TransportBlock *tb = check_and_cast<TransportBlock*>(prb);
-        int msgId = lteSched->getDlMessageId(lteSched->getTTI());
-        if (msgId != -1) {
-            MACControlInfo *ctrl = new MACControlInfo();
-            ctrl->setUeId(tb->getUeId());
-            tb->setKind(msgId);
-            switch(tb->getChannelNumber()) {
-                case PBCH:
-                    ctrl->setChannel(BCH);
-                    ctrl->setCtrlId(BCAST_DATA_CTRL_INFO);
-                    isForMe = true;
-                    break;
-                case PDSCH0:
-                    ctrl->setChannel(DLSCH0);
-                    ctrl->setCtrlId(DL_DATA_CTRL_INFO);
-                    isForMe = true;
-                    break;
-                case PDSCH1:
-                    if (tb->getUeId() == this->getParentModule()->getId()) {
+        MACControlInfo *ctrl = new MACControlInfo();
+        if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
+            int msgId = lteSched->getUlMessageId();
+            if (msgId != -1) {
+                ctrl->setUeId(tb->getUeId());
+                tb->setKind(msgId);
+                switch(tb->getChannelNumber()) {
+                    case PUSCH:
+                        ctrl->setChannel(ULSCH);
+                        ctrl->setCtrlId(UL_DATA_CTRL_INFO);
+                        addHARQInformation(HARQ_ACK, tb);
                         isForMe = true;
-                        ctrl->setChannel(DLSCH1);
-                        ctrl->setCtrlId(DL_DATA_CTRL_INFO);
-                    }
-                    break;
-                default:
-                    break;
+                        break;
+                    default:
+                        break;
+                }
             }
-
-            msgId = lteSched->getUlMessageId();
-
-            tb->setControlInfo(ctrl);
-            if (isForMe)
-                send(tb, gate("upperLayerOut"));
+        } else {
+            int msgId = lteSched->getDlMessageId(lteSched->getTTI());
+            if (msgId != -1) {
+                ctrl->setUeId(tb->getUeId());
+                tb->setKind(msgId);
+                switch(tb->getChannelNumber()) {
+                    case PBCH:
+                        ctrl->setChannel(BCH);
+                        ctrl->setCtrlId(BCAST_DATA_CTRL_INFO);
+                        isForMe = true;
+                        break;
+                    case PDSCH0:
+                        ctrl->setChannel(DLSCH0);
+                        ctrl->setCtrlId(DL_DATA_CTRL_INFO);
+                        isForMe = true;
+                        break;
+                    case PDSCH1:
+                        if (tb->getUeId() == this->getParentModule()->getId()) {
+                            isForMe = true;
+                            ctrl->setChannel(DLSCH1);
+                            ctrl->setCtrlId(DL_DATA_CTRL_INFO);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
+
+        tb->setControlInfo(ctrl);
+        if (isForMe)
+            send(tb, gate("upperLayerOut"));
     }
 }
 
@@ -192,6 +219,35 @@ void LTERadio::processRAPCommand(cMessage *msg) {
     sendToChannel(rap);
 }
 
+void LTERadio::addHARQInformation(bool harq, TransportBlock *tb) {
+    DownlinkAssignments dlAssigns = lteSched->getDlAssignments();
+    unsigned sfn = lteSched->getSFN() + 4;
+    int msgId = -1;
+
+    for (DownlinkAssignments::iterator i = dlAssigns.begin(); i != dlAssigns.end(); i++) {
+        DownlinkAssignment *dlAssign = i->second;
+        if (dlAssign->getRntiType() == NoRnti && dlAssign->getRnti() == 1 &&
+                sfn == dlAssign->getSfnBegin() && sfn == dlAssign->getSfnEnd()) {
+            msgId = i->first;
+        }
+    }
+
+    if (msgId == -1) {
+        msgId = lteSched->scheduleDlMessage(NoRnti, 1, sfn, sfn);
+    }
+
+    if (msgId != -1) {
+        HARQInformation *harqInfo = new HARQInformation();
+        harqInfo->setName("HARQInformation");
+        harqInfo->setKind(msgId);
+        harqInfo->setUeId(tb->getUeId());
+        harqInfo->setIndex(tb->getKind());
+        harqInfo->setChannelNumber(PHICH);
+        harqInfo->setHarq(harq);
+        harqs.push_back(harqInfo);
+    }
+}
+
 void LTERadio::sendDCI() {
     DownlinkAssignments dlAssigns = lteSched->getDlAssignments();
     unsigned sfn = lteSched->getSFN();
@@ -217,6 +273,20 @@ void LTERadio::receiveChangeNotification(int category, const cPolymorphic *detai
     if (!strncmp(this->getParentModule()->getComponentType()->getName(), "ENB", 3)) {
         if (lteSched->getTTI() == 0) {
             sendDCI();
+        }
+
+        if (!harqs.empty()) {
+            int msgId = lteSched->getDlMessageId();
+            bool stop = false;
+            while (!stop && !harqs.empty()) {
+                HARQInformation *harqInfo = harqs.front();
+                if (harqInfo->getKind() == msgId) {
+                    sendToChannel(harqInfo);
+                    harqs.pop_front();
+                } else {
+                    stop = true;
+                }
+            }
         }
     }
 }

@@ -89,6 +89,7 @@ void RRC::handleMessage(cMessage *msg) {
 }
 
 void RRC::handleLowerMessage(cMessage *msg) {
+    EV << timestamp() << "Receiving " << msg->getName() << ".\n";
     RRCMessage *rrcMsg = check_and_cast<RRCMessage*>(msg);
     LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
     SequencePtr seq = rrcMsg->getSdu();
@@ -105,12 +106,13 @@ void RRC::handleLowerMessage(cMessage *msg) {
                         RRCConnectionRequestr8IEs *rrcConnReqIes = static_cast<RRCConnectionRequestr8IEs*>(critExt.getValue());
                         InitialUEIdentity initUeId = rrcConnReqIes->getUeIdentity();
                         if (initUeId.getChoice() == InitialUEIdentity::initialUEIdentityRandomValue) {
+                            int msgId = lteSched->getUlMessageId();
                             Subscriber *sub = new Subscriber();
-                            sub->initRrcEntity(nodeType);
-                            RRCEntity *rrc = sub->getRrcEntity();
-                            rrc->setModule(this);
-                            rrc->processRRCConnectionRequest(rrcConnReq);
-                            subT->push_back(sub);
+//                            sub->initRrcEntity(nodeType);
+//                            RRCEntity *rrc = sub->getRrcEntity();
+//                            rrc->setModule(this);
+//                            rrc->processRRCConnectionRequest(rrcConnReq);
+//                            subT->push_back(sub);
                         }
                     }
                 }
@@ -378,6 +380,7 @@ void RRC::sendDown(int msgId, int logChannel, int choice, const char *name, Abst
     ctrl->setChannel(logChannel);
     msg->setControlInfo(ctrl);
     msg->setKind(msgId);
+    EV << timestamp() << "Sending " << msg->getName() << ".\n";
     this->send(msg, gate("lowerLayerOut"));
 }
 

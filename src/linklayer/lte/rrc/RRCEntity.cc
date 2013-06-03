@@ -76,10 +76,10 @@ void RRCEntity::performStateTransition(RRCEvent event) {
             break;
     }
 
-    if (oldState != fsm.getState())
-        EV << module->timestamp() << "PSM-Transition: " << stateName(oldState) << " --> " << stateName(fsm.getState()) << "  (event was: " << eventName(event) << ")\n";
-    else
-        EV << module->timestamp() << "Staying in state: " << stateName(fsm.getState()) << " (event was: " << eventName(event) << ")\n";
+//    if (oldState != fsm.getState())
+//        EV << module->timestamp() << "PSM-Transition: " << stateName(oldState) << " --> " << stateName(fsm.getState()) << "  (event was: " << eventName(event) << ")\n";
+//    else
+//        EV << module->timestamp() << "Staying in state: " << stateName(fsm.getState()) << " (event was: " << eventName(event) << ")\n";
 
 }
 

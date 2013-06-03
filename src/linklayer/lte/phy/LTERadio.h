@@ -24,6 +24,9 @@
 #include "SubscriberTableAccess.h"
 #include "LTEConfigAccess.h"
 
+#define HARQ_NACK   0
+#define HARQ_ACK    1
+
 class LTERadio : public ChannelAccess {
 protected:
     LTEScheduler *lteSched;
@@ -33,6 +36,8 @@ protected:
     SubscriberTable *subT;
 
     RadioState rs;
+
+    std::list<HARQInformation*> harqs;
 
     virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 public:
@@ -50,6 +55,7 @@ public:
     void processRAPCommand(cMessage *msg);
 
     void sendDCI();
+    void addHARQInformation(bool harq, TransportBlock *tb);
 };
 
 #endif /* LTERADIO_H_ */

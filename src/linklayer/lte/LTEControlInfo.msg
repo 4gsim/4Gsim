@@ -65,10 +65,11 @@ enum LTERntiTypes
  	SiRnti = 4;
  	SpsRnti = 5;
  	MRnti = 6;	
- 	TempCRnti = 7;
+ 	TempCRnti = 7;	
 }
 
 class LTEControlInfo
 {
-	int channel; // logical or transport channels    
+	int channel; // logical or transport channels 
+	int ueId;   
 } 

@@ -59,7 +59,7 @@ MACProtocolDataUnit *MACUtils::createPDU(int channel, cMessage *msg, unsigned ue
         pdu->encapsulate(PK(msg->dup()));
     } else if (channel == ULSCH) {
         ctrl->setChannel(ULSCH);
-        MACSubHeader *header = createHeaderUlDl(0);
+        MACSubHeaderUlDl *header = createHeaderUlDl(0);
         MACServiceDataUnit *sdu = new MACServiceDataUnit();
         sdu->encapsulate(PK(msg->dup()));
         pdu->pushSubHdr(header);

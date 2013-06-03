@@ -50,6 +50,8 @@ int DownlinkAssignment::getTtis(unsigned int k) const {
 std::string DownlinkAssignment::info() const {
     std::stringstream out;
 
+    out << "rntiType:" << rntiType_var << ", ";
+    out << "rnti:" << rnti_var << ", ";
     out << "sfnBegin:" << sfnBegin_var << ", ";
     out << "sfnPeriod:" << sfnPeriod_var << ", ";
     if (sfnEnd_var == UINT32_MAX)

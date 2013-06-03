@@ -26,5 +26,6 @@ class DownlinkAssignment
 	int rv;
 	int harqNo;
 	int modCod;
+	int ueId;
 }
 

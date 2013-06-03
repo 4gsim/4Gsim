@@ -48,6 +48,12 @@ message DCIFormat extends PhysicalResourceBlock
     abstract int ttis[];	// should be resource block allocation, but now it is used to signal de tti allocation
 }
 
+message HARQInformation extends PhysicalResourceBlock
+{
+    bool harq;
+    int index;
+}
+
 enum LTERadioTypes
 {
     FDDRadioType = 0;
