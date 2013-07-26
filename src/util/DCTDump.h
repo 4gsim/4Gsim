@@ -21,10 +21,10 @@
 #include <omnetpp.h>
 #include <assert.h>
 #include "TCPDump.h"
-#include "LTESchedulerAccess.h"
+//#include "LTESchedulerAccess.h"
 
 /*
- * Module for dumping packets in DCT2000 .out files. The class was
+ * Class for dumping packets in DCT2000 .out files. The class was
  * created according to Wireshark implementation for reading and
  * parsing DCT2000 .out files. Below some info regarding such a file:
  *
@@ -52,7 +52,6 @@
 class DCTDump : public cSimpleModule {
 private:
     FILE *dumpfile;
-    LTEScheduler *lteSched;
     std::string timestamp(simtime_t stime);
     void dumpPacket(uint8 *buf, int32 len, bool type);
 public:
@@ -60,25 +59,27 @@ public:
     virtual ~DCTDump();
 
     /*
-     * Method for initializing the module. During initialization,
-     * the dump file will be opened and a specific header for .out
-     * files will be written in it.
+     * Opens a DCT file with the given file name. The snaplen parameter
+     * is the length that packets will be truncated to. Throws an exception
+     * if the file cannot be opened.
      */
-    virtual void initialize();
+    void openTrace(const char *filename);
 
     /*
-     * Method for handling messages. The incoming message will be
-     * processed and written in the dump file, configured before the
-     * simulation. Afterwards, the message will be forwarded to the
-     * appropriate gate.
+     * Returns true if the DCT file is currently open.
      */
-    virtual void handleMessage(cMessage *msg);
+    bool isOpen() const { return dumpfile != NULL; }
 
     /*
-     * Method for finishing the module. During finish phase the dump
-     * file will be closed.
+     * Records the given packet into the output file if it is open,
+     * and throws an exception otherwise.
      */
-    virtual void finish();
+    void readPacket(simtime_t time, const cPacket *pkt);
+
+    /**
+     * Closes the output file if it is open.
+     */
+    void closeTrace();
 };
 
 #endif /* DCTDUMP_H_ */

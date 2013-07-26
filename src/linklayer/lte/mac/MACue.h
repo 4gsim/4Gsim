@@ -13,31 +13,35 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef HARQENTITY_H_
-#define HARQENTITY_H_
+#ifndef MACUE_H_
+#define MACUE_H_
 
-#include "HARQProcess.h"
+#include "MAC.h"
 #include "MACMessage.h"
+#include "PHYFrame_m.h"
+#include "HARQEntity.h"
+#include "HARQProcess.h"
 #include "PHYCommand.h"
 
-#define HARQ_BCAST_PROC_ID  8
-
-class MACue;
-
-class HARQEntity {
+class MACue : public MAC {
 private:
-    typedef std::map<unsigned char, HARQProcess*> HARQProcesses;
-    HARQProcesses procs;
+    HARQEntity *dlEntity;
+    HARQProcess *allocProc;
 
-    MACue *module;
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 public:
-    HARQEntity();
-    virtual ~HARQEntity();
+    MACue();
+    virtual ~MACue();
 
-    void init(MACue *module, unsigned char nrOfProcs);
+    virtual void initialize(int stage);
 
-    void indicateDlAssignment(DlAssignIndication *dlAssignInd);
-//    void indicateUlGrant(int tti, int msgId, UplinkGrant *ulGrant);
+    virtual void handleUpperMessage(cMessage *msg);
+    virtual void handleLowerMessage(cMessage *msg);
+
+    void bchReception(TransportBlock *tb);
+    void dlAssignmentReception(DlAssignIndication *dlAssignInd);
+
+    void setAllocatedProcess(HARQProcess *harqProc);
 };
 
-#endif /* HARQENTITY_H_ */
+#endif /* MACUE_H_ */

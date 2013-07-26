@@ -333,7 +333,7 @@ template <bool ext, int64_t upperBound>
 class Enumerated : public EnumeratedBase {
 public:
 	static const Info theInfo;
-	Enumerated(const void *info = &theInfo) : Enumerated(info) {}
+	Enumerated(const void *info = &theInfo) : EnumeratedBase(info) {}
 	Enumerated(int64_t value) : EnumeratedBase(&theInfo) { setValue(value); }
 
 //	Enumerated<ext, upperBound> &operator=(int64_t val) { setValue(val); return *this; }

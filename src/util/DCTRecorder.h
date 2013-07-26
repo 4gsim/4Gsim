@@ -11,21 +11,30 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-//
+// 
 
-class DownlinkAssignment
-{
-    @customize(true);
-    unsigned int sfnBegin;
-    unsigned int sfnPeriod;
-    unsigned int sfnEnd;
-    abstract int ttis[];
-	unsigned int rnti;
-	unsigned int rntiType;
-	bool ndi;
-	int rv;
-	int harqNo;
-	int modCod;
-	int ueId;
-}
+#ifndef DCTRECORDER_H_
+#define DCTRECORDER_H_
 
+#include "INETDefs.h"
+#include "DCTDump.h"
+
+class DCTRecorder : public cSimpleModule, protected cListener {
+private:
+    typedef std::map<simsignal_t,bool> SignalList;
+    SignalList signalList;
+    DCTDump dctDumper;
+    unsigned snaplen;
+    bool dumpBadFrames;
+public:
+    DCTRecorder();
+    virtual ~DCTRecorder();
+
+    virtual void initialize();
+    virtual void handleMessage(cMessage *msg);
+    virtual void finish();
+    virtual void receiveSignal(cComponent *source, simsignal_t signalID, cObject *obj);
+    virtual void recordPacket(cPacket *msg, bool l2r);
+};
+
+#endif /* DCTRECORDER_H_ */

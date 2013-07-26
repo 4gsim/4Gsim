@@ -1,6 +1,4 @@
 //
-// Copyright (C) 2012 Calin Cerchez
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -15,15 +13,29 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package inet.linklayer.lte.mac;
+#ifndef PHYUE_H_
+#define PHYUE_H_
 
-simple MAC
-{
-    parameters:
-        @display("i=block/layer");
-    gates:
-        input upperLayerIn;
-        output upperLayerOut;
-        input lowerLayerIn;
-        output lowerLayerOut;
-}
+#include <omnetpp.h>
+#include "ChannelAccess.h"
+#include "RadioState.h"
+#include "PHYFrame_m.h"
+
+class PHYue : public ChannelAccess {
+private:
+    RadioState rs;
+
+    unsigned tti;
+    cMessage *ttiTimer;
+
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
+public:
+    PHYue();
+    virtual ~PHYue();
+    virtual int numInitStages() const  { return 5; }
+    virtual void initialize(int stage);
+    virtual void handleMessage(cMessage *msg);
+    void handleRadioMessage(cMessage *msg);
+};
+
+#endif /* PHYUE_H_ */

@@ -44,6 +44,8 @@ enum RATType {
 	EUTRAN = 6
 };
 
+static const unsigned bandwiths[6] = { 6, 15, 25, 50, 75, 100 };
+
 class LTEUtils {
 public:
 	LTEUtils();

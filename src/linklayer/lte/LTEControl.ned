@@ -1,6 +1,4 @@
 //
-// Copyright (C) 2012 Calin Cerchez
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -15,15 +13,13 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package inet.linklayer.lte.rrc;
+package inet.linklayer.lte;
 
-simple RRC
+//
+// TODO auto-generated module
+//
+simple LTEControl
 {
-    parameters:
-        @display("i=block/control");
-    gates:
-        input upperLayerIn;
-        output upperLayerOut;
-    	input lowerLayerIn;
-        output lowerLayerOut;
+	parameters:
+		string configFile;
 }

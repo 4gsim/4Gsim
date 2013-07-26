@@ -13,26 +13,25 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef RLCENTITY_H_
-#define RLCENTITY_H_
+#ifndef MACENB_H_
+#define MACENB_H_
 
-#include <omnetpp.h>
-#include "RLCMessage_m.h"
-#include "SchedulerCommand_m.h"
+#include "MAC.h"
+#include "MACMessage.h"
 
-class RLC;
-
-class RLCEntity {
-protected:
-    RLC *module;
+class MACenb : public MAC {
+private:
+    typedef std::map<unsigned short, MACServiceDataUnit*> MACBuffer;
+    MACBuffer buffer;
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 public:
-    RLCEntity();
-    virtual ~RLCEntity();
+    MACenb();
+    virtual ~MACenb();
 
-    void setModule(RLC *module);
+    virtual void initialize(int stage);
 
-    virtual void handleUpperMessage(RLCServiceDataUnit *sdu) = 0;
-    virtual void handleLowerMessage(RLCProtocolDataUnit *pdu) = 0;
+    virtual void handleUpperMessage(cMessage *msg);
+    virtual void handleLowerMessage(cMessage *msg);
 };
 
-#endif /* RLCENTITY_H_ */
+#endif /* MACENB_H_ */

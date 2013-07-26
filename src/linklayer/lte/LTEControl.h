@@ -13,30 +13,40 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef MAC_H_
-#define MAC_H_
+#ifndef LTECONTROL_H_
+#define LTECONTROL_H_
 
 #include <omnetpp.h>
+#include "LTEUtils.h"
 #include "NotificationBoard.h"
-#include "PHYCommand.h"
-#include "SchedulerCommand_m.h"
+#include "RRCClassDefinitions.h"
 
-class MAC : public cSimpleModule, public INotifiable {
-protected:
+class LTEControl : public cSimpleModule, public INotifiable {
+private:
     NotificationBoard *nb;
 
-    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
+    struct PLMNIdentity {
+        std::string mcc;
+        std::string mnc;
+    };
+    char *cellId;
+    char *tac;
+    std::vector<PLMNIdentity> plmnIds;
+
+    void loadConfigFromXML(const char *filename);
+
+    void receiveChangeNotification(int category, const cPolymorphic *details);
 public:
-    MAC();
-    virtual ~MAC();
+    LTEControl();
+    virtual ~LTEControl();
 
     virtual int numInitStages() const  { return 5; }
-
-    virtual void initialize(int stage) {}
+    virtual void initialize(int stage);
     virtual void handleMessage(cMessage *msg);
 
-    virtual void handleUpperMessage(cMessage *msg) {}
-    virtual void handleLowerMessage(cMessage *msg) {}
+    rrc::PLMNIdentityList getPLMNIdentityList();
+    char *getTAC() { return tac; }
+    char *getCellId() { return cellId; }
 };
 
-#endif /* MAC_H_ */
+#endif /* LTECONTROL_H_ */

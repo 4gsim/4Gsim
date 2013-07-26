@@ -13,99 +13,44 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#include "LTEConfig.h"
-#include "LTEUtils.h"
+#include "LTEControl.h"
+#include "PHYCommand_m.h"
+#include "PHYenb.h"
 
-Define_Module(LTEConfig);
+Define_Module(LTEControl);
 
-LTEConfig::LTEConfig() {
-    dlBandwith = 6;
-    phichDuration = "normal";
-    phichResource = 1;
-    symbNumber = 7;
+LTEControl::LTEControl() {
     cellId = NULL;
     tac = NULL;
-    nrOfRAPreambles = 52;
-    sizeOfRAPreamblesGroupA = 52;
-    preambleTransMax = 6;
-    raRespWdwSize = 10;
-    macContResolTimer = 48;
-    maxHARQMsg3Tx = 4;
-    prachCfgIndex = 0;
-    prachFreqOff = 0;
-    preambleFmt = 0;
-    transMode = FDD_MODE;
-    preambleIndex = 0;
-    prachMaskIndex = -1;
 }
 
-void LTEConfig::initialize(int stage) {
-    // TODO - Generated method body
+LTEControl::~LTEControl() {
 
+}
+
+void LTEControl::initialize(int stage) {
+    // TODO - Generated method body
     if (stage == 4) {
         nb = NotificationBoardAccess().get();
-        lteSched = LTESchedulerAccess().get();
+
+        nb->subscribe(this, PARAMResponse);
+        nb->subscribe(this, CONFIGResponse);
 
         const char *fileName = par("configFile");
         if (fileName == NULL || (!strcmp(fileName, "")))
             error("LTEConfig: Error reading configuration from file %s", fileName);
         this->loadConfigFromXML(fileName);
 
-        symbNumber = 7;
-
-        WATCH(dlBandwith);
-        WATCH(phichDuration);
-        WATCH(phichResource);
-        WATCH(symbNumber);
-        WATCH(nrOfRAPreambles);
-        WATCH(sizeOfRAPreamblesGroupA);
-        WATCH(preambleTransMax);
-        WATCH(raRespWdwSize);
-        WATCH(macContResolTimer);
-        WATCH(maxHARQMsg3Tx);
-        WATCH(preambleFmt);
-        WATCH(prachCfgIndex);
-        WATCH(prachFreqOff);
+        ParamRequest *paramReq = new ParamRequest();
+        nb->fireChangeNotification(PARAMRequest, paramReq);
     }
 }
 
-void LTEConfig::handleMessage(cMessage *msg) {
+void LTEControl::handleMessage(cMessage *msg) {
     // TODO - Generated method body
 }
 
-unsigned LTEConfig::find(unsigned value, const unsigned *array, unsigned size) {
-    for (unsigned i = 0; i < size; i++)
-        if (array[i] == value)
-            return i;
-    return sizeof(array) - 1;
-}
-
-unsigned LTEConfig::find(std::string value, const std::string *array, unsigned size) {
-    for (unsigned i = 0; i < size; i++)
-        if (!array[i].compare(value))
-            return i;
-    return sizeof(array) - 1;
-}
-
-unsigned LTEConfig::find(double value, const double *array, unsigned size) {
-    for (unsigned i = 0; i < size; i++)
-        if (array[i] == value)
-            return i;
-    return sizeof(array) - 1;
-}
-
-unsigned LTEConfig::getBlockSize() {
-    if (phichDuration.compare("normal")) {
-        return 12;
-    } else {
-        if (symbNumber == 6)
-            return 12;
-        else
-            return 24;
-    }
-}
-
-rrc::PLMNIdentityList LTEConfig::getPLMNIdentityList() {
+rrc::PLMNIdentityList LTEControl::getPLMNIdentityList() {
     // TODO cellReservedforOperatorUse
     rrc::PLMNIdentityList plmnIdentityList;
     for (unsigned i = 0; i < plmnIds.size(); i++) {
@@ -130,32 +75,13 @@ rrc::PLMNIdentityList LTEConfig::getPLMNIdentityList() {
     return plmnIdentityList;
 }
 
-void LTEConfig::loadConfigFromXML(const char *filename) {
+void LTEControl::loadConfigFromXML(const char *filename) {
     cXMLElement* config = ev.getXMLDocument(filename);
     if (config == NULL)
         error("LTEConfig: Cannot read configuration from file: %s", filename);
 
-    cXMLElement* lteCfgNode = config->getElementByPath("LTEConfig");
+    cXMLElement* lteCfgNode = config->getElementByPath("LTEControl");
     if (lteCfgNode != NULL) {
-
-//        if (lteCfgNode->getAttribute("dlBandwith")) {
-//            setDLBandwith(atoi(lteCfgNode->getAttribute("dlBandwith")));
-//
-//
-//
-//            if (dlBandwith == 6)
-//                preambleFmt = 0;
-//        }
-
-        prachFreqOff = uniform(0, dlBandwith - 6);
-
-        if (lteCfgNode->getAttribute("phichDuration")) {
-            setPhichDuration(lteCfgNode->getAttribute("phichDuration"));
-        }
-
-        if (lteCfgNode->getAttribute("phichResource")) {
-            setPhichResource(atof(lteCfgNode->getAttribute("phichResource")));
-        }
 
         if (lteCfgNode->getAttribute("cellId")) {
             cellId = LTEUtils().toByteString(lteCfgNode->getAttribute("cellId"), CELLID_UNCODED_SIZE);
@@ -163,10 +89,6 @@ void LTEConfig::loadConfigFromXML(const char *filename) {
 
         if (lteCfgNode->getAttribute("tac")) {
             tac = LTEUtils().toByteString(lteCfgNode->getAttribute("tac"), TAC_UNCODED_SIZE);
-        }
-
-        if (lteCfgNode->getAttribute("symbNumber")) {
-            setSymbNumber(atoi(lteCfgNode->getAttribute("symbNumber")));
         }
 
         cXMLElement* plmnIdListNode = lteCfgNode->getElementByPath("PLMNIdentityList");
@@ -190,28 +112,18 @@ void LTEConfig::loadConfigFromXML(const char *filename) {
     }
 }
 
-//void LTEConfig::schedulePRBs(bool direction, int sfnBegin, int sfnPeriod, int sfnSize, int ttiBegin, int ttiPeriod, int ttiSize, int prbBegin, int prbPeriod, int prbSize) {
-//
-//
-//
-//    LTETimestamp sfn;
-//    sfn.setBegin(sfnBegin);
-//    sfn.setPeriod(sfnPeriod);
-//    sfn.setSize(sfnSize);
-//    LTETimestamp tti;
-//    tti.setBegin(ttiBegin);
-//    tti.setPeriod(ttiPeriod);
-//    tti.setSize(ttiSize);
-//    LTETimestamp prb;
-//    prb.setPeriod(prbPeriod);
-//    prb.setSize(prbSize);
-//    LTESchedulingInfo schInfo;
-//    schInfo.setSfn(sfn);
-//    schInfo.setTti(tti);
-//    schInfo.setPrb(prb);
-//    if (direction == UL_SCHEDULING)
-//        ulSchedulings.push_back(schInfo);
-//    else
-//        dlSchedulings.push_back(schInfo);
-//}
+void LTEControl::receiveChangeNotification(int category, const cPolymorphic *details) {
+    Enter_Method_Silent();
 
+    if (category == PARAMResponse) {
+        ParamResponse *paramResp = check_and_cast<ParamResponse*>(details);
+        PhyCommandTlv phySt = paramResp->getTlvs(0);
+        if (phySt.getValue() == IDLE) {
+            ConfigRequest *cfgReq = new ConfigRequest();
+            nb->fireChangeNotification(CONFIGRequest, cfgReq);
+        }
+    } else if (category == CONFIGResponse) {
+        StartRequest *startReq = new StartRequest();
+        nb->fireChangeNotification(STARTRequest, startReq);
+    }
+}

@@ -13,26 +13,11 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef RLCENTITY_H_
-#define RLCENTITY_H_
+package inet.linklayer.lte.mac;
 
-#include <omnetpp.h>
-#include "RLCMessage_m.h"
-#include "SchedulerCommand_m.h"
-
-class RLC;
-
-class RLCEntity {
-protected:
-    RLC *module;
-public:
-    RLCEntity();
-    virtual ~RLCEntity();
-
-    void setModule(RLC *module);
-
-    virtual void handleUpperMessage(RLCServiceDataUnit *sdu) = 0;
-    virtual void handleLowerMessage(RLCProtocolDataUnit *pdu) = 0;
-};
-
-#endif /* RLCENTITY_H_ */
+//
+// TODO auto-generated module
+//
+simple MACScheduler
+{
+}

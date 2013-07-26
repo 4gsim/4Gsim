@@ -11,15 +11,27 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-//
+// 
 
-cplusplus {{   
-	#include "LTESchedulingInfo_m.h"
-}}
+#ifndef MACSCHEDULER_H_
+#define MACSCHEDULER_H_
 
-class noncobject LTESchedulingInfo;
+#include <omnetpp.h>
+#include "NotificationBoard.h"
+#include "SchedulerCommand_m.h"
 
-//class RRCControlInfo extends LTESchedulingInfo
-//{
-//    int channel;
-//}
+class MACScheduler : public cSimpleModule, INotifiable {
+private:
+    // Cell configuration
+    SiConfiguration siCfg;
+
+    NotificationBoard *nb;
+
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
+public:
+    virtual int numInitStages() const  { return 5; }
+    virtual void initialize(int stage);
+    virtual void handleMessage(cMessage *msg);
+};
+
+#endif /* MACSCHEDULER_H_ */

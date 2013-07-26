@@ -22,59 +22,43 @@
 #include "RRCClassDefinitions.h"
 #include "ASNTypes.h"
 #include "SubscriberTable.h"
-#include "LTEConfigAccess.h"
-#include "LTESchedulerAccess.h"
 #include "NotificationBoard.h"
+#include "SchedulerCommand_m.h"
 
 using namespace rrc;
 
-#define UE_NODE_TYPE        0
-#define ENB_NODE_TYPE       1
-
-static const int mibTTIsN[1] = { 0 };
-static const int mibTTIsU[1] = { 1 };
-static const int sib1TTIs[1] = { 4 };
-static const int sib2TTIs[1] = { 5 };
+static const unsigned char dlBandwiths[6] = { 6, 15, 25, 50, 75, 100 };
+static const std::string phichDurations[2] = { "normal", "extended" };
+static const double phichResources[4] = {  0.166, 0.5, 1, 2 };
+static const unsigned nrOfRAPreambless[16] = { 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64 };
+static const unsigned preambleTransMaxs[11] = { 3, 4, 5, 6, 7, 8, 10, 20, 50, 100, 200 };
+static const unsigned raRespWdwSizes[8] = { 2, 3, 4, 5, 6, 7, 8, 10 };
+static const unsigned macContResolTimers[8] = { 8, 16, 24, 32, 40, 48, 56, 64 };
 
 class RRC : public cSimpleModule, public INotifiable {
-private:
-    bool nodeType;
+protected:
+    unsigned short sfn;
+    unsigned char dlBandwithSel;
+    PHICHConfig phichCfg;
+    RACHConfigCommon rachCfg;
+    PRACHConfigSIB prachCfg;
+
     SubscriberTable *subT;
-
-    unsigned mibId;
-    unsigned sib1Id;
-    unsigned sib2Id;
-    unsigned rapId;
-
-    LTEConfig *lteCfg;
-    LTEScheduler *lteSched;
 
     NotificationBoard *nb;
 
-    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
 public:
 	RRC();
 	virtual ~RRC();
 
 	virtual int numInitStages() const  { return 5; }
 
-	void initialize(int stage);
-	void handleMessage(cMessage *msg);
-	void handleLowerMessage(cMessage *msg);
+	virtual void initialize(int stage);
+	virtual void handleMessage(cMessage *msg);
+	virtual void handleLowerMessage(cMessage *msg) {}
 
 	void sendDown(int msgId, int logChannel, int choice, const char *name, AbstractType *payload);
-
-	void sendMIB();
-	void processMIB(MasterInformationBlock mib);
-	void sendSIB1();
-	void processSIB1(SystemInformationBlockType1 *sib1);
-	void sendSIB2();
-	void processSIB2(SystemInformationBlockType2 *sib2);
-
-	int getRapId() { return rapId; }
-
-	std::string timestamp();
-
 };
 
 #endif /* RRC_H_ */

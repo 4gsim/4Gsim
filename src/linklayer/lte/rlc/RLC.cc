@@ -15,6 +15,7 @@
 
 #include "RLC.h"
 #include "LTEControlInfo_m.h"
+#include "RLCMessage_m.h"
 
 Define_Module(RLC);
 
@@ -29,21 +30,57 @@ RLC::~RLC() {
 
 }
 
-void RLC::initialize() {
+void RLC::initialize(int stage) {
 	// TODO - Generated method body
+    if (stage == 4) {
+        nb = NotificationBoardAccess().get();
+
+        nb->subscribe(this, RLC_TX_OPPORTUNITY);
+    }
 }
 
 void RLC::handleMessage(cMessage *msg) {
 	// TODO - Generated method body
-    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->getControlInfo());
-    switch (ctrl->getChannel()) {
-        case ULCCCH:
-        case DLCCCH:
-        case BCCH0:
-        case BCCH1:
-            tTM->processMessage(msg);
-            break;
-        default:
-            break;
+    if (msg->arrivedOn("upperLayerIn")) {
+        EV << "LTE-RLC: Receiving message with id = " << msg->getKind() << " from upper layer.\n";
+        LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
+        RLCServiceDataUnit *sdu = new RLCServiceDataUnit();
+        sdu->encapsulate(PK(msg));
+        sdu->setControlInfo(ctrl);
+        sdu->setKind(msg->getKind());
+        switch (ctrl->getChannel()) {
+            case ULCCCH:
+            case DLCCCH:
+            case BCCH0:
+            case BCCH1:
+                tTM->handleUpperMessage(sdu);
+                break;
+            default:
+                break;
+        }
+    } else {
+        LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
+        RLCProtocolDataUnit *pdu = check_and_cast<RLCProtocolDataUnit*>(PK(msg)->decapsulate());
+        pdu->setControlInfo(ctrl);
+        switch (ctrl->getChannel()) {
+            case ULCCCH:
+            case DLCCCH:
+            case BCCH0:
+            case BCCH1:
+                tTM->handleLowerMessage(pdu);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void RLC::receiveChangeNotification(int category, const cPolymorphic *details) {
+    Enter_Method_Silent();
+
+    if (category == RLC_TX_OPPORTUNITY) {
+        RlcTxOpportunity *txOpp = check_and_cast<RlcTxOpportunity*>(details);
+        if (txOpp->getRnti() == 0 || txOpp->getRnti() == 65535)
+            tTM->handleTxOpportunity(txOpp);
     }
 }

@@ -25,7 +25,7 @@ RRCEntity::RRCEntity() {
 RRCEntity::RRCEntity(bool nodeType) {
     init();
     this->nodeType = nodeType;
-    if (nodeType == UE_NODE_TYPE) {
+    if (nodeType == 0) {
         fsm = cFSM("fsm-RRC-UE");
         fsm.setState(UE_RRC_IDLE);
 //        take(fsm);
@@ -51,7 +51,7 @@ void RRCEntity::performStateTransition(RRCEvent event) {
         case UE_RRC_IDLE:
             switch(event) {
                 case ConnectionEstablishment: {
-                    sendRRCConnectionRequest(module->getRapId());
+//                    sendRRCConnectionRequest(module->getRapId());
                     break;
                 }
                 default:

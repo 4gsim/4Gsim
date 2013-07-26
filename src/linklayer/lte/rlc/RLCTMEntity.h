@@ -19,11 +19,17 @@
 #include "RLCEntity.h"
 
 class RLCTMEntity : public RLCEntity {
+private:
+    typedef std::map<unsigned char, RLCServiceDataUnit*> TransmissionBuffer;
+    TransmissionBuffer buffer;
 public:
 	RLCTMEntity();
 	virtual ~RLCTMEntity();
 
-	virtual void processMessage(cMessage *msg);
+	virtual void handleUpperMessage(RLCServiceDataUnit *sdu);
+	virtual void handleLowerMessage(RLCProtocolDataUnit *pdu);
+
+	void handleTxOpportunity(RlcTxOpportunity *txOpp);
 };
 
 #endif /* RLCTMENTITY_H_ */

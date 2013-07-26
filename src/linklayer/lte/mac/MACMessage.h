@@ -31,19 +31,19 @@ private:
     MACServDataUnits sdus;
 public:
     MACProtocolDataUnit(const char *name=NULL, int kind=0) : MACProtocolDataUnit_Base(name,kind) {}
-    MACProtocolDataUnit(const MACProtocolDataUnit& other) : MACProtocolDataUnit_Base(other.getName()) {operator=(other);}
+    MACProtocolDataUnit(const MACProtocolDataUnit& other) : MACProtocolDataUnit_Base(other.getName(), other.getKind()) {operator=(other);}
     virtual ~MACProtocolDataUnit();
 
     MACProtocolDataUnit& operator=(const MACProtocolDataUnit& other);
     virtual MACProtocolDataUnit *dup() const {return new MACProtocolDataUnit(*this);}
 
     /*
-     * Methods overridden but not used. You should use instead pushIe.
+     * Methods overridden but not used.
      */
     virtual void setSubHdrsArraySize(unsigned int size);
-    virtual void setSubHdrs(unsigned int k, const MACSubHeaderPtr& ies_var);
+    virtual void setSubHdrs(unsigned int k, const MACSubHeaderPtr& subHdrs_var);
     virtual void setSdusArraySize(unsigned int size);
-    virtual void setSdus(unsigned int k, const MACServiceDataUnitPtr& ies_var);
+    virtual void setSdus(unsigned int k, const MACServiceDataUnitPtr& sdus_var);
 
     /*
      * Getter methods.

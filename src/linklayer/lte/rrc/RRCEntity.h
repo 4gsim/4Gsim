@@ -25,9 +25,9 @@ class Subscriber;
 
 enum RRCState {
     UE_RRC_CONNECTED        = FSM_Steady(0),
-    UE_RRC_IDLE             = FSM_Steady(1),
-    EUTRAN_RRC_CONNECTED    = FSM_Steady(2),
-    EUTRAN_RRC_IDLE         = FSM_Steady(3),
+    UE_RRC_IDLE             = FSM_Steady(4),
+    EUTRAN_RRC_CONNECTED    = FSM_Steady(5),
+    EUTRAN_RRC_IDLE         = FSM_Steady(6),
 };
 
 enum RRCEvent {
@@ -40,6 +40,8 @@ using namespace rrc;
 class RRCEntity {
 private:
     bool nodeType;
+    bool recvMIB;
+    bool recvSIB2;
 
     cFSM fsm;
 

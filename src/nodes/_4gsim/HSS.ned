@@ -27,10 +27,10 @@ import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.nodes.inet.NetworkLayer;
 import inet.transport.sctp.SCTP;
-import inet.util.DCTDump;
 import inet.applications.pingapp.PingApp;
+import inet.nodes.inet.NodeBase;
 
-module HSS
+module HSS extends NodeBase
 {
     parameters:
         @node();
@@ -39,57 +39,16 @@ module HSS
         string sctpAppType = default("n/a");
         string tcpType = default("TCP");  // tcp implementation (e.g. TCP, TCP_old, TCP_NSC)
         string configFile;
-        bool IPForward = default(false);
         int namid = default(-1);
-        string routingFile = default("");
-        int numExtInterfaces = default(0);
         string dumpFile = default("");
-    gates:
-        inout pppg[] @labels(PPPFrame-conn);
-        inout ethg[] @labels(EtherFrame-conn);
     submodules:
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=57,54");
-        }
-        interfaceTable: InterfaceTable {
-            parameters:
-                @display("p=57,134");
-        }
-        eth[sizeof(ethg)]: EthernetInterface {
-            parameters:
-                @display("p=336,390,row,90;q=txQueue");
-        }
-        ppp[sizeof(pppg)]: PPPInterface {
-            parameters:
-                @display("p=186,390,row,90;q=txQueue");
-        }
-        ext[numExtInterfaces]: ExtInterface {
-            parameters:
-                @display("p=501,390,row,90;q=txQueue;i=block/ifcard");
-        }
-        routingTable: RoutingTable {
-            parameters:
-                IPForward = IPForward;
-                routerId = "";
-                routingFile = routingFile;
-                @display("p=57,214");
-        }
         subscriberTable: SubscriberTable {
             configFile = configFile;
-            @display("p=70,368");
+            @display("p=142,93");
         }
         diameterBase: <"DiameterS6a"> like DiameterBase {
             configFile = configFile;
             @display("p=386,93");
-        }
-        networkLayer: NetworkLayer {
-            parameters:
-                proxyARP = false;
-                @display("p=336,230;q=queue");
-            gates:
-                ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                ifOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
         }
         pingApp: PingApp {
             parameters:
@@ -98,15 +57,6 @@ module HSS
         sctp: SCTP {
             @display("p=501,141;i=block/wheelbarrow");
         }
-        dctdump: DCTDump {
-            parameters:
-                dumpFile = dumpFile;
-            gates:
-                lowerLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                upperLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                lowerLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                upperLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-        }       
     connections allowunconnected:
         sctp.to_ip --> networkLayer.sctpIn;
         networkLayer.sctpOut --> sctp.from_ip;
@@ -116,29 +66,15 @@ module HSS
 
         diameterBase.sctpOut --> sctp.from_appl++;
         sctp.to_appl++ --> diameterBase.sctpIn;
-        
+
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].upperLayerOut --> dctdump.lowerLayerIn[i];
-            dctdump.upperLayerOut[i] --> networkLayer.ifIn[i];
-            ppp[i].upperLayerIn <-- dctdump.lowerLayerOut[i];
-            dctdump.upperLayerIn[i] <-- networkLayer.ifOut[i];
         }
 
         for i=0..sizeof(ethg)-1 {
             ethg[i] <--> eth[i].phys;
-            eth[i].upperLayerOut --> dctdump.lowerLayerIn[sizeof(pppg)+i];
-            dctdump.upperLayerOut[sizeof(pppg)+i] --> networkLayer.ifIn[sizeof(pppg)+i];
-            eth[i].upperLayerIn <-- dctdump.lowerLayerOut[sizeof(pppg)+i];
-            dctdump.upperLayerIn[sizeof(pppg)+i] <-- networkLayer.ifOut[sizeof(pppg)+i];
         }
 
-        for i=0..numExtInterfaces-1 {
-            ext[i].upperLayerOut --> dctdump.lowerLayerIn[sizeof(pppg)+sizeof(ethg)+i];
-            dctdump.upperLayerOut[sizeof(pppg)+sizeof(ethg)+i] --> networkLayer.ifIn[sizeof(pppg)+sizeof(ethg)+i];
-            ext[i].upperLayerIn <-- dctdump.lowerLayerOut[sizeof(pppg)+sizeof(ethg)+i];
-            dctdump.upperLayerIn[sizeof(pppg)+sizeof(ethg)+i] <-- networkLayer.ifOut[sizeof(pppg)+sizeof(ethg)+i];
-        }
 }
 

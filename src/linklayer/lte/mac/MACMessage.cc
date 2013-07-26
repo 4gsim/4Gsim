@@ -75,7 +75,7 @@ MACSubHeaderPtr& MACProtocolDataUnit::getSubHdrs(unsigned int k) {
     return *i;
 }
 
-void MACProtocolDataUnit::setSdus(unsigned int k, const MACServiceDataUnitPtr& subHdrs_var) {
+void MACProtocolDataUnit::setSdus(unsigned int k, const MACServiceDataUnitPtr& sdus_var) {
      throw new cException(this, "setSdus() not supported, use use pushSdu()");
 }
 

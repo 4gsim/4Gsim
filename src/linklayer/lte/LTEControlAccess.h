@@ -15,19 +15,19 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-#ifndef LTESCHEDULERACCESS_H_
-#define LTESCHEDULERACCESS_H_
+#ifndef LTECONTROLACCESS_H_
+#define LTECONTROLACCESS_H_
 
 #include <omnetpp.h>
 #include "ModuleAccess.h"
-#include "LTEScheduler.h"
+#include "LTEControl.h"
 
 /**
- * Gives access to the LTEScheduler module.
+ * Gives access to the LTEControl module.
  */
-class LTESchedulerAccess : public ModuleAccess<LTEScheduler> {
+class LTEControlAccess : public ModuleAccess<LTEControl> {
 public:
-    LTESchedulerAccess() : ModuleAccess<LTEScheduler>("lteScheduler") {}
+    LTEControlAccess() : ModuleAccess<LTEControl>("lteControl") {}
 };
 
-#endif /* LTESCHEDULERACCESS_H_ */
+#endif /* LTECONTROLACCESS_H_ */

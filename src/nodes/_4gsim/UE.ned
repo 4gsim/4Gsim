@@ -17,21 +17,18 @@
 
 package inet.nodes._4gsim;
 
-import inet.linklayer.lte.LTEConfig;
-import inet.linklayer.lte.LTEScheduler;
-import inet.linklayer.lte.mac.MAC;
+import inet.linklayer.lte.mac.MACue;
 import inet.linklayer.lte.pdcp.PDCP;
+import inet.linklayer.lte.phy.PHYue;
 import inet.linklayer.lte.rlc.RLC;
-import inet.linklayer.lte.rrc.RRC;
+import inet.linklayer.lte.rrc.RRCue;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.networklayer.common.InterfaceTable;
 import inet.applications.pingapp.PingApp;
 import inet.nodes.inet.NetworkLayer;
-import inet.util.DCTDump;
 import inet.util.subscriber.SubscriberTable;
 import inet.base.NotificationBoard;
 import inet.applications.nas.NAS;
-import inet.linklayer.lte.phy.LTERadio;
 import inet.mobility.IMobility;
 
 module UE
@@ -51,17 +48,6 @@ module UE
             parameters:
                 @display("p=50,61");
         }
-        lteConfig: LTEConfig {
-            parameters:
-                @display("p=433,202");
-                configFile = configFile;
-        }
-        lteScheduler: LTEScheduler {
-            @display("p=424,290");
-        }
-        lteRadio: LTERadio {
-            @display("p=273,420");
-        }
         notificationBoard: NotificationBoard {
             @display("p=55,223");
         }
@@ -74,39 +60,33 @@ module UE
         routingTable: RoutingTable {
             @display("p=453,61");
         }
-        mac: MAC {
-            @display("p=273,302");
-        }
-        dctDump: DCTDump {
-            parameters:
-                dumpFile = dumpFile;
-                @display("p=194,360");
-        }
-        pdcp: PDCP {
-            @display("p=273,184");
-        }
-        rlc: RLC {
-            @display("p=194,244");
-        }
-        rrc: RRC {
-            @display("p=213,121");
-        }
         nas: NAS {
             parameters:
                 configFile = configFile;
                 @display("p=329,46");
         }
+        phy: PHYue {
+            @display("p=249,426");
+        }
+        maCue: MACue {
+            @display("p=234,331");
+        }
+        rlc: RLC {
+            @display("p=197,239");
+        }
+        pdcp: PDCP {
+            @display("p=280,166");
+        }
+        rrcUe: RRCue {
+            @display("p=194,88");
+        }
     connections allowunconnected:
-        radioIn --> lteRadio.radioIn;
-
-        mac.lowerLayerOut --> dctDump.upperLayerIn++;
-        dctDump.upperLayerOut++ --> mac.lowerLayerIn;
-        lteRadio.upperLayerOut --> dctDump.lowerLayerIn++;
-        dctDump.lowerLayerOut++ --> lteRadio.upperLayerIn;
-        mac.upperLayerOut --> rlc.lowerLayerIn;
-        rlc.lowerLayerOut --> mac.upperLayerIn;
+        phy.upperLayerOut --> maCue.lowerLayerIn;
+        maCue.lowerLayerOut --> phy.upperLayerIn;
+        rrcUe.lowerLayerOut --> pdcp.upperLayerIn;
+        pdcp.upperLayerOut --> rrcUe.lowerLayerIn;
         rlc.upperLayerOut --> pdcp.lowerLayerIn;
         pdcp.lowerLayerOut --> rlc.upperLayerIn;
-        rrc.lowerLayerOut --> pdcp.upperLayerIn;
-        pdcp.upperLayerOut --> rrc.lowerLayerIn;
+        rlc.lowerLayerOut --> maCue.upperLayerIn;
+        maCue.upperLayerOut --> rlc.lowerLayerIn;
 }

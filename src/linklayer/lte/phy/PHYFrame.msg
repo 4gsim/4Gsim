@@ -11,15 +11,26 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-// 
-
-package inet.linklayer.lte;
-
 //
-// TODO auto-generated module
-//
-simple LTEConfig
+
+cplusplus {{
+#include "AirFrame_m.h"
+}}
+
+class noncobject AirFrame;
+
+message PhysicalResourceBlock extends AirFrame
 {
-    parameters:
-		string configFile;
+	int ueId;
+}
+
+message TransportBlock extends PhysicalResourceBlock
+{
+    
+}
+
+message DCIFormat extends PhysicalResourceBlock
+{
+ 	unsigned short rnti;   
+ 	unsigned char rntiType;
 }

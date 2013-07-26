@@ -29,7 +29,6 @@ import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.transport.sctp.SCTP;
 import inet.transport.udp.UDP;
-import inet.util.DCTDump;
 import inet.nodes.inet.NetworkLayer;
 import inet.networklayer.gtp.GTPControl;
 import inet.networklayer.gtp.path.GTPPathTable;
@@ -100,16 +99,6 @@ module GTPNode
             parameters:
                 @display("p=501,390,row,90;q=txQueue;i=block/ifcard");
         }
-        dctdump: DCTDump {
-            parameters:
-                dumpFile = dumpFile;
-            gates:
-                lowerLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                upperLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                lowerLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                upperLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-        }
-
         gtpc: GTPControl {
             @display("p=414,67");
             configFile = configFile;
@@ -144,24 +133,10 @@ module GTPNode
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].upperLayerOut --> dctdump.lowerLayerIn[i];
-            dctdump.upperLayerOut[i] --> networkLayer.ifIn[i];
-            ppp[i].upperLayerIn <-- dctdump.lowerLayerOut[i];
-            dctdump.upperLayerIn[i] <-- networkLayer.ifOut[i];
         }
 
         for i=0..sizeof(ethg)-1 {
             ethg[i] <--> eth[i].phys;
-            eth[i].upperLayerOut --> dctdump.lowerLayerIn[sizeof(pppg)+i];
-            dctdump.upperLayerOut[sizeof(pppg)+i] --> networkLayer.ifIn[sizeof(pppg)+i];
-            eth[i].upperLayerIn <-- dctdump.lowerLayerOut[sizeof(pppg)+i];
-            dctdump.upperLayerIn[sizeof(pppg)+i] <-- networkLayer.ifOut[sizeof(pppg)+i];
         }
 
-        for i=0..numExtInterfaces-1 {
-            ext[i].upperLayerOut --> dctdump.lowerLayerIn[sizeof(pppg)+sizeof(ethg)+i];
-            dctdump.upperLayerOut[sizeof(pppg)+sizeof(ethg)+i] --> networkLayer.ifIn[sizeof(pppg)+sizeof(ethg)+i];
-            ext[i].upperLayerIn <-- dctdump.lowerLayerOut[sizeof(pppg)+sizeof(ethg)+i];
-            dctdump.upperLayerIn[sizeof(pppg)+sizeof(ethg)+i] <-- networkLayer.ifOut[sizeof(pppg)+sizeof(ethg)+i];
-        }
 }

@@ -25,7 +25,7 @@
 			<!-- <Path localAddr="192.168.7.2" remoteAddr="192.168.7.1" ctrlAddr="192.168.2.2" type="0"/> --> <!-- 0 = S1-U eNodeB GTP-U interface -->
 		</Paths>
 	</GTP>  
-	<LTEConfig
+	<LTEControl
 			dlBandwith="6"
 			phichDuration="normal" 
 			phichResource="1"
@@ -35,5 +35,5 @@
 		<PLMNIdentityList>
 			<PLMNIdentity mcc="591" mnc="78"/>
 		</PLMNIdentityList>
-	</LTEConfig>
+	</LTEControl>
 </ENBConfig>

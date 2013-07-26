@@ -1,6 +1,4 @@
 //
-// Copyright (C) 2012 Calin Cerchez
-//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -19,7 +17,7 @@ package inet.linklayer.lte.phy;
 
 import inet.linklayer.radio.IRadio;
 
-simple LTERadio like IRadio
+simple PHYenb like IRadio
 {
     parameters:
         @display("i=block/wrxtx");

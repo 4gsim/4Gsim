@@ -13,9 +13,15 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package inet.linklayer.lte;
+package inet.linklayer.lte.rrc;
 
-simple LTEScheduler
+simple RRCenb
 {
-
+    parameters:
+        @display("i=block/control");
+    gates:
+        input upperLayerIn;
+        output upperLayerOut;
+    	input lowerLayerIn;
+        output lowerLayerOut;
 }

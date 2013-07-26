@@ -14,9 +14,7 @@
 // 
 
 #include "RLCTMEntity.h"
-#include "RLCMessage_m.h"
 #include "RLC.h"
-#include "INETDefs.h"
 #include "LTEControlInfo_m.h"
 
 RLCTMEntity::RLCTMEntity() {
@@ -28,21 +26,32 @@ RLCTMEntity::~RLCTMEntity() {
 	// TODO Auto-generated destructor stub
 }
 
-void RLCTMEntity::processMessage(cMessage *msg) {
-    // TODO implement transmission buffer
-    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
-    if (msg->arrivedOn("upperLayerIn")) {
-        TMDProtocolDataUnit *pdu = new TMDProtocolDataUnit(msg->getName());
-        pdu->setKind(msg->getKind());
-        pdu->encapsulate(PK(msg));
-        pdu->setControlInfo(ctrl);
-        module->send(pdu, module->gate("lowerLayerOut"));
-    } else {
-        TMDProtocolDataUnit *pdu = check_and_cast<TMDProtocolDataUnit*>(msg);
-        cMessage *encap = pdu->decapsulate();
-        encap->setControlInfo(ctrl);
-        module->send(encap, module->gate("upperLayerOut"));
-        delete pdu;
-    }
+void RLCTMEntity::handleUpperMessage(RLCServiceDataUnit *sdu) {
+    EV << "LTE-RLC-TM: Buffering message with id = " << sdu->getKind() << "\n.";
+    buffer[sdu->getKind()] = sdu;
 }
 
+void RLCTMEntity::handleLowerMessage(RLCProtocolDataUnit *pdu) {
+    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(pdu->removeControlInfo());
+    EV << "LTE-RLCTM: Receiving message on channel = " << ctrl->getChannel() << ".\n";
+    RLCServiceDataUnit *sdu = check_and_cast<RLCServiceDataUnit*>(pdu->decapsulate());
+    sdu->setControlInfo(ctrl);
+    module->send(sdu, module->gate("upperLayerOut"));
+}
+
+void RLCTMEntity::handleTxOpportunity(RlcTxOpportunity *txOpp) {
+    EV << "LTE-RLC-TM: Handling RLC_TX_OPPORTUNITY for message with id = " << (unsigned)txOpp->getIndex() << ".\n";
+    unsigned char index = txOpp->getIndex();
+    TransmissionBuffer::iterator i = buffer.find(index);
+    if (i != buffer.end()) {
+        RLCServiceDataUnit *sdu = i->second;
+        LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(sdu->removeControlInfo());
+        TMDProtocolDataUnit *pdu = new TMDProtocolDataUnit();
+        pdu->encapsulate(sdu);
+        pdu->setControlInfo(ctrl);
+        pdu->setKind(sdu->getKind());
+        EV << "LTE-RLC-TM: Sending message with id = " << pdu->getKind() << " to lower layer.\n";
+        module->send(pdu, module->gate("lowerLayerOut"));
+        buffer.erase(i);
+    }
+}

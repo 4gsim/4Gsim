@@ -29,13 +29,13 @@ import inet.networklayer.common.InterfaceTable;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.transport.sctp.SCTP;
 import inet.transport.udp.UDP;
-import inet.util.DCTDump;
 import inet.nodes.inet.NetworkLayer;
 import inet.networklayer.gtp.GTPControl;
 import inet.networklayer.gtp.tunnel.TunnelEndpointTable;
 import inet.networklayer.gtp.path.GTPPathTable;
+import inet.nodes.inet.NodeBase;
 
-module SGW
+module SGW extends NodeBase
 {
     parameters:
         @node();
@@ -43,31 +43,10 @@ module SGW
         @display("i=device/router");
         int numUdpApps = 2;
         string udpAppType = default("n/a");
-        bool IPForward = default(false);
         int namid = default(-1);
-        string routingFile = default("");
-        int numExtInterfaces = default(0);
         string configFile;
         string dumpFile = default("");
-    gates:
-        inout pppg[] @labels(PPPFrame-conn);
-        inout ethg[] @labels(EtherFrame-conn);
     submodules:
-        notificationBoard: NotificationBoard {
-            parameters:
-                @display("p=57,54");
-        }
-        interfaceTable: InterfaceTable {
-            parameters:
-                @display("p=57,134");
-        }
-        routingTable: RoutingTable {
-            parameters:
-                IPForward = IPForward;
-                routerId = "";
-                routingFile = routingFile;
-                @display("p=57,214");
-        }
         udp: UDP {
             parameters:
                 @display("p=336,141");
@@ -76,52 +55,22 @@ module SGW
             parameters:
                 @display("p=501,230");
         }
-        networkLayer: NetworkLayer {
-            parameters:
-                proxyARP = false;
-                @display("p=336,230;q=queue");
-            gates:
-                ifIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                ifOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-        }
-        ppp[sizeof(pppg)]: PPPInterface {
-            parameters:
-                @display("p=186,390,row,90;q=txQueue");
-        }
-        eth[sizeof(ethg)]: EthernetInterface {
-            parameters:
-                @display("p=336,390,row,90;q=txQueue");
-        }
-        ext[numExtInterfaces]: ExtInterface {
-            parameters:
-                @display("p=501,390,row,90;q=txQueue;i=block/ifcard");
-        }
-        dctdump: DCTDump {
-            parameters:
-                dumpFile = dumpFile;
-            gates:
-                lowerLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                upperLayerIn[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                lowerLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-                upperLayerOut[sizeof(pppg)+sizeof(ethg)+numExtInterfaces];
-        }
-
         gtpc: GTPControl {
             @display("p=414,67");
             configFile = configFile;
         }
         subscriberTable: SubscriberTable {
-            @display("p=59,368");
+            @display("p=45,51");
         }
         gtpu: GTPUser {
             @display("p=277,70");
             configFile = configFile;
         }
         tunnelEndpointTable: TunnelEndpointTable {
-            @display("p=186,180");
+            @display("p=127,121");
         }
         pathTable: GTPPathTable {
-            @display("p=186,246");
+            @display("p=120,51");
         }
     connections allowunconnected:
         gtpc.udpOut --> udp.appIn++;
@@ -139,24 +88,10 @@ module SGW
         // connections to network outside
         for i=0..sizeof(pppg)-1 {
             pppg[i] <--> ppp[i].phys;
-            ppp[i].upperLayerOut --> dctdump.lowerLayerIn[i];
-            dctdump.upperLayerOut[i] --> networkLayer.ifIn[i];
-            ppp[i].upperLayerIn <-- dctdump.lowerLayerOut[i];
-            dctdump.upperLayerIn[i] <-- networkLayer.ifOut[i];
         }
 
         for i=0..sizeof(ethg)-1 {
             ethg[i] <--> eth[i].phys;
-            eth[i].upperLayerOut --> dctdump.lowerLayerIn[sizeof(pppg)+i];
-            dctdump.upperLayerOut[sizeof(pppg)+i] --> networkLayer.ifIn[sizeof(pppg)+i];
-            eth[i].upperLayerIn <-- dctdump.lowerLayerOut[sizeof(pppg)+i];
-            dctdump.upperLayerIn[sizeof(pppg)+i] <-- networkLayer.ifOut[sizeof(pppg)+i];
         }
 
-        for i=0..numExtInterfaces-1 {
-            ext[i].upperLayerOut --> dctdump.lowerLayerIn[sizeof(pppg)+sizeof(ethg)+i];
-            dctdump.upperLayerOut[sizeof(pppg)+sizeof(ethg)+i] --> networkLayer.ifIn[sizeof(pppg)+sizeof(ethg)+i];
-            ext[i].upperLayerIn <-- dctdump.lowerLayerOut[sizeof(pppg)+sizeof(ethg)+i];
-            dctdump.upperLayerIn[sizeof(pppg)+sizeof(ethg)+i] <-- networkLayer.ifOut[sizeof(pppg)+sizeof(ethg)+i];
-        }
 }

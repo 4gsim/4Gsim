@@ -13,26 +13,29 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef RLCENTITY_H_
-#define RLCENTITY_H_
+#ifndef RRCUE_H_
+#define RRCUE_H_
 
-#include <omnetpp.h>
-#include "RLCMessage_m.h"
-#include "SchedulerCommand_m.h"
+#include "RRC.h"
+#include "RRCEntity.h"
 
-class RLC;
-
-class RLCEntity {
-protected:
-    RLC *module;
+class RRCue : public RRC {
+private:
+    Subscriber *sub;
+    RRCEntity *entity;
+    bool recvMIB;
+    bool recvSIB1;
+    bool recvSIB2;
 public:
-    RLCEntity();
-    virtual ~RLCEntity();
+    RRCue();
+    virtual ~RRCue();
 
-    void setModule(RLC *module);
+    virtual void initialize(int stage);
+    virtual void handleLowerMessage(cMessage *msg);
 
-    virtual void handleUpperMessage(RLCServiceDataUnit *sdu) = 0;
-    virtual void handleLowerMessage(RLCProtocolDataUnit *pdu) = 0;
+    void processMIB(MasterInformationBlock mib);
+    void processSIB1(SystemInformationBlockType1 *sib1);
+    void processSIB2(SystemInformationBlockType2 *sib2);
 };
 
-#endif /* RLCENTITY_H_ */
+#endif /* RRCUE_H_ */
