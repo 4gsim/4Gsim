@@ -1,14 +1,14 @@
 version 2
-run General-0-20121029-15:43:04-4188
+run General-0-20130731-09:51:15-6632
 attr configname General
-attr datetime 20121029-15:43:04
+attr datetime 20130731-09:51:15
 attr experiment General
 attr inifile omnetpp.ini
 attr iterationvars ""
 attr iterationvars2 $repetition=0
 attr measurement ""
 attr network Test
-attr processid 4188
+attr processid 6632
 attr repetition 0
 attr replication #0
 attr resultdir results
