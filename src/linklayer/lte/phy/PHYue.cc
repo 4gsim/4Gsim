@@ -14,15 +14,11 @@
 // 
 
 #include "PHYue.h"
-#include "LTEControlInfo_m.h"
-#include "SchedulerCommand_m.h"
-#include "PHYCommand.h"
 
 Define_Module(PHYue);
 
-PHYue::PHYue() : rs(this->getId())  {
-    tti = 0;
-    ttiTimer = NULL;
+PHYue::PHYue() : PHY()  {
+
 }
 
 PHYue::~PHYue() {
@@ -35,7 +31,7 @@ PHYue::~PHYue() {
 
 void PHYue::initialize(int stage) {
     // TODO - Generated method body
-    ChannelAccess::initialize(stage);
+    PHY::initialize(stage);
 
     if (stage == 2) {
         cc->setRadioChannel(myRadioRef, PDSCH);
@@ -45,43 +41,87 @@ void PHYue::initialize(int stage) {
         cc->setRadioChannel(myRadioRef, PBCH);
         cc->setRadioChannel(myRadioRef, PDCCH);
     }
+
+    if (stage == 4) {
+    	subT = SubscriberTableAccess().get();
+
+        fsm = cFSM("fsm-PHYue");
+        fsm.setState(IDLE);
+
+        nb->subscribe(this, ULCONFIGRequest);
+        nb->subscribe(this, RACHRequest);
+    }
 }
 
-void PHYue::handleMessage(cMessage *msg) {
-    // TODO - Generated method body
-    if (msg->isSelfMessage()) {
-        if (msg == ttiTimer) {
-            tti++;
-            this->cancelEvent(ttiTimer);
-            this->scheduleAt(simTime() + TTI_VALUE, ttiTimer);
-        }
-    } else if (msg->arrivedOn("radioIn")) {
-        handleRadioMessage(msg);
-    } else {
+void PHYue::handleUpperMessage(cMessage *msg) {
 
-    }
 }
 
 void PHYue::handleRadioMessage(cMessage *msg) {
     PhysicalResourceBlock *prb = check_and_cast<PhysicalResourceBlock*>(msg);
-    EV << "LTE-PHYue: Receiving message from physical channel = " << prb->getChannelNumber() << ".\n";
+    EV << "LTE-PHYue: Receiving message from ";
     LTEControlInfo *ctrl = new LTEControlInfo();
     if (prb->getChannelNumber() == PBCH) {
+    	EV << "BCH.\n";
         TransportBlock *tb = check_and_cast<TransportBlock*>(prb);
         ctrl->setChannel(BCH);
         tb->setControlInfo(ctrl);
         this->send(tb, gate("upperLayerOut"));
     } else if (prb->getChannelNumber() == PDCCH) {
+    	EV << "PDCCH.\n";
         DCIFormat *dci = check_and_cast<DCIFormat*>(prb);
-        DlAssignIndication *dlAssignInd = new DlAssignIndication();
-        dlAssignInd->setRnti(dci->getRnti());
-        dlAssignInd->setRntiType(dci->getRntiType());
-        dlAssignInd->setTti(tti);
-        nb->fireChangeNotification(DLASSIGNIndication, dlAssignInd);
+        if (dci->getRntiType() == RaRnti) {
+        	Subscriber *sub = subT->at(0);
+        	if (sub->getRaRtni() == dci->getRnti()) {
+        		RarIndication *rarInd = new RarIndication();
+        		rarInd->setRnti(dci->getRnti());
+        		rarInd->setTti(tti);
+        		nb->fireChangeNotification(RARIndication, rarInd);
+        	}
+        } else {
+			DlAssignIndication *dlAssignInd = new DlAssignIndication();
+			dlAssignInd->setRnti(dci->getRnti());
+//			dlAssignInd->setRntiType(dci->getRntiType());
+			dlAssignInd->setTti(tti);
+			nb->fireChangeNotification(DLASSIGNIndication, dlAssignInd);
+        }
     } else if (prb->getChannelNumber() == PDSCH0) {
+    	EV << "PDSCH0.\n";
         TransportBlock *tb = check_and_cast<TransportBlock*>(prb);
         ctrl->setChannel(DLSCH0);
         tb->setControlInfo(ctrl);
         this->send(tb, gate("upperLayerOut"));
+    } else if (prb->getChannelNumber() == PDSCH1) {
+    	EV << "PDSCH1.\n";
+        TransportBlock *tb = check_and_cast<TransportBlock*>(prb);
+        ctrl->setChannel(DLSCH1);
+        tb->setControlInfo(ctrl);
+        this->send(tb, gate("upperLayerOut"));
     }
+}
+
+void PHYue::stateEntered(int category, const cPolymorphic *details) {
+	PHY::stateEntered(category, details);
+
+	if (fsm.getState() == RUNNING) {
+		if (category == ULCONFIGRequest) {
+
+		} else if (category == RACHRequest) {
+			RachRequest *rachReq = check_and_cast<RachRequest*>(details);
+			for (unsigned i = 0; i < rachReq->getPreamblesArraySize(); i++) {	// normally it should be only one preamble
+				RachPreamble preamble = rachReq->getPreambles(i);
+				RAPreamble *raPreamble = new RAPreamble();
+				raPreamble->setName("RAPreamble");
+				raPreamble->setChannelNumber(PRACH);
+				raPreamble->setRnti(preamble.getRnti());
+				raPreamble->setRntiType(RaRnti);
+				raPreamble->setRapid(preamble.getPreamble());
+				this->sendToChannel(raPreamble);
+			}
+		}
+	}
+}
+
+void PHYue::sendBufferedData() {
+
 }

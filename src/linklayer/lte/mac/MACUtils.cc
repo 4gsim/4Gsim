@@ -14,7 +14,7 @@
 // 
 
 #include "MACUtils.h"
-#include "LTEControlInfo_m.h"
+#include "LTEControlInfo.h"
 
 MACUtils::MACUtils() {
 
@@ -43,15 +43,28 @@ MACRandomAccessResponse *MACUtils::createRAR(unsigned short timingAdvCmd, unsign
     rar->setUlGrant(ulGrant);
     rar->setTmpCRnti(tempCRnti);
     rar->setByteLength(6);
+    rar->setKind(tempCRnti);
     return rar;
 }
 
 MACProtocolDataUnit *MACUtils::createTransparentPDU(int channel, MACServiceDataUnit *sdu) {
-    MACProtocolDataUnit *pdu = new MACProtocolDataUnit();
+    MACProtocolDataUnit *pdu = new MACProtocolDataUnit(sdu->getName());
     LTEControlInfo *ctrl = new LTEControlInfo();
     pdu->encapsulate(sdu);
     ctrl->setChannel(channel);
     pdu->setControlInfo(ctrl);
     pdu->setKind(sdu->getKind());
     return pdu;
+}
+
+MACProtocolDataUnit *MACUtils::createRandomAccessPDU(bool t, unsigned char rapidOrBi, MACRandomAccessResponse *sdu) {
+	MACProtocolDataUnit *pdu = new MACProtocolDataUnit("RandomAccessResponse");
+	LTEControlInfo *ctrl = new LTEControlInfo();
+	MACSubHeaderRar *header = MACUtils().createHeaderRar(t, rapidOrBi);
+	pdu->pushSubHdr(header);
+	pdu->pushSdu(sdu);
+	pdu->setKind(sdu->getKind());
+	ctrl->setChannel(DLSCH1);
+	pdu->setControlInfo(ctrl);
+	return pdu;
 }

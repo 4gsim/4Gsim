@@ -11,32 +11,24 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-//
+// 
 
-cplusplus {{
-#include "AirFrame_m.h"
-}}
+#ifndef LTECONTROLINFO_H_
+#define LTECONTROLINFO_H_
 
-class noncobject AirFrame;
+#include "LTEControlInfo_m.h"
 
-message PhysicalResourceBlock extends AirFrame
-{
-	int ueId;
-	unsigned short rnti;   
- 	unsigned char rntiType;
-}
+class LTEControlInfo : public LTEControlInfo_Base {
+public:
+	LTEControlInfo();
+	LTEControlInfo(const LTEControlInfo& other) : LTEControlInfo_Base(other) { operator=(other); }
+	virtual ~LTEControlInfo();
 
-message TransportBlock extends PhysicalResourceBlock
-{
-    
-}
+	virtual LTEControlInfo *dup() const { return new LTEControlInfo(*this); }
 
-message DCIFormat extends PhysicalResourceBlock
-{
+	LTEControlInfo& operator=(const LTEControlInfo& other);
 
-}
+	const char *getChannelName();
+};
 
-message RAPreamble extends PhysicalResourceBlock
-{
-	unsigned char rapid;   
-}
+#endif /* LTECONTROLINFO_H_ */

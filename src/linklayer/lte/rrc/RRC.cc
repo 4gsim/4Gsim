@@ -17,7 +17,7 @@
 
 #include <platdep/sockets.h>
 #include "RRC.h"
-#include "LTEControlInfo_m.h"
+#include "LTEControlInfo.h"
 #include "RRCUtils.h"
 #include "RRCMessage.h"
 #include "SubscriberTableAccess.h"
@@ -47,6 +47,8 @@ void RRC::initialize(int stage) {
         subT = SubscriberTableAccess().get();
 //        lteCfg = LTEConfigAccess().get();
         nb = NotificationBoardAccess().get();
+
+        lteCtrl = LTEControlAccess().get();
     }
 }
 
@@ -107,7 +109,7 @@ void RRC::sendDown(int msgId, int logChannel, int choice, const char *name, Abst
     ctrl->setChannel(logChannel);
     msg->setControlInfo(ctrl);
     msg->setKind(msgId);
-    EV << "LTE-RRC: Sending message with id = " << msg->getKind() << " to lower layer.\n";
+    EV << "LTE-RRC: Sending message on " << ctrl->getChannelName() << " to lower layer.\n";
     this->send(msg, gate("lowerLayerOut"));
 }
 

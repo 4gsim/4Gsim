@@ -18,10 +18,12 @@
 package inet.nodes._4gsim;
 
 import inet.linklayer.lte.mac.MACue;
+import inet.linklayer.lte.mac.MACScheduler;
 import inet.linklayer.lte.pdcp.PDCP;
 import inet.linklayer.lte.phy.PHYue;
 import inet.linklayer.lte.rlc.RLC;
 import inet.linklayer.lte.rrc.RRCue;
+import inet.linklayer.lte.LTEControl;
 import inet.networklayer.ipv4.RoutingTable;
 import inet.networklayer.common.InterfaceTable;
 import inet.applications.pingapp.PingApp;
@@ -35,7 +37,7 @@ module UE
 {
     parameters:
         @node();
-        @display("i=device/cellphone;bgb=512,472");
+        @display("i=device/cellphone;bgb=495,472");
         string mobilityType = default("StationaryMobility");
         string destAddr = default("");
         volatile double interval @unit("s") = default(1s);
@@ -58,7 +60,7 @@ module UE
             @display("p=61,302");
         }
         routingTable: RoutingTable {
-            @display("p=453,61");
+            @display("p=423,61");
         }
         nas: NAS {
             parameters:
@@ -79,6 +81,14 @@ module UE
         }
         rrcUe: RRCue {
             @display("p=194,88");
+        }
+        macScheduler: MACScheduler {
+            @display("p=423,149");
+        }
+        lteControl: LTEControl {
+            parameters:
+                @display("p=423,232");
+                configFile = configFile;
         }
     connections allowunconnected:
         phy.upperLayerOut --> maCue.lowerLayerIn;

@@ -28,7 +28,7 @@ public:
     MACRandomAccessResponse *createRAR(unsigned short timingAdvCmd, unsigned ulGrant, unsigned short tempCRnti);
 
     MACProtocolDataUnit *createTransparentPDU(int channel, MACServiceDataUnit *sdu);
-
+    MACProtocolDataUnit *createRandomAccessPDU(bool t, unsigned char rapidOrBi, MACRandomAccessResponse *sdu);
 };
 
 #endif /* MACUTILS_H_ */

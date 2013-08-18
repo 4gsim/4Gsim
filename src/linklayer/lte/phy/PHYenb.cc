@@ -14,16 +14,12 @@
 // 
 
 #include "PHYenb.h"
-#include "LTEControlInfo_m.h"
-#include "PHYFrame_m.h"
 
 Define_Module(PHYenb);
 
-PHYenb::PHYenb() : rs(this->getId())  {
+PHYenb::PHYenb() : PHY() {
     dlBandwith = 6;
     ulBandwith = 6;
-    tti = 0;
-    ttiTimer = NULL;
 }
 
 PHYenb::~PHYenb() {
@@ -36,7 +32,7 @@ PHYenb::~PHYenb() {
 
 void PHYenb::initialize(int stage) {
     // TODO - Generated method body
-    ChannelAccess::initialize(stage);
+	PHY::initialize(stage);
 
     if (stage == 2) {
         cc->setRadioChannel(myRadioRef, PRACH);
@@ -44,218 +40,155 @@ void PHYenb::initialize(int stage) {
     }
 
     if (stage == 4) {
-        nb = NotificationBoardAccess().get();
-
-        nb->subscribe(this, PARAMRequest);
-        nb->subscribe(this, CONFIGRequest);
-        nb->subscribe(this, STARTRequest);
-        nb->subscribe(this, DLCONFIGRequest);
-        nb->subscribe(this, TXRequest);
-
         fsm = cFSM("fsm-PHYenb");
         fsm.setState(IDLE);
 
-        ttiTimer = new cMessage("TTI-TIMER");
-        ttiTimer->setContextPointer(this);
-    }
-}
-
-void PHYenb::handleMessage(cMessage *msg) {
-    // TODO - Generated method body
-    if (msg->isSelfMessage()) {
-        if (msg == ttiTimer) {
-            SubframeIndication *sfInd = new SubframeIndication();
-            sfInd->setTti(tti++);
-            nb->fireChangeNotification(SUBFRAMEIndication, sfInd);
-            this->cancelEvent(ttiTimer);
-            this->scheduleAt(simTime() + TTI_VALUE, ttiTimer);
-        }
-    } else if (msg->arrivedOn("upperLayerIn")) {
-        handleUpperMessage(msg);
+        nb->subscribe(this, DLCONFIGRequest);
     }
 }
 
 void PHYenb::handleUpperMessage(cMessage *msg) {
-    EV << "LTE-PHYenb: Receiving message with id = " << msg->getKind() << " from upper layer.\n";
-    if (findTxRequestPdu(msg->getKind())) {
-        LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
-        TransportBlock *tb = new TransportBlock();
-        tb->encapsulate(PK(msg));
-        switch(ctrl->getChannel()) {
-            case BCH:
-                tb->setChannelNumber(PBCH);
-                break;
-            case DLSCH0:
-                tb->setChannelNumber(PDSCH0);
-                break;
-            case DLSCH1:
-                tb->setChannelNumber(PDSCH1);
-                break;
-            default:
-                break;
-        }
-        sendToChannel(tb);
+    EV << "LTE-PHYenb: Receiving message with id = " << msg->getKind() << " from upper layer. Buffering the received message.\n";
+    LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
+    TransportBlock *tb = new TransportBlock();
+    tb->setName(msg->getName());
+    tb->encapsulate(PK(msg));
+    switch(ctrl->getChannel()) {
+        case BCH:
+        	// TODO repetition of MIB + get the tti rest at PHYue
+            tb->setChannelNumber(PBCH);
+            break;
+        case DLSCH0:
+            tb->setChannelNumber(PDSCH0);
+            break;
+        case DLSCH1:
+            tb->setChannelNumber(PDSCH1);
+            break;
+        default:
+            break;
     }
+    buffer[msg->getKind()] = tb;
 }
 
-const char *PHYenb::stateName(int state) {
-#define CASE(x) case x: s=#x; break
-    const char *s = "unknown";
-    switch (state) {
-        CASE(IDLE);
-        CASE(CONFIGURED);
-        CASE(RUNNING);
-    }
-    return s;
-#undef CASE
-}
+void PHYenb::handleRadioMessage(cMessage *msg) {
+    PhysicalResourceBlock *prb = check_and_cast<PhysicalResourceBlock*>(msg);
+    EV << "LTE-PHYenb: Receiving message from ";
 
-const char *PHYenb::eventName(int event) {
-#define CASE(x) case x: s=#x; break
-    const char *s = "unknown";
-    switch (event) {
-        CASE(PARAMRequest);
-        CASE(CONFIGRequest);
-        CASE(STARTRequest);
-        CASE(DLCONFIGRequest);
-        CASE(TXRequest);
+    if (prb->getChannelNumber() == PRACH) {
+    	EV << "PRACH.\n";
+    	RAPreamble *raPreamble = check_and_cast<RAPreamble*>(prb);
+    	RachIndication *rachInd = new RachIndication();
+    	rachInd->setTti(tti);
+    	rachInd->setPreamblesArraySize(1);
+    	RachPreamble rachPrbl = RachPreamble();
+    	rachPrbl.setPreamble(raPreamble->getRapid());
+    	rachPrbl.setRnti(raPreamble->getRnti());
+    	rachInd->setPreambles(0, rachPrbl);
+    	nb->fireChangeNotification(RACHIndication, rachInd);
     }
-    return s;
-#undef CASE
 }
 
 void PHYenb::stateEntered(int category, const cPolymorphic *details) {
-    switch(fsm.getState()) {
-        case IDLE: {
-            ParamResponse *paramResp = new ParamResponse();
-            paramResp->setErrorCode(MsgOk);
-            paramResp->setTlvsArraySize(1);
-            paramResp->setTlvs(0, createPhyCommandTlv(PhyState, 1, IDLE));
-            nb->fireChangeNotification(PARAMResponse, paramResp);
-            break;
-        }
-        case CONFIGURED: {
-            if (category == CONFIGRequest) {
-                ConfigResponse *cfgResp = new ConfigResponse();
-                cfgResp->setErrorCode(MsgOk);
-                nb->fireChangeNotification(CONFIGResponse, cfgResp);
-            }
-            break;
-        }
-        case RUNNING: {
-            if (category == STARTRequest) {
-                this->cancelEvent(ttiTimer);
-                this->scheduleAt(simTime(), ttiTimer);
-            } else if (category == DLCONFIGRequest) {
-                DlConfigRequest *dlCfgReq = check_and_cast<DlConfigRequest*>(details);
-                for (unsigned i = 0; i < dlCfgReq->getPdusArraySize(); i++) {
-                    DlConfigRequestPduPtr pdu = dlCfgReq->getPdus(i);
-                    EV << "LTE-PHYenb: Received DLCONFIGRequest for PDU with type = " << (unsigned)pdu->getType() << ".\n";
-                    if (pdu->getType() == DciDlPdu) {
-                        sendDCIFormat(pdu);
-                    } else {
-                        dlCfgReqPdus[pdu->getPduIndex()] = pdu;
-                    }
-                }
-            } else if (category == TXRequest) {
-                TxRequest *txReq = check_and_cast<TxRequest*>(details);
-                for (unsigned i = 0; i < txReq->getPdusArraySize(); i++) {
-                    TxRequestPdu pdu = txReq->getPdus(i);
-                    if (findDlConfigRequestPdu(pdu.getPduIndex()) != NULL) {
-                        PhyCommandTlv tlv = pdu.getTlvs(0);
-                        EV << "LTE-PHYenb: Received TXRequest for PDU with id = " << tlv.getValue() << ".\n";
-                        txReqPdus[tlv.getValue()] = pdu;
-                    }
-                }
-            }
-            break;
-        }
-        default:
-            EV << "LTE-PHYenb: Unknown state.\n";
-            break;
-    }
+	PHY::stateEntered(category, details);
+
+	if (fsm.getState() == RUNNING) {
+		if (category == DLCONFIGRequest) {
+			DlConfigRequest *dlCfgReq = check_and_cast<DlConfigRequest*>(details);
+		    	for (unsigned i = 0; i < dlCfgReq->getPdusArraySize(); i++) {
+		    		DlConfigRequestPduPtr pdu = dlCfgReq->getPdus(i)->dup();
+		    		EV << "LTE-PHYenb: Received DLCONFIGRequest for PDU with type = " << (unsigned)pdu->getType() << ".\n";
+		    		if (pdu->getType() == DciDlPdu) {
+		    			sendDCIFormat(pdu);
+		    		} else {
+		    			dlCfgReqs[dlCfgReq->getTti()].push_back(pdu);
+		    		}
+		    	}
+		} else if (category == TXRequest) {
+			TxRequest *txReq = check_and_cast<TxRequest*>(details);
+			for (unsigned i = 0; i < txReq->getPdusArraySize(); i++) {
+				TxRequestPdu pdu = txReq->getPdus(i);
+				if (dlCfgReqs.find(txReq->getTti()) != dlCfgReqs.end()) {
+					for (unsigned j = 0; j < pdu.getMsgKindsArraySize(); j++) {
+						unsigned short msgKind = pdu.getMsgKinds(j);
+						EV << "LTE-PHYenb: Received TXRequest for PDU with id = " << msgKind << ".\n";
+						txReqs[pdu.getPduIndex()].push_back(msgKind);
+					}
+				}
+			}
+		}
+	}
+	delete details;
+}
+
+void PHYenb::sendBufferedData() {
+	unsigned short rnti = 0;
+
+	DlConfigRequests::iterator dlCfgReqsIt = dlCfgReqs.find(tti);
+	if (dlCfgReqsIt != dlCfgReqs.end()) {	// first check downlink configuration requests
+		EV << "LTE-PHYenb: Found DLConfigRequest for tti = " << tti << ".\n";
+
+		while(!dlCfgReqsIt->second.empty()) {
+			DlConfigRequestPduPtr dlCfgReqPdu = dlCfgReqsIt->second.front();
+
+			// find rnti to add to transport block
+			if (dlCfgReqPdu->getType() == DlschPdu) {
+				DlConfigRequestDlschPdu *dlCfgReqDlschPdu = check_and_cast<DlConfigRequestDlschPdu*>(dlCfgReqPdu);
+				rnti = dlCfgReqDlschPdu->getRnti();
+			}
+
+			dlCfgReqsIt->second.pop_front();
+			TxRequests::iterator txReqsIt = txReqs.find(dlCfgReqPdu->getPduIndex());
+			if (txReqsIt != txReqs.end()) {	// second check transmission requests
+				EV << "LTE-PHYenb: Found TxRequest for pduIndex = " << dlCfgReqPdu->getPduIndex() << ".\n";
+
+				while(!txReqsIt->second.empty()) {
+					short msgKind = txReqsIt->second.front();
+					txReqsIt->second.pop_front();
+
+					TransmissionBuffer::iterator bufferIt = buffer.find(msgKind);
+					if (bufferIt != buffer.end()) {	// send transportblock from the buffer
+
+						EV << "LTE-PHYenb: Sending buffered transport block with id = " << msgKind << " to the air.\n";
+						TransportBlock *tb = bufferIt->second;
+						tb->setRnti(rnti);
+						sendToChannel(tb);
+						buffer.erase(bufferIt);
+					}
+				}
+			}
+			delete dlCfgReqPdu;
+		}
+		dlCfgReqs.erase(dlCfgReqsIt);
+	}
 }
 
 void PHYenb::sendDCIFormat(DlConfigRequestPduPtr pdu) {
     DlConfigRequestDciDlPdu *dciPdu = check_and_cast<DlConfigRequestDciDlPdu*>(pdu);
     DCIFormat *dci = new DCIFormat();
+    dci->setName("DCIFormat");
     dci->setRnti(dciPdu->getRnti());
-    dci->setRntiType(dciPdu->getRntiType());
+//    dci->setRntiType(dciPdu->getRntiType());
     dci->setChannelNumber(PDCCH);
     sendToChannel(dci);
 }
-
-void PHYenb::receiveChangeNotification(int category, const cPolymorphic *details) {
-    Enter_Method_Silent();
-
-    int oldState = fsm.getState();
-
-    switch(oldState) {
-        case IDLE:
-            switch(category) {
-                case PARAMRequest: {
-                    break;
-                }
-                case CONFIGRequest: {
-                    FSM_Goto(fsm, CONFIGURED);
-                    break;
-                }
-                default:
-                    EV << "LTE-PHYenb: Received unexpected event.\n";
-                    break;
-            }
-            break;
-        case CONFIGURED:
-            switch(category) {
-                case STARTRequest: {
-                    FSM_Goto(fsm, RUNNING);
-                    break;
-                }
-                default:
-                    EV << "LTE-PHYenb: Received unexpected event.\n";
-                    break;
-            }
-            break;
-        case RUNNING:
-            switch(category) {
-                case DLCONFIGRequest: {
-                    break;
-                }
-                case TXRequest : {
-                    break;
-                }
-                default:
-                    EV << "LTE-PHYenb: Received unexpected event.\n";
-                    break;
-            }
-            break;
-        default:
-            EV << "LTE-PHYenb: Unknown state.\n";
-            break;
-    }
-
-//    if (oldState != fsm.getState())
-//        EV << "LTE-PHYenb: PSM-Transition: " << stateName(oldState) << " --> " << stateName(fsm.getState()) << "  (event was: " << eventName(category) << ")\n";
-//    else
-//        EV << "LTE-PHYenb: Staying in state: " << stateName(fsm.getState()) << " (event was: " << eventName(category) << ")\n";
-
-    stateEntered(category, details);
-}
-
-DlConfigRequestPduPtr PHYenb::findDlConfigRequestPdu(unsigned short pduIndex) {
-    DlConfigRequestPdus::iterator i = dlCfgReqPdus.find(pduIndex);
-    if (i != dlCfgReqPdus.end()) {
-        return i->second;
-    } else {
-        return NULL;
-    }
-}
-
-bool PHYenb::findTxRequestPdu(unsigned msgId) {
-    TxRequestPdus::iterator i = txReqPdus.find(msgId);
-    if (i != txReqPdus.end()) {
-        return true;
-    } else {
-        return false;
-    }
-}
+//
+//bool PHYenb::findAndRemoveDlConfigRequestPdu(unsigned short pduIndex) {
+//    DlConfigRequestPdus::iterator i = dlCfgReqPdus.find(pduIndex);
+//    if (i != dlCfgReqPdus.end()) {
+//    	delete i->second;
+//        dlCfgReqPdus.erase(i);
+//        return true;
+//    } else {
+//        return false;
+//    }
+//}
+//
+//bool PHYenb::findAndRemoveTxRequestPdu(unsigned msgId) {
+//    TxRequestPdus::iterator i = txReqPdus.find(msgId);
+//    if (i != txReqPdus.end()) {
+//    	txReqPdus.erase(i);
+//        return true;
+//    } else {
+//        return false;
+//    }
+//}

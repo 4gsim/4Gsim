@@ -16,26 +16,24 @@
 #ifndef PHYUE_H_
 #define PHYUE_H_
 
-#include <omnetpp.h>
-#include "ChannelAccess.h"
-#include "RadioState.h"
-#include "PHYFrame_m.h"
+#include "PHY.h"
+#include "SubscriberTableAccess.h"
 
-class PHYue : public ChannelAccess {
+class PHYue : public PHY {
 private:
-    RadioState rs;
+	SubscriberTable *subT;
 
-    unsigned tti;
-    cMessage *ttiTimer;
-
-    virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
+	virtual void stateEntered(int category, const cPolymorphic *details);
 public:
     PHYue();
     virtual ~PHYue();
-    virtual int numInitStages() const  { return 5; }
+
     virtual void initialize(int stage);
-    virtual void handleMessage(cMessage *msg);
-    void handleRadioMessage(cMessage *msg);
+
+    virtual void handleRadioMessage(cMessage *msg);
+    virtual void handleUpperMessage(cMessage *msg);
+
+    virtual void sendBufferedData();
 };
 
 #endif /* PHYUE_H_ */

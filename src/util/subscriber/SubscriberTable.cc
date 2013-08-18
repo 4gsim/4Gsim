@@ -99,10 +99,10 @@ Subscriber *SubscriberTable::findSubscriberForId(unsigned enbId, unsigned mmeId)
 	return NULL;
 }
 
-Subscriber *SubscriberTable::findSubscriberForRapid(unsigned rapid) {
+Subscriber *SubscriberTable::findSubscriberForRnti(unsigned char rntiType, unsigned short rnti) {
 	for (unsigned i = 0; i < subs.size(); i++) {
 		Subscriber *sub = subs[i];
-		if (sub->getRapid() == rapid)
+		if (sub->getRntiType() == rntiType && sub->getRnti() == rnti)
 			return sub;
 	}
 	return NULL;

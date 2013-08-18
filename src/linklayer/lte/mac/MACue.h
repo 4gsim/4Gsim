@@ -25,6 +25,23 @@
 
 class MACue : public MAC {
 private:
+    typedef std::map<unsigned short, MACServiceDataUnit*> MACBuffer;
+    MACBuffer msg3Buffer;
+
+    typedef std::map<unsigned short /* rnti */, DlAssignIndication*> DLAssignments;
+    DLAssignments dlAssigns;
+
+	// random access procedure complete
+	bool rapComplete;
+	bool rarComplete;
+	RarIndication *rarInd;
+
+	unsigned preambleTransCount;
+	bool preambleSignalled;
+	unsigned backoffParam;
+	typedef std::map<unsigned /* UL-Grant */, std::list<MACRandomAccessResponse*> > RARBuffer;
+	RARBuffer rarBuffer;
+
     HARQEntity *dlEntity;
     HARQProcess *allocProc;
 
@@ -40,6 +57,10 @@ public:
 
     void bchReception(TransportBlock *tb);
     void dlAssignmentReception(DlAssignIndication *dlAssignInd);
+    void rapInitialization(unsigned short tti, RaConfiguration raCfg);
+    void rarSelection(unsigned short tti, RaConfiguration raCfg);
+    void rapTransmission(unsigned short tti, unsigned char preambleIndex);
+    void rarReception(TransportBlock *tb);
 
     void setAllocatedProcess(HARQProcess *harqProc);
 };

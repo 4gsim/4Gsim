@@ -16,10 +16,13 @@
 cplusplus {{ 
     class PhyCommand;
     typedef PhyCommand ParamRequest;
-    typedef PhyCommand StartRequest; 
+    typedef PhyCommand StartRequest;
     
     class DlConfigRequestPdu;
     typedef DlConfigRequestPdu *DlConfigRequestPduPtr;
+    
+    class RachRequest;
+    typedef RachRequest RachIndication;
 }}
 
 class noncobject DlConfigRequestPduPtr;
@@ -33,15 +36,20 @@ enum PhyCommandType
     CONFIGResponse = 105;
     STARTRequest = 106;
     DLCONFIGRequest = 107;
-    TXRequest = 108;
-    DLASSIGNIndication = 109;
+    ULCONFIGRequest = 108;
+    TXRequest = 109;
+    RACHRequest = 110;
+    RACHIndication = 111;
+    DLASSIGNIndication = 112;
+    RARIndication = 113;
 };
 
 enum PhyCommandTlvTag
 {
     DlBwSupp = 40;
     UlBwSupp = 41;
-	PhyState = 60;    
+	PhyState = 60;  
+	SfnSf = 51;
 }
 
 enum PhyCommandErrorCode
@@ -54,6 +62,11 @@ enum DlConfigRequestPduType
     DciDlPdu = 0;
     BchPdu = 1;
     DlschPdu = 3;
+}
+
+enum UlConfigRequestPduType
+{
+	RachPdu = 13;    
 }
 
 class PhyCommandTlv
@@ -121,16 +134,35 @@ class DlConfigRequest extends PhyCommand
     abstract DlConfigRequestPduPtr pdus[];
 }
 
+class UlConfigRequest extends PhyCommand
+{
+	unsigned short tti;
+	unsigned char rachFreqRes = 0;    
+}
+
 class TxRequestPdu
 {
     unsigned short pduIndex;
-    PhyCommandTlv tlvs[];
+    short msgKinds[];
 }
 
 class TxRequest extends PhyCommand
 {
     unsigned short tti;
     TxRequestPdu pdus[];
+}
+
+class RachPreamble
+{
+	unsigned short rnti;
+	unsigned char preamble;
+	unsigned short timingAdvance;    
+}
+
+class RachRequest extends PhyCommand
+{
+	unsigned short tti;
+	RachPreamble preambles[];    
 }
 
 class HarqInformation
@@ -146,4 +178,10 @@ class DlAssignIndication extends PhyCommand
     unsigned char rntiType;
     unsigned char harqProc;
     HarqInformation harqInfo;
+}
+
+class RarIndication extends PhyCommand
+{
+	unsigned short tti;
+	unsigned short rnti;    
 }

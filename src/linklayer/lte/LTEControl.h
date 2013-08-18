@@ -25,6 +25,8 @@ class LTEControl : public cSimpleModule, public INotifiable {
 private:
     NotificationBoard *nb;
 
+    unsigned short tti;
+
     struct PLMNIdentity {
         std::string mcc;
         std::string mnc;
@@ -47,6 +49,8 @@ public:
     rrc::PLMNIdentityList getPLMNIdentityList();
     char *getTAC() { return tac; }
     char *getCellId() { return cellId; }
+
+    void startPhysicalLayer(unsigned short tti);
 };
 
 #endif /* LTECONTROL_H_ */

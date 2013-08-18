@@ -20,7 +20,7 @@
 
 class RLCTMEntity : public RLCEntity {
 private:
-    typedef std::map<unsigned char, RLCServiceDataUnit*> TransmissionBuffer;
+    typedef std::list<RLCServiceDataUnit*> TransmissionBuffer;
     TransmissionBuffer buffer;
 public:
 	RLCTMEntity();
@@ -30,6 +30,7 @@ public:
 	virtual void handleLowerMessage(RLCProtocolDataUnit *pdu);
 
 	void handleTxOpportunity(RlcTxOpportunity *txOpp);
+	virtual void handleSubframeIndication();
 };
 
 #endif /* RLCTMENTITY_H_ */

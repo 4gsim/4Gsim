@@ -14,7 +14,7 @@
 // 
 
 #include "HARQProcess.h"
-#include "LTEControlInfo_m.h"
+#include "LTEControlInfo.h"
 #include "MACue.h"
 
 HARQProcess::HARQProcess(MACue *module, unsigned char id) {

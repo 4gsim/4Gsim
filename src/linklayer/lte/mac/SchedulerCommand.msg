@@ -19,6 +19,9 @@ enum SchedulerCommandType
     CSCHED_CELL_CONFIG_REQ = 201;
     SCHED_DL_TRIGGER_REQ = 202;
     SCHED_DL_CONFIG_IND = 203;
+   	SCHED_UL_TRIGGER_REQ = 204;
+   	SCHED_UL_CONFIG_IND = 205;
+   	SCHED_DL_RACH_INFO_REQ = 206;
 }
 
 class SchedulerCommand
@@ -36,9 +39,20 @@ class SiConfiguration
 	SiMessageListElement siMsgList[];	    
 }
 
+class RaConfiguration
+{
+    unsigned char raPreambleIndex = 61;	// maximal value if used should be 60
+    unsigned char raPrachMaskIndex = 0;
+    unsigned char raRespWdwSize;
+    unsigned char nrOfRaPreambles;
+    unsigned char sizeOfRaPreamblesGroupA;    
+}
+
 class CSchedCellConfigReq extends SchedulerCommand
 {
     SiConfiguration siConfig;
+    unsigned char prachCfgIndex;
+	RaConfiguration raConfig;
 }
 
 enum HarqStatus
@@ -61,6 +75,12 @@ class SchedDlTriggerReq extends SchedulerCommand
     DlInfoListElement dlInfoList[];
 }
 
+class SchedUlTriggerReq extends SchedulerCommand
+{
+	unsigned short tti;  
+	bool rapComplete;   
+}
+
 class RlcPduListElement
 {
     unsigned char logChannelId;
@@ -77,6 +97,13 @@ class BuildDataListElement
     unsigned short rnti;
     DlDciListElement dci;
     RlcPduListElement rlcPduList[];
+}
+
+class BuildRarListElement
+{
+	unsigned short rnti;
+	unsigned int grant;
+	DlDciListElement dci;  
 }
 
 enum BcastMessageIndex
@@ -96,10 +123,28 @@ class SchedDlConfigInd extends SchedulerCommand
 {
     unsigned short tti;
     BuildBcastListElement bldBcastList[];
+    BuildRarListElement bldRarList[];
+}
+
+class SchedUlConfigInd extends SchedulerCommand
+{
+	unsigned short tti;   
+	RaConfiguration raConfigList[];	// made list because it is simpler than pointer
 }
 
 class RlcTxOpportunity 
 {
-    unsigned char rnti;
-	unsigned char index;    
+    unsigned short rnti = 0;
+	unsigned char lcid = 32;    
+}
+
+class RachListElement
+{
+	unsigned short rnti;	// TempCRnti
+}
+
+class SchedDlRachInfoReq extends SchedulerCommand
+{
+	unsigned short tti;   
+	RachListElement rachList[]; 
 }

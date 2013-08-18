@@ -13,38 +13,55 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef MACSCHEDULER_H_
-#define MACSCHEDULER_H_
+#ifndef PHY_H_
+#define PHY_H_
 
 #include <omnetpp.h>
+#include "ChannelAccess.h"
 #include "NotificationBoard.h"
+#include "PHYCommand.h"
+#include "RadioState.h"
+#include "LTEControlInfo.h"
 #include "SchedulerCommand_m.h"
+#include "PHYCommand.h"
+#include "PHYFrame_m.h"
 
-class MACScheduler : public cSimpleModule, INotifiable {
-private:
-    // Cell configuration
-    SiConfiguration siCfg;
+#define TTI_VALUE   1
 
-    // Random Access configuration
-    RaConfiguration raCfg;
+enum PHYState {
+    IDLE        = FSM_Steady(0),
+    CONFIGURED  = FSM_Steady(1),
+    RUNNING     = FSM_Steady(2),
+};
 
-    unsigned char prachCfgIndex;
+class PHY : public ChannelAccess {
+protected:
+    cFSM fsm;
 
-    // Random Access Response buffer
-    typedef std::map<unsigned short /* tti */, unsigned short /* tempCRnti */> RARBuffer;
-    RARBuffer rarBuffer;
+    RadioState rs;
+
+    unsigned tti;
+    cMessage *ttiTimer;
 
     NotificationBoard *nb;
 
-    void processScheduleDlTriggerRequest(SchedDlTriggerReq *triggReq);
-    void processScheduleUlTriggerRequest(SchedUlTriggerReq *triggReq);
+    const char *stateName(int state);
+    const char *eventName(int event);
+
     virtual void receiveChangeNotification(int category, const cPolymorphic *details);
+
+    virtual void stateEntered(int category, const cPolymorphic *details);
 public:
-    MACScheduler();
-    virtual ~MACScheduler();
+	PHY();
+	virtual ~PHY();
+
     virtual int numInitStages() const  { return 5; }
     virtual void initialize(int stage);
     virtual void handleMessage(cMessage *msg);
+
+    virtual void handleUpperMessage(cMessage *msg) = 0;
+    virtual void handleRadioMessage(cMessage *msg) = 0;
+    virtual void sendBufferedData() = 0;
 };
 
-#endif /* MACSCHEDULER_H_ */
+#endif /* PHY_H_ */

@@ -15,7 +15,7 @@
 
 #include "RRCue.h"
 #include "RRCMessage.h"
-#include "LTEControlInfo_m.h"
+#include "LTEControlInfo.h"
 
 Define_Module(RRCue);
 
@@ -115,6 +115,9 @@ void RRCue::processMIB(MasterInformationBlock mib) {
         dlBandwithSel = mib.getMasterInformationBlockdl_Bandwidth().getValue();
         phichCfg = mib.getPhichConfig();
         sfn = mib.getMasterInformationBlockSystemFrameNumber().getValue()[0];
+        if (!recvMIB) {
+            lteCtrl->startPhysicalLayer((sfn << 2) * 10);
+        }
         recvMIB = true;
     }
 }
@@ -134,22 +137,23 @@ void RRCue::processSIB2(SystemInformationBlockType2 *sib2) {
 
     prachCfg = radioResCfgComm.getPrachConfig();
 
+    if (recvMIB && recvSIB1 && !recvSIB2) {
+    	EV << "LTE-RRCue: Received SIB2. Ready for Random Access Procedure.\n";
+        // notify other modules of the configuration parameters
+    	// used for random access procedure
+        CSchedCellConfigReq *cellCfg = new CSchedCellConfigReq();
+        RaConfiguration raCfg = RaConfiguration();
+        raCfg.setNrOfRaPreambles(nrOfRAPreambless[rachCfg.getRACHConfigCommonPreambleInfo().getRACHConfigCommonPreambleInfonumberOfRA_Preambles().getValue()]);
+        raCfg.setRaRespWdwSize(raRespWdwSizes[rachCfg.getRACHConfigCommonRaSupervisionInfo().getRACHConfigCommonRaSupervisionInfora_ResponseWindowSize().getValue()]);
+        if (rachCfg.getRACHConfigCommonPreambleInfo().getOptFlag(0))	// if groupA configuration exists use it
+        	raCfg.setSizeOfRaPreamblesGroupA(sizeOfRAPreamblesGroupAs[rachCfg.getRACHConfigCommonPreambleInfo().getRACHConfigCommonPreambleInfoPreamblesGroupAConfig().getRACHConfigCommonPreambleInfoPreamblesGroupAConfigsizeOfRA_PreamblesGroupA().getValue()]);
+        else	// else set it the size of group A equal to whole RA preambles size
+        	raCfg.setSizeOfRaPreamblesGroupA(nrOfRAPreambless[rachCfg.getRACHConfigCommonPreambleInfo().getRACHConfigCommonPreambleInfonumberOfRA_Preambles().getValue()]);
+        cellCfg->setPrachCfgIndex(prachCfg.getPrachConfigInfo().getPRACHConfigInfoPrachConfigIndex().getValue());
+        cellCfg->setRaConfig(raCfg);
+
+//        nb->fireChangeNotification(CSCHED_CELL_CONFIG_REQ, cellCfg);
+    }
+
     recvSIB2 = true;
-
-//    if (lteSched->getSFN() % 8 == 0) {
-//        // TODO rest of the table 3GPP TS 36211 Table 5.7.1-2 pag. 32
-//        switch (lteCfg->getPRACHCfgIndex() % 16) {
-//            case 0:
-//                rapId = lteSched->scheduleUlMessage(RaRnti, 0, lteSched->getSFN(), 2, lteSched->getSFN() + 7, prachCfgIndex0TTIs, 1);
-//                break;
-//            default:
-//                break;
-//        }
-//    }
-
-//    Subscriber *sub = subT->at(0);
-//    RRCEntity *rrc = sub->getRrcEntity();
-//    if (rrc->getState() == UE_RRC_IDLE)
-//        rrc->performStateTransition(ConnectionEstablishment);
-
 }

@@ -78,9 +78,10 @@ class Subscriber : public cPolymorphic {
 private:
     // radio info
     int ueId;
-    unsigned rapid;
-    unsigned rnti;
-    unsigned rntiType;
+    unsigned short rnti;
+    unsigned char rntiType;
+    unsigned char rapid;
+    unsigned short raRnti;
 
     // s1ap info
 	unsigned enbId;
@@ -135,9 +136,10 @@ public:
 	void setMmeGroupId(char *mmeGrId) { this->mmeGrId = mmeGrId; }
 	void setMmeCode(char *mmeCode) { this->mmeCode = mmeCode; }
 	void setUeId(int ueId) { this->ueId = ueId; }
-	void setRapid(unsigned rapid) { this->rapid = rapid; }
-	void setRnti(unsigned rnti) { this->rnti = rnti; }
-	void setRntiType(unsigned rntiType) { this->rntiType = rntiType; }
+	void setRapid(unsigned char rapid) { this->rapid = rapid; }
+	void setRaRnti(unsigned short raRnti) { this->raRnti = raRnti; }
+	void setRnti(unsigned short rnti) { this->rnti = rnti; }
+	void setRntiType(unsigned char rntiType) { this->rntiType = rntiType; }
 	void setImsi(char *imsi) { emm->setImsi(imsi); }
 	void setCellId(char *cellId) { this->cellId = cellId; }
 	void setPlmnId(char *plmnId) { this->plmnId = plmnId; }
@@ -158,9 +160,10 @@ public:
 	char *getMmeCode() { return mmeCode; }
 	char *getMmeGroupId() { return mmeGrId; }
 	int getUeId() { return ueId; }
-	unsigned getRapid() { return rapid; }
-	unsigned getRnti() { return rnti; }
-	unsigned getRntiType() { return rntiType; }
+	unsigned char getRapid() { return rapid; }
+	unsigned short getRaRtni() { return raRnti; }
+	unsigned short getRnti() { return rnti; }
+	unsigned char getRntiType() { return rntiType; }
 	char *getCellId() { return cellId; }
 	char *getPlmnId() { return plmnId; }
 	char *getTac() { return tac; }

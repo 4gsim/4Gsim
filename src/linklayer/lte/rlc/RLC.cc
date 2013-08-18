@@ -14,7 +14,7 @@
 // 
 
 #include "RLC.h"
-#include "LTEControlInfo_m.h"
+#include "LTEControlInfo.h"
 #include "RLCMessage_m.h"
 
 Define_Module(RLC);
@@ -36,15 +36,17 @@ void RLC::initialize(int stage) {
         nb = NotificationBoardAccess().get();
 
         nb->subscribe(this, RLC_TX_OPPORTUNITY);
+        nb->subscribe(this, SUBFRAMEIndication);
     }
 }
 
 void RLC::handleMessage(cMessage *msg) {
 	// TODO - Generated method body
     if (msg->arrivedOn("upperLayerIn")) {
-        EV << "LTE-RLC: Receiving message with id = " << msg->getKind() << " from upper layer.\n";
         LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
-        RLCServiceDataUnit *sdu = new RLCServiceDataUnit();
+        RLCServiceDataUnit *sdu = new RLCServiceDataUnit(msg->getName());
+        EV << "LTE-RLC: Receiving message on channel = " << ctrl->getChannel() << " from upper layer.\n";
+
         sdu->encapsulate(PK(msg));
         sdu->setControlInfo(ctrl);
         sdu->setKind(msg->getKind());
@@ -82,5 +84,7 @@ void RLC::receiveChangeNotification(int category, const cPolymorphic *details) {
         RlcTxOpportunity *txOpp = check_and_cast<RlcTxOpportunity*>(details);
         if (txOpp->getRnti() == 0 || txOpp->getRnti() == 65535)
             tTM->handleTxOpportunity(txOpp);
+    } else if (category == SUBFRAMEIndication) {
+    	tTM->handleSubframeIndication();
     }
 }

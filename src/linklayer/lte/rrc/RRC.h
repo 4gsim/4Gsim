@@ -24,6 +24,7 @@
 #include "SubscriberTable.h"
 #include "NotificationBoard.h"
 #include "SchedulerCommand_m.h"
+#include "LTEControlAccess.h"
 
 using namespace rrc;
 
@@ -31,6 +32,7 @@ static const unsigned char dlBandwiths[6] = { 6, 15, 25, 50, 75, 100 };
 static const std::string phichDurations[2] = { "normal", "extended" };
 static const double phichResources[4] = {  0.166, 0.5, 1, 2 };
 static const unsigned nrOfRAPreambless[16] = { 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64 };
+static const unsigned sizeOfRAPreamblesGroupAs[16] = { 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64 };
 static const unsigned preambleTransMaxs[11] = { 3, 4, 5, 6, 7, 8, 10, 20, 50, 100, 200 };
 static const unsigned raRespWdwSizes[8] = { 2, 3, 4, 5, 6, 7, 8, 10 };
 static const unsigned macContResolTimers[8] = { 8, 16, 24, 32, 40, 48, 56, 64 };
@@ -46,6 +48,8 @@ protected:
     SubscriberTable *subT;
 
     NotificationBoard *nb;
+
+    LTEControl *lteCtrl;
 
     virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
 public:

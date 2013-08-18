@@ -27,6 +27,14 @@ MAC::~MAC() {
 
 }
 
+void MAC::initialize(int stage) {
+	if (stage == 4) {
+		subT = SubscriberTableAccess().get();
+
+        nb = NotificationBoardAccess().get();
+	}
+}
+
 void MAC::handleMessage(cMessage *msg) {
     if (msg->arrivedOn("lowerLayerIn")) {
         handleLowerMessage(msg);

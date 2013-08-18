@@ -27,8 +27,9 @@ Subscriber::Subscriber() {
 	msisdn = NULL;
 	ueId = -1;
 	rapid = 65;
-	rnti = 65536;
+	rnti = 0;
 	rntiType = 8;
+	raRnti = 0;
 	enbId = 0;
 	mmeId = 0;
 	plmnId = NULL;
@@ -70,11 +71,13 @@ std::string Subscriber::info() const {
     if (ueId != -1)
     	out << "\tueId:" << ueId << "\n";
     if (rapid < 65)
-        out << "\trapid:" << rapid << "\n";
+        out << "\trapid:" << (unsigned)rapid << "\n";
     if (rntiType < 8)
         out << "\trntiType:" << rntiTypeName() << "\n";
-    if (rnti < 65536)
+    if (rnti != 0)
         out << "\trnti:" << rnti << "\n";
+    if (raRnti != 0)
+    	out << "\traRnti:" << raRnti << "\n";
     if (emm != NULL)
     	out << emm->info(1);
     if (plmnId != NULL)

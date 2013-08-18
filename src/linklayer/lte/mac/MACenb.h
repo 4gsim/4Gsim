@@ -21,6 +21,9 @@
 
 class MACenb : public MAC {
 private:
+	unsigned short tti;
+	unsigned msgIds;
+
     typedef std::map<unsigned short, MACServiceDataUnit*> MACBuffer;
     MACBuffer buffer;
     virtual void receiveChangeNotification(int category, const cPolymorphic *details);

@@ -15,7 +15,7 @@
 
 #include "RRCenb.h"
 #include "PHYCommand.h"
-#include "LTEControlInfo_m.h"
+#include "LTEControlInfo.h"
 #include "RRCMessage.h"
 
 Define_Module(RRCenb);
@@ -34,7 +34,7 @@ void RRCenb::initialize(int stage) {
     RRC::initialize(stage);
 
     if (stage == 4) {
-        lteCtrl = LTEControlAccess().get();
+        lteCtrl->startPhysicalLayer(0);
 
         nb->subscribe(this, SUBFRAMEIndication);
 
@@ -60,7 +60,7 @@ void RRCenb::initialize(int stage) {
         RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer macContResolTimer = RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer(sf48_RACHConfigCommonRaSupervisionInfomac_ContentionResolutionTimer);
         RACHConfigCommonRaSupervisionInfo raSupervInfo = RACHConfigCommonRaSupervisionInfo(preambleTransMax, raRespWdwSize, macContResolTimer);
         RACHConfigCommonMaxHARQMsg3Tx maxHARQMsg3Tx = RACHConfigCommonMaxHARQMsg3Tx(4);
-        RACHConfigCommon rachCfg = RACHConfigCommon(preambleInfo, powRampingParams, raSupervInfo, maxHARQMsg3Tx);
+        rachCfg = RACHConfigCommon(preambleInfo, powRampingParams, raSupervInfo, maxHARQMsg3Tx);
 
         /* PRACHConfigSIB */
         PRACHConfigRootSequenceIndex rootSeqIndex = PRACHConfigRootSequenceIndex(22);
@@ -69,7 +69,7 @@ void RRCenb::initialize(int stage) {
         PRACHConfigInfoZeroCorrelationZoneConfig zeroCorrZoneCfg = PRACHConfigInfoZeroCorrelationZoneConfig(5);
         PRACHConfigInfoPrachFreqOffset prachFreqOff = PRACHConfigInfoPrachFreqOffset((int64_t)0);
         PRACHConfigInfo prachCfgInfo = PRACHConfigInfo(prachCfgIndex, highSpeedFlag, zeroCorrZoneCfg, prachFreqOff);
-        PRACHConfigSIB prachCfg = PRACHConfigSIB(rootSeqIndex, prachCfgInfo);
+        prachCfg = PRACHConfigSIB(rootSeqIndex, prachCfgInfo);
 
         // notify other modules of the configuration parameters
         CSchedCellConfigReq *cellCfg = new CSchedCellConfigReq();
@@ -241,7 +241,7 @@ void RRCenb::receiveChangeNotification(int category, const cPolymorphic *details
 
     if (category == SUBFRAMEIndication) {
         SubframeIndication *sfInd = check_and_cast<SubframeIndication*>(details);
-        unsigned short tti = sfInd->getTti() + 1; // for delaying 1 TTI during which the message is processed in the eNB
+        unsigned short tti = sfInd->getTti();
         sfn = tti / 10;
 
         // sending MasterInformationBlock

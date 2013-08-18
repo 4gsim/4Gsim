@@ -18,7 +18,7 @@
 #include "PDCP.h"
 #include "RRCMessage.h"
 #include "RRCClassDefinitions.h"
-#include "LTEControlInfo_m.h"
+#include "LTEControlInfo.h"
 
 Define_Module(PDCP);
 

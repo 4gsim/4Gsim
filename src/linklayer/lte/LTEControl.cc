@@ -40,14 +40,18 @@ void LTEControl::initialize(int stage) {
         if (fileName == NULL || (!strcmp(fileName, "")))
             error("LTEConfig: Error reading configuration from file %s", fileName);
         this->loadConfigFromXML(fileName);
-
-        ParamRequest *paramReq = new ParamRequest();
-        nb->fireChangeNotification(PARAMRequest, paramReq);
     }
 }
 
 void LTEControl::handleMessage(cMessage *msg) {
     // TODO - Generated method body
+}
+
+void LTEControl::startPhysicalLayer(unsigned short tti) {
+	EV << "LTEControl: Starting physical layer at tti = " << tti << ".\n";
+	this->tti = tti;
+    ParamRequest *paramReq = new ParamRequest();
+    nb->fireChangeNotification(PARAMRequest, paramReq);
 }
 
 rrc::PLMNIdentityList LTEControl::getPLMNIdentityList() {
@@ -120,6 +124,8 @@ void LTEControl::receiveChangeNotification(int category, const cPolymorphic *det
         PhyCommandTlv phySt = paramResp->getTlvs(0);
         if (phySt.getValue() == IDLE) {
             ConfigRequest *cfgReq = new ConfigRequest();
+            cfgReq->setTlvsArraySize(1);
+            cfgReq->setTlvs(0, createPhyCommandTlv(SfnSf, 1, tti));
             nb->fireChangeNotification(CONFIGRequest, cfgReq);
         }
     } else if (category == CONFIGResponse) {

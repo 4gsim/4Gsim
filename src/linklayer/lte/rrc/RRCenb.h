@@ -17,7 +17,6 @@
 #define RRCENB_H_
 
 #include "RRC.h"
-#include "LTEControlAccess.h"
 
 using namespace rrc;
 
@@ -26,9 +25,7 @@ static const unsigned siPeriodicities[7] = { 8, 16, 32, 64, 128, 256, 512 };
 
 class RRCenb : public RRC {
 private:
-    LTEControl *lteCtrl;
-
-    // scheduling information for SystemInformationBlock
+	// scheduling information for SystemInformationBlock
     SchedulingInfoList schedInfoList;
     SystemInformationBlockType1si_WindowLength siWdwLen;
 

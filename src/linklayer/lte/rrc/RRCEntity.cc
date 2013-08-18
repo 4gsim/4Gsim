@@ -15,7 +15,7 @@
 
 #include "RRCEntity.h"
 #include "RRC.h"
-#include "LTEControlInfo_m.h"
+#include "LTEControlInfo.h"
 
 RRCEntity::RRCEntity() {
     // TODO Auto-generated constructor stub

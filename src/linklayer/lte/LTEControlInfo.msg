@@ -70,6 +70,7 @@ enum LTERntiTypes
 
 class LTEControlInfo
 {
+    @customize(true);
 	int channel; // logical or transport channels 
 	int ueId;   
 } 

@@ -14,14 +14,14 @@
 // 
 
 #include "MACenb.h"
-#include "LTEControlInfo_m.h"
+#include "LTEControlInfo.h"
 #include "MACUtils.h"
 
 Define_Module(MACenb);
 
 MACenb::MACenb() {
     // TODO Auto-generated constructor stub
-
+	msgIds = 0;
 }
 
 MACenb::~MACenb() {
@@ -29,10 +29,11 @@ MACenb::~MACenb() {
 }
 
 void MACenb::initialize(int stage) {
-    if (stage == 4) {
-        nb = NotificationBoardAccess().get();
+	MAC::initialize(stage);
 
+    if (stage == 4) {
         nb->subscribe(this, SUBFRAMEIndication);
+        nb->subscribe(this, RACHIndication);
         nb->subscribe(this, SCHED_DL_CONFIG_IND);
     }
 }
@@ -42,23 +43,23 @@ void MACenb::handleLowerMessage(cMessage *msg) {
 }
 
 void MACenb::handleUpperMessage(cMessage *msg) {
-    EV << "LTE-MACenb: Receiving message with id = " << msg->getKind() << " from upper layer.\n";
     LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
+    EV << "LTE-MACenb: Receiving message on " << ctrl->getChannelName() << " from upper layer.\n";
 
-    MACServiceDataUnit *sdu = new MACServiceDataUnit();
+    MACServiceDataUnit *sdu = new MACServiceDataUnit(msg->getName());
     sdu->encapsulate(PK(msg));
     sdu->setKind(msg->getKind());
 
     if (ctrl->getChannel() == BCCH0) {
-        MACProtocolDataUnit *pdu = MACUtils().createTransparentPDU(BCH, sdu);
-        EV << "LTE-MACenb: Sending transparent message with id = " << msg->getKind() << " to lower layer.\n";
+    	MACProtocolDataUnit *pdu = MACUtils().createTransparentPDU(BCH, sdu);
+        EV << "LTE-MACenb: Sending message with id = " << pdu->getKind() << " on BCH to lower layer.\n";
         this->send(pdu, gate("lowerLayerOut"));
     } else if (ctrl->getChannel() == BCCH1) {
-        EV << "LTE-MACenb: Buffering message with id = " << msg->getKind() << "\n.";
+        EV << "LTE-MACenb: Buffering received message.\n";
         buffer[sdu->getKind()] = sdu;
 
         MACProtocolDataUnit *pdu = MACUtils().createTransparentPDU(DLSCH0, sdu->dup());
-        EV << "LTE-MACenb: Sending transparent message with id = " << msg->getKind() << " to lower layer.\n";
+        EV << "LTE-MACenb: Sending message with id = " << pdu->getKind() << " on DLSCH0 to lower layer.\n";
         this->send(pdu, gate("lowerLayerOut"));
     }
 }
@@ -78,7 +79,7 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
 
     } else if (category == SCHED_DL_CONFIG_IND) {
         SchedDlConfigInd *cfgInd = check_and_cast<SchedDlConfigInd*>(details);
-        unsigned tti = cfgInd->getTti();
+        tti = cfgInd->getTti();
 
         // prepare downlink config request for physical layer
         unsigned pduIndex = 0;
@@ -96,16 +97,17 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
 
             // notify RLC layer of transmission opportunity
             if (dciEl.getRv() == 0) {
-                EV << "LTE-MACenb: Sending RLC_TX_OPPORTUNITY for message with id = " << (unsigned)bcastEl.getIndex() << ".\n";
+                EV << "LTE-MACenb: Sending RLC_TX_OPPORTUNITY for message with rnti = " << dciEl.getRnti() << ".\n";
                 RlcTxOpportunity *txOpp = new RlcTxOpportunity();
-                txOpp->setIndex(bcastEl.getIndex());
+                txOpp->setRnti(dciEl.getRnti());
                 nb->fireChangeNotification(RLC_TX_OPPORTUNITY, txOpp);
             } else { // check for packet in buffer that should be retransmitted
                 MACBuffer::iterator i = buffer.find(bcastEl.getIndex());
                 if (i != buffer.end()) {
                     MACServiceDataUnit *sdu = i->second;
+
                     MACProtocolDataUnit *pdu = MACUtils().createTransparentPDU(DLSCH0, sdu->dup());
-                    EV << "LTE-MACenb: Resending message with id = " << sdu->getKind() << " to lower layer.\n";
+                    EV << "LTE-MACenb: Sending buffered message with id = " << pdu->getKind() << " on DLSCH0 to lower layer.\n";
                     this->send(pdu, gate("lowerLayerOut"));
                 }
             }
@@ -118,7 +120,7 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
             } else {
                 DlConfigRequestDciDlPdu *dlReqDCIpdu = new DlConfigRequestDciDlPdu();
                 dlReqDCIpdu->setRnti(dciEl.getRnti());
-                dlReqDCIpdu->setRntiType(SiRnti);
+//                dlReqDCIpdu->setRntiType(SiRnti);
                 dlReq->pushPdu(dlReqDCIpdu);
 
                 DlConfigRequestDlschPdu *dlReqDLSCHpdu = new DlConfigRequestDlschPdu();
@@ -130,16 +132,78 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
             // add tx pdu information to tx request notification
             TxRequestPdu txReqPdu = TxRequestPdu();
             txReqPdu.setPduIndex(pduIndex++);
-            txReqPdu.setTlvsArraySize(1);
-            txReqPdu.setTlvs(0, createPhyCommandTlv(0, 0, bcastEl.getIndex()));
+            txReqPdu.setMsgKindsArraySize(1);
+            txReqPdu.setMsgKinds(0, bcastEl.getIndex());
 
             txReq->setPdusArraySize(pduIndex);
             txReq->setPdus(pduIndex - 1, txReqPdu);
+        }
+
+//        // check random access response message
+        for (unsigned i = 0; i < cfgInd->getBldRarListArraySize(); i++) {
+        	BuildRarListElement rarEl = cfgInd->getBldRarList(i);
+        	Subscriber *sub = subT->findSubscriberForRnti(TempCRnti, rarEl.getRnti());
+
+        	if (sub) {
+        		// create MAC RAR PDU
+        		MACRandomAccessResponse *rarSdu = MACUtils().createRAR(0, rarEl.getGrant(), sub->getRnti());
+        		MACProtocolDataUnit *pdu = MACUtils().createRandomAccessPDU(true, sub->getRapid(), rarSdu);
+
+                // add pdu information to downlink request notification
+                DlConfigRequestDciDlPdu *dlReqDCIpdu = new DlConfigRequestDciDlPdu();
+                dlReqDCIpdu->setRnti(sub->getRaRtni());
+                dlReqDCIpdu->setRntiType(RaRnti);
+                dlReq->pushPdu(dlReqDCIpdu);
+
+                DlConfigRequestDlschPdu *dlReqDLSCHpdu = new DlConfigRequestDlschPdu();
+                dlReqDLSCHpdu->setPduIndex(pduIndex);
+                dlReqDLSCHpdu->setRnti(sub->getRaRtni());
+                dlReq->pushPdu(dlReqDLSCHpdu);
+
+                // add tx pdu information to tx request notification
+                TxRequestPdu txReqPdu = TxRequestPdu();
+                txReqPdu.setPduIndex(pduIndex++);
+                txReqPdu.setMsgKindsArraySize(1);
+                txReqPdu.setMsgKinds(0, rarEl.getRnti());	// tempCRnti will also identify the message in phy layer
+
+                txReq->setPdusArraySize(pduIndex);
+                txReq->setPdus(pduIndex - 1, txReqPdu);
+
+                EV << "LTE-MACenb: Sending message with id = " << pdu->getKind() << " on DLSCH1 to lower layer.\n";
+                this->send(pdu, gate("lowerLayerOut"));
+        	}
         }
 
         nb->fireChangeNotification(DLCONFIGRequest, dlReq);
 
         if (pduIndex > 0)
             nb->fireChangeNotification(TXRequest, txReq);
+
+    } else if (category == RACHIndication) {
+    	// TODO check RACH type
+
+    	RachIndication *rachInd = check_and_cast<RachIndication*>(details);
+    	for (unsigned i = 0; i < rachInd->getPreamblesArraySize(); i++) {	// normally it should be only one preamble
+    		RachPreamble preamble = rachInd->getPreambles(i);
+    		unsigned short tempCRnti = uniform(0, 65523);
+    		EV << "LTE-MACenb: Received RACHIndication for preamble with id = " << (unsigned)preamble.getPreamble() << " and RA-RNTI = " << preamble.getRnti() << ". Creating new subscriber.\n";
+
+    		// subscriber creation
+    		Subscriber *sub = new Subscriber();
+    		sub->setRaRnti(preamble.getRnti());
+    		sub->setRapid(preamble.getPreamble());
+    		sub->setRntiType(TempCRnti);
+    		sub->setRnti(tempCRnti);
+    		subT->push_back(sub);
+
+    		// scheduler configuration
+    		SchedDlRachInfoReq *rachReq = new SchedDlRachInfoReq();
+    		rachReq->setTti(rachInd->getTti());
+    		rachReq->setRachListArraySize(1);
+    		RachListElement rachEl = RachListElement();
+    		rachEl.setRnti(tempCRnti);
+    		rachReq->setRachList(0, rachEl);
+    		nb->fireChangeNotification(SCHED_DL_RACH_INFO_REQ, rachReq);
+    	}
     }
 }

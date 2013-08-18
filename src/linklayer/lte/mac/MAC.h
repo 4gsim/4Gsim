@@ -20,9 +20,12 @@
 #include "NotificationBoard.h"
 #include "PHYCommand.h"
 #include "SchedulerCommand_m.h"
+#include "SubscriberTableAccess.h"
 
 class MAC : public cSimpleModule, public INotifiable {
 protected:
+	SubscriberTable *subT;
+
     NotificationBoard *nb;
 
     virtual void receiveChangeNotification(int category, const cPolymorphic *details) {}
@@ -32,7 +35,7 @@ public:
 
     virtual int numInitStages() const  { return 5; }
 
-    virtual void initialize(int stage) {}
+    virtual void initialize(int stage);
     virtual void handleMessage(cMessage *msg);
 
     virtual void handleUpperMessage(cMessage *msg) {}

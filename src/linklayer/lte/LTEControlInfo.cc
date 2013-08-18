@@ -11,32 +11,37 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-//
+// 
 
-cplusplus {{
-#include "AirFrame_m.h"
-}}
+#include "LTEControlInfo.h"
 
-class noncobject AirFrame;
-
-message PhysicalResourceBlock extends AirFrame
-{
-	int ueId;
-	unsigned short rnti;   
- 	unsigned char rntiType;
-}
-
-message TransportBlock extends PhysicalResourceBlock
-{
-    
-}
-
-message DCIFormat extends PhysicalResourceBlock
-{
+LTEControlInfo::LTEControlInfo() : LTEControlInfo_Base() {
+	// TODO Auto-generated constructor stub
 
 }
 
-message RAPreamble extends PhysicalResourceBlock
-{
-	unsigned char rapid;   
+LTEControlInfo::~LTEControlInfo() {
+	// TODO Auto-generated destructor stub
 }
+
+LTEControlInfo& LTEControlInfo::operator=(const LTEControlInfo& other) {
+	LTEControlInfo_Base::operator=(other);
+
+	return *this;
+}
+
+const char *LTEControlInfo::getChannelName() {
+#define CASE(x) case x: s=#x; break
+    const char *s = "unknown";
+    switch (channel_var) {
+        CASE(BCCH1);
+        CASE(BCCH0);
+        CASE(BCH);
+        CASE(DLSCH0);
+        CASE(DLSCH1);
+        CASE(PDCCH);
+    }
+    return s;
+#undef CASE
+}
+

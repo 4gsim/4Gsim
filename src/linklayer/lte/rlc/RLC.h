@@ -21,6 +21,7 @@
 #include "INETDefs.h"
 #include "NotificationBoard.h"
 #include "SchedulerCommand_m.h"
+#include "PHYCommand.h"
 
 #define RLC_DOWN    0
 #define RLC_UP      1

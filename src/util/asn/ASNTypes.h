@@ -241,7 +241,7 @@ public:
 	static const Info theInfo;
 
 	/* Constructors. */
-	IntegerBase(const void *info = &theInfo) : ConstrainedType(info) {}
+	IntegerBase(const void *info = &theInfo) : ConstrainedType(info) { value = 0; }
 	IntegerBase(int64_t value, const void *info = &theInfo) : ConstrainedType(info) { setValue(value); }
 	IntegerBase(const IntegerBase& other) : ConstrainedType(other) { operator=(other); }
 
@@ -302,7 +302,7 @@ protected:
     };
 public:
     /* Constructors. */
-	EnumeratedBase(const void *info) : AbstractType(info) {}
+	EnumeratedBase(const void *info) : AbstractType(info) { value = 0; }
 	EnumeratedBase(const EnumeratedBase& other) : AbstractType(other) { operator=(other); }
 
 	virtual ~EnumeratedBase() {}

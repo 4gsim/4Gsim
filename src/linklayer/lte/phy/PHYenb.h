@@ -16,57 +16,37 @@
 #ifndef PHYENB_H_
 #define PHYENB_H_
 
-#include <omnetpp.h>
-#include "NotificationBoard.h"
-#include "PHYCommand.h"
-#include "ChannelAccess.h"
-#include "RadioState.h"
+#include "PHY.h"
 
-#define TTI_VALUE   1
-
-enum PHYState {
-    IDLE        = FSM_Steady(0),
-    CONFIGURED  = FSM_Steady(1),
-    RUNNING     = FSM_Steady(2),
-};
-
-class PHYenb : public ChannelAccess {
+class PHYenb : public PHY {
 private:
     unsigned dlBandwith;
     unsigned ulBandwith;
 
-    typedef std::map<unsigned short, DlConfigRequestPduPtr> DlConfigRequestPdus;
-    DlConfigRequestPdus dlCfgReqPdus;
-    typedef std::map<unsigned, TxRequestPdu> TxRequestPdus;
-    TxRequestPdus txReqPdus;
+    typedef std::map<unsigned short /* tti */, std::list<DlConfigRequestPduPtr> > DlConfigRequests;
+    DlConfigRequests dlCfgReqs;
 
-    cFSM fsm;
+    typedef std::map<unsigned short /* pduIndex */, std::list<short /* msgKinds */> > TxRequests;
+    TxRequests txReqs;
+    typedef std::map<unsigned /* msgKind */, TransportBlock*> TransmissionBuffer;
+    TransmissionBuffer buffer;
 
-    RadioState rs;
-
-    unsigned tti;
-    cMessage *ttiTimer;
-
-    NotificationBoard *nb;
-
-    const char *stateName(int state);
-    const char *eventName(int event);
-
-    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
-
-    void stateEntered(int category, const cPolymorphic *details);
-
-    DlConfigRequestPduPtr findDlConfigRequestPdu(unsigned short pduIndex);
-    bool findTxRequestPdu(unsigned msgId);
+//    bool findAndRemoveDlConfigRequestPdu(unsigned short pduIndex);
+//    bool findAndRemoveTxRequestPdu(unsigned msgId);
 
     void sendDCIFormat(DlConfigRequestPduPtr pdu);
+
+    virtual void stateEntered(int category, const cPolymorphic *details);
 public:
     PHYenb();
     virtual ~PHYenb();
-    virtual int numInitStages() const  { return 5; }
+
     virtual void initialize(int stage);
-    virtual void handleMessage(cMessage *msg);
+
     virtual void handleUpperMessage(cMessage *msg);
+    virtual void handleRadioMessage(cMessage *msg);
+
+    virtual void sendBufferedData();
 };
 
 #endif /* PHYENB_H_ */

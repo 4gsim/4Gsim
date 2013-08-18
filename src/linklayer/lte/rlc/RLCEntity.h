@@ -25,6 +25,8 @@ class RLC;
 class RLCEntity {
 protected:
     RLC *module;
+
+    RlcTxOpportunity *txOpp;
 public:
     RLCEntity();
     virtual ~RLCEntity();
@@ -33,6 +35,7 @@ public:
 
     virtual void handleUpperMessage(RLCServiceDataUnit *sdu) = 0;
     virtual void handleLowerMessage(RLCProtocolDataUnit *pdu) = 0;
+    virtual void handleSubframeIndication() = 0;
 };
 
 #endif /* RLCENTITY_H_ */

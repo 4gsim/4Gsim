@@ -31,11 +31,11 @@ private:
     DlConfigRequestPdus pdus;
 public:
     DlConfigRequest() : DlConfigRequest_Base() {}
-    DlConfigRequest(const DlConfigRequest& other) : DlConfigRequest_Base(other) {operator=(other);}
+    DlConfigRequest(const DlConfigRequest& other) : DlConfigRequest_Base(other) { operator=(other); }
     virtual ~DlConfigRequest();
 
     DlConfigRequest& operator=(const DlConfigRequest& other);
-    virtual DlConfigRequest *dup() const {return new DlConfigRequest(*this);}
+    virtual DlConfigRequest *dup() const { return new DlConfigRequest(*this); }
 
     /*
      * Methods overridden but not used. You should use instead pushPdu.
