@@ -20,6 +20,8 @@ Define_Module(PHYenb);
 PHYenb::PHYenb() : PHY() {
     dlBandwith = 6;
     ulBandwith = 6;
+
+    symbol = NULL;
 }
 
 PHYenb::~PHYenb() {
@@ -27,6 +29,12 @@ PHYenb::~PHYenb() {
         if (ttiTimer->getContextPointer() != NULL)
             this->cancelEvent(ttiTimer);
         delete ttiTimer;
+    }
+
+    if (symbol != NULL) {
+        if (symbol->getContextPointer() != NULL)
+            this->cancelEvent(symbol);
+        delete symbol;
     }
 }
 
@@ -44,7 +52,39 @@ void PHYenb::initialize(int stage) {
         fsm.setState(IDLE);
 
         nb->subscribe(this, DLCONFIGRequest);
+
+        symbol = new cMessage("SYMB-TIMER");
+        symbol->setContextPointer(this);
+        this->scheduleAt(simTime(), symbol);
     }
+}
+
+void PHYenb::handleMessage(cMessage *msg) {
+	if (msg->isSelfMessage()) {
+		if (msg == symbol) {
+			simtime_t symbPeriod = 7.142857142857143e-5;
+			for (unsigned i = 0; i < 10 / 2; i++) {
+				PhysicalResourceBlock *prb = new PhysicalResourceBlock();
+				prb->setChannelNumber(PBCH);
+				prb->setDuration(symbPeriod);
+				sendToChannel(prb);
+			}
+
+			Subcarier *subcarier = new Subcarier();
+			subcarier->setChannelNumber(DC);
+			sendToChannel(subcarier);
+
+			for (unsigned i = 0; i < 10 / 2; i++) {
+				PhysicalResourceBlock *prb = new PhysicalResourceBlock();
+				prb->setChannelNumber(PBCH);
+				prb->setDuration(symbPeriod);
+				sendToChannel(prb);
+			}
+
+            this->cancelEvent(symbol);
+            this->scheduleAt(simTime() + symbPeriod, symbol);
+		}
+	}
 }
 
 void PHYenb::handleUpperMessage(cMessage *msg) {

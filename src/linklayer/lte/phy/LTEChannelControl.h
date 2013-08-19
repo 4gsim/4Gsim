@@ -22,7 +22,7 @@
 class AirFrame;
 
 #define LIGHT_SPEED 3.0E+8
-#define TRANSMISSION_PURGE_INTERVAL 1.0
+#define TRANSMISSION_PURGE_INTERVAL 0.0714
 
 struct IChannelControl::RadioEntry {
     cModule *radioModule; // the module that registered this radio interface

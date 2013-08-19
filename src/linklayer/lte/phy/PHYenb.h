@@ -20,6 +20,8 @@
 
 class PHYenb : public PHY {
 private:
+	cMessage *symbol;
+
     unsigned dlBandwith;
     unsigned ulBandwith;
 
@@ -42,6 +44,8 @@ public:
     virtual ~PHYenb();
 
     virtual void initialize(int stage);
+
+    virtual void handleMessage(cMessage *msg);
 
     virtual void handleUpperMessage(cMessage *msg);
     virtual void handleRadioMessage(cMessage *msg);

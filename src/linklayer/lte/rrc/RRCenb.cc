@@ -34,7 +34,7 @@ void RRCenb::initialize(int stage) {
     RRC::initialize(stage);
 
     if (stage == 4) {
-        lteCtrl->startPhysicalLayer(0);
+//        lteCtrl->startPhysicalLayer(0);
 
         nb->subscribe(this, SUBFRAMEIndication);
 
@@ -81,7 +81,7 @@ void RRCenb::initialize(int stage) {
         siCfg.setSiMsgList(0, siMsgEl);
         cellCfg->setSiConfig(siCfg);
 
-        nb->fireChangeNotification(CSCHED_CELL_CONFIG_REQ, cellCfg);
+//        nb->fireChangeNotification(CSCHED_CELL_CONFIG_REQ, cellCfg);
     }
 }
 
@@ -253,17 +253,17 @@ void RRCenb::receiveChangeNotification(int category, const cPolymorphic *details
         if (sfn % 8 == 0 && tti % 10 == 5) {
             sendSIB1();
         } else if (!(sfn % 2 == 0 && tti % 10 == 5)) {
-            unsigned w = siWindowLengths[siWdwLen.getValue()];
-
-            for (unsigned n = 0; n < schedInfoList.size(); n++) {
-                SchedulingInfo schedInfo = schedInfoList.at(n);
-                unsigned x = n * w;
-                unsigned T = siPeriodicities[schedInfo.getSchedulingInfosi_Periodicity().getValue()];
-                if ((sfn % T == (unsigned)floor(x / 10)) && (tti % 10 == x)) {
-                    if (schedInfo.getSibMappingInfo().size() == 0)
-                        sendSIB2();
-                }
-            }
+//            unsigned w = siWindowLengths[siWdwLen.getValue()];
+//
+//            for (unsigned n = 0; n < schedInfoList.size(); n++) {
+//                SchedulingInfo schedInfo = schedInfoList.at(n);
+//                unsigned x = n * w;
+//                unsigned T = siPeriodicities[schedInfo.getSchedulingInfosi_Periodicity().getValue()];
+//                if ((sfn % T == (unsigned)floor(x / 10)) && (tti % 10 == x)) {
+//                    if (schedInfo.getSibMappingInfo().size() == 0)
+//                        sendSIB2();
+//                }
+//            }
         }
     }
 }

@@ -18,7 +18,8 @@
 Define_Module(PHYue);
 
 PHYue::PHYue() : PHY()  {
-
+	start = false;
+	delayTimer = NULL;
 }
 
 PHYue::~PHYue() {
@@ -26,6 +27,12 @@ PHYue::~PHYue() {
         if (ttiTimer->getContextPointer() != NULL)
             this->cancelEvent(ttiTimer);
         delete ttiTimer;
+    }
+
+    if (delayTimer != NULL) {
+        if (delayTimer->getContextPointer() != NULL)
+            this->cancelEvent(delayTimer);
+        delete delayTimer;
     }
 }
 
@@ -40,6 +47,7 @@ void PHYue::initialize(int stage) {
         cc->setRadioChannel(myRadioRef, PHICH);
         cc->setRadioChannel(myRadioRef, PBCH);
         cc->setRadioChannel(myRadioRef, PDCCH);
+        cc->setRadioChannel(myRadioRef, DC);
     }
 
     if (stage == 4) {
@@ -50,7 +58,21 @@ void PHYue::initialize(int stage) {
 
         nb->subscribe(this, ULCONFIGRequest);
         nb->subscribe(this, RACHRequest);
+
+        delayTimer = new cMessage("DELAY-TIMER");
+        delayTimer->setContextPointer(this);
+        this->scheduleAt(simTime() + 0.01, delayTimer);
     }
+}
+
+void PHYue::handleMessage(cMessage *msg) {
+	PHY::handleMessage(msg);
+
+	if (msg->isSelfMessage()) {
+		if (msg == delayTimer) {
+			start = true;
+		}
+	}
 }
 
 void PHYue::handleUpperMessage(cMessage *msg) {
@@ -58,46 +80,52 @@ void PHYue::handleUpperMessage(cMessage *msg) {
 }
 
 void PHYue::handleRadioMessage(cMessage *msg) {
-    PhysicalResourceBlock *prb = check_and_cast<PhysicalResourceBlock*>(msg);
-    EV << "LTE-PHYue: Receiving message from ";
-    LTEControlInfo *ctrl = new LTEControlInfo();
-    if (prb->getChannelNumber() == PBCH) {
-    	EV << "BCH.\n";
-        TransportBlock *tb = check_and_cast<TransportBlock*>(prb);
-        ctrl->setChannel(BCH);
-        tb->setControlInfo(ctrl);
-        this->send(tb, gate("upperLayerOut"));
-    } else if (prb->getChannelNumber() == PDCCH) {
-    	EV << "PDCCH.\n";
-        DCIFormat *dci = check_and_cast<DCIFormat*>(prb);
-        if (dci->getRntiType() == RaRnti) {
-        	Subscriber *sub = subT->at(0);
-        	if (sub->getRaRtni() == dci->getRnti()) {
-        		RarIndication *rarInd = new RarIndication();
-        		rarInd->setRnti(dci->getRnti());
-        		rarInd->setTti(tti);
-        		nb->fireChangeNotification(RARIndication, rarInd);
-        	}
-        } else {
-			DlAssignIndication *dlAssignInd = new DlAssignIndication();
-			dlAssignInd->setRnti(dci->getRnti());
-//			dlAssignInd->setRntiType(dci->getRntiType());
-			dlAssignInd->setTti(tti);
-			nb->fireChangeNotification(DLASSIGNIndication, dlAssignInd);
-        }
-    } else if (prb->getChannelNumber() == PDSCH0) {
-    	EV << "PDSCH0.\n";
-        TransportBlock *tb = check_and_cast<TransportBlock*>(prb);
-        ctrl->setChannel(DLSCH0);
-        tb->setControlInfo(ctrl);
-        this->send(tb, gate("upperLayerOut"));
-    } else if (prb->getChannelNumber() == PDSCH1) {
-    	EV << "PDSCH1.\n";
-        TransportBlock *tb = check_and_cast<TransportBlock*>(prb);
-        ctrl->setChannel(DLSCH1);
-        tb->setControlInfo(ctrl);
-        this->send(tb, gate("upperLayerOut"));
-    }
+	if (start) {
+		Subcarier *subcarier = dynamic_cast<Subcarier*>(msg);
+		if (subcarier && subcarier->getChannelNumber() == DC)
+			EV << "PHYue: Found DC subcarier at " << simTime() << ".\n";
+		delete msg;
+	}
+//    PhysicalResourceBlock *prb = check_and_cast<PhysicalResourceBlock*>(msg);
+//    EV << "LTE-PHYue: Receiving message from ";
+//    LTEControlInfo *ctrl = new LTEControlInfo();
+//    if (prb->getChannelNumber() == PBCH) {
+//    	EV << "BCH.\n";
+//        TransportBlock *tb = check_and_cast<TransportBlock*>(prb);
+//        ctrl->setChannel(BCH);
+//        tb->setControlInfo(ctrl);
+//        this->send(tb, gate("upperLayerOut"));
+//    } else if (prb->getChannelNumber() == PDCCH) {
+//    	EV << "PDCCH.\n";
+//        DCIFormat *dci = check_and_cast<DCIFormat*>(prb);
+//        if (dci->getRntiType() == RaRnti) {
+//        	Subscriber *sub = subT->at(0);
+//        	if (sub->getRaRtni() == dci->getRnti()) {
+//        		RarIndication *rarInd = new RarIndication();
+//        		rarInd->setRnti(dci->getRnti());
+//        		rarInd->setTti(tti);
+//        		nb->fireChangeNotification(RARIndication, rarInd);
+//        	}
+//        } else {
+//			DlAssignIndication *dlAssignInd = new DlAssignIndication();
+//			dlAssignInd->setRnti(dci->getRnti());
+////			dlAssignInd->setRntiType(dci->getRntiType());
+//			dlAssignInd->setTti(tti);
+//			nb->fireChangeNotification(DLASSIGNIndication, dlAssignInd);
+//        }
+//    } else if (prb->getChannelNumber() == PDSCH0) {
+//    	EV << "PDSCH0.\n";
+//        TransportBlock *tb = check_and_cast<TransportBlock*>(prb);
+//        ctrl->setChannel(DLSCH0);
+//        tb->setControlInfo(ctrl);
+//        this->send(tb, gate("upperLayerOut"));
+//    } else if (prb->getChannelNumber() == PDSCH1) {
+//    	EV << "PDSCH1.\n";
+//        TransportBlock *tb = check_and_cast<TransportBlock*>(prb);
+//        ctrl->setChannel(DLSCH1);
+//        tb->setControlInfo(ctrl);
+//        this->send(tb, gate("upperLayerOut"));
+//    }
 }
 
 void PHYue::stateEntered(int category, const cPolymorphic *details) {

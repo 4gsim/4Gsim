@@ -40,3 +40,8 @@ message RAPreamble extends PhysicalResourceBlock
 {
 	unsigned char rapid;   
 }
+
+class Subcarier extends AirFrame
+{
+    
+}

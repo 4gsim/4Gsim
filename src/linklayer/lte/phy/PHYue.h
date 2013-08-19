@@ -21,6 +21,9 @@
 
 class PHYue : public PHY {
 private:
+	cMessage *delayTimer;
+	bool start;
+
 	SubscriberTable *subT;
 
 	virtual void stateEntered(int category, const cPolymorphic *details);
@@ -29,6 +32,8 @@ public:
     virtual ~PHYue();
 
     virtual void initialize(int stage);
+
+    virtual void handleMessage(cMessage *msg);
 
     virtual void handleRadioMessage(cMessage *msg);
     virtual void handleUpperMessage(cMessage *msg);

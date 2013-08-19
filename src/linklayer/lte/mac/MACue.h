@@ -36,6 +36,10 @@ private:
 	bool rarComplete;
 	RarIndication *rarInd;
 
+	// used rnti for receiving TB in current subframe
+	unsigned short rnti;
+	unsigned char rntiType;
+
 	unsigned preambleTransCount;
 	bool preambleSignalled;
 	unsigned backoffParam;
