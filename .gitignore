@@ -31,3 +31,7 @@ xxx
 # my ignores
 .nedfolders
 .oppfeatures
+*.vci
+
+/.nedfolders
+/.cproject
