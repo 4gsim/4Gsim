@@ -23,7 +23,18 @@ LTEChannelControl::LTEChannelControl() {
 }
 
 LTEChannelControl::~LTEChannelControl() {
+    for (int i = 0; i < numChannels; i++)
+    {
+        for (TransmissionList::iterator it = transmissions[i].begin(); it != transmissions[i].end();)
+        {
+            TransmissionList::iterator curr = it;
+            AirFrame *frame = *it;
+            it++;
 
+            delete frame;
+            transmissions[i].erase(curr);
+        }
+    }
 }
 
 void LTEChannelControl::initialize() {

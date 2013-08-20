@@ -45,3 +45,8 @@ class Subcarier extends AirFrame
 {
     
 }
+
+message PHYFrame extends AirFrame
+{
+   unsigned char res[];	// Resource Elements
+}

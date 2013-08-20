@@ -41,13 +41,14 @@ void PHYue::initialize(int stage) {
     PHY::initialize(stage);
 
     if (stage == 2) {
-        cc->setRadioChannel(myRadioRef, PDSCH);
-        cc->setRadioChannel(myRadioRef, PDSCH0);
-        cc->setRadioChannel(myRadioRef, PDSCH1);
-        cc->setRadioChannel(myRadioRef, PHICH);
-        cc->setRadioChannel(myRadioRef, PBCH);
-        cc->setRadioChannel(myRadioRef, PDCCH);
-        cc->setRadioChannel(myRadioRef, DC);
+//        cc->setRadioChannel(myRadioRef, PDSCH);
+//        cc->setRadioChannel(myRadioRef, PDSCH0);
+//        cc->setRadioChannel(myRadioRef, PDSCH1);
+//        cc->setRadioChannel(myRadioRef, PHICH);
+//        cc->setRadioChannel(myRadioRef, PBCH);
+//        cc->setRadioChannel(myRadioRef, PDCCH);
+//        cc->setRadioChannel(myRadioRef, DC);
+        cc->setRadioChannel(myRadioRef, Downlink);
     }
 
     if (stage == 4) {
@@ -81,11 +82,11 @@ void PHYue::handleUpperMessage(cMessage *msg) {
 
 void PHYue::handleRadioMessage(cMessage *msg) {
 	if (start) {
-		Subcarier *subcarier = dynamic_cast<Subcarier*>(msg);
-		if (subcarier && subcarier->getChannelNumber() == DC)
+		PHYFrame *frame = check_and_cast<PHYFrame*>(msg);
+		if (frame->getChannelNumber() == Downlink)
 			EV << "PHYue: Found DC subcarier at " << simTime() << ".\n";
-		delete msg;
 	}
+	delete msg;
 //    PhysicalResourceBlock *prb = check_and_cast<PhysicalResourceBlock*>(msg);
 //    EV << "LTE-PHYue: Receiving message from ";
 //    LTEControlInfo *ctrl = new LTEControlInfo();

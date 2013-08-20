@@ -21,7 +21,13 @@ PHYenb::PHYenb() : PHY() {
     dlBandwith = 6;
     ulBandwith = 6;
 
-    symbol = NULL;
+    symbolTimer = NULL;
+    nDLrb = 10;
+    nRBsc = 12;
+    nDLsymb = 7;
+    symbPeriod = 1e-3 / nDLsymb;
+    symbNr = 0;
+    slotNr = 0;
 }
 
 PHYenb::~PHYenb() {
@@ -31,10 +37,10 @@ PHYenb::~PHYenb() {
         delete ttiTimer;
     }
 
-    if (symbol != NULL) {
-        if (symbol->getContextPointer() != NULL)
-            this->cancelEvent(symbol);
-        delete symbol;
+    if (symbolTimer != NULL) {
+        if (symbolTimer->getContextPointer() != NULL)
+            this->cancelEvent(symbolTimer);
+        delete symbolTimer;
     }
 }
 
@@ -53,36 +59,31 @@ void PHYenb::initialize(int stage) {
 
         nb->subscribe(this, DLCONFIGRequest);
 
-        symbol = new cMessage("SYMB-TIMER");
-        symbol->setContextPointer(this);
-        this->scheduleAt(simTime(), symbol);
+        symbolTimer = new cMessage("SYMB-TIMER");
+        symbolTimer->setContextPointer(this);
+        this->scheduleAt(simTime(), symbolTimer);
     }
 }
 
 void PHYenb::handleMessage(cMessage *msg) {
 	if (msg->isSelfMessage()) {
-		if (msg == symbol) {
-			simtime_t symbPeriod = 7.142857142857143e-5;
-			for (unsigned i = 0; i < 10 / 2; i++) {
-				PhysicalResourceBlock *prb = new PhysicalResourceBlock();
-				prb->setChannelNumber(PBCH);
-				prb->setDuration(symbPeriod);
-				sendToChannel(prb);
-			}
+		if (msg == symbolTimer) {
+		    buildAndSendFrame();
 
-			Subcarier *subcarier = new Subcarier();
-			subcarier->setChannelNumber(DC);
-			sendToChannel(subcarier);
+            this->cancelEvent(symbolTimer);
+            this->scheduleAt(simTime() + symbPeriod, symbolTimer);
 
-			for (unsigned i = 0; i < 10 / 2; i++) {
-				PhysicalResourceBlock *prb = new PhysicalResourceBlock();
-				prb->setChannelNumber(PBCH);
-				prb->setDuration(symbPeriod);
-				sendToChannel(prb);
-			}
-
-            this->cancelEvent(symbol);
-            this->scheduleAt(simTime() + symbPeriod, symbol);
+            symbNr++;
+            if (symbNr % nDLsymb == 0) {
+                symbNr = 0;
+                slotNr++;
+                if (slotNr % 20 == 0) {
+                    slotNr = 0;
+                }
+                if (slotNr % 2 == 0) {
+                    tti++;
+                }
+            }
 		}
 	}
 }
@@ -126,6 +127,30 @@ void PHYenb::handleRadioMessage(cMessage *msg) {
     	rachInd->setPreambles(0, rachPrbl);
     	nb->fireChangeNotification(RACHIndication, rachInd);
     }
+}
+
+void PHYenb::buildAndSendFrame() {
+    PHYFrame *frame = new PHYFrame();
+    frame->setResArraySize(nDLrb * nRBsc);
+    frame->setChannelNumber(Downlink);
+
+    unsigned char ssOffset = (nDLrb * nRBsc) / 2 - 31;
+
+    // PSS
+    if ((slotNr == 0 || slotNr == 10) && (symbNr == (nDLsymb - 1))) {
+        for (unsigned char k = ssOffset; k < ssOffset + 62; k++) {
+            frame->setRes(k, PSS);
+        }
+    }
+
+    // SSS
+    if ((slotNr == 0 || slotNr == 10) && (symbNr == (nDLsymb - 2))) {
+        for (unsigned char k = ssOffset; k < ssOffset + 62; k++) {
+            frame->setRes(k, SSS);
+        }
+    }
+
+    sendToChannel(frame);
 }
 
 void PHYenb::stateEntered(int category, const cPolymorphic *details) {

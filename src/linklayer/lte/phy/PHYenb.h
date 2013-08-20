@@ -20,7 +20,13 @@
 
 class PHYenb : public PHY {
 private:
-	cMessage *symbol;
+    unsigned char nRBsc;
+    unsigned char nDLrb;
+    unsigned char nDLsymb;
+    simtime_t symbPeriod;
+    unsigned char symbNr;
+    unsigned char slotNr;
+	cMessage *symbolTimer;
 
     unsigned dlBandwith;
     unsigned ulBandwith;
@@ -37,6 +43,8 @@ private:
 //    bool findAndRemoveTxRequestPdu(unsigned msgId);
 
     void sendDCIFormat(DlConfigRequestPduPtr pdu);
+
+    void buildAndSendFrame();
 
     virtual void stateEntered(int category, const cPolymorphic *details);
 public:
