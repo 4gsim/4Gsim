@@ -69,115 +69,123 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
 
     if (category == SUBFRAMEIndication) {
         SubframeIndication *sfInd = check_and_cast<SubframeIndication*>(details);
-        unsigned tti = sfInd->getTti();
+        unsigned char sf = sfInd->getSf();
+        unsigned short sfn = sfInd->getSfn();
 
-        // downlink scheduling
-        SchedDlTriggerReq *triggReq = new SchedDlTriggerReq();
-        triggReq->setTti(tti);
-        // TODO harq proc information
-        nb->fireChangeNotification(SCHED_DL_TRIGGER_REQ, triggReq);
-
+        // BCH scheduling
+        if (sfn % 4 == 0 && sf == 0) {
+            RlcTxOpportunity *txOpp = new RlcTxOpportunity();
+            txOpp->setRnti(0);
+            nb->fireChangeNotification(RLC_TX_OPPORTUNITY, txOpp);
+        }
+//
+//        // downlink scheduling
+//        SchedDlTriggerReq *triggReq = new SchedDlTriggerReq();
+//        triggReq->setTti(tti);
+//        // TODO harq proc information
+//        nb->fireChangeNotification(SCHED_DL_TRIGGER_REQ, triggReq);
+//
     } else if (category == SCHED_DL_CONFIG_IND) {
-        SchedDlConfigInd *cfgInd = check_and_cast<SchedDlConfigInd*>(details);
-        tti = cfgInd->getTti();
-
-        // prepare downlink config request for physical layer
-        unsigned pduIndex = 0;
-        DlConfigRequest *dlReq = new DlConfigRequest();
-        dlReq->setTti(tti);
-
-        // prepare tx request for physical layer (sent only if tx is scheduled)
-        TxRequest *txReq = new TxRequest();
-        txReq->setTti(tti);
-
-        // check broadcast messages
-        for (unsigned i = 0; i < cfgInd->getBldBcastListArraySize(); i++) {
-            BuildBcastListElement bcastEl = cfgInd->getBldBcastList(i);
-            DlDciListElement dciEl = bcastEl.getDci();
-
-            // notify RLC layer of transmission opportunity
-            if (dciEl.getRv() == 0) {
-                EV << "LTE-MACenb: Sending RLC_TX_OPPORTUNITY for message with rnti = " << dciEl.getRnti() << ".\n";
-                RlcTxOpportunity *txOpp = new RlcTxOpportunity();
-                txOpp->setRnti(dciEl.getRnti());
-                nb->fireChangeNotification(RLC_TX_OPPORTUNITY, txOpp);
-            } else { // check for packet in buffer that should be retransmitted
-                MACBuffer::iterator i = buffer.find(bcastEl.getIndex());
-                if (i != buffer.end()) {
-                    MACServiceDataUnit *sdu = i->second;
-
-                    MACProtocolDataUnit *pdu = MACUtils().createTransparentPDU(DLSCH0, sdu->dup());
-                    EV << "LTE-MACenb: Sending buffered message with id = " << pdu->getKind() << " on DLSCH0 to lower layer.\n";
-                    this->send(pdu, gate("lowerLayerOut"));
-                }
-            }
-
-            // add pdu information to downlink request notification
-            if (bcastEl.getIndex() == MIB) {
-                DlConfigRequestBchPdu *dlReqBCHpdu = new DlConfigRequestBchPdu();
-                dlReqBCHpdu->setPduIndex(pduIndex);
-                dlReq->pushPdu(dlReqBCHpdu);
-            } else {
-                DlConfigRequestDciDlPdu *dlReqDCIpdu = new DlConfigRequestDciDlPdu();
-                dlReqDCIpdu->setRnti(dciEl.getRnti());
-//                dlReqDCIpdu->setRntiType(SiRnti);
-                dlReq->pushPdu(dlReqDCIpdu);
-
-                DlConfigRequestDlschPdu *dlReqDLSCHpdu = new DlConfigRequestDlschPdu();
-                dlReqDLSCHpdu->setPduIndex(pduIndex);
-                dlReqDLSCHpdu->setRnti(dciEl.getRnti());
-                dlReq->pushPdu(dlReqDLSCHpdu);
-            }
-
-            // add tx pdu information to tx request notification
-            TxRequestPdu txReqPdu = TxRequestPdu();
-            txReqPdu.setPduIndex(pduIndex++);
-            txReqPdu.setMsgKindsArraySize(1);
-            txReqPdu.setMsgKinds(0, bcastEl.getIndex());
-
-            txReq->setPdusArraySize(pduIndex);
-            txReq->setPdus(pduIndex - 1, txReqPdu);
-        }
-
-//        // check random access response message
-        for (unsigned i = 0; i < cfgInd->getBldRarListArraySize(); i++) {
-        	BuildRarListElement rarEl = cfgInd->getBldRarList(i);
-        	Subscriber *sub = subT->findSubscriberForRnti(TempCRnti, rarEl.getRnti());
-
-        	if (sub) {
-        		// create MAC RAR PDU
-        		MACRandomAccessResponse *rarSdu = MACUtils().createRAR(0, rarEl.getGrant(), sub->getRnti());
-        		MACProtocolDataUnit *pdu = MACUtils().createRandomAccessPDU(true, sub->getRapid(), rarSdu);
-
-                // add pdu information to downlink request notification
-                DlConfigRequestDciDlPdu *dlReqDCIpdu = new DlConfigRequestDciDlPdu();
-                dlReqDCIpdu->setRnti(sub->getRaRtni());
-                dlReqDCIpdu->setRntiType(RaRnti);
-                dlReq->pushPdu(dlReqDCIpdu);
-
-                DlConfigRequestDlschPdu *dlReqDLSCHpdu = new DlConfigRequestDlschPdu();
-                dlReqDLSCHpdu->setPduIndex(pduIndex);
-                dlReqDLSCHpdu->setRnti(sub->getRaRtni());
-                dlReq->pushPdu(dlReqDLSCHpdu);
-
-                // add tx pdu information to tx request notification
-                TxRequestPdu txReqPdu = TxRequestPdu();
-                txReqPdu.setPduIndex(pduIndex++);
-                txReqPdu.setMsgKindsArraySize(1);
-                txReqPdu.setMsgKinds(0, rarEl.getRnti());	// tempCRnti will also identify the message in phy layer
-
-                txReq->setPdusArraySize(pduIndex);
-                txReq->setPdus(pduIndex - 1, txReqPdu);
-
-                EV << "LTE-MACenb: Sending message with id = " << pdu->getKind() << " on DLSCH1 to lower layer.\n";
-                this->send(pdu, gate("lowerLayerOut"));
-        	}
-        }
-
-        nb->fireChangeNotification(DLCONFIGRequest, dlReq);
-
-        if (pduIndex > 0)
-            nb->fireChangeNotification(TXRequest, txReq);
+//        SchedDlConfigInd *cfgInd = check_and_cast<SchedDlConfigInd*>(details);
+//        tti = cfgInd->getTti();
+//
+//        // prepare downlink config request for physical layer
+//        unsigned pduIndex = 0;
+//        DlConfigRequest *dlReq = new DlConfigRequest();
+//        dlReq->setTti(tti);
+//
+//        // prepare tx request for physical layer (sent only if tx is scheduled)
+//        TxRequest *txReq = new TxRequest();
+//        txReq->setTti(tti);
+//
+//        // check broadcast messages
+//        for (unsigned i = 0; i < cfgInd->getBldBcastListArraySize(); i++) {
+//            BuildBcastListElement bcastEl = cfgInd->getBldBcastList(i);
+//            DlDciListElement dciEl = bcastEl.getDci();
+//
+//            // notify RLC layer of transmission opportunity
+//            if (dciEl.getRv() == 0) {
+//                EV << "LTE-MACenb: Sending RLC_TX_OPPORTUNITY for message with rnti = " << dciEl.getRnti() << ".\n";
+//                RlcTxOpportunity *txOpp = new RlcTxOpportunity();
+//                txOpp->setRnti(dciEl.getRnti());
+//                nb->fireChangeNotification(RLC_TX_OPPORTUNITY, txOpp);
+//            } else { // check for packet in buffer that should be retransmitted
+//                MACBuffer::iterator i = buffer.find(bcastEl.getIndex());
+//                if (i != buffer.end()) {
+//                    MACServiceDataUnit *sdu = i->second;
+//
+//                    MACProtocolDataUnit *pdu = MACUtils().createTransparentPDU(DLSCH0, sdu->dup());
+//                    EV << "LTE-MACenb: Sending buffered message with id = " << pdu->getKind() << " on DLSCH0 to lower layer.\n";
+//                    this->send(pdu, gate("lowerLayerOut"));
+//                }
+//            }
+//
+//            // add pdu information to downlink request notification
+//            if (bcastEl.getIndex() == MIB) {
+//                DlConfigRequestBchPdu *dlReqBCHpdu = new DlConfigRequestBchPdu();
+//                dlReqBCHpdu->setPduIndex(pduIndex);
+//                dlReq->pushPdu(dlReqBCHpdu);
+//            } else {
+//                DlConfigRequestDciDlPdu *dlReqDCIpdu = new DlConfigRequestDciDlPdu();
+//                dlReqDCIpdu->setRnti(dciEl.getRnti());
+////                dlReqDCIpdu->setRntiType(SiRnti);
+//                dlReq->pushPdu(dlReqDCIpdu);
+//
+//                DlConfigRequestDlschPdu *dlReqDLSCHpdu = new DlConfigRequestDlschPdu();
+//                dlReqDLSCHpdu->setPduIndex(pduIndex);
+//                dlReqDLSCHpdu->setRnti(dciEl.getRnti());
+//                dlReq->pushPdu(dlReqDLSCHpdu);
+//            }
+//
+//            // add tx pdu information to tx request notification
+//            TxRequestPdu txReqPdu = TxRequestPdu();
+//            txReqPdu.setPduIndex(pduIndex++);
+//            txReqPdu.setMsgKindsArraySize(1);
+//            txReqPdu.setMsgKinds(0, bcastEl.getIndex());
+//
+//            txReq->setPdusArraySize(pduIndex);
+//            txReq->setPdus(pduIndex - 1, txReqPdu);
+//        }
+//
+////        // check random access response message
+//        for (unsigned i = 0; i < cfgInd->getBldRarListArraySize(); i++) {
+//        	BuildRarListElement rarEl = cfgInd->getBldRarList(i);
+//        	Subscriber *sub = subT->findSubscriberForRnti(TempCRnti, rarEl.getRnti());
+//
+//        	if (sub) {
+//        		// create MAC RAR PDU
+//        		MACRandomAccessResponse *rarSdu = MACUtils().createRAR(0, rarEl.getGrant(), sub->getRnti());
+//        		MACProtocolDataUnit *pdu = MACUtils().createRandomAccessPDU(true, sub->getRapid(), rarSdu);
+//
+//                // add pdu information to downlink request notification
+//                DlConfigRequestDciDlPdu *dlReqDCIpdu = new DlConfigRequestDciDlPdu();
+//                dlReqDCIpdu->setRnti(sub->getRaRtni());
+//                dlReqDCIpdu->setRntiType(RaRnti);
+//                dlReq->pushPdu(dlReqDCIpdu);
+//
+//                DlConfigRequestDlschPdu *dlReqDLSCHpdu = new DlConfigRequestDlschPdu();
+//                dlReqDLSCHpdu->setPduIndex(pduIndex);
+//                dlReqDLSCHpdu->setRnti(sub->getRaRtni());
+//                dlReq->pushPdu(dlReqDLSCHpdu);
+//
+//                // add tx pdu information to tx request notification
+//                TxRequestPdu txReqPdu = TxRequestPdu();
+//                txReqPdu.setPduIndex(pduIndex++);
+//                txReqPdu.setMsgKindsArraySize(1);
+//                txReqPdu.setMsgKinds(0, rarEl.getRnti());	// tempCRnti will also identify the message in phy layer
+//
+//                txReq->setPdusArraySize(pduIndex);
+//                txReq->setPdus(pduIndex - 1, txReqPdu);
+//
+//                EV << "LTE-MACenb: Sending message with id = " << pdu->getKind() << " on DLSCH1 to lower layer.\n";
+//                this->send(pdu, gate("lowerLayerOut"));
+//        	}
+//        }
+//
+//        nb->fireChangeNotification(DLCONFIGRequest, dlReq);
+//
+//        if (pduIndex > 0)
+//            nb->fireChangeNotification(TXRequest, txReq);
 
     } else if (category == RACHIndication) {
     	// TODO check RACH type

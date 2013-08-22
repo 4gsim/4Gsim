@@ -14,15 +14,35 @@
 // 
 
 #include "PHY.h"
+#include "RRC.h"
 
 PHY::PHY() : rs(this->getId()) {
 	// TODO Auto-generated constructor stub
-    tti = 0;
-    ttiTimer = NULL;
+    sfn = 0;
+    sf = 0;
+    symbolTimer = NULL;
+    symb = 0;
+    slot = 0;
+
+    nRBsc = 12;
+    nDLsymb = 7;
+
+    nDLrb = 255;
+    ncp = 255;
+    n1id = 255;
+    n2id = 255;
+    nCellId = 65535;
+
+    symbPeriod = 1e-3 / nDLsymb;
 }
 
 PHY::~PHY() {
 	// TODO Auto-generated destructor stub
+    if (symbolTimer != NULL) {
+        if (symbolTimer->getContextPointer() != NULL)
+            this->cancelEvent(symbolTimer);
+        delete symbolTimer;
+    }
 }
 
 void PHY::initialize(int stage) {
@@ -36,25 +56,15 @@ void PHY::initialize(int stage) {
         nb->subscribe(this, STARTRequest);
         nb->subscribe(this, TXRequest);
 
-        ttiTimer = new cMessage("TTI-TIMER");
-        ttiTimer->setContextPointer(this);
+        symbolTimer = new cMessage("SYMB-TIMER");
+        symbolTimer->setContextPointer(this);
+        this->scheduleAt(simTime(), symbolTimer);
     }
 }
 
 void PHY::handleMessage(cMessage *msg) {
     if (msg->isSelfMessage()) {
-        if (msg == ttiTimer) {
-        	sendBufferedData();
 
-        	tti++;
-
-            SubframeIndication *sfInd = new SubframeIndication();
-            sfInd->setTti(tti);
-            nb->fireChangeNotification(SUBFRAMEIndication, sfInd);
-
-            this->cancelEvent(ttiTimer);
-            this->scheduleAt(simTime() + TTI_VALUE, ttiTimer);
-        }
     } else {
     	if (msg->arrivedOn("upperLayerIn")) {
     		handleUpperMessage(msg);
@@ -104,8 +114,21 @@ void PHY::stateEntered(int category, const cPolymorphic *details) {
             if (category == CONFIGRequest) {
             	ConfigRequest *cfgReq = check_and_cast<ConfigRequest*>(details);
             	for (unsigned i = 0; i < cfgReq->getTlvsArraySize(); i++) {
-            		if (cfgReq->getTlvs(i).getTag() == SfnSf)
-            			this->tti = cfgReq->getTlvs(i).getValue();
+            		if (cfgReq->getTlvs(i).getTag() == SfnSf) {
+            			sfn = cfgReq->getTlvs(i).getValue() / 10;
+            			sf = cfgReq->getTlvs(i).getValue() % 10;
+            		}
+                    if (cfgReq->getTlvs(i).getTag() == DlCyclicPrefixType) {
+                        ncp = cfgReq->getTlvs(i).getValue() == RRC_CP_NORMAL ? PHY_CP_NORMAL : PHY_CP_EXTENDED;
+                    }
+                    if (cfgReq->getTlvs(i).getTag() == DlChannelBandwith) {
+                        nDLrb = cfgReq->getTlvs(i).getValue();
+                    }
+                    if (cfgReq->getTlvs(i).getTag() == PhysicalCellId) {
+                        nCellId = cfgReq->getTlvs(i).getValue();
+                        n1id = nCellId / 3;
+                        n2id = nCellId % 3;
+                    }
             	}
                 ConfigResponse *cfgResp = new ConfigResponse();
                 cfgResp->setErrorCode(MsgOk);
@@ -115,8 +138,8 @@ void PHY::stateEntered(int category, const cPolymorphic *details) {
         }
         case RUNNING: {
             if (category == STARTRequest) {
-                this->cancelEvent(ttiTimer);
-                this->scheduleAt(simTime() + TTI_VALUE, ttiTimer);
+                this->cancelEvent(symbolTimer);
+                this->scheduleAt(simTime(), symbolTimer);
             }
             break;
         }
@@ -175,10 +198,10 @@ void PHY::receiveChangeNotification(int category, const cPolymorphic *details) {
             break;
     }
 
-//    if (oldState != fsm.getState())
-//        EV << "LTE-PHY: PSM-Transition: " << stateName(oldState) << " --> " << stateName(fsm.getState()) << "  (event was: " << eventName(category) << ")\n";
-//    else
-//        EV << "LTE-PHY: Staying in state: " << stateName(fsm.getState()) << " (event was: " << eventName(category) << ")\n";
+    if (oldState != fsm.getState())
+        EV << "LTE-PHY: PSM-Transition: " << stateName(oldState) << " --> " << stateName(fsm.getState()) << "  (event was: " << eventName(category) << ")\n";
+    else
+        EV << "LTE-PHY: Staying in state: " << stateName(fsm.getState()) << " (event was: " << eventName(category) << ")\n";
 
     stateEntered(category, details);
 }

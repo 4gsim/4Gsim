@@ -51,6 +51,7 @@ enum LTEPhyChannels
     DC = 38;
     PSS = 39;
     SSS	= 40;
+    RS = 41;
 };
 
 enum LTEDirection

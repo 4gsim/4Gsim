@@ -14,21 +14,18 @@
 // 
 
 #include "PHYue.h"
+#include "LTEChannelControl.h"
 
 Define_Module(PHYue);
 
 PHYue::PHYue() : PHY()  {
 	start = false;
 	delayTimer = NULL;
+    pbchSubcarriers = 0;
+    syncState = NONE;
 }
 
 PHYue::~PHYue() {
-    if (ttiTimer != NULL) {
-        if (ttiTimer->getContextPointer() != NULL)
-            this->cancelEvent(ttiTimer);
-        delete ttiTimer;
-    }
-
     if (delayTimer != NULL) {
         if (delayTimer->getContextPointer() != NULL)
             this->cancelEvent(delayTimer);
@@ -83,8 +80,50 @@ void PHYue::handleUpperMessage(cMessage *msg) {
 void PHYue::handleRadioMessage(cMessage *msg) {
 	if (start) {
 		PHYFrame *frame = check_and_cast<PHYFrame*>(msg);
-		if (frame->getChannelNumber() == Downlink)
-			EV << "PHYue: Found DC subcarier at " << simTime() << ".\n";
+		if (syncState == NONE) {
+            for (unsigned char i = 0; i < frame->getResArraySize(); i++) {
+                unsigned char re = frame->getRes(i);
+                if (re == PSS) {
+                    processPSS();
+                    break;
+                }
+            }
+		} else if (syncState == PSS_RECEIVED) {
+            for (unsigned char i = 0; i < frame->getResArraySize(); i++) {
+                unsigned char re = frame->getRes(i);
+                if (re == SSS) {
+                    processSSS();
+                    break;
+                }
+            }
+            symb++;
+		} else if (syncState == SSS_RECEIVED || syncState == SYNCHRONIZED) {
+		    if (syncState == SSS_RECEIVED) {
+		        if (symb == 0 || symb == (nDLsymb - 3)) {
+		            unsigned char vShift = nCellId % 6;
+		            unsigned char v = symb == 0 ? 0 : 3;
+		            unsigned char rsOffset = (v + vShift) % 6;
+		            if (frame->getRes(rsOffset) == RS) {
+		                processReferenceSignal();
+		            }
+		        }
+		    } else {
+		        if (slot == 1 && symb < 4)
+		            processPBCH(frame);
+		    }
+            symb++;
+            if (symb % nDLsymb == 0) {
+                symb = 0;
+                slot++;
+                if (slot % 20 == 0) {
+                    slot = 0;
+                }
+                sf = slot / 2;
+
+                if (sf % 10 == 0)
+                    sfn++;
+            }
+		}
 	}
 	delete msg;
 //    PhysicalResourceBlock *prb = check_and_cast<PhysicalResourceBlock*>(msg);
@@ -127,6 +166,81 @@ void PHYue::handleRadioMessage(cMessage *msg) {
 //        tb->setControlInfo(ctrl);
 //        this->send(tb, gate("upperLayerOut"));
 //    }
+}
+
+cMessage *PHYue::getData(unsigned char channel) {
+    if (dynamic_cast<LTEChannelControl*>(cc) != NULL) {
+        return dynamic_cast<LTEChannelControl*>(cc)->getData(channel);
+    }
+    return NULL;
+}
+
+void PHYue::processPSS() {
+    EV << "LTE-PHYue: Processing Primary Synchronization Signal.\n";
+    cMessage *msg = getData(PSS);
+    if (msg) {
+        PSSSignal *pss = check_and_cast<PSSSignal*>(msg);
+        n2id = pss->getCellIdInGroup();
+
+        slot = 0;
+        symb = 1;
+        EV << "LTE-PHYue: Setting slot = " << (unsigned)slot << " and symb = " << (unsigned)symb << ".\n";
+
+        syncState = PSS_RECEIVED;
+        delete msg;
+    }
+}
+
+void PHYue::processSSS() {
+    EV << "LTE-PHYue: Processing Secondary Synchronization signal.\n";
+    cMessage *msg = getData(SSS);
+    if (msg) {
+        SSSSignal *sss = check_and_cast<SSSSignal*>(msg);
+
+        n1id = sss->getCellGroupId();
+        nCellId = 3 * n1id + n2id;
+
+        sf = sss->getSf();  // UE knows the subframe because in reality the sequences for subframe 0 and 5 differ
+        slot = sf * 2;
+        symb++;
+        nDLsymb = symb / 10;
+        symb = nDLsymb - 2;
+        EV << "LTE-PHYue: Setting number of symbols = " << (unsigned)nDLsymb << ".\n";
+        EV << "LTE-PHYue: Resetting slot = " << (unsigned)slot << " and symb = " << (unsigned)symb << ".\n";
+
+        syncState = SSS_RECEIVED;
+        delete msg;
+    }
+}
+
+void PHYue::processReferenceSignal() {
+    EV << "LTE-PHYue: Processing Reference Signal.\n";
+    cMessage *msg = getData(RS);
+    if (msg) {
+        ReferenceSignal *refSig = check_and_cast<ReferenceSignal*>(msg);
+        if (refSig->getCellId() == nCellId) {
+            ncp = refSig->getNcp();
+            if (ncp == 1 && (nDLsymb == 7 || nDLsymb == 6))
+                nRBsc = 12;
+            else if (ncp == 1 && nDLsymb == 3)
+                nRBsc = 24;
+            syncState = SYNCHRONIZED;
+        }
+        delete msg;
+    }
+}
+
+void PHYue::processPBCH(PHYFrame *frame) {
+    EV << "LTE-PHYue: Processing Physical Broadcast Channel.\n";
+    unsigned char dc = frame->getResArraySize() / 2;
+    for (unsigned char k = dc - 36; k < dc + 36; k++) {
+        if (frame->getRes(k) == PBCH)
+            pbchSubcarriers++;
+    }
+    if (symb == 3 && pbchSubcarriers / 4 == 72) {
+
+        pbchSubcarriers = 0;
+    }
 }
 
 void PHYue::stateEntered(int category, const cPolymorphic *details) {

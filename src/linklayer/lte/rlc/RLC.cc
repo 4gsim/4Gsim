@@ -45,7 +45,7 @@ void RLC::handleMessage(cMessage *msg) {
     if (msg->arrivedOn("upperLayerIn")) {
         LTEControlInfo *ctrl = check_and_cast<LTEControlInfo*>(msg->removeControlInfo());
         RLCServiceDataUnit *sdu = new RLCServiceDataUnit(msg->getName());
-        EV << "LTE-RLC: Receiving message on channel = " << ctrl->getChannel() << " from upper layer.\n";
+        EV << "LTE-RLC: Receiving message on channel = " << ctrl->getChannelName() << " from upper layer.\n";
 
         sdu->encapsulate(PK(msg));
         sdu->setControlInfo(ctrl);

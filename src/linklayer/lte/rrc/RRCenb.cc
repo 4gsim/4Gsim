@@ -17,13 +17,13 @@
 #include "PHYCommand.h"
 #include "LTEControlInfo.h"
 #include "RRCMessage.h"
+#include "PHY.h"
 
 Define_Module(RRCenb);
 
-RRCenb::RRCenb() {
+RRCenb::RRCenb() : RRC() {
     // TODO Auto-generated constructor stub
-    sfn = 0;
-    dlBandwithSel = 0;
+
 }
 
 RRCenb::~RRCenb() {
@@ -36,6 +36,8 @@ void RRCenb::initialize(int stage) {
     if (stage == 4) {
 //        lteCtrl->startPhysicalLayer(0);
 
+        nb->subscribe(this, PARAMResponse);
+        nb->subscribe(this, CONFIGResponse);
         nb->subscribe(this, SUBFRAMEIndication);
 
         // initialize own configuration parameters
@@ -82,6 +84,13 @@ void RRCenb::initialize(int stage) {
         cellCfg->setSiConfig(siCfg);
 
 //        nb->fireChangeNotification(CSCHED_CELL_CONFIG_REQ, cellCfg);
+
+        cyclicPrefix = RRC_CP_NORMAL;
+        dlBandwithSel = 1;
+        phyCellId = uniform(0, 503);
+
+        ParamRequest *paramReq = new ParamRequest();
+        nb->fireChangeNotification(PARAMRequest, paramReq);
     }
 }
 
@@ -241,18 +250,18 @@ void RRCenb::receiveChangeNotification(int category, const cPolymorphic *details
 
     if (category == SUBFRAMEIndication) {
         SubframeIndication *sfInd = check_and_cast<SubframeIndication*>(details);
-        unsigned short tti = sfInd->getTti();
-        sfn = tti / 10;
+        unsigned char sf = sfInd->getSf();
+        unsigned short sfn = sfInd->getSfn();
 
         // sending MasterInformationBlock
-        if (sfn % 4 == 0 && tti % 10 == 0) {
+        if (sfn % 4 == 0 && sf == 0) {
             sendMIB();
         }
 
         // sending SystemInformationBlocks
-        if (sfn % 8 == 0 && tti % 10 == 5) {
+        if (sfn % 8 == 0 && sf % 10 == 5) {
             sendSIB1();
-        } else if (!(sfn % 2 == 0 && tti % 10 == 5)) {
+        } else if (!(sfn % 2 == 0 && sf % 10 == 5)) {
 //            unsigned w = siWindowLengths[siWdwLen.getValue()];
 //
 //            for (unsigned n = 0; n < schedInfoList.size(); n++) {
@@ -265,5 +274,20 @@ void RRCenb::receiveChangeNotification(int category, const cPolymorphic *details
 //                }
 //            }
         }
+    } else if (category == PARAMResponse) {
+        ParamResponse *paramResp = check_and_cast<ParamResponse*>(details);
+        PhyCommandTlv phySt = paramResp->getTlvs(0);
+        if (phySt.getValue() == IDLE) {
+            ConfigRequest *cfgReq = new ConfigRequest();
+            cfgReq->setTlvsArraySize(4);
+            cfgReq->setTlvs(0, createPhyCommandTlv(SfnSf, 1, sfn * 10 + sf));
+            cfgReq->setTlvs(1, createPhyCommandTlv(DlCyclicPrefixType, 1, cyclicPrefix));
+            cfgReq->setTlvs(2, createPhyCommandTlv(DlChannelBandwith, 1, dlBandwiths[dlBandwithSel]));
+            cfgReq->setTlvs(3, createPhyCommandTlv(PhysicalCellId, 1, phyCellId));
+            nb->fireChangeNotification(CONFIGRequest, cfgReq);
+        }
+    } else if (category == CONFIGResponse) {
+        StartRequest *startReq = new StartRequest();
+        nb->fireChangeNotification(STARTRequest, startReq);
     }
 }

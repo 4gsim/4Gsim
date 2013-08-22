@@ -225,16 +225,16 @@ void MACue::receiveChangeNotification(int category, const cPolymorphic *details)
     Enter_Method_Silent();
 
     if (category == SUBFRAMEIndication) {
-    	EV << "MACue: Received SUBFRAMEIndication from physical layer. Processing the indication.\n";
-        SubframeIndication *sfInd = check_and_cast<SubframeIndication*>(details);
-        unsigned tti = sfInd->getTti();
-
-        // uplink scheduling
-        SchedUlTriggerReq *triggReq = new SchedUlTriggerReq();
-        triggReq->setTti(tti);
-        triggReq->setRapComplete(rapComplete);
-
-        nb->fireChangeNotification(SCHED_UL_TRIGGER_REQ, triggReq);
+//    	EV << "MACue: Received SUBFRAMEIndication from physical layer. Processing the indication.\n";
+//        SubframeIndication *sfInd = check_and_cast<SubframeIndication*>(details);
+//        unsigned tti = sfInd->getTti();
+//
+//        // uplink scheduling
+//        SchedUlTriggerReq *triggReq = new SchedUlTriggerReq();
+//        triggReq->setTti(tti);
+//        triggReq->setRapComplete(rapComplete);
+//
+//        nb->fireChangeNotification(SCHED_UL_TRIGGER_REQ, triggReq);
 
     } else if (category == SCHED_UL_CONFIG_IND) {
     	EV << "MACue: Received SCHED_UL_CONFIG_IND from physical layer. Processing the indication.\n";

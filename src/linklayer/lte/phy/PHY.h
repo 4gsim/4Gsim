@@ -34,14 +34,35 @@ enum PHYState {
     RUNNING     = FSM_Steady(2),
 };
 
+enum PHYCyclicPrefix {
+    PHY_CP_EXTENDED = 0,
+    PHY_CP_NORMAL = 1
+};
+
 class PHY : public ChannelAccess {
 protected:
+    unsigned short sfn;
+    unsigned char sf;
+    unsigned char symb;
+    unsigned char slot;
+    simtime_t symbPeriod;
+
+    unsigned char nRBsc;    // number of subcarriers in a resurse block
+    unsigned char nDLsymb;  // number of downlink symbols in slot
+
+    unsigned char nDLrb;    // number of downlink resource blocks
+
+    unsigned char n1id;     // physical cell group id
+    unsigned char n2id;     // id in the physical cell group
+    unsigned short nCellId; // physical cell id
+
+    unsigned char ncp;      // cyclic prefix
+
     cFSM fsm;
 
     RadioState rs;
 
-    unsigned tti;
-    cMessage *ttiTimer;
+    cMessage *symbolTimer;
 
     NotificationBoard *nb;
 

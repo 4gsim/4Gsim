@@ -23,10 +23,8 @@ LTEChannelControl::LTEChannelControl() {
 }
 
 LTEChannelControl::~LTEChannelControl() {
-    for (int i = 0; i < numChannels; i++)
-    {
-        for (TransmissionList::iterator it = transmissions[i].begin(); it != transmissions[i].end();)
-        {
+    for (int i = 0; i < numChannels; i++) {
+        for (TransmissionList::iterator it = transmissions[i].begin(); it != transmissions[i].end();) {
             TransmissionList::iterator curr = it;
             AirFrame *frame = *it;
             it++;
@@ -34,6 +32,11 @@ LTEChannelControl::~LTEChannelControl() {
             delete frame;
             transmissions[i].erase(curr);
         }
+    }
+
+    for (ChannelData::iterator i = data.begin(); i != data.end(); ++i) {
+        delete i->second;
+        data.erase(i);
     }
 }
 
@@ -174,7 +177,6 @@ void LTEChannelControl::addOngoingTransmission(RadioRef h, AirFrame *frame) {
     }
 
     // purge old transmissions from time to time
-    simtime_t dif = simTime() - lastOngoingTransmissionsUpdate;
     if (simTime() - lastOngoingTransmissionsUpdate > TRANSMISSION_PURGE_INTERVAL)
     {
         purgeOngoingTransmissions();
@@ -284,4 +286,23 @@ void LTEChannelControl::setRadioChannel(RadioRef r, int channel) {
     }
 
     r->channels.push_back(channel);
+}
+
+void LTEChannelControl::setData(unsigned char channel, cMessage *msg) {
+    take(msg);
+    ChannelData::iterator i = data.find(channel);
+    if (i != data.end()) {
+        delete i->second;
+        data.erase(i);
+    }
+    data[channel] = msg;
+}
+
+cMessage *LTEChannelControl::getData(unsigned char channel) {
+    ChannelData::iterator i = data.find(channel);
+    if (i != data.end()) {
+        cMessage *msg = i->second->dup();
+        return msg;
+    } else
+        return NULL;
 }

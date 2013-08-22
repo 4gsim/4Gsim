@@ -35,7 +35,12 @@ Define_Module(RRC);
 
 RRC::RRC() {
 	// TODO Auto-generated constructor stub
+    sfn = 0;
+    sf = 0;
 
+    dlBandwithSel = 255;
+    cyclicPrefix = 255;
+    phyCellId = 65535;
 }
 
 RRC::~RRC() {

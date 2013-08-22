@@ -50,6 +50,9 @@ protected:
     typedef std::list<RadioEntry> RadioList;
     typedef std::vector<RadioRef> RadioRefVector;
 
+    typedef std::map<unsigned char /* channel */, cMessage*> ChannelData;
+    ChannelData data;
+
     RadioList radios;
 
     /** keeps track of ongoing transmissions; this is needed when a radio
@@ -133,6 +136,8 @@ public:
     /** Enable the reception in the reference module */
     virtual void enableReception(RadioRef r) { r->isActive = true; };
 
+    void setData(unsigned char channel, cMessage *msg);
+    cMessage *getData(unsigned char);
 };
 
 #endif /* LTECHANNELCONTROL_H_ */

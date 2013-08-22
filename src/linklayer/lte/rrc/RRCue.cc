@@ -19,7 +19,7 @@
 
 Define_Module(RRCue);
 
-RRCue::RRCue() {
+RRCue::RRCue() : RRC() {
     // TODO Auto-generated constructor stub
     recvMIB = false;
     recvSIB1 = false;
@@ -115,9 +115,9 @@ void RRCue::processMIB(MasterInformationBlock mib) {
         dlBandwithSel = mib.getMasterInformationBlockdl_Bandwidth().getValue();
         phichCfg = mib.getPhichConfig();
         sfn = mib.getMasterInformationBlockSystemFrameNumber().getValue()[0];
-        if (!recvMIB) {
-            lteCtrl->startPhysicalLayer((sfn << 2) * 10);
-        }
+//        if (!recvMIB) {
+//            lteCtrl->startPhysicalLayer((sfn << 2) * 10);
+//        }
         recvMIB = true;
     }
 }

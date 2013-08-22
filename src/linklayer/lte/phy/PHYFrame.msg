@@ -50,3 +50,25 @@ message PHYFrame extends AirFrame
 {
    unsigned char res[];	// Resource Elements
 }
+
+message PSSSignal
+{
+	unsigned char cellIdInGroup;    
+}
+
+message SSSSignal
+{
+	unsigned char cellGroupId;
+	unsigned char sf;    
+}
+
+message ReferenceSignal
+{
+    unsigned char cellId;
+	unsigned char ncp;    	// cyclic prefix
+}
+
+message PBCHMessage
+{
+	unsigned char cellId;    
+}

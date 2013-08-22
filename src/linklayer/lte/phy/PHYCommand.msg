@@ -46,6 +46,9 @@ enum PhyCommandType
 
 enum PhyCommandTlvTag
 {
+    DlCyclicPrefixType = 4;
+    DlChannelBandwith = 6;
+    PhysicalCellId = 16;
     DlBwSupp = 40;
     UlBwSupp = 41;
 	PhyState = 60;  
@@ -100,7 +103,8 @@ class ConfigResponse extends PhyCommand
 
 class SubframeIndication extends PhyCommand
 {
-	unsigned short tti;	// tti from 0 to INF    
+	unsigned short sfn;
+	unsigned char sf;	   
 }
 
 class DlConfigRequestPdu

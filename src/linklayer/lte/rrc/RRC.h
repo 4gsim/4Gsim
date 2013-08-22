@@ -37,10 +37,21 @@ static const unsigned preambleTransMaxs[11] = { 3, 4, 5, 6, 7, 8, 10, 20, 50, 10
 static const unsigned raRespWdwSizes[8] = { 2, 3, 4, 5, 6, 7, 8, 10 };
 static const unsigned macContResolTimers[8] = { 8, 16, 24, 32, 40, 48, 56, 64 };
 
+enum RRCCyclicPrefix
+{
+    RRC_CP_NORMAL = 0,
+    RRC_CP_EXTENDED = 1
+};
+
 class RRC : public cSimpleModule, public INotifiable {
 protected:
     unsigned short sfn;
+    unsigned char sf;
+
     unsigned char dlBandwithSel;
+    unsigned char cyclicPrefix;
+    unsigned short phyCellId;
+
     PHICHConfig phichCfg;
     RACHConfigCommon rachCfg;
     PRACHConfigSIB prachCfg;

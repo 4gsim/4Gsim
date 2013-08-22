@@ -33,8 +33,8 @@ void LTEControl::initialize(int stage) {
     if (stage == 4) {
         nb = NotificationBoardAccess().get();
 
-        nb->subscribe(this, PARAMResponse);
-        nb->subscribe(this, CONFIGResponse);
+//        nb->subscribe(this, PARAMResponse);
+//        nb->subscribe(this, CONFIGResponse);
 
         const char *fileName = par("configFile");
         if (fileName == NULL || (!strcmp(fileName, "")))

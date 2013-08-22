@@ -20,14 +20,6 @@
 
 class PHYenb : public PHY {
 private:
-    unsigned char nRBsc;
-    unsigned char nDLrb;
-    unsigned char nDLsymb;
-    simtime_t symbPeriod;
-    unsigned char symbNr;
-    unsigned char slotNr;
-	cMessage *symbolTimer;
-
     unsigned dlBandwith;
     unsigned ulBandwith;
 
@@ -45,6 +37,8 @@ private:
     void sendDCIFormat(DlConfigRequestPduPtr pdu);
 
     void buildAndSendFrame();
+
+    void setData(unsigned char channel, cMessage *msg);
 
     virtual void stateEntered(int category, const cPolymorphic *details);
 public:
