@@ -28,17 +28,22 @@ private:
 
     typedef std::map<unsigned short /* pduIndex */, std::list<short /* msgKinds */> > TxRequests;
     TxRequests txReqs;
-    typedef std::map<unsigned /* msgKind */, TransportBlock*> TransmissionBuffer;
+    typedef std::map<unsigned char /* last resource element */, PHYFrame*> PHYFrames;
+    typedef std::map<unsigned char /* symbol */, PHYFrames> TransmissionBuffer;
     TransmissionBuffer buffer;
+
+    DlConfigRequestBchPdu *dlReqBCHpdu;
 
 //    bool findAndRemoveDlConfigRequestPdu(unsigned short pduIndex);
 //    bool findAndRemoveTxRequestPdu(unsigned msgId);
 
     void sendDCIFormat(DlConfigRequestPduPtr pdu);
 
-    void buildAndSendFrame();
+    void buildSubframe();
+    void sendSymbol();
+    void cleanup();
 
-    void setData(unsigned char channel, cMessage *msg);
+    void setData(PHYFrame *frame);
 
     virtual void stateEntered(int category, const cPolymorphic *details);
 public:

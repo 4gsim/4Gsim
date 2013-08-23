@@ -71,7 +71,8 @@ class DlInfoListElement
     
 class SchedDlTriggerReq extends SchedulerCommand
 {
-    unsigned short tti;
+    unsigned short sfn;
+    unsigned char sf;
     DlInfoListElement dlInfoList[];
 }
 
@@ -121,7 +122,8 @@ class BuildBcastListElement
 
 class SchedDlConfigInd extends SchedulerCommand
 {
-    unsigned short tti;
+    unsigned short sfn;
+    unsigned char sf;
     BuildBcastListElement bldBcastList[];
     BuildRarListElement bldRarList[];
 }

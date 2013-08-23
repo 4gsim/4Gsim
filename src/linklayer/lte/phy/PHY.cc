@@ -34,6 +34,8 @@ PHY::PHY() : rs(this->getId()) {
     nCellId = 65535;
 
     symbPeriod = 1e-3 / nDLsymb;
+
+    dlSubframe = NULL;
 }
 
 PHY::~PHY() {
@@ -43,19 +45,16 @@ PHY::~PHY() {
             this->cancelEvent(symbolTimer);
         delete symbolTimer;
     }
+
+    if (dlSubframe) {
+    	delete [] dlSubframe;
+    }
 }
 
 void PHY::initialize(int stage) {
 	ChannelAccess::initialize(stage);
 
     if (stage == 4) {
-        nb = NotificationBoardAccess().get();
-
-        nb->subscribe(this, PARAMRequest);
-        nb->subscribe(this, CONFIGRequest);
-        nb->subscribe(this, STARTRequest);
-        nb->subscribe(this, TXRequest);
-
         symbolTimer = new cMessage("SYMB-TIMER");
         symbolTimer->setContextPointer(this);
         this->scheduleAt(simTime(), symbolTimer);
@@ -138,6 +137,10 @@ void PHY::stateEntered(int category, const cPolymorphic *details) {
         }
         case RUNNING: {
             if (category == STARTRequest) {
+            	dlSubframe = new PHYSymbol*[nDLsymb * 2];
+            	for (unsigned char i = 0; i < nDLsymb * 2; i++)
+            		dlSubframe[i] = NULL;
+
                 this->cancelEvent(symbolTimer);
                 this->scheduleAt(simTime(), symbolTimer);
             }
@@ -198,10 +201,10 @@ void PHY::receiveChangeNotification(int category, const cPolymorphic *details) {
             break;
     }
 
-    if (oldState != fsm.getState())
-        EV << "LTE-PHY: PSM-Transition: " << stateName(oldState) << " --> " << stateName(fsm.getState()) << "  (event was: " << eventName(category) << ")\n";
-    else
-        EV << "LTE-PHY: Staying in state: " << stateName(fsm.getState()) << " (event was: " << eventName(category) << ")\n";
+//    if (oldState != fsm.getState())
+//        EV << "LTE-PHY: PSM-Transition: " << stateName(oldState) << " --> " << stateName(fsm.getState()) << "  (event was: " << eventName(category) << ")\n";
+//    else
+//        EV << "LTE-PHY: Staying in state: " << stateName(fsm.getState()) << " (event was: " << eventName(category) << ")\n";
 
     stateEntered(category, details);
 }

@@ -20,6 +20,7 @@
 
 // Forward declarations
 class AirFrame;
+class PHYFrame;
 
 #define LIGHT_SPEED 3.0E+8
 #define TRANSMISSION_PURGE_INTERVAL 0.1
@@ -50,7 +51,7 @@ protected:
     typedef std::list<RadioEntry> RadioList;
     typedef std::vector<RadioRef> RadioRefVector;
 
-    typedef std::map<unsigned char /* channel */, cMessage*> ChannelData;
+    typedef std::map<unsigned char /* channel */, PHYFrame*> ChannelData;
     ChannelData data;
 
     RadioList radios;
@@ -136,8 +137,8 @@ public:
     /** Enable the reception in the reference module */
     virtual void enableReception(RadioRef r) { r->isActive = true; };
 
-    void setData(unsigned char channel, cMessage *msg);
-    cMessage *getData(unsigned char);
+    void setData(PHYFrame *frame);
+    PHYFrame *getData(unsigned char);
 };
 
 #endif /* LTECHANNELCONTROL_H_ */

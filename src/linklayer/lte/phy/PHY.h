@@ -58,6 +58,8 @@ protected:
 
     unsigned char ncp;      // cyclic prefix
 
+    PHYSymbol **dlSubframe;
+
     cFSM fsm;
 
     RadioState rs;

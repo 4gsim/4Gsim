@@ -15,6 +15,7 @@
 
 #include "LTEChannelControl.h"
 #include "AirFrame_m.h"
+#include "PHYFrame_m.h"
 
 Define_Module(LTEChannelControl);
 
@@ -23,20 +24,14 @@ LTEChannelControl::LTEChannelControl() {
 }
 
 LTEChannelControl::~LTEChannelControl() {
-    for (int i = 0; i < numChannels; i++) {
-        for (TransmissionList::iterator it = transmissions[i].begin(); it != transmissions[i].end();) {
-            TransmissionList::iterator curr = it;
-            AirFrame *frame = *it;
-            it++;
-
-            delete frame;
-            transmissions[i].erase(curr);
+    for (unsigned int i = 0; i < transmissions.size(); i++) {
+        for (TransmissionList::iterator it = transmissions[i].begin(); it != transmissions[i].end(); it++) {
+            delete *it;
         }
     }
 
     for (ChannelData::iterator i = data.begin(); i != data.end(); ++i) {
         delete i->second;
-        data.erase(i);
     }
 }
 
@@ -288,21 +283,21 @@ void LTEChannelControl::setRadioChannel(RadioRef r, int channel) {
     r->channels.push_back(channel);
 }
 
-void LTEChannelControl::setData(unsigned char channel, cMessage *msg) {
-    take(msg);
+void LTEChannelControl::setData(PHYFrame *frame) {
+    take(frame);
+    unsigned char channel = frame->getChannel();
     ChannelData::iterator i = data.find(channel);
     if (i != data.end()) {
         delete i->second;
-        data.erase(i);
     }
-    data[channel] = msg;
+    data[channel] = frame;
 }
 
-cMessage *LTEChannelControl::getData(unsigned char channel) {
+PHYFrame *LTEChannelControl::getData(unsigned char channel) {
     ChannelData::iterator i = data.find(channel);
     if (i != data.end()) {
-        cMessage *msg = i->second->dup();
-        return msg;
+        PHYFrame *frame = i->second->dup();
+        return frame;
     } else
         return NULL;
 }

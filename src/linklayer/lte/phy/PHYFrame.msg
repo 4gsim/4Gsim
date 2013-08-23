@@ -15,6 +15,7 @@
 
 cplusplus {{
 #include "AirFrame_m.h"
+#include "LTEControlInfo_m.h"
 }}
 
 class noncobject AirFrame;
@@ -46,29 +47,38 @@ class Subcarier extends AirFrame
     
 }
 
-message PHYFrame extends AirFrame
+message PHYSymbol extends AirFrame
 {
    unsigned char res[];	// Resource Elements
 }
 
-message PSSSignal
+message PHYFrame
 {
+    unsigned char channel = 0;
+}
+
+message PSSSignal extends PHYFrame
+{
+    channel = PSS;
 	unsigned char cellIdInGroup;    
 }
 
-message SSSSignal
+message SSSSignal extends PHYFrame
 {
+    channel = SSS;
 	unsigned char cellGroupId;
 	unsigned char sf;    
 }
 
-message ReferenceSignal
+message ReferenceSignal extends PHYFrame
 {
+    channel = RS;
     unsigned char cellId;
 	unsigned char ncp;    	// cyclic prefix
 }
 
-message PBCHMessage
+message PBCHMessage extends PHYFrame
 {
+    channel = PBCH;
 	unsigned char cellId;    
 }

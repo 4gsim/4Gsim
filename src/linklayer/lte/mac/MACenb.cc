@@ -72,31 +72,48 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
         unsigned char sf = sfInd->getSf();
         unsigned short sfn = sfInd->getSfn();
 
+        // downlink scheduling
+        SchedDlTriggerReq *triggReq = new SchedDlTriggerReq();
+        triggReq->setSf(sf);
+        triggReq->setSfn(sfn);
+        // TODO harq proc information
+        nb->fireChangeNotification(SCHED_DL_TRIGGER_REQ, triggReq);
+//
+    } else if (category == SCHED_DL_CONFIG_IND) {
+        SchedDlConfigInd *cfgInd = check_and_cast<SchedDlConfigInd*>(details);
+        unsigned char sf = cfgInd->getSf();
+        unsigned short sfn = cfgInd->getSfn();
+
+        // prepare downlink config request for physical layer
+        unsigned pduIndex = 0;
+        DlConfigRequest *dlReq = new DlConfigRequest();
+        dlReq->setTti(tti);
+
+        // prepare tx request for physical layer (sent only if tx is scheduled)
+        TxRequest *txReq = new TxRequest();
+        txReq->setTti(tti);
+
         // BCH scheduling
         if (sfn % 4 == 0 && sf == 0) {
+        	EV << "LTE-MACenb: Sending RLC_TX_OPPORTUNITY for message with rnti = 0.\n";
             RlcTxOpportunity *txOpp = new RlcTxOpportunity();
             txOpp->setRnti(0);
             nb->fireChangeNotification(RLC_TX_OPPORTUNITY, txOpp);
+
+            // add pdu information to downlink request notification
+            DlConfigRequestBchPdu *dlReqBCHpdu = new DlConfigRequestBchPdu();
+            dlReqBCHpdu->setPduIndex(pduIndex);
+            dlReq->pushPdu(dlReqBCHpdu);
+
+            // add tx pdu information to tx request notification
+            TxRequestPdu txReqPdu = TxRequestPdu();
+            txReqPdu.setPduIndex(pduIndex++);
+            txReqPdu.setMsgKindsArraySize(1);
+            txReqPdu.setMsgKinds(0, MIB);
+
+            txReq->setPdusArraySize(pduIndex);
+            txReq->setPdus(pduIndex - 1, txReqPdu);
         }
-//
-//        // downlink scheduling
-//        SchedDlTriggerReq *triggReq = new SchedDlTriggerReq();
-//        triggReq->setTti(tti);
-//        // TODO harq proc information
-//        nb->fireChangeNotification(SCHED_DL_TRIGGER_REQ, triggReq);
-//
-    } else if (category == SCHED_DL_CONFIG_IND) {
-//        SchedDlConfigInd *cfgInd = check_and_cast<SchedDlConfigInd*>(details);
-//        tti = cfgInd->getTti();
-//
-//        // prepare downlink config request for physical layer
-//        unsigned pduIndex = 0;
-//        DlConfigRequest *dlReq = new DlConfigRequest();
-//        dlReq->setTti(tti);
-//
-//        // prepare tx request for physical layer (sent only if tx is scheduled)
-//        TxRequest *txReq = new TxRequest();
-//        txReq->setTti(tti);
 //
 //        // check broadcast messages
 //        for (unsigned i = 0; i < cfgInd->getBldBcastListArraySize(); i++) {
@@ -122,9 +139,7 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
 //
 //            // add pdu information to downlink request notification
 //            if (bcastEl.getIndex() == MIB) {
-//                DlConfigRequestBchPdu *dlReqBCHpdu = new DlConfigRequestBchPdu();
-//                dlReqBCHpdu->setPduIndex(pduIndex);
-//                dlReq->pushPdu(dlReqBCHpdu);
+
 //            } else {
 //                DlConfigRequestDciDlPdu *dlReqDCIpdu = new DlConfigRequestDciDlPdu();
 //                dlReqDCIpdu->setRnti(dciEl.getRnti());
@@ -182,10 +197,10 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
 //        	}
 //        }
 //
-//        nb->fireChangeNotification(DLCONFIGRequest, dlReq);
-//
-//        if (pduIndex > 0)
-//            nb->fireChangeNotification(TXRequest, txReq);
+        nb->fireChangeNotification(DLCONFIGRequest, dlReq);
+
+        if (pduIndex > 0)
+            nb->fireChangeNotification(TXRequest, txReq);
 
     } else if (category == RACHIndication) {
     	// TODO check RACH type

@@ -41,7 +41,7 @@ private:
 	void processPSS();
 	void processSSS();
 	void processReferenceSignal();
-	void processPBCH(PHYFrame *frame);
+	void processPBCH();
 
 	virtual void stateEntered(int category, const cPolymorphic *details);
 public:

@@ -43,65 +43,66 @@ void MACScheduler::handleMessage(cMessage *msg) {
 }
 
 void MACScheduler::processScheduleDlTriggerRequest(SchedDlTriggerReq *triggReq) {
-	EV << "MACScheduler: Received SCHED_DL_TRIGGER_REQ. Processing the request.\n";
-    unsigned tti = triggReq->getTti();
-    unsigned sfn = tti / 10;
+//	EV << "MACScheduler: Received SCHED_DL_TRIGGER_REQ. Processing the request.\n";
+    unsigned char sf = triggReq->getSf();
+    unsigned short sfn = triggReq->getSfn();
     unsigned nrBldBcastList = 0;
     SchedDlConfigInd *cfgInd = new SchedDlConfigInd();
-    cfgInd->setTti(tti);
+    cfgInd->setSf(sf);
+    cfgInd->setSfn(sfn);
 
-    // MasterInformationBlock scheduling
-    if (sfn % 4 == 0 && tti % 10 == 0) {
-        BuildBcastListElement bcastEl = BuildBcastListElement();
-        bcastEl.setIndex(MIB);
-        DlDciListElement dciEl = DlDciListElement();
-        dciEl.setRnti(0);
-        bcastEl.setDci(dciEl);
-        cfgInd->setBldBcastListArraySize(++nrBldBcastList);
-        cfgInd->setBldBcastList(nrBldBcastList - 1, bcastEl);
-    }
-
-    // SystemInformationBlock1 scheduling
-    if (sfn % 2 == 0 && tti % 10 == 5) {
-        BuildBcastListElement bcastEl = BuildBcastListElement();
-        bcastEl.setIndex(SIB1);
-        DlDciListElement dciEl = DlDciListElement();
-        dciEl.setRnti(65535);
-        dciEl.setRv((unsigned)ceil(3 / 2 * ((sfn / 2) % 4)) % 4);
-        bcastEl.setDci(dciEl);
-        cfgInd->setBldBcastListArraySize(++nrBldBcastList);
-        cfgInd->setBldBcastList(nrBldBcastList - 1, bcastEl);
-    }
-
-    // SystemInformationBlock scheduling
-    unsigned w = siCfg.getSiWdwLen();
-    for (unsigned n = 0; n < siCfg.getSiMsgListArraySize(); n++) {
-        SiMessageListElement msgEl = siCfg.getSiMsgList(0);
-        unsigned x = n * w;
-        unsigned T = msgEl.getPeriod();
-        if ((sfn % T == (unsigned)floor(x / 10)) && (tti % 10 == x)) {
-            BuildBcastListElement bcastEl = BuildBcastListElement();
-            bcastEl.setIndex(n + 1);
-            DlDciListElement dciEl = DlDciListElement();
-            dciEl.setRnti(65535);
-            bcastEl.setDci(dciEl);
-            cfgInd->setBldBcastListArraySize(++nrBldBcastList);
-            cfgInd->setBldBcastList(nrBldBcastList - 1, bcastEl);
-        }
-    }
-
-    // Random Access Response scheduling
-    RARBuffer::iterator i = rarBuffer.find(tti);
-    if (i != rarBuffer.end()) {
-    	BuildRarListElement rarEl = BuildRarListElement();
-    	rarEl.setGrant(0);	// TODO UL grant split into bits
-    	rarEl.setRnti(i->second);
+//    // MasterInformationBlock scheduling
+//    if (sfn % 4 == 0 && tti % 10 == 0) {
+//        BuildBcastListElement bcastEl = BuildBcastListElement();
+//        bcastEl.setIndex(MIB);
 //        DlDciListElement dciEl = DlDciListElement();
 //        dciEl.setRnti(0);
-//    	rarEl.setDci(dciEl);
-    	cfgInd->setBldRarListArraySize(1);
-    	cfgInd->setBldRarList(0, rarEl);
-    }
+//        bcastEl.setDci(dciEl);
+//        cfgInd->setBldBcastListArraySize(++nrBldBcastList);
+//        cfgInd->setBldBcastList(nrBldBcastList - 1, bcastEl);
+//    }
+//
+//    // SystemInformationBlock1 scheduling
+//    if (sfn % 2 == 0 && tti % 10 == 5) {
+//        BuildBcastListElement bcastEl = BuildBcastListElement();
+//        bcastEl.setIndex(SIB1);
+//        DlDciListElement dciEl = DlDciListElement();
+//        dciEl.setRnti(65535);
+//        dciEl.setRv((unsigned)ceil(3 / 2 * ((sfn / 2) % 4)) % 4);
+//        bcastEl.setDci(dciEl);
+//        cfgInd->setBldBcastListArraySize(++nrBldBcastList);
+//        cfgInd->setBldBcastList(nrBldBcastList - 1, bcastEl);
+//    }
+//
+//    // SystemInformationBlock scheduling
+//    unsigned w = siCfg.getSiWdwLen();
+//    for (unsigned n = 0; n < siCfg.getSiMsgListArraySize(); n++) {
+//        SiMessageListElement msgEl = siCfg.getSiMsgList(0);
+//        unsigned x = n * w;
+//        unsigned T = msgEl.getPeriod();
+//        if ((sfn % T == (unsigned)floor(x / 10)) && (tti % 10 == x)) {
+//            BuildBcastListElement bcastEl = BuildBcastListElement();
+//            bcastEl.setIndex(n + 1);
+//            DlDciListElement dciEl = DlDciListElement();
+//            dciEl.setRnti(65535);
+//            bcastEl.setDci(dciEl);
+//            cfgInd->setBldBcastListArraySize(++nrBldBcastList);
+//            cfgInd->setBldBcastList(nrBldBcastList - 1, bcastEl);
+//        }
+//    }
+//
+//    // Random Access Response scheduling
+//    RARBuffer::iterator i = rarBuffer.find(tti);
+//    if (i != rarBuffer.end()) {
+//    	BuildRarListElement rarEl = BuildRarListElement();
+//    	rarEl.setGrant(0);	// TODO UL grant split into bits
+//    	rarEl.setRnti(i->second);
+////        DlDciListElement dciEl = DlDciListElement();
+////        dciEl.setRnti(0);
+////    	rarEl.setDci(dciEl);
+//    	cfgInd->setBldRarListArraySize(1);
+//    	cfgInd->setBldRarList(0, rarEl);
+//    }
 
     nb->fireChangeNotification(SCHED_DL_CONFIG_IND, cfgInd);
 }

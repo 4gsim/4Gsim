@@ -54,6 +54,12 @@ void PHYue::initialize(int stage) {
         fsm = cFSM("fsm-PHYue");
         fsm.setState(IDLE);
 
+        nb = NotificationBoardAccess().get();
+
+        nb->subscribe(this, PARAMRequest);
+        nb->subscribe(this, CONFIGRequest);
+        nb->subscribe(this, STARTRequest);
+        nb->subscribe(this, TXRequest);
         nb->subscribe(this, ULCONFIGRequest);
         nb->subscribe(this, RACHRequest);
 
@@ -79,18 +85,18 @@ void PHYue::handleUpperMessage(cMessage *msg) {
 
 void PHYue::handleRadioMessage(cMessage *msg) {
 	if (start) {
-		PHYFrame *frame = check_and_cast<PHYFrame*>(msg);
+		PHYSymbol *symbol = check_and_cast<PHYSymbol*>(msg);
 		if (syncState == NONE) {
-            for (unsigned char i = 0; i < frame->getResArraySize(); i++) {
-                unsigned char re = frame->getRes(i);
+            for (unsigned char i = 0; i < symbol->getResArraySize(); i++) {
+                unsigned char re = symbol->getRes(i);
                 if (re == PSS) {
                     processPSS();
                     break;
                 }
             }
 		} else if (syncState == PSS_RECEIVED) {
-            for (unsigned char i = 0; i < frame->getResArraySize(); i++) {
-                unsigned char re = frame->getRes(i);
+            for (unsigned char i = 0; i < symbol->getResArraySize(); i++) {
+                unsigned char re = symbol->getRes(i);
                 if (re == SSS) {
                     processSSS();
                     break;
@@ -103,24 +109,20 @@ void PHYue::handleRadioMessage(cMessage *msg) {
 		            unsigned char vShift = nCellId % 6;
 		            unsigned char v = symb == 0 ? 0 : 3;
 		            unsigned char rsOffset = (v + vShift) % 6;
-		            if (frame->getRes(rsOffset) == RS) {
+		            if (symbol->getRes(rsOffset) == RS) {
 		                processReferenceSignal();
 		            }
 		        }
 		    } else {
 		        if (slot == 1 && symb < 4)
-		            processPBCH(frame);
+		            processPBCH();
 		    }
-            symb++;
-            if (symb % nDLsymb == 0) {
-                symb = 0;
-                slot++;
-                if (slot % 20 == 0) {
-                    slot = 0;
-                }
+            symb = (symb + 1) % nDLsymb;
+            if (symb == 0) {
+                slot = (slot + 1) % 20;
                 sf = slot / 2;
 
-                if (sf % 10 == 0)
+                if (sf ==  0)
                     sfn++;
             }
 		}
@@ -230,17 +232,17 @@ void PHYue::processReferenceSignal() {
     }
 }
 
-void PHYue::processPBCH(PHYFrame *frame) {
+void PHYue::processPBCH() {
     EV << "LTE-PHYue: Processing Physical Broadcast Channel.\n";
-    unsigned char dc = frame->getResArraySize() / 2;
-    for (unsigned char k = dc - 36; k < dc + 36; k++) {
-        if (frame->getRes(k) == PBCH)
-            pbchSubcarriers++;
-    }
-    if (symb == 3 && pbchSubcarriers / 4 == 72) {
-
-        pbchSubcarriers = 0;
-    }
+//    unsigned char dc = frame->getResArraySize() / 2;
+//    for (unsigned char k = dc - 36; k < dc + 36; k++) {
+//        if (frame->getRes(k) == PBCH)
+//            pbchSubcarriers++;
+//    }
+//    if (symb == 3 && pbchSubcarriers / 4 == 72) {
+//
+//        pbchSubcarriers = 0;
+//    }
 }
 
 void PHYue::stateEntered(int category, const cPolymorphic *details) {
