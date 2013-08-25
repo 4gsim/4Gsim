@@ -36,6 +36,7 @@ PHY::PHY() : rs(this->getId()) {
     symbPeriod = 1e-3 / nDLsymb;
 
     dlSubframe = NULL;
+    dlBuffer = NULL;
 }
 
 PHY::~PHY() {
@@ -48,6 +49,12 @@ PHY::~PHY() {
 
     if (dlSubframe) {
     	delete [] dlSubframe;
+    }
+
+    if (dlBuffer) {
+    	for (unsigned char l = 0; l < nDLsymb * 2; l++)
+    		delete [] dlBuffer[l];
+    	delete [] dlBuffer;
     }
 }
 
@@ -140,6 +147,13 @@ void PHY::stateEntered(int category, const cPolymorphic *details) {
             	dlSubframe = new PHYSymbol*[nDLsymb * 2];
             	for (unsigned char i = 0; i < nDLsymb * 2; i++)
             		dlSubframe[i] = NULL;
+
+            	dlBuffer = new PHYFramePtr*[nDLsymb * 2];
+            	for (unsigned char l = 0; l < nDLsymb * 2; l++)
+            		dlBuffer[l] = new PHYFramePtr[nRBsc * nDLrb];
+            	for (unsigned char l = 0; l < nDLsymb * 2; l++)
+            		for (unsigned char k = 0; k < nRBsc * nDLrb; k++)
+            			dlBuffer[l][k] = NULL;
 
                 this->cancelEvent(symbolTimer);
                 this->scheduleAt(simTime(), symbolTimer);

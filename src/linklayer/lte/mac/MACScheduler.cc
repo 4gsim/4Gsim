@@ -20,6 +20,7 @@ Define_Module(MACScheduler);
 
 MACScheduler::MACScheduler() {
 	prachCfgIndex = 64;
+	dlBandwith = 6;
 }
 
 MACScheduler::~MACScheduler() {
@@ -42,37 +43,101 @@ void MACScheduler::handleMessage(cMessage *msg) {
     // TODO - Generated method body
 }
 
+unsigned char MACScheduler::getRBGSize() {
+	if (dlBandwith < 11)
+		return 1;
+	else if (dlBandwith < 27)
+		return 2;
+	else if (dlBandwith < 64)
+		return 3;
+	else
+		return 4;
+}
+
+unsigned MACScheduler::getRIV(unsigned char lCRB, unsigned char rbStart) {
+	if ((lCRB - 1) < floor(dlBandwith / 2))
+		return dlBandwith * (lCRB - 1) + rbStart;
+	else
+		return dlBandwith * (dlBandwith - lCRB + 1) + (dlBandwith - 1 - rbStart);
+}
+
 void MACScheduler::processScheduleDlTriggerRequest(SchedDlTriggerReq *triggReq) {
 //	EV << "MACScheduler: Received SCHED_DL_TRIGGER_REQ. Processing the request.\n";
     unsigned char sf = triggReq->getSf();
     unsigned short sfn = triggReq->getSfn();
+
+    bool rbBitmap[dlBandwith];
+    unsigned char rbStart = 0;
+    memset(rbBitmap, false, dlBandwith);
+
     unsigned nrBldBcastList = 0;
     SchedDlConfigInd *cfgInd = new SchedDlConfigInd();
     cfgInd->setSf(sf);
     cfgInd->setSfn(sfn);
 
-//    // MasterInformationBlock scheduling
-//    if (sfn % 4 == 0 && tti % 10 == 0) {
-//        BuildBcastListElement bcastEl = BuildBcastListElement();
-//        bcastEl.setIndex(MIB);
-//        DlDciListElement dciEl = DlDciListElement();
-//        dciEl.setRnti(0);
-//        bcastEl.setDci(dciEl);
-//        cfgInd->setBldBcastListArraySize(++nrBldBcastList);
-//        cfgInd->setBldBcastList(nrBldBcastList - 1, bcastEl);
-//    }
-//
-//    // SystemInformationBlock1 scheduling
-//    if (sfn % 2 == 0 && tti % 10 == 5) {
-//        BuildBcastListElement bcastEl = BuildBcastListElement();
-//        bcastEl.setIndex(SIB1);
-//        DlDciListElement dciEl = DlDciListElement();
-//        dciEl.setRnti(65535);
-//        dciEl.setRv((unsigned)ceil(3 / 2 * ((sfn / 2) % 4)) % 4);
-//        bcastEl.setDci(dciEl);
-//        cfgInd->setBldBcastListArraySize(++nrBldBcastList);
-//        cfgInd->setBldBcastList(nrBldBcastList - 1, bcastEl);
-//    }
+    // SystemInformationBlock1 scheduling
+    if (sfn % 2 == 0 && sf == 5) {
+    	unsigned char lCRB = 0;
+    	unsigned siLen = siCfg.getSib1Length() * 8;
+
+    	// find number of RBs needed to carry SIB1
+    	unsigned char iTBS = 0;
+    	unsigned char tpc = 0;
+    	for (unsigned char iTBS = 0; iTBS < I_TBS_SIZE; iTBS++) {
+    		if (tbSizeTable[1][iTBS] == siLen) {
+    			lCRB = 2;
+    			tpc = 0;
+    			break;
+    		} else if (tbSizeTable[2][iTBS] == siLen) {
+    			lCRB = 3;
+    			tpc = 1;
+    			break;
+    		}
+    	}
+    	unsigned char iMCS = iTBS;
+
+    	// find position where the number of RBs needed are free
+    	unsigned char rbStart = 0;
+    	unsigned char freeRbs = 0;
+    	for (unsigned char i = 0; i < dlBandwith; i++) {
+    		if (rbBitmap[i] == false) {
+    			freeRbs++;
+    			if (freeRbs == lCRB) {
+    				break;
+    			}
+    		} else {
+    			freeRbs = 0;
+    			rbStart = i;
+    		}
+    	}
+
+    	// allocation possible
+    	if (rbStart != (dlBandwith - 1)) {
+    		// reserve the resource blocks in the bitmap
+    		for (unsigned char i = rbStart; i < rbStart + lCRB; i++)
+    			rbBitmap[i] = true;
+    	}
+
+        BuildBcastListElement bcastEl = BuildBcastListElement();
+        bcastEl.setIndex(SIB1);
+
+        DlDciListElement dciEl = DlDciListElement();
+        dciEl.setRnti(65535);
+        dciEl.setRbBitmap(getRIV(lCRB, rbStart));
+        dciEl.setResAlloc(2);
+        dciEl.setNrOfTbs(1);
+        dciEl.setTbsSize(0, siCfg.getSib1Length());
+        dciEl.setMcs(0, iMCS);
+        dciEl.setRv(0, (unsigned)ceil(3 / 2 * ((sfn / 2) % 4)) % 4);
+        dciEl.setFormat(DCI_FORMAT_1A);
+        dciEl.setVrbFormat(VRB_LOCALIZED);
+        dciEl.setTpc(tpc);
+        dciEl.setTbsIdx(iTBS);
+        bcastEl.setDci(dciEl);
+
+        cfgInd->setBldBcastListArraySize(++nrBldBcastList);
+        cfgInd->setBldBcastList(nrBldBcastList - 1, bcastEl);
+    }
 //
 //    // SystemInformationBlock scheduling
 //    unsigned w = siCfg.getSiWdwLen();
@@ -159,6 +224,8 @@ void MACScheduler::receiveChangeNotification(int category, const cPolymorphic *d
         CSchedCellConfigReq *cellCfg = check_and_cast<CSchedCellConfigReq*>(details);
 
         siCfg = cellCfg->getSiConfig();
+
+        dlBandwith = cellCfg->getDlBandwith();
 
         raCfg = cellCfg->getRaConfig();
 

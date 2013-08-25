@@ -64,6 +64,21 @@ void MACenb::handleUpperMessage(cMessage *msg) {
     }
 }
 
+DlConfigRequestDciDlPdu *MACenb::getDciDlPdu(unsigned char rntiType, DlDciListElement &dciEl) {
+	DlConfigRequestDciDlPdu *dlReqDCIpdu = new DlConfigRequestDciDlPdu();
+	dlReqDCIpdu->setDciFormat(dciEl.getFormat());
+ 	dlReqDCIpdu->setRnti(dciEl.getRnti());
+ 	dlReqDCIpdu->setResAllocType(dciEl.getResAlloc());
+ 	dlReqDCIpdu->setVrbFlag(dciEl.getVrbFormat());
+ 	dlReqDCIpdu->setRbCoding(dciEl.getRbBitmap());
+ 	dlReqDCIpdu->setMcs1(dciEl.getMcs(0));
+ 	dlReqDCIpdu->setRv1(dciEl.getRv(0));
+ 	dlReqDCIpdu->setTpc(dciEl.getTpc());
+ 	dlReqDCIpdu->setTbIndex(dciEl.getTbsIdx());
+ 	dlReqDCIpdu->setRntiType(rntiType);
+ 	return dlReqDCIpdu;
+}
+
 void MACenb::receiveChangeNotification(int category, const cPolymorphic *details) {
     Enter_Method_Silent();
 
@@ -87,11 +102,13 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
         // prepare downlink config request for physical layer
         unsigned pduIndex = 0;
         DlConfigRequest *dlReq = new DlConfigRequest();
-        dlReq->setTti(tti);
+        dlReq->setSfn(sfn);
+        dlReq->setSf(sf);
 
         // prepare tx request for physical layer (sent only if tx is scheduled)
         TxRequest *txReq = new TxRequest();
-        txReq->setTti(tti);
+        txReq->setSfn(sfn);
+        txReq->setSf(sf);
 
         // BCH scheduling
         if (sfn % 4 == 0 && sf == 0) {
@@ -114,19 +131,19 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
             txReq->setPdusArraySize(pduIndex);
             txReq->setPdus(pduIndex - 1, txReqPdu);
         }
-//
-//        // check broadcast messages
-//        for (unsigned i = 0; i < cfgInd->getBldBcastListArraySize(); i++) {
-//            BuildBcastListElement bcastEl = cfgInd->getBldBcastList(i);
-//            DlDciListElement dciEl = bcastEl.getDci();
-//
-//            // notify RLC layer of transmission opportunity
-//            if (dciEl.getRv() == 0) {
-//                EV << "LTE-MACenb: Sending RLC_TX_OPPORTUNITY for message with rnti = " << dciEl.getRnti() << ".\n";
-//                RlcTxOpportunity *txOpp = new RlcTxOpportunity();
-//                txOpp->setRnti(dciEl.getRnti());
-//                nb->fireChangeNotification(RLC_TX_OPPORTUNITY, txOpp);
-//            } else { // check for packet in buffer that should be retransmitted
+
+        // SIBx scheduling
+        for (unsigned i = 0; i < cfgInd->getBldBcastListArraySize(); i++) {
+            BuildBcastListElement bcastEl = cfgInd->getBldBcastList(i);
+            DlDciListElement dciEl = bcastEl.getDci();
+
+            // notify RLC layer of transmission opportunity
+            if (dciEl.getRv(0) == 0) {
+                EV << "LTE-MACenb: Sending RLC_TX_OPPORTUNITY for message with rnti = " << dciEl.getRnti() << ".\n";
+                RlcTxOpportunity *txOpp = new RlcTxOpportunity();
+                txOpp->setRnti(dciEl.getRnti());
+                nb->fireChangeNotification(RLC_TX_OPPORTUNITY, txOpp);
+            } else { // check for packet in buffer that should be retransmitted
 //                MACBuffer::iterator i = buffer.find(bcastEl.getIndex());
 //                if (i != buffer.end()) {
 //                    MACServiceDataUnit *sdu = i->second;
@@ -135,32 +152,30 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
 //                    EV << "LTE-MACenb: Sending buffered message with id = " << pdu->getKind() << " on DLSCH0 to lower layer.\n";
 //                    this->send(pdu, gate("lowerLayerOut"));
 //                }
-//            }
-//
-//            // add pdu information to downlink request notification
-//            if (bcastEl.getIndex() == MIB) {
+            }
 
-//            } else {
-//                DlConfigRequestDciDlPdu *dlReqDCIpdu = new DlConfigRequestDciDlPdu();
-//                dlReqDCIpdu->setRnti(dciEl.getRnti());
-////                dlReqDCIpdu->setRntiType(SiRnti);
-//                dlReq->pushPdu(dlReqDCIpdu);
-//
-//                DlConfigRequestDlschPdu *dlReqDLSCHpdu = new DlConfigRequestDlschPdu();
-//                dlReqDLSCHpdu->setPduIndex(pduIndex);
-//                dlReqDLSCHpdu->setRnti(dciEl.getRnti());
-//                dlReq->pushPdu(dlReqDLSCHpdu);
-//            }
-//
-//            // add tx pdu information to tx request notification
-//            TxRequestPdu txReqPdu = TxRequestPdu();
-//            txReqPdu.setPduIndex(pduIndex++);
-//            txReqPdu.setMsgKindsArraySize(1);
-//            txReqPdu.setMsgKinds(0, bcastEl.getIndex());
-//
-//            txReq->setPdusArraySize(pduIndex);
-//            txReq->setPdus(pduIndex - 1, txReqPdu);
-//        }
+            // add pdu information to downlink request notification
+            DlConfigRequestDciDlPdu *dlReqDCIpdu = getDciDlPdu(SiRnti, dciEl);
+            dlReq->pushPdu(dlReqDCIpdu);
+            DlConfigRequestDlschPdu *dlReqDLSCHpdu = new DlConfigRequestDlschPdu();
+            dlReqDLSCHpdu->setPduIndex(pduIndex);
+            dlReqDLSCHpdu->setRnti(dciEl.getRnti());
+        	dlReqDLSCHpdu->setResAlloctype(dciEl.getResAlloc());
+        	dlReqDLSCHpdu->setVrbFlag(dciEl.getVrbFormat());
+        	dlReqDLSCHpdu->setRbCoding(dciEl.getRbBitmap());
+        	dlReqDLSCHpdu->setRv(dciEl.getRv(0));
+        	dlReqDLSCHpdu->setTbNumber(1);
+            dlReq->pushPdu(dlReqDLSCHpdu);
+
+            // add tx pdu information to tx request notification
+            TxRequestPdu txReqPdu = TxRequestPdu();
+            txReqPdu.setPduIndex(pduIndex++);
+            txReqPdu.setMsgKindsArraySize(1);
+            txReqPdu.setMsgKinds(0, bcastEl.getIndex());
+
+            txReq->setPdusArraySize(pduIndex);
+            txReq->setPdus(pduIndex - 1, txReqPdu);
+        }
 //
 ////        // check random access response message
 //        for (unsigned i = 0; i < cfgInd->getBldRarListArraySize(); i++) {
@@ -201,6 +216,8 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
 
         if (pduIndex > 0)
             nb->fireChangeNotification(TXRequest, txReq);
+        else
+        	delete txReq;
 
     } else if (category == RACHIndication) {
     	// TODO check RACH type

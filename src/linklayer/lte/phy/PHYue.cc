@@ -86,46 +86,68 @@ void PHYue::handleUpperMessage(cMessage *msg) {
 void PHYue::handleRadioMessage(cMessage *msg) {
 	if (start) {
 		PHYSymbol *symbol = check_and_cast<PHYSymbol*>(msg);
-		if (syncState == NONE) {
-            for (unsigned char i = 0; i < symbol->getResArraySize(); i++) {
-                unsigned char re = symbol->getRes(i);
-                if (re == PSS) {
-                    processPSS();
-                    break;
-                }
-            }
-		} else if (syncState == PSS_RECEIVED) {
-            for (unsigned char i = 0; i < symbol->getResArraySize(); i++) {
-                unsigned char re = symbol->getRes(i);
-                if (re == SSS) {
-                    processSSS();
-                    break;
-                }
-            }
-            symb++;
-		} else if (syncState == SSS_RECEIVED || syncState == SYNCHRONIZED) {
-		    if (syncState == SSS_RECEIVED) {
-		        if (symb == 0 || symb == (nDLsymb - 3)) {
-		            unsigned char vShift = nCellId % 6;
-		            unsigned char v = symb == 0 ? 0 : 3;
-		            unsigned char rsOffset = (v + vShift) % 6;
-		            if (symbol->getRes(rsOffset) == RS) {
-		                processReferenceSignal();
-		            }
-		        }
-		    } else {
-		        if (slot == 1 && symb < 4)
-		            processPBCH();
-		    }
-            symb = (symb + 1) % nDLsymb;
-            if (symb == 0) {
-                slot = (slot + 1) % 20;
-                sf = slot / 2;
+		unsigned char k = 0;
+		while (k < symbol->getResArraySize()) {
 
-                if (sf ==  0)
-                    sfn++;
-            }
+			// check for PSS
+			if (symbol->getRes(k) == PSS) {
+				k += 62;
+				if (syncState == NONE)
+					processPSS(k - 1);
+			} else if (symbol->getRes(k) == SSS) {
+				k += 62;
+				if (syncState == PSS_RECEIVED)
+					processSSS(k - 1);
+			} else if (symbol->getRes(k) == RS) {
+				k++;
+				if (syncState == SSS_RECEIVED)
+					processReferenceSignal(k - 1);
+			} else {
+				k++;
+			}
 		}
+
+
+//		if (syncState == NONE) {
+//            for (unsigned char i = 0; i < symbol->getResArraySize(); i++) {
+//                unsigned char re = symbol->getRes(i);
+//                if (re == PSS) {
+//                    processPSS();
+//                    break;
+//                }
+//            }
+//		} else if (syncState == PSS_RECEIVED) {
+//            for (unsigned char i = 0; i < symbol->getResArraySize(); i++) {
+//                unsigned char re = symbol->getRes(i);
+//                if (re == SSS) {
+//                    processSSS();
+//                    break;
+//                }
+//            }
+//            symb++;
+//		} else if (syncState == SSS_RECEIVED || syncState == SYNCHRONIZED) {
+//		    if (syncState == SSS_RECEIVED) {
+//		        if (symb == 0 || symb == (nDLsymb - 3)) {
+//		            unsigned char vShift = nCellId % 6;
+//		            unsigned char v = symb == 0 ? 0 : 3;
+//		            unsigned char rsOffset = (v + vShift) % 6;
+//		            if (symbol->getRes(rsOffset) == RS) {
+//		                processReferenceSignal();
+//		            }
+//		        }
+//		    } else {
+//		        if (slot == 1 && symb < 4)
+//		            processPBCH();
+//		    }
+//            symb = (symb + 1) % nDLsymb;
+//            if (symb == 0) {
+//                slot = (slot + 1) % 20;
+//                sf = slot / 2;
+//
+//                if (sf == 0 && sf == 0)
+//                    sfn++;
+//            }
+//		}
 	}
 	delete msg;
 //    PhysicalResourceBlock *prb = check_and_cast<PhysicalResourceBlock*>(msg);
@@ -170,17 +192,17 @@ void PHYue::handleRadioMessage(cMessage *msg) {
 //    }
 }
 
-cMessage *PHYue::getData(unsigned char channel) {
+cMessage *PHYue::getData(unsigned char k) {
     if (dynamic_cast<LTEChannelControl*>(cc) != NULL) {
-        return dynamic_cast<LTEChannelControl*>(cc)->getData(channel);
+        return dynamic_cast<LTEChannelControl*>(cc)->getData(k);
     }
     return NULL;
 }
 
-void PHYue::processPSS() {
-    EV << "LTE-PHYue: Processing Primary Synchronization Signal.\n";
-    cMessage *msg = getData(PSS);
+void PHYue::processPSS(unsigned char k) {
+    cMessage *msg = getData(k);
     if (msg) {
+    	EV << "LTE-PHYue: Received Primary Synchronization Signal.\n";
         PSSSignal *pss = check_and_cast<PSSSignal*>(msg);
         n2id = pss->getCellIdInGroup();
 
@@ -193,10 +215,10 @@ void PHYue::processPSS() {
     }
 }
 
-void PHYue::processSSS() {
-    EV << "LTE-PHYue: Processing Secondary Synchronization signal.\n";
-    cMessage *msg = getData(SSS);
+void PHYue::processSSS(unsigned char k) {
+    cMessage *msg = getData(k);
     if (msg) {
+    	EV << "LTE-PHYue: Received Secondary Synchronization signal.\n";
         SSSSignal *sss = check_and_cast<SSSSignal*>(msg);
 
         n1id = sss->getCellGroupId();
@@ -215,10 +237,10 @@ void PHYue::processSSS() {
     }
 }
 
-void PHYue::processReferenceSignal() {
-    EV << "LTE-PHYue: Processing Reference Signal.\n";
-    cMessage *msg = getData(RS);
+void PHYue::processReferenceSignal(unsigned char k) {
+    cMessage *msg = getData(k);
     if (msg) {
+    	EV << "LTE-PHYue: Received Reference Signal.\n";
         ReferenceSignal *refSig = check_and_cast<ReferenceSignal*>(msg);
         if (refSig->getCellId() == nCellId) {
             ncp = refSig->getNcp();

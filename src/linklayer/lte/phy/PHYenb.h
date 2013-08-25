@@ -23,16 +23,13 @@ private:
     unsigned dlBandwith;
     unsigned ulBandwith;
 
-    typedef std::map<unsigned short /* tti */, std::list<DlConfigRequestPduPtr> > DlConfigRequests;
+    bool hasBCHPdu;
+
+    typedef std::map<unsigned short /* pduIndex */, PHYFramePtr> DlConfigRequests;
     DlConfigRequests dlCfgReqs;
 
-    typedef std::map<unsigned short /* pduIndex */, std::list<short /* msgKinds */> > TxRequests;
+    typedef std::map<short /* msgKind */, PHYFramePtr> TxRequests;
     TxRequests txReqs;
-    typedef std::map<unsigned char /* last resource element */, PHYFrame*> PHYFrames;
-    typedef std::map<unsigned char /* symbol */, PHYFrames> TransmissionBuffer;
-    TransmissionBuffer buffer;
-
-    DlConfigRequestBchPdu *dlReqBCHpdu;
 
 //    bool findAndRemoveDlConfigRequestPdu(unsigned short pduIndex);
 //    bool findAndRemoveTxRequestPdu(unsigned msgId);
@@ -43,7 +40,7 @@ private:
     void sendSymbol();
     void cleanup();
 
-    void setData(PHYFrame *frame);
+    void setData(unsigned char k, PHYFrame *frame);
 
     virtual void stateEntered(int category, const cPolymorphic *details);
 public:

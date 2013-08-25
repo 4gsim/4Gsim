@@ -283,18 +283,17 @@ void LTEChannelControl::setRadioChannel(RadioRef r, int channel) {
     r->channels.push_back(channel);
 }
 
-void LTEChannelControl::setData(PHYFrame *frame) {
+void LTEChannelControl::setData(unsigned char k, PHYFrame *frame) {
     take(frame);
-    unsigned char channel = frame->getChannel();
-    ChannelData::iterator i = data.find(channel);
+    ChannelData::iterator i = data.find(k);
     if (i != data.end()) {
         delete i->second;
     }
-    data[channel] = frame;
+    data[k] = frame;
 }
 
-PHYFrame *LTEChannelControl::getData(unsigned char channel) {
-    ChannelData::iterator i = data.find(channel);
+PHYFrame *LTEChannelControl::getData(unsigned char k) {
+    ChannelData::iterator i = data.find(k);
     if (i != data.end()) {
         PHYFrame *frame = i->second->dup();
         return frame;

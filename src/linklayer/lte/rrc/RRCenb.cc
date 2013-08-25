@@ -40,6 +40,13 @@ void RRCenb::initialize(int stage) {
         nb->subscribe(this, CONFIGResponse);
         nb->subscribe(this, SUBFRAMEIndication);
 
+        cyclicPrefix = RRC_CP_NORMAL;
+        dlBandwithSel = 1;
+        phyCellId = uniform(0, 503);
+
+        ParamRequest *paramReq = new ParamRequest();
+        nb->fireChangeNotification(PARAMRequest, paramReq);
+
         // initialize own configuration parameters
         SchedulingInfo *schedInfo2 = new SchedulingInfo(SchedulingInfosi_Periodicity(rf8_SchedulingInfosi_Periodicity), SIBMappingInfo());
         schedInfoList.push_back(schedInfo2);
@@ -78,19 +85,14 @@ void RRCenb::initialize(int stage) {
         SiConfiguration siCfg = SiConfiguration();
         SiMessageListElement siMsgEl = SiMessageListElement();
         siMsgEl.setPeriod(siPeriodicities[schedInfo2->getSchedulingInfosi_Periodicity().getValue()]);
+        siCfg.setSib1Length(15);	// TODO set dynamic SIB1 length
         siCfg.setSiWdwLen(siWindowLengths[siWdwLen.getValue()]);
         siCfg.setSiMsgListArraySize(1);
         siCfg.setSiMsgList(0, siMsgEl);
         cellCfg->setSiConfig(siCfg);
+        cellCfg->setDlBandwith(dlBandwiths[dlBandwithSel]);
 
-//        nb->fireChangeNotification(CSCHED_CELL_CONFIG_REQ, cellCfg);
-
-        cyclicPrefix = RRC_CP_NORMAL;
-        dlBandwithSel = 1;
-        phyCellId = uniform(0, 503);
-
-        ParamRequest *paramReq = new ParamRequest();
-        nb->fireChangeNotification(PARAMRequest, paramReq);
+        nb->fireChangeNotification(CSCHED_CELL_CONFIG_REQ, cellCfg);
     }
 }
 

@@ -20,6 +20,14 @@
 #include "NotificationBoard.h"
 #include "SchedulerCommand_m.h"
 
+#define I_TBS_SIZE	27
+#define N_PRB_SIZE	110
+static const unsigned tbSizeTable[N_PRB_SIZE][I_TBS_SIZE] = {
+		{ 16, 24, 32, 40, 56, 72, 328, 104, 120, 136, 144, 176, 208, 224, 256, 280, 328, 336, 376, 408, 440, 488, 520, 552, 584, 616, 712 },
+		{ 32, 56, 72, 104, 120, 144, 176, 224, 256, 296, 328, 376, 440, 488, 552, 600, 632, 696, 776, 840, 904, 1000, 1064, 1128, 1192, 1256, 1480 },
+		{ 56, 88, 144, 176, 208, 224, 256, 328, 392, 456, 504, 584, 680, 744, 840, 904, 968, 1064, 1160, 1288, 1384, 1480, 1608, 1736, 1800, 1864, 2216	}
+};
+
 class MACScheduler : public cSimpleModule, INotifiable {
 private:
     // Cell configuration
@@ -27,14 +35,18 @@ private:
 
     // Random Access configuration
     RaConfiguration raCfg;
-
     unsigned char prachCfgIndex;
+
+    unsigned char dlBandwith;
 
     // Random Access Response buffer
     typedef std::map<unsigned short /* tti */, unsigned short /* tempCRnti */> RARBuffer;
     RARBuffer rarBuffer;
 
     NotificationBoard *nb;
+
+    unsigned char getRBGSize();
+    unsigned getRIV(unsigned char lCRB, unsigned char rbStart);
 
     void processScheduleDlTriggerRequest(SchedDlTriggerReq *triggReq);
     void processScheduleUlTriggerRequest(SchedUlTriggerReq *triggReq);

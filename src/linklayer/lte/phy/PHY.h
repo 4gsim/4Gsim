@@ -58,7 +58,10 @@ protected:
 
     unsigned char ncp;      // cyclic prefix
 
-    PHYSymbol **dlSubframe;
+    PHYSymbol **dlSubframe;	// symbol[nDLsymb]
+
+    typedef PHYFrame *PHYFramePtr;
+    PHYFramePtr **dlBuffer;	// frame[nDLsymb * 2][nRBsc * nDLrb]
 
     cFSM fsm;
 

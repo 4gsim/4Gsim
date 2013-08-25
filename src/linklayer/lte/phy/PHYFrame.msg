@@ -77,6 +77,12 @@ message ReferenceSignal extends PHYFrame
 	unsigned char ncp;    	// cyclic prefix
 }
 
+message PCFICHMessage extends PHYFrame
+{
+    channel = PCFICH;
+    unsigned char pdcchSymbols;
+}
+
 message PBCHMessage extends PHYFrame
 {
     channel = PBCH;

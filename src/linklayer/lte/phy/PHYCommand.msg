@@ -116,7 +116,15 @@ class DlConfigRequestPdu
 class DlConfigRequestDciDlPdu extends DlConfigRequestPdu
 {
  	type = DciDlPdu;
+ 	unsigned char dciFormat;
  	unsigned short rnti;   
+ 	unsigned char resAllocType;
+ 	unsigned char vrbFlag;
+ 	unsigned int rbCoding;
+ 	unsigned char mcs1;
+ 	unsigned char rv1;
+ 	unsigned char tpc;
+ 	unsigned char tbIndex;
  	unsigned char rntiType;
 }
 
@@ -129,12 +137,19 @@ class DlConfigRequestDlschPdu extends DlConfigRequestPdu
 {
 	type = DlschPdu;  
 	unsigned short rnti; 
+	unsigned char resAlloctype;
+	unsigned char vrbFlag;
+	unsigned int rbCoding;
+	unsigned char rv;
+	unsigned char tbNumber;
 }
 
 class DlConfigRequest extends PhyCommand
 {
     @customize(true);
-    unsigned short tti;
+    unsigned short sfn;
+    unsigned char sf;
+    unsigned char nrPdcchSymb;
     abstract DlConfigRequestPduPtr pdus[];
 }
 
@@ -152,7 +167,8 @@ class TxRequestPdu
 
 class TxRequest extends PhyCommand
 {
-    unsigned short tti;
+    unsigned short sfn;
+    unsigned char sf;
     TxRequestPdu pdus[];
 }
 

@@ -26,6 +26,8 @@ private:
 
     typedef std::map<unsigned short, MACServiceDataUnit*> MACBuffer;
     MACBuffer buffer;
+
+    DlConfigRequestDciDlPdu *getDciDlPdu(unsigned char rntiType, DlDciListElement &dciEl);
     virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 public:
     MACenb();

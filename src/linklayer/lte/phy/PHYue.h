@@ -37,10 +37,10 @@ private:
 
 	SubscriberTable *subT;
 
-	cMessage *getData(unsigned char channel);
-	void processPSS();
-	void processSSS();
-	void processReferenceSignal();
+	cMessage *getData(unsigned char k);
+	void processPSS(unsigned char k);
+	void processSSS(unsigned char k);
+	void processReferenceSignal(unsigned char k);
 	void processPBCH();
 
 	virtual void stateEntered(int category, const cPolymorphic *details);

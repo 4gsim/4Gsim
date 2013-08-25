@@ -51,7 +51,7 @@ protected:
     typedef std::list<RadioEntry> RadioList;
     typedef std::vector<RadioRef> RadioRefVector;
 
-    typedef std::map<unsigned char /* channel */, PHYFrame*> ChannelData;
+    typedef std::map<unsigned char /* subcarrier */,  PHYFrame *> ChannelData;
     ChannelData data;
 
     RadioList radios;
@@ -137,8 +137,8 @@ public:
     /** Enable the reception in the reference module */
     virtual void enableReception(RadioRef r) { r->isActive = true; };
 
-    void setData(PHYFrame *frame);
-    PHYFrame *getData(unsigned char);
+    void setData(unsigned char k, PHYFrame *frame);
+    PHYFrame *getData(unsigned char k);
 };
 
 #endif /* LTECHANNELCONTROL_H_ */

@@ -31,10 +31,12 @@ class SchedulerCommand
 class SiMessageListElement
 {
     unsigned short period;
+    unsigned short length;	// in bytes
 }
 
 class SiConfiguration
 {
+    unsigned short sib1Length;	// in bytes
 	unsigned char siWdwLen;
 	SiMessageListElement siMsgList[];	    
 }
@@ -51,6 +53,7 @@ class RaConfiguration
 class CSchedCellConfigReq extends SchedulerCommand
 {
     SiConfiguration siConfig;
+    unsigned char dlBandwith;
     unsigned char prachCfgIndex;
 	RaConfiguration raConfig;
 }
@@ -87,10 +90,33 @@ class RlcPduListElement
     unsigned char logChannelId;
 }
 
+enum DCIFormatType
+{
+    DCI_FORMAT_1 = 0;
+    DCI_FORMAT_1A = 1;
+}
+
+enum VRBFormatType
+{
+    VRB_DISTRIBUTED = 0;
+    VRB_LOCALIZED = 1;
+}
+    
+
 class DlDciListElement
 {
-	unsigned short rnti;    
-	unsigned char rv;
+	unsigned short rnti; 
+	unsigned int rbBitmap;
+	unsigned char rbShift;
+	unsigned char resAlloc;
+	unsigned char nrOfTbs;
+	unsigned short tbsSize[2];
+	unsigned char mcs[2];   
+	unsigned char rv[2];
+	unsigned char format;
+	unsigned char tpc;
+	unsigned char vrbFormat;
+	unsigned char tbsIdx;
 }
 
 class BuildDataListElement
@@ -124,6 +150,7 @@ class SchedDlConfigInd extends SchedulerCommand
 {
     unsigned short sfn;
     unsigned char sf;
+    unsigned char nrOfPdcchSymb;
     BuildBcastListElement bldBcastList[];
     BuildRarListElement bldRarList[];
 }

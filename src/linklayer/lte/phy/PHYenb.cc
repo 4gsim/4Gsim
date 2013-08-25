@@ -22,7 +22,7 @@ PHYenb::PHYenb() : PHY() {
     dlBandwith = 6;
     ulBandwith = 6;
 
-    dlReqBCHpdu = NULL;
+    hasBCHPdu = false;
 }
 
 PHYenb::~PHYenb() {
@@ -30,6 +30,11 @@ PHYenb::~PHYenb() {
         if (dlSubframe[i])
             delete dlSubframe[i];
     }
+
+	for (unsigned char l = 0; l < nDLsymb * 2; l++)
+		for (unsigned char k = 0; k < nRBsc * nDLrb; k++)
+			if (dlBuffer[l][k])
+				delete dlBuffer[l][k];
 }
 
 void PHYenb::initialize(int stage) {
@@ -80,7 +85,7 @@ void PHYenb::handleMessage(cMessage *msg) {
                 slot = (slot + 1) % 20;
                 sf = slot / 2;
 
-                if (sf == 0)
+                if (sf == 0 && slot == 0)
                     sfn++;
             }
 		}
@@ -148,7 +153,7 @@ void PHYenb::buildSubframe() {
         }
         PSSSignal *pss = new PSSSignal();
         pss->setCellIdInGroup(n2id);
-        buffer[nDLsymb - 1][k - 1] = pss;
+        dlBuffer[nDLsymb - 1][k - 1] = pss;
     }
 
     // SSS
@@ -161,7 +166,7 @@ void PHYenb::buildSubframe() {
         SSSSignal *sss = new SSSSignal();
         sss->setCellGroupId(n1id);
         sss->setSf(sf);
-        buffer[nDLsymb - 2][k - 1] = sss;
+        dlBuffer[nDLsymb - 2][k - 1] = sss;
     }
 
     // RS
@@ -178,48 +183,52 @@ void PHYenb::buildSubframe() {
     ReferenceSignal *refSig = new ReferenceSignal();
     refSig->setCellId(nCellId);
     refSig->setNcp(ncp);
-    buffer[0][2 * nDLrb - 1] = refSig->dup();
-    buffer[nDLsymb - 3][2 * nDLrb - 1] = refSig;
+    dlBuffer[0][2 * nDLrb - 1] = refSig->dup();
+    dlBuffer[nDLsymb - 3][2 * nDLrb - 1] = refSig;
 
     // PBCH
-    if (dlReqBCHpdu && slot == 1) {
+    if (hasBCHPdu && slot == 1) {
         unsigned char pbchOffset = nDLrb * nRBsc / 2 - 36;
-        for (unsigned char s = 0; s < 4; s++) {
-            PHYSymbol *symbol = dlSubframe[s];
+        for (unsigned char l = 0; l < 4; l++) {
+            PHYSymbol *symbol = dlSubframe[nDLsymb + l];
             for (unsigned char k = pbchOffset; k < pbchOffset + 72; k++) {
                 symbol->setRes(k, PBCH);
             }
         }
     }
+
+    // PCFICH
+    PHYSymbol *symbol = dlSubframe[0];
+    unsigned char pcfichOffset = (nRBsc / 2) * (nCellId % (2 * nDLrb));
+    for (unsigned i = 0; i < 4; i++) {
+    	unsigned char k = (pcfichOffset + (unsigned)(i * nDLrb / 2) * nRBsc / 2) % (nDLrb * nRBsc);
+    	symbol->setRes(k, PCFICH);
+    }
 }
 
 void PHYenb::cleanup() {
     if (sfn % 4 == 0 && sf == 0) {
-        if (dlReqBCHpdu) {
-            delete dlReqBCHpdu;
-            dlReqBCHpdu = NULL;
-        }
+    	hasBCHPdu = false;
     }
 }
 
 void PHYenb::sendSymbol() {
 	PHYSymbol *symbol = dlSubframe[symb + (slot % 2) * nDLsymb];
 
-	TransmissionBuffer::iterator l = buffer.find(symb + (slot % 2) * nDLsymb);
-	if (l != buffer.end()) {
-	    for (PHYFrames::iterator k = l->second.begin(); k != l->second.end(); ++k) {
-	        setData(k->second);
-	        l->second.erase(k);
-	    }
+	for (unsigned k = 0; k < nRBsc * nDLrb; k++) {
+		if (dlBuffer[symb + (slot % 2) * nDLsymb][k]) {
+			setData(k, dlBuffer[symb + (slot % 2) * nDLsymb][k]);
+			dlBuffer[symb + (slot % 2) * nDLsymb][k] = NULL;
+		}
 	}
 
 	sendToChannel(symbol);
 	dlSubframe[symb + (slot % 2) * nDLsymb] = NULL;
 }
 
-void PHYenb::setData(PHYFrame *frame) {
+void PHYenb::setData(unsigned char k, PHYFrame *frame) {
     if (dynamic_cast<LTEChannelControl*>(cc) != NULL) {
-        dynamic_cast<LTEChannelControl*>(cc)->setData(frame);
+        dynamic_cast<LTEChannelControl*>(cc)->setData(k, frame);
     }
 }
 
@@ -228,35 +237,41 @@ void PHYenb::stateEntered(int category, const cPolymorphic *details) {
 
 	if (fsm.getState() == RUNNING) {
 		if (category == DLCONFIGRequest) {
-			DlConfigRequest *dlCfgReq = check_and_cast<DlConfigRequest*>(details);
-		    for (unsigned i = 0; i < dlCfgReq->getPdusArraySize(); i++) {
-		        DlConfigRequestPduPtr pdu = dlCfgReq->getPdus(i);
-		        if (pdu->getType() == BchPdu) {
-		            dlReqBCHpdu = dynamic_cast<DlConfigRequestBchPdu*>(pdu);
-		        }
-//		    		DlConfigRequestPduPtr pdu = dlCfgReq->getPdus(i)->dup();
-//		    		EV << "LTE-PHYenb: Received DLCONFIGRequest for PDU with type = " << (unsigned)pdu->getType() << ".\n";
-//		    		if (pdu->getType() == DciDlPdu) {
-//		    			sendDCIFormat(pdu);
-//		    		} else {
-//		    			dlCfgReqs[dlCfgReq->getTti()].push_back(pdu);
-//		    		}
-		    }
+//			DlConfigRequest *dlCfgReq = check_and_cast<DlConfigRequest*>(details);
+//		    for (unsigned i = 0; i < dlCfgReq->getPdusArraySize(); i++) {
+//		    	DlConfigRequestPduPtr pdu = dlCfgReq->getPdus(i)->dup();
+//		    	EV << "LTE-PHYenb: Received DLCONFIGRequest for PDU with type = " << (unsigned)pdu->getType() << ".\n";
+//
+//		    	if (pdu->getType() == BchPdu) {
+//		            hasBCHPdu = true;
+//		            unsigned char pbchOffset = nDLrb * nRBsc / 2 - 36;
+//
+//		            PBCHMessage *frame = new PBCHMessage();
+//		            frame->setCellId(nCellId);
+//		            dlBuffer[nDLsymb + 3][pbchOffset + 71] = frame;
+//		            dlCfgReq[pdu->getPduIndex()] = frame;
+//		        } else if (pdu->getType() == DciDlPdu) {
+////		    		sendDCIFormat(pdu);
+//		    	} else {
+////		    		dlCfgReqs[pdu->getPduIndex()] = pdu;
+//		    	}
+//		    }
 		} else if (category == TXRequest) {
 //			TxRequest *txReq = check_and_cast<TxRequest*>(details);
 //			for (unsigned i = 0; i < txReq->getPdusArraySize(); i++) {
 //				TxRequestPdu pdu = txReq->getPdus(i);
-//				if (dlCfgReqs.find(txReq->getTti()) != dlCfgReqs.end()) {
+//				DlConfigRequests::iterator dlCfgIt = dlCfgReqs.find(pdu.getPduIndex());
+//				if (dlCfgIt != dlCfgReqs.end()) {
 //					for (unsigned j = 0; j < pdu.getMsgKindsArraySize(); j++) {
-//						unsigned short msgKind = pdu.getMsgKinds(j);
+//						short msgKind = pdu.getMsgKinds(j);
 //						EV << "LTE-PHYenb: Received TXRequest for PDU with id = " << msgKind << ".\n";
-//						txReqs[pdu.getPduIndex()].push_back(msgKind);
+//						txReqs[msgKind] = dlCfgIt->second;
 //					}
 //				}
 //			}
 		}
 	}
-//	delete details;
+	delete details;
 }
 
 void PHYenb::sendBufferedData() {
