@@ -176,15 +176,16 @@ void PHYenb::buildSubframe() {
     unsigned char v2 = 3;
     unsigned char rsOffset1 = (v1 + vShift) % 6;
     unsigned char rsOffset2 = (v2 + vShift) % 6;
-    for (unsigned char i = 0; i < 2 * nDLrb - 1; i++) {
+    unsigned char i = 0;
+    for (; i < 2 * nDLrb; i++) {
     	symbol1->setRes(rsOffset1 + 6 * i, RS);
     	symbol2->setRes(rsOffset2 + 6 * i, RS);
     }
     ReferenceSignal *refSig = new ReferenceSignal();
     refSig->setCellId(nCellId);
     refSig->setNcp(ncp);
-    dlBuffer[0][2 * nDLrb - 1] = refSig->dup();
-    dlBuffer[nDLsymb - 3][2 * nDLrb - 1] = refSig;
+    dlBuffer[0][rsOffset1 + 6 * (i - 1)] = refSig->dup();
+    dlBuffer[nDLsymb - 3][rsOffset2 + 6 * (i - 1)] = refSig;
 
     // PBCH
     if (hasBCHPdu && slot == 1) {
