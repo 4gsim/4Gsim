@@ -37,7 +37,7 @@ private:
 
 	SubscriberTable *subT;
 
-	cMessage *getData(unsigned char k);
+	cMessage *getData(unsigned short k);
 	void processPSS(unsigned char k);
 	void processSSS(unsigned char k);
 	void processReferenceSignal(unsigned char k);

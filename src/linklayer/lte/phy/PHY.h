@@ -63,6 +63,8 @@ protected:
     typedef PHYFrame *PHYFramePtr;
     PHYFramePtr **dlBuffer;	// frame[nDLsymb * 2][nRBsc * nDLrb]
 
+    typedef unsigned char reg[k][l];
+
     cFSM fsm;
 
     RadioState rs;

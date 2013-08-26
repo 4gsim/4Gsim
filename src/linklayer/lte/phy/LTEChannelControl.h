@@ -137,8 +137,8 @@ public:
     /** Enable the reception in the reference module */
     virtual void enableReception(RadioRef r) { r->isActive = true; };
 
-    void setData(unsigned char k, PHYFrame *frame);
-    PHYFrame *getData(unsigned char k);
+    void setData(unsigned short k, PHYFrame *frame);
+    PHYFrame *getData(unsigned short k);
 };
 
 #endif /* LTECHANNELCONTROL_H_ */

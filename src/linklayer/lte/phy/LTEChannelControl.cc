@@ -283,7 +283,7 @@ void LTEChannelControl::setRadioChannel(RadioRef r, int channel) {
     r->channels.push_back(channel);
 }
 
-void LTEChannelControl::setData(unsigned char k, PHYFrame *frame) {
+void LTEChannelControl::setData(unsigned short k, PHYFrame *frame) {
     take(frame);
     ChannelData::iterator i = data.find(k);
     if (i != data.end()) {
@@ -292,7 +292,7 @@ void LTEChannelControl::setData(unsigned char k, PHYFrame *frame) {
     data[k] = frame;
 }
 
-PHYFrame *LTEChannelControl::getData(unsigned char k) {
+PHYFrame *LTEChannelControl::getData(unsigned short k) {
     ChannelData::iterator i = data.find(k);
     if (i != data.end()) {
         PHYFrame *frame = i->second->dup();

@@ -152,7 +152,7 @@ void PHY::stateEntered(int category, const cPolymorphic *details) {
             	for (unsigned char l = 0; l < nDLsymb * 2; l++)
             		dlBuffer[l] = new PHYFramePtr[nRBsc * nDLrb];
             	for (unsigned char l = 0; l < nDLsymb * 2; l++)
-            		for (unsigned char k = 0; k < nRBsc * nDLrb; k++)
+            		for (unsigned short k = 0; k < nRBsc * nDLrb; k++)
             			dlBuffer[l][k] = NULL;
 
                 this->cancelEvent(symbolTimer);

@@ -86,7 +86,7 @@ void PHYue::handleUpperMessage(cMessage *msg) {
 void PHYue::handleRadioMessage(cMessage *msg) {
 	if (start) {
 		PHYSymbol *symbol = check_and_cast<PHYSymbol*>(msg);
-		unsigned char k = 0;
+		unsigned short k = 0;
 		while (k < symbol->getResArraySize()) {
 
 			// check for PSS
@@ -192,7 +192,7 @@ void PHYue::handleRadioMessage(cMessage *msg) {
 //    }
 }
 
-cMessage *PHYue::getData(unsigned char k) {
+cMessage *PHYue::getData(unsigned short k) {
     if (dynamic_cast<LTEChannelControl*>(cc) != NULL) {
         return dynamic_cast<LTEChannelControl*>(cc)->getData(k);
     }

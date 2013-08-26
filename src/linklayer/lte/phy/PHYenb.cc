@@ -32,7 +32,7 @@ PHYenb::~PHYenb() {
     }
 
 	for (unsigned char l = 0; l < nDLsymb * 2; l++)
-		for (unsigned char k = 0; k < nRBsc * nDLrb; k++)
+		for (unsigned short k = 0; k < nRBsc * nDLrb; k++)
 			if (dlBuffer[l][k])
 				delete dlBuffer[l][k];
 }
@@ -141,13 +141,13 @@ void PHYenb::buildSubframe() {
 		dlSubframe[i]->setChannelNumber(Downlink);
 	}
 
-    unsigned char ssOffset = (nDLrb * nRBsc) / 2 - 31;
+    unsigned short ssOffset = (nDLrb * nRBsc) / 2 - 31;
     unsigned char vShift = nCellId % 6;
 
     // PSS
     if ((slot == 0 || slot == 10)) {
     	PHYSymbol *symbol = dlSubframe[nDLsymb - 1];
-    	unsigned char k = ssOffset;
+    	unsigned short k = ssOffset;
         for (; k < ssOffset + 62; k++) {
             symbol->setRes(k, PSS);
         }
@@ -159,7 +159,7 @@ void PHYenb::buildSubframe() {
     // SSS
     if ((slot == 0 || slot == 10)) {
     	PHYSymbol *symbol = dlSubframe[nDLsymb - 2];
-    	unsigned char k = ssOffset;
+    	unsigned short k = ssOffset;
         for (; k < ssOffset + 62; k++) {
             symbol->setRes(k, SSS);
         }
@@ -192,7 +192,7 @@ void PHYenb::buildSubframe() {
         unsigned char pbchOffset = nDLrb * nRBsc / 2 - 36;
         for (unsigned char l = 0; l < 4; l++) {
             PHYSymbol *symbol = dlSubframe[nDLsymb + l];
-            for (unsigned char k = pbchOffset; k < pbchOffset + 72; k++) {
+            for (unsigned short k = pbchOffset; k < pbchOffset + 72; k++) {
                 symbol->setRes(k, PBCH);
             }
         }
@@ -202,7 +202,7 @@ void PHYenb::buildSubframe() {
     PHYSymbol *symbol = dlSubframe[0];
     unsigned char pcfichOffset = (nRBsc / 2) * (nCellId % (2 * nDLrb));
     for (unsigned i = 0; i < 4; i++) {
-    	unsigned char k = (pcfichOffset + (unsigned)(i * nDLrb / 2) * nRBsc / 2) % (nDLrb * nRBsc);
+    	unsigned short k = (pcfichOffset + (unsigned)(i * nDLrb / 2) * nRBsc / 2) % (nDLrb * nRBsc);
     	symbol->setRes(k, PCFICH);
     }
 }
@@ -216,7 +216,7 @@ void PHYenb::cleanup() {
 void PHYenb::sendSymbol() {
 	PHYSymbol *symbol = dlSubframe[symb + (slot % 2) * nDLsymb];
 
-	for (unsigned k = 0; k < nRBsc * nDLrb; k++) {
+	for (unsigned short k = 0; k < nRBsc * nDLrb; k++) {
 		if (dlBuffer[symb + (slot % 2) * nDLsymb][k]) {
 			setData(k, dlBuffer[symb + (slot % 2) * nDLsymb][k]);
 			dlBuffer[symb + (slot % 2) * nDLsymb][k] = NULL;
@@ -227,7 +227,7 @@ void PHYenb::sendSymbol() {
 	dlSubframe[symb + (slot % 2) * nDLsymb] = NULL;
 }
 
-void PHYenb::setData(unsigned char k, PHYFrame *frame) {
+void PHYenb::setData(unsigned short k, PHYFrame *frame) {
     if (dynamic_cast<LTEChannelControl*>(cc) != NULL) {
         dynamic_cast<LTEChannelControl*>(cc)->setData(k, frame);
     }

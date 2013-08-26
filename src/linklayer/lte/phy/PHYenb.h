@@ -40,7 +40,7 @@ private:
     void sendSymbol();
     void cleanup();
 
-    void setData(unsigned char k, PHYFrame *frame);
+    void setData(unsigned short k, PHYFrame *frame);
 
     virtual void stateEntered(int category, const cPolymorphic *details);
 public:
