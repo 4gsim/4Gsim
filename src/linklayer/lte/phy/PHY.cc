@@ -106,6 +106,10 @@ const char *PHY::eventName(int event) {
 #undef CASE
 }
 
+bool PHY::operator<(const reg &l, const reg &r) {
+
+}
+
 void PHY::stateEntered(int category, const cPolymorphic *details) {
     switch(fsm.getState()) {
         case IDLE: {
@@ -149,11 +153,11 @@ void PHY::stateEntered(int category, const cPolymorphic *details) {
             		dlSubframe[i] = NULL;
 
             	dlBuffer = new PHYFramePtr*[nDLsymb * 2];
-            	for (unsigned char l = 0; l < nDLsymb * 2; l++)
+            	for (unsigned char l = 0; l < nDLsymb * 2; l++) {
             		dlBuffer[l] = new PHYFramePtr[nRBsc * nDLrb];
-            	for (unsigned char l = 0; l < nDLsymb * 2; l++)
             		for (unsigned short k = 0; k < nRBsc * nDLrb; k++)
             			dlBuffer[l][k] = NULL;
+            	}
 
                 this->cancelEvent(symbolTimer);
                 this->scheduleAt(simTime(), symbolTimer);

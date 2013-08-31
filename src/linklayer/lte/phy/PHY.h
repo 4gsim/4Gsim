@@ -63,7 +63,15 @@ protected:
     typedef PHYFrame *PHYFramePtr;
     PHYFramePtr **dlBuffer;	// frame[nDLsymb * 2][nRBsc * nDLrb]
 
-    typedef unsigned char reg[k][l];
+    struct reg {
+        unsigned short k;
+        unsigned char l;
+    };
+
+    bool operator<(const reg &l, const reg &r);
+
+    typedef std::map<reg, unsigned char> REGroups;
+    REGroups regs;
 
     cFSM fsm;
 
