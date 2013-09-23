@@ -19,21 +19,21 @@
 #include "PHY.h"
 #include "SubscriberTableAccess.h"
 
-enum SyncState
-{
-    NONE,
-    PSS_RECEIVED,
-    SSS_RECEIVED,
-    SYNCHRONIZED
+enum PHYueEvent {
+	CellFound
 };
 
 class PHYue : public PHY {
 private:
-    unsigned char syncState;
     unsigned pbchSubcarriers;
 
 	cMessage *delayTimer;
 	bool start;
+
+	unsigned char nrOfPss;
+	unsigned char cellSync;
+
+	unsigned char dciSize;
 
 	SubscriberTable *subT;
 
@@ -41,9 +41,13 @@ private:
 	void processPSS(unsigned char k);
 	void processSSS(unsigned char k);
 	void processReferenceSignal(unsigned char k);
+	void processPCFICH(unsigned char k);
+	void processPDCCH(unsigned char k);
 	void processPBCH();
 
 	virtual void stateEntered(int category, const cPolymorphic *details);
+
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 public:
     PHYue();
     virtual ~PHYue();

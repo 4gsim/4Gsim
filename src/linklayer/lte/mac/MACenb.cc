@@ -104,6 +104,7 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
         DlConfigRequest *dlReq = new DlConfigRequest();
         dlReq->setSfn(sfn);
         dlReq->setSf(sf);
+        dlReq->setNrPdcchSymb(cfgInd->getNrOfPdcchSymb());
 
         // prepare tx request for physical layer (sent only if tx is scheduled)
         TxRequest *txReq = new TxRequest();
@@ -216,8 +217,9 @@ void MACenb::receiveChangeNotification(int category, const cPolymorphic *details
 
         if (pduIndex > 0)
             nb->fireChangeNotification(TXRequest, txReq);
-        else
-        	delete txReq;
+
+        delete dlReq;
+        delete txReq;
 
     } else if (category == RACHIndication) {
     	// TODO check RACH type

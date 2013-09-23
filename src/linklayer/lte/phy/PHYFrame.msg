@@ -32,11 +32,6 @@ message TransportBlock extends PhysicalResourceBlock
     
 }
 
-message DCIFormat extends PhysicalResourceBlock
-{
-
-}
-
 message RAPreamble extends PhysicalResourceBlock
 {
 	unsigned char rapid;   
@@ -73,14 +68,27 @@ message SSSSignal extends PHYFrame
 message ReferenceSignal extends PHYFrame
 {
     channel = RS;
-    unsigned char cellId;
+	unsigned char cellId;
 	unsigned char ncp;    	// cyclic prefix
 }
 
 message PCFICHMessage extends PHYFrame
 {
     channel = PCFICH;
-    unsigned char pdcchSymbols;
+    unsigned char cfi;
+}
+
+message DCIFormat extends PHYFrame
+{
+    channel = PDCCH;
+    unsigned short rnti;   // scrambled in CRC
+    unsigned char rntiType;
+    unsigned char formatFlag;
+ 	bool vrbFlag;
+ 	unsigned int rbCoding;
+ 	unsigned char mcs;
+ 	unsigned char rv;
+ 	unsigned char tpc;
 }
 
 message PBCHMessage extends PHYFrame

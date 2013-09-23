@@ -14,6 +14,7 @@
 // 
 
 #include "MACScheduler.h"
+#include "RRC.h"
 #include "LTEControlInfo_m.h"
 
 Define_Module(MACScheduler);
@@ -21,6 +22,9 @@ Define_Module(MACScheduler);
 MACScheduler::MACScheduler() {
 	prachCfgIndex = 64;
 	dlBandwith = 6;
+	dlCyclPref = CTRL_CP_NORMAL;
+	nrOfSubcarriers = 12;
+	nrOfAntennas = 1;
 }
 
 MACScheduler::~MACScheduler() {
@@ -54,11 +58,44 @@ unsigned char MACScheduler::getRBGSize() {
 		return 4;
 }
 
+unsigned char MACScheduler::getReNrInReg(unsigned char l) {
+	if (l == 0)
+		return 6;
+	else if (l == 1 && nrOfAntennas == 4)
+		return 6;
+	else if (l == 1 && nrOfAntennas != 4)
+		return 4;
+	else if (l == 2)
+		return 4;
+	else if (l == 3 && dlCyclPref == CTRL_CP_NORMAL)
+		return 4;
+	else if (l == 3 && dlCyclPref == CTRL_CP_EXTENDED)
+		return 6;
+	return 0;
+}
+
 unsigned MACScheduler::getRIV(unsigned char lCRB, unsigned char rbStart) {
 	if ((lCRB - 1) < floor(dlBandwith / 2))
 		return dlBandwith * (lCRB - 1) + rbStart;
 	else
 		return dlBandwith * (dlBandwith - lCRB + 1) + (dlBandwith - 1 - rbStart);
+}
+
+unsigned char MACScheduler::getNrOfDlSymbForDci(unsigned short nReg) {
+	unsigned char l = 0;
+	unsigned short nrOfResInSymb = dlBandwith * nrOfSubcarriers;
+	unsigned short nrOfRegsInSymb = nrOfResInSymb / getReNrInReg(l);
+	nrOfRegsInSymb -= 4; // first symbol has also PCFICH resource elements which don't count
+	if (nReg < nrOfRegsInSymb)
+		return 1;
+	l++;
+
+	for (; l < 4; l++) {
+		nrOfRegsInSymb += nrOfResInSymb / getReNrInReg(l);
+		if (nReg < nrOfRegsInSymb)
+			return l + 1;
+	}
+	return 0;
 }
 
 void MACScheduler::processScheduleDlTriggerRequest(SchedDlTriggerReq *triggReq) {
@@ -69,6 +106,8 @@ void MACScheduler::processScheduleDlTriggerRequest(SchedDlTriggerReq *triggReq) 
     bool rbBitmap[dlBandwith];
     unsigned char rbStart = 0;
     memset(rbBitmap, false, dlBandwith);
+
+    unsigned short nReg = 0;
 
     unsigned nrBldBcastList = 0;
     SchedDlConfigInd *cfgInd = new SchedDlConfigInd();
@@ -135,6 +174,8 @@ void MACScheduler::processScheduleDlTriggerRequest(SchedDlTriggerReq *triggReq) 
         dciEl.setTbsIdx(iTBS);
         bcastEl.setDci(dciEl);
 
+        nReg += 18;
+
         cfgInd->setBldBcastListArraySize(++nrBldBcastList);
         cfgInd->setBldBcastList(nrBldBcastList - 1, bcastEl);
     }
@@ -168,6 +209,8 @@ void MACScheduler::processScheduleDlTriggerRequest(SchedDlTriggerReq *triggReq) 
 //    	cfgInd->setBldRarListArraySize(1);
 //    	cfgInd->setBldRarList(0, rarEl);
 //    }
+
+    cfgInd->setNrOfPdcchSymb(getNrOfDlSymbForDci(nReg));
 
     nb->fireChangeNotification(SCHED_DL_CONFIG_IND, cfgInd);
 }
@@ -222,6 +265,10 @@ void MACScheduler::receiveChangeNotification(int category, const cPolymorphic *d
     } else if (category == CSCHED_CELL_CONFIG_REQ) {
     	EV << "MACScheduler: Received CSCHED_CELL_CONFIG_REQ. Processing the request.\n";
         CSchedCellConfigReq *cellCfg = check_and_cast<CSchedCellConfigReq*>(details);
+
+        dlCyclPref = cellCfg->getDlCyclPrefLen();
+
+        nrOfAntennas = cellCfg->getAntennaPortsCount();
 
         siCfg = cellCfg->getSiConfig();
 

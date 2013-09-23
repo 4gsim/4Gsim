@@ -14,6 +14,7 @@
 // 
 
 #include "PHYenb.h"
+#include "RRC.h"
 #include "LTEChannelControl.h"
 
 Define_Module(PHYenb);
@@ -23,6 +24,16 @@ PHYenb::PHYenb() : PHY() {
     ulBandwith = 6;
 
     hasBCHPdu = false;
+
+    sfn = 0;
+    sf = 0;
+    symb = 0;
+    slot = 0;
+
+    nRBsc = 12;
+    nDLsymb = 7;
+
+    symbPeriod = 1e-3 / nDLsymb;
 }
 
 PHYenb::~PHYenb() {
@@ -77,7 +88,7 @@ void PHYenb::handleMessage(cMessage *msg) {
 
             sendSymbol();
 
-		    this->cancelEvent(symbolTimer);
+            this->cancelEvent(symbolTimer);
             this->scheduleAt(simTime() + symbPeriod, symbolTimer);
 
             symb = (symb + 1) % nDLsymb;
@@ -169,7 +180,7 @@ void PHYenb::buildSubframe() {
         dlBuffer[nDLsymb - 2][k - 1] = sss;
     }
 
-    // RS
+    // TODO repair RS
     PHYSymbol *symbol1 = dlSubframe[0];
     PHYSymbol *symbol2 = dlSubframe[nDLsymb - 3];
     unsigned char v1 = 0;
@@ -199,15 +210,87 @@ void PHYenb::buildSubframe() {
     }
 
     // PCFICH
-    PHYSymbol *symbol = dlSubframe[0];
-    unsigned char pcfichOffset = (nRBsc / 2) * (nCellId % (2 * nDLrb));
-    for (unsigned i = 0; i < 4; i++) {
-    	unsigned short k = (pcfichOffset + (unsigned)(i * nDLrb / 2) * nRBsc / 2) % (nDLrb * nRBsc);
-    	symbol->setRes(k, PCFICH);
+    if (dciBuffer.size() != 0 && cfi != 0) {
+		PHYSymbol *symbol = dlSubframe[0];
+		unsigned char pcfichOffset = (nRBsc / 2) * (nCellId % (2 * nDLrb));
+		unsigned short kLast = 0;
+		for (unsigned i = 0; i < 4; i++) {
+			unsigned short k = (pcfichOffset + (unsigned)(i * nDLrb / 2) * nRBsc / 2) % (nDLrb * nRBsc);
+			REG reg = findExactReg(0, k);
+			if (reg) {
+				unsigned char kRel = 0;
+				for (; kRel < getReNrInReg(0); kRel++) {
+					if (!symbol->getRes(reg[kRel].k))	// avoid resource elements assigned for RS
+						symbol->setRes(reg[kRel].k, PCFICH);
+				}
+				kLast = reg[kRel - 1].k;
+			} else {
+				EV << "LTE-PHYenb: !!! Error in PCFICH, resource element (k,l) does not represent a resource element group !!!\n";
+			}
+		}
+		PCFICHMessage *pcfichMsg = new PCFICHMessage();
+		pcfichMsg->setCfi(cfi);
+		dlBuffer[0][kLast] = pcfichMsg;
+    }
+
+    // PDCCH
+    if (dciBuffer.size() != 0 && cfi != 0) {
+//    	unsigned char m = 0;
+    	unsigned short k = 0;
+    	DlConfigRequestDciDlPdu *dciDlPdu = NULL;
+    	unsigned char dciSize = 0;
+
+    	while (k < nDLrb * nRBsc && dciBuffer.size() != 0) {
+    		unsigned char l = 0;
+    		while (l < cfi && dciBuffer.size() != 0) {
+				PHYSymbol *symbol = dlSubframe[l];
+				REG reg = findExactReg(l, k);
+
+				if (reg && symbol->getRes(k) != PCFICH) {	// TODO PHICH
+					// symbol preparation
+					unsigned short kLast = 0;
+					unsigned char kRel = 0;
+					for (; kRel < getReNrInReg(l); kRel++) {
+						if (!symbol->getRes(reg[kRel].k))	// avoid resource elements assigned for RS
+							symbol->setRes(reg[kRel].k, PDCCH);
+					}
+					kLast = reg[kRel - 1].k;
+
+					// data transmission
+					dciDlPdu = dciBuffer.back();
+					if (dciSize == 0) {
+						if (dciDlPdu->getType() == DCI_FORMAT_1 || dciDlPdu->getType() == DCI_FORMAT_1A)
+							dciSize = 18;
+					}
+					dciSize--;
+					if (dciSize == 0) {
+						DCIFormat *dci = new DCIFormat();
+					    dci->setRnti(dciDlPdu->getRnti());   // scrambled in CRC
+					    dci->setRntiType(dciDlPdu->getRntiType());
+					    dci->setFormatFlag(dciDlPdu->getType());
+					 	dci->setVrbFlag(dciDlPdu->getVrbFlag());
+					 	dci->setRbCoding(dciDlPdu->getRbCoding());
+					 	// TODO 2 transport blocks
+					 	dci->setMcs(dciDlPdu->getMcs1());
+					 	dci->setRv(dciDlPdu->getRv1());
+					 	dci->setTpc(dciDlPdu->getTpc());
+					 	dlBuffer[l][kLast] = dci;
+
+						dciBuffer.pop_back();
+						delete dciDlPdu;
+					}
+//					m++;
+				}
+				l++;
+    		}
+    		k++;
+    	}
     }
 }
 
 void PHYenb::cleanup() {
+	cfi = 0;
+
     if (sfn % 4 == 0 && sf == 0) {
     	hasBCHPdu = false;
     }
@@ -234,29 +317,102 @@ void PHYenb::setData(unsigned short k, PHYFrame *frame) {
 }
 
 void PHYenb::stateEntered(int category, const cPolymorphic *details) {
-	PHY::stateEntered(category, details);
+    switch(fsm.getState()) {
+        case IDLE: {
+            ParamResponse *paramResp = new ParamResponse();
+            paramResp->setErrorCode(MsgOk);
+            paramResp->setTlvsArraySize(1);
+            paramResp->setTlvs(0, createPhyCommandTlv(PhyState, 1, IDLE));
+            nb->fireChangeNotification(PARAMResponse, paramResp);
+            break;
+        }
+        case CONFIGURED: {
+            if (category == CONFIGRequest) {
+            	ConfigRequest *cfgReq = check_and_cast<ConfigRequest*>(details);
+            	for (unsigned i = 0; i < cfgReq->getTlvsArraySize(); i++) {
+            		if (cfgReq->getTlvs(i).getTag() == SfnSf) {
+            			sfn = cfgReq->getTlvs(i).getValue() / 10;
+            			sf = cfgReq->getTlvs(i).getValue() % 10;
+            		}
+                    if (cfgReq->getTlvs(i).getTag() == DlCyclicPrefixType) {
+                        ncp = cfgReq->getTlvs(i).getValue() == CTRL_CP_NORMAL ? PHY_CP_NORMAL : PHY_CP_EXTENDED;
+                    }
+                    if (cfgReq->getTlvs(i).getTag() == TxAntennaPorts) {
+                        p = cfgReq->getTlvs(i).getValue();
+                    }
+                    if (cfgReq->getTlvs(i).getTag() == DlChannelBandwith) {
+                        nDLrb = cfgReq->getTlvs(i).getValue();
+                    }
+                    if (cfgReq->getTlvs(i).getTag() == PhysicalCellId) {
+                        nCellId = cfgReq->getTlvs(i).getValue();
+                        n1id = nCellId / 3;
+                        n2id = nCellId % 3;
+                    }
+            	}
+                ConfigResponse *cfgResp = new ConfigResponse();
+                cfgResp->setErrorCode(MsgOk);
+                nb->fireChangeNotification(CONFIGResponse, cfgResp);
+            }
+            break;
+        }
+        case RUNNING: {
+            if (category == STARTRequest) {
+            	dlSubframe = new PHYSymbol*[nDLsymb * 2];
+            	for (unsigned char i = 0; i < nDLsymb * 2; i++)
+            		dlSubframe[i] = NULL;
+
+            	dlBuffer = new PHYFramePtr*[nDLsymb * 2];
+            	for (unsigned char l = 0; l < nDLsymb * 2; l++) {
+            		dlBuffer[l] = new PHYFramePtr[nRBsc * nDLrb];
+            		for (unsigned short k = 0; k < nRBsc * nDLrb; k++)
+            			dlBuffer[l][k] = NULL;
+            	}
+
+            	configureRegs();
+
+                this->cancelEvent(symbolTimer);
+                this->scheduleAt(simTime(), symbolTimer);
+            } else if (category == DLCONFIGRequest) {
+    			DlConfigRequest *dlCfgReq = check_and_cast<DlConfigRequest*>(details);
+    			cfi = dlCfgReq->getNrPdcchSymb();
+
+    		    while (dlCfgReq->getPdusArraySize() != 0) {
+    		    	DlConfigRequestPduPtr pdu = dlCfgReq->backPdu();
+    		    	EV << "LTE-PHYenb: Received DLCONFIGRequest for PDU with type = " << (unsigned)pdu->getType() << ".\n";
+
+    		    	// DCI request from upper layer
+    		    	if (pdu->getType() == DciDlPdu) {
+    		    		DlConfigRequestDciDlPdu *dciDlPdu = check_and_cast<DlConfigRequestDciDlPdu*>(pdu);
+    		    		dciBuffer.push_back(dciDlPdu);
+    		    	} else {
+    		    		delete pdu;
+    		    	}
+    //		    	if (pdu->getType() == BchPdu) {
+    //		            hasBCHPdu = true;
+    //		            unsigned char pbchOffset = nDLrb * nRBsc / 2 - 36;
+    //
+    //		            PBCHMessage *frame = new PBCHMessage();
+    //		            frame->setCellId(nCellId);
+    //		            dlBuffer[nDLsymb + 3][pbchOffset + 71] = frame;
+    //		            dlCfgReq[pdu->getPduIndex()] = frame;
+    //		        } else if (pdu->getType() == DciDlPdu) {
+    ////		    		sendDCIFormat(pdu);
+    //		    	} else {
+    ////		    		dlCfgReqs[pdu->getPduIndex()] = pdu;
+    //		    	}
+    		    	dlCfgReq->popPdu();
+    		    }
+            }
+            break;
+        }
+        default:
+            EV << "LTE-PHYenb: Unknown state.\n";
+            break;
+    }
 
 	if (fsm.getState() == RUNNING) {
 		if (category == DLCONFIGRequest) {
-//			DlConfigRequest *dlCfgReq = check_and_cast<DlConfigRequest*>(details);
-//		    for (unsigned i = 0; i < dlCfgReq->getPdusArraySize(); i++) {
-//		    	DlConfigRequestPduPtr pdu = dlCfgReq->getPdus(i)->dup();
-//		    	EV << "LTE-PHYenb: Received DLCONFIGRequest for PDU with type = " << (unsigned)pdu->getType() << ".\n";
-//
-//		    	if (pdu->getType() == BchPdu) {
-//		            hasBCHPdu = true;
-//		            unsigned char pbchOffset = nDLrb * nRBsc / 2 - 36;
-//
-//		            PBCHMessage *frame = new PBCHMessage();
-//		            frame->setCellId(nCellId);
-//		            dlBuffer[nDLsymb + 3][pbchOffset + 71] = frame;
-//		            dlCfgReq[pdu->getPduIndex()] = frame;
-//		        } else if (pdu->getType() == DciDlPdu) {
-////		    		sendDCIFormat(pdu);
-//		    	} else {
-////		    		dlCfgReqs[pdu->getPduIndex()] = pdu;
-//		    	}
-//		    }
+
 		} else if (category == TXRequest) {
 //			TxRequest *txReq = check_and_cast<TxRequest*>(details);
 //			for (unsigned i = 0; i < txReq->getPdusArraySize(); i++) {
@@ -272,7 +428,65 @@ void PHYenb::stateEntered(int category, const cPolymorphic *details) {
 //			}
 		}
 	}
-	delete details;
+//	delete details;
+
+}
+
+void PHYenb::receiveChangeNotification(int category, const cPolymorphic *details) {
+    Enter_Method_Silent();
+
+    int oldState = fsm.getState();
+
+    switch(oldState) {
+        case IDLE:
+            switch(category) {
+                case PARAMRequest: {
+                    break;
+                }
+                case CONFIGRequest: {
+                    FSM_Goto(fsm, CONFIGURED);
+                    break;
+                }
+                default:
+                    EV << "LTE-PHYenb: Received unexpected event.\n";
+                    break;
+            }
+            break;
+        case CONFIGURED:
+            switch(category) {
+                case STARTRequest: {
+                    FSM_Goto(fsm, RUNNING);
+                    break;
+                }
+                default:
+                    EV << "LTE-PHYenb: Received unexpected event.\n";
+                    break;
+            }
+            break;
+        case RUNNING:
+            switch(category) {
+                case DLCONFIGRequest: {
+                    break;
+                }
+                case TXRequest : {
+                    break;
+                }
+                default:
+                    EV << "LTE-PHYenb: Received unexpected event.\n";
+                    break;
+            }
+            break;
+        default:
+            EV << "LTE-PHYenb: Unknown state.\n";
+            break;
+    }
+
+//    if (oldState != fsm.getState())
+//        EV << "LTE-PHY: PSM-Transition: " << stateName(oldState) << " --> " << stateName(fsm.getState()) << "  (event was: " << eventName(category) << ")\n";
+//    else
+//        EV << "LTE-PHY: Staying in state: " << stateName(fsm.getState()) << " (event was: " << eventName(category) << ")\n";
+
+    stateEntered(category, details);
 }
 
 void PHYenb::sendBufferedData() {
@@ -318,13 +532,13 @@ void PHYenb::sendBufferedData() {
 }
 
 void PHYenb::sendDCIFormat(DlConfigRequestPduPtr pdu) {
-    DlConfigRequestDciDlPdu *dciPdu = check_and_cast<DlConfigRequestDciDlPdu*>(pdu);
-    DCIFormat *dci = new DCIFormat();
-    dci->setName("DCIFormat");
-    dci->setRnti(dciPdu->getRnti());
-//    dci->setRntiType(dciPdu->getRntiType());
-    dci->setChannelNumber(PDCCH);
-    sendToChannel(dci);
+//    DlConfigRequestDciDlPdu *dciPdu = check_and_cast<DlConfigRequestDciDlPdu*>(pdu);
+//    DCIFormat *dci = new DCIFormat();
+//    dci->setName("DCIFormat");
+//    dci->setRnti(dciPdu->getRnti());
+////    dci->setRntiType(dciPdu->getRntiType());
+//    dci->setChannelNumber(PDCCH);
+//    sendToChannel(dci);
 }
 //
 //bool PHYenb::findAndRemoveDlConfigRequestPdu(unsigned short pduIndex) {

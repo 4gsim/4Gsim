@@ -34,6 +34,9 @@ private:
 //    bool findAndRemoveDlConfigRequestPdu(unsigned short pduIndex);
 //    bool findAndRemoveTxRequestPdu(unsigned msgId);
 
+    typedef std::list<DlConfigRequestDciDlPdu*> DCIBuffer;
+    DCIBuffer dciBuffer;
+
     void sendDCIFormat(DlConfigRequestPduPtr pdu);
 
     void buildSubframe();
@@ -43,6 +46,8 @@ private:
     void setData(unsigned short k, PHYFrame *frame);
 
     virtual void stateEntered(int category, const cPolymorphic *details);
+
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
 public:
     PHYenb();
     virtual ~PHYenb();

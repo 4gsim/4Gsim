@@ -39,8 +39,8 @@ static const unsigned macContResolTimers[8] = { 8, 16, 24, 32, 40, 48, 56, 64 };
 
 enum RRCCyclicPrefix
 {
-    RRC_CP_NORMAL = 0,
-    RRC_CP_EXTENDED = 1
+    CTRL_CP_NORMAL = 0,
+    CTRL_CP_EXTENDED = 1
 };
 
 class RRC : public cSimpleModule, public INotifiable {
@@ -51,6 +51,7 @@ protected:
     unsigned char dlBandwithSel;
     unsigned char cyclicPrefix;
     unsigned short phyCellId;
+    unsigned char nrOfAntennas;
 
     PHICHConfig phichCfg;
     RACHConfigCommon rachCfg;

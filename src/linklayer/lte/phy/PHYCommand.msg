@@ -48,6 +48,7 @@ enum PhyCommandTlvTag
 {
     DlCyclicPrefixType = 4;
     DlChannelBandwith = 6;
+    TxAntennaPorts = 7;
     PhysicalCellId = 16;
     DlBwSupp = 40;
     UlBwSupp = 41;

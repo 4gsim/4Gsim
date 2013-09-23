@@ -15,28 +15,24 @@
 
 #include "PHY.h"
 #include "RRC.h"
+#include <fstream>
 
 PHY::PHY() : rs(this->getId()) {
 	// TODO Auto-generated constructor stub
-    sfn = 0;
-    sf = 0;
     symbolTimer = NULL;
-    symb = 0;
-    slot = 0;
 
-    nRBsc = 12;
-    nDLsymb = 7;
-
-    nDLrb = 255;
+	nDLrb = 255;
     ncp = 255;
     n1id = 255;
     n2id = 255;
     nCellId = 65535;
-
-    symbPeriod = 1e-3 / nDLsymb;
+    p = 1;
 
     dlSubframe = NULL;
     dlBuffer = NULL;
+    allRegs = NULL;
+
+    cfi = 0;
 }
 
 PHY::~PHY() {
@@ -55,6 +51,24 @@ PHY::~PHY() {
     	for (unsigned char l = 0; l < nDLsymb * 2; l++)
     		delete [] dlBuffer[l];
     	delete [] dlBuffer;
+    }
+
+    if (allRegs) {
+    	for (unsigned char l = 0; l < 4; l++) {
+    		for (unsigned short k = 0; k < nRBsc * nDLrb; k++) {
+    			if (allRegs[l][k]) {
+    				REGs regs = allRegs[l][k];
+    				unsigned char regNr = getRegNrInRegs(l);
+    				for (unsigned char r = 0; r < regNr; r++) {
+    					REG reg = regs[r];
+    					delete [] reg;
+    				}
+    				delete [] regs;
+    			}
+    		}
+    		delete [] allRegs[l];
+    	}
+    	delete [] allRegs;
     }
 }
 
@@ -106,123 +120,87 @@ const char *PHY::eventName(int event) {
 #undef CASE
 }
 
-bool PHY::operator<(const reg &l, const reg &r) {
-
+unsigned char PHY::getRegNrInRegs(unsigned char l) {
+	if (l == 0)
+		return 2;
+	else if (l == 1 && p == 4)
+		return 2;
+	else if (l == 1 && p != 4)
+		return 3;
+	else if (l == 2)
+		return 3;
+	else if (l == 3 && ncp == PHY_CP_NORMAL)
+		return 3;
+	else if (l == 3 && ncp == PHY_CP_EXTENDED)
+		return 2;
+	return 0;
 }
 
-void PHY::stateEntered(int category, const cPolymorphic *details) {
-    switch(fsm.getState()) {
-        case IDLE: {
-            ParamResponse *paramResp = new ParamResponse();
-            paramResp->setErrorCode(MsgOk);
-            paramResp->setTlvsArraySize(1);
-            paramResp->setTlvs(0, createPhyCommandTlv(PhyState, 1, IDLE));
-            nb->fireChangeNotification(PARAMResponse, paramResp);
-            break;
-        }
-        case CONFIGURED: {
-            if (category == CONFIGRequest) {
-            	ConfigRequest *cfgReq = check_and_cast<ConfigRequest*>(details);
-            	for (unsigned i = 0; i < cfgReq->getTlvsArraySize(); i++) {
-            		if (cfgReq->getTlvs(i).getTag() == SfnSf) {
-            			sfn = cfgReq->getTlvs(i).getValue() / 10;
-            			sf = cfgReq->getTlvs(i).getValue() % 10;
-            		}
-                    if (cfgReq->getTlvs(i).getTag() == DlCyclicPrefixType) {
-                        ncp = cfgReq->getTlvs(i).getValue() == RRC_CP_NORMAL ? PHY_CP_NORMAL : PHY_CP_EXTENDED;
-                    }
-                    if (cfgReq->getTlvs(i).getTag() == DlChannelBandwith) {
-                        nDLrb = cfgReq->getTlvs(i).getValue();
-                    }
-                    if (cfgReq->getTlvs(i).getTag() == PhysicalCellId) {
-                        nCellId = cfgReq->getTlvs(i).getValue();
-                        n1id = nCellId / 3;
-                        n2id = nCellId % 3;
-                    }
-            	}
-                ConfigResponse *cfgResp = new ConfigResponse();
-                cfgResp->setErrorCode(MsgOk);
-                nb->fireChangeNotification(CONFIGResponse, cfgResp);
-            }
-            break;
-        }
-        case RUNNING: {
-            if (category == STARTRequest) {
-            	dlSubframe = new PHYSymbol*[nDLsymb * 2];
-            	for (unsigned char i = 0; i < nDLsymb * 2; i++)
-            		dlSubframe[i] = NULL;
-
-            	dlBuffer = new PHYFramePtr*[nDLsymb * 2];
-            	for (unsigned char l = 0; l < nDLsymb * 2; l++) {
-            		dlBuffer[l] = new PHYFramePtr[nRBsc * nDLrb];
-            		for (unsigned short k = 0; k < nRBsc * nDLrb; k++)
-            			dlBuffer[l][k] = NULL;
-            	}
-
-                this->cancelEvent(symbolTimer);
-                this->scheduleAt(simTime(), symbolTimer);
-            }
-            break;
-        }
-        default:
-            EV << "LTE-PHYenb: Unknown state.\n";
-            break;
-    }
+unsigned char PHY::getReNrInReg(unsigned char l) {
+	if (l == 0)
+		return 6;
+	else if (l == 1 && p == 4)
+		return 6;
+	else if (l == 1 && p != 4)
+		return 4;
+	else if (l == 2)
+		return 4;
+	else if (l == 3 && ncp == PHY_CP_NORMAL)
+		return 4;
+	else if (l == 3 && ncp == PHY_CP_EXTENDED)
+		return 6;
+	return 0;
 }
 
-void PHY::receiveChangeNotification(int category, const cPolymorphic *details) {
-    Enter_Method_Silent();
+REG PHY::findExactReg(unsigned char l, unsigned short k0) {
+	unsigned char regNr = getRegNrInRegs(l);
+	for (unsigned char r = 0; r < regNr; r++) {
+		if ((k0 >= r * (12 / regNr)) && (allRegs[l][k0 - r * (12 / regNr)] != NULL)) {
+			REGs regs = allRegs[l][k0 - r * (12 / regNr)];
+			return regs[r];
+		}
+	}
+	return NULL;
+}
 
-    int oldState = fsm.getState();
+void PHY::configureRegs() {
+	allRegs = new REGs*[4];
+	for (unsigned char l = 0; l < 4; l++) {
+		allRegs[l] = new REGs[nRBsc * nDLrb];
+		for (unsigned short k = 0; k < nRBsc * nDLrb; k++) {
+			if (k % nRBsc == 0) {
+				unsigned short k0 = k;
+				unsigned char regNr = getRegNrInRegs(l);
+				REGs regs = new REG[regNr];
+//            	EV << "(\n";
+				for (unsigned char r = 0; r < regNr; r++) {
+//            		EV << "(";
+					unsigned char reNr = getReNrInReg(l);
+					REG reg = new RE[reNr];
+					for (unsigned char kRel = 0; kRel < reNr; kRel++) {
+						reg[kRel].k = k0 + r * (12 / regNr) + kRel;
+						reg[kRel].l = l;
+//            			EV << "(" << (unsigned)reg[kRel].k << "," << (unsigned)reg[kRel].l << "), ";
+					}
+					regs[r] = reg;
+//            		EV << "),\n";
+				}
+				allRegs[l][k] = regs;
+//            	EV << ")\n";
+			} else
+				allRegs[l][k] = NULL;
+		}
+	}
+}
 
-    switch(oldState) {
-        case IDLE:
-            switch(category) {
-                case PARAMRequest: {
-                    break;
-                }
-                case CONFIGRequest: {
-                    FSM_Goto(fsm, CONFIGURED);
-                    break;
-                }
-                default:
-                    EV << "LTE-PHY: Received unexpected event.\n";
-                    break;
-            }
-            break;
-        case CONFIGURED:
-            switch(category) {
-                case STARTRequest: {
-                    FSM_Goto(fsm, RUNNING);
-                    break;
-                }
-                default:
-                    EV << "LTE-PHY: Received unexpected event.\n";
-                    break;
-            }
-            break;
-        case RUNNING:
-            switch(category) {
-                case DLCONFIGRequest: {
-                    break;
-                }
-                case TXRequest : {
-                    break;
-                }
-//                default:
-//                    EV << "LTE-PHY: Received unexpected event.\n";
-//                    break;
-            }
-            break;
-        default:
-            EV << "LTE-PHY: Unknown state.\n";
-            break;
-    }
-
-//    if (oldState != fsm.getState())
-//        EV << "LTE-PHY: PSM-Transition: " << stateName(oldState) << " --> " << stateName(fsm.getState()) << "  (event was: " << eventName(category) << ")\n";
-//    else
-//        EV << "LTE-PHY: Staying in state: " << stateName(fsm.getState()) << " (event was: " << eventName(category) << ")\n";
-
-    stateEntered(category, details);
+void PHY::printSubframe() {
+	std::ofstream file;
+	file.open("out.txt");
+	for (unsigned short k = 0; k < nDLrb * nRBsc; k++) {
+		for (unsigned char l = 0; l < nDLsymb * 2; l++) {
+			file << (unsigned)dlSubframe[l]->getRes(k) << "\t";
+		}
+		file << endl;
+	}
+	file.close();
 }

@@ -53,6 +53,8 @@ public:
      * Method for pushing DlConfigRequestPduPtr to vector.
      */
     void pushPdu(DlConfigRequestPduPtr pdu) { pdus.push_back(pdu); }
+    DlConfigRequestPduPtr backPdu() { return pdus.back(); }
+    void popPdu() { pdus.pop_back(); }
 };
 
 #endif /* PHYCOMMAND_H_ */

@@ -40,7 +40,7 @@ void RRCenb::initialize(int stage) {
         nb->subscribe(this, CONFIGResponse);
         nb->subscribe(this, SUBFRAMEIndication);
 
-        cyclicPrefix = RRC_CP_NORMAL;
+        cyclicPrefix = CTRL_CP_NORMAL;
         dlBandwithSel = 1;
         phyCellId = uniform(0, 503);
 
@@ -91,6 +91,8 @@ void RRCenb::initialize(int stage) {
         siCfg.setSiMsgList(0, siMsgEl);
         cellCfg->setSiConfig(siCfg);
         cellCfg->setDlBandwith(dlBandwiths[dlBandwithSel]);
+        cellCfg->setDlCyclPrefLen(cyclicPrefix);
+        cellCfg->setAntennaPortsCount(nrOfAntennas);
 
         nb->fireChangeNotification(CSCHED_CELL_CONFIG_REQ, cellCfg);
     }
@@ -281,11 +283,12 @@ void RRCenb::receiveChangeNotification(int category, const cPolymorphic *details
         PhyCommandTlv phySt = paramResp->getTlvs(0);
         if (phySt.getValue() == IDLE) {
             ConfigRequest *cfgReq = new ConfigRequest();
-            cfgReq->setTlvsArraySize(4);
+            cfgReq->setTlvsArraySize(5);
             cfgReq->setTlvs(0, createPhyCommandTlv(SfnSf, 1, sfn * 10 + sf));
             cfgReq->setTlvs(1, createPhyCommandTlv(DlCyclicPrefixType, 1, cyclicPrefix));
             cfgReq->setTlvs(2, createPhyCommandTlv(DlChannelBandwith, 1, dlBandwiths[dlBandwithSel]));
-            cfgReq->setTlvs(3, createPhyCommandTlv(PhysicalCellId, 1, phyCellId));
+            cfgReq->setTlvs(3, createPhyCommandTlv(TxAntennaPorts, 1, 1));
+            cfgReq->setTlvs(4, createPhyCommandTlv(PhysicalCellId, 1, phyCellId));
             nb->fireChangeNotification(CONFIGRequest, cfgReq);
         }
     } else if (category == CONFIGResponse) {

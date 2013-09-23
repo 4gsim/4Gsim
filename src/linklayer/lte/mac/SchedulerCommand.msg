@@ -19,9 +19,9 @@ enum SchedulerCommandType
     CSCHED_CELL_CONFIG_REQ = 201;
     SCHED_DL_TRIGGER_REQ = 202;
     SCHED_DL_CONFIG_IND = 203;
-   	SCHED_UL_TRIGGER_REQ = 204;
-   	SCHED_UL_CONFIG_IND = 205;
-   	SCHED_DL_RACH_INFO_REQ = 206;
+    SCHED_UL_TRIGGER_REQ = 204;
+	SCHED_UL_CONFIG_IND = 205;
+	SCHED_DL_RACH_INFO_REQ = 206;
 }
 
 class SchedulerCommand
@@ -37,8 +37,8 @@ class SiMessageListElement
 class SiConfiguration
 {
     unsigned short sib1Length;	// in bytes
-	unsigned char siWdwLen;
-	SiMessageListElement siMsgList[];	    
+    unsigned char siWdwLen;
+    SiMessageListElement siMsgList[];	    
 }
 
 class RaConfiguration
@@ -52,10 +52,12 @@ class RaConfiguration
 
 class CSchedCellConfigReq extends SchedulerCommand
 {
+    unsigned char dlCyclPrefLen;
+    unsigned char antennaPortsCount;
     SiConfiguration siConfig;
     unsigned char dlBandwith;
     unsigned char prachCfgIndex;
-	RaConfiguration raConfig;
+    RaConfiguration raConfig;
 }
 
 enum HarqStatus
@@ -81,8 +83,8 @@ class SchedDlTriggerReq extends SchedulerCommand
 
 class SchedUlTriggerReq extends SchedulerCommand
 {
-	unsigned short tti;  
-	bool rapComplete;   
+    unsigned short tti;
+    bool rapComplete;   
 }
 
 class RlcPduListElement
@@ -105,18 +107,18 @@ enum VRBFormatType
 
 class DlDciListElement
 {
-	unsigned short rnti; 
-	unsigned int rbBitmap;
-	unsigned char rbShift;
-	unsigned char resAlloc;
-	unsigned char nrOfTbs;
-	unsigned short tbsSize[2];
-	unsigned char mcs[2];   
-	unsigned char rv[2];
-	unsigned char format;
-	unsigned char tpc;
-	unsigned char vrbFormat;
-	unsigned char tbsIdx;
+    unsigned short rnti; 
+    unsigned int rbBitmap;
+    unsigned char rbShift;
+    unsigned char resAlloc;
+    unsigned char nrOfTbs;
+    unsigned short tbsSize[2];
+    unsigned char mcs[2];   
+    unsigned char rv[2];
+    unsigned char format;
+    unsigned char tpc;
+    unsigned char vrbFormat;
+    unsigned char tbsIdx;
 }
 
 class BuildDataListElement

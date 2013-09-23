@@ -31,6 +31,9 @@ static const unsigned tbSizeTable[N_PRB_SIZE][I_TBS_SIZE] = {
 class MACScheduler : public cSimpleModule, INotifiable {
 private:
     // Cell configuration
+	unsigned char dlCyclPref;
+	unsigned char nrOfAntennas;
+	unsigned char nrOfSubcarriers;
     SiConfiguration siCfg;
 
     // Random Access configuration
@@ -47,6 +50,8 @@ private:
 
     unsigned char getRBGSize();
     unsigned getRIV(unsigned char lCRB, unsigned char rbStart);
+    unsigned char getReNrInReg(unsigned char l);
+    unsigned char getNrOfDlSymbForDci(unsigned short nReg);
 
     void processScheduleDlTriggerRequest(SchedDlTriggerReq *triggReq);
     void processScheduleUlTriggerRequest(SchedUlTriggerReq *triggReq);

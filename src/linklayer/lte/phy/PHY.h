@@ -39,6 +39,16 @@ enum PHYCyclicPrefix {
     PHY_CP_NORMAL = 1
 };
 
+typedef PHYFrame* PHYFramePtr;
+
+typedef struct {
+	unsigned short k;
+	unsigned char l;
+} RE;
+
+typedef RE* REG;		// RE_0, RE_1, RE_2, RE_3 and if available RE_4  RE_5
+typedef REG* REGs;		// REG_0, REG_1 and if available REG_2
+
 class PHY : public ChannelAccess {
 protected:
     unsigned short sfn;
@@ -58,20 +68,15 @@ protected:
 
     unsigned char ncp;      // cyclic prefix
 
+    unsigned char p;		// number of antenna ports
+
+    unsigned char cfi;
+
     PHYSymbol **dlSubframe;	// symbol[nDLsymb]
 
-    typedef PHYFrame *PHYFramePtr;
     PHYFramePtr **dlBuffer;	// frame[nDLsymb * 2][nRBsc * nDLrb]
 
-    struct reg {
-        unsigned short k;
-        unsigned char l;
-    };
-
-    bool operator<(const reg &l, const reg &r);
-
-    typedef std::map<reg, unsigned char> REGroups;
-    REGroups regs;
+    REGs **allRegs;			// REGs[k0][l]
 
     cFSM fsm;
 
@@ -81,12 +86,19 @@ protected:
 
     NotificationBoard *nb;
 
+    unsigned char getRegNrInRegs(unsigned char l);
+    unsigned char getReNrInReg(unsigned char l);
+    REG findExactReg(unsigned char l, unsigned short k0);
+    void configureRegs();
+
     const char *stateName(int state);
     const char *eventName(int event);
 
-    virtual void receiveChangeNotification(int category, const cPolymorphic *details);
+    virtual void receiveChangeNotification(int category, const cPolymorphic *details) = 0;
 
-    virtual void stateEntered(int category, const cPolymorphic *details);
+    virtual void stateEntered(int category, const cPolymorphic *details) = 0;
+
+    void printSubframe();
 public:
 	PHY();
 	virtual ~PHY();

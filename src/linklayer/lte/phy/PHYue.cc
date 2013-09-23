@@ -22,7 +22,14 @@ PHYue::PHYue() : PHY()  {
 	start = false;
 	delayTimer = NULL;
     pbchSubcarriers = 0;
-    syncState = NONE;
+    nrOfPss = 0;
+    cellSync = 0;
+    nRBsc = 255;
+    nDLsymb = 255;
+    sf = 255;
+    symb = 255;
+    slot = 255;
+    dciSize = 0;
 }
 
 PHYue::~PHYue() {
@@ -89,24 +96,32 @@ void PHYue::handleRadioMessage(cMessage *msg) {
 		unsigned short k = 0;
 		while (k < symbol->getResArraySize()) {
 
-			// check for PSS
-			if (symbol->getRes(k) == PSS) {
-				k += 62;
-				if (syncState == NONE)
+			if (cellSync < 3) {
+				if (symbol->getRes(k) == PSS) {
+					k += 62;
 					processPSS(k - 1);
-			} else if (symbol->getRes(k) == SSS) {
-				k += 62;
-				if (syncState == PSS_RECEIVED)
+				} else if (symbol->getRes(k) == SSS) {
+					k += 62;
 					processSSS(k - 1);
-			} else if (symbol->getRes(k) == RS) {
-				k++;
-				if (syncState == SSS_RECEIVED)
+				} else if (symbol->getRes(k) == RS) {
+					k++;
 					processReferenceSignal(k - 1);
+				} else {
+					k++;
+				}
 			} else {
-				k++;
+				if (symbol->getRes(k) == PCFICH) {
+					k += getReNrInReg(0);
+					processPCFICH(k - 1);
+				} else if (symbol->getRes(k) == PDCCH) {
+					k += getReNrInReg(symb);
+					processPDCCH(k - 1);
+				} else {
+					k++;
+				}
 			}
 		}
-
+		symb = (symb + 1) % nDLsymb;
 
 //		if (syncState == NONE) {
 //            for (unsigned char i = 0; i < symbol->getResArraySize(); i++) {
@@ -204,13 +219,27 @@ void PHYue::processPSS(unsigned char k) {
     if (msg) {
     	EV << "LTE-PHYue: Received Primary Synchronization Signal.\n";
         PSSSignal *pss = check_and_cast<PSSSignal*>(msg);
-        n2id = pss->getCellIdInGroup();
 
-        slot = 0;
-        symb = 1;
-        EV << "LTE-PHYue: Setting slot = " << (unsigned)slot << " and symb = " << (unsigned)symb << ".\n";
+		n2id = pss->getCellIdInGroup();
 
-        syncState = PSS_RECEIVED;
+		if (cellSync == 0) {
+			if (nrOfPss == 0) {
+				symb = 1;
+
+				EV << "LTE-PHYue: Setting symb = " << (unsigned)symb << ".\n";
+			} else {
+				nDLsymb = symb / 10;
+				symb = nDLsymb - 1;
+
+				EV << "LTE-PHYue: Setting symb = " << (unsigned)symb << " with total number of symbols = " << (unsigned)nDLsymb << ".\n";
+
+				cellSync++;
+			}
+
+		}
+
+		nrOfPss = (nrOfPss + 1) % 2;
+
         delete msg;
     }
 }
@@ -221,18 +250,18 @@ void PHYue::processSSS(unsigned char k) {
     	EV << "LTE-PHYue: Received Secondary Synchronization signal.\n";
         SSSSignal *sss = check_and_cast<SSSSignal*>(msg);
 
-        n1id = sss->getCellGroupId();
-        nCellId = 3 * n1id + n2id;
+        if (cellSync == 1) {
+			n1id = sss->getCellGroupId();
+			nCellId = 3 * n1id + n2id;
 
-        sf = sss->getSf();  // UE knows the subframe because in reality the sequences for subframe 0 and 5 differ
-        slot = sf * 2;
-        symb++;
-        nDLsymb = symb / 10;
-        symb = nDLsymb - 2;
-        EV << "LTE-PHYue: Setting number of symbols = " << (unsigned)nDLsymb << ".\n";
-        EV << "LTE-PHYue: Resetting slot = " << (unsigned)slot << " and symb = " << (unsigned)symb << ".\n";
+			sf = sss->getSf();  // UE knows the subframe because in reality the sequences for subframe 0 and 5 differ
 
-        syncState = SSS_RECEIVED;
+			slot = sf * 2;
+
+			EV << "LTE-PHYue: Resetting slot = " << (unsigned)slot << ".\n";
+
+			cellSync++;
+        }
         delete msg;
     }
 }
@@ -242,15 +271,62 @@ void PHYue::processReferenceSignal(unsigned char k) {
     if (msg) {
     	EV << "LTE-PHYue: Received Reference Signal.\n";
         ReferenceSignal *refSig = check_and_cast<ReferenceSignal*>(msg);
-        if (refSig->getCellId() == nCellId) {
-            ncp = refSig->getNcp();
-            if (ncp == 1 && (nDLsymb == 7 || nDLsymb == 6))
-                nRBsc = 12;
-            else if (ncp == 1 && nDLsymb == 3)
-                nRBsc = 24;
-            syncState = SYNCHRONIZED;
+
+        if (cellSync == 2) {
+			if (refSig->getCellId() == nCellId) {
+				ncp = refSig->getNcp();
+				if (ncp == 1 && (nDLsymb == 7 || nDLsymb == 6))
+					nRBsc = 12;
+				else if (ncp == 1 && nDLsymb == 3)
+					nRBsc = 24;
+
+				configureRegs();
+
+				cellSync++;
+
+				EV << "LTE-PHYue: Physical layer synchronized with the cell.\n";
+			}
         }
         delete msg;
+    }
+}
+
+void PHYue::processPCFICH(unsigned char k) {
+    cMessage *msg = getData(k);
+    if (msg) {
+    	EV << "LTE-PHYue: Received PCFICH message.\n";
+    	PCFICHMessage *pcfichMsg = check_and_cast<PCFICHMessage*>(msg);
+    	cfi = pcfichMsg->getCfi();
+
+    	EV << "LTE-PHYue: Number of symbols used for PDCCH transmission = " << (unsigned)cfi << ".\n";
+    	delete msg;
+    }
+}
+
+void PHYue::processPDCCH(unsigned char k) {
+    cMessage *msg = getData(k);
+
+    dciSize++;
+
+    if (msg) {
+    	EV << "LTE-PHYue: Received PDCCH message.\n";
+    	DCIFormat *dci = check_and_cast<DCIFormat*>(msg);
+
+    	// check cfi
+    	if (symb < cfi) {
+    		EV << "LTE-PHYue: PDCCH message out of allocation space. Discarding the message.\n";
+    		delete msg;
+    		return;
+    	}
+
+    	// check size
+    	if ((dci->getFormatFlag() == DCI_FORMAT_1 || dci->getFormatFlag() == DCI_FORMAT_1A) && (dciSize != 18)) {
+    		EV << "LTE-PHYue: PDCCH message has wrong size. Discarding the message.\n";
+    		delete msg;
+    		return;
+    	}
+
+
     }
 }
 
@@ -268,27 +344,29 @@ void PHYue::processPBCH() {
 }
 
 void PHYue::stateEntered(int category, const cPolymorphic *details) {
-	PHY::stateEntered(category, details);
-
-	if (fsm.getState() == RUNNING) {
-		if (category == ULCONFIGRequest) {
-
-		} else if (category == RACHRequest) {
-			RachRequest *rachReq = check_and_cast<RachRequest*>(details);
-			for (unsigned i = 0; i < rachReq->getPreamblesArraySize(); i++) {	// normally it should be only one preamble
-				RachPreamble preamble = rachReq->getPreambles(i);
-				RAPreamble *raPreamble = new RAPreamble();
-				raPreamble->setName("RAPreamble");
-				raPreamble->setChannelNumber(PRACH);
-				raPreamble->setRnti(preamble.getRnti());
-				raPreamble->setRntiType(RaRnti);
-				raPreamble->setRapid(preamble.getPreamble());
-				this->sendToChannel(raPreamble);
-			}
-		}
-	}
+//	if (fsm.getState() == RUNNING) {
+//		if (category == ULCONFIGRequest) {
+//
+//		} else if (category == RACHRequest) {
+//			RachRequest *rachReq = check_and_cast<RachRequest*>(details);
+//			for (unsigned i = 0; i < rachReq->getPreamblesArraySize(); i++) {	// normally it should be only one preamble
+//				RachPreamble preamble = rachReq->getPreambles(i);
+//				RAPreamble *raPreamble = new RAPreamble();
+//				raPreamble->setName("RAPreamble");
+//				raPreamble->setChannelNumber(PRACH);
+//				raPreamble->setRnti(preamble.getRnti());
+//				raPreamble->setRntiType(RaRnti);
+//				raPreamble->setRapid(preamble.getPreamble());
+//				this->sendToChannel(raPreamble);
+//			}
+//		}
+//	}
 }
 
 void PHYue::sendBufferedData() {
+
+}
+
+void PHYue::receiveChangeNotification(int category, const cPolymorphic *details) {
 
 }

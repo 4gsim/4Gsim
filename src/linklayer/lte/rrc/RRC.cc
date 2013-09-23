@@ -41,6 +41,7 @@ RRC::RRC() {
     dlBandwithSel = 255;
     cyclicPrefix = 255;
     phyCellId = 65535;
+    nrOfAntennas = 1;
 }
 
 RRC::~RRC() {
